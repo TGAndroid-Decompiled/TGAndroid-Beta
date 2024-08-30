@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_updateChannelPinnedTopics extends TLRPC$Update {
     public long channel_id;
     public int flags;
-    public ArrayList<Integer> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -36,7 +36,7 @@ public class TLRPC$TL_updateChannelPinnedTopics extends TLRPC$Update {
             int size = this.order.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                abstractSerializedData.writeInt32(this.order.get(i).intValue());
+                abstractSerializedData.writeInt32(((Integer) this.order.get(i)).intValue());
             }
         }
     }

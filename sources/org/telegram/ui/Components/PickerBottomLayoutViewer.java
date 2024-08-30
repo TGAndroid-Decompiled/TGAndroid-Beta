@@ -55,22 +55,23 @@ public class PickerBottomLayoutViewer extends FrameLayout {
     }
 
     public void updateSelectedCount(int i, boolean z) {
-        if (i == 0) {
-            this.doneButtonBadgeTextView.setVisibility(8);
+        if (i != 0) {
+            this.doneButtonBadgeTextView.setVisibility(0);
+            this.doneButtonBadgeTextView.setText(String.format("%d", Integer.valueOf(i)));
+            this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
             if (z) {
-                this.doneButton.setTextColor(-6710887);
-                this.doneButton.setEnabled(false);
-                return;
-            } else {
-                this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+                this.doneButton.setEnabled(true);
                 return;
             }
+            return;
         }
-        this.doneButtonBadgeTextView.setVisibility(0);
-        this.doneButtonBadgeTextView.setText(String.format("%d", Integer.valueOf(i)));
-        this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
-        if (z) {
-            this.doneButton.setEnabled(true);
+        this.doneButtonBadgeTextView.setVisibility(8);
+        TextView textView = this.doneButton;
+        if (!z) {
+            textView.setTextColor(this.isDarkTheme ? -1 : -15095832);
+        } else {
+            textView.setTextColor(-6710887);
+            this.doneButton.setEnabled(false);
         }
     }
 }

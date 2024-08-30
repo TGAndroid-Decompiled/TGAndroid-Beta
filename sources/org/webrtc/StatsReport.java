@@ -10,7 +10,6 @@ public class StatsReport {
         public final String name;
         public final String value;
 
-        @CalledByNative("Value")
         public Value(String str, String str2) {
             this.name = str;
             this.value = str2;
@@ -21,7 +20,6 @@ public class StatsReport {
         }
     }
 
-    @CalledByNative
     public StatsReport(String str, String str2, double d, Value[] valueArr) {
         this.id = str;
         this.type = str2;
@@ -41,13 +39,12 @@ public class StatsReport {
         int i = 0;
         while (true) {
             Value[] valueArr = this.values;
-            if (i < valueArr.length) {
-                sb.append(valueArr[i].toString());
-                sb.append(", ");
-                i++;
-            } else {
+            if (i >= valueArr.length) {
                 return sb.toString();
             }
+            sb.append(valueArr[i].toString());
+            sb.append(", ");
+            i++;
         }
     }
 }

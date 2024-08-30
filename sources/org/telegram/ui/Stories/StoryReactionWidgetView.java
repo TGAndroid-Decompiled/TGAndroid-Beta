@@ -9,6 +9,7 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
@@ -60,43 +61,6 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.animatedTextDrawable.setTextSize(Math.min(AndroidUtilities.dp(18.0f), getMeasuredHeight() * 0.156f));
-    }
-
-    public void setViews(TL_stories$StoryViews tL_stories$StoryViews, boolean z) {
-        if (tL_stories$StoryViews != null) {
-            for (int i = 0; i < tL_stories$StoryViews.reactions.size(); i++) {
-                if (ReactionsUtils.compare(tL_stories$StoryViews.reactions.get(i).reaction, this.visibleReaction)) {
-                    boolean z2 = z && this.hasCounter;
-                    this.hasCounter = tL_stories$StoryViews.reactions.get(i).count > 0;
-                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(tL_stories$StoryViews.reactions.get(i).count, 0), z2);
-                    if (z) {
-                        return;
-                    }
-                    this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f, true);
-                    return;
-                }
-            }
-        }
-        this.hasCounter = false;
-        invalidate();
-        if (z) {
-            return;
-        }
-        this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f, true);
-    }
-
-    @Override
-    public void setScaleX(float f) {
-        if (getScaleX() != f) {
-            this.storyReactionWidgetBackground.updateShadowLayer(f);
-            super.setScaleX(f);
-        }
-    }
-
-    @Override
     public void customDraw(Canvas canvas) {
         this.storyReactionWidgetBackground.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         this.storyReactionWidgetBackground.draw(canvas);
@@ -122,6 +86,10 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         canvas.restore();
     }
 
+    public AnimatedEmojiDrawable getAnimatedEmojiDrawable() {
+        return this.holder.animatedEmojiDrawable;
+    }
+
     @Override
     public void invalidate() {
         super.invalidate();
@@ -144,11 +112,44 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         this.preloadSmallReaction.onDetachedFromWindow();
     }
 
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.animatedTextDrawable.setTextSize(Math.min(AndroidUtilities.dp(18.0f), getMeasuredHeight() * 0.156f));
+    }
+
     public void playAnimation() {
         this.holder.play();
     }
 
-    public AnimatedEmojiDrawable getAnimatedEmojiDrawable() {
-        return this.holder.animatedEmojiDrawable;
+    @Override
+    public void setScaleX(float f) {
+        if (getScaleX() != f) {
+            this.storyReactionWidgetBackground.updateShadowLayer(f);
+            super.setScaleX(f);
+        }
+    }
+
+    public void setViews(TL_stories$StoryViews tL_stories$StoryViews, boolean z) {
+        if (tL_stories$StoryViews != null) {
+            for (int i = 0; i < tL_stories$StoryViews.reactions.size(); i++) {
+                if (ReactionsUtils.compare(((TLRPC$ReactionCount) tL_stories$StoryViews.reactions.get(i)).reaction, this.visibleReaction)) {
+                    boolean z2 = z && this.hasCounter;
+                    this.hasCounter = ((TLRPC$ReactionCount) tL_stories$StoryViews.reactions.get(i)).count > 0;
+                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(((TLRPC$ReactionCount) tL_stories$StoryViews.reactions.get(i)).count, 0), z2);
+                    if (z) {
+                        return;
+                    }
+                    this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f, true);
+                    return;
+                }
+            }
+        }
+        this.hasCounter = false;
+        invalidate();
+        if (z) {
+            return;
+        }
+        this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f, true);
     }
 }

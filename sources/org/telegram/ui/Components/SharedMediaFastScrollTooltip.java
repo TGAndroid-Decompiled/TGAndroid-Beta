@@ -19,22 +19,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 
 public class SharedMediaFastScrollTooltip extends FrameLayout {
-    public SharedMediaFastScrollTooltip(Context context) {
-        super(context);
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.SharedMediaFastScrollHint));
-        textView.setTextSize(1, 14.0f);
-        textView.setMaxLines(3);
-        textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
-        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
-        addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
-        addView(new TooltipDrawableView(context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(300.0f), View.MeasureSpec.getSize(i) - AndroidUtilities.dp(32.0f)), Integer.MIN_VALUE), i2);
-    }
 
     private class TooltipDrawableView extends View {
         Paint fadePaint;
@@ -111,15 +95,28 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
                 this.fromProgress = this.toProgress;
                 float abs = Math.abs(this.random.nextInt() % 1001) / 1000.0f;
                 this.toProgress = abs;
-                if (abs > this.fromProgress) {
-                    this.toProgress = abs + 0.3f;
-                } else {
-                    this.toProgress = abs - 0.3f;
-                }
+                this.toProgress = abs > this.fromProgress ? abs + 0.3f : abs - 0.3f;
                 this.toProgress = Math.max(0.0f, Math.min(1.0f, this.toProgress));
                 this.progress = 0.0f;
             }
             invalidate();
         }
+    }
+
+    public SharedMediaFastScrollTooltip(Context context) {
+        super(context);
+        TextView textView = new TextView(context);
+        textView.setText(LocaleController.getString(R.string.SharedMediaFastScrollHint));
+        textView.setTextSize(1, 14.0f);
+        textView.setMaxLines(3);
+        textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
+        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
+        addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
+        addView(new TooltipDrawableView(context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(300.0f), View.MeasureSpec.getSize(i) - AndroidUtilities.dp(32.0f)), Integer.MIN_VALUE), i2);
     }
 }

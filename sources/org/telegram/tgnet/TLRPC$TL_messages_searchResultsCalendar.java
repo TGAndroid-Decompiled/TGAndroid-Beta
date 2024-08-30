@@ -9,10 +9,10 @@ public class TLRPC$TL_messages_searchResultsCalendar extends TLObject {
     public int min_date;
     public int min_msg_id;
     public int offset_id_offset;
-    public ArrayList<TLRPC$TL_searchResultsCalendarPeriod> periods = new ArrayList<>();
-    public ArrayList<TLRPC$Message> messages = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList periods = new ArrayList();
+    public ArrayList messages = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_messages_searchResultsCalendar TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (343859772 != i) {
@@ -115,25 +115,25 @@ public class TLRPC$TL_messages_searchResultsCalendar extends TLObject {
         int size = this.periods.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.periods.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_searchResultsCalendarPeriod) this.periods.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.messages.size();
         abstractSerializedData.writeInt32(size2);
         for (int i3 = 0; i3 < size2; i3++) {
-            this.messages.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$Message) this.messages.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.chats.size();
         abstractSerializedData.writeInt32(size3);
         for (int i4 = 0; i4 < size3; i4++) {
-            this.chats.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i4)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i5 = 0; i5 < size4; i5++) {
-            this.users.get(i5).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i5)).serializeToStream(abstractSerializedData);
         }
     }
 }

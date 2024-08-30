@@ -29,14 +29,6 @@ public class JoinToSendSettingsView extends LinearLayout {
     private ValueAnimator toggleAnimator;
     private float toggleValue;
 
-    public boolean onJoinRequestToggle(boolean z, Runnable runnable) {
-        return true;
-    }
-
-    public boolean onJoinToSendToggle(boolean z, Runnable runnable) {
-        return true;
-    }
-
     public JoinToSendSettingsView(Context context, TLRPC$Chat tLRPC$Chat) {
         super(context);
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
@@ -100,6 +92,24 @@ public class JoinToSendSettingsView extends LinearLayout {
         updateToggleValue(this.toggleValue);
     }
 
+    private int calcHeight() {
+        return (int) (this.joinHeaderCell.getMeasuredHeight() + (this.joinToSendCell.getVisibility() == 0 ? this.joinToSendCell.getMeasuredHeight() + (this.joinRequestCell.getMeasuredHeight() * this.toggleValue) : this.joinRequestCell.getMeasuredHeight()) + AndroidUtilities.lerp(this.joinToSendInfoCell.getMeasuredHeight(), this.joinRequestInfoCell.getMeasuredHeight(), this.toggleValue));
+    }
+
+    public void lambda$new$0(boolean z, boolean z2) {
+        lambda$new$3(z);
+        setJoinToSend(z2);
+    }
+
+    public void lambda$new$1(final boolean z, final boolean z2) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                JoinToSendSettingsView.this.lambda$new$0(z, z2);
+            }
+        });
+    }
+
     public void lambda$new$2(View view) {
         final boolean z = this.isJoinToSend;
         boolean z2 = !z;
@@ -115,18 +125,13 @@ public class JoinToSendSettingsView extends LinearLayout {
         }
     }
 
-    public void lambda$new$1(final boolean z, final boolean z2) {
+    public void lambda$new$4(final boolean z) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                JoinToSendSettingsView.this.lambda$new$0(z, z2);
+                JoinToSendSettingsView.this.lambda$new$3(z);
             }
         });
-    }
-
-    public void lambda$new$0(boolean z, boolean z2) {
-        lambda$new$3(z);
-        setJoinToSend(z2);
     }
 
     public void lambda$new$5(View view) {
@@ -142,27 +147,10 @@ public class JoinToSendSettingsView extends LinearLayout {
         }
     }
 
-    public void lambda$new$4(final boolean z) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                JoinToSendSettingsView.this.lambda$new$3(z);
-            }
-        });
-    }
-
-    public void setChat(TLRPC$Chat tLRPC$Chat) {
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
-        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
-        this.currentChat = tLRPC$Chat;
-        boolean z = true;
-        this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
-        TextCheckCell textCheckCell = this.joinRequestCell;
-        TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-        if (!tLRPC$Chat2.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
-            z = false;
-        }
-        textCheckCell.setEnabled(z);
+    public void lambda$setJoinToSend$6(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.toggleValue = floatValue;
+        updateToggleValue(floatValue);
     }
 
     private void updateToggleValue(float f) {
@@ -180,14 +168,57 @@ public class JoinToSendSettingsView extends LinearLayout {
         requestLayout();
     }
 
-    public void showJoinToSend(boolean z) {
-        this.joinToSendCell.setVisibility(z ? 0 : 8);
-        if (!z) {
-            this.isJoinToSend = true;
-            this.joinRequestCell.setVisibility(0);
-            updateToggleValue(1.0f);
+    public boolean onJoinRequestToggle(boolean z, Runnable runnable) {
+        return true;
+    }
+
+    public boolean onJoinToSendToggle(boolean z, Runnable runnable) {
+        return true;
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        HeaderCell headerCell = this.joinHeaderCell;
+        int i5 = i3 - i;
+        int measuredHeight = headerCell.getMeasuredHeight();
+        headerCell.layout(0, 0, i5, measuredHeight);
+        if (this.joinToSendCell.getVisibility() == 0) {
+            TextCheckCell textCheckCell = this.joinToSendCell;
+            int measuredHeight2 = textCheckCell.getMeasuredHeight() + measuredHeight;
+            textCheckCell.layout(0, measuredHeight, i5, measuredHeight2);
+            measuredHeight = measuredHeight2;
         }
-        requestLayout();
+        TextCheckCell textCheckCell2 = this.joinRequestCell;
+        int measuredHeight3 = textCheckCell2.getMeasuredHeight() + measuredHeight;
+        textCheckCell2.layout(0, measuredHeight, i5, measuredHeight3);
+        TextInfoPrivacyCell textInfoPrivacyCell = this.joinToSendInfoCell;
+        textInfoPrivacyCell.layout(0, measuredHeight3, i5, textInfoPrivacyCell.getMeasuredHeight() + measuredHeight3);
+        TextInfoPrivacyCell textInfoPrivacyCell2 = this.joinRequestInfoCell;
+        textInfoPrivacyCell2.layout(0, measuredHeight3, i5, textInfoPrivacyCell2.getMeasuredHeight() + measuredHeight3);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        this.joinHeaderCell.measure(i, this.MAXSPEC);
+        this.joinToSendCell.measure(i, this.MAXSPEC);
+        this.joinRequestCell.measure(i, this.MAXSPEC);
+        this.joinToSendInfoCell.measure(i, this.MAXSPEC);
+        this.joinRequestInfoCell.measure(i, this.MAXSPEC);
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(calcHeight(), 1073741824));
+    }
+
+    public void setChat(TLRPC$Chat tLRPC$Chat) {
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
+        this.currentChat = tLRPC$Chat;
+        boolean z = true;
+        this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
+        TextCheckCell textCheckCell = this.joinRequestCell;
+        TLRPC$Chat tLRPC$Chat2 = this.currentChat;
+        if (!tLRPC$Chat2.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
+            z = false;
+        }
+        textCheckCell.setEnabled(z);
     }
 
     public void lambda$new$3(boolean z) {
@@ -228,51 +259,13 @@ public class JoinToSendSettingsView extends LinearLayout {
         this.toggleAnimator.start();
     }
 
-    public void lambda$setJoinToSend$6(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.toggleValue = floatValue;
-        updateToggleValue(floatValue);
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        HeaderCell headerCell = this.joinHeaderCell;
-        int i5 = i3 - i;
-        int measuredHeight = headerCell.getMeasuredHeight();
-        headerCell.layout(0, 0, i5, measuredHeight);
-        if (this.joinToSendCell.getVisibility() == 0) {
-            TextCheckCell textCheckCell = this.joinToSendCell;
-            int measuredHeight2 = textCheckCell.getMeasuredHeight() + measuredHeight;
-            textCheckCell.layout(0, measuredHeight, i5, measuredHeight2);
-            measuredHeight = measuredHeight2;
+    public void showJoinToSend(boolean z) {
+        this.joinToSendCell.setVisibility(z ? 0 : 8);
+        if (!z) {
+            this.isJoinToSend = true;
+            this.joinRequestCell.setVisibility(0);
+            updateToggleValue(1.0f);
         }
-        TextCheckCell textCheckCell2 = this.joinRequestCell;
-        int measuredHeight3 = textCheckCell2.getMeasuredHeight() + measuredHeight;
-        textCheckCell2.layout(0, measuredHeight, i5, measuredHeight3);
-        TextInfoPrivacyCell textInfoPrivacyCell = this.joinToSendInfoCell;
-        textInfoPrivacyCell.layout(0, measuredHeight3, i5, textInfoPrivacyCell.getMeasuredHeight() + measuredHeight3);
-        TextInfoPrivacyCell textInfoPrivacyCell2 = this.joinRequestInfoCell;
-        textInfoPrivacyCell2.layout(0, measuredHeight3, i5, textInfoPrivacyCell2.getMeasuredHeight() + measuredHeight3);
-    }
-
-    private int calcHeight() {
-        float measuredHeight;
-        float measuredHeight2 = this.joinHeaderCell.getMeasuredHeight();
-        if (this.joinToSendCell.getVisibility() == 0) {
-            measuredHeight = this.joinToSendCell.getMeasuredHeight() + (this.joinRequestCell.getMeasuredHeight() * this.toggleValue);
-        } else {
-            measuredHeight = this.joinRequestCell.getMeasuredHeight();
-        }
-        return (int) (measuredHeight2 + measuredHeight + AndroidUtilities.lerp(this.joinToSendInfoCell.getMeasuredHeight(), this.joinRequestInfoCell.getMeasuredHeight(), this.toggleValue));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        this.joinHeaderCell.measure(i, this.MAXSPEC);
-        this.joinToSendCell.measure(i, this.MAXSPEC);
-        this.joinRequestCell.measure(i, this.MAXSPEC);
-        this.joinToSendInfoCell.measure(i, this.MAXSPEC);
-        this.joinRequestInfoCell.measure(i, this.MAXSPEC);
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(calcHeight(), 1073741824));
+        requestLayout();
     }
 }

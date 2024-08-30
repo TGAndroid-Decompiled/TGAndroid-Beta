@@ -7,8 +7,8 @@ public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedS
     public int flags;
     public long hash;
     public boolean premium;
-    public ArrayList<TLRPC$StickerSetCovered> sets = new ArrayList<>();
-    public ArrayList<Long> unread = new ArrayList<>();
+    public ArrayList sets = new ArrayList();
+    public ArrayList unread = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -57,13 +57,13 @@ public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedS
         int size = this.sets.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.sets.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$StickerSetCovered) this.sets.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.unread.size();
         abstractSerializedData.writeInt32(size2);
         for (int i3 = 0; i3 < size2; i3++) {
-            abstractSerializedData.writeInt64(this.unread.get(i3).longValue());
+            abstractSerializedData.writeInt64(((Long) this.unread.get(i3)).longValue());
         }
     }
 }

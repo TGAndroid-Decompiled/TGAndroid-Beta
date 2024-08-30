@@ -25,96 +25,8 @@ public class RecyclerAnimationScrollHelper {
     private RecyclerListView recyclerView;
     private int scrollDirection;
     private ScrollListener scrollListener;
-    public SparseArray<View> positionToOldView = new SparseArray<>();
-    private HashMap<Long, View> oldStableIds = new HashMap<>();
-
-    public static class AnimationCallback {
-        public void ignoreView(View view, boolean z) {
-        }
-
-        public void onEndAnimation() {
-            throw null;
-        }
-
-        public void onPreAnimation() {
-        }
-
-        public void onStartAnimation() {
-        }
-
-        public void recycleView(View view) {
-        }
-    }
-
-    public interface ScrollListener {
-        void onScroll();
-    }
-
-    public RecyclerAnimationScrollHelper(RecyclerListView recyclerListView, LinearLayoutManager linearLayoutManager) {
-        this.recyclerView = recyclerListView;
-        this.layoutManager = linearLayoutManager;
-    }
-
-    public void scrollToPosition(int i, int i2, boolean z, boolean z2) {
-        long itemId;
-        RecyclerListView recyclerListView = this.recyclerView;
-        if (recyclerListView.fastScrollAnimationRunning) {
-            return;
-        }
-        if (recyclerListView.getItemAnimator() == null || !this.recyclerView.getItemAnimator().isRunning()) {
-            if (!z2 || this.scrollDirection == -1) {
-                this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-                return;
-            }
-            int childCount = this.recyclerView.getChildCount();
-            if (childCount == 0 || !MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
-                this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-                return;
-            }
-            boolean z3 = this.scrollDirection == 0;
-            this.recyclerView.setScrollEnabled(false);
-            ArrayList arrayList = new ArrayList();
-            this.positionToOldView.clear();
-            RecyclerView.Adapter adapter = this.recyclerView.getAdapter();
-            this.oldStableIds.clear();
-            for (int i3 = 0; i3 < childCount; i3++) {
-                View childAt = this.recyclerView.getChildAt(i3);
-                arrayList.add(childAt);
-                this.positionToOldView.put(this.layoutManager.getPosition(childAt), childAt);
-                if (adapter != null && (adapter.hasStableIds() || this.forceUseStableId)) {
-                    if (this.forceUseStableId) {
-                        int adapterPosition = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getAdapterPosition();
-                        if (adapterPosition >= 0) {
-                            itemId = adapter.getItemId(adapterPosition);
-                        }
-                    } else {
-                        itemId = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId();
-                    }
-                    this.oldStableIds.put(Long.valueOf(itemId), childAt);
-                }
-                if (childAt instanceof ChatMessageCell) {
-                    ((ChatMessageCell) childAt).setAnimationRunning(true, true);
-                }
-            }
-            this.recyclerView.prepareForFastScroll();
-            AnimatableAdapter animatableAdapter = adapter instanceof AnimatableAdapter ? (AnimatableAdapter) adapter : null;
-            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
-            if (adapter != null) {
-                adapter.notifyDataSetChanged();
-            }
-            this.recyclerView.stopScroll();
-            this.recyclerView.setVerticalScrollBarEnabled(false);
-            AnimationCallback animationCallback = this.animationCallback;
-            if (animationCallback != null) {
-                animationCallback.onStartAnimation();
-            }
-            this.recyclerView.fastScrollAnimationRunning = true;
-            if (animatableAdapter != null) {
-                animatableAdapter.onAnimationStart();
-            }
-            this.recyclerView.addOnLayoutChangeListener(new AnonymousClass1(adapter, arrayList, z3, animatableAdapter));
-        }
-    }
+    public SparseArray positionToOldView = new SparseArray();
+    private HashMap oldStableIds = new HashMap();
 
     public class AnonymousClass1 implements View.OnLayoutChangeListener {
         final RecyclerView.Adapter val$adapter;
@@ -129,10 +41,32 @@ public class RecyclerAnimationScrollHelper {
             this.val$finalAnimatableAdapter = animatableAdapter;
         }
 
+        public void lambda$onLayoutChange$0(ArrayList arrayList, boolean z, int i, ArrayList arrayList2, ValueAnimator valueAnimator) {
+            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            int size = arrayList.size();
+            for (int i2 = 0; i2 < size; i2++) {
+                View view = (View) arrayList.get(i2);
+                float y = view.getY();
+                if (view.getY() + view.getMeasuredHeight() >= 0.0f && y <= RecyclerAnimationScrollHelper.this.recyclerView.getMeasuredHeight()) {
+                    view.setTranslationY((z ? -i : i) * floatValue);
+                }
+            }
+            int size2 = arrayList2.size();
+            for (int i3 = 0; i3 < size2; i3++) {
+                ((View) arrayList2.get(i3)).setTranslationY((z ? i : -i) * (1.0f - floatValue));
+            }
+            RecyclerAnimationScrollHelper.this.recyclerView.invalidate();
+            if (RecyclerAnimationScrollHelper.this.scrollListener != null) {
+                RecyclerAnimationScrollHelper.this.scrollListener.onScroll();
+            }
+        }
+
         @Override
         public void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
             int height;
-            long min;
+            long j;
+            ValueAnimator valueAnimator;
+            CubicBezierInterpolator cubicBezierInterpolator;
             View view2;
             RecyclerAnimationScrollHelper.this.recyclerView.removeOnLayoutChangeListener(this);
             final ArrayList arrayList = new ArrayList();
@@ -215,14 +149,14 @@ public class RecyclerAnimationScrollHelper {
                 RecyclerAnimationScrollHelper.this.animator.cancel();
             }
             RecyclerAnimationScrollHelper.this.animator = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ValueAnimator valueAnimator = RecyclerAnimationScrollHelper.this.animator;
+            ValueAnimator valueAnimator2 = RecyclerAnimationScrollHelper.this.animator;
             final ArrayList arrayList2 = this.val$oldViews;
             final boolean z2 = this.val$scrollDown;
             final int i16 = height;
-            valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    RecyclerAnimationScrollHelper.AnonymousClass1.this.lambda$onLayoutChange$0(arrayList2, z2, i16, arrayList, valueAnimator2);
+                public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                    RecyclerAnimationScrollHelper.AnonymousClass1.this.lambda$onLayoutChange$0(arrayList2, z2, i16, arrayList, valueAnimator3);
                 }
             });
             RecyclerAnimationScrollHelper.this.animator.addListener(new AnimatorListenerAdapter() {
@@ -249,12 +183,11 @@ public class RecyclerAnimationScrollHelper {
                     RecyclerAnimationScrollHelper.this.recyclerView.setScrollEnabled(true);
                     RecyclerAnimationScrollHelper.this.recyclerView.setVerticalScrollBarEnabled(true);
                     if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        if (RecyclerAnimationScrollHelper.this.recyclerView.mChildHelper.getChildCount() == RecyclerAnimationScrollHelper.this.recyclerView.getChildCount()) {
-                            if (RecyclerAnimationScrollHelper.this.recyclerView.mChildHelper.getHiddenChildCount() != 0) {
-                                throw new RuntimeException("hidden child count must be 0");
-                            }
-                        } else {
+                        if (RecyclerAnimationScrollHelper.this.recyclerView.mChildHelper.getChildCount() != RecyclerAnimationScrollHelper.this.recyclerView.getChildCount()) {
                             throw new RuntimeException("views count in child helper must be quals views count in recycler view");
+                        }
+                        if (RecyclerAnimationScrollHelper.this.recyclerView.mChildHelper.getHiddenChildCount() != 0) {
+                            throw new RuntimeException("hidden child count must be 0");
                         }
                     }
                     int childCount2 = RecyclerAnimationScrollHelper.this.recyclerView.getChildCount();
@@ -285,62 +218,152 @@ public class RecyclerAnimationScrollHelper {
                 }
             });
             RecyclerAnimationScrollHelper recyclerAnimationScrollHelper = RecyclerAnimationScrollHelper.this;
-            if (!recyclerAnimationScrollHelper.isDialogs) {
+            long j2 = 300;
+            if (recyclerAnimationScrollHelper.isDialogs) {
                 if (z) {
-                    min = 600;
-                } else {
-                    long measuredHeight = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
-                    min = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
+                    recyclerAnimationScrollHelper.animator.setDuration(150L);
+                    valueAnimator = RecyclerAnimationScrollHelper.this.animator;
+                    cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
+                    valueAnimator.setInterpolator(cubicBezierInterpolator);
+                    RecyclerAnimationScrollHelper.this.animator.start();
                 }
-                RecyclerAnimationScrollHelper.this.animator.setDuration(min);
-                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            } else if (z) {
-                recyclerAnimationScrollHelper.animator.setDuration(150L);
-                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+                long measuredHeight = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                if (measuredHeight >= 300) {
+                    j2 = measuredHeight;
+                }
             } else {
-                long measuredHeight2 = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
-                RecyclerAnimationScrollHelper.this.animator.setDuration(Math.min(measuredHeight2 >= 300 ? measuredHeight2 : 300L, 1300L));
-                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            }
-            RecyclerAnimationScrollHelper.this.animator.start();
-        }
-
-        public void lambda$onLayoutChange$0(ArrayList arrayList, boolean z, int i, ArrayList arrayList2, ValueAnimator valueAnimator) {
-            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            int size = arrayList.size();
-            for (int i2 = 0; i2 < size; i2++) {
-                View view = (View) arrayList.get(i2);
-                float y = view.getY();
-                if (view.getY() + view.getMeasuredHeight() >= 0.0f && y <= RecyclerAnimationScrollHelper.this.recyclerView.getMeasuredHeight()) {
-                    if (z) {
-                        view.setTranslationY((-i) * floatValue);
-                    } else {
-                        view.setTranslationY(i * floatValue);
-                    }
-                }
-            }
-            int size2 = arrayList2.size();
-            for (int i3 = 0; i3 < size2; i3++) {
-                View view2 = (View) arrayList2.get(i3);
                 if (z) {
-                    view2.setTranslationY(i * (1.0f - floatValue));
-                } else {
-                    view2.setTranslationY((-i) * (1.0f - floatValue));
+                    j = 600;
+                    RecyclerAnimationScrollHelper.this.animator.setDuration(j);
+                    valueAnimator = RecyclerAnimationScrollHelper.this.animator;
+                    cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+                    valueAnimator.setInterpolator(cubicBezierInterpolator);
+                    RecyclerAnimationScrollHelper.this.animator.start();
+                }
+                long measuredHeight2 = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                if (measuredHeight2 >= 300) {
+                    j2 = measuredHeight2;
                 }
             }
-            RecyclerAnimationScrollHelper.this.recyclerView.invalidate();
-            if (RecyclerAnimationScrollHelper.this.scrollListener != null) {
-                RecyclerAnimationScrollHelper.this.scrollListener.onScroll();
-            }
+            j = Math.min(j2, 1300L);
+            RecyclerAnimationScrollHelper.this.animator.setDuration(j);
+            valueAnimator = RecyclerAnimationScrollHelper.this.animator;
+            cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            valueAnimator.setInterpolator(cubicBezierInterpolator);
+            RecyclerAnimationScrollHelper.this.animator.start();
         }
     }
 
-    public void cancel() {
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
+    public static abstract class AnimatableAdapter extends RecyclerListView.SelectionAdapter {
+        public boolean animationRunning;
+        private ArrayList rangeInserted = new ArrayList();
+        private ArrayList rangeRemoved = new ArrayList();
+        private boolean shouldNotifyDataSetChanged;
+
+        @Override
+        public void notifyDataSetChanged() {
+            if (this.animationRunning) {
+                this.shouldNotifyDataSetChanged = true;
+            } else {
+                super.notifyDataSetChanged();
+            }
         }
-        clear();
+
+        @Override
+        public void notifyItemChanged(int i) {
+            if (this.animationRunning) {
+                return;
+            }
+            super.notifyItemChanged(i);
+        }
+
+        @Override
+        public void notifyItemInserted(int i) {
+            if (!this.animationRunning) {
+                super.notifyItemInserted(i);
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(1);
+            }
+        }
+
+        @Override
+        public void notifyItemRangeChanged(int i, int i2) {
+            if (this.animationRunning) {
+                return;
+            }
+            super.notifyItemRangeChanged(i, i2);
+        }
+
+        @Override
+        public void notifyItemRangeInserted(int i, int i2) {
+            if (!this.animationRunning) {
+                super.notifyItemRangeInserted(i, i2);
+            } else {
+                this.rangeInserted.add(Integer.valueOf(i));
+                this.rangeInserted.add(Integer.valueOf(i2));
+            }
+        }
+
+        @Override
+        public void notifyItemRangeRemoved(int i, int i2) {
+            if (!this.animationRunning) {
+                super.notifyItemRangeRemoved(i, i2);
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(Integer.valueOf(i2));
+            }
+        }
+
+        @Override
+        public void notifyItemRemoved(int i) {
+            if (!this.animationRunning) {
+                super.notifyItemRemoved(i);
+            } else {
+                this.rangeRemoved.add(Integer.valueOf(i));
+                this.rangeRemoved.add(1);
+            }
+        }
+
+        public void onAnimationEnd() {
+            this.animationRunning = false;
+            if (!this.shouldNotifyDataSetChanged && this.rangeInserted.isEmpty() && this.rangeRemoved.isEmpty()) {
+                return;
+            }
+            notifyDataSetChanged();
+        }
+
+        public void onAnimationStart() {
+            this.animationRunning = true;
+            this.shouldNotifyDataSetChanged = false;
+            this.rangeInserted.clear();
+            this.rangeRemoved.clear();
+        }
+    }
+
+    public static class AnimationCallback {
+        public void ignoreView(View view, boolean z) {
+        }
+
+        public abstract void onEndAnimation();
+
+        public void onPreAnimation() {
+        }
+
+        public void onStartAnimation() {
+        }
+
+        public void recycleView(View view) {
+        }
+    }
+
+    public interface ScrollListener {
+        void onScroll();
+    }
+
+    public RecyclerAnimationScrollHelper(RecyclerListView recyclerListView, LinearLayoutManager linearLayoutManager) {
+        this.recyclerView = recyclerListView;
+        this.layoutManager = linearLayoutManager;
     }
 
     private void clear() {
@@ -362,102 +385,84 @@ public class RecyclerAnimationScrollHelper {
         }
     }
 
-    public void setScrollDirection(int i) {
-        this.scrollDirection = i;
+    public void cancel() {
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        clear();
     }
 
-    public void setScrollListener(ScrollListener scrollListener) {
-        this.scrollListener = scrollListener;
+    public void scrollToPosition(int i, int i2, boolean z, boolean z2) {
+        long itemId;
+        RecyclerListView recyclerListView = this.recyclerView;
+        if (recyclerListView.fastScrollAnimationRunning) {
+            return;
+        }
+        if (recyclerListView.getItemAnimator() == null || !this.recyclerView.getItemAnimator().isRunning()) {
+            if (!z2 || this.scrollDirection == -1) {
+                this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+                return;
+            }
+            int childCount = this.recyclerView.getChildCount();
+            if (childCount == 0 || !MessagesController.getGlobalMainSettings().getBoolean("view_animations", true)) {
+                this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+                return;
+            }
+            boolean z3 = this.scrollDirection == 0;
+            this.recyclerView.setScrollEnabled(false);
+            ArrayList arrayList = new ArrayList();
+            this.positionToOldView.clear();
+            RecyclerView.Adapter adapter = this.recyclerView.getAdapter();
+            this.oldStableIds.clear();
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = this.recyclerView.getChildAt(i3);
+                arrayList.add(childAt);
+                this.positionToOldView.put(this.layoutManager.getPosition(childAt), childAt);
+                if (adapter != null && (adapter.hasStableIds() || this.forceUseStableId)) {
+                    if (this.forceUseStableId) {
+                        int adapterPosition = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getAdapterPosition();
+                        if (adapterPosition >= 0) {
+                            itemId = adapter.getItemId(adapterPosition);
+                        }
+                    } else {
+                        itemId = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId();
+                    }
+                    this.oldStableIds.put(Long.valueOf(itemId), childAt);
+                }
+                if (childAt instanceof ChatMessageCell) {
+                    ((ChatMessageCell) childAt).setAnimationRunning(true, true);
+                }
+            }
+            this.recyclerView.prepareForFastScroll();
+            AnimatableAdapter animatableAdapter = adapter instanceof AnimatableAdapter ? (AnimatableAdapter) adapter : null;
+            this.layoutManager.scrollToPositionWithOffset(i, i2, z);
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
+            this.recyclerView.stopScroll();
+            this.recyclerView.setVerticalScrollBarEnabled(false);
+            AnimationCallback animationCallback = this.animationCallback;
+            if (animationCallback != null) {
+                animationCallback.onStartAnimation();
+            }
+            this.recyclerView.fastScrollAnimationRunning = true;
+            if (animatableAdapter != null) {
+                animatableAdapter.onAnimationStart();
+            }
+            this.recyclerView.addOnLayoutChangeListener(new AnonymousClass1(adapter, arrayList, z3, animatableAdapter));
+        }
     }
 
     public void setAnimationCallback(AnimationCallback animationCallback) {
         this.animationCallback = animationCallback;
     }
 
-    public static abstract class AnimatableAdapter extends RecyclerListView.SelectionAdapter {
-        public boolean animationRunning;
-        private ArrayList<Integer> rangeInserted = new ArrayList<>();
-        private ArrayList<Integer> rangeRemoved = new ArrayList<>();
-        private boolean shouldNotifyDataSetChanged;
+    public void setScrollDirection(int i) {
+        this.scrollDirection = i;
+    }
 
-        @Override
-        public void notifyDataSetChanged() {
-            if (!this.animationRunning) {
-                super.notifyDataSetChanged();
-            } else {
-                this.shouldNotifyDataSetChanged = true;
-            }
-        }
-
-        @Override
-        public void notifyItemInserted(int i) {
-            if (!this.animationRunning) {
-                super.notifyItemInserted(i);
-            } else {
-                this.rangeInserted.add(Integer.valueOf(i));
-                this.rangeInserted.add(1);
-            }
-        }
-
-        @Override
-        public void notifyItemRangeInserted(int i, int i2) {
-            if (!this.animationRunning) {
-                super.notifyItemRangeInserted(i, i2);
-            } else {
-                this.rangeInserted.add(Integer.valueOf(i));
-                this.rangeInserted.add(Integer.valueOf(i2));
-            }
-        }
-
-        @Override
-        public void notifyItemRemoved(int i) {
-            if (!this.animationRunning) {
-                super.notifyItemRemoved(i);
-            } else {
-                this.rangeRemoved.add(Integer.valueOf(i));
-                this.rangeRemoved.add(1);
-            }
-        }
-
-        @Override
-        public void notifyItemRangeRemoved(int i, int i2) {
-            if (!this.animationRunning) {
-                super.notifyItemRangeRemoved(i, i2);
-            } else {
-                this.rangeRemoved.add(Integer.valueOf(i));
-                this.rangeRemoved.add(Integer.valueOf(i2));
-            }
-        }
-
-        @Override
-        public void notifyItemChanged(int i) {
-            if (this.animationRunning) {
-                return;
-            }
-            super.notifyItemChanged(i);
-        }
-
-        @Override
-        public void notifyItemRangeChanged(int i, int i2) {
-            if (this.animationRunning) {
-                return;
-            }
-            super.notifyItemRangeChanged(i, i2);
-        }
-
-        public void onAnimationStart() {
-            this.animationRunning = true;
-            this.shouldNotifyDataSetChanged = false;
-            this.rangeInserted.clear();
-            this.rangeRemoved.clear();
-        }
-
-        public void onAnimationEnd() {
-            this.animationRunning = false;
-            if (!this.shouldNotifyDataSetChanged && this.rangeInserted.isEmpty() && this.rangeRemoved.isEmpty()) {
-                return;
-            }
-            notifyDataSetChanged();
-        }
+    public void setScrollListener(ScrollListener scrollListener) {
+        this.scrollListener = scrollListener;
     }
 }

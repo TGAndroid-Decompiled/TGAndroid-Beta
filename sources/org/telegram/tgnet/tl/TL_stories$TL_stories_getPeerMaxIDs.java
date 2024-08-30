@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Vector;
 
 public class TL_stories$TL_stories_getPeerMaxIDs extends TLObject {
-    public ArrayList<TLRPC$InputPeer> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -26,7 +26,7 @@ public class TL_stories$TL_stories_getPeerMaxIDs extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.id.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPeer) this.id.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

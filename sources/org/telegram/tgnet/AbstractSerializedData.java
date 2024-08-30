@@ -1,10 +1,6 @@
 package org.telegram.tgnet;
 
 public abstract class AbstractSerializedData {
-    public abstract int getPosition();
-
-    public abstract int length();
-
     public abstract boolean readBool(boolean z);
 
     public abstract byte readByte(boolean z);
@@ -12,10 +8,6 @@ public abstract class AbstractSerializedData {
     public abstract byte[] readByteArray(boolean z);
 
     public abstract NativeByteBuffer readByteBuffer(boolean z);
-
-    public abstract void readBytes(byte[] bArr, boolean z);
-
-    public abstract byte[] readData(int i, boolean z);
 
     public abstract double readDouble(boolean z);
 
@@ -29,23 +21,13 @@ public abstract class AbstractSerializedData {
 
     public abstract int remaining();
 
-    public abstract void skip(int i);
-
     public abstract void writeBool(boolean z);
 
     public abstract void writeByte(byte b);
 
-    public abstract void writeByte(int i);
-
     public abstract void writeByteArray(byte[] bArr);
 
-    public abstract void writeByteArray(byte[] bArr, int i, int i2);
-
     public abstract void writeByteBuffer(NativeByteBuffer nativeByteBuffer);
-
-    public abstract void writeBytes(byte[] bArr);
-
-    public abstract void writeBytes(byte[] bArr, int i, int i2);
 
     public abstract void writeDouble(double d);
 

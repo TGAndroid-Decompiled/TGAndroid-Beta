@@ -8,9 +8,9 @@ import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.SharedConfig;
 
-public class HwFrameLayout extends FrameLayout {
+public abstract class HwFrameLayout extends FrameLayout {
     private final boolean isFastDevice;
-    static final Set<View> hwViews = new HashSet();
+    static final Set hwViews = new HashSet();
     static boolean hwEnabled = false;
 
     public HwFrameLayout(Context context) {
@@ -23,26 +23,26 @@ public class HwFrameLayout extends FrameLayout {
         if (z) {
             setLayerType(0, null);
         }
-        Iterator<View> it = hwViews.iterator();
+        Iterator it = hwViews.iterator();
         while (it.hasNext()) {
-            it.next().invalidate();
+            ((View) it.next()).invalidate();
         }
         hwViews.clear();
-    }
-
-    public void enableHwAcceleration() {
-        hwEnabled = true;
-        setLayerType(2, null);
-    }
-
-    public void disableHwAcceleration() {
-        disableHwAcceleration(true);
     }
 
     public void checkHwAcceleration(float f) {
         if (f > 0.6f && hwEnabled && this.isFastDevice) {
             disableHwAcceleration(false);
         }
+    }
+
+    public void disableHwAcceleration() {
+        disableHwAcceleration(true);
+    }
+
+    public void enableHwAcceleration() {
+        hwEnabled = true;
+        setLayerType(2, null);
     }
 
     @Override

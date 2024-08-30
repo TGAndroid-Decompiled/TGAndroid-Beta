@@ -1,7 +1,6 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import org.telegram.messenger.audioinfo.util.PositionInputStream;
 
@@ -15,11 +14,12 @@ public class ID3v2TagHeader {
     private boolean unsynchronization;
     private int version;
 
-    public ID3v2TagHeader(InputStream inputStream) throws IOException, ID3v2Exception {
+    public ID3v2TagHeader(InputStream inputStream) {
         this(new PositionInputStream(inputStream));
     }
 
-    ID3v2TagHeader(PositionInputStream positionInputStream) throws IOException, ID3v2Exception {
+    ID3v2TagHeader(PositionInputStream positionInputStream) {
+        int readSyncsafeInt;
         this.version = 0;
         this.revision = 0;
         this.headerSize = 0;
@@ -52,10 +52,11 @@ public class ID3v2TagHeader {
                     iD3v2DataInput.readByte();
                     iD3v2DataInput.readByte();
                     this.paddingSize = iD3v2DataInput.readInt();
-                    iD3v2DataInput.skipFully(readInt - 6);
+                    readSyncsafeInt = readInt - 6;
                 } else {
-                    iD3v2DataInput.skipFully(iD3v2DataInput.readSyncsafeInt() - 4);
+                    readSyncsafeInt = iD3v2DataInput.readSyncsafeInt() - 4;
                 }
+                iD3v2DataInput.skipFully(readSyncsafeInt);
             }
             if (this.version >= 4 && (readByte2 & 16) != 0) {
                 this.footerSize = 10;
@@ -65,39 +66,39 @@ public class ID3v2TagHeader {
         this.headerSize = (int) (positionInputStream.getPosition() - position);
     }
 
-    public ID3v2TagBody tagBody(InputStream inputStream) throws IOException, ID3v2Exception {
-        if (this.compression) {
-            throw new ID3v2Exception("Tag compression is not supported");
-        }
-        if (this.version < 4 && this.unsynchronization) {
-            byte[] readFully = new ID3v2DataInput(inputStream).readFully(this.totalTagSize - this.headerSize);
-            int length = readFully.length;
-            boolean z = false;
-            int i = 0;
-            for (int i2 = 0; i2 < length; i2++) {
-                byte b = readFully[i2];
-                if (!z || b != 0) {
-                    readFully[i] = b;
-                    i++;
-                }
-                z = b == -1;
-            }
-            return new ID3v2TagBody(new ByteArrayInputStream(readFully, 0, i), this.headerSize, i, this);
-        }
-        int i3 = this.headerSize;
-        return new ID3v2TagBody(inputStream, i3, (this.totalTagSize - i3) - this.footerSize, this);
-    }
-
-    public int getVersion() {
-        return this.version;
+    public int getFooterSize() {
+        return this.footerSize;
     }
 
     public int getRevision() {
         return this.revision;
     }
 
-    public int getFooterSize() {
-        return this.footerSize;
+    public int getVersion() {
+        return this.version;
+    }
+
+    public ID3v2TagBody tagBody(InputStream inputStream) {
+        if (this.compression) {
+            throw new ID3v2Exception("Tag compression is not supported");
+        }
+        if (this.version >= 4 || !this.unsynchronization) {
+            int i = this.headerSize;
+            return new ID3v2TagBody(inputStream, i, (this.totalTagSize - i) - this.footerSize, this);
+        }
+        byte[] readFully = new ID3v2DataInput(inputStream).readFully(this.totalTagSize - this.headerSize);
+        int length = readFully.length;
+        boolean z = false;
+        int i2 = 0;
+        for (int i3 = 0; i3 < length; i3++) {
+            byte b = readFully[i3];
+            if (!z || b != 0) {
+                readFully[i2] = b;
+                i2++;
+            }
+            z = b == -1;
+        }
+        return new ID3v2TagBody(new ByteArrayInputStream(readFully, 0, i2), this.headerSize, i2, this);
     }
 
     public String toString() {

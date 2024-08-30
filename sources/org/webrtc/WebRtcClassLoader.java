@@ -4,7 +4,6 @@ class WebRtcClassLoader {
     WebRtcClassLoader() {
     }
 
-    @CalledByNative
     static Object getClassLoader() {
         ClassLoader classLoader = WebRtcClassLoader.class.getClassLoader();
         if (classLoader != null) {

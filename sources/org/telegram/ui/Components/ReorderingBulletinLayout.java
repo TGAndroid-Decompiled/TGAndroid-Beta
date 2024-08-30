@@ -1,12 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.ImageView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Bulletin;
 
-@SuppressLint({"ViewConstructor"})
 public class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
     private final ReorderingHintDrawable hintDrawable;
 

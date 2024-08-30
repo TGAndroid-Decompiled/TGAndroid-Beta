@@ -72,25 +72,25 @@ public class TLRPC$TL_messages_dialogs extends TLRPC$messages_Dialogs {
         int size = this.dialogs.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.dialogs.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$Dialog) this.dialogs.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.messages.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.messages.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Message) this.messages.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.chats.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.chats.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

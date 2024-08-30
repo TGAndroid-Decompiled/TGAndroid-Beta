@@ -12,6 +12,42 @@ class VolumeLogger {
     private final AudioManager audioManager;
     private Timer timer;
 
+    private class LogVolumeTask extends TimerTask {
+        private final int maxRingVolume;
+        private final int maxVoiceCallVolume;
+
+        LogVolumeTask(int i, int i2) {
+            this.maxRingVolume = i;
+            this.maxVoiceCallVolume = i2;
+        }
+
+        @Override
+        public void run() {
+            StringBuilder sb;
+            int i;
+            int mode = VolumeLogger.this.audioManager.getMode();
+            if (mode == 1) {
+                sb = new StringBuilder();
+                sb.append("STREAM_RING stream volume: ");
+                sb.append(VolumeLogger.this.audioManager.getStreamVolume(2));
+                sb.append(" (max=");
+                i = this.maxRingVolume;
+            } else {
+                if (mode != 3) {
+                    return;
+                }
+                sb = new StringBuilder();
+                sb.append("VOICE_CALL stream volume: ");
+                sb.append(VolumeLogger.this.audioManager.getStreamVolume(0));
+                sb.append(" (max=");
+                i = this.maxVoiceCallVolume;
+            }
+            sb.append(i);
+            sb.append(")");
+            Logging.d("VolumeLogger", sb.toString());
+        }
+    }
+
     public VolumeLogger(AudioManager audioManager) {
         this.audioManager = audioManager;
     }
@@ -25,28 +61,6 @@ class VolumeLogger {
         Timer timer = new Timer("WebRtcVolumeLevelLoggerThread");
         this.timer = timer;
         timer.schedule(new LogVolumeTask(this.audioManager.getStreamMaxVolume(2), this.audioManager.getStreamMaxVolume(0)), 0L, 30000L);
-    }
-
-    private class LogVolumeTask extends TimerTask {
-        private final int maxRingVolume;
-        private final int maxVoiceCallVolume;
-
-        LogVolumeTask(int i, int i2) {
-            this.maxRingVolume = i;
-            this.maxVoiceCallVolume = i2;
-        }
-
-        @Override
-        public void run() {
-            int mode = VolumeLogger.this.audioManager.getMode();
-            if (mode == 1) {
-                Logging.d("VolumeLogger", "STREAM_RING stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(2) + " (max=" + this.maxRingVolume + ")");
-                return;
-            }
-            if (mode == 3) {
-                Logging.d("VolumeLogger", "VOICE_CALL stream volume: " + VolumeLogger.this.audioManager.getStreamVolume(0) + " (max=" + this.maxVoiceCallVolume + ")");
-            }
-        }
     }
 
     public void stop() {

@@ -9,12 +9,23 @@ public final class Size {
         this.mHeight = i2;
     }
 
-    public int getWidth() {
-        return this.mWidth;
+    private static NumberFormatException invalidSize(String str) {
+        throw new NumberFormatException("Invalid Size: \"" + str + "\"");
     }
 
-    public int getHeight() {
-        return this.mHeight;
+    public static Size parseSize(String str) {
+        int indexOf = str.indexOf(42);
+        if (indexOf < 0) {
+            indexOf = str.indexOf(120);
+        }
+        if (indexOf < 0) {
+            throw invalidSize(str);
+        }
+        try {
+            return new Size(Integer.parseInt(str.substring(0, indexOf)), Integer.parseInt(str.substring(indexOf + 1)));
+        } catch (NumberFormatException unused) {
+            throw invalidSize(str);
+        }
     }
 
     public boolean equals(Object obj) {
@@ -31,32 +42,21 @@ public final class Size {
         return this.mWidth == size.mWidth && this.mHeight == size.mHeight;
     }
 
-    public String toString() {
-        return this.mWidth + "x" + this.mHeight;
+    public int getHeight() {
+        return this.mHeight;
     }
 
-    private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException("Invalid Size: \"" + str + "\"");
-    }
-
-    public static Size parseSize(String str) throws NumberFormatException {
-        int indexOf = str.indexOf(42);
-        if (indexOf < 0) {
-            indexOf = str.indexOf(120);
-        }
-        if (indexOf < 0) {
-            throw invalidSize(str);
-        }
-        try {
-            return new Size(Integer.parseInt(str.substring(0, indexOf)), Integer.parseInt(str.substring(indexOf + 1)));
-        } catch (NumberFormatException unused) {
-            throw invalidSize(str);
-        }
+    public int getWidth() {
+        return this.mWidth;
     }
 
     public int hashCode() {
         int i = this.mHeight;
         int i2 = this.mWidth;
         return i ^ ((i2 >>> 16) | (i2 << 16));
+    }
+
+    public String toString() {
+        return this.mWidth + "x" + this.mHeight;
     }
 }

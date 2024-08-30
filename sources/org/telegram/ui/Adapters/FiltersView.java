@@ -50,8 +50,8 @@ import org.telegram.ui.Components.RecyclerListView;
 public class FiltersView extends RecyclerListView {
     DiffUtil.Callback diffUtilsCallback;
     LinearLayoutManager layoutManager;
-    private ArrayList<MediaFilterData> oldItems;
-    private ArrayList<MediaFilterData> usersFilters;
+    private ArrayList oldItems;
+    private ArrayList usersFilters;
     public static final MediaFilterData[] filters = {new MediaFilterData(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC$TL_inputMessagesFilterPhotoVideo(), 0), new MediaFilterData(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC$TL_inputMessagesFilterUrl(), 2), new MediaFilterData(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC$TL_inputMessagesFilterDocument(), 1), new MediaFilterData(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC$TL_inputMessagesFilterMusic(), 3), new MediaFilterData(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC$TL_inputMessagesFilterRoundVoice(), 5)};
     private static final Pattern yearPatter = Pattern.compile("20[0-9]{1,2}");
     private static final Pattern monthYearOrDayPatter = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
@@ -60,24 +60,227 @@ public class FiltersView extends RecyclerListView {
     private static final Pattern longDate = Pattern.compile("^([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,2})(\\.| |/|\\-)([0-9]{1,4})$");
     private static final int[] numberOfDaysEachMonth = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+    private class Adapter extends RecyclerListView.SelectionAdapter {
+        private Adapter() {
+        }
+
+        @Override
+        public int getItemCount() {
+            return FiltersView.this.usersFilters.size();
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            ViewHolder viewHolder = new ViewHolder(new FilterView(viewGroup.getContext(), ((RecyclerListView) FiltersView.this).resourcesProvider));
+            RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-2, AndroidUtilities.dp(32.0f));
+            ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(6.0f);
+            viewHolder.itemView.setLayoutParams(layoutParams);
+            return viewHolder;
+        }
+    }
+
+    public static class DateData {
+        public final long maxDate;
+        public final long minDate;
+        public final String title;
+
+        private DateData(String str, long j, long j2) {
+            this.title = str;
+            this.minDate = j;
+            this.maxDate = j2;
+        }
+    }
+
+    public static class FilterView extends FrameLayout {
+        BackupImageView avatarImageView;
+        MediaFilterData data;
+        private final Theme.ResourcesProvider resourcesProvider;
+        CombinedDrawable thumbDrawable;
+        TextView titleView;
+
+        public FilterView(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.resourcesProvider = resourcesProvider;
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.avatarImageView = backupImageView;
+            addView(backupImageView, LayoutHelper.createFrame(32, 32.0f));
+            TextView textView = new TextView(context);
+            this.titleView = textView;
+            textView.setTextSize(1, 14.0f);
+            addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 16, 38.0f, 0.0f, 16.0f, 0.0f));
+            updateColors();
+        }
+
+        public void updateColors() {
+            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), getThemedColor(Theme.key_groupcreate_spanBackground)));
+            this.titleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            CombinedDrawable combinedDrawable = this.thumbDrawable;
+            if (combinedDrawable != null) {
+                Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(this.data.filterType == 7 ? Theme.key_avatar_backgroundArchived : Theme.key_avatar_backgroundBlue), false);
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
+            }
+        }
+
+        protected int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
+        }
+
+        public void setData(MediaFilterData mediaFilterData) {
+            TLRPC$Chat tLRPC$Chat;
+            this.data = mediaFilterData;
+            this.avatarImageView.getImageReceiver().clearImage();
+            if (mediaFilterData.filterType == 7) {
+                CombinedDrawable createCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
+                this.thumbDrawable = createCircleDrawableWithIcon;
+                createCircleDrawableWithIcon.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_backgroundArchived), false);
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
+            } else {
+                CombinedDrawable createCircleDrawableWithIcon2 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
+                this.thumbDrawable = createCircleDrawableWithIcon2;
+                Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor(Theme.key_avatar_backgroundBlue), false);
+                CombinedDrawable combinedDrawable = this.thumbDrawable;
+                int i = Theme.key_avatar_actionBarIconBlue;
+                Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(i), true);
+                if (mediaFilterData.filterType == 4) {
+                    TLObject tLObject = mediaFilterData.chat;
+                    if (tLObject instanceof TLRPC$User) {
+                        TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
+                        long j = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id;
+                        long j2 = tLRPC$User.id;
+                        tLRPC$Chat = tLRPC$User;
+                        if (j == j2) {
+                            CombinedDrawable createCircleDrawableWithIcon3 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
+                            createCircleDrawableWithIcon3.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                            Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(Theme.key_avatar_backgroundSaved), false);
+                            Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(i), true);
+                            this.avatarImageView.setImageDrawable(createCircleDrawableWithIcon3);
+                        }
+                        this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
+                        this.avatarImageView.getImageReceiver().setForUserOrChat(tLRPC$Chat, this.thumbDrawable);
+                    } else if (tLObject instanceof TLRPC$Chat) {
+                        tLRPC$Chat = (TLRPC$Chat) tLObject;
+                        this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
+                        this.avatarImageView.getImageReceiver().setForUserOrChat(tLRPC$Chat, this.thumbDrawable);
+                    }
+                    this.titleView.setText(mediaFilterData.title);
+                }
+            }
+            this.avatarImageView.setImageDrawable(this.thumbDrawable);
+            this.titleView.setText(mediaFilterData.title);
+        }
+    }
+
+    public static class MediaFilterData {
+        public TLObject chat;
+        public DateData dateData;
+        public TLRPC$MessagesFilter filter;
+        public int filterType;
+        public int iconResFilled;
+        public ReactionsLayoutInBubble.VisibleReaction reaction;
+        public boolean removable = true;
+        private String title;
+        public int titleResId;
+
+        public MediaFilterData(int i, int i2, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i3) {
+            this.iconResFilled = i;
+            this.titleResId = i2;
+            this.filter = tLRPC$MessagesFilter;
+            this.filterType = i3;
+        }
+
+        public MediaFilterData(int i, String str, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i2) {
+            this.iconResFilled = i;
+            this.title = str;
+            this.filter = tLRPC$MessagesFilter;
+            this.filterType = i2;
+        }
+
+        public String getTitle() {
+            String str = this.title;
+            return str != null ? str : LocaleController.getString(this.titleResId);
+        }
+
+        public boolean isMedia() {
+            int i = this.filterType;
+            return i == 0 || i == 1 || i == 2 || i == 3 || i == 5;
+        }
+
+        public boolean isSameType(MediaFilterData mediaFilterData) {
+            if (this.filterType == mediaFilterData.filterType) {
+                return true;
+            }
+            return isMedia() && mediaFilterData.isMedia();
+        }
+
+        public void setDate(DateData dateData) {
+            this.dateData = dateData;
+        }
+
+        public void setUser(TLObject tLObject) {
+            this.chat = tLObject;
+        }
+    }
+
+    private static class UpdateCallback implements ListUpdateCallback {
+        final RecyclerView.Adapter adapter;
+        boolean changed;
+
+        private UpdateCallback(RecyclerView.Adapter adapter) {
+            this.adapter = adapter;
+        }
+
+        @Override
+        public void onChanged(int i, int i2, Object obj) {
+            this.adapter.notifyItemRangeChanged(i, i2, obj);
+        }
+
+        @Override
+        public void onInserted(int i, int i2) {
+            this.changed = true;
+            this.adapter.notifyItemRangeInserted(i, i2);
+        }
+
+        @Override
+        public void onMoved(int i, int i2) {
+            this.changed = true;
+            this.adapter.notifyItemMoved(i, i2);
+        }
+
+        @Override
+        public void onRemoved(int i, int i2) {
+            this.changed = true;
+            this.adapter.notifyItemRangeRemoved(i, i2);
+        }
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        FilterView filterView;
+
+        public ViewHolder(FilterView filterView) {
+            super(filterView);
+            this.filterView = filterView;
+        }
+    }
+
     public FiltersView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        this.usersFilters = new ArrayList<>();
-        this.oldItems = new ArrayList<>();
+        this.usersFilters = new ArrayList();
+        this.oldItems = new ArrayList();
         this.diffUtilsCallback = new DiffUtil.Callback() {
             @Override
             public boolean areContentsTheSame(int i, int i2) {
                 return true;
-            }
-
-            @Override
-            public int getOldListSize() {
-                return FiltersView.this.oldItems.size();
-            }
-
-            @Override
-            public int getNewListSize() {
-                return FiltersView.this.usersFilters.size();
             }
 
             @Override
@@ -109,13 +312,18 @@ public class FiltersView extends RecyclerListView {
                 }
                 return false;
             }
-        };
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
+
             @Override
-            public boolean supportsPredictiveItemAnimations() {
-                return false;
+            public int getNewListSize() {
+                return FiltersView.this.usersFilters.size();
             }
 
+            @Override
+            public int getOldListSize() {
+                return FiltersView.this.oldItems.size();
+            }
+        };
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
             @Override
             public void onInitializeAccessibilityNodeInfo(RecyclerView.Recycler recycler, RecyclerView.State state, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
                 super.onInitializeAccessibilityNodeInfo(recycler, state, accessibilityNodeInfoCompat);
@@ -123,6 +331,11 @@ public class FiltersView extends RecyclerListView {
                     return;
                 }
                 accessibilityNodeInfoCompat.setVisibleToUser(false);
+            }
+
+            @Override
+            public boolean supportsPredictiveItemAnimations() {
+                return false;
             }
         };
         this.layoutManager = linearLayoutManager;
@@ -147,6 +360,68 @@ public class FiltersView extends RecyclerListView {
             private final float scaleFrom = 0.0f;
 
             @Override
+            public boolean animateAdd(RecyclerView.ViewHolder viewHolder) {
+                boolean animateAdd = super.animateAdd(viewHolder);
+                if (animateAdd) {
+                    viewHolder.itemView.setScaleX(0.0f);
+                    viewHolder.itemView.setScaleY(0.0f);
+                }
+                return animateAdd;
+            }
+
+            @Override
+            public void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
+                final View view = viewHolder.itemView;
+                final ViewPropertyAnimator animate = view.animate();
+                this.mAddAnimations.add(viewHolder);
+                animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(getAddDuration()).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationCancel(Animator animator) {
+                        view.setAlpha(1.0f);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        animate.setListener(null);
+                        dispatchAddFinished(viewHolder);
+                        ((DefaultItemAnimator) AnonymousClass3.this).mAddAnimations.remove(viewHolder);
+                        dispatchFinishedWhenDone();
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        dispatchAddStarting(viewHolder);
+                    }
+                }).start();
+            }
+
+            @Override
+            public void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
+                final View view = viewHolder.itemView;
+                final ViewPropertyAnimator animate = view.animate();
+                this.mRemoveAnimations.add(viewHolder);
+                animate.setDuration(getRemoveDuration()).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        animate.setListener(null);
+                        view.setAlpha(1.0f);
+                        view.setTranslationX(0.0f);
+                        view.setTranslationY(0.0f);
+                        view.setScaleX(1.0f);
+                        view.setScaleY(1.0f);
+                        dispatchRemoveFinished(viewHolder);
+                        ((DefaultItemAnimator) AnonymousClass3.this).mRemoveAnimations.remove(viewHolder);
+                        dispatchFinishedWhenDone();
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        dispatchRemoveStarting(viewHolder);
+                    }
+                }).start();
+            }
+
+            @Override
             protected long getAddAnimationDelay(long j, long j2, long j3) {
                 return 0L;
             }
@@ -165,68 +440,6 @@ public class FiltersView extends RecyclerListView {
             public long getMoveDuration() {
                 return 220L;
             }
-
-            @Override
-            public boolean animateAdd(RecyclerView.ViewHolder viewHolder) {
-                boolean animateAdd = super.animateAdd(viewHolder);
-                if (animateAdd) {
-                    viewHolder.itemView.setScaleX(0.0f);
-                    viewHolder.itemView.setScaleY(0.0f);
-                }
-                return animateAdd;
-            }
-
-            @Override
-            public void animateAddImpl(final RecyclerView.ViewHolder viewHolder) {
-                final View view = viewHolder.itemView;
-                final ViewPropertyAnimator animate = view.animate();
-                this.mAddAnimations.add(viewHolder);
-                animate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(getAddDuration()).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        dispatchAddStarting(viewHolder);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                        view.setAlpha(1.0f);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        animate.setListener(null);
-                        dispatchAddFinished(viewHolder);
-                        ((DefaultItemAnimator) AnonymousClass3.this).mAddAnimations.remove(viewHolder);
-                        dispatchFinishedWhenDone();
-                    }
-                }).start();
-            }
-
-            @Override
-            public void animateRemoveImpl(final RecyclerView.ViewHolder viewHolder) {
-                final View view = viewHolder.itemView;
-                final ViewPropertyAnimator animate = view.animate();
-                this.mRemoveAnimations.add(viewHolder);
-                animate.setDuration(getRemoveDuration()).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        dispatchRemoveStarting(viewHolder);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        animate.setListener(null);
-                        view.setAlpha(1.0f);
-                        view.setTranslationX(0.0f);
-                        view.setTranslationY(0.0f);
-                        view.setScaleX(1.0f);
-                        view.setScaleY(1.0f);
-                        dispatchRemoveFinished(viewHolder);
-                        ((DefaultItemAnimator) AnonymousClass3.this).mRemoveAnimations.remove(viewHolder);
-                        dispatchFinishedWhenDone();
-                    }
-                }).start();
-            }
         });
         setWillNotDraw(false);
         setHideIfEmpty(false);
@@ -234,70 +447,55 @@ public class FiltersView extends RecyclerListView {
         setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
-    }
-
-    public MediaFilterData getFilterAt(int i) {
-        if (this.usersFilters.isEmpty()) {
-            return filters[i];
-        }
-        return this.usersFilters.get(i);
-    }
-
-    public void setUsersAndDates(ArrayList<Object> arrayList, ArrayList<DateData> arrayList2, boolean z) {
-        String formatName;
-        this.oldItems.clear();
-        this.oldItems.addAll(this.usersFilters);
-        this.usersFilters.clear();
-        if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                Object obj = arrayList.get(i);
-                if (obj instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == tLRPC$User.id) {
-                        formatName = LocaleController.getString(R.string.SavedMessages);
-                    } else {
-                        formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name, 10);
+    private static void createForDayMonth(ArrayList arrayList, int i, int i2) {
+        long j;
+        if (validDateForMont(i, i2)) {
+            int i3 = 1;
+            int i4 = Calendar.getInstance().get(1);
+            long timeInMillis = Calendar.getInstance().getTimeInMillis();
+            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
+            int i5 = i4;
+            while (i5 >= 2013) {
+                if (i2 != i3 || i != 28 || gregorianCalendar.isLeapYear(i5)) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(i5, i2, i + 1, 0, 0, 0);
+                    long timeInMillis2 = calendar.getTimeInMillis();
+                    if (timeInMillis2 <= timeInMillis) {
+                        j = timeInMillis;
+                        calendar.set(i5, i2, i + 2, 0, 0, 0);
+                        long timeInMillis3 = calendar.getTimeInMillis() - 1;
+                        LocaleController localeController = LocaleController.getInstance();
+                        arrayList.add(i5 == i4 ? new DateData(localeController.getFormatterDayMonth().format(timeInMillis2), timeInMillis2, timeInMillis3) : new DateData(localeController.getFormatterYearMax().format(timeInMillis2), timeInMillis2, timeInMillis3));
+                        i5--;
+                        timeInMillis = j;
+                        i3 = 1;
                     }
-                    MediaFilterData mediaFilterData = new MediaFilterData(R.drawable.search_users_filled, formatName, (TLRPC$MessagesFilter) null, 4);
-                    mediaFilterData.setUser(tLRPC$User);
-                    this.usersFilters.add(mediaFilterData);
-                } else if (obj instanceof TLRPC$Chat) {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) obj;
-                    String str = tLRPC$Chat.title;
-                    if (str.length() > 12) {
-                        str = String.format("%s...", str.substring(0, 10));
-                    }
-                    MediaFilterData mediaFilterData2 = new MediaFilterData(R.drawable.search_users_filled, str, (TLRPC$MessagesFilter) null, 4);
-                    mediaFilterData2.setUser(tLRPC$Chat);
-                    this.usersFilters.add(mediaFilterData2);
                 }
+                j = timeInMillis;
+                i5--;
+                timeInMillis = j;
+                i3 = 1;
             }
-        }
-        if (arrayList2 != null) {
-            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                DateData dateData = arrayList2.get(i2);
-                MediaFilterData mediaFilterData3 = new MediaFilterData(R.drawable.search_date_filled, dateData.title, (TLRPC$MessagesFilter) null, 6);
-                mediaFilterData3.setDate(dateData);
-                this.usersFilters.add(mediaFilterData3);
-            }
-        }
-        if (z) {
-            this.usersFilters.add(new MediaFilterData(R.drawable.chats_archive, R.string.ArchiveSearchFilter, (TLRPC$MessagesFilter) null, 7));
-        }
-        if (getAdapter() != null) {
-            UpdateCallback updateCallback = new UpdateCallback(getAdapter());
-            DiffUtil.calculateDiff(this.diffUtilsCallback).dispatchUpdatesTo(updateCallback);
-            if (this.usersFilters.isEmpty() || !updateCallback.changed) {
-                return;
-            }
-            this.layoutManager.scrollToPositionWithOffset(0, 0);
         }
     }
 
-    public static void fillTipDates(String str, ArrayList<DateData> arrayList) {
+    private static void createForMonthYear(ArrayList arrayList, int i, int i2) {
+        int i3 = Calendar.getInstance().get(1);
+        long timeInMillis = Calendar.getInstance().getTimeInMillis();
+        if (i2 < 2013 || i2 > i3) {
+            return;
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(i2, i, 1, 0, 0, 0);
+        long timeInMillis2 = calendar.getTimeInMillis();
+        if (timeInMillis2 > timeInMillis) {
+            return;
+        }
+        calendar.add(2, 1);
+        arrayList.add(new DateData(LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2), timeInMillis2, calendar.getTimeInMillis() - 1));
+    }
+
+    public static void fillTipDates(String str, ArrayList arrayList) {
         arrayList.clear();
         if (str == null) {
             return;
@@ -469,61 +667,6 @@ public class FiltersView extends RecyclerListView {
         }
     }
 
-    private static void createForMonthYear(ArrayList<DateData> arrayList, int i, int i2) {
-        int i3 = Calendar.getInstance().get(1);
-        long timeInMillis = Calendar.getInstance().getTimeInMillis();
-        if (i2 < 2013 || i2 > i3) {
-            return;
-        }
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(i2, i, 1, 0, 0, 0);
-        long timeInMillis2 = calendar.getTimeInMillis();
-        if (timeInMillis2 > timeInMillis) {
-            return;
-        }
-        calendar.add(2, 1);
-        arrayList.add(new DateData(LocaleController.getInstance().getFormatterMonthYear().format(timeInMillis2), timeInMillis2, calendar.getTimeInMillis() - 1));
-    }
-
-    private static void createForDayMonth(ArrayList<DateData> arrayList, int i, int i2) {
-        long j;
-        if (validDateForMont(i, i2)) {
-            int i3 = 1;
-            int i4 = Calendar.getInstance().get(1);
-            long timeInMillis = Calendar.getInstance().getTimeInMillis();
-            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
-            int i5 = i4;
-            while (i5 >= 2013) {
-                if (i2 != i3 || i != 28 || gregorianCalendar.isLeapYear(i5)) {
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(i5, i2, i + 1, 0, 0, 0);
-                    long timeInMillis2 = calendar.getTimeInMillis();
-                    if (timeInMillis2 <= timeInMillis) {
-                        j = timeInMillis;
-                        calendar.set(i5, i2, i + 2, 0, 0, 0);
-                        long timeInMillis3 = calendar.getTimeInMillis() - 1;
-                        if (i5 == i4) {
-                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterDayMonth().format(timeInMillis2), timeInMillis2, timeInMillis3));
-                        } else {
-                            arrayList.add(new DateData(LocaleController.getInstance().getFormatterYearMax().format(timeInMillis2), timeInMillis2, timeInMillis3));
-                        }
-                        i5--;
-                        timeInMillis = j;
-                        i3 = 1;
-                    }
-                }
-                j = timeInMillis;
-                i5--;
-                timeInMillis = j;
-                i3 = 1;
-            }
-        }
-    }
-
-    private static boolean validDateForMont(int i, int i2) {
-        return i2 >= 0 && i2 < 12 && i >= 0 && i < numberOfDaysEachMonth[i2];
-    }
-
     public static int getDayOfWeek(String str) {
         Calendar calendar = Calendar.getInstance();
         if (str.length() <= 3) {
@@ -558,10 +701,94 @@ public class FiltersView extends RecyclerListView {
         return -1;
     }
 
+    private static boolean validDateForMont(int i, int i2) {
+        return i2 >= 0 && i2 < 12 && i >= 0 && i < numberOfDaysEachMonth[i2];
+    }
+
+    public MediaFilterData getFilterAt(int i) {
+        return this.usersFilters.isEmpty() ? filters[i] : (MediaFilterData) this.usersFilters.get(i);
+    }
+
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+        arrayList.add(new ThemeDescription(this, 0, null, null, null, null, Theme.key_graySection));
+        arrayList.add(new ThemeDescription(this, 0, null, null, null, null, Theme.key_graySectionText));
+        return arrayList;
+    }
+
     @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), Theme.dividerPaint);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled()) {
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+        return false;
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        return false;
+    }
+
+    public void setUsersAndDates(ArrayList arrayList, ArrayList arrayList2, boolean z) {
+        MediaFilterData mediaFilterData;
+        TLRPC$Chat tLRPC$Chat;
+        this.oldItems.clear();
+        this.oldItems.addAll(this.usersFilters);
+        this.usersFilters.clear();
+        if (arrayList != null) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                Object obj = arrayList.get(i);
+                if (obj instanceof TLRPC$User) {
+                    TLRPC$User tLRPC$User = (TLRPC$User) obj;
+                    String string = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == tLRPC$User.id ? LocaleController.getString(R.string.SavedMessages) : ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name, 10);
+                    tLRPC$Chat = tLRPC$User;
+                    mediaFilterData = new MediaFilterData(R.drawable.search_users_filled, string, (TLRPC$MessagesFilter) null, 4);
+                } else if (obj instanceof TLRPC$Chat) {
+                    TLRPC$Chat tLRPC$Chat2 = (TLRPC$Chat) obj;
+                    String str = tLRPC$Chat2.title;
+                    if (str.length() > 12) {
+                        str = String.format("%s...", str.substring(0, 10));
+                    }
+                    tLRPC$Chat = tLRPC$Chat2;
+                    mediaFilterData = new MediaFilterData(R.drawable.search_users_filled, str, (TLRPC$MessagesFilter) null, 4);
+                }
+                mediaFilterData.setUser(tLRPC$Chat);
+                this.usersFilters.add(mediaFilterData);
+            }
+        }
+        if (arrayList2 != null) {
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                DateData dateData = (DateData) arrayList2.get(i2);
+                MediaFilterData mediaFilterData2 = new MediaFilterData(R.drawable.search_date_filled, dateData.title, (TLRPC$MessagesFilter) null, 6);
+                mediaFilterData2.setDate(dateData);
+                this.usersFilters.add(mediaFilterData2);
+            }
+        }
+        if (z) {
+            this.usersFilters.add(new MediaFilterData(R.drawable.chats_archive, R.string.ArchiveSearchFilter, (TLRPC$MessagesFilter) null, 7));
+        }
+        if (getAdapter() != null) {
+            UpdateCallback updateCallback = new UpdateCallback(getAdapter());
+            DiffUtil.calculateDiff(this.diffUtilsCallback).dispatchUpdatesTo(updateCallback);
+            if (this.usersFilters.isEmpty() || !updateCallback.changed) {
+                return;
+            }
+            this.layoutManager.scrollToPositionWithOffset(0, 0);
+        }
     }
 
     public void updateColors() {
@@ -585,244 +812,5 @@ public class FiltersView extends RecyclerListView {
             }
         }
         setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
-    }
-
-    private class Adapter extends RecyclerListView.SelectionAdapter {
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return true;
-        }
-
-        private Adapter() {
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            ViewHolder viewHolder = new ViewHolder(new FilterView(viewGroup.getContext(), ((RecyclerListView) FiltersView.this).resourcesProvider));
-            RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-2, AndroidUtilities.dp(32.0f));
-            ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(6.0f);
-            viewHolder.itemView.setLayoutParams(layoutParams);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
-        }
-
-        @Override
-        public int getItemCount() {
-            return FiltersView.this.usersFilters.size();
-        }
-    }
-
-    public static class FilterView extends FrameLayout {
-        BackupImageView avatarImageView;
-        MediaFilterData data;
-        private final Theme.ResourcesProvider resourcesProvider;
-        CombinedDrawable thumbDrawable;
-        TextView titleView;
-
-        public FilterView(Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.resourcesProvider = resourcesProvider;
-            BackupImageView backupImageView = new BackupImageView(context);
-            this.avatarImageView = backupImageView;
-            addView(backupImageView, LayoutHelper.createFrame(32, 32.0f));
-            TextView textView = new TextView(context);
-            this.titleView = textView;
-            textView.setTextSize(1, 14.0f);
-            addView(this.titleView, LayoutHelper.createFrame(-2, -2.0f, 16, 38.0f, 0.0f, 16.0f, 0.0f));
-            updateColors();
-        }
-
-        public void updateColors() {
-            setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), getThemedColor(Theme.key_groupcreate_spanBackground)));
-            this.titleView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-            CombinedDrawable combinedDrawable = this.thumbDrawable;
-            if (combinedDrawable != null) {
-                if (this.data.filterType == 7) {
-                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_backgroundArchived), false);
-                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
-                } else {
-                    Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(Theme.key_avatar_backgroundBlue), false);
-                    Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
-                }
-            }
-        }
-
-        public void setData(MediaFilterData mediaFilterData) {
-            this.data = mediaFilterData;
-            this.avatarImageView.getImageReceiver().clearImage();
-            if (mediaFilterData.filterType == 7) {
-                CombinedDrawable createCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
-                this.thumbDrawable = createCircleDrawableWithIcon;
-                createCircleDrawableWithIcon.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_backgroundArchived), false);
-                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(Theme.key_avatar_actionBarIconBlue), true);
-                this.avatarImageView.setImageDrawable(this.thumbDrawable);
-                this.titleView.setText(mediaFilterData.title);
-                return;
-            }
-            CombinedDrawable createCircleDrawableWithIcon2 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
-            this.thumbDrawable = createCircleDrawableWithIcon2;
-            Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor(Theme.key_avatar_backgroundBlue), false);
-            CombinedDrawable combinedDrawable = this.thumbDrawable;
-            int i = Theme.key_avatar_actionBarIconBlue;
-            Theme.setCombinedDrawableColor(combinedDrawable, getThemedColor(i), true);
-            if (mediaFilterData.filterType == 4) {
-                TLObject tLObject = mediaFilterData.chat;
-                if (tLObject instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == tLRPC$User.id) {
-                        CombinedDrawable createCircleDrawableWithIcon3 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
-                        createCircleDrawableWithIcon3.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                        Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(Theme.key_avatar_backgroundSaved), false);
-                        Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(i), true);
-                        this.avatarImageView.setImageDrawable(createCircleDrawableWithIcon3);
-                    } else {
-                        this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                        this.avatarImageView.getImageReceiver().setForUserOrChat(tLRPC$User, this.thumbDrawable);
-                    }
-                } else if (tLObject instanceof TLRPC$Chat) {
-                    this.avatarImageView.getImageReceiver().setRoundRadius(AndroidUtilities.dp(16.0f));
-                    this.avatarImageView.getImageReceiver().setForUserOrChat((TLRPC$Chat) tLObject, this.thumbDrawable);
-                }
-            } else {
-                this.avatarImageView.setImageDrawable(this.thumbDrawable);
-            }
-            this.titleView.setText(mediaFilterData.title);
-        }
-
-        protected int getThemedColor(int i) {
-            return Theme.getColor(i, this.resourcesProvider);
-        }
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        FilterView filterView;
-
-        public ViewHolder(FilterView filterView) {
-            super(filterView);
-            this.filterView = filterView;
-        }
-    }
-
-    public static class MediaFilterData {
-        public TLObject chat;
-        public DateData dateData;
-        public TLRPC$MessagesFilter filter;
-        public int filterType;
-        public int iconResFilled;
-        public ReactionsLayoutInBubble.VisibleReaction reaction;
-        public boolean removable = true;
-        private String title;
-        public int titleResId;
-
-        public MediaFilterData(int i, String str, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i2) {
-            this.iconResFilled = i;
-            this.title = str;
-            this.filter = tLRPC$MessagesFilter;
-            this.filterType = i2;
-        }
-
-        public MediaFilterData(int i, int i2, TLRPC$MessagesFilter tLRPC$MessagesFilter, int i3) {
-            this.iconResFilled = i;
-            this.titleResId = i2;
-            this.filter = tLRPC$MessagesFilter;
-            this.filterType = i3;
-        }
-
-        public String getTitle() {
-            String str = this.title;
-            return str != null ? str : LocaleController.getString(this.titleResId);
-        }
-
-        public void setUser(TLObject tLObject) {
-            this.chat = tLObject;
-        }
-
-        public boolean isSameType(MediaFilterData mediaFilterData) {
-            if (this.filterType == mediaFilterData.filterType) {
-                return true;
-            }
-            return isMedia() && mediaFilterData.isMedia();
-        }
-
-        public boolean isMedia() {
-            int i = this.filterType;
-            return i == 0 || i == 1 || i == 2 || i == 3 || i == 5;
-        }
-
-        public void setDate(DateData dateData) {
-            this.dateData = dateData;
-        }
-    }
-
-    public static class DateData {
-        public final long maxDate;
-        public final long minDate;
-        public final String title;
-
-        private DateData(String str, long j, long j2) {
-            this.title = str;
-            this.minDate = j;
-            this.maxDate = j2;
-        }
-    }
-
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this, 0, null, null, null, null, Theme.key_graySection));
-        arrayList.add(new ThemeDescription(this, 0, null, null, null, null, Theme.key_graySectionText));
-        return arrayList;
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
-            return super.onTouchEvent(motionEvent);
-        }
-        return false;
-    }
-
-    private static class UpdateCallback implements ListUpdateCallback {
-        final RecyclerView.Adapter adapter;
-        boolean changed;
-
-        private UpdateCallback(RecyclerView.Adapter adapter) {
-            this.adapter = adapter;
-        }
-
-        @Override
-        public void onInserted(int i, int i2) {
-            this.changed = true;
-            this.adapter.notifyItemRangeInserted(i, i2);
-        }
-
-        @Override
-        public void onRemoved(int i, int i2) {
-            this.changed = true;
-            this.adapter.notifyItemRangeRemoved(i, i2);
-        }
-
-        @Override
-        public void onMoved(int i, int i2) {
-            this.changed = true;
-            this.adapter.notifyItemMoved(i, i2);
-        }
-
-        @Override
-        public void onChanged(int i, int i2, Object obj) {
-            this.adapter.notifyItemRangeChanged(i, i2, obj);
-        }
     }
 }

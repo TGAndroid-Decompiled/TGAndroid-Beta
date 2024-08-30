@@ -44,7 +44,7 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         int size = this.attributes.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.attributes.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$DocumentAttribute) this.attributes.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.caption);
     }

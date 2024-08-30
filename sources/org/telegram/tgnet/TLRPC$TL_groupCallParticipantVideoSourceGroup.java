@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_groupCallParticipantVideoSourceGroup extends TLObject {
     public String semantics;
-    public ArrayList<Integer> sources = new ArrayList<>();
+    public ArrayList sources = new ArrayList();
 
     public static TLRPC$TL_groupCallParticipantVideoSourceGroup TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-592373577 != i) {
@@ -42,7 +42,7 @@ public class TLRPC$TL_groupCallParticipantVideoSourceGroup extends TLObject {
         int size = this.sources.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.sources.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.sources.get(i)).intValue());
         }
     }
 }

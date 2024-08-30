@@ -16,14 +16,10 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.LaunchActivity;
 
-public class PermissionRequest {
+public abstract class PermissionRequest {
     private static int lastId = 1500;
 
-    public static void ensurePermission(int i, int i2, String str, Utilities.Callback<Boolean> callback) {
-        ensureEitherPermission(i, i2, new String[]{str}, new String[]{str}, callback);
-    }
-
-    public static void ensureEitherPermission(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback<Boolean> callback) {
+    public static void ensureEitherPermission(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback callback) {
         boolean shouldShowRequestPermissionRationale;
         int checkSelfPermission;
         final Activity activity = LaunchActivity.instance;
@@ -74,6 +70,26 @@ public class PermissionRequest {
         });
     }
 
+    public static void ensurePermission(int i, int i2, String str, Utilities.Callback callback) {
+        ensureEitherPermission(i, i2, new String[]{str}, new String[]{str}, callback);
+    }
+
+    public static boolean hasPermission(String str) {
+        int checkSelfPermission;
+        Activity activity = LaunchActivity.instance;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT < 23) {
+            return true;
+        }
+        checkSelfPermission = activity.checkSelfPermission(str);
+        return checkSelfPermission == 0;
+    }
+
     public static void lambda$ensureEitherPermission$0(Activity activity, DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -105,7 +121,7 @@ public class PermissionRequest {
         }
     }
 
-    public static void requestPermissions(String[] strArr, final Utilities.Callback<int[]> callback) {
+    public static void requestPermissions(String[] strArr, final Utilities.Callback callback) {
         Activity activity = LaunchActivity.instance;
         if (activity == null) {
             activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
@@ -134,21 +150,5 @@ public class PermissionRequest {
         }};
         NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
         activity.requestPermissions(strArr, i);
-    }
-
-    public static boolean hasPermission(String str) {
-        int checkSelfPermission;
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return false;
-        }
-        if (Build.VERSION.SDK_INT < 23) {
-            return true;
-        }
-        checkSelfPermission = activity.checkSelfPermission(str);
-        return checkSelfPermission == 0;
     }
 }

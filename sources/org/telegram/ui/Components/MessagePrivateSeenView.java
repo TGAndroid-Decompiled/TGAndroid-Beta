@@ -104,6 +104,152 @@ public class MessagePrivateSeenView extends FrameLayout {
         request();
     }
 
+    public void lambda$request$0(View view) {
+        showSheet(getContext(), this.currentAccount, this.dialogId, false, this.dismiss, new Runnable() {
+            @Override
+            public final void run() {
+                MessagePrivateSeenView.this.request();
+            }
+        }, this.resourcesProvider);
+    }
+
+    public void lambda$request$1(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        TextView textView;
+        String formatPmSeenDate;
+        View.OnClickListener onClickListener;
+        if (tLRPC$TL_error != null) {
+            if ("USER_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
+                textView = this.valueTextView;
+                formatPmSeenDate = LocaleController.getString(R.string.PmReadUnknown);
+                textView.setText(formatPmSeenDate);
+                this.premiumTextView.setVisibility(8);
+            } else if ("YOUR_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
+                this.isPremiumLocked = true;
+                this.valueTextView.setText(LocaleController.getString(R.string.PmRead));
+                this.premiumTextView.setText(LocaleController.getString(R.string.PmReadShowWhen));
+            } else {
+                this.valueTextView.setText(LocaleController.getString("UnknownError"));
+                this.premiumTextView.setVisibility(8);
+                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).showForError(tLRPC$TL_error);
+            }
+        } else if (tLObject instanceof TLRPC$TL_outboxReadDate) {
+            textView = this.valueTextView;
+            formatPmSeenDate = LocaleController.formatPmSeenDate(((TLRPC$TL_outboxReadDate) tLObject).date);
+            textView.setText(formatPmSeenDate);
+            this.premiumTextView.setVisibility(8);
+        }
+        ViewPropertyAnimator alpha = this.valueLayout.animate().alpha(1.0f);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        alpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+        this.loadingView.animate().alpha(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+        if (this.isPremiumLocked) {
+            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 6, 0));
+            onClickListener = new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    MessagePrivateSeenView.this.lambda$request$0(view);
+                }
+            };
+        } else {
+            onClickListener = null;
+            setBackground(null);
+        }
+        setOnClickListener(onClickListener);
+    }
+
+    public void lambda$request$2(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessagePrivateSeenView.this.lambda$request$1(tLRPC$TL_error, tLObject);
+            }
+        });
+    }
+
+    public static void lambda$showSheet$3(TLRPC$TL_error tLRPC$TL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.global().showForError(tLRPC$TL_error);
+            return;
+        }
+        buttonWithCounterView.setLoading(false);
+        bottomSheet.dismiss();
+        BulletinFactory.global().createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.PremiumLastSeenSet)).show();
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public static void lambda$showSheet$4(final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessagePrivateSeenView.lambda$showSheet$3(TLRPC$TL_error.this, buttonWithCounterView, bottomSheet, runnable);
+            }
+        });
+    }
+
+    public static void lambda$showSheet$5(TLRPC$TL_error tLRPC$TL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tLRPC$TL_error);
+            return;
+        }
+        buttonWithCounterView.setLoading(false);
+        bottomSheet.dismiss();
+        BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.PremiumReadSet)).show();
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public static void lambda$showSheet$6(final Context context, final Theme.ResourcesProvider resourcesProvider, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MessagePrivateSeenView.lambda$showSheet$5(TLRPC$TL_error.this, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
+            }
+        });
+    }
+
+    public static void lambda$showSheet$7(final ButtonWithCounterView buttonWithCounterView, boolean z, int i, final BottomSheet bottomSheet, final Runnable runnable, final Context context, final Theme.ResourcesProvider resourcesProvider, View view) {
+        buttonWithCounterView.setLoading(true);
+        if (z) {
+            TLRPC$TL_account_setPrivacy tLRPC$TL_account_setPrivacy = new TLRPC$TL_account_setPrivacy();
+            tLRPC$TL_account_setPrivacy.key = new TLRPC$TL_inputPrivacyKeyStatusTimestamp();
+            tLRPC$TL_account_setPrivacy.rules.add(new TLRPC$TL_inputPrivacyValueAllowAll());
+            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setPrivacy, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MessagePrivateSeenView.lambda$showSheet$4(ButtonWithCounterView.this, bottomSheet, runnable, tLObject, tLRPC$TL_error);
+                }
+            });
+            return;
+        }
+        TLRPC$TL_account_setGlobalPrivacySettings tLRPC$TL_account_setGlobalPrivacySettings = new TLRPC$TL_account_setGlobalPrivacySettings();
+        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
+        tLRPC$TL_account_setGlobalPrivacySettings.settings = globalPrivacySettings;
+        if (globalPrivacySettings == null) {
+            tLRPC$TL_account_setGlobalPrivacySettings.settings = new TLRPC$TL_globalPrivacySettings();
+        }
+        tLRPC$TL_account_setGlobalPrivacySettings.settings.hide_read_marks = false;
+        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setGlobalPrivacySettings, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                MessagePrivateSeenView.lambda$showSheet$6(context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static void lambda$showSheet$8(boolean z, BottomSheet bottomSheet, Runnable runnable, View view) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.presentFragment(new PremiumPreviewFragment(z ? "lastseen" : "readtime"));
+            bottomSheet.dismiss();
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+    }
+
     public void request() {
         setOnClickListener(null);
         this.valueLayout.setAlpha(0.0f);
@@ -120,63 +266,7 @@ public class MessagePrivateSeenView extends FrameLayout {
         });
     }
 
-    public void lambda$request$2(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MessagePrivateSeenView.this.lambda$request$1(tLRPC$TL_error, tLObject);
-            }
-        });
-    }
-
-    public void lambda$request$1(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
-            if ("USER_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
-                this.valueTextView.setText(LocaleController.getString(R.string.PmReadUnknown));
-                this.premiumTextView.setVisibility(8);
-            } else if ("YOUR_PRIVACY_RESTRICTED".equals(tLRPC$TL_error.text)) {
-                this.isPremiumLocked = true;
-                this.valueTextView.setText(LocaleController.getString(R.string.PmRead));
-                this.premiumTextView.setText(LocaleController.getString(R.string.PmReadShowWhen));
-            } else {
-                this.valueTextView.setText(LocaleController.getString("UnknownError"));
-                this.premiumTextView.setVisibility(8);
-                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).showForError(tLRPC$TL_error);
-            }
-        } else if (tLObject instanceof TLRPC$TL_outboxReadDate) {
-            this.valueTextView.setText(LocaleController.formatPmSeenDate(((TLRPC$TL_outboxReadDate) tLObject).date));
-            this.premiumTextView.setVisibility(8);
-        }
-        ViewPropertyAnimator alpha = this.valueLayout.animate().alpha(1.0f);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        alpha.setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
-        this.loadingView.animate().alpha(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
-        if (this.isPremiumLocked) {
-            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 6, 0));
-            setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    MessagePrivateSeenView.this.lambda$request$0(view);
-                }
-            });
-        } else {
-            setBackground(null);
-            setOnClickListener(null);
-        }
-    }
-
-    public void lambda$request$0(View view) {
-        showSheet(getContext(), this.currentAccount, this.dialogId, false, this.dismiss, new Runnable() {
-            @Override
-            public final void run() {
-                MessagePrivateSeenView.this.request();
-            }
-        }, this.resourcesProvider);
-    }
-
     public static void showSheet(final Context context, final int i, long j, final boolean z, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider) {
-        String str;
-        int i2;
         final BottomSheet bottomSheet;
         final BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
         bottomSheet2.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -194,27 +284,17 @@ public class MessagePrivateSeenView extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        int i3 = Theme.key_dialogTextBlack;
-        textView.setTextColor(Theme.getColor(i3, resourcesProvider));
+        int i2 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setTextSize(1, 20.0f);
         textView.setText(LocaleController.getString(z ? R.string.PremiumLastSeenHeader1 : R.string.PremiumReadHeader1));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 12, 0, 12, 0));
         TextView textView2 = new TextView(context);
         textView2.setGravity(17);
-        textView2.setTextColor(Theme.getColor(i3, resourcesProvider));
+        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        if (j <= 0) {
-            str = "";
-        } else {
-            str = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
-        }
-        String str2 = str;
-        if (z) {
-            i2 = premiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1;
-        } else {
-            i2 = premiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1;
-        }
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, str2)));
+        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : "";
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? premiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1 : premiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1, firstName)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
@@ -251,15 +331,15 @@ public class MessagePrivateSeenView extends FrameLayout {
             TextView textView3 = new TextView(context);
             textView3.setTypeface(AndroidUtilities.bold());
             textView3.setGravity(17);
-            textView3.setTextColor(Theme.getColor(i3, resourcesProvider));
+            textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
             textView3.setTextSize(1, 20.0f);
             textView3.setText(LocaleController.getString(z ? R.string.PremiumLastSeenHeader2 : R.string.PremiumReadHeader2));
             linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 1, 12, 0, 12, 0));
             TextView textView4 = new TextView(context);
             textView4.setGravity(17);
-            textView4.setTextColor(Theme.getColor(i3, resourcesProvider));
+            textView4.setTextColor(Theme.getColor(i2, resourcesProvider));
             textView4.setTextSize(1, 14.0f);
-            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, str2)));
+            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, firstName)));
             linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
             PremiumButtonView premiumButtonView = new PremiumButtonView(context, true, resourcesProvider);
             bottomSheet = bottomSheet2;
@@ -274,90 +354,6 @@ public class MessagePrivateSeenView extends FrameLayout {
         }
         bottomSheet.setCustomView(linearLayout);
         bottomSheet.show();
-    }
-
-    public static void lambda$showSheet$7(final ButtonWithCounterView buttonWithCounterView, boolean z, int i, final BottomSheet bottomSheet, final Runnable runnable, final Context context, final Theme.ResourcesProvider resourcesProvider, View view) {
-        buttonWithCounterView.setLoading(true);
-        if (z) {
-            TLRPC$TL_account_setPrivacy tLRPC$TL_account_setPrivacy = new TLRPC$TL_account_setPrivacy();
-            tLRPC$TL_account_setPrivacy.key = new TLRPC$TL_inputPrivacyKeyStatusTimestamp();
-            tLRPC$TL_account_setPrivacy.rules.add(new TLRPC$TL_inputPrivacyValueAllowAll());
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setPrivacy, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagePrivateSeenView.lambda$showSheet$4(ButtonWithCounterView.this, bottomSheet, runnable, tLObject, tLRPC$TL_error);
-                }
-            });
-            return;
-        }
-        TLRPC$TL_account_setGlobalPrivacySettings tLRPC$TL_account_setGlobalPrivacySettings = new TLRPC$TL_account_setGlobalPrivacySettings();
-        TLRPC$TL_globalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
-        tLRPC$TL_account_setGlobalPrivacySettings.settings = globalPrivacySettings;
-        if (globalPrivacySettings == null) {
-            tLRPC$TL_account_setGlobalPrivacySettings.settings = new TLRPC$TL_globalPrivacySettings();
-        }
-        tLRPC$TL_account_setGlobalPrivacySettings.settings.hide_read_marks = false;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_account_setGlobalPrivacySettings, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MessagePrivateSeenView.lambda$showSheet$6(context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable, tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public static void lambda$showSheet$4(final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$3(TLRPC$TL_error.this, buttonWithCounterView, bottomSheet, runnable);
-            }
-        });
-    }
-
-    public static void lambda$showSheet$3(TLRPC$TL_error tLRPC$TL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.global().showForError(tLRPC$TL_error);
-            return;
-        }
-        buttonWithCounterView.setLoading(false);
-        bottomSheet.dismiss();
-        BulletinFactory.global().createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.PremiumLastSeenSet)).show();
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public static void lambda$showSheet$6(final Context context, final Theme.ResourcesProvider resourcesProvider, final ButtonWithCounterView buttonWithCounterView, final BottomSheet bottomSheet, final Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MessagePrivateSeenView.lambda$showSheet$5(TLRPC$TL_error.this, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable);
-            }
-        });
-    }
-
-    public static void lambda$showSheet$5(TLRPC$TL_error tLRPC$TL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tLRPC$TL_error);
-            return;
-        }
-        buttonWithCounterView.setLoading(false);
-        bottomSheet.dismiss();
-        BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.PremiumReadSet)).show();
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    public static void lambda$showSheet$8(boolean z, BottomSheet bottomSheet, Runnable runnable, View view) {
-        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.presentFragment(new PremiumPreviewFragment(z ? "lastseen" : "readtime"));
-            bottomSheet.dismiss();
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
     }
 
     @Override

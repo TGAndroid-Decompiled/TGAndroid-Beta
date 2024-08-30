@@ -22,43 +22,42 @@ public class TopicSearchCell extends FrameLayout {
 
     public TopicSearchCell(Context context) {
         super(context);
+        float f;
+        float f2;
+        int i;
+        float f3;
+        TextView textView;
+        int i2;
+        float f4;
+        float f5;
         this.backupImageView = new BackupImageView(context);
-        TextView textView = new TextView(context);
-        this.textView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        TextView textView2 = new TextView(context);
+        this.textView = textView2;
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setTypeface(AndroidUtilities.bold());
         if (LocaleController.isRTL) {
+            f2 = 0.0f;
+            i = 21;
+            f5 = 12.0f;
+            f3 = 0.0f;
             addView(this.backupImageView, LayoutHelper.createFrame(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
-            addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
+            textView = this.textView;
+            f = 56.0f;
+            i2 = -1;
+            f4 = -2.0f;
         } else {
+            f = 12.0f;
+            f2 = 0.0f;
+            i = 16;
+            f3 = 0.0f;
             addView(this.backupImageView, LayoutHelper.createFrame(30, 30.0f, 16, 12.0f, 0.0f, 12.0f, 0.0f));
-            addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 16, 56.0f, 0.0f, 12.0f, 0.0f));
+            textView = this.textView;
+            i2 = -1;
+            f4 = -2.0f;
+            f5 = 56.0f;
         }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
-    public void setTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-        this.topic = tLRPC$TL_forumTopic;
-        if (TextUtils.isEmpty(tLRPC$TL_forumTopic.searchQuery)) {
-            this.textView.setText(AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title));
-        } else {
-            this.textView.setText(AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title), tLRPC$TL_forumTopic.searchQuery, (Theme.ResourcesProvider) null));
-        }
-        ForumUtilities.setTopicIcon(this.backupImageView, tLRPC$TL_forumTopic);
-        BackupImageView backupImageView = this.backupImageView;
-        if (backupImageView == null || backupImageView.getImageReceiver() == null || !(this.backupImageView.getImageReceiver().getDrawable() instanceof ForumUtilities.GeneralTopicDrawable)) {
-            return;
-        }
-        ((ForumUtilities.GeneralTopicDrawable) this.backupImageView.getImageReceiver().getDrawable()).setColor(Theme.getColor(Theme.key_chats_archiveBackground));
-    }
-
-    public TLRPC$TL_forumTopic getTopic() {
-        return this.topic;
+        addView(textView, LayoutHelper.createFrame(i2, f4, i, f5, f3, f, f2));
     }
 
     @Override
@@ -72,5 +71,34 @@ public class TopicSearchCell extends FrameLayout {
                 canvas.drawLine(dp, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
+    }
+
+    public TLRPC$TL_forumTopic getTopic() {
+        return this.topic;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public void setTopic(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        TextView textView;
+        CharSequence highlightText;
+        this.topic = tLRPC$TL_forumTopic;
+        if (TextUtils.isEmpty(tLRPC$TL_forumTopic.searchQuery)) {
+            textView = this.textView;
+            highlightText = AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title);
+        } else {
+            textView = this.textView;
+            highlightText = AndroidUtilities.highlightText(AndroidUtilities.removeDiacritics(tLRPC$TL_forumTopic.title), tLRPC$TL_forumTopic.searchQuery, (Theme.ResourcesProvider) null);
+        }
+        textView.setText(highlightText);
+        ForumUtilities.setTopicIcon(this.backupImageView, tLRPC$TL_forumTopic);
+        BackupImageView backupImageView = this.backupImageView;
+        if (backupImageView == null || backupImageView.getImageReceiver() == null || !(this.backupImageView.getImageReceiver().getDrawable() instanceof ForumUtilities.GeneralTopicDrawable)) {
+            return;
+        }
+        ((ForumUtilities.GeneralTopicDrawable) this.backupImageView.getImageReceiver().getDrawable()).setColor(Theme.getColor(Theme.key_chats_archiveBackground));
     }
 }

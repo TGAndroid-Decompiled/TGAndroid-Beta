@@ -28,7 +28,7 @@ public class FragmentContextViewWavesDrawable {
     WeavingState previousState;
     WeavingState[] states = new WeavingState[4];
     float progressToState = 1.0f;
-    ArrayList<View> parents = new ArrayList<>();
+    ArrayList parents = new ArrayList();
     Paint paint = new Paint(1);
     LineBlobDrawable lineBlobDrawable = new LineBlobDrawable(5);
     LineBlobDrawable lineBlobDrawable1 = new LineBlobDrawable(7);
@@ -36,93 +36,6 @@ public class FragmentContextViewWavesDrawable {
     RectF rect = new RectF();
     Path path = new Path();
     private final Paint selectedPaint = new Paint(1);
-
-    public FragmentContextViewWavesDrawable() {
-        for (int i = 0; i < 4; i++) {
-            this.states[i] = new WeavingState(i);
-        }
-    }
-
-    public void draw(float r21, float r22, float r23, float r24, android.graphics.Canvas r25, org.telegram.ui.Components.FragmentContextView r26, float r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FragmentContextViewWavesDrawable.draw(float, float, float, float, android.graphics.Canvas, org.telegram.ui.Components.FragmentContextView, float):void");
-    }
-
-    private void checkColors() {
-        int i = 0;
-        while (true) {
-            WeavingState[] weavingStateArr = this.states;
-            if (i >= weavingStateArr.length) {
-                return;
-            }
-            weavingStateArr[i].checkColor();
-            i++;
-        }
-    }
-
-    private void setState(int i, boolean z) {
-        WeavingState weavingState = this.currentState;
-        if (weavingState == null || weavingState.currentState != i) {
-            if (VoIPService.getSharedInstance() == null && this.currentState == null) {
-                this.currentState = this.pausedState;
-                return;
-            }
-            WeavingState weavingState2 = z ? this.currentState : null;
-            this.previousState = weavingState2;
-            this.currentState = this.states[i];
-            if (weavingState2 != null) {
-                this.progressToState = 0.0f;
-            } else {
-                this.progressToState = 1.0f;
-            }
-        }
-    }
-
-    public void setAmplitude(float f) {
-        this.animateToAmplitude = f;
-        float f2 = f - this.amplitude;
-        this.animateAmplitudeDiff = f2 / 250.0f;
-        this.animateAmplitudeDiff2 = f2 / 120.0f;
-    }
-
-    public void addParent(View view) {
-        if (this.parents.contains(view)) {
-            return;
-        }
-        this.parents.add(view);
-    }
-
-    public void removeParent(View view) {
-        this.parents.remove(view);
-        if (this.parents.isEmpty()) {
-            this.pausedState = this.currentState;
-            this.currentState = null;
-            this.previousState = null;
-        }
-    }
-
-    public void updateState(boolean z) {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            int callState = sharedInstance.getCallState();
-            if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
-                setState(2, z);
-                return;
-            }
-            ChatObject.Call call = sharedInstance.groupCall;
-            if (call != null) {
-                TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = call.participants.get(sharedInstance.getSelfId());
-                if ((tLRPC$TL_groupCallParticipant != null && !tLRPC$TL_groupCallParticipant.can_self_unmute && tLRPC$TL_groupCallParticipant.muted && !ChatObject.canManageCalls(sharedInstance.getChat())) || sharedInstance.groupCall.call.rtmp_stream) {
-                    sharedInstance.setMicMute(true, false, false);
-                    setState(3, z);
-                    return;
-                } else {
-                    setState(sharedInstance.isMicMute() ? 1 : 0, z);
-                    return;
-                }
-            }
-            setState(sharedInstance.isMicMute() ? 1 : 0, z);
-        }
-    }
 
     public static class WeavingState {
         int color1;
@@ -151,35 +64,89 @@ public class FragmentContextViewWavesDrawable {
         }
 
         private void createGradients() {
+            RadialGradient radialGradient;
             int i = this.currentState;
             if (i == 0) {
                 int color = Theme.getColor(this.greenKey1);
                 this.color1 = color;
                 int color2 = Theme.getColor(this.greenKey2);
                 this.color2 = color2;
-                this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color, color2}, (float[]) null, Shader.TileMode.CLAMP);
-                return;
-            }
-            if (i == 1) {
-                int color3 = Theme.getColor(this.blueKey1);
-                this.color1 = color3;
-                int color4 = Theme.getColor(this.blueKey2);
-                this.color2 = color4;
-                this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4}, (float[]) null, Shader.TileMode.CLAMP);
-                return;
-            }
-            if (i == 3) {
-                int color5 = Theme.getColor(this.mutedByAdmin);
-                this.color1 = color5;
-                int color6 = Theme.getColor(this.mutedByAdmin3);
-                this.color3 = color6;
-                int color7 = Theme.getColor(this.mutedByAdmin2);
+                radialGradient = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color, color2}, (float[]) null, Shader.TileMode.CLAMP);
+            } else {
+                if (i != 1) {
+                    if (i == 3) {
+                        int color3 = Theme.getColor(this.mutedByAdmin);
+                        this.color1 = color3;
+                        int color4 = Theme.getColor(this.mutedByAdmin3);
+                        this.color3 = color4;
+                        int color5 = Theme.getColor(this.mutedByAdmin2);
+                        this.color2 = color5;
+                        this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4, color5}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                        return;
+                    }
+                    return;
+                }
+                int color6 = Theme.getColor(this.blueKey1);
+                this.color1 = color6;
+                int color7 = Theme.getColor(this.blueKey2);
                 this.color2 = color7;
-                this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color5, color6, color7}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                radialGradient = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color6, color7}, (float[]) null, Shader.TileMode.CLAMP);
             }
+            this.shader = radialGradient;
+        }
+
+        public void checkColor() {
+            int i = this.currentState;
+            if (i == 0) {
+                if (this.color1 == Theme.getColor(this.greenKey1) && this.color2 == Theme.getColor(this.greenKey2)) {
+                    return;
+                }
+            } else if (i == 1) {
+                if (this.color1 == Theme.getColor(this.blueKey1) && this.color2 == Theme.getColor(this.blueKey2)) {
+                    return;
+                }
+            } else {
+                if (i != 3) {
+                    return;
+                }
+                if (this.color1 == Theme.getColor(this.mutedByAdmin) && this.color2 == Theme.getColor(this.mutedByAdmin2)) {
+                    return;
+                }
+            }
+            createGradients();
+        }
+
+        public void setToPaint(Paint paint) {
+            int i;
+            int i2;
+            int blendARGB;
+            int i3 = this.currentState;
+            if (i3 != 0 && i3 != 1 && i3 != 3) {
+                paint.setShader(null);
+                blendARGB = Theme.getColor(Theme.key_voipgroup_topPanelGray);
+            } else {
+                if (LiteMode.isEnabled(512)) {
+                    paint.setShader(this.shader);
+                    return;
+                }
+                paint.setShader(null);
+                if (this.currentState == 3) {
+                    i = ColorUtils.blendARGB(this.color1, this.color2, 0.5f);
+                    i2 = this.color3;
+                } else {
+                    i = this.color1;
+                    i2 = this.color2;
+                }
+                blendARGB = ColorUtils.blendARGB(i, i2, 0.5f);
+            }
+            paint.setColor(blendARGB);
         }
 
         public void update(int i, int i2, long j, float f) {
+            float nextInt;
+            float nextInt2;
+            float nextInt3;
+            float nextInt4;
             if (this.currentState == 2) {
                 return;
             }
@@ -191,28 +158,34 @@ public class FragmentContextViewWavesDrawable {
                     int i3 = this.currentState;
                     if (i3 == 3) {
                         this.targetX = ((Utilities.random.nextInt(100) * 0.05f) / 100.0f) - 0.3f;
-                        this.targetY = ((Utilities.random.nextInt(100) * 0.05f) / 100.0f) + 0.7f;
+                        nextInt4 = Utilities.random.nextInt(100) * 0.05f;
                     } else if (i3 == 0) {
                         this.targetX = ((Utilities.random.nextInt(100) * 0.2f) / 100.0f) - 0.3f;
-                        this.targetY = ((Utilities.random.nextInt(100) * 0.3f) / 100.0f) + 0.7f;
+                        nextInt4 = Utilities.random.nextInt(100) * 0.3f;
                     } else {
                         this.targetX = ((Utilities.random.nextInt(100) / 100.0f) * 0.2f) + 1.1f;
-                        this.targetY = (Utilities.random.nextInt(100) * 4.0f) / 100.0f;
+                        nextInt3 = (Utilities.random.nextInt(100) * 4.0f) / 100.0f;
+                        this.targetY = nextInt3;
                     }
+                    nextInt3 = (nextInt4 / 100.0f) + 0.7f;
+                    this.targetY = nextInt3;
                 }
                 this.startX = this.targetX;
                 this.startY = this.targetY;
                 int i4 = this.currentState;
                 if (i4 == 3) {
                     this.targetX = ((Utilities.random.nextInt(100) * 0.05f) / 100.0f) - 0.3f;
-                    this.targetY = ((Utilities.random.nextInt(100) * 0.05f) / 100.0f) + 0.7f;
+                    nextInt2 = Utilities.random.nextInt(100) * 0.05f;
                 } else if (i4 == 0) {
                     this.targetX = ((Utilities.random.nextInt(100) * 0.2f) / 100.0f) - 0.3f;
-                    this.targetY = ((Utilities.random.nextInt(100) * 0.3f) / 100.0f) + 0.7f;
+                    nextInt2 = Utilities.random.nextInt(100) * 0.3f;
                 } else {
                     this.targetX = ((Utilities.random.nextInt(100) / 100.0f) * 0.2f) + 1.1f;
-                    this.targetY = (Utilities.random.nextInt(100) * 4.0f) / 100.0f;
+                    nextInt = (Utilities.random.nextInt(100) * 4.0f) / 100.0f;
+                    this.targetY = nextInt;
                 }
+                nextInt = (nextInt2 / 100.0f) + 0.7f;
+                this.targetY = nextInt;
             }
             float f3 = (float) j;
             float f4 = this.time + ((BlobDrawable.GRADIENT_SPEED_MIN + 0.5f) * f3) + (f3 * BlobDrawable.GRADIENT_SPEED_MAX * 2.0f * f);
@@ -235,49 +208,85 @@ public class FragmentContextViewWavesDrawable {
             this.matrix.postScale(f12, f12, f8 + 200.0f, f10 + 200.0f);
             this.shader.setLocalMatrix(this.matrix);
         }
+    }
 
-        public void checkColor() {
-            int i = this.currentState;
-            if (i == 0) {
-                if (this.color1 == Theme.getColor(this.greenKey1) && this.color2 == Theme.getColor(this.greenKey2)) {
-                    return;
-                }
-                createGradients();
-                return;
-            }
-            if (i == 1) {
-                if (this.color1 == Theme.getColor(this.blueKey1) && this.color2 == Theme.getColor(this.blueKey2)) {
-                    return;
-                }
-                createGradients();
-                return;
-            }
-            if (i == 3) {
-                if (this.color1 == Theme.getColor(this.mutedByAdmin) && this.color2 == Theme.getColor(this.mutedByAdmin2)) {
-                    return;
-                }
-                createGradients();
-            }
+    public FragmentContextViewWavesDrawable() {
+        for (int i = 0; i < 4; i++) {
+            this.states[i] = new WeavingState(i);
         }
+    }
 
-        public void setToPaint(Paint paint) {
-            int i = this.currentState;
-            if (i == 0 || i == 1 || i == 3) {
-                if (!LiteMode.isEnabled(512)) {
-                    paint.setShader(null);
-                    if (this.currentState == 3) {
-                        paint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(this.color1, this.color2, 0.5f), this.color3, 0.5f));
-                        return;
-                    } else {
-                        paint.setColor(ColorUtils.blendARGB(this.color1, this.color2, 0.5f));
-                        return;
-                    }
-                }
-                paint.setShader(this.shader);
+    private void checkColors() {
+        int i = 0;
+        while (true) {
+            WeavingState[] weavingStateArr = this.states;
+            if (i >= weavingStateArr.length) {
                 return;
             }
-            paint.setShader(null);
-            paint.setColor(Theme.getColor(Theme.key_voipgroup_topPanelGray));
+            weavingStateArr[i].checkColor();
+            i++;
+        }
+    }
+
+    private void setState(int i, boolean z) {
+        WeavingState weavingState = this.currentState;
+        if (weavingState == null || weavingState.currentState != i) {
+            if (VoIPService.getSharedInstance() == null && this.currentState == null) {
+                this.currentState = this.pausedState;
+                return;
+            }
+            WeavingState weavingState2 = z ? this.currentState : null;
+            this.previousState = weavingState2;
+            this.currentState = this.states[i];
+            this.progressToState = weavingState2 != null ? 0.0f : 1.0f;
+        }
+    }
+
+    public void addParent(View view) {
+        if (this.parents.contains(view)) {
+            return;
+        }
+        this.parents.add(view);
+    }
+
+    public void draw(float r21, float r22, float r23, float r24, android.graphics.Canvas r25, org.telegram.ui.Components.FragmentContextView r26, float r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FragmentContextViewWavesDrawable.draw(float, float, float, float, android.graphics.Canvas, org.telegram.ui.Components.FragmentContextView, float):void");
+    }
+
+    public void removeParent(View view) {
+        this.parents.remove(view);
+        if (this.parents.isEmpty()) {
+            this.pausedState = this.currentState;
+            this.currentState = null;
+            this.previousState = null;
+        }
+    }
+
+    public void setAmplitude(float f) {
+        this.animateToAmplitude = f;
+        float f2 = f - this.amplitude;
+        this.animateAmplitudeDiff = f2 / 250.0f;
+        this.animateAmplitudeDiff2 = f2 / 120.0f;
+    }
+
+    public void updateState(boolean z) {
+        int i;
+        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null) {
+            int callState = sharedInstance.getCallState();
+            if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
+                setState(2, z);
+                return;
+            }
+            ChatObject.Call call = sharedInstance.groupCall;
+            if (call == null || (((tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) call.participants.get(sharedInstance.getSelfId())) == null || tLRPC$TL_groupCallParticipant.can_self_unmute || !tLRPC$TL_groupCallParticipant.muted || ChatObject.canManageCalls(sharedInstance.getChat())) && !sharedInstance.groupCall.call.rtmp_stream)) {
+                i = sharedInstance.isMicMute();
+            } else {
+                sharedInstance.setMicMute(true, false, false);
+                i = 3;
+            }
+            setState(i, z);
         }
     }
 }

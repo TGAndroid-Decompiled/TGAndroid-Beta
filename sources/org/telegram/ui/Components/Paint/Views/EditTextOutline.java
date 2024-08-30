@@ -1,10 +1,8 @@
 package org.telegram.ui.Components.Paint.Views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -56,76 +54,6 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-        super.onTextChanged(charSequence, i, i2, i3);
-        this.mUpdateCachedBitmap = true;
-        this.isFrameDirty = true;
-    }
-
-    @Override
-    public void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        if (i > 0 && i2 > 0) {
-            this.mUpdateCachedBitmap = true;
-            this.isFrameDirty = true;
-            Bitmap bitmap = this.mCache;
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-            this.mCache = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
-            return;
-        }
-        this.mCache = null;
-    }
-
-    @Override
-    public void setGravity(int i) {
-        super.setGravity(i);
-        this.mUpdateCachedBitmap = true;
-        this.isFrameDirty = true;
-        invalidate();
-    }
-
-    public void setStrokeColor(int i) {
-        this.mStrokeColor = i;
-        this.mUpdateCachedBitmap = true;
-        invalidate();
-    }
-
-    public void setFrameColor(int i) {
-        int i2 = this.mFrameColor;
-        if (i2 == 0 && i != 0) {
-            setPadding(AndroidUtilities.dp(19.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(7.0f));
-            setCursorColor(-1);
-        } else if (i2 != 0 && i == 0) {
-            setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
-            setCursorColor(-1);
-        }
-        this.mFrameColor = i;
-        if (i != 0) {
-            float computePerceivedBrightness = AndroidUtilities.computePerceivedBrightness(i);
-            if (computePerceivedBrightness == 0.0f) {
-                computePerceivedBrightness = Color.red(this.mFrameColor) / 255.0f;
-            }
-            if (computePerceivedBrightness > 0.87d) {
-                setTextColor(-16777216);
-            } else {
-                setTextColor(-1);
-            }
-            this.isFrameDirty = true;
-        }
-        this.mUpdateCachedBitmap = true;
-        invalidate();
-    }
-
-    public void setStrokeWidth(float f) {
-        this.mStrokeWidth = f;
-        this.mUpdateCachedBitmap = true;
-        invalidate();
-    }
-
-    @Override
-    @SuppressLint({"DrawAllocation"})
     public void onDraw(Canvas canvas) {
         boolean z;
         int i = 0;
@@ -291,7 +219,56 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
+        Bitmap bitmap;
+        super.onSizeChanged(i, i2, i3, i4);
+        if (i <= 0 || i2 <= 0) {
+            bitmap = null;
+        } else {
+            this.mUpdateCachedBitmap = true;
+            this.isFrameDirty = true;
+            Bitmap bitmap2 = this.mCache;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            }
+            bitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+        }
+        this.mCache = bitmap;
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        super.onTextChanged(charSequence, i, i2, i3);
+        this.mUpdateCachedBitmap = true;
+        this.isFrameDirty = true;
+    }
+
+    @Override
     public boolean onTextContextMenuItem(int i) {
         return super.onTextContextMenuItem(i);
+    }
+
+    public void setFrameColor(int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.EditTextOutline.setFrameColor(int):void");
+    }
+
+    @Override
+    public void setGravity(int i) {
+        super.setGravity(i);
+        this.mUpdateCachedBitmap = true;
+        this.isFrameDirty = true;
+        invalidate();
+    }
+
+    public void setStrokeColor(int i) {
+        this.mStrokeColor = i;
+        this.mUpdateCachedBitmap = true;
+        invalidate();
+    }
+
+    public void setStrokeWidth(float f) {
+        this.mStrokeWidth = f;
+        this.mUpdateCachedBitmap = true;
+        invalidate();
     }
 }

@@ -37,85 +37,8 @@ import org.telegram.ui.Components.RecyclerListView;
 public class FeaturesPageView extends BaseListPageView {
     RecyclerListView.SelectionAdapter adapter;
     Bitmap bitmap;
-    ArrayList<Item> items;
+    ArrayList items;
     public final int type;
-
-    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
-    }
-
-    public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
-        return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
-    }
-
-    @Override
-    public RecyclerView.Adapter createAdapter() {
-        RecyclerListView.SelectionAdapter selectionAdapter = new RecyclerListView.SelectionAdapter() {
-            @Override
-            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return false;
-            }
-
-            @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View itemCell;
-                if (i == 0) {
-                    FeaturesPageView featuresPageView = FeaturesPageView.this;
-                    itemCell = new HeaderView(featuresPageView.getContext());
-                } else if (i == 2) {
-                    itemCell = new FixedHeightEmptyCell(FeaturesPageView.this.getContext(), 16);
-                } else {
-                    FeaturesPageView featuresPageView2 = FeaturesPageView.this;
-                    itemCell = new ItemCell(featuresPageView2.getContext());
-                }
-                itemCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(itemCell);
-            }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                if (FeaturesPageView.this.items.get(i).viewType == 1) {
-                    ItemCell itemCell = (ItemCell) viewHolder.itemView;
-                    itemCell.imageView.setColorFilter(new PorterDuffColorFilter(FeaturesPageView.this.bitmap.getPixel(i, 0), PorterDuff.Mode.MULTIPLY));
-                    itemCell.imageView.setImageDrawable(ContextCompat.getDrawable(FeaturesPageView.this.getContext(), FeaturesPageView.this.items.get(i).iconRes));
-                    itemCell.textView.setText(FeaturesPageView.this.items.get(i).text);
-                    itemCell.description.setText(FeaturesPageView.this.items.get(i).description);
-                }
-            }
-
-            @Override
-            public int getItemViewType(int i) {
-                return FeaturesPageView.this.items.get(i).viewType;
-            }
-
-            @Override
-            public int getItemCount() {
-                return FeaturesPageView.this.items.size();
-            }
-        };
-        this.adapter = selectionAdapter;
-        return selectionAdapter;
-    }
-
-    public class Item {
-        String description;
-        int iconRes;
-        int order;
-        String text;
-        final int viewType;
-
-        private Item(int i) {
-            this.viewType = i;
-        }
-
-        public Item(int i, int i2, String str, String str2, int i3) {
-            this.viewType = i;
-            this.iconRes = i2;
-            this.text = str;
-            this.description = str2;
-            this.order = i3;
-        }
-    }
 
     private class HeaderView extends FrameLayout {
         GradientTools gradientTools;
@@ -156,12 +79,6 @@ public class FeaturesPageView extends BaseListPageView {
             if (i == 1) {
                 StarParticlesView starParticlesView = new StarParticlesView(context) {
                     @Override
-                    public void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, i3);
-                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
-                    }
-
-                    @Override
                     public void configure() {
                         StarParticlesView.Drawable drawable = this.drawable;
                         drawable.useGradient = true;
@@ -177,6 +94,12 @@ public class FeaturesPageView extends BaseListPageView {
                         drawable2.type = 28;
                         drawable2.colorKey = Theme.key_premiumGradient2;
                         drawable2.init();
+                    }
+
+                    @Override
+                    public void onMeasure(int i2, int i3) {
+                        super.onMeasure(i2, i3);
+                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
                     }
                 };
                 this.starParticlesView = starParticlesView;
@@ -257,6 +180,26 @@ public class FeaturesPageView extends BaseListPageView {
         }
     }
 
+    public class Item {
+        String description;
+        int iconRes;
+        int order;
+        String text;
+        final int viewType;
+
+        private Item(int i) {
+            this.viewType = i;
+        }
+
+        public Item(int i, int i2, String str, String str2, int i3) {
+            this.viewType = i;
+            this.iconRes = i2;
+            this.text = str;
+            this.description = str2;
+            this.order = i3;
+        }
+    }
+
     private class ItemCell extends FrameLayout {
         TextView description;
         ImageView imageView;
@@ -280,5 +223,62 @@ public class FeaturesPageView extends BaseListPageView {
             this.description.setTextSize(1, 14.0f);
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 28.0f, 16.0f, 8.0f));
         }
+    }
+
+    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    }
+
+    public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
+        return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
+    }
+
+    @Override
+    public RecyclerView.Adapter createAdapter() {
+        RecyclerListView.SelectionAdapter selectionAdapter = new RecyclerListView.SelectionAdapter() {
+            @Override
+            public int getItemCount() {
+                return FeaturesPageView.this.items.size();
+            }
+
+            @Override
+            public int getItemViewType(int i) {
+                return ((Item) FeaturesPageView.this.items.get(i)).viewType;
+            }
+
+            @Override
+            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return false;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                if (((Item) FeaturesPageView.this.items.get(i)).viewType == 1) {
+                    ItemCell itemCell = (ItemCell) viewHolder.itemView;
+                    itemCell.imageView.setColorFilter(new PorterDuffColorFilter(FeaturesPageView.this.bitmap.getPixel(i, 0), PorterDuff.Mode.MULTIPLY));
+                    itemCell.imageView.setImageDrawable(ContextCompat.getDrawable(FeaturesPageView.this.getContext(), ((Item) FeaturesPageView.this.items.get(i)).iconRes));
+                    itemCell.textView.setText(((Item) FeaturesPageView.this.items.get(i)).text);
+                    itemCell.description.setText(((Item) FeaturesPageView.this.items.get(i)).description);
+                }
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                View itemCell;
+                if (i == 0) {
+                    FeaturesPageView featuresPageView = FeaturesPageView.this;
+                    itemCell = new HeaderView(featuresPageView.getContext());
+                } else if (i == 2) {
+                    itemCell = new FixedHeightEmptyCell(FeaturesPageView.this.getContext(), 16);
+                } else {
+                    FeaturesPageView featuresPageView2 = FeaturesPageView.this;
+                    itemCell = new ItemCell(featuresPageView2.getContext());
+                }
+                itemCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(itemCell);
+            }
+        };
+        this.adapter = selectionAdapter;
+        return selectionAdapter;
     }
 }

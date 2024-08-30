@@ -42,23 +42,6 @@ public class LineBlobDrawable {
         fArr2[i] = (float) ((abs * 0.003d) + 0.017d);
     }
 
-    public void update(float f, float f2) {
-        for (int i = 0; i <= this.N; i++) {
-            float[] fArr = this.progress;
-            float f3 = fArr[i];
-            float f4 = this.speed[i];
-            float f5 = f3 + (BlobDrawable.MIN_SPEED * f4) + (f4 * f * BlobDrawable.MAX_SPEED * f2);
-            fArr[i] = f5;
-            if (f5 >= 1.0f) {
-                fArr[i] = 0.0f;
-                float[] fArr2 = this.radius;
-                float[] fArr3 = this.radiusNext;
-                fArr2[i] = fArr3[i];
-                generateBlob(fArr3, i);
-            }
-        }
-    }
-
     public void draw(float f, float f2, float f3, float f4, Canvas canvas, Paint paint, float f5, float f6) {
         if (!LiteMode.isEnabled(512)) {
             canvas.drawRect(f, f2, f3, f4, paint);
@@ -100,6 +83,23 @@ public class LineBlobDrawable {
                 }
             }
             i++;
+        }
+    }
+
+    public void update(float f, float f2) {
+        for (int i = 0; i <= this.N; i++) {
+            float[] fArr = this.progress;
+            float f3 = fArr[i];
+            float f4 = this.speed[i];
+            float f5 = f3 + (BlobDrawable.MIN_SPEED * f4) + (f4 * f * BlobDrawable.MAX_SPEED * f2);
+            fArr[i] = f5;
+            if (f5 >= 1.0f) {
+                fArr[i] = 0.0f;
+                float[] fArr2 = this.radius;
+                float[] fArr3 = this.radiusNext;
+                fArr2[i] = fArr3[i];
+                generateBlob(fArr3, i);
+            }
         }
     }
 }

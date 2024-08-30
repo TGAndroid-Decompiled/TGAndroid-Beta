@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messageActionRequestedPeer extends TLRPC$MessageAction {
     public int button_id;
-    public ArrayList<TLRPC$Peer> peers = new ArrayList<>();
+    public ArrayList peers = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_messageActionRequestedPeer extends TLRPC$MessageAction {
         int size = this.peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.peers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$Peer) this.peers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

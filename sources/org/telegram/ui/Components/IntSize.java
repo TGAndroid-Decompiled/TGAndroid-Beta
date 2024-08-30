@@ -4,9 +4,6 @@ public class IntSize {
     public int height;
     public int width;
 
-    public IntSize() {
-    }
-
     public IntSize(int i, int i2) {
         this.width = i;
         this.height = i2;

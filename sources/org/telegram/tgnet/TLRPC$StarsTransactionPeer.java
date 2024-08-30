@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-public class TLRPC$StarsTransactionPeer extends TLObject {
+public abstract class TLRPC$StarsTransactionPeer extends TLObject {
     public TLRPC$Peer peer;
 
     public static TLRPC$StarsTransactionPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {

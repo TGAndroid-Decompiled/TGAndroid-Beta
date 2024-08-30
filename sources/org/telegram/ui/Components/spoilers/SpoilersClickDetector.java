@@ -17,11 +17,11 @@ public class SpoilersClickDetector {
         void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2);
     }
 
-    public SpoilersClickDetector(View view, List<SpoilerEffect> list, OnSpoilerClickedListener onSpoilerClickedListener) {
+    public SpoilersClickDetector(View view, List list, OnSpoilerClickedListener onSpoilerClickedListener) {
         this(view, list, true, onSpoilerClickedListener);
     }
 
-    public SpoilersClickDetector(final View view, final List<SpoilerEffect> list, final boolean z, final OnSpoilerClickedListener onSpoilerClickedListener) {
+    public SpoilersClickDetector(final View view, final List list, final boolean z, final OnSpoilerClickedListener onSpoilerClickedListener) {
         this.gestureDetector = new GestureDetectorCompat(view.getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public boolean onDown(MotionEvent motionEvent) {

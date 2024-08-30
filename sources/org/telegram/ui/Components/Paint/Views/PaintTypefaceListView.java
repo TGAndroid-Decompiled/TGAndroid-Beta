@@ -16,7 +16,7 @@ import org.telegram.ui.Components.RecyclerListView;
 
 public class PaintTypefaceListView extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     private Path mask;
-    private Consumer<Path> maskProvider;
+    private Consumer maskProvider;
 
     public PaintTypefaceListView(Context context) {
         super(context);
@@ -25,8 +25,18 @@ public class PaintTypefaceListView extends RecyclerListView implements Notificat
         setLayoutManager(new LinearLayoutManager(context));
         setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
+            public int getItemCount() {
+                return PaintTypeface.get().size();
+            }
+
+            @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                ((PaintTextOptionsView.TypefaceCell) viewHolder.itemView).bind((PaintTypeface) PaintTypeface.get().get(i));
             }
 
             @Override
@@ -35,19 +45,30 @@ public class PaintTypefaceListView extends RecyclerListView implements Notificat
                 typefaceCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(typefaceCell);
             }
-
-            @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                ((PaintTextOptionsView.TypefaceCell) viewHolder.itemView).bind(PaintTypeface.get().get(i));
-            }
-
-            @Override
-            public int getItemCount() {
-                return PaintTypeface.get().size();
-            }
         });
         setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         setClipToPadding(false);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.customTypefacesLoaded) {
+            getAdapter().notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void draw(Canvas canvas) {
+        Consumer consumer = this.maskProvider;
+        if (consumer != null) {
+            consumer.accept(this.mask);
+            canvas.save();
+            canvas.clipPath(this.mask);
+        }
+        super.draw(canvas);
+        if (this.maskProvider != null) {
+            canvas.restore();
+        }
     }
 
     @Override
@@ -68,32 +89,11 @@ public class PaintTypefaceListView extends RecyclerListView implements Notificat
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.customTypefacesLoaded) {
-            getAdapter().notifyDataSetChanged();
-        }
-    }
-
-    @Override
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((Math.min(PaintTypeface.get().size(), 6) * AndroidUtilities.dp(48.0f)) + AndroidUtilities.dp(16.0f), 1073741824));
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        Consumer<Path> consumer = this.maskProvider;
-        if (consumer != null) {
-            consumer.accept(this.mask);
-            canvas.save();
-            canvas.clipPath(this.mask);
-        }
-        super.draw(canvas);
-        if (this.maskProvider != null) {
-            canvas.restore();
-        }
-    }
-
-    public void setMaskProvider(Consumer<Path> consumer) {
+    public void setMaskProvider(Consumer consumer) {
         this.maskProvider = consumer;
         invalidate();
     }

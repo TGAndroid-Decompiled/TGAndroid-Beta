@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_payments_validatedRequestedInfo extends TLObject {
     public int flags;
     public String id;
-    public ArrayList<TLRPC$TL_shippingOption> shipping_options = new ArrayList<>();
+    public ArrayList shipping_options = new ArrayList();
 
     public static TLRPC$TL_payments_validatedRequestedInfo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-784000893 != i) {
@@ -57,7 +57,7 @@ public class TLRPC$TL_payments_validatedRequestedInfo extends TLObject {
             int size = this.shipping_options.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.shipping_options.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_shippingOption) this.shipping_options.get(i)).serializeToStream(abstractSerializedData);
             }
         }
     }

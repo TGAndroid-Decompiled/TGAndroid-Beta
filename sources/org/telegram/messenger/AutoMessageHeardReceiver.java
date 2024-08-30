@@ -7,6 +7,38 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 
 public class AutoMessageHeardReceiver extends BroadcastReceiver {
+    public static void lambda$onReceive$0(AccountInstance accountInstance, TLRPC$User tLRPC$User, int i, long j, int i2) {
+        accountInstance.getMessagesController().putUser(tLRPC$User, true);
+        MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0L, 0, true, 0);
+        MessagesController.getInstance(i).markReactionsAsRead(j, 0L);
+    }
+
+    public static void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final int i, final int i2) {
+        final TLRPC$User userSync = accountInstance.getMessagesStorage().getUserSync(j);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                AutoMessageHeardReceiver.lambda$onReceive$0(AccountInstance.this, userSync, i, j, i2);
+            }
+        });
+    }
+
+    public static void lambda$onReceive$2(AccountInstance accountInstance, TLRPC$Chat tLRPC$Chat, int i, long j, int i2) {
+        accountInstance.getMessagesController().putChat(tLRPC$Chat, true);
+        MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0L, 0, true, 0);
+        MessagesController.getInstance(i).markReactionsAsRead(j, 0L);
+    }
+
+    public static void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final int i, final int i2) {
+        final TLRPC$Chat chatSync = accountInstance.getMessagesStorage().getChatSync(-j);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                AutoMessageHeardReceiver.lambda$onReceive$2(AccountInstance.this, chatSync, i, j, i2);
+            }
+        });
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         ApplicationLoader.postInitApplication();
@@ -38,37 +70,5 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
         }
         MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0L, 0, true, 0);
         MessagesController.getInstance(intExtra2).markReactionsAsRead(longExtra, 0L);
-    }
-
-    public static void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final int i, final int i2) {
-        final TLRPC$User userSync = accountInstance.getMessagesStorage().getUserSync(j);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AutoMessageHeardReceiver.lambda$onReceive$0(AccountInstance.this, userSync, i, j, i2);
-            }
-        });
-    }
-
-    public static void lambda$onReceive$0(AccountInstance accountInstance, TLRPC$User tLRPC$User, int i, long j, int i2) {
-        accountInstance.getMessagesController().putUser(tLRPC$User, true);
-        MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0L, 0, true, 0);
-        MessagesController.getInstance(i).markReactionsAsRead(j, 0L);
-    }
-
-    public static void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final int i, final int i2) {
-        final TLRPC$Chat chatSync = accountInstance.getMessagesStorage().getChatSync(-j);
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                AutoMessageHeardReceiver.lambda$onReceive$2(AccountInstance.this, chatSync, i, j, i2);
-            }
-        });
-    }
-
-    public static void lambda$onReceive$2(AccountInstance accountInstance, TLRPC$Chat tLRPC$Chat, int i, long j, int i2) {
-        accountInstance.getMessagesController().putChat(tLRPC$Chat, true);
-        MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0L, 0, true, 0);
-        MessagesController.getInstance(i).markReactionsAsRead(j, 0L);
     }
 }

@@ -32,11 +32,6 @@ public class ContactsSyncAdapterService extends Service {
         }
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return getSyncAdapter().getSyncAdapterBinder();
-    }
-
     private SyncAdapterImpl getSyncAdapter() {
         if (sSyncAdapter == null) {
             sSyncAdapter = new SyncAdapterImpl(this);
@@ -44,9 +39,14 @@ public class ContactsSyncAdapterService extends Service {
         return sSyncAdapter;
     }
 
-    public static void performSync(Context context, Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) throws OperationCanceledException {
+    public static void performSync(Context context, Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("performSync: " + account.toString());
         }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return getSyncAdapter().getSyncAdapterBinder();
     }
 }

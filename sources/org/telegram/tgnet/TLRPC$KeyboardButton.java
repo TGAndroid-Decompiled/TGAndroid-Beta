@@ -9,7 +9,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
     public int flags;
     public String fwd_text;
     public TLRPC$InputUser inputUser;
-    public ArrayList<TLRPC$InlineQueryPeerType> peer_types = new ArrayList<>();
+    public ArrayList peer_types = new ArrayList();
     public String query;
     public boolean quiz;
     public boolean request_write_access;
@@ -63,7 +63,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                             int size = this.peer_types.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.peer_types.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$InlineQueryPeerType) this.peer_types.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }

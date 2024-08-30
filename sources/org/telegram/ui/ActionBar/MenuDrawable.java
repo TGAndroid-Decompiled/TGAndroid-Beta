@@ -4,7 +4,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 
@@ -36,15 +35,6 @@ public class MenuDrawable extends Drawable {
     private int type;
     private float typeAnimationProgress;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public MenuDrawable() {
         this(TYPE_DEFAULT);
     }
@@ -65,67 +55,24 @@ public class MenuDrawable extends Drawable {
         this.typeAnimationProgress = 1.0f;
     }
 
-    public void setRotateToBack(boolean z) {
-        this.rotateToBack = z;
-    }
-
-    public void setRotation(float f, boolean z) {
-        this.lastFrameTime = 0L;
-        float f2 = this.currentRotation;
-        if (f2 == 1.0f) {
-            this.reverseAngle = true;
-        } else if (f2 == 0.0f) {
-            this.reverseAngle = false;
-        }
-        this.lastFrameTime = 0L;
-        if (z) {
-            if (f2 < f) {
-                this.currentAnimationTime = (int) (f2 * 200.0f);
-            } else {
-                this.currentAnimationTime = (int) ((1.0f - f2) * 200.0f);
-            }
-            this.lastFrameTime = SystemClock.elapsedRealtime();
-            this.finalRotation = f;
-        } else {
-            this.currentRotation = f;
-            this.finalRotation = f;
-        }
-        invalidateSelf();
-    }
-
-    public void setType(int i, boolean z) {
-        int i2 = this.type;
-        if (i2 == i) {
-            return;
-        }
-        this.previousType = i2;
-        this.type = i;
-        if (z) {
-            this.typeAnimationProgress = 0.0f;
-        } else {
-            this.typeAnimationProgress = 1.0f;
-        }
-        invalidateSelf();
-    }
-
     @Override
     public void draw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MenuDrawable.draw(android.graphics.Canvas):void");
     }
 
-    public void setUpdateDownloadProgress(float f, boolean z) {
-        if (!z) {
-            this.animatedDownloadProgress = f;
-            this.downloadProgressAnimationStart = f;
-        } else {
-            if (this.animatedDownloadProgress > f) {
-                this.animatedDownloadProgress = f;
-            }
-            this.downloadProgressAnimationStart = this.animatedDownloadProgress;
-        }
-        this.downloadProgress = f;
-        this.downloadProgressTime = 0.0f;
-        invalidateSelf();
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
     }
 
     @Override
@@ -138,22 +85,28 @@ public class MenuDrawable extends Drawable {
         }
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(24.0f);
+    public void setBackColor(int i) {
+        this.backColor = i;
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 
     public void setIconColor(int i) {
         this.iconColor = i;
     }
 
-    public void setBackColor(int i) {
-        this.backColor = i;
+    public void setMiniIcon(boolean z) {
+        this.miniIcon = z;
+    }
+
+    public void setRotateToBack(boolean z) {
+        this.rotateToBack = z;
+    }
+
+    public void setRotation(float r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MenuDrawable.setRotation(float, boolean):void");
     }
 
     public void setRoundCap() {
@@ -161,7 +114,29 @@ public class MenuDrawable extends Drawable {
         this.roundCap = true;
     }
 
-    public void setMiniIcon(boolean z) {
-        this.miniIcon = z;
+    public void setType(int i, boolean z) {
+        int i2 = this.type;
+        if (i2 == i) {
+            return;
+        }
+        this.previousType = i2;
+        this.type = i;
+        this.typeAnimationProgress = z ? 0.0f : 1.0f;
+        invalidateSelf();
+    }
+
+    public void setUpdateDownloadProgress(float f, boolean z) {
+        if (z) {
+            if (this.animatedDownloadProgress > f) {
+                this.animatedDownloadProgress = f;
+            }
+            this.downloadProgressAnimationStart = this.animatedDownloadProgress;
+        } else {
+            this.animatedDownloadProgress = f;
+            this.downloadProgressAnimationStart = f;
+        }
+        this.downloadProgress = f;
+        this.downloadProgressTime = 0.0f;
+        invalidateSelf();
     }
 }

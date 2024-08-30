@@ -1,4 +1,4 @@
 package org.telegram.messenger.video;
 
-public final class MediaCodecVideoConvertor$$ExternalSyntheticApiModelOutline0 {
+public abstract class MediaCodecVideoConvertor$$ExternalSyntheticApiModelOutline0 {
 }

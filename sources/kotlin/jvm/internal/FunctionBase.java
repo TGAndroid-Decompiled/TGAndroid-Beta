@@ -1,4 +1,4 @@
 package kotlin.jvm.internal;
 
-public interface FunctionBase<R> {
+public interface FunctionBase {
 }

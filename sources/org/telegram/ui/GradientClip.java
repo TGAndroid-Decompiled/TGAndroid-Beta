@@ -14,11 +14,10 @@ public class GradientClip {
     private final Paint[] paint = new Paint[4];
     private final Matrix matrix = new Matrix();
 
-    public void draw(Canvas canvas, RectF rectF, boolean z, float f) {
-        draw(canvas, rectF, z ? 1 : 3, f);
-    }
-
     public void draw(Canvas canvas, RectF rectF, int i, float f) {
+        Matrix matrix;
+        float f2;
+        float f3;
         if (f <= 0.0f) {
             return;
         }
@@ -35,22 +34,44 @@ public class GradientClip {
         if (i == 0) {
             this.matrix.postScale(1.0f, rectF.width() / 16.0f);
             this.matrix.postRotate(-90.0f);
-            this.matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i == 1) {
+        } else {
+            if (i != 1) {
+                if (i == 2) {
+                    this.matrix.postScale(1.0f, rectF.width() / 16.0f);
+                    this.matrix.postRotate(90.0f);
+                    matrix = this.matrix;
+                    f2 = rectF.right;
+                    f3 = rectF.top;
+                    matrix.postTranslate(f2, f3);
+                    this.gradient.setLocalMatrix(this.matrix);
+                    this.paint[i].setAlpha((int) (f * 255.0f));
+                    canvas.drawRect(rectF, this.paint[i]);
+                }
+                if (i == 3) {
+                    this.matrix.postScale(1.0f, rectF.height() / 16.0f);
+                    this.matrix.postScale(1.0f, -1.0f);
+                    matrix = this.matrix;
+                    f2 = rectF.left;
+                    f3 = rectF.bottom;
+                    matrix.postTranslate(f2, f3);
+                }
+                this.gradient.setLocalMatrix(this.matrix);
+                this.paint[i].setAlpha((int) (f * 255.0f));
+                canvas.drawRect(rectF, this.paint[i]);
+            }
             this.matrix.postScale(1.0f, rectF.height() / 16.0f);
-            this.matrix.postTranslate(rectF.left, rectF.top);
-        } else if (i == 2) {
-            this.matrix.postScale(1.0f, rectF.width() / 16.0f);
-            this.matrix.postRotate(90.0f);
-            this.matrix.postTranslate(rectF.right, rectF.top);
-        } else if (i == 3) {
-            this.matrix.postScale(1.0f, rectF.height() / 16.0f);
-            this.matrix.postScale(1.0f, -1.0f);
-            this.matrix.postTranslate(rectF.left, rectF.bottom);
         }
+        matrix = this.matrix;
+        f2 = rectF.left;
+        f3 = rectF.top;
+        matrix.postTranslate(f2, f3);
         this.gradient.setLocalMatrix(this.matrix);
         this.paint[i].setAlpha((int) (f * 255.0f));
         canvas.drawRect(rectF, this.paint[i]);
+    }
+
+    public void draw(Canvas canvas, RectF rectF, boolean z, float f) {
+        draw(canvas, rectF, z ? 1 : 3, f);
     }
 
     public Paint getPaint(int i, float f) {

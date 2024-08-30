@@ -42,94 +42,6 @@ public class Text {
         setText(charSequence);
     }
 
-    public Text setTextSizePx(float f) {
-        this.paint.setTextSize(f);
-        return this;
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.width = 0.0f;
-        this.left = 0.0f;
-        for (int i = 0; i < this.layout.getLineCount(); i++) {
-            this.width = Math.max(this.width, this.layout.getLineWidth(i));
-            this.left = Math.max(this.left, this.layout.getLineLeft(i));
-        }
-    }
-
-    public Text setMaxWidth(float f) {
-        this.maxWidth = f;
-        setText(this.layout.getText());
-        return this;
-    }
-
-    public int getLineCount() {
-        return this.layout.getLineCount();
-    }
-
-    public Text hackClipBounds() {
-        this.hackClipBounds = true;
-        return this;
-    }
-
-    public float getTextSize() {
-        return this.paint.getTextSize();
-    }
-
-    public void setColor(int i) {
-        this.paint.setColor(i);
-    }
-
-    public Text ellipsize(int i) {
-        this.ellipsizeWidth = i;
-        return this;
-    }
-
-    public void draw(Canvas canvas, float f, float f2, int i, float f3) {
-        if (this.layout == null) {
-            return;
-        }
-        this.paint.setColor(i);
-        int alpha = this.paint.getAlpha();
-        if (f3 != 1.0f) {
-            this.paint.setAlpha((int) (alpha * f3));
-        }
-        if (!this.doNotSave) {
-            canvas.save();
-        }
-        canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
-        draw(canvas);
-        if (!this.doNotSave) {
-            canvas.restore();
-        }
-        this.paint.setAlpha(alpha);
-    }
-
-    public void draw(Canvas canvas, float f, float f2) {
-        if (this.layout == null) {
-            return;
-        }
-        if (!this.doNotSave) {
-            canvas.save();
-        }
-        canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
-        draw(canvas);
-        if (this.doNotSave) {
-            return;
-        }
-        canvas.restore();
-    }
-
-    public Text setVerticalClipPadding(int i) {
-        this.vertPad = i;
-        return this;
-    }
-
-    public Text setShadow(float f) {
-        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(-16777216, f));
-        return this;
-    }
-
     public void draw(Canvas canvas) {
         int i;
         int i2;
@@ -164,8 +76,69 @@ public class Text {
         canvas.restore();
     }
 
+    public void draw(Canvas canvas, float f, float f2) {
+        if (this.layout == null) {
+            return;
+        }
+        if (!this.doNotSave) {
+            canvas.save();
+        }
+        canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
+        draw(canvas);
+        if (this.doNotSave) {
+            return;
+        }
+        canvas.restore();
+    }
+
+    public void draw(Canvas canvas, float f, float f2, int i, float f3) {
+        if (this.layout == null) {
+            return;
+        }
+        this.paint.setColor(i);
+        int alpha = this.paint.getAlpha();
+        if (f3 != 1.0f) {
+            this.paint.setAlpha((int) (alpha * f3));
+        }
+        if (!this.doNotSave) {
+            canvas.save();
+        }
+        canvas.translate(f - this.left, f2 - (this.layout.getHeight() / 2.0f));
+        draw(canvas);
+        if (!this.doNotSave) {
+            canvas.restore();
+        }
+        this.paint.setAlpha(alpha);
+    }
+
+    public Text ellipsize(int i) {
+        this.ellipsizeWidth = i;
+        return this;
+    }
+
+    public float getCurrentWidth() {
+        return this.width;
+    }
+
     public Paint.FontMetricsInt getFontMetricsInt() {
         return this.paint.getFontMetricsInt();
+    }
+
+    public float getHeight() {
+        return this.layout.getHeight();
+    }
+
+    public int getLineCount() {
+        return this.layout.getLineCount();
+    }
+
+    public CharSequence getText() {
+        StaticLayout staticLayout = this.layout;
+        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
+    }
+
+    public float getTextSize() {
+        return this.paint.getTextSize();
     }
 
     public float getWidth() {
@@ -173,19 +146,43 @@ public class Text {
         return i >= 0 ? Math.min(i, this.width) : this.width;
     }
 
-    public float getCurrentWidth() {
-        return this.width;
+    public Text hackClipBounds() {
+        this.hackClipBounds = true;
+        return this;
     }
 
-    public float getHeight() {
-        return this.layout.getHeight();
+    public void setColor(int i) {
+        this.paint.setColor(i);
     }
 
-    public CharSequence getText() {
-        StaticLayout staticLayout = this.layout;
-        if (staticLayout == null || staticLayout.getText() == null) {
-            return "";
+    public Text setMaxWidth(float f) {
+        this.maxWidth = f;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public Text setShadow(float f) {
+        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(-16777216, f));
+        return this;
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.width = 0.0f;
+        this.left = 0.0f;
+        for (int i = 0; i < this.layout.getLineCount(); i++) {
+            this.width = Math.max(this.width, this.layout.getLineWidth(i));
+            this.left = Math.max(this.left, this.layout.getLineLeft(i));
         }
-        return this.layout.getText();
+    }
+
+    public Text setTextSizePx(float f) {
+        this.paint.setTextSize(f);
+        return this;
+    }
+
+    public Text setVerticalClipPadding(int i) {
+        this.vertPad = i;
+        return this;
     }
 }

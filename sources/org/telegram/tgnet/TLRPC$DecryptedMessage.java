@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$DecryptedMessage extends TLObject {
     public TLRPC$DecryptedMessageAction action;
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public long grouped_id;
     public TLRPC$DecryptedMessageMedia media;

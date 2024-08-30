@@ -17,7 +17,7 @@ public class TLRPC$TL_messages_search extends TLObject {
     public TLRPC$InputPeer peer;
     public String q;
     public TLRPC$InputPeer saved_peer_id;
-    public ArrayList<TLRPC$Reaction> saved_reaction = new ArrayList<>();
+    public ArrayList saved_reaction = new ArrayList();
     public int top_msg_id;
 
     @Override
@@ -42,7 +42,7 @@ public class TLRPC$TL_messages_search extends TLObject {
             int size = this.saved_reaction.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.saved_reaction.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$Reaction) this.saved_reaction.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 2) != 0) {

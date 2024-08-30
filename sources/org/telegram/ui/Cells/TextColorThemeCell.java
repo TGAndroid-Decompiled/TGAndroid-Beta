@@ -38,26 +38,8 @@ public class TextColorThemeCell extends FrameLayout {
     }
 
     @Override
-    public void setAlpha(float f) {
-        this.alpha = f;
-        invalidate();
-    }
-
-    @Override
     public float getAlpha() {
         return this.alpha;
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
-    }
-
-    public void setTextAndColor(CharSequence charSequence, int i) {
-        this.textView.setText(charSequence);
-        this.currentColor = i;
-        setWillNotDraw(!this.needDivider && i == 0);
-        invalidate();
     }
 
     @Override
@@ -68,5 +50,23 @@ public class TextColorThemeCell extends FrameLayout {
             colorPaint.setAlpha((int) (this.alpha * 255.0f));
             canvas.drawCircle(!LocaleController.isRTL ? AndroidUtilities.dp(28.0f) : getMeasuredWidth() - AndroidUtilities.dp(28.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(10.0f), colorPaint);
         }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    }
+
+    @Override
+    public void setAlpha(float f) {
+        this.alpha = f;
+        invalidate();
+    }
+
+    public void setTextAndColor(CharSequence charSequence, int i) {
+        this.textView.setText(charSequence);
+        this.currentColor = i;
+        setWillNotDraw(!this.needDivider && i == 0);
+        invalidate();
     }
 }

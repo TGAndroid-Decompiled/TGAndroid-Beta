@@ -10,22 +10,6 @@ public class NativeLoader {
     public static StringBuilder log = new StringBuilder();
     private static volatile boolean nativeLoaded = false;
 
-    private static native void init(String str, boolean z);
-
-    private static java.io.File getNativeLibraryDir(android.content.Context r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.getNativeLibraryDir(android.content.Context):java.io.File");
-    }
-
-    @android.annotation.SuppressLint({"UnsafeDynamicallyLoadedCode", "SetWorldReadable"})
-    private static boolean loadFromZip(android.content.Context r5, java.io.File r6, java.io.File r7, java.lang.String r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.loadFromZip(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
-    }
-
-    @android.annotation.SuppressLint({"UnsafeDynamicallyLoadedCode"})
-    public static synchronized void initNativeLibs(android.content.Context r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.initNativeLibs(android.content.Context):void");
-    }
-
     public static String getAbiFolder() {
         String str;
         String str2 = "mips";
@@ -56,6 +40,20 @@ public class NativeLoader {
         String property2 = System.getProperty("os.arch");
         if (property2 == null) {
         }
+    }
+
+    private static java.io.File getNativeLibraryDir(android.content.Context r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.getNativeLibraryDir(android.content.Context):java.io.File");
+    }
+
+    private static native void init(String str, boolean z);
+
+    public static synchronized void initNativeLibs(android.content.Context r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.initNativeLibs(android.content.Context):void");
+    }
+
+    private static boolean loadFromZip(android.content.Context r5, java.io.File r6, java.io.File r7, java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.loadFromZip(android.content.Context, java.io.File, java.io.File, java.lang.String):boolean");
     }
 
     public static boolean loaded() {

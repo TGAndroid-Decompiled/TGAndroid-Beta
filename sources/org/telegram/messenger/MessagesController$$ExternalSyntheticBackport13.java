@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-public final class MessagesController$$ExternalSyntheticBackport13 {
+public abstract class MessagesController$$ExternalSyntheticBackport13 {
     public static long m(long j, long j2) {
         if (j2 < 0) {
             return (j ^ Long.MIN_VALUE) < (j2 ^ Long.MIN_VALUE) ? 0L : 1L;

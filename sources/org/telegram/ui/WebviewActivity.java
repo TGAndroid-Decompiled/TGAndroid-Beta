@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,6 +37,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_getStatsURL;
 import org.telegram.tgnet.TLRPC$TL_statsURL;
@@ -80,13 +80,33 @@ public class WebviewActivity extends BaseFragment {
     };
     private WebView webView;
 
-    @Override
-    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
     public class TelegramWebviewProxy {
         private TelegramWebviewProxy() {
+        }
+
+        public void lambda$postEvent$0(String str) {
+            TLRPC$Message tLRPC$Message;
+            boolean z;
+            if (WebviewActivity.this.getParentActivity() == null) {
+                return;
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d(str);
+            }
+            str.hashCode();
+            if (!str.equals("share_game")) {
+                if (str.equals("share_score")) {
+                    tLRPC$Message = WebviewActivity.this.currentMessageObject.messageOwner;
+                    z = true;
+                }
+                WebviewActivity webviewActivity = WebviewActivity.this;
+                webviewActivity.showDialog(ShareAlert.createShareAlert(webviewActivity.getParentActivity(), WebviewActivity.this.currentMessageObject, null, false, WebviewActivity.this.linkToCopy, false));
+            }
+            tLRPC$Message = WebviewActivity.this.currentMessageObject.messageOwner;
+            z = false;
+            tLRPC$Message.with_my_score = z;
+            WebviewActivity webviewActivity2 = WebviewActivity.this;
+            webviewActivity2.showDialog(ShareAlert.createShareAlert(webviewActivity2.getParentActivity(), WebviewActivity.this.currentMessageObject, null, false, WebviewActivity.this.linkToCopy, false));
         }
 
         @JavascriptInterface
@@ -97,23 +117,6 @@ public class WebviewActivity extends BaseFragment {
                     WebviewActivity.TelegramWebviewProxy.this.lambda$postEvent$0(str);
                 }
             });
-        }
-
-        public void lambda$postEvent$0(String str) {
-            if (WebviewActivity.this.getParentActivity() == null) {
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d(str);
-            }
-            str.hashCode();
-            if (str.equals("share_game")) {
-                WebviewActivity.this.currentMessageObject.messageOwner.with_my_score = false;
-            } else if (str.equals("share_score")) {
-                WebviewActivity.this.currentMessageObject.messageOwner.with_my_score = true;
-            }
-            WebviewActivity webviewActivity = WebviewActivity.this;
-            webviewActivity.showDialog(ShareAlert.createShareAlert(webviewActivity.getParentActivity(), WebviewActivity.this.currentMessageObject, null, false, WebviewActivity.this.linkToCopy, false));
         }
     }
 
@@ -139,29 +142,112 @@ public class WebviewActivity extends BaseFragment {
         this.type = 0;
     }
 
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        AndroidUtilities.checkAndroidTheme(getContext(), false);
-        AndroidUtilities.cancelRunOnUIThread(this.typingRunnable);
-        this.webView.setLayerType(0, null);
-        this.typingRunnable = null;
-        try {
-            ViewParent parent = this.webView.getParent();
-            if (parent != null) {
-                ((FrameLayout) parent).removeView(this.webView);
+    public void lambda$reloadStats$0(TLObject tLObject) {
+        this.loadStats = false;
+        if (tLObject != null) {
+            WebView webView = this.webView;
+            String str = ((TLRPC$TL_statsURL) tLObject).url;
+            this.currentUrl = str;
+            webView.loadUrl(str);
+        }
+    }
+
+    public void lambda$reloadStats$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                WebviewActivity.this.lambda$reloadStats$0(tLObject);
             }
-            this.webView.stopLoading();
-            this.webView.loadUrl("about:blank");
-            this.webView.destroy();
-            this.webView = null;
+        });
+    }
+
+    public static void openGameInBrowser(String str, MessageObject messageObject, Activity activity, String str2, String str3) {
+        StringBuilder sb;
+        String str4 = "";
+        try {
+            SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
+            String string = sharedPreferences.getString("" + messageObject.getId(), null);
+            StringBuilder sb2 = new StringBuilder(string != null ? string : "");
+            StringBuilder sb3 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
+            if (string == null) {
+                char[] charArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+                for (int i = 0; i < 20; i++) {
+                    sb2.append(charArray[Utilities.random.nextInt(charArray.length)]);
+                }
+            }
+            sb3.append((CharSequence) sb2);
+            int indexOf = str.indexOf(35);
+            if (indexOf < 0) {
+                sb = new StringBuilder();
+                sb.append(str);
+                sb.append("#");
+            } else {
+                String substring = str.substring(indexOf + 1);
+                if (substring.indexOf(61) < 0 && substring.indexOf(63) < 0) {
+                    if (substring.length() > 0) {
+                        sb = new StringBuilder();
+                        sb.append(str);
+                        sb.append("?");
+                    } else {
+                        sb = new StringBuilder();
+                        sb.append(str);
+                    }
+                }
+                sb = new StringBuilder();
+                sb.append(str);
+                sb.append("&");
+            }
+            sb.append((Object) sb3);
+            String sb4 = sb.toString();
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putInt(((Object) sb2) + "_date", (int) (System.currentTimeMillis() / 1000));
+            SerializedData serializedData = new SerializedData(messageObject.messageOwner.getObjectSize());
+            messageObject.messageOwner.serializeToStream(serializedData);
+            edit.putString(((Object) sb2) + "_m", Utilities.bytesToHex(serializedData.toByteArray()));
+            String str5 = ((Object) sb2) + "_link";
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append("https://");
+            sb5.append(MessagesController.getInstance(messageObject.currentAccount).linkPrefix);
+            sb5.append("/");
+            sb5.append(str3);
+            if (!TextUtils.isEmpty(str2)) {
+                str4 = "?game=" + str2;
+            }
+            sb5.append(str4);
+            edit.putString(str5, sb5.toString());
+            edit.commit();
+            Browser.openUrl((Context) activity, sb4, false);
+            serializedData.cleanup();
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
+    public void reloadStats(String str) {
+        if (this.loadStats) {
+            return;
+        }
+        this.loadStats = true;
+        TLRPC$TL_messages_getStatsURL tLRPC$TL_messages_getStatsURL = new TLRPC$TL_messages_getStatsURL();
+        tLRPC$TL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
+        if (str == null) {
+            str = "";
+        }
+        tLRPC$TL_messages_getStatsURL.params = str;
+        tLRPC$TL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStatsURL, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                WebviewActivity.this.lambda$reloadStats$1(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static boolean supportWebview() {
+        return ("samsung".equals(Build.MANUFACTURER) && "GT-I9500".equals(Build.MODEL)) ? false : true;
+    }
+
     @Override
-    @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
@@ -248,7 +334,9 @@ public class WebviewActivity extends BaseFragment {
                     try {
                         WebviewActivity.this.reloadStats(Uri.parse(str.replace("tg:statsrefresh", "tg://telegram.org")).getQueryParameter("params"));
                     } catch (Throwable th) {
-                        FileLog.e(th);
+                        e = th;
+                        FileLog.e(e);
+                        return true;
                     }
                 } else {
                     WebviewActivity.this.finishFragment(false);
@@ -258,7 +346,9 @@ public class WebviewActivity extends BaseFragment {
                         intent.putExtra("com.android.browser.application_id", ApplicationLoader.applicationContext.getPackageName());
                         ApplicationLoader.applicationContext.startActivity(intent);
                     } catch (Exception e) {
+                        e = e;
                         FileLog.e(e);
+                        return true;
                     }
                 }
                 return true;
@@ -270,11 +360,6 @@ public class WebviewActivity extends BaseFragment {
                     return;
                 }
                 super.onLoadResource(webView2, str);
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView webView2, String str) {
-                return isInternalUrl(str) || super.shouldOverrideUrlLoading(webView2, str);
             }
 
             @Override
@@ -304,9 +389,75 @@ public class WebviewActivity extends BaseFragment {
                 animatorSet.setDuration(150L);
                 animatorSet.start();
             }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView webView2, String str) {
+                return isInternalUrl(str) || super.shouldOverrideUrlLoading(webView2, str);
+            }
         });
         frameLayout.addView(this.webView, LayoutHelper.createFrame(-1, -1.0f));
         return this.fragmentView;
+    }
+
+    @Override
+    public ArrayList getThemeDescriptions() {
+        ThemeDescription themeDescription;
+        ArrayList arrayList = new ArrayList();
+        if (this.type == 0) {
+            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
+            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner2));
+            themeDescription = new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter2);
+        } else {
+            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_player_actionBarItems));
+            ActionBar actionBar = this.actionBar;
+            int i = ThemeDescription.FLAG_AB_TITLECOLOR;
+            int i2 = Theme.key_player_actionBarTitle;
+            arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, i2));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_player_actionBarSelector));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
+            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner4));
+            themeDescription = new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter4);
+        }
+        arrayList.add(themeDescription);
+        return arrayList;
+    }
+
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        AndroidUtilities.checkAndroidTheme(getContext(), false);
+        AndroidUtilities.cancelRunOnUIThread(this.typingRunnable);
+        this.webView.setLayerType(0, null);
+        this.typingRunnable = null;
+        try {
+            ViewParent parent = this.webView.getParent();
+            if (parent != null) {
+                ((FrameLayout) parent).removeView(this.webView);
+            }
+            this.webView.stopLoading();
+            this.webView.loadUrl("about:blank");
+            this.webView.destroy();
+            this.webView = null;
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     @Override
@@ -323,130 +474,5 @@ public class WebviewActivity extends BaseFragment {
             return;
         }
         webView.loadUrl(this.currentUrl);
-    }
-
-    public static boolean supportWebview() {
-        return ("samsung".equals(Build.MANUFACTURER) && "GT-I9500".equals(Build.MODEL)) ? false : true;
-    }
-
-    public void reloadStats(String str) {
-        if (this.loadStats) {
-            return;
-        }
-        this.loadStats = true;
-        TLRPC$TL_messages_getStatsURL tLRPC$TL_messages_getStatsURL = new TLRPC$TL_messages_getStatsURL();
-        tLRPC$TL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
-        if (str == null) {
-            str = "";
-        }
-        tLRPC$TL_messages_getStatsURL.params = str;
-        tLRPC$TL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStatsURL, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                WebviewActivity.this.lambda$reloadStats$1(tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$reloadStats$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                WebviewActivity.this.lambda$reloadStats$0(tLObject);
-            }
-        });
-    }
-
-    public void lambda$reloadStats$0(TLObject tLObject) {
-        this.loadStats = false;
-        if (tLObject != null) {
-            WebView webView = this.webView;
-            String str = ((TLRPC$TL_statsURL) tLObject).url;
-            this.currentUrl = str;
-            webView.loadUrl(str);
-        }
-    }
-
-    public static void openGameInBrowser(String str, MessageObject messageObject, Activity activity, String str2, String str3) {
-        String str4;
-        String str5 = "";
-        try {
-            SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-            String string = sharedPreferences.getString("" + messageObject.getId(), null);
-            StringBuilder sb = new StringBuilder(string != null ? string : "");
-            StringBuilder sb2 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
-            if (string == null) {
-                char[] charArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
-                for (int i = 0; i < 20; i++) {
-                    sb.append(charArray[Utilities.random.nextInt(charArray.length)]);
-                }
-            }
-            sb2.append((CharSequence) sb);
-            int indexOf = str.indexOf(35);
-            if (indexOf < 0) {
-                str4 = str + "#" + ((Object) sb2);
-            } else {
-                String substring = str.substring(indexOf + 1);
-                if (substring.indexOf(61) < 0 && substring.indexOf(63) < 0) {
-                    str4 = substring.length() > 0 ? str + "?" + ((Object) sb2) : str + ((Object) sb2);
-                }
-                str4 = str + "&" + ((Object) sb2);
-            }
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            edit.putInt(((Object) sb) + "_date", (int) (System.currentTimeMillis() / 1000));
-            SerializedData serializedData = new SerializedData(messageObject.messageOwner.getObjectSize());
-            messageObject.messageOwner.serializeToStream(serializedData);
-            edit.putString(((Object) sb) + "_m", Utilities.bytesToHex(serializedData.toByteArray()));
-            String str6 = ((Object) sb) + "_link";
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append("https://");
-            sb3.append(MessagesController.getInstance(messageObject.currentAccount).linkPrefix);
-            sb3.append("/");
-            sb3.append(str3);
-            if (!TextUtils.isEmpty(str2)) {
-                str5 = "?game=" + str2;
-            }
-            sb3.append(str5);
-            edit.putString(str6, sb3.toString());
-            edit.commit();
-            Browser.openUrl((Context) activity, str4, false);
-            serializedData.cleanup();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        if (this.type == 0) {
-            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner2));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter2));
-        } else {
-            arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_player_actionBarItems));
-            ActionBar actionBar = this.actionBar;
-            int i = ThemeDescription.FLAG_AB_TITLECOLOR;
-            int i2 = Theme.key_player_actionBarTitle;
-            arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, i2));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_player_actionBarSelector));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressInner4));
-            arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, Theme.key_contextProgressOuter4));
-        }
-        return arrayList;
     }
 }

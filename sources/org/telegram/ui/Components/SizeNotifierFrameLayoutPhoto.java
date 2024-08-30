@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
-public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
+public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
     private Activity activity;
     private int keyboardHeight;
     private android.graphics.Rect rect;
@@ -20,18 +20,11 @@ public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
         this.useSmoothKeyboard = z;
     }
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
-    }
-
-    public void setWithoutWindow(boolean z) {
-        this.withoutWindow = z;
-    }
-
-    @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        notifyHeightChanged();
+    public void lambda$notifyHeightChanged$0(boolean z) {
+        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
+        if (sizeNotifierFrameLayoutDelegate != null) {
+            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
+        }
     }
 
     @Override
@@ -70,10 +63,17 @@ public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
         }
     }
 
-    public void lambda$notifyHeightChanged$0(boolean z) {
-        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
-        if (sizeNotifierFrameLayoutDelegate != null) {
-            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
-        }
+    @Override
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        notifyHeightChanged();
+    }
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
+    public void setWithoutWindow(boolean z) {
+        this.withoutWindow = z;
     }
 }

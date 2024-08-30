@@ -48,7 +48,7 @@ public class DownloadButton extends ImageView {
     private StoryEntry currentEntry;
     private boolean downloading;
     private boolean downloadingVideo;
-    private Utilities.Callback<Runnable> prepare;
+    private Utilities.Callback prepare;
     private boolean preparing;
     private CircularProgressDrawable progressDrawable;
     private Theme.ResourcesProvider resourcesProvider;
@@ -57,292 +57,6 @@ public class DownloadButton extends ImageView {
     private boolean wasImageDownloading;
     private boolean wasVideoDownloading;
 
-    public DownloadButton(Context context, Utilities.Callback<Runnable> callback, int i, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.wasImageDownloading = true;
-        this.wasVideoDownloading = true;
-        this.prepare = callback;
-        this.currentAccount = i;
-        this.container = frameLayout;
-        this.resourcesProvider = resourcesProvider;
-        setScaleType(ImageView.ScaleType.CENTER);
-        setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        setBackground(Theme.createSelectorDrawable(553648127));
-        setVisibility(8);
-        setAlpha(0.0f);
-        setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                DownloadButton.this.lambda$new$0(view);
-            }
-        });
-        this.progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
-        updateImage();
-    }
-
-    public void lambda$new$0(View view) {
-        onClick();
-    }
-
-    public void setEntry(StoryEntry storyEntry) {
-        this.savedToGalleryUri = null;
-        this.currentEntry = storyEntry;
-        BuildingVideo buildingVideo = this.buildingVideo;
-        if (buildingVideo != null) {
-            buildingVideo.stop(true);
-            this.buildingVideo = null;
-        }
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-            this.toast = null;
-        }
-        if (storyEntry == null) {
-            this.downloading = false;
-            updateImage();
-        }
-    }
-
-    private void onClick() {
-        int checkSelfPermission;
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 23 && (i <= 28 || BuildVars.NO_SCOPED_STORAGE)) {
-            checkSelfPermission = getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
-            if (checkSelfPermission != 0) {
-                Activity findActivity = AndroidUtilities.findActivity(getContext());
-                if (findActivity != null) {
-                    findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
-                    return;
-                }
-                return;
-            }
-        }
-        if (this.downloading || this.currentEntry == null) {
-            return;
-        }
-        if (this.savedToGalleryUri != null) {
-            if (i >= 30) {
-                getContext().getContentResolver().delete(this.savedToGalleryUri, null);
-                this.savedToGalleryUri = null;
-            } else if (i < 29) {
-                try {
-                    new File(this.savedToGalleryUri.toString()).delete();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                this.savedToGalleryUri = null;
-            }
-        }
-        this.downloading = true;
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-            this.toast = null;
-        }
-        BuildingVideo buildingVideo = this.buildingVideo;
-        if (buildingVideo != null) {
-            buildingVideo.stop(true);
-            this.buildingVideo = null;
-        }
-        Utilities.Callback<Runnable> callback = this.prepare;
-        if (callback != null) {
-            this.preparing = true;
-            callback.run(new Runnable() {
-                @Override
-                public final void run() {
-                    DownloadButton.this.onClickInternal();
-                }
-            });
-        }
-        updateImage();
-        if (this.prepare == null) {
-            onClickInternal();
-        }
-    }
-
-    public void onClickInternal() {
-        StoryEntry storyEntry;
-        if (!this.preparing || (storyEntry = this.currentEntry) == null) {
-            return;
-        }
-        this.preparing = false;
-        if (storyEntry.wouldBeVideo()) {
-            this.downloadingVideo = true;
-            PreparingVideoToast preparingVideoToast = new PreparingVideoToast(getContext());
-            this.toast = preparingVideoToast;
-            preparingVideoToast.setOnCancelListener(new Runnable() {
-                @Override
-                public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$1();
-                }
-            });
-            this.container.addView(this.toast);
-            final File generateVideoPath = AndroidUtilities.generateVideoPath();
-            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
-                @Override
-                public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$3(generateVideoPath);
-                }
-            }, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    DownloadButton.this.lambda$onClickInternal$4((Float) obj);
-                }
-            }, new Runnable() {
-                @Override
-                public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$5();
-                }
-            });
-        } else {
-            this.downloadingVideo = false;
-            final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
-            if (generatePicturePath == null) {
-                this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
-                this.downloading = false;
-                updateImage();
-                return;
-            }
-            Utilities.themeQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    DownloadButton.this.lambda$onClickInternal$8(generatePicturePath);
-                }
-            });
-        }
-        updateImage();
-    }
-
-    public void lambda$onClickInternal$1() {
-        this.preparing = false;
-        BuildingVideo buildingVideo = this.buildingVideo;
-        if (buildingVideo != null) {
-            buildingVideo.stop(true);
-            this.buildingVideo = null;
-        }
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-        }
-        this.downloading = false;
-        updateImage();
-    }
-
-    public void lambda$onClickInternal$3(File file) {
-        if (!this.downloading || this.currentEntry == null) {
-            return;
-        }
-        MediaController.saveFile(file.getAbsolutePath(), getContext(), 1, null, null, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                DownloadButton.this.lambda$onClickInternal$2((Uri) obj);
-            }
-        }, false);
-    }
-
-    public void lambda$onClickInternal$2(Uri uri) {
-        if (!this.downloading || this.currentEntry == null) {
-            return;
-        }
-        this.toast.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("VideoSavedHint"), 3500);
-        this.downloading = false;
-        updateImage();
-        this.savedToGalleryUri = uri;
-    }
-
-    public void lambda$onClickInternal$4(Float f) {
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.setProgress(f.floatValue());
-        }
-    }
-
-    public void lambda$onClickInternal$5() {
-        if (!this.downloading || this.currentEntry == null) {
-            return;
-        }
-        this.toast.setDone(R.raw.error, LocaleController.getString("VideoConvertFail"), 3500);
-        this.downloading = false;
-        updateImage();
-    }
-
-    public void lambda$onClickInternal$8(final File file) {
-        this.currentEntry.buildPhoto(file);
-        if (!this.downloading || this.currentEntry == null) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DownloadButton.this.lambda$onClickInternal$7(file);
-            }
-        });
-    }
-
-    public void lambda$onClickInternal$7(File file) {
-        MediaController.saveFile(file.getAbsolutePath(), getContext(), 0, null, null, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                DownloadButton.this.lambda$onClickInternal$6((Uri) obj);
-            }
-        }, false);
-    }
-
-    public void lambda$onClickInternal$6(Uri uri) {
-        this.downloading = false;
-        updateImage();
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-            this.toast = null;
-        }
-        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
-        this.toast = preparingVideoToast2;
-        preparingVideoToast2.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("PhotoSavedHint"), 2500);
-        this.container.addView(this.toast);
-        this.savedToGalleryUri = uri;
-    }
-
-    private void updateImage() {
-        boolean z = this.wasImageDownloading;
-        boolean z2 = this.downloading;
-        boolean z3 = false;
-        if (z != (z2 && !this.downloadingVideo)) {
-            boolean z4 = z2 && !this.downloadingVideo;
-            this.wasImageDownloading = z4;
-            if (z4) {
-                AndroidUtilities.updateImageViewImageAnimated(this, this.progressDrawable);
-            } else {
-                AndroidUtilities.updateImageViewImageAnimated(this, R.drawable.media_download);
-            }
-        }
-        if (this.wasVideoDownloading != (this.downloading && this.downloadingVideo)) {
-            clearAnimation();
-            ViewPropertyAnimator animate = animate();
-            if (this.downloading && this.downloadingVideo) {
-                z3 = true;
-            }
-            this.wasVideoDownloading = z3;
-            animate.alpha(z3 ? 0.4f : 1.0f).start();
-        }
-    }
-
-    public void showToast(int i, CharSequence charSequence) {
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-            this.toast = null;
-        }
-        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
-        this.toast = preparingVideoToast2;
-        preparingVideoToast2.setDone(i, charSequence, 3500);
-        this.container.addView(this.toast);
-    }
-
-    public void showFailedVideo() {
-        showToast(R.raw.error, LocaleController.getString("VideoConvertFail"));
-    }
-
     public static class BuildingVideo implements NotificationCenter.NotificationCenterDelegate {
         final int currentAccount;
         final StoryEntry entry;
@@ -350,9 +64,9 @@ public class DownloadButton extends ImageView {
         private MessageObject messageObject;
         private final Runnable onCancel;
         private final Runnable onDone;
-        private final Utilities.Callback<Float> onProgress;
+        private final Utilities.Callback onProgress;
 
-        public BuildingVideo(int i, StoryEntry storyEntry, File file, Runnable runnable, Utilities.Callback<Float> callback, Runnable runnable2) {
+        public BuildingVideo(int i, StoryEntry storyEntry, File file, Runnable runnable, Utilities.Callback callback, Runnable runnable2) {
             this.currentAccount = i;
             this.entry = storyEntry;
             this.file = file;
@@ -360,6 +74,52 @@ public class DownloadButton extends ImageView {
             this.onProgress = callback;
             this.onCancel = runnable2;
             start();
+        }
+
+        public void lambda$start$0(VideoEditedInfo videoEditedInfo) {
+            MessageObject messageObject = this.messageObject;
+            if (messageObject == null) {
+                return;
+            }
+            messageObject.videoEditedInfo = videoEditedInfo;
+            MediaController.getInstance().scheduleVideoConvert(this.messageObject);
+        }
+
+        @Override
+        public void didReceivedNotification(int i, int i2, Object... objArr) {
+            if (i == NotificationCenter.filePreparingStarted) {
+                return;
+            }
+            if (i != NotificationCenter.fileNewChunkAvailable) {
+                if (i == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.messageObject) {
+                    stop(false);
+                    try {
+                        File file = this.file;
+                        if (file != null) {
+                            file.delete();
+                        }
+                    } catch (Exception unused) {
+                    }
+                    this.onCancel.run();
+                    return;
+                }
+                return;
+            }
+            if (((MessageObject) objArr[0]) == this.messageObject) {
+                ((Long) objArr[2]).longValue();
+                long longValue = ((Long) objArr[3]).longValue();
+                Float f = (Float) objArr[4];
+                f.floatValue();
+                Utilities.Callback callback = this.onProgress;
+                if (callback != null) {
+                    callback.run(f);
+                }
+                if (longValue > 0) {
+                    this.onDone.run();
+                    VideoEncodingService.stop();
+                    stop(false);
+                }
+            }
         }
 
         public void start() {
@@ -381,15 +141,6 @@ public class DownloadButton extends ImageView {
             });
         }
 
-        public void lambda$start$0(VideoEditedInfo videoEditedInfo) {
-            MessageObject messageObject = this.messageObject;
-            if (messageObject == null) {
-                return;
-            }
-            messageObject.videoEditedInfo = videoEditedInfo;
-            MediaController.getInstance().scheduleVideoConvert(this.messageObject);
-        }
-
         public void stop(boolean z) {
             if (this.messageObject == null) {
                 return;
@@ -401,44 +152,6 @@ public class DownloadButton extends ImageView {
                 MediaController.getInstance().cancelVideoConvert(this.messageObject);
             }
             this.messageObject = null;
-        }
-
-        @Override
-        public void didReceivedNotification(int i, int i2, Object... objArr) {
-            if (i == NotificationCenter.filePreparingStarted) {
-                return;
-            }
-            if (i == NotificationCenter.fileNewChunkAvailable) {
-                if (((MessageObject) objArr[0]) == this.messageObject) {
-                    ((Long) objArr[2]).longValue();
-                    long longValue = ((Long) objArr[3]).longValue();
-                    Float f = (Float) objArr[4];
-                    f.floatValue();
-                    Utilities.Callback<Float> callback = this.onProgress;
-                    if (callback != null) {
-                        callback.run(f);
-                    }
-                    if (longValue > 0) {
-                        this.onDone.run();
-                        VideoEncodingService.stop();
-                        stop(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            }
-            if (i == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.messageObject) {
-                stop(false);
-                try {
-                    File file = this.file;
-                    if (file != null) {
-                        file.delete();
-                    }
-                } catch (Exception unused) {
-                }
-                this.onCancel.run();
-            }
         }
     }
 
@@ -532,9 +245,63 @@ public class DownloadButton extends ImageView {
             show();
         }
 
-        @Override
-        protected boolean verifyDrawable(Drawable drawable) {
-            return drawable == this.lottieDrawable || super.verifyDrawable(drawable);
+        private void drawPreparing(Canvas canvas, float f) {
+            float f2 = this.progressT.set(this.progress);
+            float centerX = this.prepareRect.centerX();
+            float dp = this.prepareRect.top + AndroidUtilities.dp(48.0f);
+            float dp2 = AndroidUtilities.dp(25.0f);
+            this.greyPaint.setAlpha((int) (51.0f * f));
+            canvas.drawCircle(centerX, dp, dp2, this.greyPaint);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(centerX - dp2, dp - dp2, centerX + dp2, dp2 + dp);
+            int i = (int) (f * 255.0f);
+            this.whitePaint.setAlpha(i);
+            this.whitePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            canvas.drawArc(rectF, -90.0f, f2 * 360.0f, false, this.whitePaint);
+            float scale = this.cancelButton.getScale(0.15f);
+            canvas.save();
+            canvas.scale(scale, scale, centerX, dp);
+            this.whitePaint.setStrokeWidth(AndroidUtilities.dp(3.4f));
+            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), this.whitePaint);
+            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), this.whitePaint);
+            canvas.restore();
+            canvas.save();
+            canvas.translate((this.prepareRect.left + AndroidUtilities.dp(21.0f)) - this.preparingLayoutLeft, (this.prepareRect.bottom - AndroidUtilities.dp(18.0f)) - this.preparingLayout.getHeight());
+            this.textPaint.setAlpha(i);
+            this.preparingLayout.draw(canvas);
+            canvas.restore();
+        }
+
+        private void drawToast(Canvas canvas, float f) {
+            RLottieDrawable rLottieDrawable = this.lottieDrawable;
+            if (rLottieDrawable != null) {
+                rLottieDrawable.setAlpha((int) (f * 255.0f));
+                this.lottieDrawable.setBounds((int) (this.toastRect.left + AndroidUtilities.dp(9.0f)), (int) (this.toastRect.top + AndroidUtilities.dp(6.0f)), (int) (this.toastRect.left + AndroidUtilities.dp(45.0f)), (int) (this.toastRect.top + AndroidUtilities.dp(42.0f)));
+                this.lottieDrawable.draw(canvas);
+            }
+            if (this.doneLayout != null) {
+                canvas.save();
+                canvas.translate((this.toastRect.left + AndroidUtilities.dp(52.0f)) - this.doneLayoutLeft, this.toastRect.centerY() - (this.doneLayout.getHeight() / 2.0f));
+                this.textPaint2.setAlpha((int) (f * 255.0f));
+                this.doneLayout.draw(canvas);
+                canvas.restore();
+            }
+        }
+
+        public void lambda$onDraw$0() {
+            if (getParent() instanceof ViewGroup) {
+                ((ViewGroup) getParent()).removeView(this);
+            }
+        }
+
+        public void hide() {
+            Runnable runnable = this.hideRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.hideRunnable = null;
+            }
+            this.shown = false;
+            invalidate();
         }
 
         @Override
@@ -584,58 +351,33 @@ public class DownloadButton extends ImageView {
             });
         }
 
-        public void lambda$onDraw$0() {
-            if (getParent() instanceof ViewGroup) {
-                ((ViewGroup) getParent()).removeView(this);
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            boolean contains = this.currentRect.contains(motionEvent.getX(), motionEvent.getY());
+            if (motionEvent.getAction() == 0 && (this.preparing || contains)) {
+                this.cancelButton.setPressed(contains);
+                return true;
             }
-        }
-
-        private void drawPreparing(Canvas canvas, float f) {
-            float f2 = this.progressT.set(this.progress);
-            float centerX = this.prepareRect.centerX();
-            float dp = this.prepareRect.top + AndroidUtilities.dp(48.0f);
-            float dp2 = AndroidUtilities.dp(25.0f);
-            this.greyPaint.setAlpha((int) (51.0f * f));
-            canvas.drawCircle(centerX, dp, dp2, this.greyPaint);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(centerX - dp2, dp - dp2, centerX + dp2, dp2 + dp);
-            int i = (int) (f * 255.0f);
-            this.whitePaint.setAlpha(i);
-            this.whitePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
-            canvas.drawArc(rectF, -90.0f, f2 * 360.0f, false, this.whitePaint);
-            float scale = this.cancelButton.getScale(0.15f);
-            canvas.save();
-            canvas.scale(scale, scale, centerX, dp);
-            this.whitePaint.setStrokeWidth(AndroidUtilities.dp(3.4f));
-            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), this.whitePaint);
-            canvas.drawLine(centerX - AndroidUtilities.dp(7.0f), dp + AndroidUtilities.dp(7.0f), centerX + AndroidUtilities.dp(7.0f), dp - AndroidUtilities.dp(7.0f), this.whitePaint);
-            canvas.restore();
-            canvas.save();
-            canvas.translate((this.prepareRect.left + AndroidUtilities.dp(21.0f)) - this.preparingLayoutLeft, (this.prepareRect.bottom - AndroidUtilities.dp(18.0f)) - this.preparingLayout.getHeight());
-            this.textPaint.setAlpha(i);
-            this.preparingLayout.draw(canvas);
-            canvas.restore();
-        }
-
-        private void drawToast(Canvas canvas, float f) {
-            RLottieDrawable rLottieDrawable = this.lottieDrawable;
-            if (rLottieDrawable != null) {
-                rLottieDrawable.setAlpha((int) (f * 255.0f));
-                this.lottieDrawable.setBounds((int) (this.toastRect.left + AndroidUtilities.dp(9.0f)), (int) (this.toastRect.top + AndroidUtilities.dp(6.0f)), (int) (this.toastRect.left + AndroidUtilities.dp(45.0f)), (int) (this.toastRect.top + AndroidUtilities.dp(42.0f)));
-                this.lottieDrawable.draw(canvas);
+            if (motionEvent.getAction() == 1) {
+                if (this.cancelButton.isPressed()) {
+                    if (contains) {
+                        if (this.preparing) {
+                            Runnable runnable = this.onCancel;
+                            if (runnable != null) {
+                                runnable.run();
+                            }
+                        } else {
+                            hide();
+                        }
+                    }
+                    this.cancelButton.setPressed(false);
+                    return true;
+                }
+            } else if (motionEvent.getAction() == 3) {
+                this.cancelButton.setPressed(false);
+                return true;
             }
-            if (this.doneLayout != null) {
-                canvas.save();
-                canvas.translate((this.toastRect.left + AndroidUtilities.dp(52.0f)) - this.doneLayoutLeft, this.toastRect.centerY() - (this.doneLayout.getHeight() / 2.0f));
-                this.textPaint2.setAlpha((int) (f * 255.0f));
-                this.doneLayout.draw(canvas);
-                canvas.restore();
-            }
-        }
-
-        public void setProgress(float f) {
-            this.progress = f;
-            invalidate();
+            return super.onTouchEvent(motionEvent);
         }
 
         public void setDone(int i, CharSequence charSequence, int i2) {
@@ -668,13 +410,12 @@ public class DownloadButton extends ImageView {
             AndroidUtilities.runOnUIThread(runnable2, i2);
         }
 
-        public void hide() {
-            Runnable runnable = this.hideRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.hideRunnable = null;
-            }
-            this.shown = false;
+        public void setOnCancelListener(Runnable runnable) {
+            this.onCancel = runnable;
+        }
+
+        public void setProgress(float f) {
+            this.progress = f;
             invalidate();
         }
 
@@ -683,37 +424,294 @@ public class DownloadButton extends ImageView {
             invalidate();
         }
 
-        public void setOnCancelListener(Runnable runnable) {
-            this.onCancel = runnable;
-        }
-
         @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            boolean contains = this.currentRect.contains(motionEvent.getX(), motionEvent.getY());
-            if (motionEvent.getAction() == 0 && (this.preparing || contains)) {
-                this.cancelButton.setPressed(contains);
-                return true;
-            }
-            if (motionEvent.getAction() == 1) {
-                if (this.cancelButton.isPressed()) {
-                    if (contains) {
-                        if (this.preparing) {
-                            Runnable runnable = this.onCancel;
-                            if (runnable != null) {
-                                runnable.run();
-                            }
-                        } else {
-                            hide();
-                        }
-                    }
-                    this.cancelButton.setPressed(false);
-                    return true;
-                }
-            } else if (motionEvent.getAction() == 3) {
-                this.cancelButton.setPressed(false);
-                return true;
-            }
-            return super.onTouchEvent(motionEvent);
+        protected boolean verifyDrawable(Drawable drawable) {
+            return drawable == this.lottieDrawable || super.verifyDrawable(drawable);
         }
+    }
+
+    public DownloadButton(Context context, Utilities.Callback callback, int i, FrameLayout frameLayout, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.wasImageDownloading = true;
+        this.wasVideoDownloading = true;
+        this.prepare = callback;
+        this.currentAccount = i;
+        this.container = frameLayout;
+        this.resourcesProvider = resourcesProvider;
+        setScaleType(ImageView.ScaleType.CENTER);
+        setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        setBackground(Theme.createSelectorDrawable(553648127));
+        setVisibility(8);
+        setAlpha(0.0f);
+        setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                DownloadButton.this.lambda$new$0(view);
+            }
+        });
+        this.progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
+        updateImage();
+    }
+
+    public void lambda$new$0(View view) {
+        onClick();
+    }
+
+    public void lambda$onClickInternal$1() {
+        this.preparing = false;
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+        }
+        this.downloading = false;
+        updateImage();
+    }
+
+    public void lambda$onClickInternal$2(Uri uri) {
+        if (!this.downloading || this.currentEntry == null) {
+            return;
+        }
+        this.toast.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("VideoSavedHint"), 3500);
+        this.downloading = false;
+        updateImage();
+        this.savedToGalleryUri = uri;
+    }
+
+    public void lambda$onClickInternal$3(File file) {
+        if (!this.downloading || this.currentEntry == null) {
+            return;
+        }
+        MediaController.saveFile(file.getAbsolutePath(), getContext(), 1, null, null, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                DownloadButton.this.lambda$onClickInternal$2((Uri) obj);
+            }
+        }, false);
+    }
+
+    public void lambda$onClickInternal$4(Float f) {
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.setProgress(f.floatValue());
+        }
+    }
+
+    public void lambda$onClickInternal$5() {
+        if (!this.downloading || this.currentEntry == null) {
+            return;
+        }
+        this.toast.setDone(R.raw.error, LocaleController.getString("VideoConvertFail"), 3500);
+        this.downloading = false;
+        updateImage();
+    }
+
+    public void lambda$onClickInternal$6(Uri uri) {
+        this.downloading = false;
+        updateImage();
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
+        this.toast = preparingVideoToast2;
+        preparingVideoToast2.setDone(R.raw.ic_save_to_gallery, LocaleController.getString("PhotoSavedHint"), 2500);
+        this.container.addView(this.toast);
+        this.savedToGalleryUri = uri;
+    }
+
+    public void lambda$onClickInternal$7(File file) {
+        MediaController.saveFile(file.getAbsolutePath(), getContext(), 0, null, null, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                DownloadButton.this.lambda$onClickInternal$6((Uri) obj);
+            }
+        }, false);
+    }
+
+    public void lambda$onClickInternal$8(final File file) {
+        this.currentEntry.buildPhoto(file);
+        if (!this.downloading || this.currentEntry == null) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                DownloadButton.this.lambda$onClickInternal$7(file);
+            }
+        });
+    }
+
+    private void onClick() {
+        int checkSelfPermission;
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 23 && (i <= 28 || BuildVars.NO_SCOPED_STORAGE)) {
+            checkSelfPermission = getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE");
+            if (checkSelfPermission != 0) {
+                Activity findActivity = AndroidUtilities.findActivity(getContext());
+                if (findActivity != null) {
+                    findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
+                    return;
+                }
+                return;
+            }
+        }
+        if (this.downloading || this.currentEntry == null) {
+            return;
+        }
+        if (this.savedToGalleryUri != null) {
+            if (i >= 30) {
+                getContext().getContentResolver().delete(this.savedToGalleryUri, null);
+            } else if (i < 29) {
+                try {
+                    new File(this.savedToGalleryUri.toString()).delete();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            this.savedToGalleryUri = null;
+        }
+        this.downloading = true;
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        Utilities.Callback callback = this.prepare;
+        if (callback != null) {
+            this.preparing = true;
+            callback.run(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.onClickInternal();
+                }
+            });
+        }
+        updateImage();
+        if (this.prepare == null) {
+            onClickInternal();
+        }
+    }
+
+    public void onClickInternal() {
+        StoryEntry storyEntry;
+        if (!this.preparing || (storyEntry = this.currentEntry) == null) {
+            return;
+        }
+        this.preparing = false;
+        if (storyEntry.wouldBeVideo()) {
+            this.downloadingVideo = true;
+            PreparingVideoToast preparingVideoToast = new PreparingVideoToast(getContext());
+            this.toast = preparingVideoToast;
+            preparingVideoToast.setOnCancelListener(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$1();
+                }
+            });
+            this.container.addView(this.toast);
+            final File generateVideoPath = AndroidUtilities.generateVideoPath();
+            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$3(generateVideoPath);
+                }
+            }, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    DownloadButton.this.lambda$onClickInternal$4((Float) obj);
+                }
+            }, new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$5();
+                }
+            });
+        } else {
+            this.downloadingVideo = false;
+            final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
+            if (generatePicturePath == null) {
+                this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
+                this.downloading = false;
+                updateImage();
+                return;
+            }
+            Utilities.themeQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$8(generatePicturePath);
+                }
+            });
+        }
+        updateImage();
+    }
+
+    private void updateImage() {
+        boolean z = this.wasImageDownloading;
+        boolean z2 = this.downloading;
+        boolean z3 = false;
+        if (z != (z2 && !this.downloadingVideo)) {
+            boolean z4 = z2 && !this.downloadingVideo;
+            this.wasImageDownloading = z4;
+            if (z4) {
+                AndroidUtilities.updateImageViewImageAnimated(this, this.progressDrawable);
+            } else {
+                AndroidUtilities.updateImageViewImageAnimated(this, R.drawable.media_download);
+            }
+        }
+        if (this.wasVideoDownloading != (this.downloading && this.downloadingVideo)) {
+            clearAnimation();
+            ViewPropertyAnimator animate = animate();
+            if (this.downloading && this.downloadingVideo) {
+                z3 = true;
+            }
+            this.wasVideoDownloading = z3;
+            animate.alpha(z3 ? 0.4f : 1.0f).start();
+        }
+    }
+
+    public void setEntry(StoryEntry storyEntry) {
+        this.savedToGalleryUri = null;
+        this.currentEntry = storyEntry;
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        if (storyEntry == null) {
+            this.downloading = false;
+            updateImage();
+        }
+    }
+
+    public void showFailedVideo() {
+        showToast(R.raw.error, LocaleController.getString("VideoConvertFail"));
+    }
+
+    public void showToast(int i, CharSequence charSequence) {
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
+        this.toast = preparingVideoToast2;
+        preparingVideoToast2.setDone(i, charSequence, 3500);
+        this.container.addView(this.toast);
     }
 }

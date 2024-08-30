@@ -1,4 +1,4 @@
 package org.telegram.ui.Components.Paint;
 
-public final class PaintTypeface$$ExternalSyntheticApiModelOutline0 {
+public abstract class PaintTypeface$$ExternalSyntheticApiModelOutline0 {
 }

@@ -47,22 +47,6 @@ public class TextCheckBoxCell extends FrameLayout {
         this.checkBox.invalidate();
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
-    }
-
-    public void setTextAndCheck(String str, boolean z, boolean z2) {
-        this.textView.setText(str);
-        this.checkBox.setChecked(z, false);
-        this.needDivider = z2;
-        setWillNotDraw(!z2);
-    }
-
-    public void setChecked(boolean z) {
-        this.checkBox.setChecked(z, true);
-    }
-
     public boolean isChecked() {
         return this.checkBox.isChecked();
     }
@@ -80,5 +64,21 @@ public class TextCheckBoxCell extends FrameLayout {
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(isChecked());
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z) {
+        this.checkBox.setChecked(z, true);
+    }
+
+    public void setTextAndCheck(String str, boolean z, boolean z2) {
+        this.textView.setText(str);
+        this.checkBox.setChecked(z, false);
+        this.needDivider = z2;
+        setWillNotDraw(!z2);
     }
 }

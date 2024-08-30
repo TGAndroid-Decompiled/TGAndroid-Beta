@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$RichText extends TLObject {
     public String email;
     public TLRPC$RichText parentRichText;
-    public ArrayList<TLRPC$RichText> texts = new ArrayList<>();
+    public ArrayList texts = new ArrayList();
     public String url;
     public long webpage_id;
 

@@ -19,77 +19,6 @@ public class AnimatedFloat {
     private long transitionStart;
     private float value;
 
-    public AnimatedFloat(long j, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = null;
-        this.transitionDuration = j;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(long j, long j2, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = null;
-        this.transitionDelay = j;
-        this.transitionDuration = j2;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(View view) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = view;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(View view, long j, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = view;
-        this.transitionDuration = j;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(View view, long j, long j2, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = view;
-        this.transitionDelay = j;
-        this.transitionDuration = j2;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(Runnable runnable, long j, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.invalidate = runnable;
-        this.transitionDuration = j;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
-    public AnimatedFloat(Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.invalidate = runnable;
-        this.transitionDelay = j;
-        this.transitionDuration = j2;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
     public AnimatedFloat(float f, View view) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
@@ -126,21 +55,103 @@ public class AnimatedFloat {
         this.firstSet = false;
     }
 
-    @Deprecated
+    public AnimatedFloat(long j, long j2, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = null;
+        this.transitionDelay = j;
+        this.transitionDuration = j2;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(long j, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = null;
+        this.transitionDuration = j;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(View view) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = view;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(View view, long j, long j2, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = view;
+        this.transitionDelay = j;
+        this.transitionDuration = j2;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(View view, long j, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = view;
+        this.transitionDuration = j;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.invalidate = runnable;
+        this.transitionDelay = j;
+        this.transitionDuration = j2;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedFloat(Runnable runnable, long j, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.invalidate = runnable;
+        this.transitionDuration = j;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
     public float get() {
         return this.value;
     }
 
+    public long getDuration() {
+        return this.transitionDuration;
+    }
+
+    public float getTransitionProgress() {
+        if (this.transition) {
+            return MathUtils.clamp(((float) ((SystemClock.elapsedRealtime() - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
+        }
+        return 0.0f;
+    }
+
+    public float getTransitionProgressInterpolated() {
+        TimeInterpolator timeInterpolator = this.transitionInterpolator;
+        return timeInterpolator != null ? timeInterpolator.getInterpolation(getTransitionProgress()) : getTransitionProgress();
+    }
+
+    public boolean isInProgress() {
+        return this.transition;
+    }
+
     public float set(float f) {
         return set(f, false);
-    }
-
-    public float set(boolean z) {
-        return set(z ? 1.0f : 0.0f, false);
-    }
-
-    public float set(boolean z, boolean z2) {
-        return set(z ? 1.0f : 0.0f, z2);
     }
 
     public float set(float f, boolean z) {
@@ -160,11 +171,7 @@ public class AnimatedFloat {
             float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
             if (elapsedRealtime - this.transitionStart >= this.transitionDelay) {
                 TimeInterpolator timeInterpolator = this.transitionInterpolator;
-                if (timeInterpolator == null) {
-                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, clamp);
-                } else {
-                    this.value = AndroidUtilities.lerp(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
-                }
+                this.value = timeInterpolator == null ? AndroidUtilities.lerp(this.startValue, this.targetValue, clamp) : AndroidUtilities.lerp(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
             }
             if (clamp >= 1.0f) {
                 this.transition = false;
@@ -182,35 +189,20 @@ public class AnimatedFloat {
         return this.value;
     }
 
-    public void setDuration(long j) {
-        this.transitionDuration = j;
+    public float set(boolean z) {
+        return set(z ? 1.0f : 0.0f, false);
+    }
+
+    public float set(boolean z, boolean z2) {
+        return set(z ? 1.0f : 0.0f, z2);
     }
 
     public void setDelay(long j) {
         this.transitionDelay = j;
     }
 
-    public long getDuration() {
-        return this.transitionDuration;
-    }
-
-    public boolean isInProgress() {
-        return this.transition;
-    }
-
-    public float getTransitionProgress() {
-        if (this.transition) {
-            return MathUtils.clamp(((float) ((SystemClock.elapsedRealtime() - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
-        }
-        return 0.0f;
-    }
-
-    public float getTransitionProgressInterpolated() {
-        TimeInterpolator timeInterpolator = this.transitionInterpolator;
-        if (timeInterpolator != null) {
-            return timeInterpolator.getInterpolation(getTransitionProgress());
-        }
-        return getTransitionProgress();
+    public void setDuration(long j) {
+        this.transitionDuration = j;
     }
 
     public void setParent(View view) {

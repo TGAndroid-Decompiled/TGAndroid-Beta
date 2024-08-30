@@ -5,10 +5,10 @@ import org.telegram.messenger.FileLog;
 
 public class TLClassStore {
     static TLClassStore store;
-    private SparseArray<Class> classStore;
+    private SparseArray classStore;
 
     public TLClassStore() {
-        SparseArray<Class> sparseArray = new SparseArray<>();
+        SparseArray sparseArray = new SparseArray();
         this.classStore = sparseArray;
         sparseArray.put(-994444869, TLRPC$TL_error.class);
         this.classStore.put(1930838368, TLRPC$TL_decryptedMessageService.class);
@@ -40,7 +40,7 @@ public class TLClassStore {
     }
 
     public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i, boolean z) {
-        Class cls = this.classStore.get(i);
+        Class cls = (Class) this.classStore.get(i);
         if (cls != null) {
             try {
                 TLObject tLObject = (TLObject) cls.newInstance();

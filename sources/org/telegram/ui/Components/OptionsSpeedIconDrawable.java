@@ -38,48 +38,8 @@ public class OptionsSpeedIconDrawable extends Drawable {
         }
     }, 250, CubicBezierInterpolator.EASE_OUT_QUINT);
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
     public OptionsSpeedIconDrawable() {
         this.paint.setColor(-1);
-    }
-
-    public void setSpeed(Float f, boolean z) {
-        if (f == null && this.textDrawable == null) {
-            return;
-        }
-        if (this.textDrawable == null) {
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-            this.textDrawable = animatedTextDrawable;
-            animatedTextDrawable.setCallback(this.callback);
-            this.textDrawable.setAnimationProperties(0.3f, 0L, 165L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.textDrawable.setGravity(1);
-            this.textDrawable.setTypeface(AndroidUtilities.bold());
-            this.textDrawable.setTextSize(AndroidUtilities.dp(7.0f));
-            this.textDrawable.setTextColor(-1);
-            this.textDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-            this.textDrawable.getPaint().setStrokeWidth(AndroidUtilities.dpf2(0.1f));
-            this.textDrawable.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        }
-        if (f == null) {
-            this.textDrawable.cancelAnimation();
-            this.textDrawable.setText("", z);
-            this.textDrawableVisible = false;
-        } else {
-            String formatNumber = SpeedIconDrawable.formatNumber(f.floatValue());
-            if (formatNumber.length() <= 1) {
-                formatNumber = formatNumber + "X";
-            }
-            if (!TextUtils.equals(formatNumber, this.textDrawable.getText())) {
-                this.textDrawable.cancelAnimation();
-                this.textDrawable.setText(formatNumber, z);
-                this.textDrawableVisible = !TextUtils.isEmpty(formatNumber);
-            }
-        }
-        invalidateSelf();
     }
 
     @Override
@@ -118,6 +78,21 @@ public class OptionsSpeedIconDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(45.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(45.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
     public void setAlpha(int i) {
         this.paint.setAlpha(i);
     }
@@ -127,13 +102,40 @@ public class OptionsSpeedIconDrawable extends Drawable {
         this.paint.setColorFilter(colorFilter);
     }
 
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(45.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(45.0f);
+    public void setSpeed(Float f, boolean z) {
+        boolean z2;
+        if (f == null && this.textDrawable == null) {
+            return;
+        }
+        if (this.textDrawable == null) {
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
+            this.textDrawable = animatedTextDrawable;
+            animatedTextDrawable.setCallback(this.callback);
+            this.textDrawable.setAnimationProperties(0.3f, 0L, 165L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.textDrawable.setGravity(1);
+            this.textDrawable.setTypeface(AndroidUtilities.bold());
+            this.textDrawable.setTextSize(AndroidUtilities.dp(7.0f));
+            this.textDrawable.setTextColor(-1);
+            this.textDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
+            this.textDrawable.getPaint().setStrokeWidth(AndroidUtilities.dpf2(0.1f));
+            this.textDrawable.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        if (f != null) {
+            String formatNumber = SpeedIconDrawable.formatNumber(f.floatValue());
+            if (formatNumber.length() <= 1) {
+                formatNumber = formatNumber + "X";
+            }
+            if (!TextUtils.equals(formatNumber, this.textDrawable.getText())) {
+                this.textDrawable.cancelAnimation();
+                this.textDrawable.setText(formatNumber, z);
+                z2 = !TextUtils.isEmpty(formatNumber);
+            }
+            invalidateSelf();
+        }
+        this.textDrawable.cancelAnimation();
+        this.textDrawable.setText("", z);
+        z2 = false;
+        this.textDrawableVisible = z2;
+        invalidateSelf();
     }
 }

@@ -36,41 +36,33 @@ public class TransformableLoginButtonView extends View {
         this.outlinePaint.setStrokeCap(Paint.Cap.ROUND);
     }
 
-    public void setDrawBackground(boolean z) {
-        this.drawBackground = z;
-    }
-
-    public void setRippleDrawable(Drawable drawable) {
-        this.rippleDrawable = drawable;
-        invalidate();
-    }
-
-    public void setTransformType(int i) {
-        this.transformType = i;
-        invalidate();
+    @Override
+    public void drawableHotspotChanged(float f, float f2) {
+        super.drawableHotspotChanged(f, f2);
+        Drawable drawable = this.rippleDrawable;
+        if (drawable == null || Build.VERSION.SDK_INT < 21) {
+            return;
+        }
+        drawable.setHotspot(f, f2);
     }
 
     @Override
-    public void setBackgroundColor(int i) {
-        this.backgroundPaint.setColor(i);
-        invalidate();
+    protected void drawableStateChanged() {
+        super.drawableStateChanged();
+        Drawable drawable = this.rippleDrawable;
+        if (drawable != null) {
+            drawable.setState(getDrawableState());
+            invalidate();
+        }
     }
 
-    public void setColor(int i) {
-        this.outlinePaint.setColor(i);
-        invalidate();
-    }
-
-    public void setButtonText(TextPaint textPaint, String str) {
-        this.textPaint = textPaint;
-        this.buttonText = str;
-        this.outlinePaint.setColor(textPaint.getColor());
-        this.buttonWidth = textPaint.measureText(str);
-    }
-
-    public void setProgress(float f) {
-        this.progress = f;
-        invalidate();
+    @Override
+    public void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        Drawable drawable = this.rippleDrawable;
+        if (drawable != null) {
+            drawable.jumpToCurrentState();
+        }
     }
 
     @Override
@@ -147,32 +139,40 @@ public class TransformableLoginButtonView extends View {
     }
 
     @Override
-    protected void drawableStateChanged() {
-        super.drawableStateChanged();
-        Drawable drawable = this.rippleDrawable;
-        if (drawable != null) {
-            drawable.setState(getDrawableState());
-            invalidate();
-        }
+    public void setBackgroundColor(int i) {
+        this.backgroundPaint.setColor(i);
+        invalidate();
     }
 
-    @Override
-    public void jumpDrawablesToCurrentState() {
-        super.jumpDrawablesToCurrentState();
-        Drawable drawable = this.rippleDrawable;
-        if (drawable != null) {
-            drawable.jumpToCurrentState();
-        }
+    public void setButtonText(TextPaint textPaint, String str) {
+        this.textPaint = textPaint;
+        this.buttonText = str;
+        this.outlinePaint.setColor(textPaint.getColor());
+        this.buttonWidth = textPaint.measureText(str);
     }
 
-    @Override
-    public void drawableHotspotChanged(float f, float f2) {
-        super.drawableHotspotChanged(f, f2);
-        Drawable drawable = this.rippleDrawable;
-        if (drawable == null || Build.VERSION.SDK_INT < 21) {
-            return;
-        }
-        drawable.setHotspot(f, f2);
+    public void setColor(int i) {
+        this.outlinePaint.setColor(i);
+        invalidate();
+    }
+
+    public void setDrawBackground(boolean z) {
+        this.drawBackground = z;
+    }
+
+    public void setProgress(float f) {
+        this.progress = f;
+        invalidate();
+    }
+
+    public void setRippleDrawable(Drawable drawable) {
+        this.rippleDrawable = drawable;
+        invalidate();
+    }
+
+    public void setTransformType(int i) {
+        this.transformType = i;
+        invalidate();
     }
 
     @Override

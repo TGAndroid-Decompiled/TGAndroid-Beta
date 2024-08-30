@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_emojiGroups extends TLRPC$messages_EmojiGroups {
-    public ArrayList<TLRPC$EmojiGroup> groups = new ArrayList<>();
+    public ArrayList groups = new ArrayList();
     public int hash;
 
     @Override
@@ -34,7 +34,7 @@ public class TLRPC$TL_messages_emojiGroups extends TLRPC$messages_EmojiGroups {
         int size = this.groups.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.groups.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$EmojiGroup) this.groups.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

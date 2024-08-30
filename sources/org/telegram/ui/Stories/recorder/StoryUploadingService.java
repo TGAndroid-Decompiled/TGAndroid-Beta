@@ -20,13 +20,37 @@ public class StoryUploadingService extends Service implements NotificationCenter
     private float currentProgress;
     private String path;
 
+    public StoryUploadingService() {
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.uploadStoryEnd);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        String str;
+        if (i != NotificationCenter.uploadStoryProgress) {
+            if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
+                stopSelf();
+                return;
+            }
+            return;
+        }
+        String str2 = this.path;
+        if (str2 == null || !str2.equals((String) objArr[0])) {
+            return;
+        }
+        float floatValue = ((Float) objArr[1]).floatValue();
+        this.currentProgress = floatValue;
+        this.builder.setProgress(100, Math.round(floatValue * 100.0f), this.currentProgress <= 0.0f);
+        try {
+            NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    public StoryUploadingService() {
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.uploadStoryEnd);
     }
 
     @Override
@@ -41,30 +65,6 @@ public class StoryUploadingService extends Service implements NotificationCenter
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.uploadStoryProgress);
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("upload story destroy");
-        }
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        String str;
-        if (i == NotificationCenter.uploadStoryProgress) {
-            String str2 = this.path;
-            if (str2 == null || !str2.equals((String) objArr[0])) {
-                return;
-            }
-            float floatValue = ((Float) objArr[1]).floatValue();
-            this.currentProgress = floatValue;
-            this.builder.setProgress(100, Math.round(floatValue * 100.0f), this.currentProgress <= 0.0f);
-            try {
-                NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(33, this.builder.build());
-                return;
-            } catch (Throwable th) {
-                FileLog.e(th);
-                return;
-            }
-        }
-        if (i == NotificationCenter.uploadStoryEnd && (str = this.path) != null && str.equals((String) objArr[0])) {
-            stopSelf();
         }
     }
 

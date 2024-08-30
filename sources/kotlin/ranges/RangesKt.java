@@ -1,4 +1,4 @@
 package kotlin.ranges;
 
-public final class RangesKt extends RangesKt___RangesKt {
+public abstract class RangesKt extends RangesKt___RangesKt {
 }

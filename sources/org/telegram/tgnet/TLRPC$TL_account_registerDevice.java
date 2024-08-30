@@ -6,7 +6,7 @@ public class TLRPC$TL_account_registerDevice extends TLObject {
     public boolean app_sandbox;
     public int flags;
     public boolean no_muted;
-    public ArrayList<Long> other_uids = new ArrayList<>();
+    public ArrayList other_uids = new ArrayList();
     public byte[] secret;
     public String token;
     public int token_type;
@@ -30,7 +30,7 @@ public class TLRPC$TL_account_registerDevice extends TLObject {
         int size = this.other_uids.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            abstractSerializedData.writeInt64(this.other_uids.get(i2).longValue());
+            abstractSerializedData.writeInt64(((Long) this.other_uids.get(i2)).longValue());
         }
     }
 }

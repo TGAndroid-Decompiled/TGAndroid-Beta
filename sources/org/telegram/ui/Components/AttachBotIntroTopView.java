@@ -55,6 +55,11 @@ public class AttachBotIntroTopView extends View {
         this.paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
+    public void lambda$new$0(ValueAnimator valueAnimator) {
+        this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+        invalidate();
+    }
+
     public void lambda$new$1(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -64,31 +69,6 @@ public class AttachBotIntroTopView extends View {
             }
         });
         duration.start();
-    }
-
-    public void lambda$new$0(ValueAnimator valueAnimator) {
-        this.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-        invalidate();
-    }
-
-    public void setAttachBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
-        TLRPC$TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
-        if (staticAttachMenuBotIcon != null) {
-            this.imageReceiver.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, Theme.key_dialogTextGray2, 1.0f), "svg", tLRPC$TL_attachMenuBot, 0);
-        }
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        this.backgroundPaint.setColor(i);
-    }
-
-    public void setColor(int i) {
-        Drawable drawable = this.attachDrawable;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        drawable.setColorFilter(i, mode);
-        this.paint.setColor(i);
-        this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 
     @Override
@@ -115,5 +95,25 @@ public class AttachBotIntroTopView extends View {
         canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(8.0f), this.paint);
         this.attachDrawable.setBounds((getWidth() / 2) + AndroidUtilities.dp(24.0f), (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2), (getWidth() / 2) + AndroidUtilities.dp(66.0f), (getHeight() / 2) + (AndroidUtilities.dp(42.0f) / 2));
         this.attachDrawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+        TLRPC$TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+        if (staticAttachMenuBotIcon != null) {
+            this.imageReceiver.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, Theme.key_dialogTextGray2, 1.0f), "svg", tLRPC$TL_attachMenuBot, 0);
+        }
+    }
+
+    @Override
+    public void setBackgroundColor(int i) {
+        this.backgroundPaint.setColor(i);
+    }
+
+    public void setColor(int i) {
+        Drawable drawable = this.attachDrawable;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        drawable.setColorFilter(i, mode);
+        this.paint.setColor(i);
+        this.imageReceiver.setColorFilter(new PorterDuffColorFilter(i, mode));
     }
 }

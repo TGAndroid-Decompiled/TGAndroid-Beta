@@ -25,23 +25,6 @@ public class ClearHistoryAlert extends BottomSheet {
     private BottomSheetCell setTimerButton;
     private Drawable shadowDrawable;
 
-    public interface ClearHistoryAlertDelegate {
-
-        public final class CC {
-            public static void $default$onClearHistory(ClearHistoryAlertDelegate clearHistoryAlertDelegate, boolean z) {
-            }
-        }
-
-        void onAutoDeleteHistory(int i, int i2);
-
-        void onClearHistory(boolean z);
-    }
-
-    @Override
-    public boolean canDismissWithSwipe() {
-        return false;
-    }
-
     public static class BottomSheetCell extends FrameLayout {
         private View background;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -67,6 +50,10 @@ public class ClearHistoryAlert extends BottomSheet {
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
+        protected int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
+        }
+
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
@@ -75,10 +62,18 @@ public class ClearHistoryAlert extends BottomSheet {
         public void setText(CharSequence charSequence) {
             this.textView.setText(charSequence);
         }
+    }
 
-        protected int getThemedColor(int i) {
-            return Theme.getColor(i, this.resourcesProvider);
+    public interface ClearHistoryAlertDelegate {
+
+        public abstract class CC {
+            public static void $default$onClearHistory(ClearHistoryAlertDelegate clearHistoryAlertDelegate, boolean z) {
+            }
         }
+
+        void onAutoDeleteHistory(int i, int i2);
+
+        void onClearHistory(boolean z);
     }
 
     public ClearHistoryAlert(android.content.Context r26, org.telegram.tgnet.TLRPC$User r27, org.telegram.tgnet.TLRPC$Chat r28, boolean r29, org.telegram.ui.ActionBar.Theme.ResourcesProvider r30) {
@@ -134,25 +129,6 @@ public class ClearHistoryAlert extends BottomSheet {
         }
     }
 
-    public void updateTimerButton(boolean z) {
-        if (this.currentTimer != this.newTimer || this.autoDeleteOnly) {
-            this.setTimerButton.setVisibility(0);
-            if (z) {
-                this.setTimerButton.animate().alpha(1.0f).setDuration(180L).start();
-                return;
-            } else {
-                this.setTimerButton.setAlpha(1.0f);
-                return;
-            }
-        }
-        if (z) {
-            this.setTimerButton.animate().alpha(0.0f).setDuration(180L).start();
-        } else {
-            this.setTimerButton.setVisibility(4);
-            this.setTimerButton.setAlpha(0.0f);
-        }
-    }
-
     public void updateLayout() {
         this.linearLayout.getChildAt(0).getLocationInWindow(this.location);
         int max = Math.max(this.location[1] - AndroidUtilities.dp(this.autoDeleteOnly ? 6.0f : 19.0f), 0);
@@ -160,6 +136,15 @@ public class ClearHistoryAlert extends BottomSheet {
             this.scrollOffsetY = max;
             this.containerView.invalidate();
         }
+    }
+
+    public void updateTimerButton(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ClearHistoryAlert.updateTimerButton(boolean):void");
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        return false;
     }
 
     public void setDelegate(ClearHistoryAlertDelegate clearHistoryAlertDelegate) {

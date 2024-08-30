@@ -17,7 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 
-public class SearchField extends FrameLayout {
+public abstract class SearchField extends FrameLayout {
     private ImageView clearSearchImageView;
     private CloseProgressDrawable2 progressDrawable;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -25,47 +25,20 @@ public class SearchField extends FrameLayout {
     private EditTextBoldCursor searchEditText;
     private ImageView searchIconImageView;
 
-    protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-    }
-
-    public void onTextChange(String str) {
-    }
-
-    public void processTouchEvent(MotionEvent motionEvent) {
-    }
-
-    public SearchField(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        this(context, z, 14.0f, resourcesProvider);
-    }
-
     public SearchField(Context context, boolean z, float f, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        FrameLayout.LayoutParams createFrame;
-        FrameLayout.LayoutParams createFrame2;
-        FrameLayout.LayoutParams createFrame3;
-        FrameLayout.LayoutParams createFrame4;
         this.resourcesProvider = resourcesProvider;
         View view = new View(context);
         this.searchBackground = view;
         view.setBackgroundDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), getThemedColor(Theme.key_dialogSearchBackground)));
-        if (z) {
-            createFrame = LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, f, 11.0f, f, 0.0f);
-        } else {
-            createFrame = LayoutHelper.createFrame(-1, 36.0f, 51, f, 11.0f, f, 0.0f);
-        }
-        addView(this.searchBackground, createFrame);
+        addView(this.searchBackground, z ? LayoutHelper.createFrameRelatively(-1.0f, 36.0f, 8388659, f, 11.0f, f, 0.0f) : LayoutHelper.createFrame(-1, 36.0f, 51, f, 11.0f, f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.searchIconImageView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
         this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
-        if (z) {
-            createFrame2 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f + 2.0f, 11.0f, 0.0f, 0.0f);
-        } else {
-            createFrame2 = LayoutHelper.createFrame(36, 36.0f, 51, f + 2.0f, 11.0f, 0.0f, 0.0f);
-        }
-        addView(this.searchIconImageView, createFrame2);
+        addView(this.searchIconImageView, z ? LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388659, f + 2.0f, 11.0f, 0.0f, 0.0f) : LayoutHelper.createFrame(36, 36.0f, 51, f + 2.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.clearSearchImageView = imageView2;
         imageView2.setScaleType(scaleType);
@@ -82,12 +55,7 @@ public class SearchField extends FrameLayout {
         this.clearSearchImageView.setScaleX(0.1f);
         this.clearSearchImageView.setScaleY(0.1f);
         this.clearSearchImageView.setAlpha(0.0f);
-        if (z) {
-            createFrame3 = LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f, 11.0f, f, 0.0f);
-        } else {
-            createFrame3 = LayoutHelper.createFrame(36, 36.0f, 53, f, 11.0f, f, 0.0f);
-        }
-        addView(this.clearSearchImageView, createFrame3);
+        addView(this.clearSearchImageView, z ? LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388661, f, 11.0f, f, 0.0f) : LayoutHelper.createFrame(36, 36.0f, 53, f, 11.0f, f, 0.0f));
         this.clearSearchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -126,23 +94,11 @@ public class SearchField extends FrameLayout {
         this.searchEditText.setCursorColor(getThemedColor(Theme.key_featuredStickers_addedIcon));
         this.searchEditText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.searchEditText.setCursorWidth(1.5f);
-        if (z) {
-            float f2 = f + 2.0f;
-            createFrame4 = LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f2 + 38.0f, 9.0f, f2 + 30.0f, 0.0f);
-        } else {
-            float f3 = f + 2.0f;
-            createFrame4 = LayoutHelper.createFrame(-1, 40.0f, 51, f3 + 38.0f, 9.0f, f3 + 30.0f, 0.0f);
-        }
-        addView(this.searchEditText, createFrame4);
+        float f2 = f + 2.0f;
+        float f3 = f2 + 38.0f;
+        float f4 = f2 + 30.0f;
+        addView(this.searchEditText, z ? LayoutHelper.createFrameRelatively(-1.0f, 40.0f, 8388659, f3, 9.0f, f4, 0.0f) : LayoutHelper.createFrame(-1, 40.0f, 51, f3, 9.0f, f4, 0.0f));
         this.searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
             @Override
             public void afterTextChanged(Editable editable) {
                 boolean z2 = SearchField.this.searchEditText.length() > 0;
@@ -151,6 +107,14 @@ public class SearchField extends FrameLayout {
                 }
                 SearchField searchField = SearchField.this;
                 searchField.onTextChange(searchField.searchEditText.getText().toString());
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
         });
         this.searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -161,6 +125,14 @@ public class SearchField extends FrameLayout {
                 return lambda$new$1;
             }
         });
+    }
+
+    public SearchField(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, z, 14.0f, resourcesProvider);
+    }
+
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public void lambda$new$0(View view) {
@@ -180,13 +152,8 @@ public class SearchField extends FrameLayout {
         return false;
     }
 
-    public void setHint(String str) {
-        this.searchEditText.setHint(str);
-    }
-
-    @Override
-    public void requestDisallowInterceptTouchEvent(boolean z) {
-        super.requestDisallowInterceptTouchEvent(z);
+    public CloseProgressDrawable2 getProgressDrawable() {
+        return this.progressDrawable;
     }
 
     public View getSearchBackground() {
@@ -197,11 +164,7 @@ public class SearchField extends FrameLayout {
         return this.searchEditText;
     }
 
-    public CloseProgressDrawable2 getProgressDrawable() {
-        return this.progressDrawable;
-    }
-
-    public void getThemeDescriptions(List<ThemeDescription> list) {
+    public void getThemeDescriptions(List list) {
         list.add(new ThemeDescription(this.searchBackground, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_dialogSearchBackground));
         ImageView imageView = this.searchIconImageView;
         int i = ThemeDescription.FLAG_IMAGECOLOR;
@@ -213,7 +176,20 @@ public class SearchField extends FrameLayout {
         list.add(new ThemeDescription(this.searchEditText, ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, Theme.key_featuredStickers_addedIcon));
     }
 
-    public int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
+    }
+
+    public abstract void onTextChange(String str);
+
+    public void processTouchEvent(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public void requestDisallowInterceptTouchEvent(boolean z) {
+        super.requestDisallowInterceptTouchEvent(z);
+    }
+
+    public void setHint(String str) {
+        this.searchEditText.setHint(str);
     }
 }

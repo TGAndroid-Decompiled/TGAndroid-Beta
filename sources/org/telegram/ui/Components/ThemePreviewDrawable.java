@@ -119,7 +119,9 @@ public class ThemePreviewDrawable extends BitmapDrawable {
                     min = 1.0f;
                 }
                 options.inJustDecodeBounds = false;
-                if (min > 1.0f && (f > f3 || f2 > f4)) {
+                if (min <= 1.0f || (f <= f3 && f2 <= f4)) {
+                    options.inSampleSize = (int) min;
+                } else {
                     int i8 = 1;
                     while (true) {
                         i = i8 * 2;
@@ -129,8 +131,6 @@ public class ThemePreviewDrawable extends BitmapDrawable {
                         i8 = i;
                     }
                     options.inSampleSize = i;
-                } else {
-                    options.inSampleSize = (int) min;
                 }
                 decodeFile = BitmapFactory.decodeFile(file.getAbsolutePath(), options);
             }

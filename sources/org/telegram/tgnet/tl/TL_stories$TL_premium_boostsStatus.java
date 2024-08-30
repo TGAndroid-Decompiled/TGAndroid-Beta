@@ -15,8 +15,8 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
     public boolean my_boost;
     public int next_level_boosts;
     public TL_stats$TL_statsPercentValue premium_audience;
-    public ArrayList<TL_stories$TL_prepaidGiveaway> prepaid_giveaways = new ArrayList<>();
-    public ArrayList<Integer> my_boost_slots = new ArrayList<>();
+    public ArrayList prepaid_giveaways = new ArrayList();
+    public ArrayList my_boost_slots = new ArrayList();
 
     public static TL_stories$TL_premium_boostsStatus TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -104,7 +104,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
             int size = this.prepaid_giveaways.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.prepaid_giveaways.get(i2).serializeToStream(abstractSerializedData);
+                ((TL_stories$TL_prepaidGiveaway) this.prepaid_giveaways.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
@@ -112,7 +112,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
             int size2 = this.my_boost_slots.size();
             abstractSerializedData.writeInt32(size2);
             for (int i3 = 0; i3 < size2; i3++) {
-                abstractSerializedData.writeInt32(this.my_boost_slots.get(i3).intValue());
+                abstractSerializedData.writeInt32(((Integer) this.my_boost_slots.get(i3)).intValue());
             }
         }
     }

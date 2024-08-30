@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_langPackDifference extends TLObject {
     public int from_version;
     public String lang_code;
-    public ArrayList<TLRPC$LangPackString> strings = new ArrayList<>();
+    public ArrayList strings = new ArrayList();
     public int version;
 
     public static TLRPC$TL_langPackDifference TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -52,7 +52,7 @@ public class TLRPC$TL_langPackDifference extends TLObject {
         int size = this.strings.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.strings.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$LangPackString) this.strings.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_keyboardButtonRow extends TLObject {
-    public ArrayList<TLRPC$KeyboardButton> buttons = new ArrayList<>();
+    public ArrayList buttons = new ArrayList();
 
     public static TLRPC$TL_keyboardButtonRow TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (2002815875 != i) {
@@ -43,7 +43,7 @@ public class TLRPC$TL_keyboardButtonRow extends TLObject {
         int size = this.buttons.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.buttons.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$KeyboardButton) this.buttons.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

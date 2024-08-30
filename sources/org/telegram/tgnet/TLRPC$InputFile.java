@@ -7,20 +7,13 @@ public abstract class TLRPC$InputFile extends TLObject {
     public int parts;
 
     public static TLRPC$InputFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$InputFile tLRPC$TL_inputFile;
-        if (i == -181407105) {
-            tLRPC$TL_inputFile = new TLRPC$TL_inputFile();
-        } else if (i == -95482955) {
-            tLRPC$TL_inputFile = new TLRPC$TL_inputFileBig();
-        } else {
-            tLRPC$TL_inputFile = i != 1658620744 ? null : new TLRPC$TL_inputFileStoryDocument();
-        }
-        if (tLRPC$TL_inputFile == null && z) {
+        TLRPC$InputFile tLRPC$TL_inputFileStoryDocument = i != -181407105 ? i != -95482955 ? i != 1658620744 ? null : new TLRPC$TL_inputFileStoryDocument() : new TLRPC$TL_inputFileBig() : new TLRPC$TL_inputFile();
+        if (tLRPC$TL_inputFileStoryDocument == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in InputFile", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_inputFile != null) {
-            tLRPC$TL_inputFile.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_inputFileStoryDocument != null) {
+            tLRPC$TL_inputFileStoryDocument.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_inputFile;
+        return tLRPC$TL_inputFileStoryDocument;
     }
 }

@@ -56,22 +56,6 @@ public class StoryFailView extends FrameLayout {
         addView(textView3, LayoutHelper.createFrame(-2, 32.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
     }
 
-    public void set(TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error == null || TextUtils.isEmpty(tLRPC$TL_error.text)) {
-            this.titleTextView.setTranslationY(0.0f);
-            this.subtitleTextView.setVisibility(8);
-        } else {
-            this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
-            this.subtitleTextView.setText(tLRPC$TL_error.text);
-            this.subtitleTextView.setVisibility(0);
-        }
-    }
-
-    @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.button.setOnClickListener(onClickListener);
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -83,5 +67,26 @@ public class StoryFailView extends FrameLayout {
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.whitePaint);
         rectF.set(dp - AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(2.6f) + height, dp + AndroidUtilities.dp(1.0f), height + AndroidUtilities.dpf2(4.6f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.whitePaint);
+    }
+
+    public void set(TLRPC$TL_error tLRPC$TL_error) {
+        TextView textView;
+        int i;
+        if (tLRPC$TL_error == null || TextUtils.isEmpty(tLRPC$TL_error.text)) {
+            this.titleTextView.setTranslationY(0.0f);
+            textView = this.subtitleTextView;
+            i = 8;
+        } else {
+            this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
+            this.subtitleTextView.setText(tLRPC$TL_error.text);
+            textView = this.subtitleTextView;
+            i = 0;
+        }
+        textView.setVisibility(i);
+    }
+
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.button.setOnClickListener(onClickListener);
     }
 }

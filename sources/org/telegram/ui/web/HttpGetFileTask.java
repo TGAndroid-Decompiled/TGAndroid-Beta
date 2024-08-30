@@ -12,40 +12,34 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
-public class HttpGetFileTask extends AsyncTask<String, Void, File> {
-    private Utilities.Callback<File> callback;
+public class HttpGetFileTask extends AsyncTask {
+    private Utilities.Callback callback;
     private Exception exception;
 
-    public HttpGetFileTask(Utilities.Callback<File> callback) {
+    public HttpGetFileTask(Utilities.Callback callback) {
         this.callback = callback;
     }
 
     @Override
     public File doInBackground(String... strArr) {
-        InputStream errorStream;
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(strArr[0]).openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.setDoInput(true);
             int responseCode = httpURLConnection.getResponseCode();
-            if (responseCode >= 200 && responseCode < 300) {
-                errorStream = httpURLConnection.getInputStream();
-            } else {
-                errorStream = httpURLConnection.getErrorStream();
-            }
+            InputStream errorStream = (responseCode < 200 || responseCode >= 300) ? httpURLConnection.getErrorStream() : httpURLConnection.getInputStream();
             File makeCacheFile = StoryEntry.makeCacheFile(UserConfig.selectedAccount, MimeTypeMap.getSingleton().getExtensionFromMimeType(httpURLConnection.getContentType()));
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(makeCacheFile));
             byte[] bArr = new byte[1024];
             while (true) {
                 int read = errorStream.read(bArr);
-                if (read != -1) {
-                    bufferedOutputStream.write(bArr, 0, read);
-                } else {
+                if (read == -1) {
                     bufferedOutputStream.flush();
                     bufferedOutputStream.close();
                     errorStream.close();
                     return makeCacheFile;
                 }
+                bufferedOutputStream.write(bArr, 0, read);
             }
         } catch (Exception e) {
             this.exception = e;
@@ -55,13 +49,12 @@ public class HttpGetFileTask extends AsyncTask<String, Void, File> {
 
     @Override
     public void onPostExecute(File file) {
-        Utilities.Callback<File> callback = this.callback;
+        Utilities.Callback callback = this.callback;
         if (callback != null) {
-            if (this.exception == null) {
-                callback.run(file);
-            } else {
-                callback.run(null);
+            if (this.exception != null) {
+                file = null;
             }
+            callback.run(file);
         }
     }
 }

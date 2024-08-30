@@ -1,9 +1,7 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Vibrator;
-import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -18,17 +16,13 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -55,9 +49,9 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     int classGuid;
     private View codeDividerView;
     private AnimatedPhoneNumberEditText codeField;
-    private HashMap<String, List<CountrySelectActivity.Country>> codesMap;
+    private HashMap codesMap;
     private LinearLayout contentLayout;
-    private ArrayList<CountrySelectActivity.Country> countriesArray;
+    private ArrayList countriesArray;
     private String countryCodeForHint;
     private TextView countryFlag;
     private TextView doneButton;
@@ -75,56 +69,11 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     private OutlineEditText lastNameField;
     BaseFragment parentFragment;
     private AnimatedPhoneNumberEditText phoneField;
-    private HashMap<String, List<String>> phoneFormatMap;
+    private HashMap phoneFormatMap;
     private OutlineTextContainerView phoneOutlineView;
     private TextView plusTextView;
     private RadialProgressView progressView;
     private int wasCountryHintIndex;
-
-    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-    }
-
-    public NewContactBottomSheet(BaseFragment baseFragment, Context context) {
-        super(context, true);
-        this.countriesArray = new ArrayList<>();
-        this.codesMap = new HashMap<>();
-        this.phoneFormatMap = new HashMap<>();
-        fixNavigationBar();
-        this.waitingKeyboard = true;
-        this.smoothKeyboardAnimationEnabled = true;
-        this.classGuid = ConnectionsManager.generateClassGuid();
-        this.parentFragment = baseFragment;
-        setCustomView(createView(getContext()));
-        setTitle(LocaleController.getString(R.string.NewContactTitle), true);
-    }
-
-    public android.view.View createView(android.content.Context r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.createView(android.content.Context):android.view.View");
-    }
-
-    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        this.lastNameField.requestFocus();
-        this.lastNameField.getEditText().setSelection(this.lastNameField.getEditText().length());
-        return true;
-    }
-
-    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        this.codeField.requestFocus();
-        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.codeField;
-        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
-        return true;
-    }
 
     public class AnonymousClass1 extends TextView {
         final NotificationCenter.NotificationCenterDelegate delegate;
@@ -160,6 +109,10 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         AnonymousClass2() {
         }
 
+        public void lambda$didSelectCountry$0() {
+            AndroidUtilities.showKeyboard(NewContactBottomSheet.this.phoneField);
+        }
+
         @Override
         public void didSelectCountry(CountrySelectActivity.Country country) {
             NewContactBottomSheet.this.selectCountry(country);
@@ -172,38 +125,20 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
             NewContactBottomSheet.this.phoneField.requestFocus();
             NewContactBottomSheet.this.phoneField.setSelection(NewContactBottomSheet.this.phoneField.length());
         }
-
-        public void lambda$didSelectCountry$0() {
-            AndroidUtilities.showKeyboard(NewContactBottomSheet.this.phoneField);
-        }
     }
 
-    public void lambda$createView$3(View view) {
-        CountrySelectActivity countrySelectActivity = new CountrySelectActivity(true);
-        countrySelectActivity.setCountrySelectActivityDelegate(new AnonymousClass2());
-        this.parentFragment.showAsSheet(countrySelectActivity);
-    }
-
-    public boolean lambda$createView$4(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        this.phoneField.requestFocus();
-        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
-        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
-        return true;
-    }
-
-    public boolean lambda$createView$5(TextView textView, int i, KeyEvent keyEvent) {
-        if (i != 5) {
-            return false;
-        }
-        this.doneButtonContainer.callOnClick();
-        return true;
-    }
-
-    public void lambda$createView$7(View view) {
-        doOnDone();
+    public NewContactBottomSheet(BaseFragment baseFragment, Context context) {
+        super(context, true);
+        this.countriesArray = new ArrayList();
+        this.codesMap = new HashMap();
+        this.phoneFormatMap = new HashMap();
+        fixNavigationBar();
+        this.waitingKeyboard = true;
+        this.smoothKeyboardAnimationEnabled = true;
+        this.classGuid = ConnectionsManager.generateClassGuid();
+        this.parentFragment = baseFragment;
+        setCustomView(createView(getContext()));
+        setTitle(LocaleController.getString(R.string.NewContactTitle), true);
     }
 
     private void doOnDone() {
@@ -251,60 +186,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         }, 2), this.classGuid);
     }
 
-    public void lambda$doOnDone$9(final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        final TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts = (TLRPC$TL_contacts_importedContacts) tLObject;
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                NewContactBottomSheet.this.lambda$doOnDone$8(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
-            }
-        });
-    }
-
-    public void lambda$doOnDone$8(TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts, TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts) {
-        this.donePressed = false;
-        if (tLRPC$TL_contacts_importedContacts != null) {
-            if (!tLRPC$TL_contacts_importedContacts.users.isEmpty()) {
-                MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_importedContacts.users, false);
-                MessagesController.getInstance(this.currentAccount).openChatOrProfileWith(tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
-                dismiss();
-                return;
-            } else {
-                if (this.parentFragment.getParentActivity() == null) {
-                    return;
-                }
-                showEditDoneProgress(false, true);
-                AlertsCreator.createContactInviteDialog(this.parentFragment, tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name, tLRPC$TL_inputPhoneContact.phone);
-                return;
-            }
-        }
-        showEditDoneProgress(false, true);
-        AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.parentFragment, tLRPC$TL_contacts_importContacts, new Object[0]);
-    }
-
-    @Override
-    public void show() {
-        super.show();
-        this.firstNameField.getEditText().requestFocus();
-        this.firstNameField.getEditText().setSelection(this.firstNameField.getEditText().length());
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                NewContactBottomSheet.this.lambda$show$10();
-            }
-        }, 50L);
-    }
-
-    public void lambda$show$10() {
-        AndroidUtilities.showKeyboard(this.firstNameField.getEditText());
-    }
-
-    private void showEditDoneProgress(boolean z, boolean z2) {
-        AndroidUtilities.updateViewVisibilityAnimated(this.doneButton, !z, 0.5f, z2);
-        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, z, 0.5f, z2);
-    }
-
     public static String getPhoneNumber(Context context, TLRPC$User tLRPC$User, String str, boolean z) {
+        StringBuilder sb;
         HashMap hashMap = new HashMap();
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
@@ -323,91 +206,113 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (str.startsWith("+")) {
             return str;
         }
-        if (z || tLRPC$User == null || TextUtils.isEmpty(tLRPC$User.phone)) {
-            return "+" + str;
-        }
-        String str2 = tLRPC$User.phone;
-        for (int i = 4; i >= 1; i--) {
-            String substring = str2.substring(0, i);
-            if (((String) hashMap.get(substring)) != null) {
-                return "+" + substring + str;
-            }
-        }
-        return str;
-    }
-
-    public NewContactBottomSheet setInitialPhoneNumber(String str, boolean z) {
-        String country;
-        Object systemService;
-        this.initialPhoneNumber = str;
-        this.initialPhoneNumberWithCountryCode = z;
-        if (!TextUtils.isEmpty(str)) {
-            TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-            if (this.initialPhoneNumber.startsWith("+")) {
-                this.codeField.setText(this.initialPhoneNumber.substring(1));
-            } else if (this.initialPhoneNumberWithCountryCode || currentUser == null || TextUtils.isEmpty(currentUser.phone)) {
-                this.codeField.setText(this.initialPhoneNumber);
-            } else {
-                String str2 = currentUser.phone;
-                int i = 4;
-                while (true) {
-                    if (i >= 1) {
-                        List<CountrySelectActivity.Country> list = this.codesMap.get(str2.substring(0, i));
-                        if (list == null || list.size() <= 0) {
-                            i--;
-                        } else {
-                            String str3 = list.get(0).code;
-                            this.codeField.setText(str3);
-                            if (str3.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
-                                this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
-                            }
-                        }
-                    } else if (Build.VERSION.SDK_INT >= 23) {
-                        Context context = ApplicationLoader.applicationContext;
-                        if (context != null) {
-                            systemService = context.getSystemService((Class<Object>) TelephonyManager.class);
-                            country = ((TelephonyManager) systemService).getSimCountryIso().toUpperCase(Locale.US);
-                        } else {
-                            country = Locale.getDefault().getCountry();
-                        }
-                        this.codeField.setText(country);
-                        if (country.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
-                            this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
-                        }
-                    }
+        if (!z && tLRPC$User != null && !TextUtils.isEmpty(tLRPC$User.phone)) {
+            String str2 = tLRPC$User.phone;
+            for (int i = 4; i >= 1; i--) {
+                String substring = str2.substring(0, i);
+                if (((String) hashMap.get(substring)) != null) {
+                    sb = new StringBuilder();
+                    sb.append("+");
+                    sb.append(substring);
                 }
-                this.phoneField.setText(this.initialPhoneNumber);
             }
-            this.initialPhoneNumber = null;
+            return str;
         }
-        return this;
+        sb = new StringBuilder();
+        sb.append("+");
+        sb.append(str);
+        return sb.toString();
     }
 
-    public void setInitialName(String str, String str2) {
-        OutlineEditText outlineEditText = this.firstNameField;
-        if (outlineEditText != null) {
-            outlineEditText.getEditText().setText(str);
-        } else {
-            this.initialFirstName = str;
+    private void invalidateCountryHint() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.invalidateCountryHint():void");
+    }
+
+    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
         }
-        OutlineEditText outlineEditText2 = this.lastNameField;
-        if (outlineEditText2 != null) {
-            outlineEditText2.getEditText().setText(str2);
+        this.lastNameField.requestFocus();
+        this.lastNameField.getEditText().setSelection(this.lastNameField.getEditText().length());
+        return true;
+    }
+
+    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        this.codeField.requestFocus();
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.codeField;
+        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
+        return true;
+    }
+
+    public void lambda$createView$3(View view) {
+        CountrySelectActivity countrySelectActivity = new CountrySelectActivity(true);
+        countrySelectActivity.setCountrySelectActivityDelegate(new AnonymousClass2());
+        this.parentFragment.showAsSheet(countrySelectActivity);
+    }
+
+    public boolean lambda$createView$4(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        this.phoneField.requestFocus();
+        AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
+        animatedPhoneNumberEditText.setSelection(animatedPhoneNumberEditText.length());
+        return true;
+    }
+
+    public boolean lambda$createView$5(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 5) {
+            return false;
+        }
+        this.doneButtonContainer.callOnClick();
+        return true;
+    }
+
+    public void lambda$createView$7(View view) {
+        doOnDone();
+    }
+
+    public void lambda$dismiss$11() {
+        AndroidUtilities.hideKeyboard(this.contentLayout);
+    }
+
+    public void lambda$doOnDone$8(TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts, TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts) {
+        this.donePressed = false;
+        if (tLRPC$TL_contacts_importedContacts == null) {
+            showEditDoneProgress(false, true);
+            AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this.parentFragment, tLRPC$TL_contacts_importContacts, new Object[0]);
+        } else if (!tLRPC$TL_contacts_importedContacts.users.isEmpty()) {
+            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_importedContacts.users, false);
+            MessagesController.getInstance(this.currentAccount).openChatOrProfileWith((TLRPC$User) tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
+            dismiss();
         } else {
-            this.initialLastName = str2;
+            if (this.parentFragment.getParentActivity() == null) {
+                return;
+            }
+            showEditDoneProgress(false, true);
+            AlertsCreator.createContactInviteDialog(this.parentFragment, tLRPC$TL_inputPhoneContact.first_name, tLRPC$TL_inputPhoneContact.last_name, tLRPC$TL_inputPhoneContact.phone);
         }
     }
 
-    public void setCountryHint(String str, CountrySelectActivity.Country country) {
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        String languageFlag = LocaleController.getLanguageFlag(country.shortname);
-        if (languageFlag != null) {
-            spannableStringBuilder.append((CharSequence) languageFlag);
-        }
-        setCountryButtonText(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.countryFlag.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
-        this.countryCodeForHint = str;
-        this.wasCountryHintIndex = -1;
-        invalidateCountryHint();
+    public void lambda$doOnDone$9(final TLRPC$TL_inputPhoneContact tLRPC$TL_inputPhoneContact, final TLRPC$TL_contacts_importContacts tLRPC$TL_contacts_importContacts, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        final TLRPC$TL_contacts_importedContacts tLRPC$TL_contacts_importedContacts = (TLRPC$TL_contacts_importedContacts) tLObject;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NewContactBottomSheet.this.lambda$doOnDone$8(tLRPC$TL_contacts_importedContacts, tLRPC$TL_inputPhoneContact, tLRPC$TL_error, tLRPC$TL_contacts_importContacts);
+            }
+        });
+    }
+
+    public void lambda$show$10() {
+        AndroidUtilities.showKeyboard(this.firstNameField.getEditText());
     }
 
     public void setCountryButtonText(CharSequence charSequence) {
@@ -427,32 +332,41 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         this.countryFlag.setText(charSequence);
     }
 
-    private void invalidateCountryHint() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.invalidateCountryHint():void");
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long j) {
-        if (this.ignoreSelection) {
-            this.ignoreSelection = false;
-            return;
+    public void setCountryHint(String str, CountrySelectActivity.Country country) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        String languageFlag = LocaleController.getLanguageFlag(country.shortname);
+        if (languageFlag != null) {
+            spannableStringBuilder.append((CharSequence) languageFlag);
         }
-        this.ignoreOnTextChange = true;
-        this.codeField.setText(this.countriesArray.get(i).code);
-        this.ignoreOnTextChange = false;
+        setCountryButtonText(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.countryFlag.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
+        this.countryCodeForHint = str;
+        this.wasCountryHintIndex = -1;
+        invalidateCountryHint();
     }
 
-    public void selectCountry(CountrySelectActivity.Country country) {
-        this.ignoreOnTextChange = true;
-        String str = country.code;
-        this.codeField.setText(str);
-        setCountryHint(str, country);
-        this.ignoreOnTextChange = false;
+    private void showEditDoneProgress(boolean z, boolean z2) {
+        AndroidUtilities.updateViewVisibilityAnimated(this.doneButton, !z, 0.5f, z2);
+        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, z, 0.5f, z2);
+    }
+
+    public android.view.View createView(android.content.Context r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.createView(android.content.Context):android.view.View");
     }
 
     @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+    public void dismiss() {
+        super.dismiss();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NewContactBottomSheet.this.lambda$dismiss$11();
+            }
+        }, 50L);
+    }
+
+    @Override
+    public ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
         OutlineEditText outlineEditText = this.firstNameField;
         int i = ThemeDescription.FLAG_TEXTCOLOR;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
@@ -486,17 +400,57 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     @Override
-    public void dismiss() {
-        super.dismiss();
+    public void onItemSelected(AdapterView adapterView, View view, int i, long j) {
+        if (this.ignoreSelection) {
+            this.ignoreSelection = false;
+            return;
+        }
+        this.ignoreOnTextChange = true;
+        this.codeField.setText(((CountrySelectActivity.Country) this.countriesArray.get(i)).code);
+        this.ignoreOnTextChange = false;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView adapterView) {
+    }
+
+    public void selectCountry(CountrySelectActivity.Country country) {
+        this.ignoreOnTextChange = true;
+        String str = country.code;
+        this.codeField.setText(str);
+        setCountryHint(str, country);
+        this.ignoreOnTextChange = false;
+    }
+
+    public void setInitialName(String str, String str2) {
+        OutlineEditText outlineEditText = this.firstNameField;
+        if (outlineEditText != null) {
+            outlineEditText.getEditText().setText(str);
+        } else {
+            this.initialFirstName = str;
+        }
+        OutlineEditText outlineEditText2 = this.lastNameField;
+        if (outlineEditText2 != null) {
+            outlineEditText2.getEditText().setText(str2);
+        } else {
+            this.initialLastName = str2;
+        }
+    }
+
+    public org.telegram.ui.NewContactBottomSheet setInitialPhoneNumber(java.lang.String r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NewContactBottomSheet.setInitialPhoneNumber(java.lang.String, boolean):org.telegram.ui.NewContactBottomSheet");
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        this.firstNameField.getEditText().requestFocus();
+        this.firstNameField.getEditText().setSelection(this.firstNameField.getEditText().length());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                NewContactBottomSheet.this.lambda$dismiss$11();
+                NewContactBottomSheet.this.lambda$show$10();
             }
         }, 50L);
-    }
-
-    public void lambda$dismiss$11() {
-        AndroidUtilities.hideKeyboard(this.contentLayout);
     }
 }

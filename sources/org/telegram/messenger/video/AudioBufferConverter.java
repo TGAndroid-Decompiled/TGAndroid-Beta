@@ -14,6 +14,26 @@ public class AudioBufferConverter {
     private final AudioRemixer mRemixer = new DefaultAudioRemixer();
     private final AudioResampler mResampler = new DefaultAudioResampler();
 
+    private void checkChannels(int i, int i2) {
+        if (i == 6 && (i2 == 1 || i2 == 2)) {
+            return;
+        }
+        if (i != 1 && i != 2) {
+            throw new UnsupportedOperationException("Input channel count (" + i + ") not supported.");
+        }
+        if (i2 == 1 || i2 == 2) {
+            return;
+        }
+        throw new UnsupportedOperationException("Output channel count (" + i2 + ") not supported.");
+    }
+
+    private ShortBuffer createBuffer(int i) {
+        ShortBuffer asShortBuffer = ByteBuffer.allocateDirect(i * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
+        asShortBuffer.clear();
+        asShortBuffer.limit(i);
+        return asShortBuffer;
+    }
+
     public int calculateRequiredOutputSize(int i, int i2, int i3, int i4, int i5) {
         checkChannels(i3, i5);
         double remixedSize = this.mRemixer.getRemixedSize(i, i3, i5);
@@ -43,25 +63,5 @@ public class AudioBufferConverter {
         createBuffer2.limit(createBuffer2.position());
         createBuffer2.rewind();
         return createBuffer2;
-    }
-
-    private void checkChannels(int i, int i2) {
-        if (i == 6 && (i2 == 1 || i2 == 2)) {
-            return;
-        }
-        if (i != 1 && i != 2) {
-            throw new UnsupportedOperationException("Input channel count (" + i + ") not supported.");
-        }
-        if (i2 == 1 || i2 == 2) {
-            return;
-        }
-        throw new UnsupportedOperationException("Output channel count (" + i2 + ") not supported.");
-    }
-
-    private ShortBuffer createBuffer(int i) {
-        ShortBuffer asShortBuffer = ByteBuffer.allocateDirect(i * 2).order(ByteOrder.nativeOrder()).asShortBuffer();
-        asShortBuffer.clear();
-        asShortBuffer.limit(i);
-        return asShortBuffer;
     }
 }

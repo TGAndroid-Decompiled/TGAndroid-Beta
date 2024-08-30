@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -51,7 +50,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-import androidx.annotation.Keep;
 import androidx.core.view.WindowInsetsCompat$$ExternalSyntheticApiModelOutline0;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
@@ -104,8 +102,6 @@ import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class SecretMediaViewer implements NotificationCenter.NotificationCenterDelegate, GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-
-    @SuppressLint({"StaticFieldLeak"})
     private static volatile SecretMediaViewer Instance;
     private ActionBar actionBar;
     private int[] animateFromRadius;
@@ -231,61 +227,284 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
     };
     private Path roundRectPath = new Path();
 
-    public void onLinkClick(ClickableSpan clickableSpan, TextView textView) {
+    public class AnonymousClass11 extends Fade {
+        final boolean val$isCaptionEmpty;
+        final boolean val$isCurrentCaptionEmpty;
+
+        AnonymousClass11(int i, boolean z, boolean z2) {
+            super(i);
+            this.val$isCurrentCaptionEmpty = z;
+            this.val$isCaptionEmpty = z2;
+        }
+
+        public void lambda$onAppear$0(ValueAnimator valueAnimator) {
+            SecretMediaViewer.this.captionScrollView.backgroundAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            SecretMediaViewer.this.captionScrollView.invalidate();
+        }
+
+        @Override
+        public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+            Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+            if (this.val$isCurrentCaptionEmpty && !this.val$isCaptionEmpty && view == SecretMediaViewer.this.captionTextViewSwitcher) {
+                onAppear.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        SecretMediaViewer.this.captionScrollView.backgroundAlpha = 1.0f;
+                    }
+                });
+                ((ObjectAnimator) onAppear).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        SecretMediaViewer.AnonymousClass11.this.lambda$onAppear$0(valueAnimator);
+                    }
+                });
+            }
+            return onAppear;
+        }
     }
 
-    public void onLinkLongPress(URLSpan uRLSpan, TextView textView, Runnable runnable) {
+    public class AnonymousClass12 extends Fade {
+        final boolean val$isCaptionEmpty;
+        final boolean val$isCurrentCaptionEmpty;
+
+        AnonymousClass12(int i, boolean z, boolean z2) {
+            super(i);
+            this.val$isCurrentCaptionEmpty = z;
+            this.val$isCaptionEmpty = z2;
+        }
+
+        public void lambda$onDisappear$0(ValueAnimator valueAnimator) {
+            SecretMediaViewer.this.captionScrollView.backgroundAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            SecretMediaViewer.this.captionScrollView.invalidate();
+        }
+
+        @Override
+        public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+            Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+            if (!this.val$isCurrentCaptionEmpty && this.val$isCaptionEmpty && view == SecretMediaViewer.this.captionTextViewSwitcher) {
+                onDisappear.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        SecretMediaViewer.this.captionScrollView.setVisibility(4);
+                        SecretMediaViewer.this.captionScrollView.backgroundAlpha = 1.0f;
+                    }
+                });
+                ((ObjectAnimator) onDisappear).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        SecretMediaViewer.AnonymousClass12.this.lambda$onDisappear$0(valueAnimator);
+                    }
+                });
+            }
+            return onDisappear;
+        }
     }
 
-    @Override
-    public boolean onDoubleTapEvent(MotionEvent motionEvent) {
-        return false;
+    public class AnonymousClass13 extends Transition {
+        AnonymousClass13() {
+        }
+
+        public void lambda$createAnimator$0(ValueAnimator valueAnimator) {
+            SecretMediaViewer.this.captionScrollView.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
+        }
+
+        @Override
+        public void captureEndValues(TransitionValues transitionValues) {
+            if (transitionValues.view == SecretMediaViewer.this.captionTextViewSwitcher) {
+                transitionValues.values.put("translationY", Integer.valueOf(SecretMediaViewer.this.captionScrollView.getPendingMarginTopDiff()));
+            }
+        }
+
+        @Override
+        public void captureStartValues(TransitionValues transitionValues) {
+            if (transitionValues.view == SecretMediaViewer.this.captionScrollView) {
+                transitionValues.values.put("scrollY", Integer.valueOf(SecretMediaViewer.this.captionScrollView.getScrollY()));
+            }
+        }
+
+        @Override
+        public Animator createAnimator(ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
+            int intValue;
+            if (transitionValues.view == SecretMediaViewer.this.captionScrollView) {
+                ValueAnimator ofInt = ValueAnimator.ofInt(((Integer) transitionValues.values.get("scrollY")).intValue(), 0);
+                ofInt.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        SecretMediaViewer.this.captionTextViewSwitcher.getNextView().setText((CharSequence) null);
+                        SecretMediaViewer.this.captionScrollView.applyPendingTopMargin();
+                    }
+
+                    @Override
+                    public void onAnimationStart(Animator animator) {
+                        SecretMediaViewer.this.captionScrollView.stopScrolling();
+                    }
+                });
+                ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        SecretMediaViewer.AnonymousClass13.this.lambda$createAnimator$0(valueAnimator);
+                    }
+                });
+                return ofInt;
+            }
+            if (transitionValues2.view != SecretMediaViewer.this.captionTextViewSwitcher || (intValue = ((Integer) transitionValues2.values.get("translationY")).intValue()) == 0) {
+                return null;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(SecretMediaViewer.this.captionTextViewSwitcher, (Property<PhotoViewer.CaptionTextViewSwitcher, Float>) View.TRANSLATION_Y, 0.0f, intValue);
+            ofFloat.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    SecretMediaViewer.this.captionTextViewSwitcher.setTranslationY(0.0f);
+                }
+            });
+            return ofFloat;
+        }
     }
 
-    @Override
-    public boolean onDown(MotionEvent motionEvent) {
-        return false;
+    public class AnonymousClass16 extends AnimatorListenerAdapter {
+        final PhotoViewer.PlaceProviderObject val$object;
+
+        AnonymousClass16(PhotoViewer.PlaceProviderObject placeProviderObject) {
+            this.val$object = placeProviderObject;
+        }
+
+        public void lambda$onAnimationEnd$0() {
+            if (SecretMediaViewer.this.photoAnimationEndRunnable != null) {
+                SecretMediaViewer.this.photoAnimationEndRunnable.run();
+                SecretMediaViewer.this.photoAnimationEndRunnable = null;
+            }
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            PhotoViewer.PlaceProviderObject placeProviderObject = this.val$object;
+            if (placeProviderObject != null) {
+                placeProviderObject.imageReceiver.setVisible(true, true);
+            }
+            SecretMediaViewer.this.isVisible = false;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    SecretMediaViewer.AnonymousClass16.this.lambda$onAnimationEnd$0();
+                }
+            });
+        }
     }
 
-    @Override
-    public void onLongPress(MotionEvent motionEvent) {
-    }
+    public class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
+        final File val$file;
 
-    @Override
-    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        return false;
-    }
+        AnonymousClass2(File file) {
+            this.val$file = file;
+        }
 
-    @Override
-    public void onShowPress(MotionEvent motionEvent) {
-    }
+        public void lambda$onError$0(File file) {
+            SecretMediaViewer.this.preparePlayer(file);
+        }
 
-    @Override
-    public boolean onSingleTapUp(MotionEvent motionEvent) {
-        return false;
-    }
+        @Override
+        public void onError(VideoPlayer videoPlayer, Exception exc) {
+            if (SecretMediaViewer.this.playerRetryPlayCount <= 0) {
+                FileLog.e(exc);
+                return;
+            }
+            SecretMediaViewer.access$1510(SecretMediaViewer.this);
+            final File file = this.val$file;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    SecretMediaViewer.AnonymousClass2.this.lambda$onError$0(file);
+                }
+            }, 100L);
+        }
 
-    static int access$1510(SecretMediaViewer secretMediaViewer) {
-        int i = secretMediaViewer.playerRetryPlayCount;
-        secretMediaViewer.playerRetryPlayCount = i - 1;
-        return i;
+        @Override
+        public void onRenderedFirstFrame() {
+            if (SecretMediaViewer.this.textureUploaded) {
+                return;
+            }
+            SecretMediaViewer.this.textureUploaded = true;
+            SecretMediaViewer.this.containerView.invalidate();
+        }
+
+        @Override
+        public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+        }
+
+        @Override
+        public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+        }
+
+        @Override
+        public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+        }
+
+        @Override
+        public void onStateChanged(boolean z, int i) {
+            if (SecretMediaViewer.this.videoPlayer == null || SecretMediaViewer.this.currentMessageObject == null) {
+                return;
+            }
+            AndroidUtilities.cancelRunOnUIThread(SecretMediaViewer.this.updateProgressRunnable);
+            AndroidUtilities.runOnUIThread(SecretMediaViewer.this.updateProgressRunnable);
+            try {
+                if (i == 4 || i == 1) {
+                    SecretMediaViewer.this.parentActivity.getWindow().clearFlags(128);
+                } else {
+                    SecretMediaViewer.this.parentActivity.getWindow().addFlags(128);
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            if (i == 3 && SecretMediaViewer.this.aspectRatioFrameLayout.getVisibility() != 0) {
+                SecretMediaViewer.this.aspectRatioFrameLayout.setVisibility(0);
+            }
+            if (SecretMediaViewer.this.videoPlayer.isPlaying() && i != 4) {
+                if (SecretMediaViewer.this.isPlaying) {
+                    return;
+                }
+                SecretMediaViewer.this.isPlaying = true;
+            } else if (SecretMediaViewer.this.isPlaying) {
+                SecretMediaViewer.this.isPlaying = false;
+                if (i == 4) {
+                    SecretMediaViewer.this.videoWatchedOneTime = true;
+                    if (SecretMediaViewer.this.closeVideoAfterWatch) {
+                        SecretMediaViewer.this.closePhoto(true, !r4.ignoreDelete);
+                    } else {
+                        SecretMediaViewer.this.videoPlayer.seekTo(0L);
+                        SecretMediaViewer.this.videoPlayer.play();
+                    }
+                }
+            }
+        }
+
+        @Override
+        public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return false;
+        }
+
+        @Override
+        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+            if (SecretMediaViewer.this.aspectRatioFrameLayout != null) {
+                if (i3 != 90 && i3 != 270) {
+                    i2 = i;
+                    i = i2;
+                }
+                SecretMediaViewer.this.aspectRatioFrameLayout.setAspectRatio(i == 0 ? 1.0f : (i2 * f) / i, i3);
+            }
+        }
     }
 
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
             setWillNotDraw(false);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            SecretMediaViewer.this.processTouchEvent(motionEvent);
-            return true;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            SecretMediaViewer.this.onDraw(canvas);
         }
 
         @Override
@@ -303,6 +522,60 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             SecretMediaViewer.this.centerImage.onDetachedFromWindow();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            SecretMediaViewer.this.onDraw(canvas);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            SecretMediaViewer.this.processTouchEvent(motionEvent);
+            return true;
+        }
+    }
+
+    public class PhotoBackgroundDrawable extends ColorDrawable {
+        private Runnable drawRunnable;
+        private int frame;
+
+        public PhotoBackgroundDrawable(int i) {
+            super(i);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            Runnable runnable;
+            super.draw(canvas);
+            if (getAlpha() != 0) {
+                if (this.frame != 2 || (runnable = this.drawRunnable) == null) {
+                    invalidateSelf();
+                } else {
+                    runnable.run();
+                    this.drawRunnable = null;
+                }
+                this.frame++;
+            }
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            if (SecretMediaViewer.this.parentActivity instanceof LaunchActivity) {
+                ((LaunchActivity) SecretMediaViewer.this.parentActivity).drawerLayoutContainer.setAllowDrawContent((SecretMediaViewer.this.isPhotoVisible && i == 255) ? false : true);
+            }
+            super.setAlpha(i);
+        }
+
+        @Override
+        public void setBounds(int i, int i2, int i3, int i4) {
+            super.setBounds(i, i2, i3, i4 + AndroidUtilities.navigationBarHeight);
+        }
+
+        @Override
+        public void setBounds(Rect rect) {
+            rect.bottom += AndroidUtilities.navigationBarHeight;
+            super.setBounds(rect);
         }
     }
 
@@ -377,20 +650,14 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            float dpf2 = AndroidUtilities.dpf2(10.5f);
-            this.deleteProgressRect.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
-            setPivotX(measuredWidth);
-            setPivotY(measuredHeight);
-        }
-
-        @Override
-        @SuppressLint({"DrawAllocation"})
         protected void onDraw(Canvas canvas) {
             float max;
+            TimerParticles timerParticles;
+            Paint paint;
+            RectF rectF;
+            float f;
+            Canvas canvas2;
+            float f2;
             if (SecretMediaViewer.this.currentMessageObject != null) {
                 if (SecretMediaViewer.this.currentMessageObject.messageOwner.destroyTime != 0 || SecretMediaViewer.this.currentMessageObject.messageOwner.ttl == Integer.MAX_VALUE) {
                     if (this.useVideoProgress) {
@@ -414,70 +681,216 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                         this.onceLayout.draw(canvas);
                         canvas.restore();
                         canvas.drawArc(this.deleteProgressRect, 90.0f, 180.0f, false, this.afterDeleteProgressPaint);
-                        float f = 19.285715f;
+                        float f3 = 19.285715f;
                         for (int i = 0; i < 5; i++) {
-                            canvas.drawArc(this.deleteProgressRect, f + 270.0f, 12.857143f, false, this.afterDeleteProgressPaint);
-                            f += 32.14286f;
+                            canvas.drawArc(this.deleteProgressRect, f3 + 270.0f, 12.857143f, false, this.afterDeleteProgressPaint);
+                            f3 += 32.14286f;
                         }
-                        this.timerParticles.draw(canvas, this.particlePaint, this.deleteProgressRect, 0.0f, 1.0f);
+                        timerParticles = this.timerParticles;
+                        paint = this.particlePaint;
+                        rectF = this.deleteProgressRect;
+                        f2 = 0.0f;
+                        f = 1.0f;
+                        canvas2 = canvas;
                     } else {
                         float centerX = this.deleteProgressRect.centerX();
                         float centerY = this.deleteProgressRect.centerY() - AndroidUtilities.dp(1.0f);
                         float dp = AndroidUtilities.dp(8.0f);
                         this.drawable.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
                         this.drawable.draw(canvas);
-                        float f2 = max * (-360.0f);
-                        canvas.drawArc(this.deleteProgressRect, -90.0f, f2, false, this.afterDeleteProgressPaint);
-                        this.timerParticles.draw(canvas, this.particlePaint, this.deleteProgressRect, f2, 1.0f);
+                        float f4 = max * (-360.0f);
+                        canvas.drawArc(this.deleteProgressRect, -90.0f, f4, false, this.afterDeleteProgressPaint);
+                        timerParticles = this.timerParticles;
+                        paint = this.particlePaint;
+                        rectF = this.deleteProgressRect;
+                        f = 1.0f;
+                        canvas2 = canvas;
+                        f2 = f4;
                     }
+                    timerParticles.draw(canvas2, paint, rectF, f2, f);
                     invalidate();
                 }
             }
         }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
+            float measuredHeight = getMeasuredHeight() / 2.0f;
+            float dpf2 = AndroidUtilities.dpf2(10.5f);
+            this.deleteProgressRect.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
+            setPivotX(measuredWidth);
+            setPivotY(measuredHeight);
+        }
     }
 
-    public class PhotoBackgroundDrawable extends ColorDrawable {
-        private Runnable drawRunnable;
-        private int frame;
+    public class VideoPlayerControlFrameLayout extends FrameLayout {
+        public final Property SEEKBAR_ALPHA;
+        private boolean ignoreLayout;
+        private int lastTimeWidth;
+        private int parentHeight;
+        private int parentWidth;
+        private float progress;
+        private boolean seekBarTransitionEnabled;
+        private SpringAnimation timeSpring;
+        private FloatValueHolder timeValue;
+        private boolean translationYAnimationEnabled;
 
-        public PhotoBackgroundDrawable(int i) {
-            super(i);
-        }
-
-        @Override
-        @Keep
-        public void setAlpha(int i) {
-            if (SecretMediaViewer.this.parentActivity instanceof LaunchActivity) {
-                ((LaunchActivity) SecretMediaViewer.this.parentActivity).drawerLayoutContainer.setAllowDrawContent((SecretMediaViewer.this.isPhotoVisible && i == 255) ? false : true);
-            }
-            super.setAlpha(i);
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            Runnable runnable;
-            super.draw(canvas);
-            if (getAlpha() != 0) {
-                if (this.frame == 2 && (runnable = this.drawRunnable) != null) {
-                    runnable.run();
-                    this.drawRunnable = null;
-                } else {
-                    invalidateSelf();
+        public VideoPlayerControlFrameLayout(Context context) {
+            super(context);
+            this.progress = 1.0f;
+            this.seekBarTransitionEnabled = true;
+            this.translationYAnimationEnabled = true;
+            this.timeValue = new FloatValueHolder(0.0f);
+            this.timeSpring = (SpringAnimation) new SpringAnimation(this.timeValue).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
+                    SecretMediaViewer.VideoPlayerControlFrameLayout.this.lambda$new$0(dynamicAnimation, f, f2);
                 }
-                this.frame++;
+            });
+            this.SEEKBAR_ALPHA = new AnimationProperties.FloatProperty("progress") {
+                @Override
+                public Float get(VideoPlayerControlFrameLayout videoPlayerControlFrameLayout) {
+                    return Float.valueOf(videoPlayerControlFrameLayout.getProgress());
+                }
+
+                @Override
+                public void setValue(VideoPlayerControlFrameLayout videoPlayerControlFrameLayout, float f) {
+                    videoPlayerControlFrameLayout.setProgress(f);
+                }
+            };
+            setWillNotDraw(false);
+        }
+
+        public void lambda$new$0(DynamicAnimation dynamicAnimation, float f, float f2) {
+            SecretMediaViewer.this.seekbar.setSize((int) (((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f) - (this.parentWidth > this.parentHeight ? AndroidUtilities.dp(48.0f) : 0)), getMeasuredHeight());
+        }
+
+        private void onProgressChanged(float f) {
+            SecretMediaViewer.this.videoPlayerTime.setAlpha(f);
+            if (!this.seekBarTransitionEnabled) {
+                if (this.translationYAnimationEnabled) {
+                    setTranslationY(AndroidUtilities.dpf2(24.0f) * (1.0f - f));
+                }
+                SecretMediaViewer.this.seekbarView.setAlpha(f);
+                return;
+            }
+            SecretMediaViewer.this.videoPlayerTime.setPivotX(SecretMediaViewer.this.videoPlayerTime.getWidth());
+            SecretMediaViewer.this.videoPlayerTime.setPivotY(SecretMediaViewer.this.videoPlayerTime.getHeight());
+            float f2 = 1.0f - f;
+            float f3 = 1.0f - (0.1f * f2);
+            SecretMediaViewer.this.videoPlayerTime.setScaleX(f3);
+            SecretMediaViewer.this.videoPlayerTime.setScaleY(f3);
+            SecretMediaViewer.this.seekbar.setTransitionProgress(f2);
+        }
+
+        public float getProgress() {
+            return this.progress;
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            this.timeValue.setValue(0.0f);
+            this.lastTimeWidth = 0;
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            SecretMediaViewer.this.seekbar.setProgress(SecretMediaViewer.this.videoPlayer != null ? ((float) SecretMediaViewer.this.videoPlayer.getCurrentPosition()) / ((float) SecretMediaViewer.this.videoPlayer.getDuration()) : 0.0f);
+        }
+
+        @Override
+        protected void onMeasure(int r13, int r14) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.VideoPlayerControlFrameLayout.onMeasure(int, int):void");
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (this.progress < 1.0f) {
+                return false;
+            }
+            if (SecretMediaViewer.this.seekbar.onTouch(motionEvent.getAction(), motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY())) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+                SecretMediaViewer.this.seekbarView.invalidate();
+            }
+            return true;
+        }
+
+        @Override
+        public void requestLayout() {
+            if (this.ignoreLayout) {
+                return;
+            }
+            super.requestLayout();
+        }
+
+        public void setProgress(float f) {
+            if (this.progress != f) {
+                this.progress = f;
+                onProgressChanged(f);
             }
         }
+    }
 
-        @Override
-        public void setBounds(int i, int i2, int i3, int i4) {
-            super.setBounds(i, i2, i3, i4 + AndroidUtilities.navigationBarHeight);
-        }
+    static int access$1510(SecretMediaViewer secretMediaViewer) {
+        int i = secretMediaViewer.playerRetryPlayCount;
+        secretMediaViewer.playerRetryPlayCount = i - 1;
+        return i;
+    }
 
-        @Override
-        public void setBounds(Rect rect) {
-            rect.bottom += AndroidUtilities.navigationBarHeight;
-            super.setBounds(rect);
+    private void animateTo(float f, float f2, float f3, boolean z) {
+        animateTo(f, f2, f3, z, 250);
+    }
+
+    private void animateTo(float f, float f2, float f3, boolean z, int i) {
+        if (this.scale == f && this.translationX == f2 && this.translationY == f3) {
+            return;
         }
+        this.zoomAnimation = z;
+        this.animateToScale = f;
+        this.animateToX = f2;
+        this.animateToY = f3;
+        this.animationStartTime = System.currentTimeMillis();
+        AnimatorSet animatorSet = new AnimatorSet();
+        this.imageMoveAnimation = animatorSet;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f));
+        this.imageMoveAnimation.setInterpolator(this.interpolator);
+        this.imageMoveAnimation.setDuration(i);
+        this.imageMoveAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                SecretMediaViewer.this.imageMoveAnimation = null;
+                SecretMediaViewer.this.containerView.invalidate();
+            }
+        });
+        this.imageMoveAnimation.start();
+    }
+
+    private void checkMinMax(boolean r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.checkMinMax(boolean):void");
+    }
+
+    private boolean checkPhotoAnimation() {
+        if (this.photoAnimationInProgress != 0 && Math.abs(this.photoTransitionAnimationStartTime - System.currentTimeMillis()) >= 500) {
+            Runnable runnable = this.photoAnimationEndRunnable;
+            if (runnable != null) {
+                runnable.run();
+                this.photoAnimationEndRunnable = null;
+            }
+            this.photoAnimationInProgress = 0;
+        }
+        return this.photoAnimationInProgress != 0;
+    }
+
+    private int getContainerViewHeight() {
+        return this.containerView.getHeight();
+    }
+
+    private int getContainerViewWidth() {
+        return this.containerView.getWidth();
     }
 
     public static SecretMediaViewer getInstance() {
@@ -501,219 +914,25 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         return Instance != null;
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.messagesDeleted) {
-            if (!((Boolean) objArr[2]).booleanValue() && this.currentMessageObject != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.currentMessageObject.getId()))) {
-                if (this.isVideo && !this.videoWatchedOneTime) {
-                    this.closeVideoAfterWatch = true;
-                    return;
-                } else {
-                    if (closePhoto(true, true)) {
-                        return;
-                    }
-                    this.closeAfterAnimation = true;
-                    return;
-                }
-            }
-            return;
-        }
-        if (i == NotificationCenter.didCreatedNewDeleteTask) {
-            if (this.currentMessageObject == null || this.secretDeleteTimer == null || ((Long) objArr[0]).longValue() != this.currentDialogId) {
-                return;
-            }
-            SparseArray sparseArray = (SparseArray) objArr[1];
-            for (int i3 = 0; i3 < sparseArray.size(); i3++) {
-                int keyAt = sparseArray.keyAt(i3);
-                ArrayList arrayList = (ArrayList) sparseArray.get(keyAt);
-                for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                    if (this.currentMessageObject.getId() == ((Integer) arrayList.get(i4)).intValue()) {
-                        this.currentMessageObject.messageOwner.destroyTime = keyAt;
-                        this.secretDeleteTimer.invalidate();
-                        return;
-                    }
-                }
-            }
-            return;
-        }
-        if (i == NotificationCenter.updateMessageMedia) {
-            if (this.currentMessageObject.getId() == ((TLRPC$Message) objArr[0]).id) {
-                if (this.isVideo && !this.videoWatchedOneTime) {
-                    this.closeVideoAfterWatch = true;
-                } else {
-                    if (closePhoto(true, true)) {
-                        return;
-                    }
-                    this.closeAfterAnimation = true;
-                }
-            }
-        }
+    public void lambda$closePhoto$7(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        this.imageMoveAnimation = null;
+        this.photoAnimationInProgress = 0;
+        this.containerView.setLayerType(0, null);
+        this.containerView.setVisibility(4);
+        onPhotoClosed(placeProviderObject);
     }
 
-    public void preparePlayer(File file) {
-        if (this.parentActivity == null) {
+    public void lambda$closePhoto$8(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
+        if (frameLayoutDrawer == null) {
             return;
         }
-        releasePlayer();
-        if (this.videoTextureView == null) {
-            AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(this.parentActivity);
-            this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-            aspectRatioFrameLayout.setVisibility(0);
-            this.containerView.addView(this.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
-            TextureView textureView = new TextureView(this.parentActivity);
-            this.videoTextureView = textureView;
-            textureView.setOpaque(false);
-            this.aspectRatioFrameLayout.addView(this.videoTextureView, LayoutHelper.createFrame(-1, -1, 17));
-        }
-        this.textureUploaded = false;
-        this.videoCrossfadeStarted = false;
-        this.videoTextureView.setAlpha(1.0f);
-        if (this.videoPlayer == null) {
-            VideoPlayer videoPlayer = new VideoPlayer() {
-                @Override
-                public void setPlayWhenReady(boolean z) {
-                    super.setPlayWhenReady(z);
-                    SecretMediaViewer.this.playButtonDrawable.setPause(z);
-                }
-
-                @Override
-                public void play() {
-                    super.play();
-                    SecretMediaViewer.this.playButtonDrawable.setPause(true);
-                }
-
-                @Override
-                public void pause() {
-                    super.pause();
-                    SecretMediaViewer.this.playButtonDrawable.setPause(false);
-                }
-            };
-            this.videoPlayer = videoPlayer;
-            videoPlayer.setTextureView(this.videoTextureView);
-            this.videoPlayer.setDelegate(new AnonymousClass2(file));
-        }
-        this.videoPlayer.preparePlayer(Uri.fromFile(file), "other");
-        this.videoPlayer.setPlayWhenReady(true);
-        this.playButtonDrawable.setPause(true);
-    }
-
-    public class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
-        final File val$file;
-
-        @Override
-        public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
-            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
-        }
-
-        @Override
-        public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
-            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
-        }
-
-        @Override
-        public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
-            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
-        }
-
-        @Override
-        public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-            return false;
-        }
-
-        @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        }
-
-        AnonymousClass2(File file) {
-            this.val$file = file;
-        }
-
-        @Override
-        public void onStateChanged(boolean z, int i) {
-            if (SecretMediaViewer.this.videoPlayer == null || SecretMediaViewer.this.currentMessageObject == null) {
-                return;
-            }
-            AndroidUtilities.cancelRunOnUIThread(SecretMediaViewer.this.updateProgressRunnable);
-            AndroidUtilities.runOnUIThread(SecretMediaViewer.this.updateProgressRunnable);
-            if (i == 4 || i == 1) {
-                try {
-                    SecretMediaViewer.this.parentActivity.getWindow().clearFlags(128);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            } else {
-                try {
-                    SecretMediaViewer.this.parentActivity.getWindow().addFlags(128);
-                } catch (Exception e2) {
-                    FileLog.e(e2);
-                }
-            }
-            if (i == 3 && SecretMediaViewer.this.aspectRatioFrameLayout.getVisibility() != 0) {
-                SecretMediaViewer.this.aspectRatioFrameLayout.setVisibility(0);
-            }
-            if (!SecretMediaViewer.this.videoPlayer.isPlaying() || i == 4) {
-                if (SecretMediaViewer.this.isPlaying) {
-                    SecretMediaViewer.this.isPlaying = false;
-                    if (i == 4) {
-                        SecretMediaViewer.this.videoWatchedOneTime = true;
-                        if (!SecretMediaViewer.this.closeVideoAfterWatch) {
-                            SecretMediaViewer.this.videoPlayer.seekTo(0L);
-                            SecretMediaViewer.this.videoPlayer.play();
-                            return;
-                        } else {
-                            SecretMediaViewer.this.closePhoto(true, !r4.ignoreDelete);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            }
-            if (SecretMediaViewer.this.isPlaying) {
-                return;
-            }
-            SecretMediaViewer.this.isPlaying = true;
-        }
-
-        @Override
-        public void onError(VideoPlayer videoPlayer, Exception exc) {
-            if (SecretMediaViewer.this.playerRetryPlayCount > 0) {
-                SecretMediaViewer.access$1510(SecretMediaViewer.this);
-                final File file = this.val$file;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        SecretMediaViewer.AnonymousClass2.this.lambda$onError$0(file);
-                    }
-                }, 100L);
-                return;
-            }
-            FileLog.e(exc);
-        }
-
-        public void lambda$onError$0(File file) {
-            SecretMediaViewer.this.preparePlayer(file);
-        }
-
-        @Override
-        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
-            if (SecretMediaViewer.this.aspectRatioFrameLayout != null) {
-                if (i3 != 90 && i3 != 270) {
-                    i2 = i;
-                    i = i2;
-                }
-                SecretMediaViewer.this.aspectRatioFrameLayout.setAspectRatio(i == 0 ? 1.0f : (i2 * f) / i, i3);
-            }
-        }
-
-        @Override
-        public void onRenderedFirstFrame() {
-            if (SecretMediaViewer.this.textureUploaded) {
-                return;
-            }
-            SecretMediaViewer.this.textureUploaded = true;
-            SecretMediaViewer.this.containerView.invalidate();
-        }
+        frameLayoutDrawer.setLayerType(0, null);
+        this.containerView.setVisibility(4);
+        this.photoAnimationInProgress = 0;
+        onPhotoClosed(placeProviderObject);
+        this.containerView.setScaleX(1.0f);
+        this.containerView.setScaleY(1.0f);
     }
 
     public void lambda$new$0() {
@@ -737,35 +956,160 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    private void updateVideoPlayerTime() {
-        String format;
-        String format2;
-        Arrays.fill(this.videoPlayerCurrentTime, 0);
-        Arrays.fill(this.videoPlayerTotalTime, 0);
-        VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            long max = Math.max(0L, videoPlayer.getCurrentPosition()) / 1000;
-            long max2 = Math.max(0L, this.videoPlayer.getDuration()) / 1000;
-            int[] iArr = this.videoPlayerCurrentTime;
-            iArr[0] = (int) (max / 60);
-            iArr[1] = (int) (max % 60);
-            int[] iArr2 = this.videoPlayerTotalTime;
-            iArr2[0] = (int) (max2 / 60);
-            iArr2[1] = (int) (max2 % 60);
+    public void lambda$new$6() {
+        toggleActionBar(false, true);
+    }
+
+    public void lambda$onPhotoClosed$9() {
+        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            this.currentThumb = null;
         }
-        int i = this.videoPlayerCurrentTime[0];
-        if (i >= 60) {
-            format = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i / 60), Integer.valueOf(this.videoPlayerCurrentTime[0] % 60), Integer.valueOf(this.videoPlayerCurrentTime[1]));
+        this.centerImage.setImageBitmap((Bitmap) null);
+        try {
+            if (this.windowView.getParent() != null) {
+                ((WindowManager) this.parentActivity.getSystemService("window")).removeView(this.windowView);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        this.isPhotoVisible = false;
+    }
+
+    public void lambda$openMedia$3(View view) {
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject != null) {
+            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+            if (tLRPC$Message.destroyTime != 0 || tLRPC$Message.ttl == Integer.MAX_VALUE) {
+                if (this.secretHint.shown()) {
+                    this.secretHint.hide();
+                } else {
+                    showSecretHint();
+                }
+            }
+        }
+    }
+
+    public void lambda$openMedia$4(Runnable runnable, MessageObject messageObject) {
+        this.photoAnimationInProgress = 0;
+        this.imageMoveAnimation = null;
+        if (runnable != null) {
+            runnable.run();
+        }
+        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
+        if (frameLayoutDrawer == null) {
+            return;
+        }
+        frameLayoutDrawer.setLayerType(0, null);
+        this.containerView.invalidate();
+        this.secretDeleteTimer.setDestroyTime(messageObject.messageOwner.destroyTimeMillis, r8.ttl, false);
+        if (this.closeAfterAnimation) {
+            closePhoto(true, true);
         } else {
-            format = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i), Integer.valueOf(this.videoPlayerCurrentTime[1]));
+            if (!this.ignoreDelete || MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) >= 3) {
+                return;
+            }
+            showSecretHint();
         }
-        int i2 = this.videoPlayerTotalTime[0];
-        if (i2 >= 60) {
-            format2 = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i2 / 60), Integer.valueOf(this.videoPlayerTotalTime[0] % 60), Integer.valueOf(this.videoPlayerTotalTime[1]));
-        } else {
-            format2 = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(this.videoPlayerTotalTime[1]));
+    }
+
+    public void lambda$openMedia$5(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        this.disableShowCheck = false;
+        placeProviderObject.imageReceiver.setVisible(false, true);
+    }
+
+    public android.view.WindowInsets lambda$setParentActivity$1(android.view.View r2, android.view.WindowInsets r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.lambda$setParentActivity$1(android.view.View, android.view.WindowInsets):android.view.WindowInsets");
+    }
+
+    public View lambda$setParentActivity$2(Activity activity) {
+        return new PhotoViewer.CaptionTextView(activity, this.captionScrollView, this.textSelectionHelper, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                SecretMediaViewer.this.onLinkClick((ClickableSpan) obj, (TextView) obj2);
+            }
+        }, new Utilities.Callback3() {
+            @Override
+            public final void run(Object obj, Object obj2, Object obj3) {
+                SecretMediaViewer.this.onLinkLongPress((URLSpan) obj, (TextView) obj2, (Runnable) obj3);
+            }
+        });
+    }
+
+    public void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.onDraw(android.graphics.Canvas):void");
+    }
+
+    public void onLinkClick(ClickableSpan clickableSpan, TextView textView) {
+    }
+
+    public void onLinkLongPress(URLSpan uRLSpan, TextView textView, Runnable runnable) {
+    }
+
+    private void onPhotoClosed(PhotoViewer.PlaceProviderObject placeProviderObject) {
+        this.isVisible = false;
+        this.currentProvider = null;
+        this.disableShowCheck = false;
+        releasePlayer();
+        new ArrayList();
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                SecretMediaViewer.this.lambda$onPhotoClosed$9();
+            }
+        }, 50L);
+    }
+
+    public void preparePlayer(File file) {
+        if (this.parentActivity == null) {
+            return;
         }
-        this.videoPlayerTime.setText(String.format(Locale.ROOT, "%s / %s", format, format2));
+        releasePlayer();
+        if (this.videoTextureView == null) {
+            AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(this.parentActivity);
+            this.aspectRatioFrameLayout = aspectRatioFrameLayout;
+            aspectRatioFrameLayout.setVisibility(0);
+            this.containerView.addView(this.aspectRatioFrameLayout, 0, LayoutHelper.createFrame(-1, -1, 17));
+            TextureView textureView = new TextureView(this.parentActivity);
+            this.videoTextureView = textureView;
+            textureView.setOpaque(false);
+            this.aspectRatioFrameLayout.addView(this.videoTextureView, LayoutHelper.createFrame(-1, -1, 17));
+        }
+        this.textureUploaded = false;
+        this.videoCrossfadeStarted = false;
+        this.videoTextureView.setAlpha(1.0f);
+        if (this.videoPlayer == null) {
+            VideoPlayer videoPlayer = new VideoPlayer() {
+                @Override
+                public void pause() {
+                    super.pause();
+                    SecretMediaViewer.this.playButtonDrawable.setPause(false);
+                }
+
+                @Override
+                public void play() {
+                    super.play();
+                    SecretMediaViewer.this.playButtonDrawable.setPause(true);
+                }
+
+                @Override
+                public void setPlayWhenReady(boolean z) {
+                    super.setPlayWhenReady(z);
+                    SecretMediaViewer.this.playButtonDrawable.setPause(z);
+                }
+            };
+            this.videoPlayer = videoPlayer;
+            videoPlayer.setTextureView(this.videoTextureView);
+            this.videoPlayer.setDelegate(new AnonymousClass2(file));
+        }
+        this.videoPlayer.preparePlayer(Uri.fromFile(file), "other");
+        this.videoPlayer.setPlayWhenReady(true);
+        this.playButtonDrawable.setPause(true);
+    }
+
+    public boolean processTouchEvent(android.view.MotionEvent r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.processTouchEvent(android.view.MotionEvent):boolean");
     }
 
     private void releasePlayer() {
@@ -794,6 +1138,739 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.isPlaying = false;
     }
 
+    private void setCaptionHwLayerEnabled(boolean z) {
+        if (this.captionHwLayerEnabled != z) {
+            this.captionHwLayerEnabled = z;
+            this.captionTextViewSwitcher.setLayerType(2, null);
+            this.captionTextViewSwitcher.getCurrentView().setLayerType(2, null);
+            this.captionTextViewSwitcher.getNextView().setLayerType(2, null);
+        }
+    }
+
+    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
+        boolean z3;
+        TLRPC$Message tLRPC$Message;
+        CharSequence cloneSpans = AnimatedEmojiSpan.cloneSpans(charSequence, 3);
+        if (this.captionScrollView == null) {
+            FrameLayout frameLayout = new FrameLayout(this.containerView.getContext());
+            this.captionContainer = frameLayout;
+            this.captionTextViewSwitcher.setContainer(frameLayout);
+            PhotoViewer.CaptionScrollView captionScrollView = new PhotoViewer.CaptionScrollView(this.containerView.getContext(), this.captionTextViewSwitcher, this.captionContainer) {
+                @Override
+                protected void onScrollEnd() {
+                    if (!SecretMediaViewer.this.isVideo || getScrollY() > 0) {
+                        return;
+                    }
+                    AndroidUtilities.runOnUIThread(SecretMediaViewer.this.hideActionBarRunnable, 3000L);
+                }
+
+                @Override
+                protected void onScrollStart() {
+                    AndroidUtilities.cancelRunOnUIThread(SecretMediaViewer.this.hideActionBarRunnable);
+                }
+
+                @Override
+                protected void onScrollUpdate() {
+                    if (SecretMediaViewer.this.imageMoveAnimation == null) {
+                        SecretMediaViewer.this.showPlayButton(((float) getScrollY()) < ((float) getMeasuredHeight()) / 3.0f && SecretMediaViewer.this.isActionBarVisible, true);
+                    }
+                }
+            };
+            this.captionScrollView = captionScrollView;
+            this.captionTextViewSwitcher.setScrollView(captionScrollView);
+            this.captionContainer.setClipChildren(false);
+            this.captionScrollView.addView(this.captionContainer, new ViewGroup.LayoutParams(-1, -2));
+            this.containerView.addView(this.captionScrollView, LayoutHelper.createFrame(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.textSelectionHelper.getOverlayView(this.containerView.getContext()).bringToFront();
+        }
+        if (this.captionTextViewSwitcher.getParent() != this.captionContainer) {
+            this.captionTextViewSwitcher.setMeasureAllChildren(true);
+            this.captionContainer.addView(this.captionTextViewSwitcher, -1, -2);
+        }
+        boolean isEmpty = TextUtils.isEmpty(cloneSpans);
+        boolean isEmpty2 = TextUtils.isEmpty(this.captionTextViewSwitcher.getCurrentView().getText());
+        PhotoViewer.CaptionTextViewSwitcher captionTextViewSwitcher = this.captionTextViewSwitcher;
+        TextView nextView = z2 ? captionTextViewSwitcher.getNextView() : captionTextViewSwitcher.getCurrentView();
+        int maxLines = nextView.getMaxLines();
+        if (maxLines == 1) {
+            this.captionTextViewSwitcher.getCurrentView().setSingleLine(false);
+            this.captionTextViewSwitcher.getNextView().setSingleLine(false);
+        }
+        if (maxLines != Integer.MAX_VALUE) {
+            this.captionTextViewSwitcher.getCurrentView().setMaxLines(Integer.MAX_VALUE);
+            this.captionTextViewSwitcher.getNextView().setMaxLines(Integer.MAX_VALUE);
+            this.captionTextViewSwitcher.getCurrentView().setEllipsize(null);
+            this.captionTextViewSwitcher.getNextView().setEllipsize(null);
+        }
+        nextView.setScrollX(0);
+        PhotoViewer.CaptionScrollView captionScrollView2 = this.captionScrollView;
+        captionScrollView2.dontChangeTopMargin = false;
+        if (z2) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                TransitionManager.endTransitions(captionScrollView2);
+            }
+            TransitionSet duration = new TransitionSet().addTransition(new AnonymousClass12(2, isEmpty2, isEmpty)).addTransition(new AnonymousClass11(1, isEmpty2, isEmpty)).setDuration(200L);
+            if (!isEmpty2) {
+                this.captionScrollView.dontChangeTopMargin = true;
+                duration.addTransition(new AnonymousClass13());
+            }
+            if (isEmpty2 && !isEmpty) {
+                duration.addTarget((View) this.captionTextViewSwitcher);
+            }
+            TransitionManager.beginDelayedTransition(this.captionScrollView, duration);
+            z3 = true;
+        } else {
+            this.captionTextViewSwitcher.getCurrentView().setText((CharSequence) null);
+            PhotoViewer.CaptionScrollView captionScrollView3 = this.captionScrollView;
+            if (captionScrollView3 != null) {
+                captionScrollView3.scrollTo(0, 0);
+            }
+            z3 = false;
+        }
+        if (isEmpty) {
+            this.captionTextViewSwitcher.setText(null, z2);
+            this.captionTextViewSwitcher.getCurrentView().setTextColor(-1);
+            this.captionTextViewSwitcher.setVisibility(4, !z3 || isEmpty2);
+            this.captionTextViewSwitcher.setTag(null);
+        } else {
+            Theme.createChatResources(null, true);
+            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.translatedText == null || !TextUtils.equals(tLRPC$Message.translatedToLanguage, TranslateAlert2.getToLanguage())) {
+                if (messageObject == null || messageObject.messageOwner.entities.isEmpty()) {
+                    cloneSpans = Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(cloneSpans), nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                } else {
+                    SpannableString spannableString = new SpannableString(cloneSpans);
+                    messageObject.addEntitiesToText(spannableString, true, false);
+                    if (messageObject.isVideo()) {
+                        MessageObject.addUrlsByPattern(messageObject.isOutOwner(), spannableString, false, 3, (int) messageObject.getDuration(), false);
+                    }
+                    cloneSpans = Emoji.replaceEmoji((CharSequence) spannableString, nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                }
+            }
+            this.captionTextViewSwitcher.setTag(cloneSpans);
+            try {
+                this.captionTextViewSwitcher.setText(cloneSpans, z2, false);
+                PhotoViewer.CaptionScrollView captionScrollView4 = this.captionScrollView;
+                if (captionScrollView4 != null) {
+                    captionScrollView4.updateTopMargin();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            nextView.setScrollY(0);
+            nextView.setTextColor(-1);
+            this.captionTextViewSwitcher.setVisibility(this.isActionBarVisible ? 0 : 4);
+        }
+        if (this.captionTextViewSwitcher.getCurrentView() instanceof PhotoViewer.CaptionTextView) {
+            ((PhotoViewer.CaptionTextView) this.captionTextViewSwitcher.getCurrentView()).setLoading(z);
+        }
+    }
+
+    public void showPlayButton(boolean z, boolean z2) {
+        boolean z3 = this.isVideo && z;
+        if (this.playButtonShown == z3 && z2) {
+            return;
+        }
+        this.playButtonShown = z3;
+        this.playButton.animate().cancel();
+        if (z2) {
+            this.playButton.animate().scaleX(z3 ? 1.0f : 0.6f).scaleY(z3 ? 1.0f : 0.6f).alpha(z3 ? 1.0f : 0.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            return;
+        }
+        this.playButton.setScaleX(z3 ? 1.0f : 0.6f);
+        this.playButton.setScaleY(z3 ? 1.0f : 0.6f);
+        this.playButton.setAlpha(z3 ? 1.0f : 0.0f);
+    }
+
+    private void showSecretHint() {
+        this.secretHint.setMultilineText(true);
+        String string = LocaleController.getString(this.isVideo ? R.string.VideoShownOnce : R.string.PhotoShownOnce);
+        HintView2 hintView2 = this.secretHint;
+        hintView2.setMaxWidthPx(HintView2.cutInFancyHalf(string, hintView2.getTextPaint()));
+        this.secretHint.setText(string);
+        this.secretHint.setInnerPadding(12, 7, 11, 7);
+        this.secretHint.setIconMargin(2);
+        this.secretHint.setIconTranslate(0.0f, 0.0f);
+        this.secretHint.setIcon(R.raw.fire_on);
+        this.secretHint.show();
+        MessagesController.getGlobalMainSettings().edit().putInt("viewoncehint", MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) + 1).commit();
+    }
+
+    private void toggleActionBar(boolean z, boolean z2) {
+        AndroidUtilities.cancelRunOnUIThread(this.hideActionBarRunnable);
+        if (z && this.isVideo) {
+            AndroidUtilities.runOnUIThread(this.hideActionBarRunnable, 3000L);
+        }
+        if (z) {
+            this.actionBar.setVisibility(0);
+        }
+        this.actionBar.setEnabled(z);
+        this.isActionBarVisible = z;
+        showPlayButton(z, z2);
+        if (!z2) {
+            this.actionBar.setAlpha(z ? 1.0f : 0.0f);
+            this.captionScrollView.setAlpha(z ? 1.0f : 0.0f);
+            this.seekbarBackground.setAlpha(z ? 1.0f : 0.0f);
+            this.navigationBar.setAlpha(z ? 1.0f : 0.0f);
+            if (z) {
+                return;
+            }
+            this.actionBar.setVisibility(8);
+            this.captionScrollView.scrollTo(0, 0);
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        ActionBar actionBar = this.actionBar;
+        Property property = View.ALPHA;
+        arrayList.add(ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, z ? 1.0f : 0.0f));
+        VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
+        arrayList.add(ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, (Property<VideoPlayerControlFrameLayout, Float>) videoPlayerControlFrameLayout.SEEKBAR_ALPHA, z ? 1.0f : 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.captionScrollView, (Property<PhotoViewer.CaptionScrollView, Float>) property, z ? 1.0f : 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.seekbarBackground, (Property<View, Float>) property, z ? 1.0f : 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.navigationBar, (Property<View, Float>) property, z ? 1.0f : 0.0f));
+        AnimatorSet animatorSet = new AnimatorSet();
+        this.currentActionBarAnimation = animatorSet;
+        animatorSet.playTogether(arrayList);
+        if (!z) {
+            this.currentActionBarAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (SecretMediaViewer.this.currentActionBarAnimation == null || !SecretMediaViewer.this.currentActionBarAnimation.equals(animator)) {
+                        return;
+                    }
+                    SecretMediaViewer.this.actionBar.setVisibility(8);
+                    SecretMediaViewer.this.currentActionBarAnimation = null;
+                    SecretMediaViewer.this.captionScrollView.scrollTo(0, 0);
+                }
+            });
+        }
+        this.currentActionBarAnimation.setDuration(200L);
+        this.currentActionBarAnimation.start();
+    }
+
+    public void updateMinMax(float f) {
+        int imageWidth = ((int) ((this.centerImage.getImageWidth() * f) - getContainerViewWidth())) / 2;
+        int imageHeight = ((int) ((this.centerImage.getImageHeight() * f) - getContainerViewHeight())) / 2;
+        if (imageWidth > 0) {
+            this.minX = -imageWidth;
+            this.maxX = imageWidth;
+        } else {
+            this.maxX = 0.0f;
+            this.minX = 0.0f;
+        }
+        if (imageHeight > 0) {
+            this.minY = -imageHeight;
+            this.maxY = imageHeight;
+        } else {
+            this.maxY = 0.0f;
+            this.minY = 0.0f;
+        }
+    }
+
+    private void updateVideoPlayerTime() {
+        Arrays.fill(this.videoPlayerCurrentTime, 0);
+        Arrays.fill(this.videoPlayerTotalTime, 0);
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            long max = Math.max(0L, videoPlayer.getCurrentPosition()) / 1000;
+            long max2 = Math.max(0L, this.videoPlayer.getDuration()) / 1000;
+            int[] iArr = this.videoPlayerCurrentTime;
+            iArr[0] = (int) (max / 60);
+            iArr[1] = (int) (max % 60);
+            int[] iArr2 = this.videoPlayerTotalTime;
+            iArr2[0] = (int) (max2 / 60);
+            iArr2[1] = (int) (max2 % 60);
+        }
+        int i = this.videoPlayerCurrentTime[0];
+        Locale locale = Locale.ROOT;
+        String format = i >= 60 ? String.format(locale, "%02d:%02d:%02d", Integer.valueOf(i / 60), Integer.valueOf(this.videoPlayerCurrentTime[0] % 60), Integer.valueOf(this.videoPlayerCurrentTime[1])) : String.format(locale, "%02d:%02d", Integer.valueOf(i), Integer.valueOf(this.videoPlayerCurrentTime[1]));
+        int i2 = this.videoPlayerTotalTime[0];
+        this.videoPlayerTime.setText(String.format(Locale.ROOT, "%s / %s", format, i2 >= 60 ? String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i2 / 60), Integer.valueOf(this.videoPlayerTotalTime[0] % 60), Integer.valueOf(this.videoPlayerTotalTime[1])) : String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i2), Integer.valueOf(this.videoPlayerTotalTime[1]))));
+    }
+
+    public boolean closePhoto(boolean r19, boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.closePhoto(boolean, boolean):boolean");
+    }
+
+    public void destroyPhotoViewer() {
+        FrameLayout frameLayout;
+        Runnable runnable = this.onClose;
+        if (runnable != null) {
+            runnable.run();
+            this.onClose = null;
+        }
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagesDeleted);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateMessageMedia);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didCreatedNewDeleteTask);
+        this.isVisible = false;
+        this.currentProvider = null;
+        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            this.currentThumb = null;
+        }
+        releasePlayer();
+        if (this.parentActivity != null && (frameLayout = this.windowView) != null) {
+            try {
+                if (frameLayout.getParent() != null) {
+                    ((WindowManager) this.parentActivity.getSystemService("window")).removeViewImmediate(this.windowView);
+                }
+                this.windowView = null;
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        Instance = null;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.messagesDeleted) {
+            if (!((Boolean) objArr[2]).booleanValue() && this.currentMessageObject != null && ((Long) objArr[1]).longValue() == 0 && ((ArrayList) objArr[0]).contains(Integer.valueOf(this.currentMessageObject.getId()))) {
+                if (!this.isVideo || this.videoWatchedOneTime) {
+                    if (closePhoto(true, true)) {
+                        return;
+                    }
+                    this.closeAfterAnimation = true;
+                    return;
+                }
+                this.closeVideoAfterWatch = true;
+                return;
+            }
+            return;
+        }
+        if (i != NotificationCenter.didCreatedNewDeleteTask) {
+            if (i == NotificationCenter.updateMessageMedia) {
+                if (this.currentMessageObject.getId() == ((TLRPC$Message) objArr[0]).id) {
+                    if (!this.isVideo || this.videoWatchedOneTime) {
+                        if (closePhoto(true, true)) {
+                            return;
+                        }
+                        this.closeAfterAnimation = true;
+                        return;
+                    }
+                    this.closeVideoAfterWatch = true;
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        if (this.currentMessageObject == null || this.secretDeleteTimer == null || ((Long) objArr[0]).longValue() != this.currentDialogId) {
+            return;
+        }
+        SparseArray sparseArray = (SparseArray) objArr[1];
+        for (int i3 = 0; i3 < sparseArray.size(); i3++) {
+            int keyAt = sparseArray.keyAt(i3);
+            ArrayList arrayList = (ArrayList) sparseArray.get(keyAt);
+            for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                if (this.currentMessageObject.getId() == ((Integer) arrayList.get(i4)).intValue()) {
+                    this.currentMessageObject.messageOwner.destroyTime = keyAt;
+                    this.secretDeleteTimer.invalidate();
+                    return;
+                }
+            }
+        }
+    }
+
+    public long getCloseTime() {
+        return this.closeTime;
+    }
+
+    public MessageObject getCurrentMessageObject() {
+        return this.currentMessageObject;
+    }
+
+    public long getOpenTime() {
+        return this.openTime;
+    }
+
+    public boolean isShowingImage(MessageObject messageObject) {
+        MessageObject messageObject2;
+        return (!this.isVisible || this.disableShowCheck || messageObject == null || (messageObject2 = this.currentMessageObject) == null || messageObject2.getId() != messageObject.getId()) ? false : true;
+    }
+
+    public boolean isVisible() {
+        return this.isVisible;
+    }
+
+    @Override
+    public boolean onDoubleTap(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.onDoubleTap(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        if (this.scale == 1.0f) {
+            return false;
+        }
+        this.scroller.abortAnimation();
+        this.scroller.fling(Math.round(this.translationX), Math.round(this.translationY), Math.round(f), Math.round(f2), (int) this.minX, (int) this.maxX, (int) this.minY, (int) this.maxY);
+        this.containerView.postInvalidate();
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent motionEvent) {
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
+        if (this.discardTap) {
+            return false;
+        }
+        if (this.videoPlayer == null || !this.isActionBarVisible || motionEvent.getX() < this.playButton.getX() || motionEvent.getY() < this.playButton.getY() || motionEvent.getX() > this.playButton.getX() + this.playButton.getMeasuredWidth() || motionEvent.getX() > this.playButton.getX() + this.playButton.getMeasuredWidth()) {
+            toggleActionBar(!this.isActionBarVisible, true);
+        } else {
+            this.videoPlayer.setPlayWhenReady(!r5.getPlayWhenReady());
+            if (this.videoPlayer.getPlayWhenReady()) {
+                toggleActionBar(true, true);
+            } else {
+                showPlayButton(true, true);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public void openMedia(final MessageObject messageObject, PhotoViewer.PhotoViewerProvider photoViewerProvider, final Runnable runnable, Runnable runnable2) {
+        PhotoViewer.PlaceProviderObject placeForPhoto;
+        PhotoViewer.PlaceProviderObject placeProviderObject;
+        String str;
+        int i;
+        float f;
+        ?? r15;
+        int navigationBarColor;
+        Object obj;
+        boolean z;
+        ImageReceiver imageReceiver;
+        BitmapDrawable bitmapDrawable;
+        String str2;
+        int i2;
+        ImageLocation imageLocation;
+        String str3;
+        long j;
+        MessageObject messageObject2;
+        if (this.parentActivity == null || messageObject == null || !messageObject.needDrawBluredPreview() || photoViewerProvider == null || (placeForPhoto = photoViewerProvider.getPlaceForPhoto(messageObject, null, 0, true)) == null) {
+            return;
+        }
+        this.ignoreDelete = messageObject.messageOwner.ttl == Integer.MAX_VALUE;
+        this.onClose = runnable2;
+        this.currentProvider = photoViewerProvider;
+        this.openTime = System.currentTimeMillis();
+        this.closeTime = 0L;
+        this.isActionBarVisible = true;
+        this.isPhotoVisible = true;
+        this.draggingDown = false;
+        AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
+        if (aspectRatioFrameLayout != null) {
+            aspectRatioFrameLayout.setVisibility(4);
+        }
+        releasePlayer();
+        this.pinchStartDistance = 0.0f;
+        this.pinchStartScale = 1.0f;
+        this.pinchCenterX = 0.0f;
+        this.pinchCenterY = 0.0f;
+        this.pinchStartX = 0.0f;
+        this.pinchStartY = 0.0f;
+        this.moveStartX = 0.0f;
+        this.moveStartY = 0.0f;
+        this.zooming = false;
+        this.moving = false;
+        this.doubleTap = false;
+        this.invalidCoords = false;
+        this.canDragDown = true;
+        updateMinMax(this.scale);
+        this.photoBackgroundDrawable.setAlpha(0);
+        this.containerView.setAlpha(1.0f);
+        this.containerView.setVisibility(0);
+        this.secretDeleteTimer.setAlpha(1.0f);
+        this.isVideo = false;
+        this.videoWatchedOneTime = false;
+        this.closeVideoAfterWatch = false;
+        this.disableShowCheck = true;
+        this.centerImage.setManualAlphaAnimator(false);
+        this.videoWidth = 0;
+        this.videoHeight = 0;
+        RectF rectF = new RectF(placeForPhoto.imageReceiver.getDrawRegion());
+        rectF.left = Math.max(rectF.left, placeForPhoto.imageReceiver.getImageX());
+        rectF.top = Math.max(rectF.top, placeForPhoto.imageReceiver.getImageY());
+        rectF.right = Math.min(rectF.right, placeForPhoto.imageReceiver.getImageX2());
+        rectF.bottom = Math.min(rectF.bottom, placeForPhoto.imageReceiver.getImageY2());
+        float width = rectF.width();
+        float height = rectF.height();
+        Point point = AndroidUtilities.displaySize;
+        int i3 = point.x;
+        this.scale = Math.max(width / i3, height / (point.y + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)));
+        int[] iArr = placeForPhoto.radius;
+        if (iArr != null) {
+            this.animateFromRadius = new int[iArr.length];
+            int i4 = 0;
+            while (true) {
+                int[] iArr2 = placeForPhoto.radius;
+                if (i4 >= iArr2.length) {
+                    break;
+                }
+                this.animateFromRadius[i4] = iArr2[i4];
+                i4++;
+            }
+        } else {
+            this.animateFromRadius = null;
+        }
+        float f2 = placeForPhoto.viewX;
+        float f3 = rectF.left;
+        this.translationX = ((f2 + f3) + (width / 2.0f)) - (i3 / 2);
+        this.translationY = ((placeForPhoto.viewY + rectF.top) + (height / 2.0f)) - (r4 / 2);
+        this.clipHorizontal = Math.abs(f3 - placeForPhoto.imageReceiver.getImageX());
+        int abs = (int) Math.abs(rectF.top - placeForPhoto.imageReceiver.getImageY());
+        int[] iArr3 = new int[2];
+        placeForPhoto.parentView.getLocationInWindow(iArr3);
+        int i5 = iArr3[1];
+        int i6 = Build.VERSION.SDK_INT;
+        float f4 = ((i5 - (i6 >= 21 ? 0 : AndroidUtilities.statusBarHeight)) - (placeForPhoto.viewY + rectF.top)) + placeForPhoto.clipTopAddition;
+        this.clipTop = f4;
+        float f5 = abs;
+        this.clipTop = Math.max(0.0f, Math.max(f4, f5));
+        float height2 = (((placeForPhoto.viewY + rectF.top) + ((int) height)) - ((iArr3[1] + placeForPhoto.parentView.getHeight()) - (i6 >= 21 ? 0 : AndroidUtilities.statusBarHeight))) + placeForPhoto.clipBottomAddition;
+        this.clipBottom = height2;
+        this.clipBottom = Math.max(0.0f, Math.max(height2, f5));
+        this.clipTopOrigin = 0.0f;
+        this.clipTopOrigin = Math.max(0.0f, Math.max(0.0f, f5));
+        this.clipBottomOrigin = 0.0f;
+        this.clipBottomOrigin = Math.max(0.0f, Math.max(0.0f, f5));
+        this.animationStartTime = System.currentTimeMillis();
+        this.animateToX = 0.0f;
+        this.animateToY = 0.0f;
+        this.animateToClipBottom = 0.0f;
+        this.animateToClipBottomOrigin = 0.0f;
+        this.animateToClipHorizontal = 0.0f;
+        this.animateToClipTop = 0.0f;
+        this.animateToClipTopOrigin = 0.0f;
+        this.animateToScale = 1.0f;
+        this.animateToRadius = true;
+        this.zoomAnimation = true;
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagesDeleted);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateMessageMedia);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didCreatedNewDeleteTask);
+        this.currentDialogId = MessageObject.getPeerId(messageObject.messageOwner.peer_id);
+        this.currentMessageObject = messageObject;
+        TLRPC$Document document = messageObject.getDocument();
+        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            this.currentThumb = null;
+        }
+        this.currentThumb = placeForPhoto.imageReceiver.getThumbBitmapSafe();
+        this.seekbarContainer.setVisibility(8);
+        if (document != null) {
+            int i7 = 0;
+            while (true) {
+                if (i7 >= document.attributes.size()) {
+                    break;
+                }
+                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i7);
+                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
+                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$DocumentAttribute;
+                    this.videoWidth = tLRPC$TL_documentAttributeVideo.w;
+                    this.videoHeight = tLRPC$TL_documentAttributeVideo.h;
+                    break;
+                }
+                i7++;
+            }
+            if (MessageObject.isGifDocument(document)) {
+                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingGif));
+                String str4 = messageObject.messageOwner.attachPath;
+                imageLocation = (str4 == null || !messageObject.attachPathExists) ? ImageLocation.getForDocument(document) : ImageLocation.getForPath(str4);
+                imageReceiver = this.centerImage;
+                str3 = null;
+                f = 1.0f;
+                bitmapDrawable = this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null;
+                placeProviderObject = placeForPhoto;
+                j = -1;
+                obj = null;
+                str2 = null;
+                str = "window";
+                messageObject2 = messageObject;
+                z = true;
+                i2 = 1;
+            } else {
+                placeProviderObject = placeForPhoto;
+                obj = null;
+                str = "window";
+                z = true;
+                f = 1.0f;
+                this.playerRetryPlayCount = 1;
+                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingVideo));
+                File file = new File(messageObject.messageOwner.attachPath);
+                if (!file.exists()) {
+                    file = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner);
+                    File file2 = new File(file.getAbsolutePath() + ".enc");
+                    if (file2.exists()) {
+                        file = file2;
+                    }
+                }
+                preparePlayer(file);
+                this.isVideo = true;
+                this.seekbarContainer.setVisibility(0);
+                imageReceiver = this.centerImage;
+                bitmapDrawable = this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null;
+                str2 = null;
+                i2 = 2;
+                imageLocation = null;
+                str3 = null;
+                j = -1;
+                messageObject2 = messageObject;
+            }
+            imageReceiver.setImage(imageLocation, str3, bitmapDrawable, j, str2, messageObject2, i2);
+            i = z;
+            r15 = obj;
+        } else {
+            placeProviderObject = placeForPhoto;
+            Object obj2 = null;
+            str = "window";
+            i = 1;
+            i = 1;
+            f = 1.0f;
+            this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingPhoto));
+            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+            this.centerImage.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
+            r15 = obj2;
+            if (closestPhotoSizeWithSize != null) {
+                this.videoWidth = closestPhotoSizeWithSize.w;
+                this.videoHeight = closestPhotoSizeWithSize.h;
+                r15 = obj2;
+            }
+        }
+        setCurrentCaption(messageObject, "", false, false);
+        setCurrentCaption(messageObject, messageObject.caption, false, i);
+        toggleActionBar(i, false);
+        showPlayButton(false, false);
+        this.playButtonDrawable.setPause(i);
+        if (this.ignoreDelete) {
+            this.secretDeleteTimer.setOnce();
+            this.secretDeleteTimer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    SecretMediaViewer.this.lambda$openMedia$3(view);
+                }
+            });
+        } else {
+            this.secretDeleteTimer.setOnClickListener(r15);
+        }
+        try {
+            if (this.windowView.getParent() != null) {
+                ((WindowManager) this.parentActivity.getSystemService(str)).removeView(this.windowView);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        ((WindowManager) this.parentActivity.getSystemService(str)).addView(this.windowView, this.windowLayoutParams);
+        this.secretDeleteTimer.invalidate();
+        this.isVisible = i;
+        Window window = this.parentActivity.getWindow();
+        if (Build.VERSION.SDK_INT >= 21) {
+            this.wasLightNavigationBar = AndroidUtilities.getLightNavigationBar(window);
+            AndroidUtilities.setLightNavigationBar(window, false);
+            AndroidUtilities.setLightNavigationBar((View) this.windowView, false);
+            Activity activity = this.parentActivity;
+            if (activity instanceof LaunchActivity) {
+                this.wasNavigationBarColor = ((LaunchActivity) activity).getNavigationBarColor();
+                ((LaunchActivity) this.parentActivity).animateNavigationBarColor(-16777216);
+            } else {
+                navigationBarColor = window.getNavigationBarColor();
+                this.wasNavigationBarColor = navigationBarColor;
+                AndroidUtilities.setNavigationBarColor(window, -16777216);
+            }
+        }
+        AnimatorSet animatorSet = new AnimatorSet();
+        this.imageMoveAnimation = animatorSet;
+        ActionBar actionBar = this.actionBar;
+        Property property = View.ALPHA;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, 0.0f, 1.0f);
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.captionScrollView, (Property<PhotoViewer.CaptionScrollView, Float>) property, 0.0f, 1.0f);
+        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.secretHint, (Property<HintView2, Float>) property, 0.0f, 1.0f);
+        ObjectAnimator ofInt = ObjectAnimator.ofInt(this.photoBackgroundDrawable, (Property<PhotoBackgroundDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0, 255);
+        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f);
+        VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
+        Property property2 = videoPlayerControlFrameLayout.SEEKBAR_ALPHA;
+        float[] fArr = new float[i];
+        fArr[0] = f;
+        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, (Property<VideoPlayerControlFrameLayout, Float>) property2, fArr);
+        VideoPlayerControlFrameLayout videoPlayerControlFrameLayout2 = this.seekbarContainer;
+        if (!this.isVideo) {
+            f = 0.0f;
+        }
+        float[] fArr2 = new float[i];
+        fArr2[0] = f;
+        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout2, (Property<VideoPlayerControlFrameLayout, Float>) property, fArr2);
+        Animator[] animatorArr = new Animator[7];
+        animatorArr[0] = ofFloat;
+        animatorArr[i] = ofFloat2;
+        animatorArr[2] = ofFloat3;
+        animatorArr[3] = ofInt;
+        animatorArr[4] = ofFloat4;
+        animatorArr[5] = ofFloat5;
+        animatorArr[6] = ofFloat6;
+        animatorSet.playTogether(animatorArr);
+        this.photoAnimationInProgress = 3;
+        this.photoAnimationEndRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                SecretMediaViewer.this.lambda$openMedia$4(runnable, messageObject);
+            }
+        };
+        this.imageMoveAnimation.setDuration(250L);
+        this.imageMoveAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (SecretMediaViewer.this.photoAnimationEndRunnable != null) {
+                    SecretMediaViewer.this.photoAnimationEndRunnable.run();
+                    SecretMediaViewer.this.photoAnimationEndRunnable = null;
+                }
+            }
+        });
+        this.photoTransitionAnimationStartTime = System.currentTimeMillis();
+        if (SharedConfig.getDevicePerformanceClass() == 0) {
+            this.containerView.setLayerType(2, r15);
+        }
+        this.imageMoveAnimation.setInterpolator(new DecelerateInterpolator());
+        this.photoBackgroundDrawable.frame = 0;
+        final PhotoViewer.PlaceProviderObject placeProviderObject2 = placeProviderObject;
+        this.photoBackgroundDrawable.drawRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                SecretMediaViewer.this.lambda$openMedia$5(placeProviderObject2);
+            }
+        };
+        this.imageMoveAnimation.start();
+    }
+
+    public void setOnClose(Runnable runnable) {
+        this.onClose = runnable;
+    }
+
     public void setParentActivity(final Activity activity) {
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
@@ -804,41 +1881,6 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.parentActivity = activity;
         this.scroller = new Scroller(activity);
         FrameLayout frameLayout = new FrameLayout(activity) {
-            @Override
-            protected void onMeasure(int i2, int i3) {
-                int systemWindowInsetLeft;
-                int systemWindowInsetBottom;
-                int systemWindowInsetRight;
-                int size = View.MeasureSpec.getSize(i2);
-                int size2 = View.MeasureSpec.getSize(i3);
-                int i4 = Build.VERSION.SDK_INT;
-                if (i4 >= 21 && SecretMediaViewer.this.lastInsets != null) {
-                    WindowInsets m = WindowInsetsCompat$$ExternalSyntheticApiModelOutline0.m(SecretMediaViewer.this.lastInsets);
-                    if (AndroidUtilities.incorrectDisplaySizeFix) {
-                        int i5 = AndroidUtilities.displaySize.y;
-                        if (size2 > i5) {
-                            size2 = i5;
-                        }
-                        size2 += AndroidUtilities.statusBarHeight;
-                    }
-                    systemWindowInsetBottom = m.getSystemWindowInsetBottom();
-                    size2 -= systemWindowInsetBottom;
-                    systemWindowInsetRight = m.getSystemWindowInsetRight();
-                    size -= systemWindowInsetRight;
-                } else {
-                    int i6 = AndroidUtilities.displaySize.y;
-                    if (size2 > i6) {
-                        size2 = i6;
-                    }
-                }
-                setMeasuredDimension(size, size2);
-                if (i4 >= 21 && SecretMediaViewer.this.lastInsets != null) {
-                    systemWindowInsetLeft = WindowInsetsCompat$$ExternalSyntheticApiModelOutline0.m(SecretMediaViewer.this.lastInsets).getSystemWindowInsetLeft();
-                    size -= systemWindowInsetLeft;
-                }
-                SecretMediaViewer.this.containerView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            }
-
             @Override
             protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                 int systemWindowInsetLeft = (Build.VERSION.SDK_INT < 21 || SecretMediaViewer.this.lastInsets == null) ? 0 : WindowInsetsCompat$$ExternalSyntheticApiModelOutline0.m(SecretMediaViewer.this.lastInsets).getSystemWindowInsetLeft();
@@ -852,6 +1894,41 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                     SecretMediaViewer secretMediaViewer = SecretMediaViewer.this;
                     secretMediaViewer.updateMinMax(secretMediaViewer.scale);
                 }
+            }
+
+            @Override
+            protected void onMeasure(int i2, int i3) {
+                int systemWindowInsetLeft;
+                int systemWindowInsetBottom;
+                int systemWindowInsetRight;
+                int size = View.MeasureSpec.getSize(i2);
+                int size2 = View.MeasureSpec.getSize(i3);
+                int i4 = Build.VERSION.SDK_INT;
+                if (i4 < 21 || SecretMediaViewer.this.lastInsets == null) {
+                    int i5 = AndroidUtilities.displaySize.y;
+                    if (size2 > i5) {
+                        size2 = i5;
+                    }
+                } else {
+                    WindowInsets m = WindowInsetsCompat$$ExternalSyntheticApiModelOutline0.m(SecretMediaViewer.this.lastInsets);
+                    if (AndroidUtilities.incorrectDisplaySizeFix) {
+                        int i6 = AndroidUtilities.displaySize.y;
+                        if (size2 > i6) {
+                            size2 = i6;
+                        }
+                        size2 += AndroidUtilities.statusBarHeight;
+                    }
+                    systemWindowInsetBottom = m.getSystemWindowInsetBottom();
+                    size2 -= systemWindowInsetBottom;
+                    systemWindowInsetRight = m.getSystemWindowInsetRight();
+                    size -= systemWindowInsetRight;
+                }
+                setMeasuredDimension(size, size2);
+                if (i4 >= 21 && SecretMediaViewer.this.lastInsets != null) {
+                    systemWindowInsetLeft = WindowInsetsCompat$$ExternalSyntheticApiModelOutline0.m(SecretMediaViewer.this.lastInsets).getSystemWindowInsetLeft();
+                    size -= systemWindowInsetLeft;
+                }
+                SecretMediaViewer.this.containerView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             }
         };
         this.windowView = frameLayout;
@@ -957,22 +2034,22 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.containerView.addView(secretDeleteTimer, LayoutHelper.createFrame(119, 48.0f, 53, 0.0f, 0.0f, 0.0f, 0.0f));
         VideoPlayerSeekBar.SeekBarDelegate seekBarDelegate = new VideoPlayerSeekBar.SeekBarDelegate() {
             @Override
-            public void onSeekBarDrag(float f) {
-                if (SecretMediaViewer.this.videoPlayer != null) {
-                    if (SecretMediaViewer.this.videoPlayer.getDuration() != -9223372036854775807L) {
-                        SecretMediaViewer.this.videoPlayer.seekTo(f * ((float) r0), false);
-                    }
-                    SecretMediaViewer.this.videoPlayer.play();
-                }
-            }
-
-            @Override
             public void onSeekBarContinuousDrag(float f) {
                 if (SecretMediaViewer.this.videoPlayer != null) {
                     SecretMediaViewer.this.videoPlayer.pause();
                     if (SecretMediaViewer.this.videoPlayer.getDuration() != -9223372036854775807L) {
                         SecretMediaViewer.this.videoPlayer.seekTo(f * ((float) r0), false);
                     }
+                }
+            }
+
+            @Override
+            public void onSeekBarDrag(float f) {
+                if (SecretMediaViewer.this.videoPlayer != null) {
+                    if (SecretMediaViewer.this.videoPlayer.getDuration() != -9223372036854775807L) {
+                        SecretMediaViewer.this.videoPlayer.seekTo(f * ((float) r0), false);
+                    }
+                    SecretMediaViewer.this.videoPlayer.play();
                 }
             }
         };
@@ -1044,1106 +2121,16 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         layoutParams2.width = -1;
         layoutParams2.gravity = 48;
         layoutParams2.type = 99;
-        if (i2 >= 21) {
-            layoutParams2.flags = -2147417848;
-        } else {
-            layoutParams2.flags = 8;
-        }
+        layoutParams2.flags = i2 >= 21 ? -2147417848 : 8;
         layoutParams2.flags |= 8192;
         this.centerImage.setParentView(this.containerView);
         this.centerImage.setForceCrossfade(true);
-        TextSelectionHelper<Cell>.TextSelectionOverlay overlayView = this.textSelectionHelper.getOverlayView(this.windowView.getContext());
+        TextSelectionHelper.TextSelectionOverlay overlayView = this.textSelectionHelper.getOverlayView(this.windowView.getContext());
         if (overlayView != null) {
             AndroidUtilities.removeFromParent(overlayView);
             this.containerView.addView(overlayView);
         }
         this.textSelectionHelper.setParentView(this.containerView);
         this.textSelectionHelper.setInvalidateParent();
-    }
-
-    public android.view.WindowInsets lambda$setParentActivity$1(android.view.View r2, android.view.WindowInsets r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.lambda$setParentActivity$1(android.view.View, android.view.WindowInsets):android.view.WindowInsets");
-    }
-
-    public View lambda$setParentActivity$2(Activity activity) {
-        return new PhotoViewer.CaptionTextView(activity, this.captionScrollView, this.textSelectionHelper, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                SecretMediaViewer.this.onLinkClick((ClickableSpan) obj, (TextView) obj2);
-            }
-        }, new Utilities.Callback3() {
-            @Override
-            public final void run(Object obj, Object obj2, Object obj3) {
-                SecretMediaViewer.this.onLinkLongPress((URLSpan) obj, (TextView) obj2, (Runnable) obj3);
-            }
-        });
-    }
-
-    private void setCurrentCaption(MessageObject messageObject, CharSequence charSequence, boolean z, boolean z2) {
-        boolean z3;
-        TLRPC$Message tLRPC$Message;
-        CharSequence cloneSpans = AnimatedEmojiSpan.cloneSpans(charSequence, 3);
-        if (this.captionScrollView == null) {
-            FrameLayout frameLayout = new FrameLayout(this.containerView.getContext());
-            this.captionContainer = frameLayout;
-            this.captionTextViewSwitcher.setContainer(frameLayout);
-            PhotoViewer.CaptionScrollView captionScrollView = new PhotoViewer.CaptionScrollView(this.containerView.getContext(), this.captionTextViewSwitcher, this.captionContainer) {
-                @Override
-                protected void onScrollStart() {
-                    AndroidUtilities.cancelRunOnUIThread(SecretMediaViewer.this.hideActionBarRunnable);
-                }
-
-                @Override
-                protected void onScrollUpdate() {
-                    if (SecretMediaViewer.this.imageMoveAnimation == null) {
-                        SecretMediaViewer.this.showPlayButton(((float) getScrollY()) < ((float) getMeasuredHeight()) / 3.0f && SecretMediaViewer.this.isActionBarVisible, true);
-                    }
-                }
-
-                @Override
-                protected void onScrollEnd() {
-                    if (!SecretMediaViewer.this.isVideo || getScrollY() > 0) {
-                        return;
-                    }
-                    AndroidUtilities.runOnUIThread(SecretMediaViewer.this.hideActionBarRunnable, 3000L);
-                }
-            };
-            this.captionScrollView = captionScrollView;
-            this.captionTextViewSwitcher.setScrollView(captionScrollView);
-            this.captionContainer.setClipChildren(false);
-            this.captionScrollView.addView(this.captionContainer, new ViewGroup.LayoutParams(-1, -2));
-            this.containerView.addView(this.captionScrollView, LayoutHelper.createFrame(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-            this.textSelectionHelper.getOverlayView(this.containerView.getContext()).bringToFront();
-        }
-        if (this.captionTextViewSwitcher.getParent() != this.captionContainer) {
-            this.captionTextViewSwitcher.setMeasureAllChildren(true);
-            this.captionContainer.addView(this.captionTextViewSwitcher, -1, -2);
-        }
-        boolean isEmpty = TextUtils.isEmpty(cloneSpans);
-        boolean isEmpty2 = TextUtils.isEmpty(this.captionTextViewSwitcher.getCurrentView().getText());
-        TextView nextView = z2 ? this.captionTextViewSwitcher.getNextView() : this.captionTextViewSwitcher.getCurrentView();
-        int maxLines = nextView.getMaxLines();
-        if (maxLines == 1) {
-            this.captionTextViewSwitcher.getCurrentView().setSingleLine(false);
-            this.captionTextViewSwitcher.getNextView().setSingleLine(false);
-        }
-        if (maxLines != Integer.MAX_VALUE) {
-            this.captionTextViewSwitcher.getCurrentView().setMaxLines(Integer.MAX_VALUE);
-            this.captionTextViewSwitcher.getNextView().setMaxLines(Integer.MAX_VALUE);
-            this.captionTextViewSwitcher.getCurrentView().setEllipsize(null);
-            this.captionTextViewSwitcher.getNextView().setEllipsize(null);
-        }
-        nextView.setScrollX(0);
-        PhotoViewer.CaptionScrollView captionScrollView2 = this.captionScrollView;
-        captionScrollView2.dontChangeTopMargin = false;
-        if (z2) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                TransitionManager.endTransitions(captionScrollView2);
-            }
-            TransitionSet duration = new TransitionSet().addTransition(new AnonymousClass12(2, isEmpty2, isEmpty)).addTransition(new AnonymousClass11(1, isEmpty2, isEmpty)).setDuration(200L);
-            if (!isEmpty2) {
-                this.captionScrollView.dontChangeTopMargin = true;
-                duration.addTransition(new AnonymousClass13());
-            }
-            if (isEmpty2 && !isEmpty) {
-                duration.addTarget((View) this.captionTextViewSwitcher);
-            }
-            TransitionManager.beginDelayedTransition(this.captionScrollView, duration);
-            z3 = true;
-        } else {
-            this.captionTextViewSwitcher.getCurrentView().setText((CharSequence) null);
-            PhotoViewer.CaptionScrollView captionScrollView3 = this.captionScrollView;
-            if (captionScrollView3 != null) {
-                captionScrollView3.scrollTo(0, 0);
-            }
-            z3 = false;
-        }
-        if (!isEmpty) {
-            Theme.createChatResources(null, true);
-            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.translatedText == null || !TextUtils.equals(tLRPC$Message.translatedToLanguage, TranslateAlert2.getToLanguage())) {
-                if (messageObject != null && !messageObject.messageOwner.entities.isEmpty()) {
-                    SpannableString spannableString = new SpannableString(cloneSpans);
-                    messageObject.addEntitiesToText(spannableString, true, false);
-                    if (messageObject.isVideo()) {
-                        MessageObject.addUrlsByPattern(messageObject.isOutOwner(), spannableString, false, 3, (int) messageObject.getDuration(), false);
-                    }
-                    cloneSpans = Emoji.replaceEmoji((CharSequence) spannableString, nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-                } else {
-                    cloneSpans = Emoji.replaceEmoji((CharSequence) new SpannableStringBuilder(cloneSpans), nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-                }
-            }
-            this.captionTextViewSwitcher.setTag(cloneSpans);
-            try {
-                this.captionTextViewSwitcher.setText(cloneSpans, z2, false);
-                PhotoViewer.CaptionScrollView captionScrollView4 = this.captionScrollView;
-                if (captionScrollView4 != null) {
-                    captionScrollView4.updateTopMargin();
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            nextView.setScrollY(0);
-            nextView.setTextColor(-1);
-            this.captionTextViewSwitcher.setVisibility(this.isActionBarVisible ? 0 : 4);
-        } else {
-            this.captionTextViewSwitcher.setText(null, z2);
-            this.captionTextViewSwitcher.getCurrentView().setTextColor(-1);
-            this.captionTextViewSwitcher.setVisibility(4, !z3 || isEmpty2);
-            this.captionTextViewSwitcher.setTag(null);
-        }
-        if (this.captionTextViewSwitcher.getCurrentView() instanceof PhotoViewer.CaptionTextView) {
-            ((PhotoViewer.CaptionTextView) this.captionTextViewSwitcher.getCurrentView()).setLoading(z);
-        }
-    }
-
-    public class AnonymousClass12 extends Fade {
-        final boolean val$isCaptionEmpty;
-        final boolean val$isCurrentCaptionEmpty;
-
-        AnonymousClass12(int i, boolean z, boolean z2) {
-            super(i);
-            this.val$isCurrentCaptionEmpty = z;
-            this.val$isCaptionEmpty = z2;
-        }
-
-        @Override
-        public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-            Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-            if (!this.val$isCurrentCaptionEmpty && this.val$isCaptionEmpty && view == SecretMediaViewer.this.captionTextViewSwitcher) {
-                onDisappear.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        SecretMediaViewer.this.captionScrollView.setVisibility(4);
-                        SecretMediaViewer.this.captionScrollView.backgroundAlpha = 1.0f;
-                    }
-                });
-                ((ObjectAnimator) onDisappear).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        SecretMediaViewer.AnonymousClass12.this.lambda$onDisappear$0(valueAnimator);
-                    }
-                });
-            }
-            return onDisappear;
-        }
-
-        public void lambda$onDisappear$0(ValueAnimator valueAnimator) {
-            SecretMediaViewer.this.captionScrollView.backgroundAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            SecretMediaViewer.this.captionScrollView.invalidate();
-        }
-    }
-
-    public class AnonymousClass11 extends Fade {
-        final boolean val$isCaptionEmpty;
-        final boolean val$isCurrentCaptionEmpty;
-
-        AnonymousClass11(int i, boolean z, boolean z2) {
-            super(i);
-            this.val$isCurrentCaptionEmpty = z;
-            this.val$isCaptionEmpty = z2;
-        }
-
-        @Override
-        public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-            Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-            if (this.val$isCurrentCaptionEmpty && !this.val$isCaptionEmpty && view == SecretMediaViewer.this.captionTextViewSwitcher) {
-                onAppear.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        SecretMediaViewer.this.captionScrollView.backgroundAlpha = 1.0f;
-                    }
-                });
-                ((ObjectAnimator) onAppear).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        SecretMediaViewer.AnonymousClass11.this.lambda$onAppear$0(valueAnimator);
-                    }
-                });
-            }
-            return onAppear;
-        }
-
-        public void lambda$onAppear$0(ValueAnimator valueAnimator) {
-            SecretMediaViewer.this.captionScrollView.backgroundAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            SecretMediaViewer.this.captionScrollView.invalidate();
-        }
-    }
-
-    public class AnonymousClass13 extends Transition {
-        AnonymousClass13() {
-        }
-
-        @Override
-        public void captureStartValues(TransitionValues transitionValues) {
-            if (transitionValues.view == SecretMediaViewer.this.captionScrollView) {
-                transitionValues.values.put("scrollY", Integer.valueOf(SecretMediaViewer.this.captionScrollView.getScrollY()));
-            }
-        }
-
-        @Override
-        public void captureEndValues(TransitionValues transitionValues) {
-            if (transitionValues.view == SecretMediaViewer.this.captionTextViewSwitcher) {
-                transitionValues.values.put("translationY", Integer.valueOf(SecretMediaViewer.this.captionScrollView.getPendingMarginTopDiff()));
-            }
-        }
-
-        @Override
-        public Animator createAnimator(ViewGroup viewGroup, TransitionValues transitionValues, TransitionValues transitionValues2) {
-            int intValue;
-            if (transitionValues.view != SecretMediaViewer.this.captionScrollView) {
-                if (transitionValues2.view != SecretMediaViewer.this.captionTextViewSwitcher || (intValue = ((Integer) transitionValues2.values.get("translationY")).intValue()) == 0) {
-                    return null;
-                }
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(SecretMediaViewer.this.captionTextViewSwitcher, (Property<PhotoViewer.CaptionTextViewSwitcher, Float>) View.TRANSLATION_Y, 0.0f, intValue);
-                ofFloat.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        SecretMediaViewer.this.captionTextViewSwitcher.setTranslationY(0.0f);
-                    }
-                });
-                return ofFloat;
-            }
-            ValueAnimator ofInt = ValueAnimator.ofInt(((Integer) transitionValues.values.get("scrollY")).intValue(), 0);
-            ofInt.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SecretMediaViewer.this.captionTextViewSwitcher.getNextView().setText((CharSequence) null);
-                    SecretMediaViewer.this.captionScrollView.applyPendingTopMargin();
-                }
-
-                @Override
-                public void onAnimationStart(Animator animator) {
-                    SecretMediaViewer.this.captionScrollView.stopScrolling();
-                }
-            });
-            ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    SecretMediaViewer.AnonymousClass13.this.lambda$createAnimator$0(valueAnimator);
-                }
-            });
-            return ofInt;
-        }
-
-        public void lambda$createAnimator$0(ValueAnimator valueAnimator) {
-            SecretMediaViewer.this.captionScrollView.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
-        }
-    }
-
-    public void showPlayButton(boolean z, boolean z2) {
-        boolean z3 = this.isVideo && z;
-        if (this.playButtonShown == z3 && z2) {
-            return;
-        }
-        this.playButtonShown = z3;
-        this.playButton.animate().cancel();
-        if (z2) {
-            this.playButton.animate().scaleX(z3 ? 1.0f : 0.6f).scaleY(z3 ? 1.0f : 0.6f).alpha(z3 ? 1.0f : 0.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-            return;
-        }
-        this.playButton.setScaleX(z3 ? 1.0f : 0.6f);
-        this.playButton.setScaleY(z3 ? 1.0f : 0.6f);
-        this.playButton.setAlpha(z3 ? 1.0f : 0.0f);
-    }
-
-    private void showSecretHint() {
-        this.secretHint.setMultilineText(true);
-        String string = LocaleController.getString(this.isVideo ? R.string.VideoShownOnce : R.string.PhotoShownOnce);
-        HintView2 hintView2 = this.secretHint;
-        hintView2.setMaxWidthPx(HintView2.cutInFancyHalf(string, hintView2.getTextPaint()));
-        this.secretHint.setText(string);
-        this.secretHint.setInnerPadding(12, 7, 11, 7);
-        this.secretHint.setIconMargin(2);
-        this.secretHint.setIconTranslate(0.0f, 0.0f);
-        this.secretHint.setIcon(R.raw.fire_on);
-        this.secretHint.show();
-        MessagesController.getGlobalMainSettings().edit().putInt("viewoncehint", MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) + 1).commit();
-    }
-
-    public void openMedia(final MessageObject messageObject, PhotoViewer.PhotoViewerProvider photoViewerProvider, final Runnable runnable, Runnable runnable2) {
-        PhotoViewer.PlaceProviderObject placeForPhoto;
-        PhotoViewer.PlaceProviderObject placeProviderObject;
-        String str;
-        int i;
-        float f;
-        ?? r15;
-        int navigationBarColor;
-        ImageLocation forDocument;
-        if (this.parentActivity == null || messageObject == null || !messageObject.needDrawBluredPreview() || photoViewerProvider == null || (placeForPhoto = photoViewerProvider.getPlaceForPhoto(messageObject, null, 0, true)) == null) {
-            return;
-        }
-        this.ignoreDelete = messageObject.messageOwner.ttl == Integer.MAX_VALUE;
-        this.onClose = runnable2;
-        this.currentProvider = photoViewerProvider;
-        this.openTime = System.currentTimeMillis();
-        this.closeTime = 0L;
-        this.isActionBarVisible = true;
-        this.isPhotoVisible = true;
-        this.draggingDown = false;
-        AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
-        if (aspectRatioFrameLayout != null) {
-            aspectRatioFrameLayout.setVisibility(4);
-        }
-        releasePlayer();
-        this.pinchStartDistance = 0.0f;
-        this.pinchStartScale = 1.0f;
-        this.pinchCenterX = 0.0f;
-        this.pinchCenterY = 0.0f;
-        this.pinchStartX = 0.0f;
-        this.pinchStartY = 0.0f;
-        this.moveStartX = 0.0f;
-        this.moveStartY = 0.0f;
-        this.zooming = false;
-        this.moving = false;
-        this.doubleTap = false;
-        this.invalidCoords = false;
-        this.canDragDown = true;
-        updateMinMax(this.scale);
-        this.photoBackgroundDrawable.setAlpha(0);
-        this.containerView.setAlpha(1.0f);
-        this.containerView.setVisibility(0);
-        this.secretDeleteTimer.setAlpha(1.0f);
-        this.isVideo = false;
-        this.videoWatchedOneTime = false;
-        this.closeVideoAfterWatch = false;
-        this.disableShowCheck = true;
-        this.centerImage.setManualAlphaAnimator(false);
-        this.videoWidth = 0;
-        this.videoHeight = 0;
-        RectF rectF = new RectF(placeForPhoto.imageReceiver.getDrawRegion());
-        rectF.left = Math.max(rectF.left, placeForPhoto.imageReceiver.getImageX());
-        rectF.top = Math.max(rectF.top, placeForPhoto.imageReceiver.getImageY());
-        rectF.right = Math.min(rectF.right, placeForPhoto.imageReceiver.getImageX2());
-        rectF.bottom = Math.min(rectF.bottom, placeForPhoto.imageReceiver.getImageY2());
-        float width = rectF.width();
-        float height = rectF.height();
-        Point point = AndroidUtilities.displaySize;
-        int i2 = point.x;
-        this.scale = Math.max(width / i2, height / (point.y + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0)));
-        int[] iArr = placeForPhoto.radius;
-        if (iArr != null) {
-            this.animateFromRadius = new int[iArr.length];
-            int i3 = 0;
-            while (true) {
-                int[] iArr2 = placeForPhoto.radius;
-                if (i3 >= iArr2.length) {
-                    break;
-                }
-                this.animateFromRadius[i3] = iArr2[i3];
-                i3++;
-            }
-        } else {
-            this.animateFromRadius = null;
-        }
-        float f2 = placeForPhoto.viewX;
-        float f3 = rectF.left;
-        this.translationX = ((f2 + f3) + (width / 2.0f)) - (i2 / 2);
-        this.translationY = ((placeForPhoto.viewY + rectF.top) + (height / 2.0f)) - (r4 / 2);
-        this.clipHorizontal = Math.abs(f3 - placeForPhoto.imageReceiver.getImageX());
-        int abs = (int) Math.abs(rectF.top - placeForPhoto.imageReceiver.getImageY());
-        int[] iArr3 = new int[2];
-        placeForPhoto.parentView.getLocationInWindow(iArr3);
-        int i4 = iArr3[1];
-        int i5 = Build.VERSION.SDK_INT;
-        float f4 = ((i4 - (i5 >= 21 ? 0 : AndroidUtilities.statusBarHeight)) - (placeForPhoto.viewY + rectF.top)) + placeForPhoto.clipTopAddition;
-        this.clipTop = f4;
-        float f5 = abs;
-        this.clipTop = Math.max(0.0f, Math.max(f4, f5));
-        float height2 = (((placeForPhoto.viewY + rectF.top) + ((int) height)) - ((iArr3[1] + placeForPhoto.parentView.getHeight()) - (i5 >= 21 ? 0 : AndroidUtilities.statusBarHeight))) + placeForPhoto.clipBottomAddition;
-        this.clipBottom = height2;
-        this.clipBottom = Math.max(0.0f, Math.max(height2, f5));
-        this.clipTopOrigin = 0.0f;
-        this.clipTopOrigin = Math.max(0.0f, Math.max(0.0f, f5));
-        this.clipBottomOrigin = 0.0f;
-        this.clipBottomOrigin = Math.max(0.0f, Math.max(0.0f, f5));
-        this.animationStartTime = System.currentTimeMillis();
-        this.animateToX = 0.0f;
-        this.animateToY = 0.0f;
-        this.animateToClipBottom = 0.0f;
-        this.animateToClipBottomOrigin = 0.0f;
-        this.animateToClipHorizontal = 0.0f;
-        this.animateToClipTop = 0.0f;
-        this.animateToClipTopOrigin = 0.0f;
-        this.animateToScale = 1.0f;
-        this.animateToRadius = true;
-        this.zoomAnimation = true;
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagesDeleted);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateMessageMedia);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.didCreatedNewDeleteTask);
-        this.currentDialogId = MessageObject.getPeerId(messageObject.messageOwner.peer_id);
-        this.currentMessageObject = messageObject;
-        TLRPC$Document document = messageObject.getDocument();
-        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            this.currentThumb = null;
-        }
-        this.currentThumb = placeForPhoto.imageReceiver.getThumbBitmapSafe();
-        this.seekbarContainer.setVisibility(8);
-        if (document == null) {
-            placeProviderObject = placeForPhoto;
-            Object obj = null;
-            str = "window";
-            i = 1;
-            i = 1;
-            f = 1.0f;
-            this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingPhoto));
-            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
-            this.centerImage.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
-            r15 = obj;
-            if (closestPhotoSizeWithSize != null) {
-                this.videoWidth = closestPhotoSizeWithSize.w;
-                this.videoHeight = closestPhotoSizeWithSize.h;
-                r15 = obj;
-            }
-        } else {
-            int i6 = 0;
-            while (true) {
-                if (i6 >= document.attributes.size()) {
-                    break;
-                }
-                TLRPC$DocumentAttribute tLRPC$DocumentAttribute = document.attributes.get(i6);
-                if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
-                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$DocumentAttribute;
-                    this.videoWidth = tLRPC$TL_documentAttributeVideo.w;
-                    this.videoHeight = tLRPC$TL_documentAttributeVideo.h;
-                    break;
-                }
-                i6++;
-            }
-            if (!MessageObject.isGifDocument(document)) {
-                placeProviderObject = placeForPhoto;
-                r15 = 0;
-                str = "window";
-                i = 1;
-                f = 1.0f;
-                this.playerRetryPlayCount = 1;
-                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingVideo));
-                File file = new File(messageObject.messageOwner.attachPath);
-                if (file.exists()) {
-                    preparePlayer(file);
-                } else {
-                    File pathToMessage = FileLoader.getInstance(this.currentAccount).getPathToMessage(messageObject.messageOwner);
-                    File file2 = new File(pathToMessage.getAbsolutePath() + ".enc");
-                    if (file2.exists()) {
-                        pathToMessage = file2;
-                    }
-                    preparePlayer(pathToMessage);
-                }
-                this.isVideo = true;
-                this.seekbarContainer.setVisibility(0);
-                this.centerImage.setImage((ImageLocation) null, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
-            } else {
-                this.actionBar.setTitle(LocaleController.getString(R.string.DisappearingGif));
-                String str2 = messageObject.messageOwner.attachPath;
-                if (str2 != null && messageObject.attachPathExists) {
-                    forDocument = ImageLocation.getForPath(str2);
-                } else {
-                    forDocument = ImageLocation.getForDocument(document);
-                }
-                f = 1.0f;
-                placeProviderObject = placeForPhoto;
-                r15 = 0;
-                str = "window";
-                i = 1;
-                this.centerImage.setImage(forDocument, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 1);
-            }
-        }
-        setCurrentCaption(messageObject, "", false, false);
-        setCurrentCaption(messageObject, messageObject.caption, false, i);
-        toggleActionBar(i, false);
-        showPlayButton(false, false);
-        this.playButtonDrawable.setPause(i);
-        if (this.ignoreDelete) {
-            this.secretDeleteTimer.setOnce();
-            this.secretDeleteTimer.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    SecretMediaViewer.this.lambda$openMedia$3(view);
-                }
-            });
-        } else {
-            this.secretDeleteTimer.setOnClickListener(r15);
-        }
-        try {
-            if (this.windowView.getParent() != null) {
-                ((WindowManager) this.parentActivity.getSystemService(str)).removeView(this.windowView);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        ((WindowManager) this.parentActivity.getSystemService(str)).addView(this.windowView, this.windowLayoutParams);
-        this.secretDeleteTimer.invalidate();
-        this.isVisible = i;
-        Window window = this.parentActivity.getWindow();
-        if (Build.VERSION.SDK_INT >= 21) {
-            this.wasLightNavigationBar = AndroidUtilities.getLightNavigationBar(window);
-            AndroidUtilities.setLightNavigationBar(window, false);
-            AndroidUtilities.setLightNavigationBar((View) this.windowView, false);
-            Activity activity = this.parentActivity;
-            if (activity instanceof LaunchActivity) {
-                this.wasNavigationBarColor = ((LaunchActivity) activity).getNavigationBarColor();
-                ((LaunchActivity) this.parentActivity).animateNavigationBarColor(-16777216);
-            } else {
-                navigationBarColor = window.getNavigationBarColor();
-                this.wasNavigationBarColor = navigationBarColor;
-                AndroidUtilities.setNavigationBarColor(window, -16777216);
-            }
-        }
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.imageMoveAnimation = animatorSet;
-        ActionBar actionBar = this.actionBar;
-        Property property = View.ALPHA;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, 0.0f, 1.0f);
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.captionScrollView, (Property<PhotoViewer.CaptionScrollView, Float>) property, 0.0f, 1.0f);
-        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.secretHint, (Property<HintView2, Float>) property, 0.0f, 1.0f);
-        ObjectAnimator ofInt = ObjectAnimator.ofInt(this.photoBackgroundDrawable, (Property<PhotoBackgroundDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0, 255);
-        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f);
-        VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
-        Property<VideoPlayerControlFrameLayout, Float> property2 = videoPlayerControlFrameLayout.SEEKBAR_ALPHA;
-        float[] fArr = new float[i];
-        fArr[0] = f;
-        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, property2, fArr);
-        VideoPlayerControlFrameLayout videoPlayerControlFrameLayout2 = this.seekbarContainer;
-        if (!this.isVideo) {
-            f = 0.0f;
-        }
-        float[] fArr2 = new float[i];
-        fArr2[0] = f;
-        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout2, (Property<VideoPlayerControlFrameLayout, Float>) property, fArr2);
-        Animator[] animatorArr = new Animator[7];
-        animatorArr[0] = ofFloat;
-        animatorArr[i] = ofFloat2;
-        animatorArr[2] = ofFloat3;
-        animatorArr[3] = ofInt;
-        animatorArr[4] = ofFloat4;
-        animatorArr[5] = ofFloat5;
-        animatorArr[6] = ofFloat6;
-        animatorSet.playTogether(animatorArr);
-        this.photoAnimationInProgress = 3;
-        this.photoAnimationEndRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                SecretMediaViewer.this.lambda$openMedia$4(runnable, messageObject);
-            }
-        };
-        this.imageMoveAnimation.setDuration(250L);
-        this.imageMoveAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (SecretMediaViewer.this.photoAnimationEndRunnable != null) {
-                    SecretMediaViewer.this.photoAnimationEndRunnable.run();
-                    SecretMediaViewer.this.photoAnimationEndRunnable = null;
-                }
-            }
-        });
-        this.photoTransitionAnimationStartTime = System.currentTimeMillis();
-        if (SharedConfig.getDevicePerformanceClass() == 0) {
-            this.containerView.setLayerType(2, r15);
-        }
-        this.imageMoveAnimation.setInterpolator(new DecelerateInterpolator());
-        this.photoBackgroundDrawable.frame = 0;
-        final PhotoViewer.PlaceProviderObject placeProviderObject2 = placeProviderObject;
-        this.photoBackgroundDrawable.drawRunnable = new Runnable() {
-            @Override
-            public final void run() {
-                SecretMediaViewer.this.lambda$openMedia$5(placeProviderObject2);
-            }
-        };
-        this.imageMoveAnimation.start();
-    }
-
-    public void lambda$openMedia$3(View view) {
-        MessageObject messageObject = this.currentMessageObject;
-        if (messageObject != null) {
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message.destroyTime != 0 || tLRPC$Message.ttl == Integer.MAX_VALUE) {
-                if (this.secretHint.shown()) {
-                    this.secretHint.hide();
-                } else {
-                    showSecretHint();
-                }
-            }
-        }
-    }
-
-    public void lambda$openMedia$4(Runnable runnable, MessageObject messageObject) {
-        this.photoAnimationInProgress = 0;
-        this.imageMoveAnimation = null;
-        if (runnable != null) {
-            runnable.run();
-        }
-        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
-        if (frameLayoutDrawer == null) {
-            return;
-        }
-        frameLayoutDrawer.setLayerType(0, null);
-        this.containerView.invalidate();
-        this.secretDeleteTimer.setDestroyTime(messageObject.messageOwner.destroyTimeMillis, r8.ttl, false);
-        if (this.closeAfterAnimation) {
-            closePhoto(true, true);
-        } else {
-            if (!this.ignoreDelete || MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) >= 3) {
-                return;
-            }
-            showSecretHint();
-        }
-    }
-
-    public void lambda$openMedia$5(PhotoViewer.PlaceProviderObject placeProviderObject) {
-        this.disableShowCheck = false;
-        placeProviderObject.imageReceiver.setVisible(false, true);
-    }
-
-    public boolean isShowingImage(MessageObject messageObject) {
-        MessageObject messageObject2;
-        return (!this.isVisible || this.disableShowCheck || messageObject == null || (messageObject2 = this.currentMessageObject) == null || messageObject2.getId() != messageObject.getId()) ? false : true;
-    }
-
-    public void lambda$new$6() {
-        toggleActionBar(false, true);
-    }
-
-    private void toggleActionBar(boolean z, boolean z2) {
-        AndroidUtilities.cancelRunOnUIThread(this.hideActionBarRunnable);
-        if (z && this.isVideo) {
-            AndroidUtilities.runOnUIThread(this.hideActionBarRunnable, 3000L);
-        }
-        if (z) {
-            this.actionBar.setVisibility(0);
-        }
-        this.actionBar.setEnabled(z);
-        this.isActionBarVisible = z;
-        showPlayButton(z, z2);
-        if (z2) {
-            ArrayList arrayList = new ArrayList();
-            ActionBar actionBar = this.actionBar;
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, z ? 1.0f : 0.0f));
-            VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
-            arrayList.add(ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, videoPlayerControlFrameLayout.SEEKBAR_ALPHA, z ? 1.0f : 0.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.captionScrollView, (Property<PhotoViewer.CaptionScrollView, Float>) property, z ? 1.0f : 0.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.seekbarBackground, (Property<View, Float>) property, z ? 1.0f : 0.0f));
-            arrayList.add(ObjectAnimator.ofFloat(this.navigationBar, (Property<View, Float>) property, z ? 1.0f : 0.0f));
-            AnimatorSet animatorSet = new AnimatorSet();
-            this.currentActionBarAnimation = animatorSet;
-            animatorSet.playTogether(arrayList);
-            if (!z) {
-                this.currentActionBarAnimation.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (SecretMediaViewer.this.currentActionBarAnimation == null || !SecretMediaViewer.this.currentActionBarAnimation.equals(animator)) {
-                            return;
-                        }
-                        SecretMediaViewer.this.actionBar.setVisibility(8);
-                        SecretMediaViewer.this.currentActionBarAnimation = null;
-                        SecretMediaViewer.this.captionScrollView.scrollTo(0, 0);
-                    }
-                });
-            }
-            this.currentActionBarAnimation.setDuration(200L);
-            this.currentActionBarAnimation.start();
-            return;
-        }
-        this.actionBar.setAlpha(z ? 1.0f : 0.0f);
-        this.captionScrollView.setAlpha(z ? 1.0f : 0.0f);
-        this.seekbarBackground.setAlpha(z ? 1.0f : 0.0f);
-        this.navigationBar.setAlpha(z ? 1.0f : 0.0f);
-        if (z) {
-            return;
-        }
-        this.actionBar.setVisibility(8);
-        this.captionScrollView.scrollTo(0, 0);
-    }
-
-    public boolean isVisible() {
-        return this.isVisible;
-    }
-
-    public void setOnClose(Runnable runnable) {
-        this.onClose = runnable;
-    }
-
-    public void destroyPhotoViewer() {
-        FrameLayout frameLayout;
-        Runnable runnable = this.onClose;
-        if (runnable != null) {
-            runnable.run();
-            this.onClose = null;
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagesDeleted);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateMessageMedia);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didCreatedNewDeleteTask);
-        this.isVisible = false;
-        this.currentProvider = null;
-        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            this.currentThumb = null;
-        }
-        releasePlayer();
-        if (this.parentActivity != null && (frameLayout = this.windowView) != null) {
-            try {
-                if (frameLayout.getParent() != null) {
-                    ((WindowManager) this.parentActivity.getSystemService("window")).removeViewImmediate(this.windowView);
-                }
-                this.windowView = null;
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        Instance = null;
-    }
-
-    public void onDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Keep
-    public float getVideoCrossfadeAlpha() {
-        return this.videoCrossfadeAlpha;
-    }
-
-    @Keep
-    public void setVideoCrossfadeAlpha(float f) {
-        this.videoCrossfadeAlpha = f;
-        this.containerView.invalidate();
-    }
-
-    private boolean checkPhotoAnimation() {
-        if (this.photoAnimationInProgress != 0 && Math.abs(this.photoTransitionAnimationStartTime - System.currentTimeMillis()) >= 500) {
-            Runnable runnable = this.photoAnimationEndRunnable;
-            if (runnable != null) {
-                runnable.run();
-                this.photoAnimationEndRunnable = null;
-            }
-            this.photoAnimationInProgress = 0;
-        }
-        return this.photoAnimationInProgress != 0;
-    }
-
-    public long getOpenTime() {
-        return this.openTime;
-    }
-
-    public long getCloseTime() {
-        return this.closeTime;
-    }
-
-    public MessageObject getCurrentMessageObject() {
-        return this.currentMessageObject;
-    }
-
-    public boolean closePhoto(boolean r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.closePhoto(boolean, boolean):boolean");
-    }
-
-    public void lambda$closePhoto$7(PhotoViewer.PlaceProviderObject placeProviderObject) {
-        this.imageMoveAnimation = null;
-        this.photoAnimationInProgress = 0;
-        this.containerView.setLayerType(0, null);
-        this.containerView.setVisibility(4);
-        onPhotoClosed(placeProviderObject);
-    }
-
-    public class AnonymousClass16 extends AnimatorListenerAdapter {
-        final PhotoViewer.PlaceProviderObject val$object;
-
-        AnonymousClass16(PhotoViewer.PlaceProviderObject placeProviderObject) {
-            this.val$object = placeProviderObject;
-        }
-
-        @Override
-        public void onAnimationEnd(Animator animator) {
-            PhotoViewer.PlaceProviderObject placeProviderObject = this.val$object;
-            if (placeProviderObject != null) {
-                placeProviderObject.imageReceiver.setVisible(true, true);
-            }
-            SecretMediaViewer.this.isVisible = false;
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    SecretMediaViewer.AnonymousClass16.this.lambda$onAnimationEnd$0();
-                }
-            });
-        }
-
-        public void lambda$onAnimationEnd$0() {
-            if (SecretMediaViewer.this.photoAnimationEndRunnable != null) {
-                SecretMediaViewer.this.photoAnimationEndRunnable.run();
-                SecretMediaViewer.this.photoAnimationEndRunnable = null;
-            }
-        }
-    }
-
-    public void lambda$closePhoto$8(PhotoViewer.PlaceProviderObject placeProviderObject) {
-        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
-        if (frameLayoutDrawer == null) {
-            return;
-        }
-        frameLayoutDrawer.setLayerType(0, null);
-        this.containerView.setVisibility(4);
-        this.photoAnimationInProgress = 0;
-        onPhotoClosed(placeProviderObject);
-        this.containerView.setScaleX(1.0f);
-        this.containerView.setScaleY(1.0f);
-    }
-
-    private void onPhotoClosed(PhotoViewer.PlaceProviderObject placeProviderObject) {
-        this.isVisible = false;
-        this.currentProvider = null;
-        this.disableShowCheck = false;
-        releasePlayer();
-        new ArrayList();
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                SecretMediaViewer.this.lambda$onPhotoClosed$9();
-            }
-        }, 50L);
-    }
-
-    public void lambda$onPhotoClosed$9() {
-        ImageReceiver.BitmapHolder bitmapHolder = this.currentThumb;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            this.currentThumb = null;
-        }
-        this.centerImage.setImageBitmap((Bitmap) null);
-        try {
-            if (this.windowView.getParent() != null) {
-                ((WindowManager) this.parentActivity.getSystemService("window")).removeView(this.windowView);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        this.isPhotoVisible = false;
-    }
-
-    public void updateMinMax(float f) {
-        int imageWidth = ((int) ((this.centerImage.getImageWidth() * f) - getContainerViewWidth())) / 2;
-        int imageHeight = ((int) ((this.centerImage.getImageHeight() * f) - getContainerViewHeight())) / 2;
-        if (imageWidth > 0) {
-            this.minX = -imageWidth;
-            this.maxX = imageWidth;
-        } else {
-            this.maxX = 0.0f;
-            this.minX = 0.0f;
-        }
-        if (imageHeight > 0) {
-            this.minY = -imageHeight;
-            this.maxY = imageHeight;
-        } else {
-            this.maxY = 0.0f;
-            this.minY = 0.0f;
-        }
-    }
-
-    private int getContainerViewWidth() {
-        return this.containerView.getWidth();
-    }
-
-    private int getContainerViewHeight() {
-        return this.containerView.getHeight();
-    }
-
-    public boolean processTouchEvent(android.view.MotionEvent r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.processTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    private void checkMinMax(boolean r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.checkMinMax(boolean):void");
-    }
-
-    private void animateTo(float f, float f2, float f3, boolean z) {
-        animateTo(f, f2, f3, z, 250);
-    }
-
-    private void animateTo(float f, float f2, float f3, boolean z, int i) {
-        if (this.scale == f && this.translationX == f2 && this.translationY == f3) {
-            return;
-        }
-        this.zoomAnimation = z;
-        this.animateToScale = f;
-        this.animateToX = f2;
-        this.animateToY = f3;
-        this.animationStartTime = System.currentTimeMillis();
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.imageMoveAnimation = animatorSet;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f));
-        this.imageMoveAnimation.setInterpolator(this.interpolator);
-        this.imageMoveAnimation.setDuration(i);
-        this.imageMoveAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                SecretMediaViewer.this.imageMoveAnimation = null;
-                SecretMediaViewer.this.containerView.invalidate();
-            }
-        });
-        this.imageMoveAnimation.start();
-    }
-
-    @Keep
-    public void setAnimationValue(float f) {
-        this.animationValue = f;
-        this.containerView.invalidate();
-    }
-
-    @Keep
-    public float getAnimationValue() {
-        return this.animationValue;
-    }
-
-    @Override
-    public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-        if (this.scale == 1.0f) {
-            return false;
-        }
-        this.scroller.abortAnimation();
-        this.scroller.fling(Math.round(this.translationX), Math.round(this.translationY), Math.round(f), Math.round(f2), (int) this.minX, (int) this.maxX, (int) this.minY, (int) this.maxY);
-        this.containerView.postInvalidate();
-        return false;
-    }
-
-    @Override
-    public boolean onSingleTapConfirmed(MotionEvent motionEvent) {
-        if (this.discardTap) {
-            return false;
-        }
-        if (this.videoPlayer != null && this.isActionBarVisible && motionEvent.getX() >= this.playButton.getX() && motionEvent.getY() >= this.playButton.getY() && motionEvent.getX() <= this.playButton.getX() + this.playButton.getMeasuredWidth() && motionEvent.getX() <= this.playButton.getX() + this.playButton.getMeasuredWidth()) {
-            this.videoPlayer.setPlayWhenReady(!r5.getPlayWhenReady());
-            if (this.videoPlayer.getPlayWhenReady()) {
-                toggleActionBar(true, true);
-            } else {
-                showPlayButton(true, true);
-            }
-        } else {
-            toggleActionBar(!this.isActionBarVisible, true);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onDoubleTap(android.view.MotionEvent r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.onDoubleTap(android.view.MotionEvent):boolean");
-    }
-
-    public class VideoPlayerControlFrameLayout extends FrameLayout {
-        public final Property<VideoPlayerControlFrameLayout, Float> SEEKBAR_ALPHA;
-        private boolean ignoreLayout;
-        private int lastTimeWidth;
-        private int parentHeight;
-        private int parentWidth;
-        private float progress;
-        private boolean seekBarTransitionEnabled;
-        private SpringAnimation timeSpring;
-        private FloatValueHolder timeValue;
-        private boolean translationYAnimationEnabled;
-
-        public void lambda$new$0(DynamicAnimation dynamicAnimation, float f, float f2) {
-            SecretMediaViewer.this.seekbar.setSize((int) (((getMeasuredWidth() - AndroidUtilities.dp(16.0f)) - f) - (this.parentWidth > this.parentHeight ? AndroidUtilities.dp(48.0f) : 0)), getMeasuredHeight());
-        }
-
-        public VideoPlayerControlFrameLayout(Context context) {
-            super(context);
-            this.progress = 1.0f;
-            this.seekBarTransitionEnabled = true;
-            this.translationYAnimationEnabled = true;
-            this.timeValue = new FloatValueHolder(0.0f);
-            this.timeSpring = new SpringAnimation(this.timeValue).setSpring(new SpringForce(0.0f).setStiffness(750.0f).setDampingRatio(1.0f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    SecretMediaViewer.VideoPlayerControlFrameLayout.this.lambda$new$0(dynamicAnimation, f, f2);
-                }
-            });
-            this.SEEKBAR_ALPHA = new AnimationProperties.FloatProperty<VideoPlayerControlFrameLayout>("progress") {
-                @Override
-                public void setValue(VideoPlayerControlFrameLayout videoPlayerControlFrameLayout, float f) {
-                    videoPlayerControlFrameLayout.setProgress(f);
-                }
-
-                @Override
-                public Float get(VideoPlayerControlFrameLayout videoPlayerControlFrameLayout) {
-                    return Float.valueOf(videoPlayerControlFrameLayout.getProgress());
-                }
-            };
-            setWillNotDraw(false);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            if (this.progress < 1.0f) {
-                return false;
-            }
-            if (SecretMediaViewer.this.seekbar.onTouch(motionEvent.getAction(), motionEvent.getX() - AndroidUtilities.dp(2.0f), motionEvent.getY())) {
-                getParent().requestDisallowInterceptTouchEvent(true);
-                SecretMediaViewer.this.seekbarView.invalidate();
-            }
-            return true;
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            this.timeValue.setValue(0.0f);
-            this.lastTimeWidth = 0;
-        }
-
-        @Override
-        public void requestLayout() {
-            if (this.ignoreLayout) {
-                return;
-            }
-            super.requestLayout();
-        }
-
-        @Override
-        protected void onMeasure(int r13, int r14) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.SecretMediaViewer.VideoPlayerControlFrameLayout.onMeasure(int, int):void");
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            SecretMediaViewer.this.seekbar.setProgress(SecretMediaViewer.this.videoPlayer != null ? ((float) SecretMediaViewer.this.videoPlayer.getCurrentPosition()) / ((float) SecretMediaViewer.this.videoPlayer.getDuration()) : 0.0f);
-        }
-
-        public float getProgress() {
-            return this.progress;
-        }
-
-        public void setProgress(float f) {
-            if (this.progress != f) {
-                this.progress = f;
-                onProgressChanged(f);
-            }
-        }
-
-        private void onProgressChanged(float f) {
-            SecretMediaViewer.this.videoPlayerTime.setAlpha(f);
-            if (this.seekBarTransitionEnabled) {
-                SecretMediaViewer.this.videoPlayerTime.setPivotX(SecretMediaViewer.this.videoPlayerTime.getWidth());
-                SecretMediaViewer.this.videoPlayerTime.setPivotY(SecretMediaViewer.this.videoPlayerTime.getHeight());
-                float f2 = 1.0f - f;
-                float f3 = 1.0f - (0.1f * f2);
-                SecretMediaViewer.this.videoPlayerTime.setScaleX(f3);
-                SecretMediaViewer.this.videoPlayerTime.setScaleY(f3);
-                SecretMediaViewer.this.seekbar.setTransitionProgress(f2);
-                return;
-            }
-            if (this.translationYAnimationEnabled) {
-                setTranslationY(AndroidUtilities.dpf2(24.0f) * (1.0f - f));
-            }
-            SecretMediaViewer.this.seekbarView.setAlpha(f);
-        }
-    }
-
-    private void setCaptionHwLayerEnabled(boolean z) {
-        if (this.captionHwLayerEnabled != z) {
-            this.captionHwLayerEnabled = z;
-            this.captionTextViewSwitcher.setLayerType(2, null);
-            this.captionTextViewSwitcher.getCurrentView().setLayerType(2, null);
-            this.captionTextViewSwitcher.getNextView().setLayerType(2, null);
-        }
     }
 }

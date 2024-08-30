@@ -28,17 +28,9 @@ public enum BotWebViewVibrationEffect {
 
     public VibrationEffect getVibrationEffectForOreo() {
         boolean hasAmplitudeControl;
-        VibrationEffect createWaveform;
-        VibrationEffect createWaveform2;
         if (this.vibrationEffect == null) {
             hasAmplitudeControl = AndroidUtilities.getVibrator().hasAmplitudeControl();
-            if (!hasAmplitudeControl) {
-                createWaveform2 = VibrationEffect.createWaveform(this.fallbackTimings, -1);
-                this.vibrationEffect = createWaveform2;
-            } else {
-                createWaveform = VibrationEffect.createWaveform(this.timings, this.amplitudes, -1);
-                this.vibrationEffect = createWaveform;
-            }
+            this.vibrationEffect = !hasAmplitudeControl ? VibrationEffect.createWaveform(this.fallbackTimings, -1) : VibrationEffect.createWaveform(this.timings, this.amplitudes, -1);
         }
         return BotWebViewVibrationEffect$$ExternalSyntheticApiModelOutline3.m(this.vibrationEffect);
     }

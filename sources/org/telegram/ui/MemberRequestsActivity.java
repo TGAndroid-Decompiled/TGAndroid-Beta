@@ -42,16 +42,16 @@ public class MemberRequestsActivity extends BaseFragment {
         this.actionBar.setTitle(LocaleController.getString(this.delegate.isChannel ? R.string.SubscribeRequests : R.string.MemberRequests));
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
-            public void onSearchExpand() {
-                super.onSearchExpand();
-                MemberRequestsActivity.this.delegate.setSearchExpanded(true);
-            }
-
-            @Override
             public void onSearchCollapse() {
                 super.onSearchCollapse();
                 MemberRequestsActivity.this.delegate.setSearchExpanded(false);
                 MemberRequestsActivity.this.delegate.setQuery(null);
+            }
+
+            @Override
+            public void onSearchExpand() {
+                super.onSearchExpand();
+                MemberRequestsActivity.this.delegate.setSearchExpanded(true);
             }
 
             @Override

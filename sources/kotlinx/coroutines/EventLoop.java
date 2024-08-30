@@ -1,53 +1,11 @@
 package kotlinx.coroutines;
 
-import kotlinx.coroutines.internal.ArrayQueue;
-
 public abstract class EventLoop extends CoroutineDispatcher {
     private boolean shared;
-    private ArrayQueue<DispatchedTask<?>> unconfinedQueue;
     private long useCount;
 
     private final long delta(boolean z) {
         return z ? 4294967296L : 1L;
-    }
-
-    public void shutdown() {
-    }
-
-    public long getNextTime() {
-        ArrayQueue<DispatchedTask<?>> arrayQueue = this.unconfinedQueue;
-        return (arrayQueue == null || arrayQueue.isEmpty()) ? Long.MAX_VALUE : 0L;
-    }
-
-    public final boolean processUnconfinedEvent() {
-        DispatchedTask<?> removeFirstOrNull;
-        ArrayQueue<DispatchedTask<?>> arrayQueue = this.unconfinedQueue;
-        if (arrayQueue == null || (removeFirstOrNull = arrayQueue.removeFirstOrNull()) == null) {
-            return false;
-        }
-        removeFirstOrNull.run();
-        return true;
-    }
-
-    public final void dispatchUnconfined(DispatchedTask<?> dispatchedTask) {
-        ArrayQueue<DispatchedTask<?>> arrayQueue = this.unconfinedQueue;
-        if (arrayQueue == null) {
-            arrayQueue = new ArrayQueue<>();
-            this.unconfinedQueue = arrayQueue;
-        }
-        arrayQueue.addLast(dispatchedTask);
-    }
-
-    public final boolean isUnconfinedLoopActive() {
-        return this.useCount >= delta(true);
-    }
-
-    public final boolean isUnconfinedQueueEmpty() {
-        ArrayQueue<DispatchedTask<?>> arrayQueue = this.unconfinedQueue;
-        if (arrayQueue == null) {
-            return true;
-        }
-        return arrayQueue.isEmpty();
     }
 
     public static void incrementUseCount$default(EventLoop eventLoop, boolean z, int i, Object obj) {
@@ -60,6 +18,10 @@ public abstract class EventLoop extends CoroutineDispatcher {
         eventLoop.incrementUseCount(z);
     }
 
+    public long getNextTime() {
+        return Long.MAX_VALUE;
+    }
+
     public final void incrementUseCount(boolean z) {
         this.useCount += delta(z);
         if (z) {
@@ -68,11 +30,11 @@ public abstract class EventLoop extends CoroutineDispatcher {
         this.shared = true;
     }
 
-    public final void decrementUseCount(boolean z) {
-        long delta = this.useCount - delta(z);
-        this.useCount = delta;
-        if (delta <= 0 && this.shared) {
-            shutdown();
-        }
+    public final boolean isUnconfinedQueueEmpty() {
+        return true;
+    }
+
+    public final boolean processUnconfinedEvent() {
+        return false;
     }
 }

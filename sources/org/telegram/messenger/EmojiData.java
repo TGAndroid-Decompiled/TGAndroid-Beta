@@ -64,19 +64,19 @@ public class EmojiData {
         }
     }
 
-    public static boolean isHeartEmoji(String str) {
-        return "\u1fa77".equals(str) || "❤".equals(str) || "🧡".equals(str) || "💛".equals(str) || "💚".equals(str) || "\u1fa75".equals(str) || "💙".equals(str) || "💜".equals(str) || "🖤".equals(str) || "\u1fa76".equals(str) || "🤍".equals(str) || "🤎".equals(str);
-    }
-
-    public static boolean isPeachEmoji(String str) {
-        return "🍑".equals(str);
+    public static boolean hasEmojiSupportVibration(String str) {
+        return isHeartEmoji(str) || isPeachEmoji(str) || isCofinEmoji(str);
     }
 
     public static boolean isCofinEmoji(String str) {
         return "⚰".equals(str);
     }
 
-    public static boolean hasEmojiSupportVibration(String str) {
-        return isHeartEmoji(str) || isPeachEmoji(str) || isCofinEmoji(str);
+    public static boolean isHeartEmoji(String str) {
+        return "\u1fa77".equals(str) || "❤".equals(str) || "🧡".equals(str) || "💛".equals(str) || "💚".equals(str) || "\u1fa75".equals(str) || "💙".equals(str) || "💜".equals(str) || "🖤".equals(str) || "\u1fa76".equals(str) || "🤍".equals(str) || "🤎".equals(str);
+    }
+
+    public static boolean isPeachEmoji(String str) {
+        return "🍑".equals(str);
     }
 }

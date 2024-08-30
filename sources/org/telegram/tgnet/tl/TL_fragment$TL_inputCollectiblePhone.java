@@ -6,13 +6,13 @@ public class TL_fragment$TL_inputCollectiblePhone extends TL_fragment$InputColle
     public String phone;
 
     @Override
-    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1562241884);
-        abstractSerializedData.writeString(this.phone);
+    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+        this.phone = abstractSerializedData.readString(z);
     }
 
     @Override
-    public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.phone = abstractSerializedData.readString(z);
+    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        abstractSerializedData.writeInt32(-1562241884);
+        abstractSerializedData.writeString(this.phone);
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_webPageAttributeStickerSet extends TLRPC$WebPageAttribute {
     public boolean emojis;
-    public ArrayList<TLRPC$Document> stickers = new ArrayList<>();
+    public ArrayList stickers = new ArrayList();
     public boolean text_color;
 
     @Override
@@ -42,7 +42,7 @@ public class TLRPC$TL_webPageAttributeStickerSet extends TLRPC$WebPageAttribute 
         int size = this.stickers.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            this.stickers.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$Document) this.stickers.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

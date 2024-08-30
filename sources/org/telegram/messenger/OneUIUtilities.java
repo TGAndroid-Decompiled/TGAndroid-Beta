@@ -10,6 +10,31 @@ public class OneUIUtilities {
     private static int oneUIMajorVersion;
     private static float oneUIMinorVersion;
 
+    public static int getOneUIEncodedVersion() {
+        if (isOneUI()) {
+            return oneUIEncodedVersion;
+        }
+        return 0;
+    }
+
+    public static int getOneUIMajorVersion() {
+        if (isOneUI()) {
+            return oneUIMajorVersion;
+        }
+        return 0;
+    }
+
+    public static float getOneUIMinorVersion() {
+        if (isOneUI()) {
+            return oneUIMinorVersion;
+        }
+        return 0.0f;
+    }
+
+    public static boolean hasBuiltInClipboardToasts() {
+        return isOneUI() && getOneUIEncodedVersion() == 40000;
+    }
+
     public static boolean isOneUI() {
         int intValue;
         Boolean bool = isOneUI;
@@ -32,30 +57,5 @@ public class OneUIUtilities {
         oneUIMinorVersion = (i % 10000) / 100.0f;
         isOneUI = Boolean.TRUE;
         return isOneUI.booleanValue();
-    }
-
-    public static boolean hasBuiltInClipboardToasts() {
-        return isOneUI() && getOneUIEncodedVersion() == 40000;
-    }
-
-    public static int getOneUIMajorVersion() {
-        if (isOneUI()) {
-            return oneUIMajorVersion;
-        }
-        return 0;
-    }
-
-    public static int getOneUIEncodedVersion() {
-        if (isOneUI()) {
-            return oneUIEncodedVersion;
-        }
-        return 0;
-    }
-
-    public static float getOneUIMinorVersion() {
-        if (isOneUI()) {
-            return oneUIMinorVersion;
-        }
-        return 0.0f;
     }
 }

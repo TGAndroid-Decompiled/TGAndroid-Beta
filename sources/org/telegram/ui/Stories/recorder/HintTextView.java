@@ -26,21 +26,11 @@ public class HintTextView extends View implements FlashViews.Invertable {
         animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
     }
 
-    public void setText(CharSequence charSequence, boolean z) {
-        this.textDrawable.setText(charSequence, z);
-        invalidate();
-    }
-
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
         this.textDrawable.setBounds(0, 0, getWidth(), getHeight());
         this.textDrawable.draw(canvas);
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.textDrawable || super.verifyDrawable(drawable);
     }
 
     @Override
@@ -52,5 +42,15 @@ public class HintTextView extends View implements FlashViews.Invertable {
     @Override
     public void setInvert(float f) {
         this.textDrawable.setTextColor(ColorUtils.blendARGB(-1, -16777216, f));
+    }
+
+    public void setText(CharSequence charSequence, boolean z) {
+        this.textDrawable.setText(charSequence, z);
+        invalidate();
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.textDrawable || super.verifyDrawable(drawable);
     }
 }

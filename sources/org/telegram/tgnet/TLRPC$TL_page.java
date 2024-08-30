@@ -74,19 +74,19 @@ public class TLRPC$TL_page extends TLRPC$Page {
         int size = this.blocks.size();
         abstractSerializedData.writeInt32(size);
         for (int i4 = 0; i4 < size; i4++) {
-            this.blocks.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$PageBlock) this.blocks.get(i4)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.photos.size();
         abstractSerializedData.writeInt32(size2);
         for (int i5 = 0; i5 < size2; i5++) {
-            this.photos.get(i5).serializeToStream(abstractSerializedData);
+            ((TLRPC$Photo) this.photos.get(i5)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.documents.size();
         abstractSerializedData.writeInt32(size3);
         for (int i6 = 0; i6 < size3; i6++) {
-            this.documents.get(i6).serializeToStream(abstractSerializedData);
+            ((TLRPC$Document) this.documents.get(i6)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeInt32(this.views);

@@ -29,7 +29,7 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CacheChart;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 
-public class CacheChart extends View {
+public abstract class CacheChart extends View {
     private static final int[] DEFAULT_COLORS;
     private static final int[] DEFAULT_PARTICLES;
     private static Long loadedStart;
@@ -69,48 +69,6 @@ public class CacheChart extends View {
     private AnimatedTextView.AnimatedTextDrawable topCompleteText;
     private AnimatedTextView.AnimatedTextDrawable topText;
     private final int type;
-
-    public static float toRad(float f) {
-        double d = f / 180.0f;
-        Double.isNaN(d);
-        return (float) (d * 3.141592653589793d);
-    }
-
-    protected int heightDp() {
-        return 200;
-    }
-
-    protected void onSectionClick(int i) {
-    }
-
-    protected void onSectionDown(int i, boolean z) {
-    }
-
-    protected int padInsideDp() {
-        return 0;
-    }
-
-    static {
-        int i = Theme.key_statisticChartLine_lightblue;
-        int i2 = Theme.key_statisticChartLine_blue;
-        int i3 = Theme.key_statisticChartLine_green;
-        int i4 = Theme.key_statisticChartLine_purple;
-        int i5 = Theme.key_statisticChartLine_lightgreen;
-        int i6 = Theme.key_statisticChartLine_red;
-        int i7 = Theme.key_statisticChartLine_orange;
-        int i8 = Theme.key_statisticChartLine_cyan;
-        int i9 = Theme.key_statisticChartLine_golden;
-        DEFAULT_COLORS = new int[]{i, i2, i3, i4, i5, i6, i7, i8, i4, i9, i9};
-        int i10 = R.raw.cache_photos;
-        int i11 = R.raw.cache_videos;
-        int i12 = R.raw.cache_documents;
-        int i13 = R.raw.cache_music;
-        int i14 = R.raw.cache_stickers;
-        int i15 = R.raw.cache_profile_photos;
-        int i16 = R.raw.cache_other;
-        DEFAULT_PARTICLES = new int[]{i10, i11, i12, i13, i11, i13, i14, i15, i16, i16, i12};
-        particlesStart = -1L;
-    }
 
     public class Sector {
         float angleCenter;
@@ -174,6 +132,74 @@ public class CacheChart extends View {
             this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
             this.particlePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
             this.rectF = new RectF();
+        }
+
+        private void drawParticles(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10) {
+            if (f10 <= 0.0f || !LiteMode.isEnabled(98784)) {
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            float sqrt = (float) Math.sqrt(2.0d);
+            if (CacheChart.particlesStart < 0) {
+                long unused = CacheChart.particlesStart = currentTimeMillis;
+            }
+            float f11 = ((float) (currentTimeMillis - CacheChart.particlesStart)) / 10000.0f;
+            Bitmap bitmap = this.particle;
+            if (bitmap != null) {
+                int width = bitmap.getWidth();
+                float f12 = width;
+                float dpf2 = AndroidUtilities.dpf2(15.0f) / f12;
+                float f13 = 7.0f;
+                int floor = (int) Math.floor((f5 % 360.0f) / 7.0f);
+                int ceil = (int) Math.ceil((f6 % 360.0f) / 7.0f);
+                while (floor <= ceil) {
+                    float f14 = floor * f13;
+                    double d = 100.0f + f11;
+                    double sin = ((Math.sin(2000.0f * f14) + 1.0d) * 0.25d) + 1.0d;
+                    Double.isNaN(d);
+                    float f15 = (float) ((d * sin) % 1.0d);
+                    float f16 = f12 * sqrt;
+                    double d2 = f;
+                    float f17 = f12;
+                    int i = ceil;
+                    double lerp = AndroidUtilities.lerp(f7 - f16, f8 + f16, f15);
+                    double cos = Math.cos(CacheChart.toRad(f14));
+                    Double.isNaN(lerp);
+                    Double.isNaN(d2);
+                    float f18 = (float) (d2 + (cos * lerp));
+                    double d3 = f2;
+                    double sin2 = Math.sin(CacheChart.toRad(f14));
+                    Double.isNaN(lerp);
+                    Double.isNaN(d3);
+                    float f19 = (float) (d3 + (lerp * sin2));
+                    float abs = 0.65f * f10 * ((Math.abs(f15 - 0.5f) * (-1.75f)) + 1.0f);
+                    double d4 = f15;
+                    Double.isNaN(d4);
+                    double d5 = d4 * 3.141592653589793d;
+                    this.particlePaint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, abs * ((((float) (Math.sin(d5) - 1.0d)) * 0.25f) + 1.0f) * AndroidUtilities.lerp(1.0f, Math.min(MathUtils.distance(f18, f19, f3, f4) / AndroidUtilities.dpf2(64.0f), 1.0f), f9))) * 255.0f));
+                    double sin3 = ((((float) (Math.sin(d5) - 1.0d)) * 0.25f) + 1.0f) * 0.75f;
+                    double sin4 = ((Math.sin(f14) + 1.0d) * 0.25d) + 0.800000011920929d;
+                    Double.isNaN(sin3);
+                    float f20 = ((float) (sin3 * sin4)) * dpf2;
+                    canvas.save();
+                    canvas.translate(f18, f19);
+                    canvas.scale(f20, f20);
+                    float f21 = -(width >> 1);
+                    canvas.drawBitmap(this.particle, f21, f21, this.particlePaint);
+                    canvas.restore();
+                    floor++;
+                    ceil = i;
+                    f11 = f11;
+                    f12 = f17;
+                    f13 = 7.0f;
+                }
+            }
+        }
+
+        private void setGradientBounds(float f, float f2, float f3, float f4) {
+            this.gradientMatrix.reset();
+            this.gradientMatrix.setTranslate(f, f2);
+            this.gradient.setLocalMatrix(this.gradientMatrix);
         }
 
         private void setupPath(RectF rectF, RectF rectF2, float f, float f2, float f3) {
@@ -284,74 +310,6 @@ public class CacheChart extends View {
             this.path.computeBounds(this.pathBounds, false);
         }
 
-        private void setGradientBounds(float f, float f2, float f3, float f4) {
-            this.gradientMatrix.reset();
-            this.gradientMatrix.setTranslate(f, f2);
-            this.gradient.setLocalMatrix(this.gradientMatrix);
-        }
-
-        private void drawParticles(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10) {
-            if (f10 <= 0.0f || !LiteMode.isEnabled(98784)) {
-                return;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            float sqrt = (float) Math.sqrt(2.0d);
-            if (CacheChart.particlesStart < 0) {
-                long unused = CacheChart.particlesStart = currentTimeMillis;
-            }
-            float f11 = ((float) (currentTimeMillis - CacheChart.particlesStart)) / 10000.0f;
-            Bitmap bitmap = this.particle;
-            if (bitmap != null) {
-                int width = bitmap.getWidth();
-                float f12 = width;
-                float dpf2 = AndroidUtilities.dpf2(15.0f) / f12;
-                float f13 = 7.0f;
-                int floor = (int) Math.floor((f5 % 360.0f) / 7.0f);
-                int ceil = (int) Math.ceil((f6 % 360.0f) / 7.0f);
-                while (floor <= ceil) {
-                    float f14 = floor * f13;
-                    double d = 100.0f + f11;
-                    double sin = ((Math.sin(2000.0f * f14) + 1.0d) * 0.25d) + 1.0d;
-                    Double.isNaN(d);
-                    float f15 = (float) ((d * sin) % 1.0d);
-                    float f16 = f12 * sqrt;
-                    double d2 = f;
-                    float f17 = f12;
-                    int i = ceil;
-                    double lerp = AndroidUtilities.lerp(f7 - f16, f8 + f16, f15);
-                    double cos = Math.cos(CacheChart.toRad(f14));
-                    Double.isNaN(lerp);
-                    Double.isNaN(d2);
-                    float f18 = (float) (d2 + (cos * lerp));
-                    double d3 = f2;
-                    double sin2 = Math.sin(CacheChart.toRad(f14));
-                    Double.isNaN(lerp);
-                    Double.isNaN(d3);
-                    float f19 = (float) (d3 + (lerp * sin2));
-                    float abs = 0.65f * f10 * ((Math.abs(f15 - 0.5f) * (-1.75f)) + 1.0f);
-                    double d4 = f15;
-                    Double.isNaN(d4);
-                    double d5 = d4 * 3.141592653589793d;
-                    this.particlePaint.setAlpha((int) (Math.max(0.0f, Math.min(1.0f, abs * ((((float) (Math.sin(d5) - 1.0d)) * 0.25f) + 1.0f) * AndroidUtilities.lerp(1.0f, Math.min(MathUtils.distance(f18, f19, f3, f4) / AndroidUtilities.dpf2(64.0f), 1.0f), f9))) * 255.0f));
-                    double sin3 = ((((float) (Math.sin(d5) - 1.0d)) * 0.25f) + 1.0f) * 0.75f;
-                    double sin4 = ((Math.sin(f14) + 1.0d) * 0.25d) + 0.800000011920929d;
-                    Double.isNaN(sin3);
-                    float f20 = ((float) (sin3 * sin4)) * dpf2;
-                    canvas.save();
-                    canvas.translate(f18, f19);
-                    canvas.scale(f20, f20);
-                    float f21 = -(width >> 1);
-                    canvas.drawBitmap(this.particle, f21, f21, this.particlePaint);
-                    canvas.restore();
-                    floor++;
-                    ceil = i;
-                    f11 = f11;
-                    f12 = f17;
-                    f13 = 7.0f;
-                }
-            }
-        }
-
         void draw(Canvas canvas, RectF rectF, RectF rectF2, float f, float f2, float f3, float f4, float f5) {
             float f6;
             float f7;
@@ -381,7 +339,6 @@ public class CacheChart extends View {
                 f7 = f9;
                 drawParticles(canvas, this.rectF.centerX(), this.rectF.centerY(), f9, f10, 0.0f, 359.0f, rectF2.width() / 2.0f, this.rectF.width() / 2.0f, f11, Math.max(0.0f, (f5 / 0.75f) - 0.75f) * f12);
                 canvas.drawCircle(rectF2.centerX(), rectF2.centerY(), rectF2.width() / 2.0f, this.cut);
-                canvas.restore();
             } else {
                 f6 = f10;
                 f7 = f9;
@@ -391,8 +348,8 @@ public class CacheChart extends View {
                 canvas.drawPath(this.path, this.uncut);
                 canvas.drawRect(this.rectF, this.paint);
                 drawParticles(canvas, this.rectF.centerX(), this.rectF.centerY(), f7, f6, f - f2, f + f2, rectF2.width() / 2.0f, this.rectF.width() / 2.0f, f11, Math.max(0.0f, (f5 / 0.75f) - 0.75f) * f12);
-                canvas.restore();
             }
+            canvas.restore();
             float f13 = this.textScaleAnimated.set(this.textScale);
             CacheChart.setCircleBounds(CacheChart.this.roundingRect, f7, f6, 0.0f);
             if (f13 != 1.0f) {
@@ -406,6 +363,41 @@ public class CacheChart extends View {
                 canvas.restore();
             }
         }
+    }
+
+    public static class SegmentSize {
+        int index;
+        public boolean selected;
+        public long size;
+
+        public static SegmentSize of(long j, boolean z) {
+            SegmentSize segmentSize = new SegmentSize();
+            segmentSize.size = j;
+            segmentSize.selected = z;
+            return segmentSize;
+        }
+    }
+
+    static {
+        int i = Theme.key_statisticChartLine_lightblue;
+        int i2 = Theme.key_statisticChartLine_blue;
+        int i3 = Theme.key_statisticChartLine_green;
+        int i4 = Theme.key_statisticChartLine_purple;
+        int i5 = Theme.key_statisticChartLine_lightgreen;
+        int i6 = Theme.key_statisticChartLine_red;
+        int i7 = Theme.key_statisticChartLine_orange;
+        int i8 = Theme.key_statisticChartLine_cyan;
+        int i9 = Theme.key_statisticChartLine_golden;
+        DEFAULT_COLORS = new int[]{i, i2, i3, i4, i5, i6, i7, i8, i4, i9, i9};
+        int i10 = R.raw.cache_photos;
+        int i11 = R.raw.cache_videos;
+        int i12 = R.raw.cache_documents;
+        int i13 = R.raw.cache_music;
+        int i14 = R.raw.cache_stickers;
+        int i15 = R.raw.cache_profile_photos;
+        int i16 = R.raw.cache_other;
+        DEFAULT_PARTICLES = new int[]{i10, i11, i12, i13, i11, i13, i14, i15, i16, i16, i12};
+        particlesStart = -1L;
     }
 
     public CacheChart(Context context) {
@@ -496,8 +488,50 @@ public class CacheChart extends View {
         }
     }
 
-    public void setInterceptTouch(boolean z) {
-        this.interceptTouch = z;
+    private boolean drawAnimatedText(Canvas canvas, AnimatedTextView.AnimatedTextDrawable animatedTextDrawable, float f, float f2, float f3, float f4) {
+        if (f4 <= 0.0f) {
+            return false;
+        }
+        animatedTextDrawable.setAlpha((int) (f4 * 255.0f));
+        animatedTextDrawable.setBounds(0, 0, 0, 0);
+        canvas.save();
+        canvas.translate(f, f2);
+        canvas.scale(f3, f3);
+        animatedTextDrawable.draw(canvas);
+        canvas.restore();
+        return animatedTextDrawable.isAnimating();
+    }
+
+    public static int lambda$setSegments$0(SegmentSize segmentSize, SegmentSize segmentSize2) {
+        return Long.compare(segmentSize.size, segmentSize2.size);
+    }
+
+    public static void setCircleBounds(RectF rectF, double d, double d2, float f) {
+        setCircleBounds(rectF, (float) d, (float) d2, f);
+    }
+
+    public static void setCircleBounds(RectF rectF, float f, float f2, float f3) {
+        rectF.set(f - f3, f2 - f3, f + f3, f2 + f3);
+    }
+
+    public static float toRad(float f) {
+        double d = f / 180.0f;
+        Double.isNaN(d);
+        return (float) (d * 3.141592653589793d);
+    }
+
+    @Override
+    protected void dispatchDraw(android.graphics.Canvas r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CacheChart.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(android.view.MotionEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CacheChart.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    protected int heightDp() {
+        return 200;
     }
 
     @Override
@@ -512,14 +546,16 @@ public class CacheChart extends View {
             }
             Sector sector = sectorArr[i];
             if (sector.particle == null) {
-                if (this.svgParticles) {
-                    sector.particle = SvgHelper.getBitmap(this.particles[i], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1);
-                } else {
-                    sector.particle = BitmapFactory.decodeResource(getContext().getResources(), this.particles[i]);
-                }
+                sector.particle = this.svgParticles ? SvgHelper.getBitmap(this.particles[i], AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), -1) : BitmapFactory.decodeResource(getContext().getResources(), this.particles[i]);
             }
             i++;
         }
+    }
+
+    @Override
+    protected void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        requestLayout();
     }
 
     @Override
@@ -542,42 +578,40 @@ public class CacheChart extends View {
     }
 
     @Override
-    public boolean dispatchTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CacheChart.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int dp = AndroidUtilities.dp(heightDp());
+        int dp2 = AndroidUtilities.dp(172.0f);
+        this.chartMeasureBounds.set((size - dp2) / 2.0f, (dp - dp2) / 2.0f, (size + dp2) / 2.0f, (dp2 + dp) / 2.0f);
+        this.completeGradientMatrix.reset();
+        this.completeGradientMatrix.setTranslate(this.chartMeasureBounds.left, 0.0f);
+        this.completeGradient.setLocalMatrix(this.completeGradientMatrix);
+        this.completeTextGradientMatrix.reset();
+        Matrix matrix = this.completeTextGradientMatrix;
+        RectF rectF = this.chartMeasureBounds;
+        matrix.setTranslate(rectF.left, -rectF.centerY());
+        this.completeTextGradient.setLocalMatrix(this.completeTextGradientMatrix);
+        StarParticlesView.Drawable drawable = this.completeDrawable;
+        if (drawable != null) {
+            drawable.rect.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
+            this.completeDrawable.rect.offset((getMeasuredWidth() - this.completeDrawable.rect.width()) / 2.0f, (getMeasuredHeight() - this.completeDrawable.rect.height()) / 2.0f);
+            this.completeDrawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.completeDrawable.resetPositions();
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
     }
 
-    public void setSelected(int i) {
-        if (i == this.selectedIndex) {
-            return;
-        }
-        int i2 = 0;
-        while (true) {
-            Sector[] sectorArr = this.sectors;
-            if (i2 < sectorArr.length) {
-                if (i == i2 && sectorArr[i2].angleSize <= 0.0f) {
-                    i = -1;
-                }
-                sectorArr[i2].selected = i == i2;
-                i2++;
-            } else {
-                this.selectedIndex = i;
-                invalidate();
-                return;
-            }
-        }
+    protected void onSectionClick(int i) {
     }
 
-    public static class SegmentSize {
-        int index;
-        public boolean selected;
-        public long size;
+    protected abstract void onSectionDown(int i, boolean z);
 
-        public static SegmentSize of(long j, boolean z) {
-            SegmentSize segmentSize = new SegmentSize();
-            segmentSize.size = j;
-            segmentSize.selected = z;
-            return segmentSize;
-        }
+    protected int padInsideDp() {
+        return 0;
+    }
+
+    public void setInterceptTouch(boolean z) {
+        this.interceptTouch = z;
     }
 
     public void setSegments(long j, boolean z, SegmentSize... segmentSizeArr) {
@@ -606,20 +640,19 @@ public class CacheChart extends View {
             int i5 = 0;
             while (true) {
                 Sector[] sectorArr = this.sectors;
-                if (i5 < sectorArr.length) {
-                    Sector sector = sectorArr[i5];
-                    sector.textAlpha = 0.0f;
-                    if (z) {
-                        i = 1;
-                    } else {
-                        i = 1;
-                        sector.textAlphaAnimated.set(0.0f, true);
-                    }
-                    i5 += i;
-                } else {
+                if (i5 >= sectorArr.length) {
                     invalidate();
                     return;
                 }
+                Sector sector = sectorArr[i5];
+                sector.textAlpha = 0.0f;
+                if (z) {
+                    i = 1;
+                } else {
+                    i = 1;
+                    sector.textAlphaAnimated.set(0.0f, true);
+                }
+                i5 += i;
             }
         } else {
             this.loading = false;
@@ -645,52 +678,21 @@ public class CacheChart extends View {
                     length--;
                 }
             }
-            if (j2 <= 0) {
-                this.loading = false;
-                this.complete = j <= 0;
-                if (!z) {
-                    this.loadingFloat.set(0.0f, true);
-                    this.completeFloat.set(this.complete ? 1.0f : 0.0f, true);
-                }
-                this.topCompleteText.setText(this.topText.getText(), false);
-                this.topText.setText("0", z);
-                this.topCompleteText.setText("0", z);
-                this.bottomCompleteText.setText(this.bottomText.getText(), false);
-                this.bottomText.setText("KB", z);
-                this.bottomCompleteText.setText("KB", z);
-                int i7 = 0;
-                while (true) {
-                    Sector[] sectorArr2 = this.sectors;
-                    if (i7 < sectorArr2.length) {
-                        Sector sector2 = sectorArr2[i7];
-                        sector2.textAlpha = 0.0f;
-                        if (z) {
-                            i4 = 1;
-                        } else {
-                            i4 = 1;
-                            sector2.textAlphaAnimated.set(0.0f, true);
-                        }
-                        i7 += i4;
-                    } else {
-                        invalidate();
-                        return;
-                    }
-                }
-            } else {
+            if (j2 > 0) {
                 float f3 = 0.0f;
+                int i7 = 0;
                 int i8 = 0;
-                int i9 = 0;
-                while (i8 < segmentSizeArr2.length) {
-                    SegmentSize segmentSize3 = segmentSizeArr2[i8];
+                while (i7 < segmentSizeArr2.length) {
+                    SegmentSize segmentSize3 = segmentSizeArr2[i7];
                     float f4 = (segmentSize3 == null || !segmentSize3.selected) ? 0.0f : ((float) segmentSize3.size) / ((float) j2);
                     if (f4 <= 0.0f || f4 >= 0.02f) {
                         i3 = 1;
                     } else {
                         i3 = 1;
-                        i9++;
+                        i8++;
                         f3 += f4;
                     }
-                    i8 += i3;
+                    i7 += i3;
                 }
                 Math.min(segmentSizeArr2.length, this.sectors.length);
                 int[] iArr = this.tempPercents;
@@ -701,10 +703,10 @@ public class CacheChart extends View {
                 if (fArr == null || fArr.length != segmentSizeArr2.length) {
                     this.tempFloat = new float[segmentSizeArr2.length];
                 }
-                for (int i10 = 0; i10 < segmentSizeArr2.length; i10++) {
+                for (int i9 = 0; i9 < segmentSizeArr2.length; i9++) {
                     float[] fArr2 = this.tempFloat;
-                    SegmentSize segmentSize4 = segmentSizeArr2[i10];
-                    fArr2[i10] = (segmentSize4 == null || !segmentSize4.selected) ? 0.0f : ((float) segmentSize4.size) / ((float) j2);
+                    SegmentSize segmentSize4 = segmentSizeArr2[i9];
+                    fArr2[i9] = (segmentSize4 == null || !segmentSize4.selected) ? 0.0f : ((float) segmentSize4.size) / ((float) j2);
                 }
                 AndroidUtilities.roundPercents(this.tempFloat, this.tempPercents);
                 if (this.type == 0) {
@@ -716,19 +718,19 @@ public class CacheChart extends View {
                             return lambda$setSegments$0;
                         }
                     });
-                    int i11 = 0;
+                    int i10 = 0;
                     while (true) {
-                        if (i11 > segmentSizeArr2.length) {
+                        if (i10 > segmentSizeArr2.length) {
                             break;
                         }
-                        SegmentSize segmentSize5 = segmentSizeArr2[i11];
+                        SegmentSize segmentSize5 = segmentSizeArr2[i10];
                         if (segmentSize5.index == segmentSizeArr2.length - 1) {
                             SegmentSize segmentSize6 = segmentSizeArr2[0];
                             segmentSizeArr2[0] = segmentSize5;
-                            segmentSizeArr2[i11] = segmentSize6;
+                            segmentSizeArr2[i10] = segmentSize6;
                             break;
                         }
-                        i11++;
+                        i10++;
                     }
                 }
                 if (length < 2) {
@@ -736,11 +738,11 @@ public class CacheChart extends View {
                 }
                 float f5 = 360.0f - (length * 2.0f);
                 float f6 = 0.0f;
+                int i11 = 0;
                 int i12 = 0;
-                int i13 = 0;
-                while (i12 < segmentSizeArr2.length) {
-                    SegmentSize segmentSize7 = segmentSizeArr2[i12];
-                    int i14 = segmentSize7.index;
+                while (i11 < segmentSizeArr2.length) {
+                    SegmentSize segmentSize7 = segmentSizeArr2[i11];
+                    int i13 = segmentSize7.index;
                     if (segmentSize7.selected) {
                         f = f5;
                         f2 = ((float) segmentSize7.size) / ((float) j2);
@@ -750,58 +752,58 @@ public class CacheChart extends View {
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     long j3 = j2;
-                    spannableStringBuilder.append((CharSequence) String.format("%d", Integer.valueOf(this.tempPercents[i14])));
+                    spannableStringBuilder.append((CharSequence) String.format("%d", Integer.valueOf(this.tempPercents[i13])));
                     spannableStringBuilder.append((CharSequence) spannableString);
-                    Sector sector3 = this.sectors[i14];
+                    Sector sector2 = this.sectors[i13];
                     float f7 = (((double) f2) <= 0.05d || f2 >= 1.0f) ? 0.0f : 1.0f;
-                    sector3.textAlpha = f7;
-                    sector3.textScale = (f2 < 0.08f || this.tempPercents[i14] >= 100) ? 0.85f : 1.0f;
-                    sector3.particlesAlpha = 1.0f;
+                    sector2.textAlpha = f7;
+                    sector2.textScale = (f2 < 0.08f || this.tempPercents[i13] >= 100) ? 0.85f : 1.0f;
+                    sector2.particlesAlpha = 1.0f;
                     if (!z) {
-                        sector3.textAlphaAnimated.set(f7, true);
-                        Sector sector4 = this.sectors[i14];
-                        sector4.textScaleAnimated.set(sector4.textScale, true);
-                        Sector sector5 = this.sectors[i14];
-                        sector5.particlesAlphaAnimated.set(sector5.particlesAlpha, true);
+                        sector2.textAlphaAnimated.set(f7, true);
+                        Sector sector3 = this.sectors[i13];
+                        sector3.textScaleAnimated.set(sector3.textScale, true);
+                        Sector sector4 = this.sectors[i13];
+                        sector4.particlesAlphaAnimated.set(sector4.particlesAlpha, true);
                     }
-                    Sector sector6 = this.sectors[i14];
-                    if (sector6.textAlpha > 0.0f) {
-                        sector6.text.setText(spannableStringBuilder, z);
+                    Sector sector5 = this.sectors[i13];
+                    if (sector5.textAlpha > 0.0f) {
+                        sector5.text.setText(spannableStringBuilder, z);
                     }
-                    float f8 = (f2 >= 0.02f || f2 <= 0.0f) ? f2 * (1.0f - ((i9 * 0.02f) - f3)) : 0.02f;
-                    float f9 = (f6 * f) + (i13 * 2.0f);
+                    float f8 = (f2 >= 0.02f || f2 <= 0.0f) ? f2 * (1.0f - ((i8 * 0.02f) - f3)) : 0.02f;
+                    float f9 = (f6 * f) + (i12 * 2.0f);
                     float f10 = (f8 * f) + f9;
                     if (f8 <= 0.0f) {
-                        Sector sector7 = this.sectors[i14];
-                        sector7.angleCenter = (f9 + f10) / 2.0f;
-                        sector7.angleSize = Math.abs(f10 - f9) / 2.0f;
-                        Sector sector8 = this.sectors[i14];
-                        sector8.textAlpha = 0.0f;
+                        Sector sector6 = this.sectors[i13];
+                        sector6.angleCenter = (f9 + f10) / 2.0f;
+                        sector6.angleSize = Math.abs(f10 - f9) / 2.0f;
+                        Sector sector7 = this.sectors[i13];
+                        sector7.textAlpha = 0.0f;
                         if (!z) {
-                            sector8.angleCenterAnimated.set(sector8.angleCenter, true);
-                            Sector sector9 = this.sectors[i14];
-                            sector9.angleSizeAnimated.set(sector9.angleSize, true);
-                            Sector sector10 = this.sectors[i14];
-                            sector10.textAlphaAnimated.set(sector10.textAlpha, true);
+                            sector7.angleCenterAnimated.set(sector7.angleCenter, true);
+                            Sector sector8 = this.sectors[i13];
+                            sector8.angleSizeAnimated.set(sector8.angleSize, true);
+                            Sector sector9 = this.sectors[i13];
+                            sector9.textAlphaAnimated.set(sector9.textAlpha, true);
                         }
                         i2 = 1;
                     } else {
-                        Sector sector11 = this.sectors[i14];
-                        sector11.angleCenter = (f9 + f10) / 2.0f;
-                        sector11.angleSize = Math.abs(f10 - f9) / 2.0f;
+                        Sector sector10 = this.sectors[i13];
+                        sector10.angleCenter = (f9 + f10) / 2.0f;
+                        sector10.angleSize = Math.abs(f10 - f9) / 2.0f;
                         if (z) {
                             i2 = 1;
                         } else {
-                            Sector sector12 = this.sectors[i14];
+                            Sector sector11 = this.sectors[i13];
                             i2 = 1;
-                            sector12.angleCenterAnimated.set(sector12.angleCenter, true);
-                            Sector sector13 = this.sectors[i14];
-                            sector13.angleSizeAnimated.set(sector13.angleSize, true);
+                            sector11.angleCenterAnimated.set(sector11.angleCenter, true);
+                            Sector sector12 = this.sectors[i13];
+                            sector12.angleSizeAnimated.set(sector12.angleSize, true);
                         }
                         f6 += f8;
-                        i13 += i2;
+                        i12 += i2;
                     }
-                    i12 += i2;
+                    i11 += i2;
                     segmentSizeArr2 = segmentSizeArr;
                     f5 = f;
                     j2 = j3;
@@ -829,68 +831,57 @@ public class CacheChart extends View {
                     this.completeFloat.set(0.0f, true);
                 }
                 invalidate();
+                return;
+            }
+            this.loading = false;
+            this.complete = j <= 0;
+            if (!z) {
+                this.loadingFloat.set(0.0f, true);
+                this.completeFloat.set(this.complete ? 1.0f : 0.0f, true);
+            }
+            this.topCompleteText.setText(this.topText.getText(), false);
+            this.topText.setText("0", z);
+            this.topCompleteText.setText("0", z);
+            this.bottomCompleteText.setText(this.bottomText.getText(), false);
+            this.bottomText.setText("KB", z);
+            this.bottomCompleteText.setText("KB", z);
+            int i14 = 0;
+            while (true) {
+                Sector[] sectorArr2 = this.sectors;
+                if (i14 >= sectorArr2.length) {
+                    invalidate();
+                    return;
+                }
+                Sector sector13 = sectorArr2[i14];
+                sector13.textAlpha = 0.0f;
+                if (z) {
+                    i4 = 1;
+                } else {
+                    i4 = 1;
+                    sector13.textAlphaAnimated.set(0.0f, true);
+                }
+                i14 += i4;
             }
         }
     }
 
-    public static int lambda$setSegments$0(SegmentSize segmentSize, SegmentSize segmentSize2) {
-        return Long.compare(segmentSize.size, segmentSize2.size);
-    }
-
-    public static void setCircleBounds(RectF rectF, float f, float f2, float f3) {
-        rectF.set(f - f3, f2 - f3, f + f3, f2 + f3);
-    }
-
-    public static void setCircleBounds(RectF rectF, double d, double d2, float f) {
-        setCircleBounds(rectF, (float) d, (float) d2, f);
-    }
-
-    @Override
-    protected void dispatchDraw(android.graphics.Canvas r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CacheChart.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    private boolean drawAnimatedText(Canvas canvas, AnimatedTextView.AnimatedTextDrawable animatedTextDrawable, float f, float f2, float f3, float f4) {
-        if (f4 <= 0.0f) {
-            return false;
+    public void setSelected(int i) {
+        if (i == this.selectedIndex) {
+            return;
         }
-        animatedTextDrawable.setAlpha((int) (f4 * 255.0f));
-        animatedTextDrawable.setBounds(0, 0, 0, 0);
-        canvas.save();
-        canvas.translate(f, f2);
-        canvas.scale(f3, f3);
-        animatedTextDrawable.draw(canvas);
-        canvas.restore();
-        return animatedTextDrawable.isAnimating();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(heightDp());
-        int dp2 = AndroidUtilities.dp(172.0f);
-        this.chartMeasureBounds.set((size - dp2) / 2.0f, (dp - dp2) / 2.0f, (size + dp2) / 2.0f, (dp2 + dp) / 2.0f);
-        this.completeGradientMatrix.reset();
-        this.completeGradientMatrix.setTranslate(this.chartMeasureBounds.left, 0.0f);
-        this.completeGradient.setLocalMatrix(this.completeGradientMatrix);
-        this.completeTextGradientMatrix.reset();
-        Matrix matrix = this.completeTextGradientMatrix;
-        RectF rectF = this.chartMeasureBounds;
-        matrix.setTranslate(rectF.left, -rectF.centerY());
-        this.completeTextGradient.setLocalMatrix(this.completeTextGradientMatrix);
-        StarParticlesView.Drawable drawable = this.completeDrawable;
-        if (drawable != null) {
-            drawable.rect.set(0.0f, 0.0f, AndroidUtilities.dp(140.0f), AndroidUtilities.dp(140.0f));
-            this.completeDrawable.rect.offset((getMeasuredWidth() - this.completeDrawable.rect.width()) / 2.0f, (getMeasuredHeight() - this.completeDrawable.rect.height()) / 2.0f);
-            this.completeDrawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.completeDrawable.resetPositions();
+        int i2 = 0;
+        while (true) {
+            Sector[] sectorArr = this.sectors;
+            if (i2 >= sectorArr.length) {
+                this.selectedIndex = i;
+                invalidate();
+                return;
+            }
+            if (i == i2 && sectorArr[i2].angleSize <= 0.0f) {
+                i = -1;
+            }
+            sectorArr[i2].selected = i == i2;
+            i2++;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
-    }
-
-    @Override
-    protected void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        requestLayout();
     }
 }

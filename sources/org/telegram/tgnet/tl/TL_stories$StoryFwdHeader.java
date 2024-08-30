@@ -4,7 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Peer;
 
-public class TL_stories$StoryFwdHeader extends TLObject {
+public abstract class TL_stories$StoryFwdHeader extends TLObject {
     public int flags;
     public TLRPC$Peer from;
     public String from_name;

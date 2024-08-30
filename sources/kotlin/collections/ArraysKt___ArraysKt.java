@@ -6,28 +6,44 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import kotlin.jvm.internal.Intrinsics;
 
-public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
-    public static final <T> boolean contains(T[] tArr, T t) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        return indexOf(tArr, t) >= 0;
+public abstract class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
+    public static final boolean contains(Object[] objArr, Object obj) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        return indexOf(objArr, obj) >= 0;
     }
 
-    public static final <T> int indexOf(T[] tArr, T t) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
+    public static List filterNotNull(Object[] objArr) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        return (List) filterNotNullTo(objArr, new ArrayList());
+    }
+
+    public static final Collection filterNotNullTo(Object[] objArr, Collection destination) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        Intrinsics.checkNotNullParameter(destination, "destination");
+        for (Object obj : objArr) {
+            if (obj != null) {
+                destination.add(obj);
+            }
+        }
+        return destination;
+    }
+
+    public static final int indexOf(Object[] objArr, Object obj) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
         int i = 0;
-        if (t == null) {
-            int length = tArr.length;
+        if (obj == null) {
+            int length = objArr.length;
             while (i < length) {
-                if (tArr[i] == null) {
+                if (objArr[i] == null) {
                     return i;
                 }
                 i++;
             }
             return -1;
         }
-        int length2 = tArr.length;
+        int length2 = objArr.length;
         while (i < length2) {
-            if (Intrinsics.areEqual(t, tArr[i])) {
+            if (Intrinsics.areEqual(obj, objArr[i])) {
                 return i;
             }
             i++;
@@ -47,44 +63,30 @@ public class ArraysKt___ArraysKt extends ArraysKt___ArraysJvmKt {
         throw new IllegalArgumentException("Array has more than one element.");
     }
 
-    public static <T> T singleOrNull(T[] tArr) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        if (tArr.length == 1) {
-            return tArr[0];
+    public static Object singleOrNull(Object[] objArr) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        if (objArr.length == 1) {
+            return objArr[0];
         }
         return null;
     }
 
-    public static <T> List<T> filterNotNull(T[] tArr) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        return (List) filterNotNullTo(tArr, new ArrayList());
-    }
-
-    public static final <C extends Collection<? super T>, T> C filterNotNullTo(T[] tArr, C destination) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        Intrinsics.checkNotNullParameter(destination, "destination");
-        for (T t : tArr) {
-            if (t != null) {
-                destination.add(t);
-            }
-        }
-        return destination;
-    }
-
-    public static <T> List<T> toList(T[] tArr) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        int length = tArr.length;
+    public static List toList(Object[] objArr) {
+        List listOf;
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        int length = objArr.length;
         if (length == 0) {
             return CollectionsKt__CollectionsKt.emptyList();
         }
-        if (length == 1) {
-            return CollectionsKt.listOf(tArr[0]);
+        if (length != 1) {
+            return toMutableList(objArr);
         }
-        return toMutableList(tArr);
+        listOf = CollectionsKt__CollectionsJVMKt.listOf(objArr[0]);
+        return listOf;
     }
 
-    public static final <T> List<T> toMutableList(T[] tArr) {
-        Intrinsics.checkNotNullParameter(tArr, "<this>");
-        return new ArrayList(CollectionsKt__CollectionsKt.asCollection(tArr));
+    public static final List toMutableList(Object[] objArr) {
+        Intrinsics.checkNotNullParameter(objArr, "<this>");
+        return new ArrayList(CollectionsKt__CollectionsKt.asCollection(objArr));
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.messenger.video.audio_input;
 
-import java.io.IOException;
 import java.nio.ShortBuffer;
 import org.telegram.messenger.video.AudioBufferConverter;
 import org.telegram.messenger.video.AudioConversions;
@@ -17,57 +16,31 @@ public class GeneralAudioInput extends AudioInput {
     private int startOffsetShortsCounter;
     private long startOffsetUs;
 
-    public GeneralAudioInput(String str) throws IOException {
+    public GeneralAudioInput(String str) {
         this.decoder = new AudioDecoder(str);
         init();
     }
 
-    public GeneralAudioInput(String str, int i) throws IOException {
+    public GeneralAudioInput(String str, int i) {
         this.decoder = new AudioDecoder(str, i);
         init();
     }
 
+    private void decode() {
+        ShortBuffer shortBuffer = this.buffer;
+        if (shortBuffer == null || shortBuffer.remaining() <= 0) {
+            AudioDecoder.DecodedBufferData decode = this.decoder.decode();
+            if (decode.index < 0) {
+                this.buffer = null;
+                return;
+            }
+            this.buffer = this.audioBufferConverter.convert(decode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
+            this.decoder.releaseOutputBuffer(decode.index);
+        }
+    }
+
     private void init() {
         this.audioBufferConverter = new AudioBufferConverter();
-    }
-
-    public long getStartOffsetUs() {
-        return this.startOffsetUs;
-    }
-
-    @Override
-    public int getSampleRate() {
-        return this.decoder.getSampleRate();
-    }
-
-    public void setStartOffsetUs(long j) {
-        if (j < 0) {
-            j = 0;
-        }
-        this.startOffsetUs = j;
-    }
-
-    public void setStartTimeUs(long j) {
-        this.decoder.setStartTimeUs(j);
-    }
-
-    public void setEndTimeUs(long j) {
-        this.decoder.setEndTimeUs(j);
-    }
-
-    @Override
-    public boolean hasRemaining() {
-        return this.hasRemaining;
-    }
-
-    @Override
-    public void start(int i, int i2) {
-        this.outputSampleRate = i;
-        this.outputChannelCount = i2;
-        this.hasRemaining = true;
-        this.decoder.start();
-        this.requiredShortsForStartOffset = AudioConversions.usToShorts(getStartOffsetUs(), this.outputSampleRate, this.outputChannelCount);
-        this.startOffsetShortsCounter = 0;
     }
 
     @Override
@@ -91,17 +64,18 @@ public class GeneralAudioInput extends AudioInput {
         return s;
     }
 
-    private void decode() {
-        ShortBuffer shortBuffer = this.buffer;
-        if (shortBuffer == null || shortBuffer.remaining() <= 0) {
-            AudioDecoder.DecodedBufferData decode = this.decoder.decode();
-            if (decode.index >= 0) {
-                this.buffer = this.audioBufferConverter.convert(decode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
-                this.decoder.releaseOutputBuffer(decode.index);
-                return;
-            }
-            this.buffer = null;
-        }
+    @Override
+    public int getSampleRate() {
+        return this.decoder.getSampleRate();
+    }
+
+    public long getStartOffsetUs() {
+        return this.startOffsetUs;
+    }
+
+    @Override
+    public boolean hasRemaining() {
+        return this.hasRemaining;
     }
 
     @Override
@@ -110,5 +84,30 @@ public class GeneralAudioInput extends AudioInput {
         this.hasRemaining = false;
         this.decoder.stop();
         this.decoder.release();
+    }
+
+    public void setEndTimeUs(long j) {
+        this.decoder.setEndTimeUs(j);
+    }
+
+    public void setStartOffsetUs(long j) {
+        if (j < 0) {
+            j = 0;
+        }
+        this.startOffsetUs = j;
+    }
+
+    public void setStartTimeUs(long j) {
+        this.decoder.setStartTimeUs(j);
+    }
+
+    @Override
+    public void start(int i, int i2) {
+        this.outputSampleRate = i;
+        this.outputChannelCount = i2;
+        this.hasRemaining = true;
+        this.decoder.start();
+        this.requiredShortsForStartOffset = AudioConversions.usToShorts(getStartOffsetUs(), this.outputSampleRate, this.outputChannelCount);
+        this.startOffsetShortsCounter = 0;
     }
 }

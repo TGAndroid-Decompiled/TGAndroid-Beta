@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 
-public final class AlertDialog$$ExternalSyntheticApiModelOutline0 {
+public abstract class AlertDialog$$ExternalSyntheticApiModelOutline0 {
 }

@@ -30,17 +30,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
     }
 
     @Override
-    public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
-        return null;
-    }
-
-    @Override
-    public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
-        return 0;
-    }
-
-    @Override
-    public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
+    public ParcelFileDescriptor openFile(Uri uri, String str) {
         if (!"r".equals(str)) {
             throw new SecurityException("Unexpected file mode " + str);
         }
@@ -60,5 +50,15 @@ public class CallNotificationSoundProvider extends ContentProvider {
         } catch (Exception e) {
             throw new FileNotFoundException(e.getMessage());
         }
+    }
+
+    @Override
+    public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
+        return null;
+    }
+
+    @Override
+    public int update(Uri uri, ContentValues contentValues, String str, String[] strArr) {
+        return 0;
     }
 }

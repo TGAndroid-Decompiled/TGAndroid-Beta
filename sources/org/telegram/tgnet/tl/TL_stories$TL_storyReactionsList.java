@@ -10,9 +10,9 @@ public class TL_stories$TL_storyReactionsList extends TLObject {
     public int count;
     public int flags;
     public String next_offset;
-    public ArrayList<TL_stories$StoryReaction> reactions = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList reactions = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stories$TL_storyReactionsList TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1436583780 != i) {
@@ -24,34 +24,6 @@ public class TL_stories$TL_storyReactionsList extends TLObject {
         TL_stories$TL_storyReactionsList tL_stories$TL_storyReactionsList = new TL_stories$TL_storyReactionsList();
         tL_stories$TL_storyReactionsList.readParams(abstractSerializedData, z);
         return tL_stories$TL_storyReactionsList;
-    }
-
-    @Override
-    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-1436583780);
-        abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt32(this.count);
-        abstractSerializedData.writeInt32(481674261);
-        int size = this.reactions.size();
-        abstractSerializedData.writeInt32(size);
-        for (int i = 0; i < size; i++) {
-            this.reactions.get(i).serializeToStream(abstractSerializedData);
-        }
-        abstractSerializedData.writeInt32(481674261);
-        int size2 = this.chats.size();
-        abstractSerializedData.writeInt32(size2);
-        for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
-        }
-        abstractSerializedData.writeInt32(481674261);
-        int size3 = this.users.size();
-        abstractSerializedData.writeInt32(size3);
-        for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
-        }
-        if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeString(this.next_offset);
-        }
     }
 
     @Override
@@ -105,6 +77,34 @@ public class TL_stories$TL_storyReactionsList extends TLObject {
         }
         if ((this.flags & 1) != 0) {
             this.next_offset = abstractSerializedData.readString(z);
+        }
+    }
+
+    @Override
+    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        abstractSerializedData.writeInt32(-1436583780);
+        abstractSerializedData.writeInt32(this.flags);
+        abstractSerializedData.writeInt32(this.count);
+        abstractSerializedData.writeInt32(481674261);
+        int size = this.reactions.size();
+        abstractSerializedData.writeInt32(size);
+        for (int i = 0; i < size; i++) {
+            ((TL_stories$StoryReaction) this.reactions.get(i)).serializeToStream(abstractSerializedData);
+        }
+        abstractSerializedData.writeInt32(481674261);
+        int size2 = this.chats.size();
+        abstractSerializedData.writeInt32(size2);
+        for (int i2 = 0; i2 < size2; i2++) {
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
+        }
+        abstractSerializedData.writeInt32(481674261);
+        int size3 = this.users.size();
+        abstractSerializedData.writeInt32(size3);
+        for (int i3 = 0; i3 < size3; i3++) {
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & 1) != 0) {
+            abstractSerializedData.writeString(this.next_offset);
         }
     }
 }

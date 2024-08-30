@@ -1,4 +1,4 @@
 package org.telegram.ui.ActionBar;
 
-public final class AdjustPanLayoutHelper$$ExternalSyntheticApiModelOutline0 {
+public abstract class AdjustPanLayoutHelper$$ExternalSyntheticApiModelOutline0 {
 }

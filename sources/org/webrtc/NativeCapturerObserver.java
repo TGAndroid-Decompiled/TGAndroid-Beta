@@ -6,9 +6,12 @@ import org.webrtc.VideoProcessor;
 public class NativeCapturerObserver implements CapturerObserver {
     private final NativeAndroidVideoTrackSource nativeAndroidVideoTrackSource;
 
-    @CalledByNative
     public NativeCapturerObserver(long j) {
         this.nativeAndroidVideoTrackSource = new NativeAndroidVideoTrackSource(j);
+    }
+
+    public NativeAndroidVideoTrackSource getNativeAndroidVideoTrackSource() {
+        return this.nativeAndroidVideoTrackSource;
     }
 
     @Override
@@ -19,10 +22,6 @@ public class NativeCapturerObserver implements CapturerObserver {
     @Override
     public void onCapturerStopped() {
         this.nativeAndroidVideoTrackSource.setState(false);
-    }
-
-    public NativeAndroidVideoTrackSource getNativeAndroidVideoTrackSource() {
-        return this.nativeAndroidVideoTrackSource;
     }
 
     @Override

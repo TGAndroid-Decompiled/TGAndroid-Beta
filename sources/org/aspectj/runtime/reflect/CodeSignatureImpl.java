@@ -14,17 +14,17 @@ abstract class CodeSignatureImpl extends MemberSignatureImpl implements Signatur
         this.exceptionTypes = clsArr2;
     }
 
-    public Class[] getParameterTypes() {
-        if (this.parameterTypes == null) {
-            this.parameterTypes = extractTypes(3);
-        }
-        return this.parameterTypes;
-    }
-
     public Class[] getExceptionTypes() {
         if (this.exceptionTypes == null) {
             this.exceptionTypes = extractTypes(5);
         }
         return this.exceptionTypes;
+    }
+
+    public Class[] getParameterTypes() {
+        if (this.parameterTypes == null) {
+            this.parameterTypes = extractTypes(3);
+        }
+        return this.parameterTypes;
     }
 }

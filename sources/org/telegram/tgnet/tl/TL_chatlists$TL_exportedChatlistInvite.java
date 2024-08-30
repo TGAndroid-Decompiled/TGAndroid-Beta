@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC$Peer;
 
 public class TL_chatlists$TL_exportedChatlistInvite extends TLObject {
     public int flags;
-    public ArrayList<TLRPC$Peer> peers = new ArrayList<>();
+    public ArrayList peers = new ArrayList();
     public boolean revoked;
     public String title;
     public String url;
@@ -60,7 +60,7 @@ public class TL_chatlists$TL_exportedChatlistInvite extends TLObject {
         int size = this.peers.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.peers.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Peer) this.peers.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

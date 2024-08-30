@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class TLRPC$PhoneCallProtocol extends TLObject {
     public int flags;
-    public ArrayList<String> library_versions = new ArrayList<>();
+    public ArrayList library_versions = new ArrayList();
     public int max_layer;
     public int min_layer;
     public boolean udp_p2p;

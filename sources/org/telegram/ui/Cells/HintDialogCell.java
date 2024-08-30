@@ -52,10 +52,6 @@ public class HintDialogCell extends FrameLayout {
     private boolean showPremiumBlocked;
     boolean wasDraw;
 
-    public boolean isBlocked() {
-        return this.premiumBlocked;
-    }
-
     public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
@@ -113,19 +109,6 @@ public class HintDialogCell extends FrameLayout {
         invalidate();
     }
 
-    public void showPremiumBlocked() {
-        if (this.showPremiumBlocked) {
-            return;
-        }
-        this.showPremiumBlocked = true;
-        NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                HintDialogCell.this.lambda$showPremiumBlocked$1((Object[]) obj);
-            }
-        });
-    }
-
     public void lambda$showPremiumBlocked$1(Object[] objArr) {
         updatePremiumBlocked(true);
     }
@@ -143,44 +126,39 @@ public class HintDialogCell extends FrameLayout {
     }
 
     @Override
+    protected boolean drawChild(android.graphics.Canvas r24, android.view.View r25, long r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.HintDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    }
+
+    public long getDialogId() {
+        return this.dialogId;
+    }
+
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.drawCheckbox) {
+            int left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2);
+            int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
+            Theme.checkboxSquare_checkPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
+            Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
+            canvas.drawCircle(left, top, AndroidUtilities.dp(28.0f), Theme.checkboxSquare_checkPaint);
+        }
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
         this.counterView.counterDrawable.horizontalPadding = AndroidUtilities.dp(13.0f);
     }
 
-    public void update(int i) {
-        int i2;
-        if ((MessagesController.UPDATE_MASK_STATUS & i) != 0 && this.currentUser != null) {
-            this.currentUser = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentUser.id));
-            this.imageView.invalidate();
-            invalidate();
+    public void setChecked(boolean z, boolean z2) {
+        if (this.drawCheckbox) {
+            this.checkBox.setChecked(z, z2);
         }
-        if (i != 0 && (MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE & i) == 0 && (i & MessagesController.UPDATE_MASK_NEW_MESSAGE) == 0) {
-            return;
-        }
-        TLRPC$Dialog tLRPC$Dialog = MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.dialogId);
-        if (tLRPC$Dialog != null && (i2 = tLRPC$Dialog.unread_count) != 0) {
-            if (this.lastUnreadCount != i2) {
-                this.lastUnreadCount = i2;
-                this.counterView.setCount(i2, this.wasDraw);
-                return;
-            }
-            return;
-        }
-        this.lastUnreadCount = 0;
-        this.counterView.setCount(0, this.wasDraw);
-    }
-
-    public void update() {
-        if (DialogObject.isUserDialog(this.dialogId)) {
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
-            this.currentUser = user;
-            this.avatarDrawable.setInfo(this.currentAccount, user);
-        } else {
-            this.avatarDrawable.setInfo(this.currentAccount, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
-            this.currentUser = null;
-        }
-        updatePremiumBlocked(true);
     }
 
     public void setColors(int i, int i2) {
@@ -209,13 +187,18 @@ public class HintDialogCell extends FrameLayout {
             this.imageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
         } else {
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
-            if (charSequence != null) {
-                this.nameTextView.setText(charSequence);
-            } else if (chat != null) {
-                this.nameTextView.setText(chat.title);
-            } else {
-                this.nameTextView.setText("");
+            TextView textView = this.nameTextView;
+            if (charSequence == null) {
+                if (chat != null) {
+                    charSequence = chat.title;
+                } else {
+                    textView.setText("");
+                    this.avatarDrawable.setInfo(this.currentAccount, chat);
+                    this.currentUser = null;
+                    this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+                }
             }
+            textView.setText(charSequence);
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.currentUser = null;
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
@@ -226,29 +209,48 @@ public class HintDialogCell extends FrameLayout {
         }
     }
 
-    @Override
-    protected boolean drawChild(android.graphics.Canvas r24, android.view.View r25, long r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.HintDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.drawCheckbox) {
-            int left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2);
-            int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
-            Theme.checkboxSquare_checkPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
-            Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
-            canvas.drawCircle(left, top, AndroidUtilities.dp(28.0f), Theme.checkboxSquare_checkPaint);
+    public void showPremiumBlocked() {
+        if (this.showPremiumBlocked) {
+            return;
         }
+        this.showPremiumBlocked = true;
+        NotificationCenter.getInstance(this.currentAccount).listen(this, NotificationCenter.userIsPremiumBlockedUpadted, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                HintDialogCell.this.lambda$showPremiumBlocked$1((Object[]) obj);
+            }
+        });
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        if (this.drawCheckbox) {
-            this.checkBox.setChecked(z, z2);
+    public void update() {
+        if (DialogObject.isUserDialog(this.dialogId)) {
+            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+            this.currentUser = user;
+            this.avatarDrawable.setInfo(this.currentAccount, user);
+        } else {
+            this.avatarDrawable.setInfo(this.currentAccount, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId)));
+            this.currentUser = null;
         }
+        updatePremiumBlocked(true);
     }
 
-    public long getDialogId() {
-        return this.dialogId;
+    public void update(int i) {
+        int i2;
+        if ((MessagesController.UPDATE_MASK_STATUS & i) != 0 && this.currentUser != null) {
+            this.currentUser = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentUser.id));
+            this.imageView.invalidate();
+            invalidate();
+        }
+        if (i != 0 && (MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE & i) == 0 && (i & MessagesController.UPDATE_MASK_NEW_MESSAGE) == 0) {
+            return;
+        }
+        TLRPC$Dialog tLRPC$Dialog = (TLRPC$Dialog) MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.dialogId);
+        if (tLRPC$Dialog == null || (i2 = tLRPC$Dialog.unread_count) == 0) {
+            i2 = 0;
+        } else if (this.lastUnreadCount == i2) {
+            return;
+        }
+        this.lastUnreadCount = i2;
+        this.counterView.setCount(i2, this.wasDraw);
     }
 }

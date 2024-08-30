@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_inputMediaPaidMedia extends TLRPC$InputMedia {
-    public ArrayList<TLRPC$InputMedia> extended_media = new ArrayList<>();
+    public ArrayList extended_media = new ArrayList();
     public long stars_amount;
 
     @Override
@@ -34,7 +34,7 @@ public class TLRPC$TL_inputMediaPaidMedia extends TLRPC$InputMedia {
         int size = this.extended_media.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.extended_media.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputMedia) this.extended_media.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

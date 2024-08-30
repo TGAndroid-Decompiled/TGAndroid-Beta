@@ -46,19 +46,6 @@ public class TypefaceSpan extends MetricAffectingSpan {
     }
 
     @Override
-    public void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.typeface;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i = this.textSize;
-        if (i != 0) {
-            textPaint.setTextSize(i);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
-    }
-
-    @Override
     public void updateDrawState(TextPaint textPaint) {
         int i = this.colorKey;
         if (i >= 0) {
@@ -75,6 +62,19 @@ public class TypefaceSpan extends MetricAffectingSpan {
         int i3 = this.color;
         if (i3 != 0) {
             textPaint.setColor(i3);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.typeface;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        int i = this.textSize;
+        if (i != 0) {
+            textPaint.setTextSize(i);
         }
         textPaint.setFlags(textPaint.getFlags() | 128);
     }

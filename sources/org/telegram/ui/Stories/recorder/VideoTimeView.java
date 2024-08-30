@@ -35,8 +35,14 @@ public class VideoTimeView extends View {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return this.textDrawable == drawable || super.verifyDrawable(drawable);
+    public void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float currentWidth = this.textDrawable.getCurrentWidth();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), ((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(23.0f));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.backgroundPaint);
+        this.textDrawable.setBounds((int) rectF.left, ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
+        this.textDrawable.draw(canvas);
     }
 
     @Override
@@ -89,13 +95,7 @@ public class VideoTimeView extends View {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float currentWidth = this.textDrawable.getCurrentWidth();
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), ((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(23.0f));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.backgroundPaint);
-        this.textDrawable.setBounds((int) rectF.left, ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
-        this.textDrawable.draw(canvas);
+    protected boolean verifyDrawable(Drawable drawable) {
+        return this.textDrawable == drawable || super.verifyDrawable(drawable);
     }
 }

@@ -7,9 +7,9 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 
 public class TL_chatlists$TL_chatlists_exportedInvites extends TLObject {
-    public ArrayList<TL_chatlists$TL_exportedChatlistInvite> invites = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList invites = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_chatlists$TL_chatlists_exportedInvites TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (279670215 != i) {
@@ -79,19 +79,19 @@ public class TL_chatlists$TL_chatlists_exportedInvites extends TLObject {
         int size = this.invites.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.invites.get(i).serializeToStream(abstractSerializedData);
+            ((TL_chatlists$TL_exportedChatlistInvite) this.invites.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

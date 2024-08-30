@@ -5,7 +5,7 @@ import kotlin.ranges.RangesKt___RangesKt;
 import kotlinx.coroutines.internal.SystemPropsKt;
 import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
 
-public final class TasksKt {
+public abstract class TasksKt {
     public static final TaskContext BlockingContext;
     public static final int CORE_POOL_SIZE;
     public static final long IDLE_WORKER_KEEP_ALIVE_NS;

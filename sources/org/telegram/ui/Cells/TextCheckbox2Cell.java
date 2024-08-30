@@ -19,16 +19,16 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class TextCheckbox2Cell extends FrameLayout {
-    public static final Property<TextCheckbox2Cell, Float> ANIMATION_PROGRESS = new AnimationProperties.FloatProperty<TextCheckbox2Cell>("animationProgress") {
+    public static final Property ANIMATION_PROGRESS = new AnimationProperties.FloatProperty("animationProgress") {
+        @Override
+        public Float get(TextCheckbox2Cell textCheckbox2Cell) {
+            return Float.valueOf(textCheckbox2Cell.animationProgress);
+        }
+
         @Override
         public void setValue(TextCheckbox2Cell textCheckbox2Cell, float f) {
             textCheckbox2Cell.setAnimationProgress(f);
             textCheckbox2Cell.invalidate();
-        }
-
-        @Override
-        public Float get(TextCheckbox2Cell textCheckbox2Cell) {
-            return Float.valueOf(textCheckbox2Cell.animationProgress);
         }
     };
     private int animatedColorBackground;
@@ -90,13 +90,49 @@ public class TextCheckbox2Cell extends FrameLayout {
         setClipChildren(false);
     }
 
+    public void setAnimationProgress(float f) {
+        this.animationProgress = f;
+        Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX);
+        AndroidUtilities.dp(40.0f);
+        getMeasuredHeight();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (this.animatedColorBackground != 0) {
+            canvas.drawCircle(this.lastTouchX, getMeasuredHeight() / 2, (Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX) + AndroidUtilities.dp(40.0f)) * this.animationProgress, this.animationPaint);
+        }
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.checkbox");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.checkbox.isChecked());
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.textView.getText());
+        if (this.valueTextView != null) {
+            sb.append("\n");
+            sb.append(this.valueTextView.getText());
+        }
+        accessibilityNodeInfo.setText(sb);
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
-        if (this.isMultiline) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        int makeMeasureSpec;
+        boolean z = this.isMultiline;
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        if (z) {
+            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
         } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.valueTextView.getVisibility() == 0 ? 64.0f : this.height) + (this.needDivider ? 1 : 0), 1073741824));
+            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.valueTextView.getVisibility() == 0 ? 64.0f : this.height) + (this.needDivider ? 1 : 0), 1073741824);
         }
+        super.onMeasure(makeMeasureSpec2, makeMeasureSpec);
     }
 
     @Override
@@ -105,8 +141,15 @@ public class TextCheckbox2Cell extends FrameLayout {
         return super.onTouchEvent(motionEvent);
     }
 
-    public void setTypeface(Typeface typeface) {
-        this.textView.setTypeface(typeface);
+    @Override
+    public void setBackgroundColor(int i) {
+        clearAnimation();
+        this.animatedColorBackground = 0;
+        super.setBackgroundColor(i);
+    }
+
+    public void setChecked(boolean z) {
+        this.checkbox.setChecked(z, true);
     }
 
     public void setHeight(int i) {
@@ -144,46 +187,7 @@ public class TextCheckbox2Cell extends FrameLayout {
         setWillNotDraw(true ^ z2);
     }
 
-    public void setChecked(boolean z) {
-        this.checkbox.setChecked(z, true);
-    }
-
-    @Override
-    public void setBackgroundColor(int i) {
-        clearAnimation();
-        this.animatedColorBackground = 0;
-        super.setBackgroundColor(i);
-    }
-
-    public void setAnimationProgress(float f) {
-        this.animationProgress = f;
-        Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX);
-        AndroidUtilities.dp(40.0f);
-        getMeasuredHeight();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (this.animatedColorBackground != 0) {
-            canvas.drawCircle(this.lastTouchX, getMeasuredHeight() / 2, (Math.max(this.lastTouchX, getMeasuredWidth() - this.lastTouchX) + AndroidUtilities.dp(40.0f)) * this.animationProgress, this.animationPaint);
-        }
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.checkbox");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkbox.isChecked());
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.textView.getText());
-        if (this.valueTextView != null) {
-            sb.append("\n");
-            sb.append(this.valueTextView.getText());
-        }
-        accessibilityNodeInfo.setText(sb);
+    public void setTypeface(Typeface typeface) {
+        this.textView.setTypeface(typeface);
     }
 }

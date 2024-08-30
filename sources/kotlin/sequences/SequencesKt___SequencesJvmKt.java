@@ -1,4 +1,4 @@
 package kotlin.sequences;
 
-class SequencesKt___SequencesJvmKt extends SequencesKt__SequencesKt {
+abstract class SequencesKt___SequencesJvmKt extends SequencesKt__SequencesKt {
 }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_exportedChatInvites extends TLObject {
     public int count;
-    public ArrayList<TLRPC$ExportedChatInvite> invites = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList invites = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_messages_exportedChatInvites TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1111085620 != i) {
@@ -62,13 +62,13 @@ public class TLRPC$TL_messages_exportedChatInvites extends TLObject {
         int size = this.invites.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.invites.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$ExportedChatInvite) this.invites.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.users.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.users.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

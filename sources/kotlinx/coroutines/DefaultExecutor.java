@@ -4,16 +4,12 @@ import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 import kotlin.ranges.RangesKt___RangesKt;
-import kotlinx.coroutines.EventLoopImplBase;
 
 public final class DefaultExecutor extends EventLoopImplBase implements Runnable {
     public static final DefaultExecutor INSTANCE;
     private static final long KEEP_ALIVE_NANOS;
     private static volatile Thread _thread;
     private static volatile int debugStatus;
-
-    private DefaultExecutor() {
-    }
 
     static {
         Long l;
@@ -29,10 +25,27 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
         KEEP_ALIVE_NANOS = timeUnit.toNanos(l.longValue());
     }
 
-    @Override
-    protected Thread getThread() {
-        Thread thread = _thread;
-        return thread == null ? createThreadSync() : thread;
+    private DefaultExecutor() {
+    }
+
+    private final synchronized void acknowledgeShutdownIfNeeded() {
+        if (isShutdownRequested()) {
+            debugStatus = 3;
+            resetAll();
+            notifyAll();
+        }
+    }
+
+    private final synchronized Thread createThreadSync() {
+        Thread thread;
+        thread = _thread;
+        if (thread == null) {
+            thread = new Thread(this, "kotlinx.coroutines.DefaultExecutor");
+            _thread = thread;
+            thread.setDaemon(true);
+            thread.start();
+        }
+        return thread;
     }
 
     private final boolean isShutDown() {
@@ -44,6 +57,19 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
         return i == 2 || i == 3;
     }
 
+    private final synchronized boolean notifyStartup() {
+        if (isShutdownRequested()) {
+            return false;
+        }
+        debugStatus = 1;
+        notifyAll();
+        return true;
+    }
+
+    private final void shutdownError() {
+        throw new RejectedExecutionException("DefaultExecutor was shut down. This error indicates that Dispatchers.shutdown() was invoked prior to completion of exiting coroutines, leaving coroutines in incomplete state. Please refer to Dispatchers.shutdown documentation for more details");
+    }
+
     @Override
     public void enqueue(Runnable runnable) {
         if (isShutDown()) {
@@ -53,18 +79,9 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
     }
 
     @Override
-    protected void reschedule(long j, EventLoopImplBase.DelayedTask delayedTask) {
-        shutdownError();
-    }
-
-    private final void shutdownError() {
-        throw new RejectedExecutionException("DefaultExecutor was shut down. This error indicates that Dispatchers.shutdown() was invoked prior to completion of exiting coroutines, leaving coroutines in incomplete state. Please refer to Dispatchers.shutdown documentation for more details");
-    }
-
-    @Override
-    public void shutdown() {
-        debugStatus = 4;
-        super.shutdown();
+    protected Thread getThread() {
+        Thread thread = _thread;
+        return thread == null ? createThreadSync() : thread;
     }
 
     @Override
@@ -127,35 +144,6 @@ public final class DefaultExecutor extends EventLoopImplBase implements Runnable
             if (!isEmpty()) {
                 getThread();
             }
-        }
-    }
-
-    private final synchronized Thread createThreadSync() {
-        Thread thread;
-        thread = _thread;
-        if (thread == null) {
-            thread = new Thread(this, "kotlinx.coroutines.DefaultExecutor");
-            _thread = thread;
-            thread.setDaemon(true);
-            thread.start();
-        }
-        return thread;
-    }
-
-    private final synchronized boolean notifyStartup() {
-        if (isShutdownRequested()) {
-            return false;
-        }
-        debugStatus = 1;
-        notifyAll();
-        return true;
-    }
-
-    private final synchronized void acknowledgeShutdownIfNeeded() {
-        if (isShutdownRequested()) {
-            debugStatus = 3;
-            resetAll();
-            notifyAll();
         }
     }
 }

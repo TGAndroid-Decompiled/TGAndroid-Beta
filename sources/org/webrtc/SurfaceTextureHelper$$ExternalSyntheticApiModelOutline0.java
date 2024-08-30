@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class SurfaceTextureHelper$$ExternalSyntheticApiModelOutline0 {
+public abstract class SurfaceTextureHelper$$ExternalSyntheticApiModelOutline0 {
 }

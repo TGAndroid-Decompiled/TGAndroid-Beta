@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class Camera2Enumerator$$ExternalSyntheticApiModelOutline0 {
+public abstract class Camera2Enumerator$$ExternalSyntheticApiModelOutline0 {
 }

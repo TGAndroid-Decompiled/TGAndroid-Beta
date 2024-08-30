@@ -28,6 +28,15 @@ public class LinkPath extends CornerPath {
     private float minX = Float.MAX_VALUE;
     private float minY = Float.MAX_VALUE;
 
+    public LinkPath() {
+        this.useCornerPathImplementation = false;
+    }
+
+    public LinkPath(boolean z) {
+        this.useRoundRect = z;
+        this.useCornerPathImplementation = false;
+    }
+
     public static int getRadius() {
         return AndroidUtilities.dp(5.0f);
     }
@@ -41,52 +50,18 @@ public class LinkPath extends CornerPath {
         return roundedEffect;
     }
 
-    public LinkPath() {
-        this.useCornerPathImplementation = false;
-    }
-
-    public LinkPath(boolean z) {
-        this.useRoundRect = z;
-        this.useCornerPathImplementation = false;
-    }
-
-    public void setCurrentLayout(Layout layout, int i, float f) {
-        setCurrentLayout(layout, i, 0.0f, f);
-    }
-
-    public void setCurrentLayout(Layout layout, int i, float f, float f2) {
-        int lineCount;
-        if (layout == null) {
-            this.currentLayout = null;
-            this.currentLine = 0;
-            this.lastTop = -1.0f;
-            this.xOffset = f;
-            this.yOffset = f2;
-            return;
-        }
-        this.currentLayout = layout;
-        this.currentLine = layout.getLineForOffset(i);
-        this.lastTop = -1.0f;
-        this.xOffset = f;
-        this.yOffset = f2;
-        if (Build.VERSION.SDK_INT < 28 || (lineCount = layout.getLineCount()) <= 0) {
-            return;
-        }
-        int i2 = lineCount - 1;
-        this.lineHeight = layout.getLineBottom(i2) - layout.getLineTop(i2);
-    }
-
-    public void setAllowReset(boolean z) {
-        this.allowReset = z;
-    }
-
-    public void setBaselineShift(int i) {
-        this.baselineShift = i;
-    }
-
-    public void setInset(float f, float f2) {
-        this.insetVert = f;
-        this.insetHoriz = f2;
+    private void superAddRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        float f5 = this.insetHoriz;
+        float f6 = f - f5;
+        float f7 = this.insetVert;
+        float f8 = f2 - f7;
+        float f9 = f3 + f5;
+        float f10 = f4 + f7;
+        this.minX = Math.min(this.minX, Math.min(f6, f9));
+        this.minY = Math.min(this.minY, Math.min(f8, f10));
+        this.maxX = Math.max(this.maxX, Math.max(f6, f9));
+        this.maxY = Math.max(this.maxY, Math.max(f8, f10));
+        super.addRect(f6, f8, f9, f10, direction);
     }
 
     @Override
@@ -135,28 +110,14 @@ public class LinkPath extends CornerPath {
                     this.centerX = (f11 + f10) / 2.0f;
                     this.centerY = (f12 + f6) / 2.0f;
                     if (this.useRoundRect) {
-                        superAddRect(f10 - (getRadius() / 2.0f), f6, f11 + (getRadius() / 2.0f), f12, direction);
-                    } else {
-                        superAddRect(f10, f6, f11, f12, direction);
+                        f10 -= getRadius() / 2.0f;
+                        f11 += getRadius() / 2.0f;
                     }
+                    superAddRect(f10, f6, f11, f12, direction);
                 }
             }
         } catch (Exception unused) {
         }
-    }
-
-    private void superAddRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        float f5 = this.insetHoriz;
-        float f6 = f - f5;
-        float f7 = this.insetVert;
-        float f8 = f2 - f7;
-        float f9 = f3 + f5;
-        float f10 = f4 + f7;
-        this.minX = Math.min(this.minX, Math.min(f6, f9));
-        this.minY = Math.min(this.minY, Math.min(f8, f10));
-        this.maxX = Math.max(this.maxX, Math.max(f6, f9));
-        this.maxY = Math.max(this.maxY, Math.max(f8, f10));
-        super.addRect(f6, f8, f9, f10, direction);
     }
 
     public void getBounds(RectF rectF) {
@@ -168,5 +129,44 @@ public class LinkPath extends CornerPath {
         if (this.allowReset) {
             super.reset();
         }
+    }
+
+    public void setAllowReset(boolean z) {
+        this.allowReset = z;
+    }
+
+    public void setBaselineShift(int i) {
+        this.baselineShift = i;
+    }
+
+    public void setCurrentLayout(Layout layout, int i, float f) {
+        setCurrentLayout(layout, i, 0.0f, f);
+    }
+
+    public void setCurrentLayout(Layout layout, int i, float f, float f2) {
+        int lineCount;
+        if (layout == null) {
+            this.currentLayout = null;
+            this.currentLine = 0;
+            this.lastTop = -1.0f;
+            this.xOffset = f;
+            this.yOffset = f2;
+            return;
+        }
+        this.currentLayout = layout;
+        this.currentLine = layout.getLineForOffset(i);
+        this.lastTop = -1.0f;
+        this.xOffset = f;
+        this.yOffset = f2;
+        if (Build.VERSION.SDK_INT < 28 || (lineCount = layout.getLineCount()) <= 0) {
+            return;
+        }
+        int i2 = lineCount - 1;
+        this.lineHeight = layout.getLineBottom(i2) - layout.getLineTop(i2);
+    }
+
+    public void setInset(float f, float f2) {
+        this.insetVert = f;
+        this.insetHoriz = f2;
     }
 }

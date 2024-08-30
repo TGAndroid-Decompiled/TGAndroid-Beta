@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -81,7 +80,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
@@ -123,7 +121,6 @@ import org.telegram.tgnet.TLRPC$TL_peerChat;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photoSize;
-import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
 import org.telegram.tgnet.TLRPC$TL_user;
 import org.telegram.tgnet.TLRPC$TL_wallPaper;
@@ -172,7 +169,6 @@ import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.WallpaperCheckBoxView;
 import org.telegram.ui.Components.WallpaperParallaxEffect;
 import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.Stories.recorder.SliderView;
 import org.telegram.ui.ThemePreviewActivity;
 import org.telegram.ui.WallpapersListActivity;
@@ -257,7 +253,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private SeekBarView intensitySeekBar;
     private boolean isBlurred;
     private boolean isMotion;
-    private WeakReference<Drawable> lastDrawableToBlur;
+    private WeakReference lastDrawableToBlur;
     private int lastPickedColor;
     private int lastPickedColorNum;
     private TLRPC$TL_wallPaper lastSelectedPattern;
@@ -293,11 +289,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private FrameLayout[] patternLayout;
     private TextView patternTitleView;
     private AnimatorSet patternViewAnimation;
-    private ArrayList<Object> patterns;
+    private ArrayList patterns;
     private PatternsAdapter patternsAdapter;
     private FrameLayout[] patternsButtonsContainer;
     private TextView[] patternsCancelButton;
-    private HashMap<Long, Object> patternsDict;
+    private HashMap patternsDict;
     private LinearLayoutManager patternsLayoutManager;
     private RecyclerListView patternsListView;
     private TextView[] patternsSaveButton;
@@ -326,7 +322,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private boolean showColor;
     private RLottieDrawable sunDrawable;
     public final ThemeDelegate themeDelegate;
-    private List<ThemeDescription> themeDescriptions;
+    private List themeDescriptions;
     private UndoView undoView;
     public boolean useDefaultThemeForButtons;
     private ValueAnimator valueAnimator;
@@ -334,449 +330,87 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private boolean wasScroll;
     private long watchForKeyboardEndTime;
 
-    public interface DayNightSwitchDelegate {
-        boolean isDark();
-
-        boolean supportsAnimation();
-
-        void switchDayNight(boolean z);
-    }
-
-    public interface WallpaperActivityDelegate {
-        void didSetNewBackground(TLRPC$WallPaper tLRPC$WallPaper);
-    }
-
-    public static void lambda$applyWallpaperBackground$21() {
-    }
-
-    public static void lambda$createView$3(View view, int i) {
-    }
-
-    public static boolean lambda$toggleTheme$34(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    @Override
-    public void onProgressDownload(String str, long j, long j2) {
-    }
-
-    @Override
-    public void onProgressUpload(String str, long j, long j2, boolean z) {
-    }
-
-    @Override
-    public void setResourceProvider(Theme.ResourcesProvider resourcesProvider) {
-        this.themeDelegate.parentProvider = resourcesProvider;
-    }
-
-    @Override
-    public Theme.ResourcesProvider getResourceProvider() {
-        return this.themeDelegate;
-    }
-
-    public void lambda$new$0() {
-        this.applyColorScheduled = false;
-        applyColor(this.lastPickedColor, this.lastPickedColorNum);
-        this.lastPickedColorNum = -1;
-    }
-
-    private void checkBoostsLevel() {
-        if (this.dialogId >= 0 || this.checkingBoostsLevel || this.checkedBoostsLevel || this.boostsStatus != null) {
-            return;
+    public class AnonymousClass27 implements ColorPicker.ColorPickerDelegate {
+        AnonymousClass27() {
         }
-        this.checkingBoostsLevel = true;
-        getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                ThemePreviewActivity.this.lambda$checkBoostsLevel$1((TL_stories$TL_premium_boostsStatus) obj);
+
+        public void lambda$deleteTheme$0(DialogInterface dialogInterface, int i) {
+            Theme.deleteThemeAccent(ThemePreviewActivity.this.applyingTheme, ThemePreviewActivity.this.accent, true);
+            Theme.applyPreviousTheme();
+            Theme.refreshThemeColors();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
+            ThemePreviewActivity.this.lambda$onBackPressed$308();
+        }
+
+        @Override
+        public void deleteTheme() {
+            if (ThemePreviewActivity.this.getParentActivity() == null) {
+                return;
             }
-        });
-    }
-
-    public void lambda$checkBoostsLevel$1(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
-        this.boostsStatus = tL_stories$TL_premium_boostsStatus;
-        this.checkedBoostsLevel = true;
-        updateApplyButton1(true);
-        this.checkingBoostsLevel = false;
-    }
-
-    public static void showFor(final ChatActivity chatActivity, MessageObject messageObject) {
-        TLRPC$WallPaper tLRPC$WallPaper;
-        TLRPC$MessageAction tLRPC$MessageAction = messageObject.messageOwner.action;
-        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatWallPaper) {
-            TLRPC$WallPaper tLRPC$WallPaper2 = ((TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction).wallpaper;
-            if (tLRPC$WallPaper2.pattern || tLRPC$WallPaper2.document == null) {
-                String str = tLRPC$WallPaper2.slug;
-                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper2.settings;
-                WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(str, tLRPC$WallPaperSettings.background_color, tLRPC$WallPaperSettings.second_background_color, tLRPC$WallPaperSettings.third_background_color, tLRPC$WallPaperSettings.fourth_background_color, AndroidUtilities.getWallpaperRotation(tLRPC$WallPaperSettings.rotation, false), r3.intensity / 100.0f, tLRPC$WallPaper2.settings.motion, null);
-                if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) {
-                    colorWallpaper.pattern = (TLRPC$TL_wallPaper) tLRPC$WallPaper2;
-                }
-                tLRPC$WallPaper = colorWallpaper;
-            } else {
-                tLRPC$WallPaper = tLRPC$WallPaper2;
-            }
-            final boolean isDark = Theme.getActiveTheme().isDark();
-            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(tLRPC$WallPaper, null, true, false) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(ThemePreviewActivity.this.getParentActivity());
+            builder.setTitle(LocaleController.getString(R.string.DeleteThemeTitle));
+            builder.setMessage(LocaleController.getString(R.string.DeleteThemeAlert));
+            builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
-                public void onFragmentClosed() {
-                    super.onFragmentClosed();
-                    ChatActivity.ThemeDelegate themeDelegate = chatActivity.themeDelegate;
-                    themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), chatActivity.themeDelegate.getCurrentWallpaper(), false, Boolean.valueOf(isDark));
-                }
-            };
-            TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$WallPaper2.settings;
-            if (tLRPC$WallPaperSettings2 != null) {
-                themePreviewActivity.setInitialModes(tLRPC$WallPaperSettings2.blur, tLRPC$WallPaperSettings2.motion, tLRPC$WallPaperSettings2.intensity / 100.0f);
-            }
-            themePreviewActivity.setCurrentServerWallpaper(messageObject);
-            themePreviewActivity.setDialogId(messageObject.getDialogId());
-            themePreviewActivity.setResourceProvider(chatActivity.themeDelegate);
-            themePreviewActivity.setOnSwitchDayNightDelegate(new DayNightSwitchDelegate(isDark, chatActivity) {
-                boolean forceDark;
-                final ChatActivity val$chatActivity;
-                final boolean val$initialIsDark;
-
-                @Override
-                public boolean supportsAnimation() {
-                    return true;
-                }
-
-                {
-                    this.val$initialIsDark = isDark;
-                    this.val$chatActivity = chatActivity;
-                    this.forceDark = isDark;
-                }
-
-                @Override
-                public boolean isDark() {
-                    return this.forceDark;
-                }
-
-                @Override
-                public void switchDayNight(boolean z) {
-                    this.forceDark = !this.forceDark;
-                    ChatActivity.ThemeDelegate themeDelegate = this.val$chatActivity.themeDelegate;
-                    themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), this.val$chatActivity.themeDelegate.getCurrentWallpaper(), z, Boolean.valueOf(this.forceDark));
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    ThemePreviewActivity.AnonymousClass27.this.lambda$deleteTheme$0(dialogInterface, i);
                 }
             });
-            chatActivity.presentFragment(themePreviewActivity);
-        }
-    }
-
-    private void setCurrentServerWallpaper(MessageObject messageObject) {
-        this.serverWallpaper = messageObject;
-    }
-
-    public void setDialogId(long j) {
-        this.dialogId = j;
-        this.self = j == 0 || j == getUserConfig().getClientUserId();
-    }
-
-    public void setOnSwitchDayNightDelegate(DayNightSwitchDelegate dayNightSwitchDelegate) {
-        this.onSwitchDayNightDelegate = dayNightSwitchDelegate;
-    }
-
-    public ThemePreviewActivity(Object obj, Bitmap bitmap) {
-        this(obj, bitmap, false, false);
-    }
-
-    public ThemePreviewActivity(Object obj, Bitmap bitmap, boolean z, boolean z2) {
-        this.themeDelegate = new ThemeDelegate() {
-            @Override
-            public boolean isDark() {
-                DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
-                if (dayNightSwitchDelegate != null) {
-                    return dayNightSwitchDelegate.isDark();
-                }
-                return super.isDark();
-            }
-        };
-        this.useDefaultThemeForButtons = true;
-        this.colorType = 1;
-        this.msgOutDrawable = new MessageDrawable(0, true, false);
-        this.msgOutDrawableSelected = new MessageDrawable(0, true, true);
-        this.msgOutMediaDrawable = new MessageDrawable(1, true, false);
-        this.msgOutMediaDrawableSelected = new MessageDrawable(1, true, true);
-        this.lastPickedColorNum = -1;
-        this.applyColorAction = new Runnable() {
-            @Override
-            public final void run() {
-                ThemePreviewActivity.this.lambda$new$0();
-            }
-        };
-        this.backgroundImages = new BackgroundView[2];
-        this.patternLayout = new FrameLayout[2];
-        this.patternsCancelButton = new TextView[2];
-        this.patternsSaveButton = new TextView[2];
-        this.patternsButtonsContainer = new FrameLayout[2];
-        this.patternsDict = new HashMap<>();
-        this.currentIntensity = 0.5f;
-        this.dimAmount = 0.0f;
-        this.blendMode = PorterDuff.Mode.SRC_IN;
-        this.parallaxScale = 1.0f;
-        this.loadingFile = null;
-        this.loadingFileObject = null;
-        this.loadingSize = null;
-        this.imageFilter = "640_360";
-        this.maxWallpaperSize = 1920;
-        this.self = true;
-        this.gestureDetector2 = new GestureDetector2(getContext(), new GestureDetector2.OnGestureListener() {
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-            }
-
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                return false;
-            }
-
-            @Override
-            public void onUp(MotionEvent motionEvent) {
-            }
-
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                if (ThemePreviewActivity.this.scroller == null) {
-                    return true;
-                }
-                ThemePreviewActivity.this.scroller.abortAnimation();
-                return true;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (ThemePreviewActivity.this.scroller != null) {
-                    ThemePreviewActivity.this.scroller.abortAnimation();
-                }
-                ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
-                themePreviewActivity.currentScrollOffset = Utilities.clamp(themePreviewActivity.currentScrollOffset + f, themePreviewActivity.maxScrollOffset, 0.0f);
-                ThemePreviewActivity.this.invalidateBlur();
-                ThemePreviewActivity.this.backgroundImage.invalidate();
-                return true;
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (ThemePreviewActivity.this.scroller == null) {
-                    return true;
-                }
-                ThemePreviewActivity.this.scroller.abortAnimation();
-                ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
-                ThemePreviewActivity.this.backgroundImage.postInvalidate();
-                return true;
-            }
-        });
-        this.checkingBoostsLevel = false;
-        this.checkedBoostsLevel = false;
-        this.screenType = 2;
-        this.showColor = z2;
-        this.currentWallpaper = obj;
-        this.currentWallpaperBitmap = bitmap;
-        this.rotatePreview = z;
-        if (obj instanceof WallpapersListActivity.ColorWallpaper) {
-            WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj;
-            this.isMotion = colorWallpaper.motion;
-            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = colorWallpaper.pattern;
-            this.selectedPattern = tLRPC$TL_wallPaper;
-            if (tLRPC$TL_wallPaper != null) {
-                float f = colorWallpaper.intensity;
-                this.currentIntensity = f;
-                if (f < 0.0f && !Theme.getActiveTheme().isDark()) {
-                    this.currentIntensity *= -1.0f;
-                }
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            AlertDialog create = builder.create();
+            ThemePreviewActivity.this.showDialog(create);
+            TextView textView = (TextView) create.getButton(-1);
+            if (textView != null) {
+                textView.setTextColor(ThemePreviewActivity.this.getThemedColor(Theme.key_text_RedBold));
             }
         }
-        this.msgOutDrawable.themePreview = true;
-        this.msgOutMediaDrawable.themePreview = true;
-        this.msgOutDrawableSelected.themePreview = true;
-        this.msgOutMediaDrawableSelected.themePreview = true;
-    }
 
-    public ThemePreviewActivity(Theme.ThemeInfo themeInfo) {
-        this(themeInfo, false, 0, false, false);
-    }
+        @Override
+        public int getDefaultColor(int i) {
+            Theme.ThemeAccent themeAccent;
+            if (ThemePreviewActivity.this.colorType == 3 && ThemePreviewActivity.this.applyingTheme.firstAccentIsDefault && i == 0 && (themeAccent = (Theme.ThemeAccent) ThemePreviewActivity.this.applyingTheme.themeAccentsMap.get(Theme.DEFALT_THEME_ACCENT_ID)) != null) {
+                return themeAccent.myMessagesAccentColor;
+            }
+            return 0;
+        }
 
-    public ThemePreviewActivity(Theme.ThemeInfo themeInfo, boolean z, int i, boolean z2, boolean z3) {
-        this.themeDelegate = new ThemeDelegate() {
-            @Override
-            public boolean isDark() {
-                DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
-                if (dayNightSwitchDelegate != null) {
-                    return dayNightSwitchDelegate.isDark();
-                }
-                return super.isDark();
+        @Override
+        public void openThemeCreate(boolean z) {
+            if (!z) {
+                AlertsCreator.createThemeCreateDialog(ThemePreviewActivity.this, 1, null, null);
+                return;
             }
-        };
-        this.useDefaultThemeForButtons = true;
-        this.colorType = 1;
-        this.msgOutDrawable = new MessageDrawable(0, true, false);
-        this.msgOutDrawableSelected = new MessageDrawable(0, true, true);
-        this.msgOutMediaDrawable = new MessageDrawable(1, true, false);
-        this.msgOutMediaDrawableSelected = new MessageDrawable(1, true, true);
-        this.lastPickedColorNum = -1;
-        this.applyColorAction = new Runnable() {
-            @Override
-            public final void run() {
-                ThemePreviewActivity.this.lambda$new$0();
+            if (ThemePreviewActivity.this.accent.info == null) {
+                ThemePreviewActivity.this.lambda$onBackPressed$308();
+                MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).saveThemeToServer(ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
+                return;
             }
-        };
-        this.backgroundImages = new BackgroundView[2];
-        this.patternLayout = new FrameLayout[2];
-        this.patternsCancelButton = new TextView[2];
-        this.patternsSaveButton = new TextView[2];
-        this.patternsButtonsContainer = new FrameLayout[2];
-        this.patternsDict = new HashMap<>();
-        this.currentIntensity = 0.5f;
-        this.dimAmount = 0.0f;
-        this.blendMode = PorterDuff.Mode.SRC_IN;
-        this.parallaxScale = 1.0f;
-        this.loadingFile = null;
-        this.loadingFileObject = null;
-        this.loadingSize = null;
-        this.imageFilter = "640_360";
-        this.maxWallpaperSize = 1920;
-        this.self = true;
-        this.gestureDetector2 = new GestureDetector2(getContext(), new GestureDetector2.OnGestureListener() {
-            @Override
-            public void onLongPress(MotionEvent motionEvent) {
-            }
+            String str = "https://" + MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).linkPrefix + "/addtheme/" + ThemePreviewActivity.this.accent.info.slug;
+            ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false));
+        }
 
-            @Override
-            public void onShowPress(MotionEvent motionEvent) {
-            }
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent motionEvent) {
-                return false;
-            }
-
-            @Override
-            public void onUp(MotionEvent motionEvent) {
-            }
-
-            @Override
-            public boolean onDown(MotionEvent motionEvent) {
-                if (ThemePreviewActivity.this.scroller == null) {
-                    return true;
-                }
-                ThemePreviewActivity.this.scroller.abortAnimation();
-                return true;
-            }
-
-            @Override
-            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (ThemePreviewActivity.this.scroller != null) {
-                    ThemePreviewActivity.this.scroller.abortAnimation();
-                }
-                ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
-                themePreviewActivity.currentScrollOffset = Utilities.clamp(themePreviewActivity.currentScrollOffset + f, themePreviewActivity.maxScrollOffset, 0.0f);
-                ThemePreviewActivity.this.invalidateBlur();
-                ThemePreviewActivity.this.backgroundImage.invalidate();
-                return true;
-            }
-
-            @Override
-            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-                if (ThemePreviewActivity.this.scroller == null) {
-                    return true;
-                }
-                ThemePreviewActivity.this.scroller.abortAnimation();
-                ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
-                ThemePreviewActivity.this.backgroundImage.postInvalidate();
-                return true;
-            }
-        });
-        this.checkingBoostsLevel = false;
-        this.checkedBoostsLevel = false;
-        this.screenType = i;
-        this.nightTheme = z3;
-        this.applyingTheme = themeInfo;
-        this.deleteOnCancel = z;
-        this.editingTheme = z2;
-        if (i == 1) {
-            Theme.ThemeAccent accent = themeInfo.getAccent(!z2);
-            this.accent = accent;
-            if (accent != null) {
-                this.useDefaultThemeForButtons = false;
-                this.backupAccentColor = accent.accentColor;
-                this.backupAccentColor2 = accent.accentColor2;
-                this.backupMyMessagesAccentColor = accent.myMessagesAccentColor;
-                this.backupMyMessagesGradientAccentColor1 = accent.myMessagesGradientAccentColor1;
-                this.backupMyMessagesGradientAccentColor2 = accent.myMessagesGradientAccentColor2;
-                this.backupMyMessagesGradientAccentColor3 = accent.myMessagesGradientAccentColor3;
-                this.backupMyMessagesAnimated = accent.myMessagesAnimated;
-                this.backupBackgroundOverrideColor = accent.backgroundOverrideColor;
-                this.backupBackgroundGradientOverrideColor1 = accent.backgroundGradientOverrideColor1;
-                this.backupBackgroundGradientOverrideColor2 = accent.backgroundGradientOverrideColor2;
-                this.backupBackgroundGradientOverrideColor3 = accent.backgroundGradientOverrideColor3;
-                this.backupIntensity = accent.patternIntensity;
-                this.backupSlug = accent.patternSlug;
-                this.backupBackgroundRotation = accent.backgroundRotation;
-            }
-        } else {
-            if (i == 0) {
-                this.useDefaultThemeForButtons = false;
-            }
-            Theme.ThemeAccent accent2 = themeInfo.getAccent(false);
-            this.accent = accent2;
-            if (accent2 != null) {
-                this.selectedPattern = accent2.pattern;
+        @Override
+        public void setColor(int i, int i2, boolean z) {
+            if (ThemePreviewActivity.this.screenType == 2) {
+                ThemePreviewActivity.this.setBackgroundColor(i, i2, z, true);
+            } else {
+                ThemePreviewActivity.this.scheduleApplyColor(i, i2, z);
             }
         }
-        Theme.ThemeAccent themeAccent = this.accent;
-        if (themeAccent != null) {
-            this.isMotion = themeAccent.patternMotion;
-            if (!TextUtils.isEmpty(themeAccent.patternSlug)) {
-                this.currentIntensity = this.accent.patternIntensity;
-            }
-            Theme.applyThemeTemporary(this.applyingTheme, true);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.goingToPreviewTheme, new Object[0]);
-        this.msgOutDrawable.themePreview = true;
-        this.msgOutMediaDrawable.themePreview = true;
-        this.msgOutDrawableSelected.themePreview = true;
-        this.msgOutMediaDrawableSelected.themePreview = true;
-    }
-
-    public void setInitialModes(boolean z, boolean z2, float f) {
-        this.isBlurred = z;
-        this.isMotion = z2;
-        this.dimAmount = f;
-    }
-
-    @Override
-    @android.annotation.SuppressLint({"Recycle"})
-    public android.view.View createView(android.content.Context r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
-    }
-
-    public void lambda$createView$2() {
-        if (getParentActivity() == null || getContext() == null) {
-            return;
-        }
-        SharedConfig.increaseDayNightWallpaperSiwtchHint();
-        HintView hintView = new HintView(getContext(), 7, true);
-        hintView.setAlpha(0.0f);
-        hintView.setVisibility(4);
-        hintView.setShowingDuration(4000L);
-        this.frameLayout.addView(hintView, LayoutHelper.createFrame(-2, -2.0f, 51, 4.0f, 0.0f, 4.0f, 0.0f));
-        if (this.onSwitchDayNightDelegate.isDark()) {
-            hintView.setText(LocaleController.getString(R.string.PreviewWallpaperDay));
-        } else {
-            hintView.setText(LocaleController.getString(R.string.PreviewWallpaperNight));
-        }
-        hintView.setBackgroundColor(-366530760, -1);
-        hintView.showForView(this.dayNightItem, true);
-        hintView.setExtraTranslationY(-AndroidUtilities.dp(14.0f));
     }
 
     public class AnonymousClass9 extends ActionBar.ActionBarMenuOnItemClick {
         AnonymousClass9() {
+        }
+
+        public void lambda$onItemClick$0(ValueAnimator valueAnimator) {
+            ThemePreviewActivity.this.progressToDarkTheme = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            ThemePreviewActivity.this.backgroundImage.invalidate();
+            ThemePreviewActivity.this.bottomOverlayChat.invalidate();
+            ThemePreviewActivity.this.dimmingSlider.setAlpha(ThemePreviewActivity.this.progressToDarkTheme);
+            ThemePreviewActivity.this.dimmingSliderContainer.invalidate();
+            ThemePreviewActivity.this.invalidateBlur();
         }
 
         @Override
@@ -844,21 +478,21 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
                 if (ThemePreviewActivity.this.currentWallpaper instanceof TLRPC$TL_wallPaper) {
                     String str2 = "https://" + MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).linkPrefix + "/bg/" + ((TLRPC$TL_wallPaper) ThemePreviewActivity.this.currentWallpaper).slug;
-                    if (sb.length() > 0) {
-                        url = str2 + "?mode=" + sb.toString();
-                    } else {
+                    if (sb.length() <= 0) {
                         str = str2;
                         ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false) {
                             @Override
-                            public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i3, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                            public void onSend(LongSparseArray longSparseArray, int i3, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                                 if (longSparseArray.size() == 1) {
-                                    ThemePreviewActivity.this.undoView.showWithAction(longSparseArray.valueAt(0).id, 61, Integer.valueOf(i3));
+                                    ThemePreviewActivity.this.undoView.showWithAction(((TLRPC$Dialog) longSparseArray.valueAt(0)).id, 61, Integer.valueOf(i3));
                                 } else {
                                     ThemePreviewActivity.this.undoView.showWithAction(0L, 61, Integer.valueOf(i3), Integer.valueOf(longSparseArray.size()), (Runnable) null, (Runnable) null);
                                 }
                             }
                         });
                         return;
+                    } else {
+                        url = str2 + "?mode=" + sb.toString();
                     }
                 } else if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
                     WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(ThemePreviewActivity.this.selectedPattern != null ? ThemePreviewActivity.this.selectedPattern.slug : "c", ThemePreviewActivity.this.backgroundColor, ThemePreviewActivity.this.backgroundGradientColor1, ThemePreviewActivity.this.backgroundGradientColor2, ThemePreviewActivity.this.backgroundGradientColor3, ThemePreviewActivity.this.backgroundRotation, ThemePreviewActivity.this.currentIntensity, ThemePreviewActivity.this.isMotion, null);
@@ -886,9 +520,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 str = url;
                 ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false) {
                     @Override
-                    public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i3, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                    public void onSend(LongSparseArray longSparseArray, int i3, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                         if (longSparseArray.size() == 1) {
-                            ThemePreviewActivity.this.undoView.showWithAction(longSparseArray.valueAt(0).id, 61, Integer.valueOf(i3));
+                            ThemePreviewActivity.this.undoView.showWithAction(((TLRPC$Dialog) longSparseArray.valueAt(0)).id, 61, Integer.valueOf(i3));
                         } else {
                             ThemePreviewActivity.this.undoView.showWithAction(0L, 61, Integer.valueOf(i3), Integer.valueOf(longSparseArray.size()), (Runnable) null, (Runnable) null);
                         }
@@ -901,7 +535,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     final MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
                     photoEntry.isVideo = false;
                     photoEntry.thumbPath = null;
-                    ArrayList<Object> arrayList = new ArrayList<>();
+                    ArrayList arrayList = new ArrayList();
                     arrayList.add(photoEntry);
                     PhotoViewer.getInstance().setParentActivity(ThemePreviewActivity.this.getParentActivity());
                     PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 3, false, new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -990,2464 +624,257 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
             }
         }
+    }
 
-        public void lambda$onItemClick$0(ValueAnimator valueAnimator) {
-            ThemePreviewActivity.this.progressToDarkTheme = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            ThemePreviewActivity.this.backgroundImage.invalidate();
-            ThemePreviewActivity.this.bottomOverlayChat.invalidate();
-            ThemePreviewActivity.this.dimmingSlider.setAlpha(ThemePreviewActivity.this.progressToDarkTheme);
-            ThemePreviewActivity.this.dimmingSliderContainer.invalidate();
-            ThemePreviewActivity.this.invalidateBlur();
+    public class BackgroundView extends BackupImageView {
+        public Drawable background;
+        boolean drawBackground;
+        public float tx;
+        public float ty;
+
+        public BackgroundView(Context context) {
+            super(context);
+            this.drawBackground = true;
         }
-    }
 
-    public void lambda$createView$4(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        if (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
-            return;
+        @Override
+        public Drawable getBackground() {
+            return this.background;
         }
-        Drawable drawable = imageReceiver.getDrawable();
-        if (!z || drawable == null) {
-            return;
-        }
-        this.themeDelegate.applyChatServiceMessageColor(AndroidUtilities.calcDrawableColor(drawable), checkBlur(drawable), drawable, Float.valueOf(this.currentIntensity));
-        if (!z2 && this.isBlurred && this.blurredBitmap == null) {
-            this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(false);
-            updateBlurred();
-            this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(true);
-        }
-        invalidateBlur();
-    }
 
-    public void lambda$createView$5(View view) {
-        this.dropDownContainer.toggleSubMenu();
-    }
-
-    public void lambda$createView$6(View view, int i, float f, float f2) {
-        if (view instanceof ChatMessageCell) {
-            ChatMessageCell chatMessageCell = (ChatMessageCell) view;
-            if (chatMessageCell.isInsideBackground(f, f2)) {
-                if (chatMessageCell.getMessageObject().isOutOwner()) {
-                    selectColorType(3);
-                    return;
-                } else {
-                    selectColorType(1);
-                    return;
-                }
-            }
-            selectColorType(2);
-        }
-    }
-
-    public void lambda$createView$7(int i, int i2, float f) {
-        if (this.isMotion) {
-            this.backgroundImage.getBackground();
-            float scaleX = this.motionAnimation != null ? (this.backgroundImage.getScaleX() - 1.0f) / (this.parallaxScale - 1.0f) : 1.0f;
-            this.backgroundImage.setTranslationX(i * scaleX);
-            this.backgroundImage.setTranslationY(i2 * scaleX);
-        }
-    }
-
-    public void lambda$createView$8(View view) {
-        applyWallpaperBackground(false);
-    }
-
-    public void lambda$createView$9(View view) {
-        applyWallpaperBackground(true);
-    }
-
-    public void lambda$createView$10(Float f) {
-        this.dimAmount = f.floatValue();
-        this.backgroundImage.invalidate();
-        invalidateBlur();
-    }
-
-    public void lambda$createView$11(int i, WallpaperCheckBoxView wallpaperCheckBoxView, View view) {
-        if (this.backgroundButtonsContainer.getAlpha() == 1.0f && this.patternViewAnimation == null) {
-            int i2 = this.screenType;
-            if ((i2 == 1 || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) && i == 2) {
-                wallpaperCheckBoxView.setChecked(!wallpaperCheckBoxView.isChecked(), true);
-                boolean isChecked = wallpaperCheckBoxView.isChecked();
-                this.isMotion = isChecked;
-                this.parallaxEffect.setEnabled(isChecked);
-                animateMotionChange();
-                return;
-            }
-            if (i == 1 && (i2 == 1 || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper))) {
-                if (this.backgroundCheckBoxView[1].isChecked()) {
-                    this.lastSelectedPattern = this.selectedPattern;
-                    this.backgroundImage.setImageDrawable(null);
-                    this.selectedPattern = null;
-                    this.isMotion = false;
-                    updateButtonState(false, true);
-                    animateMotionChange();
-                    if (this.patternLayout[1].getVisibility() == 0) {
-                        if (this.screenType == 1) {
-                            showPatternsView(0, true, true);
-                        } else {
-                            showPatternsView(i, this.patternLayout[i].getVisibility() != 0, true);
-                        }
-                    }
-                } else {
-                    selectPattern(this.lastSelectedPattern != null ? -1 : 0);
-                    if (this.screenType == 1) {
-                        showPatternsView(1, true, true);
+        @Override
+        public void onDraw(Canvas canvas) {
+            this.tx = 0.0f;
+            this.ty = 0.0f;
+            if (this.drawBackground) {
+                Drawable drawable = this.background;
+                if ((drawable instanceof ColorDrawable) || (drawable instanceof GradientDrawable) || (drawable instanceof MotionBackgroundDrawable)) {
+                    drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                } else if (drawable instanceof BitmapDrawable) {
+                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
+                        canvas.save();
+                        float f = 2.0f / AndroidUtilities.density;
+                        canvas.scale(f, f);
+                        this.background.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
+                        this.background.draw(canvas);
+                        canvas.restore();
                     } else {
-                        showPatternsView(i, this.patternLayout[i].getVisibility() != 0, true);
+                        int measuredHeight = getMeasuredHeight();
+                        float max = Math.max(getMeasuredWidth() / this.background.getIntrinsicWidth(), measuredHeight / this.background.getIntrinsicHeight());
+                        int ceil = (int) Math.ceil(this.background.getIntrinsicWidth() * max * ThemePreviewActivity.this.parallaxScale);
+                        int ceil2 = (int) Math.ceil(this.background.getIntrinsicHeight() * max * ThemePreviewActivity.this.parallaxScale);
+                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
+                        int i = (measuredHeight - ceil2) / 2;
+                        this.ty = i;
+                        this.background.setBounds(measuredWidth, i, ceil + measuredWidth, ceil2 + i);
                     }
                 }
-                this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, true);
-                updateSelectedPattern(true);
-                this.patternsListView.invalidateViews();
-                updateMotionButton();
-                return;
+                this.background.draw(canvas);
             }
-            if (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
-                showPatternsView(i, this.patternLayout[i].getVisibility() != 0, true);
-                return;
-            }
-            if (i2 != 1) {
-                wallpaperCheckBoxView.setChecked(!wallpaperCheckBoxView.isChecked(), true);
-                if (i == 0) {
-                    boolean isChecked2 = wallpaperCheckBoxView.isChecked();
-                    this.isBlurred = isChecked2;
-                    if (isChecked2) {
-                        this.backgroundImage.getImageReceiver().setForceCrossfade(true);
+            if (ThemePreviewActivity.this.hasScrollingBackground) {
+                if (!ThemePreviewActivity.this.scroller.isFinished() && ThemePreviewActivity.this.scroller.computeScrollOffset()) {
+                    float startX = ThemePreviewActivity.this.scroller.getStartX();
+                    ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+                    if (startX < themePreviewActivity.maxScrollOffset && themePreviewActivity.scroller.getStartX() > 0) {
+                        ThemePreviewActivity.this.currentScrollOffset = r1.scroller.getCurrX();
                     }
-                    updateBlurred();
-                    return;
+                    ThemePreviewActivity.this.invalidateBlur();
+                    invalidate();
                 }
-                boolean isChecked3 = wallpaperCheckBoxView.isChecked();
-                this.isMotion = isChecked3;
-                this.parallaxEffect.setEnabled(isChecked3);
-                animateMotionChange();
-            }
-        }
-    }
-
-    public void lambda$createView$12(int i, WallpaperCheckBoxView wallpaperCheckBoxView, View view) {
-        if (this.messagesButtonsContainer.getAlpha() == 1.0f && i == 0) {
-            wallpaperCheckBoxView.setChecked(!wallpaperCheckBoxView.isChecked(), true);
-            this.accent.myMessagesAnimated = wallpaperCheckBoxView.isChecked();
-            Theme.refreshThemeColors(true, true);
-            this.listView2.invalidateViews();
-        }
-    }
-
-    public void lambda$createView$13(int i, View view) {
-        if (this.patternViewAnimation != null) {
-            return;
-        }
-        if (i == 0) {
-            this.backgroundRotation = this.previousBackgroundRotation;
-            setBackgroundColor(this.previousBackgroundGradientColor3, 3, true, true);
-            setBackgroundColor(this.previousBackgroundGradientColor2, 2, true, true);
-            setBackgroundColor(this.previousBackgroundGradientColor1, 1, true, true);
-            setBackgroundColor(this.previousBackgroundColor, 0, true, true);
-        } else {
-            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.previousSelectedPattern;
-            this.selectedPattern = tLRPC$TL_wallPaper;
-            if (tLRPC$TL_wallPaper == null) {
-                this.backgroundImage.setImageDrawable(null);
+                canvas.save();
+                float f2 = -ThemePreviewActivity.this.currentScrollOffset;
+                this.tx = f2;
+                canvas.translate(f2, 0.0f);
+                super.onDraw(canvas);
+                canvas.restore();
             } else {
-                BackgroundView backgroundView = this.backgroundImage;
-                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_wallPaper.document);
-                String str = this.imageFilter;
-                TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = this.selectedPattern;
-                backgroundView.setImage(forDocument, str, null, null, "jpg", tLRPC$TL_wallPaper2.document.size, 1, tLRPC$TL_wallPaper2);
+                super.onDraw(canvas);
             }
-            this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, false);
-            float f = this.previousIntensity;
-            this.currentIntensity = f;
-            this.intensitySeekBar.setProgress(f);
-            this.backgroundImage.getImageReceiver().setAlpha(this.currentIntensity);
-            updateButtonState(false, true);
-            updateSelectedPattern(true);
-        }
-        if (this.screenType == 2) {
-            showPatternsView(i, false, true);
-            return;
-        }
-        if (this.selectedPattern == null) {
-            if (this.isMotion) {
-                this.isMotion = false;
-                this.backgroundCheckBoxView[0].setChecked(false, true);
-                animateMotionChange();
+            if (!ThemePreviewActivity.this.shouldShowBrightnessControll || ThemePreviewActivity.this.dimAmount <= 0.0f) {
+                return;
             }
-            updateMotionButton();
-        }
-        showPatternsView(0, true, true);
-    }
-
-    public void lambda$createView$14(int i, View view) {
-        if (this.patternViewAnimation != null) {
-            return;
-        }
-        if (this.screenType == 2) {
-            showPatternsView(i, false, true);
-        } else {
-            showPatternsView(0, true, true);
-        }
-    }
-
-    public void lambda$createView$15(View view, int i) {
-        boolean z = this.selectedPattern != null;
-        selectPattern(i);
-        if (z == (this.selectedPattern == null)) {
-            animateMotionChange();
-            updateMotionButton();
-        }
-        updateSelectedPattern(true);
-        this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, true);
-        this.patternsListView.invalidateViews();
-        int left = view.getLeft();
-        int right = view.getRight();
-        int dp = AndroidUtilities.dp(52.0f);
-        int i2 = left - dp;
-        if (i2 < 0) {
-            this.patternsListView.smoothScrollBy(i2, 0);
-            return;
-        }
-        int i3 = right + dp;
-        if (i3 > this.patternsListView.getMeasuredWidth()) {
-            RecyclerListView recyclerListView = this.patternsListView;
-            recyclerListView.smoothScrollBy(i3 - recyclerListView.getMeasuredWidth(), 0);
-        }
-    }
-
-    public class AnonymousClass27 implements ColorPicker.ColorPickerDelegate {
-        AnonymousClass27() {
+            canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
         }
 
         @Override
-        public void setColor(int i, int i2, boolean z) {
-            if (ThemePreviewActivity.this.screenType == 2) {
-                ThemePreviewActivity.this.setBackgroundColor(i, i2, z, true);
-            } else {
-                ThemePreviewActivity.this.scheduleApplyColor(i, i2, z);
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+            themePreviewActivity.parallaxScale = themePreviewActivity.parallaxEffect.getScale(getMeasuredWidth(), getMeasuredHeight());
+            if (ThemePreviewActivity.this.isMotion) {
+                setScaleX(ThemePreviewActivity.this.parallaxScale);
+                setScaleY(ThemePreviewActivity.this.parallaxScale);
+            }
+            ThemePreviewActivity themePreviewActivity2 = ThemePreviewActivity.this;
+            themePreviewActivity2.progressVisible = themePreviewActivity2.screenType == 2 && getMeasuredWidth() <= getMeasuredHeight();
+            int measuredWidth = getMeasuredWidth() + (getMeasuredHeight() << 16);
+            if (ThemePreviewActivity.this.lastSizeHash != measuredWidth) {
+                ThemePreviewActivity.this.hasScrollingBackground = false;
+                if (ThemePreviewActivity.this.currentWallpaperBitmap != null) {
+                    int width = (int) (ThemePreviewActivity.this.currentWallpaperBitmap.getWidth() * (getMeasuredHeight() / ThemePreviewActivity.this.currentWallpaperBitmap.getHeight()));
+                    if (width - getMeasuredWidth() > 100) {
+                        ThemePreviewActivity.this.hasScrollingBackground = true;
+                        ThemePreviewActivity.this.croppedWidth = (int) (getMeasuredWidth() * (ThemePreviewActivity.this.currentWallpaperBitmap.getHeight() / getMeasuredHeight()));
+                        ThemePreviewActivity themePreviewActivity3 = ThemePreviewActivity.this;
+                        float measuredWidth2 = (width - getMeasuredWidth()) / 2.0f;
+                        themePreviewActivity3.currentScrollOffset = measuredWidth2;
+                        themePreviewActivity3.defaultScrollOffset = measuredWidth2;
+                        ThemePreviewActivity themePreviewActivity4 = ThemePreviewActivity.this;
+                        themePreviewActivity4.maxScrollOffset = themePreviewActivity4.currentScrollOffset * 2.0f;
+                        setSize(width, getMeasuredHeight());
+                        this.drawFromStart = true;
+                        ThemePreviewActivity.this.invalidateBlur();
+                    }
+                }
+                if (!ThemePreviewActivity.this.hasScrollingBackground) {
+                    setSize(-1, -1);
+                    this.drawFromStart = false;
+                }
+            }
+            ThemePreviewActivity.this.lastSizeHash = measuredWidth;
+        }
+
+        @Override
+        public void setBackground(Drawable drawable) {
+            this.background = drawable;
+            if (drawable != null) {
+                drawable.setCallback(this);
             }
         }
 
         @Override
-        public void openThemeCreate(boolean z) {
-            if (z) {
-                if (ThemePreviewActivity.this.accent.info == null) {
-                    ThemePreviewActivity.this.lambda$onBackPressed$308();
-                    MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).saveThemeToServer(ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
-                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, ThemePreviewActivity.this.accent.parentTheme, ThemePreviewActivity.this.accent);
-                    return;
-                }
-                String str = "https://" + MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).linkPrefix + "/addtheme/" + ThemePreviewActivity.this.accent.info.slug;
-                ThemePreviewActivity.this.showDialog(new ShareAlert(ThemePreviewActivity.this.getParentActivity(), null, str, false, str, false));
-                return;
-            }
-            AlertsCreator.createThemeCreateDialog(ThemePreviewActivity.this, 1, null, null);
-        }
-
-        @Override
-        public void deleteTheme() {
-            if (ThemePreviewActivity.this.getParentActivity() == null) {
-                return;
-            }
-            AlertDialog.Builder builder = new AlertDialog.Builder(ThemePreviewActivity.this.getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.DeleteThemeTitle));
-            builder.setMessage(LocaleController.getString(R.string.DeleteThemeAlert));
-            builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    ThemePreviewActivity.AnonymousClass27.this.lambda$deleteTheme$0(dialogInterface, i);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            AlertDialog create = builder.create();
-            ThemePreviewActivity.this.showDialog(create);
-            TextView textView = (TextView) create.getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(ThemePreviewActivity.this.getThemedColor(Theme.key_text_RedBold));
-            }
-        }
-
-        public void lambda$deleteTheme$0(DialogInterface dialogInterface, int i) {
-            Theme.deleteThemeAccent(ThemePreviewActivity.this.applyingTheme, ThemePreviewActivity.this.accent, true);
-            Theme.applyPreviousTheme();
-            Theme.refreshThemeColors();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, ThemePreviewActivity.this.applyingTheme, Boolean.valueOf(ThemePreviewActivity.this.nightTheme), null, -1);
-            ThemePreviewActivity.this.lambda$onBackPressed$308();
-        }
-
-        @Override
-        public int getDefaultColor(int i) {
-            Theme.ThemeAccent themeAccent;
-            if (ThemePreviewActivity.this.colorType == 3 && ThemePreviewActivity.this.applyingTheme.firstAccentIsDefault && i == 0 && (themeAccent = ThemePreviewActivity.this.applyingTheme.themeAccentsMap.get(Theme.DEFALT_THEME_ACCENT_ID)) != null) {
-                return themeAccent.myMessagesAccentColor;
-            }
-            return 0;
+        protected boolean verifyDrawable(Drawable drawable) {
+            return this.background == drawable || super.verifyDrawable(drawable);
         }
     }
 
-    public void lambda$createView$16() {
-        this.watchForKeyboardEndTime = SystemClock.elapsedRealtime() + 1500;
-        this.frameLayout.invalidate();
-    }
+    public class BlurButton extends View {
+        private final ColorFilter colorFilter;
+        private final Paint dimPaint;
+        private final Paint dimPaint2;
+        private CircularProgressDrawable loadingDrawable;
+        private float loadingT;
+        private final Drawable rippleDrawable;
+        private Text subtext;
+        private boolean subtextShown;
+        private AnimatedFloat subtextShownT;
+        private Text text;
 
-    public void lambda$createView$17(View view) {
-        cancelThemeApply(false);
-    }
+        public BlurButton(Context context) {
+            super(context);
+            this.subtextShownT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(285212671, 8, 8);
+            this.rippleDrawable = createRadSelectorDrawable;
+            this.dimPaint = new Paint(1);
+            this.dimPaint2 = new Paint(1);
+            this.loadingT = 0.0f;
+            createRadSelectorDrawable.setCallback(this);
+            ColorMatrix colorMatrix = new ColorMatrix();
+            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
+            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
+            this.colorFilter = new ColorMatrixColorFilter(colorMatrix);
+        }
 
-    public void lambda$createView$18(View view) {
-        Theme.ThemeAccent accent;
-        Theme.ThemeInfo previousTheme = Theme.getPreviousTheme();
-        if (previousTheme == null) {
-            return;
-        }
-        int i = previousTheme.prevAccentId;
-        if (i >= 0) {
-            accent = previousTheme.themeAccentsMap.get(i);
-        } else {
-            accent = previousTheme.getAccent(false);
-        }
-        if (this.accent != null) {
-            saveAccentWallpaper();
-            Theme.saveThemeAccents(this.applyingTheme, true, false, false, false);
-            Theme.clearPreviousTheme();
-            Theme.applyTheme(this.applyingTheme, this.nightTheme);
-            this.parentLayout.rebuildAllFragmentViews(false, false);
-        } else {
-            this.parentLayout.rebuildAllFragmentViews(false, false);
-            File file = new File(this.applyingTheme.pathToFile);
-            Theme.ThemeInfo themeInfo = this.applyingTheme;
-            Theme.applyThemeFile(file, themeInfo.name, themeInfo.info, false);
-            MessagesController.getInstance(this.applyingTheme.account).saveTheme(this.applyingTheme, null, false, false);
-            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
-            edit.putString("lastDayTheme", this.applyingTheme.getKey());
-            edit.commit();
-        }
-        BaseFragment baseFragment = getParentLayout().getFragmentStack().get(Math.max(0, getParentLayout().getFragmentStack().size() - 2));
-        lambda$onBackPressed$308();
-        if (this.screenType == 0) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, previousTheme, accent, Boolean.valueOf(this.deleteOnCancel));
-        }
-        Theme.turnOffAutoNight(baseFragment);
-    }
-
-    public boolean insideBottomSheet() {
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        return (iNavigationLayout == null || iNavigationLayout.getBottomSheet() == null) ? false : true;
-    }
-
-    public void updateIntensity() {
-        this.backgroundImage.getImageReceiver().setAlpha(Math.abs(this.currentIntensity));
-        this.backgroundImage.invalidate();
-        this.patternsListView.invalidateViews();
-        if (this.currentIntensity >= 0.0f) {
-            this.backgroundImage.getImageReceiver().setGradientBitmap(null);
-        } else {
-            if (Build.VERSION.SDK_INT >= 29) {
-                this.backgroundImage.getImageReceiver().setBlendMode(null);
+        public CharSequence getText() {
+            Text text = this.text;
+            if (text != null) {
+                return text.getText();
             }
-            if (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable) {
-                this.backgroundImage.getImageReceiver().setGradientBitmap(((MotionBackgroundDrawable) this.backgroundImage.getBackground()).getBitmap());
-            }
-        }
-        ThemeDelegate themeDelegate = this.themeDelegate;
-        int i = this.checkColor;
-        themeDelegate.applyChatServiceMessageColor(new int[]{i, i, i, i}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
-        invalidateBlur();
-    }
-
-    private void updateApplyButton1(boolean z) {
-        long j = this.dialogId;
-        if (j > 0) {
-            this.applyButton1.setText(LocaleController.getString(R.string.ApplyWallpaperForMe));
-            return;
-        }
-        if (j < 0) {
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
-            if (chat != null) {
-                this.applyButton1.setText(LocaleController.formatString(R.string.ApplyWallpaperForChannel, chat.title));
-                TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
-                if (tL_stories$TL_premium_boostsStatus != null && tL_stories$TL_premium_boostsStatus.level < getCustomWallpaperLevelMin()) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
-                    if (this.lockSpan == null) {
-                        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
-                        this.lockSpan = coloredImageSpan;
-                        coloredImageSpan.setTopOffset(1);
-                    }
-                    spannableStringBuilder.setSpan(this.lockSpan, 0, 1, 33);
-                    spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.formatPluralString("ReactionLevelRequiredBtn", getCustomWallpaperLevelMin(), new Object[0]));
-                    this.applyButton1.setSubText(spannableStringBuilder, z);
-                    return;
-                }
-                if (this.boostsStatus == null) {
-                    checkBoostsLevel();
-                    return;
-                } else {
-                    this.applyButton1.setSubText(null, z);
-                    return;
-                }
-            }
-            this.applyButton1.setText(LocaleController.formatString(R.string.ApplyWallpaperForChannel, LocaleController.getString(R.string.AccDescrChannel).toLowerCase()));
-            return;
-        }
-        this.applyButton1.setText(LocaleController.getString(R.string.ApplyWallpaper));
-    }
-
-    private int getCustomWallpaperLevelMin() {
-        if (ChatObject.isChannelAndNotMegaGroup(-this.dialogId, this.currentAccount)) {
-            return getMessagesController().channelCustomWallpaperLevelMin;
-        }
-        return getMessagesController().groupCustomWallpaperLevelMin;
-    }
-
-    private void applyWallpaperBackground(boolean r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.applyWallpaperBackground(boolean):void");
-    }
-
-    public void lambda$applyWallpaperBackground$20(ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        if (getContext() == null) {
-            return;
-        }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 23, this.currentAccount, getResourceProvider());
-        limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
-        limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
-        limitReachedBottomSheet.setDialogId(this.dialogId);
-        if (!insideBottomSheet()) {
-            limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
-                @Override
-                public final void run() {
-                    ThemePreviewActivity.this.lambda$applyWallpaperBackground$19();
-                }
-            });
-        }
-        showDialog(limitReachedBottomSheet);
-    }
-
-    public void lambda$applyWallpaperBackground$19() {
-        presentFragment(StatisticActivity.create(getMessagesController().getChat(Long.valueOf(-this.dialogId))));
-    }
-
-    public void onColorsRotate() {
-        if (this.screenType == 2) {
-            this.backgroundRotation += 45;
-            while (true) {
-                int i = this.backgroundRotation;
-                if (i >= 360) {
-                    this.backgroundRotation = i - 360;
-                } else {
-                    setBackgroundColor(this.backgroundColor, 0, true, true);
-                    return;
-                }
-            }
-        } else {
-            Theme.ThemeAccent themeAccent = this.accent;
-            if (themeAccent == null) {
-                return;
-            }
-            themeAccent.backgroundRotation += 45;
-            while (true) {
-                Theme.ThemeAccent themeAccent2 = this.accent;
-                int i2 = themeAccent2.backgroundRotation;
-                if (i2 >= 360) {
-                    themeAccent2.backgroundRotation = i2 - 360;
-                } else {
-                    Theme.refreshThemeColors();
-                    return;
-                }
-            }
-        }
-    }
-
-    public void selectColorType(int i) {
-        selectColorType(i, true);
-    }
-
-    private void selectColorType(int i, boolean z) {
-        int i2;
-        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent == null) {
-            return;
-        }
-        if (z && i == 2 && (Theme.hasCustomWallpaper() || this.accent.backgroundOverrideColor == 4294967296L)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(R.string.ChangeChatBackground));
-            if (!Theme.hasCustomWallpaper() || Theme.isCustomWallpaperColor()) {
-                builder.setMessage(LocaleController.getString(R.string.ChangeColorToColor));
-                builder.setPositiveButton(LocaleController.getString(R.string.Reset), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i3) {
-                        ThemePreviewActivity.this.lambda$selectColorType$22(dialogInterface, i3);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i3) {
-                        ThemePreviewActivity.this.lambda$selectColorType$23(dialogInterface, i3);
-                    }
-                });
-            } else {
-                builder.setMessage(LocaleController.getString(R.string.ChangeWallpaperToColor));
-                builder.setPositiveButton(LocaleController.getString(R.string.Change), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i3) {
-                        ThemePreviewActivity.this.lambda$selectColorType$24(dialogInterface, i3);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            }
-            showDialog(builder.create());
-            return;
-        }
-        int i3 = this.colorType;
-        this.colorType = i;
-        if (i == 1) {
-            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMainColor));
-            this.colorPicker.setType(1, hasChanges(1), 2, this.accent.accentColor2 != 0 ? 2 : 1, false, 0, false);
-            this.colorPicker.setColor(this.accent.accentColor, 0);
-            int i4 = this.accent.accentColor2;
-            if (i4 != 0) {
-                this.colorPicker.setColor(i4, 1);
-            }
-            if (i3 == 2 || (i3 == 3 && this.accent.myMessagesGradientAccentColor2 != 0)) {
-                this.messagesAdapter.notifyItemRemoved(0);
-            }
-        } else if (i == 2) {
-            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerBackground));
-            int themedColor = getThemedColor(Theme.key_chat_wallpaper);
-            int i5 = Theme.key_chat_wallpaper_gradient_to1;
-            int themedColor2 = Theme.hasThemeKey(i5) ? getThemedColor(i5) : 0;
-            int i6 = Theme.key_chat_wallpaper_gradient_to2;
-            int themedColor3 = Theme.hasThemeKey(i6) ? getThemedColor(i6) : 0;
-            int i7 = Theme.key_chat_wallpaper_gradient_to3;
-            int themedColor4 = Theme.hasThemeKey(i7) ? getThemedColor(i7) : 0;
-            Theme.ThemeAccent themeAccent = this.accent;
-            long j = themeAccent.backgroundGradientOverrideColor1;
-            int i8 = (int) j;
-            if (i8 == 0 && j != 0) {
-                themedColor2 = 0;
-            }
-            long j2 = themeAccent.backgroundGradientOverrideColor2;
-            int i9 = (int) j2;
-            if (i9 == 0 && j2 != 0) {
-                themedColor3 = 0;
-            }
-            long j3 = themeAccent.backgroundGradientOverrideColor3;
-            int i10 = (int) j3;
-            if (i10 == 0 && j3 != 0) {
-                themedColor4 = 0;
-            }
-            int i11 = (int) themeAccent.backgroundOverrideColor;
-            this.colorPicker.setType(2, hasChanges(2), 4, (i8 == 0 && themedColor2 == 0) ? 1 : (i10 == 0 && themedColor4 == 0) ? (i9 == 0 && themedColor3 == 0) ? 2 : 3 : 4, false, this.accent.backgroundRotation, false);
-            ColorPicker colorPicker = this.colorPicker;
-            if (i10 == 0) {
-                i10 = themedColor4;
-            }
-            colorPicker.setColor(i10, 3);
-            ColorPicker colorPicker2 = this.colorPicker;
-            if (i9 == 0) {
-                i9 = themedColor3;
-            }
-            colorPicker2.setColor(i9, 2);
-            ColorPicker colorPicker3 = this.colorPicker;
-            if (i8 == 0) {
-                i8 = themedColor2;
-            }
-            colorPicker3.setColor(i8, 1);
-            ColorPicker colorPicker4 = this.colorPicker;
-            if (i11 != 0) {
-                themedColor = i11;
-            }
-            colorPicker4.setColor(themedColor, 0);
-            if (i3 == 1 || this.accent.myMessagesGradientAccentColor2 == 0) {
-                this.messagesAdapter.notifyItemInserted(0);
-            } else {
-                this.messagesAdapter.notifyItemChanged(0);
-            }
-            this.listView2.smoothScrollBy(0, AndroidUtilities.dp(60.0f));
-        } else if (i == 3) {
-            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMyMessages));
-            Theme.ThemeAccent themeAccent2 = this.accent;
-            if (themeAccent2.myMessagesGradientAccentColor1 == 0) {
-                i2 = 1;
-            } else if (themeAccent2.myMessagesGradientAccentColor3 != 0) {
-                i2 = 4;
-            } else {
-                i2 = themeAccent2.myMessagesGradientAccentColor2 != 0 ? 3 : 2;
-            }
-            this.colorPicker.setType(2, hasChanges(3), 4, i2, true, 0, false);
-            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor3, 3);
-            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor2, 2);
-            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor1, 1);
-            ColorPicker colorPicker5 = this.colorPicker;
-            Theme.ThemeAccent themeAccent3 = this.accent;
-            int i12 = themeAccent3.myMessagesAccentColor;
-            if (i12 == 0) {
-                i12 = themeAccent3.accentColor;
-            }
-            colorPicker5.setColor(i12, 0);
-            this.messagesCheckBoxView[1].setColor(0, this.accent.myMessagesAccentColor);
-            this.messagesCheckBoxView[1].setColor(1, this.accent.myMessagesGradientAccentColor1);
-            this.messagesCheckBoxView[1].setColor(2, this.accent.myMessagesGradientAccentColor2);
-            this.messagesCheckBoxView[1].setColor(3, this.accent.myMessagesGradientAccentColor3);
-            if (this.accent.myMessagesGradientAccentColor2 != 0) {
-                if (i3 == 1) {
-                    this.messagesAdapter.notifyItemInserted(0);
-                } else {
-                    this.messagesAdapter.notifyItemChanged(0);
-                }
-            } else if (i3 == 2) {
-                this.messagesAdapter.notifyItemRemoved(0);
-            }
-            this.listView2.smoothScrollBy(0, AndroidUtilities.dp(60.0f));
-            showAnimationHint();
-        }
-        if (i == 1 || i == 3) {
-            if (i3 == 2 && this.patternLayout[1].getVisibility() == 0) {
-                showPatternsView(0, true, true);
-            }
-            if (i == 1) {
-                if (this.applyingTheme.isDark()) {
-                    this.colorPicker.setMinBrightness(0.2f);
-                    return;
-                } else {
-                    this.colorPicker.setMinBrightness(0.05f);
-                    this.colorPicker.setMaxBrightness(0.8f);
-                    return;
-                }
-            }
-            this.colorPicker.setMinBrightness(0.0f);
-            this.colorPicker.setMaxBrightness(1.0f);
-            return;
-        }
-        this.colorPicker.setMinBrightness(0.0f);
-        this.colorPicker.setMaxBrightness(1.0f);
-    }
-
-    public void lambda$selectColorType$22(DialogInterface dialogInterface, int i) {
-        Theme.ThemeAccent themeAccent = this.accent;
-        if (themeAccent.backgroundOverrideColor == 4294967296L) {
-            themeAccent.backgroundOverrideColor = 0L;
-            themeAccent.backgroundGradientOverrideColor1 = 0L;
-            themeAccent.backgroundGradientOverrideColor2 = 0L;
-            themeAccent.backgroundGradientOverrideColor3 = 0L;
-            updatePlayAnimationView(false);
-            Theme.refreshThemeColors();
-        }
-        this.removeBackgroundOverride = true;
-        Theme.resetCustomWallpaper(true);
-        selectColorType(2, false);
-    }
-
-    public void lambda$selectColorType$23(DialogInterface dialogInterface, int i) {
-        if (Theme.isCustomWallpaperColor()) {
-            Theme.ThemeAccent themeAccent = this.accent;
-            Theme.OverrideWallpaperInfo overrideWallpaperInfo = themeAccent.overrideWallpaper;
-            themeAccent.backgroundOverrideColor = overrideWallpaperInfo.color;
-            themeAccent.backgroundGradientOverrideColor1 = overrideWallpaperInfo.gradientColor1;
-            themeAccent.backgroundGradientOverrideColor2 = overrideWallpaperInfo.gradientColor2;
-            themeAccent.backgroundGradientOverrideColor3 = overrideWallpaperInfo.gradientColor3;
-            themeAccent.backgroundRotation = overrideWallpaperInfo.rotation;
-            String str = overrideWallpaperInfo.slug;
-            themeAccent.patternSlug = str;
-            float f = overrideWallpaperInfo.intensity;
-            themeAccent.patternIntensity = f;
-            this.currentIntensity = f;
-            if (str != null && !"c".equals(str)) {
-                int size = this.patterns.size();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= size) {
-                        break;
-                    }
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) this.patterns.get(i2);
-                    if (tLRPC$TL_wallPaper.pattern && this.accent.patternSlug.equals(tLRPC$TL_wallPaper.slug)) {
-                        this.selectedPattern = tLRPC$TL_wallPaper;
-                        break;
-                    }
-                    i2++;
-                }
-            } else {
-                this.selectedPattern = null;
-            }
-            this.removeBackgroundOverride = true;
-            this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, true);
-            updatePlayAnimationView(false);
-            Theme.refreshThemeColors();
-        }
-        Drawable background = this.backgroundImage.getBackground();
-        if (background instanceof MotionBackgroundDrawable) {
-            MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) background;
-            motionBackgroundDrawable.setPatternBitmap(100, null);
-            if (Theme.getActiveTheme().isDark()) {
-                if (this.currentIntensity < 0.0f) {
-                    this.backgroundImage.getImageReceiver().setGradientBitmap(motionBackgroundDrawable.getBitmap());
-                }
-                SeekBarView seekBarView = this.intensitySeekBar;
-                if (seekBarView != null) {
-                    seekBarView.setTwoSided(true);
-                }
-            } else {
-                float f2 = this.currentIntensity;
-                if (f2 < 0.0f) {
-                    this.currentIntensity = -f2;
-                }
-            }
-        }
-        SeekBarView seekBarView2 = this.intensitySeekBar;
-        if (seekBarView2 != null) {
-            seekBarView2.setProgress(this.currentIntensity);
-        }
-        Theme.resetCustomWallpaper(true);
-        selectColorType(2, false);
-    }
-
-    public void lambda$selectColorType$24(DialogInterface dialogInterface, int i) {
-        Theme.ThemeAccent themeAccent = this.accent;
-        if (themeAccent.backgroundOverrideColor == 4294967296L) {
-            themeAccent.backgroundOverrideColor = 0L;
-            themeAccent.backgroundGradientOverrideColor1 = 0L;
-            themeAccent.backgroundGradientOverrideColor2 = 0L;
-            themeAccent.backgroundGradientOverrideColor3 = 0L;
-            updatePlayAnimationView(false);
-            Theme.refreshThemeColors();
-        }
-        this.removeBackgroundOverride = true;
-        Theme.resetCustomWallpaper(true);
-        selectColorType(2, false);
-    }
-
-    private void selectPattern(int i) {
-        TLRPC$TL_wallPaper tLRPC$TL_wallPaper;
-        if (i >= 0 && i < this.patterns.size()) {
-            tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) this.patterns.get(i);
-        } else {
-            tLRPC$TL_wallPaper = this.lastSelectedPattern;
-        }
-        if (tLRPC$TL_wallPaper == null) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.valueAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.valueAnimator.cancel();
-        }
-        BackgroundView[] backgroundViewArr = this.backgroundImages;
-        BackgroundView backgroundView = backgroundViewArr[0];
-        BackgroundView backgroundView2 = backgroundViewArr[1];
-        backgroundViewArr[0] = backgroundView2;
-        backgroundViewArr[1] = backgroundView;
-        this.page2.removeView(backgroundView2);
-        this.page2.addView(this.backgroundImages[0], this.page2.indexOfChild(this.backgroundImages[1]) + 1);
-        BackgroundView[] backgroundViewArr2 = this.backgroundImages;
-        BackgroundView backgroundView3 = backgroundViewArr2[0];
-        this.backgroundImage = backgroundView3;
-        backgroundView3.setBackground(backgroundViewArr2[1].getBackground());
-        updateIntensity();
-        this.backgroundImages[1].setVisibility(0);
-        this.backgroundImages[1].setAlpha(1.0f);
-        this.backgroundImage.setVisibility(0);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.valueAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ThemePreviewActivity.this.backgroundImage.setAlpha(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-            }
-        });
-        this.valueAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                super.onAnimationEnd(animator);
-                ThemePreviewActivity.this.backgroundImage.invalidate();
-                ThemePreviewActivity.this.backgroundImages[1].setVisibility(8);
-                ThemePreviewActivity.this.valueAnimator = null;
-            }
-        });
-        this.valueAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.valueAnimator.setDuration(300L);
-        this.valueAnimator.start();
-        this.backgroundImage.getImageReceiver().setCrossfadeDuration(300);
-        this.backgroundImage.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_wallPaper.document), this.imageFilter, null, null, null, tLRPC$TL_wallPaper.document.size, "jpg", tLRPC$TL_wallPaper, 1);
-        this.backgroundImage.onNewImageSet();
-        this.selectedPattern = tLRPC$TL_wallPaper;
-        this.isMotion = this.backgroundCheckBoxView[2].isChecked();
-        updateButtonState(false, true);
-    }
-
-    public void saveAccentWallpaper() {
-        Theme.ThemeAccent themeAccent = this.accent;
-        if (themeAccent == null || TextUtils.isEmpty(themeAccent.patternSlug)) {
-            return;
-        }
-        try {
-            File pathToWallpaper = this.accent.getPathToWallpaper();
-            Drawable background = this.backgroundImage.getBackground();
-            Bitmap bitmap = this.backgroundImage.getImageReceiver().getBitmap();
-            if (background instanceof MotionBackgroundDrawable) {
-                FileOutputStream fileOutputStream = new FileOutputStream(pathToWallpaper);
-                bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                fileOutputStream.close();
-            } else {
-                Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                background.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                background.draw(canvas);
-                Paint paint = new Paint(2);
-                paint.setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
-                paint.setAlpha((int) (this.currentIntensity * 255.0f));
-                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
-                FileOutputStream fileOutputStream2 = new FileOutputStream(pathToWallpaper);
-                createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream2);
-                fileOutputStream2.close();
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    private boolean hasChanges(int i) {
-        int defaultAccentColor;
-        long j;
-        if (this.editingTheme) {
-            return false;
-        }
-        if (i == 1 || i == 2) {
-            long j2 = this.backupBackgroundOverrideColor;
-            if (j2 == 0) {
-                int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
-                int i2 = (int) this.accent.backgroundOverrideColor;
-                if (i2 == 0) {
-                    i2 = defaultAccentColor2;
-                }
-                if (i2 != defaultAccentColor2) {
-                    return true;
-                }
-            } else if (j2 != this.accent.backgroundOverrideColor) {
-                return true;
-            }
-            long j3 = this.backupBackgroundGradientOverrideColor1;
-            if (j3 == 0 && this.backupBackgroundGradientOverrideColor2 == 0 && this.backupBackgroundGradientOverrideColor3 == 0) {
-                for (int i3 = 0; i3 < 3; i3++) {
-                    if (i3 == 0) {
-                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
-                        j = this.accent.backgroundGradientOverrideColor1;
-                    } else if (i3 == 1) {
-                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
-                        j = this.accent.backgroundGradientOverrideColor2;
-                    } else {
-                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
-                        j = this.accent.backgroundGradientOverrideColor3;
-                    }
-                    int i4 = (int) j;
-                    if (i4 == 0 && j != 0) {
-                        i4 = 0;
-                    } else if (i4 == 0) {
-                        i4 = defaultAccentColor;
-                    }
-                    if (i4 != defaultAccentColor) {
-                        return true;
-                    }
-                }
-            } else {
-                Theme.ThemeAccent themeAccent = this.accent;
-                if (j3 != themeAccent.backgroundGradientOverrideColor1 || this.backupBackgroundGradientOverrideColor2 != themeAccent.backgroundGradientOverrideColor2 || this.backupBackgroundGradientOverrideColor3 != themeAccent.backgroundGradientOverrideColor3) {
-                    return true;
-                }
-            }
-            if (this.accent.backgroundRotation != this.backupBackgroundRotation) {
-                return true;
-            }
-        }
-        if (i == 1 || i == 3) {
-            int i5 = this.backupAccentColor;
-            Theme.ThemeAccent themeAccent2 = this.accent;
-            if (i5 != themeAccent2.accentColor2) {
-                return true;
-            }
-            int i6 = this.backupMyMessagesAccentColor;
-            if (i6 != 0) {
-                if (i6 != themeAccent2.myMessagesAccentColor) {
-                    return true;
-                }
-            } else {
-                int i7 = themeAccent2.myMessagesAccentColor;
-                if (i7 != 0 && i7 != themeAccent2.accentColor) {
-                    return true;
-                }
-            }
-            int i8 = this.backupMyMessagesGradientAccentColor1;
-            if (i8 != 0) {
-                if (i8 != themeAccent2.myMessagesGradientAccentColor1) {
-                    return true;
-                }
-            } else if (themeAccent2.myMessagesGradientAccentColor1 != 0) {
-                return true;
-            }
-            int i9 = this.backupMyMessagesGradientAccentColor2;
-            if (i9 != 0) {
-                if (i9 != themeAccent2.myMessagesGradientAccentColor2) {
-                    return true;
-                }
-            } else if (themeAccent2.myMessagesGradientAccentColor2 != 0) {
-                return true;
-            }
-            int i10 = this.backupMyMessagesGradientAccentColor3;
-            if (i10 != 0) {
-                if (i10 != themeAccent2.myMessagesGradientAccentColor3) {
-                    return true;
-                }
-            } else if (themeAccent2.myMessagesGradientAccentColor3 != 0) {
-                return true;
-            }
-            if (this.backupMyMessagesAnimated != themeAccent2.myMessagesAnimated) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean checkDiscard() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.checkDiscard():boolean");
-    }
-
-    public void lambda$checkDiscard$25(DialogInterface dialogInterface, int i) {
-        this.actionBar2.getActionBarMenuOnItemClick().onItemClick(4);
-    }
-
-    public void lambda$checkDiscard$26(DialogInterface dialogInterface, int i) {
-        cancelThemeApply(false);
-    }
-
-    @Override
-    public boolean onFragmentCreate() {
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatWasBoostedByUser);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.invalidateMotionBackground);
-        getNotificationCenter().addObserver(this, NotificationCenter.wallpaperSettedToUser);
-        int i = this.screenType;
-        if (i == 1 || i == 0) {
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewWallpapper);
-        }
-        int i2 = this.screenType;
-        if (i2 == 2 || i2 == 1) {
-            Theme.setChangingWallpaper(true);
-        }
-        if (this.screenType != 0 || this.accent != null) {
-            Point point = AndroidUtilities.displaySize;
-            int min = Math.min(point.x, point.y);
-            Point point2 = AndroidUtilities.displaySize;
-            this.imageFilter = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (Math.max(point2.x, point2.y) / AndroidUtilities.density)) + "_f";
-            Point point3 = AndroidUtilities.displaySize;
-            this.maxWallpaperSize = Math.max(point3.x, point3.y);
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
-            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
-            this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
-            if (this.patterns == null) {
-                this.patterns = new ArrayList<>();
-                MessagesStorage.getInstance(this.currentAccount).getWallpapers();
-            }
-        } else {
-            this.isMotion = Theme.isWallpaperMotion();
-        }
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public void onFragmentDestroy() {
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatWasBoostedByUser);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.invalidateMotionBackground);
-        getNotificationCenter().removeObserver(this, NotificationCenter.wallpaperSettedToUser);
-        FrameLayout frameLayout = this.frameLayout;
-        if (frameLayout != null && this.onGlobalLayoutListener != null) {
-            frameLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this.onGlobalLayoutListener);
-        }
-        int i = this.screenType;
-        if ((i == 2 || i == 1) && this.onSwitchDayNightDelegate == null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    Theme.setChangingWallpaper(false);
-                }
-            });
-        }
-        int i2 = this.screenType;
-        if (i2 == 2) {
-            Bitmap bitmap = this.blurredBitmap;
-            if (bitmap != null) {
-                bitmap.recycle();
-                this.blurredBitmap = null;
-            }
-            this.themeDelegate.applyChatServiceMessageColor();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-        } else if (i2 == 1 || i2 == 0) {
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
-        }
-        if (this.screenType != 0 || this.accent != null) {
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersNeedReload);
-            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersDidLoad);
-        }
-        super.onFragmentDestroy();
-        checkBlur(null);
-    }
-
-    private BitmapDrawable checkBlur(Drawable drawable) {
-        ColorFilter colorFilter;
-        WeakReference<Drawable> weakReference = this.lastDrawableToBlur;
-        if (weakReference != null && weakReference.get() == drawable) {
-            return this.blurredDrawable;
-        }
-        WeakReference<Drawable> weakReference2 = this.lastDrawableToBlur;
-        if (weakReference2 != null) {
-            weakReference2.clear();
-        }
-        this.lastDrawableToBlur = null;
-        if (drawable == null || drawable.getIntrinsicWidth() == 0 || drawable.getIntrinsicHeight() == 0) {
-            this.blurredDrawable = null;
             return null;
         }
-        this.lastDrawableToBlur = new WeakReference<>(drawable);
-        int intrinsicWidth = (int) ((drawable.getIntrinsicWidth() / drawable.getIntrinsicHeight()) * 24.0f);
-        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, 24, Bitmap.Config.ARGB_8888);
-        drawable.setBounds(0, 0, intrinsicWidth, 24);
-        if (Build.VERSION.SDK_INT >= 21) {
-            colorFilter = drawable.getColorFilter();
-            ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.setSaturation(1.3f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.94f);
-            drawable.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-            drawable.draw(new Canvas(createBitmap));
-            drawable.setColorFilter(colorFilter);
-        } else {
-            drawable.draw(new Canvas(createBitmap));
-        }
-        Utilities.blurBitmap(createBitmap, 3, 1, createBitmap.getWidth(), createBitmap.getHeight(), createBitmap.getRowBytes());
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), createBitmap);
-        this.blurredDrawable = bitmapDrawable;
-        bitmapDrawable.setFilterBitmap(true);
-        return this.blurredDrawable;
-    }
 
-    public void invalidateBlur() {
-        FrameLayout frameLayout = this.dimmingSliderContainer;
-        if (frameLayout != null) {
-            frameLayout.invalidate();
-        }
-        FrameLayout frameLayout2 = this.backgroundButtonsContainer;
-        if (frameLayout2 != null) {
-            int childCount = frameLayout2.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                this.backgroundButtonsContainer.getChildAt(i).invalidate();
+        @Override
+        protected void onDraw(Canvas canvas) {
+            Text text;
+            float dp = AndroidUtilities.dp(8.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
+            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
+            ColorFilter colorFilter = paint.getColorFilter();
+            paint.setColorFilter(this.colorFilter);
+            canvas.drawRoundRect(rectF, dp, dp, paint);
+            paint.setColorFilter(colorFilter);
+            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
+                this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
+                canvas.drawRoundRect(rectF, dp, dp, this.dimPaint2);
             }
-        }
-        FrameLayout frameLayout3 = this.messagesButtonsContainer;
-        if (frameLayout3 != null) {
-            int childCount2 = frameLayout3.getChildCount();
-            for (int i2 = 0; i2 < childCount2; i2++) {
-                this.messagesButtonsContainer.getChildAt(i2).invalidate();
-            }
-        }
-        if (this.backgroundCheckBoxView != null) {
-            int i3 = 0;
-            while (true) {
-                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
-                if (i3 >= wallpaperCheckBoxViewArr.length) {
-                    break;
+            this.dimPaint.setColor(520093695);
+            canvas.drawRoundRect(rectF, dp, dp, this.dimPaint);
+            if (this.loadingT > 0.0f) {
+                if (this.loadingDrawable == null) {
+                    this.loadingDrawable = new CircularProgressDrawable(-1);
                 }
-                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i3];
-                if (wallpaperCheckBoxView != null) {
-                    wallpaperCheckBoxView.setDimAmount(this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
-                    this.backgroundCheckBoxView[i3].invalidate();
-                }
-                i3++;
+                int dp2 = (int) ((1.0f - this.loadingT) * AndroidUtilities.dp(-24.0f));
+                this.loadingDrawable.setBounds(0, dp2, getWidth(), getHeight() + dp2);
+                this.loadingDrawable.setAlpha((int) (this.loadingT * 255.0f));
+                this.loadingDrawable.draw(canvas);
+                invalidate();
             }
-        }
-        if (this.listView != null) {
-            for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
-                View childAt = this.listView.getChildAt(i4);
-                if (childAt instanceof ChatActionCell) {
-                    setVisiblePart((ChatActionCell) childAt);
-                    childAt.invalidate();
-                }
+            float f = this.subtextShownT.set(this.subtextShown);
+            if (this.loadingT < 1.0f && (text = this.text) != null) {
+                text.ellipsize(getWidth() - AndroidUtilities.dp(14.0f)).draw(canvas, (getWidth() - this.text.getWidth()) / 2.0f, ((getHeight() / 2.0f) + (this.loadingT * AndroidUtilities.dp(24.0f))) - (AndroidUtilities.dp(7.0f) * f), -1, 1.0f - this.loadingT);
             }
-        }
-        if (this.listView2 != null) {
-            for (int i5 = 0; i5 < this.listView2.getChildCount(); i5++) {
-                View childAt2 = this.listView2.getChildAt(i5);
-                if (childAt2 instanceof ChatActionCell) {
-                    setVisiblePart((ChatActionCell) childAt2);
-                    childAt2.invalidate();
-                }
+            if (this.loadingT < 1.0f && this.subtext != null) {
+                canvas.save();
+                canvas.scale(f, f, getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(11.0f));
+                this.subtext.ellipsize(getWidth() - AndroidUtilities.dp(14.0f)).draw(canvas, (getWidth() - this.subtext.getWidth()) / 2.0f, (getHeight() / 2.0f) + (this.loadingT * AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(11.0f), Theme.multAlpha(-1, 0.75f), 1.0f - this.loadingT);
+                canvas.restore();
             }
+            this.rippleDrawable.setBounds(0, 0, getWidth(), getHeight());
+            this.rippleDrawable.draw(canvas);
         }
-        BlurButton blurButton = this.applyButton1;
-        if (blurButton != null) {
-            blurButton.invalidate();
-        }
-        BlurButton blurButton2 = this.applyButton2;
-        if (blurButton2 != null) {
-            blurButton2.invalidate();
-        }
-        FrameLayout frameLayout4 = this.bottomOverlayChat;
-        if (frameLayout4 != null) {
-            frameLayout4.invalidate();
-        }
-    }
 
-    private void setVisiblePart(ChatActionCell chatActionCell) {
-        float f;
-        if (this.backgroundImage == null) {
-            return;
-        }
-        if (this.themeDelegate.serviceBitmap == null) {
-            f = this.currentScrollOffset + 0.0f;
-        } else {
-            float width = this.themeDelegate.serviceBitmap.getWidth();
-            f = ((this.backgroundImage.getMeasuredWidth() - (width * Math.max(this.backgroundImage.getMeasuredWidth() / width, this.backgroundImage.getMeasuredHeight() / this.themeDelegate.serviceBitmap.getHeight()))) / 2.0f) + this.currentScrollOffset + 0.0f;
-        }
-        chatActionCell.setVisiblePart(chatActionCell.getY() - ((-this.backgroundImage.ty) + 0.0f), f, this.backgroundImage.getMeasuredHeight(), this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
-    }
-
-    @Override
-    public void onTransitionAnimationStart(boolean z, boolean z2) {
-        super.onTransitionAnimationStart(z, z2);
-        if (z || this.screenType != 2) {
-            return;
-        }
-        this.themeDelegate.applyChatServiceMessageColor();
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-    }
-
-    @Override
-    public void onBottomSheetCreated() {
-        super.onBottomSheetCreated();
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout == null || iNavigationLayout.getBottomSheet() == null) {
-            return;
-        }
-        this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
-        if (this.screenType != 2 || this.dialogId == 0) {
-            return;
-        }
-        this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        DialogsAdapter dialogsAdapter = this.dialogsAdapter;
-        if (dialogsAdapter != null) {
-            dialogsAdapter.notifyDataSetChanged();
-        }
-        MessagesAdapter messagesAdapter = this.messagesAdapter;
-        if (messagesAdapter != null) {
-            messagesAdapter.notifyDataSetChanged();
-        }
-        if (this.isMotion) {
-            this.parallaxEffect.setEnabled(true);
-        }
-        Theme.disallowChangeServiceMessageColor = true;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (this.isMotion) {
-            this.parallaxEffect.setEnabled(false);
-        }
-        Theme.disallowChangeServiceMessageColor = false;
-    }
-
-    @Override
-    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        if (this.screenType != 2) {
-            return false;
-        }
-        return !this.hasScrollingBackground || motionEvent == null || motionEvent.getY() <= ((float) (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()));
-    }
-
-    @Override
-    public void onFailedDownload(String str, boolean z) {
-        updateButtonState(true, z);
-    }
-
-    @Override
-    public void onSuccessDownload(String str) {
-        updateButtonState(false, true);
-    }
-
-    @Override
-    public int getObserverTag() {
-        return this.TAG;
-    }
-
-    public void updateBlurred() {
-        if (this.isBlurred && this.blurredBitmap == null) {
-            Bitmap bitmap = this.currentWallpaperBitmap;
-            if (bitmap != null) {
-                this.originalBitmap = bitmap;
-                this.blurredBitmap = Utilities.blurWallpaper(bitmap);
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            boolean z;
+            if (motionEvent.getAction() == 0) {
+                if (Build.VERSION.SDK_INT >= 21) {
+                    this.rippleDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                }
+                this.rippleDrawable.setState(new int[]{16842910, 16842919});
+                z = true;
             } else {
-                ImageReceiver imageReceiver = this.backgroundImage.getImageReceiver();
-                if (imageReceiver.hasNotThumb() || imageReceiver.hasStaticThumb()) {
-                    this.originalBitmap = imageReceiver.getBitmap();
-                    this.blurredBitmap = Utilities.blurWallpaper(imageReceiver.getBitmap());
+                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    this.rippleDrawable.setState(StateSet.NOTHING);
                 }
+                z = false;
             }
+            return super.onTouchEvent(motionEvent) || z;
         }
-        if (this.isBlurred) {
-            Bitmap bitmap2 = this.blurredBitmap;
-            if (bitmap2 != null) {
-                this.backgroundImage.setImageBitmap(bitmap2);
-                return;
-            }
-            return;
-        }
-        setCurrentImage(false);
-    }
 
-    @Override
-    public boolean onBackPressed() {
-        if (!checkDiscard()) {
-            return false;
+        public void setSubText(CharSequence charSequence, boolean z) {
+            if (charSequence != null) {
+                this.subtext = new Text(charSequence, 12.0f);
+            }
+            boolean z2 = charSequence != null;
+            this.subtextShown = z2;
+            if (!z) {
+                this.subtextShownT.set(z2, true);
+            }
+            invalidate();
         }
-        cancelThemeApply(true);
-        return true;
-    }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        TLRPC$TL_wallPaper tLRPC$TL_wallPaper;
-        String str;
-        if (i == NotificationCenter.chatWasBoostedByUser) {
-            if (this.dialogId == ((Long) objArr[2]).longValue()) {
-                this.boostsStatus = (TL_stories$TL_premium_boostsStatus) objArr[0];
-                updateApplyButton1(true);
-                return;
-            }
-            return;
+        public void setText(CharSequence charSequence) {
+            this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
         }
-        if (i == NotificationCenter.emojiLoaded) {
-            RecyclerListView recyclerListView = this.listView;
-            if (recyclerListView == null) {
-                return;
-            }
-            int childCount = recyclerListView.getChildCount();
-            for (int i3 = 0; i3 < childCount; i3++) {
-                View childAt = this.listView.getChildAt(i3);
-                if (childAt instanceof DialogCell) {
-                    ((DialogCell) childAt).update(0);
-                }
-            }
-            return;
-        }
-        if (i == NotificationCenter.invalidateMotionBackground) {
-            RecyclerListView recyclerListView2 = this.listView2;
-            if (recyclerListView2 != null) {
-                recyclerListView2.invalidateViews();
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.didSetNewWallpapper) {
-            if (this.page2 != null) {
-                setCurrentImage(true);
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.wallpapersNeedReload) {
-            Object obj = this.currentWallpaper;
-            if (obj instanceof WallpapersListActivity.FileWallpaper) {
-                WallpapersListActivity.FileWallpaper fileWallpaper = (WallpapersListActivity.FileWallpaper) obj;
-                if (fileWallpaper.slug == null) {
-                    fileWallpaper.slug = (String) objArr[0];
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        long j = 0;
-        if (i == NotificationCenter.wallpapersDidLoad) {
-            ArrayList arrayList = (ArrayList) objArr[0];
-            this.patterns.clear();
-            this.patternsDict.clear();
-            int size = arrayList.size();
-            boolean z = false;
-            for (int i4 = 0; i4 < size; i4++) {
-                TLRPC$WallPaper tLRPC$WallPaper = (TLRPC$WallPaper) arrayList.get(i4);
-                if ((tLRPC$WallPaper instanceof TLRPC$TL_wallPaper) && tLRPC$WallPaper.pattern) {
-                    TLRPC$Document tLRPC$Document = tLRPC$WallPaper.document;
-                    if (tLRPC$Document != null && !this.patternsDict.containsKey(Long.valueOf(tLRPC$Document.id))) {
-                        this.patterns.add(tLRPC$WallPaper);
-                        this.patternsDict.put(Long.valueOf(tLRPC$WallPaper.document.id), tLRPC$WallPaper);
-                    }
-                    Theme.ThemeAccent themeAccent = this.accent;
-                    if (themeAccent != null && (str = themeAccent.patternSlug) != null && str.equals(tLRPC$WallPaper.slug)) {
-                        this.selectedPattern = (TLRPC$TL_wallPaper) tLRPC$WallPaper;
-                        setCurrentImage(false);
-                        updateButtonState(false, false);
-                    } else if (this.accent == null) {
-                        TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = this.selectedPattern;
-                        if (tLRPC$TL_wallPaper2 != null) {
-                            String str2 = tLRPC$TL_wallPaper2.slug;
-                            if (str2 != null) {
-                                if (!str2.equals(tLRPC$WallPaper.slug)) {
-                                }
-                            }
-                        }
-                    }
-                    z = true;
-                }
-            }
-            if (!z && (tLRPC$TL_wallPaper = this.selectedPattern) != null) {
-                this.patterns.add(0, tLRPC$TL_wallPaper);
-            }
-            PatternsAdapter patternsAdapter = this.patternsAdapter;
-            if (patternsAdapter != null) {
-                patternsAdapter.notifyDataSetChanged();
-            }
-            int size2 = arrayList.size();
-            for (int i5 = 0; i5 < size2; i5++) {
-                TLRPC$WallPaper tLRPC$WallPaper2 = (TLRPC$WallPaper) arrayList.get(i5);
-                if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) {
-                    j = MediaDataController.calcHash(j, tLRPC$WallPaper2.id);
-                }
-            }
-            TLRPC$TL_account_getWallPapers tLRPC$TL_account_getWallPapers = new TLRPC$TL_account_getWallPapers();
-            tLRPC$TL_account_getWallPapers.hash = j;
-            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getWallPapers, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ThemePreviewActivity.this.lambda$didReceivedNotification$31(tLObject, tLRPC$TL_error);
-                }
-            }), this.classGuid);
-            return;
-        }
-        if (i != NotificationCenter.wallpaperSettedToUser || this.dialogId == 0) {
-            return;
-        }
-        lambda$onBackPressed$308();
-    }
 
-    public void lambda$didReceivedNotification$31(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ThemePreviewActivity.this.lambda$didReceivedNotification$30(tLObject);
-            }
-        });
-    }
-
-    public void lambda$didReceivedNotification$30(TLObject tLObject) {
-        Theme.ThemeAccent themeAccent;
-        TLRPC$TL_wallPaper tLRPC$TL_wallPaper;
-        String str;
-        if (tLObject instanceof TLRPC$TL_account_wallPapers) {
-            TLRPC$TL_account_wallPapers tLRPC$TL_account_wallPapers = (TLRPC$TL_account_wallPapers) tLObject;
-            this.patterns.clear();
-            this.patternsDict.clear();
-            int size = tLRPC$TL_account_wallPapers.wallpapers.size();
-            boolean z = false;
-            for (int i = 0; i < size; i++) {
-                if (tLRPC$TL_account_wallPapers.wallpapers.get(i) instanceof TLRPC$TL_wallPaper) {
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = (TLRPC$TL_wallPaper) tLRPC$TL_account_wallPapers.wallpapers.get(i);
-                    if (tLRPC$TL_wallPaper2.pattern) {
-                        TLRPC$Document tLRPC$Document = tLRPC$TL_wallPaper2.document;
-                        if (tLRPC$Document != null && !this.patternsDict.containsKey(Long.valueOf(tLRPC$Document.id))) {
-                            this.patterns.add(tLRPC$TL_wallPaper2);
-                            this.patternsDict.put(Long.valueOf(tLRPC$TL_wallPaper2.document.id), tLRPC$TL_wallPaper2);
-                        }
-                        Theme.ThemeAccent themeAccent2 = this.accent;
-                        if (themeAccent2 != null && (str = themeAccent2.patternSlug) != null && str.equals(tLRPC$TL_wallPaper2.slug)) {
-                            this.selectedPattern = tLRPC$TL_wallPaper2;
-                            setCurrentImage(false);
-                            updateButtonState(false, false);
-                        } else if (this.accent == null) {
-                            TLRPC$TL_wallPaper tLRPC$TL_wallPaper3 = this.selectedPattern;
-                            if (tLRPC$TL_wallPaper3 != null) {
-                                String str2 = tLRPC$TL_wallPaper3.slug;
-                                if (str2 != null) {
-                                    if (!str2.equals(tLRPC$TL_wallPaper2.slug)) {
-                                    }
-                                }
-                            }
-                        }
-                        z = true;
-                    }
-                }
-            }
-            if (!z && (tLRPC$TL_wallPaper = this.selectedPattern) != null) {
-                this.patterns.add(0, tLRPC$TL_wallPaper);
-            }
-            PatternsAdapter patternsAdapter = this.patternsAdapter;
-            if (patternsAdapter != null) {
-                patternsAdapter.notifyDataSetChanged();
-            }
-            MessagesStorage.getInstance(this.currentAccount).putWallpapers(tLRPC$TL_account_wallPapers.wallpapers, 1);
-        }
-        if (this.selectedPattern != null || (themeAccent = this.accent) == null || TextUtils.isEmpty(themeAccent.patternSlug)) {
-            return;
-        }
-        TLRPC$TL_account_getWallPaper tLRPC$TL_account_getWallPaper = new TLRPC$TL_account_getWallPaper();
-        TLRPC$TL_inputWallPaperSlug tLRPC$TL_inputWallPaperSlug = new TLRPC$TL_inputWallPaperSlug();
-        tLRPC$TL_inputWallPaperSlug.slug = this.accent.patternSlug;
-        tLRPC$TL_account_getWallPaper.wallpaper = tLRPC$TL_inputWallPaperSlug;
-        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_account_getWallPaper, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                ThemePreviewActivity.this.lambda$didReceivedNotification$29(tLObject2, tLRPC$TL_error);
-            }
-        }), this.classGuid);
-    }
-
-    public void lambda$didReceivedNotification$29(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ThemePreviewActivity.this.lambda$didReceivedNotification$28(tLObject);
-            }
-        });
-    }
-
-    public void lambda$didReceivedNotification$28(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$TL_wallPaper) {
-            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) tLObject;
-            if (tLRPC$TL_wallPaper.pattern) {
-                this.selectedPattern = tLRPC$TL_wallPaper;
-                setCurrentImage(false);
-                updateButtonState(false, false);
-                this.patterns.add(0, this.selectedPattern);
-                PatternsAdapter patternsAdapter = this.patternsAdapter;
-                if (patternsAdapter != null) {
-                    patternsAdapter.notifyDataSetChanged();
-                }
-            }
+        @Override
+        protected boolean verifyDrawable(Drawable drawable) {
+            return drawable == this.rippleDrawable || super.verifyDrawable(drawable);
         }
     }
 
-    public void cancelThemeApply(boolean z) {
-        if (this.screenType == 2) {
-            if (z) {
-                return;
-            }
-            lambda$onBackPressed$308();
-            return;
-        }
-        Theme.applyPreviousTheme();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
-        if (this.screenType == 1) {
-            if (this.editingTheme) {
-                Theme.ThemeAccent themeAccent = this.accent;
-                themeAccent.accentColor = this.backupAccentColor;
-                themeAccent.accentColor2 = this.backupAccentColor2;
-                themeAccent.myMessagesAccentColor = this.backupMyMessagesAccentColor;
-                themeAccent.myMessagesGradientAccentColor1 = this.backupMyMessagesGradientAccentColor1;
-                themeAccent.myMessagesGradientAccentColor2 = this.backupMyMessagesGradientAccentColor2;
-                themeAccent.myMessagesGradientAccentColor3 = this.backupMyMessagesGradientAccentColor3;
-                themeAccent.myMessagesAnimated = this.backupMyMessagesAnimated;
-                themeAccent.backgroundOverrideColor = this.backupBackgroundOverrideColor;
-                themeAccent.backgroundGradientOverrideColor1 = this.backupBackgroundGradientOverrideColor1;
-                themeAccent.backgroundGradientOverrideColor2 = this.backupBackgroundGradientOverrideColor2;
-                themeAccent.backgroundGradientOverrideColor3 = this.backupBackgroundGradientOverrideColor3;
-                themeAccent.backgroundRotation = this.backupBackgroundRotation;
-                themeAccent.patternSlug = this.backupSlug;
-                themeAccent.patternIntensity = this.backupIntensity;
-            }
-            Theme.saveThemeAccents(this.applyingTheme, false, true, false, false);
-        } else {
-            if (this.accent != null) {
-                Theme.saveThemeAccents(this.applyingTheme, false, this.deleteOnCancel, false, false);
-            }
-            this.parentLayout.rebuildAllFragmentViews(false, false);
-            if (this.deleteOnCancel) {
-                Theme.ThemeInfo themeInfo = this.applyingTheme;
-                if (themeInfo.pathToFile != null && !Theme.isThemeInstalled(themeInfo)) {
-                    new File(this.applyingTheme.pathToFile).delete();
-                }
-            }
-        }
-        if (z) {
-            return;
-        }
-        lambda$onBackPressed$308();
-    }
+    public interface DayNightSwitchDelegate {
+        boolean isDark();
 
-    public int getButtonsColor(int i) {
-        return this.useDefaultThemeForButtons ? Theme.getDefaultColor(i) : getThemedColor(i);
-    }
+        boolean supportsAnimation();
 
-    public void scheduleApplyColor(int i, int i2, boolean z) {
-        if (i2 == -1) {
-            int i3 = this.colorType;
-            if (i3 == 1 || i3 == 2) {
-                long j = this.backupBackgroundOverrideColor;
-                if (j != 0) {
-                    this.accent.backgroundOverrideColor = j;
-                } else {
-                    this.accent.backgroundOverrideColor = 0L;
-                }
-                long j2 = this.backupBackgroundGradientOverrideColor1;
-                if (j2 != 0) {
-                    this.accent.backgroundGradientOverrideColor1 = j2;
-                } else {
-                    this.accent.backgroundGradientOverrideColor1 = 0L;
-                }
-                long j3 = this.backupBackgroundGradientOverrideColor2;
-                if (j3 != 0) {
-                    this.accent.backgroundGradientOverrideColor2 = j3;
-                } else {
-                    this.accent.backgroundGradientOverrideColor2 = 0L;
-                }
-                long j4 = this.backupBackgroundGradientOverrideColor3;
-                if (j4 != 0) {
-                    this.accent.backgroundGradientOverrideColor3 = j4;
-                } else {
-                    this.accent.backgroundGradientOverrideColor3 = 0L;
-                }
-                this.accent.backgroundRotation = this.backupBackgroundRotation;
-                if (i3 == 2) {
-                    int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
-                    int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
-                    int defaultAccentColor3 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
-                    int defaultAccentColor4 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
-                    Theme.ThemeAccent themeAccent = this.accent;
-                    int i4 = (int) themeAccent.backgroundGradientOverrideColor1;
-                    int i5 = (int) themeAccent.backgroundGradientOverrideColor2;
-                    int i6 = (int) themeAccent.backgroundGradientOverrideColor3;
-                    int i7 = (int) themeAccent.backgroundOverrideColor;
-                    ColorPicker colorPicker = this.colorPicker;
-                    if (i6 != 0) {
-                        defaultAccentColor4 = i6;
-                    }
-                    colorPicker.setColor(defaultAccentColor4, 3);
-                    ColorPicker colorPicker2 = this.colorPicker;
-                    if (i5 != 0) {
-                        defaultAccentColor3 = i5;
-                    }
-                    colorPicker2.setColor(defaultAccentColor3, 2);
-                    ColorPicker colorPicker3 = this.colorPicker;
-                    if (i4 != 0) {
-                        defaultAccentColor2 = i4;
-                    }
-                    colorPicker3.setColor(defaultAccentColor2, 1);
-                    ColorPicker colorPicker4 = this.colorPicker;
-                    if (i7 != 0) {
-                        defaultAccentColor = i7;
-                    }
-                    colorPicker4.setColor(defaultAccentColor, 0);
-                }
-            }
-            int i8 = this.colorType;
-            if (i8 == 1 || i8 == 3) {
-                int i9 = this.backupMyMessagesAccentColor;
-                if (i9 != 0) {
-                    this.accent.myMessagesAccentColor = i9;
-                } else {
-                    this.accent.myMessagesAccentColor = 0;
-                }
-                int i10 = this.backupMyMessagesGradientAccentColor1;
-                if (i10 != 0) {
-                    this.accent.myMessagesGradientAccentColor1 = i10;
-                } else {
-                    this.accent.myMessagesGradientAccentColor1 = 0;
-                }
-                int i11 = this.backupMyMessagesGradientAccentColor2;
-                if (i11 != 0) {
-                    this.accent.myMessagesGradientAccentColor2 = i11;
-                } else {
-                    this.accent.myMessagesGradientAccentColor2 = 0;
-                }
-                int i12 = this.backupMyMessagesGradientAccentColor3;
-                if (i12 != 0) {
-                    this.accent.myMessagesGradientAccentColor3 = i12;
-                } else {
-                    this.accent.myMessagesGradientAccentColor3 = 0;
-                }
-                if (i8 == 3) {
-                    this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor3, 3);
-                    this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor2, 2);
-                    this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor1, 1);
-                    ColorPicker colorPicker5 = this.colorPicker;
-                    Theme.ThemeAccent themeAccent2 = this.accent;
-                    int i13 = themeAccent2.myMessagesAccentColor;
-                    if (i13 == 0) {
-                        i13 = themeAccent2.accentColor;
-                    }
-                    colorPicker5.setColor(i13, 0);
-                }
-            }
-            Theme.refreshThemeColors();
-            this.listView2.invalidateViews();
-            return;
-        }
-        int i14 = this.lastPickedColorNum;
-        if (i14 != -1 && i14 != i2) {
-            this.applyColorAction.run();
-        }
-        this.lastPickedColor = i;
-        this.lastPickedColorNum = i2;
-        if (z) {
-            this.applyColorAction.run();
-        } else {
-            if (this.applyColorScheduled) {
-                return;
-            }
-            this.applyColorScheduled = true;
-            this.fragmentView.postDelayed(this.applyColorAction, 16L);
-        }
-    }
-
-    private void applyColor(int i, int i2) {
-        int i3 = this.colorType;
-        if (i3 == 1) {
-            if (i2 == 0) {
-                this.accent.accentColor = i;
-                Theme.refreshThemeColors();
-            } else if (i2 == 1) {
-                this.accent.accentColor2 = i;
-                Theme.refreshThemeColors(true, true);
-                this.listView2.invalidateViews();
-                this.colorPicker.setHasChanges(hasChanges(this.colorType));
-                updatePlayAnimationView(true);
-            }
-        } else if (i3 == 2) {
-            if (this.lastPickedColorNum == 0) {
-                this.accent.backgroundOverrideColor = i;
-            } else if (i2 == 1) {
-                int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
-                if (i == 0 && defaultAccentColor != 0) {
-                    this.accent.backgroundGradientOverrideColor1 = 4294967296L;
-                } else {
-                    this.accent.backgroundGradientOverrideColor1 = i;
-                }
-            } else if (i2 == 2) {
-                int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
-                if (i == 0 && defaultAccentColor2 != 0) {
-                    this.accent.backgroundGradientOverrideColor2 = 4294967296L;
-                } else {
-                    this.accent.backgroundGradientOverrideColor2 = i;
-                }
-            } else if (i2 == 3) {
-                int defaultAccentColor3 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
-                if (i == 0 && defaultAccentColor3 != 0) {
-                    this.accent.backgroundGradientOverrideColor3 = 4294967296L;
-                } else {
-                    this.accent.backgroundGradientOverrideColor3 = i;
-                }
-            }
-            Theme.refreshThemeColors(true, false);
-            this.colorPicker.setHasChanges(hasChanges(this.colorType));
-            updatePlayAnimationView(true);
-        } else if (i3 == 3) {
-            int i4 = this.lastPickedColorNum;
-            if (i4 == 0) {
-                this.accent.myMessagesAccentColor = i;
-            } else if (i4 == 1) {
-                this.accent.myMessagesGradientAccentColor1 = i;
-            } else if (i4 == 2) {
-                Theme.ThemeAccent themeAccent = this.accent;
-                int i5 = themeAccent.myMessagesGradientAccentColor2;
-                themeAccent.myMessagesGradientAccentColor2 = i;
-                if (i5 != 0 && i == 0) {
-                    this.messagesAdapter.notifyItemRemoved(0);
-                } else if (i5 == 0 && i != 0) {
-                    this.messagesAdapter.notifyItemInserted(0);
-                    showAnimationHint();
-                }
-            } else {
-                this.accent.myMessagesGradientAccentColor3 = i;
-            }
-            int i6 = this.lastPickedColorNum;
-            if (i6 >= 0) {
-                this.messagesCheckBoxView[1].setColor(i6, i);
-            }
-            Theme.refreshThemeColors(true, true);
-            this.listView2.invalidateViews();
-            this.colorPicker.setHasChanges(hasChanges(this.colorType));
-            updatePlayAnimationView(true);
-        }
-        int size = this.themeDescriptions.size();
-        for (int i7 = 0; i7 < size; i7++) {
-            ThemeDescription themeDescription = this.themeDescriptions.get(i7);
-            themeDescription.setColor(getThemedColor(themeDescription.getCurrentKey()), false, false);
-        }
-        this.listView.invalidateViews();
-        this.listView2.invalidateViews();
-        View view = this.dotsContainer;
-        if (view != null) {
-            view.invalidate();
-        }
-    }
-
-    private void updateButtonState(boolean z, boolean z2) {
-        File httpFilePath;
-        String name;
-        int i;
-        long j;
-        File file;
-        String str;
-        FrameLayout frameLayout;
-        Object obj = this.selectedPattern;
-        if (obj == null) {
-            obj = this.currentWallpaper;
-        }
-        boolean z3 = obj instanceof TLRPC$TL_wallPaper;
-        if (z3 || (obj instanceof MediaController.SearchImage)) {
-            if (z3) {
-                TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj;
-                str = FileLoader.getAttachFileName(tLRPC$TL_wallPaper.document);
-                if (TextUtils.isEmpty(str)) {
-                    return;
-                }
-                file = FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$TL_wallPaper.document, true);
-                j = tLRPC$TL_wallPaper.document.size;
-            } else {
-                MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                TLRPC$Photo tLRPC$Photo = searchImage.photo;
-                if (tLRPC$Photo != null) {
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, this.maxWallpaperSize, true);
-                    httpFilePath = FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, true);
-                    name = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
-                    i = closestPhotoSizeWithSize.size;
-                } else {
-                    httpFilePath = ImageLoader.getHttpFilePath(searchImage.imageUrl, "jpg");
-                    name = httpFilePath.getName();
-                    i = searchImage.size;
-                }
-                j = i;
-                String str2 = name;
-                file = httpFilePath;
-                str = str2;
-                if (TextUtils.isEmpty(str)) {
-                    return;
-                }
-            }
-            boolean exists = file.exists();
-            if (exists) {
-                DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                this.backgroundImage.invalidate();
-                if (this.screenType == 2) {
-                    if (j != 0 && this.dialogId == 0) {
-                        this.actionBar2.setSubtitle(AndroidUtilities.formatFileSize(j));
-                    } else {
-                        this.actionBar2.setSubtitle(null);
-                    }
-                }
-            } else {
-                DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(str, null, this);
-                if (this.screenType == 2 && this.dialogId == 0) {
-                    this.actionBar2.setSubtitle(LocaleController.getString(R.string.LoadingFullImage));
-                }
-                this.backgroundImage.invalidate();
-            }
-            if (this.selectedPattern == null && (frameLayout = this.backgroundButtonsContainer) != null) {
-                frameLayout.setAlpha(exists ? 1.0f : 0.5f);
-            }
-            int i2 = this.screenType;
-            if (i2 == 0) {
-                this.doneButton.setEnabled(exists);
-                this.doneButton.setAlpha(exists ? 1.0f : 0.5f);
-                return;
-            }
-            if (i2 == 2) {
-                this.bottomOverlayChat.setEnabled(exists);
-                BlurButton blurButton = this.applyButton1;
-                if (blurButton != null) {
-                    blurButton.setAlpha(exists ? 1.0f : 0.5f);
-                }
-                BlurButton blurButton2 = this.applyButton2;
-                if (blurButton2 != null) {
-                    blurButton2.setAlpha(exists ? 1.0f : 0.5f);
-                    return;
-                }
-                return;
-            }
-            this.saveItem.setEnabled(exists);
-            this.saveItem.setAlpha(exists ? 1.0f : 0.5f);
-        }
-    }
-
-    public void setDelegate(WallpaperActivityDelegate wallpaperActivityDelegate) {
-        this.delegate = wallpaperActivityDelegate;
-    }
-
-    public void setPatterns(ArrayList<Object> arrayList) {
-        this.patterns = arrayList;
-        if (this.screenType == 1 || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
-            WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) this.currentWallpaper;
-            if (colorWallpaper.patternId != 0) {
-                int size = arrayList.size();
-                int i = 0;
-                while (true) {
-                    if (i >= size) {
-                        break;
-                    }
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) this.patterns.get(i);
-                    if (tLRPC$TL_wallPaper.id == colorWallpaper.patternId) {
-                        this.selectedPattern = tLRPC$TL_wallPaper;
-                        break;
-                    }
-                    i++;
-                }
-                this.currentIntensity = colorWallpaper.intensity;
-            }
-        }
-    }
-
-    private void showAnimationHint() {
-        if (this.page2 == null || this.messagesCheckBoxView == null || this.accent.myMessagesGradientAccentColor2 == 0) {
-            return;
-        }
-        final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-        if (globalMainSettings.getBoolean("bganimationhint", false)) {
-            return;
-        }
-        if (this.animationHint == null) {
-            HintView hintView = new HintView(getParentActivity(), 8);
-            this.animationHint = hintView;
-            hintView.setShowingDuration(5000L);
-            this.animationHint.setAlpha(0.0f);
-            this.animationHint.setVisibility(4);
-            this.animationHint.setText(LocaleController.getString(R.string.BackgroundAnimateInfo));
-            this.animationHint.setExtraTranslationY(AndroidUtilities.dp(6.0f));
-            this.frameLayout.addView(this.animationHint, LayoutHelper.createFrame(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ThemePreviewActivity.this.lambda$showAnimationHint$32(globalMainSettings);
-            }
-        }, 500L);
-    }
-
-    public void lambda$showAnimationHint$32(SharedPreferences sharedPreferences) {
-        if (this.colorType != 3) {
-            return;
-        }
-        sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
-        this.animationHint.showForView(this.messagesCheckBoxView[0], true);
-    }
-
-    private void updateSelectedPattern(boolean z) {
-        int childCount = this.patternsListView.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = this.patternsListView.getChildAt(i);
-            if (childAt instanceof PatternCell) {
-                ((PatternCell) childAt).updateSelected(z);
-            }
-        }
-    }
-
-    private void updateMotionButton() {
-        int i = this.screenType;
-        if (i == 1 || i == 2) {
-            if (this.selectedPattern == null && (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
-                this.backgroundCheckBoxView[2].setChecked(false, true);
-            }
-            this.backgroundCheckBoxView[this.selectedPattern != null ? (char) 2 : (char) 0].setVisibility(0);
-            AnimatorSet animatorSet = new AnimatorSet();
-            WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[2];
-            Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(wallpaperCheckBoxView, (Property<WallpaperCheckBoxView, Float>) property, this.selectedPattern != null ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) property, this.selectedPattern != null ? 0.0f : 1.0f));
-            animatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ThemePreviewActivity.this.backgroundCheckBoxView[ThemePreviewActivity.this.selectedPattern != null ? (char) 0 : (char) 2].setVisibility(4);
-                }
-            });
-            animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            animatorSet.setDuration(200L);
-            animatorSet.start();
-            return;
-        }
-        boolean isEnabled = this.backgroundCheckBoxView[0].isEnabled();
-        TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.selectedPattern;
-        if (isEnabled == (tLRPC$TL_wallPaper != null)) {
-            return;
-        }
-        if (tLRPC$TL_wallPaper == null) {
-            this.backgroundCheckBoxView[0].setChecked(false, true);
-        }
-        this.backgroundCheckBoxView[0].setEnabled(this.selectedPattern != null);
-        if (this.selectedPattern != null) {
-            this.backgroundCheckBoxView[0].setVisibility(0);
-        }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.backgroundCheckBoxView[1].getLayoutParams();
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        int dp = (layoutParams.width + AndroidUtilities.dp(9.0f)) / 2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) View.ALPHA, this.selectedPattern == null ? 0.0f : 1.0f));
-        WallpaperCheckBoxView wallpaperCheckBoxView2 = this.backgroundCheckBoxView[0];
-        Property property2 = View.TRANSLATION_X;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(wallpaperCheckBoxView2, (Property<WallpaperCheckBoxView, Float>) property2, this.selectedPattern != null ? 0.0f : dp));
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[1], (Property<WallpaperCheckBoxView, Float>) property2, this.selectedPattern == null ? -dp : 0.0f));
-        animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        animatorSet2.setDuration(200L);
-        animatorSet2.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ThemePreviewActivity.this.selectedPattern == null) {
-                    ThemePreviewActivity.this.backgroundCheckBoxView[0].setVisibility(4);
-                }
-            }
-        });
-        animatorSet2.start();
-    }
-
-    public void showPatternsView(final int i, final boolean z, boolean z2) {
-        int indexOf;
-        final boolean z3 = z && i == 1 && this.selectedPattern != null;
-        if (z) {
-            if (i == 0) {
-                if (this.screenType == 2) {
-                    this.previousBackgroundColor = this.backgroundColor;
-                    int i2 = this.backgroundGradientColor1;
-                    this.previousBackgroundGradientColor1 = i2;
-                    int i3 = this.backgroundGradientColor2;
-                    this.previousBackgroundGradientColor2 = i3;
-                    int i4 = this.backgroundGradientColor3;
-                    this.previousBackgroundGradientColor3 = i4;
-                    int i5 = this.backupBackgroundRotation;
-                    this.previousBackgroundRotation = i5;
-                    this.colorPicker.setType(0, false, 4, i4 != 0 ? 4 : i3 != 0 ? 3 : i2 != 0 ? 2 : 1, false, i5, false);
-                    this.colorPicker.setColor(this.backgroundGradientColor3, 3);
-                    this.colorPicker.setColor(this.backgroundGradientColor2, 2);
-                    this.colorPicker.setColor(this.backgroundGradientColor1, 1);
-                    this.colorPicker.setColor(this.backgroundColor, 0);
-                }
-            } else {
-                this.previousSelectedPattern = this.selectedPattern;
-                this.previousIntensity = this.currentIntensity;
-                this.patternsAdapter.notifyDataSetChanged();
-                ArrayList<Object> arrayList = this.patterns;
-                if (arrayList != null) {
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.selectedPattern;
-                    if (tLRPC$TL_wallPaper == null) {
-                        indexOf = 0;
-                    } else {
-                        indexOf = arrayList.indexOf(tLRPC$TL_wallPaper) + (this.screenType == 2 ? 1 : 0);
-                    }
-                    this.patternsLayoutManager.scrollToPositionWithOffset(indexOf, (this.patternsListView.getMeasuredWidth() - AndroidUtilities.dp(124.0f)) / 2);
-                }
-            }
-        }
-        int i6 = this.screenType;
-        if (i6 == 1 || i6 == 2) {
-            this.backgroundCheckBoxView[z3 ? (char) 2 : (char) 0].setVisibility(0);
-        }
-        if (i == 1 && !this.intensitySeekBar.isTwoSided()) {
-            float f = this.currentIntensity;
-            if (f < 0.0f) {
-                float f2 = -f;
-                this.currentIntensity = f2;
-                this.intensitySeekBar.setProgress(f2);
-            }
-        }
-        if (z2) {
-            this.patternViewAnimation = new AnimatorSet();
-            ArrayList arrayList2 = new ArrayList();
-            int i7 = i == 0 ? 1 : 0;
-            if (z) {
-                this.patternLayout[i].setVisibility(0);
-                int i8 = this.screenType;
-                if (i8 == 1) {
-                    arrayList2.add(ObjectAnimator.ofFloat(this.listView2, (Property<RecyclerListView, Float>) View.TRANSLATION_Y, i == 1 ? -AndroidUtilities.dp(21.0f) : 0.0f));
-                    WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[2];
-                    Property property = View.ALPHA;
-                    arrayList2.add(ObjectAnimator.ofFloat(wallpaperCheckBoxView, (Property<WallpaperCheckBoxView, Float>) property, z3 ? 1.0f : 0.0f));
-                    arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) property, z3 ? 0.0f : 1.0f));
-                    if (i == 1) {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property, 0.0f, 1.0f));
-                    } else {
-                        this.patternLayout[i].setAlpha(1.0f);
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) property, 0.0f));
-                    }
-                    this.colorPicker.hideKeyboard();
-                } else if (i8 == 2) {
-                    RecyclerListView recyclerListView = this.listView2;
-                    Property property2 = View.TRANSLATION_Y;
-                    arrayList2.add(ObjectAnimator.ofFloat(recyclerListView, (Property<RecyclerListView, Float>) property2, (-this.patternLayout[i].getMeasuredHeight()) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0)));
-                    WallpaperCheckBoxView wallpaperCheckBoxView2 = this.backgroundCheckBoxView[2];
-                    Property property3 = View.ALPHA;
-                    arrayList2.add(ObjectAnimator.ofFloat(wallpaperCheckBoxView2, (Property<WallpaperCheckBoxView, Float>) property3, z3 ? 1.0f : 0.0f));
-                    arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) property3, z3 ? 0.0f : 1.0f));
-                    if (this.patternLayout[i7].getVisibility() == 0) {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) property3, 0.0f));
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property3, 0.0f, 1.0f));
-                        this.patternLayout[i].setTranslationY(0.0f);
-                    } else {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property2, r8.getMeasuredHeight(), 0.0f));
-                    }
-                } else {
-                    if (i == 1) {
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) View.ALPHA, 0.0f, 1.0f));
-                    } else {
-                        this.patternLayout[i].setAlpha(1.0f);
-                        arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i7], (Property<FrameLayout, Float>) View.ALPHA, 0.0f));
-                    }
-                    this.colorPicker.hideKeyboard();
-                }
-            } else {
-                RecyclerListView recyclerListView2 = this.listView2;
-                Property property4 = View.TRANSLATION_Y;
-                arrayList2.add(ObjectAnimator.ofFloat(recyclerListView2, (Property<RecyclerListView, Float>) property4, 0.0f));
-                arrayList2.add(ObjectAnimator.ofFloat(this.patternLayout[i], (Property<FrameLayout, Float>) property4, r8.getMeasuredHeight()));
-                WallpaperCheckBoxView wallpaperCheckBoxView3 = this.backgroundCheckBoxView[0];
-                Property property5 = View.ALPHA;
-                arrayList2.add(ObjectAnimator.ofFloat(wallpaperCheckBoxView3, (Property<WallpaperCheckBoxView, Float>) property5, 1.0f));
-                arrayList2.add(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[2], (Property<WallpaperCheckBoxView, Float>) property5, 0.0f));
-                arrayList2.add(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) property5, 1.0f));
-            }
-            this.patternViewAnimation.playTogether(arrayList2);
-            final int i9 = i7;
-            this.patternViewAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    ThemePreviewActivity.this.patternViewAnimation = null;
-                    if (z && ThemePreviewActivity.this.patternLayout[i9].getVisibility() == 0) {
-                        ThemePreviewActivity.this.patternLayout[i9].setAlpha(1.0f);
-                        ThemePreviewActivity.this.patternLayout[i9].setVisibility(4);
-                    } else if (!z) {
-                        ThemePreviewActivity.this.patternLayout[i].setVisibility(4);
-                    }
-                    if (ThemePreviewActivity.this.screenType == 1 || ThemePreviewActivity.this.screenType == 2) {
-                        ThemePreviewActivity.this.backgroundCheckBoxView[z3 ? (char) 0 : (char) 2].setVisibility(4);
-                    } else if (i == 1) {
-                        ThemePreviewActivity.this.patternLayout[i9].setAlpha(0.0f);
-                    }
-                }
-            });
-            this.patternViewAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            this.patternViewAnimation.setDuration(200L);
-            this.patternViewAnimation.start();
-            return;
-        }
-        char c = i == 0 ? (char) 1 : (char) 0;
-        if (z) {
-            this.patternLayout[i].setVisibility(0);
-            int i10 = this.screenType;
-            if (i10 == 1) {
-                this.listView2.setTranslationY(i == 1 ? -AndroidUtilities.dp(21.0f) : 0.0f);
-                this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
-                this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
-                if (i == 1) {
-                    this.patternLayout[i].setAlpha(1.0f);
-                } else {
-                    this.patternLayout[i].setAlpha(1.0f);
-                    this.patternLayout[c].setAlpha(0.0f);
-                }
-                this.colorPicker.hideKeyboard();
-            } else if (i10 == 2) {
-                this.listView2.setTranslationY((-AndroidUtilities.dp(i == 0 ? 343.0f : 316.0f)) + AndroidUtilities.dp((this.applyButton2 == null ? 0 : 58) + 72) + (insideBottomSheet() ? AndroidUtilities.navigationBarHeight : 0));
-                this.backgroundCheckBoxView[2].setAlpha(z3 ? 1.0f : 0.0f);
-                this.backgroundCheckBoxView[0].setAlpha(z3 ? 0.0f : 1.0f);
-                if (this.patternLayout[c].getVisibility() == 0) {
-                    this.patternLayout[c].setAlpha(0.0f);
-                    this.patternLayout[i].setAlpha(1.0f);
-                    this.patternLayout[i].setTranslationY(0.0f);
-                } else {
-                    this.patternLayout[i].setTranslationY(0.0f);
-                }
-            } else {
-                if (i == 1) {
-                    this.patternLayout[i].setAlpha(1.0f);
-                } else {
-                    this.patternLayout[i].setAlpha(1.0f);
-                    this.patternLayout[c].setAlpha(0.0f);
-                }
-                this.colorPicker.hideKeyboard();
-            }
-        } else {
-            this.listView2.setTranslationY(0.0f);
-            this.patternLayout[i].setTranslationY(r8.getMeasuredHeight());
-            this.backgroundCheckBoxView[0].setAlpha(1.0f);
-            this.backgroundCheckBoxView[2].setAlpha(1.0f);
-            this.backgroundImage.setAlpha(1.0f);
-        }
-        if (z && this.patternLayout[c].getVisibility() == 0) {
-            this.patternLayout[c].setAlpha(1.0f);
-            this.patternLayout[c].setVisibility(4);
-        } else if (!z) {
-            this.patternLayout[i].setVisibility(4);
-        }
-        int i11 = this.screenType;
-        if (i11 == 1 || i11 == 2) {
-            this.backgroundCheckBoxView[z3 ? (char) 0 : (char) 2].setVisibility(4);
-        } else if (i == 1) {
-            this.patternLayout[c].setAlpha(0.0f);
-        }
-    }
-
-    private void animateMotionChange() {
-        AnimatorSet animatorSet = this.motionAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.motionAnimation = animatorSet2;
-        if (this.isMotion) {
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_X, this.parallaxScale), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_Y, this.parallaxScale));
-        } else {
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.TRANSLATION_Y, 0.0f));
-        }
-        this.motionAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        this.motionAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                ThemePreviewActivity.this.motionAnimation = null;
-            }
-        });
-        this.motionAnimation.start();
-    }
-
-    private void updatePlayAnimationView(boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.updatePlayAnimationView(boolean):void");
-    }
-
-    public void setBackgroundColor(int i, int i2, boolean z, boolean z2) {
-        MotionBackgroundDrawable motionBackgroundDrawable;
-        if (i2 == 0) {
-            this.backgroundColor = i;
-        } else if (i2 == 1) {
-            this.backgroundGradientColor1 = i;
-        } else if (i2 == 2) {
-            this.backgroundGradientColor2 = i;
-        } else if (i2 == 3) {
-            this.backgroundGradientColor3 = i;
-        }
-        updatePlayAnimationView(z2);
-        if (this.backgroundCheckBoxView != null) {
-            int i3 = 0;
-            while (true) {
-                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
-                if (i3 >= wallpaperCheckBoxViewArr.length) {
-                    break;
-                }
-                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i3];
-                if (wallpaperCheckBoxView != null) {
-                    wallpaperCheckBoxView.setColor(i2, i);
-                }
-                i3++;
-            }
-        }
-        if (this.backgroundGradientColor2 != 0) {
-            if (this.intensitySeekBar != null && Theme.getActiveTheme().isDark()) {
-                this.intensitySeekBar.setTwoSided(true);
-            }
-            Drawable background = this.backgroundImage.getBackground();
-            if (background instanceof MotionBackgroundDrawable) {
-                motionBackgroundDrawable = (MotionBackgroundDrawable) background;
-            } else {
-                motionBackgroundDrawable = new MotionBackgroundDrawable();
-                motionBackgroundDrawable.setParentView(this.backgroundImage);
-                if (this.rotatePreview) {
-                    motionBackgroundDrawable.rotatePreview(false);
-                }
-            }
-            motionBackgroundDrawable.setColors(this.backgroundColor, this.backgroundGradientColor1, this.backgroundGradientColor2, this.backgroundGradientColor3);
-            this.backgroundImage.setBackground(motionBackgroundDrawable);
-            this.patternColor = motionBackgroundDrawable.getPatternColor();
-            this.checkColor = 754974720;
-        } else if (this.backgroundGradientColor1 != 0) {
-            this.backgroundImage.setBackground(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(this.backgroundRotation), new int[]{this.backgroundColor, this.backgroundGradientColor1}));
-            int patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(this.backgroundColor, this.backgroundGradientColor1));
-            this.checkColor = patternColor;
-            this.patternColor = patternColor;
-        } else {
-            this.backgroundImage.setBackgroundColor(this.backgroundColor);
-            int patternColor2 = AndroidUtilities.getPatternColor(this.backgroundColor);
-            this.checkColor = patternColor2;
-            this.patternColor = patternColor2;
-        }
-        int i4 = Theme.key_chat_serviceBackground;
-        if (!Theme.hasThemeKey(i4) || (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
-            ThemeDelegate themeDelegate = this.themeDelegate;
-            int i5 = this.checkColor;
-            themeDelegate.applyChatServiceMessageColor(new int[]{i5, i5, i5, i5}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
-        } else if (Theme.getCachedWallpaperNonBlocking() instanceof MotionBackgroundDrawable) {
-            int themedColor = getThemedColor(i4);
-            this.themeDelegate.applyChatServiceMessageColor(new int[]{themedColor, themedColor, themedColor, themedColor}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
-        }
-        ImageView imageView = this.backgroundPlayAnimationImageView;
-        if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
-        }
-        ImageView imageView2 = this.messagesPlayAnimationImageView;
-        if (imageView2 != null) {
-            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
-        }
-        BackgroundView backgroundView = this.backgroundImage;
-        if (backgroundView != null) {
-            backgroundView.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
-            this.backgroundImage.getImageReceiver().setAlpha(Math.abs(this.currentIntensity));
-            this.backgroundImage.invalidate();
-            if (Theme.getActiveTheme().isDark() && (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
-                SeekBarView seekBarView = this.intensitySeekBar;
-                if (seekBarView != null) {
-                    seekBarView.setTwoSided(true);
-                }
-                if (this.currentIntensity < 0.0f) {
-                    this.backgroundImage.getImageReceiver().setGradientBitmap(((MotionBackgroundDrawable) this.backgroundImage.getBackground()).getBitmap());
-                }
-            } else {
-                this.backgroundImage.getImageReceiver().setGradientBitmap(null);
-                SeekBarView seekBarView2 = this.intensitySeekBar;
-                if (seekBarView2 != null) {
-                    seekBarView2.setTwoSided(false);
-                }
-            }
-            SeekBarView seekBarView3 = this.intensitySeekBar;
-            if (seekBarView3 != null) {
-                seekBarView3.setProgress(this.currentIntensity);
-            }
-        }
-        RecyclerListView recyclerListView = this.listView2;
-        if (recyclerListView != null) {
-            recyclerListView.invalidateViews();
-        }
-        FrameLayout frameLayout = this.backgroundButtonsContainer;
-        if (frameLayout != null) {
-            int childCount = frameLayout.getChildCount();
-            for (int i6 = 0; i6 < childCount; i6++) {
-                this.backgroundButtonsContainer.getChildAt(i6).invalidate();
-            }
-        }
-        FrameLayout frameLayout2 = this.messagesButtonsContainer;
-        if (frameLayout2 != null) {
-            int childCount2 = frameLayout2.getChildCount();
-            for (int i7 = 0; i7 < childCount2; i7++) {
-                this.messagesButtonsContainer.getChildAt(i7).invalidate();
-            }
-        }
-    }
-
-    public void setCurrentImage(boolean z) {
-        ColorDrawable colorDrawable;
-        MotionBackgroundDrawable motionBackgroundDrawable;
-        int i = this.screenType;
-        if (i == 0 && this.accent == null) {
-            this.backgroundImage.setBackground(Theme.getCachedWallpaper());
-        } else {
-            if (i == 2) {
-                Object obj = this.currentWallpaper;
-                if (obj instanceof TLRPC$TL_wallPaper) {
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) obj;
-                    TLRPC$PhotoSize closestPhotoSizeWithSize = z ? FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_wallPaper.document.thumbs, 100) : null;
-                    this.backgroundImage.setImage(ImageLocation.getForDocument(tLRPC$TL_wallPaper.document), this.imageFilter, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$TL_wallPaper.document), "100_100_b", closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize ? new BitmapDrawable(ImageLoader.getStrippedPhotoBitmap(closestPhotoSizeWithSize.bytes, "b")) : null, "jpg", tLRPC$TL_wallPaper.document.size, 1, tLRPC$TL_wallPaper);
-                } else if (obj instanceof WallpapersListActivity.ColorWallpaper) {
-                    WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj;
-                    this.backgroundRotation = colorWallpaper.gradientRotation;
-                    setBackgroundColor(colorWallpaper.color, 0, true, false);
-                    int i2 = colorWallpaper.gradientColor1;
-                    if (i2 != 0) {
-                        setBackgroundColor(i2, 1, true, false);
-                    }
-                    setBackgroundColor(colorWallpaper.gradientColor2, 2, true, false);
-                    setBackgroundColor(colorWallpaper.gradientColor3, 3, true, false);
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = this.selectedPattern;
-                    if (tLRPC$TL_wallPaper2 != null) {
-                        BackgroundView backgroundView = this.backgroundImage;
-                        ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_wallPaper2.document);
-                        String str = this.imageFilter;
-                        TLRPC$TL_wallPaper tLRPC$TL_wallPaper3 = this.selectedPattern;
-                        backgroundView.setImage(forDocument, str, null, null, "jpg", tLRPC$TL_wallPaper3.document.size, 1, tLRPC$TL_wallPaper3);
-                    } else if ("d".equals(colorWallpaper.slug)) {
-                        Point point = AndroidUtilities.displaySize;
-                        int min = Math.min(point.x, point.y);
-                        Point point2 = AndroidUtilities.displaySize;
-                        this.backgroundImage.setImageBitmap(SvgHelper.getBitmap(R.raw.default_pattern, min, Math.max(point2.x, point2.y), Build.VERSION.SDK_INT >= 29 ? 1459617792 : MotionBackgroundDrawable.getPatternColor(colorWallpaper.color, colorWallpaper.gradientColor1, colorWallpaper.gradientColor2, colorWallpaper.gradientColor3)));
-                    }
-                } else if (obj instanceof WallpapersListActivity.FileWallpaper) {
-                    Bitmap bitmap = this.currentWallpaperBitmap;
-                    if (bitmap != null) {
-                        this.backgroundImage.setImageBitmap(bitmap);
-                    } else {
-                        WallpapersListActivity.FileWallpaper fileWallpaper = (WallpapersListActivity.FileWallpaper) obj;
-                        File file = fileWallpaper.originalPath;
-                        if (file != null) {
-                            this.backgroundImage.setImage(file.getAbsolutePath(), this.imageFilter, null);
-                        } else {
-                            File file2 = fileWallpaper.path;
-                            if (file2 != null) {
-                                this.backgroundImage.setImage(file2.getAbsolutePath(), this.imageFilter, null);
-                            } else if ("t".equals(fileWallpaper.slug)) {
-                                BackgroundView backgroundView2 = this.backgroundImage;
-                                backgroundView2.setImageDrawable(Theme.getThemedWallpaper(false, backgroundView2));
-                            } else {
-                                int i3 = fileWallpaper.resId;
-                                if (i3 != 0) {
-                                    this.backgroundImage.setImageResource(i3);
-                                }
-                            }
-                        }
-                    }
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    TLRPC$Photo tLRPC$Photo = searchImage.photo;
-                    if (tLRPC$Photo != null) {
-                        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 100);
-                        TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(searchImage.photo.sizes, this.maxWallpaperSize, true);
-                        TLRPC$PhotoSize tLRPC$PhotoSize = closestPhotoSizeWithSize3 != closestPhotoSizeWithSize2 ? closestPhotoSizeWithSize3 : null;
-                        this.backgroundImage.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo), this.imageFilter, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, searchImage.photo), "100_100_b", "jpg", tLRPC$PhotoSize != null ? tLRPC$PhotoSize.size : 0, 1, searchImage);
-                    } else {
-                        this.backgroundImage.setImage(searchImage.imageUrl, this.imageFilter, searchImage.thumbUrl, "100_100_b");
-                    }
-                } else if (obj instanceof WallpapersListActivity.EmojiWallpaper) {
-                    DayNightSwitchDelegate dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
-                    Drawable backgroundDrawableFromTheme = PreviewView.getBackgroundDrawableFromTheme(this.currentAccount, ((WallpapersListActivity.EmojiWallpaper) this.currentWallpaper).emoticon, dayNightSwitchDelegate != null ? dayNightSwitchDelegate.isDark() : Theme.isCurrentThemeDark());
-                    this.backgroundImage.setBackground(backgroundDrawableFromTheme);
-                    this.themeDelegate.applyChatServiceMessageColor(AndroidUtilities.calcDrawableColor(backgroundDrawableFromTheme), checkBlur(backgroundDrawableFromTheme), backgroundDrawableFromTheme, Float.valueOf(this.currentIntensity));
-                }
-            } else {
-                BackgroundGradientDrawable.Disposable disposable = this.backgroundGradientDisposable;
-                if (disposable != null) {
-                    disposable.dispose();
-                    this.backgroundGradientDisposable = null;
-                }
-                int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
-                int i4 = (int) this.accent.backgroundOverrideColor;
-                if (i4 != 0) {
-                    defaultAccentColor = i4;
-                }
-                int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
-                long j = this.accent.backgroundGradientOverrideColor1;
-                int i5 = (int) j;
-                if (i5 == 0 && j != 0) {
-                    defaultAccentColor2 = 0;
-                } else if (i5 != 0) {
-                    defaultAccentColor2 = i5;
-                }
-                int defaultAccentColor3 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
-                long j2 = this.accent.backgroundGradientOverrideColor2;
-                int i6 = (int) j2;
-                if (i6 == 0 && j2 != 0) {
-                    defaultAccentColor3 = 0;
-                } else if (i6 != 0) {
-                    defaultAccentColor3 = i6;
-                }
-                int defaultAccentColor4 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
-                Theme.ThemeAccent themeAccent = this.accent;
-                long j3 = themeAccent.backgroundGradientOverrideColor3;
-                int i7 = (int) j3;
-                if (i7 == 0 && j3 != 0) {
-                    defaultAccentColor4 = 0;
-                } else if (i7 != 0) {
-                    defaultAccentColor4 = i7;
-                }
-                if (!TextUtils.isEmpty(themeAccent.patternSlug) && !Theme.hasCustomWallpaper()) {
-                    if (defaultAccentColor3 != 0) {
-                        Drawable background = this.backgroundImage.getBackground();
-                        if (background instanceof MotionBackgroundDrawable) {
-                            motionBackgroundDrawable = (MotionBackgroundDrawable) background;
-                        } else {
-                            MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable();
-                            motionBackgroundDrawable2.setParentView(this.backgroundImage);
-                            motionBackgroundDrawable = motionBackgroundDrawable2;
-                            if (this.rotatePreview) {
-                                motionBackgroundDrawable2.rotatePreview(false);
-                                motionBackgroundDrawable = motionBackgroundDrawable2;
-                            }
-                        }
-                        motionBackgroundDrawable.setColors(defaultAccentColor, defaultAccentColor2, defaultAccentColor3, defaultAccentColor4);
-                        colorDrawable = motionBackgroundDrawable;
-                    } else if (defaultAccentColor2 != 0) {
-                        BackgroundGradientDrawable backgroundGradientDrawable = new BackgroundGradientDrawable(BackgroundGradientDrawable.getGradientOrientation(this.accent.backgroundRotation), new int[]{defaultAccentColor, defaultAccentColor2});
-                        this.backgroundGradientDisposable = backgroundGradientDrawable.startDithering(BackgroundGradientDrawable.Sizes.ofDeviceScreen(), new BackgroundGradientDrawable.ListenerAdapter() {
-                            @Override
-                            public void onSizeReady(int i8, int i9) {
-                                Point point3 = AndroidUtilities.displaySize;
-                                if ((point3.x <= point3.y) == (i8 <= i9)) {
-                                    ThemePreviewActivity.this.backgroundImage.invalidate();
-                                }
-                            }
-                        }, 100L);
-                        colorDrawable = backgroundGradientDrawable;
-                    } else {
-                        colorDrawable = new ColorDrawable(defaultAccentColor);
-                    }
-                    this.backgroundImage.setBackground(colorDrawable);
-                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper4 = this.selectedPattern;
-                    if (tLRPC$TL_wallPaper4 != null) {
-                        BackgroundView backgroundView3 = this.backgroundImage;
-                        ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$TL_wallPaper4.document);
-                        String str2 = this.imageFilter;
-                        TLRPC$TL_wallPaper tLRPC$TL_wallPaper5 = this.selectedPattern;
-                        backgroundView3.setImage(forDocument2, str2, null, null, "jpg", tLRPC$TL_wallPaper5.document.size, 1, tLRPC$TL_wallPaper5);
-                    }
-                } else {
-                    Drawable cachedWallpaperNonBlocking = Theme.getCachedWallpaperNonBlocking();
-                    if (cachedWallpaperNonBlocking != null) {
-                        if (cachedWallpaperNonBlocking instanceof MotionBackgroundDrawable) {
-                            ((MotionBackgroundDrawable) cachedWallpaperNonBlocking).setParentView(this.backgroundImage);
-                        }
-                        this.backgroundImage.setBackground(cachedWallpaperNonBlocking);
-                    }
-                }
-                if (defaultAccentColor2 == 0) {
-                    int patternColor = AndroidUtilities.getPatternColor(defaultAccentColor);
-                    this.checkColor = patternColor;
-                    this.patternColor = patternColor;
-                } else if (defaultAccentColor3 != 0) {
-                    this.patternColor = MotionBackgroundDrawable.getPatternColor(defaultAccentColor, defaultAccentColor2, defaultAccentColor3, defaultAccentColor4);
-                    this.checkColor = 754974720;
-                } else {
-                    int patternColor2 = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(defaultAccentColor, defaultAccentColor2));
-                    this.checkColor = patternColor2;
-                    this.patternColor = patternColor2;
-                }
-                BackgroundView backgroundView4 = this.backgroundImage;
-                if (backgroundView4 != null) {
-                    backgroundView4.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
-                    this.backgroundImage.getImageReceiver().setAlpha(Math.abs(this.currentIntensity));
-                    this.backgroundImage.invalidate();
-                    if (Theme.getActiveTheme().isDark() && (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
-                        SeekBarView seekBarView = this.intensitySeekBar;
-                        if (seekBarView != null) {
-                            seekBarView.setTwoSided(true);
-                        }
-                        if (this.currentIntensity < 0.0f) {
-                            this.backgroundImage.getImageReceiver().setGradientBitmap(((MotionBackgroundDrawable) this.backgroundImage.getBackground()).getBitmap());
-                        }
-                    } else {
-                        this.backgroundImage.getImageReceiver().setGradientBitmap(null);
-                        SeekBarView seekBarView2 = this.intensitySeekBar;
-                        if (seekBarView2 != null) {
-                            seekBarView2.setTwoSided(false);
-                        }
-                    }
-                    SeekBarView seekBarView3 = this.intensitySeekBar;
-                    if (seekBarView3 != null) {
-                        seekBarView3.setProgress(this.currentIntensity);
-                    }
-                }
-                if (this.backgroundCheckBoxView != null) {
-                    int i8 = 0;
-                    while (true) {
-                        WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
-                        if (i8 >= wallpaperCheckBoxViewArr.length) {
-                            break;
-                        }
-                        wallpaperCheckBoxViewArr[i8].setColor(0, defaultAccentColor);
-                        this.backgroundCheckBoxView[i8].setColor(1, defaultAccentColor2);
-                        this.backgroundCheckBoxView[i8].setColor(2, defaultAccentColor3);
-                        this.backgroundCheckBoxView[i8].setColor(3, defaultAccentColor4);
-                        i8++;
-                    }
-                }
-                ImageView imageView = this.backgroundPlayAnimationImageView;
-                if (imageView != null) {
-                    imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
-                }
-                ImageView imageView2 = this.messagesPlayAnimationImageView;
-                if (imageView2 != null) {
-                    imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
-                }
-                invalidateBlur();
-            }
-        }
-        this.rotatePreview = false;
+        void switchDayNight(boolean z);
     }
 
     public static class DialogsAdapter extends RecyclerListView.SelectionAdapter {
-        private ArrayList<DialogCell.CustomDialog> dialogs = new ArrayList<>();
+        private ArrayList dialogs = new ArrayList();
         private Context mContext;
 
         public DialogsAdapter(Context context) {
@@ -3565,20 +992,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() != 1;
+        public int getItemViewType(int i) {
+            return i == this.dialogs.size() ? 1 : 0;
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View loadingCell;
-            if (i == 0) {
-                loadingCell = new DialogCell(null, this.mContext, false, false);
-            } else {
-                loadingCell = new LoadingCell(this.mContext);
-            }
-            loadingCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(loadingCell);
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() != 1;
         }
 
         @Override
@@ -3586,40 +1006,159 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             if (viewHolder.getItemViewType() == 0) {
                 DialogCell dialogCell = (DialogCell) viewHolder.itemView;
                 dialogCell.useSeparator = i != getItemCount() - 1;
-                dialogCell.setDialog(this.dialogs.get(i));
+                dialogCell.setDialog((DialogCell.CustomDialog) this.dialogs.get(i));
             }
         }
 
         @Override
-        public int getItemViewType(int i) {
-            return i == this.dialogs.size() ? 1 : 0;
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View dialogCell = i == 0 ? new DialogCell(null, this.mContext, false, false) : new LoadingCell(this.mContext);
+            dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(dialogCell);
+        }
+    }
+
+    private class MessageDrawable extends Theme.MessageDrawable {
+        public MessageDrawable(int i, boolean z, boolean z2) {
+            super(i, z, z2);
+        }
+
+        @Override
+        public void setTop(int i, int i2, int i3, int i4, int i5, int i6, boolean z, boolean z2) {
+            if (ThemePreviewActivity.this.setupFinished) {
+                return;
+            }
+            super.setTop(i, i2, i3, i4, i5, i6, z, z2);
+        }
+
+        @Override
+        public void setTop(int i, int i2, int i3, boolean z, boolean z2) {
+            if (ThemePreviewActivity.this.setupFinished) {
+                return;
+            }
+            super.setTop(i, i2, i3, z, z2);
         }
     }
 
     public class MessagesAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
-        private ArrayList<MessageObject> messages;
+        private ArrayList messages;
         private boolean showSecretMessages;
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return false;
-        }
 
         public MessagesAdapter(Context context) {
             MessageObject messageObject;
+            ArrayList arrayList;
+            MessageObject messageObject2;
             this.showSecretMessages = ThemePreviewActivity.this.screenType == 0 && Utilities.random.nextInt(100) <= 1;
             this.mContext = context;
-            this.messages = new ArrayList<>();
+            this.messages = new ArrayList();
             int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
             int i = currentTimeMillis - 3600;
-            if (ThemePreviewActivity.this.screenType != 2) {
-                if (ThemePreviewActivity.this.screenType == 1) {
+            if (ThemePreviewActivity.this.screenType == 2) {
+                if (ThemePreviewActivity.this.dialogId >= 0) {
                     TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
+                    tLRPC$TL_message.message = LocaleController.getString(ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper ? R.string.BackgroundColorSinglePreviewLine2 : R.string.BackgroundPreviewLine2);
+                    tLRPC$TL_message.date = currentTimeMillis - 3540;
+                    tLRPC$TL_message.dialog_id = 1L;
+                    tLRPC$TL_message.flags = 259;
+                    tLRPC$TL_message.id = 1;
+                    tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message.out = true;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
+                    tLRPC$TL_peerUser.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message.peer_id = tLRPC$TL_peerUser2;
+                    tLRPC$TL_peerUser2.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    MessageObject messageObject3 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message, true, false) {
+                        @Override
+                        public boolean needDrawAvatar() {
+                            return false;
+                        }
+                    };
+                    messageObject3.eventId = 1L;
+                    messageObject3.resetLayout();
+                    this.messages.add(messageObject3);
+                }
+                TLRPC$TL_message tLRPC$TL_message2 = new TLRPC$TL_message();
+                TLRPC$Chat chat = ThemePreviewActivity.this.dialogId < 0 ? ThemePreviewActivity.this.getMessagesController().getChat(Long.valueOf(-ThemePreviewActivity.this.dialogId)) : null;
+                if (chat != null) {
+                    tLRPC$TL_message2.message = LocaleController.getString(R.string.ChannelBackgroundMessagePreview);
+                    TLRPC$TL_message tLRPC$TL_message3 = new TLRPC$TL_message();
+                    tLRPC$TL_message3.message = LocaleController.getString(R.string.ChannelBackgroundMessageReplyText);
+                    TLRPC$Chat tLRPC$Chat = chat;
+                    messageObject2 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message3, true, false) {
+                        @Override
+                        public boolean needDrawAvatar() {
+                            return false;
+                        }
+                    };
+                    TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
+                    tLRPC$TL_message2.from_id = tLRPC$TL_peerChannel;
+                    tLRPC$TL_peerChannel.channel_id = tLRPC$Chat.id;
+                    TLRPC$TL_peerChannel tLRPC$TL_peerChannel2 = new TLRPC$TL_peerChannel();
+                    tLRPC$TL_message2.peer_id = tLRPC$TL_peerChannel2;
+                    tLRPC$TL_peerChannel2.channel_id = tLRPC$Chat.id;
+                } else {
+                    tLRPC$TL_message2.message = LocaleController.getString(ThemePreviewActivity.this.dialogId != 0 ? R.string.BackgroundColorSinglePreviewLine3 : ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper ? R.string.BackgroundColorSinglePreviewLine1 : R.string.BackgroundPreviewLine1);
+                    tLRPC$TL_message2.from_id = new TLRPC$TL_peerUser();
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser3 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message2.peer_id = tLRPC$TL_peerUser3;
+                    tLRPC$TL_peerUser3.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                    messageObject2 = null;
+                }
+                int i2 = currentTimeMillis - 3540;
+                tLRPC$TL_message2.date = i2;
+                tLRPC$TL_message2.dialog_id = 1L;
+                tLRPC$TL_message2.flags = 265;
+                tLRPC$TL_message2.id = 1;
+                tLRPC$TL_message2.media = new TLRPC$TL_messageMediaEmpty();
+                tLRPC$TL_message2.out = false;
+                MessageObject messageObject4 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message2, messageObject2, true, false) {
+                    @Override
+                    public boolean needDrawAvatar() {
+                        return false;
+                    }
+                };
+                if (messageObject2 != null) {
+                    messageObject4.customReplyName = LocaleController.getString(R.string.ChannelBackgroundMessageReplyName);
+                }
+                messageObject4.eventId = 1L;
+                messageObject4.resetLayout();
+                this.messages.add(messageObject4);
+                if (ThemePreviewActivity.this.dialogId == 0 || ThemePreviewActivity.this.serverWallpaper != null) {
+                    return;
+                }
+                TLRPC$User user = ThemePreviewActivity.this.getMessagesController().getUser(Long.valueOf(ThemePreviewActivity.this.dialogId));
+                TLRPC$TL_message tLRPC$TL_message4 = new TLRPC$TL_message();
+                tLRPC$TL_message4.message = "";
+                MessageObject messageObject5 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message4, true, false);
+                messageObject5.eventId = 1L;
+                messageObject5.contentType = 5;
+                this.messages.add(messageObject5);
+                TLRPC$TL_message tLRPC$TL_message5 = new TLRPC$TL_message();
+                tLRPC$TL_message5.message = user != null ? LocaleController.formatString(R.string.ChatBackgroundHint, UserObject.getFirstName(user)) : LocaleController.getString(R.string.ChannelBackgroundHint);
+                tLRPC$TL_message5.date = i2;
+                tLRPC$TL_message5.dialog_id = 1L;
+                tLRPC$TL_message5.flags = 265;
+                tLRPC$TL_message5.from_id = new TLRPC$TL_peerUser();
+                tLRPC$TL_message5.id = 1;
+                tLRPC$TL_message5.media = new TLRPC$TL_messageMediaEmpty();
+                tLRPC$TL_message5.out = false;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser4 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message5.peer_id = tLRPC$TL_peerUser4;
+                tLRPC$TL_peerUser4.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                messageObject = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message5, true, false);
+                messageObject.eventId = 1L;
+                messageObject.resetLayout();
+                messageObject.contentType = 1;
+            } else {
+                if (ThemePreviewActivity.this.screenType == 1) {
+                    TLRPC$TL_message tLRPC$TL_message6 = new TLRPC$TL_message();
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
-                    tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
+                    tLRPC$TL_message6.media = tLRPC$TL_messageMediaDocument;
                     tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
-                    TLRPC$Document tLRPC$Document = tLRPC$TL_message.media.document;
+                    TLRPC$Document tLRPC$Document = tLRPC$TL_message6.media.document;
                     tLRPC$Document.mime_type = "audio/mp3";
                     tLRPC$Document.file_reference = new byte[0];
                     tLRPC$Document.id = -2147483648L;
@@ -3627,41 +1166,41 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$Document.dc_id = Integer.MIN_VALUE;
                     TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
                     tLRPC$TL_documentAttributeFilename.file_name = LocaleController.getString(R.string.NewThemePreviewReply2) + ".mp3";
-                    tLRPC$TL_message.media.document.attributes.add(tLRPC$TL_documentAttributeFilename);
-                    int i2 = currentTimeMillis + (-3540);
-                    tLRPC$TL_message.date = i2;
-                    tLRPC$TL_message.dialog_id = 1L;
-                    tLRPC$TL_message.flags = 259;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message.from_id = tLRPC$TL_peerUser;
-                    tLRPC$TL_peerUser.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-                    tLRPC$TL_message.id = 1;
-                    tLRPC$TL_message.out = true;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message.peer_id = tLRPC$TL_peerUser2;
-                    tLRPC$TL_peerUser2.user_id = 0L;
-                    MessageObject messageObject2 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message, true, false);
+                    tLRPC$TL_message6.media.document.attributes.add(tLRPC$TL_documentAttributeFilename);
+                    int i3 = currentTimeMillis + (-3540);
+                    tLRPC$TL_message6.date = i3;
+                    tLRPC$TL_message6.dialog_id = 1L;
+                    tLRPC$TL_message6.flags = 259;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser5 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message6.from_id = tLRPC$TL_peerUser5;
+                    tLRPC$TL_peerUser5.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
+                    tLRPC$TL_message6.id = 1;
+                    tLRPC$TL_message6.out = true;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser6 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message6.peer_id = tLRPC$TL_peerUser6;
+                    tLRPC$TL_peerUser6.user_id = 0L;
+                    MessageObject messageObject6 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message6, true, false);
                     if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        TLRPC$TL_message tLRPC$TL_message2 = new TLRPC$TL_message();
-                        tLRPC$TL_message2.message = "this is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text";
-                        tLRPC$TL_message2.date = currentTimeMillis - 2640;
-                        tLRPC$TL_message2.dialog_id = 1L;
-                        tLRPC$TL_message2.flags = 259;
-                        TLRPC$TL_peerUser tLRPC$TL_peerUser3 = new TLRPC$TL_peerUser();
-                        tLRPC$TL_message2.from_id = tLRPC$TL_peerUser3;
-                        tLRPC$TL_peerUser3.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-                        tLRPC$TL_message2.id = 1;
-                        tLRPC$TL_message2.media = new TLRPC$TL_messageMediaEmpty();
-                        tLRPC$TL_message2.out = true;
-                        TLRPC$TL_peerUser tLRPC$TL_peerUser4 = new TLRPC$TL_peerUser();
-                        tLRPC$TL_message2.peer_id = tLRPC$TL_peerUser4;
-                        tLRPC$TL_peerUser4.user_id = 0L;
-                        MessageObject messageObject3 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message2, true, false);
-                        messageObject3.resetLayout();
-                        messageObject3.eventId = 1L;
-                        this.messages.add(messageObject3);
+                        TLRPC$TL_message tLRPC$TL_message7 = new TLRPC$TL_message();
+                        tLRPC$TL_message7.message = "this is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text\nthis is very very long text";
+                        tLRPC$TL_message7.date = currentTimeMillis - 2640;
+                        tLRPC$TL_message7.dialog_id = 1L;
+                        tLRPC$TL_message7.flags = 259;
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser7 = new TLRPC$TL_peerUser();
+                        tLRPC$TL_message7.from_id = tLRPC$TL_peerUser7;
+                        tLRPC$TL_peerUser7.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
+                        tLRPC$TL_message7.id = 1;
+                        tLRPC$TL_message7.media = new TLRPC$TL_messageMediaEmpty();
+                        tLRPC$TL_message7.out = true;
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser8 = new TLRPC$TL_peerUser();
+                        tLRPC$TL_message7.peer_id = tLRPC$TL_peerUser8;
+                        tLRPC$TL_peerUser8.user_id = 0L;
+                        MessageObject messageObject7 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message7, true, false);
+                        messageObject7.resetLayout();
+                        messageObject7.eventId = 1L;
+                        this.messages.add(messageObject7);
                     }
-                    TLRPC$TL_message tLRPC$TL_message3 = new TLRPC$TL_message();
+                    TLRPC$TL_message tLRPC$TL_message8 = new TLRPC$TL_message();
                     String string = LocaleController.getString(R.string.NewThemePreviewLine3);
                     StringBuilder sb = new StringBuilder(string);
                     int indexOf = string.indexOf(42);
@@ -3673,62 +1212,62 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         tLRPC$TL_messageEntityTextUrl.offset = indexOf;
                         tLRPC$TL_messageEntityTextUrl.length = (lastIndexOf - indexOf) - 1;
                         tLRPC$TL_messageEntityTextUrl.url = "https://telegram.org";
-                        tLRPC$TL_message3.entities.add(tLRPC$TL_messageEntityTextUrl);
+                        tLRPC$TL_message8.entities.add(tLRPC$TL_messageEntityTextUrl);
                     }
-                    tLRPC$TL_message3.message = sb.toString();
-                    tLRPC$TL_message3.date = currentTimeMillis - 2640;
-                    tLRPC$TL_message3.dialog_id = 1L;
-                    tLRPC$TL_message3.flags = 259;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser5 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message3.from_id = tLRPC$TL_peerUser5;
-                    tLRPC$TL_peerUser5.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-                    tLRPC$TL_message3.id = 1;
-                    tLRPC$TL_message3.media = new TLRPC$TL_messageMediaEmpty();
-                    tLRPC$TL_message3.out = true;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser6 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message3.peer_id = tLRPC$TL_peerUser6;
-                    tLRPC$TL_peerUser6.user_id = 0L;
-                    MessageObject messageObject4 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message3, true, false);
-                    messageObject4.resetLayout();
-                    messageObject4.eventId = 1L;
-                    this.messages.add(messageObject4);
-                    TLRPC$TL_message tLRPC$TL_message4 = new TLRPC$TL_message();
-                    tLRPC$TL_message4.message = LocaleController.getString(R.string.NewThemePreviewLine1);
-                    tLRPC$TL_message4.date = i2;
-                    tLRPC$TL_message4.dialog_id = 1L;
-                    tLRPC$TL_message4.flags = 265;
-                    tLRPC$TL_message4.from_id = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message4.id = 1;
+                    tLRPC$TL_message8.message = sb.toString();
+                    tLRPC$TL_message8.date = currentTimeMillis - 2640;
+                    tLRPC$TL_message8.dialog_id = 1L;
+                    tLRPC$TL_message8.flags = 259;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser9 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message8.from_id = tLRPC$TL_peerUser9;
+                    tLRPC$TL_peerUser9.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
+                    tLRPC$TL_message8.id = 1;
+                    tLRPC$TL_message8.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message8.out = true;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser10 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message8.peer_id = tLRPC$TL_peerUser10;
+                    tLRPC$TL_peerUser10.user_id = 0L;
+                    MessageObject messageObject8 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message8, true, false);
+                    messageObject8.resetLayout();
+                    messageObject8.eventId = 1L;
+                    this.messages.add(messageObject8);
+                    TLRPC$TL_message tLRPC$TL_message9 = new TLRPC$TL_message();
+                    tLRPC$TL_message9.message = LocaleController.getString(R.string.NewThemePreviewLine1);
+                    tLRPC$TL_message9.date = i3;
+                    tLRPC$TL_message9.dialog_id = 1L;
+                    tLRPC$TL_message9.flags = 265;
+                    tLRPC$TL_message9.from_id = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message9.id = 1;
                     TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
-                    tLRPC$TL_message4.reply_to = tLRPC$TL_messageReplyHeader;
+                    tLRPC$TL_message9.reply_to = tLRPC$TL_messageReplyHeader;
                     tLRPC$TL_messageReplyHeader.flags |= 16;
                     tLRPC$TL_messageReplyHeader.reply_to_msg_id = 5;
-                    tLRPC$TL_message4.media = new TLRPC$TL_messageMediaEmpty();
-                    tLRPC$TL_message4.out = false;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser7 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message4.peer_id = tLRPC$TL_peerUser7;
-                    tLRPC$TL_peerUser7.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
-                    MessageObject messageObject5 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message4, true, false);
-                    messageObject5.customReplyName = LocaleController.getString(R.string.NewThemePreviewName);
-                    messageObject4.customReplyName = "Test User";
-                    messageObject5.eventId = 1L;
-                    messageObject5.resetLayout();
-                    messageObject5.replyMessageObject = messageObject2;
-                    messageObject4.replyMessageObject = messageObject5;
-                    this.messages.add(messageObject5);
-                    this.messages.add(messageObject2);
-                    TLRPC$TL_message tLRPC$TL_message5 = new TLRPC$TL_message();
-                    tLRPC$TL_message5.date = currentTimeMillis - 3480;
-                    tLRPC$TL_message5.dialog_id = 1L;
-                    tLRPC$TL_message5.flags = 259;
-                    tLRPC$TL_message5.out = false;
-                    tLRPC$TL_message5.from_id = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message5.id = 1;
+                    tLRPC$TL_message9.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message9.out = false;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser11 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message9.peer_id = tLRPC$TL_peerUser11;
+                    tLRPC$TL_peerUser11.user_id = UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId();
+                    MessageObject messageObject9 = new MessageObject(UserConfig.selectedAccount, tLRPC$TL_message9, true, false);
+                    messageObject9.customReplyName = LocaleController.getString(R.string.NewThemePreviewName);
+                    messageObject8.customReplyName = "Test User";
+                    messageObject9.eventId = 1L;
+                    messageObject9.resetLayout();
+                    messageObject9.replyMessageObject = messageObject6;
+                    messageObject8.replyMessageObject = messageObject9;
+                    this.messages.add(messageObject9);
+                    this.messages.add(messageObject6);
+                    TLRPC$TL_message tLRPC$TL_message10 = new TLRPC$TL_message();
+                    tLRPC$TL_message10.date = currentTimeMillis - 3480;
+                    tLRPC$TL_message10.dialog_id = 1L;
+                    tLRPC$TL_message10.flags = 259;
+                    tLRPC$TL_message10.out = false;
+                    tLRPC$TL_message10.from_id = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message10.id = 1;
                     TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument2 = new TLRPC$TL_messageMediaDocument();
-                    tLRPC$TL_message5.media = tLRPC$TL_messageMediaDocument2;
+                    tLRPC$TL_message10.media = tLRPC$TL_messageMediaDocument2;
                     tLRPC$TL_messageMediaDocument2.flags |= 3;
                     tLRPC$TL_messageMediaDocument2.document = new TLRPC$TL_document();
-                    TLRPC$Document tLRPC$Document2 = tLRPC$TL_message5.media.document;
+                    TLRPC$Document tLRPC$Document2 = tLRPC$TL_message10.media.document;
                     tLRPC$Document2.mime_type = "audio/ogg";
                     tLRPC$Document2.file_reference = new byte[0];
                     TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
@@ -3736,16 +1275,16 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_documentAttributeAudio.duration = 3.0d;
                     tLRPC$TL_documentAttributeAudio.voice = true;
                     tLRPC$TL_documentAttributeAudio.waveform = new byte[]{0, 4, 17, -50, -93, 86, -103, -45, -12, -26, 63, -25, -3, 109, -114, -54, -4, -1, -1, -1, -1, -29, -1, -1, -25, -1, -1, -97, -43, 57, -57, -108, 1, -91, -4, -47, 21, 99, 10, 97, 43, 45, 115, -112, -77, 51, -63, 66, 40, 34, -122, -116, 48, -124, 16, 66, -120, 16, 68, 16, 33, 4, 1};
-                    tLRPC$TL_message5.media.document.attributes.add(tLRPC$TL_documentAttributeAudio);
-                    tLRPC$TL_message5.out = true;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser8 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message5.peer_id = tLRPC$TL_peerUser8;
-                    tLRPC$TL_peerUser8.user_id = 0L;
-                    MessageObject messageObject6 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message5, true, false);
-                    messageObject6.audioProgressSec = 1;
-                    messageObject6.audioProgress = 0.3f;
-                    messageObject6.useCustomPhoto = true;
-                    this.messages.add(messageObject6);
+                    tLRPC$TL_message10.media.document.attributes.add(tLRPC$TL_documentAttributeAudio);
+                    tLRPC$TL_message10.out = true;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser12 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message10.peer_id = tLRPC$TL_peerUser12;
+                    tLRPC$TL_peerUser12.user_id = 0L;
+                    MessageObject messageObject10 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message10, true, false);
+                    messageObject10.audioProgressSec = 1;
+                    messageObject10.audioProgress = 0.3f;
+                    messageObject10.useCustomPhoto = true;
+                    this.messages.add(messageObject10);
                     return;
                 }
                 if (this.showSecretMessages) {
@@ -3755,145 +1294,146 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     TLRPC$TL_user tLRPC$TL_user2 = new TLRPC$TL_user();
                     tLRPC$TL_user2.id = 2147483646L;
                     tLRPC$TL_user2.first_name = "Serj";
-                    ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-                    arrayList.add(tLRPC$TL_user);
-                    arrayList.add(tLRPC$TL_user2);
-                    MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).putUsers(arrayList, true);
-                    TLRPC$TL_message tLRPC$TL_message6 = new TLRPC$TL_message();
-                    tLRPC$TL_message6.message = "Guess why Half-Life 3 was never released.";
-                    int i3 = currentTimeMillis - 2640;
-                    tLRPC$TL_message6.date = i3;
-                    tLRPC$TL_message6.dialog_id = -1L;
-                    tLRPC$TL_message6.flags = 259;
-                    tLRPC$TL_message6.id = 2147483646;
-                    tLRPC$TL_message6.media = new TLRPC$TL_messageMediaEmpty();
-                    tLRPC$TL_message6.out = false;
+                    ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
+                    arrayList2.add(tLRPC$TL_user);
+                    arrayList2.add(tLRPC$TL_user2);
+                    MessagesController.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).putUsers(arrayList2, true);
+                    TLRPC$TL_message tLRPC$TL_message11 = new TLRPC$TL_message();
+                    tLRPC$TL_message11.message = "Guess why Half-Life 3 was never released.";
+                    int i4 = currentTimeMillis - 2640;
+                    tLRPC$TL_message11.date = i4;
+                    tLRPC$TL_message11.dialog_id = -1L;
+                    tLRPC$TL_message11.flags = 259;
+                    tLRPC$TL_message11.id = 2147483646;
+                    tLRPC$TL_message11.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message11.out = false;
                     TLRPC$TL_peerChat tLRPC$TL_peerChat = new TLRPC$TL_peerChat();
-                    tLRPC$TL_message6.peer_id = tLRPC$TL_peerChat;
+                    tLRPC$TL_message11.peer_id = tLRPC$TL_peerChat;
                     tLRPC$TL_peerChat.chat_id = 1L;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser9 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message6.from_id = tLRPC$TL_peerUser9;
-                    tLRPC$TL_peerUser9.user_id = tLRPC$TL_user2.id;
-                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message6, true, false));
-                    TLRPC$TL_message tLRPC$TL_message7 = new TLRPC$TL_message();
-                    tLRPC$TL_message7.message = "No.\nAnd every unnecessary ping of the dev delays the release for 10 days.\nEvery request for ETA delays the release for 2 weeks.";
-                    tLRPC$TL_message7.date = i3;
-                    tLRPC$TL_message7.dialog_id = -1L;
-                    tLRPC$TL_message7.flags = 259;
-                    tLRPC$TL_message7.id = 1;
-                    tLRPC$TL_message7.media = new TLRPC$TL_messageMediaEmpty();
-                    tLRPC$TL_message7.out = false;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser13 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message11.from_id = tLRPC$TL_peerUser13;
+                    tLRPC$TL_peerUser13.user_id = tLRPC$TL_user2.id;
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message11, true, false));
+                    TLRPC$TL_message tLRPC$TL_message12 = new TLRPC$TL_message();
+                    tLRPC$TL_message12.message = "No.\nAnd every unnecessary ping of the dev delays the release for 10 days.\nEvery request for ETA delays the release for 2 weeks.";
+                    tLRPC$TL_message12.date = i4;
+                    tLRPC$TL_message12.dialog_id = -1L;
+                    tLRPC$TL_message12.flags = 259;
+                    tLRPC$TL_message12.id = 1;
+                    tLRPC$TL_message12.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message12.out = false;
                     TLRPC$TL_peerChat tLRPC$TL_peerChat2 = new TLRPC$TL_peerChat();
-                    tLRPC$TL_message7.peer_id = tLRPC$TL_peerChat2;
+                    tLRPC$TL_message12.peer_id = tLRPC$TL_peerChat2;
                     tLRPC$TL_peerChat2.chat_id = 1L;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser10 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message7.from_id = tLRPC$TL_peerUser10;
-                    tLRPC$TL_peerUser10.user_id = tLRPC$TL_user2.id;
-                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message7, true, false));
-                    TLRPC$TL_message tLRPC$TL_message8 = new TLRPC$TL_message();
-                    tLRPC$TL_message8.message = "Is source code for Android coming anytime soon?";
-                    tLRPC$TL_message8.date = currentTimeMillis - 3000;
-                    tLRPC$TL_message8.dialog_id = -1L;
-                    tLRPC$TL_message8.flags = 259;
-                    tLRPC$TL_message8.id = 1;
-                    tLRPC$TL_message8.media = new TLRPC$TL_messageMediaEmpty();
-                    tLRPC$TL_message8.out = false;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser14 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message12.from_id = tLRPC$TL_peerUser14;
+                    tLRPC$TL_peerUser14.user_id = tLRPC$TL_user2.id;
+                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message12, true, false));
+                    TLRPC$TL_message tLRPC$TL_message13 = new TLRPC$TL_message();
+                    tLRPC$TL_message13.message = "Is source code for Android coming anytime soon?";
+                    tLRPC$TL_message13.date = currentTimeMillis - 3000;
+                    tLRPC$TL_message13.dialog_id = -1L;
+                    tLRPC$TL_message13.flags = 259;
+                    tLRPC$TL_message13.id = 1;
+                    tLRPC$TL_message13.media = new TLRPC$TL_messageMediaEmpty();
+                    tLRPC$TL_message13.out = false;
                     TLRPC$TL_peerChat tLRPC$TL_peerChat3 = new TLRPC$TL_peerChat();
-                    tLRPC$TL_message8.peer_id = tLRPC$TL_peerChat3;
+                    tLRPC$TL_message13.peer_id = tLRPC$TL_peerChat3;
                     tLRPC$TL_peerChat3.chat_id = 1L;
-                    TLRPC$TL_peerUser tLRPC$TL_peerUser11 = new TLRPC$TL_peerUser();
-                    tLRPC$TL_message8.from_id = tLRPC$TL_peerUser11;
-                    tLRPC$TL_peerUser11.user_id = tLRPC$TL_user.id;
-                    this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message8, true, false));
-                    return;
+                    TLRPC$TL_peerUser tLRPC$TL_peerUser15 = new TLRPC$TL_peerUser();
+                    tLRPC$TL_message13.from_id = tLRPC$TL_peerUser15;
+                    tLRPC$TL_peerUser15.user_id = tLRPC$TL_user.id;
+                    arrayList = this.messages;
+                    messageObject = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message13, true, false);
+                    arrayList.add(messageObject);
                 }
-                TLRPC$TL_message tLRPC$TL_message9 = new TLRPC$TL_message();
-                tLRPC$TL_message9.message = LocaleController.getString(R.string.ThemePreviewLine1);
-                int i4 = currentTimeMillis - 3540;
-                tLRPC$TL_message9.date = i4;
-                tLRPC$TL_message9.dialog_id = 1L;
-                tLRPC$TL_message9.flags = 259;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser12 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message9.from_id = tLRPC$TL_peerUser12;
-                tLRPC$TL_peerUser12.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                tLRPC$TL_message9.id = 1;
-                tLRPC$TL_message9.media = new TLRPC$TL_messageMediaEmpty();
-                tLRPC$TL_message9.out = true;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser13 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message9.peer_id = tLRPC$TL_peerUser13;
-                tLRPC$TL_peerUser13.user_id = 0L;
-                MessageObject messageObject7 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message9, true, false);
-                TLRPC$TL_message tLRPC$TL_message10 = new TLRPC$TL_message();
-                tLRPC$TL_message10.message = LocaleController.getString(R.string.ThemePreviewLine2);
-                tLRPC$TL_message10.date = currentTimeMillis - 2640;
-                tLRPC$TL_message10.dialog_id = 1L;
-                tLRPC$TL_message10.flags = 259;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser14 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message10.from_id = tLRPC$TL_peerUser14;
-                tLRPC$TL_peerUser14.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                tLRPC$TL_message10.id = 1;
-                tLRPC$TL_message10.media = new TLRPC$TL_messageMediaEmpty();
-                tLRPC$TL_message10.out = true;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser15 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message10.peer_id = tLRPC$TL_peerUser15;
-                tLRPC$TL_peerUser15.user_id = 0L;
-                this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message10, true, false));
-                TLRPC$TL_message tLRPC$TL_message11 = new TLRPC$TL_message();
-                tLRPC$TL_message11.date = currentTimeMillis - 3470;
-                tLRPC$TL_message11.dialog_id = 1L;
-                tLRPC$TL_message11.flags = 259;
-                tLRPC$TL_message11.from_id = new TLRPC$TL_peerUser();
-                tLRPC$TL_message11.id = 5;
+                TLRPC$TL_message tLRPC$TL_message14 = new TLRPC$TL_message();
+                tLRPC$TL_message14.message = LocaleController.getString(R.string.ThemePreviewLine1);
+                int i5 = currentTimeMillis - 3540;
+                tLRPC$TL_message14.date = i5;
+                tLRPC$TL_message14.dialog_id = 1L;
+                tLRPC$TL_message14.flags = 259;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser16 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message14.from_id = tLRPC$TL_peerUser16;
+                tLRPC$TL_peerUser16.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                tLRPC$TL_message14.id = 1;
+                tLRPC$TL_message14.media = new TLRPC$TL_messageMediaEmpty();
+                tLRPC$TL_message14.out = true;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser17 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message14.peer_id = tLRPC$TL_peerUser17;
+                tLRPC$TL_peerUser17.user_id = 0L;
+                MessageObject messageObject11 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message14, true, false);
+                TLRPC$TL_message tLRPC$TL_message15 = new TLRPC$TL_message();
+                tLRPC$TL_message15.message = LocaleController.getString(R.string.ThemePreviewLine2);
+                tLRPC$TL_message15.date = currentTimeMillis - 2640;
+                tLRPC$TL_message15.dialog_id = 1L;
+                tLRPC$TL_message15.flags = 259;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser18 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message15.from_id = tLRPC$TL_peerUser18;
+                tLRPC$TL_peerUser18.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                tLRPC$TL_message15.id = 1;
+                tLRPC$TL_message15.media = new TLRPC$TL_messageMediaEmpty();
+                tLRPC$TL_message15.out = true;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser19 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message15.peer_id = tLRPC$TL_peerUser19;
+                tLRPC$TL_peerUser19.user_id = 0L;
+                this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message15, true, false));
+                TLRPC$TL_message tLRPC$TL_message16 = new TLRPC$TL_message();
+                tLRPC$TL_message16.date = currentTimeMillis - 3470;
+                tLRPC$TL_message16.dialog_id = 1L;
+                tLRPC$TL_message16.flags = 259;
+                tLRPC$TL_message16.from_id = new TLRPC$TL_peerUser();
+                tLRPC$TL_message16.id = 5;
                 TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument3 = new TLRPC$TL_messageMediaDocument();
-                tLRPC$TL_message11.media = tLRPC$TL_messageMediaDocument3;
+                tLRPC$TL_message16.media = tLRPC$TL_messageMediaDocument3;
                 tLRPC$TL_messageMediaDocument3.flags |= 3;
                 tLRPC$TL_messageMediaDocument3.document = new TLRPC$TL_document();
-                TLRPC$Document tLRPC$Document3 = tLRPC$TL_message11.media.document;
+                TLRPC$Document tLRPC$Document3 = tLRPC$TL_message16.media.document;
                 tLRPC$Document3.mime_type = "audio/mp4";
                 tLRPC$Document3.file_reference = new byte[0];
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio2 = new TLRPC$TL_documentAttributeAudio();
                 tLRPC$TL_documentAttributeAudio2.duration = 243.0d;
                 tLRPC$TL_documentAttributeAudio2.performer = LocaleController.getString(R.string.ThemePreviewSongPerformer);
                 tLRPC$TL_documentAttributeAudio2.title = LocaleController.getString(R.string.ThemePreviewSongTitle);
-                tLRPC$TL_message11.media.document.attributes.add(tLRPC$TL_documentAttributeAudio2);
-                tLRPC$TL_message11.out = false;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser16 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message11.peer_id = tLRPC$TL_peerUser16;
-                tLRPC$TL_peerUser16.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message11, true, false));
-                TLRPC$TL_message tLRPC$TL_message12 = new TLRPC$TL_message();
-                tLRPC$TL_message12.message = LocaleController.getString(R.string.ThemePreviewLine3);
-                tLRPC$TL_message12.date = i4;
-                tLRPC$TL_message12.dialog_id = 1L;
-                tLRPC$TL_message12.flags = 265;
-                tLRPC$TL_message12.from_id = new TLRPC$TL_peerUser();
-                tLRPC$TL_message12.id = 1;
+                tLRPC$TL_message16.media.document.attributes.add(tLRPC$TL_documentAttributeAudio2);
+                tLRPC$TL_message16.out = false;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser20 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message16.peer_id = tLRPC$TL_peerUser20;
+                tLRPC$TL_peerUser20.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                this.messages.add(new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message16, true, false));
+                TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
+                tLRPC$TL_message17.message = LocaleController.getString(R.string.ThemePreviewLine3);
+                tLRPC$TL_message17.date = i5;
+                tLRPC$TL_message17.dialog_id = 1L;
+                tLRPC$TL_message17.flags = 265;
+                tLRPC$TL_message17.from_id = new TLRPC$TL_peerUser();
+                tLRPC$TL_message17.id = 1;
                 TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader2 = new TLRPC$TL_messageReplyHeader();
-                tLRPC$TL_message12.reply_to = tLRPC$TL_messageReplyHeader2;
+                tLRPC$TL_message17.reply_to = tLRPC$TL_messageReplyHeader2;
                 tLRPC$TL_messageReplyHeader2.flags |= 16;
                 tLRPC$TL_messageReplyHeader2.reply_to_msg_id = 5;
-                tLRPC$TL_message12.media = new TLRPC$TL_messageMediaEmpty();
-                tLRPC$TL_message12.out = false;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser17 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message12.peer_id = tLRPC$TL_peerUser17;
-                tLRPC$TL_peerUser17.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                MessageObject messageObject8 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message12, true, false);
-                messageObject8.customReplyName = LocaleController.getString(R.string.ThemePreviewLine3Reply);
-                messageObject8.replyMessageObject = messageObject7;
-                this.messages.add(messageObject8);
-                TLRPC$TL_message tLRPC$TL_message13 = new TLRPC$TL_message();
-                tLRPC$TL_message13.date = currentTimeMillis - 3480;
-                tLRPC$TL_message13.dialog_id = 1L;
-                tLRPC$TL_message13.flags = 259;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser18 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message13.from_id = tLRPC$TL_peerUser18;
-                tLRPC$TL_peerUser18.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                tLRPC$TL_message13.id = 1;
+                tLRPC$TL_message17.media = new TLRPC$TL_messageMediaEmpty();
+                tLRPC$TL_message17.out = false;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser21 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message17.peer_id = tLRPC$TL_peerUser21;
+                tLRPC$TL_peerUser21.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false);
+                messageObject12.customReplyName = LocaleController.getString(R.string.ThemePreviewLine3Reply);
+                messageObject12.replyMessageObject = messageObject11;
+                this.messages.add(messageObject12);
+                TLRPC$TL_message tLRPC$TL_message18 = new TLRPC$TL_message();
+                tLRPC$TL_message18.date = currentTimeMillis - 3480;
+                tLRPC$TL_message18.dialog_id = 1L;
+                tLRPC$TL_message18.flags = 259;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser22 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message18.from_id = tLRPC$TL_peerUser22;
+                tLRPC$TL_peerUser22.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                tLRPC$TL_message18.id = 1;
                 TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument4 = new TLRPC$TL_messageMediaDocument();
-                tLRPC$TL_message13.media = tLRPC$TL_messageMediaDocument4;
+                tLRPC$TL_message18.media = tLRPC$TL_messageMediaDocument4;
                 tLRPC$TL_messageMediaDocument4.flags |= 3;
                 tLRPC$TL_messageMediaDocument4.document = new TLRPC$TL_document();
-                TLRPC$Document tLRPC$Document4 = tLRPC$TL_message13.media.document;
+                TLRPC$Document tLRPC$Document4 = tLRPC$TL_message18.media.document;
                 tLRPC$Document4.mime_type = "audio/ogg";
                 tLRPC$Document4.file_reference = new byte[0];
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio3 = new TLRPC$TL_documentAttributeAudio();
@@ -3901,28 +1441,28 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 tLRPC$TL_documentAttributeAudio3.duration = 3.0d;
                 tLRPC$TL_documentAttributeAudio3.voice = true;
                 tLRPC$TL_documentAttributeAudio3.waveform = new byte[]{0, 4, 17, -50, -93, 86, -103, -45, -12, -26, 63, -25, -3, 109, -114, -54, -4, -1, -1, -1, -1, -29, -1, -1, -25, -1, -1, -97, -43, 57, -57, -108, 1, -91, -4, -47, 21, 99, 10, 97, 43, 45, 115, -112, -77, 51, -63, 66, 40, 34, -122, -116, 48, -124, 16, 66, -120, 16, 68, 16, 33, 4, 1};
-                tLRPC$TL_message13.media.document.attributes.add(tLRPC$TL_documentAttributeAudio3);
-                tLRPC$TL_message13.out = true;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser19 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message13.peer_id = tLRPC$TL_peerUser19;
-                tLRPC$TL_peerUser19.user_id = 0L;
-                MessageObject messageObject9 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message13, true, false);
-                messageObject9.audioProgressSec = 1;
-                messageObject9.audioProgress = 0.3f;
-                messageObject9.useCustomPhoto = true;
-                this.messages.add(messageObject9);
-                this.messages.add(messageObject7);
-                TLRPC$TL_message tLRPC$TL_message14 = new TLRPC$TL_message();
-                tLRPC$TL_message14.date = currentTimeMillis - 3590;
-                tLRPC$TL_message14.dialog_id = 1L;
-                tLRPC$TL_message14.flags = 257;
-                tLRPC$TL_message14.from_id = new TLRPC$TL_peerUser();
-                tLRPC$TL_message14.id = 1;
+                tLRPC$TL_message18.media.document.attributes.add(tLRPC$TL_documentAttributeAudio3);
+                tLRPC$TL_message18.out = true;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser23 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message18.peer_id = tLRPC$TL_peerUser23;
+                tLRPC$TL_peerUser23.user_id = 0L;
+                MessageObject messageObject13 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message18, true, false);
+                messageObject13.audioProgressSec = 1;
+                messageObject13.audioProgress = 0.3f;
+                messageObject13.useCustomPhoto = true;
+                this.messages.add(messageObject13);
+                this.messages.add(messageObject11);
+                TLRPC$TL_message tLRPC$TL_message19 = new TLRPC$TL_message();
+                tLRPC$TL_message19.date = currentTimeMillis - 3590;
+                tLRPC$TL_message19.dialog_id = 1L;
+                tLRPC$TL_message19.flags = 257;
+                tLRPC$TL_message19.from_id = new TLRPC$TL_peerUser();
+                tLRPC$TL_message19.id = 1;
                 TLRPC$TL_messageMediaPhoto tLRPC$TL_messageMediaPhoto = new TLRPC$TL_messageMediaPhoto();
-                tLRPC$TL_message14.media = tLRPC$TL_messageMediaPhoto;
+                tLRPC$TL_message19.media = tLRPC$TL_messageMediaPhoto;
                 tLRPC$TL_messageMediaPhoto.flags |= 3;
                 tLRPC$TL_messageMediaPhoto.photo = new TLRPC$TL_photo();
-                TLRPC$Photo tLRPC$Photo = tLRPC$TL_message14.media.photo;
+                TLRPC$Photo tLRPC$Photo = tLRPC$TL_message19.media.photo;
                 tLRPC$Photo.file_reference = new byte[0];
                 tLRPC$Photo.has_stickers = false;
                 tLRPC$Photo.id = 1L;
@@ -3934,131 +1474,17 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 tLRPC$TL_photoSize.h = 302;
                 tLRPC$TL_photoSize.type = "s";
                 tLRPC$TL_photoSize.location = new TLRPC$TL_fileLocationUnavailable();
-                tLRPC$TL_message14.media.photo.sizes.add(tLRPC$TL_photoSize);
-                tLRPC$TL_message14.message = LocaleController.getString(R.string.ThemePreviewLine4);
-                tLRPC$TL_message14.out = false;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser20 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message14.peer_id = tLRPC$TL_peerUser20;
-                tLRPC$TL_peerUser20.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                MessageObject messageObject10 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message14, true, false);
-                messageObject10.useCustomPhoto = true;
-                this.messages.add(messageObject10);
-                return;
+                tLRPC$TL_message19.media.photo.sizes.add(tLRPC$TL_photoSize);
+                tLRPC$TL_message19.message = LocaleController.getString(R.string.ThemePreviewLine4);
+                tLRPC$TL_message19.out = false;
+                TLRPC$TL_peerUser tLRPC$TL_peerUser24 = new TLRPC$TL_peerUser();
+                tLRPC$TL_message19.peer_id = tLRPC$TL_peerUser24;
+                tLRPC$TL_peerUser24.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+                messageObject = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message19, true, false);
+                messageObject.useCustomPhoto = true;
             }
-            if (ThemePreviewActivity.this.dialogId >= 0) {
-                TLRPC$TL_message tLRPC$TL_message15 = new TLRPC$TL_message();
-                if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
-                    tLRPC$TL_message15.message = LocaleController.getString(R.string.BackgroundColorSinglePreviewLine2);
-                } else {
-                    tLRPC$TL_message15.message = LocaleController.getString(R.string.BackgroundPreviewLine2);
-                }
-                tLRPC$TL_message15.date = currentTimeMillis - 3540;
-                tLRPC$TL_message15.dialog_id = 1L;
-                tLRPC$TL_message15.flags = 259;
-                tLRPC$TL_message15.id = 1;
-                tLRPC$TL_message15.media = new TLRPC$TL_messageMediaEmpty();
-                tLRPC$TL_message15.out = true;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser21 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message15.from_id = tLRPC$TL_peerUser21;
-                tLRPC$TL_peerUser21.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                TLRPC$TL_peerUser tLRPC$TL_peerUser22 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message15.peer_id = tLRPC$TL_peerUser22;
-                tLRPC$TL_peerUser22.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                MessageObject messageObject11 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message15, true, false) {
-                    @Override
-                    public boolean needDrawAvatar() {
-                        return false;
-                    }
-                };
-                messageObject11.eventId = 1L;
-                messageObject11.resetLayout();
-                this.messages.add(messageObject11);
-            }
-            TLRPC$TL_message tLRPC$TL_message16 = new TLRPC$TL_message();
-            TLRPC$Chat chat = ThemePreviewActivity.this.dialogId < 0 ? ThemePreviewActivity.this.getMessagesController().getChat(Long.valueOf(-ThemePreviewActivity.this.dialogId)) : null;
-            if (chat != null) {
-                tLRPC$TL_message16.message = LocaleController.getString(R.string.ChannelBackgroundMessagePreview);
-                TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
-                tLRPC$TL_message17.message = LocaleController.getString(R.string.ChannelBackgroundMessageReplyText);
-                TLRPC$Chat tLRPC$Chat = chat;
-                messageObject = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false) {
-                    @Override
-                    public boolean needDrawAvatar() {
-                        return false;
-                    }
-                };
-                TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
-                tLRPC$TL_message16.from_id = tLRPC$TL_peerChannel;
-                tLRPC$TL_peerChannel.channel_id = tLRPC$Chat.id;
-                TLRPC$TL_peerChannel tLRPC$TL_peerChannel2 = new TLRPC$TL_peerChannel();
-                tLRPC$TL_message16.peer_id = tLRPC$TL_peerChannel2;
-                tLRPC$TL_peerChannel2.channel_id = tLRPC$Chat.id;
-            } else {
-                if (ThemePreviewActivity.this.dialogId == 0) {
-                    if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
-                        tLRPC$TL_message16.message = LocaleController.getString(R.string.BackgroundColorSinglePreviewLine1);
-                    } else {
-                        tLRPC$TL_message16.message = LocaleController.getString(R.string.BackgroundPreviewLine1);
-                    }
-                } else {
-                    tLRPC$TL_message16.message = LocaleController.getString(R.string.BackgroundColorSinglePreviewLine3);
-                }
-                tLRPC$TL_message16.from_id = new TLRPC$TL_peerUser();
-                TLRPC$TL_peerUser tLRPC$TL_peerUser23 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message16.peer_id = tLRPC$TL_peerUser23;
-                tLRPC$TL_peerUser23.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                messageObject = null;
-            }
-            int i5 = currentTimeMillis - 3540;
-            tLRPC$TL_message16.date = i5;
-            tLRPC$TL_message16.dialog_id = 1L;
-            tLRPC$TL_message16.flags = 265;
-            tLRPC$TL_message16.id = 1;
-            tLRPC$TL_message16.media = new TLRPC$TL_messageMediaEmpty();
-            tLRPC$TL_message16.out = false;
-            MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message16, messageObject, true, false) {
-                @Override
-                public boolean needDrawAvatar() {
-                    return false;
-                }
-            };
-            if (messageObject != null) {
-                messageObject12.customReplyName = LocaleController.getString(R.string.ChannelBackgroundMessageReplyName);
-            }
-            messageObject12.eventId = 1L;
-            messageObject12.resetLayout();
-            this.messages.add(messageObject12);
-            if (ThemePreviewActivity.this.dialogId == 0 || ThemePreviewActivity.this.serverWallpaper != null) {
-                return;
-            }
-            TLRPC$User user = ThemePreviewActivity.this.getMessagesController().getUser(Long.valueOf(ThemePreviewActivity.this.dialogId));
-            TLRPC$TL_message tLRPC$TL_message18 = new TLRPC$TL_message();
-            tLRPC$TL_message18.message = "";
-            MessageObject messageObject13 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message18, true, false);
-            messageObject13.eventId = 1L;
-            messageObject13.contentType = 5;
-            this.messages.add(messageObject13);
-            TLRPC$TL_message tLRPC$TL_message19 = new TLRPC$TL_message();
-            if (user != null) {
-                tLRPC$TL_message19.message = LocaleController.formatString(R.string.ChatBackgroundHint, UserObject.getFirstName(user));
-            } else {
-                tLRPC$TL_message19.message = LocaleController.getString(R.string.ChannelBackgroundHint);
-            }
-            tLRPC$TL_message19.date = i5;
-            tLRPC$TL_message19.dialog_id = 1L;
-            tLRPC$TL_message19.flags = 265;
-            tLRPC$TL_message19.from_id = new TLRPC$TL_peerUser();
-            tLRPC$TL_message19.id = 1;
-            tLRPC$TL_message19.media = new TLRPC$TL_messageMediaEmpty();
-            tLRPC$TL_message19.out = false;
-            TLRPC$TL_peerUser tLRPC$TL_peerUser24 = new TLRPC$TL_peerUser();
-            tLRPC$TL_message19.peer_id = tLRPC$TL_peerUser24;
-            tLRPC$TL_peerUser24.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-            MessageObject messageObject14 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message19, true, false);
-            messageObject14.eventId = 1L;
-            messageObject14.resetLayout();
-            messageObject14.contentType = 1;
-            this.messages.add(messageObject14);
+            arrayList = this.messages;
+            arrayList.add(messageObject);
         }
 
         private boolean hasButtons() {
@@ -4083,10 +1509,46 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
+        public int getItemViewType(int i) {
+            if (hasButtons()) {
+                if (i == 0) {
+                    return ThemePreviewActivity.this.colorType == 3 ? 3 : 2;
+                }
+                i--;
+            }
+            if (i < 0 || i >= this.messages.size()) {
+                return 4;
+            }
+            return ((MessageObject) this.messages.get(i)).contentType;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return false;
+        }
+
+        @Override
+        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.MessagesAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
+        }
+
+        @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             FrameLayout frameLayout;
+            FrameLayout frameLayout2;
+            FrameLayout frameLayout3;
             if (i == 0) {
                 ?? chatMessageCell = new ChatMessageCell(this.mContext, ((BaseFragment) ThemePreviewActivity.this).currentAccount, false, null, new Theme.ResourcesProvider() {
+                    @Override
+                    public void applyServiceShaderMatrix(int i2, int i3, float f, float f2) {
+                        ThemeDelegate themeDelegate = ThemePreviewActivity.this.themeDelegate;
+                        if (themeDelegate != null) {
+                            themeDelegate.applyServiceShaderMatrix(i2, i3, f, f2);
+                        } else {
+                            Theme.applyServiceShaderMatrix(i2, i3, f, f2);
+                        }
+                    }
+
                     @Override
                     public ColorFilter getAnimatedEmojiColorFilter() {
                         ColorFilter colorFilter;
@@ -4095,13 +1557,18 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public void setAnimatedColor(int i2, int i3) {
-                        Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i2, i3);
+                    public int getColor(int i2) {
+                        return ThemePreviewActivity.this.themeDelegate.getColor(i2);
                     }
 
                     @Override
-                    public int getColor(int i2) {
-                        return ThemePreviewActivity.this.themeDelegate.getColor(i2);
+                    public int getColorOrDefault(int i2) {
+                        return ThemePreviewActivity.this.themeDelegate.getColorOrDefault(i2);
+                    }
+
+                    @Override
+                    public int getCurrentColor(int i2) {
+                        return ThemePreviewActivity.this.themeDelegate.getCurrentColor(i2);
                     }
 
                     @Override
@@ -4119,25 +1586,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                             return ThemePreviewActivity.this.msgOutMediaDrawableSelected;
                         }
                         ThemeDelegate themeDelegate = ThemePreviewActivity.this.themeDelegate;
-                        if (themeDelegate != null) {
-                            return themeDelegate.getDrawable(str);
-                        }
-                        return Theme.getThemeDrawable(str);
-                    }
-
-                    @Override
-                    public boolean isDark() {
-                        return ThemePreviewActivity.this.themeDelegate.isDark();
-                    }
-
-                    @Override
-                    public int getCurrentColor(int i2) {
-                        return ThemePreviewActivity.this.themeDelegate.getCurrentColor(i2);
-                    }
-
-                    @Override
-                    public int getColorOrDefault(int i2) {
-                        return ThemePreviewActivity.this.themeDelegate.getColorOrDefault(i2);
+                        return themeDelegate != null ? themeDelegate.getDrawable(str) : Theme.getThemeDrawable(str);
                     }
 
                     @Override
@@ -4151,13 +1600,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
-                    public void applyServiceShaderMatrix(int i2, int i3, float f, float f2) {
-                        ThemeDelegate themeDelegate = ThemePreviewActivity.this.themeDelegate;
-                        if (themeDelegate == null) {
-                            Theme.applyServiceShaderMatrix(i2, i3, f, f2);
-                        } else {
-                            themeDelegate.applyServiceShaderMatrix(i2, i3, f, f2);
-                        }
+                    public boolean isDark() {
+                        return ThemePreviewActivity.this.themeDelegate.isDark();
+                    }
+
+                    @Override
+                    public void setAnimatedColor(int i2, int i3) {
+                        Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i2, i3);
                     }
                 });
                 chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
@@ -4511,7 +1960,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
                     }
                 });
-                frameLayout = chatMessageCell;
+                frameLayout3 = chatMessageCell;
             } else if (i == 1) {
                 ?? chatActionCell = new ChatActionCell(this.mContext, false, ThemePreviewActivity.this.themeDelegate);
                 chatActionCell.setDelegate(new ChatActionCell.ChatActionCellDelegate() {
@@ -4580,75 +2029,50 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                         ChatActionCell.ChatActionCellDelegate.CC.$default$needShowEffectOverlay(this, chatActionCell2, tLRPC$Document, tLRPC$VideoSize);
                     }
                 });
-                frameLayout = chatActionCell;
-            } else if (i == 2) {
-                if (ThemePreviewActivity.this.backgroundButtonsContainer.getParent() != null) {
-                    ((ViewGroup) ThemePreviewActivity.this.backgroundButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.backgroundButtonsContainer);
-                }
-                FrameLayout frameLayout2 = new FrameLayout(this.mContext) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                    }
-                };
-                frameLayout2.addView(ThemePreviewActivity.this.backgroundButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
-                frameLayout = frameLayout2;
-            } else if (i != 5) {
-                if (ThemePreviewActivity.this.messagesButtonsContainer.getParent() != null) {
-                    ((ViewGroup) ThemePreviewActivity.this.messagesButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.messagesButtonsContainer);
-                }
-                FrameLayout frameLayout3 = new FrameLayout(this.mContext) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-                    }
-                };
-                frameLayout3.addView(ThemePreviewActivity.this.messagesButtonsContainer, LayoutHelper.createFrame(-1, 76, 17));
-                frameLayout = frameLayout3;
+                frameLayout3 = chatActionCell;
             } else {
-                frameLayout = new View(ThemePreviewActivity.this.getContext()) {
-                    @Override
-                    protected void onMeasure(int i2, int i3) {
-                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
+                if (i == 2) {
+                    if (ThemePreviewActivity.this.backgroundButtonsContainer.getParent() != null) {
+                        ((ViewGroup) ThemePreviewActivity.this.backgroundButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.backgroundButtonsContainer);
                     }
-                };
-            }
-            frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(frameLayout);
-        }
-
-        @Override
-        public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r11, int r12) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.MessagesAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (hasButtons()) {
-                if (i == 0) {
-                    return ThemePreviewActivity.this.colorType == 3 ? 3 : 2;
+                    FrameLayout frameLayout4 = new FrameLayout(this.mContext) {
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                        }
+                    };
+                    frameLayout = ThemePreviewActivity.this.backgroundButtonsContainer;
+                    frameLayout2 = frameLayout4;
+                } else if (i == 5) {
+                    frameLayout3 = new View(ThemePreviewActivity.this.getContext()) {
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(4.0f), 1073741824));
+                        }
+                    };
+                } else {
+                    if (ThemePreviewActivity.this.messagesButtonsContainer.getParent() != null) {
+                        ((ViewGroup) ThemePreviewActivity.this.messagesButtonsContainer.getParent()).removeView(ThemePreviewActivity.this.messagesButtonsContainer);
+                    }
+                    FrameLayout frameLayout5 = new FrameLayout(this.mContext) {
+                        @Override
+                        protected void onMeasure(int i2, int i3) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                        }
+                    };
+                    frameLayout = ThemePreviewActivity.this.messagesButtonsContainer;
+                    frameLayout2 = frameLayout5;
                 }
-                i--;
+                frameLayout2.addView(frameLayout, LayoutHelper.createFrame(-1, 76, 17));
+                frameLayout3 = frameLayout2;
             }
-            if (i < 0 || i >= this.messages.size()) {
-                return 4;
-            }
-            return this.messages.get(i).contentType;
+            frameLayout3.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(frameLayout3);
         }
     }
 
     public class PatternsAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
-
-        @Override
-        public int getItemViewType(int i) {
-            return 0;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return false;
-        }
 
         public PatternsAdapter(Context context) {
             this.mContext = context;
@@ -4663,18 +2087,47 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         }
 
         @Override
+        public int getItemViewType(int i) {
+            return 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return false;
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ImageReceiver imageReceiver;
+            BlendMode blendMode;
+            PatternCell patternCell = (PatternCell) viewHolder.itemView;
+            patternCell.setPattern((TLRPC$TL_wallPaper) ThemePreviewActivity.this.patterns.get(i));
+            patternCell.getImageReceiver().setColorFilter(new PorterDuffColorFilter(ThemePreviewActivity.this.patternColor, ThemePreviewActivity.this.blendMode));
+            if (Build.VERSION.SDK_INT >= 29) {
+                int i2 = 0;
+                if (ThemePreviewActivity.this.screenType == 1) {
+                    int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
+                    int i3 = (int) ThemePreviewActivity.this.accent.backgroundGradientOverrideColor2;
+                    if (i3 != 0 || ThemePreviewActivity.this.accent.backgroundGradientOverrideColor2 == 0) {
+                        i2 = i3 != 0 ? i3 : defaultAccentColor;
+                    }
+                } else if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+                    i2 = ThemePreviewActivity.this.backgroundGradientColor2;
+                }
+                if (i2 == 0 || ThemePreviewActivity.this.currentIntensity < 0.0f) {
+                    imageReceiver = patternCell.getImageReceiver();
+                    blendMode = null;
+                } else {
+                    imageReceiver = ThemePreviewActivity.this.backgroundImage.getImageReceiver();
+                    blendMode = BlendMode.SOFT_LIGHT;
+                }
+                imageReceiver.setBlendMode(blendMode);
+            }
+        }
+
+        @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             return new RecyclerListView.Holder(new PatternCell(this.mContext, ThemePreviewActivity.this.maxWallpaperSize, new PatternCell.PatternCellDelegate() {
-                @Override
-                public TLRPC$TL_wallPaper getSelectedPattern() {
-                    return ThemePreviewActivity.this.selectedPattern;
-                }
-
-                @Override
-                public int getCheckColor() {
-                    return ThemePreviewActivity.this.checkColor;
-                }
-
                 @Override
                 public int getBackgroundColor() {
                     if (ThemePreviewActivity.this.screenType == 2) {
@@ -4683,6 +2136,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
                     int i2 = (int) ThemePreviewActivity.this.accent.backgroundOverrideColor;
                     return i2 != 0 ? i2 : defaultAccentColor;
+                }
+
+                @Override
+                public int getBackgroundGradientAngle() {
+                    return ThemePreviewActivity.this.screenType == 2 ? ThemePreviewActivity.this.backgroundRotation : ThemePreviewActivity.this.accent.backgroundRotation;
                 }
 
                 @Override
@@ -4716,8 +2174,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
 
                 @Override
-                public int getBackgroundGradientAngle() {
-                    return ThemePreviewActivity.this.screenType == 2 ? ThemePreviewActivity.this.backgroundRotation : ThemePreviewActivity.this.accent.backgroundRotation;
+                public int getCheckColor() {
+                    return ThemePreviewActivity.this.checkColor;
                 }
 
                 @Override
@@ -4729,40 +2187,2385 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 public int getPatternColor() {
                     return ThemePreviewActivity.this.patternColor;
                 }
+
+                @Override
+                public TLRPC$TL_wallPaper getSelectedPattern() {
+                    return ThemePreviewActivity.this.selectedPattern;
+                }
             }));
+        }
+    }
+
+    public class ThemeDelegate implements Theme.ResourcesProvider {
+        public final Paint chat_actionBackgroundGradientDarkenPaint;
+        public final TextPaint chat_actionTextPaint;
+        public final TextPaint chat_actionTextPaint2;
+        public final TextPaint chat_botButtonPaint;
+        public Theme.ResourcesProvider parentProvider;
+        private Bitmap serviceBitmap;
+        private Matrix serviceBitmapMatrix;
+        public BitmapShader serviceBitmapShader;
+        private final SparseIntArray currentColors = new SparseIntArray();
+        public final Paint chat_actionBackgroundPaint = new Paint(3);
+        public final Paint chat_actionBackgroundSelectedPaint = new Paint(3);
+
+        public ThemeDelegate() {
+            Paint paint = new Paint(3);
+            this.chat_actionBackgroundGradientDarkenPaint = paint;
+            TextPaint textPaint = new TextPaint();
+            this.chat_actionTextPaint = textPaint;
+            TextPaint textPaint2 = new TextPaint();
+            this.chat_actionTextPaint2 = textPaint2;
+            TextPaint textPaint3 = new TextPaint();
+            this.chat_botButtonPaint = textPaint3;
+            textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+            textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
+            textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
+            textPaint3.setTypeface(AndroidUtilities.bold());
+            paint.setColor(352321536);
+        }
+
+        public void applyChatServiceMessageColor() {
+            applyChatServiceMessageColor(null, null, null, null);
+        }
+
+        public void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2, Float f) {
+            float f2;
+            int i = Theme.key_chat_serviceBackground;
+            int color = getColor(i);
+            int color2 = getColor(Theme.key_chat_serviceBackgroundSelected);
+            if (drawable == null) {
+                drawable = drawable2;
+            }
+            boolean z = drawable instanceof MotionBackgroundDrawable;
+            if ((z || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
+                Bitmap bitmap = z ? ((MotionBackgroundDrawable) drawable).getBitmap() : drawable instanceof BitmapDrawable ? ((BitmapDrawable) drawable).getBitmap() : null;
+                if (this.serviceBitmap != bitmap) {
+                    this.serviceBitmap = bitmap;
+                    Bitmap bitmap2 = this.serviceBitmap;
+                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                    this.serviceBitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+                    if (this.serviceBitmapMatrix == null) {
+                        this.serviceBitmapMatrix = new Matrix();
+                    }
+                }
+                this.chat_actionTextPaint.setColor(-1);
+                this.chat_actionTextPaint2.setColor(-1);
+                this.chat_actionTextPaint.linkColor = -1;
+                this.chat_botButtonPaint.setColor(-1);
+            } else {
+                this.serviceBitmap = null;
+                this.serviceBitmapShader = null;
+                TextPaint textPaint = this.chat_actionTextPaint;
+                int i2 = Theme.key_chat_serviceText;
+                textPaint.setColor(getColor(i2));
+                this.chat_actionTextPaint2.setColor(getColor(i2));
+                this.chat_actionTextPaint.linkColor = getColor(Theme.key_chat_serviceLink);
+            }
+            this.chat_actionBackgroundPaint.setColor(color);
+            this.chat_actionBackgroundSelectedPaint.setColor(color2);
+            if (this.serviceBitmapShader == null || !(this.currentColors.indexOfKey(i) < 0 || z || (drawable instanceof BitmapDrawable))) {
+                this.chat_actionBackgroundPaint.setColorFilter(null);
+                this.chat_actionBackgroundPaint.setShader(null);
+                this.chat_actionBackgroundSelectedPaint.setColorFilter(null);
+                this.chat_actionBackgroundSelectedPaint.setShader(null);
+                return;
+            }
+            ColorMatrix colorMatrix = new ColorMatrix();
+            if (!z) {
+                colorMatrix.setSaturation(1.6f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.9f : 0.84f);
+                f2 = isDark() ? -0.04f : 0.06f;
+            } else if (((MotionBackgroundDrawable) drawable).getIntensity() >= 0.0f) {
+                colorMatrix.setSaturation(1.6f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.97f : 0.92f);
+                if (isDark()) {
+                    f2 = 0.12f;
+                }
+                f2 = -0.06f;
+            } else {
+                colorMatrix.setSaturation(1.1f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.4f : 0.8f);
+                if (isDark()) {
+                    f2 = 0.08f;
+                }
+                f2 = -0.06f;
+            }
+            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, f2);
+            if (z) {
+                float intensity = ((MotionBackgroundDrawable) drawable).getIntensity();
+                if (f != null) {
+                    intensity = f.floatValue();
+                }
+                if (intensity >= 0.0f) {
+                    colorMatrix.setSaturation(1.8f);
+                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
+                } else {
+                    colorMatrix.setSaturation(0.5f);
+                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.35f);
+                }
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.03f);
+            } else {
+                colorMatrix.setSaturation(1.6f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.06f);
+            }
+            this.chat_actionBackgroundPaint.setShader(this.serviceBitmapShader);
+            this.chat_actionBackgroundPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+            this.chat_actionBackgroundPaint.setAlpha(255);
+            this.chat_actionBackgroundSelectedPaint.setShader(this.serviceBitmapShader);
+            ColorMatrix colorMatrix2 = new ColorMatrix(colorMatrix);
+            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix2, 0.85f);
+            this.chat_actionBackgroundSelectedPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
+            this.chat_actionBackgroundSelectedPaint.setAlpha(255);
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            BlendMode blendMode;
-            PatternCell patternCell = (PatternCell) viewHolder.itemView;
-            patternCell.setPattern((TLRPC$TL_wallPaper) ThemePreviewActivity.this.patterns.get(i));
-            patternCell.getImageReceiver().setColorFilter(new PorterDuffColorFilter(ThemePreviewActivity.this.patternColor, ThemePreviewActivity.this.blendMode));
-            if (Build.VERSION.SDK_INT >= 29) {
-                int i2 = 0;
-                if (ThemePreviewActivity.this.screenType != 1) {
-                    if (ThemePreviewActivity.this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
-                        i2 = ThemePreviewActivity.this.backgroundGradientColor2;
+        public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
+            BitmapShader bitmapShader;
+            Bitmap bitmap = this.serviceBitmap;
+            if (bitmap == null || (bitmapShader = this.serviceBitmapShader) == null) {
+                Theme.applyServiceShaderMatrix(i, i2, f, f2);
+            } else {
+                Theme.applyServiceShaderMatrix(bitmap, bitmapShader, this.serviceBitmapMatrix, i, i2, f, f2);
+            }
+        }
+
+        @Override
+        public ColorFilter getAnimatedEmojiColorFilter() {
+            ColorFilter colorFilter;
+            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
+            return colorFilter;
+        }
+
+        @Override
+        public int getColor(int i) {
+            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+            return resourcesProvider != null ? resourcesProvider.getColor(i) : Theme.getColor(i);
+        }
+
+        @Override
+        public int getColorOrDefault(int i) {
+            int color;
+            color = getColor(i);
+            return color;
+        }
+
+        @Override
+        public int getCurrentColor(int i) {
+            int color;
+            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+            if (resourcesProvider != null) {
+                return resourcesProvider.getCurrentColor(i);
+            }
+            color = getColor(i);
+            return color;
+        }
+
+        @Override
+        public Drawable getDrawable(String str) {
+            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+            return resourcesProvider != null ? resourcesProvider.getDrawable(str) : Theme.getThemeDrawable(str);
+        }
+
+        @Override
+        public Paint getPaint(String str) {
+            Paint themePaint;
+            str.hashCode();
+            char c = 65535;
+            switch (str.hashCode()) {
+                case -1490966183:
+                    if (str.equals("paintChatActionText2")) {
+                        c = 0;
+                        break;
                     }
-                } else {
-                    int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
-                    int i3 = (int) ThemePreviewActivity.this.accent.backgroundGradientOverrideColor2;
-                    if (i3 != 0 || ThemePreviewActivity.this.accent.backgroundGradientOverrideColor2 == 0) {
-                        i2 = i3 != 0 ? i3 : defaultAccentColor;
+                    break;
+                case 561929466:
+                    if (str.equals("paintChatActionBackground")) {
+                        c = 1;
+                        break;
+                    }
+                    break;
+                case 1712385955:
+                    if (str.equals("paintChatBotButton")) {
+                        c = 2;
+                        break;
+                    }
+                    break;
+                case 1790254137:
+                    if (str.equals("paintChatActionBackgroundDarken")) {
+                        c = 3;
+                        break;
+                    }
+                    break;
+                case 1897339317:
+                    if (str.equals("paintChatActionBackgroundSelected")) {
+                        c = 4;
+                        break;
+                    }
+                    break;
+                case 2030114297:
+                    if (str.equals("paintChatActionText")) {
+                        c = 5;
+                        break;
+                    }
+                    break;
+            }
+            switch (c) {
+                case 0:
+                    return this.chat_actionTextPaint2;
+                case 1:
+                    return this.chat_actionBackgroundPaint;
+                case 2:
+                    return this.chat_botButtonPaint;
+                case 3:
+                    return this.chat_actionBackgroundGradientDarkenPaint;
+                case 4:
+                    return this.chat_actionBackgroundSelectedPaint;
+                case 5:
+                    return this.chat_actionTextPaint;
+                default:
+                    Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+                    if (resourcesProvider != null) {
+                        return resourcesProvider.getPaint(str);
+                    }
+                    themePaint = Theme.getThemePaint(str);
+                    return themePaint;
+            }
+        }
+
+        @Override
+        public boolean hasGradientService() {
+            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+            return resourcesProvider != null ? resourcesProvider.hasGradientService() : Theme.hasGradientService();
+        }
+
+        @Override
+        public boolean isDark() {
+            DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
+            if (dayNightSwitchDelegate != null) {
+                return dayNightSwitchDelegate.isDark();
+            }
+            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
+            return resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
+        }
+
+        @Override
+        public void setAnimatedColor(int i, int i2) {
+            Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
+        }
+    }
+
+    public interface WallpaperActivityDelegate {
+        void didSetNewBackground(TLRPC$WallPaper tLRPC$WallPaper);
+    }
+
+    public ThemePreviewActivity(Object obj, Bitmap bitmap) {
+        this(obj, bitmap, false, false);
+    }
+
+    public ThemePreviewActivity(Object obj, Bitmap bitmap, boolean z, boolean z2) {
+        this.themeDelegate = new ThemeDelegate() {
+            @Override
+            public boolean isDark() {
+                DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
+                return dayNightSwitchDelegate != null ? dayNightSwitchDelegate.isDark() : super.isDark();
+            }
+        };
+        this.useDefaultThemeForButtons = true;
+        this.colorType = 1;
+        this.msgOutDrawable = new MessageDrawable(0, true, false);
+        this.msgOutDrawableSelected = new MessageDrawable(0, true, true);
+        this.msgOutMediaDrawable = new MessageDrawable(1, true, false);
+        this.msgOutMediaDrawableSelected = new MessageDrawable(1, true, true);
+        this.lastPickedColorNum = -1;
+        this.applyColorAction = new Runnable() {
+            @Override
+            public final void run() {
+                ThemePreviewActivity.this.lambda$new$0();
+            }
+        };
+        this.backgroundImages = new BackgroundView[2];
+        this.patternLayout = new FrameLayout[2];
+        this.patternsCancelButton = new TextView[2];
+        this.patternsSaveButton = new TextView[2];
+        this.patternsButtonsContainer = new FrameLayout[2];
+        this.patternsDict = new HashMap();
+        this.currentIntensity = 0.5f;
+        this.dimAmount = 0.0f;
+        this.blendMode = PorterDuff.Mode.SRC_IN;
+        this.parallaxScale = 1.0f;
+        this.loadingFile = null;
+        this.loadingFileObject = null;
+        this.loadingSize = null;
+        this.imageFilter = "640_360";
+        this.maxWallpaperSize = 1920;
+        this.self = true;
+        this.gestureDetector2 = new GestureDetector2(getContext(), new GestureDetector2.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent motionEvent) {
+                if (ThemePreviewActivity.this.scroller == null) {
+                    return true;
+                }
+                ThemePreviewActivity.this.scroller.abortAnimation();
+                return true;
+            }
+
+            @Override
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                if (ThemePreviewActivity.this.scroller == null) {
+                    return true;
+                }
+                ThemePreviewActivity.this.scroller.abortAnimation();
+                ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
+                ThemePreviewActivity.this.backgroundImage.postInvalidate();
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                if (ThemePreviewActivity.this.scroller != null) {
+                    ThemePreviewActivity.this.scroller.abortAnimation();
+                }
+                ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+                themePreviewActivity.currentScrollOffset = Utilities.clamp(themePreviewActivity.currentScrollOffset + f, themePreviewActivity.maxScrollOffset, 0.0f);
+                ThemePreviewActivity.this.invalidateBlur();
+                ThemePreviewActivity.this.backgroundImage.invalidate();
+                return true;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+                return false;
+            }
+
+            @Override
+            public void onUp(MotionEvent motionEvent) {
+            }
+        });
+        this.checkingBoostsLevel = false;
+        this.checkedBoostsLevel = false;
+        this.screenType = 2;
+        this.showColor = z2;
+        this.currentWallpaper = obj;
+        this.currentWallpaperBitmap = bitmap;
+        this.rotatePreview = z;
+        if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+            WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj;
+            this.isMotion = colorWallpaper.motion;
+            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = colorWallpaper.pattern;
+            this.selectedPattern = tLRPC$TL_wallPaper;
+            if (tLRPC$TL_wallPaper != null) {
+                float f = colorWallpaper.intensity;
+                this.currentIntensity = f;
+                if (f < 0.0f && !Theme.getActiveTheme().isDark()) {
+                    this.currentIntensity *= -1.0f;
+                }
+            }
+        }
+        this.msgOutDrawable.themePreview = true;
+        this.msgOutMediaDrawable.themePreview = true;
+        this.msgOutDrawableSelected.themePreview = true;
+        this.msgOutMediaDrawableSelected.themePreview = true;
+    }
+
+    public ThemePreviewActivity(Theme.ThemeInfo themeInfo) {
+        this(themeInfo, false, 0, false, false);
+    }
+
+    public ThemePreviewActivity(Theme.ThemeInfo themeInfo, boolean z, int i, boolean z2, boolean z3) {
+        this.themeDelegate = new ThemeDelegate() {
+            @Override
+            public boolean isDark() {
+                DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
+                return dayNightSwitchDelegate != null ? dayNightSwitchDelegate.isDark() : super.isDark();
+            }
+        };
+        this.useDefaultThemeForButtons = true;
+        this.colorType = 1;
+        this.msgOutDrawable = new MessageDrawable(0, true, false);
+        this.msgOutDrawableSelected = new MessageDrawable(0, true, true);
+        this.msgOutMediaDrawable = new MessageDrawable(1, true, false);
+        this.msgOutMediaDrawableSelected = new MessageDrawable(1, true, true);
+        this.lastPickedColorNum = -1;
+        this.applyColorAction = new Runnable() {
+            @Override
+            public final void run() {
+                ThemePreviewActivity.this.lambda$new$0();
+            }
+        };
+        this.backgroundImages = new BackgroundView[2];
+        this.patternLayout = new FrameLayout[2];
+        this.patternsCancelButton = new TextView[2];
+        this.patternsSaveButton = new TextView[2];
+        this.patternsButtonsContainer = new FrameLayout[2];
+        this.patternsDict = new HashMap();
+        this.currentIntensity = 0.5f;
+        this.dimAmount = 0.0f;
+        this.blendMode = PorterDuff.Mode.SRC_IN;
+        this.parallaxScale = 1.0f;
+        this.loadingFile = null;
+        this.loadingFileObject = null;
+        this.loadingSize = null;
+        this.imageFilter = "640_360";
+        this.maxWallpaperSize = 1920;
+        this.self = true;
+        this.gestureDetector2 = new GestureDetector2(getContext(), new GestureDetector2.OnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent motionEvent) {
+                if (ThemePreviewActivity.this.scroller == null) {
+                    return true;
+                }
+                ThemePreviewActivity.this.scroller.abortAnimation();
+                return true;
+            }
+
+            @Override
+            public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                if (ThemePreviewActivity.this.scroller == null) {
+                    return true;
+                }
+                ThemePreviewActivity.this.scroller.abortAnimation();
+                ThemePreviewActivity.this.scroller.fling((int) ThemePreviewActivity.this.currentScrollOffset, 0, Math.round(-f), Math.round(f2), 0, (int) ThemePreviewActivity.this.maxScrollOffset, 0, Integer.MAX_VALUE);
+                ThemePreviewActivity.this.backgroundImage.postInvalidate();
+                return true;
+            }
+
+            @Override
+            public void onLongPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                if (ThemePreviewActivity.this.scroller != null) {
+                    ThemePreviewActivity.this.scroller.abortAnimation();
+                }
+                ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+                themePreviewActivity.currentScrollOffset = Utilities.clamp(themePreviewActivity.currentScrollOffset + f, themePreviewActivity.maxScrollOffset, 0.0f);
+                ThemePreviewActivity.this.invalidateBlur();
+                ThemePreviewActivity.this.backgroundImage.invalidate();
+                return true;
+            }
+
+            @Override
+            public void onShowPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public boolean onSingleTapUp(MotionEvent motionEvent) {
+                return false;
+            }
+
+            @Override
+            public void onUp(MotionEvent motionEvent) {
+            }
+        });
+        this.checkingBoostsLevel = false;
+        this.checkedBoostsLevel = false;
+        this.screenType = i;
+        this.nightTheme = z3;
+        this.applyingTheme = themeInfo;
+        this.deleteOnCancel = z;
+        this.editingTheme = z2;
+        if (i == 1) {
+            Theme.ThemeAccent accent = themeInfo.getAccent(!z2);
+            this.accent = accent;
+            if (accent != null) {
+                this.useDefaultThemeForButtons = false;
+                this.backupAccentColor = accent.accentColor;
+                this.backupAccentColor2 = accent.accentColor2;
+                this.backupMyMessagesAccentColor = accent.myMessagesAccentColor;
+                this.backupMyMessagesGradientAccentColor1 = accent.myMessagesGradientAccentColor1;
+                this.backupMyMessagesGradientAccentColor2 = accent.myMessagesGradientAccentColor2;
+                this.backupMyMessagesGradientAccentColor3 = accent.myMessagesGradientAccentColor3;
+                this.backupMyMessagesAnimated = accent.myMessagesAnimated;
+                this.backupBackgroundOverrideColor = accent.backgroundOverrideColor;
+                this.backupBackgroundGradientOverrideColor1 = accent.backgroundGradientOverrideColor1;
+                this.backupBackgroundGradientOverrideColor2 = accent.backgroundGradientOverrideColor2;
+                this.backupBackgroundGradientOverrideColor3 = accent.backgroundGradientOverrideColor3;
+                this.backupIntensity = accent.patternIntensity;
+                this.backupSlug = accent.patternSlug;
+                this.backupBackgroundRotation = accent.backgroundRotation;
+            }
+        } else {
+            if (i == 0) {
+                this.useDefaultThemeForButtons = false;
+            }
+            Theme.ThemeAccent accent2 = themeInfo.getAccent(false);
+            this.accent = accent2;
+            if (accent2 != null) {
+                this.selectedPattern = accent2.pattern;
+            }
+        }
+        Theme.ThemeAccent themeAccent = this.accent;
+        if (themeAccent != null) {
+            this.isMotion = themeAccent.patternMotion;
+            if (!TextUtils.isEmpty(themeAccent.patternSlug)) {
+                this.currentIntensity = this.accent.patternIntensity;
+            }
+            Theme.applyThemeTemporary(this.applyingTheme, true);
+        }
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.goingToPreviewTheme, new Object[0]);
+        this.msgOutDrawable.themePreview = true;
+        this.msgOutMediaDrawable.themePreview = true;
+        this.msgOutDrawableSelected.themePreview = true;
+        this.msgOutMediaDrawableSelected.themePreview = true;
+    }
+
+    private void animateMotionChange() {
+        AnimatorSet animatorSet = this.motionAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.motionAnimation = animatorSet2;
+        if (this.isMotion) {
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_X, this.parallaxScale), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_Y, this.parallaxScale));
+        } else {
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(this.backgroundImage, (Property<BackgroundView, Float>) View.TRANSLATION_Y, 0.0f));
+        }
+        this.motionAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        this.motionAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ThemePreviewActivity.this.motionAnimation = null;
+            }
+        });
+        this.motionAnimation.start();
+    }
+
+    private void applyColor(int r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.applyColor(int, int):void");
+    }
+
+    private void applyWallpaperBackground(boolean r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.applyWallpaperBackground(boolean):void");
+    }
+
+    public void cancelThemeApply(boolean z) {
+        if (this.screenType == 2) {
+            if (z) {
+                return;
+            }
+            lambda$onBackPressed$308();
+            return;
+        }
+        Theme.applyPreviousTheme();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
+        if (this.screenType == 1) {
+            if (this.editingTheme) {
+                Theme.ThemeAccent themeAccent = this.accent;
+                themeAccent.accentColor = this.backupAccentColor;
+                themeAccent.accentColor2 = this.backupAccentColor2;
+                themeAccent.myMessagesAccentColor = this.backupMyMessagesAccentColor;
+                themeAccent.myMessagesGradientAccentColor1 = this.backupMyMessagesGradientAccentColor1;
+                themeAccent.myMessagesGradientAccentColor2 = this.backupMyMessagesGradientAccentColor2;
+                themeAccent.myMessagesGradientAccentColor3 = this.backupMyMessagesGradientAccentColor3;
+                themeAccent.myMessagesAnimated = this.backupMyMessagesAnimated;
+                themeAccent.backgroundOverrideColor = this.backupBackgroundOverrideColor;
+                themeAccent.backgroundGradientOverrideColor1 = this.backupBackgroundGradientOverrideColor1;
+                themeAccent.backgroundGradientOverrideColor2 = this.backupBackgroundGradientOverrideColor2;
+                themeAccent.backgroundGradientOverrideColor3 = this.backupBackgroundGradientOverrideColor3;
+                themeAccent.backgroundRotation = this.backupBackgroundRotation;
+                themeAccent.patternSlug = this.backupSlug;
+                themeAccent.patternIntensity = this.backupIntensity;
+            }
+            Theme.saveThemeAccents(this.applyingTheme, false, true, false, false);
+        } else {
+            if (this.accent != null) {
+                Theme.saveThemeAccents(this.applyingTheme, false, this.deleteOnCancel, false, false);
+            }
+            this.parentLayout.rebuildAllFragmentViews(false, false);
+            if (this.deleteOnCancel) {
+                Theme.ThemeInfo themeInfo = this.applyingTheme;
+                if (themeInfo.pathToFile != null && !Theme.isThemeInstalled(themeInfo)) {
+                    new File(this.applyingTheme.pathToFile).delete();
+                }
+            }
+        }
+        if (z) {
+            return;
+        }
+        lambda$onBackPressed$308();
+    }
+
+    private BitmapDrawable checkBlur(Drawable drawable) {
+        ColorFilter colorFilter;
+        WeakReference weakReference = this.lastDrawableToBlur;
+        if (weakReference != null && weakReference.get() == drawable) {
+            return this.blurredDrawable;
+        }
+        WeakReference weakReference2 = this.lastDrawableToBlur;
+        if (weakReference2 != null) {
+            weakReference2.clear();
+        }
+        this.lastDrawableToBlur = null;
+        if (drawable == null || drawable.getIntrinsicWidth() == 0 || drawable.getIntrinsicHeight() == 0) {
+            this.blurredDrawable = null;
+            return null;
+        }
+        this.lastDrawableToBlur = new WeakReference(drawable);
+        int intrinsicWidth = (int) ((drawable.getIntrinsicWidth() / drawable.getIntrinsicHeight()) * 24.0f);
+        Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, 24, Bitmap.Config.ARGB_8888);
+        drawable.setBounds(0, 0, intrinsicWidth, 24);
+        if (Build.VERSION.SDK_INT >= 21) {
+            colorFilter = drawable.getColorFilter();
+            ColorMatrix colorMatrix = new ColorMatrix();
+            colorMatrix.setSaturation(1.3f);
+            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.94f);
+            drawable.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+            drawable.draw(new Canvas(createBitmap));
+            drawable.setColorFilter(colorFilter);
+        } else {
+            drawable.draw(new Canvas(createBitmap));
+        }
+        Utilities.blurBitmap(createBitmap, 3, 1, createBitmap.getWidth(), createBitmap.getHeight(), createBitmap.getRowBytes());
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), createBitmap);
+        this.blurredDrawable = bitmapDrawable;
+        bitmapDrawable.setFilterBitmap(true);
+        return this.blurredDrawable;
+    }
+
+    private void checkBoostsLevel() {
+        if (this.dialogId >= 0 || this.checkingBoostsLevel || this.checkedBoostsLevel || this.boostsStatus != null) {
+            return;
+        }
+        this.checkingBoostsLevel = true;
+        getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                ThemePreviewActivity.this.lambda$checkBoostsLevel$1((TL_stories$TL_premium_boostsStatus) obj);
+            }
+        });
+    }
+
+    public boolean checkDiscard() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.checkDiscard():boolean");
+    }
+
+    private void createServiceMessageLocal(TLRPC$WallPaper tLRPC$WallPaper, boolean z) {
+        TLRPC$TL_messageService tLRPC$TL_messageService = new TLRPC$TL_messageService();
+        tLRPC$TL_messageService.random_id = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
+        tLRPC$TL_messageService.dialog_id = this.dialogId;
+        tLRPC$TL_messageService.unread = true;
+        tLRPC$TL_messageService.out = true;
+        int newMessageId = getUserConfig().getNewMessageId();
+        tLRPC$TL_messageService.id = newMessageId;
+        tLRPC$TL_messageService.local_id = newMessageId;
+        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+        if (ChatObject.isChannel(chat)) {
+            TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
+            tLRPC$TL_messageService.from_id = tLRPC$TL_peerChannel;
+            tLRPC$TL_peerChannel.channel_id = chat.id;
+            TLRPC$TL_peerChannel tLRPC$TL_peerChannel2 = new TLRPC$TL_peerChannel();
+            tLRPC$TL_messageService.peer_id = tLRPC$TL_peerChannel2;
+            tLRPC$TL_peerChannel2.channel_id = chat.id;
+        } else {
+            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+            tLRPC$TL_messageService.from_id = tLRPC$TL_peerUser;
+            tLRPC$TL_peerUser.user_id = getUserConfig().getClientUserId();
+            TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
+            tLRPC$TL_messageService.peer_id = tLRPC$TL_peerUser2;
+            tLRPC$TL_peerUser2.user_id = this.dialogId;
+        }
+        tLRPC$TL_messageService.flags |= 256;
+        tLRPC$TL_messageService.date = getConnectionsManager().getCurrentTime();
+        TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = new TLRPC$TL_messageActionSetChatWallPaper();
+        tLRPC$TL_messageService.action = tLRPC$TL_messageActionSetChatWallPaper;
+        tLRPC$TL_messageActionSetChatWallPaper.wallpaper = tLRPC$WallPaper;
+        tLRPC$TL_messageActionSetChatWallPaper.for_both = z;
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        arrayList.add(new MessageObject(this.currentAccount, tLRPC$TL_messageService, false, false));
+        new ArrayList().add(tLRPC$TL_messageService);
+        MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.dialogId, arrayList, 0);
+    }
+
+    public int getButtonsColor(int i) {
+        return this.useDefaultThemeForButtons ? Theme.getDefaultColor(i) : getThemedColor(i);
+    }
+
+    private int getCustomWallpaperLevelMin() {
+        return ChatObject.isChannelAndNotMegaGroup(-this.dialogId, this.currentAccount) ? getMessagesController().channelCustomWallpaperLevelMin : getMessagesController().groupCustomWallpaperLevelMin;
+    }
+
+    private boolean hasChanges(int i) {
+        int defaultAccentColor;
+        long j;
+        if (this.editingTheme) {
+            return false;
+        }
+        if (i == 1 || i == 2) {
+            long j2 = this.backupBackgroundOverrideColor;
+            if (j2 == 0) {
+                int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
+                int i2 = (int) this.accent.backgroundOverrideColor;
+                if (i2 == 0) {
+                    i2 = defaultAccentColor2;
+                }
+                if (i2 != defaultAccentColor2) {
+                    return true;
+                }
+            } else if (j2 != this.accent.backgroundOverrideColor) {
+                return true;
+            }
+            long j3 = this.backupBackgroundGradientOverrideColor1;
+            if (j3 == 0 && this.backupBackgroundGradientOverrideColor2 == 0 && this.backupBackgroundGradientOverrideColor3 == 0) {
+                for (int i3 = 0; i3 < 3; i3++) {
+                    if (i3 == 0) {
+                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
+                        j = this.accent.backgroundGradientOverrideColor1;
+                    } else if (i3 == 1) {
+                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
+                        j = this.accent.backgroundGradientOverrideColor2;
+                    } else {
+                        defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
+                        j = this.accent.backgroundGradientOverrideColor3;
+                    }
+                    int i4 = (int) j;
+                    if (i4 == 0 && j != 0) {
+                        i4 = 0;
+                    } else if (i4 == 0) {
+                        i4 = defaultAccentColor;
+                    }
+                    if (i4 != defaultAccentColor) {
+                        return true;
                     }
                 }
-                if (i2 != 0 && ThemePreviewActivity.this.currentIntensity >= 0.0f) {
-                    ImageReceiver imageReceiver = ThemePreviewActivity.this.backgroundImage.getImageReceiver();
-                    blendMode = BlendMode.SOFT_LIGHT;
-                    imageReceiver.setBlendMode(blendMode);
-                    return;
+            } else {
+                Theme.ThemeAccent themeAccent = this.accent;
+                if (j3 != themeAccent.backgroundGradientOverrideColor1 || this.backupBackgroundGradientOverrideColor2 != themeAccent.backgroundGradientOverrideColor2 || this.backupBackgroundGradientOverrideColor3 != themeAccent.backgroundGradientOverrideColor3) {
+                    return true;
                 }
-                patternCell.getImageReceiver().setBlendMode(null);
+            }
+            if (this.accent.backgroundRotation != this.backupBackgroundRotation) {
+                return true;
+            }
+        }
+        if (i == 1 || i == 3) {
+            int i5 = this.backupAccentColor;
+            Theme.ThemeAccent themeAccent2 = this.accent;
+            if (i5 != themeAccent2.accentColor2) {
+                return true;
+            }
+            int i6 = this.backupMyMessagesAccentColor;
+            if (i6 == 0) {
+                int i7 = themeAccent2.myMessagesAccentColor;
+                if (i7 != 0 && i7 != themeAccent2.accentColor) {
+                    return true;
+                }
+            } else if (i6 != themeAccent2.myMessagesAccentColor) {
+                return true;
+            }
+            int i8 = this.backupMyMessagesGradientAccentColor1;
+            if (i8 != 0) {
+                if (i8 != themeAccent2.myMessagesGradientAccentColor1) {
+                    return true;
+                }
+            } else if (themeAccent2.myMessagesGradientAccentColor1 != 0) {
+                return true;
+            }
+            int i9 = this.backupMyMessagesGradientAccentColor2;
+            if (i9 != 0) {
+                if (i9 != themeAccent2.myMessagesGradientAccentColor2) {
+                    return true;
+                }
+            } else if (themeAccent2.myMessagesGradientAccentColor2 != 0) {
+                return true;
+            }
+            int i10 = this.backupMyMessagesGradientAccentColor3;
+            if (i10 != 0) {
+                if (i10 != themeAccent2.myMessagesGradientAccentColor3) {
+                    return true;
+                }
+            } else if (themeAccent2.myMessagesGradientAccentColor3 != 0) {
+                return true;
+            }
+            if (this.backupMyMessagesAnimated != themeAccent2.myMessagesAnimated) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void invalidateBlur() {
+        FrameLayout frameLayout = this.dimmingSliderContainer;
+        if (frameLayout != null) {
+            frameLayout.invalidate();
+        }
+        FrameLayout frameLayout2 = this.backgroundButtonsContainer;
+        if (frameLayout2 != null) {
+            int childCount = frameLayout2.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                this.backgroundButtonsContainer.getChildAt(i).invalidate();
+            }
+        }
+        FrameLayout frameLayout3 = this.messagesButtonsContainer;
+        if (frameLayout3 != null) {
+            int childCount2 = frameLayout3.getChildCount();
+            for (int i2 = 0; i2 < childCount2; i2++) {
+                this.messagesButtonsContainer.getChildAt(i2).invalidate();
+            }
+        }
+        if (this.backgroundCheckBoxView != null) {
+            int i3 = 0;
+            while (true) {
+                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
+                if (i3 >= wallpaperCheckBoxViewArr.length) {
+                    break;
+                }
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i3];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.setDimAmount(this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
+                    this.backgroundCheckBoxView[i3].invalidate();
+                }
+                i3++;
+            }
+        }
+        if (this.listView != null) {
+            for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
+                View childAt = this.listView.getChildAt(i4);
+                if (childAt instanceof ChatActionCell) {
+                    setVisiblePart((ChatActionCell) childAt);
+                    childAt.invalidate();
+                }
+            }
+        }
+        if (this.listView2 != null) {
+            for (int i5 = 0; i5 < this.listView2.getChildCount(); i5++) {
+                View childAt2 = this.listView2.getChildAt(i5);
+                if (childAt2 instanceof ChatActionCell) {
+                    setVisiblePart((ChatActionCell) childAt2);
+                    childAt2.invalidate();
+                }
+            }
+        }
+        BlurButton blurButton = this.applyButton1;
+        if (blurButton != null) {
+            blurButton.invalidate();
+        }
+        BlurButton blurButton2 = this.applyButton2;
+        if (blurButton2 != null) {
+            blurButton2.invalidate();
+        }
+        FrameLayout frameLayout4 = this.bottomOverlayChat;
+        if (frameLayout4 != null) {
+            frameLayout4.invalidate();
+        }
+    }
+
+    public void lambda$applyWallpaperBackground$19() {
+        presentFragment(StatisticActivity.create(getMessagesController().getChat(Long.valueOf(-this.dialogId))));
+    }
+
+    public void lambda$applyWallpaperBackground$20(ChannelBoostsController.CanApplyBoost canApplyBoost) {
+        if (getContext() == null) {
+            return;
+        }
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), 23, this.currentAccount, getResourceProvider());
+        limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
+        limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
+        limitReachedBottomSheet.setDialogId(this.dialogId);
+        if (!insideBottomSheet()) {
+            limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
+                @Override
+                public final void run() {
+                    ThemePreviewActivity.this.lambda$applyWallpaperBackground$19();
+                }
+            });
+        }
+        showDialog(limitReachedBottomSheet);
+    }
+
+    public static void lambda$applyWallpaperBackground$21() {
+    }
+
+    public void lambda$checkBoostsLevel$1(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+        this.boostsStatus = tL_stories$TL_premium_boostsStatus;
+        this.checkedBoostsLevel = true;
+        updateApplyButton1(true);
+        this.checkingBoostsLevel = false;
+    }
+
+    public void lambda$checkDiscard$25(DialogInterface dialogInterface, int i) {
+        this.actionBar2.getActionBarMenuOnItemClick().onItemClick(4);
+    }
+
+    public void lambda$checkDiscard$26(DialogInterface dialogInterface, int i) {
+        cancelThemeApply(false);
+    }
+
+    public void lambda$createView$10(Float f) {
+        this.dimAmount = f.floatValue();
+        this.backgroundImage.invalidate();
+        invalidateBlur();
+    }
+
+    public void lambda$createView$11(int r4, org.telegram.ui.Components.WallpaperCheckBoxView r5, android.view.View r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.lambda$createView$11(int, org.telegram.ui.Components.WallpaperCheckBoxView, android.view.View):void");
+    }
+
+    public void lambda$createView$12(int i, WallpaperCheckBoxView wallpaperCheckBoxView, View view) {
+        if (this.messagesButtonsContainer.getAlpha() == 1.0f && i == 0) {
+            wallpaperCheckBoxView.setChecked(!wallpaperCheckBoxView.isChecked(), true);
+            this.accent.myMessagesAnimated = wallpaperCheckBoxView.isChecked();
+            Theme.refreshThemeColors(true, true);
+            this.listView2.invalidateViews();
+        }
+    }
+
+    public void lambda$createView$13(int i, View view) {
+        if (this.patternViewAnimation != null) {
+            return;
+        }
+        if (i == 0) {
+            this.backgroundRotation = this.previousBackgroundRotation;
+            setBackgroundColor(this.previousBackgroundGradientColor3, 3, true, true);
+            setBackgroundColor(this.previousBackgroundGradientColor2, 2, true, true);
+            setBackgroundColor(this.previousBackgroundGradientColor1, 1, true, true);
+            setBackgroundColor(this.previousBackgroundColor, 0, true, true);
+        } else {
+            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.previousSelectedPattern;
+            this.selectedPattern = tLRPC$TL_wallPaper;
+            if (tLRPC$TL_wallPaper == null) {
+                this.backgroundImage.setImageDrawable(null);
+            } else {
+                BackgroundView backgroundView = this.backgroundImage;
+                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_wallPaper.document);
+                String str = this.imageFilter;
+                TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = this.selectedPattern;
+                backgroundView.setImage(forDocument, str, null, null, "jpg", tLRPC$TL_wallPaper2.document.size, 1, tLRPC$TL_wallPaper2);
+            }
+            this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, false);
+            float f = this.previousIntensity;
+            this.currentIntensity = f;
+            this.intensitySeekBar.setProgress(f);
+            this.backgroundImage.getImageReceiver().setAlpha(this.currentIntensity);
+            updateButtonState(false, true);
+            updateSelectedPattern(true);
+        }
+        if (this.screenType == 2) {
+            showPatternsView(i, false, true);
+            return;
+        }
+        if (this.selectedPattern == null) {
+            if (this.isMotion) {
+                this.isMotion = false;
+                this.backgroundCheckBoxView[0].setChecked(false, true);
+                animateMotionChange();
+            }
+            updateMotionButton();
+        }
+        showPatternsView(0, true, true);
+    }
+
+    public void lambda$createView$14(int i, View view) {
+        if (this.patternViewAnimation != null) {
+            return;
+        }
+        if (this.screenType == 2) {
+            showPatternsView(i, false, true);
+        } else {
+            showPatternsView(0, true, true);
+        }
+    }
+
+    public void lambda$createView$15(View view, int i) {
+        boolean z = this.selectedPattern != null;
+        selectPattern(i);
+        if (z == (this.selectedPattern == null)) {
+            animateMotionChange();
+            updateMotionButton();
+        }
+        updateSelectedPattern(true);
+        this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, true);
+        this.patternsListView.invalidateViews();
+        int left = view.getLeft();
+        int right = view.getRight();
+        int dp = AndroidUtilities.dp(52.0f);
+        int i2 = left - dp;
+        if (i2 < 0) {
+            this.patternsListView.smoothScrollBy(i2, 0);
+            return;
+        }
+        int i3 = right + dp;
+        if (i3 > this.patternsListView.getMeasuredWidth()) {
+            RecyclerListView recyclerListView = this.patternsListView;
+            recyclerListView.smoothScrollBy(i3 - recyclerListView.getMeasuredWidth(), 0);
+        }
+    }
+
+    public void lambda$createView$16() {
+        this.watchForKeyboardEndTime = SystemClock.elapsedRealtime() + 1500;
+        this.frameLayout.invalidate();
+    }
+
+    public void lambda$createView$17(View view) {
+        cancelThemeApply(false);
+    }
+
+    public void lambda$createView$18(View view) {
+        Theme.ThemeInfo previousTheme = Theme.getPreviousTheme();
+        if (previousTheme == null) {
+            return;
+        }
+        int i = previousTheme.prevAccentId;
+        Theme.ThemeAccent accent = i >= 0 ? (Theme.ThemeAccent) previousTheme.themeAccentsMap.get(i) : previousTheme.getAccent(false);
+        if (this.accent != null) {
+            saveAccentWallpaper();
+            Theme.saveThemeAccents(this.applyingTheme, true, false, false, false);
+            Theme.clearPreviousTheme();
+            Theme.applyTheme(this.applyingTheme, this.nightTheme);
+            this.parentLayout.rebuildAllFragmentViews(false, false);
+        } else {
+            this.parentLayout.rebuildAllFragmentViews(false, false);
+            File file = new File(this.applyingTheme.pathToFile);
+            Theme.ThemeInfo themeInfo = this.applyingTheme;
+            Theme.applyThemeFile(file, themeInfo.name, themeInfo.info, false);
+            MessagesController.getInstance(this.applyingTheme.account).saveTheme(this.applyingTheme, null, false, false);
+            SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0).edit();
+            edit.putString("lastDayTheme", this.applyingTheme.getKey());
+            edit.commit();
+        }
+        BaseFragment baseFragment = (BaseFragment) getParentLayout().getFragmentStack().get(Math.max(0, getParentLayout().getFragmentStack().size() - 2));
+        lambda$onBackPressed$308();
+        if (this.screenType == 0) {
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didApplyNewTheme, previousTheme, accent, Boolean.valueOf(this.deleteOnCancel));
+        }
+        Theme.turnOffAutoNight(baseFragment);
+    }
+
+    public void lambda$createView$2() {
+        if (getParentActivity() == null || getContext() == null) {
+            return;
+        }
+        SharedConfig.increaseDayNightWallpaperSiwtchHint();
+        HintView hintView = new HintView(getContext(), 7, true);
+        hintView.setAlpha(0.0f);
+        hintView.setVisibility(4);
+        hintView.setShowingDuration(4000L);
+        this.frameLayout.addView(hintView, LayoutHelper.createFrame(-2, -2.0f, 51, 4.0f, 0.0f, 4.0f, 0.0f));
+        hintView.setText(LocaleController.getString(this.onSwitchDayNightDelegate.isDark() ? R.string.PreviewWallpaperDay : R.string.PreviewWallpaperNight));
+        hintView.setBackgroundColor(-366530760, -1);
+        hintView.showForView(this.dayNightItem, true);
+        hintView.setExtraTranslationY(-AndroidUtilities.dp(14.0f));
+    }
+
+    public static void lambda$createView$3(View view, int i) {
+    }
+
+    public void lambda$createView$4(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        if (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper) {
+            return;
+        }
+        Drawable drawable = imageReceiver.getDrawable();
+        if (!z || drawable == null) {
+            return;
+        }
+        this.themeDelegate.applyChatServiceMessageColor(AndroidUtilities.calcDrawableColor(drawable), checkBlur(drawable), drawable, Float.valueOf(this.currentIntensity));
+        if (!z2 && this.isBlurred && this.blurredBitmap == null) {
+            this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(false);
+            updateBlurred();
+            this.backgroundImage.getImageReceiver().setCrossfadeWithOldImage(true);
+        }
+        invalidateBlur();
+    }
+
+    public void lambda$createView$5(View view) {
+        this.dropDownContainer.toggleSubMenu();
+    }
+
+    public void lambda$createView$6(View view, int i, float f, float f2) {
+        if (view instanceof ChatMessageCell) {
+            ChatMessageCell chatMessageCell = (ChatMessageCell) view;
+            selectColorType(chatMessageCell.isInsideBackground(f, f2) ? chatMessageCell.getMessageObject().isOutOwner() ? 3 : 1 : 2);
+        }
+    }
+
+    public void lambda$createView$7(int i, int i2, float f) {
+        if (this.isMotion) {
+            this.backgroundImage.getBackground();
+            float scaleX = this.motionAnimation != null ? (this.backgroundImage.getScaleX() - 1.0f) / (this.parallaxScale - 1.0f) : 1.0f;
+            this.backgroundImage.setTranslationX(i * scaleX);
+            this.backgroundImage.setTranslationY(i2 * scaleX);
+        }
+    }
+
+    public void lambda$createView$8(View view) {
+        applyWallpaperBackground(false);
+    }
+
+    public void lambda$createView$9(View view) {
+        applyWallpaperBackground(true);
+    }
+
+    public void lambda$didReceivedNotification$28(TLObject tLObject) {
+        if (tLObject instanceof TLRPC$TL_wallPaper) {
+            TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) tLObject;
+            if (tLRPC$TL_wallPaper.pattern) {
+                this.selectedPattern = tLRPC$TL_wallPaper;
+                setCurrentImage(false);
+                updateButtonState(false, false);
+                this.patterns.add(0, this.selectedPattern);
+                PatternsAdapter patternsAdapter = this.patternsAdapter;
+                if (patternsAdapter != null) {
+                    patternsAdapter.notifyDataSetChanged();
+                }
             }
         }
     }
 
-    public ArrayList<ThemeDescription> getThemeDescriptionsInternal() {
+    public void lambda$didReceivedNotification$29(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ThemePreviewActivity.this.lambda$didReceivedNotification$28(tLObject);
+            }
+        });
+    }
+
+    public void lambda$didReceivedNotification$30(TLObject tLObject) {
+        Theme.ThemeAccent themeAccent;
+        TLRPC$TL_wallPaper tLRPC$TL_wallPaper;
+        String str;
+        if (tLObject instanceof TLRPC$TL_account_wallPapers) {
+            TLRPC$TL_account_wallPapers tLRPC$TL_account_wallPapers = (TLRPC$TL_account_wallPapers) tLObject;
+            this.patterns.clear();
+            this.patternsDict.clear();
+            int size = tLRPC$TL_account_wallPapers.wallpapers.size();
+            boolean z = false;
+            for (int i = 0; i < size; i++) {
+                if (tLRPC$TL_account_wallPapers.wallpapers.get(i) instanceof TLRPC$TL_wallPaper) {
+                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = (TLRPC$TL_wallPaper) tLRPC$TL_account_wallPapers.wallpapers.get(i);
+                    if (tLRPC$TL_wallPaper2.pattern) {
+                        TLRPC$Document tLRPC$Document = tLRPC$TL_wallPaper2.document;
+                        if (tLRPC$Document != null && !this.patternsDict.containsKey(Long.valueOf(tLRPC$Document.id))) {
+                            this.patterns.add(tLRPC$TL_wallPaper2);
+                            this.patternsDict.put(Long.valueOf(tLRPC$TL_wallPaper2.document.id), tLRPC$TL_wallPaper2);
+                        }
+                        Theme.ThemeAccent themeAccent2 = this.accent;
+                        if (themeAccent2 != null && (str = themeAccent2.patternSlug) != null && str.equals(tLRPC$TL_wallPaper2.slug)) {
+                            this.selectedPattern = tLRPC$TL_wallPaper2;
+                            setCurrentImage(false);
+                            updateButtonState(false, false);
+                        } else if (this.accent == null) {
+                            TLRPC$TL_wallPaper tLRPC$TL_wallPaper3 = this.selectedPattern;
+                            if (tLRPC$TL_wallPaper3 != null) {
+                                String str2 = tLRPC$TL_wallPaper3.slug;
+                                if (str2 != null) {
+                                    if (!str2.equals(tLRPC$TL_wallPaper2.slug)) {
+                                    }
+                                }
+                            }
+                        }
+                        z = true;
+                    }
+                }
+            }
+            if (!z && (tLRPC$TL_wallPaper = this.selectedPattern) != null) {
+                this.patterns.add(0, tLRPC$TL_wallPaper);
+            }
+            PatternsAdapter patternsAdapter = this.patternsAdapter;
+            if (patternsAdapter != null) {
+                patternsAdapter.notifyDataSetChanged();
+            }
+            MessagesStorage.getInstance(this.currentAccount).putWallpapers(tLRPC$TL_account_wallPapers.wallpapers, 1);
+        }
+        if (this.selectedPattern != null || (themeAccent = this.accent) == null || TextUtils.isEmpty(themeAccent.patternSlug)) {
+            return;
+        }
+        TLRPC$TL_account_getWallPaper tLRPC$TL_account_getWallPaper = new TLRPC$TL_account_getWallPaper();
+        TLRPC$TL_inputWallPaperSlug tLRPC$TL_inputWallPaperSlug = new TLRPC$TL_inputWallPaperSlug();
+        tLRPC$TL_inputWallPaperSlug.slug = this.accent.patternSlug;
+        tLRPC$TL_account_getWallPaper.wallpaper = tLRPC$TL_inputWallPaperSlug;
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_account_getWallPaper, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
+                ThemePreviewActivity.this.lambda$didReceivedNotification$29(tLObject2, tLRPC$TL_error);
+            }
+        }), this.classGuid);
+    }
+
+    public void lambda$didReceivedNotification$31(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ThemePreviewActivity.this.lambda$didReceivedNotification$30(tLObject);
+            }
+        });
+    }
+
+    public void lambda$getThemeDescriptionsInternal$33() {
+        ActionBarMenuItem actionBarMenuItem = this.dropDownContainer;
+        int i = 0;
+        if (actionBarMenuItem != null) {
+            actionBarMenuItem.redrawPopup(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
+            this.dropDownContainer.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem), false);
+        }
+        Drawable drawable = this.sheetDrawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
+        }
+        FrameLayout frameLayout = this.bottomOverlayChat;
+        if (frameLayout != null) {
+            frameLayout.invalidate();
+        }
+        if (this.onSwitchDayNightDelegate != null) {
+            INavigationLayout iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout == null || iNavigationLayout.getBottomSheet() == null) {
+                setNavigationBarColor(getThemedColor(Theme.key_dialogBackground));
+            } else {
+                this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
+                if (this.screenType == 2 && this.dialogId != 0) {
+                    this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
+                }
+            }
+        }
+        if (this.backgroundCheckBoxView != null) {
+            int i2 = 0;
+            while (true) {
+                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
+                if (i2 >= wallpaperCheckBoxViewArr.length) {
+                    break;
+                }
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i2];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.invalidate();
+                }
+                i2++;
+            }
+        }
+        if (this.messagesCheckBoxView != null) {
+            while (true) {
+                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr2 = this.messagesCheckBoxView;
+                if (i >= wallpaperCheckBoxViewArr2.length) {
+                    break;
+                }
+                WallpaperCheckBoxView wallpaperCheckBoxView2 = wallpaperCheckBoxViewArr2[i];
+                if (wallpaperCheckBoxView2 != null) {
+                    wallpaperCheckBoxView2.invalidate();
+                }
+                i++;
+            }
+        }
+        TextView textView = this.patternTitleView;
+        if (textView != null) {
+            textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        }
+        ColorPicker colorPicker = this.colorPicker;
+        if (colorPicker != null) {
+            colorPicker.invalidate();
+        }
+    }
+
+    public void lambda$new$0() {
+        this.applyColorScheduled = false;
+        applyColor(this.lastPickedColor, this.lastPickedColorNum);
+        this.lastPickedColorNum = -1;
+    }
+
+    public void lambda$selectColorType$22(DialogInterface dialogInterface, int i) {
+        Theme.ThemeAccent themeAccent = this.accent;
+        if (themeAccent.backgroundOverrideColor == 4294967296L) {
+            themeAccent.backgroundOverrideColor = 0L;
+            themeAccent.backgroundGradientOverrideColor1 = 0L;
+            themeAccent.backgroundGradientOverrideColor2 = 0L;
+            themeAccent.backgroundGradientOverrideColor3 = 0L;
+            updatePlayAnimationView(false);
+            Theme.refreshThemeColors();
+        }
+        this.removeBackgroundOverride = true;
+        Theme.resetCustomWallpaper(true);
+        selectColorType(2, false);
+    }
+
+    public void lambda$selectColorType$23(DialogInterface dialogInterface, int i) {
+        if (Theme.isCustomWallpaperColor()) {
+            Theme.ThemeAccent themeAccent = this.accent;
+            Theme.OverrideWallpaperInfo overrideWallpaperInfo = themeAccent.overrideWallpaper;
+            themeAccent.backgroundOverrideColor = overrideWallpaperInfo.color;
+            themeAccent.backgroundGradientOverrideColor1 = overrideWallpaperInfo.gradientColor1;
+            themeAccent.backgroundGradientOverrideColor2 = overrideWallpaperInfo.gradientColor2;
+            themeAccent.backgroundGradientOverrideColor3 = overrideWallpaperInfo.gradientColor3;
+            themeAccent.backgroundRotation = overrideWallpaperInfo.rotation;
+            String str = overrideWallpaperInfo.slug;
+            themeAccent.patternSlug = str;
+            float f = overrideWallpaperInfo.intensity;
+            themeAccent.patternIntensity = f;
+            this.currentIntensity = f;
+            if (str != null && !"c".equals(str)) {
+                int size = this.patterns.size();
+                int i2 = 0;
+                while (true) {
+                    if (i2 >= size) {
+                        break;
+                    }
+                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) this.patterns.get(i2);
+                    if (tLRPC$TL_wallPaper.pattern && this.accent.patternSlug.equals(tLRPC$TL_wallPaper.slug)) {
+                        this.selectedPattern = tLRPC$TL_wallPaper;
+                        break;
+                    }
+                    i2++;
+                }
+            } else {
+                this.selectedPattern = null;
+            }
+            this.removeBackgroundOverride = true;
+            this.backgroundCheckBoxView[1].setChecked(this.selectedPattern != null, true);
+            updatePlayAnimationView(false);
+            Theme.refreshThemeColors();
+        }
+        Drawable background = this.backgroundImage.getBackground();
+        if (background instanceof MotionBackgroundDrawable) {
+            MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) background;
+            motionBackgroundDrawable.setPatternBitmap(100, null);
+            if (Theme.getActiveTheme().isDark()) {
+                if (this.currentIntensity < 0.0f) {
+                    this.backgroundImage.getImageReceiver().setGradientBitmap(motionBackgroundDrawable.getBitmap());
+                }
+                SeekBarView seekBarView = this.intensitySeekBar;
+                if (seekBarView != null) {
+                    seekBarView.setTwoSided(true);
+                }
+            } else {
+                float f2 = this.currentIntensity;
+                if (f2 < 0.0f) {
+                    this.currentIntensity = -f2;
+                }
+            }
+        }
+        SeekBarView seekBarView2 = this.intensitySeekBar;
+        if (seekBarView2 != null) {
+            seekBarView2.setProgress(this.currentIntensity);
+        }
+        Theme.resetCustomWallpaper(true);
+        selectColorType(2, false);
+    }
+
+    public void lambda$selectColorType$24(DialogInterface dialogInterface, int i) {
+        Theme.ThemeAccent themeAccent = this.accent;
+        if (themeAccent.backgroundOverrideColor == 4294967296L) {
+            themeAccent.backgroundOverrideColor = 0L;
+            themeAccent.backgroundGradientOverrideColor1 = 0L;
+            themeAccent.backgroundGradientOverrideColor2 = 0L;
+            themeAccent.backgroundGradientOverrideColor3 = 0L;
+            updatePlayAnimationView(false);
+            Theme.refreshThemeColors();
+        }
+        this.removeBackgroundOverride = true;
+        Theme.resetCustomWallpaper(true);
+        selectColorType(2, false);
+    }
+
+    public void lambda$showAnimationHint$32(SharedPreferences sharedPreferences) {
+        if (this.colorType != 3) {
+            return;
+        }
+        sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
+        this.animationHint.showForView(this.messagesCheckBoxView[0], true);
+    }
+
+    public static boolean lambda$toggleTheme$34(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public void lambda$toggleTheme$35(ValueAnimator valueAnimator) {
+        this.progressToDarkTheme = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.backgroundImage.invalidate();
+        this.bottomOverlayChat.invalidate();
+        this.dimmingSlider.setAlpha(this.progressToDarkTheme);
+        this.dimmingSliderContainer.invalidate();
+        invalidateBlur();
+    }
+
+    public void lambda$toggleTheme$36() {
+        this.onSwitchDayNightDelegate.switchDayNight(false);
+        setForceDark(this.themeDelegate.isDark(), true);
+        setCurrentImage(false);
+        invalidateBlur();
+        updateBlurred();
+        if (this.themeDescriptions != null) {
+            for (int i = 0; i < this.themeDescriptions.size(); i++) {
+                ((ThemeDescription) this.themeDescriptions.get(i)).setColor(getThemedColor(((ThemeDescription) this.themeDescriptions.get(i)).getCurrentKey()), false, false);
+            }
+        }
+        if (this.shouldShowBrightnessControll) {
+            DayNightSwitchDelegate dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
+            if (dayNightSwitchDelegate == null || !dayNightSwitchDelegate.isDark()) {
+                this.dimmingSlider.animateValueTo(0.0f);
+            } else {
+                this.dimmingSlider.setVisibility(0);
+                this.dimmingSlider.animateValueTo(this.dimAmount);
+            }
+            ValueAnimator valueAnimator = this.changeDayNightViewAnimator2;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.changeDayNightViewAnimator2.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToDarkTheme, this.onSwitchDayNightDelegate.isDark() ? 1.0f : 0.0f);
+            this.changeDayNightViewAnimator2 = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    ThemePreviewActivity.this.lambda$toggleTheme$35(valueAnimator2);
+                }
+            });
+            this.changeDayNightViewAnimator2.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark()) {
+                        return;
+                    }
+                    ThemePreviewActivity.this.dimmingSlider.setVisibility(8);
+                }
+            });
+            this.changeDayNightViewAnimator2.setDuration(250L);
+            this.changeDayNightViewAnimator2.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.changeDayNightViewAnimator2.start();
+        }
+    }
+
+    public void onColorsRotate() {
+        if (this.screenType == 2) {
+            int i = this.backgroundRotation + 45;
+            while (true) {
+                this.backgroundRotation = i;
+                int i2 = this.backgroundRotation;
+                if (i2 < 360) {
+                    setBackgroundColor(this.backgroundColor, 0, true, true);
+                    return;
+                }
+                i = i2 - 360;
+            }
+        } else {
+            Theme.ThemeAccent themeAccent = this.accent;
+            if (themeAccent == null) {
+                return;
+            }
+            int i3 = themeAccent.backgroundRotation + 45;
+            while (true) {
+                themeAccent.backgroundRotation = i3;
+                themeAccent = this.accent;
+                int i4 = themeAccent.backgroundRotation;
+                if (i4 < 360) {
+                    Theme.refreshThemeColors();
+                    return;
+                }
+                i3 = i4 - 360;
+            }
+        }
+    }
+
+    public void saveAccentWallpaper() {
+        FileOutputStream fileOutputStream;
+        Theme.ThemeAccent themeAccent = this.accent;
+        if (themeAccent == null || TextUtils.isEmpty(themeAccent.patternSlug)) {
+            return;
+        }
+        try {
+            File pathToWallpaper = this.accent.getPathToWallpaper();
+            Drawable background = this.backgroundImage.getBackground();
+            Bitmap bitmap = this.backgroundImage.getImageReceiver().getBitmap();
+            if (background instanceof MotionBackgroundDrawable) {
+                fileOutputStream = new FileOutputStream(pathToWallpaper);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+            } else {
+                Bitmap createBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                background.setBounds(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                background.draw(canvas);
+                Paint paint = new Paint(2);
+                paint.setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
+                paint.setAlpha((int) (this.currentIntensity * 255.0f));
+                canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                fileOutputStream = new FileOutputStream(pathToWallpaper);
+                createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
+            }
+            fileOutputStream.close();
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    public void scheduleApplyColor(int i, int i2, boolean z) {
+        if (i2 != -1) {
+            int i3 = this.lastPickedColorNum;
+            if (i3 != -1 && i3 != i2) {
+                this.applyColorAction.run();
+            }
+            this.lastPickedColor = i;
+            this.lastPickedColorNum = i2;
+            if (z) {
+                this.applyColorAction.run();
+                return;
+            } else {
+                if (this.applyColorScheduled) {
+                    return;
+                }
+                this.applyColorScheduled = true;
+                this.fragmentView.postDelayed(this.applyColorAction, 16L);
+                return;
+            }
+        }
+        int i4 = this.colorType;
+        if (i4 == 1 || i4 == 2) {
+            long j = this.backupBackgroundOverrideColor;
+            if (j != 0) {
+                this.accent.backgroundOverrideColor = j;
+            } else {
+                this.accent.backgroundOverrideColor = 0L;
+            }
+            long j2 = this.backupBackgroundGradientOverrideColor1;
+            if (j2 != 0) {
+                this.accent.backgroundGradientOverrideColor1 = j2;
+            } else {
+                this.accent.backgroundGradientOverrideColor1 = 0L;
+            }
+            long j3 = this.backupBackgroundGradientOverrideColor2;
+            if (j3 != 0) {
+                this.accent.backgroundGradientOverrideColor2 = j3;
+            } else {
+                this.accent.backgroundGradientOverrideColor2 = 0L;
+            }
+            long j4 = this.backupBackgroundGradientOverrideColor3;
+            if (j4 != 0) {
+                this.accent.backgroundGradientOverrideColor3 = j4;
+            } else {
+                this.accent.backgroundGradientOverrideColor3 = 0L;
+            }
+            this.accent.backgroundRotation = this.backupBackgroundRotation;
+            if (i4 == 2) {
+                int defaultAccentColor = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper);
+                int defaultAccentColor2 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to1);
+                int defaultAccentColor3 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to2);
+                int defaultAccentColor4 = Theme.getDefaultAccentColor(Theme.key_chat_wallpaper_gradient_to3);
+                Theme.ThemeAccent themeAccent = this.accent;
+                int i5 = (int) themeAccent.backgroundGradientOverrideColor1;
+                int i6 = (int) themeAccent.backgroundGradientOverrideColor2;
+                int i7 = (int) themeAccent.backgroundGradientOverrideColor3;
+                int i8 = (int) themeAccent.backgroundOverrideColor;
+                ColorPicker colorPicker = this.colorPicker;
+                if (i7 != 0) {
+                    defaultAccentColor4 = i7;
+                }
+                colorPicker.setColor(defaultAccentColor4, 3);
+                ColorPicker colorPicker2 = this.colorPicker;
+                if (i6 != 0) {
+                    defaultAccentColor3 = i6;
+                }
+                colorPicker2.setColor(defaultAccentColor3, 2);
+                ColorPicker colorPicker3 = this.colorPicker;
+                if (i5 != 0) {
+                    defaultAccentColor2 = i5;
+                }
+                colorPicker3.setColor(defaultAccentColor2, 1);
+                ColorPicker colorPicker4 = this.colorPicker;
+                if (i8 != 0) {
+                    defaultAccentColor = i8;
+                }
+                colorPicker4.setColor(defaultAccentColor, 0);
+            }
+        }
+        int i9 = this.colorType;
+        if (i9 == 1 || i9 == 3) {
+            int i10 = this.backupMyMessagesAccentColor;
+            if (i10 != 0) {
+                this.accent.myMessagesAccentColor = i10;
+            } else {
+                this.accent.myMessagesAccentColor = 0;
+            }
+            int i11 = this.backupMyMessagesGradientAccentColor1;
+            if (i11 != 0) {
+                this.accent.myMessagesGradientAccentColor1 = i11;
+            } else {
+                this.accent.myMessagesGradientAccentColor1 = 0;
+            }
+            int i12 = this.backupMyMessagesGradientAccentColor2;
+            if (i12 != 0) {
+                this.accent.myMessagesGradientAccentColor2 = i12;
+            } else {
+                this.accent.myMessagesGradientAccentColor2 = 0;
+            }
+            int i13 = this.backupMyMessagesGradientAccentColor3;
+            if (i13 != 0) {
+                this.accent.myMessagesGradientAccentColor3 = i13;
+            } else {
+                this.accent.myMessagesGradientAccentColor3 = 0;
+            }
+            if (i9 == 3) {
+                this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor3, 3);
+                this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor2, 2);
+                this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor1, 1);
+                ColorPicker colorPicker5 = this.colorPicker;
+                Theme.ThemeAccent themeAccent2 = this.accent;
+                int i14 = themeAccent2.myMessagesAccentColor;
+                if (i14 == 0) {
+                    i14 = themeAccent2.accentColor;
+                }
+                colorPicker5.setColor(i14, 0);
+            }
+        }
+        Theme.refreshThemeColors();
+        this.listView2.invalidateViews();
+    }
+
+    public void selectColorType(int i) {
+        selectColorType(i, true);
+    }
+
+    private void selectColorType(int i, boolean z) {
+        ColorPicker colorPicker;
+        float f;
+        String string;
+        DialogInterface.OnClickListener onClickListener;
+        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent == null) {
+            return;
+        }
+        if (z && i == 2 && (Theme.hasCustomWallpaper() || this.accent.backgroundOverrideColor == 4294967296L)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
+            builder.setTitle(LocaleController.getString(R.string.ChangeChatBackground));
+            if (!Theme.hasCustomWallpaper() || Theme.isCustomWallpaperColor()) {
+                builder.setMessage(LocaleController.getString(R.string.ChangeColorToColor));
+                builder.setPositiveButton(LocaleController.getString(R.string.Reset), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i2) {
+                        ThemePreviewActivity.this.lambda$selectColorType$22(dialogInterface, i2);
+                    }
+                });
+                string = LocaleController.getString(R.string.Continue);
+                onClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i2) {
+                        ThemePreviewActivity.this.lambda$selectColorType$23(dialogInterface, i2);
+                    }
+                };
+            } else {
+                builder.setMessage(LocaleController.getString(R.string.ChangeWallpaperToColor));
+                builder.setPositiveButton(LocaleController.getString(R.string.Change), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i2) {
+                        ThemePreviewActivity.this.lambda$selectColorType$24(dialogInterface, i2);
+                    }
+                });
+                string = LocaleController.getString(R.string.Cancel);
+                onClickListener = null;
+            }
+            builder.setNegativeButton(string, onClickListener);
+            showDialog(builder.create());
+            return;
+        }
+        int i2 = this.colorType;
+        this.colorType = i;
+        if (i == 1) {
+            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMainColor));
+            this.colorPicker.setType(1, hasChanges(1), 2, this.accent.accentColor2 != 0 ? 2 : 1, false, 0, false);
+            this.colorPicker.setColor(this.accent.accentColor, 0);
+            int i3 = this.accent.accentColor2;
+            if (i3 != 0) {
+                this.colorPicker.setColor(i3, 1);
+            }
+            if (i2 == 2 || (i2 == 3 && this.accent.myMessagesGradientAccentColor2 != 0)) {
+                this.messagesAdapter.notifyItemRemoved(0);
+            }
+        } else if (i == 2) {
+            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerBackground));
+            int themedColor = getThemedColor(Theme.key_chat_wallpaper);
+            int i4 = Theme.key_chat_wallpaper_gradient_to1;
+            int themedColor2 = Theme.hasThemeKey(i4) ? getThemedColor(i4) : 0;
+            int i5 = Theme.key_chat_wallpaper_gradient_to2;
+            int themedColor3 = Theme.hasThemeKey(i5) ? getThemedColor(i5) : 0;
+            int i6 = Theme.key_chat_wallpaper_gradient_to3;
+            int themedColor4 = Theme.hasThemeKey(i6) ? getThemedColor(i6) : 0;
+            Theme.ThemeAccent themeAccent = this.accent;
+            long j = themeAccent.backgroundGradientOverrideColor1;
+            int i7 = (int) j;
+            if (i7 == 0 && j != 0) {
+                themedColor2 = 0;
+            }
+            long j2 = themeAccent.backgroundGradientOverrideColor2;
+            int i8 = (int) j2;
+            if (i8 == 0 && j2 != 0) {
+                themedColor3 = 0;
+            }
+            long j3 = themeAccent.backgroundGradientOverrideColor3;
+            int i9 = (int) j3;
+            if (i9 == 0 && j3 != 0) {
+                themedColor4 = 0;
+            }
+            int i10 = (int) themeAccent.backgroundOverrideColor;
+            this.colorPicker.setType(2, hasChanges(2), 4, (i7 == 0 && themedColor2 == 0) ? 1 : (i9 == 0 && themedColor4 == 0) ? (i8 == 0 && themedColor3 == 0) ? 2 : 3 : 4, false, this.accent.backgroundRotation, false);
+            ColorPicker colorPicker2 = this.colorPicker;
+            if (i9 == 0) {
+                i9 = themedColor4;
+            }
+            colorPicker2.setColor(i9, 3);
+            ColorPicker colorPicker3 = this.colorPicker;
+            if (i8 == 0) {
+                i8 = themedColor3;
+            }
+            colorPicker3.setColor(i8, 2);
+            ColorPicker colorPicker4 = this.colorPicker;
+            if (i7 == 0) {
+                i7 = themedColor2;
+            }
+            colorPicker4.setColor(i7, 1);
+            ColorPicker colorPicker5 = this.colorPicker;
+            if (i10 != 0) {
+                themedColor = i10;
+            }
+            colorPicker5.setColor(themedColor, 0);
+            if (i2 == 1 || this.accent.myMessagesGradientAccentColor2 == 0) {
+                this.messagesAdapter.notifyItemInserted(0);
+            } else {
+                this.messagesAdapter.notifyItemChanged(0);
+            }
+            this.listView2.smoothScrollBy(0, AndroidUtilities.dp(60.0f));
+        } else if (i == 3) {
+            this.dropDown.setText(LocaleController.getString(R.string.ColorPickerMyMessages));
+            Theme.ThemeAccent themeAccent2 = this.accent;
+            this.colorPicker.setType(2, hasChanges(3), 4, themeAccent2.myMessagesGradientAccentColor1 != 0 ? themeAccent2.myMessagesGradientAccentColor3 != 0 ? 4 : themeAccent2.myMessagesGradientAccentColor2 != 0 ? 3 : 2 : 1, true, 0, false);
+            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor3, 3);
+            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor2, 2);
+            this.colorPicker.setColor(this.accent.myMessagesGradientAccentColor1, 1);
+            ColorPicker colorPicker6 = this.colorPicker;
+            Theme.ThemeAccent themeAccent3 = this.accent;
+            int i11 = themeAccent3.myMessagesAccentColor;
+            if (i11 == 0) {
+                i11 = themeAccent3.accentColor;
+            }
+            colorPicker6.setColor(i11, 0);
+            this.messagesCheckBoxView[1].setColor(0, this.accent.myMessagesAccentColor);
+            this.messagesCheckBoxView[1].setColor(1, this.accent.myMessagesGradientAccentColor1);
+            this.messagesCheckBoxView[1].setColor(2, this.accent.myMessagesGradientAccentColor2);
+            this.messagesCheckBoxView[1].setColor(3, this.accent.myMessagesGradientAccentColor3);
+            if (this.accent.myMessagesGradientAccentColor2 != 0) {
+                MessagesAdapter messagesAdapter = this.messagesAdapter;
+                if (i2 == 1) {
+                    messagesAdapter.notifyItemInserted(0);
+                } else {
+                    messagesAdapter.notifyItemChanged(0);
+                }
+            } else if (i2 == 2) {
+                this.messagesAdapter.notifyItemRemoved(0);
+            }
+            this.listView2.smoothScrollBy(0, AndroidUtilities.dp(60.0f));
+            showAnimationHint();
+        }
+        if (i == 1 || i == 3) {
+            if (i2 == 2 && this.patternLayout[1].getVisibility() == 0) {
+                showPatternsView(0, true, true);
+            }
+            if (i == 1) {
+                if (this.applyingTheme.isDark()) {
+                    this.colorPicker.setMinBrightness(0.2f);
+                    return;
+                }
+                this.colorPicker.setMinBrightness(0.05f);
+                colorPicker = this.colorPicker;
+                f = 0.8f;
+                colorPicker.setMaxBrightness(f);
+            }
+        }
+        this.colorPicker.setMinBrightness(0.0f);
+        colorPicker = this.colorPicker;
+        f = 1.0f;
+        colorPicker.setMaxBrightness(f);
+    }
+
+    private void selectPattern(int i) {
+        TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (i < 0 || i >= this.patterns.size()) ? this.lastSelectedPattern : (TLRPC$TL_wallPaper) this.patterns.get(i);
+        if (tLRPC$TL_wallPaper == null) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.valueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.valueAnimator.cancel();
+        }
+        BackgroundView[] backgroundViewArr = this.backgroundImages;
+        BackgroundView backgroundView = backgroundViewArr[0];
+        BackgroundView backgroundView2 = backgroundViewArr[1];
+        backgroundViewArr[0] = backgroundView2;
+        backgroundViewArr[1] = backgroundView;
+        this.page2.removeView(backgroundView2);
+        this.page2.addView(this.backgroundImages[0], this.page2.indexOfChild(this.backgroundImages[1]) + 1);
+        BackgroundView[] backgroundViewArr2 = this.backgroundImages;
+        BackgroundView backgroundView3 = backgroundViewArr2[0];
+        this.backgroundImage = backgroundView3;
+        backgroundView3.setBackground(backgroundViewArr2[1].getBackground());
+        updateIntensity();
+        this.backgroundImages[1].setVisibility(0);
+        this.backgroundImages[1].setAlpha(1.0f);
+        this.backgroundImage.setVisibility(0);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.valueAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ThemePreviewActivity.this.backgroundImage.setAlpha(((Float) valueAnimator2.getAnimatedValue()).floatValue());
+            }
+        });
+        this.valueAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                super.onAnimationEnd(animator);
+                ThemePreviewActivity.this.backgroundImage.invalidate();
+                ThemePreviewActivity.this.backgroundImages[1].setVisibility(8);
+                ThemePreviewActivity.this.valueAnimator = null;
+            }
+        });
+        this.valueAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.valueAnimator.setDuration(300L);
+        this.valueAnimator.start();
+        this.backgroundImage.getImageReceiver().setCrossfadeDuration(300);
+        this.backgroundImage.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_wallPaper.document), this.imageFilter, null, null, null, tLRPC$TL_wallPaper.document.size, "jpg", tLRPC$TL_wallPaper, 1);
+        this.backgroundImage.onNewImageSet();
+        this.selectedPattern = tLRPC$TL_wallPaper;
+        this.isMotion = this.backgroundCheckBoxView[2].isChecked();
+        updateButtonState(false, true);
+    }
+
+    public void setBackgroundColor(int i, int i2, boolean z, boolean z2) {
+        int i3;
+        MotionBackgroundDrawable motionBackgroundDrawable;
+        if (i2 == 0) {
+            this.backgroundColor = i;
+        } else if (i2 == 1) {
+            this.backgroundGradientColor1 = i;
+        } else if (i2 == 2) {
+            this.backgroundGradientColor2 = i;
+        } else if (i2 == 3) {
+            this.backgroundGradientColor3 = i;
+        }
+        updatePlayAnimationView(z2);
+        if (this.backgroundCheckBoxView != null) {
+            int i4 = 0;
+            while (true) {
+                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
+                if (i4 >= wallpaperCheckBoxViewArr.length) {
+                    break;
+                }
+                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i4];
+                if (wallpaperCheckBoxView != null) {
+                    wallpaperCheckBoxView.setColor(i2, i);
+                }
+                i4++;
+            }
+        }
+        if (this.backgroundGradientColor2 != 0) {
+            if (this.intensitySeekBar != null && Theme.getActiveTheme().isDark()) {
+                this.intensitySeekBar.setTwoSided(true);
+            }
+            Drawable background = this.backgroundImage.getBackground();
+            if (background instanceof MotionBackgroundDrawable) {
+                motionBackgroundDrawable = (MotionBackgroundDrawable) background;
+            } else {
+                motionBackgroundDrawable = new MotionBackgroundDrawable();
+                motionBackgroundDrawable.setParentView(this.backgroundImage);
+                if (this.rotatePreview) {
+                    motionBackgroundDrawable.rotatePreview(false);
+                }
+            }
+            motionBackgroundDrawable.setColors(this.backgroundColor, this.backgroundGradientColor1, this.backgroundGradientColor2, this.backgroundGradientColor3);
+            this.backgroundImage.setBackground(motionBackgroundDrawable);
+            this.patternColor = motionBackgroundDrawable.getPatternColor();
+            this.checkColor = 754974720;
+        } else {
+            if (this.backgroundGradientColor1 != 0) {
+                this.backgroundImage.setBackground(new GradientDrawable(BackgroundGradientDrawable.getGradientOrientation(this.backgroundRotation), new int[]{this.backgroundColor, this.backgroundGradientColor1}));
+                i3 = AndroidUtilities.getAverageColor(this.backgroundColor, this.backgroundGradientColor1);
+            } else {
+                this.backgroundImage.setBackgroundColor(this.backgroundColor);
+                i3 = this.backgroundColor;
+            }
+            int patternColor = AndroidUtilities.getPatternColor(i3);
+            this.checkColor = patternColor;
+            this.patternColor = patternColor;
+        }
+        int i5 = Theme.key_chat_serviceBackground;
+        if (!Theme.hasThemeKey(i5) || (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
+            ThemeDelegate themeDelegate = this.themeDelegate;
+            int i6 = this.checkColor;
+            themeDelegate.applyChatServiceMessageColor(new int[]{i6, i6, i6, i6}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
+        } else if (Theme.getCachedWallpaperNonBlocking() instanceof MotionBackgroundDrawable) {
+            int themedColor = getThemedColor(i5);
+            this.themeDelegate.applyChatServiceMessageColor(new int[]{themedColor, themedColor, themedColor, themedColor}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
+        }
+        ImageView imageView = this.backgroundPlayAnimationImageView;
+        if (imageView != null) {
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
+        }
+        ImageView imageView2 = this.messagesPlayAnimationImageView;
+        if (imageView2 != null) {
+            imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.MULTIPLY));
+        }
+        BackgroundView backgroundView = this.backgroundImage;
+        if (backgroundView != null) {
+            backgroundView.getImageReceiver().setColorFilter(new PorterDuffColorFilter(this.patternColor, this.blendMode));
+            this.backgroundImage.getImageReceiver().setAlpha(Math.abs(this.currentIntensity));
+            this.backgroundImage.invalidate();
+            if (Theme.getActiveTheme().isDark() && (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable)) {
+                SeekBarView seekBarView = this.intensitySeekBar;
+                if (seekBarView != null) {
+                    seekBarView.setTwoSided(true);
+                }
+                if (this.currentIntensity < 0.0f) {
+                    this.backgroundImage.getImageReceiver().setGradientBitmap(((MotionBackgroundDrawable) this.backgroundImage.getBackground()).getBitmap());
+                }
+            } else {
+                this.backgroundImage.getImageReceiver().setGradientBitmap(null);
+                SeekBarView seekBarView2 = this.intensitySeekBar;
+                if (seekBarView2 != null) {
+                    seekBarView2.setTwoSided(false);
+                }
+            }
+            SeekBarView seekBarView3 = this.intensitySeekBar;
+            if (seekBarView3 != null) {
+                seekBarView3.setProgress(this.currentIntensity);
+            }
+        }
+        RecyclerListView recyclerListView = this.listView2;
+        if (recyclerListView != null) {
+            recyclerListView.invalidateViews();
+        }
+        FrameLayout frameLayout = this.backgroundButtonsContainer;
+        if (frameLayout != null) {
+            int childCount = frameLayout.getChildCount();
+            for (int i7 = 0; i7 < childCount; i7++) {
+                this.backgroundButtonsContainer.getChildAt(i7).invalidate();
+            }
+        }
+        FrameLayout frameLayout2 = this.messagesButtonsContainer;
+        if (frameLayout2 != null) {
+            int childCount2 = frameLayout2.getChildCount();
+            for (int i8 = 0; i8 < childCount2; i8++) {
+                this.messagesButtonsContainer.getChildAt(i8).invalidate();
+            }
+        }
+    }
+
+    public void setCurrentImage(boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.setCurrentImage(boolean):void");
+    }
+
+    private void setCurrentServerWallpaper(MessageObject messageObject) {
+        this.serverWallpaper = messageObject;
+    }
+
+    private void setVisiblePart(ChatActionCell chatActionCell) {
+        float f;
+        if (this.backgroundImage == null) {
+            return;
+        }
+        if (this.themeDelegate.serviceBitmap != null) {
+            float width = this.themeDelegate.serviceBitmap.getWidth();
+            f = ((this.backgroundImage.getMeasuredWidth() - (width * Math.max(this.backgroundImage.getMeasuredWidth() / width, this.backgroundImage.getMeasuredHeight() / this.themeDelegate.serviceBitmap.getHeight()))) / 2.0f) + this.currentScrollOffset + 0.0f;
+        } else {
+            f = this.currentScrollOffset + 0.0f;
+        }
+        chatActionCell.setVisiblePart(chatActionCell.getY() - ((-this.backgroundImage.ty) + 0.0f), f, this.backgroundImage.getMeasuredHeight(), this.shouldShowBrightnessControll ? this.dimAmount * this.progressToDarkTheme : 0.0f);
+    }
+
+    private void showAnimationHint() {
+        if (this.page2 == null || this.messagesCheckBoxView == null || this.accent.myMessagesGradientAccentColor2 == 0) {
+            return;
+        }
+        final SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+        if (globalMainSettings.getBoolean("bganimationhint", false)) {
+            return;
+        }
+        if (this.animationHint == null) {
+            HintView hintView = new HintView(getParentActivity(), 8);
+            this.animationHint = hintView;
+            hintView.setShowingDuration(5000L);
+            this.animationHint.setAlpha(0.0f);
+            this.animationHint.setVisibility(4);
+            this.animationHint.setText(LocaleController.getString(R.string.BackgroundAnimateInfo));
+            this.animationHint.setExtraTranslationY(AndroidUtilities.dp(6.0f));
+            this.frameLayout.addView(this.animationHint, LayoutHelper.createFrame(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ThemePreviewActivity.this.lambda$showAnimationHint$32(globalMainSettings);
+            }
+        }, 500L);
+    }
+
+    public static void showFor(final ChatActivity chatActivity, MessageObject messageObject) {
+        TLRPC$WallPaper tLRPC$WallPaper;
+        TLRPC$MessageAction tLRPC$MessageAction = messageObject.messageOwner.action;
+        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetChatWallPaper) {
+            TLRPC$WallPaper tLRPC$WallPaper2 = ((TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction).wallpaper;
+            if (tLRPC$WallPaper2.pattern || tLRPC$WallPaper2.document == null) {
+                String str = tLRPC$WallPaper2.slug;
+                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper2.settings;
+                WallpapersListActivity.ColorWallpaper colorWallpaper = new WallpapersListActivity.ColorWallpaper(str, tLRPC$WallPaperSettings.background_color, tLRPC$WallPaperSettings.second_background_color, tLRPC$WallPaperSettings.third_background_color, tLRPC$WallPaperSettings.fourth_background_color, AndroidUtilities.getWallpaperRotation(tLRPC$WallPaperSettings.rotation, false), r3.intensity / 100.0f, tLRPC$WallPaper2.settings.motion, null);
+                if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) {
+                    colorWallpaper.pattern = (TLRPC$TL_wallPaper) tLRPC$WallPaper2;
+                }
+                tLRPC$WallPaper = colorWallpaper;
+            } else {
+                tLRPC$WallPaper = tLRPC$WallPaper2;
+            }
+            final boolean isDark = Theme.getActiveTheme().isDark();
+            ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(tLRPC$WallPaper, null, true, false) {
+                @Override
+                public void onFragmentClosed() {
+                    super.onFragmentClosed();
+                    ChatActivity.ThemeDelegate themeDelegate = chatActivity.themeDelegate;
+                    themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), chatActivity.themeDelegate.getCurrentWallpaper(), false, Boolean.valueOf(isDark));
+                }
+            };
+            TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$WallPaper2.settings;
+            if (tLRPC$WallPaperSettings2 != null) {
+                themePreviewActivity.setInitialModes(tLRPC$WallPaperSettings2.blur, tLRPC$WallPaperSettings2.motion, tLRPC$WallPaperSettings2.intensity / 100.0f);
+            }
+            themePreviewActivity.setCurrentServerWallpaper(messageObject);
+            themePreviewActivity.setDialogId(messageObject.getDialogId());
+            themePreviewActivity.setResourceProvider(chatActivity.themeDelegate);
+            themePreviewActivity.setOnSwitchDayNightDelegate(new DayNightSwitchDelegate(isDark, chatActivity) {
+                boolean forceDark;
+                final ChatActivity val$chatActivity;
+                final boolean val$initialIsDark;
+
+                {
+                    this.val$initialIsDark = isDark;
+                    this.val$chatActivity = chatActivity;
+                    this.forceDark = isDark;
+                }
+
+                @Override
+                public boolean isDark() {
+                    return this.forceDark;
+                }
+
+                @Override
+                public boolean supportsAnimation() {
+                    return true;
+                }
+
+                @Override
+                public void switchDayNight(boolean z) {
+                    this.forceDark = !this.forceDark;
+                    ChatActivity.ThemeDelegate themeDelegate = this.val$chatActivity.themeDelegate;
+                    themeDelegate.setCurrentTheme(themeDelegate.getCurrentTheme(), this.val$chatActivity.themeDelegate.getCurrentWallpaper(), z, Boolean.valueOf(this.forceDark));
+                }
+            });
+            chatActivity.presentFragment(themePreviewActivity);
+        }
+    }
+
+    public void showPatternsView(final int r19, final boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.showPatternsView(int, boolean, boolean):void");
+    }
+
+    private void updateApplyButton1(boolean z) {
+        BlurButton blurButton;
+        int i;
+        String formatString;
+        long j = this.dialogId;
+        if (j > 0) {
+            blurButton = this.applyButton1;
+            i = R.string.ApplyWallpaperForMe;
+        } else {
+            if (j < 0) {
+                TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+                if (chat == null) {
+                    blurButton = this.applyButton1;
+                    formatString = LocaleController.formatString(R.string.ApplyWallpaperForChannel, LocaleController.getString(R.string.AccDescrChannel).toLowerCase());
+                    blurButton.setText(formatString);
+                }
+                this.applyButton1.setText(LocaleController.formatString(R.string.ApplyWallpaperForChannel, chat.title));
+                TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
+                if (tL_stories$TL_premium_boostsStatus == null || tL_stories$TL_premium_boostsStatus.level >= getCustomWallpaperLevelMin()) {
+                    if (this.boostsStatus == null) {
+                        checkBoostsLevel();
+                        return;
+                    } else {
+                        this.applyButton1.setSubText(null, z);
+                        return;
+                    }
+                }
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
+                if (this.lockSpan == null) {
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
+                    this.lockSpan = coloredImageSpan;
+                    coloredImageSpan.setTopOffset(1);
+                }
+                spannableStringBuilder.setSpan(this.lockSpan, 0, 1, 33);
+                spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.formatPluralString("ReactionLevelRequiredBtn", getCustomWallpaperLevelMin(), new Object[0]));
+                this.applyButton1.setSubText(spannableStringBuilder, z);
+                return;
+            }
+            blurButton = this.applyButton1;
+            i = R.string.ApplyWallpaper;
+        }
+        formatString = LocaleController.getString(i);
+        blurButton.setText(formatString);
+    }
+
+    public void updateBlurred() {
+        if (this.isBlurred && this.blurredBitmap == null) {
+            Bitmap bitmap = this.currentWallpaperBitmap;
+            if (bitmap != null) {
+                this.originalBitmap = bitmap;
+            } else {
+                ImageReceiver imageReceiver = this.backgroundImage.getImageReceiver();
+                if (imageReceiver.hasNotThumb() || imageReceiver.hasStaticThumb()) {
+                    this.originalBitmap = imageReceiver.getBitmap();
+                    bitmap = imageReceiver.getBitmap();
+                }
+            }
+            this.blurredBitmap = Utilities.blurWallpaper(bitmap);
+        }
+        if (!this.isBlurred) {
+            setCurrentImage(false);
+            return;
+        }
+        Bitmap bitmap2 = this.blurredBitmap;
+        if (bitmap2 != null) {
+            this.backgroundImage.setImageBitmap(bitmap2);
+        }
+    }
+
+    private void updateButtonState(boolean r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.updateButtonState(boolean, boolean):void");
+    }
+
+    public void updateIntensity() {
+        this.backgroundImage.getImageReceiver().setAlpha(Math.abs(this.currentIntensity));
+        this.backgroundImage.invalidate();
+        this.patternsListView.invalidateViews();
+        if (this.currentIntensity >= 0.0f) {
+            this.backgroundImage.getImageReceiver().setGradientBitmap(null);
+        } else {
+            if (Build.VERSION.SDK_INT >= 29) {
+                this.backgroundImage.getImageReceiver().setBlendMode(null);
+            }
+            if (this.backgroundImage.getBackground() instanceof MotionBackgroundDrawable) {
+                this.backgroundImage.getImageReceiver().setGradientBitmap(((MotionBackgroundDrawable) this.backgroundImage.getBackground()).getBitmap());
+            }
+        }
+        ThemeDelegate themeDelegate = this.themeDelegate;
+        int i = this.checkColor;
+        themeDelegate.applyChatServiceMessageColor(new int[]{i, i, i, i}, this.backgroundImage.getBackground(), this.backgroundImage.getBackground(), Float.valueOf(this.currentIntensity));
+        invalidateBlur();
+    }
+
+    private void updateMotionButton() {
+        int i = this.screenType;
+        if (i == 1 || i == 2) {
+            if (this.selectedPattern == null && (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+                this.backgroundCheckBoxView[2].setChecked(false, true);
+            }
+            this.backgroundCheckBoxView[this.selectedPattern != null ? (char) 2 : (char) 0].setVisibility(0);
+            AnimatorSet animatorSet = new AnimatorSet();
+            WallpaperCheckBoxView wallpaperCheckBoxView = this.backgroundCheckBoxView[2];
+            Property property = View.ALPHA;
+            animatorSet.playTogether(ObjectAnimator.ofFloat(wallpaperCheckBoxView, (Property<WallpaperCheckBoxView, Float>) property, this.selectedPattern != null ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) property, this.selectedPattern != null ? 0.0f : 1.0f));
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    ThemePreviewActivity.this.backgroundCheckBoxView[ThemePreviewActivity.this.selectedPattern != null ? (char) 0 : (char) 2].setVisibility(4);
+                }
+            });
+            animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+            animatorSet.setDuration(200L);
+            animatorSet.start();
+            return;
+        }
+        boolean isEnabled = this.backgroundCheckBoxView[0].isEnabled();
+        TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.selectedPattern;
+        if (isEnabled == (tLRPC$TL_wallPaper != null)) {
+            return;
+        }
+        if (tLRPC$TL_wallPaper == null) {
+            this.backgroundCheckBoxView[0].setChecked(false, true);
+        }
+        this.backgroundCheckBoxView[0].setEnabled(this.selectedPattern != null);
+        if (this.selectedPattern != null) {
+            this.backgroundCheckBoxView[0].setVisibility(0);
+        }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.backgroundCheckBoxView[1].getLayoutParams();
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        int dp = (layoutParams.width + AndroidUtilities.dp(9.0f)) / 2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[0], (Property<WallpaperCheckBoxView, Float>) View.ALPHA, this.selectedPattern == null ? 0.0f : 1.0f));
+        WallpaperCheckBoxView wallpaperCheckBoxView2 = this.backgroundCheckBoxView[0];
+        Property property2 = View.TRANSLATION_X;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(wallpaperCheckBoxView2, (Property<WallpaperCheckBoxView, Float>) property2, this.selectedPattern != null ? 0.0f : dp));
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.backgroundCheckBoxView[1], (Property<WallpaperCheckBoxView, Float>) property2, this.selectedPattern == null ? -dp : 0.0f));
+        animatorSet2.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+        animatorSet2.setDuration(200L);
+        animatorSet2.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (ThemePreviewActivity.this.selectedPattern == null) {
+                    ThemePreviewActivity.this.backgroundCheckBoxView[0].setVisibility(4);
+                }
+            }
+        });
+        animatorSet2.start();
+    }
+
+    private void updatePlayAnimationView(boolean r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.updatePlayAnimationView(boolean):void");
+    }
+
+    private void updateSelectedPattern(boolean z) {
+        int childCount = this.patternsListView.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = this.patternsListView.getChildAt(i);
+            if (childAt instanceof PatternCell) {
+                ((PatternCell) childAt).updateSelected(z);
+            }
+        }
+    }
+
+    @Override
+    public android.view.View createView(android.content.Context r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ThemePreviewActivity.createView(android.content.Context):android.view.View");
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        TLRPC$TL_wallPaper tLRPC$TL_wallPaper;
+        String str;
+        if (i == NotificationCenter.chatWasBoostedByUser) {
+            if (this.dialogId == ((Long) objArr[2]).longValue()) {
+                this.boostsStatus = (TL_stories$TL_premium_boostsStatus) objArr[0];
+                updateApplyButton1(true);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.emojiLoaded) {
+            RecyclerListView recyclerListView = this.listView;
+            if (recyclerListView == null) {
+                return;
+            }
+            int childCount = recyclerListView.getChildCount();
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = this.listView.getChildAt(i3);
+                if (childAt instanceof DialogCell) {
+                    ((DialogCell) childAt).update(0);
+                }
+            }
+            return;
+        }
+        if (i == NotificationCenter.invalidateMotionBackground) {
+            RecyclerListView recyclerListView2 = this.listView2;
+            if (recyclerListView2 != null) {
+                recyclerListView2.invalidateViews();
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.didSetNewWallpapper) {
+            if (this.page2 != null) {
+                setCurrentImage(true);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.wallpapersNeedReload) {
+            Object obj = this.currentWallpaper;
+            if (obj instanceof WallpapersListActivity.FileWallpaper) {
+                WallpapersListActivity.FileWallpaper fileWallpaper = (WallpapersListActivity.FileWallpaper) obj;
+                if (fileWallpaper.slug == null) {
+                    fileWallpaper.slug = (String) objArr[0];
+                    return;
+                }
+                return;
+            }
+            return;
+        }
+        long j = 0;
+        if (i != NotificationCenter.wallpapersDidLoad) {
+            if (i != NotificationCenter.wallpaperSettedToUser || this.dialogId == 0) {
+                return;
+            }
+            lambda$onBackPressed$308();
+            return;
+        }
+        ArrayList arrayList = (ArrayList) objArr[0];
+        this.patterns.clear();
+        this.patternsDict.clear();
+        int size = arrayList.size();
+        boolean z = false;
+        for (int i4 = 0; i4 < size; i4++) {
+            TLRPC$WallPaper tLRPC$WallPaper = (TLRPC$WallPaper) arrayList.get(i4);
+            if ((tLRPC$WallPaper instanceof TLRPC$TL_wallPaper) && tLRPC$WallPaper.pattern) {
+                TLRPC$Document tLRPC$Document = tLRPC$WallPaper.document;
+                if (tLRPC$Document != null && !this.patternsDict.containsKey(Long.valueOf(tLRPC$Document.id))) {
+                    this.patterns.add(tLRPC$WallPaper);
+                    this.patternsDict.put(Long.valueOf(tLRPC$WallPaper.document.id), tLRPC$WallPaper);
+                }
+                Theme.ThemeAccent themeAccent = this.accent;
+                if (themeAccent != null && (str = themeAccent.patternSlug) != null && str.equals(tLRPC$WallPaper.slug)) {
+                    this.selectedPattern = (TLRPC$TL_wallPaper) tLRPC$WallPaper;
+                    setCurrentImage(false);
+                    updateButtonState(false, false);
+                } else if (this.accent == null) {
+                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = this.selectedPattern;
+                    if (tLRPC$TL_wallPaper2 != null) {
+                        String str2 = tLRPC$TL_wallPaper2.slug;
+                        if (str2 != null) {
+                            if (!str2.equals(tLRPC$WallPaper.slug)) {
+                            }
+                        }
+                    }
+                }
+                z = true;
+            }
+        }
+        if (!z && (tLRPC$TL_wallPaper = this.selectedPattern) != null) {
+            this.patterns.add(0, tLRPC$TL_wallPaper);
+        }
+        PatternsAdapter patternsAdapter = this.patternsAdapter;
+        if (patternsAdapter != null) {
+            patternsAdapter.notifyDataSetChanged();
+        }
+        int size2 = arrayList.size();
+        for (int i5 = 0; i5 < size2; i5++) {
+            TLRPC$WallPaper tLRPC$WallPaper2 = (TLRPC$WallPaper) arrayList.get(i5);
+            if (tLRPC$WallPaper2 instanceof TLRPC$TL_wallPaper) {
+                j = MediaDataController.calcHash(j, tLRPC$WallPaper2.id);
+            }
+        }
+        TLRPC$TL_account_getWallPapers tLRPC$TL_account_getWallPapers = new TLRPC$TL_account_getWallPapers();
+        tLRPC$TL_account_getWallPapers.hash = j;
+        ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getWallPapers, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ThemePreviewActivity.this.lambda$didReceivedNotification$31(tLObject, tLRPC$TL_error);
+            }
+        }), this.classGuid);
+    }
+
+    @Override
+    public int getObserverTag() {
+        return this.TAG;
+    }
+
+    @Override
+    public Theme.ResourcesProvider getResourceProvider() {
+        return this.themeDelegate;
+    }
+
+    @Override
+    public ArrayList getThemeDescriptions() {
+        return this.shouldShowDayNightIcon ? getThemeDescriptionsInternal() : super.getThemeDescriptions();
+    }
+
+    public ArrayList getThemeDescriptionsInternal() {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -4774,7 +4577,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+        ArrayList arrayList = new ArrayList();
         FrameLayout frameLayout = this.page1;
         int i = ThemeDescription.FLAG_BACKGROUND;
         int i2 = Theme.key_windowBackgroundWhite;
@@ -4877,651 +4680,241 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
         arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlackText));
         arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_dialogBackgroundGray));
         for (int i17 = 0; i17 < arrayList.size(); i17++) {
-            arrayList.get(i17).resourcesProvider = getResourceProvider();
+            ((ThemeDescription) arrayList.get(i17)).resourcesProvider = getResourceProvider();
         }
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptionsInternal$33() {
-        ActionBarMenuItem actionBarMenuItem = this.dropDownContainer;
-        int i = 0;
+    public boolean insideBottomSheet() {
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        return (iNavigationLayout == null || iNavigationLayout.getBottomSheet() == null) ? false : true;
+    }
+
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        if (this.screenType != 2) {
+            return false;
+        }
+        return !this.hasScrollingBackground || motionEvent == null || motionEvent.getY() <= ((float) (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight()));
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (!checkDiscard()) {
+            return false;
+        }
+        cancelThemeApply(true);
+        return true;
+    }
+
+    @Override
+    public void onBottomSheetCreated() {
+        super.onBottomSheetCreated();
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout == null || iNavigationLayout.getBottomSheet() == null) {
+            return;
+        }
+        this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
+        if (this.screenType != 2 || this.dialogId == 0) {
+            return;
+        }
+        this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
+    }
+
+    @Override
+    public void onFailedDownload(String str, boolean z) {
+        updateButtonState(true, z);
+    }
+
+    @Override
+    public boolean onFragmentCreate() {
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatWasBoostedByUser);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.invalidateMotionBackground);
+        getNotificationCenter().addObserver(this, NotificationCenter.wallpaperSettedToUser);
+        int i = this.screenType;
+        if (i == 1 || i == 0) {
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewWallpapper);
+        }
+        int i2 = this.screenType;
+        if (i2 == 2 || i2 == 1) {
+            Theme.setChangingWallpaper(true);
+        }
+        if (this.screenType == 0 && this.accent == null) {
+            this.isMotion = Theme.isWallpaperMotion();
+        } else {
+            Point point = AndroidUtilities.displaySize;
+            int min = Math.min(point.x, point.y);
+            Point point2 = AndroidUtilities.displaySize;
+            this.imageFilter = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (Math.max(point2.x, point2.y) / AndroidUtilities.density)) + "_f";
+            Point point3 = AndroidUtilities.displaySize;
+            this.maxWallpaperSize = Math.max(point3.x, point3.y);
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
+            NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
+            this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
+            if (this.patterns == null) {
+                this.patterns = new ArrayList();
+                MessagesStorage.getInstance(this.currentAccount).getWallpapers();
+            }
+        }
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatWasBoostedByUser);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.invalidateMotionBackground);
+        getNotificationCenter().removeObserver(this, NotificationCenter.wallpaperSettedToUser);
+        FrameLayout frameLayout = this.frameLayout;
+        if (frameLayout != null && this.onGlobalLayoutListener != null) {
+            frameLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this.onGlobalLayoutListener);
+        }
+        int i = this.screenType;
+        if ((i == 2 || i == 1) && this.onSwitchDayNightDelegate == null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    Theme.setChangingWallpaper(false);
+                }
+            });
+        }
+        int i2 = this.screenType;
+        if (i2 == 2) {
+            Bitmap bitmap = this.blurredBitmap;
+            if (bitmap != null) {
+                bitmap.recycle();
+                this.blurredBitmap = null;
+            }
+            this.themeDelegate.applyChatServiceMessageColor();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+        } else if (i2 == 1 || i2 == 0) {
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewWallpapper);
+        }
+        if (this.screenType != 0 || this.accent != null) {
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersNeedReload);
+            NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.wallpapersDidLoad);
+        }
+        super.onFragmentDestroy();
+        checkBlur(null);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (this.isMotion) {
+            this.parallaxEffect.setEnabled(false);
+        }
+        Theme.disallowChangeServiceMessageColor = false;
+    }
+
+    @Override
+    public void onProgressDownload(String str, long j, long j2) {
+    }
+
+    @Override
+    public void onProgressUpload(String str, long j, long j2, boolean z) {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DialogsAdapter dialogsAdapter = this.dialogsAdapter;
+        if (dialogsAdapter != null) {
+            dialogsAdapter.notifyDataSetChanged();
+        }
+        MessagesAdapter messagesAdapter = this.messagesAdapter;
+        if (messagesAdapter != null) {
+            messagesAdapter.notifyDataSetChanged();
+        }
+        if (this.isMotion) {
+            this.parallaxEffect.setEnabled(true);
+        }
+        Theme.disallowChangeServiceMessageColor = true;
+    }
+
+    @Override
+    public void onSuccessDownload(String str) {
+        updateButtonState(false, true);
+    }
+
+    @Override
+    public void onTransitionAnimationStart(boolean z, boolean z2) {
+        super.onTransitionAnimationStart(z, z2);
+        if (z || this.screenType != 2) {
+            return;
+        }
+        this.themeDelegate.applyChatServiceMessageColor();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+    }
+
+    public void setDelegate(WallpaperActivityDelegate wallpaperActivityDelegate) {
+        this.delegate = wallpaperActivityDelegate;
+    }
+
+    public void setDialogId(long j) {
+        this.dialogId = j;
+        this.self = j == 0 || j == getUserConfig().getClientUserId();
+    }
+
+    public void setForceDark(boolean z, boolean z2) {
+        if (z2) {
+            RLottieDrawable rLottieDrawable = this.sunDrawable;
+            rLottieDrawable.setCustomEndFrame(z ? rLottieDrawable.getFramesCount() : 0);
+            RLottieDrawable rLottieDrawable2 = this.sunDrawable;
+            if (rLottieDrawable2 != null) {
+                rLottieDrawable2.start();
+                return;
+            }
+            return;
+        }
+        int framesCount = z ? this.sunDrawable.getFramesCount() - 1 : 0;
+        this.sunDrawable.setCurrentFrame(framesCount, false, true);
+        this.sunDrawable.setCustomEndFrame(framesCount);
+        ActionBarMenuItem actionBarMenuItem = this.dayNightItem;
         if (actionBarMenuItem != null) {
-            actionBarMenuItem.redrawPopup(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
-            this.dropDownContainer.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem), false);
+            actionBarMenuItem.invalidate();
         }
-        Drawable drawable = this.sheetDrawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
-        }
-        FrameLayout frameLayout = this.bottomOverlayChat;
-        if (frameLayout != null) {
-            frameLayout.invalidate();
-        }
-        if (this.onSwitchDayNightDelegate != null) {
-            INavigationLayout iNavigationLayout = this.parentLayout;
-            if (iNavigationLayout != null && iNavigationLayout.getBottomSheet() != null) {
-                this.parentLayout.getBottomSheet().fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
-                if (this.screenType == 2 && this.dialogId != 0) {
-                    this.parentLayout.getBottomSheet().setOverlayNavBarColor(-16777216);
+    }
+
+    public void setInitialModes(boolean z, boolean z2, float f) {
+        this.isBlurred = z;
+        this.isMotion = z2;
+        this.dimAmount = f;
+    }
+
+    public void setOnSwitchDayNightDelegate(DayNightSwitchDelegate dayNightSwitchDelegate) {
+        this.onSwitchDayNightDelegate = dayNightSwitchDelegate;
+    }
+
+    public void setPatterns(ArrayList arrayList) {
+        this.patterns = arrayList;
+        if (this.screenType == 1 || (this.currentWallpaper instanceof WallpapersListActivity.ColorWallpaper)) {
+            WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) this.currentWallpaper;
+            if (colorWallpaper.patternId != 0) {
+                int size = arrayList.size();
+                int i = 0;
+                while (true) {
+                    if (i >= size) {
+                        break;
+                    }
+                    TLRPC$TL_wallPaper tLRPC$TL_wallPaper = (TLRPC$TL_wallPaper) this.patterns.get(i);
+                    if (tLRPC$TL_wallPaper.id == colorWallpaper.patternId) {
+                        this.selectedPattern = tLRPC$TL_wallPaper;
+                        break;
+                    }
+                    i++;
                 }
-            } else {
-                setNavigationBarColor(getThemedColor(Theme.key_dialogBackground));
+                this.currentIntensity = colorWallpaper.intensity;
             }
-        }
-        if (this.backgroundCheckBoxView != null) {
-            int i2 = 0;
-            while (true) {
-                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr = this.backgroundCheckBoxView;
-                if (i2 >= wallpaperCheckBoxViewArr.length) {
-                    break;
-                }
-                WallpaperCheckBoxView wallpaperCheckBoxView = wallpaperCheckBoxViewArr[i2];
-                if (wallpaperCheckBoxView != null) {
-                    wallpaperCheckBoxView.invalidate();
-                }
-                i2++;
-            }
-        }
-        if (this.messagesCheckBoxView != null) {
-            while (true) {
-                WallpaperCheckBoxView[] wallpaperCheckBoxViewArr2 = this.messagesCheckBoxView;
-                if (i >= wallpaperCheckBoxViewArr2.length) {
-                    break;
-                }
-                WallpaperCheckBoxView wallpaperCheckBoxView2 = wallpaperCheckBoxViewArr2[i];
-                if (wallpaperCheckBoxView2 != null) {
-                    wallpaperCheckBoxView2.invalidate();
-                }
-                i++;
-            }
-        }
-        TextView textView = this.patternTitleView;
-        if (textView != null) {
-            textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        }
-        ColorPicker colorPicker = this.colorPicker;
-        if (colorPicker != null) {
-            colorPicker.invalidate();
         }
     }
 
     @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        if (this.shouldShowDayNightIcon) {
-            return getThemeDescriptionsInternal();
-        }
-        return super.getThemeDescriptions();
+    public void setResourceProvider(Theme.ResourcesProvider resourcesProvider) {
+        this.themeDelegate.parentProvider = resourcesProvider;
     }
 
-    private void createServiceMessageLocal(TLRPC$WallPaper tLRPC$WallPaper, boolean z) {
-        TLRPC$TL_messageService tLRPC$TL_messageService = new TLRPC$TL_messageService();
-        tLRPC$TL_messageService.random_id = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
-        tLRPC$TL_messageService.dialog_id = this.dialogId;
-        tLRPC$TL_messageService.unread = true;
-        tLRPC$TL_messageService.out = true;
-        int newMessageId = getUserConfig().getNewMessageId();
-        tLRPC$TL_messageService.id = newMessageId;
-        tLRPC$TL_messageService.local_id = newMessageId;
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
-        if (ChatObject.isChannel(chat)) {
-            TLRPC$TL_peerChannel tLRPC$TL_peerChannel = new TLRPC$TL_peerChannel();
-            tLRPC$TL_messageService.from_id = tLRPC$TL_peerChannel;
-            tLRPC$TL_peerChannel.channel_id = chat.id;
-            TLRPC$TL_peerChannel tLRPC$TL_peerChannel2 = new TLRPC$TL_peerChannel();
-            tLRPC$TL_messageService.peer_id = tLRPC$TL_peerChannel2;
-            tLRPC$TL_peerChannel2.channel_id = chat.id;
-        } else {
-            TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
-            tLRPC$TL_messageService.from_id = tLRPC$TL_peerUser;
-            tLRPC$TL_peerUser.user_id = getUserConfig().getClientUserId();
-            TLRPC$TL_peerUser tLRPC$TL_peerUser2 = new TLRPC$TL_peerUser();
-            tLRPC$TL_messageService.peer_id = tLRPC$TL_peerUser2;
-            tLRPC$TL_peerUser2.user_id = this.dialogId;
-        }
-        tLRPC$TL_messageService.flags |= 256;
-        tLRPC$TL_messageService.date = getConnectionsManager().getCurrentTime();
-        TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = new TLRPC$TL_messageActionSetChatWallPaper();
-        tLRPC$TL_messageService.action = tLRPC$TL_messageActionSetChatWallPaper;
-        tLRPC$TL_messageActionSetChatWallPaper.wallpaper = tLRPC$WallPaper;
-        tLRPC$TL_messageActionSetChatWallPaper.for_both = z;
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        arrayList.add(new MessageObject(this.currentAccount, tLRPC$TL_messageService, false, false));
-        new ArrayList().add(tLRPC$TL_messageService);
-        MessagesController.getInstance(this.currentAccount).updateInterfaceWithMessages(this.dialogId, arrayList, 0);
-    }
-
-    public class BackgroundView extends BackupImageView {
-        public Drawable background;
-        boolean drawBackground;
-        public float tx;
-        public float ty;
-
-        public BackgroundView(Context context) {
-            super(context);
-            this.drawBackground = true;
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
-            themePreviewActivity.parallaxScale = themePreviewActivity.parallaxEffect.getScale(getMeasuredWidth(), getMeasuredHeight());
-            if (ThemePreviewActivity.this.isMotion) {
-                setScaleX(ThemePreviewActivity.this.parallaxScale);
-                setScaleY(ThemePreviewActivity.this.parallaxScale);
-            }
-            ThemePreviewActivity themePreviewActivity2 = ThemePreviewActivity.this;
-            themePreviewActivity2.progressVisible = themePreviewActivity2.screenType == 2 && getMeasuredWidth() <= getMeasuredHeight();
-            int measuredWidth = getMeasuredWidth() + (getMeasuredHeight() << 16);
-            if (ThemePreviewActivity.this.lastSizeHash != measuredWidth) {
-                ThemePreviewActivity.this.hasScrollingBackground = false;
-                if (ThemePreviewActivity.this.currentWallpaperBitmap != null) {
-                    int width = (int) (ThemePreviewActivity.this.currentWallpaperBitmap.getWidth() * (getMeasuredHeight() / ThemePreviewActivity.this.currentWallpaperBitmap.getHeight()));
-                    if (width - getMeasuredWidth() > 100) {
-                        ThemePreviewActivity.this.hasScrollingBackground = true;
-                        ThemePreviewActivity.this.croppedWidth = (int) (getMeasuredWidth() * (ThemePreviewActivity.this.currentWallpaperBitmap.getHeight() / getMeasuredHeight()));
-                        ThemePreviewActivity themePreviewActivity3 = ThemePreviewActivity.this;
-                        float measuredWidth2 = (width - getMeasuredWidth()) / 2.0f;
-                        themePreviewActivity3.currentScrollOffset = measuredWidth2;
-                        themePreviewActivity3.defaultScrollOffset = measuredWidth2;
-                        ThemePreviewActivity themePreviewActivity4 = ThemePreviewActivity.this;
-                        themePreviewActivity4.maxScrollOffset = themePreviewActivity4.currentScrollOffset * 2.0f;
-                        setSize(width, getMeasuredHeight());
-                        this.drawFromStart = true;
-                        ThemePreviewActivity.this.invalidateBlur();
-                    }
-                }
-                if (!ThemePreviewActivity.this.hasScrollingBackground) {
-                    setSize(-1, -1);
-                    this.drawFromStart = false;
-                }
-            }
-            ThemePreviewActivity.this.lastSizeHash = measuredWidth;
-        }
-
-        @Override
-        public void onDraw(Canvas canvas) {
-            this.tx = 0.0f;
-            this.ty = 0.0f;
-            if (this.drawBackground) {
-                Drawable drawable = this.background;
-                if ((drawable instanceof ColorDrawable) || (drawable instanceof GradientDrawable) || (drawable instanceof MotionBackgroundDrawable)) {
-                    drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-                    this.background.draw(canvas);
-                } else if (drawable instanceof BitmapDrawable) {
-                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
-                        canvas.save();
-                        float f = 2.0f / AndroidUtilities.density;
-                        canvas.scale(f, f);
-                        this.background.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f), (int) Math.ceil(getMeasuredHeight() / f));
-                        this.background.draw(canvas);
-                        canvas.restore();
-                    } else {
-                        int measuredHeight = getMeasuredHeight();
-                        float max = Math.max(getMeasuredWidth() / this.background.getIntrinsicWidth(), measuredHeight / this.background.getIntrinsicHeight());
-                        int ceil = (int) Math.ceil(this.background.getIntrinsicWidth() * max * ThemePreviewActivity.this.parallaxScale);
-                        int ceil2 = (int) Math.ceil(this.background.getIntrinsicHeight() * max * ThemePreviewActivity.this.parallaxScale);
-                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
-                        int i = (measuredHeight - ceil2) / 2;
-                        this.ty = i;
-                        this.background.setBounds(measuredWidth, i, ceil + measuredWidth, ceil2 + i);
-                        this.background.draw(canvas);
-                    }
-                }
-            }
-            if (ThemePreviewActivity.this.hasScrollingBackground) {
-                if (!ThemePreviewActivity.this.scroller.isFinished() && ThemePreviewActivity.this.scroller.computeScrollOffset()) {
-                    float startX = ThemePreviewActivity.this.scroller.getStartX();
-                    ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
-                    if (startX < themePreviewActivity.maxScrollOffset && themePreviewActivity.scroller.getStartX() > 0) {
-                        ThemePreviewActivity.this.currentScrollOffset = r1.scroller.getCurrX();
-                    }
-                    ThemePreviewActivity.this.invalidateBlur();
-                    invalidate();
-                }
-                canvas.save();
-                float f2 = -ThemePreviewActivity.this.currentScrollOffset;
-                this.tx = f2;
-                canvas.translate(f2, 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
-            } else {
-                super.onDraw(canvas);
-            }
-            if (!ThemePreviewActivity.this.shouldShowBrightnessControll || ThemePreviewActivity.this.dimAmount <= 0.0f) {
-                return;
-            }
-            canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
-        }
-
-        @Override
-        public Drawable getBackground() {
-            return this.background;
-        }
-
-        @Override
-        public void setBackground(Drawable drawable) {
-            this.background = drawable;
-            if (drawable != null) {
-                drawable.setCallback(this);
-            }
-        }
-
-        @Override
-        protected boolean verifyDrawable(Drawable drawable) {
-            return this.background == drawable || super.verifyDrawable(drawable);
-        }
-    }
-
-    private class MessageDrawable extends Theme.MessageDrawable {
-        public MessageDrawable(int i, boolean z, boolean z2) {
-            super(i, z, z2);
-        }
-
-        @Override
-        public void setTop(int i, int i2, int i3, boolean z, boolean z2) {
-            if (ThemePreviewActivity.this.setupFinished) {
-                return;
-            }
-            super.setTop(i, i2, i3, z, z2);
-        }
-
-        @Override
-        public void setTop(int i, int i2, int i3, int i4, int i5, int i6, boolean z, boolean z2) {
-            if (ThemePreviewActivity.this.setupFinished) {
-                return;
-            }
-            super.setTop(i, i2, i3, i4, i5, i6, z, z2);
-        }
-    }
-
-    public class BlurButton extends View {
-        private final ColorFilter colorFilter;
-        private final Paint dimPaint;
-        private final Paint dimPaint2;
-        private CircularProgressDrawable loadingDrawable;
-        private float loadingT;
-        private final Drawable rippleDrawable;
-        private Text subtext;
-        private boolean subtextShown;
-        private AnimatedFloat subtextShownT;
-        private Text text;
-
-        public BlurButton(Context context) {
-            super(context);
-            this.subtextShownT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(285212671, 8, 8);
-            this.rippleDrawable = createRadSelectorDrawable;
-            this.dimPaint = new Paint(1);
-            this.dimPaint2 = new Paint(1);
-            this.loadingT = 0.0f;
-            createRadSelectorDrawable.setCallback(this);
-            ColorMatrix colorMatrix = new ColorMatrix();
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
-            this.colorFilter = new ColorMatrixColorFilter(colorMatrix);
-        }
-
-        public void setText(CharSequence charSequence) {
-            this.text = new Text(charSequence, 14.0f, AndroidUtilities.bold());
-        }
-
-        public void setSubText(CharSequence charSequence, boolean z) {
-            if (charSequence != null) {
-                this.subtext = new Text(charSequence, 12.0f);
-            }
-            boolean z2 = charSequence != null;
-            this.subtextShown = z2;
-            if (!z) {
-                this.subtextShownT.set(z2, true);
-            }
-            invalidate();
-        }
-
-        public CharSequence getText() {
-            Text text = this.text;
-            if (text != null) {
-                return text.getText();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            Text text;
-            float dp = AndroidUtilities.dp(8.0f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-            Theme.applyServiceShaderMatrixForView(this, ThemePreviewActivity.this.backgroundImage, ThemePreviewActivity.this.themeDelegate);
-            Paint paint = ThemePreviewActivity.this.themeDelegate.getPaint("paintChatActionBackground");
-            ColorFilter colorFilter = paint.getColorFilter();
-            paint.setColorFilter(this.colorFilter);
-            canvas.drawRoundRect(rectF, dp, dp, paint);
-            paint.setColorFilter(colorFilter);
-            if (ThemePreviewActivity.this.shouldShowBrightnessControll && ThemePreviewActivity.this.dimAmount > 0.0f) {
-                this.dimPaint2.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (ThemePreviewActivity.this.dimAmount * 255.0f * ThemePreviewActivity.this.progressToDarkTheme)));
-                canvas.drawRoundRect(rectF, dp, dp, this.dimPaint2);
-            }
-            this.dimPaint.setColor(520093695);
-            canvas.drawRoundRect(rectF, dp, dp, this.dimPaint);
-            if (this.loadingT > 0.0f) {
-                if (this.loadingDrawable == null) {
-                    this.loadingDrawable = new CircularProgressDrawable(-1);
-                }
-                int dp2 = (int) ((1.0f - this.loadingT) * AndroidUtilities.dp(-24.0f));
-                this.loadingDrawable.setBounds(0, dp2, getWidth(), getHeight() + dp2);
-                this.loadingDrawable.setAlpha((int) (this.loadingT * 255.0f));
-                this.loadingDrawable.draw(canvas);
-                invalidate();
-            }
-            float f = this.subtextShownT.set(this.subtextShown);
-            if (this.loadingT < 1.0f && (text = this.text) != null) {
-                text.ellipsize(getWidth() - AndroidUtilities.dp(14.0f)).draw(canvas, (getWidth() - this.text.getWidth()) / 2.0f, ((getHeight() / 2.0f) + (this.loadingT * AndroidUtilities.dp(24.0f))) - (AndroidUtilities.dp(7.0f) * f), -1, 1.0f - this.loadingT);
-            }
-            if (this.loadingT < 1.0f && this.subtext != null) {
-                canvas.save();
-                canvas.scale(f, f, getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(11.0f));
-                this.subtext.ellipsize(getWidth() - AndroidUtilities.dp(14.0f)).draw(canvas, (getWidth() - this.subtext.getWidth()) / 2.0f, (getHeight() / 2.0f) + (this.loadingT * AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(11.0f), Theme.multAlpha(-1, 0.75f), 1.0f - this.loadingT);
-                canvas.restore();
-            }
-            this.rippleDrawable.setBounds(0, 0, getWidth(), getHeight());
-            this.rippleDrawable.draw(canvas);
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            boolean z;
-            if (motionEvent.getAction() == 0) {
-                if (Build.VERSION.SDK_INT >= 21) {
-                    this.rippleDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                }
-                this.rippleDrawable.setState(new int[]{16842910, 16842919});
-                z = true;
-            } else {
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    this.rippleDrawable.setState(StateSet.NOTHING);
-                }
-                z = false;
-            }
-            return super.onTouchEvent(motionEvent) || z;
-        }
-
-        @Override
-        protected boolean verifyDrawable(Drawable drawable) {
-            return drawable == this.rippleDrawable || super.verifyDrawable(drawable);
-        }
-    }
-
-    public class ThemeDelegate implements Theme.ResourcesProvider {
-        public final Paint chat_actionBackgroundGradientDarkenPaint;
-        public final TextPaint chat_actionTextPaint;
-        public final TextPaint chat_actionTextPaint2;
-        public final TextPaint chat_botButtonPaint;
-        public Theme.ResourcesProvider parentProvider;
-        private Bitmap serviceBitmap;
-        private Matrix serviceBitmapMatrix;
-        public BitmapShader serviceBitmapShader;
-        private final SparseIntArray currentColors = new SparseIntArray();
-        public final Paint chat_actionBackgroundPaint = new Paint(3);
-        public final Paint chat_actionBackgroundSelectedPaint = new Paint(3);
-
-        @Override
-        public ColorFilter getAnimatedEmojiColorFilter() {
-            ColorFilter colorFilter;
-            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-            return colorFilter;
-        }
-
-        @Override
-        public int getColorOrDefault(int i) {
-            int color;
-            color = getColor(i);
-            return color;
-        }
-
-        @Override
-        public void setAnimatedColor(int i, int i2) {
-            Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
-        }
-
-        public ThemeDelegate() {
-            Paint paint = new Paint(3);
-            this.chat_actionBackgroundGradientDarkenPaint = paint;
-            TextPaint textPaint = new TextPaint();
-            this.chat_actionTextPaint = textPaint;
-            TextPaint textPaint2 = new TextPaint();
-            this.chat_actionTextPaint2 = textPaint2;
-            TextPaint textPaint3 = new TextPaint();
-            this.chat_botButtonPaint = textPaint3;
-            textPaint.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-            textPaint2.setTextSize(AndroidUtilities.dp(Math.max(16, SharedConfig.fontSize) - 2));
-            textPaint3.setTextSize(AndroidUtilities.dp(15.0f));
-            textPaint3.setTypeface(AndroidUtilities.bold());
-            paint.setColor(352321536);
-        }
-
-        @Override
-        public int getColor(int i) {
-            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-            if (resourcesProvider != null) {
-                return resourcesProvider.getColor(i);
-            }
-            return Theme.getColor(i);
-        }
-
-        @Override
-        public Drawable getDrawable(String str) {
-            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-            if (resourcesProvider != null) {
-                return resourcesProvider.getDrawable(str);
-            }
-            return Theme.getThemeDrawable(str);
-        }
-
-        @Override
-        public int getCurrentColor(int i) {
-            int color;
-            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-            if (resourcesProvider == null) {
-                color = getColor(i);
-                return color;
-            }
-            return resourcesProvider.getCurrentColor(i);
-        }
-
-        @Override
-        public Paint getPaint(String str) {
-            Paint themePaint;
-            str.hashCode();
-            char c = 65535;
-            switch (str.hashCode()) {
-                case -1490966183:
-                    if (str.equals("paintChatActionText2")) {
-                        c = 0;
-                        break;
-                    }
-                    break;
-                case 561929466:
-                    if (str.equals("paintChatActionBackground")) {
-                        c = 1;
-                        break;
-                    }
-                    break;
-                case 1712385955:
-                    if (str.equals("paintChatBotButton")) {
-                        c = 2;
-                        break;
-                    }
-                    break;
-                case 1790254137:
-                    if (str.equals("paintChatActionBackgroundDarken")) {
-                        c = 3;
-                        break;
-                    }
-                    break;
-                case 1897339317:
-                    if (str.equals("paintChatActionBackgroundSelected")) {
-                        c = 4;
-                        break;
-                    }
-                    break;
-                case 2030114297:
-                    if (str.equals("paintChatActionText")) {
-                        c = 5;
-                        break;
-                    }
-                    break;
-            }
-            switch (c) {
-                case 0:
-                    return this.chat_actionTextPaint2;
-                case 1:
-                    return this.chat_actionBackgroundPaint;
-                case 2:
-                    return this.chat_botButtonPaint;
-                case 3:
-                    return this.chat_actionBackgroundGradientDarkenPaint;
-                case 4:
-                    return this.chat_actionBackgroundSelectedPaint;
-                case 5:
-                    return this.chat_actionTextPaint;
-                default:
-                    Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-                    if (resourcesProvider == null) {
-                        themePaint = Theme.getThemePaint(str);
-                        return themePaint;
-                    }
-                    return resourcesProvider.getPaint(str);
-            }
-        }
-
-        @Override
-        public boolean hasGradientService() {
-            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-            if (resourcesProvider != null) {
-                return resourcesProvider.hasGradientService();
-            }
-            return Theme.hasGradientService();
-        }
-
-        public void applyChatServiceMessageColor() {
-            applyChatServiceMessageColor(null, null, null, null);
-        }
-
-        public void applyChatServiceMessageColor(int[] iArr, Drawable drawable, Drawable drawable2, Float f) {
-            Bitmap bitmap;
-            int i = Theme.key_chat_serviceBackground;
-            int color = getColor(i);
-            int color2 = getColor(Theme.key_chat_serviceBackgroundSelected);
-            if (drawable == null) {
-                drawable = drawable2;
-            }
-            boolean z = drawable instanceof MotionBackgroundDrawable;
-            if ((z || (drawable instanceof BitmapDrawable)) && SharedConfig.getDevicePerformanceClass() != 0 && LiteMode.isEnabled(32)) {
-                if (z) {
-                    bitmap = ((MotionBackgroundDrawable) drawable).getBitmap();
-                } else {
-                    bitmap = drawable instanceof BitmapDrawable ? ((BitmapDrawable) drawable).getBitmap() : null;
-                }
-                if (this.serviceBitmap != bitmap) {
-                    this.serviceBitmap = bitmap;
-                    Bitmap bitmap2 = this.serviceBitmap;
-                    Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                    this.serviceBitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                    if (this.serviceBitmapMatrix == null) {
-                        this.serviceBitmapMatrix = new Matrix();
-                    }
-                }
-                this.chat_actionTextPaint.setColor(-1);
-                this.chat_actionTextPaint2.setColor(-1);
-                this.chat_actionTextPaint.linkColor = -1;
-                this.chat_botButtonPaint.setColor(-1);
-            } else {
-                this.serviceBitmap = null;
-                this.serviceBitmapShader = null;
-                TextPaint textPaint = this.chat_actionTextPaint;
-                int i2 = Theme.key_chat_serviceText;
-                textPaint.setColor(getColor(i2));
-                this.chat_actionTextPaint2.setColor(getColor(i2));
-                this.chat_actionTextPaint.linkColor = getColor(Theme.key_chat_serviceLink);
-            }
-            this.chat_actionBackgroundPaint.setColor(color);
-            this.chat_actionBackgroundSelectedPaint.setColor(color2);
-            if (this.serviceBitmapShader != null && (this.currentColors.indexOfKey(i) < 0 || z || (drawable instanceof BitmapDrawable))) {
-                ColorMatrix colorMatrix = new ColorMatrix();
-                if (z) {
-                    if (((MotionBackgroundDrawable) drawable).getIntensity() >= 0.0f) {
-                        colorMatrix.setSaturation(1.6f);
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.97f : 0.92f);
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, isDark() ? 0.12f : -0.06f);
-                    } else {
-                        colorMatrix.setSaturation(1.1f);
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.4f : 0.8f);
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, isDark() ? 0.08f : -0.06f);
-                    }
-                } else {
-                    colorMatrix.setSaturation(1.6f);
-                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, isDark() ? 0.9f : 0.84f);
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, isDark() ? -0.04f : 0.06f);
-                }
-                if (z) {
-                    float intensity = ((MotionBackgroundDrawable) drawable).getIntensity();
-                    if (f != null) {
-                        intensity = f.floatValue();
-                    }
-                    if (intensity >= 0.0f) {
-                        colorMatrix.setSaturation(1.8f);
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.03f);
-                    } else {
-                        colorMatrix.setSaturation(0.5f);
-                        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.35f);
-                        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.03f);
-                    }
-                } else {
-                    colorMatrix.setSaturation(1.6f);
-                    AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.97f);
-                    AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.06f);
-                }
-                this.chat_actionBackgroundPaint.setShader(this.serviceBitmapShader);
-                this.chat_actionBackgroundPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                this.chat_actionBackgroundPaint.setAlpha(255);
-                this.chat_actionBackgroundSelectedPaint.setShader(this.serviceBitmapShader);
-                ColorMatrix colorMatrix2 = new ColorMatrix(colorMatrix);
-                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix2, 0.85f);
-                this.chat_actionBackgroundSelectedPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix2));
-                this.chat_actionBackgroundSelectedPaint.setAlpha(255);
-                return;
-            }
-            this.chat_actionBackgroundPaint.setColorFilter(null);
-            this.chat_actionBackgroundPaint.setShader(null);
-            this.chat_actionBackgroundSelectedPaint.setColorFilter(null);
-            this.chat_actionBackgroundSelectedPaint.setShader(null);
-        }
-
-        @Override
-        public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
-            BitmapShader bitmapShader;
-            Bitmap bitmap = this.serviceBitmap;
-            if (bitmap == null || (bitmapShader = this.serviceBitmapShader) == null) {
-                Theme.applyServiceShaderMatrix(i, i2, f, f2);
-            } else {
-                Theme.applyServiceShaderMatrix(bitmap, bitmapShader, this.serviceBitmapMatrix, i, i2, f, f2);
-            }
-        }
-
-        @Override
-        public boolean isDark() {
-            DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
-            if (dayNightSwitchDelegate != null) {
-                return dayNightSwitchDelegate.isDark();
-            }
-            Theme.ResourcesProvider resourcesProvider = this.parentProvider;
-            return resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark();
-        }
-    }
-
-    @SuppressLint({"NotifyDataSetChanged"})
     public void toggleTheme() {
         if (this.changeDayNightView != null) {
             return;
@@ -5550,13 +4943,13 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             @Override
             protected void onDraw(Canvas canvas2) {
                 super.onDraw(canvas2);
-                if (!ThemePreviewActivity.this.themeDelegate.isDark()) {
-                    canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemePreviewActivity.this.changeDayNightViewProgress), paint2);
-                } else {
+                if (ThemePreviewActivity.this.themeDelegate.isDark()) {
                     if (ThemePreviewActivity.this.changeDayNightViewProgress > 0.0f) {
                         canvas.drawCircle(measuredWidth, measuredHeight, max * ThemePreviewActivity.this.changeDayNightViewProgress, paint);
                     }
                     canvas2.drawBitmap(createBitmap, 0.0f, 0.0f, paint2);
+                } else {
+                    canvas2.drawCircle(measuredWidth, measuredHeight, max * (1.0f - ThemePreviewActivity.this.changeDayNightViewProgress), paint2);
                 }
                 canvas2.save();
                 canvas2.translate(f, f2);
@@ -5612,81 +5005,5 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 ThemePreviewActivity.this.lambda$toggleTheme$36();
             }
         });
-    }
-
-    public void lambda$toggleTheme$36() {
-        this.onSwitchDayNightDelegate.switchDayNight(false);
-        setForceDark(this.themeDelegate.isDark(), true);
-        setCurrentImage(false);
-        invalidateBlur();
-        updateBlurred();
-        if (this.themeDescriptions != null) {
-            for (int i = 0; i < this.themeDescriptions.size(); i++) {
-                this.themeDescriptions.get(i).setColor(getThemedColor(this.themeDescriptions.get(i).getCurrentKey()), false, false);
-            }
-        }
-        if (this.shouldShowBrightnessControll) {
-            DayNightSwitchDelegate dayNightSwitchDelegate = this.onSwitchDayNightDelegate;
-            if (dayNightSwitchDelegate != null && dayNightSwitchDelegate.isDark()) {
-                this.dimmingSlider.setVisibility(0);
-                this.dimmingSlider.animateValueTo(this.dimAmount);
-            } else {
-                this.dimmingSlider.animateValueTo(0.0f);
-            }
-            ValueAnimator valueAnimator = this.changeDayNightViewAnimator2;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
-                this.changeDayNightViewAnimator2.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToDarkTheme, this.onSwitchDayNightDelegate.isDark() ? 1.0f : 0.0f);
-            this.changeDayNightViewAnimator2 = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ThemePreviewActivity.this.lambda$toggleTheme$35(valueAnimator2);
-                }
-            });
-            this.changeDayNightViewAnimator2.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark()) {
-                        return;
-                    }
-                    ThemePreviewActivity.this.dimmingSlider.setVisibility(8);
-                }
-            });
-            this.changeDayNightViewAnimator2.setDuration(250L);
-            this.changeDayNightViewAnimator2.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            this.changeDayNightViewAnimator2.start();
-        }
-    }
-
-    public void lambda$toggleTheme$35(ValueAnimator valueAnimator) {
-        this.progressToDarkTheme = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.backgroundImage.invalidate();
-        this.bottomOverlayChat.invalidate();
-        this.dimmingSlider.setAlpha(this.progressToDarkTheme);
-        this.dimmingSliderContainer.invalidate();
-        invalidateBlur();
-    }
-
-    public void setForceDark(boolean z, boolean z2) {
-        if (z2) {
-            RLottieDrawable rLottieDrawable = this.sunDrawable;
-            rLottieDrawable.setCustomEndFrame(z ? rLottieDrawable.getFramesCount() : 0);
-            RLottieDrawable rLottieDrawable2 = this.sunDrawable;
-            if (rLottieDrawable2 != null) {
-                rLottieDrawable2.start();
-                return;
-            }
-            return;
-        }
-        int framesCount = z ? this.sunDrawable.getFramesCount() - 1 : 0;
-        this.sunDrawable.setCurrentFrame(framesCount, false, true);
-        this.sunDrawable.setCustomEndFrame(framesCount);
-        ActionBarMenuItem actionBarMenuItem = this.dayNightItem;
-        if (actionBarMenuItem != null) {
-            actionBarMenuItem.invalidate();
-        }
     }
 }

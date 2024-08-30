@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class TranslateController$$ExternalSyntheticApiModelOutline0 {
+public abstract class TranslateController$$ExternalSyntheticApiModelOutline0 {
 }

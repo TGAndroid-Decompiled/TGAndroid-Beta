@@ -25,7 +25,15 @@ public class CubicBezierInterpolator implements Interpolator {
         Emphasized = Build.VERSION.SDK_INT >= 21 ? new PathInterpolator(PathParser.createPathFromPathData("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1")) : new LinearInterpolator();
     }
 
-    public CubicBezierInterpolator(PointF pointF, PointF pointF2) throws IllegalArgumentException {
+    public CubicBezierInterpolator(double d, double d2, double d3, double d4) {
+        this((float) d, (float) d2, (float) d3, (float) d4);
+    }
+
+    public CubicBezierInterpolator(float f, float f2, float f3, float f4) {
+        this(new PointF(f, f2), new PointF(f3, f4));
+    }
+
+    public CubicBezierInterpolator(PointF pointF, PointF pointF2) {
         this.a = new PointF();
         this.b = new PointF();
         this.c = new PointF();
@@ -41,17 +49,22 @@ public class CubicBezierInterpolator implements Interpolator {
         this.end = pointF2;
     }
 
-    public CubicBezierInterpolator(float f, float f2, float f3, float f4) {
-        this(new PointF(f, f2), new PointF(f3, f4));
+    private float getBezierCoordinateX(float f) {
+        PointF pointF = this.c;
+        PointF pointF2 = this.start;
+        float f2 = pointF2.x * 3.0f;
+        pointF.x = f2;
+        PointF pointF3 = this.b;
+        float f3 = ((this.end.x - pointF2.x) * 3.0f) - f2;
+        pointF3.x = f3;
+        PointF pointF4 = this.a;
+        float f4 = (1.0f - pointF.x) - f3;
+        pointF4.x = f4;
+        return f * (pointF.x + ((pointF3.x + (f4 * f)) * f));
     }
 
-    public CubicBezierInterpolator(double d, double d2, double d3, double d4) {
-        this((float) d, (float) d2, (float) d3, (float) d4);
-    }
-
-    @Override
-    public float getInterpolation(float f) {
-        return getBezierCoordinateY(getXForTime(f));
+    private float getXDerivate(float f) {
+        return this.c.x + (f * ((this.b.x * 2.0f) + (this.a.x * 3.0f * f)));
     }
 
     protected float getBezierCoordinateY(float f) {
@@ -68,6 +81,11 @@ public class CubicBezierInterpolator implements Interpolator {
         return f * (pointF.y + ((pointF3.y + (f4 * f)) * f));
     }
 
+    @Override
+    public float getInterpolation(float f) {
+        return getBezierCoordinateY(getXForTime(f));
+    }
+
     protected float getXForTime(float f) {
         float f2 = f;
         for (int i = 1; i < 14; i++) {
@@ -78,23 +96,5 @@ public class CubicBezierInterpolator implements Interpolator {
             f2 -= bezierCoordinateX / getXDerivate(f2);
         }
         return f2;
-    }
-
-    private float getXDerivate(float f) {
-        return this.c.x + (f * ((this.b.x * 2.0f) + (this.a.x * 3.0f * f)));
-    }
-
-    private float getBezierCoordinateX(float f) {
-        PointF pointF = this.c;
-        PointF pointF2 = this.start;
-        float f2 = pointF2.x * 3.0f;
-        pointF.x = f2;
-        PointF pointF3 = this.b;
-        float f3 = ((this.end.x - pointF2.x) * 3.0f) - f2;
-        pointF3.x = f3;
-        PointF pointF4 = this.a;
-        float f4 = (1.0f - pointF.x) - f3;
-        pointF4.x = f4;
-        return f * (pointF.x + ((pointF3.x + (f4 * f)) * f));
     }
 }

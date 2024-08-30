@@ -9,54 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 
 public class UndoStore {
     private UndoStoreDelegate delegate;
-    private Map<UUID, Runnable> uuidToOperationMap = new HashMap();
-    private List<UUID> operations = new ArrayList();
+    private Map uuidToOperationMap = new HashMap();
+    private List operations = new ArrayList();
 
     public interface UndoStoreDelegate {
         void historyChanged();
     }
 
-    public boolean canUndo() {
-        return !this.operations.isEmpty();
-    }
-
-    public UndoStoreDelegate getDelegate() {
-        return this.delegate;
-    }
-
-    public void setDelegate(UndoStoreDelegate undoStoreDelegate) {
-        this.delegate = undoStoreDelegate;
-    }
-
-    public void registerUndo(UUID uuid, Runnable runnable) {
-        this.uuidToOperationMap.put(uuid, runnable);
-        this.operations.add(uuid);
-        notifyOfHistoryChanges();
-    }
-
-    public void unregisterUndo(UUID uuid) {
-        this.uuidToOperationMap.remove(uuid);
-        this.operations.remove(uuid);
-        notifyOfHistoryChanges();
-    }
-
-    public void undo() {
-        if (this.operations.size() == 0) {
-            return;
+    public void lambda$notifyOfHistoryChanges$0() {
+        UndoStoreDelegate undoStoreDelegate = this.delegate;
+        if (undoStoreDelegate != null) {
+            undoStoreDelegate.historyChanged();
         }
-        int size = this.operations.size() - 1;
-        UUID uuid = this.operations.get(size);
-        Runnable runnable = this.uuidToOperationMap.get(uuid);
-        this.uuidToOperationMap.remove(uuid);
-        this.operations.remove(size);
-        runnable.run();
-        notifyOfHistoryChanges();
-    }
-
-    public void reset() {
-        this.operations.clear();
-        this.uuidToOperationMap.clear();
-        notifyOfHistoryChanges();
     }
 
     private void notifyOfHistoryChanges() {
@@ -68,10 +32,46 @@ public class UndoStore {
         });
     }
 
-    public void lambda$notifyOfHistoryChanges$0() {
-        UndoStoreDelegate undoStoreDelegate = this.delegate;
-        if (undoStoreDelegate != null) {
-            undoStoreDelegate.historyChanged();
+    public boolean canUndo() {
+        return !this.operations.isEmpty();
+    }
+
+    public UndoStoreDelegate getDelegate() {
+        return this.delegate;
+    }
+
+    public void registerUndo(UUID uuid, Runnable runnable) {
+        this.uuidToOperationMap.put(uuid, runnable);
+        this.operations.add(uuid);
+        notifyOfHistoryChanges();
+    }
+
+    public void reset() {
+        this.operations.clear();
+        this.uuidToOperationMap.clear();
+        notifyOfHistoryChanges();
+    }
+
+    public void setDelegate(UndoStoreDelegate undoStoreDelegate) {
+        this.delegate = undoStoreDelegate;
+    }
+
+    public void undo() {
+        if (this.operations.size() == 0) {
+            return;
         }
+        int size = this.operations.size() - 1;
+        UUID uuid = (UUID) this.operations.get(size);
+        Runnable runnable = (Runnable) this.uuidToOperationMap.get(uuid);
+        this.uuidToOperationMap.remove(uuid);
+        this.operations.remove(size);
+        runnable.run();
+        notifyOfHistoryChanges();
+    }
+
+    public void unregisterUndo(UUID uuid) {
+        this.uuidToOperationMap.remove(uuid);
+        this.operations.remove(uuid);
+        notifyOfHistoryChanges();
     }
 }

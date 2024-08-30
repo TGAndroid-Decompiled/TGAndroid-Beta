@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class MessagesController$$ExternalSyntheticBackport3 {
+public abstract class MessagesController$$ExternalSyntheticBackport3 {
 }

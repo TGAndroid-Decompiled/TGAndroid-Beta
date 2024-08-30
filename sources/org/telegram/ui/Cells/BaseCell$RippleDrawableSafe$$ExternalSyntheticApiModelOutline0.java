@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class BaseCell$RippleDrawableSafe$$ExternalSyntheticApiModelOutline0 {
+public abstract class BaseCell$RippleDrawableSafe$$ExternalSyntheticApiModelOutline0 {
 }

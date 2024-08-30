@@ -1,4 +1,4 @@
 package org.telegram.ui;
 
-public final class ProfileActivity$16$$ExternalSyntheticApiModelOutline2 {
+public abstract class ProfileActivity$16$$ExternalSyntheticApiModelOutline2 {
 }

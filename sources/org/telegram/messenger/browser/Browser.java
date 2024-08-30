@@ -1,14 +1,12 @@
 package org.telegram.messenger.browser;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import java.lang.ref.WeakReference;
@@ -43,41 +41,90 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.LaunchActivity;
 
-public class Browser {
-    private static WeakReference<Activity> currentCustomTabsActivity;
+public abstract class Browser {
+    private static WeakReference currentCustomTabsActivity;
     private static CustomTabsClient customTabsClient;
-    private static WeakReference<CustomTabsSession> customTabsCurrentSession;
+    private static WeakReference customTabsCurrentSession;
     private static String customTabsPackageToBind;
     private static CustomTabsServiceConnection customTabsServiceConnection;
     private static CustomTabsSession customTabsSession;
     private static Pattern domainPattern;
 
-    private static void setCurrentSession(CustomTabsSession customTabsSession2) {
-        customTabsCurrentSession = new WeakReference<>(customTabsSession2);
+    public static class NavigationCallback extends CustomTabsCallback {
+        private NavigationCallback() {
+        }
+
+        @Override
+        public void onNavigationEvent(int i, Bundle bundle) {
+        }
     }
 
-    private static CustomTabsSession getSession() {
-        CustomTabsClient customTabsClient2 = customTabsClient;
-        if (customTabsClient2 == null) {
-            customTabsSession = null;
-        } else if (customTabsSession == null) {
-            CustomTabsSession newSession = customTabsClient2.newSession(new NavigationCallback());
-            customTabsSession = newSession;
-            setCurrentSession(newSession);
+    public static class Progress {
+        private Runnable onCancelListener;
+        private Runnable onEndListener;
+
+        public void cancel() {
+            cancel(false);
         }
-        return customTabsSession;
+
+        public void cancel(boolean z) {
+            Runnable runnable = this.onCancelListener;
+            if (runnable != null) {
+                runnable.run();
+            }
+            end(z);
+        }
+
+        public void end() {
+            end(false);
+        }
+
+        public void end(boolean z) {
+            Runnable runnable = this.onEndListener;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        public void init() {
+        }
+
+        public void onCancel(Runnable runnable) {
+            this.onCancelListener = runnable;
+        }
+
+        public void onEnd(Runnable runnable) {
+            this.onEndListener = runnable;
+        }
+    }
+
+    public static String IDN_toUnicode(String str) {
+        try {
+            str = IDN.toASCII(str, 1);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (!isPunycodeAllowed(str)) {
+            return str;
+        }
+        try {
+            return IDN.toUnicode(str, 1);
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            return str;
+        }
     }
 
     public static void bindCustomTabsService(Activity activity) {
-        WeakReference<Activity> weakReference = currentCustomTabsActivity;
-        Activity activity2 = weakReference == null ? null : weakReference.get();
+        WeakReference weakReference = currentCustomTabsActivity;
+        Activity activity2 = weakReference == null ? null : (Activity) weakReference.get();
         if (activity2 != null && activity2 != activity) {
             unbindCustomTabsService(activity2);
         }
         if (customTabsClient != null) {
             return;
         }
-        currentCustomTabsActivity = new WeakReference<>(activity);
+        currentCustomTabsActivity = new WeakReference(activity);
         try {
             if (TextUtils.isEmpty(customTabsPackageToBind)) {
                 String packageNameToUse = CustomTabsHelper.getPackageNameToUse(activity);
@@ -115,481 +162,27 @@ public class Browser {
         }
     }
 
-    public static void unbindCustomTabsService(Activity activity) {
-        if (customTabsServiceConnection == null) {
-            return;
-        }
-        WeakReference<Activity> weakReference = currentCustomTabsActivity;
-        if ((weakReference == null ? null : weakReference.get()) == activity) {
-            currentCustomTabsActivity.clear();
-        }
-        try {
-            activity.unbindService(customTabsServiceConnection);
-        } catch (Exception unused) {
-        }
-        customTabsClient = null;
-        customTabsSession = null;
-    }
-
-    public static class NavigationCallback extends CustomTabsCallback {
-        @Override
-        public void onNavigationEvent(int i, Bundle bundle) {
-        }
-
-        private NavigationCallback() {
-        }
-    }
-
-    public static void openUrl(Context context, String str) {
-        if (str == null) {
-            return;
-        }
-        openUrl(context, Uri.parse(str), true);
-    }
-
-    public static void openUrl(Context context, Uri uri) {
-        openUrl(context, uri, true);
-    }
-
-    public static void openUrl(Context context, String str, boolean z) {
-        if (context == null || str == null) {
-            return;
-        }
-        openUrl(context, Uri.parse(str), z);
-    }
-
-    public static void openUrl(Context context, Uri uri, boolean z) {
-        openUrl(context, uri, z, true);
-    }
-
-    public static void openUrl(Context context, String str, boolean z, boolean z2) {
-        openUrl(context, Uri.parse(str), z, z2);
-    }
-
-    public static boolean isTelegraphUrl(String str, boolean z) {
-        return isTelegraphUrl(str, z, false);
-    }
-
-    public static boolean isTelegraphUrl(String str, boolean z, boolean z2) {
-        if (z) {
-            return str.equals("telegra.ph") || str.equals("te.legra.ph") || str.equals("graph.org");
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("^(https");
-        sb.append(z2 ? "" : "?");
-        sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
-        return str.matches(sb.toString());
-    }
-
     public static String extractUsername(String str) {
+        int i;
         if (str != null && !TextUtils.isEmpty(str)) {
             if (str.startsWith("@")) {
                 return str.substring(1);
             }
             if (str.startsWith("t.me/")) {
-                return str.substring(5);
+                i = 5;
+            } else if (str.startsWith("http://t.me/")) {
+                i = 12;
+            } else if (str.startsWith("https://t.me/")) {
+                i = 13;
+            } else {
+                Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(str);
+                if (matcher.find()) {
+                    return matcher.group(1);
+                }
             }
-            if (str.startsWith("http://t.me/")) {
-                return str.substring(12);
-            }
-            if (str.startsWith("https://t.me/")) {
-                return str.substring(13);
-            }
-            Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(str);
-            if (matcher.find()) {
-                return matcher.group(1);
-            }
+            return str.substring(i);
         }
         return null;
-    }
-
-    public static boolean urlMustNotHaveConfirmation(String str) {
-        return isTelegraphUrl(str, false, true) || str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") || str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") || str.matches("^(https://)?fragment\\.com(/.*|$)");
-    }
-
-    public static class Progress {
-        private Runnable onCancelListener;
-        private Runnable onEndListener;
-
-        public void init() {
-        }
-
-        public void end() {
-            end(false);
-        }
-
-        public void end(boolean z) {
-            Runnable runnable = this.onEndListener;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-
-        public void cancel() {
-            cancel(false);
-        }
-
-        public void cancel(boolean z) {
-            Runnable runnable = this.onCancelListener;
-            if (runnable != null) {
-                runnable.run();
-            }
-            end(z);
-        }
-
-        public void onCancel(Runnable runnable) {
-            this.onCancelListener = runnable;
-        }
-
-        public void onEnd(Runnable runnable) {
-            this.onEndListener = runnable;
-        }
-    }
-
-    public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
-        openUrl(context, uri, z, z2, false, null, null, false, true);
-    }
-
-    public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
-        openUrl(context, uri, z, z2, false, progress, null, false, true);
-    }
-
-    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28, boolean r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean, boolean):void");
-    }
-
-    public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                Browser.lambda$openUrl$0(Browser.Progress.this, alertDialogArr, tLObject, i, uri, context, z);
-            }
-        });
-    }
-
-    public static void lambda$openUrl$0(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
-        if (progress != null) {
-            progress.end();
-        } else {
-            try {
-                alertDialogArr[0].dismiss();
-            } catch (Throwable unused) {
-            }
-            alertDialogArr[0] = null;
-        }
-        if (tLObject instanceof TLRPC$TL_messageMediaWebPage) {
-            TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = (TLRPC$TL_messageMediaWebPage) tLObject;
-            TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_messageMediaWebPage.webpage;
-            if ((tLRPC$WebPage instanceof TLRPC$TL_webPage) && tLRPC$WebPage.cached_page != null) {
-                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, tLRPC$TL_messageMediaWebPage.webpage, uri.toString());
-                return;
-            }
-        }
-        openUrl(context, uri, z, false);
-    }
-
-    public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
-        AlertDialog alertDialog = alertDialogArr[0];
-        if (alertDialog == null) {
-            return;
-        }
-        try {
-            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    Browser.lambda$openUrl$2(i, dialogInterface);
-                }
-            });
-            alertDialogArr[0].show();
-        } catch (Exception unused) {
-        }
-    }
-
-    public static void lambda$openUrl$2(int i, DialogInterface dialogInterface) {
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i, true);
-    }
-
-    public static boolean openAsInternalIntent(Context context, String str) {
-        return openAsInternalIntent(context, str, false, null);
-    }
-
-    public static boolean openAsInternalIntent(Context context, String str, boolean z, Progress progress) {
-        LaunchActivity launchActivity;
-        if (str == null) {
-            return false;
-        }
-        if (AndroidUtilities.findActivity(context) instanceof LaunchActivity) {
-            launchActivity = (LaunchActivity) AndroidUtilities.findActivity(context);
-        } else {
-            launchActivity = LaunchActivity.instance;
-            if (launchActivity == null) {
-                return false;
-            }
-        }
-        if (launchActivity == null) {
-            return false;
-        }
-        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-        intent.setComponent(new ComponentName(context.getPackageName(), LaunchActivity.class.getName()));
-        intent.putExtra("create_new_tab", true);
-        intent.putExtra("com.android.browser.application_id", context.getPackageName());
-        intent.putExtra("force_not_internal_apps", z);
-        launchActivity.onNewIntent(intent, progress);
-        return true;
-    }
-
-    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) {
-        BottomSheetTabs bottomSheetTabs;
-        LaunchActivity launchActivity = LaunchActivity.instance;
-        if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null && bottomSheetTabs.tryReopenTab(str) != null) {
-            return true;
-        }
-        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-        if (safeLastFragment != null && (safeLastFragment.getParentLayout() instanceof ActionBarLayout)) {
-            safeLastFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment();
-        }
-        if (safeLastFragment == null) {
-            return false;
-        }
-        safeLastFragment.createArticleViewer(false).open(str, progress);
-        return true;
-    }
-
-    public static boolean openInExternalBrowser(Context context, String str, boolean z) {
-        return openInExternalBrowser(context, str, z, null);
-    }
-
-    public static boolean openInExternalBrowser(Context context, String str, boolean z, String str2) {
-        Intent intent;
-        if (str == null) {
-            return false;
-        }
-        try {
-            Uri parse = Uri.parse(str);
-            boolean z2 = parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent");
-            if (z2 && !z) {
-                return false;
-            }
-            if (z2) {
-                intent = Intent.parseUri(parse.toString(), 1);
-            } else {
-                intent = new Intent("android.intent.action.VIEW", parse);
-            }
-            if (!TextUtils.isEmpty(str2)) {
-                intent.setPackage(str2);
-            }
-            intent.putExtra("create_new_tab", true);
-            intent.putExtra("com.android.browser.application_id", context.getPackageName());
-            context.startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    public static boolean isTonsite(String str) {
-        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
-        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            return true;
-        }
-        Uri parse = Uri.parse(str);
-        return parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite");
-    }
-
-    public static boolean isTonsitePunycode(String str) {
-        boolean matches;
-        if (domainPattern == null) {
-            domainPattern = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
-        }
-        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
-        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            matches = domainPattern.matcher(hostAuthority).matches();
-        } else {
-            Uri parse = Uri.parse(str);
-            if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
-                return false;
-            }
-            matches = domainPattern.matcher(parse.getScheme()).matches();
-        }
-        return !matches;
-    }
-
-    public static boolean openInExternalApp(Context context, String str, boolean z) {
-        Intent intent;
-        if (str == null) {
-            return false;
-        }
-        try {
-            if (!isTonsite(str) && !isInternalUrl(str, null)) {
-                Uri parse = Uri.parse(str);
-                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), null, parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
-                Uri parse2 = Uri.parse(replace);
-                boolean z2 = parse2.getScheme() != null && parse2.getScheme().equalsIgnoreCase("intent");
-                if (z2 && !z) {
-                    return false;
-                }
-                if (z2) {
-                    intent = Intent.parseUri(parse2.toString(), 1);
-                } else {
-                    intent = new Intent("android.intent.action.VIEW", parse2);
-                }
-                if (Build.VERSION.SDK_INT >= 30) {
-                    intent.addCategory("android.intent.category.BROWSABLE");
-                    intent.addCategory("android.intent.category.DEFAULT");
-                    intent.addFlags(268435456);
-                    intent.addFlags(1024);
-                } else if (!z2 && !hasAppToOpen(context, replace)) {
-                    return false;
-                }
-                context.startActivity(intent);
-                return true;
-            }
-            return false;
-        } catch (ActivityNotFoundException e) {
-            FileLog.e((Throwable) e, false);
-            return false;
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            return false;
-        }
-    }
-
-    public static boolean hasAppToOpen(android.content.Context r8, java.lang.String r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.hasAppToOpen(android.content.Context, java.lang.String):boolean");
-    }
-
-    public static boolean isInternalUrl(String str, boolean[] zArr) {
-        return isInternalUri(Uri.parse(str), false, zArr);
-    }
-
-    public static boolean isInternalUrl(String str, boolean z, boolean[] zArr) {
-        return isInternalUri(Uri.parse(str), z, zArr);
-    }
-
-    public static boolean isPassportUrl(String str) {
-        String lowerCase;
-        if (str == null) {
-            return false;
-        }
-        try {
-            lowerCase = str.toLowerCase();
-        } catch (Throwable unused) {
-        }
-        if (lowerCase.startsWith("tg:passport") || lowerCase.startsWith("tg://passport") || lowerCase.startsWith("tg:secureid")) {
-            return true;
-        }
-        if (lowerCase.contains("resolve")) {
-            if (lowerCase.contains("domain=telegrampassport")) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isTMe(String str) {
-        try {
-            return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
-        }
-    }
-
-    public static boolean isInternalUri(Uri uri, boolean[] zArr) {
-        return isInternalUri(uri, false, zArr);
-    }
-
-    public static boolean isInternalUri(Uri uri, boolean z, boolean[] zArr) {
-        String str;
-        String str2;
-        String hostAuthority = AndroidUtilities.getHostAuthority(uri);
-        String str3 = "";
-        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
-        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
-            if (zArr != null) {
-                zArr[0] = true;
-            }
-            return false;
-        }
-        Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase);
-        if (matcher.find()) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("https://t.me/");
-            sb.append(matcher.group(1));
-            if (TextUtils.isEmpty(uri.getPath())) {
-                str = "";
-            } else {
-                str = "/" + uri.getPath();
-            }
-            sb.append(str);
-            if (TextUtils.isEmpty(uri.getQuery())) {
-                str2 = "";
-            } else {
-                str2 = "?" + uri.getQuery();
-            }
-            sb.append(str2);
-            uri = Uri.parse(sb.toString());
-            String host = uri.getHost();
-            if (host != null) {
-                str3 = host.toLowerCase();
-            }
-        } else {
-            str3 = lowerCase;
-        }
-        if ("ton".equals(uri.getScheme())) {
-            try {
-                List<ResolveInfo> queryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
-                if (queryIntentActivities != null) {
-                    if (queryIntentActivities.size() >= 1) {
-                        return false;
-                    }
-                }
-            } catch (Exception unused) {
-            }
-            return true;
-        }
-        if ("tg".equals(uri.getScheme())) {
-            return true;
-        }
-        if ("telegram.dog".equals(str3)) {
-            String path = uri.getPath();
-            if (path != null && path.length() > 1) {
-                if (z) {
-                    return true;
-                }
-                String lowerCase2 = path.substring(1).toLowerCase();
-                if (!lowerCase2.startsWith("blog") && !lowerCase2.equals("iv") && !lowerCase2.startsWith("faq") && !lowerCase2.equals("apps") && !lowerCase2.startsWith("s/")) {
-                    return true;
-                }
-                if (zArr != null) {
-                    zArr[0] = true;
-                }
-                return false;
-            }
-        } else if ("telegram.me".equals(str3) || "t.me".equals(str3)) {
-            String path2 = uri.getPath();
-            if (path2 != null && path2.length() > 1) {
-                if (z) {
-                    return true;
-                }
-                String lowerCase3 = path2.substring(1).toLowerCase();
-                if (!lowerCase3.equals("iv") && !lowerCase3.startsWith("s/")) {
-                    return true;
-                }
-                if (zArr != null) {
-                    zArr[0] = true;
-                }
-            }
-        } else {
-            if ("telegram.org".equals(str3) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
-                return true;
-            }
-            if (z && (str3.endsWith("telegram.org") || str3.endsWith("telegra.ph") || str3.endsWith("telesco.pe"))) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static String getBrowserPackageName(String str) {
@@ -771,8 +364,148 @@ public class Browser {
         }
     }
 
+    private static CustomTabsSession getSession() {
+        CustomTabsClient customTabsClient2 = customTabsClient;
+        if (customTabsClient2 == null) {
+            customTabsSession = null;
+        } else if (customTabsSession == null) {
+            CustomTabsSession newSession = customTabsClient2.newSession(new NavigationCallback());
+            customTabsSession = newSession;
+            setCurrentSession(newSession);
+        }
+        return customTabsSession;
+    }
+
+    public static boolean hasAppToOpen(android.content.Context r8, java.lang.String r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.hasAppToOpen(android.content.Context, java.lang.String):boolean");
+    }
+
     public static boolean isBrowserPackageName(String str) {
         return str != null && (str.contains("browser") || str.contains("chrome") || str.contains("firefox") || "com.microsoft.emmx".equals(str) || "com.opera.mini.native".equals(str) || "com.duckduckgo.mobile.android".equals(str) || "com.UCMobile.intl".equals(str));
+    }
+
+    public static boolean isInternalUri(Uri uri, boolean z, boolean[] zArr) {
+        String str;
+        String str2;
+        String hostAuthority = AndroidUtilities.getHostAuthority(uri);
+        String str3 = "";
+        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
+        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
+            if (zArr != null) {
+                zArr[0] = true;
+            }
+            return false;
+        }
+        Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase);
+        if (matcher.find()) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("https://t.me/");
+            sb.append(matcher.group(1));
+            if (TextUtils.isEmpty(uri.getPath())) {
+                str = "";
+            } else {
+                str = "/" + uri.getPath();
+            }
+            sb.append(str);
+            if (TextUtils.isEmpty(uri.getQuery())) {
+                str2 = "";
+            } else {
+                str2 = "?" + uri.getQuery();
+            }
+            sb.append(str2);
+            uri = Uri.parse(sb.toString());
+            String host = uri.getHost();
+            if (host != null) {
+                str3 = host.toLowerCase();
+            }
+        } else {
+            str3 = lowerCase;
+        }
+        if ("ton".equals(uri.getScheme())) {
+            try {
+                List<ResolveInfo> queryIntentActivities = ApplicationLoader.applicationContext.getPackageManager().queryIntentActivities(new Intent("android.intent.action.VIEW", uri), 0);
+                if (queryIntentActivities != null) {
+                    if (queryIntentActivities.size() >= 1) {
+                        return false;
+                    }
+                }
+            } catch (Exception unused) {
+            }
+            return true;
+        }
+        if ("tg".equals(uri.getScheme())) {
+            return true;
+        }
+        if ("telegram.dog".equals(str3)) {
+            String path = uri.getPath();
+            if (path != null && path.length() > 1) {
+                if (z) {
+                    return true;
+                }
+                String lowerCase2 = path.substring(1).toLowerCase();
+                if (!lowerCase2.startsWith("blog") && !lowerCase2.equals("iv") && !lowerCase2.startsWith("faq") && !lowerCase2.equals("apps") && !lowerCase2.startsWith("s/")) {
+                    return true;
+                }
+                if (zArr != null) {
+                    zArr[0] = true;
+                }
+                return false;
+            }
+        } else if ("telegram.me".equals(str3) || "t.me".equals(str3)) {
+            String path2 = uri.getPath();
+            if (path2 != null && path2.length() > 1) {
+                if (z) {
+                    return true;
+                }
+                String lowerCase3 = path2.substring(1).toLowerCase();
+                if (!lowerCase3.equals("iv") && !lowerCase3.startsWith("s/")) {
+                    return true;
+                }
+                if (zArr != null) {
+                    zArr[0] = true;
+                }
+            }
+        } else {
+            if ("telegram.org".equals(str3) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
+                return true;
+            }
+            if (z && (str3.endsWith("telegram.org") || str3.endsWith("telegra.ph") || str3.endsWith("telesco.pe"))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isInternalUri(Uri uri, boolean[] zArr) {
+        return isInternalUri(uri, false, zArr);
+    }
+
+    public static boolean isInternalUrl(String str, boolean z, boolean[] zArr) {
+        return isInternalUri(Uri.parse(str), z, zArr);
+    }
+
+    public static boolean isInternalUrl(String str, boolean[] zArr) {
+        return isInternalUri(Uri.parse(str), false, zArr);
+    }
+
+    public static boolean isPassportUrl(String str) {
+        String lowerCase;
+        if (str == null) {
+            return false;
+        }
+        try {
+            lowerCase = str.toLowerCase();
+        } catch (Throwable unused) {
+        }
+        if (lowerCase.startsWith("tg:passport") || lowerCase.startsWith("tg://passport") || lowerCase.startsWith("tg:secureid")) {
+            return true;
+        }
+        if (lowerCase.contains("resolve")) {
+            if (lowerCase.contains("domain=telegrampassport")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static boolean isPunycodeAllowed(String str) {
@@ -786,69 +519,253 @@ public class Browser {
         return split[split.length - 1].startsWith("xn--");
     }
 
-    public static String IDN_toUnicode(String str) {
+    public static boolean isTMe(String str) {
         try {
-            str = IDN.toASCII(str, 1);
+            return TextUtils.equals(AndroidUtilities.getHostAuthority(str), MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix);
         } catch (Exception e) {
             FileLog.e(e);
+            return false;
         }
-        if (!isPunycodeAllowed(str)) {
-            return str;
+    }
+
+    public static boolean isTelegraphUrl(String str, boolean z) {
+        return isTelegraphUrl(str, z, false);
+    }
+
+    public static boolean isTelegraphUrl(String str, boolean z, boolean z2) {
+        if (z) {
+            return str.equals("telegra.ph") || str.equals("te.legra.ph") || str.equals("graph.org");
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("^(https");
+        sb.append(z2 ? "" : "?");
+        sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
+        return str.matches(sb.toString());
+    }
+
+    public static boolean isTonsite(String str) {
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            return true;
+        }
+        Uri parse = Uri.parse(str);
+        return parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("tonsite");
+    }
+
+    public static boolean isTonsitePunycode(String str) {
+        Matcher matcher;
+        if (domainPattern == null) {
+            domainPattern = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
+        }
+        String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
+        if (hostAuthority == null || !(hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
+            Uri parse = Uri.parse(str);
+            if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
+                return false;
+            }
+            matcher = domainPattern.matcher(parse.getScheme());
+        } else {
+            matcher = domainPattern.matcher(hostAuthority);
+        }
+        return !matcher.matches();
+    }
+
+    public static void lambda$openUrl$0(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
+        if (progress != null) {
+            progress.end();
+        } else {
+            try {
+                alertDialogArr[0].dismiss();
+            } catch (Throwable unused) {
+            }
+            alertDialogArr[0] = null;
+        }
+        if (tLObject instanceof TLRPC$TL_messageMediaWebPage) {
+            TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = (TLRPC$TL_messageMediaWebPage) tLObject;
+            TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_messageMediaWebPage.webpage;
+            if ((tLRPC$WebPage instanceof TLRPC$TL_webPage) && tLRPC$WebPage.cached_page != null) {
+                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, tLRPC$TL_messageMediaWebPage.webpage, uri.toString());
+                return;
+            }
+        }
+        openUrl(context, uri, z, false);
+    }
+
+    public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                Browser.lambda$openUrl$0(Browser.Progress.this, alertDialogArr, tLObject, i, uri, context, z);
+            }
+        });
+    }
+
+    public static void lambda$openUrl$2(int i, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).cancelRequest(i, true);
+    }
+
+    public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
+        AlertDialog alertDialog = alertDialogArr[0];
+        if (alertDialog == null) {
+            return;
         }
         try {
-            return IDN.toUnicode(str, 1);
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            return str;
+            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public final void onCancel(DialogInterface dialogInterface) {
+                    Browser.lambda$openUrl$2(i, dialogInterface);
+                }
+            });
+            alertDialogArr[0].show();
+        } catch (Exception unused) {
         }
+    }
+
+    public static boolean openAsInternalIntent(Context context, String str) {
+        return openAsInternalIntent(context, str, false, null);
+    }
+
+    public static boolean openAsInternalIntent(Context context, String str, boolean z, Progress progress) {
+        LaunchActivity launchActivity;
+        if (str == null) {
+            return false;
+        }
+        if (AndroidUtilities.findActivity(context) instanceof LaunchActivity) {
+            launchActivity = (LaunchActivity) AndroidUtilities.findActivity(context);
+        } else {
+            launchActivity = LaunchActivity.instance;
+            if (launchActivity == null) {
+                return false;
+            }
+        }
+        if (launchActivity == null) {
+            return false;
+        }
+        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+        intent.setComponent(new ComponentName(context.getPackageName(), LaunchActivity.class.getName()));
+        intent.putExtra("create_new_tab", true);
+        intent.putExtra("com.android.browser.application_id", context.getPackageName());
+        intent.putExtra("force_not_internal_apps", z);
+        launchActivity.onNewIntent(intent, progress);
+        return true;
+    }
+
+    public static boolean openInExternalApp(android.content.Context r5, java.lang.String r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openInExternalApp(android.content.Context, java.lang.String, boolean):boolean");
+    }
+
+    public static boolean openInExternalBrowser(Context context, String str, boolean z) {
+        return openInExternalBrowser(context, str, z, null);
+    }
+
+    public static boolean openInExternalBrowser(Context context, String str, boolean z, String str2) {
+        if (str == null) {
+            return false;
+        }
+        try {
+            Uri parse = Uri.parse(str);
+            boolean z2 = parse.getScheme() != null && parse.getScheme().equalsIgnoreCase("intent");
+            if (z2 && !z) {
+                return false;
+            }
+            Intent parseUri = z2 ? Intent.parseUri(parse.toString(), 1) : new Intent("android.intent.action.VIEW", parse);
+            if (!TextUtils.isEmpty(str2)) {
+                parseUri.setPackage(str2);
+            }
+            parseUri.putExtra("create_new_tab", true);
+            parseUri.putExtra("com.android.browser.application_id", context.getPackageName());
+            context.startActivity(parseUri);
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    public static boolean openInTelegramBrowser(Context context, String str, Progress progress) {
+        BottomSheetTabs bottomSheetTabs;
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null && bottomSheetTabs.tryReopenTab(str) != null) {
+            return true;
+        }
+        BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+        if (safeLastFragment != null && (safeLastFragment.getParentLayout() instanceof ActionBarLayout)) {
+            safeLastFragment = ((ActionBarLayout) safeLastFragment.getParentLayout()).getSheetFragment();
+        }
+        if (safeLastFragment == null) {
+            return false;
+        }
+        safeLastFragment.createArticleViewer(false).open(str, progress);
+        return true;
+    }
+
+    public static void openUrl(Context context, Uri uri) {
+        openUrl(context, uri, true);
+    }
+
+    public static void openUrl(Context context, Uri uri, boolean z) {
+        openUrl(context, uri, z, true);
+    }
+
+    public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
+        openUrl(context, uri, z, z2, false, null, null, false, true);
+    }
+
+    public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
+        openUrl(context, uri, z, z2, false, progress, null, false, true);
+    }
+
+    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28, boolean r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean, boolean):void");
+    }
+
+    public static void openUrl(Context context, String str) {
+        if (str == null) {
+            return;
+        }
+        openUrl(context, Uri.parse(str), true);
+    }
+
+    public static void openUrl(Context context, String str, boolean z) {
+        if (context == null || str == null) {
+            return;
+        }
+        openUrl(context, Uri.parse(str), z);
+    }
+
+    public static void openUrl(Context context, String str, boolean z, boolean z2) {
+        openUrl(context, Uri.parse(str), z, z2);
+    }
+
+    public static java.lang.String replace(android.net.Uri r2, java.lang.String r3, java.lang.String r4, java.lang.String r5, java.lang.String r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.replace(android.net.Uri, java.lang.String, java.lang.String, java.lang.String, java.lang.String):java.lang.String");
     }
 
     public static String replaceHostname(Uri uri, String str, String str2) {
         return replace(uri, str2, null, str, null);
     }
 
-    public static String replace(Uri uri, String str, String str2, String str3, String str4) {
-        StringBuilder sb = new StringBuilder();
-        if (str == null) {
-            str = uri.getScheme();
+    private static void setCurrentSession(CustomTabsSession customTabsSession2) {
+        customTabsCurrentSession = new WeakReference(customTabsSession2);
+    }
+
+    public static void unbindCustomTabsService(Activity activity) {
+        if (customTabsServiceConnection == null) {
+            return;
         }
-        if (str != null) {
-            sb.append(str);
-            sb.append("://");
+        WeakReference weakReference = currentCustomTabsActivity;
+        if ((weakReference == null ? null : (Activity) weakReference.get()) == activity) {
+            currentCustomTabsActivity.clear();
         }
-        if (str2 == null) {
-            if (uri.getUserInfo() != null) {
-                sb.append(uri.getUserInfo());
-                sb.append("@");
-            }
-        } else if (!TextUtils.isEmpty(str2)) {
-            sb.append(str2);
-            sb.append("@");
+        try {
+            activity.unbindService(customTabsServiceConnection);
+        } catch (Exception unused) {
         }
-        if (str3 == null) {
-            if (uri.getHost() != null) {
-                sb.append(uri.getHost());
-            }
-        } else {
-            sb.append(str3);
-        }
-        if (uri.getPort() != -1) {
-            sb.append(":");
-            sb.append(uri.getPort());
-        }
-        if (str4 != null) {
-            sb.append(str4);
-        } else {
-            sb.append(uri.getPath());
-        }
-        if (uri.getQuery() != null) {
-            sb.append("?");
-            sb.append(uri.getQuery());
-        }
-        if (uri.getFragment() != null) {
-            sb.append("#");
-            sb.append(uri.getFragment());
-        }
-        return sb.toString();
+        customTabsClient = null;
+        customTabsSession = null;
+    }
+
+    public static boolean urlMustNotHaveConfirmation(String str) {
+        return isTelegraphUrl(str, false, true) || str.matches("^(https://)?t\\.me/iv\\??(/.*|$)") || str.matches("^(https://)?telegram\\.org/(blog|tour)(/.*|$)") || str.matches("^(https://)?fragment\\.com(/.*|$)");
     }
 }

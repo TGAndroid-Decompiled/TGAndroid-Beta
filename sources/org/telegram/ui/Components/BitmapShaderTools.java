@@ -47,23 +47,6 @@ public class BitmapShaderTools {
         updateBounds();
     }
 
-    public Bitmap getBitmap() {
-        return this.bitmap;
-    }
-
-    public Canvas getCanvas() {
-        return this.canvas;
-    }
-
-    public void setBounds(RectF rectF) {
-        RectF rectF2 = this.bounds;
-        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
-            return;
-        }
-        rectF2.set(rectF);
-        updateBounds();
-    }
-
     private void updateBounds() {
         if (this.shader == null) {
             return;
@@ -78,10 +61,27 @@ public class BitmapShaderTools {
         this.shader.setLocalMatrix(this.matrix);
     }
 
+    public Bitmap getBitmap() {
+        return this.bitmap;
+    }
+
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
     public void setBounds(float f, float f2, float f3, float f4) {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(f, f2, f3, f4);
         setBounds(rectF);
+    }
+
+    public void setBounds(RectF rectF) {
+        RectF rectF2 = this.bounds;
+        if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+            return;
+        }
+        rectF2.set(rectF);
+        updateBounds();
     }
 
     public void setMatrix(float f, float f2, float f3, float f4) {

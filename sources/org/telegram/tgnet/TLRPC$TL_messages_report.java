@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_report extends TLObject {
-    public ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
     public String message;
     public TLRPC$InputPeer peer;
     public TLRPC$ReportReason reason;
@@ -21,7 +21,7 @@ public class TLRPC$TL_messages_report extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.id.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.id.get(i)).intValue());
         }
         this.reason.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.message);

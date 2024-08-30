@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_termsOfService extends TLObject {
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public TLRPC$TL_dataJSON id;
     public int min_age_confirm;
@@ -61,7 +61,7 @@ public class TLRPC$TL_help_termsOfService extends TLObject {
         int size = this.entities.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.entities.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessageEntity) this.entities.get(i2)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.min_age_confirm);

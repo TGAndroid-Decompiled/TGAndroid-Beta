@@ -6,9 +6,7 @@ import android.graphics.fonts.SystemFonts;
 import android.os.Build;
 import android.text.TextUtils;
 import java.io.File;
-import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +20,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 
 public class PaintTypeface {
-    public static final List<PaintTypeface> BUILT_IN_FONTS;
+    public static final List BUILT_IN_FONTS;
     public static final PaintTypeface COURIER_NEW_BOLD;
     public static final PaintTypeface MW_BOLD;
     public static final PaintTypeface ROBOTO_CONDENSED;
@@ -31,14 +29,109 @@ public class PaintTypeface {
     public static final PaintTypeface ROBOTO_MONO;
     public static final PaintTypeface ROBOTO_SERIF;
     public static boolean loadingTypefaces;
-    private static final List<String> preferable;
-    private static List<PaintTypeface> typefaces;
+    private static final List preferable;
+    private static List typefaces;
     private final Font font;
     private final String key;
     private final LazyTypeface lazyTypeface;
     private final String name;
     private final String nameKey;
     private final Typeface typeface;
+
+    public static class Family {
+        String family;
+        ArrayList fonts = new ArrayList();
+
+        Family() {
+        }
+
+        public FontData getBold() {
+            for (int i = 0; i < this.fonts.size(); i++) {
+                if ("Bold".equalsIgnoreCase(((FontData) this.fonts.get(i)).subfamily)) {
+                    return (FontData) this.fonts.get(i);
+                }
+            }
+            return null;
+        }
+
+        public FontData getRegular() {
+            FontData fontData;
+            int i = 0;
+            while (true) {
+                if (i >= this.fonts.size()) {
+                    fontData = null;
+                    break;
+                }
+                if ("Regular".equalsIgnoreCase(((FontData) this.fonts.get(i)).subfamily)) {
+                    fontData = (FontData) this.fonts.get(i);
+                    break;
+                }
+                i++;
+            }
+            return (fontData != null || this.fonts.isEmpty()) ? fontData : (FontData) this.fonts.get(0);
+        }
+    }
+
+    public static class FontData {
+        String family;
+        Font font;
+        String subfamily;
+
+        FontData() {
+        }
+
+        public String getName() {
+            if ("Regular".equals(this.subfamily) || TextUtils.isEmpty(this.subfamily)) {
+                return this.family;
+            }
+            return this.family + " " + this.subfamily;
+        }
+    }
+
+    public static class LazyTypeface {
+        private final LazyTypefaceLoader loader;
+        private Typeface typeface;
+
+        public interface LazyTypefaceLoader {
+            Typeface load();
+        }
+
+        public LazyTypeface(LazyTypefaceLoader lazyTypefaceLoader) {
+            this.loader = lazyTypefaceLoader;
+        }
+
+        public Typeface get() {
+            if (this.typeface == null) {
+                this.typeface = this.loader.load();
+            }
+            return this.typeface;
+        }
+    }
+
+    public static class NameRecord {
+        final int encodingID;
+        final int languageID;
+        final int nameID;
+        final int nameLength;
+        final int platformID;
+        final int stringOffset;
+
+        public NameRecord(RandomAccessFile randomAccessFile) {
+            this.platformID = randomAccessFile.readUnsignedShort();
+            this.encodingID = randomAccessFile.readUnsignedShort();
+            this.languageID = randomAccessFile.readUnsignedShort();
+            this.nameID = randomAccessFile.readUnsignedShort();
+            this.nameLength = randomAccessFile.readUnsignedShort();
+            this.stringOffset = randomAccessFile.readUnsignedShort();
+        }
+
+        public String read(RandomAccessFile randomAccessFile, int i) {
+            randomAccessFile.seek(i + this.stringOffset);
+            byte[] bArr = new byte[this.nameLength];
+            randomAccessFile.read(bArr);
+            return new String(bArr, this.encodingID == 1 ? StandardCharsets.UTF_16BE : StandardCharsets.UTF_8);
+        }
+    }
 
     static {
         PaintTypeface paintTypeface = new PaintTypeface("roboto", "PhotoEditorTypefaceRoboto", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
@@ -108,6 +201,110 @@ public class PaintTypeface {
         preferable = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
+    PaintTypeface(final Font font, String str) {
+        this.key = str;
+        this.name = str;
+        this.nameKey = null;
+        this.typeface = null;
+        this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$new$7;
+                lambda$new$7 = PaintTypeface.lambda$new$7(font);
+                return lambda$new$7;
+            }
+        });
+        this.font = font;
+    }
+
+    PaintTypeface(String str, String str2, LazyTypeface lazyTypeface) {
+        this.key = str;
+        this.nameKey = str2;
+        this.name = null;
+        this.typeface = null;
+        this.lazyTypeface = lazyTypeface;
+        this.font = null;
+    }
+
+    public static PaintTypeface find(String str) {
+        if (str != null && !TextUtils.isEmpty(str)) {
+            List list = get();
+            for (int i = 0; i < list.size(); i++) {
+                PaintTypeface paintTypeface = (PaintTypeface) list.get(i);
+                if (paintTypeface != null && TextUtils.equals(str, paintTypeface.key)) {
+                    return paintTypeface;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static List get() {
+        List list = typefaces;
+        if (list != null) {
+            return list;
+        }
+        load();
+        return BUILT_IN_FONTS;
+    }
+
+    public static void lambda$load$8(ArrayList arrayList) {
+        typefaces = arrayList;
+        loadingTypefaces = false;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
+    }
+
+    public static void lambda$load$9() {
+        Set availableFonts;
+        File file;
+        FontData parseFont;
+        final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
+        if (Build.VERSION.SDK_INT >= 29) {
+            availableFonts = SystemFonts.getAvailableFonts();
+            Iterator it = availableFonts.iterator();
+            HashMap hashMap = new HashMap();
+            while (it.hasNext()) {
+                Font m = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
+                file = m.getFile();
+                if (!file.getName().contains("Noto") && (parseFont = parseFont(m)) != null) {
+                    Family family = (Family) hashMap.get(parseFont.family);
+                    if (family == null) {
+                        family = new Family();
+                        String str = parseFont.family;
+                        family.family = str;
+                        hashMap.put(str, family);
+                    }
+                    family.fonts.add(parseFont);
+                }
+            }
+            Iterator it2 = preferable.iterator();
+            while (it2.hasNext()) {
+                Family family2 = (Family) hashMap.get((String) it2.next());
+                if (family2 != null) {
+                    FontData bold = family2.getBold();
+                    if (bold == null) {
+                        bold = family2.getRegular();
+                    }
+                    if (bold != null) {
+                        arrayList.add(new PaintTypeface(bold.font, bold.getName()));
+                    }
+                }
+            }
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PaintTypeface.lambda$load$8(arrayList);
+            }
+        });
+    }
+
+    public static Typeface lambda$new$7(Font font) {
+        File file;
+        file = font.getFile();
+        return Typeface.createFromFile(file);
+    }
+
     public static Typeface lambda$static$0() {
         return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
     }
@@ -136,74 +333,6 @@ public class PaintTypeface {
         return AndroidUtilities.getTypeface("fonts/courier_new_bold.ttf");
     }
 
-    public static class LazyTypeface {
-        private final LazyTypefaceLoader loader;
-        private Typeface typeface;
-
-        public interface LazyTypefaceLoader {
-            Typeface load();
-        }
-
-        public LazyTypeface(LazyTypefaceLoader lazyTypefaceLoader) {
-            this.loader = lazyTypefaceLoader;
-        }
-
-        public Typeface get() {
-            if (this.typeface == null) {
-                this.typeface = this.loader.load();
-            }
-            return this.typeface;
-        }
-    }
-
-    PaintTypeface(String str, String str2, LazyTypeface lazyTypeface) {
-        this.key = str;
-        this.nameKey = str2;
-        this.name = null;
-        this.typeface = null;
-        this.lazyTypeface = lazyTypeface;
-        this.font = null;
-    }
-
-    PaintTypeface(final Font font, String str) {
-        this.key = str;
-        this.name = str;
-        this.nameKey = null;
-        this.typeface = null;
-        this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
-            @Override
-            public final Typeface load() {
-                Typeface lambda$new$7;
-                lambda$new$7 = PaintTypeface.lambda$new$7(font);
-                return lambda$new$7;
-            }
-        });
-        this.font = font;
-    }
-
-    public static Typeface lambda$new$7(Font font) {
-        File file;
-        file = font.getFile();
-        return Typeface.createFromFile(file);
-    }
-
-    public String getKey() {
-        return this.key;
-    }
-
-    public Typeface getTypeface() {
-        LazyTypeface lazyTypeface = this.lazyTypeface;
-        if (lazyTypeface != null) {
-            return lazyTypeface.get();
-        }
-        return this.typeface;
-    }
-
-    public String getName() {
-        String str = this.name;
-        return str != null ? str : LocaleController.getString(this.nameKey);
-    }
-
     private static void load() {
         if (typefaces != null || loadingTypefaces) {
             return;
@@ -217,168 +346,28 @@ public class PaintTypeface {
         });
     }
 
-    public static void lambda$load$9() {
-        Set availableFonts;
-        File file;
-        FontData parseFont;
-        final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
-        if (Build.VERSION.SDK_INT >= 29) {
-            availableFonts = SystemFonts.getAvailableFonts();
-            Iterator it = availableFonts.iterator();
-            HashMap hashMap = new HashMap();
-            while (it.hasNext()) {
-                Font m = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
-                file = m.getFile();
-                if (!file.getName().contains("Noto") && (parseFont = parseFont(m)) != null) {
-                    Family family = (Family) hashMap.get(parseFont.family);
-                    if (family == null) {
-                        family = new Family();
-                        String str = parseFont.family;
-                        family.family = str;
-                        hashMap.put(str, family);
-                    }
-                    family.fonts.add(parseFont);
-                }
-            }
-            Iterator<String> it2 = preferable.iterator();
-            while (it2.hasNext()) {
-                Family family2 = (Family) hashMap.get(it2.next());
-                if (family2 != null) {
-                    FontData bold = family2.getBold();
-                    if (bold == null) {
-                        bold = family2.getRegular();
-                    }
-                    if (bold != null) {
-                        arrayList.add(new PaintTypeface(bold.font, bold.getName()));
-                    }
-                }
-            }
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PaintTypeface.lambda$load$8(arrayList);
-            }
-        });
+    public static org.telegram.ui.Components.Paint.PaintTypeface.FontData parseFont(android.graphics.fonts.Font r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.PaintTypeface.parseFont(android.graphics.fonts.Font):org.telegram.ui.Components.Paint.PaintTypeface$FontData");
     }
 
-    public static void lambda$load$8(ArrayList arrayList) {
-        typefaces = arrayList;
-        loadingTypefaces = false;
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
-    }
-
-    public static List<PaintTypeface> get() {
-        List<PaintTypeface> list = typefaces;
-        if (list != null) {
-            return list;
-        }
-        load();
-        return BUILT_IN_FONTS;
-    }
-
-    public static PaintTypeface find(String str) {
-        if (str != null && !TextUtils.isEmpty(str)) {
-            List<PaintTypeface> list = get();
-            for (int i = 0; i < list.size(); i++) {
-                PaintTypeface paintTypeface = list.get(i);
-                if (paintTypeface != null && TextUtils.equals(str, paintTypeface.key)) {
-                    return paintTypeface;
-                }
-            }
-        }
-        return null;
-    }
-
-    public static class Family {
-        String family;
-        ArrayList<FontData> fonts = new ArrayList<>();
-
-        Family() {
-        }
-
-        public FontData getRegular() {
-            FontData fontData;
-            int i = 0;
-            while (true) {
-                if (i >= this.fonts.size()) {
-                    fontData = null;
-                    break;
-                }
-                if ("Regular".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
-                    fontData = this.fonts.get(i);
-                    break;
-                }
-                i++;
-            }
-            return (fontData != null || this.fonts.isEmpty()) ? fontData : this.fonts.get(0);
-        }
-
-        public FontData getBold() {
-            for (int i = 0; i < this.fonts.size(); i++) {
-                if ("Bold".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
-                    return this.fonts.get(i);
-                }
-            }
-            return null;
-        }
-    }
-
-    public static class FontData {
-        String family;
-        Font font;
-        String subfamily;
-
-        FontData() {
-        }
-
-        public String getName() {
-            if ("Regular".equals(this.subfamily) || TextUtils.isEmpty(this.subfamily)) {
-                return this.family;
-            }
-            return this.family + " " + this.subfamily;
-        }
-    }
-
-    public static class NameRecord {
-        final int encodingID;
-        final int languageID;
-        final int nameID;
-        final int nameLength;
-        final int platformID;
-        final int stringOffset;
-
-        public NameRecord(RandomAccessFile randomAccessFile) throws IOException {
-            this.platformID = randomAccessFile.readUnsignedShort();
-            this.encodingID = randomAccessFile.readUnsignedShort();
-            this.languageID = randomAccessFile.readUnsignedShort();
-            this.nameID = randomAccessFile.readUnsignedShort();
-            this.nameLength = randomAccessFile.readUnsignedShort();
-            this.stringOffset = randomAccessFile.readUnsignedShort();
-        }
-
-        public String read(RandomAccessFile randomAccessFile, int i) throws IOException {
-            Charset charset;
-            randomAccessFile.seek(i + this.stringOffset);
-            byte[] bArr = new byte[this.nameLength];
-            randomAccessFile.read(bArr);
-            if (this.encodingID == 1) {
-                charset = StandardCharsets.UTF_16BE;
-            } else {
-                charset = StandardCharsets.UTF_8;
-            }
-            return new String(bArr, charset);
-        }
-    }
-
-    private static String parseString(RandomAccessFile randomAccessFile, int i, NameRecord nameRecord) throws IOException {
+    private static String parseString(RandomAccessFile randomAccessFile, int i, NameRecord nameRecord) {
         if (nameRecord == null) {
             return null;
         }
         return nameRecord.read(randomAccessFile, i);
     }
 
-    public static org.telegram.ui.Components.Paint.PaintTypeface.FontData parseFont(android.graphics.fonts.Font r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.PaintTypeface.parseFont(android.graphics.fonts.Font):org.telegram.ui.Components.Paint.PaintTypeface$FontData");
+    public String getKey() {
+        return this.key;
+    }
+
+    public String getName() {
+        String str = this.name;
+        return str != null ? str : LocaleController.getString(this.nameKey);
+    }
+
+    public Typeface getTypeface() {
+        LazyTypeface lazyTypeface = this.lazyTypeface;
+        return lazyTypeface != null ? lazyTypeface.get() : this.typeface;
     }
 }

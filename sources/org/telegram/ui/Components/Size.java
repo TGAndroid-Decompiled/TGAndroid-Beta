@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 public class Size {
+    public boolean full;
     public float height;
     public float width;
 

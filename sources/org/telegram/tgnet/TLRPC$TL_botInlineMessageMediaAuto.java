@@ -37,7 +37,7 @@ public class TLRPC$TL_botInlineMessageMediaAuto extends TLRPC$BotInlineMessage {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.entities.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {

@@ -7,45 +7,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class ChatActivityEnterTopView extends FrameLayout {
+public abstract class ChatActivityEnterTopView extends FrameLayout {
     private boolean editMode;
     private EditView editView;
     private View replyView;
-
-    public ChatActivityEnterTopView(Context context) {
-        super(context);
-    }
-
-    public void addReplyView(View view, FrameLayout.LayoutParams layoutParams) {
-        if (this.replyView == null) {
-            this.replyView = view;
-            addView(view, layoutParams);
-        }
-    }
-
-    public void addEditView(EditView editView, FrameLayout.LayoutParams layoutParams) {
-        if (this.editView == null) {
-            this.editView = editView;
-            editView.setVisibility(8);
-            addView(editView, layoutParams);
-        }
-    }
-
-    public void setEditMode(boolean z) {
-        if (z != this.editMode) {
-            this.editMode = z;
-            this.replyView.setVisibility(z ? 8 : 0);
-            this.editView.setVisibility(z ? 0 : 8);
-        }
-    }
-
-    public boolean isEditMode() {
-        return this.editMode;
-    }
-
-    public EditView getEditView() {
-        return this.editView;
-    }
 
     public static class EditView extends LinearLayout {
         private EditViewButton[] buttons;
@@ -79,8 +44,6 @@ public class ChatActivityEnterTopView extends FrameLayout {
         private ImageView imageView;
         private TextView textView;
 
-        public abstract void updateColors();
-
         public EditViewButton(Context context) {
             super(context);
         }
@@ -107,12 +70,49 @@ public class ChatActivityEnterTopView extends FrameLayout {
             return this.textView;
         }
 
+        public boolean isEditButton() {
+            return this.editButton;
+        }
+
         public void setEditButton(boolean z) {
             this.editButton = z;
         }
 
-        public boolean isEditButton() {
-            return this.editButton;
+        public abstract void updateColors();
+    }
+
+    public ChatActivityEnterTopView(Context context) {
+        super(context);
+    }
+
+    public void addEditView(EditView editView, FrameLayout.LayoutParams layoutParams) {
+        if (this.editView == null) {
+            this.editView = editView;
+            editView.setVisibility(8);
+            addView(editView, layoutParams);
+        }
+    }
+
+    public void addReplyView(View view, FrameLayout.LayoutParams layoutParams) {
+        if (this.replyView == null) {
+            this.replyView = view;
+            addView(view, layoutParams);
+        }
+    }
+
+    public EditView getEditView() {
+        return this.editView;
+    }
+
+    public boolean isEditMode() {
+        return this.editMode;
+    }
+
+    public void setEditMode(boolean z) {
+        if (z != this.editMode) {
+            this.editMode = z;
+            this.replyView.setVisibility(z ? 8 : 0);
+            this.editView.setVisibility(z ? 0 : 8);
         }
     }
 }

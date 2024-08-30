@@ -14,13 +14,9 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class StoryPrivacyButton extends View {
     private final Paint arrowPaint;
@@ -55,68 +51,6 @@ public class StoryPrivacyButton extends View {
         paint.setColor(-1);
     }
 
-    public boolean set(boolean z, TL_stories$StoryItem tL_stories$StoryItem, boolean z2) {
-        this.drawArrow = z;
-        this.draw = true;
-        if (tL_stories$StoryItem == null) {
-            this.draw = false;
-        } else if (tL_stories$StoryItem.close_friends) {
-            setIcon(R.drawable.msg_stories_closefriends, 15.0f);
-            setupGradient(-7808710, -13781445);
-            this.crossfadeT.set(z2, true);
-        } else if (tL_stories$StoryItem.contacts) {
-            setIcon(R.drawable.msg_folders_private, 17.33f);
-            setupGradient(-3905294, -6923014);
-            this.crossfadeT.set(z2, true);
-        } else if (tL_stories$StoryItem.selected_contacts) {
-            setIcon(R.drawable.msg_folders_groups, 17.33f);
-            setupGradient(-18621, -618956);
-            this.crossfadeT.set(z2, true);
-        } else if (z) {
-            setIcon(R.drawable.msg_folders_channels, 17.33f);
-            setupGradient(-15292942, -15630089);
-            this.crossfadeT.set(z2, true);
-        } else {
-            this.draw = false;
-        }
-        setVisibility(this.draw ? 0 : 8);
-        invalidate();
-        return this.draw;
-    }
-
-    public boolean set(boolean z, StoriesController.UploadingStory uploadingStory, boolean z2) {
-        StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
-        this.drawArrow = z;
-        this.draw = true;
-        if (uploadingStory == null || (storyPrivacy = uploadingStory.entry.privacy) == null) {
-            this.draw = false;
-        } else {
-            int i = storyPrivacy.type;
-            if (i == 1) {
-                setIcon(R.drawable.msg_stories_closefriends, 15.0f);
-                setupGradient(-7808710, -13781445);
-                this.crossfadeT.set(z2, !z2);
-            } else if (i == 2) {
-                setIcon(R.drawable.msg_folders_private, 17.33f);
-                setupGradient(-3905294, -6923014);
-                this.crossfadeT.set(z2, !z2);
-            } else if (i == 3) {
-                setIcon(R.drawable.msg_folders_groups, 17.33f);
-                setupGradient(-18621, -618956);
-                this.crossfadeT.set(z2, !z2);
-            } else if (z) {
-                setIcon(R.drawable.msg_folders_channels, 17.33f);
-                setupGradient(-15292942, -15630089);
-                this.crossfadeT.set(z2, !z2);
-            } else {
-                this.draw = false;
-            }
-        }
-        setVisibility(this.draw ? 0 : 8);
-        invalidate();
-        return this.draw;
-    }
-
     private void setIcon(int i, float f) {
         Drawable[] drawableArr = this.icon;
         Drawable drawable = drawableArr[0];
@@ -148,6 +82,10 @@ public class StoryPrivacyButton extends View {
         linearGradient.setLocalMatrix(this.gradientMatrix);
         this.backgroundPaint[0].setShader(linearGradient);
         invalidate();
+    }
+
+    public float getCenterX() {
+        return getX() + (getWidth() / 2.0f) + (this.drawArrow ? 0 : AndroidUtilities.dp(14.0f));
     }
 
     @Override
@@ -202,17 +140,21 @@ public class StoryPrivacyButton extends View {
     }
 
     @Override
-    public void setPressed(boolean z) {
-        super.setPressed(z);
-        this.bounce.setPressed(z);
-    }
-
-    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public float getCenterX() {
-        return getX() + (getWidth() / 2.0f) + (this.drawArrow ? 0 : AndroidUtilities.dp(14.0f));
+    public boolean set(boolean r5, org.telegram.tgnet.tl.TL_stories$StoryItem r6, boolean r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryPrivacyButton.set(boolean, org.telegram.tgnet.tl.TL_stories$StoryItem, boolean):boolean");
+    }
+
+    public boolean set(boolean r4, org.telegram.ui.Stories.StoriesController.UploadingStory r5, boolean r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryPrivacyButton.set(boolean, org.telegram.ui.Stories.StoriesController$UploadingStory, boolean):boolean");
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+        this.bounce.setPressed(z);
     }
 }

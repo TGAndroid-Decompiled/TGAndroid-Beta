@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class ChatGreetingsView$$ExternalSyntheticApiModelOutline0 {
+public abstract class ChatGreetingsView$$ExternalSyntheticApiModelOutline0 {
 }

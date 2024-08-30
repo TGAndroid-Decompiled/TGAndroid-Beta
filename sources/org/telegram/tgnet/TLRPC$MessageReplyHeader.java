@@ -7,7 +7,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public boolean forum_topic;
     public TLRPC$Peer peer;
     public boolean quote;
-    public ArrayList<TLRPC$MessageEntity> quote_entities = new ArrayList<>();
+    public ArrayList quote_entities = new ArrayList();
     public int quote_offset;
     public String quote_text;
     public TLRPC$MessageFwdHeader reply_from;
@@ -152,7 +152,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                             int size = this.quote_entities.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i4 = 0; i4 < size; i4++) {
-                                this.quote_entities.get(i4).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.quote_entities.get(i4)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -237,7 +237,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                             int size = this.quote_entities.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i5 = 0; i5 < size; i5++) {
-                                this.quote_entities.get(i5).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.quote_entities.get(i5)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }

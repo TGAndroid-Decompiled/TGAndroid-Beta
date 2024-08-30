@@ -39,6 +39,19 @@ public class TopicExceptionCell extends FrameLayout {
         addView(this.subtitle, LayoutHelper.createFrame(-1, -2.0f, 0, 72.0f, 32.0f, 12.0f, 0.0f));
     }
 
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.drawDivider) {
+            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+    }
+
     public void setTopic(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
         ForumUtilities.setTopicIcon(this.backupImageView, tLRPC$TL_forumTopic);
         BackupImageView backupImageView = this.backupImageView;
@@ -47,18 +60,5 @@ public class TopicExceptionCell extends FrameLayout {
         }
         this.title.setText(tLRPC$TL_forumTopic.title);
         this.subtitle.setText(MessagesController.getInstance(UserConfig.selectedAccount).getMutedString(j, tLRPC$TL_forumTopic.id));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.drawDivider) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
     }
 }

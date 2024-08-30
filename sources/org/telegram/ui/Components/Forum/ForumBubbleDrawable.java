@@ -19,7 +19,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
 
 public class ForumBubbleDrawable extends Drawable {
-    static final SparseArray<int[]> colorsMap;
+    static final SparseArray colorsMap;
     private static SvgHelper.SvgDrawable mainDrawable;
     public static final int[] serverSupportedColor = {7322096, 16766590, 13338331, 9367192, 16749490, 16478047};
     int colorIndex;
@@ -29,24 +29,11 @@ public class ForumBubbleDrawable extends Drawable {
     SvgHelper.SvgDrawable svgDrawable;
     private final Paint topPaint;
     Matrix gradientMatrix = new Matrix();
-    ArrayList<View> parents = new ArrayList<>();
+    ArrayList parents = new ArrayList();
     int color = -1;
 
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     static {
-        SparseArray<int[]> sparseArray = new SparseArray<>();
+        SparseArray sparseArray = new SparseArray();
         colorsMap = sparseArray;
         sparseArray.put(7322096, new int[]{-16687423, -11814913});
         sparseArray.put(16766590, new int[]{-1419264, -9380});
@@ -74,6 +61,27 @@ public class ForumBubbleDrawable extends Drawable {
         setColor(i);
     }
 
+    public void lambda$moveNexColor$0(int[] iArr, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        Paint paint = new Paint(1);
+        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue)}, (float[]) null, Shader.TileMode.CLAMP);
+        this.gradient = linearGradient;
+        linearGradient.setLocalMatrix(this.gradientMatrix);
+        paint.setShader(this.gradient);
+        this.svgDrawable.setPaint(paint, 0);
+        this.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue), -1, 0.1f));
+        this.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), -16777216, 0.1f));
+        invalidateSelf();
+    }
+
+    public void addParent(View view) {
+        this.parents.add(view);
+    }
+
+    public int colorDistance(int i, int i2) {
+        return Math.abs(Color.red(i) - Color.red(i2)) + Math.abs(Color.green(i) - Color.green(i2)) + Math.abs(Color.blue(i) - Color.blue(i2));
+    }
+
     @Override
     public void draw(Canvas canvas) {
         this.gradientMatrix.reset();
@@ -93,8 +101,17 @@ public class ForumBubbleDrawable extends Drawable {
         return AndroidUtilities.dp(24.0f);
     }
 
-    public int colorDistance(int i, int i2) {
-        return Math.abs(Color.red(i) - Color.red(i2)) + Math.abs(Color.green(i) - Color.green(i2)) + Math.abs(Color.blue(i) - Color.blue(i2));
+    @Override
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void invalidateSelf() {
+        super.invalidateSelf();
+        for (int i = 0; i < this.parents.size(); i++) {
+            ((View) this.parents.get(i)).invalidate();
+        }
     }
 
     public int moveNexColor() {
@@ -107,7 +124,7 @@ public class ForumBubbleDrawable extends Drawable {
         final int[] iArr2 = this.currentColors;
         int i2 = iArr[this.colorIndex];
         this.color = i2;
-        this.currentColors = colorsMap.get(i2);
+        this.currentColors = (int[]) colorsMap.get(i2);
         if (Theme.isCurrentThemeDark()) {
             this.currentColors = new int[]{ColorUtils.blendARGB(this.currentColors[0], -1, 0.2f), ColorUtils.blendARGB(this.currentColors[1], -1, 0.2f)};
         }
@@ -124,29 +141,8 @@ public class ForumBubbleDrawable extends Drawable {
         return iArr[this.colorIndex];
     }
 
-    public void lambda$moveNexColor$0(int[] iArr, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Paint paint = new Paint(1);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 100.0f, 0.0f, 0.0f, new int[]{ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue)}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradient = linearGradient;
-        linearGradient.setLocalMatrix(this.gradientMatrix);
-        paint.setShader(this.gradient);
-        this.svgDrawable.setPaint(paint, 0);
-        this.topPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[1], this.currentColors[1], floatValue), -1, 0.1f));
-        this.strokePaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(iArr[0], this.currentColors[0], floatValue), -16777216, 0.1f));
-        invalidateSelf();
-    }
-
-    public void addParent(View view) {
-        this.parents.add(view);
-    }
-
     @Override
-    public void invalidateSelf() {
-        super.invalidateSelf();
-        for (int i = 0; i < this.parents.size(); i++) {
-            this.parents.get(i).invalidate();
-        }
+    public void setAlpha(int i) {
     }
 
     public void setColor(int i) {
@@ -171,7 +167,7 @@ public class ForumBubbleDrawable extends Drawable {
             }
             i3++;
         }
-        int[] iArr2 = colorsMap.get(iArr[this.colorIndex]);
+        int[] iArr2 = (int[]) colorsMap.get(iArr[this.colorIndex]);
         if (Theme.isCurrentThemeDark()) {
             iArr2 = new int[]{ColorUtils.blendARGB(iArr2[0], -1, 0.2f), ColorUtils.blendARGB(iArr2[1], -1, 0.2f)};
         }
@@ -184,5 +180,9 @@ public class ForumBubbleDrawable extends Drawable {
         this.svgDrawable.setPaint(paint, 0);
         this.topPaint.setColor(ColorUtils.blendARGB(iArr2[1], -1, 0.1f));
         this.strokePaint.setColor(ColorUtils.blendARGB(iArr2[0], -16777216, 0.1f));
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

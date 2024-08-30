@@ -1,4 +1,4 @@
 package org.telegram.ui.Charts;
 
-public final class BaseChartView$$ExternalSyntheticApiModelOutline0 {
+public abstract class BaseChartView$$ExternalSyntheticApiModelOutline0 {
 }

@@ -13,7 +13,13 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 
-public class ReadAllMentionsMenu {
+public abstract class ReadAllMentionsMenu {
+    public static void lambda$show$0(Runnable runnable, View view) {
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
     public static ActionBarPopupWindow show(int i, Activity activity, INavigationLayout iNavigationLayout, FrameLayout frameLayout, View view, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(activity);
         actionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
@@ -47,11 +53,5 @@ public class ReadAllMentionsMenu {
         }
         actionBarPopupWindow.showAtLocation(frameLayout, 51, (int) x, (int) y);
         return actionBarPopupWindow;
-    }
-
-    public static void lambda$show$0(Runnable runnable, View view) {
-        if (runnable != null) {
-            runnable.run();
-        }
     }
 }

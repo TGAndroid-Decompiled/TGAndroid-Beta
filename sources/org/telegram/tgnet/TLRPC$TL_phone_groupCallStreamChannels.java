@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_phone_groupCallStreamChannels extends TLObject {
-    public ArrayList<TLRPC$TL_groupCallStreamChannel> channels = new ArrayList<>();
+    public ArrayList channels = new ArrayList();
 
     public static TLRPC$TL_phone_groupCallStreamChannels TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-790330702 != i) {
@@ -43,7 +43,7 @@ public class TLRPC$TL_phone_groupCallStreamChannels extends TLObject {
         int size = this.channels.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.channels.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_groupCallStreamChannel) this.channels.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -12,7 +12,7 @@ public class TLRPC$TL_theme extends TLRPC$Theme {
     public long id;
     public int installs_count;
     public boolean isDefault;
-    public ArrayList<TLRPC$ThemeSettings> settings = new ArrayList<>();
+    public ArrayList settings = new ArrayList();
     public String slug;
     public String title;
 
@@ -77,7 +77,7 @@ public class TLRPC$TL_theme extends TLRPC$Theme {
             int size = this.settings.size();
             abstractSerializedData.writeInt32(size);
             for (int i4 = 0; i4 < size; i4++) {
-                this.settings.get(i4).serializeToStream(abstractSerializedData);
+                ((TLRPC$ThemeSettings) this.settings.get(i4)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 64) != 0) {

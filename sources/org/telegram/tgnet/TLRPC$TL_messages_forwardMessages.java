@@ -16,8 +16,8 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
     public TLRPC$InputPeer to_peer;
     public int top_msg_id;
     public boolean with_my_score;
-    public ArrayList<Integer> id = new ArrayList<>();
-    public ArrayList<Long> random_id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
+    public ArrayList random_id = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -45,13 +45,13 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i7 = 0; i7 < size; i7++) {
-            abstractSerializedData.writeInt32(this.id.get(i7).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.id.get(i7)).intValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.random_id.size();
         abstractSerializedData.writeInt32(size2);
         for (int i8 = 0; i8 < size2; i8++) {
-            abstractSerializedData.writeInt64(this.random_id.get(i8).longValue());
+            abstractSerializedData.writeInt64(((Long) this.random_id.get(i8)).longValue());
         }
         this.to_peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 512) != 0) {

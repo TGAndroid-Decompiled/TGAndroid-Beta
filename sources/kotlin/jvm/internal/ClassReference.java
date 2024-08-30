@@ -39,50 +39,28 @@ import kotlin.jvm.functions.Function9;
 import kotlin.reflect.KClass;
 import kotlin.text.StringsKt__StringsKt;
 
-public final class ClassReference implements KClass<Object>, ClassBasedDeclarationContainer {
+public final class ClassReference implements KClass, ClassBasedDeclarationContainer {
     public static final Companion Companion = new Companion(null);
-    private static final Map<Class<Object>, Integer> FUNCTION_CLASSES;
-    private static final HashMap<String, String> classFqNames;
-    private static final HashMap<String, String> primitiveFqNames;
-    private static final HashMap<String, String> primitiveWrapperFqNames;
-    private static final Map<String, String> simpleNames;
-    private final Class<?> jClass;
-
-    public ClassReference(Class<?> jClass) {
-        Intrinsics.checkNotNullParameter(jClass, "jClass");
-        this.jClass = jClass;
-    }
-
-    @Override
-    public Class<?> getJClass() {
-        return this.jClass;
-    }
-
-    public boolean equals(Object obj) {
-        return (obj instanceof ClassReference) && Intrinsics.areEqual(JvmClassMappingKt.getJavaObjectType(this), JvmClassMappingKt.getJavaObjectType((KClass) obj));
-    }
-
-    public int hashCode() {
-        return JvmClassMappingKt.getJavaObjectType(this).hashCode();
-    }
-
-    public String toString() {
-        return getJClass().toString() + " (Kotlin reflection is not available)";
-    }
+    private static final Map FUNCTION_CLASSES;
+    private static final HashMap classFqNames;
+    private static final HashMap primitiveFqNames;
+    private static final HashMap primitiveWrapperFqNames;
+    private static final Map simpleNames;
+    private final Class jClass;
 
     public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
+        private Companion() {
         }
 
-        private Companion() {
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
         }
     }
 
     static {
         List listOf;
         int collectionSizeOrDefault;
-        Map<Class<Object>, Integer> map;
+        Map map;
         int mapCapacity;
         String substringAfterLast$default;
         String substringAfterLast$default2;
@@ -101,7 +79,7 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
         }
         map = MapsKt__MapsKt.toMap(arrayList);
         FUNCTION_CLASSES = map;
-        HashMap<String, String> hashMap = new HashMap<>();
+        HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
         hashMap.put("byte", "kotlin.Byte");
@@ -111,7 +89,7 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
         hashMap.put("long", "kotlin.Long");
         hashMap.put("double", "kotlin.Double");
         primitiveFqNames = hashMap;
-        HashMap<String, String> hashMap2 = new HashMap<>();
+        HashMap hashMap2 = new HashMap();
         hashMap2.put("java.lang.Boolean", "kotlin.Boolean");
         hashMap2.put("java.lang.Character", "kotlin.Char");
         hashMap2.put("java.lang.Byte", "kotlin.Byte");
@@ -121,7 +99,7 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
         hashMap2.put("java.lang.Long", "kotlin.Long");
         hashMap2.put("java.lang.Double", "kotlin.Double");
         primitiveWrapperFqNames = hashMap2;
-        HashMap<String, String> hashMap3 = new HashMap<>();
+        HashMap hashMap3 = new HashMap();
         hashMap3.put("java.lang.Object", "kotlin.Any");
         hashMap3.put("java.lang.String", "kotlin.String");
         hashMap3.put("java.lang.CharSequence", "kotlin.CharSequence");
@@ -155,8 +133,8 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
             Pair pair = TuplesKt.to(sb.toString(), kotlinName + ".Companion");
             hashMap3.put(pair.getFirst(), pair.getSecond());
         }
-        for (Map.Entry<Class<Object>, Integer> entry : FUNCTION_CLASSES.entrySet()) {
-            hashMap3.put(entry.getKey().getName(), "kotlin.Function" + entry.getValue().intValue());
+        for (Map.Entry entry : FUNCTION_CLASSES.entrySet()) {
+            hashMap3.put(((Class) entry.getKey()).getName(), "kotlin.Function" + ((Number) entry.getValue()).intValue());
         }
         classFqNames = hashMap3;
         mapCapacity = MapsKt__MapsJVMKt.mapCapacity(hashMap3.size());
@@ -167,5 +145,27 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
             linkedHashMap.put(key, substringAfterLast$default);
         }
         simpleNames = linkedHashMap;
+    }
+
+    public ClassReference(Class jClass) {
+        Intrinsics.checkNotNullParameter(jClass, "jClass");
+        this.jClass = jClass;
+    }
+
+    public boolean equals(Object obj) {
+        return (obj instanceof ClassReference) && Intrinsics.areEqual(JvmClassMappingKt.getJavaObjectType(this), JvmClassMappingKt.getJavaObjectType((KClass) obj));
+    }
+
+    @Override
+    public Class getJClass() {
+        return this.jClass;
+    }
+
+    public int hashCode() {
+        return JvmClassMappingKt.getJavaObjectType(this).hashCode();
+    }
+
+    public String toString() {
+        return getJClass().toString() + " (Kotlin reflection is not available)";
     }
 }

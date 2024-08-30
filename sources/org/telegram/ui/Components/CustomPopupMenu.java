@@ -15,10 +15,6 @@ public abstract class CustomPopupMenu {
     ActionBarPopupWindow.ActionBarPopupWindowLayout popupLayout;
     ActionBarPopupWindow popupWindow;
 
-    protected abstract void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout);
-
-    protected abstract void onDismissed();
-
     public CustomPopupMenu(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(context, R.drawable.popup_fixed_alert2, resourcesProvider, z ? 1 : 0);
         this.popupLayout = actionBarPopupWindowLayout;
@@ -82,11 +78,6 @@ public abstract class CustomPopupMenu {
         this.isShowing = false;
     }
 
-    public void show(View view, int i, int i2) {
-        this.isShowing = true;
-        this.popupWindow.showAsDropDown(view, i, i2);
-    }
-
     public void dismiss() {
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow != null) {
@@ -96,5 +87,14 @@ public abstract class CustomPopupMenu {
 
     public boolean isShowing() {
         return this.isShowing;
+    }
+
+    protected abstract void onCreate(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout);
+
+    protected abstract void onDismissed();
+
+    public void show(View view, int i, int i2) {
+        this.isShowing = true;
+        this.popupWindow.showAsDropDown(view, i, i2);
     }
 }

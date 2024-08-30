@@ -35,40 +35,6 @@ public class StoriesVolumeControl extends View {
         this.paint.setColor(-1);
     }
 
-    @Override
-    public boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (keyEvent.getAction() == 0 && i == 24) {
-            adjustVolume(true);
-            return true;
-        }
-        if (keyEvent.getAction() == 0 && i == 25) {
-            adjustVolume(false);
-            return true;
-        }
-        return super.onKeyDown(i, keyEvent);
-    }
-
-    public void unmute() {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
-        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
-        int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
-        int streamVolume = audioManager.getStreamVolume(3);
-        if (streamVolume <= streamMinVolume) {
-            adjustVolume(true);
-            return;
-        }
-        if (this.isVisible) {
-            return;
-        }
-        float f = streamVolume / streamMaxVolume;
-        this.currentProgress = f;
-        this.volumeProgress.set(f, true);
-        this.isVisible = true;
-        invalidate();
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
-    }
-
     private void adjustVolume(boolean z) {
         AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
@@ -98,6 +64,11 @@ public class StoriesVolumeControl extends View {
         AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
     }
 
+    public void hide() {
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        this.hideRunnable.run();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -112,8 +83,37 @@ public class StoriesVolumeControl extends View {
         }
     }
 
-    public void hide() {
+    @Override
+    public boolean onKeyDown(int i, KeyEvent keyEvent) {
+        if (keyEvent.getAction() == 0 && i == 24) {
+            adjustVolume(true);
+            return true;
+        }
+        if (keyEvent.getAction() != 0 || i != 25) {
+            return super.onKeyDown(i, keyEvent);
+        }
+        adjustVolume(false);
+        return true;
+    }
+
+    public void unmute() {
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
+        int streamVolume = audioManager.getStreamVolume(3);
+        if (streamVolume <= streamMinVolume) {
+            adjustVolume(true);
+            return;
+        }
+        if (this.isVisible) {
+            return;
+        }
+        float f = streamVolume / streamMaxVolume;
+        this.currentProgress = f;
+        this.volumeProgress.set(f, true);
+        this.isVisible = true;
+        invalidate();
         AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        this.hideRunnable.run();
+        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
     }
 }

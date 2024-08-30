@@ -21,11 +21,8 @@ public class AvatarsImageView extends View {
         this.avatarsDrawable = new AvatarsDrawable(this, z);
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        this.avatarsDrawable.width = getMeasuredWidth();
-        this.avatarsDrawable.height = getMeasuredHeight();
+    public void commitTransition(boolean z) {
+        this.avatarsDrawable.commitTransition(z);
     }
 
     @Override
@@ -34,12 +31,10 @@ public class AvatarsImageView extends View {
         this.avatarsDrawable.onAttachedToWindow();
     }
 
-    public void setPlus(int i, int i2) {
-        this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, null);
-        this.plusText = new Text("+" + i, 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.plusBgPaint = paint;
-        paint.setColor(i2);
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.avatarsDrawable.onDetachedFromWindow();
     }
 
     @Override
@@ -57,13 +52,26 @@ public class AvatarsImageView extends View {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.avatarsDrawable.onDetachedFromWindow();
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.avatarsDrawable.width = getMeasuredWidth();
+        this.avatarsDrawable.height = getMeasuredHeight();
     }
 
-    public void setStyle(int i) {
-        this.avatarsDrawable.setStyle(i);
+    public void reset() {
+        this.avatarsDrawable.reset();
+    }
+
+    public void setAvatarsTextSize(int i) {
+        this.avatarsDrawable.setAvatarsTextSize(i);
+    }
+
+    public void setCentered(boolean z) {
+        this.avatarsDrawable.setCentered(z);
+    }
+
+    public void setCount(int i) {
+        this.avatarsDrawable.setCount(i);
     }
 
     public void setDelegate(Runnable runnable) {
@@ -74,8 +82,12 @@ public class AvatarsImageView extends View {
         this.avatarsDrawable.setObject(i, i2, tLObject);
     }
 
-    public void setAvatarsTextSize(int i) {
-        this.avatarsDrawable.setAvatarsTextSize(i);
+    public void setPlus(int i, int i2) {
+        this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, -1, null);
+        this.plusText = new Text("+" + i, 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+        Paint paint = new Paint(1);
+        this.plusBgPaint = paint;
+        paint.setColor(i2);
     }
 
     public void setSize(int i) {
@@ -86,23 +98,11 @@ public class AvatarsImageView extends View {
         this.avatarsDrawable.setStepFactor(f);
     }
 
-    public void reset() {
-        this.avatarsDrawable.reset();
-    }
-
-    public void setCount(int i) {
-        this.avatarsDrawable.setCount(i);
-    }
-
-    public void commitTransition(boolean z) {
-        this.avatarsDrawable.commitTransition(z);
+    public void setStyle(int i) {
+        this.avatarsDrawable.setStyle(i);
     }
 
     public void updateAfterTransitionEnd() {
         this.avatarsDrawable.updateAfterTransitionEnd();
-    }
-
-    public void setCentered(boolean z) {
-        this.avatarsDrawable.setCentered(z);
     }
 }

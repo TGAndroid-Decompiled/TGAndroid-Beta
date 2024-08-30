@@ -55,6 +55,19 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
     }
 
     @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        canvas.save();
+        if (this.alignTop) {
+            this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
+        } else {
+            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
+        }
+        this.imageReceiver.draw(canvas);
+        canvas.restore();
+    }
+
+    @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         if (fontMetricsInt != null) {
             if (this.alignTop) {
@@ -76,18 +89,5 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
             }
         }
         return this.width;
-    }
-
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        canvas.save();
-        if (this.alignTop) {
-            this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
-        } else {
-            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
-        }
-        this.imageReceiver.draw(canvas);
-        canvas.restore();
     }
 }

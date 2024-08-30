@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_stickers extends TLRPC$messages_Stickers {
     public long hash;
-    public ArrayList<TLRPC$Document> stickers = new ArrayList<>();
+    public ArrayList stickers = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_messages_stickers extends TLRPC$messages_Stickers {
         int size = this.stickers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.stickers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$Document) this.stickers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

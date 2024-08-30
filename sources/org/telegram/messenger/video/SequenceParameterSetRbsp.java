@@ -1,7 +1,6 @@
 package org.telegram.messenger.video;
 
 import com.googlecode.mp4parser.h264.read.CAVLCReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 
@@ -20,7 +19,7 @@ public class SequenceParameterSetRbsp {
     public int sps_max_sub_layers_minus1;
     public boolean sps_temporal_id_nesting_flag;
 
-    public SequenceParameterSetRbsp(InputStream inputStream) throws IOException {
+    public SequenceParameterSetRbsp(InputStream inputStream) {
         CAVLCReader cAVLCReader = new CAVLCReader(inputStream);
         cAVLCReader.readNBit(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) cAVLCReader.readNBit(3, "sps_max_sub_layers_minus1");
@@ -86,10 +85,17 @@ public class SequenceParameterSetRbsp {
         cAVLCReader.readBool("strong_intra_smoothing_enabled_flag");
     }
 
-    private void parse_short_term_ref_pic_sets(int i, CAVLCReader cAVLCReader) throws IOException {
+    private void parse_short_term_ref_pic_sets(int i, CAVLCReader cAVLCReader) {
         long[] jArr = new long[i];
         for (int i2 = 0; i2 < i; i2++) {
-            if (i2 != 0 && cAVLCReader.readBool()) {
+            if (i2 == 0 || !cAVLCReader.readBool()) {
+                long readUE = cAVLCReader.readUE("num_negative_pics") + cAVLCReader.readUE("num_positive_pics");
+                jArr[i2] = readUE;
+                for (long j = 0; j < readUE; j++) {
+                    cAVLCReader.readUE("delta_poc_s0/1_minus1");
+                    cAVLCReader.readBool("used_by_curr_pic_s0/1_flag");
+                }
+            } else {
                 cAVLCReader.readBool("delta_rps_sign");
                 cAVLCReader.readUE("abs_delta_rps_minus1");
                 jArr[i2] = 0;
@@ -100,42 +106,11 @@ public class SequenceParameterSetRbsp {
                         jArr[i2] = jArr[i2] + 1;
                     }
                 }
-            } else {
-                long readUE = cAVLCReader.readUE("num_negative_pics") + cAVLCReader.readUE("num_positive_pics");
-                jArr[i2] = readUE;
-                for (long j = 0; j < readUE; j++) {
-                    cAVLCReader.readUE("delta_poc_s0/1_minus1");
-                    cAVLCReader.readBool("used_by_curr_pic_s0/1_flag");
-                }
             }
         }
     }
 
-    private static void skip_scaling_list_data(CAVLCReader cAVLCReader) throws IOException {
-        int i = 0;
-        while (i < 4) {
-            int i2 = 0;
-            while (true) {
-                if (i2 < (i == 3 ? 2 : 6)) {
-                    if (cAVLCReader.readBool()) {
-                        cAVLCReader.readUE("scaling_list_pred_matrix_id_delta");
-                    } else {
-                        int min = Math.min(64, 1 << ((i << 1) + 4));
-                        if (i > 1) {
-                            cAVLCReader.readUE("scaling_list_dc_coef_minus8");
-                        }
-                        for (int i3 = 0; i3 < min; i3++) {
-                            cAVLCReader.readUE("scaling_list_delta_coef");
-                        }
-                    }
-                    i2++;
-                }
-            }
-            i++;
-        }
-    }
-
-    private void profile_tier_level(int i, CAVLCReader cAVLCReader) throws IOException {
+    private void profile_tier_level(int i, CAVLCReader cAVLCReader) {
         boolean[] zArr;
         int[] iArr;
         int i2 = i;
@@ -201,6 +176,30 @@ public class SequenceParameterSetRbsp {
             i2 = i;
             zArr2 = zArr;
             iArr3 = iArr;
+        }
+    }
+
+    private static void skip_scaling_list_data(CAVLCReader cAVLCReader) {
+        int i = 0;
+        while (i < 4) {
+            int i2 = 0;
+            while (true) {
+                if (i2 < (i == 3 ? 2 : 6)) {
+                    if (cAVLCReader.readBool()) {
+                        cAVLCReader.readUE("scaling_list_pred_matrix_id_delta");
+                    } else {
+                        int min = Math.min(64, 1 << ((i << 1) + 4));
+                        if (i > 1) {
+                            cAVLCReader.readUE("scaling_list_dc_coef_minus8");
+                        }
+                        for (int i3 = 0; i3 < min; i3++) {
+                            cAVLCReader.readUE("scaling_list_delta_coef");
+                        }
+                    }
+                    i2++;
+                }
+            }
+            i++;
         }
     }
 }

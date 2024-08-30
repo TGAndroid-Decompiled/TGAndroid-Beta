@@ -75,7 +75,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case -1906403213:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<TLRPC$TL_dcOption> dc_options = new ArrayList<>();
+                    public ArrayList dc_options = new ArrayList();
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -103,7 +103,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.dc_options.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.dc_options.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_dcOption) this.dc_options.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -205,7 +205,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case -1512627963:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<Integer> order = new ArrayList<>();
+                    public ArrayList order = new ArrayList();
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -229,7 +229,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.order.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32(this.order.get(i2).intValue());
+                            abstractSerializedData2.writeInt32(((Integer) this.order.get(i2)).intValue());
                         }
                     }
                 };
@@ -434,7 +434,7 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 619974263:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public ArrayList<byte[]> options = new ArrayList<>();
+                    public ArrayList options = new ArrayList();
                     public TLRPC$Peer peer;
                     public long poll_id;
                     public int qts;
@@ -466,7 +466,7 @@ public abstract class TLRPC$Update extends TLObject {
                         int size = this.options.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeByteArray(this.options.get(i2));
+                            abstractSerializedData2.writeByteArray((byte[]) this.options.get(i2));
                         }
                         abstractSerializedData2.writeInt32(this.qts);
                     }

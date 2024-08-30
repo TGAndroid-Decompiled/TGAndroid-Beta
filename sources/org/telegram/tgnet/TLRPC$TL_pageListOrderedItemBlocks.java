@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_pageListOrderedItemBlocks extends TLRPC$PageListOrderedItem {
-    public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
+    public ArrayList blocks = new ArrayList();
     public String num;
 
     @Override
@@ -34,7 +34,7 @@ public class TLRPC$TL_pageListOrderedItemBlocks extends TLRPC$PageListOrderedIte
         int size = this.blocks.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.blocks.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$PageBlock) this.blocks.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

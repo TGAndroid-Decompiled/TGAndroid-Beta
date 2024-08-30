@@ -9,84 +9,63 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 
 public abstract class Brush {
-    public static List<Brush> BRUSHES_LIST = Arrays.asList(new Radial(), new Arrow(), new Elliptical(), new Neon(), new Blurer(), new Eraser());
+    public static List BRUSHES_LIST = Arrays.asList(new Radial(), new Arrow(), new Elliptical(), new Neon(), new Blurer(), new Eraser());
 
-    public float getAlpha() {
-        return 0.85f;
-    }
-
-    public float getAngle() {
-        return 0.0f;
-    }
-
-    public int getDefaultColor() {
-        return -16777216;
-    }
-
-    public float getDefaultWeight() {
-        return 0.25f;
-    }
-
-    public int getIconRes() {
-        return 0;
-    }
-
-    public float getOverrideAlpha() {
-        return 1.0f;
-    }
-
-    public float getPreviewScale() {
-        return 0.4f;
-    }
-
-    public float getScale() {
-        return 1.0f;
-    }
-
-    public float getSmoothThicknessRate() {
-        return 1.0f;
-    }
-
-    public float getSpacing() {
-        return 0.15f;
-    }
-
-    public boolean isEraser() {
-        return false;
-    }
-
-    public String getShaderName(int i) {
-        if (i == 0) {
-            return "blitWithMask";
-        }
-        if (i == 1) {
-            return "compositeWithMask";
-        }
-        if (i != 2) {
-            return null;
-        }
-        return "brush";
-    }
-
-    public int getStampResId() {
-        return R.drawable.paint_radial_brush;
-    }
-
-    public Bitmap getStamp() {
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inScaled = false;
-        return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), getStampResId(), options);
-    }
-
-    public static class Radial extends Brush {
+    public static class Arrow extends Brush {
         @Override
         public int getDefaultColor() {
-            return -47814;
+            return -30208;
+        }
+
+        @Override
+        public float getDefaultWeight() {
+            return 0.25f;
         }
 
         @Override
         public int getIconRes() {
-            return R.raw.photo_pen;
+            return R.raw.photo_arrow;
+        }
+
+        @Override
+        public float getSmoothThicknessRate() {
+            return 0.25f;
+        }
+    }
+
+    public static class Blurer extends Brush {
+        @Override
+        public float getAlpha() {
+            return 1.0f;
+        }
+
+        @Override
+        public float getDefaultWeight() {
+            return 1.0f;
+        }
+
+        @Override
+        public int getIconRes() {
+            return R.raw.photo_blur;
+        }
+
+        @Override
+        public float getPreviewScale() {
+            return 0.35f;
+        }
+
+        @Override
+        public String getShaderName(int i) {
+            if (i == 0) {
+                return "blitWithMaskBlurer";
+            }
+            if (i == 1) {
+                return "compositeWithMaskBlurer";
+            }
+            if (i != 2) {
+                return null;
+            }
+            return "brush";
         }
     }
 
@@ -97,6 +76,11 @@ public abstract class Brush {
         }
 
         @Override
+        public float getAngle() {
+            return (float) Math.toRadians(0.0d);
+        }
+
+        @Override
         public int getDefaultColor() {
             return -10742;
         }
@@ -104,6 +88,11 @@ public abstract class Brush {
         @Override
         public float getDefaultWeight() {
             return 0.5f;
+        }
+
+        @Override
+        public int getIconRes() {
+            return R.raw.photo_marker;
         }
 
         @Override
@@ -127,18 +116,49 @@ public abstract class Brush {
         }
 
         @Override
-        public float getAngle() {
-            return (float) Math.toRadians(0.0d);
+        public int getStampResId() {
+            return R.drawable.paint_elliptical_brush;
+        }
+    }
+
+    public static class Eraser extends Brush {
+        @Override
+        public float getAlpha() {
+            return 1.0f;
         }
 
         @Override
-        public int getStampResId() {
-            return R.drawable.paint_elliptical_brush;
+        public float getDefaultWeight() {
+            return 1.0f;
         }
 
         @Override
         public int getIconRes() {
-            return R.raw.photo_marker;
+            return R.raw.photo_eraser;
+        }
+
+        @Override
+        public float getPreviewScale() {
+            return 0.35f;
+        }
+
+        @Override
+        public String getShaderName(int i) {
+            if (i == 0) {
+                return "blitWithMaskEraser";
+            }
+            if (i == 1) {
+                return "compositeWithMaskEraser";
+            }
+            if (i != 2) {
+                return null;
+            }
+            return "brush";
+        }
+
+        @Override
+        public boolean isEraser() {
+            return true;
         }
     }
 
@@ -159,6 +179,11 @@ public abstract class Brush {
         }
 
         @Override
+        public int getIconRes() {
+            return R.raw.photo_neon;
+        }
+
+        @Override
         public float getPreviewScale() {
             return 0.2f;
         }
@@ -166,11 +191,6 @@ public abstract class Brush {
         @Override
         public float getScale() {
             return 1.45f;
-        }
-
-        @Override
-        public float getSpacing() {
-            return 0.07f;
         }
 
         @Override
@@ -188,146 +208,159 @@ public abstract class Brush {
         }
 
         @Override
+        public float getSpacing() {
+            return 0.07f;
+        }
+
+        @Override
         public int getStampResId() {
             return R.drawable.paint_neon_brush;
         }
-
-        @Override
-        public int getIconRes() {
-            return R.raw.photo_neon;
-        }
     }
 
-    public static class Arrow extends Brush {
+    public static class Radial extends Brush {
         @Override
         public int getDefaultColor() {
-            return -30208;
-        }
-
-        @Override
-        public float getDefaultWeight() {
-            return 0.25f;
-        }
-
-        @Override
-        public float getSmoothThicknessRate() {
-            return 0.25f;
+            return -47814;
         }
 
         @Override
         public int getIconRes() {
-            return R.raw.photo_arrow;
-        }
-    }
-
-    public static class Eraser extends Brush {
-        @Override
-        public float getAlpha() {
-            return 1.0f;
-        }
-
-        @Override
-        public float getDefaultWeight() {
-            return 1.0f;
-        }
-
-        @Override
-        public float getPreviewScale() {
-            return 0.35f;
-        }
-
-        @Override
-        public boolean isEraser() {
-            return true;
-        }
-
-        @Override
-        public String getShaderName(int i) {
-            if (i == 0) {
-                return "blitWithMaskEraser";
-            }
-            if (i == 1) {
-                return "compositeWithMaskEraser";
-            }
-            if (i != 2) {
-                return null;
-            }
-            return "brush";
-        }
-
-        @Override
-        public int getIconRes() {
-            return R.raw.photo_eraser;
-        }
-    }
-
-    public static class Blurer extends Brush {
-        @Override
-        public float getAlpha() {
-            return 1.0f;
-        }
-
-        @Override
-        public float getDefaultWeight() {
-            return 1.0f;
-        }
-
-        @Override
-        public float getPreviewScale() {
-            return 0.35f;
-        }
-
-        @Override
-        public String getShaderName(int i) {
-            if (i == 0) {
-                return "blitWithMaskBlurer";
-            }
-            if (i == 1) {
-                return "compositeWithMaskBlurer";
-            }
-            if (i != 2) {
-                return null;
-            }
-            return "brush";
-        }
-
-        @Override
-        public int getIconRes() {
-            return R.raw.photo_blur;
+            return R.raw.photo_pen;
         }
     }
 
     public static abstract class Shape extends Brush {
-        public static List<Shape> SHAPES_LIST = Arrays.asList(new Circle(), new Rectangle(), new Star(), new Bubble(), new Arrow());
+        public static List SHAPES_LIST = Arrays.asList(new Circle(), new Rectangle(), new Star(), new Bubble(), new Arrow());
+
+        public static class Arrow extends Shape {
+            @Override
+            public int getFilledIconRes() {
+                return R.drawable.photo_arrowshape;
+            }
+
+            @Override
+            public int getIconRes() {
+                return R.drawable.photo_arrowshape;
+            }
+
+            @Override
+            public String getShapeName() {
+                return LocaleController.getString(R.string.PaintArrow);
+            }
+
+            @Override
+            public int getShapeShaderType() {
+                return 4;
+            }
+        }
+
+        public static class Bubble extends Shape {
+            @Override
+            public int getFilledIconRes() {
+                return R.drawable.msg_msgbubble2;
+            }
+
+            @Override
+            public int getIconRes() {
+                return R.drawable.msg_msgbubble;
+            }
+
+            @Override
+            public String getShapeName() {
+                return LocaleController.getString(R.string.PaintBubble);
+            }
+
+            @Override
+            public int getShapeShaderType() {
+                return 3;
+            }
+        }
+
+        public static class Circle extends Shape {
+            @Override
+            public int getFilledIconRes() {
+                return R.drawable.photo_circle_fill;
+            }
+
+            @Override
+            public int getIconRes() {
+                return R.drawable.photo_circle;
+            }
+
+            @Override
+            public String getShapeName() {
+                return LocaleController.getString(R.string.PaintCircle);
+            }
+
+            @Override
+            public int getShapeShaderType() {
+                return 0;
+            }
+        }
+
+        public static class Rectangle extends Shape {
+            @Override
+            public int getFilledIconRes() {
+                return R.drawable.photo_rectangle_fill;
+            }
+
+            @Override
+            public int getIconRes() {
+                return R.drawable.photo_rectangle;
+            }
+
+            @Override
+            public String getShapeName() {
+                return LocaleController.getString(R.string.PaintRectangle);
+            }
+
+            @Override
+            public int getShapeShaderType() {
+                return 1;
+            }
+        }
+
+        public static class Star extends Shape {
+            @Override
+            public int getFilledIconRes() {
+                return R.drawable.photo_star_fill;
+            }
+
+            @Override
+            public int getIconRes() {
+                return R.drawable.photo_star;
+            }
+
+            @Override
+            public String getShapeName() {
+                return LocaleController.getString(R.string.PaintStar);
+            }
+
+            @Override
+            public int getShapeShaderType() {
+                return 2;
+            }
+        }
+
+        public static Shape make(int i) {
+            if (i >= 0 && i <= SHAPES_LIST.size()) {
+                return (Shape) SHAPES_LIST.get(i);
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.append("Shape type must be in range from 0 to ");
+            sb.append(SHAPES_LIST.size() - 1);
+            sb.append(", but got ");
+            sb.append(i);
+            throw new IndexOutOfBoundsException(sb.toString());
+        }
 
         @Override
         public float getAlpha() {
             return 1.0f;
         }
 
-        public int getFilledIconRes() {
-            return 0;
-        }
-
-        public String getShapeName() {
-            return null;
-        }
-
-        public int getShapeShaderType() {
-            return 0;
-        }
-
-        public static Shape make(int i) {
-            if (i < 0 || i > SHAPES_LIST.size()) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("Shape type must be in range from 0 to ");
-                sb.append(SHAPES_LIST.size() - 1);
-                sb.append(", but got ");
-                sb.append(i);
-                throw new IndexOutOfBoundsException(sb.toString());
-            }
-            return SHAPES_LIST.get(i);
-        }
+        public abstract int getFilledIconRes();
 
         @Override
         public String getShaderName(int i) {
@@ -340,114 +373,73 @@ public abstract class Brush {
             return "brush";
         }
 
-        public static class Circle extends Shape {
-            @Override
-            public int getShapeShaderType() {
-                return 0;
-            }
+        public abstract String getShapeName();
 
-            @Override
-            public String getShapeName() {
-                return LocaleController.getString(R.string.PaintCircle);
-            }
+        public abstract int getShapeShaderType();
+    }
 
-            @Override
-            public int getIconRes() {
-                return R.drawable.photo_circle;
-            }
+    public float getAlpha() {
+        return 0.85f;
+    }
 
-            @Override
-            public int getFilledIconRes() {
-                return R.drawable.photo_circle_fill;
-            }
+    public float getAngle() {
+        return 0.0f;
+    }
+
+    public int getDefaultColor() {
+        return -16777216;
+    }
+
+    public float getDefaultWeight() {
+        return 0.25f;
+    }
+
+    public abstract int getIconRes();
+
+    public float getOverrideAlpha() {
+        return 1.0f;
+    }
+
+    public float getPreviewScale() {
+        return 0.4f;
+    }
+
+    public float getScale() {
+        return 1.0f;
+    }
+
+    public String getShaderName(int i) {
+        if (i == 0) {
+            return "blitWithMask";
         }
-
-        public static class Rectangle extends Shape {
-            @Override
-            public int getShapeShaderType() {
-                return 1;
-            }
-
-            @Override
-            public String getShapeName() {
-                return LocaleController.getString(R.string.PaintRectangle);
-            }
-
-            @Override
-            public int getIconRes() {
-                return R.drawable.photo_rectangle;
-            }
-
-            @Override
-            public int getFilledIconRes() {
-                return R.drawable.photo_rectangle_fill;
-            }
+        if (i == 1) {
+            return "compositeWithMask";
         }
-
-        public static class Star extends Shape {
-            @Override
-            public int getShapeShaderType() {
-                return 2;
-            }
-
-            @Override
-            public String getShapeName() {
-                return LocaleController.getString(R.string.PaintStar);
-            }
-
-            @Override
-            public int getIconRes() {
-                return R.drawable.photo_star;
-            }
-
-            @Override
-            public int getFilledIconRes() {
-                return R.drawable.photo_star_fill;
-            }
+        if (i != 2) {
+            return null;
         }
+        return "brush";
+    }
 
-        public static class Bubble extends Shape {
-            @Override
-            public int getShapeShaderType() {
-                return 3;
-            }
+    public float getSmoothThicknessRate() {
+        return 1.0f;
+    }
 
-            @Override
-            public String getShapeName() {
-                return LocaleController.getString(R.string.PaintBubble);
-            }
+    public float getSpacing() {
+        return 0.15f;
+    }
 
-            @Override
-            public int getIconRes() {
-                return R.drawable.msg_msgbubble;
-            }
+    public Bitmap getStamp() {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inScaled = false;
+        return BitmapFactory.decodeResource(ApplicationLoader.applicationContext.getResources(), getStampResId(), options);
+    }
 
-            @Override
-            public int getFilledIconRes() {
-                return R.drawable.msg_msgbubble2;
-            }
-        }
+    public int getStampResId() {
+        return R.drawable.paint_radial_brush;
+    }
 
-        public static class Arrow extends Shape {
-            @Override
-            public int getShapeShaderType() {
-                return 4;
-            }
-
-            @Override
-            public String getShapeName() {
-                return LocaleController.getString(R.string.PaintArrow);
-            }
-
-            @Override
-            public int getIconRes() {
-                return R.drawable.photo_arrowshape;
-            }
-
-            @Override
-            public int getFilledIconRes() {
-                return R.drawable.photo_arrowshape;
-            }
-        }
+    public boolean isEraser() {
+        return false;
     }
 }

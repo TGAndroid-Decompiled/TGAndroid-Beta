@@ -27,14 +27,13 @@ public class LoginOrView extends View {
         updateColors();
     }
 
-    public void setMeasureAfter(View view) {
-        this.measureAfter = view;
-    }
-
-    public void updateColors() {
-        this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-        this.linePaint.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
-        invalidate();
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float width = this.measureAfter != null ? ((((getWidth() - this.textBounds.width()) - AndroidUtilities.dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.dp(64.0f);
+        canvas.drawLine((((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - width, getHeight() / 2.0f, ((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.linePaint);
+        canvas.drawLine(((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.dp(8.0f) + width, getHeight() / 2.0f, this.linePaint);
+        canvas.drawText(this.string, (getWidth() - this.textBounds.width()) / 2.0f, (getHeight() + this.textBounds.height()) / 2.0f, this.textPaint);
     }
 
     @Override
@@ -49,12 +48,13 @@ public class LoginOrView extends View {
         textPaint.getTextBounds(str, 0, str.length(), this.textBounds);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float width = this.measureAfter != null ? ((((getWidth() - this.textBounds.width()) - AndroidUtilities.dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.dp(64.0f);
-        canvas.drawLine((((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - width, getHeight() / 2.0f, ((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.linePaint);
-        canvas.drawLine(((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((getWidth() + this.textBounds.width()) / 2.0f) + AndroidUtilities.dp(8.0f) + width, getHeight() / 2.0f, this.linePaint);
-        canvas.drawText(this.string, (getWidth() - this.textBounds.width()) / 2.0f, (getHeight() + this.textBounds.height()) / 2.0f, this.textPaint);
+    public void setMeasureAfter(View view) {
+        this.measureAfter = view;
+    }
+
+    public void updateColors() {
+        this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        this.linePaint.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
+        invalidate();
     }
 }

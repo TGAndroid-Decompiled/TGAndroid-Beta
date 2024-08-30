@@ -90,8 +90,8 @@ public class SimpleTextView extends View implements Drawable.Callback {
     public int rightDrawableY;
     private boolean scrollNonFitText;
     private float scrollingOffset;
-    private List<SpoilerEffect> spoilers;
-    private Stack<SpoilerEffect> spoilersPool;
+    private List spoilers;
+    private Stack spoilersPool;
     private CharSequence text;
     private boolean textDoesNotFit;
     private int textHeight;
@@ -109,11 +109,6 @@ public class SimpleTextView extends View implements Drawable.Callback {
         void setPressed(boolean z);
     }
 
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
-
     public SimpleTextView(Context context) {
         super(context);
         this.gravity = 51;
@@ -123,111 +118,93 @@ public class SimpleTextView extends View implements Drawable.Callback {
         this.ellipsizeByGradientWidthDp = 16;
         this.fullTextMaxLines = 3;
         this.spoilers = new ArrayList();
-        this.spoilersPool = new Stack<>();
+        this.spoilersPool = new Stack();
         this.path = new Path();
         this.mAlignment = Layout.Alignment.ALIGN_NORMAL;
         this.textPaint = new TextPaint(1);
         setImportantForAccessibility(1);
     }
 
-    public void setTextColor(int i) {
-        this.textPaint.setColor(i);
-        invalidate();
+    private void calcOffset(int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.SimpleTextView.calcOffset(int):void");
     }
 
-    public void setLinkTextColor(int i) {
-        this.textPaint.linkColor = i;
-        invalidate();
+    private void clipOutSpoilers(Canvas canvas) {
+        this.path.rewind();
+        Iterator it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            Rect bounds = ((SpoilerEffect) it.next()).getBounds();
+            this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
+        }
+        canvas.clipPath(this.path, Region.Op.DIFFERENCE);
     }
 
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attachedToWindow = true;
-        this.emojiStack = AnimatedEmojiSpan.update(0, this, this.emojiStack, this.layout);
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attachedToWindow = false;
-        AnimatedEmojiSpan.release(this, this.emojiStack);
-        this.wasLayout = false;
-    }
-
-    public void setTextSize(int i) {
-        float dp = AndroidUtilities.dp(i);
-        if (dp == this.textPaint.getTextSize()) {
+    private void drawLayout(Canvas canvas) {
+        if (this.fullAlpha <= 0.0f || this.fullLayoutLeftOffset == 0) {
+            canvas.save();
+            clipOutSpoilers(canvas);
+            AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emojiStack;
+            if (emojiGroupedSpans != null) {
+                emojiGroupedSpans.clearPositions();
+            }
+            this.layout.draw(canvas);
+            canvas.restore();
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+            drawSpoilers(canvas);
             return;
         }
-        this.textPaint.setTextSize(dp);
-        if (recreateLayoutMaybe()) {
-            return;
+        canvas.save();
+        float f = -this.fullLayoutLeftOffset;
+        float f2 = this.fullAlpha;
+        canvas.translate((f * f2) + (this.fullLayoutLeftCharactersOffset * f2), 0.0f);
+        canvas.save();
+        clipOutSpoilers(canvas);
+        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans2 = this.emojiStack;
+        if (emojiGroupedSpans2 != null) {
+            emojiGroupedSpans2.clearPositions();
         }
-        invalidate();
+        this.layout.draw(canvas);
+        canvas.restore();
+        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+        drawSpoilers(canvas);
+        canvas.restore();
     }
 
-    public void setBuildFullLayout(boolean z) {
-        this.buildFullLayout = z;
-    }
-
-    public void setFullAlpha(float f) {
-        this.fullAlpha = f;
-        invalidate();
-    }
-
-    public float getFullAlpha() {
-        return this.fullAlpha;
-    }
-
-    public void setScrollNonFitText(boolean z) {
-        if (this.scrollNonFitText == z) {
-            return;
+    private void drawSpoilers(Canvas canvas) {
+        Iterator it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            ((SpoilerEffect) it.next()).draw(canvas);
         }
-        this.scrollNonFitText = z;
-        updateFadePaints();
-        requestLayout();
     }
 
-    public void setEllipsizeByGradient(boolean z) {
-        setEllipsizeByGradient(z, (Boolean) null);
+    private Layout.Alignment getAlignment() {
+        return this.mAlignment;
     }
 
-    public void setEllipsizeByGradient(int i) {
-        setEllipsizeByGradient(i, (Boolean) null);
-    }
-
-    public void setEllipsizeByGradient(boolean z, Boolean bool) {
-        if (this.scrollNonFitText == z) {
-            return;
+    private boolean recreateLayoutMaybe() {
+        if (!this.wasLayout || getMeasuredHeight() == 0 || this.buildFullLayout) {
+            requestLayout();
+            return true;
         }
-        this.ellipsizeByGradient = z;
-        this.forceEllipsizeByGradientLeft = bool;
-        updateFadePaints();
-    }
-
-    public void setEllipsizeByGradient(int i, Boolean bool) {
-        setEllipsizeByGradient(true, bool);
-        this.ellipsizeByGradientWidthDp = i;
-        updateFadePaints();
-    }
-
-    public void setWidthWrapContent(boolean z) {
-        this.widthWrapContent = z;
+        boolean createLayout = createLayout(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.minusWidth);
+        this.offsetY = (this.gravity & 112) == 16 ? (getMeasuredHeight() - this.textHeight) / 2 : getPaddingTop();
+        return createLayout;
     }
 
     private void updateFadePaints() {
+        Paint paint;
+        LinearGradient linearGradient;
         if ((this.fadePaint == null || this.fadePaintBack == null) && this.scrollNonFitText) {
-            Paint paint = new Paint();
-            this.fadePaint = paint;
+            Paint paint2 = new Paint();
+            this.fadePaint = paint2;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
-            Paint paint2 = this.fadePaint;
+            paint2.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
+            Paint paint3 = this.fadePaint;
             PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
-            paint2.setXfermode(new PorterDuffXfermode(mode));
-            Paint paint3 = new Paint();
-            this.fadePaintBack = paint3;
-            paint3.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+            paint3.setXfermode(new PorterDuffXfermode(mode));
+            Paint paint4 = new Paint();
+            this.fadePaintBack = paint4;
+            paint4.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(6.0f), 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
             this.fadePaintBack.setXfermode(new PorterDuffXfermode(mode));
         }
         Boolean bool = this.forceEllipsizeByGradientLeft;
@@ -238,115 +215,61 @@ public class SimpleTextView extends View implements Drawable.Callback {
             }
             this.ellipsizeByGradientLeft = booleanValue;
             if (booleanValue) {
-                Paint paint4 = this.fadeEllpsizePaint;
+                paint = this.fadeEllpsizePaint;
                 int dp = AndroidUtilities.dp(this.ellipsizeByGradientWidthDp);
                 this.fadeEllpsizePaintWidth = dp;
-                paint4.setShader(new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                linearGradient = new LinearGradient(0.0f, 0.0f, dp, 0.0f, new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             } else {
-                Paint paint5 = this.fadeEllpsizePaint;
+                paint = this.fadeEllpsizePaint;
                 int dp2 = AndroidUtilities.dp(this.ellipsizeByGradientWidthDp);
                 this.fadeEllpsizePaintWidth = dp2;
-                paint5.setShader(new LinearGradient(0.0f, 0.0f, dp2, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                linearGradient = new LinearGradient(0.0f, 0.0f, dp2, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             }
+            paint.setShader(linearGradient);
             this.fadeEllpsizePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
     }
 
-    public void setMaxLines(int i) {
-        this.maxLines = i;
-    }
-
-    public void setGravity(int i) {
-        this.gravity = i;
-    }
-
-    public void setTypeface(Typeface typeface) {
-        this.textPaint.setTypeface(typeface);
-    }
-
-    public int getSideDrawablesSize() {
-        Drawable drawable = this.leftDrawable;
-        int intrinsicWidth = drawable != null ? drawable.getIntrinsicWidth() + this.drawablePadding : 0;
-        if (this.rightDrawable != null) {
-            intrinsicWidth += ((int) (r1.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
-        }
-        return this.rightDrawable2 != null ? intrinsicWidth + ((int) (r1.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding : intrinsicWidth;
-    }
-
-    public TextPaint getPaint() {
-        return this.textPaint;
-    }
-
-    private void calcOffset(int i) {
-        int i2;
-        Layout layout = this.layout;
-        if (layout == null) {
-            return;
-        }
-        if (layout.getLineCount() > 0) {
-            this.textWidth = (int) Math.ceil(this.layout.getLineWidth(0));
-            Layout layout2 = this.fullLayout;
-            if (layout2 != null) {
-                this.textHeight = layout2.getLineBottom(layout2.getLineCount() - 1);
-            } else if (this.maxLines > 1 && this.layout.getLineCount() > 0) {
-                Layout layout3 = this.layout;
-                this.textHeight = layout3.getLineBottom(layout3.getLineCount() - 1);
-            } else {
-                this.textHeight = this.layout.getLineBottom(0);
-            }
-            int i3 = this.gravity & 7;
-            if (i3 == 1) {
-                this.offsetX = ((i - this.textWidth) / 2) - ((int) this.layout.getLineLeft(0));
-            } else if (i3 == 3) {
-                Layout layout4 = this.firstLineLayout;
-                if (layout4 != null) {
-                    this.offsetX = -((int) layout4.getLineLeft(0));
+    private void updateScrollAnimation() {
+        if (this.scrollNonFitText) {
+            if (this.textDoesNotFit || this.scrollingOffset != 0.0f) {
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long j = elapsedRealtime - this.lastUpdateTime;
+                if (j > 17) {
+                    j = 17;
+                }
+                int i = this.currentScrollDelay;
+                if (i > 0) {
+                    this.currentScrollDelay = (int) (i - j);
                 } else {
-                    this.offsetX = -((int) this.layout.getLineLeft(0));
+                    int dp = this.totalWidth + AndroidUtilities.dp(16.0f);
+                    float dp2 = this.scrollingOffset + ((((float) j) / 1000.0f) * AndroidUtilities.dp(this.scrollingOffset < ((float) AndroidUtilities.dp(100.0f)) ? ((this.scrollingOffset / AndroidUtilities.dp(100.0f)) * 20.0f) + 30.0f : this.scrollingOffset >= ((float) (dp - AndroidUtilities.dp(100.0f))) ? 50.0f - (((this.scrollingOffset - (dp - AndroidUtilities.dp(100.0f))) / AndroidUtilities.dp(100.0f)) * 20.0f) : 50.0f));
+                    this.scrollingOffset = dp2;
+                    this.lastUpdateTime = elapsedRealtime;
+                    if (dp2 > dp) {
+                        this.scrollingOffset = 0.0f;
+                        this.currentScrollDelay = 500;
+                    }
                 }
-            } else if (this.layout.getLineLeft(0) == 0.0f) {
-                Layout layout5 = this.firstLineLayout;
-                if (layout5 != null) {
-                    this.offsetX = (int) (i - layout5.getLineWidth(0));
-                } else {
-                    this.offsetX = i - this.textWidth;
-                }
-            } else {
-                this.offsetX = -AndroidUtilities.dp(8.0f);
-            }
-            this.offsetX += getPaddingLeft();
-            if (this.rightDrawableInside) {
-                i2 = (this.rightDrawable == null || this.rightDrawableOutside) ? 0 : (int) (r0.getIntrinsicWidth() * this.rightDrawableScale);
-                if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
-                    i2 += (int) (r4.getIntrinsicWidth() * this.rightDrawableScale);
-                }
-            } else {
-                i2 = 0;
-            }
-            this.textDoesNotFit = this.textWidth + i2 > i - this.paddingRight;
-            Layout layout6 = this.fullLayout;
-            if (layout6 != null && this.fullLayoutAdditionalWidth > 0) {
-                this.fullLayoutLeftCharactersOffset = layout6.getPrimaryHorizontal(0) - this.firstLineLayout.getPrimaryHorizontal(0);
+                invalidate();
             }
         }
-        int i4 = this.replacingDrawableTextIndex;
-        if (i4 >= 0) {
-            this.replacingDrawableTextOffset = this.layout.getPrimaryHorizontal(i4);
-        } else {
-            this.replacingDrawableTextOffset = 0.0f;
-        }
+    }
+
+    public void copyScrolling(SimpleTextView simpleTextView) {
+        this.scrollingOffset = simpleTextView.scrollingOffset;
     }
 
     public boolean createLayout(int i) {
         int i2;
+        StaticLayout staticLayout;
         int dp;
         int i3;
         int dp2;
-        CharSequence charSequence;
-        CharSequence charSequence2 = this.text;
+        CharSequence charSequence = this.text;
         this.replacingDrawableTextIndex = -1;
         this.rightDrawableHidden = false;
-        if (charSequence2 != null) {
+        if (charSequence != null) {
             try {
                 Drawable drawable = this.leftDrawable;
                 int intrinsicWidth = drawable != null ? (i - drawable.getIntrinsicWidth()) - this.drawablePadding : i;
@@ -364,90 +287,89 @@ public class SimpleTextView extends View implements Drawable.Callback {
                         intrinsicWidth = (intrinsicWidth - i2) - this.drawablePadding;
                     }
                 }
-                CharSequence charSequence3 = charSequence2;
+                CharSequence charSequence2 = charSequence;
                 if (this.replacedText != null) {
-                    charSequence3 = charSequence2;
+                    charSequence2 = charSequence;
                     if (this.replacedDrawable != null) {
-                        int indexOf = charSequence2.toString().indexOf(this.replacedText);
+                        int indexOf = charSequence.toString().indexOf(this.replacedText);
                         this.replacingDrawableTextIndex = indexOf;
                         if (indexOf >= 0) {
-                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence2);
+                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
                             DialogCell.FixedWidthSpan fixedWidthSpan = new DialogCell.FixedWidthSpan(this.replacedDrawable.getIntrinsicWidth());
                             int i4 = this.replacingDrawableTextIndex;
                             valueOf.setSpan(fixedWidthSpan, i4, this.replacedText.length() + i4, 0);
-                            charSequence3 = valueOf;
+                            charSequence2 = valueOf;
                         } else {
                             intrinsicWidth = (intrinsicWidth - this.replacedDrawable.getIntrinsicWidth()) - this.drawablePadding;
-                            charSequence3 = charSequence2;
+                            charSequence2 = charSequence;
                         }
                     }
                 }
-                if (this.canHideRightDrawable && i2 != 0 && !this.rightDrawableOutside && !charSequence3.equals(TextUtils.ellipsize(charSequence3, this.textPaint, intrinsicWidth, TextUtils.TruncateAt.END))) {
+                if (this.canHideRightDrawable && i2 != 0 && !this.rightDrawableOutside && !charSequence2.equals(TextUtils.ellipsize(charSequence2, this.textPaint, intrinsicWidth, TextUtils.TruncateAt.END))) {
                     this.rightDrawableHidden = true;
                     intrinsicWidth = intrinsicWidth + i2 + this.drawablePadding;
                 }
                 int i5 = intrinsicWidth;
                 if (this.buildFullLayout) {
-                    CharSequence ellipsize = !this.ellipsizeByGradient ? TextUtils.ellipsize(charSequence3, this.textPaint, i5, TextUtils.TruncateAt.END) : charSequence3;
-                    if (!this.ellipsizeByGradient && !ellipsize.equals(charSequence3)) {
-                        TextPaint textPaint = this.textPaint;
-                        Layout.Alignment alignment = getAlignment();
-                        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-                        StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(charSequence3, textPaint, i5, alignment, 1.0f, 0.0f, false, truncateAt, i5, this.fullTextMaxLines, false);
-                        this.fullLayout = createStaticLayout;
-                        if (createStaticLayout != null) {
-                            int lineEnd = createStaticLayout.getLineEnd(0);
-                            int lineStart = this.fullLayout.getLineStart(1);
-                            CharSequence subSequence = charSequence3.subSequence(0, lineEnd);
-                            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence3);
-                            valueOf2.setSpan(new EmptyStubSpan(), 0, lineStart, 0);
-                            if (lineEnd < ellipsize.length()) {
-                                charSequence = ellipsize.subSequence(lineEnd, ellipsize.length());
-                            } else {
-                                charSequence = "…";
-                            }
-                            this.firstLineLayout = new StaticLayout(ellipsize, 0, ellipsize.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            StaticLayout staticLayout = new StaticLayout(subSequence, 0, subSequence.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            this.layout = staticLayout;
-                            if (staticLayout.getLineLeft(0) != 0.0f) {
-                                charSequence = "\u200f" + ((Object) charSequence);
-                            }
-                            CharSequence charSequence4 = charSequence;
-                            this.partLayout = new StaticLayout(charSequence4, 0, charSequence4.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
-                            this.fullLayout = StaticLayoutEx.createStaticLayout(valueOf2, this.textPaint, AndroidUtilities.dp(8.0f) + i5 + this.fullLayoutAdditionalWidth, getAlignment(), 1.0f, 0.0f, false, truncateAt, i5 + this.fullLayoutAdditionalWidth, this.fullTextMaxLines, false);
-                        }
-                    } else {
+                    CharSequence ellipsize = !this.ellipsizeByGradient ? TextUtils.ellipsize(charSequence2, this.textPaint, i5, TextUtils.TruncateAt.END) : charSequence2;
+                    if (this.ellipsizeByGradient || ellipsize.equals(charSequence2)) {
                         int length = ellipsize.length();
-                        TextPaint textPaint2 = this.textPaint;
+                        TextPaint textPaint = this.textPaint;
                         if (!this.scrollNonFitText && !this.ellipsizeByGradient) {
                             dp2 = AndroidUtilities.dp(8.0f) + i5;
-                            this.layout = new StaticLayout(ellipsize, 0, length, textPaint2, dp2, getAlignment(), 1.0f, 0.0f, false);
+                            this.layout = new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                             this.fullLayout = null;
                             this.partLayout = null;
                             this.firstLineLayout = null;
                         }
                         dp2 = AndroidUtilities.dp(2000.0f);
-                        this.layout = new StaticLayout(ellipsize, 0, length, textPaint2, dp2, getAlignment(), 1.0f, 0.0f, false);
+                        this.layout = new StaticLayout(ellipsize, 0, length, textPaint, dp2, getAlignment(), 1.0f, 0.0f, false);
                         this.fullLayout = null;
                         this.partLayout = null;
                         this.firstLineLayout = null;
+                    } else {
+                        TextPaint textPaint2 = this.textPaint;
+                        Layout.Alignment alignment = getAlignment();
+                        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+                        StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(charSequence2, textPaint2, i5, alignment, 1.0f, 0.0f, false, truncateAt, i5, this.fullTextMaxLines, false);
+                        this.fullLayout = createStaticLayout;
+                        if (createStaticLayout != null) {
+                            int lineEnd = createStaticLayout.getLineEnd(0);
+                            int lineStart = this.fullLayout.getLineStart(1);
+                            CharSequence subSequence = charSequence2.subSequence(0, lineEnd);
+                            SpannableStringBuilder valueOf2 = SpannableStringBuilder.valueOf(charSequence2);
+                            valueOf2.setSpan(new EmptyStubSpan(), 0, lineStart, 0);
+                            String subSequence2 = lineEnd < ellipsize.length() ? ellipsize.subSequence(lineEnd, ellipsize.length()) : "…";
+                            this.firstLineLayout = new StaticLayout(ellipsize, 0, ellipsize.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
+                            StaticLayout staticLayout2 = new StaticLayout(subSequence, 0, subSequence.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
+                            this.layout = staticLayout2;
+                            if (staticLayout2.getLineLeft(0) != 0.0f) {
+                                subSequence2 = "\u200f" + ((Object) subSequence2);
+                            }
+                            CharSequence charSequence3 = subSequence2;
+                            this.partLayout = new StaticLayout(charSequence3, 0, charSequence3.length(), this.textPaint, this.scrollNonFitText ? AndroidUtilities.dp(2000.0f) : AndroidUtilities.dp(8.0f) + i5, getAlignment(), 1.0f, 0.0f, false);
+                            this.fullLayout = StaticLayoutEx.createStaticLayout(valueOf2, this.textPaint, AndroidUtilities.dp(8.0f) + i5 + this.fullLayoutAdditionalWidth, getAlignment(), 1.0f, 0.0f, false, truncateAt, i5 + this.fullLayoutAdditionalWidth, this.fullTextMaxLines, false);
+                        }
                     }
-                } else if (this.maxLines > 1) {
-                    this.layout = StaticLayoutEx.createStaticLayout(charSequence3, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.maxLines, false);
                 } else {
-                    CharSequence charSequence5 = charSequence3;
-                    if (!this.scrollNonFitText) {
-                        charSequence5 = this.ellipsizeByGradient ? charSequence3 : TextUtils.ellipsize(charSequence3, this.textPaint, i5, TextUtils.TruncateAt.END);
+                    if (this.maxLines > 1) {
+                        staticLayout = StaticLayoutEx.createStaticLayout(charSequence2, this.textPaint, i5, getAlignment(), 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, this.maxLines, false);
+                    } else {
+                        CharSequence charSequence4 = charSequence2;
+                        if (!this.scrollNonFitText) {
+                            charSequence4 = this.ellipsizeByGradient ? charSequence2 : TextUtils.ellipsize(charSequence2, this.textPaint, i5, TextUtils.TruncateAt.END);
+                        }
+                        CharSequence charSequence5 = charSequence4;
+                        int length2 = charSequence5.length();
+                        TextPaint textPaint3 = this.textPaint;
+                        if (!this.scrollNonFitText && !this.ellipsizeByGradient) {
+                            dp = AndroidUtilities.dp(8.0f) + i5;
+                            staticLayout = new StaticLayout(charSequence5, 0, length2, textPaint3, dp, getAlignment(), 1.0f, 0.0f, false);
+                        }
+                        dp = AndroidUtilities.dp(2000.0f);
+                        staticLayout = new StaticLayout(charSequence5, 0, length2, textPaint3, dp, getAlignment(), 1.0f, 0.0f, false);
                     }
-                    CharSequence charSequence6 = charSequence5;
-                    int length2 = charSequence6.length();
-                    TextPaint textPaint3 = this.textPaint;
-                    if (!this.scrollNonFitText && !this.ellipsizeByGradient) {
-                        dp = AndroidUtilities.dp(8.0f) + i5;
-                        this.layout = new StaticLayout(charSequence6, 0, length2, textPaint3, dp, getAlignment(), 1.0f, 0.0f, false);
-                    }
-                    dp = AndroidUtilities.dp(2000.0f);
-                    this.layout = new StaticLayout(charSequence6, 0, length2, textPaint3, dp, getAlignment(), 1.0f, 0.0f, false);
+                    this.layout = staticLayout;
                 }
                 this.spoilersPool.addAll(this.spoilers);
                 this.spoilers.clear();
@@ -474,13 +396,451 @@ public class SimpleTextView extends View implements Drawable.Callback {
         return true;
     }
 
-    public void setAlignment(Layout.Alignment alignment) {
-        this.mAlignment = alignment;
-        requestLayout();
+    @Override
+    public Drawable getBackground() {
+        Drawable drawable = this.wrapBackgroundDrawable;
+        return drawable != null ? drawable : super.getBackground();
     }
 
-    private Layout.Alignment getAlignment() {
-        return this.mAlignment;
+    public float getFullAlpha() {
+        return this.fullAlpha;
+    }
+
+    public Drawable getLeftDrawable() {
+        return this.leftDrawable;
+    }
+
+    public int getLineCount() {
+        Layout layout = this.layout;
+        int lineCount = layout != null ? layout.getLineCount() : 0;
+        Layout layout2 = this.fullLayout;
+        return layout2 != null ? lineCount + layout2.getLineCount() : lineCount;
+    }
+
+    public int getMaxTextWidth() {
+        Drawable drawable;
+        Drawable drawable2;
+        int i = 0;
+        int measuredWidth = getMeasuredWidth() - ((!this.rightDrawableOutside || (drawable2 = this.rightDrawable) == null) ? 0 : drawable2.getIntrinsicWidth() + this.drawablePadding);
+        if (this.rightDrawableOutside && (drawable = this.rightDrawable2) != null) {
+            i = this.drawablePadding + drawable.getIntrinsicWidth();
+        }
+        return measuredWidth - i;
+    }
+
+    public TextPaint getPaint() {
+        return this.textPaint;
+    }
+
+    public Drawable getRightDrawable() {
+        return this.rightDrawable;
+    }
+
+    public Drawable getRightDrawable2() {
+        return this.rightDrawable2;
+    }
+
+    public boolean getRightDrawableOutside() {
+        return this.rightDrawableOutside;
+    }
+
+    public int getRightDrawableWidth() {
+        if (this.rightDrawable == null) {
+            return 0;
+        }
+        return (int) (this.drawablePadding + (r0.getIntrinsicWidth() * this.rightDrawableScale));
+    }
+
+    public int getRightDrawableX() {
+        return this.rightDrawableX;
+    }
+
+    public int getRightDrawableY() {
+        return this.rightDrawableY;
+    }
+
+    public int getSideDrawablesSize() {
+        Drawable drawable = this.leftDrawable;
+        int intrinsicWidth = drawable != null ? drawable.getIntrinsicWidth() + this.drawablePadding : 0;
+        if (this.rightDrawable != null) {
+            intrinsicWidth += ((int) (r1.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+        }
+        return this.rightDrawable2 != null ? intrinsicWidth + ((int) (r1.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding : intrinsicWidth;
+    }
+
+    public CharSequence getText() {
+        CharSequence charSequence = this.text;
+        return charSequence == null ? "" : charSequence;
+    }
+
+    public int getTextColor() {
+        return this.textPaint.getColor();
+    }
+
+    public int getTextHeight() {
+        return this.textHeight;
+    }
+
+    public TextPaint getTextPaint() {
+        return this.textPaint;
+    }
+
+    public int getTextStartX() {
+        int i = 0;
+        if (this.layout == null) {
+            return 0;
+        }
+        Drawable drawable = this.leftDrawable;
+        if (drawable != null && (this.gravity & 7) == 3) {
+            i = this.drawablePadding + drawable.getIntrinsicWidth();
+        }
+        Drawable drawable2 = this.replacedDrawable;
+        if (drawable2 != null && this.replacingDrawableTextIndex < 0 && (this.gravity & 7) == 3) {
+            i += this.drawablePadding + drawable2.getIntrinsicWidth();
+        }
+        return ((int) getX()) + this.offsetX + i;
+    }
+
+    public int getTextStartY() {
+        if (this.layout == null) {
+            return 0;
+        }
+        return (int) getY();
+    }
+
+    public int getTextWidth() {
+        int i = this.textWidth;
+        if (this.rightDrawableInside) {
+            r2 = (this.rightDrawable2 != null ? (int) (r3.getIntrinsicWidth() * this.rightDrawableScale) : 0) + (this.rightDrawable != null ? (int) (r1.getIntrinsicWidth() * this.rightDrawableScale) : 0);
+        }
+        return i + r2;
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public void invalidateDrawable(Drawable drawable) {
+        Drawable drawable2 = this.leftDrawable;
+        if (drawable == drawable2 || drawable == (drawable2 = this.rightDrawable) || drawable == (drawable2 = this.rightDrawable2) || drawable == (drawable2 = this.replacedDrawable)) {
+            invalidate(drawable2.getBounds());
+        }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attachedToWindow = true;
+        this.emojiStack = AnimatedEmojiSpan.update(0, this, this.emojiStack, this.layout);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attachedToWindow = false;
+        AnimatedEmojiSpan.release(this, this.emojiStack);
+        this.wasLayout = false;
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        int i;
+        float f;
+        float measuredHeight;
+        Paint paint;
+        float f2;
+        float f3;
+        Paint paint2;
+        int i2;
+        float f4;
+        super.onDraw(canvas);
+        boolean z = this.scrollNonFitText && (this.textDoesNotFit || this.scrollingOffset != 0.0f);
+        int saveLayerAlpha = (z || this.ellipsizeByGradient) ? canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31) : Integer.MIN_VALUE;
+        this.totalWidth = this.textWidth;
+        if (this.leftDrawable != null) {
+            int i3 = (int) (-this.scrollingOffset);
+            int i4 = this.gravity;
+            if ((i4 & 7) == 1) {
+                i3 += this.offsetX;
+            }
+            int measuredHeight2 = ((i4 & 112) == 16 ? (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2 : getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2)) + this.leftDrawableTopPadding;
+            Drawable drawable = this.leftDrawable;
+            drawable.setBounds(i3, measuredHeight2, drawable.getIntrinsicWidth() + i3, this.leftDrawable.getIntrinsicHeight() + measuredHeight2);
+            this.leftDrawable.draw(canvas);
+            int i5 = this.gravity & 7;
+            i = (i5 == 3 || i5 == 1) ? this.drawablePadding + this.leftDrawable.getIntrinsicWidth() : 0;
+            this.totalWidth += this.drawablePadding + this.leftDrawable.getIntrinsicWidth();
+        } else {
+            i = 0;
+        }
+        Drawable drawable2 = this.replacedDrawable;
+        if (drawable2 != null && this.replacedText != null) {
+            int i6 = (int) ((-this.scrollingOffset) + this.replacingDrawableTextOffset);
+            int i7 = this.gravity;
+            if ((i7 & 7) == 1) {
+                i6 += this.offsetX;
+            }
+            int measuredHeight3 = (i7 & 112) == 16 ? ((getMeasuredHeight() - this.replacedDrawable.getIntrinsicHeight()) / 2) + this.leftDrawableTopPadding : this.leftDrawableTopPadding + ((this.textHeight - drawable2.getIntrinsicHeight()) / 2);
+            Drawable drawable3 = this.replacedDrawable;
+            drawable3.setBounds(i6, measuredHeight3, drawable3.getIntrinsicWidth() + i6, this.replacedDrawable.getIntrinsicHeight() + measuredHeight3);
+            this.replacedDrawable.draw(canvas);
+            if (this.replacingDrawableTextIndex < 0) {
+                int i8 = this.gravity & 7;
+                if (i8 == 3 || i8 == 1) {
+                    i += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
+                }
+                this.totalWidth += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
+            }
+        }
+        int i9 = i;
+        if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
+            int i10 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset));
+            int i11 = this.gravity & 7;
+            if (i11 == 1 || i11 == 5) {
+                i10 += this.offsetX;
+            }
+            int intrinsicWidth = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
+            int intrinsicHeight = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+            int measuredHeight4 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight) / 2)) + this.rightDrawableTopPadding;
+            this.rightDrawable.setBounds(i10, measuredHeight4, i10 + intrinsicWidth, measuredHeight4 + intrinsicHeight);
+            this.rightDrawableX = i10 + (intrinsicWidth >> 1);
+            this.rightDrawableY = measuredHeight4 + (intrinsicHeight >> 1);
+            this.rightDrawable.draw(canvas);
+            this.totalWidth += this.drawablePadding + intrinsicWidth;
+        }
+        if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
+            int i12 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset));
+            if (this.rightDrawable != null) {
+                i12 += ((int) (r3.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+            }
+            int i13 = this.gravity & 7;
+            if (i13 == 1 || i13 == 5) {
+                i12 += this.offsetX;
+            }
+            int intrinsicWidth2 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
+            int intrinsicHeight2 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+            int measuredHeight5 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight2) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight2) / 2)) + this.rightDrawableTopPadding;
+            this.rightDrawable2.setBounds(i12, measuredHeight5, i12 + intrinsicWidth2, intrinsicHeight2 + measuredHeight5);
+            this.rightDrawable2.draw(canvas);
+            this.totalWidth += this.drawablePadding + intrinsicWidth2;
+        }
+        int dp = this.totalWidth + AndroidUtilities.dp(16.0f);
+        float f5 = this.scrollingOffset;
+        if (f5 != 0.0f) {
+            if (this.leftDrawable != null) {
+                int i14 = ((int) (-f5)) + dp;
+                int measuredHeight6 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2 : getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2)) + this.leftDrawableTopPadding;
+                Drawable drawable4 = this.leftDrawable;
+                drawable4.setBounds(i14, measuredHeight6, drawable4.getIntrinsicWidth() + i14, this.leftDrawable.getIntrinsicHeight() + measuredHeight6);
+                this.leftDrawable.draw(canvas);
+            }
+            if (this.rightDrawable != null && !this.rightDrawableOutside) {
+                int intrinsicWidth3 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight3 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+                int i15 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
+                int measuredHeight7 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight3) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight3) / 2)) + this.rightDrawableTopPadding;
+                this.rightDrawable.setBounds(i15, measuredHeight7, intrinsicWidth3 + i15, intrinsicHeight3 + measuredHeight7);
+                this.rightDrawable.draw(canvas);
+            }
+            if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
+                int intrinsicWidth4 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight4 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+                int i16 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
+                if (this.rightDrawable != null) {
+                    i16 += ((int) (r6.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+                }
+                int measuredHeight8 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight4) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight4) / 2)) + this.rightDrawableTopPadding;
+                this.rightDrawable2.setBounds(i16, measuredHeight8, intrinsicWidth4 + i16, intrinsicHeight4 + measuredHeight8);
+                this.rightDrawable2.draw(canvas);
+            }
+        }
+        if (this.layout != null) {
+            if (this.rightDrawableOutside || this.ellipsizeByGradient || this.paddingRight > 0) {
+                canvas.save();
+                int maxTextWidth = getMaxTextWidth() - this.paddingRight;
+                Drawable drawable5 = this.rightDrawable;
+                canvas.clipRect(0, 0, maxTextWidth - AndroidUtilities.dp((drawable5 == null || (drawable5 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), getMeasuredHeight());
+            }
+            Emoji.emojiDrawingUseAlpha = this.usaAlphaForEmoji;
+            if (this.wrapBackgroundDrawable != null) {
+                int i17 = (int) ((this.offsetX + i9) - this.scrollingOffset);
+                int i18 = this.textWidth;
+                int i19 = i17 + (i18 / 2);
+                int max = Math.max(i18 + getPaddingLeft() + getPaddingRight(), this.minWidth);
+                int i20 = i19 - (max / 2);
+                this.wrapBackgroundDrawable.setBounds(i20, 0, max + i20, getMeasuredHeight());
+                this.wrapBackgroundDrawable.draw(canvas);
+            }
+            if (this.offsetX + i9 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
+                canvas.save();
+                canvas.translate((this.offsetX + i9) - this.scrollingOffset, this.offsetY);
+            }
+            drawLayout(canvas);
+            if (this.partLayout != null && this.fullAlpha < 1.0f) {
+                int alpha = this.textPaint.getAlpha();
+                this.textPaint.setAlpha((int) ((1.0f - this.fullAlpha) * 255.0f));
+                canvas.save();
+                if (this.partLayout.getText().length() == 1) {
+                    f4 = AndroidUtilities.dp(this.fullTextMaxLines == 1 ? 0.5f : 4.0f);
+                } else {
+                    f4 = 0.0f;
+                }
+                canvas.translate(this.layout.getLineLeft(0) != 0.0f ? (-this.layout.getLineWidth(0)) + f4 : this.layout.getLineWidth(0) - f4, 0.0f);
+                float f6 = -this.fullLayoutLeftOffset;
+                float f7 = this.fullAlpha;
+                canvas.translate((f6 * f7) + (this.fullLayoutLeftCharactersOffset * f7), 0.0f);
+                this.partLayout.draw(canvas);
+                canvas.restore();
+                this.textPaint.setAlpha(alpha);
+            }
+            if (this.fullLayout != null && this.fullAlpha > 0.0f) {
+                int alpha2 = this.textPaint.getAlpha();
+                this.textPaint.setAlpha((int) (this.fullAlpha * 255.0f));
+                float f8 = -this.fullLayoutLeftOffset;
+                float f9 = this.fullAlpha;
+                float f10 = this.fullLayoutLeftCharactersOffset;
+                canvas.translate(((f8 * f9) + (f9 * f10)) - f10, 0.0f);
+                this.fullLayout.draw(canvas);
+                this.textPaint.setAlpha(alpha2);
+            }
+            if (this.scrollingOffset != 0.0f) {
+                canvas.translate(dp, 0.0f);
+                drawLayout(canvas);
+            }
+            if (this.offsetX + i9 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
+                canvas.restore();
+            }
+            if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
+                int i21 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset));
+                int i22 = this.gravity & 7;
+                if (i22 == 1 || i22 == 5) {
+                    i21 += this.offsetX;
+                }
+                int intrinsicWidth5 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight5 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+                int measuredHeight9 = (this.gravity & 112) == 16 ? ((getMeasuredHeight() - intrinsicHeight5) / 2) + this.rightDrawableTopPadding : this.rightDrawableTopPadding + getPaddingTop() + ((this.textHeight - intrinsicHeight5) / 2);
+                this.rightDrawable.setBounds(i21, measuredHeight9, i21 + intrinsicWidth5, measuredHeight9 + intrinsicHeight5);
+                this.rightDrawableX = i21 + (intrinsicWidth5 >> 1);
+                this.rightDrawableY = measuredHeight9 + (intrinsicHeight5 >> 1);
+                this.rightDrawable.draw(canvas);
+                this.totalWidth += this.drawablePadding + intrinsicWidth5;
+            }
+            if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
+                int i23 = this.textWidth + i9 + this.drawablePadding + ((int) (-this.scrollingOffset));
+                if (this.rightDrawable != null) {
+                    i23 += ((int) (r3.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+                }
+                int i24 = this.gravity & 7;
+                if (i24 == 1 || i24 == 5) {
+                    i23 += this.offsetX;
+                }
+                int intrinsicWidth6 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
+                int intrinsicHeight6 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+                int measuredHeight10 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight6) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight6) / 2)) + this.rightDrawableTopPadding;
+                this.rightDrawable2.setBounds(i23, measuredHeight10, i23 + intrinsicWidth6, intrinsicHeight6 + measuredHeight10);
+                this.rightDrawable2.draw(canvas);
+                this.totalWidth += this.drawablePadding + intrinsicWidth6;
+            }
+            if (z) {
+                if (this.scrollingOffset < AndroidUtilities.dp(10.0f)) {
+                    paint2 = this.fadePaint;
+                    i2 = (int) ((this.scrollingOffset / AndroidUtilities.dp(10.0f)) * 255.0f);
+                } else if (this.scrollingOffset > (this.totalWidth + AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(10.0f)) {
+                    this.fadePaint.setAlpha((int) ((1.0f - ((this.scrollingOffset - ((this.totalWidth + AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(10.0f))) / AndroidUtilities.dp(10.0f))) * 255.0f));
+                    f3 = 0.0f;
+                    canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.fadePaint);
+                    canvas.save();
+                    canvas.translate((getMaxTextWidth() - this.paddingRight) - AndroidUtilities.dp(6.0f), 0.0f);
+                    f = AndroidUtilities.dp(6.0f);
+                    measuredHeight = getMeasuredHeight();
+                    paint = this.fadePaintBack;
+                    f2 = 0.0f;
+                } else {
+                    paint2 = this.fadePaint;
+                    i2 = 255;
+                }
+                paint2.setAlpha(i2);
+                f3 = 0.0f;
+                canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.fadePaint);
+                canvas.save();
+                canvas.translate((getMaxTextWidth() - this.paddingRight) - AndroidUtilities.dp(6.0f), 0.0f);
+                f = AndroidUtilities.dp(6.0f);
+                measuredHeight = getMeasuredHeight();
+                paint = this.fadePaintBack;
+                f2 = 0.0f;
+            } else {
+                if (this.ellipsizeByGradient && this.textDoesNotFit && this.fadeEllpsizePaint != null) {
+                    canvas.save();
+                    updateFadePaints();
+                    if (!this.ellipsizeByGradientLeft) {
+                        int maxTextWidth2 = (getMaxTextWidth() - this.paddingRight) - this.fadeEllpsizePaintWidth;
+                        Drawable drawable6 = this.rightDrawable;
+                        canvas.translate(maxTextWidth2 - AndroidUtilities.dp((drawable6 == null || (drawable6 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), 0.0f);
+                    }
+                    f = this.fadeEllpsizePaintWidth;
+                    measuredHeight = getMeasuredHeight();
+                    paint = this.fadeEllpsizePaint;
+                    f2 = 0.0f;
+                    f3 = 0.0f;
+                }
+                updateScrollAnimation();
+                Emoji.emojiDrawingUseAlpha = true;
+                if (!this.rightDrawableOutside || this.ellipsizeByGradient || this.paddingRight > 0) {
+                    canvas.restore();
+                }
+            }
+            canvas.drawRect(f2, f3, f, measuredHeight, paint);
+            canvas.restore();
+            updateScrollAnimation();
+            Emoji.emojiDrawingUseAlpha = true;
+            if (!this.rightDrawableOutside) {
+            }
+            canvas.restore();
+        }
+        if (z || this.ellipsizeByGradient) {
+            canvas.restoreToCount(saveLayerAlpha);
+        }
+        if (this.rightDrawable != null && this.rightDrawableOutside) {
+            int i25 = this.textWidth + i9 + this.drawablePadding;
+            float f11 = this.scrollingOffset;
+            int min = Math.min(i25 + (f11 == 0.0f ? -dp : (int) (-f11)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
+            int intrinsicWidth7 = (int) (this.rightDrawable.getIntrinsicWidth() * this.rightDrawableScale);
+            int intrinsicHeight7 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
+            int measuredHeight11 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight7) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight7) / 2)) + this.rightDrawableTopPadding;
+            this.rightDrawable.setBounds(min, measuredHeight11, min + intrinsicWidth7, measuredHeight11 + intrinsicHeight7);
+            this.rightDrawableX = min + (intrinsicWidth7 >> 1);
+            this.rightDrawableY = measuredHeight11 + (intrinsicHeight7 >> 1);
+            this.rightDrawable.draw(canvas);
+        }
+        if (this.rightDrawable2 == null || !this.rightDrawableOutside) {
+            return;
+        }
+        int i26 = i9 + this.textWidth + this.drawablePadding;
+        float f12 = this.scrollingOffset;
+        int min2 = Math.min(i26 + (f12 == 0.0f ? -dp : (int) (-f12)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
+        if (this.rightDrawable != null) {
+            min2 += ((int) (r2.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+        }
+        int intrinsicWidth8 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
+        int intrinsicHeight8 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
+        int measuredHeight12 = ((this.gravity & 112) == 16 ? (getMeasuredHeight() - intrinsicHeight8) / 2 : getPaddingTop() + ((this.textHeight - intrinsicHeight8) / 2)) + this.rightDrawableTopPadding;
+        this.rightDrawable2.setBounds(min2, measuredHeight12, intrinsicWidth8 + min2, intrinsicHeight8 + measuredHeight12);
+        this.rightDrawable2.draw(canvas);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setVisibleToUser(true);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(this.text);
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        this.wasLayout = true;
     }
 
     @Override
@@ -511,97 +871,45 @@ public class SimpleTextView extends View implements Drawable.Callback {
             size = Math.min(size, paddingLeft + i5);
         }
         setMeasuredDimension(size, size2);
-        if ((this.gravity & 112) == 16) {
-            this.offsetY = getPaddingTop() + ((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.textHeight) / 2);
-        } else {
-            this.offsetY = getPaddingTop();
-        }
+        this.offsetY = (this.gravity & 112) == 16 ? getPaddingTop() + ((((getMeasuredHeight() - getPaddingTop()) - getPaddingBottom()) - this.textHeight) / 2) : getPaddingTop();
     }
 
     @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        this.wasLayout = true;
-    }
-
-    public int getTextWidth() {
-        int i = this.textWidth;
-        if (this.rightDrawableInside) {
-            r2 = (this.rightDrawable2 != null ? (int) (r3.getIntrinsicWidth() * this.rightDrawableScale) : 0) + (this.rightDrawable != null ? (int) (r1.getIntrinsicWidth() * this.rightDrawableScale) : 0);
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.rightDrawableOnClickListener != null && this.rightDrawable != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(this.rightDrawableX - AndroidUtilities.dp(16.0f), this.rightDrawableY - AndroidUtilities.dp(16.0f), this.rightDrawableX + AndroidUtilities.dp(16.0f), this.rightDrawableY + AndroidUtilities.dp(16.0f));
+            if (motionEvent.getAction() == 0 && rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                this.maybeClick = true;
+                this.touchDownX = motionEvent.getX();
+                this.touchDownY = motionEvent.getY();
+                getParent().requestDisallowInterceptTouchEvent(true);
+                Object obj = this.rightDrawable;
+                if (obj instanceof PressableDrawable) {
+                    ((PressableDrawable) obj).setPressed(true);
+                }
+            } else if (motionEvent.getAction() == 2 && this.maybeClick) {
+                if (Math.abs(motionEvent.getX() - this.touchDownX) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.touchDownY) >= AndroidUtilities.touchSlop) {
+                    this.maybeClick = false;
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                    Object obj2 = this.rightDrawable;
+                    if (obj2 instanceof PressableDrawable) {
+                        ((PressableDrawable) obj2).setPressed(false);
+                    }
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                if (this.maybeClick && motionEvent.getAction() == 1) {
+                    this.rightDrawableOnClickListener.onClick(this);
+                    Object obj3 = this.rightDrawable;
+                    if (obj3 instanceof PressableDrawable) {
+                        ((PressableDrawable) obj3).setPressed(false);
+                    }
+                }
+                this.maybeClick = false;
+                getParent().requestDisallowInterceptTouchEvent(false);
+            }
         }
-        return i + r2;
-    }
-
-    public int getRightDrawableWidth() {
-        if (this.rightDrawable == null) {
-            return 0;
-        }
-        return (int) (this.drawablePadding + (r0.getIntrinsicWidth() * this.rightDrawableScale));
-    }
-
-    public int getTextHeight() {
-        return this.textHeight;
-    }
-
-    public void setLeftDrawableTopPadding(int i) {
-        this.leftDrawableTopPadding = i;
-    }
-
-    public void setRightDrawableTopPadding(int i) {
-        this.rightDrawableTopPadding = i;
-    }
-
-    public void setLeftDrawable(int i) {
-        setLeftDrawable(i == 0 ? null : getContext().getResources().getDrawable(i));
-    }
-
-    public Drawable getLeftDrawable() {
-        return this.leftDrawable;
-    }
-
-    public void setRightDrawable(int i) {
-        setRightDrawable(i == 0 ? null : getContext().getResources().getDrawable(i));
-    }
-
-    public void setMinWidth(int i) {
-        this.minWidth = i;
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        if (this.maxLines > 1) {
-            super.setBackgroundDrawable(drawable);
-        } else {
-            this.wrapBackgroundDrawable = drawable;
-        }
-    }
-
-    @Override
-    public Drawable getBackground() {
-        Drawable drawable = this.wrapBackgroundDrawable;
-        return drawable != null ? drawable : super.getBackground();
-    }
-
-    public void setLeftDrawable(Drawable drawable) {
-        Drawable drawable2 = this.leftDrawable;
-        if (drawable2 == drawable) {
-            return;
-        }
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.leftDrawable = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        if (recreateLayoutMaybe()) {
-            return;
-        }
-        invalidate();
-    }
-
-    @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.rightDrawable || drawable == this.rightDrawable2 || drawable == this.leftDrawable || super.verifyDrawable(drawable);
+        return super.onTouchEvent(motionEvent) || this.maybeClick;
     }
 
     public void replaceTextWithDrawable(Drawable drawable, String str) {
@@ -622,6 +930,127 @@ public class SimpleTextView extends View implements Drawable.Callback {
         this.replacedText = str;
     }
 
+    public void resetScrolling() {
+        this.scrollingOffset = 0.0f;
+    }
+
+    public void setAlignment(Layout.Alignment alignment) {
+        this.mAlignment = alignment;
+        requestLayout();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        if (this.maxLines > 1) {
+            super.setBackgroundDrawable(drawable);
+        } else {
+            this.wrapBackgroundDrawable = drawable;
+        }
+    }
+
+    public void setBuildFullLayout(boolean z) {
+        this.buildFullLayout = z;
+    }
+
+    public void setCanHideRightDrawable(boolean z) {
+        this.canHideRightDrawable = z;
+    }
+
+    public void setDrawablePadding(int i) {
+        if (this.drawablePadding == i) {
+            return;
+        }
+        this.drawablePadding = i;
+        if (recreateLayoutMaybe()) {
+            return;
+        }
+        invalidate();
+    }
+
+    public void setEllipsizeByGradient(int i) {
+        setEllipsizeByGradient(i, (Boolean) null);
+    }
+
+    public void setEllipsizeByGradient(int i, Boolean bool) {
+        setEllipsizeByGradient(true, bool);
+        this.ellipsizeByGradientWidthDp = i;
+        updateFadePaints();
+    }
+
+    public void setEllipsizeByGradient(boolean z) {
+        setEllipsizeByGradient(z, (Boolean) null);
+    }
+
+    public void setEllipsizeByGradient(boolean z, Boolean bool) {
+        if (this.scrollNonFitText == z) {
+            return;
+        }
+        this.ellipsizeByGradient = z;
+        this.forceEllipsizeByGradientLeft = bool;
+        updateFadePaints();
+    }
+
+    public void setFullAlpha(float f) {
+        this.fullAlpha = f;
+        invalidate();
+    }
+
+    public void setFullLayoutAdditionalWidth(int i, int i2) {
+        if (this.fullLayoutAdditionalWidth == i && this.fullLayoutLeftOffset == i2) {
+            return;
+        }
+        this.fullLayoutAdditionalWidth = i;
+        this.fullLayoutLeftOffset = i2;
+        createLayout(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.minusWidth);
+    }
+
+    public void setFullTextMaxLines(int i) {
+        this.fullTextMaxLines = i;
+    }
+
+    public void setGravity(int i) {
+        this.gravity = i;
+    }
+
+    public void setLeftDrawable(int i) {
+        setLeftDrawable(i == 0 ? null : getContext().getResources().getDrawable(i));
+    }
+
+    public void setLeftDrawable(Drawable drawable) {
+        Drawable drawable2 = this.leftDrawable;
+        if (drawable2 == drawable) {
+            return;
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.leftDrawable = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        if (recreateLayoutMaybe()) {
+            return;
+        }
+        invalidate();
+    }
+
+    public void setLeftDrawableTopPadding(int i) {
+        this.leftDrawableTopPadding = i;
+    }
+
+    public void setLinkTextColor(int i) {
+        this.textPaint.linkColor = i;
+        invalidate();
+    }
+
+    public void setMaxLines(int i) {
+        this.maxLines = i;
+    }
+
+    public void setMinWidth(int i) {
+        this.minWidth = i;
+    }
+
     public void setMinusWidth(int i) {
         if (i == this.minusWidth) {
             return;
@@ -633,8 +1062,8 @@ public class SimpleTextView extends View implements Drawable.Callback {
         invalidate();
     }
 
-    public Drawable getRightDrawable() {
-        return this.rightDrawable;
+    public void setRightDrawable(int i) {
+        setRightDrawable(i == 0 ? null : getContext().getResources().getDrawable(i));
     }
 
     public void setRightDrawable(Drawable drawable) {
@@ -673,107 +1102,24 @@ public class SimpleTextView extends View implements Drawable.Callback {
         invalidate();
     }
 
-    public Drawable getRightDrawable2() {
-        return this.rightDrawable2;
+    public void setRightDrawableInside(boolean z) {
+        this.rightDrawableInside = z;
+    }
+
+    public void setRightDrawableOnClick(View.OnClickListener onClickListener) {
+        this.rightDrawableOnClickListener = onClickListener;
+    }
+
+    public void setRightDrawableOutside(boolean z) {
+        this.rightDrawableOutside = z;
     }
 
     public void setRightDrawableScale(float f) {
         this.rightDrawableScale = f;
     }
 
-    public void setSideDrawablesColor(int i) {
-        Theme.setDrawableColor(this.rightDrawable, i);
-        Theme.setDrawableColor(this.leftDrawable, i);
-    }
-
-    public boolean setText(CharSequence charSequence) {
-        return setText(charSequence, false);
-    }
-
-    public boolean setText(CharSequence charSequence, boolean z) {
-        CharSequence charSequence2 = this.text;
-        if (charSequence2 == null && charSequence == null) {
-            return false;
-        }
-        if (!z && charSequence2 != null && charSequence2.equals(charSequence)) {
-            return false;
-        }
-        this.text = charSequence;
-        this.currentScrollDelay = 500;
-        recreateLayoutMaybe();
-        return true;
-    }
-
-    public void resetScrolling() {
-        this.scrollingOffset = 0.0f;
-    }
-
-    public void copyScrolling(SimpleTextView simpleTextView) {
-        this.scrollingOffset = simpleTextView.scrollingOffset;
-    }
-
-    public void setDrawablePadding(int i) {
-        if (this.drawablePadding == i) {
-            return;
-        }
-        this.drawablePadding = i;
-        if (recreateLayoutMaybe()) {
-            return;
-        }
-        invalidate();
-    }
-
-    private boolean recreateLayoutMaybe() {
-        if (this.wasLayout && getMeasuredHeight() != 0 && !this.buildFullLayout) {
-            boolean createLayout = createLayout(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.minusWidth);
-            if ((this.gravity & 112) == 16) {
-                this.offsetY = (getMeasuredHeight() - this.textHeight) / 2;
-            } else {
-                this.offsetY = getPaddingTop();
-            }
-            return createLayout;
-        }
-        requestLayout();
-        return true;
-    }
-
-    public CharSequence getText() {
-        CharSequence charSequence = this.text;
-        return charSequence == null ? "" : charSequence;
-    }
-
-    public int getLineCount() {
-        Layout layout = this.layout;
-        int lineCount = layout != null ? layout.getLineCount() : 0;
-        Layout layout2 = this.fullLayout;
-        return layout2 != null ? lineCount + layout2.getLineCount() : lineCount;
-    }
-
-    public int getTextStartX() {
-        int i = 0;
-        if (this.layout == null) {
-            return 0;
-        }
-        Drawable drawable = this.leftDrawable;
-        if (drawable != null && (this.gravity & 7) == 3) {
-            i = this.drawablePadding + drawable.getIntrinsicWidth();
-        }
-        Drawable drawable2 = this.replacedDrawable;
-        if (drawable2 != null && this.replacingDrawableTextIndex < 0 && (this.gravity & 7) == 3) {
-            i += this.drawablePadding + drawable2.getIntrinsicWidth();
-        }
-        return ((int) getX()) + this.offsetX + i;
-    }
-
-    public TextPaint getTextPaint() {
-        return this.textPaint;
-    }
-
-    public int getTextStartY() {
-        if (this.layout == null) {
-            return 0;
-        }
-        return (int) getY();
+    public void setRightDrawableTopPadding(int i) {
+        this.rightDrawableTopPadding = i;
     }
 
     public void setRightPadding(int i) {
@@ -813,556 +1159,65 @@ public class SimpleTextView extends View implements Drawable.Callback {
         }
     }
 
-    @Override
-    public void onDraw(Canvas canvas) {
-        int i;
-        int paddingTop;
-        int i2;
-        int paddingTop2;
-        int i3;
-        int paddingTop3;
-        int i4;
-        int paddingTop4;
-        float f;
-        int paddingTop5;
-        int i5;
-        int paddingTop6;
-        int i6;
-        int paddingTop7;
-        int i7;
-        int paddingTop8;
-        int i8;
-        int paddingTop9;
-        int i9;
-        int intrinsicHeight;
-        int paddingTop10;
-        int i10;
-        super.onDraw(canvas);
-        boolean z = this.scrollNonFitText && (this.textDoesNotFit || this.scrollingOffset != 0.0f);
-        int saveLayerAlpha = (z || this.ellipsizeByGradient) ? canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), 255, 31) : Integer.MIN_VALUE;
-        this.totalWidth = this.textWidth;
-        if (this.leftDrawable != null) {
-            int i11 = (int) (-this.scrollingOffset);
-            int i12 = this.gravity;
-            if ((i12 & 7) == 1) {
-                i11 += this.offsetX;
-            }
-            if ((i12 & 112) == 16) {
-                paddingTop10 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
-                i10 = this.leftDrawableTopPadding;
-            } else {
-                paddingTop10 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
-                i10 = this.leftDrawableTopPadding;
-            }
-            int i13 = paddingTop10 + i10;
-            Drawable drawable = this.leftDrawable;
-            drawable.setBounds(i11, i13, drawable.getIntrinsicWidth() + i11, this.leftDrawable.getIntrinsicHeight() + i13);
-            this.leftDrawable.draw(canvas);
-            int i14 = this.gravity & 7;
-            i = (i14 == 3 || i14 == 1) ? this.drawablePadding + this.leftDrawable.getIntrinsicWidth() : 0;
-            this.totalWidth += this.drawablePadding + this.leftDrawable.getIntrinsicWidth();
-        } else {
-            i = 0;
-        }
-        Drawable drawable2 = this.replacedDrawable;
-        if (drawable2 != null && this.replacedText != null) {
-            int i15 = (int) ((-this.scrollingOffset) + this.replacingDrawableTextOffset);
-            int i16 = this.gravity;
-            if ((i16 & 7) == 1) {
-                i15 += this.offsetX;
-            }
-            if ((i16 & 112) == 16) {
-                intrinsicHeight = ((getMeasuredHeight() - this.replacedDrawable.getIntrinsicHeight()) / 2) + this.leftDrawableTopPadding;
-            } else {
-                intrinsicHeight = this.leftDrawableTopPadding + ((this.textHeight - drawable2.getIntrinsicHeight()) / 2);
-            }
-            Drawable drawable3 = this.replacedDrawable;
-            drawable3.setBounds(i15, intrinsicHeight, drawable3.getIntrinsicWidth() + i15, this.replacedDrawable.getIntrinsicHeight() + intrinsicHeight);
-            this.replacedDrawable.draw(canvas);
-            if (this.replacingDrawableTextIndex < 0) {
-                int i17 = this.gravity & 7;
-                if (i17 == 3 || i17 == 1) {
-                    i += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
-                }
-                this.totalWidth += this.drawablePadding + this.replacedDrawable.getIntrinsicWidth();
-            }
-        }
-        int i18 = i;
-        if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
-            int i19 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
-            int i20 = this.gravity & 7;
-            if (i20 == 1 || i20 == 5) {
-                i19 += this.offsetX;
-            }
-            int intrinsicWidth = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
-            int intrinsicHeight2 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & 112) == 16) {
-                paddingTop9 = (getMeasuredHeight() - intrinsicHeight2) / 2;
-                i9 = this.rightDrawableTopPadding;
-            } else {
-                paddingTop9 = getPaddingTop() + ((this.textHeight - intrinsicHeight2) / 2);
-                i9 = this.rightDrawableTopPadding;
-            }
-            int i21 = paddingTop9 + i9;
-            this.rightDrawable.setBounds(i19, i21, i19 + intrinsicWidth, i21 + intrinsicHeight2);
-            this.rightDrawableX = i19 + (intrinsicWidth >> 1);
-            this.rightDrawableY = i21 + (intrinsicHeight2 >> 1);
-            this.rightDrawable.draw(canvas);
-            this.totalWidth += this.drawablePadding + intrinsicWidth;
-        }
-        if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && !this.rightDrawableInside) {
-            int i22 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
-            if (this.rightDrawable != null) {
-                i22 += ((int) (r3.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
-            }
-            int i23 = this.gravity & 7;
-            if (i23 == 1 || i23 == 5) {
-                i22 += this.offsetX;
-            }
-            int intrinsicWidth2 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
-            int intrinsicHeight3 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & 112) == 16) {
-                paddingTop8 = (getMeasuredHeight() - intrinsicHeight3) / 2;
-                i8 = this.rightDrawableTopPadding;
-            } else {
-                paddingTop8 = getPaddingTop() + ((this.textHeight - intrinsicHeight3) / 2);
-                i8 = this.rightDrawableTopPadding;
-            }
-            int i24 = paddingTop8 + i8;
-            this.rightDrawable2.setBounds(i22, i24, i22 + intrinsicWidth2, intrinsicHeight3 + i24);
-            this.rightDrawable2.draw(canvas);
-            this.totalWidth += this.drawablePadding + intrinsicWidth2;
-        }
-        int dp = this.totalWidth + AndroidUtilities.dp(16.0f);
-        float f2 = this.scrollingOffset;
-        if (f2 != 0.0f) {
-            if (this.leftDrawable != null) {
-                int i25 = ((int) (-f2)) + dp;
-                if ((this.gravity & 112) == 16) {
-                    paddingTop7 = (getMeasuredHeight() - this.leftDrawable.getIntrinsicHeight()) / 2;
-                    i7 = this.leftDrawableTopPadding;
-                } else {
-                    paddingTop7 = getPaddingTop() + ((this.textHeight - this.leftDrawable.getIntrinsicHeight()) / 2);
-                    i7 = this.leftDrawableTopPadding;
-                }
-                int i26 = paddingTop7 + i7;
-                Drawable drawable4 = this.leftDrawable;
-                drawable4.setBounds(i25, i26, drawable4.getIntrinsicWidth() + i25, this.leftDrawable.getIntrinsicHeight() + i26);
-                this.leftDrawable.draw(canvas);
-            }
-            if (this.rightDrawable != null && !this.rightDrawableOutside) {
-                int intrinsicWidth3 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
-                int intrinsicHeight4 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-                int i27 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
-                if ((this.gravity & 112) == 16) {
-                    paddingTop6 = (getMeasuredHeight() - intrinsicHeight4) / 2;
-                    i6 = this.rightDrawableTopPadding;
-                } else {
-                    paddingTop6 = getPaddingTop() + ((this.textHeight - intrinsicHeight4) / 2);
-                    i6 = this.rightDrawableTopPadding;
-                }
-                int i28 = paddingTop6 + i6;
-                this.rightDrawable.setBounds(i27, i28, intrinsicWidth3 + i27, intrinsicHeight4 + i28);
-                this.rightDrawable.draw(canvas);
-            }
-            if (this.rightDrawable2 != null && !this.rightDrawableOutside) {
-                int intrinsicWidth4 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
-                int intrinsicHeight5 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-                int i29 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset)) + dp;
-                if (this.rightDrawable != null) {
-                    i29 += ((int) (r6.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
-                }
-                if ((this.gravity & 112) == 16) {
-                    paddingTop5 = (getMeasuredHeight() - intrinsicHeight5) / 2;
-                    i5 = this.rightDrawableTopPadding;
-                } else {
-                    paddingTop5 = getPaddingTop() + ((this.textHeight - intrinsicHeight5) / 2);
-                    i5 = this.rightDrawableTopPadding;
-                }
-                int i30 = paddingTop5 + i5;
-                this.rightDrawable2.setBounds(i29, i30, intrinsicWidth4 + i29, intrinsicHeight5 + i30);
-                this.rightDrawable2.draw(canvas);
-            }
-        }
-        if (this.layout != null) {
-            if (this.rightDrawableOutside || this.ellipsizeByGradient || this.paddingRight > 0) {
-                canvas.save();
-                int maxTextWidth = getMaxTextWidth() - this.paddingRight;
-                Drawable drawable5 = this.rightDrawable;
-                canvas.clipRect(0, 0, maxTextWidth - AndroidUtilities.dp((drawable5 == null || (drawable5 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), getMeasuredHeight());
-            }
-            Emoji.emojiDrawingUseAlpha = this.usaAlphaForEmoji;
-            if (this.wrapBackgroundDrawable != null) {
-                int i31 = (int) ((this.offsetX + i18) - this.scrollingOffset);
-                int i32 = this.textWidth;
-                int i33 = i31 + (i32 / 2);
-                int max = Math.max(i32 + getPaddingLeft() + getPaddingRight(), this.minWidth);
-                int i34 = i33 - (max / 2);
-                this.wrapBackgroundDrawable.setBounds(i34, 0, max + i34, getMeasuredHeight());
-                this.wrapBackgroundDrawable.draw(canvas);
-            }
-            if (this.offsetX + i18 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
-                canvas.save();
-                canvas.translate((this.offsetX + i18) - this.scrollingOffset, this.offsetY);
-            }
-            drawLayout(canvas);
-            if (this.partLayout != null && this.fullAlpha < 1.0f) {
-                int alpha = this.textPaint.getAlpha();
-                this.textPaint.setAlpha((int) ((1.0f - this.fullAlpha) * 255.0f));
-                canvas.save();
-                if (this.partLayout.getText().length() == 1) {
-                    f = AndroidUtilities.dp(this.fullTextMaxLines == 1 ? 0.5f : 4.0f);
-                } else {
-                    f = 0.0f;
-                }
-                if (this.layout.getLineLeft(0) != 0.0f) {
-                    canvas.translate((-this.layout.getLineWidth(0)) + f, 0.0f);
-                } else {
-                    canvas.translate(this.layout.getLineWidth(0) - f, 0.0f);
-                }
-                float f3 = -this.fullLayoutLeftOffset;
-                float f4 = this.fullAlpha;
-                canvas.translate((f3 * f4) + (this.fullLayoutLeftCharactersOffset * f4), 0.0f);
-                this.partLayout.draw(canvas);
-                canvas.restore();
-                this.textPaint.setAlpha(alpha);
-            }
-            if (this.fullLayout != null && this.fullAlpha > 0.0f) {
-                int alpha2 = this.textPaint.getAlpha();
-                this.textPaint.setAlpha((int) (this.fullAlpha * 255.0f));
-                float f5 = -this.fullLayoutLeftOffset;
-                float f6 = this.fullAlpha;
-                float f7 = this.fullLayoutLeftCharactersOffset;
-                canvas.translate(((f5 * f6) + (f6 * f7)) - f7, 0.0f);
-                this.fullLayout.draw(canvas);
-                this.textPaint.setAlpha(alpha2);
-            }
-            if (this.scrollingOffset != 0.0f) {
-                canvas.translate(dp, 0.0f);
-                drawLayout(canvas);
-            }
-            if (this.offsetX + i18 != 0 || this.offsetY != 0 || this.scrollingOffset != 0.0f) {
-                canvas.restore();
-            }
-            if (this.rightDrawable != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
-                int i35 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
-                int i36 = this.gravity & 7;
-                if (i36 == 1 || i36 == 5) {
-                    i35 += this.offsetX;
-                }
-                int intrinsicWidth5 = (int) (r1.getIntrinsicWidth() * this.rightDrawableScale);
-                int intrinsicHeight6 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-                if ((this.gravity & 112) == 16) {
-                    paddingTop4 = ((getMeasuredHeight() - intrinsicHeight6) / 2) + this.rightDrawableTopPadding;
-                } else {
-                    paddingTop4 = this.rightDrawableTopPadding + getPaddingTop() + ((this.textHeight - intrinsicHeight6) / 2);
-                }
-                this.rightDrawable.setBounds(i35, paddingTop4, i35 + intrinsicWidth5, paddingTop4 + intrinsicHeight6);
-                this.rightDrawableX = i35 + (intrinsicWidth5 >> 1);
-                this.rightDrawableY = paddingTop4 + (intrinsicHeight6 >> 1);
-                this.rightDrawable.draw(canvas);
-                this.totalWidth += this.drawablePadding + intrinsicWidth5;
-            }
-            if (this.rightDrawable2 != null && !this.rightDrawableHidden && this.rightDrawableScale > 0.0f && !this.rightDrawableOutside && this.rightDrawableInside) {
-                int i37 = this.textWidth + i18 + this.drawablePadding + ((int) (-this.scrollingOffset));
-                if (this.rightDrawable != null) {
-                    i37 += ((int) (r3.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
-                }
-                int i38 = this.gravity & 7;
-                if (i38 == 1 || i38 == 5) {
-                    i37 += this.offsetX;
-                }
-                int intrinsicWidth6 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
-                int intrinsicHeight7 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-                if ((this.gravity & 112) == 16) {
-                    paddingTop3 = (getMeasuredHeight() - intrinsicHeight7) / 2;
-                    i4 = this.rightDrawableTopPadding;
-                } else {
-                    paddingTop3 = getPaddingTop() + ((this.textHeight - intrinsicHeight7) / 2);
-                    i4 = this.rightDrawableTopPadding;
-                }
-                int i39 = paddingTop3 + i4;
-                this.rightDrawable2.setBounds(i37, i39, i37 + intrinsicWidth6, intrinsicHeight7 + i39);
-                this.rightDrawable2.draw(canvas);
-                this.totalWidth += this.drawablePadding + intrinsicWidth6;
-            }
-            if (z) {
-                if (this.scrollingOffset < AndroidUtilities.dp(10.0f)) {
-                    this.fadePaint.setAlpha((int) ((this.scrollingOffset / AndroidUtilities.dp(10.0f)) * 255.0f));
-                } else if (this.scrollingOffset > (this.totalWidth + AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(10.0f)) {
-                    this.fadePaint.setAlpha((int) ((1.0f - ((this.scrollingOffset - ((this.totalWidth + AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(10.0f))) / AndroidUtilities.dp(10.0f))) * 255.0f));
-                } else {
-                    this.fadePaint.setAlpha(255);
-                }
-                canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.fadePaint);
-                canvas.save();
-                canvas.translate((getMaxTextWidth() - this.paddingRight) - AndroidUtilities.dp(6.0f), 0.0f);
-                canvas.drawRect(0.0f, 0.0f, AndroidUtilities.dp(6.0f), getMeasuredHeight(), this.fadePaintBack);
-                canvas.restore();
-            } else if (this.ellipsizeByGradient && this.textDoesNotFit && this.fadeEllpsizePaint != null) {
-                canvas.save();
-                updateFadePaints();
-                if (!this.ellipsizeByGradientLeft) {
-                    int maxTextWidth2 = (getMaxTextWidth() - this.paddingRight) - this.fadeEllpsizePaintWidth;
-                    Drawable drawable6 = this.rightDrawable;
-                    canvas.translate(maxTextWidth2 - AndroidUtilities.dp((drawable6 == null || (drawable6 instanceof AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable) || !this.rightDrawableOutside) ? 0.0f : 2.0f), 0.0f);
-                }
-                canvas.drawRect(0.0f, 0.0f, this.fadeEllpsizePaintWidth, getMeasuredHeight(), this.fadeEllpsizePaint);
-                canvas.restore();
-            }
-            updateScrollAnimation();
-            Emoji.emojiDrawingUseAlpha = true;
-            if (this.rightDrawableOutside || this.ellipsizeByGradient || this.paddingRight > 0) {
-                canvas.restore();
-            }
-        }
-        if (z || this.ellipsizeByGradient) {
-            canvas.restoreToCount(saveLayerAlpha);
-        }
-        if (this.rightDrawable != null && this.rightDrawableOutside) {
-            int i40 = this.textWidth + i18 + this.drawablePadding;
-            float f8 = this.scrollingOffset;
-            int min = Math.min(i40 + (f8 == 0.0f ? -dp : (int) (-f8)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
-            int intrinsicWidth7 = (int) (this.rightDrawable.getIntrinsicWidth() * this.rightDrawableScale);
-            int intrinsicHeight8 = (int) (this.rightDrawable.getIntrinsicHeight() * this.rightDrawableScale);
-            if ((this.gravity & 112) == 16) {
-                paddingTop2 = (getMeasuredHeight() - intrinsicHeight8) / 2;
-                i3 = this.rightDrawableTopPadding;
-            } else {
-                paddingTop2 = getPaddingTop() + ((this.textHeight - intrinsicHeight8) / 2);
-                i3 = this.rightDrawableTopPadding;
-            }
-            int i41 = paddingTop2 + i3;
-            this.rightDrawable.setBounds(min, i41, min + intrinsicWidth7, i41 + intrinsicHeight8);
-            this.rightDrawableX = min + (intrinsicWidth7 >> 1);
-            this.rightDrawableY = i41 + (intrinsicHeight8 >> 1);
-            this.rightDrawable.draw(canvas);
-        }
-        if (this.rightDrawable2 == null || !this.rightDrawableOutside) {
+    public void setScrollNonFitText(boolean z) {
+        if (this.scrollNonFitText == z) {
             return;
         }
-        int i42 = i18 + this.textWidth + this.drawablePadding;
-        float f9 = this.scrollingOffset;
-        int min2 = Math.min(i42 + (f9 == 0.0f ? -dp : (int) (-f9)) + dp, (getMaxTextWidth() - this.paddingRight) + this.drawablePadding);
-        if (this.rightDrawable != null) {
-            min2 += ((int) (r2.getIntrinsicWidth() * this.rightDrawableScale)) + this.drawablePadding;
+        this.scrollNonFitText = z;
+        updateFadePaints();
+        requestLayout();
+    }
+
+    public void setSideDrawablesColor(int i) {
+        Theme.setDrawableColor(this.rightDrawable, i);
+        Theme.setDrawableColor(this.leftDrawable, i);
+    }
+
+    public boolean setText(CharSequence charSequence) {
+        return setText(charSequence, false);
+    }
+
+    public boolean setText(CharSequence charSequence, boolean z) {
+        CharSequence charSequence2 = this.text;
+        if (charSequence2 == null && charSequence == null) {
+            return false;
         }
-        int intrinsicWidth8 = (int) (this.rightDrawable2.getIntrinsicWidth() * this.rightDrawableScale);
-        int intrinsicHeight9 = (int) (this.rightDrawable2.getIntrinsicHeight() * this.rightDrawableScale);
-        if ((this.gravity & 112) == 16) {
-            paddingTop = (getMeasuredHeight() - intrinsicHeight9) / 2;
-            i2 = this.rightDrawableTopPadding;
-        } else {
-            paddingTop = getPaddingTop() + ((this.textHeight - intrinsicHeight9) / 2);
-            i2 = this.rightDrawableTopPadding;
+        if (!z && charSequence2 != null && charSequence2.equals(charSequence)) {
+            return false;
         }
-        int i43 = paddingTop + i2;
-        this.rightDrawable2.setBounds(min2, i43, intrinsicWidth8 + min2, intrinsicHeight9 + i43);
-        this.rightDrawable2.draw(canvas);
+        this.text = charSequence;
+        this.currentScrollDelay = 500;
+        recreateLayoutMaybe();
+        return true;
     }
 
-    public int getRightDrawableX() {
-        return this.rightDrawableX;
+    public void setTextColor(int i) {
+        this.textPaint.setColor(i);
+        invalidate();
     }
 
-    public int getRightDrawableY() {
-        return this.rightDrawableY;
-    }
-
-    public int getMaxTextWidth() {
-        Drawable drawable;
-        Drawable drawable2;
-        int i = 0;
-        int measuredWidth = getMeasuredWidth() - ((!this.rightDrawableOutside || (drawable2 = this.rightDrawable) == null) ? 0 : drawable2.getIntrinsicWidth() + this.drawablePadding);
-        if (this.rightDrawableOutside && (drawable = this.rightDrawable2) != null) {
-            i = this.drawablePadding + drawable.getIntrinsicWidth();
-        }
-        return measuredWidth - i;
-    }
-
-    private void drawLayout(Canvas canvas) {
-        if (this.fullAlpha > 0.0f && this.fullLayoutLeftOffset != 0) {
-            canvas.save();
-            float f = -this.fullLayoutLeftOffset;
-            float f2 = this.fullAlpha;
-            canvas.translate((f * f2) + (this.fullLayoutLeftCharactersOffset * f2), 0.0f);
-            canvas.save();
-            clipOutSpoilers(canvas);
-            AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans = this.emojiStack;
-            if (emojiGroupedSpans != null) {
-                emojiGroupedSpans.clearPositions();
-            }
-            this.layout.draw(canvas);
-            canvas.restore();
-            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
-            drawSpoilers(canvas);
-            canvas.restore();
+    public void setTextSize(int i) {
+        float dp = AndroidUtilities.dp(i);
+        if (dp == this.textPaint.getTextSize()) {
             return;
         }
-        canvas.save();
-        clipOutSpoilers(canvas);
-        AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans2 = this.emojiStack;
-        if (emojiGroupedSpans2 != null) {
-            emojiGroupedSpans2.clearPositions();
+        this.textPaint.setTextSize(dp);
+        if (recreateLayoutMaybe()) {
+            return;
         }
-        this.layout.draw(canvas);
-        canvas.restore();
-        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.emojiStack, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
-        drawSpoilers(canvas);
+        invalidate();
     }
 
-    private void clipOutSpoilers(Canvas canvas) {
-        this.path.rewind();
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            Rect bounds = it.next().getBounds();
-            this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
-        }
-        canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+    public void setTypeface(Typeface typeface) {
+        this.textPaint.setTypeface(typeface);
     }
 
-    private void drawSpoilers(Canvas canvas) {
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            it.next().draw(canvas);
-        }
-    }
-
-    private void updateScrollAnimation() {
-        float dp;
-        if (this.scrollNonFitText) {
-            if (this.textDoesNotFit || this.scrollingOffset != 0.0f) {
-                long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j = elapsedRealtime - this.lastUpdateTime;
-                if (j > 17) {
-                    j = 17;
-                }
-                int i = this.currentScrollDelay;
-                if (i > 0) {
-                    this.currentScrollDelay = (int) (i - j);
-                } else {
-                    int dp2 = this.totalWidth + AndroidUtilities.dp(16.0f);
-                    if (this.scrollingOffset < AndroidUtilities.dp(100.0f)) {
-                        dp = ((this.scrollingOffset / AndroidUtilities.dp(100.0f)) * 20.0f) + 30.0f;
-                    } else {
-                        dp = this.scrollingOffset >= ((float) (dp2 - AndroidUtilities.dp(100.0f))) ? 50.0f - (((this.scrollingOffset - (dp2 - AndroidUtilities.dp(100.0f))) / AndroidUtilities.dp(100.0f)) * 20.0f) : 50.0f;
-                    }
-                    float dp3 = this.scrollingOffset + ((((float) j) / 1000.0f) * AndroidUtilities.dp(dp));
-                    this.scrollingOffset = dp3;
-                    this.lastUpdateTime = elapsedRealtime;
-                    if (dp3 > dp2) {
-                        this.scrollingOffset = 0.0f;
-                        this.currentScrollDelay = 500;
-                    }
-                }
-                invalidate();
-            }
-        }
+    public void setWidthWrapContent(boolean z) {
+        this.widthWrapContent = z;
     }
 
     @Override
-    public void invalidateDrawable(Drawable drawable) {
-        Drawable drawable2 = this.leftDrawable;
-        if (drawable == drawable2) {
-            invalidate(drawable2.getBounds());
-            return;
-        }
-        Drawable drawable3 = this.rightDrawable;
-        if (drawable == drawable3) {
-            invalidate(drawable3.getBounds());
-            return;
-        }
-        Drawable drawable4 = this.rightDrawable2;
-        if (drawable == drawable4) {
-            invalidate(drawable4.getBounds());
-            return;
-        }
-        Drawable drawable5 = this.replacedDrawable;
-        if (drawable == drawable5) {
-            invalidate(drawable5.getBounds());
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.text);
-    }
-
-    public void setFullLayoutAdditionalWidth(int i, int i2) {
-        if (this.fullLayoutAdditionalWidth == i && this.fullLayoutLeftOffset == i2) {
-            return;
-        }
-        this.fullLayoutAdditionalWidth = i;
-        this.fullLayoutLeftOffset = i2;
-        createLayout(((getMaxTextWidth() - getPaddingLeft()) - getPaddingRight()) - this.minusWidth);
-    }
-
-    public void setFullTextMaxLines(int i) {
-        this.fullTextMaxLines = i;
-    }
-
-    public int getTextColor() {
-        return this.textPaint.getColor();
-    }
-
-    public void setCanHideRightDrawable(boolean z) {
-        this.canHideRightDrawable = z;
-    }
-
-    public void setRightDrawableOutside(boolean z) {
-        this.rightDrawableOutside = z;
-    }
-
-    public void setRightDrawableInside(boolean z) {
-        this.rightDrawableInside = z;
-    }
-
-    public boolean getRightDrawableOutside() {
-        return this.rightDrawableOutside;
-    }
-
-    public void setRightDrawableOnClick(View.OnClickListener onClickListener) {
-        this.rightDrawableOnClickListener = onClickListener;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.rightDrawableOnClickListener != null && this.rightDrawable != null) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.rightDrawableX - AndroidUtilities.dp(16.0f), this.rightDrawableY - AndroidUtilities.dp(16.0f), this.rightDrawableX + AndroidUtilities.dp(16.0f), this.rightDrawableY + AndroidUtilities.dp(16.0f));
-            if (motionEvent.getAction() == 0 && rectF.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                this.maybeClick = true;
-                this.touchDownX = motionEvent.getX();
-                this.touchDownY = motionEvent.getY();
-                getParent().requestDisallowInterceptTouchEvent(true);
-                Object obj = this.rightDrawable;
-                if (obj instanceof PressableDrawable) {
-                    ((PressableDrawable) obj).setPressed(true);
-                }
-            } else if (motionEvent.getAction() == 2 && this.maybeClick) {
-                if (Math.abs(motionEvent.getX() - this.touchDownX) >= AndroidUtilities.touchSlop || Math.abs(motionEvent.getY() - this.touchDownY) >= AndroidUtilities.touchSlop) {
-                    this.maybeClick = false;
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                    Object obj2 = this.rightDrawable;
-                    if (obj2 instanceof PressableDrawable) {
-                        ((PressableDrawable) obj2).setPressed(false);
-                    }
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (this.maybeClick && motionEvent.getAction() == 1) {
-                    this.rightDrawableOnClickListener.onClick(this);
-                    Object obj3 = this.rightDrawable;
-                    if (obj3 instanceof PressableDrawable) {
-                        ((PressableDrawable) obj3).setPressed(false);
-                    }
-                }
-                this.maybeClick = false;
-                getParent().requestDisallowInterceptTouchEvent(false);
-            }
-        }
-        return super.onTouchEvent(motionEvent) || this.maybeClick;
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.rightDrawable || drawable == this.rightDrawable2 || drawable == this.leftDrawable || super.verifyDrawable(drawable);
     }
 }

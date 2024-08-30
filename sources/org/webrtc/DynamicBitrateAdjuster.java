@@ -9,19 +9,18 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     private double deviationBytes;
     private double timeSinceLastAdjustmentMs;
 
+    private double getBitrateAdjustmentScale() {
+        double d = this.bitrateAdjustmentScaleExp;
+        Double.isNaN(d);
+        return Math.pow(4.0d, d / 20.0d);
+    }
+
     @Override
-    public void setTargets(int i, int i2) {
-        int i3 = this.targetBitrateBps;
-        if (i3 > 0 && i < i3) {
-            double d = this.deviationBytes;
-            double d2 = i;
-            Double.isNaN(d2);
-            double d3 = d * d2;
-            double d4 = i3;
-            Double.isNaN(d4);
-            this.deviationBytes = d3 / d4;
-        }
-        super.setTargets(i, i2);
+    public int getAdjustedBitrateBps() {
+        double d = this.targetBitrateBps;
+        double bitrateAdjustmentScale = getBitrateAdjustmentScale();
+        Double.isNaN(d);
+        return (int) (d * bitrateAdjustmentScale);
     }
 
     @Override
@@ -68,17 +67,18 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
         this.timeSinceLastAdjustmentMs = 0.0d;
     }
 
-    private double getBitrateAdjustmentScale() {
-        double d = this.bitrateAdjustmentScaleExp;
-        Double.isNaN(d);
-        return Math.pow(4.0d, d / 20.0d);
-    }
-
     @Override
-    public int getAdjustedBitrateBps() {
-        double d = this.targetBitrateBps;
-        double bitrateAdjustmentScale = getBitrateAdjustmentScale();
-        Double.isNaN(d);
-        return (int) (d * bitrateAdjustmentScale);
+    public void setTargets(int i, int i2) {
+        int i3 = this.targetBitrateBps;
+        if (i3 > 0 && i < i3) {
+            double d = this.deviationBytes;
+            double d2 = i;
+            Double.isNaN(d2);
+            double d3 = d * d2;
+            double d4 = i3;
+            Double.isNaN(d4);
+            this.deviationBytes = d3 / d4;
+        }
+        super.setTargets(i, i2);
     }
 }

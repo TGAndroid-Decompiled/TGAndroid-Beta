@@ -1,4 +1,4 @@
 package org.telegram.ui.web;
 
-public final class BotWebViewContainer$MyWebView$2$$ExternalSyntheticApiModelOutline6 {
+public abstract class BotWebViewContainer$MyWebView$2$$ExternalSyntheticApiModelOutline6 {
 }

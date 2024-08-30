@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$TL_botCommand;
 
 public abstract class TL_bots$BotInfo extends TLObject {
-    public ArrayList<TLRPC$TL_botCommand> commands = new ArrayList<>();
+    public ArrayList commands = new ArrayList();
     public String description;
     public TLRPC$Document description_document;
     public TLRPC$Photo description_photo;
@@ -89,7 +89,7 @@ public abstract class TL_bots$BotInfo extends TLObject {
                             int size = this.commands.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.commands.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_botCommand) this.commands.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 8) != 0) {
@@ -130,7 +130,7 @@ public abstract class TL_bots$BotInfo extends TLObject {
                         int size = this.commands.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.commands.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_botCommand) this.commands.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -176,7 +176,7 @@ public abstract class TL_bots$BotInfo extends TLObject {
                         int size = this.commands.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.commands.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_botCommand) this.commands.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         this.menu_button.serializeToStream(abstractSerializedData2);
                     }
@@ -218,7 +218,7 @@ public abstract class TL_bots$BotInfo extends TLObject {
                         int size = this.commands.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.commands.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_botCommand) this.commands.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -255,7 +255,7 @@ public abstract class TL_bots$BotInfo extends TLObject {
                         int size = this.commands.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.commands.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$TL_botCommand) this.commands.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

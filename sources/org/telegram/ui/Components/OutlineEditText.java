@@ -32,11 +32,11 @@ public class OutlineEditText extends OutlineTextContainerView {
         addView(this.editText, LayoutHelper.createFrame(-1, -2, 16));
     }
 
-    public void setHint(String str) {
-        setText(str);
-    }
-
     public EditTextBoldCursor getEditText() {
         return this.editText;
+    }
+
+    public void setHint(String str) {
+        setText(str);
     }
 }

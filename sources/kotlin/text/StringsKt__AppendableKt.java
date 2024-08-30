@@ -1,4 +1,4 @@
 package kotlin.text;
 
-class StringsKt__AppendableKt {
+abstract class StringsKt__AppendableKt {
 }

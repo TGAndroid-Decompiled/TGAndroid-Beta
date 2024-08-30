@@ -28,10 +28,6 @@ public class WebFile extends TLObject {
     public int w;
     public int zoom;
 
-    public static WebFile createWithGeoPoint(TLRPC$GeoPoint tLRPC$GeoPoint, int i, int i2, int i3, int i4) {
-        return createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, tLRPC$GeoPoint.access_hash, i, i2, i3, i4);
-    }
-
     public static WebFile createWithGeoPoint(double d, double d2, long j, int i, int i2, int i3, int i4) {
         WebFile webFile = new WebFile();
         TLRPC$TL_inputWebFileGeoPointLocation tLRPC$TL_inputWebFileGeoPointLocation = new TLRPC$TL_inputWebFileGeoPointLocation();
@@ -54,6 +50,10 @@ public class WebFile extends TLObject {
         webFile.url = String.format(Locale.US, "maps_%.6f_%.6f_%d_%d_%d_%d.png", Double.valueOf(d), Double.valueOf(d2), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
         webFile.attributes = new ArrayList<>();
         return webFile;
+    }
+
+    public static WebFile createWithGeoPoint(TLRPC$GeoPoint tLRPC$GeoPoint, int i, int i2, int i3, int i4) {
+        return createWithGeoPoint(tLRPC$GeoPoint.lat, tLRPC$GeoPoint._long, tLRPC$GeoPoint.access_hash, i, i2, i3, i4);
     }
 
     public static WebFile createWithWebDocument(TLRPC$WebDocument tLRPC$WebDocument) {

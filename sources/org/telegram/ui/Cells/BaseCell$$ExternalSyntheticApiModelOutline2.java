@@ -1,4 +1,4 @@
 package org.telegram.ui.Cells;
 
-public final class BaseCell$$ExternalSyntheticApiModelOutline2 {
+public abstract class BaseCell$$ExternalSyntheticApiModelOutline2 {
 }

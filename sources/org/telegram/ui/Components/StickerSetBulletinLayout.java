@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
@@ -12,14 +11,13 @@ import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 
-@SuppressLint({"ViewConstructor"})
 public class StickerSetBulletinLayout extends Bulletin.TwoLineLayout {
-    public StickerSetBulletinLayout(Context context, TLObject tLObject, int i, TLRPC$Document tLRPC$Document, Theme.ResourcesProvider resourcesProvider) {
-        this(context, tLObject, 1, i, tLRPC$Document, resourcesProvider);
-    }
-
     public StickerSetBulletinLayout(final android.content.Context r16, org.telegram.tgnet.TLObject r17, int r18, int r19, org.telegram.tgnet.TLRPC$Document r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerSetBulletinLayout.<init>(android.content.Context, org.telegram.tgnet.TLObject, int, int, org.telegram.tgnet.TLRPC$Document, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    }
+
+    public StickerSetBulletinLayout(Context context, TLObject tLObject, int i, TLRPC$Document tLRPC$Document, Theme.ResourcesProvider resourcesProvider) {
+        this(context, tLObject, 1, i, tLRPC$Document, resourcesProvider);
     }
 
     public static void lambda$new$0(Context context) {

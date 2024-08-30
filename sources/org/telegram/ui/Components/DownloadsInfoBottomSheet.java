@@ -21,13 +21,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CacheControlActivity;
 
 public class DownloadsInfoBottomSheet extends BottomSheet {
-    public static void show(Activity activity, BaseFragment baseFragment) {
-        if (baseFragment == null || activity == null) {
-            return;
-        }
-        new DownloadsInfoBottomSheet(activity, baseFragment, false).show();
-    }
-
     public DownloadsInfoBottomSheet(Context context, final BaseFragment baseFragment, boolean z) {
         super(context, z);
         setApplyBottomPadding(false);
@@ -124,5 +117,12 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
     public void lambda$new$2(View view) {
         dismiss();
         DownloadController.getInstance(this.currentAccount).clearRecentDownloadedFiles();
+    }
+
+    public static void show(Activity activity, BaseFragment baseFragment) {
+        if (baseFragment == null || activity == null) {
+            return;
+        }
+        new DownloadsInfoBottomSheet(activity, baseFragment, false).show();
     }
 }

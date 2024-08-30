@@ -47,20 +47,18 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                     cameraCapturer.cameraStatistics = new CameraVideoCapturer.CameraStatistics(cameraCapturer.surfaceHelper, CameraCapturer.this.eventsHandler);
                     CameraCapturer.this.firstFrameObserved = false;
                     CameraCapturer.this.stateLock.notifyAll();
-                    if (CameraCapturer.this.switchState != SwitchState.IN_PROGRESS) {
-                        if (CameraCapturer.this.switchState == SwitchState.PENDING) {
-                            String str = CameraCapturer.this.pendingCameraName;
-                            CameraCapturer.this.pendingCameraName = null;
-                            CameraCapturer.this.switchState = SwitchState.IDLE;
-                            CameraCapturer cameraCapturer2 = CameraCapturer.this;
-                            cameraCapturer2.switchCameraInternal(cameraCapturer2.switchEventsHandler, str);
-                        }
-                    } else {
+                    if (CameraCapturer.this.switchState == SwitchState.IN_PROGRESS) {
                         CameraCapturer.this.switchState = SwitchState.IDLE;
                         if (CameraCapturer.this.switchEventsHandler != null) {
                             CameraCapturer.this.switchEventsHandler.onCameraSwitchDone(CameraCapturer.this.cameraEnumerator.isFrontFacing(CameraCapturer.this.cameraName));
                             CameraCapturer.this.switchEventsHandler = null;
                         }
+                    } else if (CameraCapturer.this.switchState == SwitchState.PENDING) {
+                        String str = CameraCapturer.this.pendingCameraName;
+                        CameraCapturer.this.pendingCameraName = null;
+                        CameraCapturer.this.switchState = SwitchState.IDLE;
+                        CameraCapturer cameraCapturer2 = CameraCapturer.this;
+                        cameraCapturer2.switchCameraInternal(cameraCapturer2.switchEventsHandler, str);
                     }
                 } catch (Throwable th) {
                     throw th;
@@ -106,14 +104,31 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     };
     private final CameraSession.Events cameraSessionEventsHandler = new CameraSession.Events() {
         @Override
-        public void onCameraOpening() {
+        public void onCameraClosed(CameraSession cameraSession) {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 try {
-                    if (CameraCapturer.this.currentSession == null) {
-                        CameraCapturer.this.eventsHandler.onCameraOpening(CameraCapturer.this.cameraName);
+                    if (cameraSession == CameraCapturer.this.currentSession || CameraCapturer.this.currentSession == null) {
+                        CameraCapturer.this.eventsHandler.onCameraClosed();
                     } else {
-                        Logging.w("CameraCapturer", "onCameraOpening while session was open.");
+                        Logging.d("CameraCapturer", "onCameraClosed from another session.");
+                    }
+                } catch (Throwable th) {
+                    throw th;
+                }
+            }
+        }
+
+        @Override
+        public void onCameraDisconnected(CameraSession cameraSession) {
+            CameraCapturer.this.checkIsOnCameraThread();
+            synchronized (CameraCapturer.this.stateLock) {
+                try {
+                    if (cameraSession != CameraCapturer.this.currentSession) {
+                        Logging.w("CameraCapturer", "onCameraDisconnected from another session.");
+                    } else {
+                        CameraCapturer.this.eventsHandler.onCameraDisconnected();
+                        CameraCapturer.this.stopCapture();
                     }
                 } catch (Throwable th) {
                     throw th;
@@ -139,31 +154,14 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         }
 
         @Override
-        public void onCameraDisconnected(CameraSession cameraSession) {
+        public void onCameraOpening() {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 try {
-                    if (cameraSession == CameraCapturer.this.currentSession) {
-                        CameraCapturer.this.eventsHandler.onCameraDisconnected();
-                        CameraCapturer.this.stopCapture();
+                    if (CameraCapturer.this.currentSession != null) {
+                        Logging.w("CameraCapturer", "onCameraOpening while session was open.");
                     } else {
-                        Logging.w("CameraCapturer", "onCameraDisconnected from another session.");
-                    }
-                } catch (Throwable th) {
-                    throw th;
-                }
-            }
-        }
-
-        @Override
-        public void onCameraClosed(CameraSession cameraSession) {
-            CameraCapturer.this.checkIsOnCameraThread();
-            synchronized (CameraCapturer.this.stateLock) {
-                try {
-                    if (cameraSession == CameraCapturer.this.currentSession || CameraCapturer.this.currentSession == null) {
-                        CameraCapturer.this.eventsHandler.onCameraClosed();
-                    } else {
-                        Logging.d("CameraCapturer", "onCameraClosed from another session.");
+                        CameraCapturer.this.eventsHandler.onCameraOpening(CameraCapturer.this.cameraName);
                     }
                 } catch (Throwable th) {
                     throw th;
@@ -176,16 +174,16 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             CameraCapturer.this.checkIsOnCameraThread();
             synchronized (CameraCapturer.this.stateLock) {
                 try {
-                    if (cameraSession == CameraCapturer.this.currentSession) {
-                        if (!CameraCapturer.this.firstFrameObserved) {
-                            CameraCapturer.this.eventsHandler.onFirstFrameAvailable();
-                            CameraCapturer.this.firstFrameObserved = true;
-                        }
-                        CameraCapturer.this.cameraStatistics.addFrame();
-                        CameraCapturer.this.capturerObserver.onFrameCaptured(videoFrame);
+                    if (cameraSession != CameraCapturer.this.currentSession) {
+                        Logging.w("CameraCapturer", "onFrameCaptured from another session.");
                         return;
                     }
-                    Logging.w("CameraCapturer", "onFrameCaptured from another session.");
+                    if (!CameraCapturer.this.firstFrameObserved) {
+                        CameraCapturer.this.eventsHandler.onFirstFrameAvailable();
+                        CameraCapturer.this.firstFrameObserved = true;
+                    }
+                    CameraCapturer.this.cameraStatistics.addFrame();
+                    CameraCapturer.this.capturerObserver.onFrameCaptured(videoFrame);
                 } catch (Throwable th) {
                     throw th;
                 }
@@ -205,29 +203,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         IDLE,
         PENDING,
         IN_PROGRESS
-    }
-
-    @Override
-    public void addMediaRecorderToCamera(MediaRecorder mediaRecorder, CameraVideoCapturer.MediaRecorderHandler mediaRecorderHandler) {
-        CameraVideoCapturer.CC.$default$addMediaRecorderToCamera(this, mediaRecorder, mediaRecorderHandler);
-    }
-
-    protected abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3);
-
-    @Override
-    public boolean isScreencast() {
-        return false;
-    }
-
-    @Override
-    public void removeMediaRecorderFromCamera(CameraVideoCapturer.MediaRecorderHandler mediaRecorderHandler) {
-        CameraVideoCapturer.CC.$default$removeMediaRecorderFromCamera(this, mediaRecorderHandler);
-    }
-
-    static int access$1710(CameraCapturer cameraCapturer) {
-        int i = cameraCapturer.openAttemptsRemaining;
-        cameraCapturer.openAttemptsRemaining = i - 1;
-        return i;
     }
 
     public CameraCapturer(String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler, CameraEnumerator cameraEnumerator) {
@@ -269,36 +244,18 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         throw new IllegalArgumentException("Camera name " + this.cameraName + " does not match any known camera device.");
     }
 
-    @Override
-    public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
-        this.applicationContext = context;
-        this.capturerObserver = capturerObserver;
-        this.surfaceHelper = surfaceTextureHelper;
-        this.cameraThreadHandler = surfaceTextureHelper.getHandler();
+    static int access$1710(CameraCapturer cameraCapturer) {
+        int i = cameraCapturer.openAttemptsRemaining;
+        cameraCapturer.openAttemptsRemaining = i - 1;
+        return i;
     }
 
-    @Override
-    public void startCapture(int i, int i2, int i3) {
-        Logging.d("CameraCapturer", "startCapture: " + i + "x" + i2 + "@" + i3);
-        if (this.applicationContext == null) {
-            throw new RuntimeException("CameraCapturer must be initialized before calling startCapture.");
+    public void checkIsOnCameraThread() {
+        if (Thread.currentThread() == this.cameraThreadHandler.getLooper().getThread()) {
+            return;
         }
-        synchronized (this.stateLock) {
-            try {
-                if (!this.sessionOpening && this.currentSession == null) {
-                    this.width = i;
-                    this.height = i2;
-                    this.framerate = i3;
-                    this.sessionOpening = true;
-                    this.openAttemptsRemaining = 3;
-                    createSessionInternal(0);
-                    return;
-                }
-                Logging.w("CameraCapturer", "Session already open");
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
+        Logging.e("CameraCapturer", "Check is on camera thread failed.");
+        throw new RuntimeException("Not on camera thread.");
     }
 
     public void createSessionInternal(int i) {
@@ -310,96 +267,6 @@ abstract class CameraCapturer implements CameraVideoCapturer {
                 cameraCapturer.createCameraSession(cameraCapturer.createSessionCallback, CameraCapturer.this.cameraSessionEventsHandler, CameraCapturer.this.applicationContext, CameraCapturer.this.surfaceHelper, CameraCapturer.this.cameraName, CameraCapturer.this.width, CameraCapturer.this.height, CameraCapturer.this.framerate);
             }
         }, i);
-    }
-
-    @Override
-    public void stopCapture() {
-        Logging.d("CameraCapturer", "Stop capture");
-        synchronized (this.stateLock) {
-            while (this.sessionOpening) {
-                Logging.d("CameraCapturer", "Stop capture: Waiting for session to open");
-                try {
-                    this.stateLock.wait();
-                } catch (InterruptedException unused) {
-                    Logging.w("CameraCapturer", "Stop capture interrupted while waiting for the session to open.");
-                    Thread.currentThread().interrupt();
-                    return;
-                }
-            }
-            if (this.currentSession != null) {
-                Logging.d("CameraCapturer", "Stop capture: Nulling session");
-                this.cameraStatistics.release();
-                this.cameraStatistics = null;
-                final CameraSession cameraSession = this.currentSession;
-                this.cameraThreadHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        cameraSession.stop();
-                    }
-                });
-                this.currentSession = null;
-                this.capturerObserver.onCapturerStopped();
-            } else {
-                Logging.d("CameraCapturer", "Stop capture: No session open");
-            }
-        }
-        Logging.d("CameraCapturer", "Stop capture done");
-    }
-
-    @Override
-    public void changeCaptureFormat(int i, int i2, int i3) {
-        Logging.d("CameraCapturer", "changeCaptureFormat: " + i + "x" + i2 + "@" + i3);
-        synchronized (this.stateLock) {
-            stopCapture();
-            startCapture(i, i2, i3);
-        }
-    }
-
-    @Override
-    public void dispose() {
-        Logging.d("CameraCapturer", "dispose");
-        stopCapture();
-    }
-
-    @Override
-    public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
-        Logging.d("CameraCapturer", "switchCamera");
-        this.cameraThreadHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                List asList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
-                if (asList.size() < 2) {
-                    CameraCapturer.this.reportCameraSwitchError("No camera to switch to.", cameraSwitchHandler);
-                } else {
-                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
-                }
-            }
-        });
-    }
-
-    @Override
-    public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, final String str) {
-        Logging.d("CameraCapturer", "switchCamera");
-        this.cameraThreadHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, str);
-            }
-        });
-    }
-
-    public void printStackTrace() {
-        Handler handler = this.cameraThreadHandler;
-        Thread thread = handler != null ? handler.getLooper().getThread() : null;
-        if (thread != null) {
-            StackTraceElement[] stackTrace = thread.getStackTrace();
-            if (stackTrace.length > 0) {
-                Logging.d("CameraCapturer", "CameraCapturer stack trace:");
-                for (StackTraceElement stackTraceElement : stackTrace) {
-                    Logging.d("CameraCapturer", stackTraceElement.toString());
-                }
-            }
-        }
     }
 
     public void reportCameraSwitchError(String str, CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
@@ -455,12 +322,26 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         }
     }
 
-    public void checkIsOnCameraThread() {
-        if (Thread.currentThread() == this.cameraThreadHandler.getLooper().getThread()) {
-            return;
+    @Override
+    public void addMediaRecorderToCamera(MediaRecorder mediaRecorder, CameraVideoCapturer.MediaRecorderHandler mediaRecorderHandler) {
+        CameraVideoCapturer.CC.$default$addMediaRecorderToCamera(this, mediaRecorder, mediaRecorderHandler);
+    }
+
+    @Override
+    public void changeCaptureFormat(int i, int i2, int i3) {
+        Logging.d("CameraCapturer", "changeCaptureFormat: " + i + "x" + i2 + "@" + i3);
+        synchronized (this.stateLock) {
+            stopCapture();
+            startCapture(i, i2, i3);
         }
-        Logging.e("CameraCapturer", "Check is on camera thread failed.");
-        throw new RuntimeException("Not on camera thread.");
+    }
+
+    protected abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3);
+
+    @Override
+    public void dispose() {
+        Logging.d("CameraCapturer", "dispose");
+        stopCapture();
     }
 
     protected String getCameraName() {
@@ -469,5 +350,122 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             str = this.cameraName;
         }
         return str;
+    }
+
+    @Override
+    public void initialize(SurfaceTextureHelper surfaceTextureHelper, Context context, CapturerObserver capturerObserver) {
+        this.applicationContext = context;
+        this.capturerObserver = capturerObserver;
+        this.surfaceHelper = surfaceTextureHelper;
+        this.cameraThreadHandler = surfaceTextureHelper.getHandler();
+    }
+
+    @Override
+    public boolean isScreencast() {
+        return false;
+    }
+
+    public void printStackTrace() {
+        Handler handler = this.cameraThreadHandler;
+        Thread thread = handler != null ? handler.getLooper().getThread() : null;
+        if (thread != null) {
+            StackTraceElement[] stackTrace = thread.getStackTrace();
+            if (stackTrace.length > 0) {
+                Logging.d("CameraCapturer", "CameraCapturer stack trace:");
+                for (StackTraceElement stackTraceElement : stackTrace) {
+                    Logging.d("CameraCapturer", stackTraceElement.toString());
+                }
+            }
+        }
+    }
+
+    @Override
+    public void removeMediaRecorderFromCamera(CameraVideoCapturer.MediaRecorderHandler mediaRecorderHandler) {
+        CameraVideoCapturer.CC.$default$removeMediaRecorderFromCamera(this, mediaRecorderHandler);
+    }
+
+    @Override
+    public void startCapture(int i, int i2, int i3) {
+        Logging.d("CameraCapturer", "startCapture: " + i + "x" + i2 + "@" + i3);
+        if (this.applicationContext == null) {
+            throw new RuntimeException("CameraCapturer must be initialized before calling startCapture.");
+        }
+        synchronized (this.stateLock) {
+            try {
+                if (!this.sessionOpening && this.currentSession == null) {
+                    this.width = i;
+                    this.height = i2;
+                    this.framerate = i3;
+                    this.sessionOpening = true;
+                    this.openAttemptsRemaining = 3;
+                    createSessionInternal(0);
+                    return;
+                }
+                Logging.w("CameraCapturer", "Session already open");
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
+
+    @Override
+    public void stopCapture() {
+        Logging.d("CameraCapturer", "Stop capture");
+        synchronized (this.stateLock) {
+            while (this.sessionOpening) {
+                Logging.d("CameraCapturer", "Stop capture: Waiting for session to open");
+                try {
+                    this.stateLock.wait();
+                } catch (InterruptedException unused) {
+                    Logging.w("CameraCapturer", "Stop capture interrupted while waiting for the session to open.");
+                    Thread.currentThread().interrupt();
+                    return;
+                }
+            }
+            if (this.currentSession != null) {
+                Logging.d("CameraCapturer", "Stop capture: Nulling session");
+                this.cameraStatistics.release();
+                this.cameraStatistics = null;
+                final CameraSession cameraSession = this.currentSession;
+                this.cameraThreadHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        cameraSession.stop();
+                    }
+                });
+                this.currentSession = null;
+                this.capturerObserver.onCapturerStopped();
+            } else {
+                Logging.d("CameraCapturer", "Stop capture: No session open");
+            }
+        }
+        Logging.d("CameraCapturer", "Stop capture done");
+    }
+
+    @Override
+    public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
+        Logging.d("CameraCapturer", "switchCamera");
+        this.cameraThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                List asList = Arrays.asList(CameraCapturer.this.cameraEnumerator.getDeviceNames());
+                if (asList.size() < 2) {
+                    CameraCapturer.this.reportCameraSwitchError("No camera to switch to.", cameraSwitchHandler);
+                } else {
+                    CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, (String) asList.get((asList.indexOf(CameraCapturer.this.cameraName) + 1) % asList.size()));
+                }
+            }
+        });
+    }
+
+    @Override
+    public void switchCamera(final CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, final String str) {
+        Logging.d("CameraCapturer", "switchCamera");
+        this.cameraThreadHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                CameraCapturer.this.switchCameraInternal(cameraSwitchHandler, str);
+            }
+        });
     }
 }

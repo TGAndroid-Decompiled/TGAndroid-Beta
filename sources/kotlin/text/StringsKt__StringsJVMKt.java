@@ -1,4 +1,4 @@
 package kotlin.text;
 
-class StringsKt__StringsJVMKt extends StringsKt__StringNumberConversionsKt {
+abstract class StringsKt__StringsJVMKt extends StringsKt__StringNumberConversionsKt {
 }

@@ -99,7 +99,7 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
             int size = this.extended_media.size();
             abstractSerializedData.writeInt32(size);
             for (int i7 = 0; i7 < size; i7++) {
-                this.extended_media.get(i7).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageMedia) this.extended_media.get(i7)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4096) != 0) {

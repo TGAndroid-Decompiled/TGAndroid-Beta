@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.Components.PopupSwipeBackLayout;
 
-public class ChatScrimPopupContainerLayout extends LinearLayout {
+public abstract class ChatScrimPopupContainerLayout extends LinearLayout {
     private View bottomView;
     private float bottomViewReactionsOffset;
     private float bottomViewYOffset;
@@ -24,6 +24,42 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
         setOrientation(1);
     }
 
+    public void lambda$setPopupWindowLayout$0(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+        if (this.bottomView != null) {
+            this.bottomViewYOffset = actionBarPopupWindowLayout.getVisibleHeight() - actionBarPopupWindowLayout.getMeasuredHeight();
+            updateBottomViewPosition();
+        }
+    }
+
+    public void lambda$setPopupWindowLayout$1(PopupSwipeBackLayout popupSwipeBackLayout, float f, float f2) {
+        View view = this.bottomView;
+        if (view != null) {
+            view.setAlpha(1.0f - f2);
+        }
+        this.progressToSwipeBack = f2;
+        updatePopupTranslation();
+    }
+
+    private void updateBottomViewPosition() {
+        View view = this.bottomView;
+        if (view != null) {
+            view.setTranslationY(this.bottomViewYOffset + this.expandSize + this.bottomViewReactionsOffset);
+        }
+    }
+
+    private void updatePopupTranslation() {
+        float f = (1.0f - this.progressToSwipeBack) * this.popupLayoutLeftOffset;
+        this.popupWindowLayout.setTranslationX(f);
+        View view = this.bottomView;
+        if (view != null) {
+            view.setTranslationX(f);
+        }
+    }
+
+    public void applyViewBottom(FrameLayout frameLayout) {
+        this.bottomView = frameLayout;
+    }
+
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
@@ -31,14 +67,17 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3 = i;
+        int i3;
         int i4 = this.maxHeight;
         int makeMeasureSpec = i4 != 0 ? View.MeasureSpec.makeMeasureSpec(i4, Integer.MIN_VALUE) : i2;
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsLayout;
-        if (reactionsContainerLayout != null && this.popupWindowLayout != null) {
+        if (reactionsContainerLayout == null || this.popupWindowLayout == null) {
+            i3 = i;
+        } else {
             reactionsContainerLayout.getLayoutParams().width = -2;
             ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = 0;
             this.popupLayoutLeftOffset = 0.0f;
+            i3 = i;
             super.onMeasure(i3, makeMeasureSpec);
             int measuredWidth = this.reactionsLayout.getMeasuredWidth();
             if (this.popupWindowLayout.getSwipeBack() != null && this.popupWindowLayout.getSwipeBack().getMeasuredWidth() > measuredWidth) {
@@ -77,26 +116,25 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
             } else {
                 this.reactionsLayout.getLayoutParams().width = -2;
             }
-            if (this.reactionsLayout.getMeasuredWidth() != measuredWidth || !this.reactionsLayout.showCustomEmojiReaction()) {
-                int measuredWidth3 = this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack().getMeasuredWidth() - this.popupWindowLayout.getSwipeBack().getChildAt(0).getMeasuredWidth() : 0;
-                if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth3 > measuredWidth) {
-                    measuredWidth3 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
-                }
-                r5 = measuredWidth3 >= 0 ? measuredWidth3 : 0;
-                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r5;
-                this.popupLayoutLeftOffset = 0.0f;
-                updatePopupTranslation();
-            } else {
-                float measuredWidth4 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
-                this.popupLayoutLeftOffset = measuredWidth4;
-                int i5 = (int) (r6.bigCircleOffset - measuredWidth4);
+            if (this.reactionsLayout.getMeasuredWidth() == measuredWidth && this.reactionsLayout.showCustomEmojiReaction()) {
+                float measuredWidth3 = (measuredWidth - childAt.getMeasuredWidth()) * 0.25f;
+                this.popupLayoutLeftOffset = measuredWidth3;
+                int i5 = (int) (r6.bigCircleOffset - measuredWidth3);
                 this.reactionsLayout.bigCircleOffset = i5;
                 if (i5 < AndroidUtilities.dp(36.0f)) {
                     this.popupLayoutLeftOffset = 0.0f;
                     this.reactionsLayout.bigCircleOffset = AndroidUtilities.dp(36.0f);
                 }
-                updatePopupTranslation();
+            } else {
+                int measuredWidth4 = this.popupWindowLayout.getSwipeBack() != null ? this.popupWindowLayout.getSwipeBack().getMeasuredWidth() - this.popupWindowLayout.getSwipeBack().getChildAt(0).getMeasuredWidth() : 0;
+                if (this.reactionsLayout.getLayoutParams().width != -2 && this.reactionsLayout.getLayoutParams().width + measuredWidth4 > measuredWidth) {
+                    measuredWidth4 = (measuredWidth - this.reactionsLayout.getLayoutParams().width) + AndroidUtilities.dp(8.0f);
+                }
+                r4 = measuredWidth4 >= 0 ? measuredWidth4 : 0;
+                ((LinearLayout.LayoutParams) this.reactionsLayout.getLayoutParams()).rightMargin = r4;
+                this.popupLayoutLeftOffset = 0.0f;
             }
+            updatePopupTranslation();
             if (this.bottomView != null) {
                 if (this.reactionsLayout.showCustomEmojiReaction()) {
                     this.bottomView.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.dp(16.0f);
@@ -105,35 +143,31 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
                     this.bottomView.getLayoutParams().width = -1;
                 }
                 if (this.popupWindowLayout.getSwipeBack() != null) {
-                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r5 + AndroidUtilities.dp(36.0f);
+                    ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = r4 + AndroidUtilities.dp(36.0f);
                 } else {
                     ((LinearLayout.LayoutParams) this.bottomView.getLayoutParams()).rightMargin = AndroidUtilities.dp(36.0f);
                 }
             }
-            super.onMeasure(i3, makeMeasureSpec);
-        } else {
-            super.onMeasure(i3, makeMeasureSpec);
         }
+        super.onMeasure(i3, makeMeasureSpec);
         this.maxHeight = getMeasuredHeight();
     }
 
-    private void updatePopupTranslation() {
-        float f = (1.0f - this.progressToSwipeBack) * this.popupLayoutLeftOffset;
-        this.popupWindowLayout.setTranslationX(f);
+    public void setExpandSize(float f) {
+        this.popupWindowLayout.setTranslationY(f);
+        this.expandSize = f;
+        updateBottomViewPosition();
+    }
+
+    public void setMaxHeight(int i) {
+        this.maxHeight = i;
+    }
+
+    public void setPopupAlpha(float f) {
+        this.popupWindowLayout.setAlpha(f);
         View view = this.bottomView;
         if (view != null) {
-            view.setTranslationX(f);
-        }
-    }
-
-    public void applyViewBottom(FrameLayout frameLayout) {
-        this.bottomView = frameLayout;
-    }
-
-    public void setReactionsLayout(ReactionsContainerLayout reactionsContainerLayout) {
-        this.reactionsLayout = reactionsContainerLayout;
-        if (reactionsContainerLayout != null) {
-            reactionsContainerLayout.setChatScrimView(this);
+            view.setAlpha(f);
         }
     }
 
@@ -155,44 +189,10 @@ public class ChatScrimPopupContainerLayout extends LinearLayout {
         }
     }
 
-    public void lambda$setPopupWindowLayout$0(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
-        if (this.bottomView != null) {
-            this.bottomViewYOffset = actionBarPopupWindowLayout.getVisibleHeight() - actionBarPopupWindowLayout.getMeasuredHeight();
-            updateBottomViewPosition();
-        }
-    }
-
-    public void lambda$setPopupWindowLayout$1(PopupSwipeBackLayout popupSwipeBackLayout, float f, float f2) {
-        View view = this.bottomView;
-        if (view != null) {
-            view.setAlpha(1.0f - f2);
-        }
-        this.progressToSwipeBack = f2;
-        updatePopupTranslation();
-    }
-
-    private void updateBottomViewPosition() {
-        View view = this.bottomView;
-        if (view != null) {
-            view.setTranslationY(this.bottomViewYOffset + this.expandSize + this.bottomViewReactionsOffset);
-        }
-    }
-
-    public void setMaxHeight(int i) {
-        this.maxHeight = i;
-    }
-
-    public void setExpandSize(float f) {
-        this.popupWindowLayout.setTranslationY(f);
-        this.expandSize = f;
-        updateBottomViewPosition();
-    }
-
-    public void setPopupAlpha(float f) {
-        this.popupWindowLayout.setAlpha(f);
-        View view = this.bottomView;
-        if (view != null) {
-            view.setAlpha(f);
+    public void setReactionsLayout(ReactionsContainerLayout reactionsContainerLayout) {
+        this.reactionsLayout = reactionsContainerLayout;
+        if (reactionsContainerLayout != null) {
+            reactionsContainerLayout.setChatScrimView(this);
         }
     }
 

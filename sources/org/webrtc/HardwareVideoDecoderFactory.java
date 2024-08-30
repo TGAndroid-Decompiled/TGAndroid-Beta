@@ -27,16 +27,6 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         }
     };
 
-    @Override
-    public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
-        return super.createDecoder(videoCodecInfo);
-    }
-
-    @Override
-    public VideoCodecInfo[] getSupportedCodecs() {
-        return super.getSupportedCodecs();
-    }
-
     @Deprecated
     public HardwareVideoDecoderFactory() {
         this(null);
@@ -46,7 +36,17 @@ public class HardwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
         this(context, null);
     }
 
-    public HardwareVideoDecoderFactory(org.webrtc.EglBase.Context r2, org.webrtc.Predicate<android.media.MediaCodecInfo> r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.webrtc.HardwareVideoDecoderFactory.<init>(org.webrtc.EglBase$Context, org.webrtc.Predicate):void");
+    public HardwareVideoDecoderFactory(EglBase.Context context, Predicate<MediaCodecInfo> predicate) {
+        super(context, predicate == null ? defaultAllowedPredicate : predicate.and(defaultAllowedPredicate));
+    }
+
+    @Override
+    public VideoDecoder createDecoder(VideoCodecInfo videoCodecInfo) {
+        return super.createDecoder(videoCodecInfo);
+    }
+
+    @Override
+    public VideoCodecInfo[] getSupportedCodecs() {
+        return super.getSupportedCodecs();
     }
 }

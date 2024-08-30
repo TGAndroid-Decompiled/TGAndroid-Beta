@@ -1,6 +1,6 @@
 package kotlinx.coroutines;
 
-public final class AbstractTimeSourceKt {
+public abstract class AbstractTimeSourceKt {
     public static final AbstractTimeSource getTimeSource() {
         return null;
     }

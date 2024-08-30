@@ -1,6 +1,5 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -17,14 +16,11 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
 
-public class MaxFileSizeCell extends FrameLayout {
+public abstract class MaxFileSizeCell extends FrameLayout {
     private long currentSize;
     private SeekBarView seekBarView;
     private TextView sizeTextView;
     private TextView textView;
-
-    protected void didChangedSizeValue(int i) {
-    }
 
     public MaxFileSizeCell(Context context) {
         super(context);
@@ -63,12 +59,13 @@ public class MaxFileSizeCell extends FrameLayout {
         seekBarView.setReportChanges(true);
         this.seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
-            public int getStepsCount() {
-                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            public CharSequence getContentDescription() {
+                return ((Object) MaxFileSizeCell.this.textView.getText()) + " " + ((Object) MaxFileSizeCell.this.sizeTextView.getText());
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
+            public int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
             }
 
             @Override
@@ -109,8 +106,7 @@ public class MaxFileSizeCell extends FrameLayout {
             }
 
             @Override
-            public CharSequence getContentDescription() {
-                return ((Object) MaxFileSizeCell.this.textView.getText()) + " " + ((Object) MaxFileSizeCell.this.sizeTextView.getText());
+            public void onSeekBarPressed(boolean z) {
             }
         });
         this.seekBarView.setImportantForAccessibility(2);
@@ -119,12 +115,31 @@ public class MaxFileSizeCell extends FrameLayout {
         setAccessibilityDelegate(this.seekBarView.getSeekBarAccessibilityDelegate());
     }
 
-    public void setText(String str) {
-        this.textView.setText(str);
+    protected abstract void didChangedSizeValue(int i);
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled()) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return true;
     }
 
     public long getSize() {
         return this.currentSize;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled()) {
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+        return true;
     }
 
     @Override
@@ -138,27 +153,24 @@ public class MaxFileSizeCell extends FrameLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-        return true;
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled()) {
-            return super.dispatchTouchEvent(motionEvent);
-        }
-        return true;
-    }
-
-    @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         if (isEnabled()) {
             return super.onTouchEvent(motionEvent);
         }
         return true;
+    }
+
+    public void setEnabled(boolean z, ArrayList arrayList) {
+        super.setEnabled(z);
+        if (arrayList != null) {
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, "alpha", z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.seekBarView, "alpha", z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.sizeTextView, "alpha", z ? 1.0f : 0.5f));
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+            this.seekBarView.setAlpha(z ? 1.0f : 0.5f);
+            this.sizeTextView.setAlpha(z ? 1.0f : 0.5f);
+        }
     }
 
     public void setSize(long j) {
@@ -189,21 +201,7 @@ public class MaxFileSizeCell extends FrameLayout {
         this.seekBarView.setProgress(Math.min(1.0f, f2));
     }
 
-    public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
-        super.setEnabled(z);
-        if (arrayList != null) {
-            arrayList.add(ObjectAnimator.ofFloat(this.textView, "alpha", z ? 1.0f : 0.5f));
-            arrayList.add(ObjectAnimator.ofFloat(this.seekBarView, "alpha", z ? 1.0f : 0.5f));
-            arrayList.add(ObjectAnimator.ofFloat(this.sizeTextView, "alpha", z ? 1.0f : 0.5f));
-        } else {
-            this.textView.setAlpha(z ? 1.0f : 0.5f);
-            this.seekBarView.setAlpha(z ? 1.0f : 0.5f);
-            this.sizeTextView.setAlpha(z ? 1.0f : 0.5f);
-        }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+    public void setText(String str) {
+        this.textView.setText(str);
     }
 }

@@ -49,24 +49,6 @@ public class Input {
         }
     };
 
-    public void setShapeHelper(Shape shape) {
-        if (shape != null) {
-            float currentWeight = this.renderView.getCurrentWeight();
-            shape.thickness = currentWeight;
-            double d = this.thicknessSum;
-            if (d > 0.0d) {
-                double d2 = currentWeight;
-                double d3 = d / this.thicknessCount;
-                Double.isNaN(d2);
-                shape.thickness = (float) (d2 * d3);
-            }
-            if (shape.getType() == 4) {
-                shape.arrowTriangleLength *= shape.thickness;
-            }
-        }
-        this.renderView.getPainting().setHelperShape(shape);
-    }
-
     public Input(RenderView renderView) {
         this.renderView = renderView;
         this.detector = new ShapeDetector(renderView.getContext(), new Utilities.Callback() {
@@ -75,12 +57,6 @@ public class Input {
                 Input.this.setShapeHelper((Shape) obj);
             }
         });
-    }
-
-    public void setMatrix(Matrix matrix) {
-        Matrix matrix2 = new Matrix();
-        this.invertMatrix = matrix2;
-        matrix.invert(matrix2);
     }
 
     private void fill(Brush brush, final boolean z, final Runnable runnable) {
@@ -170,18 +146,17 @@ public class Input {
         fill(null, true, null);
     }
 
-    public void clear(Runnable runnable) {
-        this.lastLocation = new Point(this.renderView.getPainting().getSize().width, 0.0d, 1.0d);
-        this.canFill = true;
-        fill(new Brush.Eraser(), false, runnable);
+    public void lambda$paintPath$4(Path path) {
+        this.lastRemainder = path.remainder;
     }
 
-    public void ignoreOnce() {
-        this.ignore = true;
-    }
-
-    public void process(android.view.MotionEvent r22, float r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Input.process(android.view.MotionEvent, float):void");
+    public void lambda$paintPath$5(final Path path) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                Input.this.lambda$paintPath$4(path);
+            }
+        });
     }
 
     public void lambda$process$2(float f, Point point, float f2, float[] fArr, double d, boolean[] zArr, ValueAnimator valueAnimator) {
@@ -261,60 +236,41 @@ public class Input {
         return (float) Math.atan2((sin * d) + (sin2 * d3), (d * cos) + (d3 * cos2));
     }
 
+    private void paintPath(final Path path) {
+        path.setup(this.renderView.getCurrentColor(), this.renderView.getCurrentWeight(), this.renderView.getCurrentBrush());
+        if (this.clearBuffer) {
+            this.lastRemainder = 0.0d;
+        }
+        path.remainder = this.lastRemainder;
+        this.renderView.getPainting().paintStroke(path, this.clearBuffer, false, new Runnable() {
+            @Override
+            public final void run() {
+                Input.this.lambda$paintPath$5(path);
+            }
+        });
+        this.clearBuffer = false;
+    }
+
     private void reset() {
         this.pointsCount = 0;
     }
 
-    private void smoothenAndPaintPoints(boolean z, float f) {
-        int i = this.pointsCount;
-        if (i > 2) {
-            Vector vector = new Vector();
-            Point[] pointArr = this.points;
-            Point point = pointArr[0];
-            Point point2 = pointArr[1];
-            Point point3 = pointArr[2];
-            if (point3 == null || point2 == null || point == null) {
-                return;
+    public void setShapeHelper(Shape shape) {
+        if (shape != null) {
+            float currentWeight = this.renderView.getCurrentWeight();
+            shape.thickness = currentWeight;
+            double d = this.thicknessSum;
+            if (d > 0.0d) {
+                double d2 = currentWeight;
+                double d3 = d / this.thicknessCount;
+                Double.isNaN(d2);
+                shape.thickness = (float) (d2 * d3);
             }
-            Point multiplySum = point2.multiplySum(point, 0.5d);
-            Point multiplySum2 = point3.multiplySum(point2, 0.5d);
-            int min = (int) Math.min(48.0d, Math.max(Math.floor(multiplySum.getDistanceTo(multiplySum2) / 1), 24.0d));
-            float f2 = 1.0f / min;
-            int i2 = 0;
-            float f3 = 0.0f;
-            while (i2 < min) {
-                int i3 = i2;
-                Point smoothPoint = smoothPoint(multiplySum, multiplySum2, point2, f3, f);
-                if (this.isFirst) {
-                    smoothPoint.edge = true;
-                    this.isFirst = false;
-                }
-                vector.add(smoothPoint);
-                this.thicknessSum += smoothPoint.z;
-                this.thicknessCount += 1.0d;
-                f3 += f2;
-                i2 = i3 + 1;
-            }
-            if (z) {
-                multiplySum2.edge = true;
-            }
-            vector.add(multiplySum2);
-            Point[] pointArr2 = new Point[vector.size()];
-            vector.toArray(pointArr2);
-            paintPath(new Path(pointArr2));
-            Point[] pointArr3 = this.points;
-            System.arraycopy(pointArr3, 1, pointArr3, 0, 2);
-            if (z) {
-                this.pointsCount = 0;
-                return;
-            } else {
-                this.pointsCount = 2;
-                return;
+            if (shape.getType() == 4) {
+                shape.arrowTriangleLength *= shape.thickness;
             }
         }
-        Point[] pointArr4 = new Point[i];
-        System.arraycopy(this.points, 0, pointArr4, 0, i);
-        paintPath(new Path(pointArr4));
+        this.renderView.getPainting().setHelperShape(shape);
     }
 
     private Point smoothPoint(Point point, Point point2, Point point3, float f, float f2) {
@@ -354,31 +310,74 @@ public class Input {
         return new Point(d10, d15, (d19 * lerp) + 1.0d);
     }
 
-    private void paintPath(final Path path) {
-        path.setup(this.renderView.getCurrentColor(), this.renderView.getCurrentWeight(), this.renderView.getCurrentBrush());
-        if (this.clearBuffer) {
-            this.lastRemainder = 0.0d;
+    private void smoothenAndPaintPoints(boolean z, float f) {
+        int i = this.pointsCount;
+        if (i <= 2) {
+            Point[] pointArr = new Point[i];
+            System.arraycopy(this.points, 0, pointArr, 0, i);
+            paintPath(new Path(pointArr));
+            return;
         }
-        path.remainder = this.lastRemainder;
-        this.renderView.getPainting().paintStroke(path, this.clearBuffer, false, new Runnable() {
-            @Override
-            public final void run() {
-                Input.this.lambda$paintPath$5(path);
+        Vector vector = new Vector();
+        Point[] pointArr2 = this.points;
+        Point point = pointArr2[0];
+        Point point2 = pointArr2[1];
+        Point point3 = pointArr2[2];
+        if (point3 == null || point2 == null || point == null) {
+            return;
+        }
+        Point multiplySum = point2.multiplySum(point, 0.5d);
+        Point multiplySum2 = point3.multiplySum(point2, 0.5d);
+        int min = (int) Math.min(48.0d, Math.max(Math.floor(multiplySum.getDistanceTo(multiplySum2) / 1), 24.0d));
+        float f2 = 1.0f / min;
+        int i2 = 0;
+        float f3 = 0.0f;
+        while (i2 < min) {
+            int i3 = i2;
+            Point smoothPoint = smoothPoint(multiplySum, multiplySum2, point2, f3, f);
+            if (this.isFirst) {
+                smoothPoint.edge = true;
+                this.isFirst = false;
             }
-        });
-        this.clearBuffer = false;
+            vector.add(smoothPoint);
+            this.thicknessSum += smoothPoint.z;
+            this.thicknessCount += 1.0d;
+            f3 += f2;
+            i2 = i3 + 1;
+        }
+        if (z) {
+            multiplySum2.edge = true;
+        }
+        vector.add(multiplySum2);
+        Point[] pointArr3 = new Point[vector.size()];
+        vector.toArray(pointArr3);
+        paintPath(new Path(pointArr3));
+        Point[] pointArr4 = this.points;
+        System.arraycopy(pointArr4, 1, pointArr4, 0, 2);
+        if (z) {
+            this.pointsCount = 0;
+        } else {
+            this.pointsCount = 2;
+        }
     }
 
-    public void lambda$paintPath$4(Path path) {
-        this.lastRemainder = path.remainder;
+    public void clear(Runnable runnable) {
+        this.lastLocation = new Point(this.renderView.getPainting().getSize().width, 0.0d, 1.0d);
+        this.canFill = true;
+        fill(new Brush.Eraser(), false, runnable);
     }
 
-    public void lambda$paintPath$5(final Path path) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                Input.this.lambda$paintPath$4(path);
-            }
-        });
+    public void ignoreOnce() {
+        this.ignore = true;
+    }
+
+    public void process(android.view.MotionEvent r22, float r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Input.process(android.view.MotionEvent, float):void");
+    }
+
+    public void setMatrix(Matrix matrix) {
+        Matrix matrix2 = new Matrix();
+        this.invertMatrix = matrix2;
+        matrix.invert(matrix2);
     }
 }

@@ -2,8 +2,7 @@ package org.webrtc;
 
 public interface VideoDecoder {
 
-    public final class CC {
-        @CalledByNative
+    public abstract class CC {
         public static long $default$createNativeVideoDecoder(VideoDecoder videoDecoder) {
             return 0L;
         }
@@ -11,37 +10,6 @@ public interface VideoDecoder {
 
     public interface Callback {
         void onDecodedFrame(VideoFrame videoFrame, Integer num, Integer num2);
-    }
-
-    @CalledByNative
-    long createNativeVideoDecoder();
-
-    @CalledByNative
-    VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
-
-    @CalledByNative
-    String getImplementationName();
-
-    @CalledByNative
-    boolean getPrefersLateDecoding();
-
-    @CalledByNative
-    VideoCodecStatus initDecode(Settings settings, Callback callback);
-
-    @CalledByNative
-    VideoCodecStatus release();
-
-    public static class Settings {
-        public final int height;
-        public final int numberOfCores;
-        public final int width;
-
-        @CalledByNative("Settings")
-        public Settings(int i, int i2, int i3) {
-            this.numberOfCores = i;
-            this.width = i2;
-            this.height = i3;
-        }
     }
 
     public static class DecodeInfo {
@@ -53,4 +21,28 @@ public interface VideoDecoder {
             this.renderTimeMs = j;
         }
     }
+
+    public static class Settings {
+        public final int height;
+        public final int numberOfCores;
+        public final int width;
+
+        public Settings(int i, int i2, int i3) {
+            this.numberOfCores = i;
+            this.width = i2;
+            this.height = i3;
+        }
+    }
+
+    long createNativeVideoDecoder();
+
+    VideoCodecStatus decode(EncodedImage encodedImage, DecodeInfo decodeInfo);
+
+    String getImplementationName();
+
+    boolean getPrefersLateDecoding();
+
+    VideoCodecStatus initDecode(Settings settings, Callback callback);
+
+    VideoCodecStatus release();
 }

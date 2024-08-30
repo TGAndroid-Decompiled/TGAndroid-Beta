@@ -26,7 +26,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.annotation.Keep;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -72,25 +71,227 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     private boolean ignoreScrollEvent;
     private TextView infoTextView;
     private RecyclerListView listView;
-    private ArrayList<ContactsController.Contact> phoneBookContacts;
+    private ArrayList phoneBookContacts;
     private ScrollView scrollView;
     private boolean searchWas;
     private boolean searching;
     private SpansContainer spansContainer;
     private TextView textView;
-    private HashMap<String, GroupCreateSpan> selectedContacts = new HashMap<>();
-    private ArrayList<GroupCreateSpan> allSpans = new ArrayList<>();
+    private HashMap selectedContacts = new HashMap();
+    private ArrayList allSpans = new ArrayList();
+
+    public class InviteAdapter extends RecyclerListView.SelectionAdapter {
+        private Context context;
+        private ArrayList searchResult = new ArrayList();
+        private ArrayList searchResultNames = new ArrayList();
+        private Timer searchTimer;
+        private boolean searching;
+
+        public class AnonymousClass1 extends TimerTask {
+            final String val$query;
+
+            AnonymousClass1(String str) {
+                this.val$query = str;
+            }
+
+            public void lambda$run$0(java.lang.String r17) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.InviteContactsActivity.InviteAdapter.AnonymousClass1.lambda$run$0(java.lang.String):void");
+            }
+
+            public void lambda$run$1(final String str) {
+                Utilities.searchQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$0(str);
+                    }
+                });
+            }
+
+            @Override
+            public void run() {
+                try {
+                    InviteAdapter.this.searchTimer.cancel();
+                    InviteAdapter.this.searchTimer = null;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                final String str = this.val$query;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$1(str);
+                    }
+                });
+            }
+        }
+
+        public InviteAdapter(Context context) {
+            this.context = context;
+        }
+
+        public void lambda$updateSearchResults$0(ArrayList arrayList, ArrayList arrayList2) {
+            if (this.searching) {
+                this.searchResult = arrayList;
+                this.searchResultNames = arrayList2;
+                notifyDataSetChanged();
+                onSearchFinished();
+            }
+        }
+
+        public void updateSearchResults(final ArrayList arrayList, final ArrayList arrayList2) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    InviteContactsActivity.InviteAdapter.this.lambda$updateSearchResults$0(arrayList, arrayList2);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.searching ? this.searchResult.size() : InviteContactsActivity.this.phoneBookContacts.size() + 1;
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            return (this.searching || i != 0) ? 0 : 1;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+            int itemCount = getItemCount();
+            if (!this.searching) {
+                InviteContactsActivity.this.emptyView.setVisibility(itemCount == 1 ? 0 : 4);
+            }
+            InviteContactsActivity.this.decoration.setSingle(itemCount == 1);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ContactsController.Contact contact;
+            CharSequence charSequence;
+            if (viewHolder.getItemViewType() != 0) {
+                return;
+            }
+            InviteUserCell inviteUserCell = (InviteUserCell) viewHolder.itemView;
+            if (this.searching) {
+                contact = (ContactsController.Contact) this.searchResult.get(i);
+                charSequence = (CharSequence) this.searchResultNames.get(i);
+            } else {
+                contact = (ContactsController.Contact) InviteContactsActivity.this.phoneBookContacts.get(i - 1);
+                charSequence = null;
+            }
+            inviteUserCell.setUser(contact, charSequence);
+            inviteUserCell.setChecked(InviteContactsActivity.this.selectedContacts.containsKey(contact.key), false);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            FrameLayout frameLayout;
+            if (i != 1) {
+                frameLayout = new InviteUserCell(this.context, true);
+            } else {
+                InviteTextCell inviteTextCell = new InviteTextCell(this.context);
+                inviteTextCell.setTextAndIcon(LocaleController.getString(R.string.ShareTelegram), R.drawable.share);
+                frameLayout = inviteTextCell;
+            }
+            return new RecyclerListView.Holder(frameLayout);
+        }
+
+        protected abstract void onSearchFinished();
+
+        @Override
+        public void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
+            View view = viewHolder.itemView;
+            if (view instanceof InviteUserCell) {
+                ((InviteUserCell) view).recycle();
+            }
+        }
+
+        public void searchDialogs(String str) {
+            try {
+                Timer timer = this.searchTimer;
+                if (timer != null) {
+                    timer.cancel();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            if (str == null) {
+                this.searchResult.clear();
+                this.searchResultNames.clear();
+                notifyDataSetChanged();
+            } else {
+                Timer timer2 = new Timer();
+                this.searchTimer = timer2;
+                timer2.schedule(new AnonymousClass1(str), 200L, 300L);
+            }
+        }
+
+        public void setSearching(boolean z) {
+            if (this.searching == z) {
+                return;
+            }
+            this.searching = z;
+            notifyDataSetChanged();
+        }
+    }
 
     public class SpansContainer extends ViewGroup {
         private View addingSpan;
         private boolean animationStarted;
-        private ArrayList<Animator> animators;
+        private ArrayList animators;
         private AnimatorSet currentAnimation;
         private View removingSpan;
 
         public SpansContainer(Context context) {
             super(context);
-            this.animators = new ArrayList<>();
+            this.animators = new ArrayList();
+        }
+
+        public void addSpan(GroupCreateSpan groupCreateSpan) {
+            InviteContactsActivity.this.allSpans.add(groupCreateSpan);
+            InviteContactsActivity.this.selectedContacts.put(groupCreateSpan.getKey(), groupCreateSpan);
+            InviteContactsActivity.this.editText.setHintVisible(false, TextUtils.isEmpty(InviteContactsActivity.this.editText.getText()));
+            AnimatorSet animatorSet = this.currentAnimation;
+            if (animatorSet != null) {
+                animatorSet.setupEndValues();
+                this.currentAnimation.cancel();
+            }
+            this.animationStarted = false;
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.currentAnimation = animatorSet2;
+            animatorSet2.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    SpansContainer.this.addingSpan = null;
+                    SpansContainer.this.currentAnimation = null;
+                    SpansContainer.this.animationStarted = false;
+                    InviteContactsActivity.this.editText.setAllowDrawCursor(true);
+                }
+            });
+            this.currentAnimation.setDuration(150L);
+            this.addingSpan = groupCreateSpan;
+            this.animators.clear();
+            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "scaleX", 0.01f, 1.0f));
+            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "scaleY", 0.01f, 1.0f));
+            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "alpha", 0.0f, 1.0f));
+            addView(groupCreateSpan);
+        }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            int childCount = getChildCount();
+            for (int i5 = 0; i5 < childCount; i5++) {
+                View childAt = getChildAt(i5);
+                childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+            }
         }
 
         @Override
@@ -146,7 +347,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                             }
                             float f5 = dp2;
                             if (childAt.getTranslationY() != f5) {
-                                ArrayList<Animator> arrayList = this.animators;
+                                ArrayList arrayList = this.animators;
                                 float[] fArr = new float[i3];
                                 fArr[c] = f5;
                                 arrayList.add(ObjectAnimator.ofFloat(childAt, "translationY", fArr));
@@ -165,16 +366,17 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 f3 = 32.0f;
             }
             if (AndroidUtilities.isTablet()) {
-                min = AndroidUtilities.dp(366.0f) / 3;
+                min = AndroidUtilities.dp(366.0f);
             } else {
                 Point point = AndroidUtilities.displaySize;
-                min = (Math.min(point.x, point.y) - AndroidUtilities.dp(164.0f)) / 3;
+                min = Math.min(point.x, point.y) - AndroidUtilities.dp(164.0f);
             }
-            if (dp - i5 < min) {
+            int i7 = min / 3;
+            if (dp - i5 < i7) {
                 dp2 += AndroidUtilities.dp(44.0f);
                 i5 = 0;
             }
-            if (dp - i6 < min) {
+            if (dp - i6 < i7) {
                 dp3 += AndroidUtilities.dp(44.0f);
             }
             InviteContactsActivity.this.editText.measure(View.MeasureSpec.makeMeasureSpec(dp - i5, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
@@ -182,11 +384,7 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                 int dp5 = dp3 + AndroidUtilities.dp(44.0f);
                 int dp6 = i5 + AndroidUtilities.dp(16.0f);
                 InviteContactsActivity.this.fieldY = dp2;
-                if (this.currentAnimation == null) {
-                    InviteContactsActivity.this.containerHeight = dp5;
-                    InviteContactsActivity.this.editText.setTranslationX(dp6);
-                    InviteContactsActivity.this.editText.setTranslationY(InviteContactsActivity.this.fieldY);
-                } else {
+                if (this.currentAnimation != null) {
                     int dp7 = dp2 + AndroidUtilities.dp(44.0f);
                     if (InviteContactsActivity.this.containerHeight != dp7) {
                         this.animators.add(ObjectAnimator.ofInt(InviteContactsActivity.this, "containerHeight", dp7));
@@ -205,50 +403,15 @@ public class InviteContactsActivity extends BaseFragment implements Notification
                     this.currentAnimation.playTogether(this.animators);
                     this.currentAnimation.start();
                     this.animationStarted = true;
+                } else {
+                    InviteContactsActivity.this.containerHeight = dp5;
+                    InviteContactsActivity.this.editText.setTranslationX(dp6);
+                    InviteContactsActivity.this.editText.setTranslationY(InviteContactsActivity.this.fieldY);
                 }
             } else if (this.currentAnimation != null && !InviteContactsActivity.this.ignoreScrollEvent && this.removingSpan == null) {
                 InviteContactsActivity.this.editText.bringPointIntoView(InviteContactsActivity.this.editText.getSelectionStart());
             }
             setMeasuredDimension(size, InviteContactsActivity.this.containerHeight);
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            int childCount = getChildCount();
-            for (int i5 = 0; i5 < childCount; i5++) {
-                View childAt = getChildAt(i5);
-                childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-            }
-        }
-
-        public void addSpan(GroupCreateSpan groupCreateSpan) {
-            InviteContactsActivity.this.allSpans.add(groupCreateSpan);
-            InviteContactsActivity.this.selectedContacts.put(groupCreateSpan.getKey(), groupCreateSpan);
-            InviteContactsActivity.this.editText.setHintVisible(false, TextUtils.isEmpty(InviteContactsActivity.this.editText.getText()));
-            AnimatorSet animatorSet = this.currentAnimation;
-            if (animatorSet != null) {
-                animatorSet.setupEndValues();
-                this.currentAnimation.cancel();
-            }
-            this.animationStarted = false;
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.currentAnimation = animatorSet2;
-            animatorSet2.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    SpansContainer.this.addingSpan = null;
-                    SpansContainer.this.currentAnimation = null;
-                    SpansContainer.this.animationStarted = false;
-                    InviteContactsActivity.this.editText.setAllowDrawCursor(true);
-                }
-            });
-            this.currentAnimation.setDuration(150L);
-            this.addingSpan = groupCreateSpan;
-            this.animators.clear();
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "scaleX", 0.01f, 1.0f));
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "scaleY", 0.01f, 1.0f));
-            this.animators.add(ObjectAnimator.ofFloat(this.addingSpan, "alpha", 0.0f, 1.0f));
-            addView(groupCreateSpan);
         }
 
         public void removeSpan(final GroupCreateSpan groupCreateSpan) {
@@ -287,42 +450,143 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
     }
 
-    @Override
-    public boolean onFragmentCreate() {
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsImported);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
-        fetchContacts();
-        if (!UserConfig.getInstance(this.currentAccount).contactsReimported) {
-            ContactsController.getInstance(this.currentAccount).forceImportContacts();
-            UserConfig.getInstance(this.currentAccount).contactsReimported = true;
-            UserConfig.getInstance(this.currentAccount).saveConfig(false);
+    public void checkVisibleRows() {
+        InviteUserCell inviteUserCell;
+        ContactsController.Contact contact;
+        int childCount = this.listView.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = this.listView.getChildAt(i);
+            if ((childAt instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) childAt).getContact()) != null) {
+                inviteUserCell.setChecked(this.selectedContacts.containsKey(contact.key), true);
+            }
         }
-        return super.onFragmentCreate();
     }
 
-    @Override
-    public void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.contactsImported);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.contactsDidLoad);
+    public void closeSearch() {
+        this.searching = false;
+        this.searchWas = false;
+        this.adapter.setSearching(false);
+        this.adapter.searchDialogs(null);
+        this.listView.setFastScrollVisible(true);
+        this.listView.setVerticalScrollBarEnabled(false);
+        this.emptyView.showProgress(false);
+        this.emptyView.setStickerType(0);
+        this.emptyView.title.setText(LocaleController.getString(R.string.NoContacts));
+        this.emptyView.subtitle.setText("");
     }
 
-    @Override
-    public void onClick(View view) {
-        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
-        if (groupCreateSpan.isDeleting()) {
-            this.currentDeletingSpan = null;
-            this.spansContainer.removeSpan(groupCreateSpan);
+    private void fetchContacts() {
+        ArrayList arrayList = new ArrayList(ContactsController.getInstance(this.currentAccount).phoneBookContacts);
+        this.phoneBookContacts = arrayList;
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$fetchContacts$2;
+                lambda$fetchContacts$2 = InviteContactsActivity.lambda$fetchContacts$2((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
+                return lambda$fetchContacts$2;
+            }
+        });
+        StickerEmptyView stickerEmptyView = this.emptyView;
+        if (stickerEmptyView != null) {
+            stickerEmptyView.showProgress(false);
+        }
+        InviteAdapter inviteAdapter = this.adapter;
+        if (inviteAdapter != null) {
+            inviteAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void lambda$createView$0(View view, int i) {
+        InviteUserCell inviteUserCell;
+        ContactsController.Contact contact;
+        if (i == 0 && !this.searching) {
+            try {
+                Intent intent = new Intent("android.intent.action.SEND");
+                intent.setType("text/plain");
+                String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
+                intent.putExtra("android.intent.extra.TEXT", inviteText);
+                getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
+                return;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return;
+            }
+        }
+        if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
+            boolean containsKey = this.selectedContacts.containsKey(contact.key);
+            if (containsKey) {
+                this.spansContainer.removeSpan((GroupCreateSpan) this.selectedContacts.get(contact.key));
+            } else {
+                GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.editText.getContext(), contact);
+                this.spansContainer.addSpan(groupCreateSpan);
+                groupCreateSpan.setOnClickListener(this);
+            }
             updateHint();
-            checkVisibleRows();
-            return;
+            if (this.searching || this.searchWas) {
+                AndroidUtilities.showKeyboard(this.editText);
+            } else {
+                inviteUserCell.setChecked(!containsKey, true);
+            }
+            if (this.editText.length() > 0) {
+                this.editText.setText((CharSequence) null);
+            }
         }
-        GroupCreateSpan groupCreateSpan2 = this.currentDeletingSpan;
-        if (groupCreateSpan2 != null) {
-            groupCreateSpan2.cancelDeleteAnimation();
+    }
+
+    public void lambda$createView$1(View view) {
+        try {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            for (int i2 = 0; i2 < this.allSpans.size(); i2++) {
+                ContactsController.Contact contact = ((GroupCreateSpan) this.allSpans.get(i2)).getContact();
+                if (sb.length() != 0) {
+                    sb.append(';');
+                }
+                sb.append(contact.phones.get(0));
+                if (i2 == 0 && this.allSpans.size() == 1) {
+                    i = contact.imported;
+                }
+            }
+            Intent intent = new Intent("android.intent.action.SENDTO", Uri.parse("smsto:" + sb.toString()));
+            intent.putExtra("sms_body", ContactsController.getInstance(this.currentAccount).getInviteText(i));
+            getParentActivity().startActivityForResult(intent, 500);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        this.currentDeletingSpan = groupCreateSpan;
-        groupCreateSpan.startDeleteAnimation();
+        lambda$onBackPressed$308();
+    }
+
+    public static int lambda$fetchContacts$2(ContactsController.Contact contact, ContactsController.Contact contact2) {
+        int i = contact.imported;
+        int i2 = contact2.imported;
+        if (i > i2) {
+            return -1;
+        }
+        return i < i2 ? 1 : 0;
+    }
+
+    public void lambda$getThemeDescriptions$3() {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            int childCount = recyclerListView.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childAt = this.listView.getChildAt(i);
+                if (childAt instanceof InviteUserCell) {
+                    ((InviteUserCell) childAt).update(0);
+                }
+            }
+        }
+    }
+
+    public void updateHint() {
+        if (this.selectedContacts.isEmpty()) {
+            this.infoTextView.setVisibility(0);
+            this.counterView.setVisibility(4);
+        } else {
+            this.infoTextView.setVisibility(4);
+            this.counterView.setVisibility(0);
+            this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
+        }
     }
 
     @Override
@@ -345,22 +609,12 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         });
         ViewGroup viewGroup = new ViewGroup(context) {
             @Override
-            protected void onMeasure(int i, int i2) {
-                int dp;
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
-                setMeasuredDimension(size, size2);
-                if (AndroidUtilities.isTablet() || size2 > size) {
-                    dp = AndroidUtilities.dp(144.0f);
-                } else {
-                    dp = AndroidUtilities.dp(56.0f);
+            protected boolean drawChild(Canvas canvas, View view, long j) {
+                boolean drawChild = super.drawChild(canvas, view, j);
+                if (view == InviteContactsActivity.this.listView || view == InviteContactsActivity.this.emptyView) {
+                    ((BaseFragment) InviteContactsActivity.this).parentLayout.drawHeaderShadow(canvas, InviteContactsActivity.this.scrollView.getMeasuredHeight());
                 }
-                InviteContactsActivity.this.infoTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-                InviteContactsActivity.this.counterView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-                int measuredHeight = InviteContactsActivity.this.infoTextView.getVisibility() == 0 ? InviteContactsActivity.this.infoTextView.getMeasuredHeight() : InviteContactsActivity.this.counterView.getMeasuredHeight();
-                InviteContactsActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-                InviteContactsActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
-                InviteContactsActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
+                return drawChild;
             }
 
             @Override
@@ -376,12 +630,17 @@ public class InviteContactsActivity extends BaseFragment implements Notification
             }
 
             @Override
-            protected boolean drawChild(Canvas canvas, View view, long j) {
-                boolean drawChild = super.drawChild(canvas, view, j);
-                if (view == InviteContactsActivity.this.listView || view == InviteContactsActivity.this.emptyView) {
-                    ((BaseFragment) InviteContactsActivity.this).parentLayout.drawHeaderShadow(canvas, InviteContactsActivity.this.scrollView.getMeasuredHeight());
-                }
-                return drawChild;
+            protected void onMeasure(int i, int i2) {
+                int size = View.MeasureSpec.getSize(i);
+                int size2 = View.MeasureSpec.getSize(i2);
+                setMeasuredDimension(size, size2);
+                int dp = AndroidUtilities.dp((AndroidUtilities.isTablet() || size2 > size) ? 144.0f : 56.0f);
+                InviteContactsActivity.this.infoTextView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                InviteContactsActivity.this.counterView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                int measuredHeight = (InviteContactsActivity.this.infoTextView.getVisibility() == 0 ? InviteContactsActivity.this.infoTextView : InviteContactsActivity.this.counterView).getMeasuredHeight();
+                InviteContactsActivity.this.scrollView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+                InviteContactsActivity.this.listView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
+                InviteContactsActivity.this.emptyView.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec((size2 - InviteContactsActivity.this.scrollView.getMeasuredHeight()) - measuredHeight, 1073741824));
             }
         };
         this.fragmentView = viewGroup;
@@ -474,29 +733,29 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         });
         this.editText.addTextChangedListener(new TextWatcher() {
             @Override
+            public void afterTextChanged(Editable editable) {
+                if (InviteContactsActivity.this.editText.length() == 0) {
+                    InviteContactsActivity.this.closeSearch();
+                    return;
+                }
+                InviteContactsActivity.this.searching = true;
+                InviteContactsActivity.this.searchWas = true;
+                InviteContactsActivity.this.adapter.setSearching(true);
+                InviteContactsActivity.this.adapter.searchDialogs(InviteContactsActivity.this.editText.getText().toString());
+                InviteContactsActivity.this.listView.setFastScrollVisible(false);
+                InviteContactsActivity.this.listView.setVerticalScrollBarEnabled(true);
+                InviteContactsActivity.this.emptyView.showProgress(true);
+                InviteContactsActivity.this.emptyView.setStickerType(1);
+                InviteContactsActivity.this.emptyView.title.setText(LocaleController.getString(R.string.NoResult));
+                InviteContactsActivity.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
+            }
+
+            @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (InviteContactsActivity.this.editText.length() != 0) {
-                    InviteContactsActivity.this.searching = true;
-                    InviteContactsActivity.this.searchWas = true;
-                    InviteContactsActivity.this.adapter.setSearching(true);
-                    InviteContactsActivity.this.adapter.searchDialogs(InviteContactsActivity.this.editText.getText().toString());
-                    InviteContactsActivity.this.listView.setFastScrollVisible(false);
-                    InviteContactsActivity.this.listView.setVerticalScrollBarEnabled(true);
-                    InviteContactsActivity.this.emptyView.showProgress(true);
-                    InviteContactsActivity.this.emptyView.setStickerType(1);
-                    InviteContactsActivity.this.emptyView.title.setText(LocaleController.getString(R.string.NoResult));
-                    InviteContactsActivity.this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
-                    return;
-                }
-                InviteContactsActivity.this.closeSearch();
             }
         });
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
@@ -602,75 +861,6 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return this.fragmentView;
     }
 
-    public void lambda$createView$0(View view, int i) {
-        InviteUserCell inviteUserCell;
-        ContactsController.Contact contact;
-        if (i == 0 && !this.searching) {
-            try {
-                Intent intent = new Intent("android.intent.action.SEND");
-                intent.setType("text/plain");
-                String inviteText = ContactsController.getInstance(this.currentAccount).getInviteText(0);
-                intent.putExtra("android.intent.extra.TEXT", inviteText);
-                getParentActivity().startActivityForResult(Intent.createChooser(intent, inviteText), 500);
-                return;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
-            }
-        }
-        if ((view instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) view).getContact()) != null) {
-            boolean containsKey = this.selectedContacts.containsKey(contact.key);
-            if (containsKey) {
-                this.spansContainer.removeSpan(this.selectedContacts.get(contact.key));
-            } else {
-                GroupCreateSpan groupCreateSpan = new GroupCreateSpan(this.editText.getContext(), contact);
-                this.spansContainer.addSpan(groupCreateSpan);
-                groupCreateSpan.setOnClickListener(this);
-            }
-            updateHint();
-            if (this.searching || this.searchWas) {
-                AndroidUtilities.showKeyboard(this.editText);
-            } else {
-                inviteUserCell.setChecked(!containsKey, true);
-            }
-            if (this.editText.length() > 0) {
-                this.editText.setText((CharSequence) null);
-            }
-        }
-    }
-
-    public void lambda$createView$1(View view) {
-        try {
-            StringBuilder sb = new StringBuilder();
-            int i = 0;
-            for (int i2 = 0; i2 < this.allSpans.size(); i2++) {
-                ContactsController.Contact contact = this.allSpans.get(i2).getContact();
-                if (sb.length() != 0) {
-                    sb.append(';');
-                }
-                sb.append(contact.phones.get(0));
-                if (i2 == 0 && this.allSpans.size() == 1) {
-                    i = contact.imported;
-                }
-            }
-            Intent intent = new Intent("android.intent.action.SENDTO", Uri.parse("smsto:" + sb.toString()));
-            intent.putExtra("sms_body", ContactsController.getInstance(this.currentAccount).getInviteText(i));
-            getParentActivity().startActivityForResult(intent, 500);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        lambda$onBackPressed$308();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        EditTextBoldCursor editTextBoldCursor = this.editText;
-        if (editTextBoldCursor != null) {
-            editTextBoldCursor.requestFocus();
-        }
-    }
-
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         StickerEmptyView stickerEmptyView;
@@ -684,257 +874,9 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         }
     }
 
-    @Keep
-    public void setContainerHeight(int i) {
-        this.containerHeight = i;
-        SpansContainer spansContainer = this.spansContainer;
-        if (spansContainer != null) {
-            spansContainer.requestLayout();
-        }
-    }
-
-    @Keep
-    public int getContainerHeight() {
-        return this.containerHeight;
-    }
-
-    public void checkVisibleRows() {
-        InviteUserCell inviteUserCell;
-        ContactsController.Contact contact;
-        int childCount = this.listView.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = this.listView.getChildAt(i);
-            if ((childAt instanceof InviteUserCell) && (contact = (inviteUserCell = (InviteUserCell) childAt).getContact()) != null) {
-                inviteUserCell.setChecked(this.selectedContacts.containsKey(contact.key), true);
-            }
-        }
-    }
-
-    public void updateHint() {
-        if (this.selectedContacts.isEmpty()) {
-            this.infoTextView.setVisibility(0);
-            this.counterView.setVisibility(4);
-        } else {
-            this.infoTextView.setVisibility(4);
-            this.counterView.setVisibility(0);
-            this.counterTextView.setText(String.format("%d", Integer.valueOf(this.selectedContacts.size())));
-        }
-    }
-
-    public void closeSearch() {
-        this.searching = false;
-        this.searchWas = false;
-        this.adapter.setSearching(false);
-        this.adapter.searchDialogs(null);
-        this.listView.setFastScrollVisible(true);
-        this.listView.setVerticalScrollBarEnabled(false);
-        this.emptyView.showProgress(false);
-        this.emptyView.setStickerType(0);
-        this.emptyView.title.setText(LocaleController.getString(R.string.NoContacts));
-        this.emptyView.subtitle.setText("");
-    }
-
-    private void fetchContacts() {
-        ArrayList<ContactsController.Contact> arrayList = new ArrayList<>(ContactsController.getInstance(this.currentAccount).phoneBookContacts);
-        this.phoneBookContacts = arrayList;
-        Collections.sort(arrayList, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$fetchContacts$2;
-                lambda$fetchContacts$2 = InviteContactsActivity.lambda$fetchContacts$2((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
-                return lambda$fetchContacts$2;
-            }
-        });
-        StickerEmptyView stickerEmptyView = this.emptyView;
-        if (stickerEmptyView != null) {
-            stickerEmptyView.showProgress(false);
-        }
-        InviteAdapter inviteAdapter = this.adapter;
-        if (inviteAdapter != null) {
-            inviteAdapter.notifyDataSetChanged();
-        }
-    }
-
-    public static int lambda$fetchContacts$2(ContactsController.Contact contact, ContactsController.Contact contact2) {
-        int i = contact.imported;
-        int i2 = contact2.imported;
-        if (i > i2) {
-            return -1;
-        }
-        return i < i2 ? 1 : 0;
-    }
-
-    public class InviteAdapter extends RecyclerListView.SelectionAdapter {
-        private Context context;
-        private ArrayList<ContactsController.Contact> searchResult = new ArrayList<>();
-        private ArrayList<CharSequence> searchResultNames = new ArrayList<>();
-        private Timer searchTimer;
-        private boolean searching;
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return true;
-        }
-
-        protected void onSearchFinished() {
-            throw null;
-        }
-
-        public InviteAdapter(Context context) {
-            this.context = context;
-        }
-
-        public void setSearching(boolean z) {
-            if (this.searching == z) {
-                return;
-            }
-            this.searching = z;
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public int getItemCount() {
-            if (!this.searching) {
-                return InviteContactsActivity.this.phoneBookContacts.size() + 1;
-            }
-            return this.searchResult.size();
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
-            if (i == 1) {
-                InviteTextCell inviteTextCell = new InviteTextCell(this.context);
-                inviteTextCell.setTextAndIcon(LocaleController.getString(R.string.ShareTelegram), R.drawable.share);
-                frameLayout = inviteTextCell;
-            } else {
-                frameLayout = new InviteUserCell(this.context, true);
-            }
-            return new RecyclerListView.Holder(frameLayout);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            ContactsController.Contact contact;
-            CharSequence charSequence;
-            if (viewHolder.getItemViewType() != 0) {
-                return;
-            }
-            InviteUserCell inviteUserCell = (InviteUserCell) viewHolder.itemView;
-            if (!this.searching) {
-                contact = (ContactsController.Contact) InviteContactsActivity.this.phoneBookContacts.get(i - 1);
-                charSequence = null;
-            } else {
-                contact = this.searchResult.get(i);
-                charSequence = this.searchResultNames.get(i);
-            }
-            inviteUserCell.setUser(contact, charSequence);
-            inviteUserCell.setChecked(InviteContactsActivity.this.selectedContacts.containsKey(contact.key), false);
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            return (this.searching || i != 0) ? 0 : 1;
-        }
-
-        @Override
-        public void onViewRecycled(RecyclerView.ViewHolder viewHolder) {
-            View view = viewHolder.itemView;
-            if (view instanceof InviteUserCell) {
-                ((InviteUserCell) view).recycle();
-            }
-        }
-
-        public void searchDialogs(String str) {
-            try {
-                Timer timer = this.searchTimer;
-                if (timer != null) {
-                    timer.cancel();
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            if (str == null) {
-                this.searchResult.clear();
-                this.searchResultNames.clear();
-                notifyDataSetChanged();
-            } else {
-                Timer timer2 = new Timer();
-                this.searchTimer = timer2;
-                timer2.schedule(new AnonymousClass1(str), 200L, 300L);
-            }
-        }
-
-        public class AnonymousClass1 extends TimerTask {
-            final String val$query;
-
-            AnonymousClass1(String str) {
-                this.val$query = str;
-            }
-
-            @Override
-            public void run() {
-                try {
-                    InviteAdapter.this.searchTimer.cancel();
-                    InviteAdapter.this.searchTimer = null;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                final String str = this.val$query;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$1(str);
-                    }
-                });
-            }
-
-            public void lambda$run$1(final String str) {
-                Utilities.searchQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        InviteContactsActivity.InviteAdapter.AnonymousClass1.this.lambda$run$0(str);
-                    }
-                });
-            }
-
-            public void lambda$run$0(java.lang.String r17) {
-                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.InviteContactsActivity.InviteAdapter.AnonymousClass1.lambda$run$0(java.lang.String):void");
-            }
-        }
-
-        public void updateSearchResults(final ArrayList<ContactsController.Contact> arrayList, final ArrayList<CharSequence> arrayList2) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    InviteContactsActivity.InviteAdapter.this.lambda$updateSearchResults$0(arrayList, arrayList2);
-                }
-            });
-        }
-
-        public void lambda$updateSearchResults$0(ArrayList arrayList, ArrayList arrayList2) {
-            if (this.searching) {
-                this.searchResult = arrayList;
-                this.searchResultNames = arrayList2;
-                notifyDataSetChanged();
-                onSearchFinished();
-            }
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            int itemCount = getItemCount();
-            if (!this.searching) {
-                InviteContactsActivity.this.emptyView.setVisibility(itemCount == 1 ? 0 : 4);
-            }
-            InviteContactsActivity.this.decoration.setSingle(itemCount == 1);
-        }
-    }
-
     @Override
-    public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
+    public ArrayList getThemeDescriptions() {
+        ArrayList arrayList = new ArrayList();
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -1010,16 +952,50 @@ public class InviteContactsActivity extends BaseFragment implements Notification
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$3() {
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView != null) {
-            int childCount = recyclerListView.getChildCount();
-            for (int i = 0; i < childCount; i++) {
-                View childAt = this.listView.getChildAt(i);
-                if (childAt instanceof InviteUserCell) {
-                    ((InviteUserCell) childAt).update(0);
-                }
-            }
+    @Override
+    public void onClick(View view) {
+        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
+        if (groupCreateSpan.isDeleting()) {
+            this.currentDeletingSpan = null;
+            this.spansContainer.removeSpan(groupCreateSpan);
+            updateHint();
+            checkVisibleRows();
+            return;
+        }
+        GroupCreateSpan groupCreateSpan2 = this.currentDeletingSpan;
+        if (groupCreateSpan2 != null) {
+            groupCreateSpan2.cancelDeleteAnimation();
+        }
+        this.currentDeletingSpan = groupCreateSpan;
+        groupCreateSpan.startDeleteAnimation();
+    }
+
+    @Override
+    public boolean onFragmentCreate() {
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsImported);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
+        fetchContacts();
+        if (!UserConfig.getInstance(this.currentAccount).contactsReimported) {
+            ContactsController.getInstance(this.currentAccount).forceImportContacts();
+            UserConfig.getInstance(this.currentAccount).contactsReimported = true;
+            UserConfig.getInstance(this.currentAccount).saveConfig(false);
+        }
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.contactsImported);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.contactsDidLoad);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        EditTextBoldCursor editTextBoldCursor = this.editText;
+        if (editTextBoldCursor != null) {
+            editTextBoldCursor.requestFocus();
         }
     }
 }

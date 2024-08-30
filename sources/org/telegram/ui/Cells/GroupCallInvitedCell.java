@@ -20,7 +20,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class GroupCallInvitedCell extends FrameLayout {
+public abstract class GroupCallInvitedCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
     private TLRPC$User currentUser;
@@ -30,11 +30,6 @@ public class GroupCallInvitedCell extends FrameLayout {
     private SimpleTextView nameTextView;
     private boolean needDivider;
     private SimpleTextView statusTextView;
-
-    @Override
-    public boolean hasOverlappingRendering() {
-        return false;
-    }
 
     public GroupCallInvitedCell(Context context) {
         super(context);
@@ -79,8 +74,34 @@ public class GroupCallInvitedCell extends FrameLayout {
         setFocusable(true);
     }
 
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
+        }
+        super.dispatchDraw(canvas);
+    }
+
     public CharSequence getName() {
         return this.nameTextView.getText();
+    }
+
+    public TLRPC$User getUser() {
+        return this.currentUser;
+    }
+
+    public boolean hasAvatarSet() {
+        return this.avatarImageView.getImageReceiver().hasNotThumb();
+    }
+
+    @Override
+    public boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
     }
 
     public void setData(int i, Long l) {
@@ -102,26 +123,5 @@ public class GroupCallInvitedCell extends FrameLayout {
         this.muteButton.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
         this.statusTextView.setTextColor(i2);
         Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i2 & 620756991, true);
-    }
-
-    public TLRPC$User getUser() {
-        return this.currentUser;
-    }
-
-    public boolean hasAvatarSet() {
-        return this.avatarImageView.getImageReceiver().hasNotThumb();
-    }
-
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
-    }
-
-    @Override
-    protected void dispatchDraw(Canvas canvas) {
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerPaint);
-        }
-        super.dispatchDraw(canvas);
     }
 }

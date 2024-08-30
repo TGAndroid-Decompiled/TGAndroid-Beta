@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$PhoneCall extends TLObject {
     public long access_hash;
     public long admin_id;
-    public ArrayList<TLRPC$PhoneConnection> connections = new ArrayList<>();
+    public ArrayList connections = new ArrayList();
     public TLRPC$TL_dataJSON custom_parameters;
     public int date;
     public int duration;
@@ -82,7 +82,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                         int size = this.connections.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i4 = 0; i4 < size; i4++) {
-                            this.connections.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PhoneConnection) this.connections.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(this.start_date);
                     }

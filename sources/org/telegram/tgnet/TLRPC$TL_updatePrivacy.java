@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_updatePrivacy extends TLRPC$Update {
     public TLRPC$PrivacyKey key;
-    public ArrayList<TLRPC$PrivacyRule> rules = new ArrayList<>();
+    public ArrayList rules = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -34,7 +34,7 @@ public class TLRPC$TL_updatePrivacy extends TLRPC$Update {
         int size = this.rules.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.rules.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$PrivacyRule) this.rules.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

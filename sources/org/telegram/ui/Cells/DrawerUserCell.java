@@ -8,15 +8,11 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -24,7 +20,6 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.GroupCreateCheckBox;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.Premium.PremiumGradient;
 
 public class DrawerUserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private int accountNumber;
@@ -69,8 +64,26 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3;
+        if (i == NotificationCenter.currentUserPremiumStatusChanged) {
+            i3 = this.accountNumber;
+            if (i2 != i3) {
+                return;
+            }
+        } else if (i == NotificationCenter.emojiLoaded) {
+            this.textView.invalidate();
+            return;
+        } else if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_EMOJI_STATUS) <= 0) {
+            return;
+        } else {
+            i3 = this.accountNumber;
+        }
+        setAccount(i3);
+    }
+
+    public int getAccountNumber() {
+        return this.accountNumber;
     }
 
     @Override
@@ -103,62 +116,6 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
     }
 
     @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.currentUserPremiumStatusChanged) {
-            int i3 = this.accountNumber;
-            if (i2 == i3) {
-                setAccount(i3);
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.emojiLoaded) {
-            this.textView.invalidate();
-        } else {
-            if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_EMOJI_STATUS) <= 0) {
-                return;
-            }
-            setAccount(this.accountNumber);
-        }
-    }
-
-    public void setAccount(int i) {
-        this.accountNumber = i;
-        TLRPC$User currentUser = UserConfig.getInstance(i).getCurrentUser();
-        if (currentUser == null) {
-            return;
-        }
-        this.avatarDrawable.setInfo(i, currentUser);
-        CharSequence formatName = ContactsController.formatName(currentUser.first_name, currentUser.last_name);
-        try {
-            formatName = Emoji.replaceEmoji(formatName, this.textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-        } catch (Exception unused) {
-        }
-        this.textView.setText(formatName);
-        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
-        if (emojiStatusDocumentId != null) {
-            this.textView.setDrawablePadding(AndroidUtilities.dp(4.0f));
-            this.status.set(emojiStatusDocumentId.longValue(), true);
-            this.textView.setRightDrawableOutside(true);
-        } else if (MessagesController.getInstance(i).isPremiumUser(currentUser)) {
-            this.textView.setDrawablePadding(AndroidUtilities.dp(6.0f));
-            this.status.set(PremiumGradient.getInstance().premiumStarDrawableMini, true);
-            this.textView.setRightDrawableOutside(true);
-        } else {
-            this.status.set((Drawable) null, true);
-            this.textView.setRightDrawableOutside(false);
-        }
-        this.status.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground)));
-        this.imageView.getImageReceiver().setCurrentAccount(i);
-        this.imageView.setForUserOrChat(currentUser, this.avatarDrawable);
-        this.checkBox.setVisibility(i != UserConfig.selectedAccount ? 4 : 0);
-    }
-
-    public int getAccountNumber() {
-        return this.accountNumber;
-    }
-
-    @Override
     protected void onDraw(Canvas canvas) {
         if (UserConfig.getActivatedAccountsCount() <= 1 || !NotificationsController.getInstance(this.accountNumber).showBadgeNumber) {
             this.textView.setRightPadding(0);
@@ -186,5 +143,14 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.addAction(16);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+    }
+
+    public void setAccount(int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DrawerUserCell.setAccount(int):void");
     }
 }

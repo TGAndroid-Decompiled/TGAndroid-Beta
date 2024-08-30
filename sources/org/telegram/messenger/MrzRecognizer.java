@@ -4,11 +4,6 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.util.Base64;
-import android.util.SparseArray;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.barcode.Barcode;
-import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.util.Calendar;
 import java.util.HashMap;
 
@@ -43,155 +38,6 @@ public class MrzRecognizer {
 
     private static native Rect[][] binarizeAndFindCharacters(Bitmap bitmap, Bitmap bitmap2);
 
-    private static native int[] findCornerPoints(Bitmap bitmap);
-
-    private static int getNumber(char c) {
-        if (c == 'O') {
-            return 0;
-        }
-        if (c == 'I') {
-            return 1;
-        }
-        if (c == 'B') {
-            return 8;
-        }
-        return c - '0';
-    }
-
-    private static int parseGender(char c) {
-        if (c != 'F') {
-            return c != 'M' ? 0 : 1;
-        }
-        return 2;
-    }
-
-    private static native String performRecognition(Bitmap bitmap, int i, int i2, AssetManager assetManager);
-
-    private static native void setYuvBitmapPixels(Bitmap bitmap, byte[] bArr);
-
-    public static Result recognize(Bitmap bitmap, boolean z) {
-        Result recognizeBarcode;
-        Result recognizeBarcode2;
-        if (z && (recognizeBarcode2 = recognizeBarcode(bitmap)) != null) {
-            return recognizeBarcode2;
-        }
-        try {
-            Result recognizeMRZ = recognizeMRZ(bitmap);
-            if (recognizeMRZ != null) {
-                return recognizeMRZ;
-            }
-        } catch (Exception unused) {
-        }
-        if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
-            return null;
-        }
-        return recognizeBarcode;
-    }
-
-    private static Result recognizeBarcode(Bitmap bitmap) {
-        BarcodeDetector build = new BarcodeDetector.Builder(ApplicationLoader.applicationContext).build();
-        if (bitmap.getWidth() > 1500 || bitmap.getHeight() > 1500) {
-            float max = 1500.0f / Math.max(bitmap.getWidth(), bitmap.getHeight());
-            bitmap = Bitmap.createScaledBitmap(bitmap, Math.round(bitmap.getWidth() * max), Math.round(bitmap.getHeight() * max), true);
-        }
-        SparseArray<Barcode> detect = build.detect(new Frame.Builder().setBitmap(bitmap).build());
-        int i = 0;
-        for (int i2 = 0; i2 < detect.size(); i2++) {
-            Barcode valueAt = detect.valueAt(i2);
-            int i3 = valueAt.valueFormat;
-            int i4 = 6;
-            int i5 = 4;
-            if (i3 == 12 && valueAt.driverLicense != null) {
-                Result result = new Result();
-                result.type = "ID".equals(valueAt.driverLicense.documentType) ? 2 : 4;
-                String str = valueAt.driverLicense.issuingCountry;
-                str.hashCode();
-                if (str.equals("CAN")) {
-                    result.issuingCountry = "CA";
-                    result.nationality = "CA";
-                } else if (str.equals("USA")) {
-                    result.issuingCountry = "US";
-                    result.nationality = "US";
-                }
-                result.firstName = capitalize(valueAt.driverLicense.firstName);
-                result.lastName = capitalize(valueAt.driverLicense.lastName);
-                result.middleName = capitalize(valueAt.driverLicense.middleName);
-                Barcode.DriverLicense driverLicense = valueAt.driverLicense;
-                result.number = driverLicense.licenseNumber;
-                String str2 = driverLicense.gender;
-                if (str2 != null) {
-                    if (str2.equals("1")) {
-                        result.gender = 1;
-                    } else if (str2.equals("2")) {
-                        result.gender = 2;
-                    }
-                }
-                if ("USA".equals(result.issuingCountry)) {
-                    i = 4;
-                    i4 = 2;
-                    i5 = 0;
-                }
-                try {
-                    String str3 = valueAt.driverLicense.birthDate;
-                    if (str3 != null && str3.length() == 8) {
-                        result.birthYear = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i, i + 4));
-                        result.birthMonth = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i5, i5 + 2));
-                        result.birthDay = Integer.parseInt(valueAt.driverLicense.birthDate.substring(i4, i4 + 2));
-                    }
-                    String str4 = valueAt.driverLicense.expiryDate;
-                    if (str4 != null && str4.length() == 8) {
-                        result.expiryYear = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i, i + 4));
-                        result.expiryMonth = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i5, i5 + 2));
-                        result.expiryDay = Integer.parseInt(valueAt.driverLicense.expiryDate.substring(i4, i4 + 2));
-                    }
-                } catch (NumberFormatException unused) {
-                }
-                return result;
-            }
-            if (i3 == 7 && valueAt.format == 2048 && valueAt.rawValue.matches("^[A-Za-z0-9=]+$")) {
-                try {
-                    String[] split = new String(Base64.decode(valueAt.rawValue, 0), "windows-1251").split("\\|");
-                    if (split.length >= 10) {
-                        Result result2 = new Result();
-                        result2.type = 4;
-                        result2.issuingCountry = "RU";
-                        result2.nationality = "RU";
-                        result2.number = split[0];
-                        result2.expiryYear = Integer.parseInt(split[2].substring(0, 4));
-                        result2.expiryMonth = Integer.parseInt(split[2].substring(4, 6));
-                        result2.expiryDay = Integer.parseInt(split[2].substring(6));
-                        result2.lastName = capitalize(cyrillicToLatin(split[3]));
-                        result2.firstName = capitalize(cyrillicToLatin(split[4]));
-                        result2.middleName = capitalize(cyrillicToLatin(split[5]));
-                        result2.birthYear = Integer.parseInt(split[6].substring(0, 4));
-                        result2.birthMonth = Integer.parseInt(split[6].substring(4, 6));
-                        result2.birthDay = Integer.parseInt(split[6].substring(6));
-                        return result2;
-                    }
-                    continue;
-                } catch (Exception unused2) {
-                    continue;
-                }
-            }
-        }
-        return null;
-    }
-
-    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.recognizeMRZ(android.graphics.Bitmap):org.telegram.messenger.MrzRecognizer$Result");
-    }
-
-    public static Result recognize(byte[] bArr, int i, int i2, int i3) {
-        Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
-        setYuvBitmapPixels(createBitmap, bArr);
-        Matrix matrix = new Matrix();
-        matrix.setRotate(i3);
-        int min = Math.min(i, i2);
-        int round = Math.round(min * 0.704f);
-        boolean z = i3 == 90 || i3 == 270;
-        return recognize(Bitmap.createBitmap(createBitmap, z ? (i / 2) - (round / 2) : 0, z ? 0 : (i2 / 2) - (round / 2), z ? round : min, z ? min : round, matrix, false), false);
-    }
-
     private static String capitalize(String str) {
         if (str == null) {
             return null;
@@ -199,10 +45,10 @@ public class MrzRecognizer {
         char[] charArray = str.toCharArray();
         boolean z = true;
         for (int i = 0; i < charArray.length; i++) {
-            if (!z && Character.isLetter(charArray[i])) {
-                charArray[i] = Character.toLowerCase(charArray[i]);
-            } else {
+            if (z || !Character.isLetter(charArray[i])) {
                 z = charArray[i] == ' ';
+            } else {
+                charArray[i] = Character.toLowerCase(charArray[i]);
             }
         }
         return new String(charArray);
@@ -219,41 +65,6 @@ public class MrzRecognizer {
         return i % 10;
     }
 
-    private static void parseBirthDate(String str, Result result) {
-        try {
-            int parseInt = Integer.parseInt(str.substring(0, 2));
-            result.birthYear = parseInt;
-            result.birthYear += parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? 2000 : 1900;
-            result.birthMonth = Integer.parseInt(str.substring(2, 4));
-            result.birthDay = Integer.parseInt(str.substring(4));
-        } catch (NumberFormatException unused) {
-        }
-    }
-
-    private static void parseExpiryDate(String str, Result result) {
-        try {
-            if ("<<<<<<".equals(str)) {
-                result.doesNotExpire = true;
-            } else {
-                result.expiryYear = Integer.parseInt(str.substring(0, 2)) + 2000;
-                result.expiryMonth = Integer.parseInt(str.substring(2, 4));
-                result.expiryDay = Integer.parseInt(str.substring(4));
-            }
-        } catch (NumberFormatException unused) {
-        }
-    }
-
-    private static String russianPassportTranslit(String str) {
-        char[] charArray = str.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            int indexOf = "ABVGDE2JZIQKLMNOPRSTUFHC34WXY9678".indexOf(charArray[i]);
-            if (indexOf != -1) {
-                charArray[i] = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".charAt(indexOf);
-            }
-        }
-        return new String(charArray);
-    }
-
     private static String cyrillicToLatin(String str) {
         String[] strArr = {"A", "B", "V", "G", "D", "E", "E", "ZH", "Z", "I", "I", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "F", "KH", "TS", "CH", "SH", "SHCH", "IE", "Y", "", "E", "IU", "IA"};
         String str2 = str;
@@ -265,6 +76,8 @@ public class MrzRecognizer {
         }
         return str2;
     }
+
+    private static native int[] findCornerPoints(Bitmap bitmap);
 
     private static HashMap<String, String> getCountriesMap() {
         HashMap<String, String> hashMap = new HashMap<>();
@@ -519,4 +332,101 @@ public class MrzRecognizer {
         hashMap.put("ZWE", "ZW");
         return hashMap;
     }
+
+    private static int getNumber(char c) {
+        if (c == 'O') {
+            return 0;
+        }
+        if (c == 'I') {
+            return 1;
+        }
+        if (c == 'B') {
+            return 8;
+        }
+        return c - '0';
+    }
+
+    private static void parseBirthDate(String str, Result result) {
+        try {
+            int parseInt = Integer.parseInt(str.substring(0, 2));
+            result.birthYear = parseInt;
+            result.birthYear += parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? 2000 : 1900;
+            result.birthMonth = Integer.parseInt(str.substring(2, 4));
+            result.birthDay = Integer.parseInt(str.substring(4));
+        } catch (NumberFormatException unused) {
+        }
+    }
+
+    private static void parseExpiryDate(String str, Result result) {
+        try {
+            if ("<<<<<<".equals(str)) {
+                result.doesNotExpire = true;
+            } else {
+                result.expiryYear = Integer.parseInt(str.substring(0, 2)) + 2000;
+                result.expiryMonth = Integer.parseInt(str.substring(2, 4));
+                result.expiryDay = Integer.parseInt(str.substring(4));
+            }
+        } catch (NumberFormatException unused) {
+        }
+    }
+
+    private static int parseGender(char c) {
+        if (c != 'F') {
+            return c != 'M' ? 0 : 1;
+        }
+        return 2;
+    }
+
+    private static native String performRecognition(Bitmap bitmap, int i, int i2, AssetManager assetManager);
+
+    public static Result recognize(Bitmap bitmap, boolean z) {
+        Result recognizeBarcode;
+        Result recognizeBarcode2;
+        if (z && (recognizeBarcode2 = recognizeBarcode(bitmap)) != null) {
+            return recognizeBarcode2;
+        }
+        try {
+            Result recognizeMRZ = recognizeMRZ(bitmap);
+            if (recognizeMRZ != null) {
+                return recognizeMRZ;
+            }
+        } catch (Exception unused) {
+        }
+        if (z || (recognizeBarcode = recognizeBarcode(bitmap)) == null) {
+            return null;
+        }
+        return recognizeBarcode;
+    }
+
+    public static Result recognize(byte[] bArr, int i, int i2, int i3) {
+        Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
+        setYuvBitmapPixels(createBitmap, bArr);
+        Matrix matrix = new Matrix();
+        matrix.setRotate(i3);
+        int min = Math.min(i, i2);
+        int round = Math.round(min * 0.704f);
+        boolean z = i3 == 90 || i3 == 270;
+        return recognize(Bitmap.createBitmap(createBitmap, z ? (i / 2) - (round / 2) : 0, z ? 0 : (i2 / 2) - (round / 2), z ? round : min, z ? min : round, matrix, false), false);
+    }
+
+    private static org.telegram.messenger.MrzRecognizer.Result recognizeBarcode(android.graphics.Bitmap r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.recognizeBarcode(android.graphics.Bitmap):org.telegram.messenger.MrzRecognizer$Result");
+    }
+
+    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.recognizeMRZ(android.graphics.Bitmap):org.telegram.messenger.MrzRecognizer$Result");
+    }
+
+    private static String russianPassportTranslit(String str) {
+        char[] charArray = str.toCharArray();
+        for (int i = 0; i < charArray.length; i++) {
+            int indexOf = "ABVGDE2JZIQKLMNOPRSTUFHC34WXY9678".indexOf(charArray[i]);
+            if (indexOf != -1) {
+                charArray[i] = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ".charAt(indexOf);
+            }
+        }
+        return new String(charArray);
+    }
+
+    private static native void setYuvBitmapPixels(Bitmap bitmap, byte[] bArr);
 }

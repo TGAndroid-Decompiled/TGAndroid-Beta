@@ -46,40 +46,6 @@ public class DraftSavedHint extends View {
         animatedFloat.set(0.0f, true);
     }
 
-    public void hide(boolean z) {
-        show(false, z);
-    }
-
-    public void show(boolean z, boolean z2) {
-        Runnable runnable;
-        if (!z && (runnable = this.hideRunnable) != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.hideRunnable = null;
-        }
-        this.shown = z;
-        if (!z2) {
-            this.showT.set(z, true);
-        }
-        invalidate();
-    }
-
-    public void show() {
-        this.showT.set(0.0f, true);
-        show(true, true);
-        Runnable runnable = this.hideRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                DraftSavedHint.this.lambda$show$0();
-            }
-        };
-        this.hideRunnable = runnable2;
-        AndroidUtilities.runOnUIThread(runnable2, 3500L);
-    }
-
     public void lambda$show$0() {
         hide(true);
     }
@@ -119,8 +85,42 @@ public class DraftSavedHint extends View {
         canvas.restore();
     }
 
+    public void hide(boolean z) {
+        show(false, z);
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(50.0f));
+    }
+
+    public void show() {
+        this.showT.set(0.0f, true);
+        show(true, true);
+        Runnable runnable = this.hideRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                DraftSavedHint.this.lambda$show$0();
+            }
+        };
+        this.hideRunnable = runnable2;
+        AndroidUtilities.runOnUIThread(runnable2, 3500L);
+    }
+
+    public void show(boolean z, boolean z2) {
+        Runnable runnable;
+        if (!z && (runnable = this.hideRunnable) != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.hideRunnable = null;
+        }
+        this.shown = z;
+        if (!z2) {
+            this.showT.set(z, true);
+        }
+        invalidate();
     }
 }

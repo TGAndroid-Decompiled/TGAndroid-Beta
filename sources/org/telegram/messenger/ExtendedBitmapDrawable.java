@@ -13,19 +13,19 @@ public class ExtendedBitmapDrawable extends BitmapDrawable {
         this.orientation = i;
     }
 
-    public boolean invertHorizontally() {
-        return (this.invert & 1) != 0;
-    }
-
-    public boolean invertVertically() {
-        return (this.invert & 2) != 0;
-    }
-
     public int getInvert() {
         return this.invert;
     }
 
     public int getOrientation() {
         return this.orientation;
+    }
+
+    public boolean invertHorizontally() {
+        return (this.invert & 1) != 0;
+    }
+
+    public boolean invertVertically() {
+        return (this.invert & 2) != 0;
     }
 }

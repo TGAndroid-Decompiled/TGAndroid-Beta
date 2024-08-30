@@ -32,7 +32,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public long total_amount;
     public int ttl;
     public long user_id;
-    public ArrayList<Long> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
     public boolean video;
     public TLRPC$WallPaper wallpaper;
 
@@ -192,7 +192,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };
@@ -602,7 +602,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };
@@ -736,7 +736,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            abstractSerializedData2.writeInt32((int) this.users.get(i2).longValue());
+                            abstractSerializedData2.writeInt32((int) ((Long) this.users.get(i2)).longValue());
                         }
                     }
                 };

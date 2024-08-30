@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class BotWebViewVibrationEffect$$ExternalSyntheticApiModelOutline0 {
+public abstract class BotWebViewVibrationEffect$$ExternalSyntheticApiModelOutline0 {
 }

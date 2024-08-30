@@ -22,7 +22,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-import androidx.annotation.Keep;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.BubbleActivity;
@@ -79,6 +78,47 @@ public class CropAreaView extends ViewGroup {
     public float tx;
     public float ty;
 
+    static class AnonymousClass3 {
+        static final int[] $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control;
+
+        static {
+            int[] iArr = new int[Control.values().length];
+            $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control = iArr;
+            try {
+                iArr[Control.TOP_LEFT.ordinal()] = 1;
+            } catch (NoSuchFieldError unused) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.TOP_RIGHT.ordinal()] = 2;
+            } catch (NoSuchFieldError unused2) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM_LEFT.ordinal()] = 3;
+            } catch (NoSuchFieldError unused3) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM_RIGHT.ordinal()] = 4;
+            } catch (NoSuchFieldError unused4) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.TOP.ordinal()] = 5;
+            } catch (NoSuchFieldError unused5) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.LEFT.ordinal()] = 6;
+            } catch (NoSuchFieldError unused6) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.RIGHT.ordinal()] = 7;
+            } catch (NoSuchFieldError unused7) {
+            }
+            try {
+                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM.ordinal()] = 8;
+            } catch (NoSuchFieldError unused8) {
+            }
+        }
+    }
+
     interface AreaViewListener {
         void onAreaChange();
 
@@ -103,10 +143,6 @@ public class CropAreaView extends ViewGroup {
         NONE,
         MINOR,
         MAJOR
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
     }
 
     public CropAreaView(Context context) {
@@ -168,13 +204,49 @@ public class CropAreaView extends ViewGroup {
         setWillNotDraw(false);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        updateSubtitle();
+    private void constrainRectByHeight(RectF rectF, float f) {
+        float height = rectF.height();
+        rectF.right = rectF.left + (f * height);
+        rectF.bottom = rectF.top + height;
+    }
+
+    private void constrainRectByWidth(RectF rectF, float f) {
+        float width = rectF.width();
+        rectF.right = rectF.left + width;
+        rectF.bottom = rectF.top + (width / f);
+    }
+
+    private float getGridProgress() {
+        return this.gridProgress;
+    }
+
+    private void setCropBottom(float f) {
+        this.actualRect.bottom = f;
+        invalidate();
+    }
+
+    private void setCropLeft(float f) {
+        this.actualRect.left = f;
+        invalidate();
+    }
+
+    private void setCropRight(float f) {
+        this.actualRect.right = f;
+        invalidate();
+    }
+
+    private void setCropTop(float f) {
+        this.actualRect.top = f;
+        invalidate();
+    }
+
+    private void setGridProgress(float f) {
+        this.gridProgress = f;
+        invalidate();
     }
 
     private void updateSubtitle() {
+        StaticLayout staticLayout;
         if (this.subtitle != null) {
             if (this.subtitlePaint == null) {
                 TextPaint textPaint = new TextPaint();
@@ -183,79 +255,156 @@ public class CropAreaView extends ViewGroup {
                 this.subtitlePaint.setTextSize(AndroidUtilities.dp(13.0f));
                 this.subtitlePaint.setTextAlign(Paint.Align.CENTER);
             }
-            this.subtitleLayout = new StaticLayout(this.subtitle, this.subtitlePaint, getMeasuredWidth() - AndroidUtilities.dp(120.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            staticLayout = new StaticLayout(this.subtitle, this.subtitlePaint, getMeasuredWidth() - AndroidUtilities.dp(120.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        } else {
+            staticLayout = null;
+        }
+        this.subtitleLayout = staticLayout;
+    }
+
+    public void calculateRect(RectF rectF, float f) {
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        float f6 = (Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight;
+        float measuredHeight = (getMeasuredHeight() - this.bottomPadding) - f6;
+        float measuredWidth = getMeasuredWidth() / measuredHeight;
+        float min = Math.min(getMeasuredWidth(), measuredHeight) - (this.sidePadding * 2.0f);
+        float measuredWidth2 = getMeasuredWidth();
+        float f7 = this.sidePadding * 2.0f;
+        float f8 = measuredWidth2 - f7;
+        float f9 = measuredHeight - f7;
+        float measuredWidth3 = getMeasuredWidth() / 2.0f;
+        float f10 = f6 + (measuredHeight / 2.0f);
+        if (Math.abs(1.0f - f) < 1.0E-4d) {
+            float f11 = min / 2.0f;
+            f5 = measuredWidth3 - f11;
+            f4 = f10 - f11;
+            f2 = measuredWidth3 + f11;
+            f3 = f10 + f11;
+        } else {
+            if (f - measuredWidth <= 1.0E-4d) {
+                float f12 = f9 * f;
+                if (f12 <= f8) {
+                    float f13 = f12 / 2.0f;
+                    f5 = measuredWidth3 - f13;
+                    float f14 = f9 / 2.0f;
+                    float f15 = f10 - f14;
+                    f2 = measuredWidth3 + f13;
+                    f3 = f10 + f14;
+                    f4 = f15;
+                }
+            }
+            float f16 = f8 / 2.0f;
+            float f17 = measuredWidth3 - f16;
+            float f18 = (f8 / f) / 2.0f;
+            float f19 = f10 - f18;
+            f2 = measuredWidth3 + f16;
+            f3 = f10 + f18;
+            f4 = f19;
+            f5 = f17;
+        }
+        rectF.set(f5, f4, f2, f3);
+    }
+
+    public void fill(final RectF rectF, Animator animator, boolean z) {
+        if (!z) {
+            setActualRect(rectF);
             return;
         }
-        this.subtitleLayout = null;
-    }
-
-    public void setIsVideo(boolean z) {
-        this.minWidth = AndroidUtilities.dp(z ? 64.0f : 32.0f);
-    }
-
-    public boolean isDragging() {
-        return this.isDragging;
-    }
-
-    public void setDimVisibility(boolean z) {
-        this.dimVisibile = z;
-    }
-
-    public void setFrameVisibility(boolean z, boolean z2) {
-        this.frameVisible = z;
-        if (z) {
-            this.frameAlpha = z2 ? 0.0f : 1.0f;
-            this.lastUpdateTime = SystemClock.elapsedRealtime();
-            invalidate();
-            return;
+        Animator animator2 = this.animator;
+        if (animator2 != null) {
+            animator2.cancel();
+            this.animator = null;
         }
-        this.frameAlpha = 1.0f;
+        AnimatorSet animatorSet = new AnimatorSet();
+        this.animator = animatorSet;
+        animatorSet.setDuration(300L);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "cropLeft", rectF.left);
+        ofFloat.setInterpolator(this.interpolator);
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "cropTop", rectF.top);
+        ofFloat2.setInterpolator(this.interpolator);
+        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, "cropRight", rectF.right);
+        ofFloat3.setInterpolator(this.interpolator);
+        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "cropBottom", rectF.bottom);
+        ofFloat4.setInterpolator(this.interpolator);
+        animator.setInterpolator(this.interpolator);
+        animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, animator);
+        animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator3) {
+                CropAreaView.this.setActualRect(rectF);
+                CropAreaView.this.animator = null;
+            }
+        });
+        animatorSet.start();
     }
 
-    public void setBottomPadding(float f) {
-        this.bottomPadding = f;
+    public float getAspectRatio() {
+        RectF rectF = this.actualRect;
+        return (rectF.right - rectF.left) / (rectF.bottom - rectF.top);
+    }
+
+    public float getCropBottom() {
+        return this.actualRect.bottom;
+    }
+
+    public float getCropCenterX() {
+        RectF rectF = this.actualRect;
+        return (rectF.left + rectF.right) / 2.0f;
+    }
+
+    public float getCropCenterY() {
+        RectF rectF = this.actualRect;
+        return (rectF.top + rectF.bottom) / 2.0f;
+    }
+
+    public float getCropHeight() {
+        RectF rectF = this.actualRect;
+        return rectF.bottom - rectF.top;
+    }
+
+    public float getCropLeft() {
+        return this.actualRect.left;
+    }
+
+    public void getCropRect(RectF rectF) {
+        rectF.set(this.actualRect);
+    }
+
+    public float getCropRight() {
+        return this.actualRect.right;
+    }
+
+    public float getCropTop() {
+        return this.actualRect.top;
+    }
+
+    public float getCropWidth() {
+        RectF rectF = this.actualRect;
+        return rectF.right - rectF.left;
     }
 
     public Interpolator getInterpolator() {
         return this.interpolator;
     }
 
-    public void setListener(AreaViewListener areaViewListener) {
-        this.listener = areaViewListener;
+    public float getLockAspectRatio() {
+        return this.lockAspectRatio;
     }
 
-    public void setBitmap(int i, int i2, boolean z, boolean z2) {
-        this.freeform = z2;
-        float f = z ? i2 / i : i / i2;
-        if (!z2) {
-            f = 1.0f;
-            this.lockAspectRatio = 1.0f;
-        }
-        setActualRect(f);
+    public RectF getTargetRectToFill() {
+        return getTargetRectToFill(getAspectRatio());
     }
 
-    public void setFreeform(boolean z) {
-        this.freeform = z;
+    public RectF getTargetRectToFill(float f) {
+        calculateRect(this.targetRect, f);
+        return this.targetRect;
     }
 
-    public void setActualRect(float f) {
-        calculateRect(this.actualRect, f);
-        updateTouchAreas();
-        invalidate();
-    }
-
-    public void setActualRect(RectF rectF) {
-        this.actualRect.set(rectF);
-        updateTouchAreas();
-        invalidate();
-    }
-
-    public void setRotationScaleTranslation(float f, float f2, float f3, float f4) {
-        this.rotate = f;
-        this.scale = f2;
-        this.tx = f3;
-        this.ty = f4;
-        invalidate();
+    public boolean isDragging() {
+        return this.isDragging;
     }
 
     @Override
@@ -464,6 +613,152 @@ public class CropAreaView extends ViewGroup {
         }
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.isDragging) {
+            return false;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        updateSubtitle();
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Crop.CropAreaView.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public void resetAnimator() {
+        Animator animator = this.animator;
+        if (animator != null) {
+            animator.cancel();
+            this.animator = null;
+        }
+    }
+
+    public void setActualRect(float f) {
+        calculateRect(this.actualRect, f);
+        updateTouchAreas();
+        invalidate();
+    }
+
+    public void setActualRect(RectF rectF) {
+        this.actualRect.set(rectF);
+        updateTouchAreas();
+        invalidate();
+    }
+
+    public void setBitmap(int i, int i2, boolean z, boolean z2) {
+        this.freeform = z2;
+        float f = z ? i2 / i : i / i2;
+        if (!z2) {
+            f = 1.0f;
+            this.lockAspectRatio = 1.0f;
+        }
+        setActualRect(f);
+    }
+
+    public void setBottomPadding(float f) {
+        this.bottomPadding = f;
+    }
+
+    public void setDimVisibility(boolean z) {
+        this.dimVisibile = z;
+    }
+
+    public void setFrameVisibility(boolean z, boolean z2) {
+        this.frameVisible = z;
+        if (!z) {
+            this.frameAlpha = 1.0f;
+            return;
+        }
+        this.frameAlpha = z2 ? 0.0f : 1.0f;
+        this.lastUpdateTime = SystemClock.elapsedRealtime();
+        invalidate();
+    }
+
+    public void setFreeform(boolean z) {
+        this.freeform = z;
+    }
+
+    public void setGridType(GridType gridType, boolean z) {
+        Animator animator = this.gridAnimator;
+        if (animator != null && (!z || this.gridType != gridType)) {
+            animator.cancel();
+            this.gridAnimator = null;
+        }
+        GridType gridType2 = this.gridType;
+        if (gridType2 == gridType) {
+            return;
+        }
+        this.previousGridType = gridType2;
+        this.gridType = gridType;
+        GridType gridType3 = GridType.NONE;
+        float f = gridType == gridType3 ? 0.0f : 1.0f;
+        if (!z) {
+            this.gridProgress = f;
+            invalidate();
+            return;
+        }
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "gridProgress", this.gridProgress, f);
+        this.gridAnimator = ofFloat;
+        ofFloat.setDuration(200L);
+        this.gridAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator2) {
+                CropAreaView.this.gridAnimator = null;
+            }
+        });
+        if (gridType == gridType3) {
+            this.gridAnimator.setStartDelay(200L);
+        }
+        this.gridAnimator.start();
+    }
+
+    public void setIsVideo(boolean z) {
+        this.minWidth = AndroidUtilities.dp(z ? 64.0f : 32.0f);
+    }
+
+    public void setListener(AreaViewListener areaViewListener) {
+        this.listener = areaViewListener;
+    }
+
+    public void setLockedAspectRatio(float f) {
+        this.lockAspectRatio = f;
+    }
+
+    public void setRotationScaleTranslation(float f, float f2, float f3, float f4) {
+        this.rotate = f;
+        this.scale = f2;
+        this.tx = f3;
+        this.ty = f4;
+        invalidate();
+    }
+
+    public void setSubtitle(String str) {
+        this.subtitle = str;
+        if (getMeasuredWidth() > 0) {
+            updateSubtitle();
+        }
+    }
+
+    public void updateStatusShow(boolean z) {
+        try {
+            View decorView = ((Activity) getContext()).getWindow().getDecorView();
+            int systemUiVisibility = decorView.getSystemUiVisibility();
+            decorView.setSystemUiVisibility(z ? systemUiVisibility | 4 : systemUiVisibility & (-5));
+        } catch (Exception unused) {
+        }
+    }
+
     public void updateTouchAreas() {
         int dp = AndroidUtilities.dp(16.0f);
         RectF rectF = this.topLeftCorner;
@@ -505,549 +800,5 @@ public class CropAreaView extends ViewGroup {
         float f14 = rectF16.left + f2;
         float f15 = rectF16.bottom;
         rectF15.set(f14, f15 - f2, rectF16.right - f2, f15 + f2);
-    }
-
-    public float getLockAspectRatio() {
-        return this.lockAspectRatio;
-    }
-
-    public void setLockedAspectRatio(float f) {
-        this.lockAspectRatio = f;
-    }
-
-    public void setGridType(GridType gridType, boolean z) {
-        Animator animator = this.gridAnimator;
-        if (animator != null && (!z || this.gridType != gridType)) {
-            animator.cancel();
-            this.gridAnimator = null;
-        }
-        GridType gridType2 = this.gridType;
-        if (gridType2 == gridType) {
-            return;
-        }
-        this.previousGridType = gridType2;
-        this.gridType = gridType;
-        GridType gridType3 = GridType.NONE;
-        float f = gridType == gridType3 ? 0.0f : 1.0f;
-        if (!z) {
-            this.gridProgress = f;
-            invalidate();
-            return;
-        }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "gridProgress", this.gridProgress, f);
-        this.gridAnimator = ofFloat;
-        ofFloat.setDuration(200L);
-        this.gridAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator2) {
-                CropAreaView.this.gridAnimator = null;
-            }
-        });
-        if (gridType == gridType3) {
-            this.gridAnimator.setStartDelay(200L);
-        }
-        this.gridAnimator.start();
-    }
-
-    @Keep
-    private void setGridProgress(float f) {
-        this.gridProgress = f;
-        invalidate();
-    }
-
-    @Keep
-    private float getGridProgress() {
-        return this.gridProgress;
-    }
-
-    public float getAspectRatio() {
-        RectF rectF = this.actualRect;
-        return (rectF.right - rectF.left) / (rectF.bottom - rectF.top);
-    }
-
-    public void fill(final RectF rectF, Animator animator, boolean z) {
-        if (z) {
-            Animator animator2 = this.animator;
-            if (animator2 != null) {
-                animator2.cancel();
-                this.animator = null;
-            }
-            AnimatorSet animatorSet = new AnimatorSet();
-            this.animator = animatorSet;
-            animatorSet.setDuration(300L);
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "cropLeft", rectF.left);
-            ofFloat.setInterpolator(this.interpolator);
-            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "cropTop", rectF.top);
-            ofFloat2.setInterpolator(this.interpolator);
-            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, "cropRight", rectF.right);
-            ofFloat3.setInterpolator(this.interpolator);
-            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "cropBottom", rectF.bottom);
-            ofFloat4.setInterpolator(this.interpolator);
-            animator.setInterpolator(this.interpolator);
-            animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, animator);
-            animatorSet.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator3) {
-                    CropAreaView.this.setActualRect(rectF);
-                    CropAreaView.this.animator = null;
-                }
-            });
-            animatorSet.start();
-            return;
-        }
-        setActualRect(rectF);
-    }
-
-    public void resetAnimator() {
-        Animator animator = this.animator;
-        if (animator != null) {
-            animator.cancel();
-            this.animator = null;
-        }
-    }
-
-    @Keep
-    private void setCropLeft(float f) {
-        this.actualRect.left = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getCropLeft() {
-        return this.actualRect.left;
-    }
-
-    @Keep
-    private void setCropTop(float f) {
-        this.actualRect.top = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getCropTop() {
-        return this.actualRect.top;
-    }
-
-    @Keep
-    private void setCropRight(float f) {
-        this.actualRect.right = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getCropRight() {
-        return this.actualRect.right;
-    }
-
-    @Keep
-    private void setCropBottom(float f) {
-        this.actualRect.bottom = f;
-        invalidate();
-    }
-
-    @Keep
-    public float getCropBottom() {
-        return this.actualRect.bottom;
-    }
-
-    public float getCropCenterX() {
-        RectF rectF = this.actualRect;
-        return (rectF.left + rectF.right) / 2.0f;
-    }
-
-    public float getCropCenterY() {
-        RectF rectF = this.actualRect;
-        return (rectF.top + rectF.bottom) / 2.0f;
-    }
-
-    public float getCropWidth() {
-        RectF rectF = this.actualRect;
-        return rectF.right - rectF.left;
-    }
-
-    public float getCropHeight() {
-        RectF rectF = this.actualRect;
-        return rectF.bottom - rectF.top;
-    }
-
-    public RectF getTargetRectToFill() {
-        return getTargetRectToFill(getAspectRatio());
-    }
-
-    public RectF getTargetRectToFill(float f) {
-        calculateRect(this.targetRect, f);
-        return this.targetRect;
-    }
-
-    public void calculateRect(RectF rectF, float f) {
-        float f2;
-        float f3;
-        float f4;
-        float f5;
-        float f6 = (Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight;
-        float measuredHeight = (getMeasuredHeight() - this.bottomPadding) - f6;
-        float measuredWidth = getMeasuredWidth() / measuredHeight;
-        float min = Math.min(getMeasuredWidth(), measuredHeight) - (this.sidePadding * 2.0f);
-        float measuredWidth2 = getMeasuredWidth();
-        float f7 = this.sidePadding * 2.0f;
-        float f8 = measuredWidth2 - f7;
-        float f9 = measuredHeight - f7;
-        float measuredWidth3 = getMeasuredWidth() / 2.0f;
-        float f10 = f6 + (measuredHeight / 2.0f);
-        if (Math.abs(1.0f - f) < 1.0E-4d) {
-            float f11 = min / 2.0f;
-            f5 = measuredWidth3 - f11;
-            f4 = f10 - f11;
-            f2 = measuredWidth3 + f11;
-            f3 = f10 + f11;
-        } else {
-            if (f - measuredWidth <= 1.0E-4d) {
-                float f12 = f9 * f;
-                if (f12 <= f8) {
-                    float f13 = f12 / 2.0f;
-                    f5 = measuredWidth3 - f13;
-                    float f14 = f9 / 2.0f;
-                    float f15 = f10 - f14;
-                    f2 = measuredWidth3 + f13;
-                    f3 = f10 + f14;
-                    f4 = f15;
-                }
-            }
-            float f16 = f8 / 2.0f;
-            float f17 = measuredWidth3 - f16;
-            float f18 = (f8 / f) / 2.0f;
-            float f19 = f10 - f18;
-            f2 = measuredWidth3 + f16;
-            f3 = f10 + f18;
-            f4 = f19;
-            f5 = f17;
-        }
-        rectF.set(f5, f4, f2, f3);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.isDragging) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    public void updateStatusShow(boolean z) {
-        try {
-            View decorView = ((Activity) getContext()).getWindow().getDecorView();
-            int systemUiVisibility = decorView.getSystemUiVisibility();
-            decorView.setSystemUiVisibility(z ? systemUiVisibility | 4 : systemUiVisibility & (-5));
-        } catch (Exception unused) {
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        int x = (int) (motionEvent.getX() - ((ViewGroup) getParent()).getX());
-        int y = (int) (motionEvent.getY() - ((ViewGroup) getParent()).getY());
-        float f = (Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            if (this.freeform) {
-                float f2 = x;
-                float f3 = y;
-                if (this.topLeftCorner.contains(f2, f3)) {
-                    this.activeControl = Control.TOP_LEFT;
-                } else if (this.topRightCorner.contains(f2, f3)) {
-                    this.activeControl = Control.TOP_RIGHT;
-                } else if (this.bottomLeftCorner.contains(f2, f3)) {
-                    this.activeControl = Control.BOTTOM_LEFT;
-                } else if (this.bottomRightCorner.contains(f2, f3)) {
-                    this.activeControl = Control.BOTTOM_RIGHT;
-                } else if (this.leftEdge.contains(f2, f3)) {
-                    this.activeControl = Control.LEFT;
-                } else if (this.topEdge.contains(f2, f3)) {
-                    this.activeControl = Control.TOP;
-                } else if (this.rightEdge.contains(f2, f3)) {
-                    this.activeControl = Control.RIGHT;
-                } else if (this.bottomEdge.contains(f2, f3)) {
-                    this.activeControl = Control.BOTTOM;
-                } else {
-                    this.activeControl = Control.NONE;
-                    return false;
-                }
-                this.previousX = x;
-                this.previousY = y;
-                setGridType(GridType.MAJOR, false);
-                this.isDragging = true;
-                updateStatusShow(true);
-                AreaViewListener areaViewListener = this.listener;
-                if (areaViewListener != null) {
-                    areaViewListener.onAreaChangeBegan();
-                }
-                return true;
-            }
-            this.activeControl = Control.NONE;
-            return false;
-        }
-        if (actionMasked == 1 || actionMasked == 3) {
-            this.isDragging = false;
-            updateStatusShow(false);
-            Control control = this.activeControl;
-            Control control2 = Control.NONE;
-            if (control == control2) {
-                return false;
-            }
-            this.activeControl = control2;
-            AreaViewListener areaViewListener2 = this.listener;
-            if (areaViewListener2 != null) {
-                areaViewListener2.onAreaChangeEnded();
-            }
-            return true;
-        }
-        if (actionMasked != 2 || this.activeControl == Control.NONE) {
-            return false;
-        }
-        this.tempRect.set(this.actualRect);
-        float f4 = x - this.previousX;
-        float f5 = y - this.previousY;
-        this.previousX = x;
-        this.previousY = y;
-        boolean z = Math.abs(f4) > Math.abs(f5);
-        switch (AnonymousClass3.$SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[this.activeControl.ordinal()]) {
-            case 1:
-                RectF rectF = this.tempRect;
-                rectF.left += f4;
-                rectF.top += f5;
-                if (this.lockAspectRatio > 0.0f) {
-                    float width = rectF.width();
-                    float height = this.tempRect.height();
-                    if (z) {
-                        constrainRectByWidth(this.tempRect, this.lockAspectRatio);
-                    } else {
-                        constrainRectByHeight(this.tempRect, this.lockAspectRatio);
-                    }
-                    RectF rectF2 = this.tempRect;
-                    rectF2.left -= rectF2.width() - width;
-                    RectF rectF3 = this.tempRect;
-                    rectF3.top -= rectF3.width() - height;
-                    break;
-                }
-                break;
-            case 2:
-                RectF rectF4 = this.tempRect;
-                rectF4.right += f4;
-                rectF4.top += f5;
-                if (this.lockAspectRatio > 0.0f) {
-                    float height2 = rectF4.height();
-                    if (z) {
-                        constrainRectByWidth(this.tempRect, this.lockAspectRatio);
-                    } else {
-                        constrainRectByHeight(this.tempRect, this.lockAspectRatio);
-                    }
-                    RectF rectF5 = this.tempRect;
-                    rectF5.top -= rectF5.width() - height2;
-                    break;
-                }
-                break;
-            case 3:
-                RectF rectF6 = this.tempRect;
-                rectF6.left += f4;
-                rectF6.bottom += f5;
-                if (this.lockAspectRatio > 0.0f) {
-                    float width2 = rectF6.width();
-                    if (z) {
-                        constrainRectByWidth(this.tempRect, this.lockAspectRatio);
-                    } else {
-                        constrainRectByHeight(this.tempRect, this.lockAspectRatio);
-                    }
-                    RectF rectF7 = this.tempRect;
-                    rectF7.left -= rectF7.width() - width2;
-                    break;
-                }
-                break;
-            case 4:
-                RectF rectF8 = this.tempRect;
-                rectF8.right += f4;
-                rectF8.bottom += f5;
-                float f6 = this.lockAspectRatio;
-                if (f6 > 0.0f) {
-                    if (z) {
-                        constrainRectByWidth(rectF8, f6);
-                        break;
-                    } else {
-                        constrainRectByHeight(rectF8, f6);
-                        break;
-                    }
-                }
-                break;
-            case 5:
-                RectF rectF9 = this.tempRect;
-                rectF9.top += f5;
-                float f7 = this.lockAspectRatio;
-                if (f7 > 0.0f) {
-                    constrainRectByHeight(rectF9, f7);
-                    break;
-                }
-                break;
-            case 6:
-                RectF rectF10 = this.tempRect;
-                rectF10.left += f4;
-                float f8 = this.lockAspectRatio;
-                if (f8 > 0.0f) {
-                    constrainRectByWidth(rectF10, f8);
-                    break;
-                }
-                break;
-            case 7:
-                RectF rectF11 = this.tempRect;
-                rectF11.right += f4;
-                float f9 = this.lockAspectRatio;
-                if (f9 > 0.0f) {
-                    constrainRectByWidth(rectF11, f9);
-                    break;
-                }
-                break;
-            case 8:
-                RectF rectF12 = this.tempRect;
-                rectF12.bottom += f5;
-                float f10 = this.lockAspectRatio;
-                if (f10 > 0.0f) {
-                    constrainRectByHeight(rectF12, f10);
-                    break;
-                }
-                break;
-        }
-        RectF rectF13 = this.tempRect;
-        float f11 = rectF13.left;
-        float f12 = this.sidePadding;
-        if (f11 < f12) {
-            float f13 = this.lockAspectRatio;
-            if (f13 > 0.0f) {
-                rectF13.bottom = rectF13.top + ((rectF13.right - f12) / f13);
-            }
-            rectF13.left = f12;
-        } else if (rectF13.right > getWidth() - this.sidePadding) {
-            this.tempRect.right = getWidth() - this.sidePadding;
-            if (this.lockAspectRatio > 0.0f) {
-                RectF rectF14 = this.tempRect;
-                rectF14.bottom = rectF14.top + (rectF14.width() / this.lockAspectRatio);
-            }
-        }
-        float f14 = this.sidePadding;
-        float f15 = f + f14;
-        float f16 = this.bottomPadding + f14;
-        RectF rectF15 = this.tempRect;
-        if (rectF15.top < f15) {
-            float f17 = this.lockAspectRatio;
-            if (f17 > 0.0f) {
-                rectF15.right = rectF15.left + ((rectF15.bottom - f15) * f17);
-            }
-            rectF15.top = f15;
-        } else if (rectF15.bottom > getHeight() - f16) {
-            this.tempRect.bottom = getHeight() - f16;
-            if (this.lockAspectRatio > 0.0f) {
-                RectF rectF16 = this.tempRect;
-                rectF16.right = rectF16.left + (rectF16.height() * this.lockAspectRatio);
-            }
-        }
-        float width3 = this.tempRect.width();
-        float f18 = this.minWidth;
-        if (width3 < f18) {
-            RectF rectF17 = this.tempRect;
-            rectF17.right = rectF17.left + f18;
-        }
-        float height3 = this.tempRect.height();
-        float f19 = this.minWidth;
-        if (height3 < f19) {
-            RectF rectF18 = this.tempRect;
-            rectF18.bottom = rectF18.top + f19;
-        }
-        float f20 = this.lockAspectRatio;
-        if (f20 > 0.0f) {
-            if (f20 < 1.0f) {
-                float width4 = this.tempRect.width();
-                float f21 = this.minWidth;
-                if (width4 <= f21) {
-                    RectF rectF19 = this.tempRect;
-                    rectF19.right = rectF19.left + f21;
-                    rectF19.bottom = rectF19.top + (rectF19.width() / this.lockAspectRatio);
-                }
-            } else {
-                float height4 = this.tempRect.height();
-                float f22 = this.minWidth;
-                if (height4 <= f22) {
-                    RectF rectF20 = this.tempRect;
-                    rectF20.bottom = rectF20.top + f22;
-                    rectF20.right = rectF20.left + (rectF20.height() * this.lockAspectRatio);
-                }
-            }
-        }
-        setActualRect(this.tempRect);
-        AreaViewListener areaViewListener3 = this.listener;
-        if (areaViewListener3 != null) {
-            areaViewListener3.onAreaChange();
-        }
-        return true;
-    }
-
-    static class AnonymousClass3 {
-        static final int[] $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control;
-
-        static {
-            int[] iArr = new int[Control.values().length];
-            $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control = iArr;
-            try {
-                iArr[Control.TOP_LEFT.ordinal()] = 1;
-            } catch (NoSuchFieldError unused) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.TOP_RIGHT.ordinal()] = 2;
-            } catch (NoSuchFieldError unused2) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM_LEFT.ordinal()] = 3;
-            } catch (NoSuchFieldError unused3) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM_RIGHT.ordinal()] = 4;
-            } catch (NoSuchFieldError unused4) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.TOP.ordinal()] = 5;
-            } catch (NoSuchFieldError unused5) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.LEFT.ordinal()] = 6;
-            } catch (NoSuchFieldError unused6) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.RIGHT.ordinal()] = 7;
-            } catch (NoSuchFieldError unused7) {
-            }
-            try {
-                $SwitchMap$org$telegram$ui$Components$Crop$CropAreaView$Control[Control.BOTTOM.ordinal()] = 8;
-            } catch (NoSuchFieldError unused8) {
-            }
-        }
-    }
-
-    private void constrainRectByWidth(RectF rectF, float f) {
-        float width = rectF.width();
-        rectF.right = rectF.left + width;
-        rectF.bottom = rectF.top + (width / f);
-    }
-
-    private void constrainRectByHeight(RectF rectF, float f) {
-        float height = rectF.height();
-        rectF.right = rectF.left + (f * height);
-        rectF.bottom = rectF.top + height;
-    }
-
-    public void getCropRect(RectF rectF) {
-        rectF.set(this.actualRect);
-    }
-
-    public void setSubtitle(String str) {
-        this.subtitle = str;
-        if (getMeasuredWidth() > 0) {
-            updateSubtitle();
-        }
     }
 }

@@ -16,6 +16,25 @@ public class RecyclerListViewScroller {
         this.recyclerListView = recyclerListView;
     }
 
+    public void lambda$smoothScrollBy$0(int i, ValueAnimator valueAnimator) {
+        int floatValue = (int) (i * ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        this.recyclerListView.scrollBy(0, floatValue - this.lastScrolled);
+        this.lastScrolled = floatValue;
+    }
+
+    public void cancel() {
+        ValueAnimator valueAnimator = this.valueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.valueAnimator.cancel();
+            this.valueAnimator = null;
+        }
+    }
+
+    public boolean isRunning() {
+        return this.valueAnimator != null;
+    }
+
     public void smoothScrollBy(int i) {
         smoothScrollBy(i, 200L, CubicBezierInterpolator.DEFAULT);
     }
@@ -46,24 +65,5 @@ public class RecyclerListViewScroller {
         this.valueAnimator.setDuration(j);
         this.valueAnimator.setInterpolator(interpolator);
         this.valueAnimator.start();
-    }
-
-    public void lambda$smoothScrollBy$0(int i, ValueAnimator valueAnimator) {
-        int floatValue = (int) (i * ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        this.recyclerListView.scrollBy(0, floatValue - this.lastScrolled);
-        this.lastScrolled = floatValue;
-    }
-
-    public void cancel() {
-        ValueAnimator valueAnimator = this.valueAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.valueAnimator.cancel();
-            this.valueAnimator = null;
-        }
-    }
-
-    public boolean isRunning() {
-        return this.valueAnimator != null;
     }
 }

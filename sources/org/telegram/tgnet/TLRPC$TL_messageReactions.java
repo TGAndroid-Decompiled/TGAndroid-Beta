@@ -73,14 +73,14 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
         int size = this.results.size();
         abstractSerializedData.writeInt32(size);
         for (int i4 = 0; i4 < size; i4++) {
-            this.results.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$ReactionCount) this.results.get(i4)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.recent_reactions.size();
             abstractSerializedData.writeInt32(size2);
             for (int i5 = 0; i5 < size2; i5++) {
-                this.recent_reactions.get(i5).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessagePeerReaction) this.recent_reactions.get(i5)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {
@@ -88,7 +88,7 @@ public class TLRPC$TL_messageReactions extends TLRPC$MessageReactions {
             int size3 = this.top_reactors.size();
             abstractSerializedData.writeInt32(size3);
             for (int i6 = 0; i6 < size3; i6++) {
-                this.top_reactors.get(i6).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageReactor) this.top_reactors.get(i6)).serializeToStream(abstractSerializedData);
             }
         }
     }

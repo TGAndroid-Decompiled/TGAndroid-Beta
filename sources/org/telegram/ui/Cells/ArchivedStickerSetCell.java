@@ -4,10 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Property;
@@ -17,28 +15,16 @@ import android.widget.Button;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.ViewHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
     private final ProgressButton addButton;
     private AnimatorSet animatorSet;
@@ -129,9 +115,60 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         toggle();
     }
 
+    private void syncButtons(boolean z) {
+        if (this.checkable) {
+            AnimatorSet animatorSet = this.animatorSet;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            boolean z2 = this.checked;
+            float f = z2 ? 1.0f : 0.0f;
+            float f2 = z2 ? 0.0f : 1.0f;
+            if (!z) {
+                this.deleteButton.setVisibility(z2 ? 0 : 4);
+                this.deleteButton.setAlpha(f);
+                this.deleteButton.setScaleX(f);
+                this.deleteButton.setScaleY(f);
+                this.addButton.setVisibility(this.checked ? 4 : 0);
+                this.addButton.setAlpha(f2);
+                this.addButton.setScaleX(f2);
+                this.addButton.setScaleY(f2);
+                return;
+            }
+            this.currentButton = z2 ? this.deleteButton : this.addButton;
+            this.addButton.setVisibility(0);
+            this.deleteButton.setVisibility(0);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.animatorSet = animatorSet2;
+            animatorSet2.setDuration(250L);
+            AnimatorSet animatorSet3 = this.animatorSet;
+            Button button = this.deleteButton;
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(button, (Property<Button, Float>) property, f);
+            Button button2 = this.deleteButton;
+            Property property2 = View.SCALE_X;
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(button2, (Property<Button, Float>) property2, f);
+            Button button3 = this.deleteButton;
+            Property property3 = View.SCALE_Y;
+            animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(button3, (Property<Button, Float>) property3, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, f2));
+            this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    (ArchivedStickerSetCell.this.currentButton == ArchivedStickerSetCell.this.addButton ? ArchivedStickerSetCell.this.deleteButton : ArchivedStickerSetCell.this.addButton).setVisibility(4);
+                }
+            });
+            this.animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
+            this.animatorSet.start();
+        }
+    }
+
+    public TLRPC$StickerSetCovered getStickersSet() {
+        return this.stickersSet;
+    }
+
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    public boolean isChecked() {
+        return this.checked;
     }
 
     @Override
@@ -149,146 +186,9 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         }
     }
 
-    public void setDrawProgress(boolean z, boolean z2) {
-        ProgressButton progressButton = this.addButton;
-        if (progressButton != null) {
-            progressButton.setDrawProgress(z, z2);
-        }
-    }
-
-    public void setStickersSet(TLRPC$StickerSetCovered tLRPC$StickerSetCovered, boolean z) {
-        ImageLocation forSticker;
-        this.needDivider = z;
-        this.stickersSet = tLRPC$StickerSetCovered;
-        setWillNotDraw(!z);
-        this.textView.setText(this.stickersSet.set.title);
-        TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
-        if (tLRPC$StickerSet.emojis) {
-            this.valueTextView.setText(LocaleController.formatPluralString("EmojiCount", tLRPC$StickerSet.count, new Object[0]));
-        } else {
-            this.valueTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSet.count, new Object[0]));
-        }
-        TLRPC$Document tLRPC$Document = null;
-        if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
-            ArrayList<TLRPC$Document> arrayList = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
-            if (arrayList == null) {
-                return;
-            }
-            long j = tLRPC$StickerSetCovered.set.thumb_document_id;
-            int i = 0;
-            while (true) {
-                if (i < arrayList.size()) {
-                    TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-                    if (tLRPC$Document2 != null && tLRPC$Document2.id == j) {
-                        tLRPC$Document = tLRPC$Document2;
-                        break;
-                    }
-                    i++;
-                } else {
-                    break;
-                }
-            }
-            if (tLRPC$Document == null && !arrayList.isEmpty()) {
-                tLRPC$Document = arrayList.get(0);
-            }
-        } else {
-            TLRPC$Document tLRPC$Document3 = tLRPC$StickerSetCovered.cover;
-            if (tLRPC$Document3 != null) {
-                tLRPC$Document = tLRPC$Document3;
-            } else if (!tLRPC$StickerSetCovered.covers.isEmpty()) {
-                tLRPC$Document = tLRPC$StickerSetCovered.covers.get(0);
-            }
-        }
-        if (tLRPC$Document != null) {
-            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$StickerSetCovered.set.thumbs, 90);
-            if (closestPhotoSizeWithSize == null) {
-                closestPhotoSizeWithSize = tLRPC$Document;
-            }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSetCovered.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
-            boolean z2 = closestPhotoSizeWithSize instanceof TLRPC$Document;
-            if (z2) {
-                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document);
-            } else {
-                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$StickerSetCovered.set.thumb_version);
-            }
-            ImageLocation imageLocation = forSticker;
-            if (z2 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoSticker(tLRPC$Document))) {
-                if (svgThumb != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", svgThumb, 0, tLRPC$StickerSetCovered);
-                    return;
-                } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", imageLocation, (String) null, 0, tLRPC$StickerSetCovered);
-                    return;
-                }
-            }
-            if (imageLocation != null && imageLocation.imageType == 1) {
-                this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, tLRPC$StickerSetCovered);
-                return;
-            } else {
-                this.imageView.setImage(imageLocation, "50_50", "webp", svgThumb, tLRPC$StickerSetCovered);
-                return;
-            }
-        }
-        this.imageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, tLRPC$StickerSetCovered);
-    }
-
-    public TLRPC$StickerSetCovered getStickersSet() {
-        return this.stickersSet;
-    }
-
-    private void syncButtons(boolean z) {
-        if (this.checkable) {
-            AnimatorSet animatorSet = this.animatorSet;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            boolean z2 = this.checked;
-            float f = z2 ? 1.0f : 0.0f;
-            float f2 = z2 ? 0.0f : 1.0f;
-            if (z) {
-                this.currentButton = z2 ? this.deleteButton : this.addButton;
-                this.addButton.setVisibility(0);
-                this.deleteButton.setVisibility(0);
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                this.animatorSet = animatorSet2;
-                animatorSet2.setDuration(250L);
-                AnimatorSet animatorSet3 = this.animatorSet;
-                Button button = this.deleteButton;
-                Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(button, (Property<Button, Float>) property, f);
-                Button button2 = this.deleteButton;
-                Property property2 = View.SCALE_X;
-                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(button2, (Property<Button, Float>) property2, f);
-                Button button3 = this.deleteButton;
-                Property property3 = View.SCALE_Y;
-                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(button3, (Property<Button, Float>) property3, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, f2));
-                this.animatorSet.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (ArchivedStickerSetCell.this.currentButton == ArchivedStickerSetCell.this.addButton) {
-                            ArchivedStickerSetCell.this.deleteButton.setVisibility(4);
-                        } else {
-                            ArchivedStickerSetCell.this.addButton.setVisibility(4);
-                        }
-                    }
-                });
-                this.animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
-                this.animatorSet.start();
-                return;
-            }
-            this.deleteButton.setVisibility(z2 ? 0 : 4);
-            this.deleteButton.setAlpha(f);
-            this.deleteButton.setScaleX(f);
-            this.deleteButton.setScaleY(f);
-            this.addButton.setVisibility(this.checked ? 4 : 0);
-            this.addButton.setAlpha(f2);
-            this.addButton.setScaleX(f2);
-            this.addButton.setScaleY(f2);
-        }
-    }
-
-    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
-        this.onCheckedChangeListener = onCheckedChangeListener;
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
     @Override
@@ -313,9 +213,19 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         onCheckedChangeListener.onCheckedChanged(this, z);
     }
 
-    @Override
-    public boolean isChecked() {
-        return this.checked;
+    public void setDrawProgress(boolean z, boolean z2) {
+        ProgressButton progressButton = this.addButton;
+        if (progressButton != null) {
+            progressButton.setDrawProgress(z, z2);
+        }
+    }
+
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
+        this.onCheckedChangeListener = onCheckedChangeListener;
+    }
+
+    public void setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered r13, boolean r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ArchivedStickerSetCell.setStickersSet(org.telegram.tgnet.TLRPC$StickerSetCovered, boolean):void");
     }
 
     @Override

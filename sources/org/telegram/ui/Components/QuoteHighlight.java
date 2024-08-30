@@ -5,6 +5,7 @@ import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.text.Layout;
+import android.text.StaticLayout;
 import android.view.View;
 import android.view.ViewParent;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class QuoteHighlight extends Path {
     private float minX;
     public final Paint paint;
     private final CornerPath path;
-    public final ArrayList<Integer> quotesToExpand;
-    private final ArrayList<Rect> rectangles;
+    public final ArrayList quotesToExpand;
+    private final ArrayList rectangles;
     public final int start;
     private final AnimatedFloat t;
 
@@ -39,13 +40,13 @@ public class QuoteHighlight extends Path {
         }
     }
 
-    public QuoteHighlight(final View view, final ViewParent viewParent, int i, ArrayList<MessageObject.TextLayoutBlock> arrayList, int i2, int i3, float f) {
+    public QuoteHighlight(final View view, final ViewParent viewParent, int i, ArrayList arrayList, int i2, int i3, float f) {
         int i4;
         Paint paint = new Paint(1);
         this.paint = paint;
         this.path = new CornerPath();
-        this.rectangles = new ArrayList<>();
-        this.quotesToExpand = new ArrayList<>();
+        this.rectangles = new ArrayList();
+        this.quotesToExpand = new ArrayList();
         this.t = new AnimatedFloat(0.0f, new Runnable() {
             @Override
             public final void run() {
@@ -61,7 +62,7 @@ public class QuoteHighlight extends Path {
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(4.0f)));
         boolean z = false;
         for (int i5 = 0; i5 < arrayList.size(); i5++) {
-            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i5);
+            MessageObject.TextLayoutBlock textLayoutBlock = (MessageObject.TextLayoutBlock) arrayList.get(i5);
             if (textLayoutBlock != null && i2 <= textLayoutBlock.charactersEnd && i3 >= (i4 = textLayoutBlock.charactersOffset)) {
                 int max = Math.max(0, i2 - i4);
                 int i6 = textLayoutBlock.charactersOffset;
@@ -74,10 +75,11 @@ public class QuoteHighlight extends Path {
                 this.currentOffsetY = textLayoutBlock.textYOffset(arrayList) + textLayoutBlock.padTop;
                 this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z = z || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
+                StaticLayout staticLayout = textLayoutBlock.textLayout;
                 if (z) {
-                    textLayoutBlock.textLayout.getSelectionPath(max, min, this);
+                    staticLayout.getSelectionPath(max, min, this);
                 } else {
-                    getSelectionPath(textLayoutBlock.textLayout, max, min);
+                    getSelectionPath(staticLayout, max, min);
                 }
                 if (textLayoutBlock.quoteCollapse && textLayoutBlock.collapsed()) {
                     this.quotesToExpand.add(Integer.valueOf(textLayoutBlock.index));
@@ -85,13 +87,36 @@ public class QuoteHighlight extends Path {
             }
         }
         if (this.rectangles.size() > 0) {
-            Rect rect = this.rectangles.get(0);
-            ArrayList<Rect> arrayList2 = this.rectangles;
-            Rect rect2 = arrayList2.get(arrayList2.size() - 1);
+            Rect rect = (Rect) this.rectangles.get(0);
+            ArrayList arrayList2 = this.rectangles;
+            Rect rect2 = (Rect) arrayList2.get(arrayList2.size() - 1);
             rect.first = true;
             rect.top -= AndroidUtilities.dp(0.66f);
             rect2.last = true;
             rect2.bottom += AndroidUtilities.dp(0.66f);
+        }
+    }
+
+    private void getSelectionPath(Layout layout, int i, int i2) {
+        if (i == i2) {
+            return;
+        }
+        if (i2 < i) {
+            i2 = i;
+            i = i2;
+        }
+        int lineForOffset = layout.getLineForOffset(i);
+        int lineForOffset2 = layout.getLineForOffset(i2);
+        int i3 = lineForOffset;
+        while (i3 <= lineForOffset2) {
+            int lineStart = layout.getLineStart(i3);
+            int lineEnd = layout.getLineEnd(i3);
+            if (lineEnd != lineStart && (lineStart + 1 != lineEnd || !Character.isWhitespace(layout.getText().charAt(lineStart)))) {
+                float lineLeft = (i3 != lineForOffset || i <= lineStart) ? layout.getLineLeft(i3) : layout.getPrimaryHorizontal(i);
+                float lineRight = (i3 != lineForOffset2 || i2 >= lineEnd) ? layout.getLineRight(i3) : layout.getPrimaryHorizontal(i2);
+                addRect(Math.min(lineLeft, lineRight), layout.getLineTop(i3), Math.max(lineLeft, lineRight), layout.getLineBottom(i3));
+            }
+            i3++;
         }
     }
 
@@ -102,67 +127,6 @@ public class QuoteHighlight extends Path {
         if (viewParent instanceof View) {
             ((View) viewParent).invalidate();
         }
-    }
-
-    private void getSelectionPath(Layout layout, int i, int i2) {
-        float lineLeft;
-        float lineRight;
-        if (i == i2) {
-            return;
-        }
-        if (i2 < i) {
-            i2 = i;
-            i = i2;
-        }
-        int lineForOffset = layout.getLineForOffset(i);
-        int lineForOffset2 = layout.getLineForOffset(i2);
-        for (int i3 = lineForOffset; i3 <= lineForOffset2; i3++) {
-            int lineStart = layout.getLineStart(i3);
-            int lineEnd = layout.getLineEnd(i3);
-            if (lineEnd != lineStart && (lineStart + 1 != lineEnd || !Character.isWhitespace(layout.getText().charAt(lineStart)))) {
-                if (i3 == lineForOffset && i > lineStart) {
-                    lineLeft = layout.getPrimaryHorizontal(i);
-                } else {
-                    lineLeft = layout.getLineLeft(i3);
-                }
-                if (i3 == lineForOffset2 && i2 < lineEnd) {
-                    lineRight = layout.getPrimaryHorizontal(i2);
-                } else {
-                    lineRight = layout.getLineRight(i3);
-                }
-                addRect(Math.min(lineLeft, lineRight), layout.getLineTop(i3), Math.max(lineLeft, lineRight), layout.getLineBottom(i3));
-            }
-        }
-    }
-
-    public float getT() {
-        return this.t.set(1.0f);
-    }
-
-    public void draw(Canvas canvas, float f, float f2, android.graphics.Rect rect, float f3) {
-        float f4 = this.t.set(1.0f);
-        canvas.save();
-        canvas.translate(f, f2);
-        this.path.rewind();
-        for (int i = 0; i < this.rectangles.size(); i++) {
-            Rect rect2 = this.rectangles.get(i);
-            this.path.addRect(AndroidUtilities.lerp(rect.left - f, rect2.left, f4), AndroidUtilities.lerp(rect2.first ? rect.top - f2 : rect2.prevTop, rect2.top, f4), AndroidUtilities.lerp(rect.right - f, rect2.right, f4), AndroidUtilities.lerp(rect2.last ? rect.bottom - f2 : rect2.nextBottom, rect2.bottom, f4), Path.Direction.CW);
-        }
-        this.path.closeRects();
-        int alpha = this.paint.getAlpha();
-        this.paint.setAlpha((int) (alpha * f3));
-        canvas.drawPath(this.path, this.paint);
-        this.paint.setAlpha(alpha);
-        canvas.restore();
-    }
-
-    public boolean done() {
-        return this.t.get() >= 1.0f;
-    }
-
-    @Override
-    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-        addRect(f, f2, f3, f4);
     }
 
     public void addRect(float f, float f2, float f3, float f4) {
@@ -189,5 +153,35 @@ public class QuoteHighlight extends Path {
         }
         this.rectangles.add(rect);
         this.lastRect = rect;
+    }
+
+    @Override
+    public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        addRect(f, f2, f3, f4);
+    }
+
+    public boolean done() {
+        return this.t.get() >= 1.0f;
+    }
+
+    public void draw(Canvas canvas, float f, float f2, android.graphics.Rect rect, float f3) {
+        float f4 = this.t.set(1.0f);
+        canvas.save();
+        canvas.translate(f, f2);
+        this.path.rewind();
+        for (int i = 0; i < this.rectangles.size(); i++) {
+            Rect rect2 = (Rect) this.rectangles.get(i);
+            this.path.addRect(AndroidUtilities.lerp(rect.left - f, rect2.left, f4), AndroidUtilities.lerp(rect2.first ? rect.top - f2 : rect2.prevTop, rect2.top, f4), AndroidUtilities.lerp(rect.right - f, rect2.right, f4), AndroidUtilities.lerp(rect2.last ? rect.bottom - f2 : rect2.nextBottom, rect2.bottom, f4), Path.Direction.CW);
+        }
+        this.path.closeRects();
+        int alpha = this.paint.getAlpha();
+        this.paint.setAlpha((int) (alpha * f3));
+        canvas.drawPath(this.path, this.paint);
+        this.paint.setAlpha(alpha);
+        canvas.restore();
+    }
+
+    public float getT() {
+        return this.t.set(1.0f);
     }
 }

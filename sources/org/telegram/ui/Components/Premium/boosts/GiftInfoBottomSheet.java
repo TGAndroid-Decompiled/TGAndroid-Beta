@@ -37,31 +37,101 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private final boolean isUnused;
     private String slug;
 
-    public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
-        if (baseFragment == null) {
-            return;
+    public class AnonymousClass2 extends GiftInfoAdapter {
+        AnonymousClass2(Theme.ResourcesProvider resourcesProvider) {
+            super(resourcesProvider);
         }
-        final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
-        if (progress != null) {
-            progress.init();
-            progress.onCancel(new Runnable() {
+
+        public void lambda$afterCodeApplied$0() {
+            GiftInfoBottomSheet.this.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(GiftInfoBottomSheet.this.getBaseFragment(), ((BottomSheet) GiftInfoBottomSheet.this).currentAccount, null, null, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).setAnimateConfetti(true).setOutboundGift(true));
+        }
+
+        @Override
+        protected void afterCodeApplied() {
+            AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    atomicBoolean.set(true);
+                    GiftInfoBottomSheet.AnonymousClass2.this.lambda$afterCodeApplied$0();
                 }
-            });
+            }, 200L);
         }
-        BoostRepository.checkGiftCode(str, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                GiftInfoBottomSheet.lambda$show$1(atomicBoolean, baseFragment, str, progress, (TLRPC$TL_payments_checkedGiftCode) obj);
+
+        @Override
+        protected void dismiss() {
+            GiftInfoBottomSheet.this.dismiss();
+        }
+
+        @Override
+        public void onHiddenLinkClicked() {
+            String string = LocaleController.getString(((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) ? R.string.BoostingOnlyGiveawayCreatorSeeLink : R.string.BoostingOnlyRecipientCode);
+            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
+            BulletinFactory.of(giftInfoBottomSheet.container, ((BottomSheet) giftInfoBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
+        }
+
+        @Override
+        public void onObjectClicked(TLObject tLObject) {
+            BaseFragment baseFragment;
+            long j;
+            dismiss();
+            if (tLObject instanceof TLRPC$Chat) {
+                baseFragment = GiftInfoBottomSheet.this.getBaseFragment();
+                j = -((TLRPC$Chat) tLObject).id;
+            } else {
+                if (!(tLObject instanceof TLRPC$User)) {
+                    Bundle bundle = new Bundle();
+                    bundle.putLong("chat_id", -DialogObject.getPeerDialogId(GiftInfoBottomSheet.this.giftCode.from_id));
+                    bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
+                    GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
+                    return;
+                }
+                baseFragment = GiftInfoBottomSheet.this.getBaseFragment();
+                j = ((TLRPC$User) tLObject).id;
             }
-        }, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                GiftInfoBottomSheet.lambda$show$2(atomicBoolean, progress, (TLRPC$TL_error) obj);
+            baseFragment.presentFragment(ChatActivity.of(j));
+        }
+    }
+
+    public GiftInfoBottomSheet(BaseFragment baseFragment, boolean z, boolean z2, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str) {
+        super(baseFragment, z, z2);
+        this.isUnused = tLRPC$TL_payments_checkedGiftCode.used_date == 0;
+        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
+        this.slug = str;
+        setApplyTopPadding(false);
+        setApplyBottomPadding(false);
+        fixNavigationBar();
+        updateTitle();
+        this.adapter.init(baseFragment, tLRPC$TL_payments_checkedGiftCode, str, this.container);
+    }
+
+    public static boolean handleIntent(Intent intent, Browser.Progress progress) {
+        String scheme;
+        String path;
+        String lastPathSegment;
+        Uri data = intent.getData();
+        if (data == null || (scheme = data.getScheme()) == null) {
+            return false;
+        }
+        if (scheme.equals("http") || scheme.equals("https")) {
+            String lowerCase = data.getHost().toLowerCase();
+            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null) {
+                return false;
             }
-        });
+            lastPathSegment = data.getLastPathSegment();
+            if (!path.startsWith("/giftcode") || lastPathSegment == null) {
+                return false;
+            }
+        } else {
+            if (!scheme.equals("tg")) {
+                return false;
+            }
+            String uri = data.toString();
+            lastPathSegment = data.getLastPathSegment();
+            if ((!uri.startsWith("tg:giftcode") && !uri.startsWith("tg://giftcode")) || lastPathSegment == null) {
+                return false;
+            }
+        }
+        show(LaunchActivity.getLastFragment(), lastPathSegment, progress);
+        return true;
     }
 
     public static void lambda$show$1(AtomicBoolean atomicBoolean, BaseFragment baseFragment, String str, Browser.Progress progress, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode) {
@@ -95,47 +165,43 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         show(baseFragment, str, null);
     }
 
-    public static boolean handleIntent(Intent intent, Browser.Progress progress) {
-        String scheme;
-        String path;
-        Uri data = intent.getData();
-        if (data == null || (scheme = data.getScheme()) == null) {
-            return false;
+    public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
+        if (baseFragment == null) {
+            return;
         }
-        if (scheme.equals("http") || scheme.equals("https")) {
-            String lowerCase = data.getHost().toLowerCase();
-            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null) {
-                return false;
+        final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
+        if (progress != null) {
+            progress.init();
+            progress.onCancel(new Runnable() {
+                @Override
+                public final void run() {
+                    atomicBoolean.set(true);
+                }
+            });
+        }
+        BoostRepository.checkGiftCode(str, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                GiftInfoBottomSheet.lambda$show$1(atomicBoolean, baseFragment, str, progress, (TLRPC$TL_payments_checkedGiftCode) obj);
             }
-            String lastPathSegment = data.getLastPathSegment();
-            if (!path.startsWith("/giftcode") || lastPathSegment == null) {
-                return false;
+        }, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                GiftInfoBottomSheet.lambda$show$2(atomicBoolean, progress, (TLRPC$TL_error) obj);
             }
-            show(LaunchActivity.getLastFragment(), lastPathSegment, progress);
-            return true;
-        }
-        if (!scheme.equals("tg")) {
-            return false;
-        }
-        String uri = data.toString();
-        String lastPathSegment2 = data.getLastPathSegment();
-        if ((!uri.startsWith("tg:giftcode") && !uri.startsWith("tg://giftcode")) || lastPathSegment2 == null) {
-            return false;
-        }
-        show(LaunchActivity.getLastFragment(), lastPathSegment2, progress);
-        return true;
+        });
     }
 
-    public GiftInfoBottomSheet(BaseFragment baseFragment, boolean z, boolean z2, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str) {
-        super(baseFragment, z, z2);
-        this.isUnused = tLRPC$TL_payments_checkedGiftCode.used_date == 0;
-        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
-        this.slug = str;
-        setApplyTopPadding(false);
-        setApplyBottomPadding(false);
-        fixNavigationBar();
-        updateTitle();
-        this.adapter.init(baseFragment, tLRPC$TL_payments_checkedGiftCode, str, this.container);
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(this.resourcesProvider);
+        this.adapter = anonymousClass2;
+        return anonymousClass2;
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(this.isUnused ? R.string.BoostingGiftLink : R.string.BoostingUsedGiftLink);
     }
 
     @Override
@@ -163,6 +229,11 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             }
 
             @Override
+            public int getTopOffset(int i) {
+                return AndroidUtilities.statusBarHeight;
+            }
+
+            @Override
             public void onBottomOffsetChange(float f) {
                 Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
             }
@@ -176,77 +247,6 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             public void onShow(Bulletin bulletin) {
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
-
-            @Override
-            public int getTopOffset(int i) {
-                return AndroidUtilities.statusBarHeight;
-            }
         });
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return this.isUnused ? LocaleController.getString(R.string.BoostingGiftLink) : LocaleController.getString(R.string.BoostingUsedGiftLink);
-    }
-
-    public class AnonymousClass2 extends GiftInfoAdapter {
-        AnonymousClass2(Theme.ResourcesProvider resourcesProvider) {
-            super(resourcesProvider);
-        }
-
-        @Override
-        protected void dismiss() {
-            GiftInfoBottomSheet.this.dismiss();
-        }
-
-        @Override
-        protected void afterCodeApplied() {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    GiftInfoBottomSheet.AnonymousClass2.this.lambda$afterCodeApplied$0();
-                }
-            }, 200L);
-        }
-
-        public void lambda$afterCodeApplied$0() {
-            GiftInfoBottomSheet.this.getBaseFragment().showDialog(new PremiumPreviewBottomSheet(GiftInfoBottomSheet.this.getBaseFragment(), ((BottomSheet) GiftInfoBottomSheet.this).currentAccount, null, null, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).setAnimateConfetti(true).setOutboundGift(true));
-        }
-
-        @Override
-        public void onObjectClicked(TLObject tLObject) {
-            dismiss();
-            if (tLObject instanceof TLRPC$Chat) {
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC$Chat) tLObject).id));
-                return;
-            }
-            if (tLObject instanceof TLRPC$User) {
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(((TLRPC$User) tLObject).id));
-                return;
-            }
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(GiftInfoBottomSheet.this.giftCode.from_id));
-            bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
-            GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
-        }
-
-        @Override
-        public void onHiddenLinkClicked() {
-            String string;
-            if ((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) {
-                string = LocaleController.getString(R.string.BoostingOnlyGiveawayCreatorSeeLink);
-            } else {
-                string = LocaleController.getString(R.string.BoostingOnlyRecipientCode);
-            }
-            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
-            BulletinFactory.of(giftInfoBottomSheet.container, ((BottomSheet) giftInfoBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
-        }
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        AnonymousClass2 anonymousClass2 = new AnonymousClass2(this.resourcesProvider);
-        this.adapter = anonymousClass2;
-        return anonymousClass2;
     }
 }

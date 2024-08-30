@@ -5,7 +5,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$GeoPoint;
 import org.telegram.tgnet.TLRPC$Reaction;
 
-public class TL_stories$MediaArea extends TLObject {
+public abstract class TL_stories$MediaArea extends TLObject {
     public TL_stories$MediaAreaCoordinates coordinates;
     public boolean dark;
     public int flags;

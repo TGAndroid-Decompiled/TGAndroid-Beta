@@ -8,10 +8,10 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
     public String next_offset;
     public long subscriptions_missing_balance;
     public String subscriptions_next_offset;
-    public ArrayList<TLRPC$StarsSubscription> subscriptions = new ArrayList<>();
-    public ArrayList<TLRPC$StarsTransaction> history = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList subscriptions = new ArrayList();
+    public ArrayList history = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_payments_starsStatus TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1141231252 != i) {
@@ -114,7 +114,7 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
             int size = this.subscriptions.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.subscriptions.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$StarsSubscription) this.subscriptions.get(i)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
@@ -127,7 +127,7 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
         int size2 = this.history.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.history.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$StarsTransaction) this.history.get(i2)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.next_offset);
@@ -136,13 +136,13 @@ public class TLRPC$TL_payments_starsStatus extends TLObject {
         int size3 = this.chats.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.chats.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

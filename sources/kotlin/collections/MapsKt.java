@@ -2,7 +2,7 @@ package kotlin.collections;
 
 import java.util.Map;
 
-public final class MapsKt extends MapsKt___MapsKt {
+public abstract class MapsKt extends MapsKt___MapsKt {
     public static Map emptyMap() {
         return MapsKt__MapsKt.emptyMap();
     }

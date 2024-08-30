@@ -63,7 +63,7 @@ public class TL_stories$TL_storyViews extends TL_stories$StoryViews {
             int size = this.reactions.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.reactions.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$ReactionCount) this.reactions.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {
@@ -74,7 +74,7 @@ public class TL_stories$TL_storyViews extends TL_stories$StoryViews {
             int size2 = this.recent_viewers.size();
             abstractSerializedData.writeInt32(size2);
             for (int i3 = 0; i3 < size2; i3++) {
-                abstractSerializedData.writeInt64(this.recent_viewers.get(i3).longValue());
+                abstractSerializedData.writeInt64(((Long) this.recent_viewers.get(i3)).longValue());
             }
         }
     }

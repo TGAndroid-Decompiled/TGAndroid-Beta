@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class NetworkMonitorAutoDetect$SimpleNetworkCallback$$ExternalSyntheticApiModelOutline0 {
+public abstract class NetworkMonitorAutoDetect$SimpleNetworkCallback$$ExternalSyntheticApiModelOutline0 {
 }

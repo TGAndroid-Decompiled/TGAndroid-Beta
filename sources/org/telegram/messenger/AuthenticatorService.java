@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
-import android.accounts.NetworkErrorException;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +13,17 @@ public class AuthenticatorService extends Service {
     private static Authenticator authenticator;
 
     public static class Authenticator extends AbstractAccountAuthenticator {
+        public Authenticator(Context context) {
+            super(context);
+        }
+
         @Override
-        public Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String str, String str2, String[] strArr, Bundle bundle) throws NetworkErrorException {
+        public Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String str, String str2, String[] strArr, Bundle bundle) {
             return null;
         }
 
         @Override
-        public Bundle confirmCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, Bundle bundle) throws NetworkErrorException {
+        public Bundle confirmCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, Bundle bundle) {
             return null;
         }
 
@@ -30,7 +33,12 @@ public class AuthenticatorService extends Service {
         }
 
         @Override
-        public Bundle getAuthToken(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) throws NetworkErrorException {
+        public Bundle getAccountRemovalAllowed(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account) {
+            return super.getAccountRemovalAllowed(accountAuthenticatorResponse, account);
+        }
+
+        @Override
+        public Bundle getAuthToken(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
             return null;
         }
 
@@ -40,22 +48,13 @@ public class AuthenticatorService extends Service {
         }
 
         @Override
-        public Bundle hasFeatures(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String[] strArr) throws NetworkErrorException {
+        public Bundle hasFeatures(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String[] strArr) {
             return null;
         }
 
         @Override
-        public Bundle updateCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) throws NetworkErrorException {
+        public Bundle updateCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
             return null;
-        }
-
-        public Authenticator(Context context) {
-            super(context);
-        }
-
-        @Override
-        public Bundle getAccountRemovalAllowed(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account) throws NetworkErrorException {
-            return super.getAccountRemovalAllowed(accountAuthenticatorResponse, account);
         }
     }
 

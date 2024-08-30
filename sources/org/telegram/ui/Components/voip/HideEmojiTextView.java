@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.voip;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -10,7 +9,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 
-@SuppressLint({"ViewConstructor"})
 public class HideEmojiTextView extends TextView {
     private final VoIPBackgroundProvider backgroundProvider;
     private final RectF bgRect;

@@ -1,7 +1,7 @@
 package kotlin;
 
-public final class TuplesKt {
-    public static final <A, B> Pair<A, B> to(A a, B b) {
-        return new Pair<>(a, b);
+public abstract class TuplesKt {
+    public static final Pair to(Object obj, Object obj2) {
+        return new Pair(obj, obj2);
     }
 }

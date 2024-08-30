@@ -3,8 +3,8 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
-    public ArrayList<Long> channels = new ArrayList<>();
-    public ArrayList<String> countries_iso2 = new ArrayList<>();
+    public ArrayList channels = new ArrayList();
+    public ArrayList countries_iso2 = new ArrayList();
     public int months;
     public boolean only_new_subscribers;
     public String prize_description;
@@ -63,14 +63,14 @@ public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
         int size = this.channels.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            abstractSerializedData.writeInt64(this.channels.get(i3).longValue());
+            abstractSerializedData.writeInt64(((Long) this.channels.get(i3)).longValue());
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.countries_iso2.size();
             abstractSerializedData.writeInt32(size2);
             for (int i4 = 0; i4 < size2; i4++) {
-                abstractSerializedData.writeString(this.countries_iso2.get(i4));
+                abstractSerializedData.writeString((String) this.countries_iso2.get(i4));
             }
         }
         if ((this.flags & 8) != 0) {

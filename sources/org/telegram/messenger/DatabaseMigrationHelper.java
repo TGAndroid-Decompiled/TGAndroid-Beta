@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 
 public class DatabaseMigrationHelper {
-    public static int migrate(MessagesStorage messagesStorage, int i) throws Exception {
+    public static int migrate(MessagesStorage messagesStorage, int i) {
         SQLiteDatabase sQLiteDatabase;
         MessagesStorage messagesStorage2;
         SQLiteCursor sQLiteCursor;
@@ -24,8 +24,6 @@ public class DatabaseMigrationHelper {
         int i3;
         int i4;
         int i5;
-        NativeByteBuffer nativeByteBuffer2;
-        NativeByteBuffer nativeByteBuffer3;
         SQLiteCursor sQLiteCursor3;
         SQLiteCursor sQLiteCursor4;
         SQLiteCursor sQLiteCursor5;
@@ -186,13 +184,13 @@ public class DatabaseMigrationHelper {
                         tLRPC$TL_chatFull.notify_settings = new TLRPC$TL_peerNotifySettingsEmpty_layer77();
                         tLRPC$TL_chatFull.exported_invite = null;
                         tLRPC$TL_chatFull.participants = TLdeserialize;
-                        NativeByteBuffer nativeByteBuffer4 = new NativeByteBuffer(tLRPC$TL_chatFull.getObjectSize());
-                        tLRPC$TL_chatFull.serializeToStream(nativeByteBuffer4);
+                        NativeByteBuffer nativeByteBuffer2 = new NativeByteBuffer(tLRPC$TL_chatFull.getObjectSize());
+                        tLRPC$TL_chatFull.serializeToStream(nativeByteBuffer2);
                         executeFast2.requery();
                         executeFast2.bindLong(1, intValue2);
-                        executeFast2.bindByteBuffer(2, nativeByteBuffer4);
+                        executeFast2.bindByteBuffer(2, nativeByteBuffer2);
                         executeFast2.step();
-                        nativeByteBuffer4.reuse();
+                        nativeByteBuffer2.reuse();
                     }
                 }
             }
@@ -798,7 +796,7 @@ public class DatabaseMigrationHelper {
                                 i2 = intValue28;
                                 TLdeserialize2.readAttachPath(byteBufferValue6, messagesStorage.getUserConfig().clientUserId);
                                 if (TLdeserialize2.params == null) {
-                                    HashMap<String, String> hashMap = new HashMap<>();
+                                    HashMap hashMap = new HashMap();
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
@@ -833,31 +831,28 @@ public class DatabaseMigrationHelper {
                         executeFast10.bindInteger(7, i3);
                         executeFast10.bindInteger(8, i5);
                         executeFast10.bindInteger(9, intValue24);
+                        NativeByteBuffer nativeByteBuffer3 = nativeByteBuffer;
                         if (nativeByteBuffer != null) {
-                            nativeByteBuffer2 = nativeByteBuffer;
-                            executeFast10.bindByteBuffer(10, nativeByteBuffer2);
+                            executeFast10.bindByteBuffer(10, nativeByteBuffer3);
                         } else {
-                            nativeByteBuffer2 = nativeByteBuffer;
                             executeFast10.bindNull(10);
                         }
                         executeFast10.bindInteger(11, intValue25);
                         executeFast10.bindInteger(12, intValue26);
                         executeFast10.bindInteger(13, intValue27);
                         if (byteBufferValue8 != null) {
-                            nativeByteBuffer3 = byteBufferValue8;
-                            executeFast10.bindByteBuffer(14, nativeByteBuffer3);
+                            executeFast10.bindByteBuffer(14, byteBufferValue8);
                         } else {
-                            nativeByteBuffer3 = byteBufferValue8;
                             executeFast10.bindNull(14);
                         }
                         executeFast10.bindInteger(15, i2);
                         executeFast10.bindInteger(16, i4 > 0 ? 1 : 0);
                         executeFast10.step();
-                        if (nativeByteBuffer2 != null) {
-                            nativeByteBuffer2.reuse();
-                        }
                         if (nativeByteBuffer3 != null) {
                             nativeByteBuffer3.reuse();
+                        }
+                        if (byteBufferValue8 != null) {
+                            byteBufferValue8.reuse();
                         }
                         byteBufferValue6.reuse();
                         database = sQLiteDatabase3;

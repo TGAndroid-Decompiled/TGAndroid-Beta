@@ -5,6 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 
 public class AppStartReceiver extends BroadcastReceiver {
+    public static void lambda$onReceive$0() {
+        SharedConfig.loadConfig();
+        if (SharedConfig.passcodeHash.length() > 0) {
+            SharedConfig.appLocked = true;
+            SharedConfig.saveConfig();
+        }
+        ApplicationLoader.startPushService();
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent == null || !"android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
@@ -16,14 +25,5 @@ public class AppStartReceiver extends BroadcastReceiver {
                 AppStartReceiver.lambda$onReceive$0();
             }
         });
-    }
-
-    public static void lambda$onReceive$0() {
-        SharedConfig.loadConfig();
-        if (SharedConfig.passcodeHash.length() > 0) {
-            SharedConfig.appLocked = true;
-            SharedConfig.saveConfig();
-        }
-        ApplicationLoader.startPushService();
     }
 }

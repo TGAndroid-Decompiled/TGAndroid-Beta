@@ -48,6 +48,18 @@ public class ShareTopicCell extends FrameLayout {
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public long getCurrentDialog() {
+        return this.currentDialog;
+    }
+
+    public long getCurrentTopic() {
+        return this.currentTopic;
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(103.0f), 1073741824));
@@ -60,10 +72,13 @@ public class ShareTopicCell extends FrameLayout {
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
-        } else if (chat != null) {
-            this.nameTextView.setText(tLRPC$TL_forumTopic.title);
         } else {
-            this.nameTextView.setText("");
+            TextView textView = this.nameTextView;
+            if (chat != null) {
+                textView.setText(tLRPC$TL_forumTopic.title);
+            } else {
+                textView.setText("");
+            }
         }
         if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
             this.imageView.setImageDrawable(null);
@@ -82,17 +97,5 @@ public class ShareTopicCell extends FrameLayout {
         this.imageView.setRoundRadius(AndroidUtilities.dp((chat == null || !chat.forum || z) ? 28.0f : 16.0f));
         this.currentDialog = tLRPC$Dialog.id;
         this.currentTopic = tLRPC$TL_forumTopic.id;
-    }
-
-    public long getCurrentDialog() {
-        return this.currentDialog;
-    }
-
-    public long getCurrentTopic() {
-        return this.currentTopic;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

@@ -89,50 +89,54 @@ public class FileUploadOperation {
         this.uploadFirstPartLater = z2;
     }
 
-    public long getTotalFileSize() {
-        return this.totalFileSize;
-    }
-
-    public void setDelegate(FileUploadOperationDelegate fileUploadOperationDelegate) {
-        this.delegate = fileUploadOperationDelegate;
-    }
-
-    public void start() {
-        if (this.state != 0) {
-            return;
-        }
-        this.state = 1;
-        AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$start$0();
+    private void calcTotalPartsCount() {
+        int i;
+        long j;
+        long j2;
+        if (this.uploadFirstPartLater) {
+            boolean z = this.isBigFile;
+            long j3 = this.totalFileSize;
+            if (z) {
+                j2 = this.uploadChunkSize;
+                j = j3 - j2;
+            } else {
+                j = j3 - 1024;
+                j2 = this.uploadChunkSize;
             }
-        });
+            i = ((int) (((j + j2) - 1) / j2)) + 1;
+        } else {
+            long j4 = this.totalFileSize;
+            long j5 = this.uploadChunkSize;
+            i = (int) (((j4 + j5) - 1) / j5);
+        }
+        this.totalPartsCount = i;
     }
 
-    public void lambda$start$0() {
-        this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
-        this.slowNetwork = ApplicationLoader.isConnectionSlow();
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("start upload on slow network = " + this.slowNetwork);
+    private void cleanup() {
+        if (this.preferences == null) {
+            this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
         }
-        int i = this.slowNetwork ? 1 : 8;
-        for (int i2 = 0; i2 < i; i2++) {
-            startUploadRequest();
-        }
-    }
-
-    public void onNetworkChanged(final boolean z) {
-        if (this.state != 1) {
-            return;
-        }
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$onNetworkChanged$1(z);
+        this.preferences.edit().remove(this.fileKey + "_time").remove(this.fileKey + "_size").remove(this.fileKey + "_uploaded").remove(this.fileKey + "_id").remove(this.fileKey + "_iv").remove(this.fileKey + "_key").remove(this.fileKey + "_ivc").commit();
+        try {
+            RandomAccessFile randomAccessFile = this.stream;
+            if (randomAccessFile != null) {
+                randomAccessFile.close();
+                this.stream = null;
             }
-        });
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
+    }
+
+    public void lambda$cancel$2() {
+        for (int i = 0; i < this.requestTokens.size(); i++) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.requestTokens.valueAt(i), true);
+        }
+    }
+
+    public void lambda$checkNewDataAvailable$3(java.lang.Float r7, long r8, long r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$checkNewDataAvailable$3(java.lang.Float, long, long):void");
     }
 
     public void lambda$onNetworkChanged$1(boolean z) {
@@ -173,56 +177,39 @@ public class FileUploadOperation {
         }
     }
 
-    public void cancel() {
-        if (this.state == 3) {
-            return;
+    public void lambda$start$0() {
+        this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
+        this.slowNetwork = ApplicationLoader.isConnectionSlow();
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("start upload on slow network = " + this.slowNetwork);
         }
-        this.state = 2;
+        int i = this.slowNetwork ? 1 : 8;
+        for (int i2 = 0; i2 < i; i2++) {
+            startUploadRequest();
+        }
+    }
+
+    public void lambda$startUploadRequest$4(int r22, int[] r23, int r24, byte[] r25, int r26, int r27, int r28, long r29, org.telegram.tgnet.TLObject r31, org.telegram.tgnet.TLRPC$TL_error r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$startUploadRequest$4(int, int[], int, byte[], int, int, int, long, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    }
+
+    public void lambda$startUploadRequest$5() {
+        if (this.currentUploadRequetsCount < this.maxRequestsCount) {
+            startUploadRequest();
+        }
+    }
+
+    public void lambda$startUploadRequest$6() {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$cancel$2();
-            }
-        });
-        AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
-        this.delegate.didFailedUploadingFile(this);
-        cleanup();
-    }
-
-    public void lambda$cancel$2() {
-        for (int i = 0; i < this.requestTokens.size(); i++) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.requestTokens.valueAt(i), true);
-        }
-    }
-
-    private void cleanup() {
-        if (this.preferences == null) {
-            this.preferences = ApplicationLoader.applicationContext.getSharedPreferences("uploadinfo", 0);
-        }
-        this.preferences.edit().remove(this.fileKey + "_time").remove(this.fileKey + "_size").remove(this.fileKey + "_uploaded").remove(this.fileKey + "_id").remove(this.fileKey + "_iv").remove(this.fileKey + "_key").remove(this.fileKey + "_ivc").commit();
-        try {
-            RandomAccessFile randomAccessFile = this.stream;
-            if (randomAccessFile != null) {
-                randomAccessFile.close();
-                this.stream = null;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
-    }
-
-    public void checkNewDataAvailable(final long j, final long j2, final Float f) {
-        Utilities.stageQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                FileUploadOperation.this.lambda$checkNewDataAvailable$3(f, j2, j);
+                FileUploadOperation.this.lambda$startUploadRequest$5();
             }
         });
     }
 
-    public void lambda$checkNewDataAvailable$3(java.lang.Float r7, long r8, long r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$checkNewDataAvailable$3(java.lang.Float, long, long):void");
+    private void startUploadRequest() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.startUploadRequest():void");
     }
 
     private void storeFileUploadInfo() {
@@ -239,49 +226,66 @@ public class FileUploadOperation {
         edit.commit();
     }
 
-    private void calcTotalPartsCount() {
-        if (this.uploadFirstPartLater) {
-            if (this.isBigFile) {
-                long j = this.totalFileSize;
-                long j2 = this.uploadChunkSize;
-                this.totalPartsCount = ((int) ((((j - j2) + j2) - 1) / j2)) + 1;
-                return;
-            } else {
-                long j3 = this.totalFileSize - 1024;
-                long j4 = this.uploadChunkSize;
-                this.totalPartsCount = ((int) (((j3 + j4) - 1) / j4)) + 1;
-                return;
-            }
+    public void cancel() {
+        if (this.state == 3) {
+            return;
         }
-        long j5 = this.totalFileSize;
-        long j6 = this.uploadChunkSize;
-        this.totalPartsCount = (int) (((j5 + j6) - 1) / j6);
+        this.state = 2;
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                FileUploadOperation.this.lambda$cancel$2();
+            }
+        });
+        AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
+        this.delegate.didFailedUploadingFile(this);
+        cleanup();
+    }
+
+    public void checkNewDataAvailable(final long j, final long j2, final Float f) {
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                FileUploadOperation.this.lambda$checkNewDataAvailable$3(f, j2, j);
+            }
+        });
+    }
+
+    public long getTotalFileSize() {
+        return this.totalFileSize;
+    }
+
+    public void onNetworkChanged(final boolean z) {
+        if (this.state != 1) {
+            return;
+        }
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                FileUploadOperation.this.lambda$onNetworkChanged$1(z);
+            }
+        });
+    }
+
+    public void setDelegate(FileUploadOperationDelegate fileUploadOperationDelegate) {
+        this.delegate = fileUploadOperationDelegate;
     }
 
     public void setForceSmallFile() {
         this.forceSmallFile = true;
     }
 
-    private void startUploadRequest() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.startUploadRequest():void");
-    }
-
-    public void lambda$startUploadRequest$4(int r22, int[] r23, int r24, byte[] r25, int r26, int r27, int r28, long r29, org.telegram.tgnet.TLObject r31, org.telegram.tgnet.TLRPC$TL_error r32) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$startUploadRequest$4(int, int[], int, byte[], int, int, int, long, org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
-    }
-
-    public void lambda$startUploadRequest$6() {
+    public void start() {
+        if (this.state != 0) {
+            return;
+        }
+        this.state = 1;
+        AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$startUploadRequest$5();
+                FileUploadOperation.this.lambda$start$0();
             }
         });
-    }
-
-    public void lambda$startUploadRequest$5() {
-        if (this.currentUploadRequetsCount < this.maxRequestsCount) {
-            startUploadRequest();
-        }
     }
 }

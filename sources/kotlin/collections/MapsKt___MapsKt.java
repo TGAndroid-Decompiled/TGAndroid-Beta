@@ -1,4 +1,4 @@
 package kotlin.collections;
 
-class MapsKt___MapsKt extends MapsKt___MapsJvmKt {
+abstract class MapsKt___MapsKt extends MapsKt___MapsJvmKt {
 }

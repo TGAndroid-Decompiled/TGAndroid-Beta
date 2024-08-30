@@ -13,8 +13,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.Theme;
 
 public class DialogCellTags {
-    private final ArrayList<MessagesController.DialogFilter> filters = new ArrayList<>();
-    private final ArrayList<Tag> tags = new ArrayList<>();
+    private final ArrayList filters = new ArrayList();
+    private final ArrayList tags = new ArrayList();
     private Tag moreTags = null;
 
     public static class Tag {
@@ -72,89 +72,9 @@ public class DialogCellTags {
         }
     }
 
-    public boolean update(int i, int i2, long j) {
-        MessagesController.DialogFilter dialogFilter;
-        Tag tag;
-        MessagesController.DialogFilter dialogFilter2;
-        String str;
-        AccountInstance accountInstance = AccountInstance.getInstance(i);
-        MessagesController messagesController = MessagesController.getInstance(i);
-        if (!messagesController.folderTags || !accountInstance.getUserConfig().isPremium()) {
-            boolean isEmpty = this.tags.isEmpty();
-            this.tags.clear();
-            return !isEmpty;
-        }
-        ArrayList<MessagesController.DialogFilter> arrayList = messagesController.dialogFilters;
-        if (i2 == 7) {
-            dialogFilter = messagesController.selectedDialogFilter[0];
-        } else {
-            dialogFilter = i2 == 8 ? messagesController.selectedDialogFilter[1] : null;
-        }
-        this.filters.clear();
-        if (i2 == 0 || i2 == 7 || i2 == 8) {
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                MessagesController.DialogFilter dialogFilter3 = arrayList.get(i3);
-                if (dialogFilter3 != null && dialogFilter3 != dialogFilter && dialogFilter3.color >= 0 && dialogFilter3.includesDialog(accountInstance, j)) {
-                    this.filters.add(dialogFilter3);
-                }
-            }
-        }
-        int i4 = 0;
-        boolean z = false;
-        while (i4 < this.tags.size()) {
-            Tag tag2 = this.tags.get(i4);
-            int i5 = 0;
-            while (true) {
-                if (i5 >= this.filters.size()) {
-                    dialogFilter2 = null;
-                    break;
-                }
-                if (this.filters.get(i5).id == tag2.filterId) {
-                    dialogFilter2 = this.filters.get(i5);
-                    break;
-                }
-                i5++;
-            }
-            if (dialogFilter2 == null) {
-                this.tags.remove(i4);
-                i4--;
-            } else {
-                if (dialogFilter2.color != tag2.colorId || ((str = dialogFilter2.name) != null && tag2.layout != null && str.length() != tag2.layout.getText().length())) {
-                    this.tags.set(i4, Tag.fromFilter(i, dialogFilter2));
-                }
-                i4++;
-            }
-            z = true;
-            i4++;
-        }
-        for (int i6 = 0; i6 < this.filters.size(); i6++) {
-            MessagesController.DialogFilter dialogFilter4 = this.filters.get(i6);
-            int i7 = 0;
-            while (true) {
-                if (i7 >= this.tags.size()) {
-                    tag = null;
-                    break;
-                }
-                if (this.tags.get(i7).filterId == dialogFilter4.id) {
-                    tag = this.tags.get(i7);
-                    break;
-                }
-                i7++;
-            }
-            if (tag == null) {
-                this.tags.add(i6, Tag.fromFilter(i, dialogFilter4));
-                z = true;
-            }
-        }
-        this.filters.clear();
-        return z;
-    }
-
-    public boolean isEmpty() {
-        return this.tags.isEmpty();
-    }
-
     public void draw(Canvas canvas, int i) {
+        int dp;
+        int dp2;
         int i2 = 0;
         canvas.clipRect(0, 0, i, AndroidUtilities.dp(14.66f));
         RectF rectF = AndroidUtilities.rectTmp;
@@ -164,21 +84,22 @@ public class DialogCellTags {
         if (LocaleController.isRTL) {
             canvas.translate(f, 0.0f);
         }
-        int dp = i - AndroidUtilities.dp(25.0f);
+        int dp3 = i - AndroidUtilities.dp(25.0f);
         while (i2 < this.tags.size()) {
-            Tag tag = this.tags.get(i2);
-            dp -= tag.width + AndroidUtilities.dp(4.0f);
-            if (dp < 0) {
+            Tag tag = (Tag) this.tags.get(i2);
+            dp3 -= tag.width + AndroidUtilities.dp(4.0f);
+            if (dp3 < 0) {
                 break;
             }
             if (LocaleController.isRTL) {
                 canvas.translate(-tag.width, 0.0f);
                 tag.draw(canvas);
-                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+                dp2 = -AndroidUtilities.dp(4.0f);
             } else {
                 tag.draw(canvas);
-                canvas.translate(tag.width + AndroidUtilities.dp(4.0f), 0.0f);
+                dp2 = tag.width + AndroidUtilities.dp(4.0f);
             }
+            canvas.translate(dp2, 0.0f);
             i2++;
         }
         if (i2 < this.tags.size()) {
@@ -190,12 +111,90 @@ public class DialogCellTags {
             if (LocaleController.isRTL) {
                 canvas.translate(-this.moreTags.width, 0.0f);
                 this.moreTags.draw(canvas);
-                canvas.translate(-AndroidUtilities.dp(4.0f), 0.0f);
+                dp = -AndroidUtilities.dp(4.0f);
             } else {
                 this.moreTags.draw(canvas);
-                canvas.translate(this.moreTags.width + AndroidUtilities.dp(4.0f), 0.0f);
+                dp = this.moreTags.width + AndroidUtilities.dp(4.0f);
             }
+            canvas.translate(dp, 0.0f);
         }
         canvas.restore();
+    }
+
+    public boolean isEmpty() {
+        return this.tags.isEmpty();
+    }
+
+    public boolean update(int i, int i2, long j) {
+        Tag tag;
+        MessagesController.DialogFilter dialogFilter;
+        String str;
+        AccountInstance accountInstance = AccountInstance.getInstance(i);
+        MessagesController messagesController = MessagesController.getInstance(i);
+        if (!messagesController.folderTags || !accountInstance.getUserConfig().isPremium()) {
+            boolean isEmpty = this.tags.isEmpty();
+            this.tags.clear();
+            return !isEmpty;
+        }
+        ArrayList<MessagesController.DialogFilter> arrayList = messagesController.dialogFilters;
+        MessagesController.DialogFilter dialogFilter2 = i2 == 7 ? messagesController.selectedDialogFilter[0] : i2 == 8 ? messagesController.selectedDialogFilter[1] : null;
+        this.filters.clear();
+        if (i2 == 0 || i2 == 7 || i2 == 8) {
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                MessagesController.DialogFilter dialogFilter3 = arrayList.get(i3);
+                if (dialogFilter3 != null && dialogFilter3 != dialogFilter2 && dialogFilter3.color >= 0 && dialogFilter3.includesDialog(accountInstance, j)) {
+                    this.filters.add(dialogFilter3);
+                }
+            }
+        }
+        int i4 = 0;
+        boolean z = false;
+        while (i4 < this.tags.size()) {
+            Tag tag2 = (Tag) this.tags.get(i4);
+            int i5 = 0;
+            while (true) {
+                if (i5 >= this.filters.size()) {
+                    dialogFilter = null;
+                    break;
+                }
+                if (((MessagesController.DialogFilter) this.filters.get(i5)).id == tag2.filterId) {
+                    dialogFilter = (MessagesController.DialogFilter) this.filters.get(i5);
+                    break;
+                }
+                i5++;
+            }
+            if (dialogFilter == null) {
+                this.tags.remove(i4);
+                i4--;
+            } else {
+                if (dialogFilter.color != tag2.colorId || ((str = dialogFilter.name) != null && tag2.layout != null && str.length() != tag2.layout.getText().length())) {
+                    this.tags.set(i4, Tag.fromFilter(i, dialogFilter));
+                }
+                i4++;
+            }
+            z = true;
+            i4++;
+        }
+        for (int i6 = 0; i6 < this.filters.size(); i6++) {
+            MessagesController.DialogFilter dialogFilter4 = (MessagesController.DialogFilter) this.filters.get(i6);
+            int i7 = 0;
+            while (true) {
+                if (i7 >= this.tags.size()) {
+                    tag = null;
+                    break;
+                }
+                if (((Tag) this.tags.get(i7)).filterId == dialogFilter4.id) {
+                    tag = (Tag) this.tags.get(i7);
+                    break;
+                }
+                i7++;
+            }
+            if (tag == null) {
+                this.tags.add(i6, Tag.fromFilter(i, dialogFilter4));
+                z = true;
+            }
+        }
+        this.filters.clear();
+        return z;
     }
 }

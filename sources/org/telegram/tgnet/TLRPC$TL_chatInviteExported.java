@@ -8,7 +8,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public int expire_date;
     public boolean expired;
     public int flags;
-    public ArrayList<TLRPC$User> importers;
+    public ArrayList importers;
     public String link;
     public boolean permanent;
     public boolean request_needed;

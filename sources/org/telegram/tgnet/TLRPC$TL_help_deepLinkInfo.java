@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_deepLinkInfo extends TLRPC$help_DeepLinkInfo {
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public String message;
     public boolean update_app;
@@ -45,7 +45,7 @@ public class TLRPC$TL_help_deepLinkInfo extends TLRPC$help_DeepLinkInfo {
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.entities.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
     }

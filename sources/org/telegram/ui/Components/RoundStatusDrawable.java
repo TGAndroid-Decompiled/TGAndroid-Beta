@@ -14,36 +14,10 @@ public class RoundStatusDrawable extends StatusDrawable {
     private boolean started = false;
     private int progressDirection = 1;
 
-    @Override
-    public int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public RoundStatusDrawable(boolean z) {
         if (z) {
             this.currentPaint = new Paint(1);
         }
-    }
-
-    @Override
-    public void setColor(int i) {
-        Paint paint = this.currentPaint;
-        if (paint != null) {
-            paint.setColor(i);
-        }
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
-        this.isChat = z;
     }
 
     private void update() {
@@ -68,18 +42,6 @@ public class RoundStatusDrawable extends StatusDrawable {
     }
 
     @Override
-    public void start() {
-        this.lastUpdateTime = System.currentTimeMillis();
-        this.started = true;
-        invalidateSelf();
-    }
-
-    @Override
-    public void stop() {
-        this.started = false;
-    }
-
-    @Override
     public void draw(Canvas canvas) {
         Paint paint = this.currentPaint;
         if (paint == null) {
@@ -93,12 +55,50 @@ public class RoundStatusDrawable extends StatusDrawable {
     }
 
     @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(10.0f);
+    }
+
+    @Override
     public int getIntrinsicWidth() {
         return AndroidUtilities.dp(12.0f);
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(10.0f);
+    public int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColor(int i) {
+        Paint paint = this.currentPaint;
+        if (paint != null) {
+            paint.setColor(i);
+        }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    @Override
+    public void setIsChat(boolean z) {
+        this.isChat = z;
+    }
+
+    @Override
+    public void start() {
+        this.lastUpdateTime = System.currentTimeMillis();
+        this.started = true;
+        invalidateSelf();
+    }
+
+    @Override
+    public void stop() {
+        this.started = false;
     }
 }

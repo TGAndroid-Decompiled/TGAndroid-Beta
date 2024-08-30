@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 public class BusinessChatbotController {
     private static volatile BusinessChatbotController[] Instance = new BusinessChatbotController[4];
     private static final Object[] lockObjects = new Object[4];
-    private ArrayList<Utilities.Callback<TLRPC$TL_account_connectedBots>> callbacks = new ArrayList<>();
+    private ArrayList callbacks = new ArrayList();
     private final int currentAccount;
     private long lastTime;
     private boolean loaded;
@@ -24,6 +24,10 @@ public class BusinessChatbotController {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
+    }
+
+    private BusinessChatbotController(int i) {
+        this.currentAccount = i;
     }
 
     public static BusinessChatbotController getInstance(int i) {
@@ -45,11 +49,40 @@ public class BusinessChatbotController {
         return businessChatbotController;
     }
 
-    private BusinessChatbotController(int i) {
-        this.currentAccount = i;
+    public void lambda$load$0(TLObject tLObject) {
+        this.loading = false;
+        TLRPC$TL_account_connectedBots tLRPC$TL_account_connectedBots = tLObject instanceof TLRPC$TL_account_connectedBots ? (TLRPC$TL_account_connectedBots) tLObject : null;
+        this.value = tLRPC$TL_account_connectedBots;
+        if (tLRPC$TL_account_connectedBots != null) {
+            MessagesController.getInstance(this.currentAccount).putUsers(this.value.users, false);
+        }
+        this.lastTime = System.currentTimeMillis();
+        this.loaded = true;
+        for (int i = 0; i < this.callbacks.size(); i++) {
+            if (this.callbacks.get(i) != null) {
+                ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
+            }
+        }
+        this.callbacks.clear();
     }
 
-    public void load(Utilities.Callback<TLRPC$TL_account_connectedBots> callback) {
+    public void lambda$load$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BusinessChatbotController.this.lambda$load$0(tLObject);
+            }
+        });
+    }
+
+    public void invalidate(boolean z) {
+        this.loaded = false;
+        if (z) {
+            load(null);
+        }
+    }
+
+    public void load(Utilities.Callback callback) {
         boolean z;
         this.callbacks.add(callback);
         if (this.loading) {
@@ -78,43 +111,10 @@ public class BusinessChatbotController {
         } else if (z) {
             for (int i = 0; i < this.callbacks.size(); i++) {
                 if (this.callbacks.get(i) != null) {
-                    this.callbacks.get(i).run(this.value);
+                    ((Utilities.Callback) this.callbacks.get(i)).run(this.value);
                 }
             }
             this.callbacks.clear();
-        }
-    }
-
-    public void lambda$load$1(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                BusinessChatbotController.this.lambda$load$0(tLObject);
-            }
-        });
-    }
-
-    public void lambda$load$0(TLObject tLObject) {
-        this.loading = false;
-        TLRPC$TL_account_connectedBots tLRPC$TL_account_connectedBots = tLObject instanceof TLRPC$TL_account_connectedBots ? (TLRPC$TL_account_connectedBots) tLObject : null;
-        this.value = tLRPC$TL_account_connectedBots;
-        if (tLRPC$TL_account_connectedBots != null) {
-            MessagesController.getInstance(this.currentAccount).putUsers(this.value.users, false);
-        }
-        this.lastTime = System.currentTimeMillis();
-        this.loaded = true;
-        for (int i = 0; i < this.callbacks.size(); i++) {
-            if (this.callbacks.get(i) != null) {
-                this.callbacks.get(i).run(this.value);
-            }
-        }
-        this.callbacks.clear();
-    }
-
-    public void invalidate(boolean z) {
-        this.loaded = false;
-        if (z) {
-            load(null);
         }
     }
 }

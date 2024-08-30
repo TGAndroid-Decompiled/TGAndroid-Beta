@@ -25,8 +25,8 @@ public abstract class TLRPC$InputMedia extends TLObject {
     public String vcard;
     public String venue_id;
     public String venue_type;
-    public ArrayList<TLRPC$InputDocument> stickers = new ArrayList<>();
-    public ArrayList<TLRPC$DocumentAttribute> attributes = new ArrayList<>();
+    public ArrayList stickers = new ArrayList();
+    public ArrayList attributes = new ArrayList();
 
     public static TLRPC$InputMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputMedia tLRPC$TL_inputMediaEmpty;

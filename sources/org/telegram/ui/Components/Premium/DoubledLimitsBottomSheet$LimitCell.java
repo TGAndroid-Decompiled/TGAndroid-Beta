@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,7 +32,6 @@ class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
         addView(limitPreviewView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 21));
     }
 
-    @SuppressLint({"SetTextI18n"})
     public void setData(DoubledLimitsBottomSheet$Limit doubledLimitsBottomSheet$Limit) {
         this.title.setText(doubledLimitsBottomSheet$Limit.title);
         this.subtitle.setText(doubledLimitsBottomSheet$Limit.subtitle);

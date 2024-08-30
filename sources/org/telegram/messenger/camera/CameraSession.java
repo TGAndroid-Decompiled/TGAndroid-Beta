@@ -8,9 +8,7 @@ import android.os.Build;
 import android.view.OrientationEventListener;
 import android.view.WindowManager;
 import java.util.ArrayList;
-import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
 public class CameraSession {
@@ -48,9 +46,6 @@ public class CameraSession {
         }
     };
 
-    public static void lambda$new$0(boolean z, Camera camera) {
-    }
-
     public CameraSession(CameraInfo cameraInfo, Size size, Size size2, int i, boolean z) {
         this.previewSize = size;
         this.pictureSize = size2;
@@ -87,12 +82,38 @@ public class CameraSession {
         }
     }
 
-    private void updateCameraInfo() {
-        if (this.infoCameraId != this.cameraInfo.getCameraId()) {
-            int cameraId = this.cameraInfo.getCameraId();
-            this.infoCameraId = cameraId;
-            Camera.getCameraInfo(cameraId, this.info);
+    private int getDisplayOrientation(Camera.CameraInfo cameraInfo, boolean z) {
+        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+        int i = 0;
+        if (rotation != 0) {
+            if (rotation == 1) {
+                i = 90;
+            } else if (rotation == 2) {
+                i = 180;
+            } else if (rotation == 3) {
+                i = 270;
+            }
         }
+        int i2 = cameraInfo.facing;
+        int i3 = cameraInfo.orientation;
+        if (i2 != 1) {
+            return ((i3 - i) + 360) % 360;
+        }
+        int i4 = (360 - ((i3 + i) % 360)) % 360;
+        if (!z && i4 == 90) {
+            i4 = 270;
+        }
+        if (!z && "Huawei".equals(Build.MANUFACTURER) && "angler".equals(Build.PRODUCT) && i4 == 270) {
+            return 90;
+        }
+        return i4;
+    }
+
+    private int getHigh() {
+        return ("LGE".equals(Build.MANUFACTURER) && "g3_tmo_us".equals(Build.PRODUCT)) ? 4 : 1;
+    }
+
+    public static void lambda$new$0(boolean z, Camera camera) {
     }
 
     public int roundOrientation(int i, int i2) {
@@ -105,9 +126,12 @@ public class CameraSession {
         return (((i + 45) / 90) * 90) % 360;
     }
 
-    public void setOptimizeForBarcode(boolean z) {
-        this.optimizeForBarcode = z;
-        configurePhotoCamera();
+    private void updateCameraInfo() {
+        if (this.infoCameraId != this.cameraInfo.getCameraId()) {
+            int cameraId = this.cameraInfo.getCameraId();
+            this.infoCameraId = cameraId;
+            Camera.getCameraInfo(cameraId, this.info);
+        }
     }
 
     public void checkFlashMode(String str) {
@@ -123,217 +147,50 @@ public class CameraSession {
         }
     }
 
-    public void setCurrentFlashMode(String str) {
-        this.currentFlashMode = str;
-        if (this.isRound) {
-            configureRoundCamera(false);
-        } else {
-            configurePhotoCamera();
-            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
-        }
-    }
-
-    public void setTorchEnabled(boolean z) {
-        try {
-            this.currentFlashMode = z ? "torch" : "off";
-            if (this.isRound) {
-                configureRoundCamera(false);
-            } else {
-                configurePhotoCamera();
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    public String getCurrentFlashMode() {
-        return this.currentFlashMode;
-    }
-
-    public String getNextFlashMode() {
-        ArrayList<String> arrayList = this.availableFlashModes;
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).equals(this.currentFlashMode)) {
-                if (i < arrayList.size() - 1) {
-                    return arrayList.get(i + 1);
-                }
-                return arrayList.get(0);
-            }
-        }
-        return this.currentFlashMode;
-    }
-
-    public void setInitied() {
-        this.initied = true;
-    }
-
-    public boolean isInitied() {
-        return this.initied;
-    }
-
-    public int getCurrentOrientation() {
-        return this.currentOrientation;
-    }
-
-    public boolean isFlipFront() {
-        return this.flipFront;
-    }
-
-    public void setFlipFront(boolean z) {
-        this.flipFront = z;
-    }
-
-    public int getWorldAngle() {
-        return this.diffOrientation;
-    }
-
-    public boolean isSameTakePictureOrientation() {
-        return this.sameTakePictureOrientation;
-    }
-
-    public boolean configureRoundCamera(boolean z) {
-        Camera.Parameters parameters;
-        int i;
-        try {
-            this.isVideo = true;
-            Camera camera = this.cameraInfo.camera;
-            if (camera != null) {
-                try {
-                    parameters = camera.getParameters();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    parameters = null;
-                }
-                updateCameraInfo();
-                updateRotation();
-                if (parameters != null) {
-                    if (z && BuildVars.LOGS_ENABLED) {
-                        FileLog.d("set preview size = " + this.previewSize.getWidth() + " " + this.previewSize.getHeight());
-                    }
-                    parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
-                    if (z && BuildVars.LOGS_ENABLED) {
-                        FileLog.d("set picture size = " + this.pictureSize.getWidth() + " " + this.pictureSize.getHeight());
-                    }
-                    parameters.setPictureSize(this.pictureSize.getWidth(), this.pictureSize.getHeight());
-                    parameters.setPictureFormat(this.pictureFormat);
-                    parameters.setRecordingHint(true);
-                    this.maxZoom = parameters.getMaxZoom();
-                    if (parameters.getSupportedFocusModes().contains("continuous-video")) {
-                        parameters.setFocusMode("continuous-video");
-                    } else if (parameters.getSupportedFocusModes().contains("auto")) {
-                        parameters.setFocusMode("auto");
-                    }
-                    int i2 = this.jpegOrientation;
-                    if (i2 != -1) {
-                        Camera.CameraInfo cameraInfo = this.info;
-                        if (cameraInfo.facing == 1) {
-                            i = ((cameraInfo.orientation - i2) + 360) % 360;
-                        } else {
-                            i = (cameraInfo.orientation + i2) % 360;
-                        }
-                    } else {
-                        i = 0;
-                    }
-                    try {
-                        parameters.setRotation(i);
-                        if (this.info.facing == 1) {
-                            this.sameTakePictureOrientation = (360 - this.displayOrientation) % 360 == i;
-                        } else {
-                            this.sameTakePictureOrientation = this.displayOrientation == i;
-                        }
-                    } catch (Exception unused) {
-                    }
-                    parameters.setFlashMode(this.currentFlashMode);
-                    parameters.setZoom((int) (this.currentZoom * this.maxZoom));
-                    try {
-                        camera.setParameters(parameters);
-                        if (parameters.getMaxNumMeteringAreas() > 0) {
-                            this.meteringAreaSupported = true;
-                        }
-                    } catch (Exception e2) {
-                        throw new RuntimeException(e2);
-                    }
-                }
-            }
-            return true;
-        } catch (Throwable th) {
-            FileLog.e(th);
-            return false;
-        }
-    }
-
-    public void updateRotation() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.updateRotation():void");
-    }
-
     public void configurePhotoCamera() {
-        Camera.Parameters parameters;
-        int i;
-        try {
-            Camera camera = this.cameraInfo.camera;
-            if (camera != null) {
-                try {
-                    parameters = camera.getParameters();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    parameters = null;
-                }
-                updateCameraInfo();
-                updateRotation();
-                int i2 = this.currentOrientation - this.displayOrientation;
-                this.diffOrientation = i2;
-                if (i2 < 0) {
-                    this.diffOrientation = i2 + 360;
-                }
-                if (parameters != null) {
-                    parameters.setPreviewSize(this.previewSize.getWidth(), this.previewSize.getHeight());
-                    parameters.setPictureSize(this.pictureSize.getWidth(), this.pictureSize.getHeight());
-                    parameters.setPictureFormat(this.pictureFormat);
-                    parameters.setJpegQuality(100);
-                    parameters.setJpegThumbnailQuality(100);
-                    int maxZoom = parameters.getMaxZoom();
-                    this.maxZoom = maxZoom;
-                    parameters.setZoom((int) (this.currentZoom * maxZoom));
-                    if (this.optimizeForBarcode) {
-                        List<String> supportedSceneModes = parameters.getSupportedSceneModes();
-                        if (supportedSceneModes != null && supportedSceneModes.contains("barcode")) {
-                            parameters.setSceneMode("barcode");
-                        }
-                        if (parameters.getSupportedFocusModes().contains("continuous-video")) {
-                            parameters.setFocusMode("continuous-video");
-                        }
-                    } else if (parameters.getSupportedFocusModes().contains("continuous-picture")) {
-                        parameters.setFocusMode("continuous-picture");
-                    }
-                    int i3 = this.jpegOrientation;
-                    if (i3 != -1) {
-                        Camera.CameraInfo cameraInfo = this.info;
-                        if (cameraInfo.facing == 1) {
-                            i = ((cameraInfo.orientation - i3) + 360) % 360;
-                        } else {
-                            i = (cameraInfo.orientation + i3) % 360;
-                        }
-                    } else {
-                        i = 0;
-                    }
-                    try {
-                        parameters.setRotation(i);
-                        if (this.info.facing == 1) {
-                            this.sameTakePictureOrientation = (360 - this.displayOrientation) % 360 == i;
-                        } else {
-                            this.sameTakePictureOrientation = this.displayOrientation == i;
-                        }
-                    } catch (Exception unused) {
-                    }
-                    parameters.setFlashMode(this.useTorch ? "torch" : this.currentFlashMode);
-                    try {
-                        camera.setParameters(parameters);
-                    } catch (Exception unused2) {
-                    }
-                }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.configurePhotoCamera():void");
+    }
+
+    public void configureRecorder(int i, MediaRecorder mediaRecorder) {
+        int i2;
+        CamcorderProfile camcorderProfile;
+        updateCameraInfo();
+        int i3 = this.jpegOrientation;
+        if (i3 != -1) {
+            Camera.CameraInfo cameraInfo = this.info;
+            int i4 = cameraInfo.facing;
+            int i5 = cameraInfo.orientation;
+            i2 = (i4 == 1 ? (i5 - i3) + 360 : i5 + i3) % 360;
+        } else {
+            i2 = 0;
+        }
+        mediaRecorder.setOrientationHint(i2);
+        int high = getHigh();
+        boolean hasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
+        boolean hasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
+        if (hasProfile && (i == 1 || !hasProfile2)) {
+            camcorderProfile = CamcorderProfile.get(this.cameraInfo.cameraId, high);
+        } else {
+            if (!hasProfile2) {
+                throw new IllegalStateException("cannot find valid CamcorderProfile");
             }
-        } catch (Throwable th) {
-            FileLog.e(th);
+            camcorderProfile = CamcorderProfile.get(this.cameraInfo.cameraId, 0);
+        }
+        mediaRecorder.setProfile(camcorderProfile);
+        this.isVideo = true;
+    }
+
+    public boolean configureRoundCamera(boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.configureRoundCamera(boolean):boolean");
+    }
+
+    public void destroy() {
+        this.initied = false;
+        this.destroyed = true;
+        OrientationEventListener orientationEventListener = this.orientationEventListener;
+        if (orientationEventListener != null) {
+            orientationEventListener.disable();
+            this.orientationEventListener = null;
         }
     }
 
@@ -372,87 +229,20 @@ public class CameraSession {
         }
     }
 
-    protected int getMaxZoom() {
-        return this.maxZoom;
+    public String getCurrentFlashMode() {
+        return this.currentFlashMode;
     }
 
-    public void onStartRecord() {
-        this.isVideo = true;
+    public int getCurrentOrientation() {
+        return this.currentOrientation;
     }
 
-    public void setZoom(float f) {
-        this.currentZoom = f;
-        if (this.isVideo && "on".equals(this.currentFlashMode)) {
-            this.useTorch = true;
-        }
-        if (this.isRound) {
-            configureRoundCamera(false);
-        } else {
-            configurePhotoCamera();
-        }
+    public Camera.Size getCurrentPictureSize() {
+        return this.cameraInfo.camera.getParameters().getPictureSize();
     }
 
-    public void configureRecorder(int i, MediaRecorder mediaRecorder) {
-        int i2;
-        updateCameraInfo();
-        int i3 = this.jpegOrientation;
-        if (i3 != -1) {
-            Camera.CameraInfo cameraInfo = this.info;
-            if (cameraInfo.facing == 1) {
-                i2 = ((cameraInfo.orientation - i3) + 360) % 360;
-            } else {
-                i2 = (cameraInfo.orientation + i3) % 360;
-            }
-        } else {
-            i2 = 0;
-        }
-        mediaRecorder.setOrientationHint(i2);
-        int high = getHigh();
-        boolean hasProfile = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, high);
-        boolean hasProfile2 = CamcorderProfile.hasProfile(this.cameraInfo.cameraId, 0);
-        if (hasProfile && (i == 1 || !hasProfile2)) {
-            mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, high));
-        } else if (hasProfile2) {
-            mediaRecorder.setProfile(CamcorderProfile.get(this.cameraInfo.cameraId, 0));
-        } else {
-            throw new IllegalStateException("cannot find valid CamcorderProfile");
-        }
-        this.isVideo = true;
-    }
-
-    public void stopVideoRecording() {
-        this.isVideo = false;
-        this.useTorch = false;
-        configurePhotoCamera();
-    }
-
-    private int getHigh() {
-        return ("LGE".equals(Build.MANUFACTURER) && "g3_tmo_us".equals(Build.PRODUCT)) ? 4 : 1;
-    }
-
-    private int getDisplayOrientation(Camera.CameraInfo cameraInfo, boolean z) {
-        int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
-        int i = 0;
-        if (rotation != 0) {
-            if (rotation == 1) {
-                i = 90;
-            } else if (rotation == 2) {
-                i = 180;
-            } else if (rotation == 3) {
-                i = 270;
-            }
-        }
-        if (cameraInfo.facing == 1) {
-            int i2 = (360 - ((cameraInfo.orientation + i) % 360)) % 360;
-            if (!z && i2 == 90) {
-                i2 = 270;
-            }
-            if (!z && "Huawei".equals(Build.MANUFACTURER) && "angler".equals(Build.PRODUCT) && i2 == 270) {
-                return 90;
-            }
-            return i2;
-        }
-        return ((cameraInfo.orientation - i) + 360) % 360;
+    public Camera.Size getCurrentPreviewSize() {
+        return this.cameraInfo.camera.getParameters().getPreviewSize();
     }
 
     public int getDisplayOrientation() {
@@ -465,8 +255,58 @@ public class CameraSession {
         }
     }
 
-    public void setPreviewCallback(Camera.PreviewCallback previewCallback) {
-        this.cameraInfo.camera.setPreviewCallback(previewCallback);
+    protected int getMaxZoom() {
+        return this.maxZoom;
+    }
+
+    public String getNextFlashMode() {
+        ArrayList<String> arrayList = this.availableFlashModes;
+        int i = 0;
+        while (i < arrayList.size()) {
+            if (arrayList.get(i).equals(this.currentFlashMode)) {
+                return i < arrayList.size() + (-1) ? arrayList.get(i + 1) : arrayList.get(0);
+            }
+            i++;
+        }
+        return this.currentFlashMode;
+    }
+
+    public int getWorldAngle() {
+        return this.diffOrientation;
+    }
+
+    public boolean isFlipFront() {
+        return this.flipFront;
+    }
+
+    public boolean isInitied() {
+        return this.initied;
+    }
+
+    public boolean isSameTakePictureOrientation() {
+        return this.sameTakePictureOrientation;
+    }
+
+    public void onStartRecord() {
+        this.isVideo = true;
+    }
+
+    public void setCurrentFlashMode(String str) {
+        this.currentFlashMode = str;
+        if (this.isRound) {
+            configureRoundCamera(false);
+        } else {
+            configurePhotoCamera();
+            ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString(this.cameraInfo.frontCamera != 0 ? "flashMode_front" : "flashMode", str).commit();
+        }
+    }
+
+    public void setFlipFront(boolean z) {
+        this.flipFront = z;
+    }
+
+    public void setInitied() {
+        this.initied = true;
     }
 
     public void setOneShotPreviewCallback(Camera.PreviewCallback previewCallback) {
@@ -481,21 +321,47 @@ public class CameraSession {
         }
     }
 
-    public void destroy() {
-        this.initied = false;
-        this.destroyed = true;
-        OrientationEventListener orientationEventListener = this.orientationEventListener;
-        if (orientationEventListener != null) {
-            orientationEventListener.disable();
-            this.orientationEventListener = null;
+    public void setOptimizeForBarcode(boolean z) {
+        this.optimizeForBarcode = z;
+        configurePhotoCamera();
+    }
+
+    public void setPreviewCallback(Camera.PreviewCallback previewCallback) {
+        this.cameraInfo.camera.setPreviewCallback(previewCallback);
+    }
+
+    public void setTorchEnabled(boolean z) {
+        try {
+            this.currentFlashMode = z ? "torch" : "off";
+            if (this.isRound) {
+                configureRoundCamera(false);
+            } else {
+                configurePhotoCamera();
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
-    public Camera.Size getCurrentPreviewSize() {
-        return this.cameraInfo.camera.getParameters().getPreviewSize();
+    public void setZoom(float f) {
+        this.currentZoom = f;
+        if (this.isVideo && "on".equals(this.currentFlashMode)) {
+            this.useTorch = true;
+        }
+        if (this.isRound) {
+            configureRoundCamera(false);
+        } else {
+            configurePhotoCamera();
+        }
     }
 
-    public Camera.Size getCurrentPictureSize() {
-        return this.cameraInfo.camera.getParameters().getPictureSize();
+    public void stopVideoRecording() {
+        this.isVideo = false;
+        this.useTorch = false;
+        configurePhotoCamera();
+    }
+
+    public void updateRotation() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.camera.CameraSession.updateRotation():void");
     }
 }

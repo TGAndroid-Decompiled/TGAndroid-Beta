@@ -62,12 +62,12 @@ public class PhotoFace {
         this.chinPoint = new org.telegram.ui.Components.Point(this.mouthPoint.x + (((float) Math.cos(radians2)) * f3), this.mouthPoint.y + (f3 * ((float) Math.sin(radians2))));
     }
 
-    public boolean isSufficient() {
-        return this.eyesCenterPoint != null;
-    }
-
     private org.telegram.ui.Components.Point transposePoint(PointF pointF, Bitmap bitmap, Size size, boolean z) {
         return new org.telegram.ui.Components.Point((size.width * pointF.x) / (z ? bitmap.getHeight() : bitmap.getWidth()), (size.height * pointF.y) / (z ? bitmap.getWidth() : bitmap.getHeight()));
+    }
+
+    public float getAngle() {
+        return this.angle;
     }
 
     public org.telegram.ui.Components.Point getPointForAnchor(int i) {
@@ -87,13 +87,10 @@ public class PhotoFace {
     }
 
     public float getWidthForAnchor(int i) {
-        if (i == 1) {
-            return this.eyesDistance;
-        }
-        return this.width;
+        return i == 1 ? this.eyesDistance : this.width;
     }
 
-    public float getAngle() {
-        return this.angle;
+    public boolean isSufficient() {
+        return this.eyesCenterPoint != null;
     }
 }

@@ -1,4 +1,4 @@
 package kotlin;
 
-public final class ExceptionsKt extends ExceptionsKt__ExceptionsKt {
+public abstract class ExceptionsKt extends ExceptionsKt__ExceptionsKt {
 }

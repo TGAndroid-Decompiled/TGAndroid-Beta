@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 
 public class NotificationDismissReceiver extends BroadcastReceiver {
     @Override
@@ -22,11 +23,12 @@ public class NotificationDismissReceiver extends BroadcastReceiver {
                 NotificationsController.getInstance(intExtra).processIgnoreStoryReactions();
                 return;
             }
-            if (longExtra == 0) {
-                MessagesController.getNotificationsSettings(intExtra).edit().putInt("dismissDate", intExtra2).commit();
-                return;
+            String str = "dismissDate";
+            SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(intExtra).edit();
+            if (longExtra != 0) {
+                str = "dismissDate" + longExtra;
             }
-            MessagesController.getNotificationsSettings(intExtra).edit().putInt("dismissDate" + longExtra, intExtra2).commit();
+            edit.putInt(str, intExtra2).commit();
         }
     }
 }

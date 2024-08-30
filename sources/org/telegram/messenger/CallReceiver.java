@@ -7,13 +7,15 @@ import android.telephony.TelephonyManager;
 import org.telegram.PhoneFormat.PhoneFormat;
 
 public class CallReceiver extends BroadcastReceiver {
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        if (intent.getAction().equals("android.intent.action.PHONE_STATE") && TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra("state"))) {
-            String stripExceptNumbers = PhoneFormat.stripExceptNumbers(intent.getStringExtra("incoming_number"));
-            SharedConfig.getPreferences().edit().putString("last_call_phone_number", stripExceptNumbers).putLong("last_call_time", System.currentTimeMillis()).apply();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, stripExceptNumbers);
+    public static void checkLastReceivedCall() {
+        String lastReceivedCall = getLastReceivedCall();
+        if (lastReceivedCall != null) {
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, lastReceivedCall);
         }
+    }
+
+    public static void clearLastCall() {
+        SharedConfig.getPreferences().edit().remove("last_call_phone_number").remove("last_call_time").apply();
     }
 
     public static String getLastReceivedCall() {
@@ -27,14 +29,12 @@ public class CallReceiver extends BroadcastReceiver {
         return null;
     }
 
-    public static void checkLastReceivedCall() {
-        String lastReceivedCall = getLastReceivedCall();
-        if (lastReceivedCall != null) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, lastReceivedCall);
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals("android.intent.action.PHONE_STATE") && TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra("state"))) {
+            String stripExceptNumbers = PhoneFormat.stripExceptNumbers(intent.getStringExtra("incoming_number"));
+            SharedConfig.getPreferences().edit().putString("last_call_phone_number", stripExceptNumbers).putLong("last_call_time", System.currentTimeMillis()).apply();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveCall, stripExceptNumbers);
         }
-    }
-
-    public static void clearLastCall() {
-        SharedConfig.getPreferences().edit().remove("last_call_phone_number").remove("last_call_time").apply();
     }
 }

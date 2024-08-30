@@ -88,27 +88,6 @@ public class LocationCell extends FrameLayout {
         this.addressTextView.setAlpha(this.enterAlpha);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.wrapContent) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
-        }
-    }
-
-    public BackupImageView getImageView() {
-        return this.imageView;
-    }
-
-    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, int i, boolean z) {
-        setLocation(tLRPC$TL_messageMediaVenue, null, i, z, false);
-    }
-
-    public void setAllowTextAnimation(boolean z) {
-        this.allowTextAnimation = z;
-    }
-
     public static int getColorForIndex(int i) {
         int i2 = i % 7;
         if (i2 == 0) {
@@ -129,6 +108,10 @@ public class LocationCell extends FrameLayout {
         return -7900675;
     }
 
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
     private CharSequence getTitle(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue) {
         if (tLRPC$TL_messageMediaVenue == null) {
             return "";
@@ -144,6 +127,61 @@ public class LocationCell extends FrameLayout {
         this.lastTitle = tLRPC$TL_messageMediaVenue.title;
         this.lastCompleteTitle = charSequence;
         return charSequence;
+    }
+
+    public void lambda$setLocation$0(long j, long j2, float f, float f2, ValueAnimator valueAnimator) {
+        float lerp = AndroidUtilities.lerp(f, f2, j2 > 0 ? Math.min(Math.max(((float) (SystemClock.elapsedRealtime() - j)) / ((float) j2), 0.0f), 1.0f) : 1.0f);
+        this.enterAlpha = lerp;
+        this.imageView.setAlpha(lerp);
+        this.nameTextView.setAlpha(this.enterAlpha);
+        this.addressTextView.setAlpha(this.enterAlpha);
+        invalidate();
+    }
+
+    public BackupImageView getImageView() {
+        return this.imageView;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        if (globalGradientView == null) {
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext(), this.resourcesProvider);
+            globalGradientView = flickerLoadingView;
+            flickerLoadingView.setIsSingleCell(true);
+        }
+        globalGradientView.setParentSize(getMeasuredWidth(), getMeasuredHeight(), (-(getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0)) * AndroidUtilities.dp(56.0f));
+        globalGradientView.setViewType(4);
+        globalGradientView.updateColors();
+        globalGradientView.updateGradient();
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
+        canvas.translate(AndroidUtilities.dp(2.0f), (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) / 2);
+        globalGradientView.draw(canvas);
+        canvas.restore();
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            Paint paint = resourcesProvider == null ? null : resourcesProvider.getPaint("paintDivider");
+            if (paint == null) {
+                paint = Theme.dividerPaint;
+            }
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(72.0f), getHeight() - 1, LocaleController.isRTL ? getWidth() - AndroidUtilities.dp(72.0f) : getWidth(), getHeight() - 1, paint);
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        if (!this.wrapContent) {
+            i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824);
+        }
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.needDivider ? 1 : 0), 1073741824));
+    }
+
+    public void setAllowTextAnimation(boolean z) {
+        this.allowTextAnimation = z;
+    }
+
+    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, int i, boolean z) {
+        setLocation(tLRPC$TL_messageMediaVenue, null, i, z, false);
     }
 
     public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, String str, int i, boolean z, boolean z2) {
@@ -199,44 +237,5 @@ public class LocationCell extends FrameLayout {
         this.nameTextView.setAlpha(f);
         this.addressTextView.setAlpha(f);
         invalidate();
-    }
-
-    public void lambda$setLocation$0(long j, long j2, float f, float f2, ValueAnimator valueAnimator) {
-        float lerp = AndroidUtilities.lerp(f, f2, j2 > 0 ? Math.min(Math.max(((float) (SystemClock.elapsedRealtime() - j)) / ((float) j2), 0.0f), 1.0f) : 1.0f);
-        this.enterAlpha = lerp;
-        this.imageView.setAlpha(lerp);
-        this.nameTextView.setAlpha(this.enterAlpha);
-        this.addressTextView.setAlpha(this.enterAlpha);
-        invalidate();
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (globalGradientView == null) {
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(getContext(), this.resourcesProvider);
-            globalGradientView = flickerLoadingView;
-            flickerLoadingView.setIsSingleCell(true);
-        }
-        globalGradientView.setParentSize(getMeasuredWidth(), getMeasuredHeight(), (-(getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0)) * AndroidUtilities.dp(56.0f));
-        globalGradientView.setViewType(4);
-        globalGradientView.updateColors();
-        globalGradientView.updateGradient();
-        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
-        canvas.translate(AndroidUtilities.dp(2.0f), (getMeasuredHeight() - AndroidUtilities.dp(56.0f)) / 2);
-        globalGradientView.draw(canvas);
-        canvas.restore();
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Paint paint = resourcesProvider == null ? null : resourcesProvider.getPaint("paintDivider");
-            if (paint == null) {
-                paint = Theme.dividerPaint;
-            }
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(72.0f), getHeight() - 1, LocaleController.isRTL ? getWidth() - AndroidUtilities.dp(72.0f) : getWidth(), getHeight() - 1, paint);
-        }
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

@@ -28,8 +28,8 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     private VelocityTracker mVelocityTracker;
     private float mode;
     private float modeAtTouchDown;
-    private Utilities.Callback<Boolean> onSwitchModeListener;
-    private Utilities.Callback<Float> onSwitchingModeListener;
+    private Utilities.Callback onSwitchModeListener;
+    private Utilities.Callback onSwitchingModeListener;
     private RectF photoRect;
     private StaticLayout photoText;
     private float photoTextHeight;
@@ -78,82 +78,18 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         this.mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
-    public void setOnSwitchModeListener(Utilities.Callback<Boolean> callback) {
-        this.onSwitchModeListener = callback;
-    }
-
-    public void setOnSwitchingModeListener(Utilities.Callback<Float> callback) {
-        this.onSwitchingModeListener = callback;
-    }
-
-    public void switchMode(boolean z) {
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mode, z ? 1.0f : 0.0f);
-        this.animator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PhotoVideoSwitcherView.this.lambda$switchMode$0(valueAnimator2);
-            }
-        });
-        this.animator.setDuration(320L);
-        this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.animator.start();
+    private float getScrollCx() {
+        return (getWidth() / 2.0f) + AndroidUtilities.lerp(AndroidUtilities.dp(16.0f) + (this.photoTextWidth / 2.0f), -(AndroidUtilities.dp(16.0f) + (this.videoTextWidth / 2.0f)), this.mode);
     }
 
     public void lambda$switchMode$0(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.mode = floatValue;
-        Utilities.Callback<Float> callback = this.onSwitchingModeListener;
+        Utilities.Callback callback = this.onSwitchingModeListener;
         if (callback != null) {
             callback.run(Float.valueOf(Utilities.clamp(floatValue, 1.0f, 0.0f)));
         }
         invalidate();
-    }
-
-    private float getScrollCx() {
-        return (getWidth() / 2.0f) + AndroidUtilities.lerp(AndroidUtilities.dp(16.0f) + (this.photoTextWidth / 2.0f), -(AndroidUtilities.dp(16.0f) + (this.videoTextWidth / 2.0f)), this.mode);
-    }
-
-    public void scrollX(float f) {
-        if (!this.mIsScrolling && Math.abs(f) > this.mTouchSlop) {
-            this.mIsScrolling = true;
-            this.modeAtTouchDown = this.mode;
-        }
-        if (this.mIsScrolling) {
-            float f2 = this.mode;
-            if ((f2 <= 0.0f && f < 0.0f) || (f2 >= 1.0f && f > 0.0f)) {
-                f *= 0.2f;
-            }
-            float f3 = f2 + ((f / this.scrollWidth) / 2.5f);
-            this.mode = f3;
-            float clamp = Utilities.clamp(f3, 1.2f, -0.2f);
-            this.mode = clamp;
-            Utilities.Callback<Float> callback = this.onSwitchingModeListener;
-            if (callback != null) {
-                callback.run(Float.valueOf(Utilities.clamp(clamp, 1.0f, 0.0f)));
-            }
-            invalidate();
-        }
-    }
-
-    public boolean stopScroll(float f) {
-        if (!this.mIsScrolling) {
-            this.scrolledEnough = false;
-            return false;
-        }
-        this.mIsScrolling = false;
-        boolean z = Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f;
-        switchMode(z);
-        Utilities.Callback<Boolean> callback = this.onSwitchModeListener;
-        if (callback != null) {
-            callback.run(Boolean.valueOf(z));
-        }
-        this.scrolledEnough = false;
-        return true;
     }
 
     @Override
@@ -185,9 +121,73 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PhotoVideoSwitcherView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
+    public void scrollX(float f) {
+        if (!this.mIsScrolling && Math.abs(f) > this.mTouchSlop) {
+            this.mIsScrolling = true;
+            this.modeAtTouchDown = this.mode;
+        }
+        if (this.mIsScrolling) {
+            float f2 = this.mode;
+            if ((f2 <= 0.0f && f < 0.0f) || (f2 >= 1.0f && f > 0.0f)) {
+                f *= 0.2f;
+            }
+            float f3 = f2 + ((f / this.scrollWidth) / 2.5f);
+            this.mode = f3;
+            float clamp = Utilities.clamp(f3, 1.2f, -0.2f);
+            this.mode = clamp;
+            Utilities.Callback callback = this.onSwitchingModeListener;
+            if (callback != null) {
+                callback.run(Float.valueOf(Utilities.clamp(clamp, 1.0f, 0.0f)));
+            }
+            invalidate();
+        }
+    }
+
     @Override
     public void setInvert(float f) {
         this.selectorPaint.setColor(ColorUtils.blendARGB(855638015, 536870912, f));
         this.textPaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
+    }
+
+    public void setOnSwitchModeListener(Utilities.Callback<Boolean> callback) {
+        this.onSwitchModeListener = callback;
+    }
+
+    public void setOnSwitchingModeListener(Utilities.Callback<Float> callback) {
+        this.onSwitchingModeListener = callback;
+    }
+
+    public boolean stopScroll(float f) {
+        if (!this.mIsScrolling) {
+            this.scrolledEnough = false;
+            return false;
+        }
+        this.mIsScrolling = false;
+        boolean z = Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f;
+        switchMode(z);
+        Utilities.Callback callback = this.onSwitchModeListener;
+        if (callback != null) {
+            callback.run(Boolean.valueOf(z));
+        }
+        this.scrolledEnough = false;
+        return true;
+    }
+
+    public void switchMode(boolean z) {
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mode, z ? 1.0f : 0.0f);
+        this.animator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                PhotoVideoSwitcherView.this.lambda$switchMode$0(valueAnimator2);
+            }
+        });
+        this.animator.setDuration(320L);
+        this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.animator.start();
     }
 }

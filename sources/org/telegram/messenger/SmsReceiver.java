@@ -9,6 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SmsReceiver extends BroadcastReceiver {
+    public static void lambda$onReceive$0(String str) {
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveSmsCode, str);
+    }
+
     @Override
     public void onReceive(Context context, Intent intent) {
         String str;
@@ -46,9 +50,5 @@ public class SmsReceiver extends BroadcastReceiver {
         } catch (Throwable th) {
             FileLog.e(th);
         }
-    }
-
-    public static void lambda$onReceive$0(String str) {
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveSmsCode, str);
     }
 }

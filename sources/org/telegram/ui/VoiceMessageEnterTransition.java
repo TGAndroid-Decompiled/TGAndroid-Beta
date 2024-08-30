@@ -84,13 +84,26 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         }
     }
 
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
     public void lambda$new$0(MessageEnterTransitionContainer messageEnterTransitionContainer, ValueAnimator valueAnimator) {
         this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         messageEnterTransitionContainer.invalidate();
     }
 
-    public void start() {
-        this.animator.start();
+    public void lambda$onDraw$1(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
+        this.messageView.getRadialProgress().draw(canvas);
+        canvas.translate(-f, -f2);
+        float f9 = 1.0f / f3;
+        canvas.scale(f9, f9, f4, f5);
+        ChatActivityEnterView.RecordCircle recordCircle = this.recordCircle;
+        if (recordCircle != null) {
+            recordCircle.drawIcon(canvas, (int) f6, (int) f7, 1.0f - f8);
+        }
+        canvas.scale(f3, f3, f4, f5);
+        canvas.translate(f, f2);
     }
 
     @Override
@@ -157,20 +170,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         canvas.restore();
     }
 
-    public void lambda$onDraw$1(Canvas canvas, float f, float f2, float f3, float f4, float f5, float f6, float f7, float f8) {
-        this.messageView.getRadialProgress().draw(canvas);
-        canvas.translate(-f, -f2);
-        float f9 = 1.0f / f3;
-        canvas.scale(f9, f9, f4, f5);
-        ChatActivityEnterView.RecordCircle recordCircle = this.recordCircle;
-        if (recordCircle != null) {
-            recordCircle.drawIcon(canvas, (int) f6, (int) f7, 1.0f - f8);
-        }
-        canvas.scale(f3, f3, f4, f5);
-        canvas.translate(f, f2);
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void start() {
+        this.animator.start();
     }
 }

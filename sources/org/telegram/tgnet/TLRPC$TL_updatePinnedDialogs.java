@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class TLRPC$TL_updatePinnedDialogs extends TLRPC$Update {
     public int flags;
     public int folder_id;
-    public ArrayList<TLRPC$DialogPeer> order = new ArrayList<>();
+    public ArrayList order = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -45,7 +45,7 @@ public class TLRPC$TL_updatePinnedDialogs extends TLRPC$Update {
             int size = this.order.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.order.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$DialogPeer) this.order.get(i)).serializeToStream(abstractSerializedData);
             }
         }
     }

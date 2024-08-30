@@ -1,5 +1,5 @@
 package javax.inject;
 
-public interface Provider<T> {
-    T get();
+public interface Provider {
+    Object get();
 }

@@ -34,7 +34,7 @@ public abstract class TLRPC$UserFull extends TLObject {
     public boolean phone_calls_available;
     public boolean phone_calls_private;
     public int pinned_msg_id;
-    public ArrayList<TLRPC$TL_premiumGiftOption> premium_gifts = new ArrayList<>();
+    public ArrayList premium_gifts = new ArrayList();
     public String private_forward_name;
     public TLRPC$Photo profile_photo;
     public boolean read_dates_private;
@@ -355,7 +355,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i10 = 0; i10 < size; i10++) {
-                                this.premium_gifts.get(i10).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i10)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {
@@ -523,7 +523,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i15 = 0; i15 < size; i15++) {
-                                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i15)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {
@@ -658,7 +658,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i9 = 0; i9 < size; i9++) {
-                                this.premium_gifts.get(i9).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i9)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -968,7 +968,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i9 = 0; i9 < size; i9++) {
-                                this.premium_gifts.get(i9).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i9)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -1153,7 +1153,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i15 = 0; i15 < size; i15++) {
-                                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i15)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {
@@ -1390,7 +1390,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i10 = 0; i10 < size; i10++) {
-                                this.premium_gifts.get(i10).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i10)).serializeToStream(abstractSerializedData2);
                             }
                         }
                     }
@@ -1646,7 +1646,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i15 = 0; i15 < size; i15++) {
-                                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i15)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {
@@ -1820,7 +1820,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i12 = 0; i12 < size; i12++) {
-                                this.premium_gifts.get(i12).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i12)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {
@@ -2008,7 +2008,7 @@ public abstract class TLRPC$UserFull extends TLObject {
                             int size = this.premium_gifts.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i15 = 0; i15 < size; i15++) {
-                                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i15)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 16777216) != 0) {

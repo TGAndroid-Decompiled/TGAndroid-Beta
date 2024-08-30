@@ -1,4 +1,4 @@
 package kotlin.text;
 
-public final class StringsKt extends StringsKt___StringsKt {
+public abstract class StringsKt extends StringsKt___StringsKt {
 }

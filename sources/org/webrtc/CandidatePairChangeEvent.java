@@ -7,7 +7,6 @@ public final class CandidatePairChangeEvent {
     public final String reason;
     public final IceCandidate remote;
 
-    @CalledByNative
     CandidatePairChangeEvent(IceCandidate iceCandidate, IceCandidate iceCandidate2, int i, String str, int i2) {
         this.local = iceCandidate;
         this.remote = iceCandidate2;

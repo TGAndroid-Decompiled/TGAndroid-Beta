@@ -7,6 +7,30 @@ import org.webrtc.VideoFrame;
 
 public interface CameraSession {
 
+    public abstract class CC {
+        public static VideoFrame.TextureBuffer createTextureBufferWithModifiedTransformMatrix(TextureBufferImpl textureBufferImpl, boolean z, int i) {
+            Matrix matrix = new Matrix();
+            matrix.preTranslate(0.5f, 0.5f);
+            if (z) {
+                matrix.preScale(-1.0f, 1.0f);
+            }
+            matrix.preRotate(i);
+            matrix.preTranslate(-0.5f, -0.5f);
+            return textureBufferImpl.applyTransformMatrix(matrix, textureBufferImpl.getWidth(), textureBufferImpl.getHeight());
+        }
+
+        public static int getDeviceOrientation(Context context) {
+            int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
+            if (rotation == 1) {
+                return 90;
+            }
+            if (rotation != 2) {
+                return rotation != 3 ? 0 : 270;
+            }
+            return 180;
+        }
+    }
+
     public interface CreateSessionCallback {
         void onDone(CameraSession cameraSession);
 
@@ -31,28 +55,4 @@ public interface CameraSession {
     }
 
     void stop();
-
-    public final class CC {
-        public static int getDeviceOrientation(Context context) {
-            int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
-            if (rotation == 1) {
-                return 90;
-            }
-            if (rotation != 2) {
-                return rotation != 3 ? 0 : 270;
-            }
-            return 180;
-        }
-
-        public static VideoFrame.TextureBuffer createTextureBufferWithModifiedTransformMatrix(TextureBufferImpl textureBufferImpl, boolean z, int i) {
-            Matrix matrix = new Matrix();
-            matrix.preTranslate(0.5f, 0.5f);
-            if (z) {
-                matrix.preScale(-1.0f, 1.0f);
-            }
-            matrix.preRotate(i);
-            matrix.preTranslate(-0.5f, -0.5f);
-            return textureBufferImpl.applyTransformMatrix(matrix, textureBufferImpl.getWidth(), textureBufferImpl.getHeight());
-        }
-    }
 }

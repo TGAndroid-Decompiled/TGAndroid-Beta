@@ -220,11 +220,7 @@ public class VideoEditedInfo {
             this.textViewY = abstractSerializedData.readFloat(z2);
             if (z) {
                 int readInt322 = abstractSerializedData.readInt32(z2);
-                if (readInt322 == 1450380236) {
-                    this.document = null;
-                } else {
-                    this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, readInt322, z2);
-                }
+                this.document = readInt322 == 1450380236 ? null : TLRPC$Document.TLdeserialize(abstractSerializedData, readInt322, z2);
             }
             byte b = this.type;
             if (b == 3) {
@@ -263,104 +259,6 @@ public class VideoEditedInfo {
                 this.segmentedPath = abstractSerializedData.readString(z2);
             } else if (b == 8 && abstractSerializedData.readInt32(z2) == 132805945) {
                 this.weather = Weather.State.TLdeserialize(abstractSerializedData);
-            }
-        }
-
-        public void serializeTo(AbstractSerializedData abstractSerializedData, boolean z) {
-            String key;
-            abstractSerializedData.writeByte(this.type);
-            abstractSerializedData.writeByte(this.subType);
-            abstractSerializedData.writeFloat(this.x);
-            abstractSerializedData.writeFloat(this.y);
-            abstractSerializedData.writeFloat(this.rotation);
-            abstractSerializedData.writeFloat(this.width);
-            abstractSerializedData.writeFloat(this.height);
-            abstractSerializedData.writeString(this.text);
-            abstractSerializedData.writeInt32(this.entities.size());
-            for (int i = 0; i < this.entities.size(); i++) {
-                this.entities.get(i).serializeToStream(abstractSerializedData);
-            }
-            abstractSerializedData.writeInt32(this.color);
-            abstractSerializedData.writeInt32(this.fontSize);
-            abstractSerializedData.writeInt32(this.viewWidth);
-            abstractSerializedData.writeInt32(this.viewHeight);
-            abstractSerializedData.writeInt32(this.textAlign);
-            PaintTypeface paintTypeface = this.textTypeface;
-            if (paintTypeface == null) {
-                key = this.textTypefaceKey;
-                if (key == null) {
-                    key = "";
-                }
-            } else {
-                key = paintTypeface.getKey();
-            }
-            abstractSerializedData.writeString(key);
-            abstractSerializedData.writeFloat(this.scale);
-            abstractSerializedData.writeFloat(this.textViewWidth);
-            abstractSerializedData.writeFloat(this.textViewHeight);
-            abstractSerializedData.writeFloat(this.textViewX);
-            abstractSerializedData.writeFloat(this.textViewY);
-            if (z) {
-                TLRPC$Document tLRPC$Document = this.document;
-                if (tLRPC$Document == null) {
-                    abstractSerializedData.writeInt32(1450380236);
-                } else {
-                    tLRPC$Document.serializeToStream(abstractSerializedData);
-                }
-            }
-            byte b = this.type;
-            if (b == 3) {
-                abstractSerializedData.writeFloat(this.density);
-                this.mediaArea.serializeToStream(abstractSerializedData);
-                TLRPC$MessageMedia tLRPC$MessageMedia = this.media;
-                if (tLRPC$MessageMedia.provider == null) {
-                    tLRPC$MessageMedia.provider = "";
-                }
-                if (tLRPC$MessageMedia.venue_id == null) {
-                    tLRPC$MessageMedia.venue_id = "";
-                }
-                if (tLRPC$MessageMedia.venue_type == null) {
-                    tLRPC$MessageMedia.venue_type = "";
-                }
-                tLRPC$MessageMedia.serializeToStream(abstractSerializedData);
-                TLRPC$MessageMedia tLRPC$MessageMedia2 = this.media;
-                if ((tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaVenue) && ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia2).emoji != null) {
-                    abstractSerializedData.writeInt32(-559038737);
-                    abstractSerializedData.writeString(((TLRPC$TL_messageMediaVenue) this.media).emoji);
-                    return;
-                } else {
-                    abstractSerializedData.writeInt32(1450380236);
-                    return;
-                }
-            }
-            if (b == 7) {
-                abstractSerializedData.writeFloat(this.density);
-                this.mediaArea.serializeToStream(abstractSerializedData);
-                this.linkSettings.serializeToStream(abstractSerializedData);
-                return;
-            }
-            if (b == 4) {
-                this.mediaArea.serializeToStream(abstractSerializedData);
-                return;
-            }
-            if (b == 5) {
-                abstractSerializedData.writeInt64(this.roundOffset);
-                abstractSerializedData.writeInt64(this.roundLeft);
-                abstractSerializedData.writeInt64(this.roundRight);
-                abstractSerializedData.writeInt64(this.roundDuration);
-                return;
-            }
-            if (b == 2) {
-                abstractSerializedData.writeString(this.segmentedPath);
-                return;
-            }
-            if (b == 8) {
-                if (this.weather == null) {
-                    abstractSerializedData.writeInt32(-559038737);
-                } else {
-                    abstractSerializedData.writeInt32(132805945);
-                    this.weather.serializeToStream(abstractSerializedData);
-                }
             }
         }
 
@@ -418,14 +316,123 @@ public class VideoEditedInfo {
             mediaEntity.weather = this.weather;
             return mediaEntity;
         }
+
+        public void serializeTo(AbstractSerializedData abstractSerializedData, boolean z) {
+            String key;
+            String str;
+            abstractSerializedData.writeByte(this.type);
+            abstractSerializedData.writeByte(this.subType);
+            abstractSerializedData.writeFloat(this.x);
+            abstractSerializedData.writeFloat(this.y);
+            abstractSerializedData.writeFloat(this.rotation);
+            abstractSerializedData.writeFloat(this.width);
+            abstractSerializedData.writeFloat(this.height);
+            abstractSerializedData.writeString(this.text);
+            abstractSerializedData.writeInt32(this.entities.size());
+            for (int i = 0; i < this.entities.size(); i++) {
+                this.entities.get(i).serializeToStream(abstractSerializedData);
+            }
+            abstractSerializedData.writeInt32(this.color);
+            abstractSerializedData.writeInt32(this.fontSize);
+            abstractSerializedData.writeInt32(this.viewWidth);
+            abstractSerializedData.writeInt32(this.viewHeight);
+            abstractSerializedData.writeInt32(this.textAlign);
+            PaintTypeface paintTypeface = this.textTypeface;
+            if (paintTypeface == null) {
+                key = this.textTypefaceKey;
+                if (key == null) {
+                    key = "";
+                }
+            } else {
+                key = paintTypeface.getKey();
+            }
+            abstractSerializedData.writeString(key);
+            abstractSerializedData.writeFloat(this.scale);
+            abstractSerializedData.writeFloat(this.textViewWidth);
+            abstractSerializedData.writeFloat(this.textViewHeight);
+            abstractSerializedData.writeFloat(this.textViewX);
+            abstractSerializedData.writeFloat(this.textViewY);
+            if (z) {
+                TLRPC$Document tLRPC$Document = this.document;
+                if (tLRPC$Document == null) {
+                    abstractSerializedData.writeInt32(1450380236);
+                } else {
+                    tLRPC$Document.serializeToStream(abstractSerializedData);
+                }
+            }
+            byte b = this.type;
+            if (b == 3) {
+                abstractSerializedData.writeFloat(this.density);
+                this.mediaArea.serializeToStream(abstractSerializedData);
+                TLRPC$MessageMedia tLRPC$MessageMedia = this.media;
+                if (tLRPC$MessageMedia.provider == null) {
+                    tLRPC$MessageMedia.provider = "";
+                }
+                if (tLRPC$MessageMedia.venue_id == null) {
+                    tLRPC$MessageMedia.venue_id = "";
+                }
+                if (tLRPC$MessageMedia.venue_type == null) {
+                    tLRPC$MessageMedia.venue_type = "";
+                }
+                tLRPC$MessageMedia.serializeToStream(abstractSerializedData);
+                TLRPC$MessageMedia tLRPC$MessageMedia2 = this.media;
+                if (!(tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaVenue) || ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia2).emoji == null) {
+                    abstractSerializedData.writeInt32(1450380236);
+                    return;
+                } else {
+                    abstractSerializedData.writeInt32(-559038737);
+                    str = ((TLRPC$TL_messageMediaVenue) this.media).emoji;
+                }
+            } else {
+                if (b == 7) {
+                    abstractSerializedData.writeFloat(this.density);
+                    this.mediaArea.serializeToStream(abstractSerializedData);
+                    this.linkSettings.serializeToStream(abstractSerializedData);
+                    return;
+                }
+                if (b == 4) {
+                    this.mediaArea.serializeToStream(abstractSerializedData);
+                    return;
+                }
+                if (b == 5) {
+                    abstractSerializedData.writeInt64(this.roundOffset);
+                    abstractSerializedData.writeInt64(this.roundLeft);
+                    abstractSerializedData.writeInt64(this.roundRight);
+                    abstractSerializedData.writeInt64(this.roundDuration);
+                    return;
+                }
+                if (b != 2) {
+                    if (b == 8) {
+                        if (this.weather == null) {
+                            abstractSerializedData.writeInt32(-559038737);
+                            return;
+                        } else {
+                            abstractSerializedData.writeInt32(132805945);
+                            this.weather.serializeToStream(abstractSerializedData);
+                            return;
+                        }
+                    }
+                    return;
+                }
+                str = this.segmentedPath;
+            }
+            abstractSerializedData.writeString(str);
+        }
+    }
+
+    public boolean canAutoPlaySourceVideo() {
+        return this.roundVideo;
     }
 
     public String getString() {
         byte[] bArr;
         String bytesToHex;
+        float f;
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
-        if (this.avatarStartTime != -1 || this.filterState != null || this.paintPath != null || this.blurPath != null || (((arrayList = this.mediaEntities) != null && !arrayList.isEmpty()) || this.cropState != null)) {
+        if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && this.blurPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
+            bytesToHex = "";
+        } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;
             byte[] bArr2 = null;
@@ -465,28 +472,28 @@ public class VideoEditedInfo {
                 Point point = this.filterState.blurExcludePoint;
                 if (point != null) {
                     serializedData.writeFloat(point.x);
-                    serializedData.writeFloat(this.filterState.blurExcludePoint.y);
+                    f = this.filterState.blurExcludePoint.y;
                 } else {
-                    serializedData.writeFloat(0.0f);
+                    f = 0.0f;
                     serializedData.writeFloat(0.0f);
                 }
+                serializedData.writeFloat(f);
                 serializedData.writeFloat(this.filterState.blurExcludeBlurSize);
                 serializedData.writeFloat(this.filterState.blurAngle);
-                for (int i2 = 0; i2 < 4; i2++) {
+                int i2 = 0;
+                while (i2 < 4) {
                     if (i2 == 0) {
                         curvesValue = this.filterState.curvesToolValue.luminanceCurve;
-                    } else if (i2 == 1) {
-                        curvesValue = this.filterState.curvesToolValue.redCurve;
-                    } else if (i2 == 2) {
-                        curvesValue = this.filterState.curvesToolValue.greenCurve;
                     } else {
-                        curvesValue = this.filterState.curvesToolValue.blueCurve;
+                        PhotoFilterView.CurvesToolValue curvesToolValue = this.filterState.curvesToolValue;
+                        curvesValue = i2 == 1 ? curvesToolValue.redCurve : i2 == 2 ? curvesToolValue.greenCurve : curvesToolValue.blueCurve;
                     }
                     serializedData.writeFloat(curvesValue.blacksLevel);
                     serializedData.writeFloat(curvesValue.shadowsLevel);
                     serializedData.writeFloat(curvesValue.midtonesLevel);
                     serializedData.writeFloat(curvesValue.highlightsLevel);
                     serializedData.writeFloat(curvesValue.whitesLevel);
+                    i2++;
                 }
             } else {
                 serializedData.writeByte(0);
@@ -498,7 +505,9 @@ public class VideoEditedInfo {
                 serializedData.writeByte(0);
             }
             ArrayList<MediaEntity> arrayList2 = this.mediaEntities;
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
+            if (arrayList2 == null || arrayList2.isEmpty()) {
+                serializedData.writeByte(0);
+            } else {
                 serializedData.writeByte(1);
                 serializedData.writeInt32(this.mediaEntities.size());
                 int size = this.mediaEntities.size();
@@ -506,8 +515,6 @@ public class VideoEditedInfo {
                     this.mediaEntities.get(i3).serializeTo(serializedData, false);
                 }
                 serializedData.writeByte(this.isPhoto ? 1 : 0);
-            } else {
-                serializedData.writeByte(0);
             }
             if (this.cropState != null) {
                 serializedData.writeByte(1);
@@ -537,14 +544,31 @@ public class VideoEditedInfo {
             serializedData.writeBool(this.isSticker);
             bytesToHex = Utilities.bytesToHex(serializedData.toByteArray());
             serializedData.cleanup();
-        } else {
-            bytesToHex = "";
         }
         return String.format(Locale.US, "-1_%d_%d_%d_%d_%d_%d_%d_%d_%d_%d_-%s_%s", Long.valueOf(this.startTime), Long.valueOf(this.endTime), Integer.valueOf(this.rotationValue), Integer.valueOf(this.originalWidth), Integer.valueOf(this.originalHeight), Integer.valueOf(this.bitrate), Integer.valueOf(this.resultWidth), Integer.valueOf(this.resultHeight), Long.valueOf(this.originalDuration), Integer.valueOf(this.framerate), bytesToHex, this.originalPath);
     }
 
+    public boolean needConvert() {
+        MediaController.CropState cropState;
+        if (!this.isStory) {
+            if (this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && this.cropState == null && this.roundVideo && this.startTime <= 0) {
+                long j = this.endTime;
+                if (j == -1 || j == this.estimatedDuration) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        if (this.fromCamera && this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && (((cropState = this.cropState) == null || cropState.isEmpty()) && this.startTime <= 0)) {
+            long j2 = this.endTime;
+            if ((j2 == -1 || j2 == this.estimatedDuration) && this.originalHeight == this.resultHeight && this.originalWidth == this.resultWidth) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public boolean parseString(String str) {
-        PhotoFilterView.CurvesValue curvesValue;
         if (str.length() < 6) {
             return false;
         }
@@ -596,21 +620,15 @@ public class VideoEditedInfo {
                             this.filterState.blurExcludePoint = new Point(serializedData.readFloat(false), serializedData.readFloat(false));
                             this.filterState.blurExcludeBlurSize = serializedData.readFloat(false);
                             this.filterState.blurAngle = serializedData.readFloat(false);
-                            for (int i2 = 0; i2 < 4; i2++) {
-                                if (i2 == 0) {
-                                    curvesValue = this.filterState.curvesToolValue.luminanceCurve;
-                                } else if (i2 == 1) {
-                                    curvesValue = this.filterState.curvesToolValue.redCurve;
-                                } else if (i2 == 2) {
-                                    curvesValue = this.filterState.curvesToolValue.greenCurve;
-                                } else {
-                                    curvesValue = this.filterState.curvesToolValue.blueCurve;
-                                }
+                            int i2 = 0;
+                            while (i2 < 4) {
+                                PhotoFilterView.CurvesValue curvesValue = i2 == 0 ? this.filterState.curvesToolValue.luminanceCurve : i2 == 1 ? this.filterState.curvesToolValue.redCurve : i2 == 2 ? this.filterState.curvesToolValue.greenCurve : this.filterState.curvesToolValue.blueCurve;
                                 curvesValue.blacksLevel = serializedData.readFloat(false);
                                 curvesValue.shadowsLevel = serializedData.readFloat(false);
                                 curvesValue.midtonesLevel = serializedData.readFloat(false);
                                 curvesValue.highlightsLevel = serializedData.readFloat(false);
                                 curvesValue.whitesLevel = serializedData.readFloat(false);
+                                i2++;
                             }
                         }
                         if (serializedData.readByte(false) != 0) {
@@ -661,11 +679,7 @@ public class VideoEditedInfo {
                     i = 12;
                 }
                 while (i < split.length) {
-                    if (this.originalPath == null) {
-                        this.originalPath = split[i];
-                    } else {
-                        this.originalPath += "_" + split[i];
-                    }
+                    this.originalPath = this.originalPath == null ? split[i] : this.originalPath + "_" + split[i];
                     i++;
                 }
             }
@@ -674,29 +688,5 @@ public class VideoEditedInfo {
             FileLog.e(e);
             return false;
         }
-    }
-
-    public boolean needConvert() {
-        MediaController.CropState cropState;
-        if (this.isStory) {
-            if (this.fromCamera && this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && (((cropState = this.cropState) == null || cropState.isEmpty()) && this.startTime <= 0)) {
-                long j = this.endTime;
-                if ((j == -1 || j == this.estimatedDuration) && this.originalHeight == this.resultHeight && this.originalWidth == this.resultWidth) {
-                    return false;
-                }
-            }
-            return true;
-        }
-        if (this.mixedSoundInfos.isEmpty() && this.mediaEntities == null && this.paintPath == null && this.blurPath == null && this.filterState == null && this.cropState == null && this.roundVideo && this.startTime <= 0) {
-            long j2 = this.endTime;
-            if (j2 == -1 || j2 == this.estimatedDuration) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean canAutoPlaySourceVideo() {
-        return this.roundVideo;
     }
 }

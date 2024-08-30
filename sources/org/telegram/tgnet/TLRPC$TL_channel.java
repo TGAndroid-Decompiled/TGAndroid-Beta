@@ -175,7 +175,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
             for (int i25 = 0; i25 < size; i25++) {
-                this.restriction_reason.get(i25).serializeToStream(abstractSerializedData);
+                ((TLRPC$RestrictionReason) this.restriction_reason.get(i25)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16384) != 0) {
@@ -195,7 +195,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             int size2 = this.usernames.size();
             abstractSerializedData.writeInt32(size2);
             for (int i26 = 0; i26 < size2; i26++) {
-                this.usernames.get(i26).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_username) this.usernames.get(i26)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags2 & 16) != 0) {

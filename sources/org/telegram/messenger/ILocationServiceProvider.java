@@ -42,11 +42,11 @@ public interface ILocationServiceProvider {
         void disconnect();
     }
 
-    void checkLocationSettings(ILocationRequest iLocationRequest, Consumer<Integer> consumer);
+    void checkLocationSettings(ILocationRequest iLocationRequest, Consumer consumer);
 
     boolean checkServices();
 
-    void getLastLocation(Consumer<Location> consumer);
+    void getLastLocation(Consumer consumer);
 
     void init(Context context);
 

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Paint.Views;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -105,32 +104,50 @@ public class PaintWeightChooserView extends View {
         this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 637534208);
     }
 
-    public void setShowPreview(boolean z) {
-        this.showPreview = z;
-        invalidate();
+    private void drawCircleWithShadow(Canvas canvas, float f, float f2, float f3, boolean z) {
+        if (z) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((f - f3) - AndroidUtilities.dp(6.0f), (f2 - f3) - AndroidUtilities.dp(6.0f), f + f3 + AndroidUtilities.dp(6.0f), f2 + f3 + AndroidUtilities.dp(6.0f));
+            canvas.saveLayerAlpha(rectF, (int) (this.showProgress * 255.0f), 31);
+        }
+        canvas.drawCircle(f, f2, f3, this.colorPaint);
+        if (z) {
+            canvas.restore();
+        }
     }
 
-    public void setValueOverride(ValueOverride valueOverride) {
-        this.valueOverride = valueOverride;
-        invalidate();
+    @Override
+    protected void onDraw(android.graphics.Canvas r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.PaintWeightChooserView.onDraw(android.graphics.Canvas):void");
     }
 
-    public void stopPanTransition() {
-        this.isPanTransitionInProgress = false;
-        invalidate();
+    @Override
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        super.onSizeChanged(i, i2, i3, i4);
+        if (this.isPanTransitionInProgress) {
+            return;
+        }
+        int height = (int) (getHeight() * 0.3f);
+        this.touchRect.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
     }
 
-    public void setRenderView(RenderView renderView) {
-        this.renderView = renderView;
-    }
-
-    public void setColorSwatch(Swatch swatch) {
-        this.colorSwatch = swatch;
-        invalidate();
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean onTouchEvent = this.gestureDetector.onTouchEvent(motionEvent);
+        if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
+            this.isTouchInProgress = false;
+            invalidate();
+        }
+        return onTouchEvent;
     }
 
     public void setBrushWeight(float f) {
         this.colorSwatch.brushWeight = f;
+        invalidate();
+    }
+
+    public void setColorSwatch(Swatch swatch) {
+        this.colorSwatch = swatch;
         invalidate();
     }
 
@@ -149,25 +166,18 @@ public class PaintWeightChooserView extends View {
         this.onUpdate = runnable;
     }
 
-    @Override
-    @SuppressLint({"ClickableViewAccessibility"})
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean onTouchEvent = this.gestureDetector.onTouchEvent(motionEvent);
-        if (motionEvent.getActionMasked() == 1 || motionEvent.getActionMasked() == 3) {
-            this.isTouchInProgress = false;
-            invalidate();
-        }
-        return onTouchEvent;
+    public void setRenderView(RenderView renderView) {
+        this.renderView = renderView;
     }
 
-    @Override
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        super.onSizeChanged(i, i2, i3, i4);
-        if (this.isPanTransitionInProgress) {
-            return;
-        }
-        int height = (int) (getHeight() * 0.3f);
-        this.touchRect.set(0.0f, (getHeight() - height) / 2.0f, AndroidUtilities.dp(32.0f), (getHeight() + height) / 2.0f);
+    public void setShowPreview(boolean z) {
+        this.showPreview = z;
+        invalidate();
+    }
+
+    public void setValueOverride(ValueOverride valueOverride) {
+        this.valueOverride = valueOverride;
+        invalidate();
     }
 
     public void setViewHidden(boolean z) {
@@ -175,20 +185,8 @@ public class PaintWeightChooserView extends View {
         invalidate();
     }
 
-    @Override
-    protected void onDraw(android.graphics.Canvas r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.PaintWeightChooserView.onDraw(android.graphics.Canvas):void");
-    }
-
-    private void drawCircleWithShadow(Canvas canvas, float f, float f2, float f3, boolean z) {
-        if (z) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((f - f3) - AndroidUtilities.dp(6.0f), (f2 - f3) - AndroidUtilities.dp(6.0f), f + f3 + AndroidUtilities.dp(6.0f), f2 + f3 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.showProgress * 255.0f), 31);
-        }
-        canvas.drawCircle(f, f2, f3, this.colorPaint);
-        if (z) {
-            canvas.restore();
-        }
+    public void stopPanTransition() {
+        this.isPanTransitionInProgress = false;
+        invalidate();
     }
 }

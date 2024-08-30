@@ -8,14 +8,11 @@ import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
-public class ChatActivityContainer extends FrameLayout {
+public abstract class ChatActivityContainer extends FrameLayout {
     public final ChatActivity chatActivity;
     private View fragmentView;
     private boolean isActive;
     private final INavigationLayout parentLayout;
-
-    protected void onSearchLoadingUpdate(boolean z) {
-    }
 
     public ChatActivityContainer(Context context, INavigationLayout iNavigationLayout, Bundle bundle) {
         super(context);
@@ -23,22 +20,16 @@ public class ChatActivityContainer extends FrameLayout {
         this.parentLayout = iNavigationLayout;
         ChatActivity chatActivity = new ChatActivity(bundle) {
             @Override
-            public void setNavigationBarColor(int i) {
+            protected void onSearchLoadingUpdate(boolean z) {
+                ChatActivityContainer.this.onSearchLoadingUpdate(z);
             }
 
             @Override
-            protected void onSearchLoadingUpdate(boolean z) {
-                ChatActivityContainer.this.onSearchLoadingUpdate(z);
+            public void setNavigationBarColor(int i) {
             }
         };
         this.chatActivity = chatActivity;
         chatActivity.isInsideContainer = true;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        initChatActivity();
     }
 
     public void initChatActivity() {
@@ -64,6 +55,17 @@ public class ChatActivityContainer extends FrameLayout {
         }
     }
 
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        initChatActivity();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
     public void onPause() {
         this.isActive = false;
         if (this.fragmentView != null) {
@@ -78,8 +80,6 @@ public class ChatActivityContainer extends FrameLayout {
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    protected void onSearchLoadingUpdate(boolean z) {
     }
 }

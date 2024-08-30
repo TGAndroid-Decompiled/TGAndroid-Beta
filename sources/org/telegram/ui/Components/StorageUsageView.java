@@ -49,6 +49,82 @@ public class StorageUsageView extends FrameLayout {
     ValueAnimator valueAnimator;
     ValueAnimator valueAnimator2;
 
+    public class ProgressView extends View {
+        public ProgressView(Context context) {
+            super(context);
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            boolean z;
+            super.onDraw(canvas);
+            int color = Theme.getColor(Theme.key_player_progress);
+            StorageUsageView.this.paintFill.setColor(color);
+            StorageUsageView.this.paintProgress.setColor(color);
+            StorageUsageView.this.paintProgress2.setColor(color);
+            StorageUsageView.this.paintProgress.setAlpha(255);
+            StorageUsageView.this.paintProgress2.setAlpha(82);
+            StorageUsageView.this.paintFill.setAlpha(46);
+            StorageUsageView.this.bgPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            canvas.drawLine(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), StorageUsageView.this.paintFill);
+            if (StorageUsageView.this.calculating || StorageUsageView.this.calculatingProgress != 0.0f) {
+                if (StorageUsageView.this.calculating) {
+                    StorageUsageView storageUsageView = StorageUsageView.this;
+                    if (storageUsageView.calculatingProgressIncrement) {
+                        float f = storageUsageView.calculatingProgress + 0.024615385f;
+                        storageUsageView.calculatingProgress = f;
+                        if (f > 1.0f) {
+                            storageUsageView.calculatingProgress = 1.0f;
+                            z = false;
+                            storageUsageView.calculatingProgressIncrement = z;
+                        }
+                    } else {
+                        float f2 = storageUsageView.calculatingProgress - 0.024615385f;
+                        storageUsageView.calculatingProgress = f2;
+                        if (f2 < 0.0f) {
+                            storageUsageView.calculatingProgress = 0.0f;
+                            z = true;
+                            storageUsageView.calculatingProgressIncrement = z;
+                        }
+                    }
+                } else {
+                    StorageUsageView storageUsageView2 = StorageUsageView.this;
+                    float f3 = storageUsageView2.calculatingProgress - 0.10666667f;
+                    storageUsageView2.calculatingProgress = f3;
+                    if (f3 < 0.0f) {
+                        storageUsageView2.calculatingProgress = 0.0f;
+                    }
+                }
+                invalidate();
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(17.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(23.0f));
+                StorageUsageView.this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
+                StorageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(3.0f), null);
+            }
+            int dp = AndroidUtilities.dp(24.0f);
+            if (!StorageUsageView.this.calculating) {
+                int dp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
+                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
+                canvas.drawRect(dp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
+            }
+            if (StorageUsageView.this.calculating) {
+                return;
+            }
+            int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
+            if (measuredWidth < AndroidUtilities.dp(1.0f)) {
+                measuredWidth = AndroidUtilities.dp(1.0f);
+            }
+            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
+            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
+            canvas.drawRect(dp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
+        }
+    }
+
     public StorageUsageView(Context context) {
         super(context);
         this.paintFill = new Paint(1);
@@ -77,6 +153,23 @@ public class StorageUsageView extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f));
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                int childCount = getChildCount();
+                int i5 = 0;
+                int i6 = 0;
+                for (int i7 = 0; i7 < childCount; i7++) {
+                    if (getChildAt(i7).getVisibility() != 8) {
+                        if (getChildAt(i7).getMeasuredWidth() + i5 > getMeasuredWidth()) {
+                            i6 += getChildAt(i7).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
+                            i5 = 0;
+                        }
+                        getChildAt(i7).layout(i5, i6, getChildAt(i7).getMeasuredWidth() + i5, getChildAt(i7).getMeasuredHeight() + i6);
+                        i5 += getChildAt(i7).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
+                    }
+                }
+            }
+
+            @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
                 int childCount = getChildCount();
@@ -94,23 +187,6 @@ public class StorageUsageView extends FrameLayout {
                     }
                 }
                 setMeasuredDimension(getMeasuredWidth(), i3);
-            }
-
-            @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                int childCount = getChildCount();
-                int i5 = 0;
-                int i6 = 0;
-                for (int i7 = 0; i7 < childCount; i7++) {
-                    if (getChildAt(i7).getVisibility() != 8) {
-                        if (getChildAt(i7).getMeasuredWidth() + i5 > getMeasuredWidth()) {
-                            i6 += getChildAt(i7).getMeasuredHeight() + AndroidUtilities.dp(8.0f);
-                            i5 = 0;
-                        }
-                        getChildAt(i7).layout(i5, i6, getChildAt(i7).getMeasuredWidth() + i5, getChildAt(i7).getMeasuredHeight() + i6);
-                        i5 += getChildAt(i7).getMeasuredWidth() + AndroidUtilities.dp(16.0f);
-                    }
-                }
             }
         };
         this.legendLayout = frameLayout;
@@ -168,6 +244,55 @@ public class StorageUsageView extends FrameLayout {
         TextSettingsCell textSettingsCell = new TextSettingsCell(getContext());
         this.textSettingsCell = textSettingsCell;
         linearLayout.addView(textSettingsCell, LayoutHelper.createLinear(-1, -2));
+    }
+
+    public void lambda$setStorageUsage$0(ValueAnimator valueAnimator) {
+        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$setStorageUsage$1(ValueAnimator valueAnimator) {
+        this.progress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        this.progressView.invalidate();
+        int i = this.lastProgressColor;
+        int i2 = Theme.key_player_progress;
+        if (i != Theme.getColor(i2)) {
+            this.lastProgressColor = Theme.getColor(i2);
+            this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+            this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
+        }
+        this.textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.divider.setBackgroundColor(Theme.getColor(Theme.key_divider));
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        EllipsizeSpanAnimator ellipsizeSpanAnimator = this.ellipsizeSpanAnimator;
+        if (ellipsizeSpanAnimator != null) {
+            ellipsizeSpanAnimator.onAttachedToWindow();
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        EllipsizeSpanAnimator ellipsizeSpanAnimator = this.ellipsizeSpanAnimator;
+        if (ellipsizeSpanAnimator != null) {
+            ellipsizeSpanAnimator.onDetachedFromWindow();
+        }
     }
 
     public void setStorageUsage(boolean z, long j, long j2, long j3, long j4) {
@@ -250,127 +375,5 @@ public class StorageUsageView extends FrameLayout {
         }
         this.textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         requestLayout();
-    }
-
-    public void lambda$setStorageUsage$0(ValueAnimator valueAnimator) {
-        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void lambda$setStorageUsage$1(ValueAnimator valueAnimator) {
-        this.progress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    @Override
-    public void invalidate() {
-        super.invalidate();
-        this.progressView.invalidate();
-        int i = this.lastProgressColor;
-        int i2 = Theme.key_player_progress;
-        if (i != Theme.getColor(i2)) {
-            this.lastProgressColor = Theme.getColor(i2);
-            this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.telegramDatabaseTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.freeSizeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-            this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
-            this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        }
-        this.textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.divider.setBackgroundColor(Theme.getColor(Theme.key_divider));
-    }
-
-    public class ProgressView extends View {
-        public ProgressView(Context context) {
-            super(context);
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            int color = Theme.getColor(Theme.key_player_progress);
-            StorageUsageView.this.paintFill.setColor(color);
-            StorageUsageView.this.paintProgress.setColor(color);
-            StorageUsageView.this.paintProgress2.setColor(color);
-            StorageUsageView.this.paintProgress.setAlpha(255);
-            StorageUsageView.this.paintProgress2.setAlpha(82);
-            StorageUsageView.this.paintFill.setAlpha(46);
-            StorageUsageView.this.bgPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            canvas.drawLine(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), StorageUsageView.this.paintFill);
-            if (StorageUsageView.this.calculating || StorageUsageView.this.calculatingProgress != 0.0f) {
-                if (StorageUsageView.this.calculating) {
-                    StorageUsageView storageUsageView = StorageUsageView.this;
-                    if (storageUsageView.calculatingProgressIncrement) {
-                        float f = storageUsageView.calculatingProgress + 0.024615385f;
-                        storageUsageView.calculatingProgress = f;
-                        if (f > 1.0f) {
-                            storageUsageView.calculatingProgress = 1.0f;
-                            storageUsageView.calculatingProgressIncrement = false;
-                        }
-                    } else {
-                        float f2 = storageUsageView.calculatingProgress - 0.024615385f;
-                        storageUsageView.calculatingProgress = f2;
-                        if (f2 < 0.0f) {
-                            storageUsageView.calculatingProgress = 0.0f;
-                            storageUsageView.calculatingProgressIncrement = true;
-                        }
-                    }
-                } else {
-                    StorageUsageView storageUsageView2 = StorageUsageView.this;
-                    float f3 = storageUsageView2.calculatingProgress - 0.10666667f;
-                    storageUsageView2.calculatingProgress = f3;
-                    if (f3 < 0.0f) {
-                        storageUsageView2.calculatingProgress = 0.0f;
-                    }
-                }
-                invalidate();
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(17.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(23.0f));
-                StorageUsageView.this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
-                StorageUsageView.this.cellFlickerDrawable.draw(canvas, rectF, AndroidUtilities.dp(3.0f), null);
-            }
-            int dp = AndroidUtilities.dp(24.0f);
-            if (!StorageUsageView.this.calculating) {
-                int dp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
-                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
-                canvas.drawRect(dp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
-            }
-            if (StorageUsageView.this.calculating) {
-                return;
-            }
-            int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
-            if (measuredWidth < AndroidUtilities.dp(1.0f)) {
-                measuredWidth = AndroidUtilities.dp(1.0f);
-            }
-            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
-            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
-            canvas.drawRect(dp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        EllipsizeSpanAnimator ellipsizeSpanAnimator = this.ellipsizeSpanAnimator;
-        if (ellipsizeSpanAnimator != null) {
-            ellipsizeSpanAnimator.onAttachedToWindow();
-        }
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        EllipsizeSpanAnimator ellipsizeSpanAnimator = this.ellipsizeSpanAnimator;
-        if (ellipsizeSpanAnimator != null) {
-            ellipsizeSpanAnimator.onDetachedFromWindow();
-        }
     }
 }

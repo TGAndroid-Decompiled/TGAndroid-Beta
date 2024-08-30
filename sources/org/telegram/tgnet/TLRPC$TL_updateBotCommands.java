@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_updateBotCommands extends TLRPC$Update {
     public long bot_id;
-    public ArrayList<TLRPC$TL_botCommand> commands = new ArrayList<>();
+    public ArrayList commands = new ArrayList();
     public TLRPC$Peer peer;
 
     @Override
@@ -37,7 +37,7 @@ public class TLRPC$TL_updateBotCommands extends TLRPC$Update {
         int size = this.commands.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.commands.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_botCommand) this.commands.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

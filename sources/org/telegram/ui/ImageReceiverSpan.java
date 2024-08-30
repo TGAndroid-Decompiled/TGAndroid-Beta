@@ -43,15 +43,29 @@ public class ImageReceiverSpan extends ReplacementSpan {
         setParent(view);
     }
 
-    public void setSize(float f) {
-        this.sz = f;
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        if (this.shadowPaintAlpha != paint.getAlpha()) {
+            Paint paint2 = this.shadowPaint;
+            int alpha = paint.getAlpha();
+            this.shadowPaintAlpha = alpha;
+            paint2.setAlpha(alpha);
+            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
+        }
+        float f2 = this.translateX + f;
+        float dp = (this.translateY + ((i3 + i5) / 2.0f)) - (AndroidUtilities.dp(this.sz) / 2.0f);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f2, dp, AndroidUtilities.dp(this.sz) + f2, AndroidUtilities.dp(this.sz) + dp);
+        float f3 = this.radius;
+        canvas.drawRoundRect(rectF, f3, f3, this.shadowPaint);
+        this.imageReceiver.setImageCoords(f2, dp, AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
+        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
+        this.imageReceiver.draw(canvas);
     }
 
-    public void setRoundRadius(float f) {
-        ImageReceiver imageReceiver = this.imageReceiver;
-        float dp = AndroidUtilities.dp(f);
-        this.radius = dp;
-        imageReceiver.setRoundRadius((int) dp);
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.sz);
     }
 
     public void setParent(View view) {
@@ -76,28 +90,14 @@ public class ImageReceiverSpan extends ReplacementSpan {
         }
     }
 
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.sz);
+    public void setRoundRadius(float f) {
+        ImageReceiver imageReceiver = this.imageReceiver;
+        float dp = AndroidUtilities.dp(f);
+        this.radius = dp;
+        imageReceiver.setRoundRadius((int) dp);
     }
 
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.shadowPaintAlpha != paint.getAlpha()) {
-            Paint paint2 = this.shadowPaint;
-            int alpha = paint.getAlpha();
-            this.shadowPaintAlpha = alpha;
-            paint2.setAlpha(alpha);
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
-        }
-        float f2 = this.translateX + f;
-        float dp = (this.translateY + ((i3 + i5) / 2.0f)) - (AndroidUtilities.dp(this.sz) / 2.0f);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f2, dp, AndroidUtilities.dp(this.sz) + f2, AndroidUtilities.dp(this.sz) + dp);
-        float f3 = this.radius;
-        canvas.drawRoundRect(rectF, f3, f3, this.shadowPaint);
-        this.imageReceiver.setImageCoords(f2, dp, AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
-        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
-        this.imageReceiver.draw(canvas);
+    public void setSize(float f) {
+        this.sz = f;
     }
 }

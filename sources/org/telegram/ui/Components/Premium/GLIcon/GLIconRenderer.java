@@ -62,30 +62,6 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     }
 
     @Override
-    public void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        Icon3D icon3D = this.model;
-        if (icon3D != null) {
-            icon3D.destroy();
-        }
-        Icon3D icon3D2 = new Icon3D(this.context, this.type);
-        this.model = icon3D2;
-        Bitmap bitmap = this.backgroundBitmap;
-        if (bitmap != null) {
-            icon3D2.setBackground(bitmap);
-        }
-        if (this.isDarkBackground) {
-            Icon3D icon3D3 = this.model;
-            icon3D3.spec1 = 1.0f;
-            icon3D3.spec2 = 0.2f;
-        }
-    }
-
-    public void setDeltaTime(float f) {
-        this.dt = f;
-    }
-
-    @Override
     public void onDrawFrame(GL10 gl10) {
         GLES20.glClear(16640);
         GLES20.glEnable(2929);
@@ -114,12 +90,36 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
         Matrix.perspectiveM(this.mProjectionMatrix, 0, 53.13f, i / i2, 1.0f, 200.0f);
     }
 
+    @Override
+    public void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
+        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        Icon3D icon3D = this.model;
+        if (icon3D != null) {
+            icon3D.destroy();
+        }
+        Icon3D icon3D2 = new Icon3D(this.context, this.type);
+        this.model = icon3D2;
+        Bitmap bitmap = this.backgroundBitmap;
+        if (bitmap != null) {
+            icon3D2.setBackground(bitmap);
+        }
+        if (this.isDarkBackground) {
+            Icon3D icon3D3 = this.model;
+            icon3D3.spec1 = 1.0f;
+            icon3D3.spec2 = 0.2f;
+        }
+    }
+
     public void setBackground(Bitmap bitmap) {
         Icon3D icon3D = this.model;
         if (icon3D != null) {
             icon3D.setBackground(bitmap);
         }
         this.backgroundBitmap = bitmap;
+    }
+
+    public void setDeltaTime(float f) {
+        this.dt = f;
     }
 
     public void updateColors() {

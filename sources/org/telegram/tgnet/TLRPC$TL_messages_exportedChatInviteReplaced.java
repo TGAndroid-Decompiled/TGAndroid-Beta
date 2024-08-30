@@ -33,7 +33,7 @@ public class TLRPC$TL_messages_exportedChatInviteReplaced extends TLRPC$messages
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.users.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -12,7 +12,7 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
     public boolean refunded;
     public int unclaimed_count;
     public int until_date;
-    public ArrayList<Long> winners = new ArrayList<>();
+    public ArrayList winners = new ArrayList();
     public int winners_count;
 
     @Override
@@ -65,7 +65,7 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
         int size = this.winners.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            abstractSerializedData.writeInt64(this.winners.get(i3).longValue());
+            abstractSerializedData.writeInt64(((Long) this.winners.get(i3)).longValue());
         }
         abstractSerializedData.writeInt32(this.months);
         if ((this.flags & 2) != 0) {

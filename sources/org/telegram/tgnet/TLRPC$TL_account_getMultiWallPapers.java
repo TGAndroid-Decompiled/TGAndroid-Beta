@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_account_getMultiWallPapers extends TLObject {
-    public ArrayList<TLRPC$InputWallPaper> wallpapers = new ArrayList<>();
+    public ArrayList wallpapers = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -26,7 +26,7 @@ public class TLRPC$TL_account_getMultiWallPapers extends TLObject {
         int size = this.wallpapers.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.wallpapers.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputWallPaper) this.wallpapers.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

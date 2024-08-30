@@ -18,8 +18,12 @@ public class HashtagSearchCell extends TextView {
         setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
     }
 
-    public void setNeedDivider(boolean z) {
-        this.needDivider = z;
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            canvas.drawLine(0.0f, getHeight() - 1, getWidth(), getHeight() - 1, Theme.dividerPaint);
+        }
     }
 
     @Override
@@ -27,11 +31,7 @@ public class HashtagSearchCell extends TextView {
         setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(48.0f) + 1);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            canvas.drawLine(0.0f, getHeight() - 1, getWidth(), getHeight() - 1, Theme.dividerPaint);
-        }
+    public void setNeedDivider(boolean z) {
+        this.needDivider = z;
     }
 }

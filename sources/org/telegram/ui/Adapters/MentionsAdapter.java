@@ -32,6 +32,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
+import org.telegram.tgnet.TLRPC$ChannelParticipant;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Document;
@@ -60,7 +61,6 @@ import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photoSize;
 import org.telegram.tgnet.TLRPC$TL_photoSizeProgressive;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.MentionsAdapter;
@@ -76,7 +76,7 @@ import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class MentionsAdapter extends RecyclerListView.SelectionAdapter implements NotificationCenter.NotificationCenterDelegate {
-    private LongSparseArray<TL_bots$BotInfo> botInfo;
+    private LongSparseArray botInfo;
     private int botsCount;
     private Runnable cancelDelayRunnable;
     private int channelLastReqId;
@@ -105,31 +105,32 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean lastUsernameOnly;
     private Context mContext;
     private EmojiView.ChooseStickerActionTracker mentionsStickersActionTracker;
-    private ArrayList<MessageObject> messages;
+    private ArrayList messages;
     private String nextQueryOffset;
     private boolean noUserName;
     private ChatActivity parentFragment;
-    private ArrayList<QuickRepliesController.QuickReply> quickReplies;
+    private ArrayList quickReplies;
     private String quickRepliesQuery;
     private final Theme.ResourcesProvider resourcesProvider;
     private int resultLength;
     private int resultStartPosition;
     private SearchAdapterHelper searchAdapterHelper;
     private Runnable searchGlobalRunnable;
-    private ArrayList<TLRPC$BotInlineResult> searchResultBotContext;
+    private ArrayList searchResultBotContext;
     private TLRPC$TL_inlineBotSwitchPM searchResultBotContextSwitch;
+    private long searchResultBotContextSwitchUserId;
     private TLRPC$TL_inlineBotWebView searchResultBotWebViewSwitch;
-    private ArrayList<String> searchResultCommands;
-    private ArrayList<String> searchResultCommandsHelp;
-    private ArrayList<TLRPC$User> searchResultCommandsUsers;
-    private ArrayList<String> searchResultHashtags;
-    private ArrayList<MediaDataController.KeywordResult> searchResultSuggestions;
-    private ArrayList<TLObject> searchResultUsernames;
-    private LongSparseArray<TLObject> searchResultUsernamesMap;
+    private ArrayList searchResultCommands;
+    private ArrayList searchResultCommandsHelp;
+    private ArrayList searchResultCommandsUsers;
+    private ArrayList searchResultHashtags;
+    private ArrayList searchResultSuggestions;
+    private ArrayList searchResultUsernames;
+    private LongSparseArray searchResultUsernamesMap;
     private String searchingContextQuery;
     private String searchingContextUsername;
-    private ArrayList<StickerResult> stickers;
-    private HashMap<String, TLRPC$Document> stickersMap;
+    private ArrayList stickers;
+    private HashMap stickersMap;
     private long threadMessageId;
     private TLRPC$User user;
     private boolean visibleByStickersSearch;
@@ -142,7 +143,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean needBotContext = true;
     private boolean inlineMediaEnabled = true;
     private boolean searchInDailogs = false;
-    private ArrayList<String> stickersToLoad = new ArrayList<>();
+    private ArrayList stickersToLoad = new ArrayList();
     private SendMessagesHelper.LocationProvider locationProvider = new SendMessagesHelper.LocationProvider(new SendMessagesHelper.LocationProvider.LocationProviderDelegate() {
         @Override
         public void onLocationAcquired(Location location) {
@@ -168,6 +169,178 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean isReversed = false;
     private int lastItemCount = -1;
 
+    public class AnonymousClass4 implements Runnable {
+        final MessagesController val$messagesController;
+        final MessagesStorage val$messagesStorage;
+        final String val$query;
+        final String val$username;
+
+        AnonymousClass4(String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
+            this.val$query = str;
+            this.val$username = str2;
+            this.val$messagesController = messagesController;
+            this.val$messagesStorage = messagesStorage;
+        }
+
+        public void lambda$run$0(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
+            if (MentionsAdapter.this.searchingContextUsername == null || !MentionsAdapter.this.searchingContextUsername.equals(str)) {
+                return;
+            }
+            TLRPC$User tLRPC$User = null;
+            if (tLRPC$TL_error == null) {
+                TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
+                if (!tLRPC$TL_contacts_resolvedPeer.users.isEmpty()) {
+                    TLRPC$User tLRPC$User2 = (TLRPC$User) tLRPC$TL_contacts_resolvedPeer.users.get(0);
+                    messagesController.putUser(tLRPC$User2, false);
+                    messagesStorage.putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, null, true, true);
+                    tLRPC$User = tLRPC$User2;
+                }
+            }
+            MentionsAdapter.this.processFoundUser(tLRPC$User);
+            MentionsAdapter.this.contextUsernameReqid = 0;
+        }
+
+        public void lambda$run$1(final String str, final MessagesController messagesController, final MessagesStorage messagesStorage, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MentionsAdapter.AnonymousClass4.this.lambda$run$0(str, tLRPC$TL_error, tLObject, messagesController, messagesStorage);
+                }
+            });
+        }
+
+        @Override
+        public void run() {
+            if (MentionsAdapter.this.contextQueryRunnable != this) {
+                return;
+            }
+            MentionsAdapter.this.contextQueryRunnable = null;
+            if (MentionsAdapter.this.foundContextBot != null || MentionsAdapter.this.noUserName) {
+                if (MentionsAdapter.this.noUserName) {
+                    return;
+                }
+                MentionsAdapter mentionsAdapter = MentionsAdapter.this;
+                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
+                return;
+            }
+            MentionsAdapter.this.searchingContextUsername = this.val$username;
+            TLObject userOrChat = this.val$messagesController.getUserOrChat(MentionsAdapter.this.searchingContextUsername);
+            if (userOrChat instanceof TLRPC$User) {
+                MentionsAdapter.this.processFoundUser((TLRPC$User) userOrChat);
+                return;
+            }
+            TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
+            tLRPC$TL_contacts_resolveUsername.username = MentionsAdapter.this.searchingContextUsername;
+            MentionsAdapter mentionsAdapter2 = MentionsAdapter.this;
+            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(mentionsAdapter2.currentAccount);
+            final String str = this.val$username;
+            final MessagesController messagesController = this.val$messagesController;
+            final MessagesStorage messagesStorage = this.val$messagesStorage;
+            mentionsAdapter2.contextUsernameReqid = connectionsManager.sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MentionsAdapter.AnonymousClass4.this.lambda$run$1(str, messagesController, messagesStorage, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+    }
+
+    public class AnonymousClass7 implements Runnable {
+        final TLRPC$Chat val$chat;
+        final MessagesController val$messagesController;
+        final LongSparseArray val$newMap;
+        final ArrayList val$newResult;
+        final long val$threadId;
+        final String val$usernameString;
+
+        AnonymousClass7(TLRPC$Chat tLRPC$Chat, String str, long j, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
+            this.val$chat = tLRPC$Chat;
+            this.val$usernameString = str;
+            this.val$threadId = j;
+            this.val$newResult = arrayList;
+            this.val$newMap = longSparseArray;
+            this.val$messagesController = messagesController;
+        }
+
+        public void lambda$run$0(int i, ArrayList arrayList, LongSparseArray longSparseArray, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, MessagesController messagesController) {
+            TLObject chat;
+            if (MentionsAdapter.this.channelReqId != 0 && i == MentionsAdapter.this.channelLastReqId && MentionsAdapter.this.searchResultUsernamesMap != null && MentionsAdapter.this.searchResultUsernames != null) {
+                MentionsAdapter.this.showUsersResult(arrayList, longSparseArray, false);
+                if (tLRPC$TL_error == null) {
+                    TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
+                    messagesController.putUsers(tLRPC$TL_channels_channelParticipants.users, false);
+                    messagesController.putChats(tLRPC$TL_channels_channelParticipants.chats, false);
+                    MentionsAdapter.this.searchResultUsernames.isEmpty();
+                    if (!tLRPC$TL_channels_channelParticipants.participants.isEmpty()) {
+                        long clientUserId = UserConfig.getInstance(MentionsAdapter.this.currentAccount).getClientUserId();
+                        for (int i2 = 0; i2 < tLRPC$TL_channels_channelParticipants.participants.size(); i2++) {
+                            long peerId = MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLRPC$TL_channels_channelParticipants.participants.get(i2)).peer);
+                            if (MentionsAdapter.this.searchResultUsernamesMap.indexOfKey(peerId) < 0 && ((peerId != 0 || MentionsAdapter.this.searchResultUsernamesMap.indexOfKey(clientUserId) < 0) && (MentionsAdapter.this.isSearchingMentions || (peerId != clientUserId && peerId != 0)))) {
+                                if (peerId >= 0) {
+                                    chat = messagesController.getUser(Long.valueOf(peerId));
+                                    if (chat == null) {
+                                        return;
+                                    }
+                                } else {
+                                    chat = messagesController.getChat(Long.valueOf(-peerId));
+                                    if (chat == null) {
+                                        return;
+                                    }
+                                }
+                                MentionsAdapter.this.searchResultUsernames.add(chat);
+                            }
+                        }
+                    }
+                }
+                MentionsAdapter.this.notifyDataSetChanged();
+                MentionsAdapter.this.delegate.needChangePanelVisibility(!MentionsAdapter.this.searchResultUsernames.isEmpty());
+            }
+            MentionsAdapter.this.channelReqId = 0;
+        }
+
+        public void lambda$run$1(final int i, final ArrayList arrayList, final LongSparseArray longSparseArray, final MessagesController messagesController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MentionsAdapter.AnonymousClass7.this.lambda$run$0(i, arrayList, longSparseArray, tLRPC$TL_error, tLObject, messagesController);
+                }
+            });
+        }
+
+        @Override
+        public void run() {
+            if (MentionsAdapter.this.searchGlobalRunnable != this) {
+                return;
+            }
+            TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
+            tLRPC$TL_channels_getParticipants.channel = MessagesController.getInputChannel(this.val$chat);
+            tLRPC$TL_channels_getParticipants.limit = 20;
+            tLRPC$TL_channels_getParticipants.offset = 0;
+            TLRPC$TL_channelParticipantsMentions tLRPC$TL_channelParticipantsMentions = new TLRPC$TL_channelParticipantsMentions();
+            int i = tLRPC$TL_channelParticipantsMentions.flags;
+            tLRPC$TL_channelParticipantsMentions.flags = i | 1;
+            tLRPC$TL_channelParticipantsMentions.q = this.val$usernameString;
+            long j = this.val$threadId;
+            if (j != 0) {
+                tLRPC$TL_channelParticipantsMentions.flags = i | 3;
+                tLRPC$TL_channelParticipantsMentions.top_msg_id = (int) j;
+            }
+            tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsMentions;
+            final int access$1704 = MentionsAdapter.access$1704(MentionsAdapter.this);
+            MentionsAdapter mentionsAdapter = MentionsAdapter.this;
+            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(mentionsAdapter.currentAccount);
+            final ArrayList arrayList = this.val$newResult;
+            final LongSparseArray longSparseArray = this.val$newMap;
+            final MessagesController messagesController = this.val$messagesController;
+            mentionsAdapter.channelReqId = connectionsManager.sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MentionsAdapter.AnonymousClass7.this.lambda$run$1(access$1704, arrayList, longSparseArray, messagesController, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+    }
+
     public interface MentionsAdapterDelegate {
         void needChangePanelVisibility(boolean z);
 
@@ -176,12 +349,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         void onContextSearch(boolean z);
 
         void onItemCountUpdate(int i, int i2);
-    }
-
-    static int access$1704(MentionsAdapter mentionsAdapter) {
-        int i = mentionsAdapter.channelLastReqId + 1;
-        mentionsAdapter.channelLastReqId = i;
-        return i;
     }
 
     public static class StickerResult {
@@ -225,7 +392,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
 
             @Override
-            public void onSetHashtags(ArrayList<SearchAdapterHelper.HashtagObject> arrayList, HashMap<String, SearchAdapterHelper.HashtagObject> hashMap) {
+            public void onSetHashtags(ArrayList arrayList, HashMap hashMap) {
                 if (MentionsAdapter.this.lastText != null) {
                     MentionsAdapter mentionsAdapter = MentionsAdapter.this;
                     mentionsAdapter.lambda$searchUsernameOrHashtag$7(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
@@ -240,38 +407,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersDidLoad);
     }
 
-    public TLRPC$User getFoundContextBot() {
-        return this.foundContextBot;
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        Runnable runnable;
-        if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed) {
-            ArrayList<StickerResult> arrayList = this.stickers;
-            if (arrayList == null || arrayList.isEmpty() || this.stickersToLoad.isEmpty() || !this.visibleByStickersSearch) {
-                return;
-            }
-            this.stickersToLoad.remove((String) objArr[0]);
-            if (this.stickersToLoad.isEmpty()) {
-                this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.recentDocumentsDidLoad) {
-            Runnable runnable2 = this.checkAgainRunnable;
-            if (runnable2 != null) {
-                AndroidUtilities.runOnUIThread(runnable2);
-                this.checkAgainRunnable = null;
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.stickersDidLoad && ((Integer) objArr[0]).intValue() == 0 && (runnable = this.checkAgainRunnable) != null) {
-            AndroidUtilities.runOnUIThread(runnable);
-            this.checkAgainRunnable = null;
-        }
+    static int access$1704(MentionsAdapter mentionsAdapter) {
+        int i = mentionsAdapter.channelLastReqId + 1;
+        mentionsAdapter.channelLastReqId = i;
+        return i;
     }
 
     private void addStickerToResult(TLRPC$Document tLRPC$Document, Object obj) {
@@ -279,12 +418,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             return;
         }
         String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
-        HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
+        HashMap hashMap = this.stickersMap;
         if (hashMap == null || !hashMap.containsKey(str)) {
             if (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document)) {
                 if (this.stickers == null) {
-                    this.stickers = new ArrayList<>();
-                    this.stickersMap = new HashMap<>();
+                    this.stickers = new ArrayList();
+                    this.stickersMap = new HashMap();
                 }
                 this.stickers.add(new StickerResult(tLRPC$Document, obj));
                 this.stickersMap.put(str, tLRPC$Document);
@@ -296,15 +435,15 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    private void addStickersToResult(ArrayList<TLRPC$Document> arrayList, Object obj) {
+    private void addStickersToResult(ArrayList arrayList, Object obj) {
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
-            TLRPC$Document tLRPC$Document = arrayList.get(i);
+            TLRPC$Document tLRPC$Document = (TLRPC$Document) arrayList.get(i);
             String str = tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
-            HashMap<String, TLRPC$Document> hashMap = this.stickersMap;
+            HashMap hashMap = this.stickersMap;
             if ((hashMap == null || !hashMap.containsKey(str)) && (UserConfig.getInstance(this.currentAccount).isPremium() || !MessageObject.isPremiumSticker(tLRPC$Document))) {
                 int size2 = tLRPC$Document.attributes.size();
                 int i2 = 0;
@@ -320,13 +459,33 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     i2++;
                 }
                 if (this.stickers == null) {
-                    this.stickers = new ArrayList<>();
-                    this.stickersMap = new HashMap<>();
+                    this.stickers = new ArrayList();
+                    this.stickersMap = new HashMap();
                 }
                 this.stickers.add(new StickerResult(tLRPC$Document, obj));
                 this.stickersMap.put(str, tLRPC$Document);
             }
         }
+    }
+
+    private void checkLocationPermissionsOrStart() {
+        int checkSelfPermission;
+        ChatActivity chatActivity = this.parentFragment;
+        if (chatActivity == null || chatActivity.getParentActivity() == null) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
+            if (checkSelfPermission != 0) {
+                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+                return;
+            }
+        }
+        TLRPC$User tLRPC$User = this.foundContextBot;
+        if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {
+            return;
+        }
+        this.locationProvider.start();
     }
 
     private boolean checkStickerFilesExistAndDownload() {
@@ -336,7 +495,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.stickersToLoad.clear();
         int min = Math.min(6, this.stickers.size());
         for (int i = 0; i < min; i++) {
-            StickerResult stickerResult = this.stickers.get(i);
+            StickerResult stickerResult = (StickerResult) this.stickers.get(i);
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerResult.sticker.thumbs, 90);
             if (((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive)) && !FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize, "webp", true).exists()) {
                 this.stickersToLoad.add(FileLoader.getAttachFileName(closestPhotoSizeWithSize, "webp"));
@@ -344,6 +503,25 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
         }
         return this.stickersToLoad.isEmpty();
+    }
+
+    private void clearStickers() {
+        this.lastSticker = null;
+        this.stickers = null;
+        this.stickersMap = null;
+        notifyDataSetChanged();
+        if (this.lastReqId != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastReqId, true);
+            this.lastReqId = 0;
+        }
+        EmojiView.ChooseStickerActionTracker chooseStickerActionTracker = this.mentionsStickersActionTracker;
+        if (chooseStickerActionTracker != null) {
+            chooseStickerActionTracker.checkVisibility();
+        }
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private boolean isValidSticker(TLRPC$Document tLRPC$Document, String str) {
@@ -364,93 +542,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             i++;
         }
         return false;
-    }
-
-    private void searchServerStickers(final String str, String str2) {
-        TLRPC$TL_messages_getStickers tLRPC$TL_messages_getStickers = new TLRPC$TL_messages_getStickers();
-        tLRPC$TL_messages_getStickers.emoticon = str2;
-        tLRPC$TL_messages_getStickers.hash = 0L;
-        this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStickers, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MentionsAdapter.this.lambda$searchServerStickers$1(str, tLObject, tLRPC$TL_error);
-            }
-        });
-    }
-
-    public void lambda$searchServerStickers$1(final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                MentionsAdapter.this.lambda$searchServerStickers$0(str, tLObject);
-            }
-        });
-    }
-
-    public void lambda$searchServerStickers$0(String str, TLObject tLObject) {
-        ArrayList<StickerResult> arrayList;
-        this.lastReqId = 0;
-        if (str.equals(this.lastSticker) && (tLObject instanceof TLRPC$TL_messages_stickers)) {
-            this.delayLocalResults = false;
-            TLRPC$TL_messages_stickers tLRPC$TL_messages_stickers = (TLRPC$TL_messages_stickers) tLObject;
-            ArrayList<StickerResult> arrayList2 = this.stickers;
-            int size = arrayList2 != null ? arrayList2.size() : 0;
-            addStickersToResult(tLRPC$TL_messages_stickers.stickers, "sticker_search_" + str);
-            ArrayList<StickerResult> arrayList3 = this.stickers;
-            int size2 = arrayList3 != null ? arrayList3.size() : 0;
-            if (!this.visibleByStickersSearch && (arrayList = this.stickers) != null && !arrayList.isEmpty()) {
-                checkStickerFilesExistAndDownload();
-                this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
-                this.visibleByStickersSearch = true;
-            }
-            if (size != size2) {
-                notifyDataSetChanged();
-            }
-        }
-    }
-
-    @Override
-    public void notifyDataSetChanged() {
-        MentionsAdapterDelegate mentionsAdapterDelegate;
-        int i = this.lastItemCount;
-        if (i == -1 || this.lastData == null) {
-            MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
-            if (mentionsAdapterDelegate2 != null) {
-                mentionsAdapterDelegate2.onItemCountUpdate(0, getItemCount());
-            }
-            super.notifyDataSetChanged();
-            this.lastData = new Object[getItemCount()];
-            while (true) {
-                Object[] objArr = this.lastData;
-                if (r2 >= objArr.length) {
-                    return;
-                }
-                objArr[r2] = getItem(r2);
-                r2++;
-            }
-        } else {
-            int itemCount = getItemCount();
-            boolean z = i != itemCount;
-            int min = Math.min(i, itemCount);
-            Object[] objArr2 = new Object[itemCount];
-            for (int i2 = 0; i2 < itemCount; i2++) {
-                objArr2[i2] = getItem(i2);
-            }
-            while (r2 < min) {
-                if (r2 >= 0) {
-                    Object[] objArr3 = this.lastData;
-                    r2 = (r2 < objArr3.length && r2 < itemCount && itemsEqual(objArr3[r2], objArr2[r2])) ? r2 + 1 : 0;
-                }
-                notifyItemChanged(r2);
-                z = true;
-            }
-            notifyItemRangeRemoved(min, i - min);
-            notifyItemRangeInserted(min, itemCount - min);
-            if (z && (mentionsAdapterDelegate = this.delegate) != null) {
-                mentionsAdapterDelegate.onItemCountUpdate(i, itemCount);
-            }
-            this.lastData = objArr2;
-        }
     }
 
     private boolean itemsEqual(Object obj, Object obj2) {
@@ -484,126 +575,170 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return false;
     }
 
-    private void clearStickers() {
-        this.lastSticker = null;
-        this.stickers = null;
-        this.stickersMap = null;
-        notifyDataSetChanged();
-        if (this.lastReqId != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastReqId, true);
-            this.lastReqId = 0;
-        }
-        EmojiView.ChooseStickerActionTracker chooseStickerActionTracker = this.mentionsStickersActionTracker;
-        if (chooseStickerActionTracker != null) {
-            chooseStickerActionTracker.checkVisibility();
+    public void lambda$onCreateViewHolder$10(ContextLinkCell contextLinkCell) {
+        this.delegate.onContextClick(contextLinkCell.getResult());
+    }
+
+    public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
+        zArr[0] = true;
+        if (tLRPC$User != null) {
+            MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("inlinegeo_" + tLRPC$User.id, true).commit();
+            checkLocationPermissionsOrStart();
         }
     }
 
-    public void onDestroy() {
-        SendMessagesHelper.LocationProvider locationProvider = this.locationProvider;
-        if (locationProvider != null) {
-            locationProvider.stop();
+    public void lambda$processFoundUser$3(boolean[] zArr, DialogInterface dialogInterface, int i) {
+        zArr[0] = true;
+        onLocationUnavailable();
+    }
+
+    public void lambda$processFoundUser$4(boolean[] zArr, DialogInterface dialogInterface) {
+        if (zArr[0]) {
+            return;
         }
-        Runnable runnable = this.contextQueryRunnable;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-            this.contextQueryRunnable = null;
-        }
-        if (this.contextUsernameReqid != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.contextUsernameReqid, true);
-            this.contextUsernameReqid = 0;
-        }
-        if (this.contextQueryReqid != 0) {
-            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.contextQueryReqid, true);
+        onLocationUnavailable();
+    }
+
+    public void lambda$searchForContextBotResults$5(String str, boolean z, TLObject tLObject, TLRPC$User tLRPC$User, String str2, MessagesStorage messagesStorage, String str3) {
+        boolean z2;
+        if (str.equals(this.searchingContextQuery)) {
             this.contextQueryReqid = 0;
-        }
-        this.foundContextBot = null;
-        this.inlineMediaEnabled = true;
-        this.searchingContextUsername = null;
-        this.searchingContextQuery = null;
-        this.noUserName = false;
-        if (!this.isDarkTheme) {
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersDidLoad);
-    }
-
-    public void setParentFragment(ChatActivity chatActivity) {
-        this.parentFragment = chatActivity;
-    }
-
-    public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
-        ChatActivity chatActivity;
-        TLRPC$Chat currentChat;
-        this.currentAccount = UserConfig.selectedAccount;
-        this.info = tLRPC$ChatFull;
-        if (!this.inlineMediaEnabled && this.foundContextBot != null && (chatActivity = this.parentFragment) != null && (currentChat = chatActivity.getCurrentChat()) != null) {
-            boolean canSendStickers = ChatObject.canSendStickers(currentChat);
-            this.inlineMediaEnabled = canSendStickers;
-            if (canSendStickers) {
+            if (z && tLObject == null) {
+                searchForContextBotResults(false, tLRPC$User, str, str2);
+            } else {
+                MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+                if (mentionsAdapterDelegate != null) {
+                    mentionsAdapterDelegate.onContextSearch(false);
+                }
+            }
+            if (tLObject instanceof TLRPC$TL_messages_botResults) {
+                TLRPC$TL_messages_botResults tLRPC$TL_messages_botResults = (TLRPC$TL_messages_botResults) tLObject;
+                if (!z && tLRPC$TL_messages_botResults.cache_time != 0) {
+                    messagesStorage.saveBotCache(str3, tLRPC$TL_messages_botResults);
+                }
+                this.nextQueryOffset = tLRPC$TL_messages_botResults.next_offset;
+                if (this.searchResultBotContextSwitch == null) {
+                    this.searchResultBotContextSwitch = tLRPC$TL_messages_botResults.switch_pm;
+                }
+                this.searchResultBotWebViewSwitch = tLRPC$TL_messages_botResults.switch_webview;
+                int i = 0;
+                while (i < tLRPC$TL_messages_botResults.results.size()) {
+                    TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLRPC$TL_messages_botResults.results.get(i);
+                    if (!(tLRPC$BotInlineResult.document instanceof TLRPC$TL_document) && !(tLRPC$BotInlineResult.photo instanceof TLRPC$TL_photo) && !"game".equals(tLRPC$BotInlineResult.type) && tLRPC$BotInlineResult.content == null && (tLRPC$BotInlineResult.send_message instanceof TLRPC$TL_botInlineMessageMediaAuto)) {
+                        tLRPC$TL_messages_botResults.results.remove(i);
+                        i--;
+                    }
+                    tLRPC$BotInlineResult.query_id = tLRPC$TL_messages_botResults.query_id;
+                    i++;
+                }
+                if (this.searchResultBotContext == null || str2.length() == 0) {
+                    this.searchResultBotContext = tLRPC$TL_messages_botResults.results;
+                    this.contextMedia = tLRPC$TL_messages_botResults.gallery;
+                    z2 = false;
+                } else {
+                    this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
+                    if (tLRPC$TL_messages_botResults.results.isEmpty()) {
+                        this.nextQueryOffset = "";
+                    }
+                    z2 = true;
+                }
+                Runnable runnable = this.cancelDelayRunnable;
+                if (runnable != null) {
+                    AndroidUtilities.cancelRunOnUIThread(runnable);
+                    this.cancelDelayRunnable = null;
+                }
+                this.searchResultHashtags = null;
+                this.stickers = null;
                 this.searchResultUsernames = null;
-                notifyDataSetChanged();
-                this.delegate.needChangePanelVisibility(false);
-                processFoundUser(this.foundContextBot);
+                this.searchResultUsernamesMap = null;
+                this.searchResultCommands = null;
+                this.quickReplies = null;
+                this.searchResultSuggestions = null;
+                this.searchResultCommandsHelp = null;
+                this.searchResultCommandsUsers = null;
+                this.delegate.needChangePanelVisibility((this.searchResultBotContext.isEmpty() && this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true);
+                if (!z2) {
+                    notifyDataSetChanged();
+                    return;
+                }
+                int i2 = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 0 : 1;
+                notifyItemChanged(((this.searchResultBotContext.size() - tLRPC$TL_messages_botResults.results.size()) + i2) - 1);
+                notifyItemRangeInserted((this.searchResultBotContext.size() - tLRPC$TL_messages_botResults.results.size()) + i2, tLRPC$TL_messages_botResults.results.size());
             }
         }
-        String str = this.lastText;
-        if (str != null) {
-            lambda$searchUsernameOrHashtag$7(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
+    }
+
+    public void lambda$searchForContextBotResults$6(final String str, final boolean z, final TLRPC$User tLRPC$User, final String str2, final MessagesStorage messagesStorage, final String str3, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MentionsAdapter.this.lambda$searchForContextBotResults$5(str, z, tLObject, tLRPC$User, str2, messagesStorage, str3);
+            }
+        });
+    }
+
+    public void lambda$searchServerStickers$0(String str, TLObject tLObject) {
+        ArrayList arrayList;
+        this.lastReqId = 0;
+        if (str.equals(this.lastSticker) && (tLObject instanceof TLRPC$TL_messages_stickers)) {
+            this.delayLocalResults = false;
+            TLRPC$TL_messages_stickers tLRPC$TL_messages_stickers = (TLRPC$TL_messages_stickers) tLObject;
+            ArrayList arrayList2 = this.stickers;
+            int size = arrayList2 != null ? arrayList2.size() : 0;
+            addStickersToResult(tLRPC$TL_messages_stickers.stickers, "sticker_search_" + str);
+            ArrayList arrayList3 = this.stickers;
+            int size2 = arrayList3 != null ? arrayList3.size() : 0;
+            if (!this.visibleByStickersSearch && (arrayList = this.stickers) != null && !arrayList.isEmpty()) {
+                checkStickerFilesExistAndDownload();
+                this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
+                this.visibleByStickersSearch = true;
+            }
+            if (size != size2) {
+                notifyDataSetChanged();
+            }
         }
     }
 
-    public void setNeedUsernames(boolean z) {
-        this.needUsernames = z;
+    public void lambda$searchServerStickers$1(final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                MentionsAdapter.this.lambda$searchServerStickers$0(str, tLObject);
+            }
+        });
     }
 
-    public void setNeedBotContext(boolean z) {
-        this.needBotContext = z;
+    public void lambda$searchUsernameOrHashtag$8(ArrayList arrayList, LongSparseArray longSparseArray) {
+        this.cancelDelayRunnable = null;
+        showUsersResult(arrayList, longSparseArray, true);
     }
 
-    public void setBotInfo(LongSparseArray<TL_bots$BotInfo> longSparseArray) {
-        this.botInfo = longSparseArray;
-    }
-
-    public void setBotsCount(int i) {
-        this.botsCount = i;
-    }
-
-    public void clearRecentHashtags() {
-        this.searchAdapterHelper.clearRecentHashtags();
-        this.searchResultHashtags.clear();
+    public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, String str) {
+        this.searchResultSuggestions = arrayList;
+        this.searchResultHashtags = null;
+        this.stickers = null;
+        this.searchResultUsernames = null;
+        this.searchResultUsernamesMap = null;
+        this.searchResultCommands = null;
+        this.quickReplies = null;
+        this.searchResultCommandsHelp = null;
+        this.searchResultCommandsUsers = null;
         notifyDataSetChanged();
         MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
-        if (mentionsAdapterDelegate != null) {
-            mentionsAdapterDelegate.needChangePanelVisibility(false);
-        }
+        ArrayList arrayList2 = this.searchResultSuggestions;
+        mentionsAdapterDelegate.needChangePanelVisibility((arrayList2 == null || arrayList2.isEmpty()) ? false : true);
     }
 
-    public TLRPC$TL_inlineBotSwitchPM getBotContextSwitch() {
-        return this.searchResultBotContextSwitch;
-    }
-
-    public TLRPC$TL_inlineBotWebView getBotWebViewSwitch() {
-        return this.searchResultBotWebViewSwitch;
-    }
-
-    public long getContextBotId() {
+    public void onLocationUnavailable() {
         TLRPC$User tLRPC$User = this.foundContextBot;
-        if (tLRPC$User != null) {
-            return tLRPC$User.id;
+        if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {
+            return;
         }
-        return 0L;
-    }
-
-    public TLRPC$User getContextBotUser() {
-        return this.foundContextBot;
-    }
-
-    public String getContextBotName() {
-        TLRPC$User tLRPC$User = this.foundContextBot;
-        return tLRPC$User != null ? tLRPC$User.username : "";
+        Location location = new Location("network");
+        this.lastKnownLocation = location;
+        location.setLatitude(-1000.0d);
+        this.lastKnownLocation.setLongitude(-1000.0d);
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
     }
 
     public void processFoundUser(TLRPC$User tLRPC$User) {
@@ -611,8 +746,17 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         TLRPC$Chat currentChat;
         this.contextUsernameReqid = 0;
         this.locationProvider.stop();
-        if (tLRPC$User != null && tLRPC$User.bot && tLRPC$User.bot_inline_placeholder != null) {
+        if (tLRPC$User == null || !tLRPC$User.bot || tLRPC$User.bot_inline_placeholder == null) {
+            this.foundContextBot = null;
+            this.searchResultBotContextSwitch = null;
+            this.inlineMediaEnabled = true;
+        } else {
             this.foundContextBot = tLRPC$User;
+            long j = tLRPC$User.id;
+            if (j != this.searchResultBotContextSwitchUserId) {
+                this.searchResultBotContextSwitch = null;
+                this.searchResultBotContextSwitchUserId = j;
+            }
             ChatActivity chatActivity2 = this.parentFragment;
             if (chatActivity2 != null && (currentChat = chatActivity2.getCurrentChat()) != null) {
                 boolean canSendStickers = ChatObject.canSendStickers(currentChat);
@@ -624,7 +768,9 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 }
             }
             if (this.foundContextBot.bot_inline_geo) {
-                if (!MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("inlinegeo_" + this.foundContextBot.id, false) && (chatActivity = this.parentFragment) != null && chatActivity.getParentActivity() != null) {
+                if (MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("inlinegeo_" + this.foundContextBot.id, false) || (chatActivity = this.parentFragment) == null || chatActivity.getParentActivity() == null) {
+                    checkLocationPermissionsOrStart();
+                } else {
                     final TLRPC$User tLRPC$User2 = this.foundContextBot;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
                     builder.setTitle(LocaleController.getString(R.string.ShareYouLocationTitle));
@@ -648,43 +794,19 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                             MentionsAdapter.this.lambda$processFoundUser$4(zArr, dialogInterface);
                         }
                     });
-                } else {
-                    checkLocationPermissionsOrStart();
                 }
             }
-        } else {
-            this.foundContextBot = null;
-            this.inlineMediaEnabled = true;
         }
         if (this.foundContextBot == null) {
             this.noUserName = true;
-            return;
+            this.searchResultBotContextSwitch = null;
+        } else {
+            MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+            if (mentionsAdapterDelegate != null) {
+                mentionsAdapterDelegate.onContextSearch(true);
+            }
+            searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
         }
-        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
-        if (mentionsAdapterDelegate != null) {
-            mentionsAdapterDelegate.onContextSearch(true);
-        }
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
-    }
-
-    public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
-        zArr[0] = true;
-        if (tLRPC$User != null) {
-            MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("inlinegeo_" + tLRPC$User.id, true).commit();
-            checkLocationPermissionsOrStart();
-        }
-    }
-
-    public void lambda$processFoundUser$3(boolean[] zArr, DialogInterface dialogInterface, int i) {
-        zArr[0] = true;
-        onLocationUnavailable();
-    }
-
-    public void lambda$processFoundUser$4(boolean[] zArr, DialogInterface dialogInterface) {
-        if (zArr[0]) {
-            return;
-        }
-        onLocationUnavailable();
     }
 
     private void searchForContextBot(String str, String str2) {
@@ -715,6 +837,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     this.contextQueryReqid = 0;
                 }
                 this.foundContextBot = null;
+                this.searchResultBotContextSwitch = null;
                 this.inlineMediaEnabled = true;
                 this.searchingContextUsername = null;
                 this.searchingContextQuery = null;
@@ -759,140 +882,6 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public class AnonymousClass4 implements Runnable {
-        final MessagesController val$messagesController;
-        final MessagesStorage val$messagesStorage;
-        final String val$query;
-        final String val$username;
-
-        AnonymousClass4(String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
-            this.val$query = str;
-            this.val$username = str2;
-            this.val$messagesController = messagesController;
-            this.val$messagesStorage = messagesStorage;
-        }
-
-        @Override
-        public void run() {
-            if (MentionsAdapter.this.contextQueryRunnable != this) {
-                return;
-            }
-            MentionsAdapter.this.contextQueryRunnable = null;
-            if (MentionsAdapter.this.foundContextBot != null || MentionsAdapter.this.noUserName) {
-                if (MentionsAdapter.this.noUserName) {
-                    return;
-                }
-                MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
-                return;
-            }
-            MentionsAdapter.this.searchingContextUsername = this.val$username;
-            TLObject userOrChat = this.val$messagesController.getUserOrChat(MentionsAdapter.this.searchingContextUsername);
-            if (userOrChat instanceof TLRPC$User) {
-                MentionsAdapter.this.processFoundUser((TLRPC$User) userOrChat);
-                return;
-            }
-            TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
-            tLRPC$TL_contacts_resolveUsername.username = MentionsAdapter.this.searchingContextUsername;
-            MentionsAdapter mentionsAdapter2 = MentionsAdapter.this;
-            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(mentionsAdapter2.currentAccount);
-            final String str = this.val$username;
-            final MessagesController messagesController = this.val$messagesController;
-            final MessagesStorage messagesStorage = this.val$messagesStorage;
-            mentionsAdapter2.contextUsernameReqid = connectionsManager.sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MentionsAdapter.AnonymousClass4.this.lambda$run$1(str, messagesController, messagesStorage, tLObject, tLRPC$TL_error);
-                }
-            });
-        }
-
-        public void lambda$run$1(final String str, final MessagesController messagesController, final MessagesStorage messagesStorage, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    MentionsAdapter.AnonymousClass4.this.lambda$run$0(str, tLRPC$TL_error, tLObject, messagesController, messagesStorage);
-                }
-            });
-        }
-
-        public void lambda$run$0(String str, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, MessagesController messagesController, MessagesStorage messagesStorage) {
-            if (MentionsAdapter.this.searchingContextUsername == null || !MentionsAdapter.this.searchingContextUsername.equals(str)) {
-                return;
-            }
-            TLRPC$User tLRPC$User = null;
-            if (tLRPC$TL_error == null) {
-                TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
-                if (!tLRPC$TL_contacts_resolvedPeer.users.isEmpty()) {
-                    TLRPC$User tLRPC$User2 = tLRPC$TL_contacts_resolvedPeer.users.get(0);
-                    messagesController.putUser(tLRPC$User2, false);
-                    messagesStorage.putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, null, true, true);
-                    tLRPC$User = tLRPC$User2;
-                }
-            }
-            MentionsAdapter.this.processFoundUser(tLRPC$User);
-            MentionsAdapter.this.contextUsernameReqid = 0;
-        }
-    }
-
-    public void onLocationUnavailable() {
-        TLRPC$User tLRPC$User = this.foundContextBot;
-        if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {
-            return;
-        }
-        Location location = new Location("network");
-        this.lastKnownLocation = location;
-        location.setLatitude(-1000.0d);
-        this.lastKnownLocation.setLongitude(-1000.0d);
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
-    }
-
-    private void checkLocationPermissionsOrStart() {
-        int checkSelfPermission;
-        ChatActivity chatActivity = this.parentFragment;
-        if (chatActivity == null || chatActivity.getParentActivity() == null) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 23) {
-            checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
-            if (checkSelfPermission != 0) {
-                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-                return;
-            }
-        }
-        TLRPC$User tLRPC$User = this.foundContextBot;
-        if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {
-            return;
-        }
-        this.locationProvider.start();
-    }
-
-    public void setSearchingMentions(boolean z) {
-        this.isSearchingMentions = z;
-    }
-
-    public String getBotCaption() {
-        TLRPC$User tLRPC$User = this.foundContextBot;
-        if (tLRPC$User != null) {
-            return tLRPC$User.bot_inline_placeholder;
-        }
-        String str = this.searchingContextUsername;
-        if (str == null || !str.equals("gif")) {
-            return null;
-        }
-        return LocaleController.getString(R.string.SearchGifsTitle);
-    }
-
-    public void searchForContextBotForNextOffset() {
-        String str;
-        TLRPC$User tLRPC$User;
-        String str2;
-        if (this.contextQueryReqid != 0 || (str = this.nextQueryOffset) == null || str.length() == 0 || (tLRPC$User = this.foundContextBot) == null || (str2 = this.searchingContextQuery) == null) {
-            return;
-        }
-        searchForContextBotResults(true, tLRPC$User, str2, this.nextQueryOffset);
-    }
-
     public void searchForContextBotResults(final boolean z, final TLRPC$User tLRPC$User, final String str, final String str2) {
         Location location;
         if (this.contextQueryReqid != 0) {
@@ -934,6 +923,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 MentionsAdapter.this.lambda$searchForContextBotResults$6(str, z, tLRPC$User, str2, messagesStorage, sb2, tLObject, tLRPC$TL_error);
             }
         };
+        long j = tLRPC$User.id;
+        if (j != this.searchResultBotContextSwitchUserId) {
+            this.searchResultBotContextSwitch = null;
+            this.searchResultBotContextSwitchUserId = j;
+        }
         if (z) {
             messagesStorage.getBotCache(sb2, requestDelegate);
             return;
@@ -949,242 +943,36 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             tLRPC$TL_inputGeoPoint.lat = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLatitude());
             tLRPC$TL_messages_getInlineBotResults.geo_point._long = AndroidUtilities.fixLocationCoord(this.lastKnownLocation.getLongitude());
         }
-        if (DialogObject.isEncryptedDialog(this.dialog_id)) {
-            tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
-        } else {
-            tLRPC$TL_messages_getInlineBotResults.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialog_id);
-        }
+        tLRPC$TL_messages_getInlineBotResults.peer = DialogObject.isEncryptedDialog(this.dialog_id) ? new TLRPC$TL_inputPeerEmpty() : MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialog_id);
         this.contextQueryReqid = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getInlineBotResults, requestDelegate, 2);
     }
 
-    public void lambda$searchForContextBotResults$6(final String str, final boolean z, final TLRPC$User tLRPC$User, final String str2, final MessagesStorage messagesStorage, final String str3, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
+    private void searchServerStickers(final String str, String str2) {
+        TLRPC$TL_messages_getStickers tLRPC$TL_messages_getStickers = new TLRPC$TL_messages_getStickers();
+        tLRPC$TL_messages_getStickers.emoticon = str2;
+        tLRPC$TL_messages_getStickers.hash = 0L;
+        this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStickers, new RequestDelegate() {
             @Override
-            public final void run() {
-                MentionsAdapter.this.lambda$searchForContextBotResults$5(str, z, tLObject, tLRPC$User, str2, messagesStorage, str3);
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                MentionsAdapter.this.lambda$searchServerStickers$1(str, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$searchForContextBotResults$5(String str, boolean z, TLObject tLObject, TLRPC$User tLRPC$User, String str2, MessagesStorage messagesStorage, String str3) {
-        boolean z2;
-        if (str.equals(this.searchingContextQuery)) {
-            this.contextQueryReqid = 0;
-            if (z && tLObject == null) {
-                searchForContextBotResults(false, tLRPC$User, str, str2);
-            } else {
-                MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
-                if (mentionsAdapterDelegate != null) {
-                    mentionsAdapterDelegate.onContextSearch(false);
-                }
-            }
-            if (tLObject instanceof TLRPC$TL_messages_botResults) {
-                TLRPC$TL_messages_botResults tLRPC$TL_messages_botResults = (TLRPC$TL_messages_botResults) tLObject;
-                if (!z && tLRPC$TL_messages_botResults.cache_time != 0) {
-                    messagesStorage.saveBotCache(str3, tLRPC$TL_messages_botResults);
-                }
-                this.nextQueryOffset = tLRPC$TL_messages_botResults.next_offset;
-                if (this.searchResultBotContextSwitch == null) {
-                    this.searchResultBotContextSwitch = tLRPC$TL_messages_botResults.switch_pm;
-                }
-                this.searchResultBotWebViewSwitch = tLRPC$TL_messages_botResults.switch_webview;
-                int i = 0;
-                while (i < tLRPC$TL_messages_botResults.results.size()) {
-                    TLRPC$BotInlineResult tLRPC$BotInlineResult = tLRPC$TL_messages_botResults.results.get(i);
-                    if (!(tLRPC$BotInlineResult.document instanceof TLRPC$TL_document) && !(tLRPC$BotInlineResult.photo instanceof TLRPC$TL_photo) && !"game".equals(tLRPC$BotInlineResult.type) && tLRPC$BotInlineResult.content == null && (tLRPC$BotInlineResult.send_message instanceof TLRPC$TL_botInlineMessageMediaAuto)) {
-                        tLRPC$TL_messages_botResults.results.remove(i);
-                        i--;
-                    }
-                    tLRPC$BotInlineResult.query_id = tLRPC$TL_messages_botResults.query_id;
-                    i++;
-                }
-                if (this.searchResultBotContext == null || str2.length() == 0) {
-                    this.searchResultBotContext = tLRPC$TL_messages_botResults.results;
-                    this.contextMedia = tLRPC$TL_messages_botResults.gallery;
-                    z2 = false;
-                } else {
-                    this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
-                    if (tLRPC$TL_messages_botResults.results.isEmpty()) {
-                        this.nextQueryOffset = "";
-                    }
-                    z2 = true;
-                }
-                Runnable runnable = this.cancelDelayRunnable;
-                if (runnable != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                    this.cancelDelayRunnable = null;
-                }
-                this.searchResultHashtags = null;
-                this.stickers = null;
-                this.searchResultUsernames = null;
-                this.searchResultUsernamesMap = null;
-                this.searchResultCommands = null;
-                this.quickReplies = null;
-                this.searchResultSuggestions = null;
-                this.searchResultCommandsHelp = null;
-                this.searchResultCommandsUsers = null;
-                this.delegate.needChangePanelVisibility((this.searchResultBotContext.isEmpty() && this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true);
-                if (z2) {
-                    int i2 = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 0 : 1;
-                    notifyItemChanged(((this.searchResultBotContext.size() - tLRPC$TL_messages_botResults.results.size()) + i2) - 1);
-                    notifyItemRangeInserted((this.searchResultBotContext.size() - tLRPC$TL_messages_botResults.results.size()) + i2, tLRPC$TL_messages_botResults.results.size());
-                    return;
-                }
-                notifyDataSetChanged();
-            }
-        }
-    }
-
-    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r26, final int r27, final java.util.ArrayList<org.telegram.messenger.MessageObject> r28, final boolean r29, final boolean r30) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
-    }
-
-    public void lambda$searchUsernameOrHashtag$8(ArrayList arrayList, LongSparseArray longSparseArray) {
-        this.cancelDelayRunnable = null;
-        showUsersResult(arrayList, longSparseArray, true);
-    }
-
-    public class AnonymousClass7 implements Runnable {
-        final TLRPC$Chat val$chat;
-        final MessagesController val$messagesController;
-        final LongSparseArray val$newMap;
-        final ArrayList val$newResult;
-        final long val$threadId;
-        final String val$usernameString;
-
-        AnonymousClass7(TLRPC$Chat tLRPC$Chat, String str, long j, ArrayList arrayList, LongSparseArray longSparseArray, MessagesController messagesController) {
-            this.val$chat = tLRPC$Chat;
-            this.val$usernameString = str;
-            this.val$threadId = j;
-            this.val$newResult = arrayList;
-            this.val$newMap = longSparseArray;
-            this.val$messagesController = messagesController;
-        }
-
-        @Override
-        public void run() {
-            if (MentionsAdapter.this.searchGlobalRunnable != this) {
-                return;
-            }
-            TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants = new TLRPC$TL_channels_getParticipants();
-            tLRPC$TL_channels_getParticipants.channel = MessagesController.getInputChannel(this.val$chat);
-            tLRPC$TL_channels_getParticipants.limit = 20;
-            tLRPC$TL_channels_getParticipants.offset = 0;
-            TLRPC$TL_channelParticipantsMentions tLRPC$TL_channelParticipantsMentions = new TLRPC$TL_channelParticipantsMentions();
-            int i = tLRPC$TL_channelParticipantsMentions.flags;
-            tLRPC$TL_channelParticipantsMentions.flags = i | 1;
-            tLRPC$TL_channelParticipantsMentions.q = this.val$usernameString;
-            long j = this.val$threadId;
-            if (j != 0) {
-                tLRPC$TL_channelParticipantsMentions.flags = i | 3;
-                tLRPC$TL_channelParticipantsMentions.top_msg_id = (int) j;
-            }
-            tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsMentions;
-            final int access$1704 = MentionsAdapter.access$1704(MentionsAdapter.this);
-            MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-            ConnectionsManager connectionsManager = ConnectionsManager.getInstance(mentionsAdapter.currentAccount);
-            final ArrayList arrayList = this.val$newResult;
-            final LongSparseArray longSparseArray = this.val$newMap;
-            final MessagesController messagesController = this.val$messagesController;
-            mentionsAdapter.channelReqId = connectionsManager.sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MentionsAdapter.AnonymousClass7.this.lambda$run$1(access$1704, arrayList, longSparseArray, messagesController, tLObject, tLRPC$TL_error);
-                }
-            });
-        }
-
-        public void lambda$run$1(final int i, final ArrayList arrayList, final LongSparseArray longSparseArray, final MessagesController messagesController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    MentionsAdapter.AnonymousClass7.this.lambda$run$0(i, arrayList, longSparseArray, tLRPC$TL_error, tLObject, messagesController);
-                }
-            });
-        }
-
-        public void lambda$run$0(int i, ArrayList arrayList, LongSparseArray longSparseArray, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, MessagesController messagesController) {
-            if (MentionsAdapter.this.channelReqId != 0 && i == MentionsAdapter.this.channelLastReqId && MentionsAdapter.this.searchResultUsernamesMap != null && MentionsAdapter.this.searchResultUsernames != null) {
-                MentionsAdapter.this.showUsersResult(arrayList, longSparseArray, false);
-                if (tLRPC$TL_error == null) {
-                    TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
-                    messagesController.putUsers(tLRPC$TL_channels_channelParticipants.users, false);
-                    messagesController.putChats(tLRPC$TL_channels_channelParticipants.chats, false);
-                    MentionsAdapter.this.searchResultUsernames.isEmpty();
-                    if (!tLRPC$TL_channels_channelParticipants.participants.isEmpty()) {
-                        long clientUserId = UserConfig.getInstance(MentionsAdapter.this.currentAccount).getClientUserId();
-                        for (int i2 = 0; i2 < tLRPC$TL_channels_channelParticipants.participants.size(); i2++) {
-                            long peerId = MessageObject.getPeerId(tLRPC$TL_channels_channelParticipants.participants.get(i2).peer);
-                            if (MentionsAdapter.this.searchResultUsernamesMap.indexOfKey(peerId) < 0 && ((peerId != 0 || MentionsAdapter.this.searchResultUsernamesMap.indexOfKey(clientUserId) < 0) && (MentionsAdapter.this.isSearchingMentions || (peerId != clientUserId && peerId != 0)))) {
-                                if (peerId >= 0) {
-                                    TLRPC$User user = messagesController.getUser(Long.valueOf(peerId));
-                                    if (user == null) {
-                                        return;
-                                    } else {
-                                        MentionsAdapter.this.searchResultUsernames.add(user);
-                                    }
-                                } else {
-                                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-peerId));
-                                    if (chat == null) {
-                                        return;
-                                    } else {
-                                        MentionsAdapter.this.searchResultUsernames.add(chat);
-                                    }
-                                }
-                            }
+    public void showUsersResult(ArrayList arrayList, LongSparseArray longSparseArray, boolean z) {
+        this.searchResultUsernames = arrayList;
+        if ((!this.allowBots || !this.allowChats) && arrayList != null) {
+            Iterator it = arrayList.iterator();
+            while (it.hasNext()) {
+                TLObject tLObject = (TLObject) it.next();
+                if (!(tLObject instanceof TLRPC$Chat) || this.allowChats) {
+                    if (tLObject instanceof TLRPC$User) {
+                        TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
+                        if (!tLRPC$User.bot && !UserObject.isService(tLRPC$User.id)) {
                         }
                     }
                 }
-                MentionsAdapter.this.notifyDataSetChanged();
-                MentionsAdapter.this.delegate.needChangePanelVisibility(!MentionsAdapter.this.searchResultUsernames.isEmpty());
-            }
-            MentionsAdapter.this.channelReqId = 0;
-        }
-    }
-
-    public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, String str) {
-        this.searchResultSuggestions = arrayList;
-        this.searchResultHashtags = null;
-        this.stickers = null;
-        this.searchResultUsernames = null;
-        this.searchResultUsernamesMap = null;
-        this.searchResultCommands = null;
-        this.quickReplies = null;
-        this.searchResultCommandsHelp = null;
-        this.searchResultCommandsUsers = null;
-        notifyDataSetChanged();
-        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
-        ArrayList<MediaDataController.KeywordResult> arrayList2 = this.searchResultSuggestions;
-        mentionsAdapterDelegate.needChangePanelVisibility((arrayList2 == null || arrayList2.isEmpty()) ? false : true);
-    }
-
-    public void setIsReversed(boolean z) {
-        if (this.isReversed != z) {
-            this.isReversed = z;
-            int lastItemCount = getLastItemCount();
-            if (lastItemCount > 0) {
-                notifyItemChanged(0);
-            }
-            if (lastItemCount > 1) {
-                notifyItemChanged(lastItemCount - 1);
-            }
-        }
-    }
-
-    public void showUsersResult(ArrayList<TLObject> arrayList, LongSparseArray<TLObject> longSparseArray, boolean z) {
-        this.searchResultUsernames = arrayList;
-        if ((!this.allowBots || !this.allowChats) && arrayList != null) {
-            Iterator<TLObject> it = arrayList.iterator();
-            while (it.hasNext()) {
-                TLObject next = it.next();
-                if ((next instanceof TLRPC$Chat) && !this.allowChats) {
-                    it.remove();
-                } else if (next instanceof TLRPC$User) {
-                    TLRPC$User tLRPC$User = (TLRPC$User) next;
-                    if (tLRPC$User.bot || UserObject.isService(tLRPC$User.id)) {
-                        it.remove();
-                    }
-                }
+                it.remove();
             }
         }
         this.searchResultUsernamesMap = longSparseArray;
@@ -1201,110 +989,117 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public int getResultStartPosition() {
-        return this.resultStartPosition;
-    }
-
-    public int getResultLength() {
-        return this.resultLength;
-    }
-
-    public ArrayList<TLRPC$BotInlineResult> getSearchResultBotContext() {
-        return this.searchResultBotContext;
-    }
-
-    @Override
-    public int getItemCount() {
-        int itemCountInternal = getItemCountInternal();
-        this.lastItemCount = itemCountInternal;
-        return itemCountInternal;
-    }
-
-    public int getLastItemCount() {
-        return this.lastItemCount;
-    }
-
-    public int getItemCountInternal() {
-        int i = 1;
-        if (this.foundContextBot != null && !this.inlineMediaEnabled) {
-            return 1;
-        }
-        ArrayList<StickerResult> arrayList = this.stickers;
-        if (arrayList != null) {
-            return arrayList.size();
-        }
-        ArrayList<TLRPC$BotInlineResult> arrayList2 = this.searchResultBotContext;
-        if (arrayList2 != null) {
-            int size = arrayList2.size();
-            if (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) {
-                i = 0;
-            }
-            return size + i;
-        }
-        ArrayList<TLObject> arrayList3 = this.searchResultUsernames;
-        if (arrayList3 != null) {
-            return arrayList3.size();
-        }
-        ArrayList<String> arrayList4 = this.searchResultHashtags;
-        if (arrayList4 != null) {
-            return arrayList4.size();
-        }
-        if (this.searchResultCommands != null || this.quickReplies != null) {
-            ArrayList<QuickRepliesController.QuickReply> arrayList5 = this.quickReplies;
-            int size2 = arrayList5 == null ? 0 : arrayList5.size();
-            ArrayList<String> arrayList6 = this.searchResultCommands;
-            return size2 + (arrayList6 != null ? arrayList6.size() : 0);
-        }
-        ArrayList<MediaDataController.KeywordResult> arrayList7 = this.searchResultSuggestions;
-        if (arrayList7 != null) {
-            return arrayList7.size();
-        }
-        return 0;
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        if (this.stickers != null) {
-            return 4;
-        }
-        if (this.foundContextBot != null && !this.inlineMediaEnabled) {
-            return 3;
-        }
-        if (this.searchResultBotContext == null) {
-            ArrayList<QuickRepliesController.QuickReply> arrayList = this.quickReplies;
-            return (arrayList == null || i < 0 || i >= arrayList.size()) ? 0 : 5;
-        }
-        if (i == 0) {
-            return (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 1 : 2;
-        }
-        return 1;
-    }
-
     public void addHashtagsFromMessage(CharSequence charSequence) {
         this.searchAdapterHelper.addHashtagsFromMessage(charSequence);
     }
 
-    public int getItemPosition(int i) {
-        return this.searchResultBotContext != null ? (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? i : i - 1 : i;
+    public void clearRecentHashtags() {
+        this.searchAdapterHelper.clearRecentHashtags();
+        this.searchResultHashtags.clear();
+        notifyDataSetChanged();
+        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+        if (mentionsAdapterDelegate != null) {
+            mentionsAdapterDelegate.needChangePanelVisibility(false);
+        }
     }
 
-    public Object getItemParent(int i) {
-        ArrayList<StickerResult> arrayList = this.stickers;
-        if (arrayList == null || i < 0 || i >= arrayList.size()) {
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        Runnable runnable;
+        if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed) {
+            ArrayList arrayList = this.stickers;
+            if (arrayList == null || arrayList.isEmpty() || this.stickersToLoad.isEmpty() || !this.visibleByStickersSearch) {
+                return;
+            }
+            this.stickersToLoad.remove((String) objArr[0]);
+            if (this.stickersToLoad.isEmpty()) {
+                this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.recentDocumentsDidLoad) {
+            runnable = this.checkAgainRunnable;
+            if (runnable == null) {
+                return;
+            }
+        } else if (i != NotificationCenter.stickersDidLoad || ((Integer) objArr[0]).intValue() != 0 || (runnable = this.checkAgainRunnable) == null) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(runnable);
+        this.checkAgainRunnable = null;
+    }
+
+    public void doSomeStickersAction() {
+        if (isStickers()) {
+            if (this.mentionsStickersActionTracker == null) {
+                EmojiView.ChooseStickerActionTracker chooseStickerActionTracker = new EmojiView.ChooseStickerActionTracker(this.currentAccount, this.dialog_id, this.threadMessageId) {
+                    @Override
+                    public boolean isShown() {
+                        return MentionsAdapter.this.isStickers();
+                    }
+                };
+                this.mentionsStickersActionTracker = chooseStickerActionTracker;
+                chooseStickerActionTracker.checkVisibility();
+            }
+            this.mentionsStickersActionTracker.doSomeAction();
+        }
+    }
+
+    public String getBotCaption() {
+        TLRPC$User tLRPC$User = this.foundContextBot;
+        if (tLRPC$User != null) {
+            return tLRPC$User.bot_inline_placeholder;
+        }
+        String str = this.searchingContextUsername;
+        if (str == null || !str.equals("gif")) {
             return null;
         }
-        return this.stickers.get(i).parent;
+        return LocaleController.getString(R.string.SearchGifsTitle);
+    }
+
+    public TLRPC$TL_inlineBotSwitchPM getBotContextSwitch() {
+        TLRPC$User tLRPC$User = this.foundContextBot;
+        if (tLRPC$User == null || tLRPC$User.id == this.searchResultBotContextSwitchUserId) {
+            return this.searchResultBotContextSwitch;
+        }
+        return null;
+    }
+
+    public TLRPC$TL_inlineBotWebView getBotWebViewSwitch() {
+        return this.searchResultBotWebViewSwitch;
+    }
+
+    public long getContextBotId() {
+        TLRPC$User tLRPC$User = this.foundContextBot;
+        if (tLRPC$User != null) {
+            return tLRPC$User.id;
+        }
+        return 0L;
+    }
+
+    public String getContextBotName() {
+        TLRPC$User tLRPC$User = this.foundContextBot;
+        return tLRPC$User != null ? tLRPC$User.username : "";
+    }
+
+    public TLRPC$User getContextBotUser() {
+        return this.foundContextBot;
+    }
+
+    public TLRPC$User getFoundContextBot() {
+        return this.foundContextBot;
     }
 
     public Object getItem(int i) {
-        ArrayList<StickerResult> arrayList = this.stickers;
+        ArrayList arrayList = this.stickers;
         if (arrayList != null) {
             if (i < 0 || i >= arrayList.size()) {
                 return null;
             }
-            return this.stickers.get(i).sticker;
+            return ((StickerResult) this.stickers.get(i)).sticker;
         }
-        ArrayList<TLRPC$BotInlineResult> arrayList2 = this.searchResultBotContext;
+        ArrayList arrayList2 = this.searchResultBotContext;
         if (arrayList2 != null) {
             TLRPC$TL_inlineBotWebView tLRPC$TL_inlineBotWebView = this.searchResultBotWebViewSwitch;
             if (tLRPC$TL_inlineBotWebView == null) {
@@ -1327,75 +1122,154 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             return null;
         }
-        ArrayList<TLObject> arrayList3 = this.searchResultUsernames;
+        ArrayList arrayList3 = this.searchResultUsernames;
         if (arrayList3 != null) {
             if (i < 0 || i >= arrayList3.size()) {
                 return null;
             }
             return this.searchResultUsernames.get(i);
         }
-        ArrayList<String> arrayList4 = this.searchResultHashtags;
+        ArrayList arrayList4 = this.searchResultHashtags;
         if (arrayList4 != null) {
             if (i < 0 || i >= arrayList4.size()) {
                 return null;
             }
             return this.searchResultHashtags.get(i);
         }
-        ArrayList<MediaDataController.KeywordResult> arrayList5 = this.searchResultSuggestions;
+        ArrayList arrayList5 = this.searchResultSuggestions;
         if (arrayList5 != null) {
             if (i < 0 || i >= arrayList5.size()) {
                 return null;
             }
             return this.searchResultSuggestions.get(i);
         }
-        ArrayList<QuickRepliesController.QuickReply> arrayList6 = this.quickReplies;
+        ArrayList arrayList6 = this.quickReplies;
         if (arrayList6 != null || this.searchResultCommands != null) {
             if (arrayList6 != null) {
                 if (i >= 0 && i < arrayList6.size()) {
                     return this.quickReplies.get(i);
                 }
-                ArrayList<QuickRepliesController.QuickReply> arrayList7 = this.quickReplies;
+                ArrayList arrayList7 = this.quickReplies;
                 if (arrayList7 != null) {
                     i -= arrayList7.size();
                 }
             }
-            ArrayList<String> arrayList8 = this.searchResultCommands;
+            ArrayList arrayList8 = this.searchResultCommands;
             if (arrayList8 != null && i >= 0 && i < arrayList8.size()) {
-                ArrayList<TLRPC$User> arrayList9 = this.searchResultCommandsUsers;
-                if (arrayList9 != null && (this.botsCount != 1 || (this.info instanceof TLRPC$TL_channelFull))) {
-                    if (arrayList9.get(i) != null) {
-                        return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "");
-                    }
-                    return String.format("%s", this.searchResultCommands.get(i));
+                ArrayList arrayList9 = this.searchResultCommandsUsers;
+                if (arrayList9 == null || (this.botsCount == 1 && !(this.info instanceof TLRPC$TL_channelFull))) {
+                    return this.searchResultCommands.get(i);
                 }
-                return this.searchResultCommands.get(i);
+                if (arrayList9.get(i) != null) {
+                    return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? ((TLRPC$User) this.searchResultCommandsUsers.get(i)).username : "");
+                }
+                return String.format("%s", this.searchResultCommands.get(i));
             }
         }
         return null;
     }
 
-    public boolean isLongClickEnabled() {
-        return (this.searchResultHashtags == null && this.searchResultCommands == null) ? false : true;
+    @Override
+    public int getItemCount() {
+        int itemCountInternal = getItemCountInternal();
+        this.lastItemCount = itemCountInternal;
+        return itemCountInternal;
     }
 
-    public boolean isBotCommands() {
-        return this.searchResultCommands != null;
+    public int getItemCountInternal() {
+        int i = 1;
+        if (this.foundContextBot != null && !this.inlineMediaEnabled) {
+            return 1;
+        }
+        ArrayList arrayList = this.stickers;
+        if (arrayList != null) {
+            return arrayList.size();
+        }
+        ArrayList arrayList2 = this.searchResultBotContext;
+        if (arrayList2 != null) {
+            int size = arrayList2.size();
+            if (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) {
+                i = 0;
+            }
+            return size + i;
+        }
+        ArrayList arrayList3 = this.searchResultUsernames;
+        if (arrayList3 != null) {
+            return arrayList3.size();
+        }
+        ArrayList arrayList4 = this.searchResultHashtags;
+        if (arrayList4 != null) {
+            return arrayList4.size();
+        }
+        if (this.searchResultCommands == null && this.quickReplies == null) {
+            ArrayList arrayList5 = this.searchResultSuggestions;
+            if (arrayList5 != null) {
+                return arrayList5.size();
+            }
+            return 0;
+        }
+        ArrayList arrayList6 = this.quickReplies;
+        int size2 = arrayList6 == null ? 0 : arrayList6.size();
+        ArrayList arrayList7 = this.searchResultCommands;
+        return size2 + (arrayList7 != null ? arrayList7.size() : 0);
     }
 
-    public boolean isStickers() {
-        return this.stickers != null;
+    public Object getItemParent(int i) {
+        ArrayList arrayList = this.stickers;
+        if (arrayList == null || i < 0 || i >= arrayList.size()) {
+            return null;
+        }
+        return ((StickerResult) this.stickers.get(i)).parent;
     }
 
-    public boolean isBotContext() {
-        return this.searchResultBotContext != null;
+    public int getItemPosition(int i) {
+        return this.searchResultBotContext != null ? (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? i : i - 1 : i;
+    }
+
+    @Override
+    public int getItemViewType(int i) {
+        if (this.stickers != null) {
+            return 4;
+        }
+        if (this.foundContextBot != null && !this.inlineMediaEnabled) {
+            return 3;
+        }
+        if (this.searchResultBotContext == null) {
+            ArrayList arrayList = this.quickReplies;
+            return (arrayList == null || i < 0 || i >= arrayList.size()) ? 0 : 5;
+        }
+        if (i == 0) {
+            return (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? 1 : 2;
+        }
+        return 1;
+    }
+
+    public int getLastItemCount() {
+        return this.lastItemCount;
+    }
+
+    public int getResultLength() {
+        return this.resultLength;
+    }
+
+    public int getResultStartPosition() {
+        return this.resultStartPosition;
+    }
+
+    public ArrayList getSearchResultBotContext() {
+        return this.searchResultBotContext;
     }
 
     public boolean isBannedInline() {
         return (this.foundContextBot == null || this.inlineMediaEnabled) ? false : true;
     }
 
-    public boolean isMediaLayout() {
-        return this.contextMedia || this.stickers != null;
+    public boolean isBotCommands() {
+        return this.searchResultCommands != null;
+    }
+
+    public boolean isBotContext() {
+        return this.searchResultBotContext != null;
     }
 
     @Override
@@ -1403,8 +1277,151 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return (this.foundContextBot == null || this.inlineMediaEnabled) && this.stickers == null;
     }
 
-    public void lambda$onCreateViewHolder$10(ContextLinkCell contextLinkCell) {
-        this.delegate.onContextClick(contextLinkCell.getResult());
+    public boolean isLongClickEnabled() {
+        return (this.searchResultHashtags == null && this.searchResultCommands == null) ? false : true;
+    }
+
+    public boolean isMediaLayout() {
+        return this.contextMedia || this.stickers != null;
+    }
+
+    public boolean isStickers() {
+        return this.stickers != null;
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        MentionsAdapterDelegate mentionsAdapterDelegate;
+        int i = this.lastItemCount;
+        if (i != -1 && this.lastData != null) {
+            int itemCount = getItemCount();
+            boolean z = i != itemCount;
+            int min = Math.min(i, itemCount);
+            Object[] objArr = new Object[itemCount];
+            for (int i2 = 0; i2 < itemCount; i2++) {
+                objArr[i2] = getItem(i2);
+            }
+            while (r2 < min) {
+                if (r2 >= 0) {
+                    Object[] objArr2 = this.lastData;
+                    r2 = (r2 < objArr2.length && r2 < itemCount && itemsEqual(objArr2[r2], objArr[r2])) ? r2 + 1 : 0;
+                }
+                notifyItemChanged(r2);
+                z = true;
+            }
+            notifyItemRangeRemoved(min, i - min);
+            notifyItemRangeInserted(min, itemCount - min);
+            if (z && (mentionsAdapterDelegate = this.delegate) != null) {
+                mentionsAdapterDelegate.onItemCountUpdate(i, itemCount);
+            }
+            this.lastData = objArr;
+            return;
+        }
+        MentionsAdapterDelegate mentionsAdapterDelegate2 = this.delegate;
+        if (mentionsAdapterDelegate2 != null) {
+            mentionsAdapterDelegate2.onItemCountUpdate(0, getItemCount());
+        }
+        super.notifyDataSetChanged();
+        this.lastData = new Object[getItemCount()];
+        while (true) {
+            Object[] objArr3 = this.lastData;
+            if (r2 >= objArr3.length) {
+                return;
+            }
+            objArr3[r2] = getItem(r2);
+            r2++;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        String formatString;
+        int i2;
+        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
+        int itemViewType = viewHolder.getItemViewType();
+        if (itemViewType == 4) {
+            StickerCell stickerCell = (StickerCell) viewHolder.itemView;
+            StickerResult stickerResult = (StickerResult) this.stickers.get(i);
+            stickerCell.setSticker(stickerResult.sticker, stickerResult.parent);
+            stickerCell.setClearsInputField(true);
+            return;
+        }
+        if (itemViewType == 3) {
+            TextView textView = (TextView) viewHolder.itemView;
+            TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
+            if (currentChat != null) {
+                if (!ChatObject.hasAdminRights(currentChat) && (tLRPC$TL_chatBannedRights = currentChat.default_banned_rights) != null && tLRPC$TL_chatBannedRights.send_inline) {
+                    i2 = R.string.GlobalAttachInlineRestricted;
+                } else {
+                    if (!AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
+                        formatString = LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date));
+                        textView.setText(formatString);
+                        return;
+                    }
+                    i2 = R.string.AttachInlineRestrictedForever;
+                }
+                formatString = LocaleController.getString(i2);
+                textView.setText(formatString);
+                return;
+            }
+            return;
+        }
+        if (itemViewType == 5) {
+            QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
+            ArrayList arrayList = this.quickReplies;
+            if (arrayList == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            quickReplyView.set((QuickRepliesController.QuickReply) this.quickReplies.get(i), this.quickRepliesQuery, false);
+            return;
+        }
+        if (this.searchResultBotContext != null) {
+            boolean z = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true;
+            if (viewHolder.getItemViewType() != 2) {
+                if (z) {
+                    i--;
+                }
+                ((ContextLinkCell) viewHolder.itemView).setLink((TLRPC$BotInlineResult) this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
+                return;
+            } else {
+                if (z) {
+                    BotSwitchCell botSwitchCell = (BotSwitchCell) viewHolder.itemView;
+                    TLRPC$TL_inlineBotSwitchPM tLRPC$TL_inlineBotSwitchPM = this.searchResultBotContextSwitch;
+                    botSwitchCell.setText(tLRPC$TL_inlineBotSwitchPM != null ? tLRPC$TL_inlineBotSwitchPM.text : this.searchResultBotWebViewSwitch.text);
+                    return;
+                }
+                return;
+            }
+        }
+        MentionCell mentionCell = (MentionCell) viewHolder.itemView;
+        ArrayList arrayList2 = this.searchResultUsernames;
+        if (arrayList2 != null) {
+            TLObject tLObject = (TLObject) arrayList2.get(i);
+            if (tLObject instanceof TLRPC$User) {
+                mentionCell.setUser((TLRPC$User) tLObject);
+            } else if (tLObject instanceof TLRPC$Chat) {
+                mentionCell.setChat((TLRPC$Chat) tLObject);
+            }
+        } else {
+            ArrayList arrayList3 = this.searchResultHashtags;
+            if (arrayList3 != null) {
+                mentionCell.setText((String) arrayList3.get(i));
+            } else {
+                ArrayList arrayList4 = this.searchResultSuggestions;
+                if (arrayList4 != null) {
+                    mentionCell.setEmojiSuggestion((MediaDataController.KeywordResult) arrayList4.get(i));
+                } else {
+                    ArrayList arrayList5 = this.searchResultCommands;
+                    if (arrayList5 != null) {
+                        String str = (String) arrayList5.get(i);
+                        String str2 = (String) this.searchResultCommandsHelp.get(i);
+                        ArrayList arrayList6 = this.searchResultCommandsUsers;
+                        mentionCell.setBotCommand(str, str2, arrayList6 != null ? (TLRPC$User) arrayList6.get(i) : null);
+                    }
+                }
+            }
+        }
+        mentionCell.setDivider(false);
     }
 
     @Override
@@ -1425,152 +1442,73 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             view = contextLinkCell;
         } else if (i == 2) {
             view = new BotSwitchCell(this.mContext);
-        } else if (i == 3) {
+        } else if (i != 3) {
+            view = i != 5 ? new StickerCell(this.mContext, this.resourcesProvider) : new QuickRepliesActivity.QuickReplyView(this.mContext, false, this.resourcesProvider);
+        } else {
             TextView textView = new TextView(this.mContext);
             textView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             textView.setTextSize(1, 14.0f);
             textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             view = textView;
-        } else if (i == 5) {
-            view = new QuickRepliesActivity.QuickReplyView(this.mContext, false, this.resourcesProvider);
-        } else {
-            view = new StickerCell(this.mContext, this.resourcesProvider);
         }
         return new RecyclerListView.Holder(view);
     }
 
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
-        int itemViewType = viewHolder.getItemViewType();
-        if (itemViewType == 4) {
-            StickerCell stickerCell = (StickerCell) viewHolder.itemView;
-            StickerResult stickerResult = this.stickers.get(i);
-            stickerCell.setSticker(stickerResult.sticker, stickerResult.parent);
-            stickerCell.setClearsInputField(true);
-            return;
+    public void onDestroy() {
+        SendMessagesHelper.LocationProvider locationProvider = this.locationProvider;
+        if (locationProvider != null) {
+            locationProvider.stop();
         }
-        if (itemViewType == 3) {
-            TextView textView = (TextView) viewHolder.itemView;
-            TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
-            if (currentChat != null) {
-                if (!ChatObject.hasAdminRights(currentChat) && (tLRPC$TL_chatBannedRights = currentChat.default_banned_rights) != null && tLRPC$TL_chatBannedRights.send_inline) {
-                    textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
-                    return;
-                } else if (AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
-                    textView.setText(LocaleController.getString(R.string.AttachInlineRestrictedForever));
-                    return;
-                } else {
-                    textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
-                    return;
-                }
-            }
-            return;
+        Runnable runnable = this.contextQueryRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.contextQueryRunnable = null;
         }
-        if (itemViewType == 5) {
-            QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
-            ArrayList<QuickRepliesController.QuickReply> arrayList = this.quickReplies;
-            if (arrayList == null || i < 0 || i >= arrayList.size()) {
-                return;
-            }
-            quickReplyView.set(this.quickReplies.get(i), this.quickRepliesQuery, false);
-            return;
+        if (this.contextUsernameReqid != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.contextUsernameReqid, true);
+            this.contextUsernameReqid = 0;
         }
-        if (this.searchResultBotContext != null) {
-            boolean z = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true;
-            if (viewHolder.getItemViewType() != 2) {
-                if (z) {
-                    i--;
-                }
-                ((ContextLinkCell) viewHolder.itemView).setLink(this.searchResultBotContext.get(i), this.foundContextBot, this.contextMedia, i != this.searchResultBotContext.size() - 1, z && i == 0, "gif".equals(this.searchingContextUsername));
-                return;
-            } else {
-                if (z) {
-                    BotSwitchCell botSwitchCell = (BotSwitchCell) viewHolder.itemView;
-                    TLRPC$TL_inlineBotSwitchPM tLRPC$TL_inlineBotSwitchPM = this.searchResultBotContextSwitch;
-                    botSwitchCell.setText(tLRPC$TL_inlineBotSwitchPM != null ? tLRPC$TL_inlineBotSwitchPM.text : this.searchResultBotWebViewSwitch.text);
-                    return;
-                }
-                return;
-            }
+        if (this.contextQueryReqid != 0) {
+            ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.contextQueryReqid, true);
+            this.contextQueryReqid = 0;
         }
-        MentionCell mentionCell = (MentionCell) viewHolder.itemView;
-        ArrayList<TLObject> arrayList2 = this.searchResultUsernames;
-        if (arrayList2 != null) {
-            TLObject tLObject = arrayList2.get(i);
-            if (tLObject instanceof TLRPC$User) {
-                mentionCell.setUser((TLRPC$User) tLObject);
-            } else if (tLObject instanceof TLRPC$Chat) {
-                mentionCell.setChat((TLRPC$Chat) tLObject);
-            }
-        } else {
-            ArrayList<String> arrayList3 = this.searchResultHashtags;
-            if (arrayList3 != null) {
-                mentionCell.setText(arrayList3.get(i));
-            } else {
-                ArrayList<MediaDataController.KeywordResult> arrayList4 = this.searchResultSuggestions;
-                if (arrayList4 != null) {
-                    mentionCell.setEmojiSuggestion(arrayList4.get(i));
-                } else {
-                    ArrayList<String> arrayList5 = this.searchResultCommands;
-                    if (arrayList5 != null) {
-                        String str = arrayList5.get(i);
-                        String str2 = this.searchResultCommandsHelp.get(i);
-                        ArrayList<TLRPC$User> arrayList6 = this.searchResultCommandsUsers;
-                        mentionCell.setBotCommand(str, str2, arrayList6 != null ? arrayList6.get(i) : null);
-                    }
-                }
-            }
+        this.foundContextBot = null;
+        this.searchResultBotContextSwitch = null;
+        this.inlineMediaEnabled = true;
+        this.searchingContextUsername = null;
+        this.searchingContextQuery = null;
+        this.noUserName = false;
+        if (!this.isDarkTheme) {
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
         }
-        mentionCell.setDivider(false);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersDidLoad);
     }
 
     public void onRequestPermissionsResultFragment(int i, String[] strArr, int[] iArr) {
         TLRPC$User tLRPC$User;
         if (i == 2 && (tLRPC$User = this.foundContextBot) != null && tLRPC$User.bot_inline_geo) {
-            if (iArr.length > 0 && iArr[0] == 0) {
-                this.locationProvider.start();
-            } else {
+            if (iArr.length <= 0 || iArr[0] != 0) {
                 onLocationUnavailable();
+            } else {
+                this.locationProvider.start();
             }
         }
     }
 
-    public void doSomeStickersAction() {
-        if (isStickers()) {
-            if (this.mentionsStickersActionTracker == null) {
-                EmojiView.ChooseStickerActionTracker chooseStickerActionTracker = new EmojiView.ChooseStickerActionTracker(this.currentAccount, this.dialog_id, this.threadMessageId) {
-                    @Override
-                    public boolean isShown() {
-                        return MentionsAdapter.this.isStickers();
-                    }
-                };
-                this.mentionsStickersActionTracker = chooseStickerActionTracker;
-                chooseStickerActionTracker.checkVisibility();
-            }
-            this.mentionsStickersActionTracker.doSomeAction();
+    public void searchForContextBotForNextOffset() {
+        String str;
+        TLRPC$User tLRPC$User;
+        String str2;
+        if (this.contextQueryReqid != 0 || (str = this.nextQueryOffset) == null || str.length() == 0 || (tLRPC$User = this.foundContextBot) == null || (str2 = this.searchingContextQuery) == null) {
+            return;
         }
+        searchForContextBotResults(true, tLRPC$User, str2, this.nextQueryOffset);
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
-    }
-
-    public void setDialogId(long j) {
-        this.dialog_id = j;
-    }
-
-    public void setUserOrChat(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
-        this.user = tLRPC$User;
-        this.chat = tLRPC$Chat;
-    }
-
-    public void setSearchInDailogs(boolean z) {
-        this.searchInDailogs = z;
-    }
-
-    public void setAllowStickers(boolean z) {
-        this.allowStickers = z;
+    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r26, final int r27, final java.util.ArrayList r28, final boolean r29, final boolean r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
     }
 
     public void setAllowBots(boolean z) {
@@ -1579,5 +1517,80 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public void setAllowChats(boolean z) {
         this.allowChats = z;
+    }
+
+    public void setAllowStickers(boolean z) {
+        this.allowStickers = z;
+    }
+
+    public void setBotInfo(LongSparseArray longSparseArray) {
+        this.botInfo = longSparseArray;
+    }
+
+    public void setBotsCount(int i) {
+        this.botsCount = i;
+    }
+
+    public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
+        ChatActivity chatActivity;
+        TLRPC$Chat currentChat;
+        this.currentAccount = UserConfig.selectedAccount;
+        this.info = tLRPC$ChatFull;
+        if (!this.inlineMediaEnabled && this.foundContextBot != null && (chatActivity = this.parentFragment) != null && (currentChat = chatActivity.getCurrentChat()) != null) {
+            boolean canSendStickers = ChatObject.canSendStickers(currentChat);
+            this.inlineMediaEnabled = canSendStickers;
+            if (canSendStickers) {
+                this.searchResultUsernames = null;
+                notifyDataSetChanged();
+                this.delegate.needChangePanelVisibility(false);
+                processFoundUser(this.foundContextBot);
+            }
+        }
+        String str = this.lastText;
+        if (str != null) {
+            lambda$searchUsernameOrHashtag$7(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
+        }
+    }
+
+    public void setDialogId(long j) {
+        this.dialog_id = j;
+    }
+
+    public void setIsReversed(boolean z) {
+        if (this.isReversed != z) {
+            this.isReversed = z;
+            int lastItemCount = getLastItemCount();
+            if (lastItemCount > 0) {
+                notifyItemChanged(0);
+            }
+            if (lastItemCount > 1) {
+                notifyItemChanged(lastItemCount - 1);
+            }
+        }
+    }
+
+    public void setNeedBotContext(boolean z) {
+        this.needBotContext = z;
+    }
+
+    public void setNeedUsernames(boolean z) {
+        this.needUsernames = z;
+    }
+
+    public void setParentFragment(ChatActivity chatActivity) {
+        this.parentFragment = chatActivity;
+    }
+
+    public void setSearchInDailogs(boolean z) {
+        this.searchInDailogs = z;
+    }
+
+    public void setSearchingMentions(boolean z) {
+        this.isSearchingMentions = z;
+    }
+
+    public void setUserOrChat(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
+        this.user = tLRPC$User;
+        this.chat = tLRPC$Chat;
     }
 }

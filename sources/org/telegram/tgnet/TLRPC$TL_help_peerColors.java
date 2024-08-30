@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_peerColors extends TLRPC$help_PeerColors {
-    public ArrayList<TLRPC$TL_help_peerColorOption> colors = new ArrayList<>();
+    public ArrayList colors = new ArrayList();
     public int hash;
 
     @Override
@@ -30,7 +30,7 @@ public class TLRPC$TL_help_peerColors extends TLRPC$help_PeerColors {
         int size = this.colors.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.colors.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_help_peerColorOption) this.colors.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

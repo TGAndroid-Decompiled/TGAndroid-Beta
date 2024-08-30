@@ -26,13 +26,6 @@ public class BoostCounterSpan extends ReplacementSpan {
     private final TextPaint namePaint;
     private final View parent;
 
-    public static Pair<SpannableString, BoostCounterSpan> create(View view, TextPaint textPaint, int i) {
-        SpannableString spannableString = new SpannableString("d");
-        BoostCounterSpan boostCounterSpan = new BoostCounterSpan(view, textPaint, i);
-        spannableString.setSpan(boostCounterSpan, 0, 1, 33);
-        return new Pair<>(spannableString, boostCounterSpan);
-    }
-
     public BoostCounterSpan(View view, TextPaint textPaint, int i) {
         this.namePaint = textPaint;
         this.parent = view;
@@ -53,9 +46,39 @@ public class BoostCounterSpan extends ReplacementSpan {
         setCount(i, false);
     }
 
-    public void setCount(int i, boolean z) {
-        this.currentCount = i;
-        this.countText.setText(i <= 1 ? "" : String.valueOf(i), z);
+    public static Pair create(View view, TextPaint textPaint, int i) {
+        SpannableString spannableString = new SpannableString("d");
+        BoostCounterSpan boostCounterSpan = new BoostCounterSpan(view, textPaint, i);
+        spannableString.setSpan(boostCounterSpan, 0, 1, 33);
+        return new Pair(spannableString, boostCounterSpan);
+    }
+
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        Drawable drawable;
+        if (this.namePaint.getColor() != this.countText.getTextColor()) {
+            this.countText.setTextColor(this.namePaint.getColor());
+            Drawable drawable2 = this.boostProfileBadge;
+            int textColor = this.countText.getTextColor();
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable2.setColorFilter(new PorterDuffColorFilter(textColor, mode));
+            this.boostProfileBadge2.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), mode));
+        }
+        canvas.save();
+        canvas.translate(f, -AndroidUtilities.dp(0.2f));
+        if (this.currentCount == 1) {
+            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
+            drawable = this.boostProfileBadge;
+        } else {
+            drawable = this.boostProfileBadge2;
+        }
+        drawable.draw(canvas);
+        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
+        Rect rect = AndroidUtilities.rectTmp2;
+        rect.set(0, 0, (int) this.countText.getCurrentWidth(), (int) this.countText.getHeight());
+        this.countText.setBounds(rect);
+        this.countText.draw(canvas);
+        canvas.restore();
     }
 
     @Override
@@ -67,29 +90,8 @@ public class BoostCounterSpan extends ReplacementSpan {
         return (int) (AndroidUtilities.dp(16.0f) + this.countText.getWidth());
     }
 
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.namePaint.getColor() != this.countText.getTextColor()) {
-            this.countText.setTextColor(this.namePaint.getColor());
-            Drawable drawable = this.boostProfileBadge;
-            int textColor = this.countText.getTextColor();
-            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            drawable.setColorFilter(new PorterDuffColorFilter(textColor, mode));
-            this.boostProfileBadge2.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), mode));
-        }
-        canvas.save();
-        canvas.translate(f, -AndroidUtilities.dp(0.2f));
-        if (this.currentCount == 1) {
-            canvas.translate(AndroidUtilities.dp(1.5f), 0.0f);
-            this.boostProfileBadge.draw(canvas);
-        } else {
-            this.boostProfileBadge2.draw(canvas);
-        }
-        canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
-        Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) this.countText.getCurrentWidth(), (int) this.countText.getHeight());
-        this.countText.setBounds(rect);
-        this.countText.draw(canvas);
-        canvas.restore();
+    public void setCount(int i, boolean z) {
+        this.currentCount = i;
+        this.countText.setText(i <= 1 ? "" : String.valueOf(i), z);
     }
 }

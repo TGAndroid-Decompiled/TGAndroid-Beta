@@ -1,6 +1,5 @@
 package org.webrtc;
 
-import android.annotation.TargetApi;
 import android.media.MediaCodecInfo;
 import android.media.MediaCodecList;
 import android.os.Build;
@@ -27,59 +26,6 @@ class MediaCodecUtils {
     static final int[] DECODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391873, 2141391874, 2141391875, 2141391876};
     static final int[] ENCODER_COLOR_FORMATS = {19, 21, 2141391872, 2141391876};
     static final int[] TEXTURE_COLOR_FORMATS = getTextureColorFormats();
-
-    private static int[] getTextureColorFormats() {
-        return new int[]{2130708361};
-    }
-
-    public static ArrayList<MediaCodecInfo> getSortedCodecsList() {
-        ArrayList<MediaCodecInfo> arrayList = new ArrayList<>();
-        try {
-            int codecCount = MediaCodecList.getCodecCount();
-            for (int i = 0; i < codecCount; i++) {
-                try {
-                    arrayList.add(MediaCodecList.getCodecInfoAt(i));
-                } catch (IllegalArgumentException e) {
-                    Logging.e("MediaCodecUtils", "Cannot retrieve codec info", e);
-                }
-            }
-            Collections.sort(arrayList, new Comparator() {
-                @Override
-                public final int compare(Object obj, Object obj2) {
-                    int lambda$getSortedCodecsList$0;
-                    lambda$getSortedCodecsList$0 = MediaCodecUtils.lambda$getSortedCodecsList$0((MediaCodecInfo) obj, (MediaCodecInfo) obj2);
-                    return lambda$getSortedCodecsList$0;
-                }
-            });
-        } catch (Exception e2) {
-            FileLog.e(e2);
-        }
-        return arrayList;
-    }
-
-    public static int lambda$getSortedCodecsList$0(MediaCodecInfo mediaCodecInfo, MediaCodecInfo mediaCodecInfo2) {
-        return mediaCodecInfo.getName().compareTo(mediaCodecInfo2.getName());
-    }
-
-    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
-        for (int i : iArr) {
-            for (int i2 : codecCapabilities.colorFormats) {
-                if (i2 == i) {
-                    return Integer.valueOf(i2);
-                }
-            }
-        }
-        return null;
-    }
-
-    public static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        for (String str : mediaCodecInfo.getSupportedTypes()) {
-            if (videoCodecMimeType.mimeType().equals(str)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
@@ -110,6 +56,18 @@ class MediaCodecUtils {
         }
     }
 
+    private MediaCodecUtils() {
+    }
+
+    public static boolean codecSupportsType(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+        for (String str : mediaCodecInfo.getSupportedTypes()) {
+            if (videoCodecMimeType.mimeType().equals(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
         int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
@@ -121,14 +79,39 @@ class MediaCodecUtils {
         throw new IllegalArgumentException("Unsupported codec: " + videoCodecMimeType);
     }
 
-    public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
-        if (Build.VERSION.SDK_INT >= 29) {
-            return isHardwareAcceleratedQOrHigher(mediaCodecInfo);
+    public static ArrayList<MediaCodecInfo> getSortedCodecsList() {
+        ArrayList<MediaCodecInfo> arrayList = new ArrayList<>();
+        try {
+            int codecCount = MediaCodecList.getCodecCount();
+            for (int i = 0; i < codecCount; i++) {
+                try {
+                    arrayList.add(MediaCodecList.getCodecInfoAt(i));
+                } catch (IllegalArgumentException e) {
+                    Logging.e("MediaCodecUtils", "Cannot retrieve codec info", e);
+                }
+            }
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$getSortedCodecsList$0;
+                    lambda$getSortedCodecsList$0 = MediaCodecUtils.lambda$getSortedCodecsList$0((MediaCodecInfo) obj, (MediaCodecInfo) obj2);
+                    return lambda$getSortedCodecsList$0;
+                }
+            });
+        } catch (Exception e2) {
+            FileLog.e(e2);
         }
-        return !isSoftwareOnly(mediaCodecInfo);
+        return arrayList;
     }
 
-    @TargetApi(29)
+    private static int[] getTextureColorFormats() {
+        return new int[]{2130708361};
+    }
+
+    public static boolean isHardwareAccelerated(MediaCodecInfo mediaCodecInfo) {
+        return Build.VERSION.SDK_INT >= 29 ? isHardwareAcceleratedQOrHigher(mediaCodecInfo) : !isSoftwareOnly(mediaCodecInfo);
+    }
+
     private static boolean isHardwareAcceleratedQOrHigher(MediaCodecInfo mediaCodecInfo) {
         boolean isHardwareAccelerated;
         isHardwareAccelerated = mediaCodecInfo.isHardwareAccelerated();
@@ -148,13 +131,24 @@ class MediaCodecUtils {
         return false;
     }
 
-    @TargetApi(29)
     private static boolean isSoftwareOnlyQOrHigher(MediaCodecInfo mediaCodecInfo) {
         boolean isSoftwareOnly;
         isSoftwareOnly = mediaCodecInfo.isSoftwareOnly();
         return isSoftwareOnly;
     }
 
-    private MediaCodecUtils() {
+    public static int lambda$getSortedCodecsList$0(MediaCodecInfo mediaCodecInfo, MediaCodecInfo mediaCodecInfo2) {
+        return mediaCodecInfo.getName().compareTo(mediaCodecInfo2.getName());
+    }
+
+    public static Integer selectColorFormat(int[] iArr, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        for (int i : iArr) {
+            for (int i2 : codecCapabilities.colorFormats) {
+                if (i2 == i) {
+                    return Integer.valueOf(i2);
+                }
+            }
+        }
+        return null;
     }
 }

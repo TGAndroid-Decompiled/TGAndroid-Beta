@@ -17,9 +17,9 @@ public abstract class TLRPC$DialogFilter extends TLObject {
     public int id;
     public boolean non_contacts;
     public String title;
-    public ArrayList<TLRPC$InputPeer> pinned_peers = new ArrayList<>();
-    public ArrayList<TLRPC$InputPeer> include_peers = new ArrayList<>();
-    public ArrayList<TLRPC$InputPeer> exclude_peers = new ArrayList<>();
+    public ArrayList pinned_peers = new ArrayList();
+    public ArrayList include_peers = new ArrayList();
+    public ArrayList exclude_peers = new ArrayList();
 
     public static TLRPC$DialogFilter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$DialogFilter tLRPC$TL_dialogFilterChatlist;
@@ -86,13 +86,13 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                         int size = this.pinned_peers.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i3 = 0; i3 < size; i3++) {
-                            this.pinned_peers.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$InputPeer) this.pinned_peers.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.include_peers.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i4 = 0; i4 < size2; i4++) {
-                            this.include_peers.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$InputPeer) this.include_peers.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -203,19 +203,19 @@ public abstract class TLRPC$DialogFilter extends TLObject {
                         int size = this.pinned_peers.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i10 = 0; i10 < size; i10++) {
-                            this.pinned_peers.get(i10).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$InputPeer) this.pinned_peers.get(i10)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.include_peers.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i11 = 0; i11 < size2; i11++) {
-                            this.include_peers.get(i11).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$InputPeer) this.include_peers.get(i11)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size3 = this.exclude_peers.size();
                         abstractSerializedData2.writeInt32(size3);
                         for (int i12 = 0; i12 < size3; i12++) {
-                            this.exclude_peers.get(i12).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$InputPeer) this.exclude_peers.get(i12)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

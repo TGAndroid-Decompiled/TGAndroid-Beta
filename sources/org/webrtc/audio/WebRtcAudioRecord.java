@@ -1,6 +1,5 @@
 package org.webrtc.audio;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.media.AudioDeviceInfo;
 import android.media.AudioFormat;
@@ -21,7 +20,6 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -58,14 +56,6 @@ public class WebRtcAudioRecord {
     private long nativeAudioRecord;
     private AudioDeviceInfo preferredDevice;
     private final JavaAudioDeviceModule.AudioRecordStateCallback stateCallback;
-
-    private int channelCountToConfiguration(int i) {
-        return i == 1 ? 16 : 12;
-    }
-
-    private native void nativeCacheDirectBufferAddress(long j, ByteBuffer byteBuffer);
-
-    public native void nativeDataIsRecorded(long j, int i);
 
     private class AudioRecordThread extends Thread {
         private volatile boolean keepAlive;
@@ -121,7 +111,6 @@ public class WebRtcAudioRecord {
         }
     }
 
-    @CalledByNative
     WebRtcAudioRecord(Context context, AudioManager audioManager) {
         this(context, newDefaultScheduler(), audioManager, 7, 2, null, null, null, WebRtcAudioEffects.isAcousticEchoCancelerSupported(), WebRtcAudioEffects.isNoiseSuppressorSupported());
     }
@@ -148,49 +137,100 @@ public class WebRtcAudioRecord {
         Logging.d("WebRtcAudioRecordExternal", "ctor" + WebRtcAudioUtils.getThreadInfo());
     }
 
-    @CalledByNative
-    public void setNativeAudioRecord(long j) {
-        this.nativeAudioRecord = j;
-    }
-
-    @CalledByNative
-    boolean isAcousticEchoCancelerSupported() {
-        return this.isAcousticEchoCancelerSupported;
-    }
-
-    @CalledByNative
-    boolean isNoiseSuppressorSupported() {
-        return this.isNoiseSuppressorSupported;
-    }
-
-    @CalledByNative
-    boolean isAudioConfigVerified() {
-        return this.audioSourceMatchesRecordingSessionRef.get() != null;
-    }
-
-    @CalledByNative
-    boolean isAudioSourceMatchingRecordingSession() {
-        Boolean bool = this.audioSourceMatchesRecordingSessionRef.get();
-        if (bool == null) {
-            Logging.w("WebRtcAudioRecordExternal", "Audio configuration has not yet been verified");
-            return false;
+    public static void assertTrue(boolean z) {
+        if (!z) {
+            throw new AssertionError("Expected condition to be true");
         }
-        return bool.booleanValue();
     }
 
-    @CalledByNative
+    private static String audioStateToString(int i) {
+        return i != 0 ? i != 1 ? "INVALID" : "STOP" : "START";
+    }
+
+    private int channelCountToConfiguration(int i) {
+        return i == 1 ? 16 : 12;
+    }
+
+    private static boolean checkDeviceMatch(AudioDeviceInfo audioDeviceInfo, AudioDeviceInfo audioDeviceInfo2) {
+        int id;
+        int id2;
+        int type;
+        int type2;
+        id = audioDeviceInfo.getId();
+        id2 = audioDeviceInfo2.getId();
+        if (id == id2) {
+            type = audioDeviceInfo.getType();
+            type2 = audioDeviceInfo2.getType();
+            if (type == type2) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static AudioRecord createAudioRecordOnLowerThanM(int i, int i2, int i3, int i4, int i5) {
+        Logging.d("WebRtcAudioRecordExternal", "createAudioRecordOnLowerThanM");
+        return new AudioRecord(i, i2, i3, i4, i5);
+    }
+
+    private static AudioRecord createAudioRecordOnMOrHigher(int i, int i2, int i3, int i4, int i5) {
+        AudioRecord.Builder audioSource;
+        AudioFormat.Builder encoding;
+        AudioFormat.Builder sampleRate;
+        AudioFormat.Builder channelMask;
+        AudioFormat build;
+        AudioRecord.Builder audioFormat;
+        AudioRecord.Builder bufferSizeInBytes;
+        AudioRecord build2;
+        Logging.d("WebRtcAudioRecordExternal", "createAudioRecordOnMOrHigher");
+        audioSource = new AudioRecord.Builder().setAudioSource(i);
+        encoding = new AudioFormat.Builder().setEncoding(i4);
+        sampleRate = encoding.setSampleRate(i2);
+        channelMask = sampleRate.setChannelMask(i3);
+        build = channelMask.build();
+        audioFormat = audioSource.setAudioFormat(build);
+        bufferSizeInBytes = audioFormat.setBufferSizeInBytes(i5);
+        build2 = bufferSizeInBytes.build();
+        return build2;
+    }
+
+    public void doAudioRecordStateCallback(int i) {
+        Logging.d("WebRtcAudioRecordExternal", "doAudioRecordStateCallback: " + audioStateToString(i));
+        JavaAudioDeviceModule.AudioRecordStateCallback audioRecordStateCallback = this.stateCallback;
+        if (audioRecordStateCallback != null) {
+            if (i == 0) {
+                audioRecordStateCallback.onWebRtcAudioRecordStart();
+            } else if (i == 1) {
+                audioRecordStateCallback.onWebRtcAudioRecordStop();
+            } else {
+                Logging.e("WebRtcAudioRecordExternal", "Invalid audio state");
+            }
+        }
+    }
+
     private boolean enableBuiltInAEC(boolean z) {
         Logging.d("WebRtcAudioRecordExternal", "enableBuiltInAEC(" + z + ")");
         return this.effects.setAEC(z);
     }
 
-    @CalledByNative
     private boolean enableBuiltInNS(boolean z) {
         Logging.d("WebRtcAudioRecordExternal", "enableBuiltInNS(" + z + ")");
         return this.effects.setNS(z);
     }
 
-    @CalledByNative
+    private static int getBytesPerSample(int i) {
+        if (i == 13 || i == 1 || i == 2) {
+            return 2;
+        }
+        if (i == 3) {
+            return 1;
+        }
+        if (i == 4) {
+            return 4;
+        }
+        throw new IllegalArgumentException("Bad audio format " + i);
+    }
+
     private int initRecording(int i, int i2) {
         Logging.d("WebRtcAudioRecordExternal", "initRecording(sampleRate=" + i + ", channels=" + i2 + ")");
         if (this.audioRecord != null) {
@@ -255,246 +295,7 @@ public class WebRtcAudioRecord {
         }
     }
 
-    @TargetApi(23)
-    public void setPreferredDevice(AudioDeviceInfo audioDeviceInfo) {
-        Integer num;
-        boolean preferredDevice;
-        int id;
-        StringBuilder sb = new StringBuilder();
-        sb.append("setPreferredDevice ");
-        if (audioDeviceInfo != null) {
-            id = audioDeviceInfo.getId();
-            num = Integer.valueOf(id);
-        } else {
-            num = null;
-        }
-        sb.append(num);
-        Logging.d("WebRtcAudioRecordExternal", sb.toString());
-        this.preferredDevice = audioDeviceInfo;
-        AudioRecord audioRecord = this.audioRecord;
-        if (audioRecord != null) {
-            preferredDevice = audioRecord.setPreferredDevice(audioDeviceInfo);
-            if (preferredDevice) {
-                return;
-            }
-            Logging.e("WebRtcAudioRecordExternal", "setPreferredDevice failed");
-        }
-    }
-
-    @CalledByNative
-    private boolean startRecording() {
-        Logging.d("WebRtcAudioRecordExternal", "startRecording");
-        assertTrue(this.audioRecord != null);
-        assertTrue(this.audioThread == null);
-        try {
-            this.audioRecord.startRecording();
-            if (this.audioRecord.getRecordingState() != 3) {
-                reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_STATE_MISMATCH, "AudioRecord.startRecording failed - incorrect state: " + this.audioRecord.getRecordingState());
-                return false;
-            }
-            AudioRecordThread audioRecordThread = new AudioRecordThread("AudioRecordJavaThread");
-            this.audioThread = audioRecordThread;
-            audioRecordThread.start();
-            scheduleLogRecordingConfigurationsTask(this.audioRecord);
-            return true;
-        } catch (IllegalStateException e) {
-            reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION, "AudioRecord.startRecording failed: " + e.getMessage());
-            return false;
-        }
-    }
-
-    @CalledByNative
-    private boolean stopRecording() {
-        Logging.d("WebRtcAudioRecordExternal", "stopRecording");
-        assertTrue(this.audioThread != null);
-        ScheduledFuture<String> scheduledFuture = this.future;
-        if (scheduledFuture != null) {
-            if (!scheduledFuture.isDone()) {
-                this.future.cancel(true);
-            }
-            this.future = null;
-        }
-        this.audioThread.stopThread();
-        if (!ThreadUtils.joinUninterruptibly(this.audioThread, 2000L)) {
-            Logging.e("WebRtcAudioRecordExternal", "Join of AudioRecordJavaThread timed out");
-            WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
-        }
-        this.audioThread = null;
-        this.effects.release();
-        releaseAudioResources();
-        return true;
-    }
-
-    @TargetApi(23)
-    private static AudioRecord createAudioRecordOnMOrHigher(int i, int i2, int i3, int i4, int i5) {
-        AudioRecord.Builder audioSource;
-        AudioFormat.Builder encoding;
-        AudioFormat.Builder sampleRate;
-        AudioFormat.Builder channelMask;
-        AudioFormat build;
-        AudioRecord.Builder audioFormat;
-        AudioRecord.Builder bufferSizeInBytes;
-        AudioRecord build2;
-        Logging.d("WebRtcAudioRecordExternal", "createAudioRecordOnMOrHigher");
-        audioSource = new AudioRecord.Builder().setAudioSource(i);
-        encoding = new AudioFormat.Builder().setEncoding(i4);
-        sampleRate = encoding.setSampleRate(i2);
-        channelMask = sampleRate.setChannelMask(i3);
-        build = channelMask.build();
-        audioFormat = audioSource.setAudioFormat(build);
-        bufferSizeInBytes = audioFormat.setBufferSizeInBytes(i5);
-        build2 = bufferSizeInBytes.build();
-        return build2;
-    }
-
-    private static AudioRecord createAudioRecordOnLowerThanM(int i, int i2, int i3, int i4, int i5) {
-        Logging.d("WebRtcAudioRecordExternal", "createAudioRecordOnLowerThanM");
-        return new AudioRecord(i, i2, i3, i4, i5);
-    }
-
-    private void logMainParameters() {
-        Logging.d("WebRtcAudioRecordExternal", "AudioRecord: session ID: " + this.audioRecord.getAudioSessionId() + ", channels: " + this.audioRecord.getChannelCount() + ", sample rate: " + this.audioRecord.getSampleRate());
-    }
-
-    @TargetApi(23)
-    private void logMainParametersExtended() {
-        int bufferSizeInFrames;
-        if (Build.VERSION.SDK_INT >= 23) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("AudioRecord: buffer size in frames: ");
-            bufferSizeInFrames = this.audioRecord.getBufferSizeInFrames();
-            sb.append(bufferSizeInFrames);
-            Logging.d("WebRtcAudioRecordExternal", sb.toString());
-        }
-    }
-
-    @TargetApi(24)
-    private int logRecordingConfigurations(AudioRecord audioRecord, boolean z) {
-        List activeRecordingConfigurations;
-        AudioFormat format;
-        AudioDeviceInfo routedDevice;
-        if (Build.VERSION.SDK_INT < 24) {
-            Logging.w("WebRtcAudioRecordExternal", "AudioManager#getActiveRecordingConfigurations() requires N or higher");
-            return 0;
-        }
-        if (audioRecord == null) {
-            return 0;
-        }
-        activeRecordingConfigurations = this.audioManager.getActiveRecordingConfigurations();
-        int size = activeRecordingConfigurations.size();
-        Logging.d("WebRtcAudioRecordExternal", "Number of active recording sessions: " + size);
-        if (size > 0) {
-            logActiveRecordingConfigs(audioRecord.getAudioSessionId(), activeRecordingConfigurations);
-            if (z) {
-                AtomicReference<Boolean> atomicReference = this.audioSourceMatchesRecordingSessionRef;
-                int audioSource = audioRecord.getAudioSource();
-                int audioSessionId = audioRecord.getAudioSessionId();
-                format = audioRecord.getFormat();
-                routedDevice = audioRecord.getRoutedDevice();
-                atomicReference.set(Boolean.valueOf(verifyAudioConfig(audioSource, audioSessionId, format, routedDevice, activeRecordingConfigurations)));
-            }
-        }
-        return size;
-    }
-
-    public static void assertTrue(boolean z) {
-        if (!z) {
-            throw new AssertionError("Expected condition to be true");
-        }
-    }
-
-    public void setMicrophoneMute(boolean z) {
-        Logging.w("WebRtcAudioRecordExternal", "setMicrophoneMute(" + z + ")");
-        this.microphoneMute = z;
-    }
-
-    private void releaseAudioResources() {
-        Logging.d("WebRtcAudioRecordExternal", "releaseAudioResources");
-        AudioRecord audioRecord = this.audioRecord;
-        if (audioRecord != null) {
-            audioRecord.release();
-            this.audioRecord = null;
-        }
-        this.audioSourceMatchesRecordingSessionRef.set(null);
-    }
-
-    private void reportWebRtcAudioRecordInitError(String str) {
-        Logging.e("WebRtcAudioRecordExternal", "Init recording error: " + str);
-        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
-        logRecordingConfigurations(this.audioRecord, false);
-        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
-        if (audioRecordErrorCallback != null) {
-            audioRecordErrorCallback.onWebRtcAudioRecordInitError(str);
-        }
-    }
-
-    private void reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode audioRecordStartErrorCode, String str) {
-        Logging.e("WebRtcAudioRecordExternal", "Start recording error: " + audioRecordStartErrorCode + ". " + str);
-        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
-        logRecordingConfigurations(this.audioRecord, false);
-        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
-        if (audioRecordErrorCallback != null) {
-            audioRecordErrorCallback.onWebRtcAudioRecordStartError(audioRecordStartErrorCode, str);
-        }
-    }
-
-    public void reportWebRtcAudioRecordError(String str) {
-        Logging.e("WebRtcAudioRecordExternal", "Run-time recording error: " + str);
-        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
-        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
-        if (audioRecordErrorCallback != null) {
-            audioRecordErrorCallback.onWebRtcAudioRecordError(str);
-        }
-    }
-
-    public void doAudioRecordStateCallback(int i) {
-        Logging.d("WebRtcAudioRecordExternal", "doAudioRecordStateCallback: " + audioStateToString(i));
-        JavaAudioDeviceModule.AudioRecordStateCallback audioRecordStateCallback = this.stateCallback;
-        if (audioRecordStateCallback != null) {
-            if (i == 0) {
-                audioRecordStateCallback.onWebRtcAudioRecordStart();
-            } else if (i == 1) {
-                audioRecordStateCallback.onWebRtcAudioRecordStop();
-            } else {
-                Logging.e("WebRtcAudioRecordExternal", "Invalid audio state");
-            }
-        }
-    }
-
-    private static int getBytesPerSample(int i) {
-        if (i == 13 || i == 1 || i == 2) {
-            return 2;
-        }
-        if (i == 3) {
-            return 1;
-        }
-        if (i == 4) {
-            return 4;
-        }
-        throw new IllegalArgumentException("Bad audio format " + i);
-    }
-
-    private void scheduleLogRecordingConfigurationsTask(final AudioRecord audioRecord) {
-        Logging.d("WebRtcAudioRecordExternal", "scheduleLogRecordingConfigurationsTask");
-        if (Build.VERSION.SDK_INT < 24) {
-            return;
-        }
-        Callable callable = new Callable() {
-            @Override
-            public final Object call() {
-                String lambda$scheduleLogRecordingConfigurationsTask$0;
-                lambda$scheduleLogRecordingConfigurationsTask$0 = WebRtcAudioRecord.this.lambda$scheduleLogRecordingConfigurationsTask$0(audioRecord);
-                return lambda$scheduleLogRecordingConfigurationsTask$0;
-            }
-        };
-        ScheduledFuture<String> scheduledFuture = this.future;
-        if (scheduledFuture != null && !scheduledFuture.isDone()) {
-            this.future.cancel(true);
-        }
-        this.future = this.executor.schedule(callable, 100L, TimeUnit.MILLISECONDS);
-    }
-
-    public String lambda$scheduleLogRecordingConfigurationsTask$0(AudioRecord audioRecord) throws Exception {
+    public String lambda$scheduleLogRecordingConfigurationsTask$0(AudioRecord audioRecord) {
         if (this.audioRecord == audioRecord) {
             logRecordingConfigurations(audioRecord, true);
             return "Scheduled task is done";
@@ -503,7 +304,6 @@ public class WebRtcAudioRecord {
         return "Scheduled task is done";
     }
 
-    @TargetApi(24)
     private static boolean logActiveRecordingConfigs(int i, List<AudioRecordingConfiguration> list) {
         int clientAudioSource;
         int clientAudioSessionId;
@@ -525,8 +325,12 @@ public class WebRtcAudioRecord {
         int id;
         assertTrue(!list.isEmpty());
         Iterator<AudioRecordingConfiguration> it = list.iterator();
-        Logging.d("WebRtcAudioRecordExternal", "AudioRecordingConfigurations: ");
-        while (it.hasNext()) {
+        String str = "AudioRecordingConfigurations: ";
+        while (true) {
+            Logging.d("WebRtcAudioRecordExternal", str);
+            if (!it.hasNext()) {
+                return true;
+            }
             AudioRecordingConfiguration m = WebRtcAudioRecord$$ExternalSyntheticApiModelOutline5.m(it.next());
             StringBuilder sb = new StringBuilder();
             clientAudioSource = m.getClientAudioSource();
@@ -587,12 +391,170 @@ public class WebRtcAudioRecord {
                 id = audioDevice.getId();
                 sb.append(id);
             }
+            str = sb.toString();
+        }
+    }
+
+    private void logMainParameters() {
+        Logging.d("WebRtcAudioRecordExternal", "AudioRecord: session ID: " + this.audioRecord.getAudioSessionId() + ", channels: " + this.audioRecord.getChannelCount() + ", sample rate: " + this.audioRecord.getSampleRate());
+    }
+
+    private void logMainParametersExtended() {
+        int bufferSizeInFrames;
+        if (Build.VERSION.SDK_INT >= 23) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("AudioRecord: buffer size in frames: ");
+            bufferSizeInFrames = this.audioRecord.getBufferSizeInFrames();
+            sb.append(bufferSizeInFrames);
             Logging.d("WebRtcAudioRecordExternal", sb.toString());
         }
+    }
+
+    private int logRecordingConfigurations(AudioRecord audioRecord, boolean z) {
+        List activeRecordingConfigurations;
+        AudioFormat format;
+        AudioDeviceInfo routedDevice;
+        if (Build.VERSION.SDK_INT < 24) {
+            Logging.w("WebRtcAudioRecordExternal", "AudioManager#getActiveRecordingConfigurations() requires N or higher");
+            return 0;
+        }
+        if (audioRecord == null) {
+            return 0;
+        }
+        activeRecordingConfigurations = this.audioManager.getActiveRecordingConfigurations();
+        int size = activeRecordingConfigurations.size();
+        Logging.d("WebRtcAudioRecordExternal", "Number of active recording sessions: " + size);
+        if (size > 0) {
+            logActiveRecordingConfigs(audioRecord.getAudioSessionId(), activeRecordingConfigurations);
+            if (z) {
+                AtomicReference<Boolean> atomicReference = this.audioSourceMatchesRecordingSessionRef;
+                int audioSource = audioRecord.getAudioSource();
+                int audioSessionId = audioRecord.getAudioSessionId();
+                format = audioRecord.getFormat();
+                routedDevice = audioRecord.getRoutedDevice();
+                atomicReference.set(Boolean.valueOf(verifyAudioConfig(audioSource, audioSessionId, format, routedDevice, activeRecordingConfigurations)));
+            }
+        }
+        return size;
+    }
+
+    private native void nativeCacheDirectBufferAddress(long j, ByteBuffer byteBuffer);
+
+    public native void nativeDataIsRecorded(long j, int i);
+
+    public static ScheduledExecutorService newDefaultScheduler() {
+        final AtomicInteger atomicInteger = new AtomicInteger(0);
+        return Executors.newScheduledThreadPool(0, new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable runnable) {
+                Thread newThread = Executors.defaultThreadFactory().newThread(runnable);
+                newThread.setName(String.format("WebRtcAudioRecordScheduler-%s-%s", Integer.valueOf(WebRtcAudioRecord.nextSchedulerId.getAndIncrement()), Integer.valueOf(atomicInteger.getAndIncrement())));
+                return newThread;
+            }
+        });
+    }
+
+    private void releaseAudioResources() {
+        Logging.d("WebRtcAudioRecordExternal", "releaseAudioResources");
+        AudioRecord audioRecord = this.audioRecord;
+        if (audioRecord != null) {
+            audioRecord.release();
+            this.audioRecord = null;
+        }
+        this.audioSourceMatchesRecordingSessionRef.set(null);
+    }
+
+    public void reportWebRtcAudioRecordError(String str) {
+        Logging.e("WebRtcAudioRecordExternal", "Run-time recording error: " + str);
+        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
+        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
+        if (audioRecordErrorCallback != null) {
+            audioRecordErrorCallback.onWebRtcAudioRecordError(str);
+        }
+    }
+
+    private void reportWebRtcAudioRecordInitError(String str) {
+        Logging.e("WebRtcAudioRecordExternal", "Init recording error: " + str);
+        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
+        logRecordingConfigurations(this.audioRecord, false);
+        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
+        if (audioRecordErrorCallback != null) {
+            audioRecordErrorCallback.onWebRtcAudioRecordInitError(str);
+        }
+    }
+
+    private void reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode audioRecordStartErrorCode, String str) {
+        Logging.e("WebRtcAudioRecordExternal", "Start recording error: " + audioRecordStartErrorCode + ". " + str);
+        WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
+        logRecordingConfigurations(this.audioRecord, false);
+        JavaAudioDeviceModule.AudioRecordErrorCallback audioRecordErrorCallback = this.errorCallback;
+        if (audioRecordErrorCallback != null) {
+            audioRecordErrorCallback.onWebRtcAudioRecordStartError(audioRecordStartErrorCode, str);
+        }
+    }
+
+    private void scheduleLogRecordingConfigurationsTask(final AudioRecord audioRecord) {
+        Logging.d("WebRtcAudioRecordExternal", "scheduleLogRecordingConfigurationsTask");
+        if (Build.VERSION.SDK_INT < 24) {
+            return;
+        }
+        Callable callable = new Callable() {
+            @Override
+            public final Object call() {
+                String lambda$scheduleLogRecordingConfigurationsTask$0;
+                lambda$scheduleLogRecordingConfigurationsTask$0 = WebRtcAudioRecord.this.lambda$scheduleLogRecordingConfigurationsTask$0(audioRecord);
+                return lambda$scheduleLogRecordingConfigurationsTask$0;
+            }
+        };
+        ScheduledFuture<String> scheduledFuture = this.future;
+        if (scheduledFuture != null && !scheduledFuture.isDone()) {
+            this.future.cancel(true);
+        }
+        this.future = this.executor.schedule(callable, 100L, TimeUnit.MILLISECONDS);
+    }
+
+    private boolean startRecording() {
+        Logging.d("WebRtcAudioRecordExternal", "startRecording");
+        assertTrue(this.audioRecord != null);
+        assertTrue(this.audioThread == null);
+        try {
+            this.audioRecord.startRecording();
+            if (this.audioRecord.getRecordingState() == 3) {
+                AudioRecordThread audioRecordThread = new AudioRecordThread("AudioRecordJavaThread");
+                this.audioThread = audioRecordThread;
+                audioRecordThread.start();
+                scheduleLogRecordingConfigurationsTask(this.audioRecord);
+                return true;
+            }
+            reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_STATE_MISMATCH, "AudioRecord.startRecording failed - incorrect state: " + this.audioRecord.getRecordingState());
+            return false;
+        } catch (IllegalStateException e) {
+            reportWebRtcAudioRecordStartError(JavaAudioDeviceModule.AudioRecordStartErrorCode.AUDIO_RECORD_START_EXCEPTION, "AudioRecord.startRecording failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    private boolean stopRecording() {
+        Logging.d("WebRtcAudioRecordExternal", "stopRecording");
+        assertTrue(this.audioThread != null);
+        ScheduledFuture<String> scheduledFuture = this.future;
+        if (scheduledFuture != null) {
+            if (!scheduledFuture.isDone()) {
+                this.future.cancel(true);
+            }
+            this.future = null;
+        }
+        this.audioThread.stopThread();
+        if (!ThreadUtils.joinUninterruptibly(this.audioThread, 2000L)) {
+            Logging.e("WebRtcAudioRecordExternal", "Join of AudioRecordJavaThread timed out");
+            WebRtcAudioUtils.logAudioState("WebRtcAudioRecordExternal", this.context, this.audioManager);
+        }
+        this.audioThread = null;
+        this.effects.release();
+        releaseAudioResources();
         return true;
     }
 
-    @TargetApi(24)
     private static boolean verifyAudioConfig(int i, int i2, AudioFormat audioFormat, AudioDeviceInfo audioDeviceInfo, List<AudioRecordingConfiguration> list) {
         AudioDeviceInfo audioDevice;
         int clientAudioSource;
@@ -692,43 +654,58 @@ public class WebRtcAudioRecord {
         return false;
     }
 
-    @TargetApi(24)
-    private static boolean checkDeviceMatch(AudioDeviceInfo audioDeviceInfo, AudioDeviceInfo audioDeviceInfo2) {
-        int id;
-        int id2;
-        int type;
-        int type2;
-        id = audioDeviceInfo.getId();
-        id2 = audioDeviceInfo2.getId();
-        if (id == id2) {
-            type = audioDeviceInfo.getType();
-            type2 = audioDeviceInfo2.getType();
-            if (type == type2) {
-                return true;
-            }
+    boolean isAcousticEchoCancelerSupported() {
+        return this.isAcousticEchoCancelerSupported;
+    }
+
+    boolean isAudioConfigVerified() {
+        return this.audioSourceMatchesRecordingSessionRef.get() != null;
+    }
+
+    boolean isAudioSourceMatchingRecordingSession() {
+        Boolean bool = this.audioSourceMatchesRecordingSessionRef.get();
+        if (bool != null) {
+            return bool.booleanValue();
         }
+        Logging.w("WebRtcAudioRecordExternal", "Audio configuration has not yet been verified");
         return false;
     }
 
-    private static String audioStateToString(int i) {
-        if (i == 0) {
-            return "START";
-        }
-        if (i == 1) {
-            return "STOP";
-        }
-        return "INVALID";
+    boolean isNoiseSuppressorSupported() {
+        return this.isNoiseSuppressorSupported;
     }
 
-    public static ScheduledExecutorService newDefaultScheduler() {
-        final AtomicInteger atomicInteger = new AtomicInteger(0);
-        return Executors.newScheduledThreadPool(0, new ThreadFactory() {
-            @Override
-            public Thread newThread(Runnable runnable) {
-                Thread newThread = Executors.defaultThreadFactory().newThread(runnable);
-                newThread.setName(String.format("WebRtcAudioRecordScheduler-%s-%s", Integer.valueOf(WebRtcAudioRecord.nextSchedulerId.getAndIncrement()), Integer.valueOf(atomicInteger.getAndIncrement())));
-                return newThread;
+    public void setMicrophoneMute(boolean z) {
+        Logging.w("WebRtcAudioRecordExternal", "setMicrophoneMute(" + z + ")");
+        this.microphoneMute = z;
+    }
+
+    public void setNativeAudioRecord(long j) {
+        this.nativeAudioRecord = j;
+    }
+
+    public void setPreferredDevice(AudioDeviceInfo audioDeviceInfo) {
+        Integer num;
+        boolean preferredDevice;
+        int id;
+        StringBuilder sb = new StringBuilder();
+        sb.append("setPreferredDevice ");
+        if (audioDeviceInfo != null) {
+            id = audioDeviceInfo.getId();
+            num = Integer.valueOf(id);
+        } else {
+            num = null;
+        }
+        sb.append(num);
+        Logging.d("WebRtcAudioRecordExternal", sb.toString());
+        this.preferredDevice = audioDeviceInfo;
+        AudioRecord audioRecord = this.audioRecord;
+        if (audioRecord != null) {
+            preferredDevice = audioRecord.setPreferredDevice(audioDeviceInfo);
+            if (preferredDevice) {
+                return;
             }
-        });
+            Logging.e("WebRtcAudioRecordExternal", "setPreferredDevice failed");
+        }
     }
 }

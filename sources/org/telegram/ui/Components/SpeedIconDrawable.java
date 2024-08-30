@@ -14,15 +14,6 @@ public class SpeedIconDrawable extends Drawable {
     private final Paint outlinePaint;
     private final AnimatedTextView.AnimatedTextDrawable textDrawable;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
     public SpeedIconDrawable(boolean z) {
         Drawable.Callback callback = new Drawable.Callback() {
             @Override
@@ -50,13 +41,13 @@ public class SpeedIconDrawable extends Drawable {
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(10.0f));
         animatedTextDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
         animatedTextDrawable.getPaint().setStrokeWidth(AndroidUtilities.dpf2(0.6f));
-        if (z) {
-            Paint paint = new Paint(1);
-            this.outlinePaint = paint;
-            paint.setStyle(Paint.Style.STROKE);
+        if (!z) {
+            this.outlinePaint = null;
             return;
         }
-        this.outlinePaint = null;
+        Paint paint = new Paint(1);
+        this.outlinePaint = paint;
+        paint.setStyle(Paint.Style.STROKE);
     }
 
     public static String formatNumber(float f) {
@@ -67,16 +58,6 @@ public class SpeedIconDrawable extends Drawable {
             return "" + j;
         }
         return "" + round;
-    }
-
-    public void setValue(float f, boolean z) {
-        String str = formatNumber(f) + "X";
-        if (z && TextUtils.equals(this.textDrawable.getText(), str)) {
-            return;
-        }
-        this.textDrawable.cancelAnimation();
-        this.textDrawable.setText(str, z);
-        invalidateSelf();
     }
 
     @Override
@@ -94,13 +75,18 @@ public class SpeedIconDrawable extends Drawable {
     }
 
     @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
+    }
+
+    @Override
     public int getIntrinsicWidth() {
         return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(24.0f);
+    public int getOpacity() {
+        return -2;
     }
 
     @Override
@@ -118,5 +104,19 @@ public class SpeedIconDrawable extends Drawable {
         if (paint != null) {
             paint.setColor(i);
         }
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public void setValue(float f, boolean z) {
+        String str = formatNumber(f) + "X";
+        if (z && TextUtils.equals(this.textDrawable.getText(), str)) {
+            return;
+        }
+        this.textDrawable.cancelAnimation();
+        this.textDrawable.setText(str, z);
+        invalidateSelf();
     }
 }

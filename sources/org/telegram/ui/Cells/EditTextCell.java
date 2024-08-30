@@ -33,63 +33,6 @@ public class EditTextCell extends FrameLayout {
     private boolean showLimitWhenEmpty;
     private boolean showLimitWhenFocused;
 
-    protected void onFocusChanged(boolean z) {
-    }
-
-    public void onTextChanged(CharSequence charSequence) {
-    }
-
-    public void setShowLimitWhenEmpty(boolean z) {
-        this.showLimitWhenEmpty = z;
-        if (z) {
-            updateLimitText();
-        }
-    }
-
-    public void updateLimitText() {
-        if (this.editText == null) {
-            return;
-        }
-        this.limitCount = this.maxLength - getText().length();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && (!this.showLimitWhenFocused || (this.focused && !this.autofocused))) {
-            str = "" + this.limitCount;
-        }
-        animatedTextDrawable.setText(str);
-    }
-
-    public void whenHitEnter(final Runnable runnable) {
-        this.editText.setImeOptions(6);
-        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i != 6) {
-                    return false;
-                }
-                runnable.run();
-                return true;
-            }
-        });
-    }
-
-    public void lambda$hideKeyboardOnEnter$0() {
-        AndroidUtilities.hideKeyboard(this.editText);
-    }
-
-    public void hideKeyboardOnEnter() {
-        whenHitEnter(new Runnable() {
-            @Override
-            public final void run() {
-                EditTextCell.this.lambda$hideKeyboardOnEnter$0();
-            }
-        });
-    }
-
-    public void setShowLimitOnFocus(boolean z) {
-        this.showLimitWhenFocused = z;
-    }
-
     public EditTextCell(Context context, String str, final boolean z, final int i, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.limitColor = new AnimatedColor(this);
@@ -100,22 +43,6 @@ public class EditTextCell extends FrameLayout {
         this.limit.setGravity(5);
         this.maxLength = i;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
-            @Override
-            protected boolean verifyDrawable(Drawable drawable) {
-                return drawable == EditTextCell.this.limit || super.verifyDrawable(drawable);
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = EditTextCell.this.limit;
-                if (animatedTextDrawable2 == null || i <= 0) {
-                    return;
-                }
-                animatedTextDrawable2.cancelAnimation();
-                EditTextCell.this.updateLimitText();
-            }
-
             @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -131,6 +58,22 @@ public class EditTextCell extends FrameLayout {
                 canvas.clipRect(getScrollX() + getPaddingLeft(), 0, (getScrollX() + getWidth()) - getPaddingRight(), getHeight());
                 super.onDraw(canvas);
                 canvas.restore();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+                super.onTextChanged(charSequence, i2, i3, i4);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = EditTextCell.this.limit;
+                if (animatedTextDrawable2 == null || i <= 0) {
+                    return;
+                }
+                animatedTextDrawable2.cancelAnimation();
+                EditTextCell.this.updateLimitText();
+            }
+
+            @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == EditTextCell.this.limit || super.verifyDrawable(drawable);
             }
         };
         this.editText = editTextBoldCursor;
@@ -157,18 +100,6 @@ public class EditTextCell extends FrameLayout {
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-                if (EditTextCell.this.ignoreEditText) {
-                    return;
-                }
-                EditTextCell.this.autofocused = false;
-            }
-
-            @Override
             public void afterTextChanged(Editable editable) {
                 if (!EditTextCell.this.ignoreEditText) {
                     if (i > 0 && editable != null && editable.length() > i) {
@@ -192,6 +123,18 @@ public class EditTextCell extends FrameLayout {
                     }
                 }
             }
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                if (EditTextCell.this.ignoreEditText) {
+                    return;
+                }
+                EditTextCell.this.autofocused = false;
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+            }
         });
         editTextBoldCursor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -207,6 +150,55 @@ public class EditTextCell extends FrameLayout {
         updateLimitText();
     }
 
+    public void lambda$hideKeyboardOnEnter$0() {
+        AndroidUtilities.hideKeyboard(this.editText);
+    }
+
+    public void updateLimitText() {
+        if (this.editText == null) {
+            return;
+        }
+        this.limitCount = this.maxLength - getText().length();
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
+        String str = "";
+        if ((!TextUtils.isEmpty(getText()) || this.showLimitWhenEmpty) && (!this.showLimitWhenFocused || (this.focused && !this.autofocused))) {
+            str = "" + this.limitCount;
+        }
+        animatedTextDrawable.setText(str);
+    }
+
+    public CharSequence getText() {
+        return this.editText.getText();
+    }
+
+    public void hideKeyboardOnEnter() {
+        whenHitEnter(new Runnable() {
+            @Override
+            public final void run() {
+                EditTextCell.this.lambda$hideKeyboardOnEnter$0();
+            }
+        });
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.needDivider) {
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+        }
+    }
+
+    protected void onFocusChanged(boolean z) {
+    }
+
+    public void onTextChanged(CharSequence charSequence) {
+    }
+
+    public void setDivider(boolean z) {
+        this.needDivider = z;
+        setWillNotDraw(!z);
+    }
+
     public ImageView setLeftDrawable(Drawable drawable) {
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -218,6 +210,17 @@ public class EditTextCell extends FrameLayout {
         return imageView;
     }
 
+    public void setShowLimitOnFocus(boolean z) {
+        this.showLimitWhenFocused = z;
+    }
+
+    public void setShowLimitWhenEmpty(boolean z) {
+        this.showLimitWhenEmpty = z;
+        if (z) {
+            updateLimitText();
+        }
+    }
+
     public void setText(CharSequence charSequence) {
         this.ignoreEditText = true;
         this.editText.setText(charSequence);
@@ -226,20 +229,17 @@ public class EditTextCell extends FrameLayout {
         this.ignoreEditText = false;
     }
 
-    public CharSequence getText() {
-        return this.editText.getText();
-    }
-
-    public void setDivider(boolean z) {
-        this.needDivider = z;
-        setWillNotDraw(!z);
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(22.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(22.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
-        }
+    public void whenHitEnter(final Runnable runnable) {
+        this.editText.setImeOptions(6);
+        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i != 6) {
+                    return false;
+                }
+                runnable.run();
+                return true;
+            }
+        });
     }
 }

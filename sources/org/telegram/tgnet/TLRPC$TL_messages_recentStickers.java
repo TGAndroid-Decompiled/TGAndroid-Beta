@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_messages_recentStickers extends TLRPC$messages_RecentStickers {
     public long hash;
-    public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();
-    public ArrayList<TLRPC$Document> stickers = new ArrayList<>();
-    public ArrayList<Integer> dates = new ArrayList<>();
+    public ArrayList packs = new ArrayList();
+    public ArrayList stickers = new ArrayList();
+    public ArrayList dates = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -62,19 +62,19 @@ public class TLRPC$TL_messages_recentStickers extends TLRPC$messages_RecentStick
         int size = this.packs.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.packs.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_stickerPack) this.packs.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.stickers.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.stickers.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Document) this.stickers.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.dates.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            abstractSerializedData.writeInt32(this.dates.get(i3).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.dates.get(i3)).intValue());
         }
     }
 }

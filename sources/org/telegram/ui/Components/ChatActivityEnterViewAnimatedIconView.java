@@ -11,76 +11,7 @@ import org.telegram.ui.Cells.ShareDialogCell$RepostStoryDrawable$$ExternalSynthe
 public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     private TransitState animatingState;
     private State currentState;
-    private Map<TransitState, RLottieDrawable> stateMap;
-
-    public enum State {
-        VOICE,
-        VIDEO,
-        STICKER,
-        KEYBOARD,
-        SMILE,
-        GIF
-    }
-
-    public ChatActivityEnterViewAnimatedIconView(Context context) {
-        super(context);
-        this.stateMap = new HashMap<TransitState, RLottieDrawable>() {
-            @Override
-            public RLottieDrawable get(Object obj) {
-                RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);
-                if (rLottieDrawable != null) {
-                    return rLottieDrawable;
-                }
-                int i = ((TransitState) obj).resource;
-                return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
-            }
-        };
-    }
-
-    public void setState(State state, boolean z) {
-        if (z && state == this.currentState) {
-            return;
-        }
-        State state2 = this.currentState;
-        this.currentState = state;
-        if (!z || state2 == null || getState(state2, state) == null) {
-            RLottieDrawable rLottieDrawable = this.stateMap.get(getAnyState(this.currentState));
-            rLottieDrawable.stop();
-            rLottieDrawable.setProgress(0.0f, false);
-            setAnimation(rLottieDrawable);
-        } else {
-            TransitState state3 = getState(state2, this.currentState);
-            if (state3 == this.animatingState) {
-                return;
-            }
-            this.animatingState = state3;
-            RLottieDrawable rLottieDrawable2 = this.stateMap.get(state3);
-            rLottieDrawable2.stop();
-            rLottieDrawable2.setProgress(0.0f, false);
-            rLottieDrawable2.setAutoRepeat(0);
-            rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActivityEnterViewAnimatedIconView.this.lambda$setState$0();
-                }
-            });
-            setAnimation(rLottieDrawable2);
-            AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable2));
-        }
-        int i = AnonymousClass2.$SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State[state.ordinal()];
-        if (i == 1) {
-            setContentDescription(LocaleController.getString(R.string.AccDescrVoiceMessage));
-        } else {
-            if (i != 2) {
-                return;
-            }
-            setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
-        }
-    }
-
-    public void lambda$setState$0() {
-        this.animatingState = null;
-    }
+    private Map stateMap;
 
     static class AnonymousClass2 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State;
@@ -99,22 +30,13 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         }
     }
 
-    private TransitState getAnyState(State state) {
-        for (TransitState transitState : TransitState.values()) {
-            if (transitState.firstState == state) {
-                return transitState;
-            }
-        }
-        return null;
-    }
-
-    private TransitState getState(State state, State state2) {
-        for (TransitState transitState : TransitState.values()) {
-            if (transitState.firstState == state && transitState.secondState == state2) {
-                return transitState;
-            }
-        }
-        return null;
+    public enum State {
+        VOICE,
+        VIDEO,
+        STICKER,
+        KEYBOARD,
+        SMILE,
+        GIF
     }
 
     public static final class TransitState {
@@ -137,14 +59,6 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
 
         private static TransitState[] $values() {
             return new TransitState[]{VOICE_TO_VIDEO, STICKER_TO_KEYBOARD, SMILE_TO_KEYBOARD, VIDEO_TO_VOICE, KEYBOARD_TO_STICKER, KEYBOARD_TO_GIF, KEYBOARD_TO_SMILE, GIF_TO_KEYBOARD, GIF_TO_SMILE, SMILE_TO_GIF, SMILE_TO_STICKER, STICKER_TO_SMILE};
-        }
-
-        public static TransitState valueOf(String str) {
-            return (TransitState) Enum.valueOf(TransitState.class, str);
-        }
-
-        public static TransitState[] values() {
-            return (TransitState[]) $VALUES.clone();
         }
 
         static {
@@ -174,5 +88,92 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             this.secondState = state2;
             this.resource = i2;
         }
+
+        public static TransitState valueOf(String str) {
+            return (TransitState) Enum.valueOf(TransitState.class, str);
+        }
+
+        public static TransitState[] values() {
+            return (TransitState[]) $VALUES.clone();
+        }
+    }
+
+    public ChatActivityEnterViewAnimatedIconView(Context context) {
+        super(context);
+        this.stateMap = new HashMap() {
+            @Override
+            public RLottieDrawable get(Object obj) {
+                RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);
+                if (rLottieDrawable != null) {
+                    return rLottieDrawable;
+                }
+                int i = ((TransitState) obj).resource;
+                return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
+            }
+        };
+    }
+
+    private TransitState getAnyState(State state) {
+        for (TransitState transitState : TransitState.values()) {
+            if (transitState.firstState == state) {
+                return transitState;
+            }
+        }
+        return null;
+    }
+
+    private TransitState getState(State state, State state2) {
+        for (TransitState transitState : TransitState.values()) {
+            if (transitState.firstState == state && transitState.secondState == state2) {
+                return transitState;
+            }
+        }
+        return null;
+    }
+
+    public void lambda$setState$0() {
+        this.animatingState = null;
+    }
+
+    public void setState(State state, boolean z) {
+        int i;
+        if (z && state == this.currentState) {
+            return;
+        }
+        State state2 = this.currentState;
+        this.currentState = state;
+        if (!z || state2 == null || getState(state2, state) == null) {
+            RLottieDrawable rLottieDrawable = (RLottieDrawable) this.stateMap.get(getAnyState(this.currentState));
+            rLottieDrawable.stop();
+            rLottieDrawable.setProgress(0.0f, false);
+            setAnimation(rLottieDrawable);
+        } else {
+            TransitState state3 = getState(state2, this.currentState);
+            if (state3 == this.animatingState) {
+                return;
+            }
+            this.animatingState = state3;
+            RLottieDrawable rLottieDrawable2 = (RLottieDrawable) this.stateMap.get(state3);
+            rLottieDrawable2.stop();
+            rLottieDrawable2.setProgress(0.0f, false);
+            rLottieDrawable2.setAutoRepeat(0);
+            rLottieDrawable2.setOnAnimationEndListener(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatActivityEnterViewAnimatedIconView.this.lambda$setState$0();
+                }
+            });
+            setAnimation(rLottieDrawable2);
+            AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable2));
+        }
+        int i2 = AnonymousClass2.$SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State[state.ordinal()];
+        if (i2 == 1) {
+            i = R.string.AccDescrVoiceMessage;
+        } else if (i2 != 2) {
+            return;
+        } else {
+            i = R.string.AccDescrVideoMessage;
+        }
+        setContentDescription(LocaleController.getString(i));
     }
 }

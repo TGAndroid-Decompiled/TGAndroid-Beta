@@ -1,14 +1,23 @@
 package kotlin.ranges;
 
-import java.util.Iterator;
+import kotlin.collections.IntIterator;
 import kotlin.internal.ProgressionUtilKt;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 
-public class IntProgression implements Iterable<Integer> {
+public abstract class IntProgression implements Iterable {
     public static final Companion Companion = new Companion(null);
     private final int first;
     private final int last;
     private final int step;
+
+    public static final class Companion {
+        private Companion() {
+        }
+
+        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
+            this();
+        }
+    }
 
     public IntProgression(int i, int i2, int i3) {
         if (i3 == 0) {
@@ -31,16 +40,7 @@ public class IntProgression implements Iterable<Integer> {
     }
 
     @Override
-    public Iterator<Integer> iterator() {
+    public IntIterator iterator() {
         return new IntProgressionIterator(this.first, this.last, this.step);
-    }
-
-    public static final class Companion {
-        public Companion(DefaultConstructorMarker defaultConstructorMarker) {
-            this();
-        }
-
-        private Companion() {
-        }
     }
 }

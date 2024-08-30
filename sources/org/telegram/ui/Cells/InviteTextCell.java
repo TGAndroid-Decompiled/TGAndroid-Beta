@@ -35,15 +35,6 @@ public class InviteTextCell extends FrameLayout {
     }
 
     @Override
-    protected void onMeasure(int i, int i2) {
-        int size = View.MeasureSpec.getSize(i);
-        int dp = AndroidUtilities.dp(72.0f);
-        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
-        setMeasuredDimension(size, AndroidUtilities.dp(72.0f));
-    }
-
-    @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5 = i4 - i2;
         int i6 = i3 - i;
@@ -57,12 +48,21 @@ public class InviteTextCell extends FrameLayout {
         imageView.layout(dp2, measuredHeight, imageView.getMeasuredWidth() + dp2, this.imageView.getMeasuredHeight() + measuredHeight);
     }
 
-    public void setTextColor(int i) {
-        this.textView.setTextColor(i);
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int dp = AndroidUtilities.dp(72.0f);
+        this.textView.measure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(95.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE));
+        setMeasuredDimension(size, AndroidUtilities.dp(72.0f));
     }
 
     public void setTextAndIcon(String str, int i) {
         this.textView.setText(str);
         this.imageView.setImageResource(i);
+    }
+
+    public void setTextColor(int i) {
+        this.textView.setTextColor(i);
     }
 }

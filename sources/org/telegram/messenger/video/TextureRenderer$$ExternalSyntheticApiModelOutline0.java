@@ -1,4 +1,4 @@
 package org.telegram.messenger.video;
 
-public final class TextureRenderer$$ExternalSyntheticApiModelOutline0 {
+public abstract class TextureRenderer$$ExternalSyntheticApiModelOutline0 {
 }

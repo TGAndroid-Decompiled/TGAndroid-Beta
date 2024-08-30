@@ -9,9 +9,9 @@ public abstract class TLRPC$Page extends TLObject {
     public String url;
     public boolean v2;
     public int views;
-    public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
-    public ArrayList<TLRPC$Photo> photos = new ArrayList<>();
-    public ArrayList<TLRPC$Document> documents = new ArrayList<>();
+    public ArrayList blocks = new ArrayList();
+    public ArrayList photos = new ArrayList();
+    public ArrayList documents = new ArrayList();
 
     public static TLRPC$Page TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Page tLRPC$Page;
@@ -74,19 +74,19 @@ public abstract class TLRPC$Page extends TLObject {
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.blocks.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.blocks.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.photos.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i3 = 0; i3 < size2; i3++) {
-                            this.photos.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Photo) this.photos.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size3 = this.documents.size();
                         abstractSerializedData2.writeInt32(size3);
                         for (int i4 = 0; i4 < size3; i4++) {
-                            this.documents.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.documents.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -166,19 +166,19 @@ public abstract class TLRPC$Page extends TLObject {
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i4 = 0; i4 < size; i4++) {
-                            this.blocks.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.blocks.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.photos.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i5 = 0; i5 < size2; i5++) {
-                            this.photos.get(i5).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Photo) this.photos.get(i5)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size3 = this.documents.size();
                         abstractSerializedData2.writeInt32(size3);
                         for (int i6 = 0; i6 < size3; i6++) {
-                            this.documents.get(i6).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.documents.get(i6)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -241,19 +241,19 @@ public abstract class TLRPC$Page extends TLObject {
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.blocks.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.blocks.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.photos.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i3 = 0; i3 < size2; i3++) {
-                            this.photos.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Photo) this.photos.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size3 = this.documents.size();
                         abstractSerializedData2.writeInt32(size3);
                         for (int i4 = 0; i4 < size3; i4++) {
-                            this.documents.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.documents.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };
@@ -316,19 +316,19 @@ public abstract class TLRPC$Page extends TLObject {
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.blocks.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.blocks.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size2 = this.photos.size();
                         abstractSerializedData2.writeInt32(size2);
                         for (int i3 = 0; i3 < size2; i3++) {
-                            this.photos.get(i3).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Photo) this.photos.get(i3)).serializeToStream(abstractSerializedData2);
                         }
                         abstractSerializedData2.writeInt32(481674261);
                         int size3 = this.documents.size();
                         abstractSerializedData2.writeInt32(size3);
                         for (int i4 = 0; i4 < size3; i4++) {
-                            this.documents.get(i4).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$Document) this.documents.get(i4)).serializeToStream(abstractSerializedData2);
                         }
                     }
                 };

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_attachMenuBotsBot extends TLObject {
     public TLRPC$TL_attachMenuBot bot;
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_attachMenuBotsBot TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1816172929 != i) {
@@ -46,7 +46,7 @@ public class TLRPC$TL_attachMenuBotsBot extends TLObject {
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.users.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

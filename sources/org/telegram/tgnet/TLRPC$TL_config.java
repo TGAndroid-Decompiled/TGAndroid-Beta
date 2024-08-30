@@ -15,7 +15,7 @@ public class TLRPC$TL_config extends TLObject {
     public int channels_read_media_period;
     public int chat_size_max;
     public int date;
-    public ArrayList<TLRPC$TL_dcOption> dc_options = new ArrayList<>();
+    public ArrayList dc_options = new ArrayList();
     public String dc_txt_domain_name;
     public boolean default_p2p_contacts;
     public int edit_time_limit;
@@ -175,7 +175,7 @@ public class TLRPC$TL_config extends TLObject {
         int size = this.dc_options.size();
         abstractSerializedData.writeInt32(size);
         for (int i6 = 0; i6 < size; i6++) {
-            this.dc_options.get(i6).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_dcOption) this.dc_options.get(i6)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.dc_txt_domain_name);
         abstractSerializedData.writeInt32(this.chat_size_max);

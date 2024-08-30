@@ -3,7 +3,7 @@ package kotlinx.coroutines.internal;
 import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
-public class LockFreeTaskQueue<E> {
+public class LockFreeTaskQueue {
     private static final AtomicReferenceFieldUpdater _cur$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeTaskQueue.class, Object.class, "_cur");
     private volatile Object _cur;
 
@@ -11,8 +11,19 @@ public class LockFreeTaskQueue<E> {
         this._cur = new LockFreeTaskQueueCore(8, z);
     }
 
-    public final int getSize() {
-        return ((LockFreeTaskQueueCore) this._cur).getSize();
+    public final boolean addLast(Object obj) {
+        while (true) {
+            LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) this._cur;
+            int addLast = lockFreeTaskQueueCore.addLast(obj);
+            if (addLast == 0) {
+                return true;
+            }
+            if (addLast == 1) {
+                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
+            } else if (addLast == 2) {
+                return false;
+            }
+        }
     }
 
     public final void close() {
@@ -26,27 +37,16 @@ public class LockFreeTaskQueue<E> {
         }
     }
 
-    public final boolean addLast(E e) {
-        while (true) {
-            LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) this._cur;
-            int addLast = lockFreeTaskQueueCore.addLast(e);
-            if (addLast == 0) {
-                return true;
-            }
-            if (addLast == 1) {
-                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
-            } else if (addLast == 2) {
-                return false;
-            }
-        }
+    public final int getSize() {
+        return ((LockFreeTaskQueueCore) this._cur).getSize();
     }
 
-    public final E removeFirstOrNull() {
+    public final Object removeFirstOrNull() {
         while (true) {
             LockFreeTaskQueueCore lockFreeTaskQueueCore = (LockFreeTaskQueueCore) this._cur;
-            E e = (E) lockFreeTaskQueueCore.removeFirstOrNull();
-            if (e != LockFreeTaskQueueCore.REMOVE_FROZEN) {
-                return e;
+            Object removeFirstOrNull = lockFreeTaskQueueCore.removeFirstOrNull();
+            if (removeFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
+                return removeFirstOrNull;
             }
             AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
         }

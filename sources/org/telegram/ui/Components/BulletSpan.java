@@ -24,11 +24,6 @@ public class BulletSpan implements LeadingMarginSpan {
     }
 
     @Override
-    public int getLeadingMargin(boolean z) {
-        return (this.mBulletRadius * 2) + this.mGapWidth;
-    }
-
-    @Override
     public void drawLeadingMargin(Canvas canvas, Paint paint, int i, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6, int i7, boolean z, Layout layout) {
         int i8;
         if (((Spanned) charSequence).getSpanStart(this) == i6) {
@@ -49,5 +44,10 @@ public class BulletSpan implements LeadingMarginSpan {
             }
             paint.setStyle(style);
         }
+    }
+
+    @Override
+    public int getLeadingMargin(boolean z) {
+        return (this.mBulletRadius * 2) + this.mGapWidth;
     }
 }

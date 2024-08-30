@@ -1,4 +1,4 @@
 package org.webrtc;
 
-public final class EglBase14Impl$Context$$ExternalSyntheticApiModelOutline0 {
+public abstract class EglBase14Impl$Context$$ExternalSyntheticApiModelOutline0 {
 }

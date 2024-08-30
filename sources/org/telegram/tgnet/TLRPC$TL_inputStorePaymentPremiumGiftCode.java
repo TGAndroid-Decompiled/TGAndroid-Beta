@@ -7,7 +7,7 @@ public class TLRPC$TL_inputStorePaymentPremiumGiftCode extends TLRPC$InputStoreP
     public TLRPC$InputPeer boost_peer;
     public String currency;
     public int flags;
-    public ArrayList<TLRPC$InputUser> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -42,7 +42,7 @@ public class TLRPC$TL_inputStorePaymentPremiumGiftCode extends TLRPC$InputStoreP
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.users.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputUser) this.users.get(i)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             this.boost_peer.serializeToStream(abstractSerializedData);

@@ -35,7 +35,28 @@ public class SlideIntChooseView extends FrameLayout {
     private float toMaxTextEmojiSaturation;
     private int value;
     private final AnimatedTextView valueText;
-    private Utilities.Callback<Integer> whenChanged;
+    private Utilities.Callback whenChanged;
+
+    public static class Options {
+        public int max;
+        public int maxStringResId;
+        public int min;
+        public int minStringResId;
+        public String resId;
+        public int style;
+        public int valueMaxStringResId;
+        public int valueMinStringResId;
+        public int valueStringResId;
+
+        public static Options make(int i, String str, int i2, int i3) {
+            Options options = new Options();
+            options.style = i;
+            options.min = i2;
+            options.resId = str;
+            options.max = i3;
+            return options;
+        }
+    }
 
     public SlideIntChooseView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -88,8 +109,8 @@ public class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public void onSeekBarPressed(boolean z) {
-                SeekBarView.SeekBarViewDelegate.CC.$default$onSeekBarPressed(this, z);
+            public int getStepsCount() {
+                return SlideIntChooseView.this.stepsCount;
             }
 
             @Override
@@ -108,52 +129,26 @@ public class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public int getStepsCount() {
-                return SlideIntChooseView.this.stepsCount;
+            public void onSeekBarPressed(boolean z) {
+                SeekBarView.SeekBarViewDelegate.CC.$default$onSeekBarPressed(this, z);
             }
         });
         addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 55, 6.0f, 30.0f, 6.0f, 0.0f));
     }
 
-    public void set(int i, Options options, Utilities.Callback<Integer> callback) {
-        this.value = i;
-        this.options = options;
-        this.whenChanged = callback;
-        int i2 = options.max - options.min;
-        this.stepsCount = i2;
-        this.seekBarView.setProgress((i - r3) / i2, false);
-        updateTexts(i, false);
+    public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
+        ColorMatrix colorMatrix = new ColorMatrix();
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.maxTextEmojiSaturation = floatValue;
+        colorMatrix.setSaturation(floatValue);
+        if (Theme.isCurrentThemeDark()) {
+            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
+        }
+        this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
-    public void updateTexts(int i, boolean z) {
-        int i2;
-        this.minText.cancelAnimation();
-        this.maxText.cancelAnimation();
-        if (!TextUtils.isEmpty(this.options.resId)) {
-            this.valueText.cancelAnimation();
-            this.valueText.setText(LocaleController.formatPluralString(this.options.resId, i, new Object[0]), z);
-            this.minText.setText("" + this.options.min, z);
-            this.maxText.setText("" + this.options.max, z);
-        } else {
-            Options options = this.options;
-            if (i <= options.min) {
-                i2 = options.valueMinStringResId;
-            } else if (i < options.max) {
-                i2 = options.valueStringResId;
-            } else {
-                i2 = options.valueMaxStringResId;
-            }
-            this.valueText.cancelAnimation();
-            this.valueText.setText(processText(i2, i), z);
-            AnimatedTextView animatedTextView = this.minText;
-            Options options2 = this.options;
-            animatedTextView.setText(processText(options2.minStringResId, options2.min), z);
-            AnimatedTextView animatedTextView2 = this.maxText;
-            Options options3 = this.options;
-            animatedTextView2.setText(processText(options3.maxStringResId, options3.max), z);
-        }
-        this.maxText.setTextColor(Theme.getColor(i >= this.options.max ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
-        setMaxTextEmojiSaturation(i >= this.options.max ? 1.0f : 0.0f, z);
+    private CharSequence processText(int i, int i2) {
+        return ChannelMonetizationLayout.replaceTON(AndroidUtilities.replaceTags(LocaleController.getString(i).replace("%d", "" + i2)), this.valueText.getPaint());
     }
 
     private void setMaxTextEmojiSaturation(final float f, boolean z) {
@@ -199,21 +194,6 @@ public class SlideIntChooseView extends FrameLayout {
         this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
     }
 
-    public void lambda$setMaxTextEmojiSaturation$0(ValueAnimator valueAnimator) {
-        ColorMatrix colorMatrix = new ColorMatrix();
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.maxTextEmojiSaturation = floatValue;
-        colorMatrix.setSaturation(floatValue);
-        if (Theme.isCurrentThemeDark()) {
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - this.maxTextEmojiSaturation) * (-0.3f));
-        }
-        this.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
-    }
-
-    private CharSequence processText(int i, int i2) {
-        return ChannelMonetizationLayout.replaceTON(AndroidUtilities.replaceTags(LocaleController.getString(i).replace("%d", "" + i2)), this.valueText.getPaint());
-    }
-
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(75.0f), 1073741824));
@@ -222,24 +202,41 @@ public class SlideIntChooseView extends FrameLayout {
         }
     }
 
-    public static class Options {
-        public int max;
-        public int maxStringResId;
-        public int min;
-        public int minStringResId;
-        public String resId;
-        public int style;
-        public int valueMaxStringResId;
-        public int valueMinStringResId;
-        public int valueStringResId;
+    public void set(int i, Options options, Utilities.Callback callback) {
+        this.value = i;
+        this.options = options;
+        this.whenChanged = callback;
+        int i2 = options.max - options.min;
+        this.stepsCount = i2;
+        this.seekBarView.setProgress((i - r3) / i2, false);
+        updateTexts(i, false);
+    }
 
-        public static Options make(int i, String str, int i2, int i3) {
-            Options options = new Options();
-            options.style = i;
-            options.min = i2;
-            options.resId = str;
-            options.max = i3;
-            return options;
+    public void updateTexts(int i, boolean z) {
+        AnimatedTextView animatedTextView;
+        CharSequence processText;
+        this.minText.cancelAnimation();
+        this.maxText.cancelAnimation();
+        if (TextUtils.isEmpty(this.options.resId)) {
+            Options options = this.options;
+            int i2 = i <= options.min ? options.valueMinStringResId : i < options.max ? options.valueStringResId : options.valueMaxStringResId;
+            this.valueText.cancelAnimation();
+            this.valueText.setText(processText(i2, i), z);
+            AnimatedTextView animatedTextView2 = this.minText;
+            Options options2 = this.options;
+            animatedTextView2.setText(processText(options2.minStringResId, options2.min), z);
+            animatedTextView = this.maxText;
+            Options options3 = this.options;
+            processText = processText(options3.maxStringResId, options3.max);
+        } else {
+            this.valueText.cancelAnimation();
+            this.valueText.setText(LocaleController.formatPluralString(this.options.resId, i, new Object[0]), z);
+            this.minText.setText("" + this.options.min, z);
+            animatedTextView = this.maxText;
+            processText = "" + this.options.max;
         }
+        animatedTextView.setText(processText, z);
+        this.maxText.setTextColor(Theme.getColor(i >= this.options.max ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
+        setMaxTextEmojiSaturation(i >= this.options.max ? 1.0f : 0.0f, z);
     }
 }

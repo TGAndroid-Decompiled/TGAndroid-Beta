@@ -14,7 +14,7 @@ public abstract class TLRPC$ChatInvite extends TLObject {
     public int flags;
     public boolean isPublic;
     public boolean megagroup;
-    public ArrayList<TLRPC$User> participants = new ArrayList<>();
+    public ArrayList participants = new ArrayList();
     public int participants_count;
     public TLRPC$Photo photo;
     public boolean request_needed;
@@ -101,7 +101,7 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                             int size = this.participants.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i11 = 0; i11 < size; i11++) {
-                                this.participants.get(i11).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$User) this.participants.get(i11)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         abstractSerializedData2.writeInt32(this.color);
@@ -187,7 +187,7 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                             int size = this.participants.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i11 = 0; i11 < size; i11++) {
-                                this.participants.get(i11).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$User) this.participants.get(i11)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 1024) != 0) {

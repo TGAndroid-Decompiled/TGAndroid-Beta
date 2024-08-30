@@ -21,10 +21,6 @@ public class URLSpanReplacement extends URLSpan {
         this.style = textStyleRun;
     }
 
-    public void setNavigateToPremiumBot(boolean z) {
-        this.navigateToPremiumBot = z;
-    }
-
     public TextStyleSpan.TextStyleRun getTextStyleRun() {
         return this.style;
     }
@@ -35,6 +31,10 @@ public class URLSpanReplacement extends URLSpan {
             ((LaunchActivity) view.getContext()).setNavigateToPremiumBot(true);
         }
         Browser.openUrl(view.getContext(), Uri.parse(getURL()));
+    }
+
+    public void setNavigateToPremiumBot(boolean z) {
+        this.navigateToPremiumBot = z;
     }
 
     @Override

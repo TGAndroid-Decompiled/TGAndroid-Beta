@@ -39,9 +39,6 @@ public class TermsOfServiceView extends FrameLayout {
         void onAcceptTerms(int i);
     }
 
-    public static void lambda$accept$7(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-    }
-
     public TermsOfServiceView(Context context) {
         super(context);
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
@@ -119,55 +116,36 @@ public class TermsOfServiceView extends FrameLayout {
         addView(view2, layoutParams);
     }
 
-    public void lambda$new$4(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle(LocaleController.getString(R.string.TermsOfService));
-        builder.setPositiveButton(LocaleController.getString(R.string.DeclineDeactivate), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i) {
-                TermsOfServiceView.this.lambda$new$3(dialogInterface, i);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Back), null);
-        builder.setMessage(LocaleController.getString(R.string.TosUpdateDecline));
-        builder.show();
-    }
-
-    public void lambda$new$3(DialogInterface dialogInterface, int i) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage(LocaleController.getString(R.string.TosDeclineDeleteAccount));
-        builder.setTitle(LocaleController.getString(R.string.AppName));
-        builder.setPositiveButton(LocaleController.getString(R.string.Deactivate), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface2, int i2) {
-                TermsOfServiceView.this.lambda$new$2(dialogInterface2, i2);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.show();
-    }
-
-    public void lambda$new$2(DialogInterface dialogInterface, int i) {
-        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
-        alertDialog.setCanCancel(false);
-        TLRPC$TL_account_deleteAccount tLRPC$TL_account_deleteAccount = new TLRPC$TL_account_deleteAccount();
-        tLRPC$TL_account_deleteAccount.reason = "Decline ToS update";
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_deleteAccount, new RequestDelegate() {
+    private void accept() {
+        this.delegate.onAcceptTerms(this.currentAccount);
+        TLRPC$TL_help_acceptTermsOfService tLRPC$TL_help_acceptTermsOfService = new TLRPC$TL_help_acceptTermsOfService();
+        tLRPC$TL_help_acceptTermsOfService.id = this.currentTos.id;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_help_acceptTermsOfService, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TermsOfServiceView.this.lambda$new$1(alertDialog, tLObject, tLRPC$TL_error);
+                TermsOfServiceView.lambda$accept$7(tLObject, tLRPC$TL_error);
             }
         });
-        alertDialog.show();
     }
 
-    public void lambda$new$1(final AlertDialog alertDialog, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                TermsOfServiceView.this.lambda$new$0(alertDialog, tLObject, tLRPC$TL_error);
+    private static void addBulletsToText(SpannableStringBuilder spannableStringBuilder, char c, int i, int i2, int i3) {
+        int length = spannableStringBuilder.length() - 2;
+        for (int i4 = 0; i4 < length; i4++) {
+            if (spannableStringBuilder.charAt(i4) == '\n') {
+                int i5 = i4 + 1;
+                if (spannableStringBuilder.charAt(i5) == c) {
+                    int i6 = i4 + 2;
+                    if (spannableStringBuilder.charAt(i6) == ' ') {
+                        BulletSpan bulletSpan = new BulletSpan(i, i2, i3);
+                        spannableStringBuilder.replace(i5, i4 + 3, "\u0000\u0000");
+                        spannableStringBuilder.setSpan(bulletSpan, i5, i6, 33);
+                    }
+                }
             }
-        });
+        }
+    }
+
+    public static void lambda$accept$7(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     public void lambda$new$0(AlertDialog alertDialog, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -193,38 +171,81 @@ public class TermsOfServiceView extends FrameLayout {
         }
     }
 
-    public void lambda$new$6(View view) {
-        if (this.currentTos.min_age_confirm != 0) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            builder.setTitle(LocaleController.getString(R.string.TosAgeTitle));
-            builder.setPositiveButton(LocaleController.getString(R.string.Agree), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    TermsOfServiceView.this.lambda$new$5(dialogInterface, i);
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            builder.setMessage(LocaleController.formatString("TosAgeText", R.string.TosAgeText, LocaleController.formatPluralString("Years", this.currentTos.min_age_confirm, new Object[0])));
-            builder.show();
-            return;
-        }
-        accept();
+    public void lambda$new$1(final AlertDialog alertDialog, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                TermsOfServiceView.this.lambda$new$0(alertDialog, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$new$2(DialogInterface dialogInterface, int i) {
+        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+        alertDialog.setCanCancel(false);
+        TLRPC$TL_account_deleteAccount tLRPC$TL_account_deleteAccount = new TLRPC$TL_account_deleteAccount();
+        tLRPC$TL_account_deleteAccount.reason = "Decline ToS update";
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_deleteAccount, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                TermsOfServiceView.this.lambda$new$1(alertDialog, tLObject, tLRPC$TL_error);
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void lambda$new$3(DialogInterface dialogInterface, int i) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(LocaleController.getString(R.string.TosDeclineDeleteAccount));
+        builder.setTitle(LocaleController.getString(R.string.AppName));
+        builder.setPositiveButton(LocaleController.getString(R.string.Deactivate), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface2, int i2) {
+                TermsOfServiceView.this.lambda$new$2(dialogInterface2, i2);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.show();
+    }
+
+    public void lambda$new$4(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setTitle(LocaleController.getString(R.string.TermsOfService));
+        builder.setPositiveButton(LocaleController.getString(R.string.DeclineDeactivate), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                TermsOfServiceView.this.lambda$new$3(dialogInterface, i);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.Back), null);
+        builder.setMessage(LocaleController.getString(R.string.TosUpdateDecline));
+        builder.show();
     }
 
     public void lambda$new$5(DialogInterface dialogInterface, int i) {
         accept();
     }
 
-    private void accept() {
-        this.delegate.onAcceptTerms(this.currentAccount);
-        TLRPC$TL_help_acceptTermsOfService tLRPC$TL_help_acceptTermsOfService = new TLRPC$TL_help_acceptTermsOfService();
-        tLRPC$TL_help_acceptTermsOfService.id = this.currentTos.id;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_help_acceptTermsOfService, new RequestDelegate() {
+    public void lambda$new$6(View view) {
+        if (this.currentTos.min_age_confirm == 0) {
+            accept();
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+        builder.setTitle(LocaleController.getString(R.string.TosAgeTitle));
+        builder.setPositiveButton(LocaleController.getString(R.string.Agree), new DialogInterface.OnClickListener() {
             @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                TermsOfServiceView.lambda$accept$7(tLObject, tLRPC$TL_error);
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                TermsOfServiceView.this.lambda$new$5(dialogInterface, i);
             }
         });
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.setMessage(LocaleController.formatString("TosAgeText", R.string.TosAgeText, LocaleController.formatPluralString("Years", this.currentTos.min_age_confirm, new Object[0])));
+        builder.show();
+    }
+
+    public void setDelegate(TermsOfServiceViewDelegate termsOfServiceViewDelegate) {
+        this.delegate = termsOfServiceViewDelegate;
     }
 
     public void show(int i, TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService) {
@@ -237,26 +258,5 @@ public class TermsOfServiceView extends FrameLayout {
         this.textView.setText(spannableStringBuilder);
         this.currentTos = tLRPC$TL_help_termsOfService;
         this.currentAccount = i;
-    }
-
-    public void setDelegate(TermsOfServiceViewDelegate termsOfServiceViewDelegate) {
-        this.delegate = termsOfServiceViewDelegate;
-    }
-
-    private static void addBulletsToText(SpannableStringBuilder spannableStringBuilder, char c, int i, int i2, int i3) {
-        int length = spannableStringBuilder.length() - 2;
-        for (int i4 = 0; i4 < length; i4++) {
-            if (spannableStringBuilder.charAt(i4) == '\n') {
-                int i5 = i4 + 1;
-                if (spannableStringBuilder.charAt(i5) == c) {
-                    int i6 = i4 + 2;
-                    if (spannableStringBuilder.charAt(i6) == ' ') {
-                        BulletSpan bulletSpan = new BulletSpan(i, i2, i3);
-                        spannableStringBuilder.replace(i5, i4 + 3, "\u0000\u0000");
-                        spannableStringBuilder.setSpan(bulletSpan, i5, i6, 33);
-                    }
-                }
-            }
-        }
     }
 }

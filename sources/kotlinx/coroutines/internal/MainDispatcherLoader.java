@@ -12,14 +12,14 @@ public final class MainDispatcherLoader {
     public static final MainDispatcherLoader INSTANCE;
     public static final MainCoroutineDispatcher dispatcher;
 
-    private MainDispatcherLoader() {
-    }
-
     static {
         MainDispatcherLoader mainDispatcherLoader = new MainDispatcherLoader();
         INSTANCE = mainDispatcherLoader;
         SystemPropsKt.systemProp("kotlinx.coroutines.fast.service.loader", true);
         dispatcher = mainDispatcherLoader.loadMainDispatcher();
+    }
+
+    private MainDispatcherLoader() {
     }
 
     private final MainCoroutineDispatcher loadMainDispatcher() {

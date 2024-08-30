@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_getSearchCounters extends TLObject {
-    public ArrayList<TLRPC$MessagesFilter> filters = new ArrayList<>();
+    public ArrayList filters = new ArrayList();
     public int flags;
     public TLRPC$InputPeer peer;
     public TLRPC$InputPeer saved_peer_id;
@@ -38,7 +38,7 @@ public class TLRPC$TL_messages_getSearchCounters extends TLObject {
         int size = this.filters.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.filters.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessagesFilter) this.filters.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

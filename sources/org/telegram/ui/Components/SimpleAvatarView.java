@@ -32,6 +32,16 @@ public class SimpleAvatarView extends View {
         this.selectPaint.setStyle(Paint.Style.STROKE);
     }
 
+    public void lambda$setSelected$0(ValueAnimator valueAnimator) {
+        this.selectProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    @Override
+    public boolean isSelected() {
+        return this.selectProgress == 1.0f;
+    }
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -71,9 +81,9 @@ public class SimpleAvatarView extends View {
         this.avatarImage.setForUserOrChat(tLObject, this.avatarDrawable);
     }
 
-    @Override
-    public boolean isSelected() {
-        return this.selectProgress == 1.0f;
+    public void setHideAvatar(boolean z) {
+        this.isAvatarHidden = z;
+        invalidate();
     }
 
     public void setSelected(boolean z, boolean z2) {
@@ -81,38 +91,28 @@ public class SimpleAvatarView extends View {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (z2) {
-            ValueAnimator duration = ValueAnimator.ofFloat(this.selectProgress, z ? 1.0f : 0.0f).setDuration(200L);
-            duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    SimpleAvatarView.this.lambda$setSelected$0(valueAnimator2);
-                }
-            });
-            duration.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (SimpleAvatarView.this.animator == animator) {
-                        SimpleAvatarView.this.animator = null;
-                    }
-                }
-            });
-            duration.start();
-            this.animator = duration;
+        if (!z2) {
+            this.selectProgress = z ? 1.0f : 0.0f;
+            invalidate();
             return;
         }
-        this.selectProgress = z ? 1.0f : 0.0f;
-        invalidate();
-    }
-
-    public void lambda$setSelected$0(ValueAnimator valueAnimator) {
-        this.selectProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void setHideAvatar(boolean z) {
-        this.isAvatarHidden = z;
-        invalidate();
+        ValueAnimator duration = ValueAnimator.ofFloat(this.selectProgress, z ? 1.0f : 0.0f).setDuration(200L);
+        duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                SimpleAvatarView.this.lambda$setSelected$0(valueAnimator2);
+            }
+        });
+        duration.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (SimpleAvatarView.this.animator == animator) {
+                    SimpleAvatarView.this.animator = null;
+                }
+            }
+        });
+        duration.start();
+        this.animator = duration;
     }
 }

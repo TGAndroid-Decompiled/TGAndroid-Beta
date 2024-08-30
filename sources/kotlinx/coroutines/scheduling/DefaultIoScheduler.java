@@ -14,9 +14,6 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     private static final CoroutineDispatcher f0default;
 
-    private DefaultIoScheduler() {
-    }
-
     static {
         int coerceAtLeast;
         int systemProp$default;
@@ -26,9 +23,12 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
         f0default = unlimitedIoScheduler.limitedParallelism(systemProp$default);
     }
 
+    private DefaultIoScheduler() {
+    }
+
     @Override
-    public void execute(Runnable runnable) {
-        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+    public void close() {
+        throw new IllegalStateException("Cannot be invoked on Dispatchers.IO".toString());
     }
 
     @Override
@@ -37,8 +37,8 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
     }
 
     @Override
-    public void close() {
-        throw new IllegalStateException("Cannot be invoked on Dispatchers.IO".toString());
+    public void execute(Runnable runnable) {
+        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override

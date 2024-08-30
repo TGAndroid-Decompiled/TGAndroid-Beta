@@ -242,7 +242,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         int size = this.items.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.items.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.items.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
@@ -280,7 +280,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         int size = this.items.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.items.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.items.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
@@ -348,7 +348,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
                         for (int i2 = 0; i2 < size; i2++) {
-                            this.blocks.get(i2).serializeToStream(abstractSerializedData2);
+                            ((TLRPC$PageBlock) this.blocks.get(i2)).serializeToStream(abstractSerializedData2);
                         }
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }

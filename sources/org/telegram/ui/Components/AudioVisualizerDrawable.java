@@ -42,92 +42,6 @@ public class AudioVisualizerDrawable {
         this.p1 = new Paint(1);
     }
 
-    public void setWaveform(boolean z, boolean z2, float[] fArr) {
-        if (LiteMode.isEnabled(32)) {
-            int i = 0;
-            if (!z && !z2) {
-                while (i < 8) {
-                    float[] fArr2 = this.animateTo;
-                    this.current[i] = 0.0f;
-                    fArr2[i] = 0.0f;
-                    i++;
-                }
-                return;
-            }
-            boolean z3 = fArr != null && fArr[6] == 0.0f;
-            float f = fArr == null ? 0.0f : fArr[6];
-            if (fArr != null && f > 0.4d) {
-                float[] fArr3 = this.lastAmplitude;
-                int i2 = this.lastAmplitudePointer;
-                fArr3[i2] = f;
-                int i3 = i2 + 1;
-                this.lastAmplitudePointer = i3;
-                if (i3 > 5) {
-                    this.lastAmplitudePointer = 0;
-                }
-                this.lastAmplitudeCount++;
-            } else {
-                this.lastAmplitudeCount = 0;
-            }
-            if (z3) {
-                for (int i4 = 0; i4 < 6; i4++) {
-                    fArr[i4] = (this.random.nextInt() % 500) / 1000.0f;
-                }
-            }
-            float f2 = z3 ? this.ANIMATION_DURATION * 2.0f : this.ANIMATION_DURATION;
-            if (this.lastAmplitudeCount > 6) {
-                float f3 = 0.0f;
-                for (int i5 = 0; i5 < 6; i5++) {
-                    f3 += this.lastAmplitude[i5];
-                }
-                float f4 = f3 / 6.0f;
-                if (f4 > 0.52f) {
-                    f2 -= this.ANIMATION_DURATION * (f4 - 0.4f);
-                }
-            }
-            while (i < 7) {
-                if (fArr == null) {
-                    this.animateTo[i] = 0.0f;
-                } else {
-                    this.animateTo[i] = fArr[i];
-                }
-                if (this.parentView == null) {
-                    this.current[i] = this.animateTo[i];
-                } else if (i == 6) {
-                    this.dt[i] = (this.animateTo[i] - this.current[i]) / (this.ANIMATION_DURATION + 80.0f);
-                } else {
-                    this.dt[i] = (this.animateTo[i] - this.current[i]) / f2;
-                }
-                i++;
-            }
-            float[] fArr4 = this.animateTo;
-            float f5 = z ? 1.0f : 0.0f;
-            fArr4[7] = f5;
-            this.dt[7] = (f5 - this.current[7]) / 120.0f;
-        }
-    }
-
-    public void draw(Canvas canvas, float f, float f2, int i, float f3, Theme.ResourcesProvider resourcesProvider) {
-        if (LiteMode.isEnabled(32)) {
-            this.p1.setColor(i);
-            this.p1.setAlpha((int) (this.ALPHA * f3));
-            draw(canvas, f, f2);
-        }
-    }
-
-    public void draw(Canvas canvas, float f, float f2, boolean z, float f3, Theme.ResourcesProvider resourcesProvider) {
-        if (LiteMode.isEnabled(32)) {
-            if (z) {
-                this.p1.setColor(Theme.getColor(Theme.key_chat_outLoader, resourcesProvider));
-                this.p1.setAlpha((int) (this.ALPHA * f3));
-            } else {
-                this.p1.setColor(Theme.getColor(Theme.key_chat_inLoader, resourcesProvider));
-                this.p1.setAlpha((int) (this.ALPHA * f3));
-            }
-            draw(canvas, f, f2);
-        }
-    }
-
     public void draw(Canvas canvas, float f, float f2) {
         if (LiteMode.isEnabled(32)) {
             for (int i = 0; i < 8; i++) {
@@ -202,11 +116,109 @@ public class AudioVisualizerDrawable {
         }
     }
 
-    public void setParentView(View view) {
-        this.parentView = view;
+    public void draw(Canvas canvas, float f, float f2, int i, float f3, Theme.ResourcesProvider resourcesProvider) {
+        if (LiteMode.isEnabled(32)) {
+            this.p1.setColor(i);
+            this.p1.setAlpha((int) (this.ALPHA * f3));
+            draw(canvas, f, f2);
+        }
+    }
+
+    public void draw(Canvas canvas, float f, float f2, boolean z, float f3, Theme.ResourcesProvider resourcesProvider) {
+        Paint paint;
+        int i;
+        if (LiteMode.isEnabled(32)) {
+            if (z) {
+                paint = this.p1;
+                i = Theme.key_chat_outLoader;
+            } else {
+                paint = this.p1;
+                i = Theme.key_chat_inLoader;
+            }
+            paint.setColor(Theme.getColor(i, resourcesProvider));
+            this.p1.setAlpha((int) (this.ALPHA * f3));
+            draw(canvas, f, f2);
+        }
     }
 
     public View getParentView() {
         return this.parentView;
+    }
+
+    public void setParentView(View view) {
+        this.parentView = view;
+    }
+
+    public void setWaveform(boolean z, boolean z2, float[] fArr) {
+        if (LiteMode.isEnabled(32)) {
+            int i = 0;
+            if (!z && !z2) {
+                while (i < 8) {
+                    float[] fArr2 = this.animateTo;
+                    this.current[i] = 0.0f;
+                    fArr2[i] = 0.0f;
+                    i++;
+                }
+                return;
+            }
+            boolean z3 = fArr != null && fArr[6] == 0.0f;
+            float f = fArr == null ? 0.0f : fArr[6];
+            if (fArr == null || f <= 0.4d) {
+                this.lastAmplitudeCount = 0;
+            } else {
+                float[] fArr3 = this.lastAmplitude;
+                int i2 = this.lastAmplitudePointer;
+                fArr3[i2] = f;
+                int i3 = i2 + 1;
+                this.lastAmplitudePointer = i3;
+                if (i3 > 5) {
+                    this.lastAmplitudePointer = 0;
+                }
+                this.lastAmplitudeCount++;
+            }
+            if (z3) {
+                for (int i4 = 0; i4 < 6; i4++) {
+                    fArr[i4] = (this.random.nextInt() % 500) / 1000.0f;
+                }
+            }
+            float f2 = this.ANIMATION_DURATION;
+            if (z3) {
+                f2 *= 2.0f;
+            }
+            if (this.lastAmplitudeCount > 6) {
+                float f3 = 0.0f;
+                for (int i5 = 0; i5 < 6; i5++) {
+                    f3 += this.lastAmplitude[i5];
+                }
+                float f4 = f3 / 6.0f;
+                if (f4 > 0.52f) {
+                    f2 -= this.ANIMATION_DURATION * (f4 - 0.4f);
+                }
+            }
+            while (i < 7) {
+                float[] fArr4 = this.animateTo;
+                if (fArr == null) {
+                    fArr4[i] = 0.0f;
+                } else {
+                    fArr4[i] = fArr[i];
+                }
+                if (this.parentView == null) {
+                    this.current[i] = this.animateTo[i];
+                } else {
+                    float[] fArr5 = this.dt;
+                    float[] fArr6 = this.animateTo;
+                    if (i == 6) {
+                        fArr5[i] = (fArr6[i] - this.current[i]) / (this.ANIMATION_DURATION + 80.0f);
+                    } else {
+                        fArr5[i] = (fArr6[i] - this.current[i]) / f2;
+                    }
+                }
+                i++;
+            }
+            float[] fArr7 = this.animateTo;
+            float f5 = z ? 1.0f : 0.0f;
+            fArr7[7] = f5;
+            this.dt[7] = (f5 - this.current[7]) / 120.0f;
+        }
     }
 }

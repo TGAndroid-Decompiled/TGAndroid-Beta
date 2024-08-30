@@ -96,7 +96,7 @@ public class StarsReactionsSheet extends BottomSheet {
     private ChatMessageCell messageCell;
     private int messageId;
     private final MessageObject messageObject;
-    private final ArrayList<TLRPC$MessageReactor> reactors;
+    private final ArrayList reactors;
     private final Theme.ResourcesProvider resourcesProvider;
     private boolean sending;
     private final View separatorView;
@@ -107,631 +107,166 @@ public class StarsReactionsSheet extends BottomSheet {
     private final FrameLayout topLayout;
     private final TopSendersView topSendersView;
 
-    public StarsReactionsSheet(final Context context, final int i, long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList<TLRPC$MessageReactor> arrayList, boolean z, final Theme.ResourcesProvider resourcesProvider) {
-        super(context, false, resourcesProvider);
-        TLRPC$MessageReactor tLRPC$MessageReactor;
-        String formatString;
-        int i2 = 9;
-        this.starRef = new ColoredImageSpan[1];
-        this.checkedVisiblity = false;
-        this.resourcesProvider = resourcesProvider;
-        this.currentAccount = i;
-        this.messageObject = messageObject;
-        this.reactors = arrayList;
-        long clientUserId = UserConfig.getInstance(i).getClientUserId();
-        if (arrayList != null) {
-            Iterator<TLRPC$MessageReactor> it = arrayList.iterator();
-            TLRPC$MessageReactor tLRPC$MessageReactor2 = null;
-            while (it.hasNext()) {
-                TLRPC$MessageReactor next = it.next();
-                long peerDialogId = DialogObject.getPeerDialogId(next.peer_id);
-                if (next.anonymous && next.my) {
-                    peerDialogId = clientUserId;
+    public static class Particles {
+        public final Bitmap b;
+        private int bPaintColor;
+        private long lastTime;
+        public final ArrayList particles;
+        public final int type;
+        private int visibleCount;
+        public final RectF bounds = new RectF();
+        public final Paint bPaint = new Paint(3);
+        public final Rect rect = new Rect();
+        private float speed = 1.0f;
+        private boolean firstDraw = true;
+
+        public class Particle {
+            public float a;
+            public float la;
+            public long lifetime;
+            public float s;
+            public long start;
+            public float vx;
+            public float vy;
+            public float x;
+            public float y;
+
+            public Particle() {
+            }
+
+            public void draw(Canvas canvas, int i, float f) {
+                Particles.this.bPaint.setAlpha((int) (255.0f * f));
+                Particles.this.rect.set((int) (this.x - ((((r8.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
+                Particles particles = Particles.this;
+                canvas.drawBitmap(particles.b, (Rect) null, particles.rect, particles.bPaint);
+            }
+        }
+
+        public Particles(int i, int i2) {
+            this.type = i;
+            this.visibleCount = i2;
+            this.particles = new ArrayList(i2);
+            for (int i3 = 0; i3 < i2; i3++) {
+                this.particles.add(new Particle());
+            }
+            int dp = AndroidUtilities.dp(10.0f);
+            Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
+            this.b = createBitmap;
+            Path path = new Path();
+            float f = dp >> 1;
+            int i4 = (int) (0.85f * f);
+            path.moveTo(0.0f, f);
+            float f2 = i4;
+            path.lineTo(f2, f2);
+            path.lineTo(f, 0.0f);
+            float f3 = dp - i4;
+            path.lineTo(f3, f2);
+            float f4 = dp;
+            path.lineTo(f4, f);
+            path.lineTo(f3, f3);
+            path.lineTo(f, f4);
+            path.lineTo(f2, f3);
+            path.lineTo(0.0f, f);
+            path.close();
+            Canvas canvas = new Canvas(createBitmap);
+            Paint paint = new Paint();
+            paint.setColor(Theme.multAlpha(-1, 0.75f));
+            canvas.drawPath(path, paint);
+        }
+
+        public void draw(Canvas canvas, int i) {
+            if (this.bPaintColor != i) {
+                Paint paint = this.bPaint;
+                this.bPaintColor = i;
+                paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+            }
+            for (int i2 = 0; i2 < Math.min(this.visibleCount, this.particles.size()); i2++) {
+                Particle particle = (Particle) this.particles.get(i2);
+                particle.draw(canvas, i, particle.la);
+            }
+            this.firstDraw = false;
+        }
+
+        public void gen(Particle particle, long j, boolean z) {
+            particle.start = j;
+            particle.lifetime = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat());
+            if (z) {
+                particle.start -= ((float) r4) * Utilities.clamp01(Utilities.fastRandom.nextFloat());
+            }
+            RectF rectF = this.bounds;
+            particle.x = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
+            RectF rectF2 = this.bounds;
+            particle.y = AndroidUtilities.lerp(rectF2.top, rectF2.bottom, Utilities.fastRandom.nextFloat());
+            if (this.type == 0) {
+                particle.vx = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
+                particle.vy = AndroidUtilities.dp(AndroidUtilities.lerp(-2.0f, 2.0f, Utilities.fastRandom.nextFloat()));
+            } else {
+                particle.vx = this.bounds.centerX() - particle.x;
+                particle.vy = this.bounds.centerY() - particle.y;
+                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat()));
+                float f = particle.vx;
+                float f2 = particle.vy;
+                float sqrt = dp / ((float) Math.sqrt((f * f) + (f2 * f2)));
+                particle.vx *= sqrt;
+                particle.vy *= sqrt;
+            }
+            particle.a = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
+            particle.s = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
+        }
+
+        public void process() {
+            long currentTimeMillis = System.currentTimeMillis();
+            float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
+            for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
+                Particle particle = (Particle) this.particles.get(i);
+                long j = particle.lifetime;
+                float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
+                if (f > 1.0f) {
+                    gen(particle, currentTimeMillis, this.firstDraw);
+                    f = 0.0f;
                 }
-                if (next.my || peerDialogId == clientUserId) {
-                    tLRPC$MessageReactor2 = next;
-                }
+                particle.x += particle.vx * min;
+                particle.y += particle.vy * min;
+                float f2 = 4.0f * f;
+                particle.la = f2 - (f * f2);
             }
-            tLRPC$MessageReactor = tLRPC$MessageReactor2;
-        } else {
-            tLRPC$MessageReactor = null;
+            this.lastTime = currentTimeMillis;
         }
-        boolean z2 = (arrayList == null || arrayList.isEmpty()) ? false : true;
-        this.anonymous = StarsController.getInstance(i).arePaidReactionsAnonymous(messageObject);
-        fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.layout = linearLayout;
-        linearLayout.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.topLayout = frameLayout;
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
-        this.slider = new StarsSlider(context) {
-            @Override
-            public void onValueChanged(int i3) {
-                long j2 = i3;
-                StarsReactionsSheet.this.updateSenders(j2);
-                if (StarsReactionsSheet.this.buttonView != null) {
-                    StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j2, ',')), StarsReactionsSheet.this.starRef), true);
-                }
-            }
-        };
-        int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
-        long j2 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
-        ArrayList arrayList2 = new ArrayList();
-        int i3 = 0;
-        while (true) {
-            if (i3 >= i2) {
-                break;
-            }
-            int i4 = iArr[i3];
-            int i5 = i3;
-            if (i4 > j2) {
-                arrayList2.add(Integer.valueOf((int) j2));
-                break;
-            }
-            arrayList2.add(Integer.valueOf(i4));
-            if (iArr[i5] == j2) {
-                break;
-            }
-            i3 = i5 + 1;
-            i2 = 9;
-        }
-        int[] iArr2 = new int[arrayList2.size()];
-        for (int i6 = 0; i6 < arrayList2.size(); i6++) {
-            iArr2[i6] = ((Integer) arrayList2.get(i6)).intValue();
-        }
-        this.slider.setSteps(100, iArr2);
-        if (z) {
-            this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f));
-        }
-        TextView textView = new TextView(context) {
-            @Override
-            protected void onMeasure(int i7, int i8) {
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
-            }
-        };
-        this.titleView = textView;
-        int i7 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i7));
-        textView.setTextSize(1, 20.0f);
-        textView.setText(LocaleController.getString(R.string.StarsReactionTitle));
-        textView.setGravity(16);
-        textView.setTypeface(AndroidUtilities.bold());
-        this.topLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 22.0f, 0.0f, 22.0f, 0.0f));
-        StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, i);
-        this.balanceView = starsBalanceView;
-        ScaleStateListAnimator.apply(starsBalanceView);
-        starsBalanceView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StarsReactionsSheet.this.lambda$new$0(chatActivity, view);
-            }
-        });
-        this.topLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 6.0f, 0.0f, 6.0f, 0.0f));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(1);
-        this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z ? 179.0f : 45.0f, 0.0f, 15.0f));
-        final TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
-        TextView textView2 = new TextView(context);
-        this.statusView = textView2;
-        textView2.setTextColor(Theme.getColor(i7));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setSingleLine(false);
-        textView2.setMaxLines(3);
-        if (tLRPC$MessageReactor != null) {
-            formatString = LocaleController.formatPluralStringComma("StarsReactionTextSent", tLRPC$MessageReactor.count);
-        } else {
-            formatString = LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title);
-        }
-        textView2.setText(AndroidUtilities.replaceTags(formatString));
-        if (z) {
-            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
-        }
-        if (z2) {
-            View view = new View(context) {
-                private final LinearGradient gradient = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
-                private final Matrix gradientMatrix = new Matrix();
-                private final Paint backgroundPaint = new Paint(1);
-                private final Paint separatorPaint = new Paint(1);
-                private final Text text = new Text(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
 
-                @Override
-                public void dispatchDraw(Canvas canvas) {
-                    this.gradientMatrix.reset();
-                    this.gradientMatrix.postTranslate(AndroidUtilities.dp(14.0f), 0.0f);
-                    this.gradientMatrix.postScale((getWidth() - AndroidUtilities.dp(28.0f)) / 255.0f, 1.0f);
-                    this.gradient.setLocalMatrix(this.gradientMatrix);
-                    this.backgroundPaint.setShader(this.gradient);
-                    float currentWidth = this.text.getCurrentWidth() + AndroidUtilities.dp(30.0f);
-                    this.separatorPaint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-                    canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.separatorPaint);
-                    canvas.drawRect(((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(8.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - AndroidUtilities.dp(24.0f), getHeight() / 2.0f, this.separatorPaint);
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set((getWidth() - currentWidth) / 2.0f, 0.0f, (getWidth() + currentWidth) / 2.0f, getHeight());
-                    canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, this.backgroundPaint);
-                    this.text.draw(canvas, (getWidth() - this.text.getCurrentWidth()) / 2.0f, getHeight() / 2.0f, -1, 1.0f);
-                }
-            };
-            this.separatorView = view;
-            linearLayout2.addView(view, LayoutHelper.createLinear(-1, 30, 55, 0, 20, 0, 0));
-            TopSendersView topSendersView = new TopSendersView(context);
-            this.topSendersView = topSendersView;
-            topSendersView.setOnSenderClickListener(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    StarsReactionsSheet.this.lambda$new$1(i, chatActivity, (Long) obj);
-                }
-            });
-            this.layout.addView(topSendersView, LayoutHelper.createLinear(-1, 110));
-            View view2 = new View(context);
-            this.checkSeparatorView = view2;
-            view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
-            if (z || tLRPC$MessageReactor != null) {
-                this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
-            }
-        } else {
-            this.separatorView = null;
-            this.topSendersView = null;
-            this.checkSeparatorView = null;
-        }
-        CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
-        this.checkBox = checkBox2;
-        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
-        checkBox2.setDrawUnchecked(true);
-        checkBox2.setChecked(!this.anonymous, false);
-        TopSendersView topSendersView2 = this.topSendersView;
-        if (topSendersView2 != null) {
-            topSendersView2.setMyselfAsAnonymous(this.anonymous);
-        }
-        checkBox2.setDrawBackgroundAsArc(10);
-        TextView textView3 = new TextView(context);
-        this.checkTextView = textView3;
-        textView3.setTextColor(Theme.getColor(i7, resourcesProvider));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setText(LocaleController.getString(R.string.StarsReactionShowMeInTopSenders));
-        LinearLayout linearLayout3 = new LinearLayout(context);
-        this.checkLayout = linearLayout3;
-        linearLayout3.setOrientation(0);
-        linearLayout3.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        linearLayout3.addView(checkBox2, LayoutHelper.createLinear(21, 21, 16, 0, 0, 9, 0));
-        linearLayout3.addView(textView3, LayoutHelper.createLinear(-2, -2, 16));
-        linearLayout3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view3) {
-                StarsReactionsSheet.this.lambda$new$2(view3);
-            }
-        });
-        ScaleStateListAnimator.apply(linearLayout3, 0.05f, 1.2f);
-        linearLayout3.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
-        if (z || tLRPC$MessageReactor != null) {
-            this.layout.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, 1, 0, z2 ? 10 : 4, 0, 10));
-        }
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
-        this.buttonView = buttonWithCounterView;
-        if (z) {
-            this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
-        }
-        updateSenders(0L);
-        buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view3) {
-                StarsReactionsSheet.this.lambda$new$5(messageObject, chatActivity, i, context, resourcesProvider, chat, view3);
-            }
-        });
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        linksTextView.setTextSize(1, 13.0f);
-        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsReactionTerms), new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.lambda$new$6(context);
-            }
-        }));
-        linksTextView.setGravity(17);
-        linksTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
-        if (z) {
-            this.layout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 14, 14, 14, 12));
-        }
-        setCustomView(this.layout);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2) {
-            @Override
-            protected void startIdleAnimation() {
-            }
-        };
-        this.icon3dView = gLIconTextureView;
-        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
-        gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
-        gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
-        gLIconRenderer.updateColors();
-        gLIconTextureView.mRenderer.white = 1.0f;
-        gLIconTextureView.setVisibility(4);
-        gLIconTextureView.setPaused(true);
-        this.container.addView(gLIconTextureView, LayoutHelper.createFrame(150, 150.0f));
-        this.slider.setValue(50);
-        if (arrayList != null) {
-            long j3 = 0;
-            for (int i8 = 0; i8 < arrayList.size(); i8++) {
-                long j4 = arrayList.get(i8).count;
-                if (j4 > j3) {
-                    j3 = j4;
-                }
-            }
-            j3 = tLRPC$MessageReactor != null ? j3 - tLRPC$MessageReactor.count : j3;
-            if (j3 > 0) {
-                this.slider.setStarsTop(j3 + 1);
-            }
-        }
-    }
-
-    public void lambda$new$0(final ChatActivity chatActivity, View view) {
-        dismiss();
-        chatActivity.presentFragment(new StarsIntroActivity() {
-            @Override
-            public void onFragmentDestroy() {
-                super.onFragmentDestroy();
-                if (chatActivity.isFullyVisible) {
-                    StarsReactionsSheet.this.show();
-                }
-            }
-        });
-    }
-
-    public void lambda$new$1(int i, ChatActivity chatActivity, Long l) {
-        Bundle bundle = new Bundle();
-        bundle.putLong("user_id", l.longValue());
-        if (l.longValue() == UserConfig.getInstance(i).getClientUserId()) {
-            bundle.putBoolean("my_profile", true);
-        }
-        chatActivity.presentFragment(new ProfileActivity(bundle) {
-            @Override
-            public void onFragmentDestroy() {
-                super.onFragmentDestroy();
-                StarsReactionsSheet.this.show();
-            }
-        });
-        dismiss();
-    }
-
-    public void lambda$new$2(View view) {
-        this.checkBox.setChecked(!r3.isChecked(), true);
-        boolean z = !this.checkBox.isChecked();
-        this.anonymous = z;
-        TopSendersView topSendersView = this.topSendersView;
-        if (topSendersView != null) {
-            topSendersView.setMyselfAsAnonymous(z);
-        }
-    }
-
-    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, final int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$Chat tLRPC$Chat, View view) {
-        if (messageObject == null || chatActivity == null || this.iconAnimator != null) {
-            return;
-        }
-        final long value = this.slider.getValue();
-        final StarsController starsController = StarsController.getInstance(i);
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.this.lambda$new$4(messageObject, i, starsController, chatActivity, value);
-            }
-        };
-        if (starsController.balanceAvailable() && starsController.getBalance() < value) {
-            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, tLRPC$Chat == null ? "" : tLRPC$Chat.title, runnable).show();
-        } else {
-            runnable.run();
-        }
-    }
-
-    public void lambda$new$4(MessageObject messageObject, int i, StarsController starsController, ChatActivity chatActivity, long j) {
-        if ((messageObject == null ? null : messageObject.isMyPaidReactionAnonymous()) == null && messageObject != null) {
-            StarsController.getInstance(i).saveAnonymous(messageObject, this.anonymous);
-        }
-        final StarsController.PendingPaidReactions sendPaidReaction = starsController.sendPaidReaction(messageObject, chatActivity, j, false, true, Boolean.valueOf(!this.checkBox.isChecked()));
-        if (sendPaidReaction == null) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.this.lambda$new$3(sendPaidReaction);
-            }
-        });
-    }
-
-    public void lambda$new$3(final StarsController.PendingPaidReactions pendingPaidReactions) {
-        this.sending = true;
-        Objects.requireNonNull(pendingPaidReactions);
-        animate3dIcon(new Runnable() {
-            @Override
-            public final void run() {
-                StarsController.PendingPaidReactions.this.apply();
-            }
-        });
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.this.dismiss();
-            }
-        }, 240L);
-    }
-
-    public static void lambda$new$6(Context context) {
-        Browser.openUrl(context, LocaleController.getString(R.string.StarsReactionTermsLink));
-    }
-
-    public void updateSenders(long j) {
-        if (this.topSendersView != null) {
-            ArrayList arrayList = new ArrayList();
-            long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-            long j2 = 0;
-            if (this.reactors != null) {
-                for (int i = 0; i < this.reactors.size(); i++) {
-                    TLRPC$MessageReactor tLRPC$MessageReactor = this.reactors.get(i);
-                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageReactor.peer_id);
-                    boolean z = tLRPC$MessageReactor.anonymous;
-                    if (z) {
-                        peerDialogId = tLRPC$MessageReactor.my ? clientUserId : -i;
-                    }
-                    if (tLRPC$MessageReactor.my || peerDialogId == clientUserId) {
-                        j2 = tLRPC$MessageReactor.count;
-                    } else {
-                        arrayList.add(SenderData.of(z, peerDialogId, tLRPC$MessageReactor.count));
+        public void setBounds(RectF rectF) {
+            this.bounds.set(rectF);
+            if (this.type == 1) {
+                long currentTimeMillis = System.currentTimeMillis();
+                for (int i = 0; i < this.particles.size(); i++) {
+                    Particle particle = (Particle) this.particles.get(i);
+                    if (!rectF.contains(particle.x, particle.y)) {
+                        gen(particle, currentTimeMillis, this.firstDraw);
                     }
                 }
             }
-            long j3 = j2 + j;
-            if (j3 > 0) {
-                arrayList.add(SenderData.of(this.anonymous, clientUserId, j3));
-            }
-            Collections.sort(arrayList, new Comparator() {
-                @Override
-                public final int compare(Object obj, Object obj2) {
-                    int lambda$updateSenders$7;
-                    lambda$updateSenders$7 = StarsReactionsSheet.lambda$updateSenders$7((StarsReactionsSheet.SenderData) obj, (StarsReactionsSheet.SenderData) obj2);
-                    return lambda$updateSenders$7;
-                }
-            });
-            this.topSendersView.setSenders(new ArrayList<>(arrayList.subList(0, Math.min(3, arrayList.size()))));
+        }
+
+        public void setSpeed(float f) {
+            this.speed = f;
+        }
+
+        public void setVisible(float f) {
+            this.visibleCount = (int) (this.particles.size() * f);
         }
     }
 
-    public static int lambda$updateSenders$7(SenderData senderData, SenderData senderData2) {
-        return (int) (senderData2.stars - senderData.stars);
-    }
+    public static class SenderData {
+        public boolean anonymous;
+        public long did;
+        public long stars;
 
-    private void checkVisibility() {
-        if (this.checkedVisiblity) {
-            return;
+        public static SenderData of(boolean z, long j, long j2) {
+            SenderData senderData = new SenderData();
+            senderData.anonymous = z;
+            senderData.did = j;
+            senderData.stars = j2;
+            return senderData;
         }
-        this.checkedVisiblity = true;
-        MessageObject messageObject = this.messageObject;
-        if (messageObject == null) {
-            return;
-        }
-        Boolean isMyPaidReactionAnonymous = messageObject.isMyPaidReactionAnonymous();
-        StarsController.getInstance(this.currentAccount).saveAnonymous(this.messageObject, this.anonymous);
-        if (isMyPaidReactionAnonymous == null || isMyPaidReactionAnonymous.booleanValue() != this.anonymous) {
-            this.messageObject.setMyPaidReactionAnonymous(this.anonymous);
-            StarsController.MessageId from = StarsController.MessageId.from(this.messageObject);
-            TLRPC$TL_messages_togglePaidReactionPrivacy tLRPC$TL_messages_togglePaidReactionPrivacy = new TLRPC$TL_messages_togglePaidReactionPrivacy();
-            tLRPC$TL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(from.did);
-            tLRPC$TL_messages_togglePaidReactionPrivacy.msg_id = from.mid;
-            tLRPC$TL_messages_togglePaidReactionPrivacy.isPrivate = this.anonymous;
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starReactionAnonymousUpdate, Long.valueOf(from.did), Integer.valueOf(from.mid), Boolean.valueOf(this.anonymous));
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_togglePaidReactionPrivacy, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StarsReactionsSheet.this.lambda$checkVisibility$8(tLObject, tLRPC$TL_error);
-                }
-            });
-        }
-    }
-
-    public void lambda$checkVisibility$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$TL_boolTrue) {
-            MessagesStorage.getInstance(this.currentAccount).putMessages(new ArrayList<>(Arrays.asList(this.messageObject.messageOwner)), true, true, true, 0, 0, 0L);
-        }
-    }
-
-    @Override
-    public void dismiss() {
-        if (!this.sending) {
-            checkVisibility();
-        }
-        super.dismiss();
-    }
-
-    public void setMessageCell(ChatActivity chatActivity, int i, ChatMessageCell chatMessageCell) {
-        this.chatActivity = chatActivity;
-        this.messageId = i;
-        this.messageCell = chatMessageCell;
-    }
-
-    private void animate3dIcon(final Runnable runnable) {
-        View view;
-        final ChatMessageCell chatMessageCell;
-        final ReactionsLayoutInBubble.ReactionButton reactionButton;
-        if (this.messageObject == null || (view = this.chatActivity.fragmentView) == null || !view.isAttachedToWindow()) {
-            return;
-        }
-        ChatMessageCell chatMessageCell2 = this.messageCell;
-        MessageObject messageObject = null;
-        ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatMessageCell2 != null ? chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar()) : null;
-        if (reactionButton2 == null) {
-            MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageObject);
-            if (validGroupedMessage != null && !validGroupedMessage.posArray.isEmpty()) {
-                Iterator<MessageObject> it = validGroupedMessage.messages.iterator();
-                while (true) {
-                    if (!it.hasNext()) {
-                        break;
-                    }
-                    MessageObject next = it.next();
-                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(next);
-                    if (position != null) {
-                        int i = position.flags;
-                        if ((i & 1) != 0 && (i & 8) != 0) {
-                            messageObject = next;
-                            break;
-                        }
-                    }
-                }
-                if (messageObject != null) {
-                    chatMessageCell2 = this.chatActivity.findMessageCell(messageObject.getId(), false);
-                }
-            }
-            if (chatMessageCell2 == null) {
-                return;
-            }
-            chatMessageCell = chatMessageCell2;
-            reactionButton = chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar());
-        } else {
-            chatMessageCell = chatMessageCell2;
-            reactionButton = reactionButton2;
-        }
-        if (reactionButton == null) {
-            return;
-        }
-        final int[] iArr = new int[2];
-        final RectF rectF = new RectF();
-        this.slider.getLocationInWindow(iArr);
-        rectF.set(this.slider.counterImage.getBounds());
-        rectF.inset(-AndroidUtilities.dp(3.5f), -AndroidUtilities.dp(3.5f));
-        rectF.offset(iArr[0], iArr[1]);
-        this.icon3dView.whenReady(new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.this.lambda$animate3dIcon$9();
-            }
-        });
-        reactionButton.drawImage = false;
-        chatMessageCell.invalidate();
-        final RectF rectF2 = new RectF();
-        final Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                StarsReactionsSheet.lambda$animate3dIcon$10(ChatMessageCell.this, iArr, rectF2, reactionButton);
-            }
-        };
-        runnable2.run();
-        this.icon3dView.setPaused(false);
-        this.icon3dView.setVisibility(0);
-        final RectF rectF3 = new RectF();
-        rectF3.set(rectF);
-        this.icon3dView.setTranslationX(rectF3.centerX() - (AndroidUtilities.dp(150.0f) / 2.0f));
-        this.icon3dView.setTranslationY(rectF3.centerY() - (AndroidUtilities.dp(150.0f) / 2.0f));
-        this.icon3dView.setScaleX(rectF3.width() / AndroidUtilities.dp(150.0f));
-        this.icon3dView.setScaleY(rectF3.height() / AndroidUtilities.dp(150.0f));
-        ValueAnimator valueAnimator = this.iconAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        final boolean[] zArr = new boolean[1];
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.iconAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StarsReactionsSheet.this.lambda$animate3dIcon$11(runnable2, rectF, rectF2, rectF3, zArr, runnable, valueAnimator2);
-            }
-        });
-        final ReactionsLayoutInBubble.ReactionButton reactionButton3 = reactionButton;
-        final ChatMessageCell chatMessageCell3 = chatMessageCell;
-        this.iconAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                StarsReactionsSheet.this.icon3dView.setVisibility(4);
-                StarsReactionsSheet.this.icon3dView.setPaused(true);
-                reactionButton3.drawImage = true;
-                ChatMessageCell chatMessageCell4 = chatMessageCell3;
-                if (chatMessageCell4 != null) {
-                    chatMessageCell4.invalidate();
-                }
-                StarsReactionsSheet.super.dismissInternal();
-                boolean[] zArr2 = zArr;
-                if (!zArr2[0]) {
-                    zArr2[0] = true;
-                    LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
-                    try {
-                        StarsReactionsSheet.this.container.performHapticFeedback(0, 1);
-                    } catch (Exception unused) {
-                    }
-                    Runnable runnable3 = runnable;
-                    if (runnable3 != null) {
-                        runnable3.run();
-                    }
-                }
-                LaunchActivity launchActivity = LaunchActivity.instance;
-                if (launchActivity == null || launchActivity.getFireworksOverlay() == null) {
-                    return;
-                }
-                LaunchActivity.instance.getFireworksOverlay().start(true);
-            }
-        });
-        this.iconAnimator.setDuration(800L);
-        this.iconAnimator.setInterpolator(new Interpolator() {
-            @Override
-            public float getInterpolation(float f) {
-                return (float) Math.pow(f, 2.0d);
-            }
-        });
-        this.iconAnimator.start();
-    }
-
-    public void lambda$animate3dIcon$9() {
-        StarsSlider starsSlider = this.slider;
-        starsSlider.drawCounterImage = false;
-        starsSlider.invalidate();
-    }
-
-    public static void lambda$animate3dIcon$10(ChatMessageCell chatMessageCell, int[] iArr, RectF rectF, ReactionsLayoutInBubble.ReactionButton reactionButton) {
-        chatMessageCell.getLocationInWindow(iArr);
-        rectF.set(iArr[0] + chatMessageCell.reactionsLayoutInBubble.x + reactionButton.x + AndroidUtilities.dp(4.0f), iArr[1] + chatMessageCell.reactionsLayoutInBubble.y + reactionButton.y + ((reactionButton.height - AndroidUtilities.dp(22.0f)) / 2.0f), iArr[0] + chatMessageCell.reactionsLayoutInBubble.x + reactionButton.x + AndroidUtilities.dp(26.0f), iArr[1] + chatMessageCell.reactionsLayoutInBubble.y + reactionButton.y + ((reactionButton.height + AndroidUtilities.dp(22.0f)) / 2.0f));
-    }
-
-    public void lambda$animate3dIcon$11(Runnable runnable, RectF rectF, RectF rectF2, RectF rectF3, boolean[] zArr, Runnable runnable2, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        runnable.run();
-        AndroidUtilities.lerp(rectF, rectF2, floatValue, rectF3);
-        this.icon3dView.setTranslationX(rectF3.centerX() - (AndroidUtilities.dp(150.0f) / 2.0f));
-        this.icon3dView.setTranslationY(rectF3.centerY() - (AndroidUtilities.dp(150.0f) / 2.0f));
-        float max = Math.max(rectF3.width() / AndroidUtilities.dp(150.0f), rectF3.height() / AndroidUtilities.dp(150.0f));
-        double d = floatValue;
-        Double.isNaN(d);
-        float lerp = AndroidUtilities.lerp(max, 1.0f, (float) Math.sin(d * 3.141592653589793d));
-        this.icon3dView.setScaleX(lerp);
-        this.icon3dView.setScaleY(lerp);
-        GLIconRenderer gLIconRenderer = this.icon3dView.mRenderer;
-        gLIconRenderer.angleX = 360.0f * floatValue;
-        gLIconRenderer.white = Math.max(0.0f, 1.0f - (4.0f * floatValue));
-        if (zArr[0] || floatValue <= 0.95f) {
-            return;
-        }
-        zArr[0] = true;
-        LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
-        try {
-            this.container.performHapticFeedback(0, 1);
-        } catch (Exception unused) {
-        }
-        if (runnable2 != null) {
-            runnable2.run();
-        }
-    }
-
-    @Override
-    public void dismissInternal() {
-        ValueAnimator valueAnimator = this.iconAnimator;
-        if (valueAnimator == null || !valueAnimator.isRunning()) {
-            super.dismissInternal();
-        }
-    }
-
-    @Override
-    public boolean canDismissWithSwipe() {
-        if (this.slider.tracking) {
-            return false;
-        }
-        return super.canDismissWithSwipe();
     }
 
     public static class StarsSlider extends View {
@@ -770,9 +305,6 @@ public class StarsReactionsSheet extends BottomSheet {
         private final Paint topPaint;
         private final Text topText;
         private boolean tracking;
-
-        protected void onValueChanged(int i) {
-        }
 
         public StarsSlider(Context context) {
             super(context);
@@ -818,85 +350,45 @@ public class StarsReactionsSheet extends BottomSheet {
             paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         }
 
-        public void setStarsTop(long j) {
-            this.currentTop = j;
-            invalidate();
-        }
-
-        @Override
-        protected boolean verifyDrawable(Drawable drawable) {
-            return drawable == this.counterText || super.verifyDrawable(drawable);
-        }
-
-        public void setSteps(int i, int... iArr) {
-            this.steps = i;
-            this.stops = iArr;
-        }
-
-        public void setValue(int i) {
-            setValue(i, false);
-        }
-
-        public void setValue(int i, boolean z) {
-            float progress = getProgress(i);
-            this.progress = progress;
-            if (!z) {
-                this.aprogress = progress;
+        private void animateProgressTo(final float f) {
+            ValueAnimator valueAnimator = this.progressAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-            updateText(true);
-        }
-
-        public int getValue() {
-            return getValue(this.progress);
-        }
-
-        public float getProgress() {
-            return this.progress;
-        }
-
-        public int getValue(float f) {
-            if (f <= 0.0f) {
-                return this.stops[0];
-            }
-            if (f >= 1.0f) {
-                return this.stops[r5.length - 1];
-            }
-            float length = f * (r0.length - 1);
-            int i = (int) length;
-            float f2 = length - i;
-            return Math.round(this.stops[i] + (f2 * (r0[i + 1] - r2)));
-        }
-
-        public float getProgress(int i) {
-            int i2 = 1;
-            while (true) {
-                int[] iArr = this.stops;
-                if (i2 >= iArr.length) {
-                    return 1.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f);
+            this.progressAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    StarsReactionsSheet.StarsSlider.this.lambda$animateProgressTo$0(valueAnimator2);
                 }
-                if (i <= iArr[i2]) {
-                    int i3 = i2 - 1;
-                    int i4 = iArr[i3];
-                    return (i3 + ((i - i4) / (r3 - i4))) / (iArr.length - 1);
+            });
+            this.progressAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    int value = StarsSlider.this.getValue();
+                    StarsSlider starsSlider = StarsSlider.this;
+                    starsSlider.progress = f;
+                    if (starsSlider.getValue() != value) {
+                        StarsSlider starsSlider2 = StarsSlider.this;
+                        starsSlider2.onValueChanged(starsSlider2.getValue());
+                    }
+                    StarsSlider.this.invalidate();
                 }
-                i2++;
+            });
+            this.progressAnimator.setDuration(320L);
+            this.progressAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.progressAnimator.start();
+            if (getValue(f) != getValue()) {
+                onValueChanged(getValue(f));
             }
-        }
-
-        public void updateText(boolean z) {
             this.counterText.cancelAnimation();
-            this.counterText.setText(StarsIntroActivity.replaceStars(LocaleController.formatNumber(getValue(), ','), this.starRef), z);
+            this.counterText.setText(StarsIntroActivity.replaceStars(LocaleController.formatNumber(getValue(f), ','), this.starRef), true);
         }
 
-        @Override
-        protected void onMeasure(int i, int i2) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(220.0f));
-            int measuredWidth = getMeasuredWidth();
-            getMeasuredHeight();
-            this.sliderInnerRect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(135.0f), measuredWidth - r6, r0 + AndroidUtilities.dp(24.0f));
-            this.sliderInnerPaint.setColor(653241613);
-            this.sliderPaint.setColor(-1069811);
-            this.sliderCirclePaint.setColor(-1);
+        public void lambda$animateProgressTo$0(ValueAnimator valueAnimator) {
+            this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            invalidate();
         }
 
         @Override
@@ -1062,431 +554,142 @@ public class StarsReactionsSheet extends BottomSheet {
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            if (motionEvent.getAction() == 0) {
-                this.lastX = motionEvent.getX();
-                this.lastY = motionEvent.getY();
-                this.pointerId = motionEvent.getPointerId(0);
-                this.pressTime = System.currentTimeMillis();
-                this.tracking = false;
-            } else if (motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.pointerId) {
-                float x = motionEvent.getX() - this.lastX;
-                float y = motionEvent.getY() - this.lastY;
-                if (!this.tracking && Math.abs(x) > Math.abs(y * 1.5f) && Math.abs(x) > AndroidUtilities.touchSlop) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    this.tracking = true;
-                    ValueAnimator valueAnimator = this.progressAnimator;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
+            if (motionEvent.getAction() != 0) {
+                if (motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.pointerId) {
+                    float x = motionEvent.getX() - this.lastX;
+                    float y = motionEvent.getY() - this.lastY;
+                    if (!this.tracking && Math.abs(x) > Math.abs(y * 1.5f) && Math.abs(x) > AndroidUtilities.touchSlop) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        this.tracking = true;
+                        ValueAnimator valueAnimator = this.progressAnimator;
+                        if (valueAnimator != null) {
+                            valueAnimator.cancel();
+                        }
+                    }
+                    if (this.tracking) {
+                        int value = getValue();
+                        this.progress = Utilities.clamp01(this.progress + (x / (getWidth() * 1.0f)));
+                        if (getValue() != value) {
+                            onValueChanged(getValue());
+                            updateText(true);
+                        }
+                        this.lastX = motionEvent.getX();
+                    }
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    if (!this.tracking && motionEvent.getPointerId(0) == this.pointerId && MathUtils.distance(this.lastX, this.lastY, motionEvent.getX(), motionEvent.getY()) < AndroidUtilities.touchSlop && ((float) (System.currentTimeMillis() - this.pressTime)) <= ViewConfiguration.getTapTimeout() * 1.5f) {
+                        float x2 = motionEvent.getX();
+                        RectF rectF = this.sliderInnerRect;
+                        float clamp01 = Utilities.clamp01((x2 - rectF.left) / rectF.width());
+                        long j = this.currentTop;
+                        if (j > 0 && Math.abs(getProgress((int) j) - clamp01) < 0.035f) {
+                            clamp01 = Utilities.clamp01(getProgress((int) this.currentTop));
+                        }
+                        animateProgressTo(clamp01);
                     }
                 }
-                if (this.tracking) {
-                    int value = getValue();
-                    this.progress = Utilities.clamp01(this.progress + (x / (getWidth() * 1.0f)));
-                    if (getValue() != value) {
-                        onValueChanged(getValue());
-                        updateText(true);
-                    }
-                    this.lastX = motionEvent.getX();
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (!this.tracking && motionEvent.getPointerId(0) == this.pointerId && MathUtils.distance(this.lastX, this.lastY, motionEvent.getX(), motionEvent.getY()) < AndroidUtilities.touchSlop && ((float) (System.currentTimeMillis() - this.pressTime)) <= ViewConfiguration.getTapTimeout() * 1.5f) {
-                    float x2 = motionEvent.getX();
-                    RectF rectF = this.sliderInnerRect;
-                    float clamp01 = Utilities.clamp01((x2 - rectF.left) / rectF.width());
-                    long j = this.currentTop;
-                    if (j > 0 && Math.abs(getProgress((int) j) - clamp01) < 0.035f) {
-                        clamp01 = Utilities.clamp01(getProgress((int) this.currentTop));
-                    }
-                    animateProgressTo(clamp01);
-                }
-                this.tracking = false;
+                return true;
             }
+            this.lastX = motionEvent.getX();
+            this.lastY = motionEvent.getY();
+            this.pointerId = motionEvent.getPointerId(0);
+            this.pressTime = System.currentTimeMillis();
+            this.tracking = false;
             return true;
         }
 
-        private void animateProgressTo(final float f) {
-            ValueAnimator valueAnimator = this.progressAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f);
-            this.progressAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    StarsReactionsSheet.StarsSlider.this.lambda$animateProgressTo$0(valueAnimator2);
-                }
-            });
-            this.progressAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    int value = StarsSlider.this.getValue();
-                    StarsSlider starsSlider = StarsSlider.this;
-                    starsSlider.progress = f;
-                    if (starsSlider.getValue() != value) {
-                        StarsSlider starsSlider2 = StarsSlider.this;
-                        starsSlider2.onValueChanged(starsSlider2.getValue());
-                    }
-                    StarsSlider.this.invalidate();
-                }
-            });
-            this.progressAnimator.setDuration(320L);
-            this.progressAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.progressAnimator.start();
-            if (getValue(f) != getValue()) {
-                onValueChanged(getValue(f));
-            }
-            this.counterText.cancelAnimation();
-            this.counterText.setText(StarsIntroActivity.replaceStars(LocaleController.formatNumber(getValue(f), ','), this.starRef), true);
+        public float getProgress() {
+            return this.progress;
         }
 
-        public void lambda$animateProgressTo$0(ValueAnimator valueAnimator) {
-            this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        public float getProgress(int i) {
+            int i2 = 1;
+            while (true) {
+                int[] iArr = this.stops;
+                if (i2 >= iArr.length) {
+                    return 1.0f;
+                }
+                if (i <= iArr[i2]) {
+                    int i3 = i2 - 1;
+                    int i4 = iArr[i3];
+                    return (i3 + ((i - i4) / (r3 - i4))) / (iArr.length - 1);
+                }
+                i2++;
+            }
+        }
+
+        public int getValue() {
+            return getValue(this.progress);
+        }
+
+        public int getValue(float f) {
+            if (f <= 0.0f) {
+                return this.stops[0];
+            }
+            if (f >= 1.0f) {
+                return this.stops[r5.length - 1];
+            }
+            float length = f * (r0.length - 1);
+            int i = (int) length;
+            float f2 = length - i;
+            return Math.round(this.stops[i] + (f2 * (r0[i + 1] - r2)));
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(220.0f));
+            int measuredWidth = getMeasuredWidth();
+            getMeasuredHeight();
+            this.sliderInnerRect.set(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(135.0f), measuredWidth - r6, r0 + AndroidUtilities.dp(24.0f));
+            this.sliderInnerPaint.setColor(653241613);
+            this.sliderPaint.setColor(-1069811);
+            this.sliderCirclePaint.setColor(-1);
+        }
+
+        protected abstract void onValueChanged(int i);
+
+        public void setStarsTop(long j) {
+            this.currentTop = j;
             invalidate();
         }
-    }
 
-    public static class Particles {
-        public final Bitmap b;
-        private int bPaintColor;
-        private long lastTime;
-        public final ArrayList<Particle> particles;
-        public final int type;
-        private int visibleCount;
-        public final RectF bounds = new RectF();
-        public final Paint bPaint = new Paint(3);
-        public final Rect rect = new Rect();
-        private float speed = 1.0f;
-        private boolean firstDraw = true;
-
-        public Particles(int i, int i2) {
-            this.type = i;
-            this.visibleCount = i2;
-            this.particles = new ArrayList<>(i2);
-            for (int i3 = 0; i3 < i2; i3++) {
-                this.particles.add(new Particle());
-            }
-            int dp = AndroidUtilities.dp(10.0f);
-            Bitmap createBitmap = Bitmap.createBitmap(dp, dp, Bitmap.Config.ARGB_8888);
-            this.b = createBitmap;
-            Path path = new Path();
-            float f = dp >> 1;
-            int i4 = (int) (0.85f * f);
-            path.moveTo(0.0f, f);
-            float f2 = i4;
-            path.lineTo(f2, f2);
-            path.lineTo(f, 0.0f);
-            float f3 = dp - i4;
-            path.lineTo(f3, f2);
-            float f4 = dp;
-            path.lineTo(f4, f);
-            path.lineTo(f3, f3);
-            path.lineTo(f, f4);
-            path.lineTo(f2, f3);
-            path.lineTo(0.0f, f);
-            path.close();
-            Canvas canvas = new Canvas(createBitmap);
-            Paint paint = new Paint();
-            paint.setColor(Theme.multAlpha(-1, 0.75f));
-            canvas.drawPath(path, paint);
+        public void setSteps(int i, int... iArr) {
+            this.steps = i;
+            this.stops = iArr;
         }
 
-        public void setVisible(float f) {
-            this.visibleCount = (int) (this.particles.size() * f);
+        public void setValue(int i) {
+            setValue(i, false);
         }
 
-        public void setBounds(RectF rectF) {
-            this.bounds.set(rectF);
-            if (this.type == 1) {
-                long currentTimeMillis = System.currentTimeMillis();
-                for (int i = 0; i < this.particles.size(); i++) {
-                    Particle particle = this.particles.get(i);
-                    if (!rectF.contains(particle.x, particle.y)) {
-                        gen(particle, currentTimeMillis, this.firstDraw);
-                    }
-                }
+        public void setValue(int i, boolean z) {
+            float progress = getProgress(i);
+            this.progress = progress;
+            if (!z) {
+                this.aprogress = progress;
             }
+            updateText(true);
         }
 
-        public void setSpeed(float f) {
-            this.speed = f;
+        public void updateText(boolean z) {
+            this.counterText.cancelAnimation();
+            this.counterText.setText(StarsIntroActivity.replaceStars(LocaleController.formatNumber(getValue(), ','), this.starRef), z);
         }
 
-        public void process() {
-            long currentTimeMillis = System.currentTimeMillis();
-            float min = (((float) Math.min(this.lastTime - currentTimeMillis, 16L)) / 1000.0f) * this.speed;
-            for (int i = 0; i < Math.min(this.visibleCount, this.particles.size()); i++) {
-                Particle particle = this.particles.get(i);
-                long j = particle.lifetime;
-                float f = j <= 0 ? 2.0f : ((float) (currentTimeMillis - particle.start)) / ((float) j);
-                if (f > 1.0f) {
-                    gen(particle, currentTimeMillis, this.firstDraw);
-                    f = 0.0f;
-                }
-                particle.x += particle.vx * min;
-                particle.y += particle.vy * min;
-                float f2 = 4.0f * f;
-                particle.la = f2 - (f * f2);
-            }
-            this.lastTime = currentTimeMillis;
-        }
-
-        public void draw(Canvas canvas, int i) {
-            if (this.bPaintColor != i) {
-                Paint paint = this.bPaint;
-                this.bPaintColor = i;
-                paint.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
-            }
-            for (int i2 = 0; i2 < Math.min(this.visibleCount, this.particles.size()); i2++) {
-                Particle particle = this.particles.get(i2);
-                particle.draw(canvas, i, particle.la);
-            }
-            this.firstDraw = false;
-        }
-
-        public void gen(Particle particle, long j, boolean z) {
-            particle.start = j;
-            particle.lifetime = AndroidUtilities.lerp(500, 2500, Utilities.fastRandom.nextFloat());
-            if (z) {
-                particle.start -= ((float) r4) * Utilities.clamp01(Utilities.fastRandom.nextFloat());
-            }
-            RectF rectF = this.bounds;
-            particle.x = AndroidUtilities.lerp(rectF.left, rectF.right, Utilities.fastRandom.nextFloat());
-            RectF rectF2 = this.bounds;
-            particle.y = AndroidUtilities.lerp(rectF2.top, rectF2.bottom, Utilities.fastRandom.nextFloat());
-            if (this.type == 0) {
-                particle.vx = AndroidUtilities.dp(AndroidUtilities.lerp(-7.0f, -18.0f, Utilities.fastRandom.nextFloat()));
-                particle.vy = AndroidUtilities.dp(AndroidUtilities.lerp(-2.0f, 2.0f, Utilities.fastRandom.nextFloat()));
-            } else {
-                particle.vx = this.bounds.centerX() - particle.x;
-                particle.vy = this.bounds.centerY() - particle.y;
-                float dp = AndroidUtilities.dp(AndroidUtilities.lerp(1.0f, 4.0f, Utilities.fastRandom.nextFloat()));
-                float f = particle.vx;
-                float f2 = particle.vy;
-                float sqrt = dp / ((float) Math.sqrt((f * f) + (f2 * f2)));
-                particle.vx *= sqrt;
-                particle.vy *= sqrt;
-            }
-            particle.a = AndroidUtilities.lerp(0.4f, 1.0f, Utilities.fastRandom.nextFloat());
-            particle.s = AndroidUtilities.lerp(0.8f, 1.2f, Utilities.fastRandom.nextFloat()) * 0.7f;
-        }
-
-        public class Particle {
-            public float a;
-            public float la;
-            public long lifetime;
-            public float s;
-            public long start;
-            public float vx;
-            public float vy;
-            public float x;
-            public float y;
-
-            public Particle() {
-            }
-
-            public void draw(Canvas canvas, int i, float f) {
-                Particles.this.bPaint.setAlpha((int) (255.0f * f));
-                Particles.this.rect.set((int) (this.x - ((((r8.b.getWidth() / 2.0f) * this.a) * this.s) * f)), (int) (this.y - ((((Particles.this.b.getHeight() / 2.0f) * this.a) * this.s) * f)), (int) (this.x + ((Particles.this.b.getWidth() / 2.0f) * this.a * this.s * f)), (int) (this.y + ((Particles.this.b.getHeight() / 2.0f) * this.a * this.s * f)));
-                Particles particles = Particles.this;
-                canvas.drawBitmap(particles.b, (Rect) null, particles.rect, particles.bPaint);
-            }
-        }
-    }
-
-    public static class SenderData {
-        public boolean anonymous;
-        public long did;
-        public long stars;
-
-        public static SenderData of(boolean z, long j, long j2) {
-            SenderData senderData = new SenderData();
-            senderData.anonymous = z;
-            senderData.did = j;
-            senderData.stars = j2;
-            return senderData;
+        @Override
+        protected boolean verifyDrawable(Drawable drawable) {
+            return drawable == this.counterText || super.verifyDrawable(drawable);
         }
     }
 
     public class TopSendersView extends View {
         public final AnimatedFloat animatedCount;
         public final Paint backgroundPaint;
-        private Utilities.Callback<Long> clickListener;
+        private Utilities.Callback clickListener;
         public float count;
-        public final ArrayList<Sender> oldSenders;
+        public final ArrayList oldSenders;
         private Sender pressedSender;
-        public final ArrayList<Sender> senders;
+        public final ArrayList senders;
         public final Paint starsBackgroundPaint;
-
-        public TopSendersView(Context context) {
-            super(context);
-            this.senders = new ArrayList<>();
-            this.oldSenders = new ArrayList<>();
-            Paint paint = new Paint(1);
-            this.backgroundPaint = paint;
-            Paint paint2 = new Paint(1);
-            this.starsBackgroundPaint = paint2;
-            this.animatedCount = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            paint.setStyle(Paint.Style.FILL_AND_STROKE);
-            paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
-            paint2.setColor(-1002750);
-        }
-
-        @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            for (int i = 0; i < this.senders.size(); i++) {
-                this.senders.get(i).imageReceiver.onAttachedToWindow();
-            }
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            for (int i = 0; i < this.senders.size(); i++) {
-                this.senders.get(i).imageReceiver.onDetachedFromWindow();
-            }
-        }
-
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            this.count = this.animatedCount.set(this.senders.size());
-            for (int i = 0; i < this.oldSenders.size(); i++) {
-                this.oldSenders.get(i).draw(canvas);
-            }
-            for (int i2 = 0; i2 < this.senders.size(); i2++) {
-                this.senders.get(i2).draw(canvas);
-            }
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            Sender sender;
-            Utilities.Callback<Long> callback;
-            if (motionEvent.getAction() == 0) {
-                Sender sender2 = this.pressedSender;
-                if (sender2 != null) {
-                    sender2.bounce.setPressed(false);
-                }
-                this.pressedSender = null;
-                int i = 0;
-                while (true) {
-                    if (i >= this.senders.size()) {
-                        break;
-                    }
-                    if (this.senders.get(i).clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
-                        this.pressedSender = this.senders.get(i);
-                        break;
-                    }
-                    i++;
-                }
-                Sender sender3 = this.pressedSender;
-                if (sender3 != null) {
-                    sender3.bounce.setPressed(true);
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                if (motionEvent.getAction() == 1 && (sender = this.pressedSender) != null && !sender.anonymous && sender.clickBounds.contains(motionEvent.getX(), motionEvent.getY()) && (callback = this.clickListener) != null) {
-                    callback.run(Long.valueOf(this.pressedSender.did));
-                }
-                Sender sender4 = this.pressedSender;
-                if (sender4 != null) {
-                    sender4.bounce.setPressed(false);
-                }
-                this.pressedSender = null;
-            }
-            return this.pressedSender != null;
-        }
-
-        public void setMyselfAsAnonymous(boolean z) {
-            long clientUserId = UserConfig.getInstance(StarsReactionsSheet.this.currentAccount).getClientUserId();
-            for (int i = 0; i < this.senders.size(); i++) {
-                Sender sender = this.senders.get(i);
-                if (sender.did == clientUserId) {
-                    sender.setAnonymous(z);
-                    return;
-                }
-            }
-        }
-
-        public void setSenders(ArrayList<SenderData> arrayList) {
-            Sender sender;
-            int i = 0;
-            while (true) {
-                SenderData senderData = null;
-                if (i >= this.senders.size()) {
-                    break;
-                }
-                Sender sender2 = this.senders.get(i);
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= arrayList.size()) {
-                        break;
-                    }
-                    if (arrayList.get(i2).did == sender2.did) {
-                        senderData = arrayList.get(i2);
-                        break;
-                    }
-                    i2++;
-                }
-                if (senderData == null) {
-                    sender2.imageReceiver.onDetachedFromWindow();
-                    this.senders.remove(i);
-                    i--;
-                    sender2.index = -1;
-                    this.oldSenders.add(sender2);
-                }
-                i++;
-            }
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                SenderData senderData2 = arrayList.get(i3);
-                int i4 = 0;
-                while (true) {
-                    if (i4 >= this.senders.size()) {
-                        sender = null;
-                        break;
-                    } else {
-                        if (this.senders.get(i4).did == senderData2.did) {
-                            sender = this.senders.get(i4);
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-                if (sender == null) {
-                    int i5 = 0;
-                    while (true) {
-                        if (i5 >= this.oldSenders.size()) {
-                            break;
-                        }
-                        if (this.oldSenders.get(i5).did == senderData2.did) {
-                            sender = this.oldSenders.get(i5);
-                            break;
-                        }
-                        i5++;
-                    }
-                    if (sender != null) {
-                        this.oldSenders.remove(sender);
-                        sender.imageReceiver.onAttachedToWindow();
-                        this.senders.add(sender);
-                    }
-                }
-                if (sender == null) {
-                    sender = new Sender(senderData2.did);
-                    sender.animatedScale.set(0.0f, true);
-                    this.senders.add(sender);
-                    sender.animatedPosition.set((arrayList.size() - 1) - i3, true);
-                }
-                sender.setStars(senderData2.stars);
-                sender.setAnonymous(senderData2.anonymous);
-                sender.index = (arrayList.size() - 1) - i3;
-            }
-            invalidate();
-        }
-
-        public void setOnSenderClickListener(Utilities.Callback<Long> callback) {
-            this.clickListener = callback;
-        }
 
         public class Sender {
             public final AnimatedFloat animatedAnonymous;
@@ -1505,6 +708,7 @@ public class StarsReactionsSheet extends BottomSheet {
 
             public Sender(long j) {
                 String str;
+                TLRPC$Chat tLRPC$Chat;
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
                 this.animatedPosition = new AnimatedFloat(TopSendersView.this, 0L, 600L, cubicBezierInterpolator);
                 this.animatedScale = new AnimatedFloat(TopSendersView.this, 0L, 200L, cubicBezierInterpolator);
@@ -1517,43 +721,24 @@ public class StarsReactionsSheet extends BottomSheet {
                 this.anonymousAvatarDrawable = avatarDrawable2;
                 this.bounce = new ButtonBounce(TopSendersView.this);
                 this.did = j;
+                MessagesController messagesController = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount);
                 if (j >= 0) {
-                    TLRPC$User user = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getUser(Long.valueOf(j));
+                    TLRPC$User user = messagesController.getUser(Long.valueOf(j));
                     str = UserObject.getForcedFirstName(user);
                     avatarDrawable.setInfo(user);
-                    imageReceiver.setForUserOrChat(user, avatarDrawable);
+                    tLRPC$Chat = user;
                 } else {
-                    TLRPC$Chat chat = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getChat(Long.valueOf(-j));
+                    TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
                     str = chat == null ? "" : chat.title;
                     avatarDrawable.setInfo(chat);
-                    imageReceiver.setForUserOrChat(chat, avatarDrawable);
+                    tLRPC$Chat = chat;
                 }
+                imageReceiver.setForUserOrChat(tLRPC$Chat, avatarDrawable);
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(56.0f));
                 imageReceiver.onAttachedToWindow();
                 avatarDrawable2.setAvatarType(21);
                 avatarDrawable2.setColor(Theme.getColor(Theme.key_avatar_backgroundGray));
                 this.text = new Text(str, 12.0f);
-            }
-
-            public void setAnonymous(boolean z) {
-                String str;
-                if (this.anonymous != z) {
-                    this.anonymous = z;
-                    if (z) {
-                        str = LocaleController.getString(R.string.StarsReactionAnonymous);
-                    } else if (this.did < 0) {
-                        TLRPC$Chat chat = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getChat(Long.valueOf(-this.did));
-                        str = chat == null ? "" : chat.title;
-                    } else {
-                        str = UserObject.getForcedFirstName(MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getUser(Long.valueOf(this.did)));
-                    }
-                    this.text = new Text(str, 12.0f);
-                    TopSendersView.this.invalidate();
-                }
-            }
-
-            public void setStars(long j) {
-                this.starsText = new Text(StarsIntroActivity.replaceStars("⭐️" + LocaleController.formatNumber(j, ','), 0.85f), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
             }
 
             public void draw(Canvas canvas) {
@@ -1598,6 +783,818 @@ public class StarsReactionsSheet extends BottomSheet {
                 text2.draw(canvas, dp - (text2.getCurrentWidth() / 2.0f), dp2 + AndroidUtilities.dp(42.0f), Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, StarsReactionsSheet.this.resourcesProvider), f2);
                 canvas.restore();
             }
+
+            public void setAnonymous(boolean z) {
+                String str;
+                if (this.anonymous != z) {
+                    this.anonymous = z;
+                    if (z) {
+                        str = LocaleController.getString(R.string.StarsReactionAnonymous);
+                    } else if (this.did >= 0) {
+                        str = UserObject.getForcedFirstName(MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getUser(Long.valueOf(this.did)));
+                    } else {
+                        TLRPC$Chat chat = MessagesController.getInstance(StarsReactionsSheet.this.currentAccount).getChat(Long.valueOf(-this.did));
+                        str = chat == null ? "" : chat.title;
+                    }
+                    this.text = new Text(str, 12.0f);
+                    TopSendersView.this.invalidate();
+                }
+            }
+
+            public void setStars(long j) {
+                this.starsText = new Text(StarsIntroActivity.replaceStars("⭐️" + LocaleController.formatNumber(j, ','), 0.85f), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+            }
+        }
+
+        public TopSendersView(Context context) {
+            super(context);
+            this.senders = new ArrayList();
+            this.oldSenders = new ArrayList();
+            Paint paint = new Paint(1);
+            this.backgroundPaint = paint;
+            Paint paint2 = new Paint(1);
+            this.starsBackgroundPaint = paint2;
+            this.animatedCount = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint2.setColor(-1002750);
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            this.count = this.animatedCount.set(this.senders.size());
+            for (int i = 0; i < this.oldSenders.size(); i++) {
+                ((Sender) this.oldSenders.get(i)).draw(canvas);
+            }
+            for (int i2 = 0; i2 < this.senders.size(); i2++) {
+                ((Sender) this.senders.get(i2)).draw(canvas);
+            }
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            for (int i = 0; i < this.senders.size(); i++) {
+                ((Sender) this.senders.get(i)).imageReceiver.onAttachedToWindow();
+            }
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            for (int i = 0; i < this.senders.size(); i++) {
+                ((Sender) this.senders.get(i)).imageReceiver.onDetachedFromWindow();
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            Sender sender;
+            Utilities.Callback callback;
+            if (motionEvent.getAction() == 0) {
+                Sender sender2 = this.pressedSender;
+                if (sender2 != null) {
+                    sender2.bounce.setPressed(false);
+                }
+                this.pressedSender = null;
+                int i = 0;
+                while (true) {
+                    if (i >= this.senders.size()) {
+                        break;
+                    }
+                    if (((Sender) this.senders.get(i)).clickBounds.contains(motionEvent.getX(), motionEvent.getY())) {
+                        this.pressedSender = (Sender) this.senders.get(i);
+                        break;
+                    }
+                    i++;
+                }
+                Sender sender3 = this.pressedSender;
+                if (sender3 != null) {
+                    sender3.bounce.setPressed(true);
+                }
+            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                if (motionEvent.getAction() == 1 && (sender = this.pressedSender) != null && !sender.anonymous && sender.clickBounds.contains(motionEvent.getX(), motionEvent.getY()) && (callback = this.clickListener) != null) {
+                    callback.run(Long.valueOf(this.pressedSender.did));
+                }
+                Sender sender4 = this.pressedSender;
+                if (sender4 != null) {
+                    sender4.bounce.setPressed(false);
+                }
+                this.pressedSender = null;
+            }
+            return this.pressedSender != null;
+        }
+
+        public void setMyselfAsAnonymous(boolean z) {
+            long clientUserId = UserConfig.getInstance(StarsReactionsSheet.this.currentAccount).getClientUserId();
+            for (int i = 0; i < this.senders.size(); i++) {
+                Sender sender = (Sender) this.senders.get(i);
+                if (sender.did == clientUserId) {
+                    sender.setAnonymous(z);
+                    return;
+                }
+            }
+        }
+
+        public void setOnSenderClickListener(Utilities.Callback<Long> callback) {
+            this.clickListener = callback;
+        }
+
+        public void setSenders(ArrayList<SenderData> arrayList) {
+            Sender sender;
+            int i = 0;
+            while (true) {
+                SenderData senderData = null;
+                if (i >= this.senders.size()) {
+                    break;
+                }
+                Sender sender2 = (Sender) this.senders.get(i);
+                int i2 = 0;
+                while (true) {
+                    if (i2 >= arrayList.size()) {
+                        break;
+                    }
+                    if (arrayList.get(i2).did == sender2.did) {
+                        senderData = arrayList.get(i2);
+                        break;
+                    }
+                    i2++;
+                }
+                if (senderData == null) {
+                    sender2.imageReceiver.onDetachedFromWindow();
+                    this.senders.remove(i);
+                    i--;
+                    sender2.index = -1;
+                    this.oldSenders.add(sender2);
+                }
+                i++;
+            }
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                SenderData senderData2 = arrayList.get(i3);
+                int i4 = 0;
+                while (true) {
+                    if (i4 >= this.senders.size()) {
+                        sender = null;
+                        break;
+                    } else {
+                        if (((Sender) this.senders.get(i4)).did == senderData2.did) {
+                            sender = (Sender) this.senders.get(i4);
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+                if (sender == null) {
+                    int i5 = 0;
+                    while (true) {
+                        if (i5 >= this.oldSenders.size()) {
+                            break;
+                        }
+                        if (((Sender) this.oldSenders.get(i5)).did == senderData2.did) {
+                            sender = (Sender) this.oldSenders.get(i5);
+                            break;
+                        }
+                        i5++;
+                    }
+                    if (sender != null) {
+                        this.oldSenders.remove(sender);
+                        sender.imageReceiver.onAttachedToWindow();
+                        this.senders.add(sender);
+                    }
+                }
+                if (sender == null) {
+                    sender = new Sender(senderData2.did);
+                    sender.animatedScale.set(0.0f, true);
+                    this.senders.add(sender);
+                    sender.animatedPosition.set((arrayList.size() - 1) - i3, true);
+                }
+                sender.setStars(senderData2.stars);
+                sender.setAnonymous(senderData2.anonymous);
+                sender.index = (arrayList.size() - 1) - i3;
+            }
+            invalidate();
+        }
+    }
+
+    public StarsReactionsSheet(final Context context, final int i, long j, final ChatActivity chatActivity, final MessageObject messageObject, ArrayList arrayList, boolean z, final Theme.ResourcesProvider resourcesProvider) {
+        super(context, false, resourcesProvider);
+        TLRPC$MessageReactor tLRPC$MessageReactor;
+        int i2 = 9;
+        this.starRef = new ColoredImageSpan[1];
+        this.checkedVisiblity = false;
+        this.resourcesProvider = resourcesProvider;
+        this.currentAccount = i;
+        this.messageObject = messageObject;
+        this.reactors = arrayList;
+        long clientUserId = UserConfig.getInstance(i).getClientUserId();
+        if (arrayList != null) {
+            Iterator it = arrayList.iterator();
+            TLRPC$MessageReactor tLRPC$MessageReactor2 = null;
+            while (it.hasNext()) {
+                TLRPC$MessageReactor tLRPC$MessageReactor3 = (TLRPC$MessageReactor) it.next();
+                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageReactor3.peer_id);
+                if (tLRPC$MessageReactor3.anonymous && tLRPC$MessageReactor3.my) {
+                    peerDialogId = clientUserId;
+                }
+                if (tLRPC$MessageReactor3.my || peerDialogId == clientUserId) {
+                    tLRPC$MessageReactor2 = tLRPC$MessageReactor3;
+                }
+            }
+            tLRPC$MessageReactor = tLRPC$MessageReactor2;
+        } else {
+            tLRPC$MessageReactor = null;
+        }
+        boolean z2 = (arrayList == null || arrayList.isEmpty()) ? false : true;
+        this.anonymous = StarsController.getInstance(i).arePaidReactionsAnonymous(messageObject);
+        fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.layout = linearLayout;
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.topLayout = frameLayout;
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2));
+        this.slider = new StarsSlider(context) {
+            @Override
+            public void onValueChanged(int i3) {
+                long j2 = i3;
+                StarsReactionsSheet.this.updateSenders(j2);
+                if (StarsReactionsSheet.this.buttonView != null) {
+                    StarsReactionsSheet.this.buttonView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(j2, ',')), StarsReactionsSheet.this.starRef), true);
+                }
+            }
+        };
+        int[] iArr = {1, 50, 100, 500, 1000, 2000, 5000, 7500, 10000};
+        long j2 = MessagesController.getInstance(i).starsPaidReactionAmountMax;
+        ArrayList arrayList2 = new ArrayList();
+        int i3 = 0;
+        while (true) {
+            if (i3 >= i2) {
+                break;
+            }
+            int i4 = iArr[i3];
+            int i5 = i3;
+            if (i4 > j2) {
+                arrayList2.add(Integer.valueOf((int) j2));
+                break;
+            }
+            arrayList2.add(Integer.valueOf(i4));
+            if (iArr[i5] == j2) {
+                break;
+            }
+            i3 = i5 + 1;
+            i2 = 9;
+        }
+        int[] iArr2 = new int[arrayList2.size()];
+        for (int i6 = 0; i6 < arrayList2.size(); i6++) {
+            iArr2[i6] = ((Integer) arrayList2.get(i6)).intValue();
+        }
+        this.slider.setSteps(100, iArr2);
+        if (z) {
+            this.topLayout.addView(this.slider, LayoutHelper.createFrame(-1, -2.0f));
+        }
+        TextView textView = new TextView(context) {
+            @Override
+            protected void onMeasure(int i7, int i8) {
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
+            }
+        };
+        this.titleView = textView;
+        int i7 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i7));
+        textView.setTextSize(1, 20.0f);
+        textView.setText(LocaleController.getString(R.string.StarsReactionTitle));
+        textView.setGravity(16);
+        textView.setTypeface(AndroidUtilities.bold());
+        this.topLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 22.0f, 0.0f, 22.0f, 0.0f));
+        StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, i);
+        this.balanceView = starsBalanceView;
+        ScaleStateListAnimator.apply(starsBalanceView);
+        starsBalanceView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                StarsReactionsSheet.this.lambda$new$0(chatActivity, view);
+            }
+        });
+        this.topLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 6.0f, 0.0f, 6.0f, 0.0f));
+        LinearLayout linearLayout2 = new LinearLayout(context);
+        linearLayout2.setOrientation(1);
+        this.topLayout.addView(linearLayout2, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, z ? 179.0f : 45.0f, 0.0f, 15.0f));
+        final TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+        TextView textView2 = new TextView(context);
+        this.statusView = textView2;
+        textView2.setTextColor(Theme.getColor(i7));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(17);
+        textView2.setSingleLine(false);
+        textView2.setMaxLines(3);
+        textView2.setText(AndroidUtilities.replaceTags(tLRPC$MessageReactor != null ? LocaleController.formatPluralStringComma("StarsReactionTextSent", tLRPC$MessageReactor.count) : LocaleController.formatString(R.string.StarsReactionText, chat == null ? "" : chat.title)));
+        if (z) {
+            linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 40, 0, 40, 0));
+        }
+        if (z2) {
+            View view = new View(context) {
+                private final LinearGradient gradient = new LinearGradient(0.0f, 0.0f, 255.0f, 0.0f, new int[]{-1135603, -404714}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                private final Matrix gradientMatrix = new Matrix();
+                private final Paint backgroundPaint = new Paint(1);
+                private final Paint separatorPaint = new Paint(1);
+                private final Text text = new Text(LocaleController.getString(R.string.StarsReactionTopSenders), 14.16f, AndroidUtilities.bold());
+
+                @Override
+                public void dispatchDraw(Canvas canvas) {
+                    this.gradientMatrix.reset();
+                    this.gradientMatrix.postTranslate(AndroidUtilities.dp(14.0f), 0.0f);
+                    this.gradientMatrix.postScale((getWidth() - AndroidUtilities.dp(28.0f)) / 255.0f, 1.0f);
+                    this.gradient.setLocalMatrix(this.gradientMatrix);
+                    this.backgroundPaint.setShader(this.gradient);
+                    float currentWidth = this.text.getCurrentWidth() + AndroidUtilities.dp(30.0f);
+                    this.separatorPaint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+                    canvas.drawRect(AndroidUtilities.dp(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.separatorPaint);
+                    canvas.drawRect(((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(8.0f), (getHeight() / 2.0f) - 1.0f, getWidth() - AndroidUtilities.dp(24.0f), getHeight() / 2.0f, this.separatorPaint);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set((getWidth() - currentWidth) / 2.0f, 0.0f, (getWidth() + currentWidth) / 2.0f, getHeight());
+                    canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, this.backgroundPaint);
+                    this.text.draw(canvas, (getWidth() - this.text.getCurrentWidth()) / 2.0f, getHeight() / 2.0f, -1, 1.0f);
+                }
+            };
+            this.separatorView = view;
+            linearLayout2.addView(view, LayoutHelper.createLinear(-1, 30, 55, 0, 20, 0, 0));
+            TopSendersView topSendersView = new TopSendersView(context);
+            this.topSendersView = topSendersView;
+            topSendersView.setOnSenderClickListener(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    StarsReactionsSheet.this.lambda$new$1(i, chatActivity, (Long) obj);
+                }
+            });
+            this.layout.addView(topSendersView, LayoutHelper.createLinear(-1, 110));
+            View view2 = new View(context);
+            this.checkSeparatorView = view2;
+            view2.setBackgroundColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+            if (z || tLRPC$MessageReactor != null) {
+                this.layout.addView(view2, LayoutHelper.createLinear(-1, 1.0f / AndroidUtilities.density, 7, 24, 0, 24, 0));
+            }
+        } else {
+            this.separatorView = null;
+            this.topSendersView = null;
+            this.checkSeparatorView = null;
+        }
+        CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
+        this.checkBox = checkBox2;
+        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
+        checkBox2.setDrawUnchecked(true);
+        checkBox2.setChecked(!this.anonymous, false);
+        TopSendersView topSendersView2 = this.topSendersView;
+        if (topSendersView2 != null) {
+            topSendersView2.setMyselfAsAnonymous(this.anonymous);
+        }
+        checkBox2.setDrawBackgroundAsArc(10);
+        TextView textView3 = new TextView(context);
+        this.checkTextView = textView3;
+        textView3.setTextColor(Theme.getColor(i7, resourcesProvider));
+        textView3.setTextSize(1, 14.0f);
+        textView3.setText(LocaleController.getString(R.string.StarsReactionShowMeInTopSenders));
+        LinearLayout linearLayout3 = new LinearLayout(context);
+        this.checkLayout = linearLayout3;
+        linearLayout3.setOrientation(0);
+        linearLayout3.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
+        linearLayout3.addView(checkBox2, LayoutHelper.createLinear(21, 21, 16, 0, 0, 9, 0));
+        linearLayout3.addView(textView3, LayoutHelper.createLinear(-2, -2, 16));
+        linearLayout3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                StarsReactionsSheet.this.lambda$new$2(view3);
+            }
+        });
+        ScaleStateListAnimator.apply(linearLayout3, 0.05f, 1.2f);
+        linearLayout3.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 6, 6));
+        if (z || tLRPC$MessageReactor != null) {
+            this.layout.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, 1, 0, z2 ? 10 : 4, 0, 10));
+        }
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
+        this.buttonView = buttonWithCounterView;
+        if (z) {
+            this.layout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
+        }
+        updateSenders(0L);
+        buttonWithCounterView.setText(StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.StarsReactionSend, LocaleController.formatNumber(50L, ',')), this.starRef), true);
+        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                StarsReactionsSheet.this.lambda$new$5(messageObject, chatActivity, i, context, resourcesProvider, chat, view3);
+            }
+        });
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
+        linksTextView.setTextSize(1, 13.0f);
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsReactionTerms), new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.lambda$new$6(context);
+            }
+        }));
+        linksTextView.setGravity(17);
+        linksTextView.setLinkTextColor(getThemedColor(Theme.key_dialogTextLink));
+        if (z) {
+            this.layout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 17, 14, 14, 14, 12));
+        }
+        setCustomView(this.layout);
+        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2) {
+            @Override
+            protected void startIdleAnimation() {
+            }
+        };
+        this.icon3dView = gLIconTextureView;
+        GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
+        gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
+        gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
+        gLIconRenderer.updateColors();
+        gLIconTextureView.mRenderer.white = 1.0f;
+        gLIconTextureView.setVisibility(4);
+        gLIconTextureView.setPaused(true);
+        this.container.addView(gLIconTextureView, LayoutHelper.createFrame(150, 150.0f));
+        this.slider.setValue(50);
+        if (arrayList != null) {
+            long j3 = 0;
+            for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                long j4 = ((TLRPC$MessageReactor) arrayList.get(i8)).count;
+                if (j4 > j3) {
+                    j3 = j4;
+                }
+            }
+            j3 = tLRPC$MessageReactor != null ? j3 - tLRPC$MessageReactor.count : j3;
+            if (j3 > 0) {
+                this.slider.setStarsTop(j3 + 1);
+            }
+        }
+    }
+
+    private void animate3dIcon(final Runnable runnable) {
+        View view;
+        final ChatMessageCell chatMessageCell;
+        final ReactionsLayoutInBubble.ReactionButton reactionButton;
+        if (this.messageObject == null || (view = this.chatActivity.fragmentView) == null || !view.isAttachedToWindow()) {
+            return;
+        }
+        ChatMessageCell chatMessageCell2 = this.messageCell;
+        MessageObject messageObject = null;
+        ReactionsLayoutInBubble.ReactionButton reactionButton2 = chatMessageCell2 != null ? chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar()) : null;
+        if (reactionButton2 == null) {
+            MessageObject.GroupedMessages validGroupedMessage = this.chatActivity.getValidGroupedMessage(this.messageObject);
+            if (validGroupedMessage != null && !validGroupedMessage.posArray.isEmpty()) {
+                Iterator<MessageObject> it = validGroupedMessage.messages.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    MessageObject next = it.next();
+                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(next);
+                    if (position != null) {
+                        int i = position.flags;
+                        if ((i & 1) != 0 && (i & 8) != 0) {
+                            messageObject = next;
+                            break;
+                        }
+                    }
+                }
+                if (messageObject != null) {
+                    chatMessageCell2 = this.chatActivity.findMessageCell(messageObject.getId(), false);
+                }
+            }
+            if (chatMessageCell2 == null) {
+                return;
+            }
+            chatMessageCell = chatMessageCell2;
+            reactionButton = chatMessageCell2.reactionsLayoutInBubble.getReactionButton(ReactionsLayoutInBubble.VisibleReaction.asStar());
+        } else {
+            chatMessageCell = chatMessageCell2;
+            reactionButton = reactionButton2;
+        }
+        if (reactionButton == null) {
+            return;
+        }
+        final int[] iArr = new int[2];
+        final RectF rectF = new RectF();
+        this.slider.getLocationInWindow(iArr);
+        rectF.set(this.slider.counterImage.getBounds());
+        rectF.inset(-AndroidUtilities.dp(3.5f), -AndroidUtilities.dp(3.5f));
+        rectF.offset(iArr[0], iArr[1]);
+        this.icon3dView.whenReady(new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.this.lambda$animate3dIcon$9();
+            }
+        });
+        reactionButton.drawImage = false;
+        chatMessageCell.invalidate();
+        final RectF rectF2 = new RectF();
+        final Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.lambda$animate3dIcon$10(ChatMessageCell.this, iArr, rectF2, reactionButton);
+            }
+        };
+        runnable2.run();
+        this.icon3dView.setPaused(false);
+        this.icon3dView.setVisibility(0);
+        final RectF rectF3 = new RectF();
+        rectF3.set(rectF);
+        this.icon3dView.setTranslationX(rectF3.centerX() - (AndroidUtilities.dp(150.0f) / 2.0f));
+        this.icon3dView.setTranslationY(rectF3.centerY() - (AndroidUtilities.dp(150.0f) / 2.0f));
+        this.icon3dView.setScaleX(rectF3.width() / AndroidUtilities.dp(150.0f));
+        this.icon3dView.setScaleY(rectF3.height() / AndroidUtilities.dp(150.0f));
+        ValueAnimator valueAnimator = this.iconAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        final boolean[] zArr = new boolean[1];
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.iconAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                StarsReactionsSheet.this.lambda$animate3dIcon$11(runnable2, rectF, rectF2, rectF3, zArr, runnable, valueAnimator2);
+            }
+        });
+        final ReactionsLayoutInBubble.ReactionButton reactionButton3 = reactionButton;
+        final ChatMessageCell chatMessageCell3 = chatMessageCell;
+        this.iconAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                StarsReactionsSheet.this.icon3dView.setVisibility(4);
+                StarsReactionsSheet.this.icon3dView.setPaused(true);
+                reactionButton3.drawImage = true;
+                ChatMessageCell chatMessageCell4 = chatMessageCell3;
+                if (chatMessageCell4 != null) {
+                    chatMessageCell4.invalidate();
+                }
+                StarsReactionsSheet.super.dismissInternal();
+                boolean[] zArr2 = zArr;
+                if (!zArr2[0]) {
+                    zArr2[0] = true;
+                    LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
+                    try {
+                        StarsReactionsSheet.this.container.performHapticFeedback(0, 1);
+                    } catch (Exception unused) {
+                    }
+                    Runnable runnable3 = runnable;
+                    if (runnable3 != null) {
+                        runnable3.run();
+                    }
+                }
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null || launchActivity.getFireworksOverlay() == null) {
+                    return;
+                }
+                LaunchActivity.instance.getFireworksOverlay().start(true);
+            }
+        });
+        this.iconAnimator.setDuration(800L);
+        this.iconAnimator.setInterpolator(new Interpolator() {
+            @Override
+            public float getInterpolation(float f) {
+                return (float) Math.pow(f, 2.0d);
+            }
+        });
+        this.iconAnimator.start();
+    }
+
+    private void checkVisibility() {
+        if (this.checkedVisiblity) {
+            return;
+        }
+        this.checkedVisiblity = true;
+        MessageObject messageObject = this.messageObject;
+        if (messageObject == null) {
+            return;
+        }
+        Boolean isMyPaidReactionAnonymous = messageObject.isMyPaidReactionAnonymous();
+        StarsController.getInstance(this.currentAccount).saveAnonymous(this.messageObject, this.anonymous);
+        if (isMyPaidReactionAnonymous == null || isMyPaidReactionAnonymous.booleanValue() != this.anonymous) {
+            this.messageObject.setMyPaidReactionAnonymous(this.anonymous);
+            StarsController.MessageId from = StarsController.MessageId.from(this.messageObject);
+            TLRPC$TL_messages_togglePaidReactionPrivacy tLRPC$TL_messages_togglePaidReactionPrivacy = new TLRPC$TL_messages_togglePaidReactionPrivacy();
+            tLRPC$TL_messages_togglePaidReactionPrivacy.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(from.did);
+            tLRPC$TL_messages_togglePaidReactionPrivacy.msg_id = from.mid;
+            tLRPC$TL_messages_togglePaidReactionPrivacy.isPrivate = this.anonymous;
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starReactionAnonymousUpdate, Long.valueOf(from.did), Integer.valueOf(from.mid), Boolean.valueOf(this.anonymous));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_togglePaidReactionPrivacy, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    StarsReactionsSheet.this.lambda$checkVisibility$8(tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+    }
+
+    public static void lambda$animate3dIcon$10(ChatMessageCell chatMessageCell, int[] iArr, RectF rectF, ReactionsLayoutInBubble.ReactionButton reactionButton) {
+        chatMessageCell.getLocationInWindow(iArr);
+        rectF.set(iArr[0] + chatMessageCell.reactionsLayoutInBubble.x + reactionButton.x + AndroidUtilities.dp(4.0f), iArr[1] + chatMessageCell.reactionsLayoutInBubble.y + reactionButton.y + ((reactionButton.height - AndroidUtilities.dp(22.0f)) / 2.0f), iArr[0] + chatMessageCell.reactionsLayoutInBubble.x + reactionButton.x + AndroidUtilities.dp(26.0f), iArr[1] + chatMessageCell.reactionsLayoutInBubble.y + reactionButton.y + ((reactionButton.height + AndroidUtilities.dp(22.0f)) / 2.0f));
+    }
+
+    public void lambda$animate3dIcon$11(Runnable runnable, RectF rectF, RectF rectF2, RectF rectF3, boolean[] zArr, Runnable runnable2, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        runnable.run();
+        AndroidUtilities.lerp(rectF, rectF2, floatValue, rectF3);
+        this.icon3dView.setTranslationX(rectF3.centerX() - (AndroidUtilities.dp(150.0f) / 2.0f));
+        this.icon3dView.setTranslationY(rectF3.centerY() - (AndroidUtilities.dp(150.0f) / 2.0f));
+        float max = Math.max(rectF3.width() / AndroidUtilities.dp(150.0f), rectF3.height() / AndroidUtilities.dp(150.0f));
+        double d = floatValue;
+        Double.isNaN(d);
+        float lerp = AndroidUtilities.lerp(max, 1.0f, (float) Math.sin(d * 3.141592653589793d));
+        this.icon3dView.setScaleX(lerp);
+        this.icon3dView.setScaleY(lerp);
+        GLIconRenderer gLIconRenderer = this.icon3dView.mRenderer;
+        gLIconRenderer.angleX = 360.0f * floatValue;
+        gLIconRenderer.white = Math.max(0.0f, 1.0f - (4.0f * floatValue));
+        if (zArr[0] || floatValue <= 0.95f) {
+            return;
+        }
+        zArr[0] = true;
+        LaunchActivity.makeRipple(rectF2.centerX(), rectF2.centerY(), 1.5f);
+        try {
+            this.container.performHapticFeedback(0, 1);
+        } catch (Exception unused) {
+        }
+        if (runnable2 != null) {
+            runnable2.run();
+        }
+    }
+
+    public void lambda$animate3dIcon$9() {
+        StarsSlider starsSlider = this.slider;
+        starsSlider.drawCounterImage = false;
+        starsSlider.invalidate();
+    }
+
+    public void lambda$checkVisibility$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        if (tLObject instanceof TLRPC$TL_boolTrue) {
+            MessagesStorage.getInstance(this.currentAccount).putMessages(new ArrayList<>(Arrays.asList(this.messageObject.messageOwner)), true, true, true, 0, 0, 0L);
+        }
+    }
+
+    public void lambda$new$0(final ChatActivity chatActivity, View view) {
+        dismiss();
+        chatActivity.presentFragment(new StarsIntroActivity() {
+            @Override
+            public void onFragmentDestroy() {
+                super.onFragmentDestroy();
+                if (chatActivity.isFullyVisible) {
+                    StarsReactionsSheet.this.show();
+                }
+            }
+        });
+    }
+
+    public void lambda$new$1(int i, ChatActivity chatActivity, Long l) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", l.longValue());
+        if (l.longValue() == UserConfig.getInstance(i).getClientUserId()) {
+            bundle.putBoolean("my_profile", true);
+        }
+        chatActivity.presentFragment(new ProfileActivity(bundle) {
+            @Override
+            public void onFragmentDestroy() {
+                super.onFragmentDestroy();
+                StarsReactionsSheet.this.show();
+            }
+        });
+        dismiss();
+    }
+
+    public void lambda$new$2(View view) {
+        this.checkBox.setChecked(!r3.isChecked(), true);
+        boolean z = !this.checkBox.isChecked();
+        this.anonymous = z;
+        TopSendersView topSendersView = this.topSendersView;
+        if (topSendersView != null) {
+            topSendersView.setMyselfAsAnonymous(z);
+        }
+    }
+
+    public void lambda$new$3(final StarsController.PendingPaidReactions pendingPaidReactions) {
+        this.sending = true;
+        Objects.requireNonNull(pendingPaidReactions);
+        animate3dIcon(new Runnable() {
+            @Override
+            public final void run() {
+                StarsController.PendingPaidReactions.this.apply();
+            }
+        });
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.this.dismiss();
+            }
+        }, 240L);
+    }
+
+    public void lambda$new$4(MessageObject messageObject, int i, StarsController starsController, ChatActivity chatActivity, long j) {
+        if ((messageObject == null ? null : messageObject.isMyPaidReactionAnonymous()) == null && messageObject != null) {
+            StarsController.getInstance(i).saveAnonymous(messageObject, this.anonymous);
+        }
+        final StarsController.PendingPaidReactions sendPaidReaction = starsController.sendPaidReaction(messageObject, chatActivity, j, false, true, Boolean.valueOf(!this.checkBox.isChecked()));
+        if (sendPaidReaction == null) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.this.lambda$new$3(sendPaidReaction);
+            }
+        });
+    }
+
+    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, final int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$Chat tLRPC$Chat, View view) {
+        if (messageObject == null || chatActivity == null || this.iconAnimator != null) {
+            return;
+        }
+        final long value = this.slider.getValue();
+        final StarsController starsController = StarsController.getInstance(i);
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                StarsReactionsSheet.this.lambda$new$4(messageObject, i, starsController, chatActivity, value);
+            }
+        };
+        if (!starsController.balanceAvailable() || starsController.getBalance() >= value) {
+            runnable.run();
+        } else {
+            new StarsIntroActivity.StarsNeededSheet(context, resourcesProvider, value, 5, tLRPC$Chat == null ? "" : tLRPC$Chat.title, runnable).show();
+        }
+    }
+
+    public static void lambda$new$6(Context context) {
+        Browser.openUrl(context, LocaleController.getString(R.string.StarsReactionTermsLink));
+    }
+
+    public static int lambda$updateSenders$7(SenderData senderData, SenderData senderData2) {
+        return (int) (senderData2.stars - senderData.stars);
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        if (this.slider.tracking) {
+            return false;
+        }
+        return super.canDismissWithSwipe();
+    }
+
+    @Override
+    public void dismiss() {
+        if (!this.sending) {
+            checkVisibility();
+        }
+        super.dismiss();
+    }
+
+    @Override
+    public void dismissInternal() {
+        ValueAnimator valueAnimator = this.iconAnimator;
+        if (valueAnimator == null || !valueAnimator.isRunning()) {
+            super.dismissInternal();
+        }
+    }
+
+    public void setMessageCell(ChatActivity chatActivity, int i, ChatMessageCell chatMessageCell) {
+        this.chatActivity = chatActivity;
+        this.messageId = i;
+        this.messageCell = chatMessageCell;
+    }
+
+    public void updateSenders(long j) {
+        if (this.topSendersView != null) {
+            ArrayList arrayList = new ArrayList();
+            long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
+            long j2 = 0;
+            if (this.reactors != null) {
+                for (int i = 0; i < this.reactors.size(); i++) {
+                    TLRPC$MessageReactor tLRPC$MessageReactor = (TLRPC$MessageReactor) this.reactors.get(i);
+                    long peerDialogId = DialogObject.getPeerDialogId(tLRPC$MessageReactor.peer_id);
+                    boolean z = tLRPC$MessageReactor.anonymous;
+                    if (z) {
+                        peerDialogId = tLRPC$MessageReactor.my ? clientUserId : -i;
+                    }
+                    if (tLRPC$MessageReactor.my || peerDialogId == clientUserId) {
+                        j2 = tLRPC$MessageReactor.count;
+                    } else {
+                        arrayList.add(SenderData.of(z, peerDialogId, tLRPC$MessageReactor.count));
+                    }
+                }
+            }
+            long j3 = j2 + j;
+            if (j3 > 0) {
+                arrayList.add(SenderData.of(this.anonymous, clientUserId, j3));
+            }
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$updateSenders$7;
+                    lambda$updateSenders$7 = StarsReactionsSheet.lambda$updateSenders$7((StarsReactionsSheet.SenderData) obj, (StarsReactionsSheet.SenderData) obj2);
+                    return lambda$updateSenders$7;
+                }
+            });
+            this.topSendersView.setSenders(new ArrayList<>(arrayList.subList(0, Math.min(3, arrayList.size()))));
         }
     }
 }

@@ -6,7 +6,7 @@ public class TLRPC$StarsTransaction extends TLObject {
     public byte[] bot_payload;
     public int date;
     public String description;
-    public ArrayList<TLRPC$MessageMedia> extended_media = new ArrayList<>();
+    public ArrayList extended_media = new ArrayList();
     public boolean failed;
     public int flags;
     public boolean gift;
@@ -117,7 +117,7 @@ public class TLRPC$StarsTransaction extends TLObject {
                     int size = this.extended_media.size();
                     abstractSerializedData2.writeInt32(size);
                     for (int i6 = 0; i6 < size; i6++) {
-                        this.extended_media.get(i6).serializeToStream(abstractSerializedData2);
+                        ((TLRPC$MessageMedia) this.extended_media.get(i6)).serializeToStream(abstractSerializedData2);
                     }
                 }
             }

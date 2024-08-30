@@ -39,6 +39,14 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
         throw new OutOfMemoryError();
     }
 
+    public int count() {
+        return this.count;
+    }
+
+    public synchronized void reset() {
+        this.count = 0;
+    }
+
     @Override
     public synchronized void write(int i) {
         ensureCapacity(this.count + 1);
@@ -46,6 +54,18 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
         int i2 = this.count;
         bArr[i2] = (byte) i;
         this.count = i2 + 1;
+    }
+
+    @Override
+    public synchronized void write(byte[] bArr, int i, int i2) {
+        if (i >= 0) {
+            if (i <= bArr.length && i2 >= 0 && (i + i2) - bArr.length <= 0) {
+                ensureCapacity(this.count + i2);
+                System.arraycopy(bArr, i, this.buf, this.count, i2);
+                this.count += i2;
+            }
+        }
+        throw new IndexOutOfBoundsException();
     }
 
     public void writeInt(int i) {
@@ -72,25 +92,5 @@ public class ImmutableByteArrayOutputStream extends OutputStream {
         bArr[i + 6] = (byte) (j >>> 8);
         bArr[i + 7] = (byte) j;
         this.count = i + 8;
-    }
-
-    @Override
-    public synchronized void write(byte[] bArr, int i, int i2) {
-        if (i >= 0) {
-            if (i <= bArr.length && i2 >= 0 && (i + i2) - bArr.length <= 0) {
-                ensureCapacity(this.count + i2);
-                System.arraycopy(bArr, i, this.buf, this.count, i2);
-                this.count += i2;
-            }
-        }
-        throw new IndexOutOfBoundsException();
-    }
-
-    public synchronized void reset() {
-        this.count = 0;
-    }
-
-    public int count() {
-        return this.count;
     }
 }

@@ -28,11 +28,53 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     private int itemSize;
     private int itemsPerRow;
     GridLayoutManager layoutManager;
-    Consumer<Object> wallpaperConsumer;
+    Consumer wallpaperConsumer;
 
-    @Override
-    public int needsActionBar() {
-        return 1;
+    public class Adapter extends RecyclerListView.SelectionAdapter {
+        private Context mContext;
+        private final ArrayList wallpapers = new ArrayList();
+
+        public Adapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.wallpapers.size();
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            return 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            WallpaperCell wallpaperCell = (WallpaperCell) viewHolder.itemView;
+            wallpaperCell.setParams(1, false, false);
+            wallpaperCell.setSize(ChatAttachAlertColorsLayout.this.itemSize);
+            wallpaperCell.setWallpaper(1, 0, this.wallpapers.get(i), null, null, false);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            WallpaperCell wallpaperCell = new WallpaperCell(this.mContext, 1) {
+                @Override
+                protected void onWallpaperClick(Object obj, int i2) {
+                    Consumer consumer = ChatAttachAlertColorsLayout.this.wallpaperConsumer;
+                    if (consumer != null) {
+                        consumer.accept(obj);
+                    }
+                }
+            };
+            wallpaperCell.drawStubBackground = false;
+            return new RecyclerListView.Holder(wallpaperCell);
+        }
     }
 
     public ChatAttachAlertColorsLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -41,14 +83,6 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         this.itemsPerRow = 3;
         this.currentItemTop = 0;
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
-            @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() != 0 || motionEvent.getY() >= ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - AndroidUtilities.dp(80.0f)) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            }
-
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() != 0 || motionEvent.getY() >= ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - AndroidUtilities.dp(80.0f)) {
@@ -61,6 +95,14 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
             public void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 super.onLayout(z, i, i2, i3, i4);
                 PhotoViewer.getInstance().checkCurrentImageVisibility();
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0 || motionEvent.getY() >= ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - AndroidUtilities.dp(80.0f)) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
             }
         };
         this.gridView = recyclerListView;
@@ -75,15 +117,6 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         addView(this.gridView, LayoutHelper.createFrame(-1, -1.0f));
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                if (ChatAttachAlertColorsLayout.this.gridView.getChildCount() <= 0) {
-                    return;
-                }
-                ChatAttachAlertColorsLayout chatAttachAlertColorsLayout = ChatAttachAlertColorsLayout.this;
-                chatAttachAlertColorsLayout.parentAlert.updateLayout(chatAttachAlertColorsLayout, true, i2);
-            }
-
-            @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i) {
                 RecyclerListView.Holder holder;
                 if (i == 0) {
@@ -97,13 +130,17 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
                     ChatAttachAlertColorsLayout.this.gridView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.dp(7.0f));
                 }
             }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                if (ChatAttachAlertColorsLayout.this.gridView.getChildCount() <= 0) {
+                    return;
+                }
+                ChatAttachAlertColorsLayout chatAttachAlertColorsLayout = ChatAttachAlertColorsLayout.this;
+                chatAttachAlertColorsLayout.parentAlert.updateLayout(chatAttachAlertColorsLayout, true, i2);
+            }
         });
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, this.itemSize) {
-            @Override
-            public boolean supportsPredictiveItemAnimations() {
-                return false;
-            }
-
             @Override
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
                 LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
@@ -120,6 +157,11 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
                 linearSmoothScroller.setTargetPosition(i);
                 startSmoothScroll(linearSmoothScroller);
             }
+
+            @Override
+            public boolean supportsPredictiveItemAnimations() {
+                return false;
+            }
         };
         this.layoutManager = gridLayoutManager;
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -129,16 +171,6 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
             }
         });
         this.gridView.setLayoutManager(this.layoutManager);
-    }
-
-    @Override
-    public void scrollToTop() {
-        this.gridView.smoothScrollToPosition(0);
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.gridView.getPaddingTop();
     }
 
     @Override
@@ -168,72 +200,18 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    public void setTranslationY(float f) {
-        super.setTranslationY(f);
-        this.parentAlert.getSheetContainer().invalidate();
-        invalidate();
+    public int getListTopPadding() {
+        return this.gridView.getPaddingTop();
+    }
+
+    @Override
+    public int needsActionBar() {
+        return 1;
     }
 
     @Override
     public void onPreMeasure(int r7, int r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertColorsLayout.onPreMeasure(int, int):void");
-    }
-
-    public void setDelegate(Consumer<Object> consumer) {
-        this.wallpaperConsumer = consumer;
-    }
-
-    public void updateColors(boolean z) {
-        this.adapter.wallpapers.clear();
-        WallpapersListActivity.fillDefaultColors(this.adapter.wallpapers, z);
-        this.adapter.notifyDataSetChanged();
-    }
-
-    public class Adapter extends RecyclerListView.SelectionAdapter {
-        private Context mContext;
-        private final ArrayList<Object> wallpapers = new ArrayList<>();
-
-        @Override
-        public int getItemViewType(int i) {
-            return 0;
-        }
-
-        public Adapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 0;
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.wallpapers.size();
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            WallpaperCell wallpaperCell = new WallpaperCell(this.mContext, 1) {
-                @Override
-                protected void onWallpaperClick(Object obj, int i2) {
-                    Consumer<Object> consumer = ChatAttachAlertColorsLayout.this.wallpaperConsumer;
-                    if (consumer != null) {
-                        consumer.accept(obj);
-                    }
-                }
-            };
-            wallpaperCell.drawStubBackground = false;
-            return new RecyclerListView.Holder(wallpaperCell);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            WallpaperCell wallpaperCell = (WallpaperCell) viewHolder.itemView;
-            wallpaperCell.setParams(1, false, false);
-            wallpaperCell.setSize(ChatAttachAlertColorsLayout.this.itemSize);
-            wallpaperCell.setWallpaper(1, 0, this.wallpapers.get(i), null, null, false);
-        }
     }
 
     @Override
@@ -244,5 +222,27 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         }
         this.parentAlert.actionBar.setTitle(LocaleController.getString(R.string.SelectColor));
         this.layoutManager.scrollToPositionWithOffset(0, 0);
+    }
+
+    @Override
+    public void scrollToTop() {
+        this.gridView.smoothScrollToPosition(0);
+    }
+
+    public void setDelegate(Consumer consumer) {
+        this.wallpaperConsumer = consumer;
+    }
+
+    @Override
+    public void setTranslationY(float f) {
+        super.setTranslationY(f);
+        this.parentAlert.getSheetContainer().invalidate();
+        invalidate();
+    }
+
+    public void updateColors(boolean z) {
+        this.adapter.wallpapers.clear();
+        WallpapersListActivity.fillDefaultColors(this.adapter.wallpapers, z);
+        this.adapter.notifyDataSetChanged();
     }
 }

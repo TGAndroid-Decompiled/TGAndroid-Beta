@@ -1,6 +1,5 @@
 package org.telegram.ui.Cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,7 +16,6 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"NewApi"})
 public class PhotoAttachCameraCell extends FrameLayout {
     private ImageView backgroundView;
     private ImageView imageView;
@@ -40,6 +38,24 @@ public class PhotoAttachCameraCell extends FrameLayout {
         this.itemSize = AndroidUtilities.dp(0.0f);
     }
 
+    public Drawable getDrawable() {
+        return this.backgroundView.getDrawable();
+    }
+
+    public ImageView getImageView() {
+        return this.imageView;
+    }
+
+    protected int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogCameraIcon), PorterDuff.Mode.MULTIPLY));
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824));
@@ -57,16 +73,6 @@ public class PhotoAttachCameraCell extends FrameLayout {
         layoutParams2.width = i3;
     }
 
-    public ImageView getImageView() {
-        return this.imageView;
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogCameraIcon), PorterDuff.Mode.MULTIPLY));
-    }
-
     public void updateBitmap() {
         Bitmap bitmap;
         try {
@@ -79,13 +85,5 @@ public class PhotoAttachCameraCell extends FrameLayout {
         } else {
             this.backgroundView.setImageResource(R.drawable.icplaceholder);
         }
-    }
-
-    public Drawable getDrawable() {
-        return this.backgroundView.getDrawable();
-    }
-
-    protected int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC$Bool;
 import org.telegram.tgnet.TLRPC$InputPeer;
 
 public class TL_stories$TL_stories_incrementStoryViews extends TLObject {
-    public ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
     public TLRPC$InputPeer peer;
 
     @Override
@@ -23,7 +23,7 @@ public class TL_stories$TL_stories_incrementStoryViews extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.id.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.id.get(i)).intValue());
         }
     }
 }

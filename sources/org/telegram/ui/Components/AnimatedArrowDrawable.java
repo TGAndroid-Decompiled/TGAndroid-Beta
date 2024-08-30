@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 
 public class AnimatedArrowDrawable extends Drawable {
@@ -16,15 +15,6 @@ public class AnimatedArrowDrawable extends Drawable {
     private long lastUpdateTime;
     private Paint paint;
     private Path path = new Path();
-
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setAlpha(int i) {
-    }
 
     public AnimatedArrowDrawable(int i, boolean z) {
         Paint paint = new Paint(1);
@@ -38,10 +28,8 @@ public class AnimatedArrowDrawable extends Drawable {
         updatePath();
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        canvas.drawPath(this.path, this.paint);
-        checkAnimation();
+    private void checkAnimation() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedArrowDrawable.checkAnimation():void");
     }
 
     private void updatePath() {
@@ -58,7 +46,31 @@ public class AnimatedArrowDrawable extends Drawable {
         }
     }
 
-    @Keep
+    @Override
+    public void draw(Canvas canvas) {
+        canvas.drawPath(this.path, this.paint);
+        checkAnimation();
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        return AndroidUtilities.dp(26.0f);
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        return AndroidUtilities.dp(26.0f);
+    }
+
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+    }
+
     public void setAnimationProgress(float f) {
         this.animProgress = f;
         this.animateToProgress = f;
@@ -75,53 +87,13 @@ public class AnimatedArrowDrawable extends Drawable {
         invalidateSelf();
     }
 
-    private void checkAnimation() {
-        if (this.animateToProgress != this.animProgress) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            long j = elapsedRealtime - this.lastUpdateTime;
-            this.lastUpdateTime = elapsedRealtime;
-            float f = this.animProgress;
-            float f2 = this.animateToProgress;
-            if (f < f2) {
-                float f3 = f + (((float) j) / 180.0f);
-                this.animProgress = f3;
-                if (f3 > f2) {
-                    this.animProgress = f2;
-                }
-            } else {
-                float f4 = f - (((float) j) / 180.0f);
-                this.animProgress = f4;
-                if (f4 < f2) {
-                    this.animProgress = f2;
-                }
-            }
-            updatePath();
-            invalidateSelf();
-        }
-    }
-
     public void setColor(int i) {
         this.paint.setColor(i);
         invalidateSelf();
     }
 
-    @Keep
-    public float getAnimationProgress() {
-        return this.animProgress;
-    }
-
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        return AndroidUtilities.dp(26.0f);
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        return AndroidUtilities.dp(26.0f);
     }
 }

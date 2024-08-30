@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_saveAppLog extends TLObject {
-    public ArrayList<TLRPC$TL_inputAppEvent> events = new ArrayList<>();
+    public ArrayList events = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -17,7 +17,7 @@ public class TLRPC$TL_help_saveAppLog extends TLObject {
         int size = this.events.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.events.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_inputAppEvent) this.events.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

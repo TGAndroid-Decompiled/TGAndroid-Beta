@@ -14,15 +14,13 @@ public class StickerImageView extends BackupImageView implements NotificationCen
         this.currentAccount = i;
     }
 
-    public void setStickerNum(int i) {
-        if (this.stickerNum != i) {
-            this.stickerNum = i;
-            setSticker();
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.diceStickersDidLoad) {
+            if (this.stickerPackName.equals((String) objArr[0])) {
+                setSticker();
+            }
         }
-    }
-
-    public void setStickerPackName(String str) {
-        this.stickerPackName = str;
     }
 
     @Override
@@ -38,16 +36,18 @@ public class StickerImageView extends BackupImageView implements NotificationCen
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
     }
 
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.diceStickersDidLoad) {
-            if (this.stickerPackName.equals((String) objArr[0])) {
-                setSticker();
-            }
+    public void setSticker() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerImageView.setSticker():void");
+    }
+
+    public void setStickerNum(int i) {
+        if (this.stickerNum != i) {
+            this.stickerNum = i;
+            setSticker();
         }
     }
 
-    public void setSticker() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.StickerImageView.setSticker():void");
+    public void setStickerPackName(String str) {
+        this.stickerPackName = str;
     }
 }

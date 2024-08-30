@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class ThanosEffect$DrawingThread$Animation$$ExternalSyntheticApiModelOutline9 {
+public abstract class ThanosEffect$DrawingThread$Animation$$ExternalSyntheticApiModelOutline9 {
 }

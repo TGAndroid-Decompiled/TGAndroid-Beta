@@ -9,16 +9,6 @@ import org.telegram.ui.WrappedResourceProvider;
 public class DarkFragmentWrapper extends BaseFragment {
     private final BaseFragment parentFragment;
 
-    @Override
-    public boolean isLightStatusBar() {
-        return false;
-    }
-
-    @Override
-    public boolean presentFragment(BaseFragment baseFragment) {
-        return false;
-    }
-
     public DarkFragmentWrapper(BaseFragment baseFragment) {
         this.parentFragment = baseFragment;
     }
@@ -31,5 +21,15 @@ public class DarkFragmentWrapper extends BaseFragment {
     @Override
     public Theme.ResourcesProvider getResourceProvider() {
         return new WrappedResourceProvider(new DarkThemeResourceProvider());
+    }
+
+    @Override
+    public boolean isLightStatusBar() {
+        return false;
+    }
+
+    @Override
+    public boolean presentFragment(BaseFragment baseFragment) {
+        return false;
     }
 }

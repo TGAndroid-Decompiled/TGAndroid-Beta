@@ -21,8 +21,8 @@ public class SnowflakesEffect {
     private Paint bitmapPaint = new Paint();
     private int colorKey = Theme.key_actionBarDefaultTitle;
     final float angleDiff = 1.0471976f;
-    private ArrayList<Particle> particles = new ArrayList<>();
-    private ArrayList<Particle> freeParticles = new ArrayList<>();
+    private ArrayList particles = new ArrayList();
+    private ArrayList freeParticles = new ArrayList();
 
     public class Particle {
         float alpha;
@@ -132,25 +132,12 @@ public class SnowflakesEffect {
         }
     }
 
-    public void setColorKey(int i) {
-        this.colorKey = i;
-        updateColors();
-    }
-
-    public void updateColors() {
-        int color = Theme.getColor(this.colorKey) & (-1644826);
-        if (this.color != color) {
-            this.color = color;
-            this.particlePaint.setColor(color);
-            this.particleThinPaint.setColor(color);
-        }
-    }
-
     private void updateParticles(long j) {
+        float interpolation;
         int size = this.particles.size();
         int i = 0;
         while (i < size) {
-            Particle particle = this.particles.get(i);
+            Particle particle = (Particle) this.particles.get(i);
             float f = particle.currentTime;
             float f2 = particle.lifeTime;
             if (f >= f2) {
@@ -162,18 +149,21 @@ public class SnowflakesEffect {
                 size--;
             } else {
                 if (this.viewType == 0) {
-                    if (f < 200.0f) {
-                        particle.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
-                    } else {
+                    if (f >= 200.0f) {
                         particle.alpha = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation((f - 200.0f) / (f2 - 200.0f));
                     }
-                } else if (f < 200.0f) {
-                    particle.alpha = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
+                    interpolation = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
+                    particle.alpha = interpolation;
                 } else {
-                    float f3 = f2 - f;
-                    if (f3 < 2000.0f) {
-                        particle.alpha = AndroidUtilities.decelerateInterpolator.getInterpolation(f3 / 2000.0f);
+                    if (f >= 200.0f) {
+                        float f3 = f2 - f;
+                        if (f3 < 2000.0f) {
+                            interpolation = AndroidUtilities.decelerateInterpolator.getInterpolation(f3 / 2000.0f);
+                            particle.alpha = interpolation;
+                        }
                     }
+                    interpolation = AndroidUtilities.accelerateInterpolator.getInterpolation(f / 200.0f);
+                    particle.alpha = interpolation;
                 }
                 float f4 = particle.x;
                 float f5 = particle.vx;
@@ -194,7 +184,7 @@ public class SnowflakesEffect {
         }
         int size = this.particles.size();
         for (int i = 0; i < size; i++) {
-            this.particles.get(i).draw(canvas);
+            ((Particle) this.particles.get(i)).draw(canvas);
         }
         int i2 = this.viewType;
         int i3 = i2 == 0 ? 100 : 300;
@@ -210,11 +200,11 @@ public class SnowflakesEffect {
                     double d = nextInt * 0.017453292519943295d;
                     float cos = (float) Math.cos(d);
                     float sin = (float) Math.sin(d);
-                    if (!this.freeParticles.isEmpty()) {
-                        particle = this.freeParticles.get(0);
-                        this.freeParticles.remove(0);
-                    } else {
+                    if (this.freeParticles.isEmpty()) {
                         particle = new Particle();
+                    } else {
+                        particle = (Particle) this.freeParticles.get(0);
+                        this.freeParticles.remove(0);
                     }
                     particle.x = nextFloat;
                     particle.y = nextFloat2;
@@ -224,11 +214,7 @@ public class SnowflakesEffect {
                     particle.currentTime = 0.0f;
                     particle.scale = Utilities.random.nextFloat() * 1.2f;
                     particle.type = Utilities.random.nextInt(2);
-                    if (this.viewType == 0) {
-                        particle.lifeTime = Utilities.random.nextInt(100) + 2000;
-                    } else {
-                        particle.lifeTime = Utilities.random.nextInt(2000) + 3000;
-                    }
+                    particle.lifeTime = this.viewType == 0 ? Utilities.random.nextInt(100) + 2000 : Utilities.random.nextInt(2000) + 3000;
                     particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
                     this.particles.add(particle);
                 }
@@ -238,5 +224,19 @@ public class SnowflakesEffect {
         updateParticles(Math.min(17L, currentTimeMillis - this.lastAnimationTime));
         this.lastAnimationTime = currentTimeMillis;
         view.invalidate();
+    }
+
+    public void setColorKey(int i) {
+        this.colorKey = i;
+        updateColors();
+    }
+
+    public void updateColors() {
+        int color = Theme.getColor(this.colorKey) & (-1644826);
+        if (this.color != color) {
+            this.color = color;
+            this.particlePaint.setColor(color);
+            this.particleThinPaint.setColor(color);
+        }
     }
 }

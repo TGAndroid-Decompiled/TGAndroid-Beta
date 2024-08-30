@@ -8,9 +8,9 @@ import org.telegram.tgnet.TLRPC$User;
 
 public class TL_stories$TL_premium_myBoosts extends TLObject {
     public static int constructor = -1696454430;
-    public ArrayList<TL_stories$TL_myBoost> my_boosts = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList my_boosts = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stories$TL_premium_myBoosts TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -80,19 +80,19 @@ public class TL_stories$TL_premium_myBoosts extends TLObject {
         int size = this.my_boosts.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.my_boosts.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stories$TL_myBoost) this.my_boosts.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

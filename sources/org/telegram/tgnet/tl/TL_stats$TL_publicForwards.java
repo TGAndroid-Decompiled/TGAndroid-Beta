@@ -10,9 +10,9 @@ public class TL_stats$TL_publicForwards extends TLObject {
     public int count;
     public int flags;
     public String next_offset;
-    public ArrayList<TL_stats$PublicForward> forwards = new ArrayList<>();
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList forwards = new ArrayList();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stats$TL_publicForwards TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1828487648 != i) {
@@ -89,7 +89,7 @@ public class TL_stats$TL_publicForwards extends TLObject {
         int size = this.forwards.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.forwards.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stats$PublicForward) this.forwards.get(i)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.next_offset);
@@ -98,13 +98,13 @@ public class TL_stats$TL_publicForwards extends TLObject {
         int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.users.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
     }
 }

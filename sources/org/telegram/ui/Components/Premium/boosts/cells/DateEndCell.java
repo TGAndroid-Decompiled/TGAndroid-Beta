@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -12,7 +11,6 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class DateEndCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private long selectedTime;
@@ -42,12 +40,6 @@ public class DateEndCell extends FrameLayout {
         setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
     }
 
-    public void setDate(long j) {
-        this.selectedTime = j;
-        Date date = new Date(j);
-        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
-    }
-
     public long getSelectedTime() {
         return this.selectedTime;
     }
@@ -55,5 +47,11 @@ public class DateEndCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+    }
+
+    public void setDate(long j) {
+        this.selectedTime = j;
+        Date date = new Date(j);
+        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
     }
 }

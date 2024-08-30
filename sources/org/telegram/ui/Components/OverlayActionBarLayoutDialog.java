@@ -3,15 +3,10 @@ package org.telegram.ui.Components;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.ContextWrapper;
-import android.os.Build;
-import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowInsets;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
@@ -26,35 +21,25 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     private PasscodeView passcodeView;
     private Theme.ResourcesProvider resourcesProvider;
 
-    @Override
-    public boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout) {
-        return true;
-    }
+    private final class EmptyFragment extends BaseFragment {
+        private EmptyFragment() {
+        }
 
-    @Override
-    public boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout) {
-        return true;
-    }
+        @Override
+        public View createView(Context context) {
+            this.hasOwnBackground = true;
+            this.actionBar.setAddToContainer(false);
+            View view = new View(context);
+            view.setBackgroundColor(0);
+            return view;
+        }
 
-    @Override
-    public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
-        boolean needPresentFragment;
-        needPresentFragment = needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
-        return needPresentFragment;
-    }
-
-    @Override
-    public boolean onPreIme() {
-        return false;
-    }
-
-    @Override
-    public void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z) {
-    }
-
-    @Override
-    public void onThemeProgress(float f) {
-        INavigationLayout.INavigationLayoutDelegate.CC.$default$onThemeProgress(this, f);
+        @Override
+        public void onTransitionAnimationEnd(boolean z, boolean z2) {
+            if (z && z2) {
+                OverlayActionBarLayoutDialog.this.dismiss();
+            }
+        }
     }
 
     public OverlayActionBarLayoutDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -90,6 +75,79 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         onBackPressed();
     }
 
+    public static WindowInsets lambda$onCreate$1(View view, WindowInsets windowInsets) {
+        int systemWindowInsetBottom;
+        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+        view.setPadding(0, 0, 0, systemWindowInsetBottom);
+        return windowInsets;
+    }
+
+    public void addFragment(BaseFragment baseFragment) {
+        this.actionBarLayout.presentFragment(baseFragment, (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) ? false : true);
+    }
+
+    @Override
+    public boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout) {
+        return true;
+    }
+
+    @Override
+    public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
+        if (iNavigationLayout.getFragmentStack().size() <= 1) {
+            dismiss();
+        }
+        return true;
+    }
+
+    @Override
+    public boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout) {
+        return true;
+    }
+
+    @Override
+    public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
+        boolean needPresentFragment;
+        needPresentFragment = needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
+        return needPresentFragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (this.passcodeView.getVisibility() == 0) {
+            if (getOwnerActivity() != null) {
+                getOwnerActivity().finish();
+            }
+        } else {
+            this.actionBarLayout.onBackPressed();
+            if (this.actionBarLayout.getFragmentStack().size() <= 1) {
+                dismiss();
+            }
+        }
+    }
+
+    @Override
+    protected void onCreate(android.os.Bundle r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.OverlayActionBarLayoutDialog.onCreate(android.os.Bundle):void");
+    }
+
+    @Override
+    public void onMeasureOverride(int[] iArr) {
+        if (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) {
+            return;
+        }
+        iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
+        iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
+    }
+
+    @Override
+    public boolean onPreIme() {
+        return false;
+    }
+
+    @Override
+    public void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z) {
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -115,106 +173,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     }
 
     @Override
-    public void onMeasureOverride(int[] iArr) {
-        if (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) {
-            return;
-        }
-        iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
-        iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
-    }
-
-    @Override
-    protected void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 30) {
-            window.addFlags(-2147483392);
-        } else if (i >= 21) {
-            window.addFlags(-2147417856);
-        }
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.gravity = 51;
-        attributes.dimAmount = 0.0f;
-        attributes.flags &= -3;
-        attributes.softInputMode = 16;
-        attributes.height = -1;
-        if (i >= 28) {
-            attributes.layoutInDisplayCutoutMode = 1;
-        }
-        window.setAttributes(attributes);
-        if (i >= 23) {
-            window.setStatusBarColor(0);
-        }
-        this.frameLayout.setSystemUiVisibility(1280);
-        if (i >= 21) {
-            this.frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    WindowInsets lambda$onCreate$1;
-                    lambda$onCreate$1 = OverlayActionBarLayoutDialog.lambda$onCreate$1(view, windowInsets);
-                    return lambda$onCreate$1;
-                }
-            });
-        }
-        if (i >= 26) {
-            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
-        }
-    }
-
-    public static WindowInsets lambda$onCreate$1(View view, WindowInsets windowInsets) {
-        int systemWindowInsetBottom;
-        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
-        view.setPadding(0, 0, 0, systemWindowInsetBottom);
-        return windowInsets;
-    }
-
-    public void addFragment(BaseFragment baseFragment) {
-        this.actionBarLayout.presentFragment(baseFragment, (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) ? false : true);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (this.passcodeView.getVisibility() == 0) {
-            if (getOwnerActivity() != null) {
-                getOwnerActivity().finish();
-            }
-        } else {
-            this.actionBarLayout.onBackPressed();
-            if (this.actionBarLayout.getFragmentStack().size() <= 1) {
-                dismiss();
-            }
-        }
-    }
-
-    @Override
-    public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
-        if (iNavigationLayout.getFragmentStack().size() <= 1) {
-            dismiss();
-        }
-        return true;
-    }
-
-    private final class EmptyFragment extends BaseFragment {
-        private EmptyFragment() {
-        }
-
-        @Override
-        public View createView(Context context) {
-            this.hasOwnBackground = true;
-            this.actionBar.setAddToContainer(false);
-            View view = new View(context);
-            view.setBackgroundColor(0);
-            return view;
-        }
-
-        @Override
-        public void onTransitionAnimationEnd(boolean z, boolean z2) {
-            if (z && z2) {
-                OverlayActionBarLayoutDialog.this.dismiss();
-            }
-        }
+    public void onThemeProgress(float f) {
+        INavigationLayout.INavigationLayoutDelegate.CC.$default$onThemeProgress(this, f);
     }
 }

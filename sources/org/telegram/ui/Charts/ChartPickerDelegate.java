@@ -23,57 +23,6 @@ public class ChartPickerDelegate {
     public float minDistance = 0.1f;
     CapturesData[] capturedStates = {null, null};
 
-    public interface Listener {
-        void invalidate();
-
-        void onPickerDataChanged();
-
-        void onPickerJumpTo(float f, float f2, boolean z);
-    }
-
-    public ChartPickerDelegate(Listener listener) {
-        this.view = listener;
-    }
-
-    public CapturesData getMiddleCaptured() {
-        CapturesData[] capturesDataArr = this.capturedStates;
-        CapturesData capturesData = capturesDataArr[0];
-        if (capturesData != null && capturesData.state == 4) {
-            return capturesData;
-        }
-        CapturesData capturesData2 = capturesDataArr[1];
-        if (capturesData2 == null || capturesData2.state != 4) {
-            return null;
-        }
-        return capturesData2;
-    }
-
-    public CapturesData getLeftCaptured() {
-        CapturesData[] capturesDataArr = this.capturedStates;
-        CapturesData capturesData = capturesDataArr[0];
-        if (capturesData != null && capturesData.state == 1) {
-            return capturesData;
-        }
-        CapturesData capturesData2 = capturesDataArr[1];
-        if (capturesData2 == null || capturesData2.state != 1) {
-            return null;
-        }
-        return capturesData2;
-    }
-
-    public CapturesData getRightCaptured() {
-        CapturesData[] capturesDataArr = this.capturedStates;
-        CapturesData capturesData = capturesDataArr[0];
-        if (capturesData != null && capturesData.state == 2) {
-            return capturesData;
-        }
-        CapturesData capturesData2 = capturesDataArr[1];
-        if (capturesData2 == null || capturesData2.state != 2) {
-            return null;
-        }
-        return capturesData2;
-    }
-
     public class CapturesData {
         ValueAnimator a;
         public float aValue = 0.0f;
@@ -86,6 +35,11 @@ public class ChartPickerDelegate {
 
         public CapturesData(int i) {
             this.state = i;
+        }
+
+        public void lambda$captured$0(ValueAnimator valueAnimator) {
+            this.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            ChartPickerDelegate.this.view.invalidate();
         }
 
         public void captured() {
@@ -102,11 +56,6 @@ public class ChartPickerDelegate {
             this.a.start();
         }
 
-        public void lambda$captured$0(ValueAnimator valueAnimator) {
-            this.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            ChartPickerDelegate.this.view.invalidate();
-        }
-
         public void uncapture() {
             ValueAnimator valueAnimator = this.a;
             if (valueAnimator != null) {
@@ -117,6 +66,25 @@ public class ChartPickerDelegate {
                 valueAnimator2.cancel();
             }
         }
+    }
+
+    public interface Listener {
+        void invalidate();
+
+        void onPickerDataChanged();
+
+        void onPickerJumpTo(float f, float f2, boolean z);
+    }
+
+    public ChartPickerDelegate(Listener listener) {
+        this.view = listener;
+    }
+
+    public void lambda$uncapture$0(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.pickerStart = f + ((f2 - f) * floatValue);
+        this.pickerEnd = f3 + ((f4 - f3) * floatValue);
+        this.view.onPickerJumpTo(f2, f4, false);
     }
 
     public boolean capture(int i, int i2, int i3) {
@@ -235,6 +203,45 @@ public class ChartPickerDelegate {
         return this.capturedStates[0] != null || this.tryMoveTo;
     }
 
+    public CapturesData getLeftCaptured() {
+        CapturesData[] capturesDataArr = this.capturedStates;
+        CapturesData capturesData = capturesDataArr[0];
+        if (capturesData != null && capturesData.state == 1) {
+            return capturesData;
+        }
+        CapturesData capturesData2 = capturesDataArr[1];
+        if (capturesData2 == null || capturesData2.state != 1) {
+            return null;
+        }
+        return capturesData2;
+    }
+
+    public CapturesData getMiddleCaptured() {
+        CapturesData[] capturesDataArr = this.capturedStates;
+        CapturesData capturesData = capturesDataArr[0];
+        if (capturesData != null && capturesData.state == 4) {
+            return capturesData;
+        }
+        CapturesData capturesData2 = capturesDataArr[1];
+        if (capturesData2 == null || capturesData2.state != 4) {
+            return null;
+        }
+        return capturesData2;
+    }
+
+    public CapturesData getRightCaptured() {
+        CapturesData[] capturesDataArr = this.capturedStates;
+        CapturesData capturesData = capturesDataArr[0];
+        if (capturesData != null && capturesData.state == 2) {
+            return capturesData;
+        }
+        CapturesData capturesData2 = capturesDataArr[1];
+        if (capturesData2 == null || capturesData2.state != 2) {
+            return null;
+        }
+        return capturesData2;
+    }
+
     public boolean move(int i, int i2, int i3) {
         CapturesData capturesData;
         boolean z = false;
@@ -302,10 +309,30 @@ public class ChartPickerDelegate {
         this.view.onPickerDataChanged();
     }
 
+    public void uncapture() {
+        CapturesData capturesData = this.capturedStates[0];
+        if (capturesData != null) {
+            capturesData.uncapture();
+        }
+        CapturesData capturesData2 = this.capturedStates[1];
+        if (capturesData2 != null) {
+            capturesData2.uncapture();
+        }
+        CapturesData[] capturesDataArr = this.capturedStates;
+        capturesDataArr[0] = null;
+        capturesDataArr[1] = null;
+    }
+
     public boolean uncapture(MotionEvent motionEvent, int i) {
         final float f;
         final float f2;
-        if (i == 0) {
+        if (i != 0) {
+            CapturesData capturesData = this.capturedStates[1];
+            if (capturesData != null) {
+                capturesData.uncapture();
+            }
+            this.capturedStates[1] = null;
+        } else {
             if (this.tryMoveTo) {
                 this.tryMoveTo = false;
                 float x = this.moveToX - motionEvent.getX();
@@ -341,45 +368,18 @@ public class ChartPickerDelegate {
                 }
                 return true;
             }
-            CapturesData capturesData = this.capturedStates[0];
-            if (capturesData != null) {
-                capturesData.uncapture();
+            CapturesData capturesData2 = this.capturedStates[0];
+            if (capturesData2 != null) {
+                capturesData2.uncapture();
             }
             CapturesData[] capturesDataArr = this.capturedStates;
             capturesDataArr[0] = null;
-            CapturesData capturesData2 = capturesDataArr[1];
-            if (capturesData2 != null) {
-                capturesDataArr[0] = capturesData2;
+            CapturesData capturesData3 = capturesDataArr[1];
+            if (capturesData3 != null) {
+                capturesDataArr[0] = capturesData3;
                 capturesDataArr[1] = null;
             }
-        } else {
-            CapturesData capturesData3 = this.capturedStates[1];
-            if (capturesData3 != null) {
-                capturesData3.uncapture();
-            }
-            this.capturedStates[1] = null;
         }
         return false;
-    }
-
-    public void lambda$uncapture$0(float f, float f2, float f3, float f4, ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.pickerStart = f + ((f2 - f) * floatValue);
-        this.pickerEnd = f3 + ((f4 - f3) * floatValue);
-        this.view.onPickerJumpTo(f2, f4, false);
-    }
-
-    public void uncapture() {
-        CapturesData capturesData = this.capturedStates[0];
-        if (capturesData != null) {
-            capturesData.uncapture();
-        }
-        CapturesData capturesData2 = this.capturedStates[1];
-        if (capturesData2 != null) {
-            capturesData2.uncapture();
-        }
-        CapturesData[] capturesDataArr = this.capturedStates;
-        capturesDataArr[0] = null;
-        capturesDataArr[1] = null;
     }
 }

@@ -8,8 +8,4 @@ public abstract class Task implements Runnable {
         this.submissionTime = j;
         this.taskContext = taskContext;
     }
-
-    public Task() {
-        this(0L, TasksKt.NonBlockingContext);
-    }
 }

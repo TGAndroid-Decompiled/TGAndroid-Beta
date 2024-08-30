@@ -7,37 +7,37 @@ import android.view.Choreographer;
 import kotlin.Result;
 import kotlin.ResultKt;
 
-public final class HandlerDispatcherKt {
+public abstract class HandlerDispatcherKt {
     public static final HandlerDispatcher Main;
     private static volatile Choreographer choreographer;
 
+    static {
+        Object m155constructorimpl;
+        try {
+            Result.Companion companion = Result.Companion;
+            m155constructorimpl = Result.m155constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
+        } catch (Throwable th) {
+            Result.Companion companion2 = Result.Companion;
+            m155constructorimpl = Result.m155constructorimpl(ResultKt.createFailure(th));
+        }
+        Main = (HandlerDispatcher) (Result.m156isFailureimpl(m155constructorimpl) ? null : m155constructorimpl);
+    }
+
     public static final Handler asHandler(Looper looper, boolean z) {
-        if (z) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                Object invoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);
-                if (invoke != null) {
-                    return (Handler) invoke;
-                }
-                throw new NullPointerException("null cannot be cast to non-null type android.os.Handler");
-            }
+        if (!z) {
+            return new Handler(looper);
+        }
+        if (Build.VERSION.SDK_INT < 28) {
             try {
                 return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);
             } catch (NoSuchMethodException unused) {
                 return new Handler(looper);
             }
         }
-        return new Handler(looper);
-    }
-
-    static {
-        Object m157constructorimpl;
-        try {
-            Result.Companion companion = Result.Companion;
-            m157constructorimpl = Result.m157constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), null, 2, null));
-        } catch (Throwable th) {
-            Result.Companion companion2 = Result.Companion;
-            m157constructorimpl = Result.m157constructorimpl(ResultKt.createFailure(th));
+        Object invoke = Handler.class.getDeclaredMethod("createAsync", Looper.class).invoke(null, looper);
+        if (invoke != null) {
+            return (Handler) invoke;
         }
-        Main = (HandlerDispatcher) (Result.m159isFailureimpl(m157constructorimpl) ? null : m157constructorimpl);
+        throw new NullPointerException("null cannot be cast to non-null type android.os.Handler");
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messageActionSecureValuesSent extends TLRPC$MessageAction {
-    public ArrayList<TLRPC$SecureValueType> types = new ArrayList<>();
+    public ArrayList types = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -31,7 +31,7 @@ public class TLRPC$TL_messageActionSecureValuesSent extends TLRPC$MessageAction 
         int size = this.types.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.types.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$SecureValueType) this.types.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

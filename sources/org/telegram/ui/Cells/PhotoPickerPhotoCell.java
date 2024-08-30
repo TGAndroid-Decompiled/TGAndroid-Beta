@@ -93,14 +93,89 @@ public class PhotoPickerPhotoCell extends FrameLayout {
     }
 
     @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        updateColors();
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemWidth + this.extraWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemWidth, 1073741824));
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        updateColors();
+    public void setChecked(int i, boolean z, boolean z2) {
+        this.checkBox.setChecked(i, z, z2);
+    }
+
+    public void setImage(MediaController.PhotoEntry photoEntry) {
+        BackupImageView backupImageView;
+        StringBuilder sb;
+        String str;
+        Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
+        String str2 = photoEntry.thumbPath;
+        if (str2 != null) {
+            this.imageView.setImage(str2, null, drawable);
+            return;
+        }
+        if (photoEntry.path == null) {
+            this.imageView.setImageDrawable(drawable);
+            return;
+        }
+        this.imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+        if (photoEntry.isVideo) {
+            this.videoInfoContainer.setVisibility(0);
+            this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
+            setContentDescription(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
+            backupImageView = this.imageView;
+            sb = new StringBuilder();
+            str = "vthumb://";
+        } else {
+            this.videoInfoContainer.setVisibility(4);
+            setContentDescription(LocaleController.getString(R.string.AttachPhoto));
+            backupImageView = this.imageView;
+            sb = new StringBuilder();
+            str = "thumb://";
+        }
+        sb.append(str);
+        sb.append(photoEntry.imageId);
+        sb.append(":");
+        sb.append(photoEntry.path);
+        backupImageView.setImage(sb.toString(), null, drawable);
+    }
+
+    public void setImage(MediaController.SearchImage searchImage) {
+        BackupImageView backupImageView;
+        ImageLocation forDocument;
+        Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
+        TLRPC$PhotoSize tLRPC$PhotoSize = searchImage.thumbPhotoSize;
+        if (tLRPC$PhotoSize != null) {
+            backupImageView = this.imageView;
+            forDocument = ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo);
+        } else {
+            TLRPC$PhotoSize tLRPC$PhotoSize2 = searchImage.photoSize;
+            if (tLRPC$PhotoSize2 != null) {
+                this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize2, searchImage.photo), "80_80", drawable, searchImage);
+                return;
+            }
+            String str = searchImage.thumbPath;
+            if (str != null) {
+                this.imageView.setImage(str, null, drawable);
+                return;
+            }
+            String str2 = searchImage.thumbUrl;
+            if (str2 != null && str2.length() > 0) {
+                this.imageView.setImage(searchImage.thumbUrl, null, drawable);
+                return;
+            } else if (!MessageObject.isDocumentHasThumb(searchImage.document)) {
+                this.imageView.setImageDrawable(drawable);
+                return;
+            } else {
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320);
+                backupImageView = this.imageView;
+                forDocument = ImageLocation.getForDocument(closestPhotoSizeWithSize, searchImage.document);
+            }
+        }
+        backupImageView.setImage(forDocument, (String) null, drawable, searchImage);
     }
 
     public void setItemWidth(int i, int i2) {
@@ -111,66 +186,11 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         ((FrameLayout.LayoutParams) this.videoInfoContainer.getLayoutParams()).rightMargin = i2;
     }
 
-    public void updateColors() {
-        this.checkBox.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
-    }
-
     public void setNum(int i) {
         this.checkBox.setNum(i);
     }
 
-    public void setImage(MediaController.PhotoEntry photoEntry) {
-        Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
-        String str = photoEntry.thumbPath;
-        if (str != null) {
-            this.imageView.setImage(str, null, drawable);
-            return;
-        }
-        if (photoEntry.path != null) {
-            this.imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
-            if (photoEntry.isVideo) {
-                this.videoInfoContainer.setVisibility(0);
-                this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
-                setContentDescription(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
-                this.imageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
-                return;
-            }
-            this.videoInfoContainer.setVisibility(4);
-            setContentDescription(LocaleController.getString(R.string.AttachPhoto));
-            this.imageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
-            return;
-        }
-        this.imageView.setImageDrawable(drawable);
-    }
-
-    public void setImage(MediaController.SearchImage searchImage) {
-        Drawable drawable = getResources().getDrawable(R.drawable.nophotos);
-        TLRPC$PhotoSize tLRPC$PhotoSize = searchImage.thumbPhotoSize;
-        if (tLRPC$PhotoSize != null) {
-            this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo), (String) null, drawable, searchImage);
-            return;
-        }
-        TLRPC$PhotoSize tLRPC$PhotoSize2 = searchImage.photoSize;
-        if (tLRPC$PhotoSize2 != null) {
-            this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize2, searchImage.photo), "80_80", drawable, searchImage);
-            return;
-        }
-        String str = searchImage.thumbPath;
-        if (str != null) {
-            this.imageView.setImage(str, null, drawable);
-            return;
-        }
-        String str2 = searchImage.thumbUrl;
-        if (str2 != null && str2.length() > 0) {
-            this.imageView.setImage(searchImage.thumbUrl, null, drawable);
-        } else if (MessageObject.isDocumentHasThumb(searchImage.document)) {
-            this.imageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320), searchImage.document), (String) null, drawable, searchImage);
-        } else {
-            this.imageView.setImageDrawable(drawable);
-        }
-    }
-
-    public void setChecked(int i, boolean z, boolean z2) {
-        this.checkBox.setChecked(i, z, z2);
+    public void updateColors() {
+        this.checkBox.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
     }
 }

@@ -27,16 +27,6 @@ public class AnimatedColor {
         this.firstSet = true;
     }
 
-    public AnimatedColor(View view, long j, TimeInterpolator timeInterpolator) {
-        this.transitionDelay = 0L;
-        this.transitionDuration = 200L;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        this.parent = view;
-        this.transitionDuration = j;
-        this.transitionInterpolator = timeInterpolator;
-        this.firstSet = true;
-    }
-
     public AnimatedColor(View view, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
@@ -44,6 +34,16 @@ public class AnimatedColor {
         this.parent = view;
         this.transitionDelay = j;
         this.transitionDuration = j2;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
+    }
+
+    public AnimatedColor(View view, long j, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = view;
+        this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;
         this.firstSet = true;
     }
@@ -83,11 +83,7 @@ public class AnimatedColor {
             float clamp = MathUtils.clamp(((float) ((elapsedRealtime - this.transitionStart) - this.transitionDelay)) / ((float) this.transitionDuration), 0.0f, 1.0f);
             if (elapsedRealtime - this.transitionStart >= this.transitionDelay) {
                 TimeInterpolator timeInterpolator = this.transitionInterpolator;
-                if (timeInterpolator == null) {
-                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, clamp);
-                } else {
-                    this.value = ColorUtils.blendARGB(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
-                }
+                this.value = timeInterpolator == null ? ColorUtils.blendARGB(this.startValue, this.targetValue, clamp) : ColorUtils.blendARGB(this.startValue, this.targetValue, timeInterpolator.getInterpolation(clamp));
             }
             if (clamp >= 1.0f) {
                 this.transition = false;

@@ -9,7 +9,7 @@ public class TL_stories$TL_premium_applyBoost extends TLObject {
     public static int constructor = 1803396934;
     public int flags;
     public TLRPC$InputPeer peer;
-    public ArrayList<Integer> slots = new ArrayList<>();
+    public ArrayList slots = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -25,7 +25,7 @@ public class TL_stories$TL_premium_applyBoost extends TLObject {
             int size = this.slots.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                abstractSerializedData.writeInt32(this.slots.get(i).intValue());
+                abstractSerializedData.writeInt32(((Integer) this.slots.get(i)).intValue());
             }
         }
         this.peer.serializeToStream(abstractSerializedData);

@@ -46,31 +46,6 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
 
-    public void setIcon(final int i, boolean z) {
-        if (this.currentIcon == i) {
-            return;
-        }
-        ValueAnimator valueAnimator = this.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.animator = null;
-        }
-        if (z) {
-            this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            final AtomicBoolean atomicBoolean = new AtomicBoolean();
-            this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ToggleButton2.this.lambda$setIcon$0(atomicBoolean, i, valueAnimator2);
-                }
-            });
-            this.animator.start();
-            return;
-        }
-        this.scale = 1.0f;
-        setDrawable(i);
-    }
-
     public void lambda$setIcon$0(AtomicBoolean atomicBoolean, int i, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.scale = Math.abs(floatValue - 0.5f) + 0.5f;
@@ -79,22 +54,6 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
         }
         atomicBoolean.set(true);
         setDrawable(i);
-    }
-
-    @Override
-    public void setSelected(boolean z) {
-        this.selected = z;
-        invalidate();
-    }
-
-    @Override
-    public void setInvert(float f) {
-        Drawable drawable = this.drawable;
-        if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
-        }
-        this.activePaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
-        invalidate();
     }
 
     private void setDrawable(int i) {
@@ -162,5 +121,46 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
             bitmap.recycle();
             this.activeBitmap = null;
         }
+    }
+
+    public void setIcon(final int i, boolean z) {
+        if (this.currentIcon == i) {
+            return;
+        }
+        ValueAnimator valueAnimator = this.animator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.animator = null;
+        }
+        if (!z) {
+            this.scale = 1.0f;
+            setDrawable(i);
+        } else {
+            this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+            final AtomicBoolean atomicBoolean = new AtomicBoolean();
+            this.animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    ToggleButton2.this.lambda$setIcon$0(atomicBoolean, i, valueAnimator2);
+                }
+            });
+            this.animator.start();
+        }
+    }
+
+    @Override
+    public void setInvert(float f) {
+        Drawable drawable = this.drawable;
+        if (drawable != null) {
+            drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
+        }
+        this.activePaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
+        invalidate();
+    }
+
+    @Override
+    public void setSelected(boolean z) {
+        this.selected = z;
+        invalidate();
     }
 }

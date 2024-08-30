@@ -55,7 +55,7 @@ import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
-    private ArrayList<MediaController.AudioEntry> audioEntries;
+    private ArrayList audioEntries;
     private View currentEmptyView;
     private float currentPanTranslationProgress;
     private AudioSelectDelegate delegate;
@@ -74,26 +74,268 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     private EmptyTextProgressView progressView;
     private SearchAdapter searchAdapter;
     private SearchField searchField;
-    private LongSparseArray<MediaController.AudioEntry> selectedAudios;
-    private ArrayList<MediaController.AudioEntry> selectedAudiosOrder;
+    private LongSparseArray selectedAudios;
+    private ArrayList selectedAudiosOrder;
     private boolean sendPressed;
     private View shadow;
     private AnimatorSet shadowAnimation;
 
     public interface AudioSelectDelegate {
-        void didSelectAudio(ArrayList<MessageObject> arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2);
+        void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2);
     }
 
-    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
-        return true;
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private Context mContext;
+
+        public ListAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public int getItemCount() {
+            return ChatAttachAlertAudioLayout.this.audioEntries.size() + 1 + (!ChatAttachAlertAudioLayout.this.audioEntries.isEmpty() ? 1 : 0);
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            if (i == getItemCount() - 1) {
+                return 2;
+            }
+            return i == 0 ? 1 : 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+            ChatAttachAlertAudioLayout.this.updateEmptyView();
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            if (viewHolder.getItemViewType() == 0) {
+                int i2 = i - 1;
+                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) ChatAttachAlertAudioLayout.this.audioEntries.get(i2);
+                SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
+                sharedAudioCell.setTag(audioEntry);
+                sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != ChatAttachAlertAudioLayout.this.audioEntries.size() - 1);
+                sharedAudioCell.setChecked(ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.id) >= 0, false);
+            }
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
+            if (i == 0) {
+                SharedAudioCell sharedAudioCell = new SharedAudioCell(this.mContext, ChatAttachAlertAudioLayout.this.resourcesProvider) {
+                    @Override
+                    public boolean needPlayMessage(MessageObject messageObject) {
+                        ChatAttachAlertAudioLayout.this.playingAudio = messageObject;
+                        ArrayList<MessageObject> arrayList = new ArrayList<>();
+                        arrayList.add(messageObject);
+                        return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
+                    }
+                };
+                sharedAudioCell.setCheckForButtonPress(true);
+                view = sharedAudioCell;
+            } else if (i != 1) {
+                view = new View(this.mContext);
+            } else {
+                view = new View(this.mContext);
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+            }
+            return new RecyclerListView.Holder(view);
+        }
+    }
+
+    public class SearchAdapter extends RecyclerListView.SelectionAdapter {
+        private int lastSearchId;
+        private Context mContext;
+        private Runnable searchRunnable;
+        private ArrayList searchResult = new ArrayList();
+        private int reqId = 0;
+
+        public SearchAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        public void lambda$search$0(String str, ArrayList arrayList, int i) {
+            String str2;
+            String lowerCase = str.trim().toLowerCase();
+            if (lowerCase.length() == 0) {
+                updateSearchResults(new ArrayList(), str, this.lastSearchId);
+                return;
+            }
+            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+            if (lowerCase.equals(translitString) || translitString.length() == 0) {
+                translitString = null;
+            }
+            int i2 = (translitString != null ? 1 : 0) + 1;
+            String[] strArr = new String[i2];
+            strArr[0] = lowerCase;
+            if (translitString != null) {
+                strArr[1] = translitString;
+            }
+            ArrayList arrayList2 = new ArrayList();
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) arrayList.get(i3);
+                int i4 = 0;
+                while (true) {
+                    if (i4 < i2) {
+                        String str3 = strArr[i4];
+                        String str4 = audioEntry.author;
+                        boolean contains = str4 != null ? str4.toLowerCase().contains(str3) : false;
+                        if (!contains && (str2 = audioEntry.title) != null) {
+                            contains = str2.toLowerCase().contains(str3);
+                        }
+                        if (contains) {
+                            arrayList2.add(audioEntry);
+                            break;
+                        }
+                        i4++;
+                    }
+                }
+            }
+            updateSearchResults(arrayList2, str, i);
+        }
+
+        public void lambda$search$1(final String str, final int i) {
+            final ArrayList arrayList = new ArrayList(ChatAttachAlertAudioLayout.this.audioEntries);
+            Utilities.searchQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$0(str, arrayList, i);
+                }
+            });
+        }
+
+        public void lambda$updateSearchResults$2(int i, String str, ArrayList arrayList) {
+            if (i != this.lastSearchId) {
+                return;
+            }
+            if (i != -1 && ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.searchAdapter) {
+                ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.searchAdapter);
+            }
+            if (ChatAttachAlertAudioLayout.this.listView.getAdapter() == ChatAttachAlertAudioLayout.this.searchAdapter) {
+                ChatAttachAlertAudioLayout.this.emptySubtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoAudioFoundInfo", R.string.NoAudioFoundInfo, str)));
+            }
+            this.searchResult = arrayList;
+            notifyDataSetChanged();
+        }
+
+        private void updateSearchResults(final ArrayList arrayList, final String str, final int i) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$updateSearchResults$2(i, str, arrayList);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.searchResult.size() + 1 + (!this.searchResult.isEmpty() ? 1 : 0);
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            if (i == getItemCount() - 1) {
+                return 2;
+            }
+            return i == 0 ? 1 : 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public void notifyDataSetChanged() {
+            super.notifyDataSetChanged();
+            ChatAttachAlertAudioLayout.this.updateEmptyView();
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            if (viewHolder.getItemViewType() == 0) {
+                int i2 = i - 1;
+                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) this.searchResult.get(i2);
+                SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
+                sharedAudioCell.setTag(audioEntry);
+                sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != this.searchResult.size() - 1);
+                sharedAudioCell.setChecked(ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.id) >= 0, false);
+            }
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View view;
+            if (i == 0) {
+                SharedAudioCell sharedAudioCell = new SharedAudioCell(this.mContext, ChatAttachAlertAudioLayout.this.resourcesProvider) {
+                    @Override
+                    public boolean needPlayMessage(MessageObject messageObject) {
+                        ChatAttachAlertAudioLayout.this.playingAudio = messageObject;
+                        ArrayList<MessageObject> arrayList = new ArrayList<>();
+                        arrayList.add(messageObject);
+                        return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
+                    }
+                };
+                sharedAudioCell.setCheckForButtonPress(true);
+                view = sharedAudioCell;
+            } else if (i != 1) {
+                view = new View(this.mContext);
+            } else {
+                view = new View(this.mContext);
+                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+            }
+            return new RecyclerListView.Holder(view);
+        }
+
+        public void search(final String str) {
+            Runnable runnable = this.searchRunnable;
+            if (runnable != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.searchRunnable = null;
+            }
+            if (TextUtils.isEmpty(str)) {
+                if (!this.searchResult.isEmpty()) {
+                    this.searchResult.clear();
+                }
+                if (ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.listAdapter) {
+                    ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.listAdapter);
+                }
+                notifyDataSetChanged();
+                return;
+            }
+            final int i = this.lastSearchId + 1;
+            this.lastSearchId = i;
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$1(str, i);
+                }
+            };
+            this.searchRunnable = runnable2;
+            AndroidUtilities.runOnUIThread(runnable2, 300L);
+        }
     }
 
     public ChatAttachAlertAudioLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
         this.maxSelectedFiles = -1;
-        this.audioEntries = new ArrayList<>();
-        this.selectedAudiosOrder = new ArrayList<>();
-        this.selectedAudios = new LongSparseArray<>();
+        this.audioEntries = new ArrayList();
+        this.selectedAudiosOrder = new ArrayList();
+        this.selectedAudios = new LongSparseArray();
         NotificationCenter.getInstance(this.parentAlert.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidReset);
         NotificationCenter.getInstance(this.parentAlert.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
         NotificationCenter.getInstance(this.parentAlert.currentAccount).addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
@@ -102,6 +344,17 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.frameLayout = frameLayout;
         frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         SearchField searchField = new SearchField(context, false, resourcesProvider) {
+            @Override
+            protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
+                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(editTextBoldCursor, true);
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(getSearchEditText(), true);
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+
             @Override
             public void onTextChange(String str) {
                 if (str.length() == 0 && ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.listAdapter) {
@@ -114,22 +367,11 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
             }
 
             @Override
-            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(getSearchEditText(), true);
-                return super.onInterceptTouchEvent(motionEvent);
-            }
-
-            @Override
             public void processTouchEvent(MotionEvent motionEvent) {
                 MotionEvent obtain = MotionEvent.obtain(motionEvent);
                 obtain.setLocation(obtain.getRawX(), (obtain.getRawY() - ChatAttachAlertAudioLayout.this.parentAlert.getSheetContainer().getTranslationY()) - AndroidUtilities.dp(58.0f));
                 ChatAttachAlertAudioLayout.this.listView.dispatchTouchEvent(obtain);
                 obtain.recycle();
-            }
-
-            @Override
-            protected void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
-                ChatAttachAlertAudioLayout.this.parentAlert.makeFocusable(editTextBoldCursor, true);
             }
         };
         this.searchField = searchField;
@@ -246,283 +488,10 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         updateEmptyView();
     }
 
-    public void lambda$new$1(View view, int i) {
-        onItemClick(view);
-    }
-
-    public boolean lambda$new$2(View view, int i) {
-        onItemClick(view);
-        return true;
-    }
-
-    @Override
-    public void onDestroy() {
-        onHide();
-        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
-        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
-        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
-    }
-
-    @Override
-    public void onHide() {
-        if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
-            MediaController.getInstance().cleanupPlayer(true, true);
-        }
-        this.playingAudio = null;
-    }
-
-    public void updateEmptyViewPosition() {
-        View childAt;
-        if (this.currentEmptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            this.currentEmptyView.setTranslationY((((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2) - (this.currentPanTranslationProgress / 2.0f));
-        }
-    }
-
-    public void updateEmptyView() {
-        boolean isEmpty;
-        if (this.loadingAudio) {
-            this.currentEmptyView = this.progressView;
-            this.emptyView.setVisibility(8);
-        } else {
-            if (this.listView.getAdapter() == this.searchAdapter) {
-                this.emptyTitleTextView.setText(LocaleController.getString(R.string.NoAudioFound));
-            } else {
-                this.emptyTitleTextView.setText(LocaleController.getString(R.string.NoAudioFiles));
-                this.emptySubtitleTextView.setText(LocaleController.getString(R.string.NoAudioFilesInfo));
-            }
-            this.currentEmptyView = this.emptyView;
-            this.progressView.setVisibility(8);
-        }
-        RecyclerView.Adapter adapter = this.listView.getAdapter();
-        SearchAdapter searchAdapter = this.searchAdapter;
-        if (adapter != searchAdapter) {
-            isEmpty = this.audioEntries.isEmpty();
-        } else {
-            isEmpty = searchAdapter.searchResult.isEmpty();
-        }
-        this.currentEmptyView.setVisibility(isEmpty ? 0 : 8);
-        updateEmptyViewPosition();
-    }
-
-    public void setMaxSelectedFiles(int i) {
-        this.maxSelectedFiles = i;
-    }
-
-    @Override
-    public void scrollToTop() {
-        this.listView.smoothScrollToPosition(0);
-    }
-
-    @Override
-    public int getCurrentItemTop() {
-        if (this.listView.getChildCount() <= 0) {
-            return Integer.MAX_VALUE;
-        }
-        View childAt = this.listView.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-        int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
-        int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
-        if (top >= 0 && holder != null && holder.getAdapterPosition() == 0) {
-            runShadowAnimation(false);
-        } else {
-            runShadowAnimation(true);
-            top = i;
-        }
-        this.frameLayout.setTranslationY(top);
-        return top + AndroidUtilities.dp(12.0f);
-    }
-
-    @Override
-    public int getFirstOffset() {
-        return getListTopPadding() + AndroidUtilities.dp(4.0f);
-    }
-
-    @Override
-    public void setTranslationY(float f) {
-        super.setTranslationY(f);
-        this.parentAlert.getSheetContainer().invalidate();
-    }
-
-    @Override
-    public boolean onDismiss() {
-        if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
-            MediaController.getInstance().cleanupPlayer(true, true);
-        }
-        return super.onDismiss();
-    }
-
-    @Override
-    public int getListTopPadding() {
-        return this.listView.getPaddingTop();
-    }
-
-    @Override
-    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        super.onLayout(z, i, i2, i3, i4);
-        updateEmptyViewPosition();
-    }
-
-    @Override
-    public void onPreMeasure(int i, int i2) {
-        int i3;
-        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
-            i3 = AndroidUtilities.dp(8.0f);
-            this.parentAlert.setAllowNestedScroll(false);
-        } else {
-            if (!AndroidUtilities.isTablet()) {
-                android.graphics.Point point = AndroidUtilities.displaySize;
-                if (point.x > point.y) {
-                    i3 = (int) (i2 / 3.5f);
-                    this.parentAlert.setAllowNestedScroll(true);
-                }
-            }
-            i3 = (i2 / 5) * 2;
-            this.parentAlert.setAllowNestedScroll(true);
-        }
-        if (this.listView.getPaddingTop() != i3) {
-            this.ignoreLayout = true;
-            this.listView.setPadding(0, i3, 0, AndroidUtilities.dp(48.0f));
-            this.ignoreLayout = false;
-        }
-    }
-
-    @Override
-    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        this.layoutManager.scrollToPositionWithOffset(0, 0);
+    public void lambda$loadAudio$3(ArrayList arrayList) {
+        this.loadingAudio = false;
+        this.audioEntries = arrayList;
         this.listAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onHidden() {
-        this.selectedAudios.clear();
-        this.selectedAudiosOrder.clear();
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.ignoreLayout) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    private void runShadowAnimation(final boolean z) {
-        if ((!z || this.shadow.getTag() == null) && (z || this.shadow.getTag() != null)) {
-            return;
-        }
-        this.shadow.setTag(z ? null : 1);
-        if (z) {
-            this.shadow.setVisibility(0);
-        }
-        AnimatorSet animatorSet = this.shadowAnimation;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-        }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.shadowAnimation = animatorSet2;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
-        this.shadowAnimation.setDuration(150L);
-        this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
-                    return;
-                }
-                if (!z) {
-                    ChatAttachAlertAudioLayout.this.shadow.setVisibility(4);
-                }
-                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
-                    return;
-                }
-                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
-            }
-        });
-        this.shadowAnimation.start();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = NotificationCenter.messagePlayingDidReset;
-        if (i == i3 || i == NotificationCenter.messagePlayingDidStart || i == NotificationCenter.messagePlayingPlayStateChanged) {
-            if (i == i3 || i == NotificationCenter.messagePlayingPlayStateChanged) {
-                int childCount = this.listView.getChildCount();
-                for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = this.listView.getChildAt(i4);
-                    if (childAt instanceof SharedAudioCell) {
-                        SharedAudioCell sharedAudioCell = (SharedAudioCell) childAt;
-                        if (sharedAudioCell.getMessage() != null) {
-                            sharedAudioCell.updateButtonState(false, true);
-                        }
-                    }
-                }
-                return;
-            }
-            if (i == NotificationCenter.messagePlayingDidStart && ((MessageObject) objArr[0]).eventId == 0) {
-                int childCount2 = this.listView.getChildCount();
-                for (int i5 = 0; i5 < childCount2; i5++) {
-                    View childAt2 = this.listView.getChildAt(i5);
-                    if (childAt2 instanceof SharedAudioCell) {
-                        SharedAudioCell sharedAudioCell2 = (SharedAudioCell) childAt2;
-                        if (sharedAudioCell2.getMessage() != null) {
-                            sharedAudioCell2.updateButtonState(false, true);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void showErrorBox(String str) {
-        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
-    }
-
-    private void onItemClick(android.view.View r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
-    }
-
-    @Override
-    public int getSelectedItemsCount() {
-        return this.selectedAudios.size();
-    }
-
-    @Override
-    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
-        if (this.selectedAudios.size() == 0 || this.delegate == null || this.sendPressed) {
-            return;
-        }
-        this.sendPressed = true;
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        for (int i2 = 0; i2 < this.selectedAudiosOrder.size(); i2++) {
-            arrayList.add(this.selectedAudiosOrder.get(i2).messageObject);
-        }
-        this.delegate.didSelectAudio(arrayList, this.parentAlert.commentTextView.getText(), z, i, j, z2);
-    }
-
-    public ArrayList<MessageObject> getSelected() {
-        ArrayList<MessageObject> arrayList = new ArrayList<>();
-        for (int i = 0; i < this.selectedAudiosOrder.size(); i++) {
-            arrayList.add(this.selectedAudiosOrder.get(i).messageObject);
-        }
-        return arrayList;
-    }
-
-    public void setDelegate(AudioSelectDelegate audioSelectDelegate) {
-        this.delegate = audioSelectDelegate;
-    }
-
-    private void loadAudio() {
-        this.loadingAudio = true;
-        Utilities.globalQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                ChatAttachAlertAudioLayout.this.lambda$loadAudio$4();
-            }
-        });
     }
 
     public void lambda$loadAudio$4() {
@@ -601,263 +570,182 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         });
     }
 
-    public void lambda$loadAudio$3(ArrayList arrayList) {
-        this.loadingAudio = false;
-        this.audioEntries = arrayList;
-        this.listAdapter.notifyDataSetChanged();
+    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
+        return true;
     }
 
-    public class ListAdapter extends RecyclerListView.SelectionAdapter {
-        private Context mContext;
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        public ListAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public int getItemCount() {
-            return ChatAttachAlertAudioLayout.this.audioEntries.size() + 1 + (!ChatAttachAlertAudioLayout.this.audioEntries.isEmpty() ? 1 : 0);
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 0;
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
-            if (i == 0) {
-                SharedAudioCell sharedAudioCell = new SharedAudioCell(this.mContext, ChatAttachAlertAudioLayout.this.resourcesProvider) {
-                    @Override
-                    public boolean needPlayMessage(MessageObject messageObject) {
-                        ChatAttachAlertAudioLayout.this.playingAudio = messageObject;
-                        ArrayList<MessageObject> arrayList = new ArrayList<>();
-                        arrayList.add(messageObject);
-                        return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
-                    }
-                };
-                sharedAudioCell.setCheckForButtonPress(true);
-                view = sharedAudioCell;
-            } else if (i == 1) {
-                view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
-            } else {
-                view = new View(this.mContext);
-            }
-            return new RecyclerListView.Holder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.getItemViewType() == 0) {
-                int i2 = i - 1;
-                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) ChatAttachAlertAudioLayout.this.audioEntries.get(i2);
-                SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
-                sharedAudioCell.setTag(audioEntry);
-                sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != ChatAttachAlertAudioLayout.this.audioEntries.size() - 1);
-                sharedAudioCell.setChecked(ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.id) >= 0, false);
-            }
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (i == getItemCount() - 1) {
-                return 2;
-            }
-            return i == 0 ? 1 : 0;
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            ChatAttachAlertAudioLayout.this.updateEmptyView();
-        }
+    public void lambda$new$1(View view, int i) {
+        onItemClick(view);
     }
 
-    public class SearchAdapter extends RecyclerListView.SelectionAdapter {
-        private int lastSearchId;
-        private Context mContext;
-        private Runnable searchRunnable;
-        private ArrayList<MediaController.AudioEntry> searchResult = new ArrayList<>();
-        private int reqId = 0;
+    public boolean lambda$new$2(View view, int i) {
+        onItemClick(view);
+        return true;
+    }
 
-        public SearchAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        public void search(final String str) {
-            Runnable runnable = this.searchRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.searchRunnable = null;
+    private void loadAudio() {
+        this.loadingAudio = true;
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertAudioLayout.this.lambda$loadAudio$4();
             }
-            if (TextUtils.isEmpty(str)) {
-                if (!this.searchResult.isEmpty()) {
-                    this.searchResult.clear();
+        });
+    }
+
+    private void onItemClick(android.view.View r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
+    }
+
+    private void runShadowAnimation(final boolean z) {
+        if ((!z || this.shadow.getTag() == null) && (z || this.shadow.getTag() != null)) {
+            return;
+        }
+        this.shadow.setTag(z ? null : 1);
+        if (z) {
+            this.shadow.setVisibility(0);
+        }
+        AnimatorSet animatorSet = this.shadowAnimation;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.shadowAnimation = animatorSet2;
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
+        this.shadowAnimation.setDuration(150L);
+        this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
+                    return;
                 }
-                if (ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.listAdapter) {
-                    ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.listAdapter);
+                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (ChatAttachAlertAudioLayout.this.shadowAnimation == null || !ChatAttachAlertAudioLayout.this.shadowAnimation.equals(animator)) {
+                    return;
                 }
-                notifyDataSetChanged();
-                return;
-            }
-            final int i = this.lastSearchId + 1;
-            this.lastSearchId = i;
-            Runnable runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$1(str, i);
+                if (!z) {
+                    ChatAttachAlertAudioLayout.this.shadow.setVisibility(4);
                 }
-            };
-            this.searchRunnable = runnable2;
-            AndroidUtilities.runOnUIThread(runnable2, 300L);
-        }
-
-        public void lambda$search$1(final String str, final int i) {
-            final ArrayList arrayList = new ArrayList(ChatAttachAlertAudioLayout.this.audioEntries);
-            Utilities.searchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$search$0(str, arrayList, i);
-                }
-            });
-        }
-
-        public void lambda$search$0(String str, ArrayList arrayList, int i) {
-            String str2;
-            String lowerCase = str.trim().toLowerCase();
-            if (lowerCase.length() == 0) {
-                updateSearchResults(new ArrayList<>(), str, this.lastSearchId);
-                return;
+                ChatAttachAlertAudioLayout.this.shadowAnimation = null;
             }
-            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-            if (lowerCase.equals(translitString) || translitString.length() == 0) {
-                translitString = null;
-            }
-            int i2 = (translitString != null ? 1 : 0) + 1;
-            String[] strArr = new String[i2];
-            strArr[0] = lowerCase;
-            if (translitString != null) {
-                strArr[1] = translitString;
-            }
-            ArrayList<MediaController.AudioEntry> arrayList2 = new ArrayList<>();
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) arrayList.get(i3);
-                int i4 = 0;
-                while (true) {
-                    if (i4 < i2) {
-                        String str3 = strArr[i4];
-                        String str4 = audioEntry.author;
-                        boolean contains = str4 != null ? str4.toLowerCase().contains(str3) : false;
-                        if (!contains && (str2 = audioEntry.title) != null) {
-                            contains = str2.toLowerCase().contains(str3);
-                        }
-                        if (contains) {
-                            arrayList2.add(audioEntry);
-                            break;
-                        }
-                        i4++;
-                    }
-                }
-            }
-            updateSearchResults(arrayList2, str, i);
-        }
+        });
+        this.shadowAnimation.start();
+    }
 
-        private void updateSearchResults(final ArrayList<MediaController.AudioEntry> arrayList, final String str, final int i) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertAudioLayout.SearchAdapter.this.lambda$updateSearchResults$2(i, str, arrayList);
-                }
-            });
-        }
+    private void showErrorBox(String str) {
+        new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString(R.string.OK), null).show();
+    }
 
-        public void lambda$updateSearchResults$2(int i, String str, ArrayList arrayList) {
-            if (i != this.lastSearchId) {
-                return;
-            }
-            if (i != -1 && ChatAttachAlertAudioLayout.this.listView.getAdapter() != ChatAttachAlertAudioLayout.this.searchAdapter) {
-                ChatAttachAlertAudioLayout.this.listView.setAdapter(ChatAttachAlertAudioLayout.this.searchAdapter);
-            }
-            if (ChatAttachAlertAudioLayout.this.listView.getAdapter() == ChatAttachAlertAudioLayout.this.searchAdapter) {
-                ChatAttachAlertAudioLayout.this.emptySubtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("NoAudioFoundInfo", R.string.NoAudioFoundInfo, str)));
-            }
-            this.searchResult = arrayList;
-            notifyDataSetChanged();
-        }
-
-        @Override
-        public void notifyDataSetChanged() {
-            super.notifyDataSetChanged();
-            ChatAttachAlertAudioLayout.this.updateEmptyView();
-        }
-
-        @Override
-        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 0;
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.searchResult.size() + 1 + (!this.searchResult.isEmpty() ? 1 : 0);
-        }
-
-        @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
-            if (i == 0) {
-                SharedAudioCell sharedAudioCell = new SharedAudioCell(this.mContext, ChatAttachAlertAudioLayout.this.resourcesProvider) {
-                    @Override
-                    public boolean needPlayMessage(MessageObject messageObject) {
-                        ChatAttachAlertAudioLayout.this.playingAudio = messageObject;
-                        ArrayList<MessageObject> arrayList = new ArrayList<>();
-                        arrayList.add(messageObject);
-                        return MediaController.getInstance().setPlaylist(arrayList, messageObject, 0L);
-                    }
-                };
-                sharedAudioCell.setCheckForButtonPress(true);
-                view = sharedAudioCell;
-            } else if (i == 1) {
-                view = new View(this.mContext);
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+    public void updateEmptyView() {
+        TextView textView;
+        int i;
+        View view;
+        if (this.loadingAudio) {
+            this.currentEmptyView = this.progressView;
+            view = this.emptyView;
+        } else {
+            if (this.listView.getAdapter() == this.searchAdapter) {
+                textView = this.emptyTitleTextView;
+                i = R.string.NoAudioFound;
             } else {
-                view = new View(this.mContext);
+                this.emptyTitleTextView.setText(LocaleController.getString(R.string.NoAudioFiles));
+                textView = this.emptySubtitleTextView;
+                i = R.string.NoAudioFilesInfo;
             }
-            return new RecyclerListView.Holder(view);
+            textView.setText(LocaleController.getString(i));
+            this.currentEmptyView = this.emptyView;
+            view = this.progressView;
         }
+        view.setVisibility(8);
+        RecyclerView.Adapter adapter = this.listView.getAdapter();
+        SearchAdapter searchAdapter = this.searchAdapter;
+        this.currentEmptyView.setVisibility((adapter == searchAdapter ? searchAdapter.searchResult : this.audioEntries).isEmpty() ? 0 : 8);
+        updateEmptyViewPosition();
+    }
 
-        @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.getItemViewType() == 0) {
-                int i2 = i - 1;
-                MediaController.AudioEntry audioEntry = this.searchResult.get(i2);
-                SharedAudioCell sharedAudioCell = (SharedAudioCell) viewHolder.itemView;
-                sharedAudioCell.setTag(audioEntry);
-                sharedAudioCell.setMessageObject(audioEntry.messageObject, i2 != this.searchResult.size() - 1);
-                sharedAudioCell.setChecked(ChatAttachAlertAudioLayout.this.selectedAudios.indexOfKey(audioEntry.id) >= 0, false);
-            }
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            if (i == getItemCount() - 1) {
-                return 2;
-            }
-            return i == 0 ? 1 : 0;
+    public void updateEmptyViewPosition() {
+        View childAt;
+        if (this.currentEmptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
+            this.currentEmptyView.setTranslationY((((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2) - (this.currentPanTranslationProgress / 2.0f));
         }
     }
 
     @Override
-    public void onContainerTranslationUpdated(float f) {
-        this.currentPanTranslationProgress = f;
-        super.onContainerTranslationUpdated(f);
-        updateEmptyViewPosition();
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        int i3 = NotificationCenter.messagePlayingDidReset;
+        if (i == i3 || i == NotificationCenter.messagePlayingDidStart || i == NotificationCenter.messagePlayingPlayStateChanged) {
+            if (i == i3 || i == NotificationCenter.messagePlayingPlayStateChanged) {
+                int childCount = this.listView.getChildCount();
+                for (int i4 = 0; i4 < childCount; i4++) {
+                    View childAt = this.listView.getChildAt(i4);
+                    if (childAt instanceof SharedAudioCell) {
+                        SharedAudioCell sharedAudioCell = (SharedAudioCell) childAt;
+                        if (sharedAudioCell.getMessage() != null) {
+                            sharedAudioCell.updateButtonState(false, true);
+                        }
+                    }
+                }
+                return;
+            }
+            if (i == NotificationCenter.messagePlayingDidStart && ((MessageObject) objArr[0]).eventId == 0) {
+                int childCount2 = this.listView.getChildCount();
+                for (int i5 = 0; i5 < childCount2; i5++) {
+                    View childAt2 = this.listView.getChildAt(i5);
+                    if (childAt2 instanceof SharedAudioCell) {
+                        SharedAudioCell sharedAudioCell2 = (SharedAudioCell) childAt2;
+                        if (sharedAudioCell2.getMessage() != null) {
+                            sharedAudioCell2.updateButtonState(false, true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        if (this.listView.getChildCount() <= 0) {
+            return Integer.MAX_VALUE;
+        }
+        View childAt = this.listView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+        int top = childAt.getTop() - AndroidUtilities.dp(8.0f);
+        int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
+        if (top < 0 || holder == null || holder.getAdapterPosition() != 0) {
+            runShadowAnimation(true);
+            top = i;
+        } else {
+            runShadowAnimation(false);
+        }
+        this.frameLayout.setTranslationY(top);
+        return top + AndroidUtilities.dp(12.0f);
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return getListTopPadding() + AndroidUtilities.dp(4.0f);
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.listView.getPaddingTop();
+    }
+
+    public ArrayList<MessageObject> getSelected() {
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
+        for (int i = 0; i < this.selectedAudiosOrder.size(); i++) {
+            arrayList.add(((MediaController.AudioEntry) this.selectedAudiosOrder.get(i)).messageObject);
+        }
+        return arrayList;
+    }
+
+    @Override
+    public int getSelectedItemsCount() {
+        return this.selectedAudios.size();
     }
 
     @Override
@@ -887,5 +775,118 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{SharedAudioCell.class}, Theme.chat_contextResult_titleTextPaint, null, null, Theme.key_windowBackgroundWhiteBlackText));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_TEXTCOLOR, new Class[]{SharedAudioCell.class}, Theme.chat_contextResult_descriptionTextPaint, null, null, Theme.key_windowBackgroundWhiteGrayText2));
         return arrayList;
+    }
+
+    @Override
+    public void onContainerTranslationUpdated(float f) {
+        this.currentPanTranslationProgress = f;
+        super.onContainerTranslationUpdated(f);
+        updateEmptyViewPosition();
+    }
+
+    @Override
+    public void onDestroy() {
+        onHide();
+        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidReset);
+        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingDidStart);
+        NotificationCenter.getInstance(this.parentAlert.currentAccount).removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
+    }
+
+    @Override
+    public boolean onDismiss() {
+        if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
+            MediaController.getInstance().cleanupPlayer(true, true);
+        }
+        return super.onDismiss();
+    }
+
+    @Override
+    public void onHidden() {
+        this.selectedAudios.clear();
+        this.selectedAudiosOrder.clear();
+    }
+
+    @Override
+    public void onHide() {
+        if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
+            MediaController.getInstance().cleanupPlayer(true, true);
+        }
+        this.playingAudio = null;
+    }
+
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+        updateEmptyViewPosition();
+    }
+
+    @Override
+    public void onPreMeasure(int i, int i2) {
+        int i3;
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+            i3 = AndroidUtilities.dp(8.0f);
+            this.parentAlert.setAllowNestedScroll(false);
+        } else {
+            if (!AndroidUtilities.isTablet()) {
+                android.graphics.Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i3 = (int) (i2 / 3.5f);
+                    this.parentAlert.setAllowNestedScroll(true);
+                }
+            }
+            i3 = (i2 / 5) * 2;
+            this.parentAlert.setAllowNestedScroll(true);
+        }
+        if (this.listView.getPaddingTop() != i3) {
+            this.ignoreLayout = true;
+            this.listView.setPadding(0, i3, 0, AndroidUtilities.dp(48.0f));
+            this.ignoreLayout = false;
+        }
+    }
+
+    @Override
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+        this.layoutManager.scrollToPositionWithOffset(0, 0);
+        this.listAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.ignoreLayout) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public void scrollToTop() {
+        this.listView.smoothScrollToPosition(0);
+    }
+
+    @Override
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
+        if (this.selectedAudios.size() == 0 || this.delegate == null || this.sendPressed) {
+            return;
+        }
+        this.sendPressed = true;
+        ArrayList arrayList = new ArrayList();
+        for (int i2 = 0; i2 < this.selectedAudiosOrder.size(); i2++) {
+            arrayList.add(((MediaController.AudioEntry) this.selectedAudiosOrder.get(i2)).messageObject);
+        }
+        this.delegate.didSelectAudio(arrayList, this.parentAlert.commentTextView.getText(), z, i, j, z2);
+    }
+
+    public void setDelegate(AudioSelectDelegate audioSelectDelegate) {
+        this.delegate = audioSelectDelegate;
+    }
+
+    public void setMaxSelectedFiles(int i) {
+        this.maxSelectedFiles = i;
+    }
+
+    @Override
+    public void setTranslationY(float f) {
+        super.setTranslationY(f);
+        this.parentAlert.getSheetContainer().invalidate();
     }
 }

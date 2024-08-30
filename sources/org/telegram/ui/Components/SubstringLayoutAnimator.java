@@ -27,6 +27,19 @@ public class SubstringLayoutAnimator {
         this.parentView = view;
     }
 
+    public void lambda$create$0(ValueAnimator valueAnimator) {
+        this.hintProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.parentView.invalidate();
+    }
+
+    public void cancel() {
+        ValueAnimator valueAnimator = this.valueAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        this.animateTextChange = false;
+    }
+
     public void create(StaticLayout staticLayout, CharSequence charSequence, CharSequence charSequence2, TextPaint textPaint) {
         String charSequence3;
         String charSequence4;
@@ -98,11 +111,6 @@ public class SubstringLayoutAnimator {
         this.valueAnimator.start();
     }
 
-    public void lambda$create$0(ValueAnimator valueAnimator) {
-        this.hintProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.parentView.invalidate();
-    }
-
     public void draw(Canvas canvas, TextPaint textPaint) {
         if (this.animateTextChange) {
             float f = this.xOffset * (this.animateTextChangeOut ? this.hintProgress : 1.0f - this.hintProgress);
@@ -140,13 +148,5 @@ public class SubstringLayoutAnimator {
                 textPaint.setAlpha(alpha);
             }
         }
-    }
-
-    public void cancel() {
-        ValueAnimator valueAnimator = this.valueAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        this.animateTextChange = false;
     }
 }

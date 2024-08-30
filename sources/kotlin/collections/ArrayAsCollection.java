@@ -6,17 +6,23 @@ import kotlin.jvm.internal.ArrayIteratorKt;
 import kotlin.jvm.internal.CollectionToArray;
 import kotlin.jvm.internal.Intrinsics;
 
-public final class ArrayAsCollection<T> implements Collection<T> {
+public final class ArrayAsCollection implements Collection {
     private final boolean isVarargs;
-    private final T[] values;
+    private final Object[] values;
+
+    public ArrayAsCollection(Object[] values, boolean z) {
+        Intrinsics.checkNotNullParameter(values, "values");
+        this.values = values;
+        this.isVarargs = z;
+    }
 
     @Override
-    public boolean add(T t) {
+    public boolean add(Object obj) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> collection) {
+    public boolean addAll(Collection collection) {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
@@ -26,35 +32,24 @@ public final class ArrayAsCollection<T> implements Collection<T> {
     }
 
     @Override
-    public boolean remove(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public boolean contains(Object obj) {
+        return ArraysKt___ArraysKt.contains(this.values, obj);
     }
 
     @Override
-    public boolean removeAll(Collection<? extends Object> collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public boolean retainAll(Collection<? extends Object> collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public <T> T[] toArray(T[] array) {
-        Intrinsics.checkNotNullParameter(array, "array");
-        return (T[]) CollectionToArray.toArray(this, array);
-    }
-
-    public ArrayAsCollection(T[] values, boolean z) {
-        Intrinsics.checkNotNullParameter(values, "values");
-        this.values = values;
-        this.isVarargs = z;
-    }
-
-    @Override
-    public final int size() {
-        return getSize();
+    public boolean containsAll(Collection elements) {
+        Intrinsics.checkNotNullParameter(elements, "elements");
+        Collection collection = elements;
+        if (collection.isEmpty()) {
+            return true;
+        }
+        Iterator it = collection.iterator();
+        while (it.hasNext()) {
+            if (!contains(it.next())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public int getSize() {
@@ -67,33 +62,38 @@ public final class ArrayAsCollection<T> implements Collection<T> {
     }
 
     @Override
-    public boolean contains(Object obj) {
-        return ArraysKt___ArraysKt.contains(this.values, obj);
-    }
-
-    @Override
-    public boolean containsAll(Collection<? extends Object> elements) {
-        Intrinsics.checkNotNullParameter(elements, "elements");
-        Collection<? extends Object> collection = elements;
-        if (collection.isEmpty()) {
-            return true;
-        }
-        Iterator<T> it = collection.iterator();
-        while (it.hasNext()) {
-            if (!contains(it.next())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public Iterator<T> iterator() {
+    public Iterator iterator() {
         return ArrayIteratorKt.iterator(this.values);
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    }
+
+    @Override
+    public final int size() {
+        return getSize();
     }
 
     @Override
     public final Object[] toArray() {
         return CollectionsKt__CollectionsJVMKt.copyToArrayOfAny(this.values, this.isVarargs);
+    }
+
+    @Override
+    public Object[] toArray(Object[] array) {
+        Intrinsics.checkNotNullParameter(array, "array");
+        return CollectionToArray.toArray(this, array);
     }
 }

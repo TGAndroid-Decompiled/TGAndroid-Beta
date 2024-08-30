@@ -9,8 +9,8 @@ public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
     public boolean proxy;
     public String psa_message;
     public String psa_type;
-    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList chats = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -69,13 +69,13 @@ public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
         int size = this.chats.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.chats.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$Chat) this.chats.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.users.size();
         abstractSerializedData.writeInt32(size2);
         for (int i3 = 0; i3 < size2; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i3)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.psa_type);

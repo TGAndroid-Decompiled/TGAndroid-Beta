@@ -38,73 +38,6 @@ public class VoIPPreNotificationService {
     private static final Object sync = new Object();
     private static Vibrator vibrator;
 
-    private static android.app.Notification makeNotification(android.content.Context r17, int r18, long r19, long r21, boolean r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.makeNotification(android.content.Context, int, long, long, boolean):android.app.Notification");
-    }
-
-    private static void startRinging(android.content.Context r11, int r12, long r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.startRinging(android.content.Context, int, long):void");
-    }
-
-    public static void lambda$startRinging$0(MediaPlayer mediaPlayer) {
-        try {
-            ringtonePlayer.start();
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-    }
-
-    private static void stopRinging() {
-        synchronized (sync) {
-            try {
-                MediaPlayer mediaPlayer = ringtonePlayer;
-                if (mediaPlayer != null) {
-                    mediaPlayer.stop();
-                    ringtonePlayer.release();
-                    ringtonePlayer = null;
-                }
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-        Vibrator vibrator2 = vibrator;
-        if (vibrator2 != null) {
-            vibrator2.cancel();
-            vibrator = null;
-        }
-    }
-
-    public static void show(final Context context, final Intent intent, final TLRPC$PhoneCall tLRPC$PhoneCall) {
-        FileLog.d("VoIPPreNotification.show()");
-        if (tLRPC$PhoneCall == null || intent == null) {
-            dismiss(context);
-            FileLog.d("VoIPPreNotification.show(): call or intent is null");
-            return;
-        }
-        TLRPC$PhoneCall tLRPC$PhoneCall2 = pendingCall;
-        if (tLRPC$PhoneCall2 == null || tLRPC$PhoneCall2.id != tLRPC$PhoneCall.id) {
-            dismiss(context);
-            pendingVoIP = intent;
-            pendingCall = tLRPC$PhoneCall;
-            final int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
-            final long longExtra = intent.getLongExtra("user_id", 0L);
-            final boolean z = tLRPC$PhoneCall.video;
-            acknowledge(context, intExtra, tLRPC$PhoneCall, new Runnable() {
-                @Override
-                public final void run() {
-                    VoIPPreNotificationService.lambda$show$1(intent, tLRPC$PhoneCall, context, intExtra, longExtra, z);
-                }
-            });
-        }
-    }
-
-    public static void lambda$show$1(Intent intent, TLRPC$PhoneCall tLRPC$PhoneCall, Context context, int i, long j, boolean z) {
-        pendingVoIP = intent;
-        pendingCall = tLRPC$PhoneCall;
-        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i, j, tLRPC$PhoneCall.id, z));
-        startRinging(context, i, j);
-    }
-
     private static void acknowledge(final Context context, int i, TLRPC$PhoneCall tLRPC$PhoneCall, final Runnable runnable) {
         if (tLRPC$PhoneCall instanceof TLRPC$TL_phoneCallDiscarded) {
             if (BuildVars.LOGS_ENABLED) {
@@ -133,60 +66,6 @@ public class VoIPPreNotificationService {
                 VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tLRPC$TL_error);
             }
         }, 2);
-    }
-
-    public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                VoIPPreNotificationService.lambda$acknowledge$2(TLObject.this, tLRPC$TL_error, context, runnable);
-            }
-        });
-    }
-
-    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Context context, Runnable runnable) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
-        }
-        if (tLRPC$TL_error == null) {
-            if (runnable != null) {
-                runnable.run();
-                return;
-            }
-            return;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.e("error on receivedCall: " + tLRPC$TL_error);
-        }
-        pendingVoIP = null;
-        pendingCall = null;
-        dismiss(context);
-    }
-
-    public static boolean open(Context context) {
-        if (VoIPService.getSharedInstance() != null) {
-            return true;
-        }
-        Intent intent = pendingVoIP;
-        if (intent == null || pendingCall == null) {
-            return false;
-        }
-        intent.getIntExtra("account", UserConfig.selectedAccount);
-        pendingVoIP.putExtra("openFragment", true);
-        pendingVoIP.putExtra("accept", false);
-        if (Build.VERSION.SDK_INT >= 26) {
-            context.startForegroundService(pendingVoIP);
-        } else {
-            context.startService(pendingVoIP);
-        }
-        pendingVoIP = null;
-        dismiss(context);
-        return true;
-    }
-
-    public static boolean isVideo() {
-        Intent intent = pendingVoIP;
-        return intent != null && intent.getBooleanExtra("video", false);
     }
 
     public static void answer(Context context) {
@@ -239,15 +118,7 @@ public class VoIPPreNotificationService {
         tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
         tLRPC$TL_phone_discardCall.duration = 0;
         tLRPC$TL_phone_discardCall.connection_id = 0L;
-        if (i == 2) {
-            tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonDisconnect();
-        } else if (i == 3) {
-            tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonMissed();
-        } else if (i == 4) {
-            tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonBusy();
-        } else {
-            tLRPC$TL_phone_discardCall.reason = new TLRPC$TL_phoneCallDiscardReasonHangup();
-        }
+        tLRPC$TL_phone_discardCall.reason = i != 2 ? i != 3 ? i != 4 ? new TLRPC$TL_phoneCallDiscardReasonHangup() : new TLRPC$TL_phoneCallDiscardReasonBusy() : new TLRPC$TL_phoneCallDiscardReasonMissed() : new TLRPC$TL_phoneCallDiscardReasonDisconnect();
         FileLog.e("discardCall " + tLRPC$TL_phone_discardCall.reason);
         ConnectionsManager.getInstance(intExtra).sendRequest(tLRPC$TL_phone_discardCall, new RequestDelegate() {
             @Override
@@ -256,6 +127,47 @@ public class VoIPPreNotificationService {
             }
         }, 2);
         dismiss(context);
+    }
+
+    public static void dismiss(Context context) {
+        FileLog.d("VoIPPreNotification.dismiss()");
+        pendingVoIP = null;
+        pendingCall = null;
+        ((NotificationManager) context.getSystemService("notification")).cancel(203);
+        stopRinging();
+    }
+
+    public static boolean isVideo() {
+        Intent intent = pendingVoIP;
+        return intent != null && intent.getBooleanExtra("video", false);
+    }
+
+    public static void lambda$acknowledge$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, Context context, Runnable runnable) {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.w("(VoIPPreNotification) receivedCall response = " + tLObject);
+        }
+        if (tLRPC$TL_error == null) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.e("error on receivedCall: " + tLRPC$TL_error);
+        }
+        pendingVoIP = null;
+        pendingCall = null;
+        dismiss(context);
+    }
+
+    public static void lambda$acknowledge$3(final Context context, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                VoIPPreNotificationService.lambda$acknowledge$2(TLObject.this, tLRPC$TL_error, context, runnable);
+            }
+        });
     }
 
     public static void lambda$decline$4(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -274,11 +186,91 @@ public class VoIPPreNotificationService {
         }
     }
 
-    public static void dismiss(Context context) {
-        FileLog.d("VoIPPreNotification.dismiss()");
+    public static void lambda$show$1(Intent intent, TLRPC$PhoneCall tLRPC$PhoneCall, Context context, int i, long j, boolean z) {
+        pendingVoIP = intent;
+        pendingCall = tLRPC$PhoneCall;
+        ((NotificationManager) context.getSystemService("notification")).notify(203, makeNotification(context, i, j, tLRPC$PhoneCall.id, z));
+        startRinging(context, i, j);
+    }
+
+    public static void lambda$startRinging$0(MediaPlayer mediaPlayer) {
+        try {
+            ringtonePlayer.start();
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    private static android.app.Notification makeNotification(android.content.Context r17, int r18, long r19, long r21, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.makeNotification(android.content.Context, int, long, long, boolean):android.app.Notification");
+    }
+
+    public static boolean open(Context context) {
+        if (VoIPService.getSharedInstance() != null) {
+            return true;
+        }
+        Intent intent = pendingVoIP;
+        if (intent == null || pendingCall == null) {
+            return false;
+        }
+        intent.getIntExtra("account", UserConfig.selectedAccount);
+        pendingVoIP.putExtra("openFragment", true);
+        pendingVoIP.putExtra("accept", false);
+        if (Build.VERSION.SDK_INT >= 26) {
+            context.startForegroundService(pendingVoIP);
+        } else {
+            context.startService(pendingVoIP);
+        }
         pendingVoIP = null;
-        pendingCall = null;
-        ((NotificationManager) context.getSystemService("notification")).cancel(203);
-        stopRinging();
+        dismiss(context);
+        return true;
+    }
+
+    public static void show(final Context context, final Intent intent, final TLRPC$PhoneCall tLRPC$PhoneCall) {
+        FileLog.d("VoIPPreNotification.show()");
+        if (tLRPC$PhoneCall == null || intent == null) {
+            dismiss(context);
+            FileLog.d("VoIPPreNotification.show(): call or intent is null");
+            return;
+        }
+        TLRPC$PhoneCall tLRPC$PhoneCall2 = pendingCall;
+        if (tLRPC$PhoneCall2 == null || tLRPC$PhoneCall2.id != tLRPC$PhoneCall.id) {
+            dismiss(context);
+            pendingVoIP = intent;
+            pendingCall = tLRPC$PhoneCall;
+            final int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
+            final long longExtra = intent.getLongExtra("user_id", 0L);
+            final boolean z = tLRPC$PhoneCall.video;
+            acknowledge(context, intExtra, tLRPC$PhoneCall, new Runnable() {
+                @Override
+                public final void run() {
+                    VoIPPreNotificationService.lambda$show$1(intent, tLRPC$PhoneCall, context, intExtra, longExtra, z);
+                }
+            });
+        }
+    }
+
+    private static void startRinging(android.content.Context r11, int r12, long r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.startRinging(android.content.Context, int, long):void");
+    }
+
+    private static void stopRinging() {
+        synchronized (sync) {
+            try {
+                MediaPlayer mediaPlayer = ringtonePlayer;
+                if (mediaPlayer != null) {
+                    mediaPlayer.stop();
+                    ringtonePlayer.release();
+                    ringtonePlayer = null;
+                }
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+        Vibrator vibrator2 = vibrator;
+        if (vibrator2 != null) {
+            vibrator2.cancel();
+            vibrator = null;
+        }
     }
 }

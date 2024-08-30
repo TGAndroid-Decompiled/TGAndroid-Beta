@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.cells;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -17,7 +16,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 
-@SuppressLint({"ViewConstructor"})
 public class EnterPrizeCell extends LinearLayout {
     private AfterTextChangedListener afterTextChangedListener;
     private final EditTextCaption editText;
@@ -62,18 +60,18 @@ public class EnterPrizeCell extends LinearLayout {
         editTextCaption.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
         editTextCaption.addTextChangedListener(new TextWatcher() {
             @Override
+            public void afterTextChanged(Editable editable) {
+                if (EnterPrizeCell.this.afterTextChangedListener != null) {
+                    EnterPrizeCell.this.afterTextChangedListener.afterTextChanged(editable.toString().trim());
+                }
+            }
+
+            @Override
             public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (EnterPrizeCell.this.afterTextChangedListener != null) {
-                    EnterPrizeCell.this.afterTextChangedListener.afterTextChanged(editable.toString().trim());
-                }
             }
         });
         editTextCaption.setImeOptions(6);
@@ -81,15 +79,15 @@ public class EnterPrizeCell extends LinearLayout {
         this.textView = textView;
         textView.setTextSize(1, 16.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-        if (LocaleController.isRTL) {
+        if (!LocaleController.isRTL) {
+            addView(textView, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
+            addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 16, 36, 0, 20, 0));
+        } else {
             LinearLayout.LayoutParams createLinear = LayoutHelper.createLinear(-1, -2, 16, 20, 0, 36, 0);
             createLinear.weight = 1.0f;
             addView(editTextCaption, createLinear);
             addView(textView, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 20, 0));
-            return;
         }
-        addView(textView, LayoutHelper.createLinear(-2, -2, 16, 20, 0, 0, 0));
-        addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 16, 36, 0, 20, 0));
     }
 
     @Override

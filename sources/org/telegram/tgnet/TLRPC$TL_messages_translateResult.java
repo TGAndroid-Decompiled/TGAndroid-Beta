@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_translateResult extends TLObject {
-    public ArrayList<TLRPC$TL_textWithEntities> result = new ArrayList<>();
+    public ArrayList result = new ArrayList();
 
     public static TLRPC$TL_messages_translateResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (870003448 != i) {
@@ -43,7 +43,7 @@ public class TLRPC$TL_messages_translateResult extends TLObject {
         int size = this.result.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.result.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_textWithEntities) this.result.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -35,6 +35,11 @@ public class AvailableReactionCell extends FrameLayout {
 
     public AvailableReactionCell(Context context, boolean z, boolean z2) {
         super(context);
+        View view;
+        float f;
+        float f2;
+        float f3;
+        float f4;
         this.canLock = z2;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
@@ -56,23 +61,27 @@ public class AvailableReactionCell extends FrameLayout {
             checkBox2.setDrawUnchecked(false);
             this.checkBox.setColor(-1, -1, Theme.key_radioBackgroundChecked);
             this.checkBox.setDrawBackgroundAsArc(-1);
-            addView(this.checkBox, LayoutHelper.createFrameRelatively(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
+            view = this.checkBox;
+            f = 22.0f;
+            f2 = 0.0f;
+            f3 = 26.0f;
+            f4 = 26.0f;
         } else {
             Switch r11 = new Switch(context);
             this.switchView = r11;
             r11.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-            addView(this.switchView, LayoutHelper.createFrameRelatively(37.0f, 20.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
+            view = this.switchView;
+            f = 22.0f;
+            f2 = 0.0f;
+            f3 = 37.0f;
+            f4 = 20.0f;
         }
-        View view = new View(context);
-        this.overlaySelectorView = view;
-        view.setBackground(Theme.getSelectorDrawable(false));
+        addView(view, LayoutHelper.createFrameRelatively(f3, f4, 8388629, 0.0f, 0.0f, f, f2));
+        View view2 = new View(context);
+        this.overlaySelectorView = view2;
+        view2.setBackground(Theme.getSelectorDrawable(false));
         addView(this.overlaySelectorView, LayoutHelper.createFrame(-1, -1.0f));
         setWillNotDraw(false);
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(58.0f) + Theme.dividerPaint.getStrokeWidth()), 1073741824));
     }
 
     public void bind(TLRPC$TL_availableReaction tLRPC$TL_availableReaction, boolean z, int i) {
@@ -91,21 +100,6 @@ public class AvailableReactionCell extends FrameLayout {
             this.textView.setRightDrawable((Drawable) null);
         }
         setChecked(z, z2);
-    }
-
-    public void setChecked(boolean z) {
-        setChecked(z, false);
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        Switch r0 = this.switchView;
-        if (r0 != null) {
-            r0.setChecked(z, z2);
-        }
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null) {
-            checkBox2.setChecked(z, z2);
-        }
     }
 
     public boolean isChecked() {
@@ -146,5 +140,25 @@ public class AvailableReactionCell extends FrameLayout {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.setContentDescription(this.textView.getText());
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(58.0f) + Theme.dividerPaint.getStrokeWidth()), 1073741824));
+    }
+
+    public void setChecked(boolean z) {
+        setChecked(z, false);
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        Switch r0 = this.switchView;
+        if (r0 != null) {
+            r0.setChecked(z, z2);
+        }
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.setChecked(z, z2);
+        }
     }
 }

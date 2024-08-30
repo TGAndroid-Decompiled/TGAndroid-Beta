@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_langpack_getStrings extends TLObject {
-    public ArrayList<String> keys = new ArrayList<>();
+    public ArrayList keys = new ArrayList();
     public String lang_code;
 
     @Override
@@ -28,7 +28,7 @@ public class TLRPC$TL_langpack_getStrings extends TLObject {
         int size = this.keys.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeString(this.keys.get(i));
+            abstractSerializedData.writeString((String) this.keys.get(i));
         }
     }
 }

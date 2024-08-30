@@ -14,7 +14,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$ChannelParticipant;
 import org.telegram.tgnet.TLRPC$TL_channelAdminLogEventsFilter;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
@@ -26,20 +25,20 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
     private UniversalAdapter adapter;
     private final SelectorBtnCell buttonContainer;
-    private ArrayList<TLRPC$ChannelParticipant> currentAdmins;
+    private ArrayList currentAdmins;
     private TLRPC$TL_channelAdminLogEventsFilter currentFilter;
     private AdminLogFilterAlertDelegate delegate;
     private boolean isMegagroup;
     private boolean sectionMembersExpanded;
     private boolean sectionMessagesExpanded;
     private boolean sectionSettingsExpanded;
-    private LongSparseArray<TLRPC$User> selectedAdmins;
+    private LongSparseArray selectedAdmins;
 
     public interface AdminLogFilterAlertDelegate {
-        void didSelectRights(TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray<TLRPC$User> longSparseArray);
+        void didSelectRights(TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray longSparseArray);
     }
 
-    public AdminLogFilterAlert2(BaseFragment baseFragment, TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray<TLRPC$User> longSparseArray, boolean z) {
+    public AdminLogFilterAlert2(BaseFragment baseFragment, TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter, LongSparseArray longSparseArray, boolean z) {
         super(baseFragment.getContext(), baseFragment, false, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, baseFragment.getResourceProvider());
         this.currentFilter = new TLRPC$TL_channelAdminLogEventsFilter();
         this.sectionMembersExpanded = false;
@@ -137,63 +136,6 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
     }
 
-    public void lambda$new$0(View view, int i, float f, float f2) {
-        onClick(this.adapter.getItem(i - 1), view, f);
-    }
-
-    public void lambda$new$1(View view) {
-        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-        if (tLRPC$TL_channelAdminLogEventsFilter.join && tLRPC$TL_channelAdminLogEventsFilter.leave && tLRPC$TL_channelAdminLogEventsFilter.invite && tLRPC$TL_channelAdminLogEventsFilter.ban && tLRPC$TL_channelAdminLogEventsFilter.unban && tLRPC$TL_channelAdminLogEventsFilter.kick && tLRPC$TL_channelAdminLogEventsFilter.unkick && tLRPC$TL_channelAdminLogEventsFilter.promote && tLRPC$TL_channelAdminLogEventsFilter.demote && tLRPC$TL_channelAdminLogEventsFilter.info && tLRPC$TL_channelAdminLogEventsFilter.settings && tLRPC$TL_channelAdminLogEventsFilter.pinned && tLRPC$TL_channelAdminLogEventsFilter.edit && tLRPC$TL_channelAdminLogEventsFilter.delete && tLRPC$TL_channelAdminLogEventsFilter.group_call && tLRPC$TL_channelAdminLogEventsFilter.invites) {
-            this.currentFilter = null;
-        }
-        LongSparseArray<TLRPC$User> longSparseArray = this.selectedAdmins;
-        if (longSparseArray != null && this.currentAdmins != null && longSparseArray.size() >= this.currentAdmins.size()) {
-            this.selectedAdmins = null;
-        }
-        this.delegate.didSelectRights(this.currentFilter, this.selectedAdmins);
-        dismiss();
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        return LocaleController.getString(R.string.EventLog);
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
-            @Override
-            public final void run(Object obj, Object obj2) {
-                AdminLogFilterAlert2.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
-            }
-        }, this.resourcesProvider);
-        this.adapter = universalAdapter;
-        return universalAdapter;
-    }
-
-    private String getGroupCount(int i) {
-        if (i == 0) {
-            StringBuilder sb = new StringBuilder();
-            TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
-            sb.append(((tLRPC$TL_channelAdminLogEventsFilter.promote || tLRPC$TL_channelAdminLogEventsFilter.demote) ? 1 : 0) + ((this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter.kick || tLRPC$TL_channelAdminLogEventsFilter.ban || tLRPC$TL_channelAdminLogEventsFilter.unkick || tLRPC$TL_channelAdminLogEventsFilter.unban)) ? 1 : 0) + ((tLRPC$TL_channelAdminLogEventsFilter.invite || tLRPC$TL_channelAdminLogEventsFilter.join) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter.leave ? 1 : 0));
-            sb.append("/");
-            sb.append(this.isMegagroup ? 4 : 3);
-            return sb.toString();
-        }
-        if (i == 1) {
-            StringBuilder sb2 = new StringBuilder();
-            TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter2 = this.currentFilter;
-            sb2.append(((tLRPC$TL_channelAdminLogEventsFilter2.info || tLRPC$TL_channelAdminLogEventsFilter2.settings) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
-            sb2.append("/3");
-            return sb2.toString();
-        }
-        StringBuilder sb3 = new StringBuilder();
-        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
-        sb3.append((tLRPC$TL_channelAdminLogEventsFilter3.delete ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.edit ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.pinned ? 1 : 0));
-        sb3.append("/3");
-        return sb3.toString();
-    }
-
     private View.OnClickListener getGroupClick(final int i) {
         return new View.OnClickListener() {
             @Override
@@ -201,6 +143,29 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
                 AdminLogFilterAlert2.this.lambda$getGroupClick$2(i, view);
             }
         };
+    }
+
+    private String getGroupCount(int i) {
+        StringBuilder sb;
+        if (i != 0) {
+            if (i != 1) {
+                sb = new StringBuilder();
+                TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
+                sb.append((tLRPC$TL_channelAdminLogEventsFilter.delete ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter.edit ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter.pinned ? 1 : 0));
+            } else {
+                sb = new StringBuilder();
+                TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter2 = this.currentFilter;
+                sb.append(((tLRPC$TL_channelAdminLogEventsFilter2.info || tLRPC$TL_channelAdminLogEventsFilter2.settings) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.invites ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter2.group_call ? 1 : 0));
+            }
+            sb.append("/3");
+        } else {
+            sb = new StringBuilder();
+            TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter3 = this.currentFilter;
+            sb.append(((tLRPC$TL_channelAdminLogEventsFilter3.promote || tLRPC$TL_channelAdminLogEventsFilter3.demote) ? 1 : 0) + ((this.isMegagroup && (tLRPC$TL_channelAdminLogEventsFilter3.kick || tLRPC$TL_channelAdminLogEventsFilter3.ban || tLRPC$TL_channelAdminLogEventsFilter3.unkick || tLRPC$TL_channelAdminLogEventsFilter3.unban)) ? 1 : 0) + ((tLRPC$TL_channelAdminLogEventsFilter3.invite || tLRPC$TL_channelAdminLogEventsFilter3.join) ? 1 : 0) + (tLRPC$TL_channelAdminLogEventsFilter3.leave ? 1 : 0));
+            sb.append("/");
+            sb.append(this.isMegagroup ? 4 : 3);
+        }
+        return sb.toString();
     }
 
     public void lambda$getGroupClick$2(int i, View view) {
@@ -215,7 +180,41 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         applyScrolledPosition();
     }
 
-    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+    public void lambda$new$0(View view, int i, float f, float f2) {
+        onClick(this.adapter.getItem(i - 1), view, f);
+    }
+
+    public void lambda$new$1(View view) {
+        TLRPC$TL_channelAdminLogEventsFilter tLRPC$TL_channelAdminLogEventsFilter = this.currentFilter;
+        if (tLRPC$TL_channelAdminLogEventsFilter.join && tLRPC$TL_channelAdminLogEventsFilter.leave && tLRPC$TL_channelAdminLogEventsFilter.invite && tLRPC$TL_channelAdminLogEventsFilter.ban && tLRPC$TL_channelAdminLogEventsFilter.unban && tLRPC$TL_channelAdminLogEventsFilter.kick && tLRPC$TL_channelAdminLogEventsFilter.unkick && tLRPC$TL_channelAdminLogEventsFilter.promote && tLRPC$TL_channelAdminLogEventsFilter.demote && tLRPC$TL_channelAdminLogEventsFilter.info && tLRPC$TL_channelAdminLogEventsFilter.settings && tLRPC$TL_channelAdminLogEventsFilter.pinned && tLRPC$TL_channelAdminLogEventsFilter.edit && tLRPC$TL_channelAdminLogEventsFilter.delete && tLRPC$TL_channelAdminLogEventsFilter.group_call && tLRPC$TL_channelAdminLogEventsFilter.invites) {
+            this.currentFilter = null;
+        }
+        LongSparseArray longSparseArray = this.selectedAdmins;
+        if (longSparseArray != null && this.currentAdmins != null && longSparseArray.size() >= this.currentAdmins.size()) {
+            this.selectedAdmins = null;
+        }
+        this.delegate.didSelectRights(this.currentFilter, this.selectedAdmins);
+        dismiss();
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        return !this.recyclerListView.canScrollVertically(-1);
+    }
+
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+            @Override
+            public final void run(Object obj, Object obj2) {
+                AdminLogFilterAlert2.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+            }
+        }, this.resourcesProvider);
+        this.adapter = universalAdapter;
+        return universalAdapter;
+    }
+
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         if (this.currentFilter == null) {
             return;
         }
@@ -258,42 +257,27 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         arrayList.add(UItem.asShadow(null));
         arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EventLogFilterByAdmins)));
         UItem asRoundCheckbox = UItem.asRoundCheckbox(15, LocaleController.getString(R.string.EventLogFilterByAdminsAll));
-        LongSparseArray<TLRPC$User> longSparseArray = this.selectedAdmins;
+        LongSparseArray longSparseArray = this.selectedAdmins;
         int size = longSparseArray == null ? 0 : longSparseArray.size();
-        ArrayList<TLRPC$ChannelParticipant> arrayList2 = this.currentAdmins;
+        ArrayList arrayList2 = this.currentAdmins;
         arrayList.add(asRoundCheckbox.setChecked(size >= (arrayList2 == null ? 0 : arrayList2.size())));
         if (this.currentAdmins != null) {
             for (int i = 0; i < this.currentAdmins.size(); i++) {
-                long peerDialogId = DialogObject.getPeerDialogId(this.currentAdmins.get(i).peer);
+                long peerDialogId = DialogObject.getPeerDialogId(((TLRPC$ChannelParticipant) this.currentAdmins.get(i)).peer);
                 UItem pad5 = UItem.asUserCheckbox((-1) - i, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId))).pad();
-                LongSparseArray<TLRPC$User> longSparseArray2 = this.selectedAdmins;
+                LongSparseArray longSparseArray2 = this.selectedAdmins;
                 arrayList.add(pad5.setChecked(longSparseArray2 != null && longSparseArray2.containsKey(peerDialogId)));
             }
         }
     }
 
+    @Override
+    protected CharSequence getTitle() {
+        return LocaleController.getString(R.string.EventLog);
+    }
+
     public void onClick(org.telegram.ui.Components.UItem r7, android.view.View r8, float r9) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AdminLogFilterAlert2.onClick(org.telegram.ui.Components.UItem, android.view.View, float):void");
-    }
-
-    public void setCurrentAdmins(ArrayList<TLRPC$ChannelParticipant> arrayList) {
-        this.currentAdmins = arrayList;
-        if (arrayList != null && this.selectedAdmins == null) {
-            this.selectedAdmins = new LongSparseArray<>();
-            Iterator<TLRPC$ChannelParticipant> it = this.currentAdmins.iterator();
-            while (it.hasNext()) {
-                long peerDialogId = DialogObject.getPeerDialogId(it.next().peer);
-                this.selectedAdmins.put(peerDialogId, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId)));
-            }
-        }
-        UniversalAdapter universalAdapter = this.adapter;
-        if (universalAdapter != null) {
-            universalAdapter.update(true);
-        }
-    }
-
-    public void setAdminLogFilterAlertDelegate(AdminLogFilterAlertDelegate adminLogFilterAlertDelegate) {
-        this.delegate = adminLogFilterAlertDelegate;
     }
 
     @Override
@@ -302,8 +286,23 @@ public class AdminLogFilterAlert2 extends BottomSheetWithRecyclerListView {
         this.buttonContainer.setTranslationY(-f);
     }
 
-    @Override
-    public boolean canDismissWithSwipe() {
-        return !this.recyclerListView.canScrollVertically(-1);
+    public void setAdminLogFilterAlertDelegate(AdminLogFilterAlertDelegate adminLogFilterAlertDelegate) {
+        this.delegate = adminLogFilterAlertDelegate;
+    }
+
+    public void setCurrentAdmins(ArrayList arrayList) {
+        this.currentAdmins = arrayList;
+        if (arrayList != null && this.selectedAdmins == null) {
+            this.selectedAdmins = new LongSparseArray();
+            Iterator it = this.currentAdmins.iterator();
+            while (it.hasNext()) {
+                long peerDialogId = DialogObject.getPeerDialogId(((TLRPC$ChannelParticipant) it.next()).peer);
+                this.selectedAdmins.put(peerDialogId, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId)));
+            }
+        }
+        UniversalAdapter universalAdapter = this.adapter;
+        if (universalAdapter != null) {
+            universalAdapter.update(true);
+        }
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public abstract class TLRPC$WebPage extends TLObject {
-    public ArrayList<TLRPC$WebPageAttribute> attributes = new ArrayList<>();
+    public ArrayList attributes = new ArrayList();
     public String author;
     public TLRPC$Page cached_page;
     public int date;

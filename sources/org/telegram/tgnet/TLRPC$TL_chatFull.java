@@ -102,7 +102,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
             int size = this.bot_info.size();
             abstractSerializedData.writeInt32(size);
             for (int i3 = 0; i3 < size; i3++) {
-                this.bot_info.get(i3).serializeToStream(abstractSerializedData);
+                ((TL_bots$BotInfo) this.bot_info.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 64) != 0) {
@@ -131,7 +131,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
             int size2 = this.recent_requesters.size();
             abstractSerializedData.writeInt32(size2);
             for (int i4 = 0; i4 < size2; i4++) {
-                abstractSerializedData.writeInt64(this.recent_requesters.get(i4).longValue());
+                abstractSerializedData.writeInt64(((Long) this.recent_requesters.get(i4)).longValue());
             }
         }
         if ((this.flags & 262144) != 0) {

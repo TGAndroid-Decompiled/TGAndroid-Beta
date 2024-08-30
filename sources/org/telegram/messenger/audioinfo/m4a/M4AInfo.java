@@ -1,6 +1,5 @@
 package org.telegram.messenger.audioinfo.m4a;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.logging.Level;
@@ -15,11 +14,11 @@ public class M4AInfo extends AudioInfo {
     private short tempo;
     private BigDecimal volume;
 
-    public M4AInfo(InputStream inputStream) throws IOException {
+    public M4AInfo(InputStream inputStream) {
         this(inputStream, Level.FINEST);
     }
 
-    public M4AInfo(InputStream inputStream, Level level) throws IOException {
+    public M4AInfo(InputStream inputStream, Level level) {
         this.debugLevel = level;
         MP4Input mP4Input = new MP4Input(inputStream);
         Logger logger = LOGGER;
@@ -30,22 +29,104 @@ public class M4AInfo extends AudioInfo {
         moov(mP4Input.nextChildUpTo("moov"));
     }
 
-    void ftyp(MP4Atom mP4Atom) throws IOException {
+    void data(org.telegram.messenger.audioinfo.m4a.MP4Atom r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.m4a.M4AInfo.data(org.telegram.messenger.audioinfo.m4a.MP4Atom):void");
+    }
+
+    void ftyp(MP4Atom mP4Atom) {
+        StringBuilder sb;
+        String str;
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
         }
         String trim = mP4Atom.readString(4, "ISO8859_1").trim();
         this.brand = trim;
-        if (trim.matches("M4V|MP4|mp42|isom")) {
-            logger.warning(mP4Atom.getPath() + ": brand=" + this.brand + " (experimental)");
-        } else if (!this.brand.matches("M4A|M4P")) {
-            logger.warning(mP4Atom.getPath() + ": brand=" + this.brand + " (expected M4A or M4P)");
+        if (!trim.matches("M4V|MP4|mp42|isom")) {
+            if (!this.brand.matches("M4A|M4P")) {
+                sb = new StringBuilder();
+                sb.append(mP4Atom.getPath());
+                sb.append(": brand=");
+                sb.append(this.brand);
+                str = " (expected M4A or M4P)";
+            }
+            this.version = String.valueOf(mP4Atom.readInt());
         }
+        sb = new StringBuilder();
+        sb.append(mP4Atom.getPath());
+        sb.append(": brand=");
+        sb.append(this.brand);
+        str = " (experimental)";
+        sb.append(str);
+        logger.warning(sb.toString());
         this.version = String.valueOf(mP4Atom.readInt());
     }
 
-    void moov(MP4Atom mP4Atom) throws IOException {
+    void ilst(MP4Atom mP4Atom) {
+        Logger logger = LOGGER;
+        if (logger.isLoggable(this.debugLevel)) {
+            logger.log(this.debugLevel, mP4Atom.toString());
+        }
+        while (mP4Atom.hasMoreChildren()) {
+            MP4Atom nextChild = mP4Atom.nextChild();
+            Logger logger2 = LOGGER;
+            if (logger2.isLoggable(this.debugLevel)) {
+                logger2.log(this.debugLevel, nextChild.toString());
+            }
+            if (nextChild.getRemaining() != 0) {
+                data(nextChild.nextChildUpTo("data"));
+            } else if (logger2.isLoggable(this.debugLevel)) {
+                logger2.log(this.debugLevel, nextChild.getPath() + ": contains no value");
+            }
+        }
+    }
+
+    void mdhd(MP4Atom mP4Atom) {
+        Logger logger = LOGGER;
+        if (logger.isLoggable(this.debugLevel)) {
+            logger.log(this.debugLevel, mP4Atom.toString());
+        }
+        byte readByte = mP4Atom.readByte();
+        mP4Atom.skip(3);
+        mP4Atom.skip(readByte == 1 ? 16 : 8);
+        int readInt = mP4Atom.readInt();
+        long readLong = readByte == 1 ? mP4Atom.readLong() : mP4Atom.readInt();
+        if (this.duration == 0) {
+            this.duration = (readLong * 1000) / readInt;
+            return;
+        }
+        if (logger.isLoggable(this.debugLevel)) {
+            long j = (readLong * 1000) / readInt;
+            if (Math.abs(this.duration - j) > 2) {
+                logger.log(this.debugLevel, "mdhd: duration " + this.duration + " -> " + j);
+            }
+        }
+    }
+
+    void mdia(MP4Atom mP4Atom) {
+        Logger logger = LOGGER;
+        if (logger.isLoggable(this.debugLevel)) {
+            logger.log(this.debugLevel, mP4Atom.toString());
+        }
+        mdhd(mP4Atom.nextChild("mdhd"));
+    }
+
+    void meta(MP4Atom mP4Atom) {
+        Logger logger = LOGGER;
+        if (logger.isLoggable(this.debugLevel)) {
+            logger.log(this.debugLevel, mP4Atom.toString());
+        }
+        mP4Atom.skip(4);
+        while (mP4Atom.hasMoreChildren()) {
+            MP4Atom nextChild = mP4Atom.nextChild();
+            if ("ilst".equals(nextChild.getType())) {
+                ilst(nextChild);
+                return;
+            }
+        }
+    }
+
+    void moov(MP4Atom mP4Atom) {
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
@@ -89,7 +170,7 @@ public class M4AInfo extends AudioInfo {
         }
     }
 
-    void mvhd(MP4Atom mP4Atom) throws IOException {
+    void mvhd(MP4Atom mP4Atom) {
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
@@ -111,7 +192,7 @@ public class M4AInfo extends AudioInfo {
         this.volume = mP4Atom.readShortFixedPoint();
     }
 
-    void trak(MP4Atom mP4Atom) throws IOException {
+    void trak(MP4Atom mP4Atom) {
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
@@ -119,37 +200,7 @@ public class M4AInfo extends AudioInfo {
         mdia(mP4Atom.nextChildUpTo("mdia"));
     }
 
-    void mdia(MP4Atom mP4Atom) throws IOException {
-        Logger logger = LOGGER;
-        if (logger.isLoggable(this.debugLevel)) {
-            logger.log(this.debugLevel, mP4Atom.toString());
-        }
-        mdhd(mP4Atom.nextChild("mdhd"));
-    }
-
-    void mdhd(MP4Atom mP4Atom) throws IOException {
-        Logger logger = LOGGER;
-        if (logger.isLoggable(this.debugLevel)) {
-            logger.log(this.debugLevel, mP4Atom.toString());
-        }
-        byte readByte = mP4Atom.readByte();
-        mP4Atom.skip(3);
-        mP4Atom.skip(readByte == 1 ? 16 : 8);
-        int readInt = mP4Atom.readInt();
-        long readLong = readByte == 1 ? mP4Atom.readLong() : mP4Atom.readInt();
-        if (this.duration == 0) {
-            this.duration = (readLong * 1000) / readInt;
-            return;
-        }
-        if (logger.isLoggable(this.debugLevel)) {
-            long j = (readLong * 1000) / readInt;
-            if (Math.abs(this.duration - j) > 2) {
-                logger.log(this.debugLevel, "mdhd: duration " + this.duration + " -> " + j);
-            }
-        }
-    }
-
-    void udta(MP4Atom mP4Atom) throws IOException {
+    void udta(MP4Atom mP4Atom) {
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
@@ -161,45 +212,5 @@ public class M4AInfo extends AudioInfo {
                 return;
             }
         }
-    }
-
-    void meta(MP4Atom mP4Atom) throws IOException {
-        Logger logger = LOGGER;
-        if (logger.isLoggable(this.debugLevel)) {
-            logger.log(this.debugLevel, mP4Atom.toString());
-        }
-        mP4Atom.skip(4);
-        while (mP4Atom.hasMoreChildren()) {
-            MP4Atom nextChild = mP4Atom.nextChild();
-            if ("ilst".equals(nextChild.getType())) {
-                ilst(nextChild);
-                return;
-            }
-        }
-    }
-
-    void ilst(MP4Atom mP4Atom) throws IOException {
-        Logger logger = LOGGER;
-        if (logger.isLoggable(this.debugLevel)) {
-            logger.log(this.debugLevel, mP4Atom.toString());
-        }
-        while (mP4Atom.hasMoreChildren()) {
-            MP4Atom nextChild = mP4Atom.nextChild();
-            Logger logger2 = LOGGER;
-            if (logger2.isLoggable(this.debugLevel)) {
-                logger2.log(this.debugLevel, nextChild.toString());
-            }
-            if (nextChild.getRemaining() == 0) {
-                if (logger2.isLoggable(this.debugLevel)) {
-                    logger2.log(this.debugLevel, nextChild.getPath() + ": contains no value");
-                }
-            } else {
-                data(nextChild.nextChildUpTo("data"));
-            }
-        }
-    }
-
-    void data(org.telegram.messenger.audioinfo.m4a.MP4Atom r8) throws java.io.IOException {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.audioinfo.m4a.M4AInfo.data(org.telegram.messenger.audioinfo.m4a.MP4Atom):void");
     }
 }

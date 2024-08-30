@@ -55,9 +55,52 @@ public class AvatarSpan extends ReplacementSpan {
         setParent(view);
     }
 
-    public void setSize(float f) {
-        this.imageReceiver.setRoundRadius(AndroidUtilities.dp(f));
-        this.sz = f;
+    public static void checkSpansParent(CharSequence charSequence, View view) {
+        if (charSequence != null && (charSequence instanceof Spannable)) {
+            Spannable spannable = (Spannable) charSequence;
+            for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
+                avatarSpan.setParent(view);
+            }
+        }
+    }
+
+    @Override
+    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+        if (this.shadowPaintAlpha != paint.getAlpha()) {
+            Paint paint2 = this.shadowPaint;
+            int alpha = paint.getAlpha();
+            this.shadowPaintAlpha = alpha;
+            paint2.setAlpha(alpha);
+            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
+        }
+        float f2 = (i3 + i5) / 2.0f;
+        canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + f2, AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
+        this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + f2) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
+        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
+        this.imageReceiver.draw(canvas);
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        return AndroidUtilities.dp(this.sz);
+    }
+
+    public void setChat(TLRPC$Chat tLRPC$Chat) {
+        this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
+        this.imageReceiver.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+    }
+
+    public void setDialogId(long j) {
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        if (j >= 0) {
+            setUser(messagesController.getUser(Long.valueOf(j)));
+        } else {
+            setChat(messagesController.getChat(Long.valueOf(-j)));
+        }
+    }
+
+    public void setImageDrawable(Drawable drawable) {
+        this.imageReceiver.setImageBitmap(drawable);
     }
 
     public void setParent(View view) {
@@ -82,56 +125,14 @@ public class AvatarSpan extends ReplacementSpan {
         }
     }
 
-    public static void checkSpansParent(CharSequence charSequence, View view) {
-        if (charSequence != null && (charSequence instanceof Spannable)) {
-            Spannable spannable = (Spannable) charSequence;
-            for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
-                avatarSpan.setParent(view);
-            }
-        }
-    }
-
-    public void setDialogId(long j) {
-        if (j >= 0) {
-            setUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)));
-        } else {
-            setChat(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
-        }
-    }
-
-    public void setChat(TLRPC$Chat tLRPC$Chat) {
-        this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat);
-        this.imageReceiver.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
+    public void setSize(float f) {
+        this.imageReceiver.setRoundRadius(AndroidUtilities.dp(f));
+        this.sz = f;
     }
 
     public void setUser(TLRPC$User tLRPC$User) {
         this.avatarDrawable.setInfo(this.currentAccount, tLRPC$User);
         this.imageReceiver.setForUserOrChat(tLRPC$User, this.avatarDrawable);
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        this.imageReceiver.setImageBitmap(drawable);
-    }
-
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.sz);
-    }
-
-    @Override
-    public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        if (this.shadowPaintAlpha != paint.getAlpha()) {
-            Paint paint2 = this.shadowPaint;
-            int alpha = paint.getAlpha();
-            this.shadowPaintAlpha = alpha;
-            paint2.setAlpha(alpha);
-            this.shadowPaint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(855638016, this.shadowPaintAlpha / 255.0f));
-        }
-        float f2 = (i3 + i5) / 2.0f;
-        canvas.drawCircle(this.translateX + f + (AndroidUtilities.dp(this.sz) / 2.0f), this.translateY + f2, AndroidUtilities.dp(this.sz) / 2.0f, this.shadowPaint);
-        this.imageReceiver.setImageCoords(this.translateX + f, (this.translateY + f2) - (AndroidUtilities.dp(this.sz) / 2.0f), AndroidUtilities.dp(this.sz), AndroidUtilities.dp(this.sz));
-        this.imageReceiver.setAlpha(paint.getAlpha() / 255.0f);
-        this.imageReceiver.draw(canvas);
     }
 
     public void translate(float f, float f2) {

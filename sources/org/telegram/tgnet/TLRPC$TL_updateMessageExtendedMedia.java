@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_updateMessageExtendedMedia extends TLRPC$Update {
-    public ArrayList<TLRPC$MessageExtendedMedia> extended_media = new ArrayList<>();
+    public ArrayList extended_media = new ArrayList();
     public int msg_id;
     public TLRPC$Peer peer;
 
@@ -37,7 +37,7 @@ public class TLRPC$TL_updateMessageExtendedMedia extends TLRPC$Update {
         int size = this.extended_media.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.extended_media.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$MessageExtendedMedia) this.extended_media.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

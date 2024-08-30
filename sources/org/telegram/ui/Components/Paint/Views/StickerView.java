@@ -34,9 +34,6 @@ public class StickerView extends EntityView {
     private Object parentObject;
     private TLRPC$Document sticker;
 
-    protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
-    }
-
     public class FrameLayoutDrawer extends FrameLayout {
         public FrameLayoutDrawer(Context context) {
             super(context);
@@ -46,6 +43,66 @@ public class StickerView extends EntityView {
         @Override
         protected void onDraw(Canvas canvas) {
             StickerView.this.stickerDraw(canvas);
+        }
+    }
+
+    public class StickerViewSelectionView extends EntityView.SelectionView {
+        private RectF arcRect;
+
+        public StickerViewSelectionView(Context context) {
+            super(context);
+            this.arcRect = new RectF();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            int saveCount = canvas.getSaveCount();
+            float showAlpha = getShowAlpha();
+            if (showAlpha <= 0.0f) {
+                return;
+            }
+            if (showAlpha < 1.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+            }
+            float dp = AndroidUtilities.dp(1.0f);
+            float dpf2 = AndroidUtilities.dpf2(5.66f);
+            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
+            float measuredWidth = (getMeasuredWidth() / 2) - dp2;
+            float f = dp2 + (2.0f * measuredWidth);
+            this.arcRect.set(dp2, dp2, f, f);
+            canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
+            canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
+            float f2 = measuredWidth + dp2;
+            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.restoreToCount(saveCount);
+        }
+
+        @Override
+        protected int pointInsideHandle(float f, float f2) {
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+                return 1;
+            }
+            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
+                return 2;
+            }
+            float measuredWidth = getMeasuredWidth() / 2.0f;
+            return Math.pow((double) (f - measuredWidth), 2.0d) + Math.pow((double) (f2 - measuredWidth), 2.0d) < Math.pow((double) measuredWidth, 2.0d) ? 3 : 0;
+        }
+    }
+
+    public StickerView(Context context, StickerView stickerView, Point point) {
+        this(context, point, stickerView.getRotation(), stickerView.getScale(), stickerView.baseSize, stickerView.sticker, stickerView.parentObject);
+        if (stickerView.mirrored) {
+            mirror();
         }
     }
 
@@ -109,27 +166,56 @@ public class StickerView extends EntityView {
         didSetAnimatedSticker(lottieAnimation);
     }
 
-    public StickerView(Context context, StickerView stickerView, Point point) {
-        this(context, point, stickerView.getRotation(), stickerView.getScale(), stickerView.baseSize, stickerView.sticker, stickerView.parentObject);
-        if (stickerView.mirrored) {
-            mirror();
-        }
+    @Override
+    protected EntityView.SelectionView createSelectionView() {
+        return new StickerViewSelectionView(getContext());
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.centerImage.onDetachedFromWindow();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.centerImage.onAttachedToWindow();
+    protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
     }
 
     public int getAnchor() {
         return this.anchor;
+    }
+
+    public Size getBaseSize() {
+        return this.baseSize;
+    }
+
+    public long getDuration() {
+        RLottieDrawable lottieAnimation = this.centerImage.getLottieAnimation();
+        if (lottieAnimation != null) {
+            return lottieAnimation.getDuration();
+        }
+        if (this.centerImage.getAnimation() != null) {
+            return r0.getDurationMs();
+        }
+        return 0L;
+    }
+
+    public Object getParentObject() {
+        return this.parentObject;
+    }
+
+    @Override
+    public Rect getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Rect();
+        }
+        float scaleX = viewGroup.getScaleX();
+        float measuredWidth = getMeasuredWidth() * (getScale() + 0.5f);
+        float f = measuredWidth / 2.0f;
+        float f2 = measuredWidth * scaleX;
+        return new Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
+    }
+
+    public TLRPC$Document getSticker() {
+        return this.sticker;
+    }
+
+    public boolean isMirrored() {
+        return this.mirrored;
     }
 
     public void mirror() {
@@ -145,18 +231,21 @@ public class StickerView extends EntityView {
         this.containerView.invalidate();
     }
 
-    public boolean isMirrored() {
-        return this.mirrored;
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.centerImage.onAttachedToWindow();
     }
 
     @Override
-    public void updatePosition() {
-        Size size = this.baseSize;
-        float f = size.width / 2.0f;
-        float f2 = size.height / 2.0f;
-        setX(getPositionX() - f);
-        setY(getPositionY() - f2);
-        updateSelectionView();
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.centerImage.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) this.baseSize.width, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.baseSize.height, 1073741824));
     }
 
     protected void stickerDraw(Canvas canvas) {
@@ -174,102 +263,13 @@ public class StickerView extends EntityView {
         canvas.restore();
     }
 
-    public long getDuration() {
-        RLottieDrawable lottieAnimation = this.centerImage.getLottieAnimation();
-        if (lottieAnimation != null) {
-            return lottieAnimation.getDuration();
-        }
-        if (this.centerImage.getAnimation() != null) {
-            return r0.getDurationMs();
-        }
-        return 0L;
-    }
-
     @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) this.baseSize.width, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.baseSize.height, 1073741824));
-    }
-
-    @Override
-    public Rect getSelectionBounds() {
-        ViewGroup viewGroup = (ViewGroup) getParent();
-        if (viewGroup == null) {
-            return new Rect();
-        }
-        float scaleX = viewGroup.getScaleX();
-        float measuredWidth = getMeasuredWidth() * (getScale() + 0.5f);
-        float f = measuredWidth / 2.0f;
-        float f2 = measuredWidth * scaleX;
-        return new Rect((getPositionX() - f) * scaleX, (getPositionY() - f) * scaleX, f2, f2);
-    }
-
-    @Override
-    protected EntityView.SelectionView createSelectionView() {
-        return new StickerViewSelectionView(getContext());
-    }
-
-    public TLRPC$Document getSticker() {
-        return this.sticker;
-    }
-
-    public Object getParentObject() {
-        return this.parentObject;
-    }
-
-    public Size getBaseSize() {
-        return this.baseSize;
-    }
-
-    public class StickerViewSelectionView extends EntityView.SelectionView {
-        private RectF arcRect;
-
-        public StickerViewSelectionView(Context context) {
-            super(context);
-            this.arcRect = new RectF();
-        }
-
-        @Override
-        protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(1.0f);
-            float dp2 = AndroidUtilities.dp(19.5f);
-            float f3 = dp + dp2;
-            float f4 = f3 * 2.0f;
-            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
-            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
-                return 1;
-            }
-            if (f > ((getMeasuredWidth() - f4) + f3) - dp2 && f2 > measuredHeight - dp2 && f < f3 + (getMeasuredWidth() - f4) + dp2 && f2 < measuredHeight + dp2) {
-                return 2;
-            }
-            float measuredWidth = getMeasuredWidth() / 2.0f;
-            return Math.pow((double) (f - measuredWidth), 2.0d) + Math.pow((double) (f2 - measuredWidth), 2.0d) < Math.pow((double) measuredWidth, 2.0d) ? 3 : 0;
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            super.onDraw(canvas);
-            int saveCount = canvas.getSaveCount();
-            float showAlpha = getShowAlpha();
-            if (showAlpha <= 0.0f) {
-                return;
-            }
-            if (showAlpha < 1.0f) {
-                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
-            }
-            float dp = AndroidUtilities.dp(1.0f);
-            float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
-            float measuredWidth = (getMeasuredWidth() / 2) - dp2;
-            float f = dp2 + (2.0f * measuredWidth);
-            this.arcRect.set(dp2, dp2, f, f);
-            canvas.drawArc(this.arcRect, 0.0f, 180.0f, false, this.paint);
-            canvas.drawArc(this.arcRect, 180.0f, 180.0f, false, this.paint);
-            float f2 = measuredWidth + dp2;
-            canvas.drawCircle(dp2, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp2, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
-            canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
-            canvas.restoreToCount(saveCount);
-        }
+    public void updatePosition() {
+        Size size = this.baseSize;
+        float f = size.width / 2.0f;
+        float f2 = size.height / 2.0f;
+        setX(getPositionX() - f);
+        setY(getPositionY() - f2);
+        updateSelectionView();
     }
 }

@@ -1,4 +1,4 @@
 package org.telegram.messenger.support;
 
-public final class JobIntentService$JobServiceEngineImpl$$ExternalSyntheticApiModelOutline1 {
+public abstract class JobIntentService$JobServiceEngineImpl$$ExternalSyntheticApiModelOutline1 {
 }

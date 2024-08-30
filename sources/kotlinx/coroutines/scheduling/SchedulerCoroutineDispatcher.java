@@ -3,7 +3,7 @@ package kotlinx.coroutines.scheduling;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
 
-public class SchedulerCoroutineDispatcher extends ExecutorCoroutineDispatcher {
+public abstract class SchedulerCoroutineDispatcher extends ExecutorCoroutineDispatcher {
     private final int corePoolSize;
     private CoroutineScheduler coroutineScheduler = createScheduler();
     private final long idleWorkerKeepAliveNs;

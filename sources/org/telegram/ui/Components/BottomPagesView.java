@@ -33,24 +33,11 @@ public class BottomPagesView extends View {
         this.pagesCount = i;
     }
 
-    public void setPageOffset(int i, float f) {
-        this.progress = f;
-        this.scrollPosition = i;
-        invalidate();
-    }
-
-    public void setCurrentPage(int i) {
-        this.currentPage = i;
-        invalidate();
-    }
-
-    public void setColor(int i, int i2) {
-        this.colorKey = i;
-        this.selectedColorKey = i2;
-    }
-
     @Override
     protected void onDraw(Canvas canvas) {
+        RectF rectF;
+        float dp;
+        float dp2;
         AndroidUtilities.dp(5.0f);
         int i = this.colorKey;
         if (i >= 0) {
@@ -71,16 +58,37 @@ public class BottomPagesView extends View {
         } else {
             this.paint.setColor(-13851168);
         }
-        int dp = this.currentPage * AndroidUtilities.dp(11.0f);
+        int dp3 = this.currentPage * AndroidUtilities.dp(11.0f);
         if (this.progress != 0.0f) {
             if (this.scrollPosition >= this.currentPage) {
-                this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress), AndroidUtilities.dp(5.0f));
+                rectF = this.rect;
+                dp = dp3;
+                dp2 = dp3 + AndroidUtilities.dp(5.0f) + (AndroidUtilities.dp(11.0f) * this.progress);
             } else {
-                this.rect.set(dp - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress)), 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+                rectF = this.rect;
+                dp = dp3 - (AndroidUtilities.dp(11.0f) * (1.0f - this.progress));
+                dp2 = dp3 + AndroidUtilities.dp(5.0f);
             }
+            rectF.set(dp, 0.0f, dp2, AndroidUtilities.dp(5.0f));
         } else {
-            this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
+            this.rect.set(dp3, 0.0f, dp3 + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
         }
         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), this.paint);
+    }
+
+    public void setColor(int i, int i2) {
+        this.colorKey = i;
+        this.selectedColorKey = i2;
+    }
+
+    public void setCurrentPage(int i) {
+        this.currentPage = i;
+        invalidate();
+    }
+
+    public void setPageOffset(int i, float f) {
+        this.progress = f;
+        this.scrollPosition = i;
+        invalidate();
     }
 }

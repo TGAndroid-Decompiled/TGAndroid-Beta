@@ -10,7 +10,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.text.TextPaint;
 import android.view.View;
-import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
@@ -29,7 +28,7 @@ public class CheckBoxBase {
     private ObjectAnimator checkAnimator;
     private Paint checkPaint;
     private String checkedText;
-    private GenericProvider<Void, Paint> circlePaintProvider;
+    private GenericProvider circlePaintProvider;
     private boolean drawUnchecked;
     private boolean forbidden;
     private boolean isChecked;
@@ -51,15 +50,6 @@ public class CheckBoxBase {
 
     public interface ProgressDelegate {
         void setProgress(float f);
-    }
-
-    public void setAlpha(float f) {
-        this.alpha = f;
-        invalidate();
-    }
-
-    public static Paint lambda$new$0(Void r0) {
-        return paint;
     }
 
     public CheckBoxBase(View view, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -100,104 +90,6 @@ public class CheckBoxBase {
         this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.2f));
     }
 
-    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
-        this.resourcesProvider = resourcesProvider;
-    }
-
-    public void onAttachedToWindow() {
-        this.attachedToWindow = true;
-    }
-
-    public void onDetachedFromWindow() {
-        this.attachedToWindow = false;
-    }
-
-    public void setBounds(int i, int i2, int i3, int i4) {
-        android.graphics.Rect rect = this.bounds;
-        rect.left = i;
-        rect.top = i2;
-        rect.right = i + i3;
-        rect.bottom = i2 + i4;
-    }
-
-    public void setDrawUnchecked(boolean z) {
-        this.drawUnchecked = z;
-    }
-
-    @Keep
-    public void setProgress(float f) {
-        if (this.progress == f) {
-            return;
-        }
-        this.progress = f;
-        invalidate();
-        ProgressDelegate progressDelegate = this.progressDelegate;
-        if (progressDelegate != null) {
-            progressDelegate.setProgress(f);
-        }
-    }
-
-    public void setForbidden(boolean z) {
-        if (this.forbidden == z) {
-            return;
-        }
-        this.forbidden = z;
-        invalidate();
-    }
-
-    private void invalidate() {
-        if (this.parentView.getParent() != null) {
-            ((View) this.parentView.getParent()).invalidate();
-        }
-        this.parentView.invalidate();
-    }
-
-    public void setProgressDelegate(ProgressDelegate progressDelegate) {
-        this.progressDelegate = progressDelegate;
-    }
-
-    @Keep
-    public float getProgress() {
-        return this.progress;
-    }
-
-    public boolean isChecked() {
-        return this.isChecked;
-    }
-
-    public void setEnabled(boolean z) {
-        this.enabled = z;
-    }
-
-    public void setBackgroundType(int i) {
-        this.backgroundType = i;
-        if (i == 12 || i == 13) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-            return;
-        }
-        if (i == 4 || i == 5) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
-            if (i == 5) {
-                this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-                return;
-            }
-            return;
-        }
-        if (i == 3) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        } else if (i != 0) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        }
-    }
-
-    private void cancelCheckAnimator() {
-        ObjectAnimator objectAnimator = this.checkAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-            this.checkAnimator = null;
-        }
-    }
-
     private void animateToCheckedState(boolean z) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
@@ -218,11 +110,56 @@ public class CheckBoxBase {
         this.checkAnimator.start();
     }
 
-    public void setColor(int i, int i2, int i3) {
-        this.backgroundColorKey = i;
-        this.background2ColorKey = i2;
-        this.checkColorKey = i3;
+    private void cancelCheckAnimator() {
+        ObjectAnimator objectAnimator = this.checkAnimator;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.checkAnimator = null;
+        }
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    private void invalidate() {
+        if (this.parentView.getParent() != null) {
+            ((View) this.parentView.getParent()).invalidate();
+        }
+        this.parentView.invalidate();
+    }
+
+    public static Paint lambda$new$0(Void r0) {
+        return paint;
+    }
+
+    public void draw(android.graphics.Canvas r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
+    }
+
+    public float getProgress() {
+        return this.progress;
+    }
+
+    public boolean isChecked() {
+        return this.isChecked;
+    }
+
+    public void onAttachedToWindow() {
+        this.attachedToWindow = true;
+    }
+
+    public void onDetachedFromWindow() {
+        this.attachedToWindow = false;
+    }
+
+    public void setAlpha(float f) {
+        this.alpha = f;
         invalidate();
+    }
+
+    public void setBackgroundAlpha(float f) {
+        this.backgroundAlpha = f;
     }
 
     public void setBackgroundColor(int i) {
@@ -234,25 +171,42 @@ public class CheckBoxBase {
         this.messageDrawable = messageDrawable;
     }
 
-    public void setUseDefaultCheck(boolean z) {
-        this.useDefaultCheck = z;
-    }
-
-    public void setBackgroundAlpha(float f) {
-        this.backgroundAlpha = f;
-    }
-
-    public void setNum(int i) {
-        if (i >= 0) {
-            this.checkedText = "" + (i + 1);
-        } else if (this.checkAnimator == null) {
-            this.checkedText = null;
+    public void setBackgroundType(int i) {
+        Paint paint2;
+        float f;
+        int i2;
+        this.backgroundType = i;
+        if (i != 12 && i != 13) {
+            if (i == 4 || i == 5) {
+                this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
+                if (i != 5) {
+                    return;
+                } else {
+                    paint2 = this.checkPaint;
+                }
+            } else if (i == 3) {
+                paint2 = this.backgroundPaint;
+                f = 3.0f;
+            } else if (i == 0) {
+                return;
+            } else {
+                paint2 = this.backgroundPaint;
+            }
+            i2 = AndroidUtilities.dp(1.5f);
+            paint2.setStrokeWidth(i2);
         }
-        invalidate();
+        paint2 = this.backgroundPaint;
+        f = 1.0f;
+        i2 = AndroidUtilities.dp(f);
+        paint2.setStrokeWidth(i2);
     }
 
-    public void setChecked(boolean z, boolean z2) {
-        setChecked(-1, z, z2);
+    public void setBounds(int i, int i2, int i3, int i4) {
+        android.graphics.Rect rect = this.bounds;
+        rect.left = i;
+        rect.top = i2;
+        rect.right = i + i3;
+        rect.bottom = i2 + i4;
     }
 
     public void setChecked(int i, boolean z, boolean z2) {
@@ -272,15 +226,72 @@ public class CheckBoxBase {
         }
     }
 
-    public void draw(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
+    public void setChecked(boolean z, boolean z2) {
+        setChecked(-1, z, z2);
     }
 
-    public void setCirclePaintProvider(GenericProvider<Void, Paint> genericProvider) {
+    public void setCirclePaintProvider(GenericProvider genericProvider) {
         this.circlePaintProvider = genericProvider;
     }
 
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void setColor(int i, int i2, int i3) {
+        this.backgroundColorKey = i;
+        this.background2ColorKey = i2;
+        this.checkColorKey = i3;
+        invalidate();
+    }
+
+    public void setDrawUnchecked(boolean z) {
+        this.drawUnchecked = z;
+    }
+
+    public void setEnabled(boolean z) {
+        this.enabled = z;
+    }
+
+    public void setForbidden(boolean z) {
+        if (this.forbidden == z) {
+            return;
+        }
+        this.forbidden = z;
+        invalidate();
+    }
+
+    public void setNum(int i) {
+        String str;
+        if (i < 0) {
+            if (this.checkAnimator == null) {
+                str = null;
+            }
+            invalidate();
+        } else {
+            str = "" + (i + 1);
+        }
+        this.checkedText = str;
+        invalidate();
+    }
+
+    public void setProgress(float f) {
+        if (this.progress == f) {
+            return;
+        }
+        this.progress = f;
+        invalidate();
+        ProgressDelegate progressDelegate = this.progressDelegate;
+        if (progressDelegate != null) {
+            progressDelegate.setProgress(f);
+        }
+    }
+
+    public void setProgressDelegate(ProgressDelegate progressDelegate) {
+        this.progressDelegate = progressDelegate;
+    }
+
+    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
+
+    public void setUseDefaultCheck(boolean z) {
+        this.useDefaultCheck = z;
     }
 }

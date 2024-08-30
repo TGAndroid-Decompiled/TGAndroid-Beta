@@ -36,7 +36,7 @@ public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
         int size = this.library_versions.size();
         abstractSerializedData.writeInt32(size);
         for (int i3 = 0; i3 < size; i3++) {
-            abstractSerializedData.writeString(this.library_versions.get(i3));
+            abstractSerializedData.writeString((String) this.library_versions.get(i3));
         }
     }
 }

@@ -21,9 +21,12 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     public float translateX;
     public float translateY;
 
-    @Override
-    protected boolean onStateChange(int[] iArr) {
-        return true;
+    public CombinedDrawable(Drawable drawable, Drawable drawable2) {
+        this.background = drawable;
+        this.icon = drawable2;
+        if (drawable2 != null) {
+            drawable2.setCallback(this);
+        }
     }
 
     public CombinedDrawable(Drawable drawable, Drawable drawable2, int i, int i2) {
@@ -34,84 +37,6 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         if (drawable2 != null) {
             drawable2.setCallback(this);
         }
-    }
-
-    public void setIconSize(int i, int i2) {
-        this.iconWidth = i;
-        this.iconHeight = i2;
-    }
-
-    public CombinedDrawable(Drawable drawable, Drawable drawable2) {
-        this.background = drawable;
-        this.icon = drawable2;
-        if (drawable2 != null) {
-            drawable2.setCallback(this);
-        }
-    }
-
-    public void setBackgroundDrawable(Drawable drawable) {
-        this.background = drawable;
-        invalidateSelf();
-    }
-
-    public void setCustomSize(int i, int i2) {
-        this.backWidth = i;
-        this.backHeight = i2;
-    }
-
-    public void setCenter(boolean z) {
-        this.center = z;
-    }
-
-    public void setIconOffset(int i, int i2) {
-        this.offsetX = i;
-        this.offsetY = i2;
-    }
-
-    public Drawable getIcon() {
-        return this.icon;
-    }
-
-    public Drawable getBackground() {
-        return this.background;
-    }
-
-    public void setFullsize(boolean z) {
-        this.fullSize = z;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.icon.setColorFilter(colorFilter);
-        if (this.both) {
-            this.background.setColorFilter(colorFilter);
-        }
-    }
-
-    @Override
-    public boolean isStateful() {
-        return this.icon.isStateful();
-    }
-
-    @Override
-    public boolean setState(int[] iArr) {
-        this.icon.setState(iArr);
-        return true;
-    }
-
-    @Override
-    public int[] getState() {
-        return this.icon.getState();
-    }
-
-    @Override
-    public void jumpToCurrentState() {
-        this.icon.jumpToCurrentState();
-    }
-
-    @Override
-    public Drawable.ConstantState getConstantState() {
-        return this.icon.getConstantState();
     }
 
     @Override
@@ -157,16 +82,21 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         canvas.restore();
     }
 
-    @Override
-    public void setAlpha(int i) {
-        this.icon.setAlpha(i);
-        this.background.setAlpha(i);
+    public Drawable getBackground() {
+        return this.background;
+    }
+
+    public Drawable getBackgroundDrawable() {
+        return this.background;
     }
 
     @Override
-    public int getIntrinsicWidth() {
-        int i = this.backWidth;
-        return i != 0 ? i : this.background.getIntrinsicWidth();
+    public Drawable.ConstantState getConstantState() {
+        return this.icon.getConstantState();
+    }
+
+    public Drawable getIcon() {
+        return this.icon;
     }
 
     @Override
@@ -176,9 +106,9 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     }
 
     @Override
-    public int getMinimumWidth() {
+    public int getIntrinsicWidth() {
         int i = this.backWidth;
-        return i != 0 ? i : this.background.getMinimumWidth();
+        return i != 0 ? i : this.background.getIntrinsicWidth();
     }
 
     @Override
@@ -188,8 +118,19 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     }
 
     @Override
+    public int getMinimumWidth() {
+        int i = this.backWidth;
+        return i != 0 ? i : this.background.getMinimumWidth();
+    }
+
+    @Override
     public int getOpacity() {
         return this.icon.getOpacity();
+    }
+
+    @Override
+    public int[] getState() {
+        return this.icon.getState();
     }
 
     @Override
@@ -198,16 +139,75 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     }
 
     @Override
+    public boolean isStateful() {
+        return this.icon.isStateful();
+    }
+
+    @Override
+    public void jumpToCurrentState() {
+        this.icon.jumpToCurrentState();
+    }
+
+    @Override
+    protected boolean onStateChange(int[] iArr) {
+        return true;
+    }
+
+    @Override
     public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
         scheduleSelf(runnable, j);
     }
 
     @Override
-    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+    public void setAlpha(int i) {
+        this.icon.setAlpha(i);
+        this.background.setAlpha(i);
     }
 
-    public Drawable getBackgroundDrawable() {
-        return this.background;
+    public void setBackgroundDrawable(Drawable drawable) {
+        this.background = drawable;
+        invalidateSelf();
+    }
+
+    public void setCenter(boolean z) {
+        this.center = z;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.icon.setColorFilter(colorFilter);
+        if (this.both) {
+            this.background.setColorFilter(colorFilter);
+        }
+    }
+
+    public void setCustomSize(int i, int i2) {
+        this.backWidth = i;
+        this.backHeight = i2;
+    }
+
+    public void setFullsize(boolean z) {
+        this.fullSize = z;
+    }
+
+    public void setIconOffset(int i, int i2) {
+        this.offsetX = i;
+        this.offsetY = i2;
+    }
+
+    public void setIconSize(int i, int i2) {
+        this.iconWidth = i;
+        this.iconHeight = i2;
+    }
+
+    @Override
+    public boolean setState(int[] iArr) {
+        this.icon.setState(iArr);
+        return true;
+    }
+
+    @Override
+    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
     }
 }

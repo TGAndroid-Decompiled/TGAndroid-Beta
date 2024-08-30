@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_emojiKeywordsDifference extends TLObject {
     public int from_version;
-    public ArrayList<TLRPC$EmojiKeyword> keywords = new ArrayList<>();
+    public ArrayList keywords = new ArrayList();
     public String lang_code;
     public int version;
 
@@ -52,7 +52,7 @@ public class TLRPC$TL_emojiKeywordsDifference extends TLObject {
         int size = this.keywords.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.keywords.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$EmojiKeyword) this.keywords.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

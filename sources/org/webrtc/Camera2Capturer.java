@@ -1,20 +1,29 @@
 package org.webrtc;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.camera2.CameraManager;
 import org.telegram.messenger.camera.Camera2Session$$ExternalSyntheticApiModelOutline9;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
 
-@TargetApi(21)
 public class Camera2Capturer extends CameraCapturer {
     private final CameraManager cameraManager;
     private final Context context;
 
+    public Camera2Capturer(Context context, String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
+        super(str, cameraEventsHandler, new Camera2Enumerator(context));
+        this.context = context;
+        this.cameraManager = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
+    }
+
     @Override
     public void changeCaptureFormat(int i, int i2, int i3) {
         super.changeCaptureFormat(i, i2, i3);
+    }
+
+    @Override
+    protected void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
+        Camera2Session.create(createSessionCallback, events, context, this.cameraManager, surfaceTextureHelper, str, i, i2, i3);
     }
 
     @Override
@@ -55,16 +64,5 @@ public class Camera2Capturer extends CameraCapturer {
     @Override
     public void switchCamera(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         super.switchCamera(cameraSwitchHandler, str);
-    }
-
-    public Camera2Capturer(Context context, String str, CameraVideoCapturer.CameraEventsHandler cameraEventsHandler) {
-        super(str, cameraEventsHandler, new Camera2Enumerator(context));
-        this.context = context;
-        this.cameraManager = Camera2Session$$ExternalSyntheticApiModelOutline9.m(context.getSystemService("camera"));
-    }
-
-    @Override
-    protected void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i, int i2, int i3) {
-        Camera2Session.create(createSessionCallback, events, context, this.cameraManager, surfaceTextureHelper, str, i, i2, i3);
     }
 }

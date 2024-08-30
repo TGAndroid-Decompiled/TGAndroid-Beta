@@ -10,12 +10,12 @@ import org.telegram.messenger.Utilities;
 
 public class TimerParticles {
     public boolean big;
-    private ArrayList<Particle> freeParticles;
+    private ArrayList freeParticles;
     private boolean hasLast;
     private long lastAnimationTime;
     private float lastCx;
     private float lastCy;
-    private ArrayList<Particle> particles;
+    private ArrayList particles;
     private final int particlesCount;
 
     public static class Particle {
@@ -37,8 +37,8 @@ public class TimerParticles {
     }
 
     public TimerParticles(int i) {
-        this.particles = new ArrayList<>();
-        this.freeParticles = new ArrayList<>();
+        this.particles = new ArrayList();
+        this.freeParticles = new ArrayList();
         this.particlesCount = i;
         for (int i2 = 0; i2 < i; i2++) {
             this.freeParticles.add(new Particle());
@@ -49,7 +49,7 @@ public class TimerParticles {
         int size = this.particles.size();
         int i = 0;
         while (i < size) {
-            Particle particle = this.particles.get(i);
+            Particle particle = (Particle) this.particles.get(i);
             float f = particle.currentTime;
             float f2 = particle.lifeTime;
             if (f >= f2) {
@@ -75,10 +75,11 @@ public class TimerParticles {
 
     public void draw(Canvas canvas, Paint paint, RectF rectF, float f, float f2) {
         Particle particle;
+        float nextFloat;
         int size = this.particles.size();
         int i = 0;
         for (int i2 = 0; i2 < size; i2++) {
-            Particle particle2 = this.particles.get(i2);
+            Particle particle2 = (Particle) this.particles.get(i2);
             paint.setAlpha((int) (particle2.alpha * 255.0f * f2));
             canvas.drawPoint(particle2.x, particle2.y, paint);
         }
@@ -100,11 +101,11 @@ public class TimerParticles {
         int clamp = Utilities.clamp(this.freeParticles.size() / 12, 3, 1);
         int i3 = 0;
         while (i3 < clamp) {
-            if (!this.freeParticles.isEmpty()) {
-                particle = this.freeParticles.get(i);
-                this.freeParticles.remove(i);
-            } else {
+            if (this.freeParticles.isEmpty()) {
                 particle = new Particle();
+            } else {
+                particle = (Particle) this.freeParticles.get(i);
+                this.freeParticles.remove(i);
             }
             if (this.big && this.hasLast) {
                 float f5 = (i3 + 1) / clamp;
@@ -124,13 +125,16 @@ public class TimerParticles {
             particle.vy = (float) ((Math.sin(d5) * sin) + (Math.cos(d5) * d4));
             particle.alpha = 1.0f;
             particle.currentTime = 0.0f;
+            float f6 = 20.0f;
             if (this.big) {
                 particle.lifeTime = Utilities.random.nextInt(200) + 600;
-                particle.velocity = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
+                nextFloat = Utilities.random.nextFloat() * 20.0f;
+                f6 = 30.0f;
             } else {
                 particle.lifeTime = Utilities.random.nextInt(100) + 400;
-                particle.velocity = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
+                nextFloat = Utilities.random.nextFloat() * 4.0f;
             }
+            particle.velocity = nextFloat + f6;
             this.particles.add(particle);
             i3++;
             i = 0;

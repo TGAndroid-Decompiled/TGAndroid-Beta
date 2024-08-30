@@ -21,9 +21,9 @@ public class TL_stories$TL_stories_sendStory extends TLObject {
     public int period;
     public boolean pinned;
     public long random_id;
-    public ArrayList<TL_stories$MediaArea> media_areas = new ArrayList<>();
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
-    public ArrayList<TLRPC$InputPrivacyRule> privacy_rules = new ArrayList<>();
+    public ArrayList media_areas = new ArrayList();
+    public ArrayList entities = new ArrayList();
+    public ArrayList privacy_rules = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -47,7 +47,7 @@ public class TL_stories$TL_stories_sendStory extends TLObject {
             int size = this.media_areas.size();
             abstractSerializedData.writeInt32(size);
             for (int i4 = 0; i4 < size; i4++) {
-                this.media_areas.get(i4).serializeToStream(abstractSerializedData);
+                ((TL_stories$MediaArea) this.media_areas.get(i4)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1) != 0) {
@@ -58,14 +58,14 @@ public class TL_stories$TL_stories_sendStory extends TLObject {
             int size2 = this.entities.size();
             abstractSerializedData.writeInt32(size2);
             for (int i5 = 0; i5 < size2; i5++) {
-                this.entities.get(i5).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.entities.get(i5)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.privacy_rules.size();
         abstractSerializedData.writeInt32(size3);
         for (int i6 = 0; i6 < size3; i6++) {
-            this.privacy_rules.get(i6).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPrivacyRule) this.privacy_rules.get(i6)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt64(this.random_id);
         if ((this.flags & 8) != 0) {

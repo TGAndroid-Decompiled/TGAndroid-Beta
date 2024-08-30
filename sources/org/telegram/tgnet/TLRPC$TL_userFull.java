@@ -189,7 +189,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             int size = this.premium_gifts.size();
             abstractSerializedData.writeInt32(size);
             for (int i15 = 0; i15 < size; i15++) {
-                this.premium_gifts.get(i15).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_premiumGiftOption) this.premium_gifts.get(i15)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16777216) != 0) {

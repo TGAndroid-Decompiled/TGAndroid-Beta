@@ -40,6 +40,10 @@ public class SuggestUserPhotoView extends View {
         drawable.setAlpha(100);
     }
 
+    private void setImageCoords(ImageReceiver imageReceiver, int i, int i2) {
+        imageReceiver.setImageCoords(i - AndroidUtilities.dp(30.0f), i2 - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
+    }
+
     @Override
     public void draw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() >> 1;
@@ -75,17 +79,6 @@ public class SuggestUserPhotoView extends View {
         invalidate();
     }
 
-    private void setImageCoords(ImageReceiver imageReceiver, int i, int i2) {
-        imageReceiver.setImageCoords(i - AndroidUtilities.dp(30.0f), i2 - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f));
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        this.currentPhoto.setRoundRadius(AndroidUtilities.dp(30.0f));
-        this.newPhoto.setRoundRadius(AndroidUtilities.dp(30.0f));
-        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
-    }
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -98,6 +91,13 @@ public class SuggestUserPhotoView extends View {
         super.onDetachedFromWindow();
         this.currentPhoto.onDetachedFromWindow();
         this.newPhoto.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        this.currentPhoto.setRoundRadius(AndroidUtilities.dp(30.0f));
+        this.newPhoto.setRoundRadius(AndroidUtilities.dp(30.0f));
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
     }
 
     public void setImages(TLObject tLObject, View view, PhotoCropView photoCropView) {

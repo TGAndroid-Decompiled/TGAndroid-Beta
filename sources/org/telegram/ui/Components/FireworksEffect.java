@@ -13,8 +13,8 @@ public class FireworksEffect {
     private long lastAnimationTime;
     private Paint particlePaint;
     final float angleDiff = 1.0471976f;
-    private ArrayList<Particle> particles = new ArrayList<>();
-    private ArrayList<Particle> freeParticles = new ArrayList<>();
+    private ArrayList particles = new ArrayList();
+    private ArrayList freeParticles = new ArrayList();
 
     public class Particle {
         float alpha;
@@ -59,7 +59,7 @@ public class FireworksEffect {
         int size = this.particles.size();
         int i = 0;
         while (i < size) {
-            Particle particle = this.particles.get(i);
+            Particle particle = (Particle) this.particles.get(i);
             float f = particle.currentTime;
             float f2 = particle.lifeTime;
             if (f >= f2) {
@@ -93,7 +93,7 @@ public class FireworksEffect {
         }
         int size = this.particles.size();
         for (int i = 0; i < size; i++) {
-            this.particles.get(i).draw(canvas);
+            ((Particle) this.particles.get(i)).draw(canvas);
         }
         if (Utilities.random.nextBoolean() && this.particles.size() + 8 < 150) {
             int i2 = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
@@ -107,11 +107,11 @@ public class FireworksEffect {
                 double d = nextInt2 * 0.017453292519943295d;
                 float cos = (float) Math.cos(d);
                 float sin = (float) Math.sin(d);
-                if (!this.freeParticles.isEmpty()) {
-                    particle = this.freeParticles.get(0);
-                    this.freeParticles.remove(0);
-                } else {
+                if (this.freeParticles.isEmpty()) {
                     particle = new Particle();
+                } else {
+                    particle = (Particle) this.freeParticles.get(0);
+                    this.freeParticles.remove(0);
                 }
                 particle.x = nextFloat;
                 particle.y = nextFloat2;

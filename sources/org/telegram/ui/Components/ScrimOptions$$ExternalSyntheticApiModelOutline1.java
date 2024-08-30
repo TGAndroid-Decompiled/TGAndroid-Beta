@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 
-public final class ScrimOptions$$ExternalSyntheticApiModelOutline1 {
+public abstract class ScrimOptions$$ExternalSyntheticApiModelOutline1 {
 }

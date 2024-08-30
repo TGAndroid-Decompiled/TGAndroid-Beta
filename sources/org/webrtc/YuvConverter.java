@@ -28,21 +28,6 @@ public class YuvConverter {
         private ShaderCallbacks() {
         }
 
-        public void setPlaneY() {
-            this.coeffs = yCoeffs;
-            this.stepSize = 1.0f;
-        }
-
-        public void setPlaneU() {
-            this.coeffs = uCoeffs;
-            this.stepSize = 2.0f;
-        }
-
-        public void setPlaneV() {
-            this.coeffs = vCoeffs;
-            this.stepSize = 2.0f;
-        }
-
         @Override
         public void onNewShader(GlShader glShader) {
             this.xUnitLoc = glShader.getUniformLocation("xUnit");
@@ -56,6 +41,21 @@ public class YuvConverter {
             float f = this.stepSize;
             float f2 = i;
             GLES20.glUniform2f(i5, (fArr[0] * f) / f2, (f * fArr[1]) / f2);
+        }
+
+        public void setPlaneU() {
+            this.coeffs = uCoeffs;
+            this.stepSize = 2.0f;
+        }
+
+        public void setPlaneV() {
+            this.coeffs = vCoeffs;
+            this.stepSize = 2.0f;
+        }
+
+        public void setPlaneY() {
+            this.coeffs = yCoeffs;
+            this.stepSize = 1.0f;
         }
     }
 

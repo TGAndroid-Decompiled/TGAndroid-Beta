@@ -76,7 +76,7 @@ public class TLRPC$TL_pollResults extends TLRPC$PollResults {
             int size = this.results.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                this.results.get(i2).serializeToStream(abstractSerializedData);
+                ((TLRPC$TL_pollAnswerVoters) this.results.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
@@ -87,7 +87,7 @@ public class TLRPC$TL_pollResults extends TLRPC$PollResults {
             int size2 = this.recent_voters.size();
             abstractSerializedData.writeInt32(size2);
             for (int i3 = 0; i3 < size2; i3++) {
-                this.recent_voters.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$Peer) this.recent_voters.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {
@@ -98,7 +98,7 @@ public class TLRPC$TL_pollResults extends TLRPC$PollResults {
             int size3 = this.solution_entities.size();
             abstractSerializedData.writeInt32(size3);
             for (int i4 = 0; i4 < size3; i4++) {
-                this.solution_entities.get(i4).serializeToStream(abstractSerializedData);
+                ((TLRPC$MessageEntity) this.solution_entities.get(i4)).serializeToStream(abstractSerializedData);
             }
         }
     }

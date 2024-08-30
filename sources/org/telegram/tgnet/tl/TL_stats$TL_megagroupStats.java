@@ -19,10 +19,10 @@ public class TL_stats$TL_megagroupStats extends TLObject {
     public TL_stats$StatsGraph top_hours_graph;
     public TL_stats$TL_statsAbsValueAndPrev viewers;
     public TL_stats$StatsGraph weekdays_graph;
-    public ArrayList<TL_stats$TL_statsGroupTopPoster> top_posters = new ArrayList<>();
-    public ArrayList<TL_stats$TL_statsGroupTopAdmin> top_admins = new ArrayList<>();
-    public ArrayList<TL_stats$TL_statsGroupTopInviter> top_inviters = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList top_posters = new ArrayList();
+    public ArrayList top_admins = new ArrayList();
+    public ArrayList top_inviters = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TL_stats$TL_megagroupStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-276825834 != i) {
@@ -133,25 +133,25 @@ public class TL_stats$TL_megagroupStats extends TLObject {
         int size = this.top_posters.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.top_posters.get(i).serializeToStream(abstractSerializedData);
+            ((TL_stats$TL_statsGroupTopPoster) this.top_posters.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.top_admins.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.top_admins.get(i2).serializeToStream(abstractSerializedData);
+            ((TL_stats$TL_statsGroupTopAdmin) this.top_admins.get(i2)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.top_inviters.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            this.top_inviters.get(i3).serializeToStream(abstractSerializedData);
+            ((TL_stats$TL_statsGroupTopInviter) this.top_inviters.get(i3)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size4 = this.users.size();
         abstractSerializedData.writeInt32(size4);
         for (int i4 = 0; i4 < size4; i4++) {
-            this.users.get(i4).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i4)).serializeToStream(abstractSerializedData);
         }
     }
 }

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_payments_bankCardData extends TLObject {
-    public ArrayList<TLRPC$TL_bankCardOpenUrl> open_urls = new ArrayList<>();
+    public ArrayList open_urls = new ArrayList();
     public String title;
 
     public static TLRPC$TL_payments_bankCardData TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -46,7 +46,7 @@ public class TLRPC$TL_payments_bankCardData extends TLObject {
         int size = this.open_urls.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.open_urls.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_bankCardOpenUrl) this.open_urls.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

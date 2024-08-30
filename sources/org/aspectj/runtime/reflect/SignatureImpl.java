@@ -22,7 +22,41 @@ abstract class SignatureImpl implements Signature {
         void set(int i, String str);
     }
 
-    protected abstract String createToString(StringMaker stringMaker);
+    public static final class CacheImpl implements Cache {
+        private SoftReference toStringCacheRef;
+
+        public CacheImpl() {
+            makeCache();
+        }
+
+        private String[] array() {
+            return (String[]) this.toStringCacheRef.get();
+        }
+
+        private String[] makeCache() {
+            String[] strArr = new String[3];
+            this.toStringCacheRef = new SoftReference(strArr);
+            return strArr;
+        }
+
+        @Override
+        public String get(int i) {
+            String[] array = array();
+            if (array == null) {
+                return null;
+            }
+            return array[i];
+        }
+
+        @Override
+        public void set(int i, String str) {
+            String[] array = array();
+            if (array == null) {
+                array = makeCache();
+            }
+            array[i] = str;
+        }
+    }
 
     public SignatureImpl(int i, String str, Class cls) {
         this.modifiers = i;
@@ -30,47 +64,17 @@ abstract class SignatureImpl implements Signature {
         this.declaringType = cls;
     }
 
-    public java.lang.String toString(org.aspectj.runtime.reflect.StringMaker r3) {
-        throw new UnsupportedOperationException("Method not decompiled: org.aspectj.runtime.reflect.SignatureImpl.toString(org.aspectj.runtime.reflect.StringMaker):java.lang.String");
-    }
-
-    public final String toString() {
-        return toString(StringMaker.middleStringMaker);
-    }
-
-    public int getModifiers() {
-        if (this.modifiers == -1) {
-            this.modifiers = extractInt(0);
-        }
-        return this.modifiers;
-    }
-
-    public String getName() {
-        if (this.name == null) {
-            this.name = extractString(1);
-        }
-        return this.name;
-    }
-
-    public Class getDeclaringType() {
-        if (this.declaringType == null) {
-            this.declaringType = extractType(2);
-        }
-        return this.declaringType;
-    }
-
-    public String getDeclaringTypeName() {
-        if (this.declaringTypeName == null) {
-            this.declaringTypeName = getDeclaringType().getName();
-        }
-        return this.declaringTypeName;
-    }
-
     private ClassLoader getLookupClassLoader() {
         if (this.lookupClassLoader == null) {
             this.lookupClassLoader = getClass().getClassLoader();
         }
         return this.lookupClassLoader;
+    }
+
+    protected abstract String createToString(StringMaker stringMaker);
+
+    int extractInt(int i) {
+        return Integer.parseInt(extractString(i), 16);
     }
 
     String extractString(int i) {
@@ -91,10 +95,6 @@ abstract class SignatureImpl implements Signature {
         return this.stringRep.substring(i2, indexOf);
     }
 
-    int extractInt(int i) {
-        return Integer.parseInt(extractString(i), 16);
-    }
-
     public Class extractType(int i) {
         return Factory.makeClass(extractString(i), getLookupClassLoader());
     }
@@ -109,39 +109,39 @@ abstract class SignatureImpl implements Signature {
         return clsArr;
     }
 
-    public static final class CacheImpl implements Cache {
-        private SoftReference toStringCacheRef;
-
-        public CacheImpl() {
-            makeCache();
+    public Class getDeclaringType() {
+        if (this.declaringType == null) {
+            this.declaringType = extractType(2);
         }
+        return this.declaringType;
+    }
 
-        @Override
-        public String get(int i) {
-            String[] array = array();
-            if (array == null) {
-                return null;
-            }
-            return array[i];
+    public String getDeclaringTypeName() {
+        if (this.declaringTypeName == null) {
+            this.declaringTypeName = getDeclaringType().getName();
         }
+        return this.declaringTypeName;
+    }
 
-        @Override
-        public void set(int i, String str) {
-            String[] array = array();
-            if (array == null) {
-                array = makeCache();
-            }
-            array[i] = str;
+    public int getModifiers() {
+        if (this.modifiers == -1) {
+            this.modifiers = extractInt(0);
         }
+        return this.modifiers;
+    }
 
-        private String[] array() {
-            return (String[]) this.toStringCacheRef.get();
+    public String getName() {
+        if (this.name == null) {
+            this.name = extractString(1);
         }
+        return this.name;
+    }
 
-        private String[] makeCache() {
-            String[] strArr = new String[3];
-            this.toStringCacheRef = new SoftReference(strArr);
-            return strArr;
-        }
+    public final String toString() {
+        return toString(StringMaker.middleStringMaker);
+    }
+
+    public java.lang.String toString(org.aspectj.runtime.reflect.StringMaker r3) {
+        throw new UnsupportedOperationException("Method not decompiled: org.aspectj.runtime.reflect.SignatureImpl.toString(org.aspectj.runtime.reflect.StringMaker):java.lang.String");
     }
 }

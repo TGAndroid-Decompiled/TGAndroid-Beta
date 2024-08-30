@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.PorterDuff;
@@ -23,24 +22,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 
-@SuppressLint({"ViewConstructor"})
-public class HashtagHistoryView extends FrameLayout {
+public abstract class HashtagHistoryView extends FrameLayout {
     private UniversalAdapter adapter;
     private AnimatorSet animation;
     private int currentAccount;
     private ImageView emptyImage;
     private TextView emptyText;
     public FrameLayout emptyView;
-    private ArrayList<String> history;
+    private ArrayList history;
     private UniversalRecyclerView recyclerView;
     private Theme.ResourcesProvider resourcesProvider;
-
-    protected void onClick(String str) {
-        throw null;
-    }
-
-    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-    }
 
     public HashtagHistoryView(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
@@ -93,6 +84,66 @@ public class HashtagHistoryView extends FrameLayout {
         this.recyclerView.setEmptyView(this.emptyView);
     }
 
+    public void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        ArrayList arrayList2 = new ArrayList(0);
+        this.history = arrayList2;
+        arrayList2.addAll(HashtagSearchController.getInstance(this.currentAccount).history);
+        if (this.history.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < this.history.size(); i++) {
+            String str = (String) this.history.get(i);
+            if (str.startsWith("#") || str.startsWith("$")) {
+                arrayList.add(UItem.asButton(i + 1, str.startsWith("$") ? R.drawable.menu_cashtag : R.drawable.menu_hashtag, str.substring(1)));
+            }
+        }
+        arrayList.add(UItem.asButton(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
+    }
+
+    public void lambda$onLongClick$0(String str, DialogInterface dialogInterface, int i) {
+        HashtagSearchController.getInstance(this.currentAccount).removeHashtagFromHistory(str);
+        update();
+    }
+
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        int i2 = uItem.id;
+        if (i2 != 0) {
+            onClick((String) this.history.get(i2 - 1));
+        } else {
+            HashtagSearchController.getInstance(this.currentAccount).clearHistory();
+            update();
+        }
+    }
+
+    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        int i2 = uItem.id;
+        if (i2 == 0) {
+            return false;
+        }
+        final String str = (String) this.history.get(i2 - 1);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
+        builder.setTitle(LocaleController.getString(R.string.ClearSearchSingleAlertTitle));
+        builder.setMessage(LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str));
+        builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i3) {
+                HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i3);
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.create().show();
+        return true;
+    }
+
+    public boolean isShowing() {
+        return getTag() != null;
+    }
+
+    protected abstract void onClick(String str);
+
+    public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+    }
+
     public void show(final boolean z) {
         if (z == isShowing()) {
             return;
@@ -113,6 +164,13 @@ public class HashtagHistoryView extends FrameLayout {
         this.animation.setDuration(180L);
         this.animation.addListener(new AnimatorListenerAdapter() {
             @Override
+            public void onAnimationCancel(Animator animator) {
+                if (animator.equals(HashtagHistoryView.this.animation)) {
+                    HashtagHistoryView.this.animation = null;
+                }
+            }
+
+            @Override
             public void onAnimationEnd(Animator animator) {
                 if (animator.equals(HashtagHistoryView.this.animation)) {
                     HashtagHistoryView.this.animation = null;
@@ -122,73 +180,11 @@ public class HashtagHistoryView extends FrameLayout {
                     HashtagHistoryView.this.setVisibility(8);
                 }
             }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-                if (animator.equals(HashtagHistoryView.this.animation)) {
-                    HashtagHistoryView.this.animation = null;
-                }
-            }
         });
         this.animation.start();
     }
 
-    public boolean isShowing() {
-        return getTag() != null;
-    }
-
     public void update() {
         this.adapter.update(true);
-    }
-
-    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
-        ArrayList<String> arrayList2 = new ArrayList<>(0);
-        this.history = arrayList2;
-        arrayList2.addAll(HashtagSearchController.getInstance(this.currentAccount).history);
-        if (this.history.isEmpty()) {
-            return;
-        }
-        for (int i = 0; i < this.history.size(); i++) {
-            String str = this.history.get(i);
-            if (str.startsWith("#") || str.startsWith("$")) {
-                arrayList.add(UItem.asButton(i + 1, str.startsWith("$") ? R.drawable.menu_cashtag : R.drawable.menu_hashtag, str.substring(1)));
-            }
-        }
-        arrayList.add(UItem.asButton(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
-    }
-
-    public void onClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 == 0) {
-            HashtagSearchController.getInstance(this.currentAccount).clearHistory();
-            update();
-        } else {
-            onClick(this.history.get(i2 - 1));
-        }
-    }
-
-    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
-        int i2 = uItem.id;
-        if (i2 == 0) {
-            return false;
-        }
-        final String str = this.history.get(i2 - 1);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        builder.setTitle(LocaleController.getString(R.string.ClearSearchSingleAlertTitle));
-        builder.setMessage(LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str));
-        builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
-            @Override
-            public final void onClick(DialogInterface dialogInterface, int i3) {
-                HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i3);
-            }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.create().show();
-        return true;
-    }
-
-    public void lambda$onLongClick$0(String str, DialogInterface dialogInterface, int i) {
-        HashtagSearchController.getInstance(this.currentAccount).removeHashtagFromHistory(str);
-        update();
     }
 }

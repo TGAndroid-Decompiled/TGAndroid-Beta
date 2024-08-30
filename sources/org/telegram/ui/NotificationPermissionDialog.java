@@ -39,9 +39,142 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     private boolean mayBeAccidentalDismiss;
     private RLottieImageView rLottieImageView;
     private long showTime;
-    private Utilities.Callback<Boolean> whenGranted;
+    private Utilities.Callback whenGranted;
 
-    public NotificationPermissionDialog(Context context, Utilities.Callback<Boolean> callback) {
+    public static class CounterView extends View {
+        private final AnimatedFloat alpha;
+        private ValueAnimator countAnimator;
+        private float countScale;
+        private final Paint fillPaint;
+        private int lastCount;
+        private final Paint strokePaint;
+        AnimatedTextView.AnimatedTextDrawable textDrawable;
+
+        public CounterView(Context context) {
+            super(context);
+            Paint paint = new Paint(1);
+            this.fillPaint = paint;
+            Paint paint2 = new Paint(1);
+            this.strokePaint = paint2;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            this.alpha = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
+            this.textDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+            this.countScale = 1.0f;
+            paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
+            paint2.setColor(Theme.getColor(Theme.key_dialogBackground));
+            paint2.setStyle(Paint.Style.STROKE);
+            paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            this.textDrawable.setCallback(this);
+            this.textDrawable.setAnimationProperties(0.35f, 0L, 200L, cubicBezierInterpolator);
+            this.textDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
+            this.textDrawable.getPaint().setStrokeWidth(AndroidUtilities.dp(0.24f));
+            this.textDrawable.getPaint().setStrokeJoin(Paint.Join.ROUND);
+            this.textDrawable.setTextSize(AndroidUtilities.dp(13.3f));
+            this.textDrawable.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            this.textDrawable.setOverrideFullWidth(AndroidUtilities.dp(64.0f));
+            this.textDrawable.setGravity(1);
+        }
+
+        private void animateBounce() {
+            ValueAnimator valueAnimator = this.countAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.countAnimator = null;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.countAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    NotificationPermissionDialog.CounterView.this.lambda$animateBounce$0(valueAnimator2);
+                }
+            });
+            this.countAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    CounterView.this.countScale = 1.0f;
+                    CounterView.this.invalidate();
+                }
+            });
+            this.countAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+            this.countAnimator.setDuration(200L);
+            this.countAnimator.start();
+        }
+
+        public void lambda$animateBounce$0(ValueAnimator valueAnimator) {
+            this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            invalidate();
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            float f = this.alpha.set(this.lastCount > 0 ? 1.0f : 0.0f);
+            canvas.save();
+            float f2 = this.countScale * f;
+            canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
+            float currentWidth = this.textDrawable.getCurrentWidth() + AndroidUtilities.dpf2(12.66f);
+            float dpf2 = AndroidUtilities.dpf2(20.3f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getWidth() - currentWidth) / 2.0f, (getHeight() - dpf2) / 2.0f, (getWidth() + currentWidth) / 2.0f, (getHeight() + dpf2) / 2.0f);
+            int i = (int) (f * 255.0f);
+            this.strokePaint.setAlpha(i);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), this.strokePaint);
+            this.fillPaint.setAlpha(i);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), this.fillPaint);
+            canvas.save();
+            canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
+            this.textDrawable.setBounds(0, 0, getWidth(), getHeight());
+            this.textDrawable.draw(canvas);
+            canvas.restore();
+            canvas.restore();
+        }
+
+        public boolean setCount(int i) {
+            int i2 = this.lastCount;
+            if (i2 != i) {
+                r1 = i2 < i;
+                this.lastCount = i;
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+                String str = "";
+                if (i > 0) {
+                    str = "" + this.lastCount;
+                }
+                animatedTextDrawable.setText(str, true);
+                if (r1) {
+                    animateBounce();
+                }
+            }
+            return r1;
+        }
+
+        @Override
+        protected boolean verifyDrawable(Drawable drawable) {
+            return drawable == this.textDrawable || super.verifyDrawable(drawable);
+        }
+    }
+
+    private static class SectionView extends FrameLayout {
+        public SectionView(Context context, int i, CharSequence charSequence) {
+            super(context);
+            setPadding(0, AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f));
+            ImageView imageView = new ImageView(context);
+            imageView.setImageResource(i);
+            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            int i2 = Theme.key_dialogTextBlack;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+            boolean z = LocaleController.isRTL;
+            addView(imageView, LayoutHelper.createFrame(24, 24.0f, (z ? 5 : 3) | 16, z ? 0.0f : 22.0f, 0.0f, z ? 22.0f : 0.0f, 0.0f));
+            TextView textView = new TextView(context);
+            textView.setTextColor(Theme.getColor(i2));
+            textView.setTextSize(1, 14.0f);
+            textView.setGravity(LocaleController.isRTL ? 5 : 3);
+            textView.setText(charSequence);
+            boolean z2 = LocaleController.isRTL;
+            addView(textView, LayoutHelper.createFrame(-1, -2.0f, 23, z2 ? 0.0f : 61.0f, 0.0f, z2 ? 61.0f : 0.0f, 0.0f));
+        }
+    }
+
+    public NotificationPermissionDialog(Context context, Utilities.Callback callback) {
         super(context, false);
         this.whenGranted = callback;
         LinearLayout linearLayout = new LinearLayout(context);
@@ -111,6 +244,19 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         }
     }
 
+    public static void askLater() {
+        long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
+        long currentTimeMillis = System.currentTimeMillis() + j;
+        long j2 = 259200000;
+        if (j >= 259200000) {
+            j2 = 604800000;
+            if (j >= 604800000) {
+                j2 = 2592000000L;
+            }
+        }
+        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
+    }
+
     public void lambda$new$0(View view) {
         if (this.rLottieImageView.isPlaying()) {
             return;
@@ -120,199 +266,12 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     public void lambda$new$1(View view) {
-        Utilities.Callback<Boolean> callback = this.whenGranted;
+        Utilities.Callback callback = this.whenGranted;
         if (callback != null) {
             callback.run(Boolean.TRUE);
             this.whenGranted = null;
         }
         dismiss();
-    }
-
-    @Override
-    public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) < 0) {
-            return;
-        }
-        updateCounter();
-    }
-
-    public void updateCounter() {
-        int i = 0;
-        for (int i2 = 0; i2 < 4; i2++) {
-            MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
-            if (messagesStorage != null) {
-                i += messagesStorage.getMainUnreadCount();
-            }
-        }
-        if (!this.counterView.setCount(i) || this.rLottieImageView.isPlaying()) {
-            return;
-        }
-        this.rLottieImageView.setProgress(0.0f);
-        this.rLottieImageView.playAnimation();
-    }
-
-    @Override
-    public void show() {
-        super.show();
-        this.showTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void onDismissWithTouchOutside() {
-        this.mayBeAccidentalDismiss = System.currentTimeMillis() - this.showTime < 3000;
-        super.onDismissWithTouchOutside();
-    }
-
-    @Override
-    public void dismiss() {
-        super.dismiss();
-        Utilities.Callback<Boolean> callback = this.whenGranted;
-        if (callback != null) {
-            callback.run(Boolean.FALSE);
-            this.whenGranted = null;
-            if (!this.mayBeAccidentalDismiss) {
-                askLater();
-            }
-        }
-        for (int i = 0; i < 4; i++) {
-            try {
-                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
-            } catch (Exception unused) {
-            }
-        }
-    }
-
-    public static class CounterView extends View {
-        private final AnimatedFloat alpha;
-        private ValueAnimator countAnimator;
-        private float countScale;
-        private final Paint fillPaint;
-        private int lastCount;
-        private final Paint strokePaint;
-        AnimatedTextView.AnimatedTextDrawable textDrawable;
-
-        public CounterView(Context context) {
-            super(context);
-            Paint paint = new Paint(1);
-            this.fillPaint = paint;
-            Paint paint2 = new Paint(1);
-            this.strokePaint = paint2;
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.alpha = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
-            this.textDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
-            this.countScale = 1.0f;
-            paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
-            paint2.setColor(Theme.getColor(Theme.key_dialogBackground));
-            paint2.setStyle(Paint.Style.STROKE);
-            paint2.setStrokeWidth(AndroidUtilities.dp(4.0f));
-            this.textDrawable.setCallback(this);
-            this.textDrawable.setAnimationProperties(0.35f, 0L, 200L, cubicBezierInterpolator);
-            this.textDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
-            this.textDrawable.getPaint().setStrokeWidth(AndroidUtilities.dp(0.24f));
-            this.textDrawable.getPaint().setStrokeJoin(Paint.Join.ROUND);
-            this.textDrawable.setTextSize(AndroidUtilities.dp(13.3f));
-            this.textDrawable.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-            this.textDrawable.setOverrideFullWidth(AndroidUtilities.dp(64.0f));
-            this.textDrawable.setGravity(1);
-        }
-
-        public boolean setCount(int i) {
-            int i2 = this.lastCount;
-            if (i2 != i) {
-                r1 = i2 < i;
-                this.lastCount = i;
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-                String str = "";
-                if (i > 0) {
-                    str = "" + this.lastCount;
-                }
-                animatedTextDrawable.setText(str, true);
-                if (r1) {
-                    animateBounce();
-                }
-            }
-            return r1;
-        }
-
-        private void animateBounce() {
-            ValueAnimator valueAnimator = this.countAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.countAnimator = null;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.countAnimator = ofFloat;
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    NotificationPermissionDialog.CounterView.this.lambda$animateBounce$0(valueAnimator2);
-                }
-            });
-            this.countAnimator.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    CounterView.this.countScale = 1.0f;
-                    CounterView.this.invalidate();
-                }
-            });
-            this.countAnimator.setInterpolator(new OvershootInterpolator(2.0f));
-            this.countAnimator.setDuration(200L);
-            this.countAnimator.start();
-        }
-
-        public void lambda$animateBounce$0(ValueAnimator valueAnimator) {
-            this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            invalidate();
-        }
-
-        @Override
-        protected void onDraw(Canvas canvas) {
-            float f = this.alpha.set(this.lastCount > 0 ? 1.0f : 0.0f);
-            canvas.save();
-            float f2 = this.countScale * f;
-            canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
-            float currentWidth = this.textDrawable.getCurrentWidth() + AndroidUtilities.dpf2(12.66f);
-            float dpf2 = AndroidUtilities.dpf2(20.3f);
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getWidth() - currentWidth) / 2.0f, (getHeight() - dpf2) / 2.0f, (getWidth() + currentWidth) / 2.0f, (getHeight() + dpf2) / 2.0f);
-            int i = (int) (f * 255.0f);
-            this.strokePaint.setAlpha(i);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), this.strokePaint);
-            this.fillPaint.setAlpha(i);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f), this.fillPaint);
-            canvas.save();
-            canvas.translate(0.0f, -AndroidUtilities.dp(1.0f));
-            this.textDrawable.setBounds(0, 0, getWidth(), getHeight());
-            this.textDrawable.draw(canvas);
-            canvas.restore();
-            canvas.restore();
-        }
-
-        @Override
-        protected boolean verifyDrawable(Drawable drawable) {
-            return drawable == this.textDrawable || super.verifyDrawable(drawable);
-        }
-    }
-
-    private static class SectionView extends FrameLayout {
-        public SectionView(Context context, int i, CharSequence charSequence) {
-            super(context);
-            setPadding(0, AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f));
-            ImageView imageView = new ImageView(context);
-            imageView.setImageResource(i);
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            int i2 = Theme.key_dialogTextBlack;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-            boolean z = LocaleController.isRTL;
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, (z ? 5 : 3) | 16, z ? 0.0f : 22.0f, 0.0f, z ? 22.0f : 0.0f, 0.0f));
-            TextView textView = new TextView(context);
-            textView.setTextColor(Theme.getColor(i2));
-            textView.setTextSize(1, 14.0f);
-            textView.setGravity(LocaleController.isRTL ? 5 : 3);
-            textView.setText(charSequence);
-            boolean z2 = LocaleController.isRTL;
-            addView(textView, LayoutHelper.createFrame(-1, -2.0f, 23, z2 ? 0.0f : 61.0f, 0.0f, z2 ? 61.0f : 0.0f, 0.0f));
-        }
     }
 
     public static boolean shouldAsk(Activity activity) {
@@ -331,16 +290,57 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         return false;
     }
 
-    public static void askLater() {
-        long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
-        long currentTimeMillis = System.currentTimeMillis() + j;
-        long j2 = 259200000;
-        if (j >= 259200000) {
-            j2 = 604800000;
-            if (j >= 604800000) {
-                j2 = 2592000000L;
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i != NotificationCenter.updateInterfaces || (((Integer) objArr[0]).intValue() & MessagesController.UPDATE_MASK_READ_DIALOG_MESSAGE) < 0) {
+            return;
+        }
+        updateCounter();
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        Utilities.Callback callback = this.whenGranted;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
+            this.whenGranted = null;
+            if (!this.mayBeAccidentalDismiss) {
+                askLater();
             }
         }
-        MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
+        for (int i = 0; i < 4; i++) {
+            try {
+                NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.updateInterfaces);
+            } catch (Exception unused) {
+            }
+        }
+    }
+
+    @Override
+    public void onDismissWithTouchOutside() {
+        this.mayBeAccidentalDismiss = System.currentTimeMillis() - this.showTime < 3000;
+        super.onDismissWithTouchOutside();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        this.showTime = System.currentTimeMillis();
+    }
+
+    public void updateCounter() {
+        int i = 0;
+        for (int i2 = 0; i2 < 4; i2++) {
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
+            if (messagesStorage != null) {
+                i += messagesStorage.getMainUnreadCount();
+            }
+        }
+        if (!this.counterView.setCount(i) || this.rLottieImageView.isPlaying()) {
+            return;
+        }
+        this.rLottieImageView.setProgress(0.0f);
+        this.rLottieImageView.playAnimation();
     }
 }

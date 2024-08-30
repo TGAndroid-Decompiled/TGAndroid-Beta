@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_account_setPrivacy extends TLObject {
     public TLRPC$InputPrivacyKey key;
-    public ArrayList<TLRPC$InputPrivacyRule> rules = new ArrayList<>();
+    public ArrayList rules = new ArrayList();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -19,7 +19,7 @@ public class TLRPC$TL_account_setPrivacy extends TLObject {
         int size = this.rules.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.rules.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$InputPrivacyRule) this.rules.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

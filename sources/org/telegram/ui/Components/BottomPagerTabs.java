@@ -18,8 +18,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public class BottomPagerTabs extends View {
-    private Utilities.Callback<Integer> onTabClick;
+public abstract class BottomPagerTabs extends View {
+    private Utilities.Callback onTabClick;
     private float progress;
     private final Theme.ResourcesProvider resourcesProvider;
     private boolean scrolling;
@@ -44,11 +44,6 @@ public class BottomPagerTabs extends View {
         final AnimatedFloat nonscrollingT;
         final TextPaint paint;
         final Drawable ripple;
-
-        public Tab customFrameInvert() {
-            this.customFrameInvert = true;
-            return this;
-        }
 
         public Tab(int i, int i2, int i3, int i4, CharSequence charSequence) {
             TextPaint textPaint = new TextPaint(1);
@@ -76,40 +71,13 @@ public class BottomPagerTabs extends View {
             this.ripple = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(i5, BottomPagerTabs.this.resourcesProvider), 0.1f), 7, AndroidUtilities.dp(16.0f));
         }
 
-        public void setActive(boolean z, boolean z2) {
-            if (this.customFrameInvert) {
-                z = !z;
-            }
-            if (this.active == z) {
-                return;
-            }
-            if (BottomPagerTabs.this.tabs[this.i].customEndFrameMid != 0) {
-                if (z) {
-                    this.drawable.setCustomEndFrame(this.customEndFrameMid);
-                    if (this.drawable.getCurrentFrame() >= this.customEndFrameEnd - 2) {
-                        this.drawable.setCurrentFrame(0, false);
-                    }
-                    int currentFrame = this.drawable.getCurrentFrame();
-                    int i = this.customEndFrameMid;
-                    if (currentFrame <= i) {
-                        this.drawable.start();
-                    } else {
-                        this.drawable.setCurrentFrame(i);
-                    }
-                } else if (this.drawable.getCurrentFrame() >= this.customEndFrameMid - 1) {
-                    this.drawable.setCustomEndFrame(this.customEndFrameEnd - 1);
-                    this.drawable.start();
-                } else {
-                    this.drawable.setCustomEndFrame(0);
-                    this.drawable.setCurrentFrame(0);
-                }
-            } else if (z) {
-                this.drawable.setCurrentFrame(0);
-                if (z2) {
-                    this.drawable.start();
-                }
-            }
-            this.active = z;
+        public Tab customFrameInvert() {
+            this.customFrameInvert = true;
+            return this;
+        }
+
+        public void setActive(boolean r3, boolean r4) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BottomPagerTabs.Tab.setActive(boolean, boolean):void");
         }
 
         public void setColor(int i) {
@@ -132,22 +100,6 @@ public class BottomPagerTabs extends View {
         setProgress(0.0f, false);
     }
 
-    public Tab[] createTabs() {
-        return new Tab[0];
-    }
-
-    public void setScrolling(boolean z) {
-        if (this.scrolling == z) {
-            return;
-        }
-        this.scrolling = z;
-        invalidate();
-    }
-
-    public void setProgress(float f) {
-        setProgress(f, true);
-    }
-
     private void setProgress(float f, boolean z) {
         float clamp = Utilities.clamp(f, this.tabs.length, 0.0f);
         this.progress = clamp;
@@ -155,19 +107,17 @@ public class BottomPagerTabs extends View {
         int i = 0;
         while (true) {
             Tab[] tabArr = this.tabs;
-            if (i < tabArr.length) {
-                tabArr[i].setActive(((float) Math.abs(this.value - i)) < (this.tabs[i].active ? 0.25f : 0.35f), z);
-                i++;
-            } else {
+            if (i >= tabArr.length) {
                 invalidate();
                 return;
+            } else {
+                tabArr[i].setActive(((float) Math.abs(this.value - i)) < (this.tabs[i].active ? 0.25f : 0.35f), z);
+                i++;
             }
         }
     }
 
-    public void setOnTabClick(Utilities.Callback<Integer> callback) {
-        this.onTabClick = callback;
-    }
+    public abstract Tab[] createTabs();
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
@@ -237,8 +187,13 @@ public class BottomPagerTabs extends View {
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f) + AndroidUtilities.getShadowHeight());
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        Utilities.Callback<Integer> callback;
+        Utilities.Callback callback;
         if (motionEvent.getAction() == 0) {
             this.touchDown = true;
             return true;
@@ -289,9 +244,20 @@ public class BottomPagerTabs extends View {
         return super.onTouchEvent(motionEvent);
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f) + AndroidUtilities.getShadowHeight());
+    public void setOnTabClick(Utilities.Callback<Integer> callback) {
+        this.onTabClick = callback;
+    }
+
+    public void setProgress(float f) {
+        setProgress(f, true);
+    }
+
+    public void setScrolling(boolean z) {
+        if (this.scrolling == z) {
+            return;
+        }
+        this.scrolling = z;
+        invalidate();
     }
 
     @Override
@@ -299,14 +265,13 @@ public class BottomPagerTabs extends View {
         int i = 0;
         while (true) {
             Tab[] tabArr = this.tabs;
-            if (i < tabArr.length) {
-                if (tabArr[i].ripple == drawable) {
-                    return true;
-                }
-                i++;
-            } else {
+            if (i >= tabArr.length) {
                 return super.verifyDrawable(drawable);
             }
+            if (tabArr[i].ripple == drawable) {
+                return true;
+            }
+            i++;
         }
     }
 }

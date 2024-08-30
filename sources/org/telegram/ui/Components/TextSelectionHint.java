@@ -23,7 +23,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 
-public class TextSelectionHint extends View {
+public abstract class TextSelectionHint extends View {
     Animator a;
     int animateToEnd;
     int animateToStart;
@@ -73,69 +73,136 @@ public class TextSelectionHint extends View {
         setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_undo_background)));
     }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
-            Animator animator = this.a;
-            if (animator != null) {
-                animator.removeAllListeners();
-                this.a.cancel();
-            }
-            String string = LocaleController.getString(R.string.TextSelectionHint);
-            Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
-            String group = matcher.matches() ? matcher.group() : null;
-            String replace = string.replace("**", "");
-            this.textLayout = new StaticLayout(replace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.start = 0;
-            this.end = 0;
-            if (group != null) {
-                this.start = replace.indexOf(group);
-            }
-            int i3 = this.start;
-            if (i3 > 0) {
-                this.end = i3 + group.length();
+    private void drawSelection(Canvas canvas, StaticLayout staticLayout, int i, int i2) {
+        int lineForOffset = staticLayout.getLineForOffset(i);
+        int lineForOffset2 = staticLayout.getLineForOffset(i2);
+        int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i);
+        int primaryHorizontal2 = (int) staticLayout.getPrimaryHorizontal(i2);
+        if (lineForOffset == lineForOffset2) {
+            canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
+            return;
+        }
+        canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
+        canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset2), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset2), this.selectionPaint);
+        while (true) {
+            lineForOffset++;
+            if (lineForOffset >= lineForOffset2) {
+                return;
             } else {
-                int i4 = 0;
-                for (int i5 = 0; i5 < replace.length(); i5++) {
-                    if (replace.charAt(i5) == ' ') {
-                        i4++;
-                        if (i4 == 2) {
-                            this.start = i5 + 1;
-                        }
-                        if (i4 == 3) {
-                            this.end = i5 - 1;
-                        }
-                    }
-                }
+                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
             }
-            if (this.end == 0) {
-                this.end = replace.length();
-            }
-            this.animateToStart = 0;
-            StaticLayout staticLayout = this.textLayout;
-            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.end), this.textLayout.getWidth() - 1);
-            this.animateToEnd = offsetForHorizontal;
-            this.currentStart = this.start;
-            this.currentEnd = this.end;
-            if (this.showing) {
-                this.prepareProgress = 1.0f;
-                this.enterValue = 1.0f;
-                this.currentStart = this.animateToStart;
-                this.currentEnd = offsetForHorizontal;
-                this.startOffsetValue = 0.0f;
-                this.endOffsetValue = 0.0f;
-            } else if (this.showOnMeasure) {
-                show();
-            }
-            this.showOnMeasure = false;
-            this.lastW = getMeasuredWidth();
         }
-        int height = this.textLayout.getHeight() + (AndroidUtilities.dp(8.0f) * 2);
-        if (height < AndroidUtilities.dp(56.0f)) {
-            height = AndroidUtilities.dp(56.0f);
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public void hideInternal() {
+        Animator animator = this.a;
+        if (animator != null) {
+            animator.removeAllListeners();
+            this.a.cancel();
         }
-        setMeasuredDimension(getMeasuredWidth(), height);
+        this.showing = false;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                TextSelectionHint.this.lambda$hideInternal$4(valueAnimator);
+            }
+        });
+        ofFloat.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator2) {
+                TextSelectionHint.this.setVisibility(4);
+            }
+        });
+        this.a = ofFloat;
+        ofFloat.start();
+    }
+
+    public void lambda$hideInternal$4(ValueAnimator valueAnimator) {
+        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$show$0(ValueAnimator valueAnimator) {
+        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$show$1(ValueAnimator valueAnimator) {
+        this.enterValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$show$2(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.startOffsetValue = floatValue;
+        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * floatValue));
+        invalidate();
+    }
+
+    public void lambda$show$3(ValueAnimator valueAnimator) {
+        this.endOffsetValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.currentEnd = this.animateToEnd + ((int) Math.ceil((this.end - r0) * r4));
+        invalidate();
+    }
+
+    private void roundedRect(Path path, float f, float f2, float f3, float f4, float f5, float f6, boolean z, boolean z2) {
+        path.reset();
+        if (f5 < 0.0f) {
+            f5 = 0.0f;
+        }
+        if (f6 < 0.0f) {
+            f6 = 0.0f;
+        }
+        float f7 = f3 - f;
+        float f8 = f4 - f2;
+        float f9 = f7 / 2.0f;
+        if (f5 > f9) {
+            f5 = f9;
+        }
+        float f10 = f8 / 2.0f;
+        if (f6 > f10) {
+            f6 = f10;
+        }
+        float f11 = f7 - (f5 * 2.0f);
+        float f12 = f8 - (2.0f * f6);
+        path.moveTo(f3, f2 + f6);
+        float f13 = -f6;
+        if (z2) {
+            path.rQuadTo(0.0f, f13, -f5, f13);
+        } else {
+            path.rLineTo(0.0f, f13);
+            path.rLineTo(-f5, 0.0f);
+        }
+        path.rLineTo(-f11, 0.0f);
+        float f14 = -f5;
+        if (z) {
+            path.rQuadTo(f14, 0.0f, f14, f6);
+        } else {
+            path.rLineTo(f14, 0.0f);
+            path.rLineTo(0.0f, f6);
+        }
+        path.rLineTo(0.0f, f12);
+        path.rLineTo(0.0f, f6);
+        path.rLineTo(f5, 0.0f);
+        path.rLineTo(f11, 0.0f);
+        path.rLineTo(f5, 0.0f);
+        path.rLineTo(0.0f, -f6);
+        path.rLineTo(0.0f, -f12);
+        path.close();
+    }
+
+    public float getPrepareProgress() {
+        return this.prepareProgress;
+    }
+
+    public void hide() {
+        AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
+        hideInternal();
     }
 
     @Override
@@ -204,71 +271,69 @@ public class TextSelectionHint extends View {
         canvas.restore();
     }
 
-    private void roundedRect(Path path, float f, float f2, float f3, float f4, float f5, float f6, boolean z, boolean z2) {
-        path.reset();
-        if (f5 < 0.0f) {
-            f5 = 0.0f;
-        }
-        if (f6 < 0.0f) {
-            f6 = 0.0f;
-        }
-        float f7 = f3 - f;
-        float f8 = f4 - f2;
-        float f9 = f7 / 2.0f;
-        if (f5 > f9) {
-            f5 = f9;
-        }
-        float f10 = f8 / 2.0f;
-        if (f6 > f10) {
-            f6 = f10;
-        }
-        float f11 = f7 - (f5 * 2.0f);
-        float f12 = f8 - (2.0f * f6);
-        path.moveTo(f3, f2 + f6);
-        if (z2) {
-            float f13 = -f6;
-            path.rQuadTo(0.0f, f13, -f5, f13);
-        } else {
-            path.rLineTo(0.0f, -f6);
-            path.rLineTo(-f5, 0.0f);
-        }
-        path.rLineTo(-f11, 0.0f);
-        if (z) {
-            float f14 = -f5;
-            path.rQuadTo(f14, 0.0f, f14, f6);
-        } else {
-            path.rLineTo(-f5, 0.0f);
-            path.rLineTo(0.0f, f6);
-        }
-        path.rLineTo(0.0f, f12);
-        path.rLineTo(0.0f, f6);
-        path.rLineTo(f5, 0.0f);
-        path.rLineTo(f11, 0.0f);
-        path.rLineTo(f5, 0.0f);
-        path.rLineTo(0.0f, -f6);
-        path.rLineTo(0.0f, -f12);
-        path.close();
-    }
-
-    private void drawSelection(Canvas canvas, StaticLayout staticLayout, int i, int i2) {
-        int lineForOffset = staticLayout.getLineForOffset(i);
-        int lineForOffset2 = staticLayout.getLineForOffset(i2);
-        int primaryHorizontal = (int) staticLayout.getPrimaryHorizontal(i);
-        int primaryHorizontal2 = (int) staticLayout.getPrimaryHorizontal(i2);
-        if (lineForOffset == lineForOffset2) {
-            canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
-            return;
-        }
-        canvas.drawRect(primaryHorizontal, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
-        canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset2), primaryHorizontal2, staticLayout.getLineBottom(lineForOffset2), this.selectionPaint);
-        while (true) {
-            lineForOffset++;
-            if (lineForOffset >= lineForOffset2) {
-                return;
-            } else {
-                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
+    @Override
+    public void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        if (getMeasuredWidth() != this.lastW || this.textLayout == null) {
+            Animator animator = this.a;
+            if (animator != null) {
+                animator.removeAllListeners();
+                this.a.cancel();
             }
+            String string = LocaleController.getString(R.string.TextSelectionHint);
+            Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
+            String group = matcher.matches() ? matcher.group() : null;
+            String replace = string.replace("**", "");
+            this.textLayout = new StaticLayout(replace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.start = 0;
+            this.end = 0;
+            if (group != null) {
+                this.start = replace.indexOf(group);
+            }
+            int i3 = this.start;
+            if (i3 > 0) {
+                this.end = i3 + group.length();
+            } else {
+                int i4 = 0;
+                for (int i5 = 0; i5 < replace.length(); i5++) {
+                    if (replace.charAt(i5) == ' ') {
+                        i4++;
+                        if (i4 == 2) {
+                            this.start = i5 + 1;
+                        }
+                        if (i4 == 3) {
+                            this.end = i5 - 1;
+                        }
+                    }
+                }
+            }
+            if (this.end == 0) {
+                this.end = replace.length();
+            }
+            this.animateToStart = 0;
+            StaticLayout staticLayout = this.textLayout;
+            int offsetForHorizontal = staticLayout.getOffsetForHorizontal(staticLayout.getLineForOffset(this.end), this.textLayout.getWidth() - 1);
+            this.animateToEnd = offsetForHorizontal;
+            this.currentStart = this.start;
+            this.currentEnd = this.end;
+            if (this.showing) {
+                this.prepareProgress = 1.0f;
+                this.enterValue = 1.0f;
+                this.currentStart = this.animateToStart;
+                this.currentEnd = offsetForHorizontal;
+                this.startOffsetValue = 0.0f;
+                this.endOffsetValue = 0.0f;
+            } else if (this.showOnMeasure) {
+                show();
+            }
+            this.showOnMeasure = false;
+            this.lastW = getMeasuredWidth();
         }
+        int height = this.textLayout.getHeight() + (AndroidUtilities.dp(8.0f) * 2);
+        if (height < AndroidUtilities.dp(56.0f)) {
+            height = AndroidUtilities.dp(56.0f);
+        }
+        setMeasuredDimension(getMeasuredWidth(), height);
     }
 
     public void show() {
@@ -335,70 +400,5 @@ public class TextSelectionHint extends View {
         this.a = animatorSet;
         animatorSet.start();
         AndroidUtilities.runOnUIThread(this.dismissTunnable, 5000L);
-    }
-
-    public void lambda$show$0(ValueAnimator valueAnimator) {
-        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void lambda$show$1(ValueAnimator valueAnimator) {
-        this.enterValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public void lambda$show$2(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.startOffsetValue = floatValue;
-        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * floatValue));
-        invalidate();
-    }
-
-    public void lambda$show$3(ValueAnimator valueAnimator) {
-        this.endOffsetValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.currentEnd = this.animateToEnd + ((int) Math.ceil((this.end - r0) * r4));
-        invalidate();
-    }
-
-    public void hide() {
-        AndroidUtilities.cancelRunOnUIThread(this.dismissTunnable);
-        hideInternal();
-    }
-
-    public void hideInternal() {
-        Animator animator = this.a;
-        if (animator != null) {
-            animator.removeAllListeners();
-            this.a.cancel();
-        }
-        this.showing = false;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.prepareProgress, 0.0f);
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                TextSelectionHint.this.lambda$hideInternal$4(valueAnimator);
-            }
-        });
-        ofFloat.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator2) {
-                TextSelectionHint.this.setVisibility(4);
-            }
-        });
-        this.a = ofFloat;
-        ofFloat.start();
-    }
-
-    public void lambda$hideInternal$4(ValueAnimator valueAnimator) {
-        this.prepareProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        invalidate();
-    }
-
-    public float getPrepareProgress() {
-        return this.prepareProgress;
-    }
-
-    private int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
     }
 }

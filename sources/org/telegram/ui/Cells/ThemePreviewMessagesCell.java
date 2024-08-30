@@ -36,8 +36,21 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     private Drawable shadowDrawable;
     private final int type;
 
-    @Override
-    protected void dispatchSetPressed(boolean z) {
+    public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i) {
+        this(context, iNavigationLayout, i, 0L);
+    }
+
+    public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i, long j) {
+        this(context, iNavigationLayout, i, j, null);
+    }
+
+    public ThemePreviewMessagesCell(android.content.Context r20, org.telegram.ui.ActionBar.INavigationLayout r21, int r22, long r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    }
+
+    public boolean allowLoadingOnTouch() {
+        int i = this.type;
+        return i == 3 || i == 0;
     }
 
     public void lambda$new$0() {
@@ -56,17 +69,16 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         }
     }
 
-    public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i) {
-        this(context, iNavigationLayout, i, 0L);
+    @Override
+    protected void dispatchSetPressed(boolean z) {
     }
 
-    public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i, long j) {
-        this(context, iNavigationLayout, i, j, null);
-    }
-
-    @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public ThemePreviewMessagesCell(android.content.Context r20, org.telegram.ui.ActionBar.INavigationLayout r21, int r22, long r23, org.telegram.ui.ActionBar.Theme.ResourcesProvider r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.type == 2 || allowLoadingOnTouch()) {
+            return super.dispatchTouchEvent(motionEvent);
+        }
+        return false;
     }
 
     public ChatMessageCell[] getCells() {
@@ -87,17 +99,6 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         }
     }
 
-    public void setOverrideBackground(Drawable drawable) {
-        this.overrideDrawable = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        if ((this.overrideDrawable instanceof ChatBackgroundDrawable) && isAttachedToWindow()) {
-            ((ChatBackgroundDrawable) this.overrideDrawable).onAttachedToWindow(this);
-        }
-        invalidate();
-    }
-
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -108,8 +109,22 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @Override
-    protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.overrideDrawable || drawable == this.oldBackgroundDrawable || super.verifyDrawable(drawable);
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        BackgroundGradientDrawable.Disposable disposable = this.backgroundGradientDisposable;
+        if (disposable != null) {
+            disposable.dispose();
+            this.backgroundGradientDisposable = null;
+        }
+        BackgroundGradientDrawable.Disposable disposable2 = this.oldBackgroundGradientDisposable;
+        if (disposable2 != null) {
+            disposable2.dispose();
+            this.oldBackgroundGradientDisposable = null;
+        }
+        Drawable drawable = this.overrideDrawable;
+        if (drawable instanceof ChatBackgroundDrawable) {
+            ((ChatBackgroundDrawable) drawable).onDetachedFromWindow(this);
+        }
     }
 
     @Override
@@ -191,42 +206,10 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         this.shadowDrawable.draw(canvas);
     }
 
-    public boolean allowLoadingOnTouch() {
-        int i = this.type;
-        return i == 3 || i == 0;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        BackgroundGradientDrawable.Disposable disposable = this.backgroundGradientDisposable;
-        if (disposable != null) {
-            disposable.dispose();
-            this.backgroundGradientDisposable = null;
-        }
-        BackgroundGradientDrawable.Disposable disposable2 = this.oldBackgroundGradientDisposable;
-        if (disposable2 != null) {
-            disposable2.dispose();
-            this.oldBackgroundGradientDisposable = null;
-        }
-        Drawable drawable = this.overrideDrawable;
-        if (drawable instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable).onDetachedFromWindow(this);
-        }
-    }
-
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (this.type == 2 || allowLoadingOnTouch()) {
             return super.onInterceptTouchEvent(motionEvent);
-        }
-        return false;
-    }
-
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.type == 2 || allowLoadingOnTouch()) {
-            return super.dispatchTouchEvent(motionEvent);
         }
         return false;
     }
@@ -237,5 +220,21 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             return super.onTouchEvent(motionEvent);
         }
         return false;
+    }
+
+    public void setOverrideBackground(Drawable drawable) {
+        this.overrideDrawable = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        if ((this.overrideDrawable instanceof ChatBackgroundDrawable) && isAttachedToWindow()) {
+            ((ChatBackgroundDrawable) this.overrideDrawable).onAttachedToWindow(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.overrideDrawable || drawable == this.oldBackgroundDrawable || super.verifyDrawable(drawable);
     }
 }

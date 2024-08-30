@@ -4,33 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CallingCodeInfo {
-    public ArrayList<String> countries = new ArrayList<>();
+    public ArrayList countries = new ArrayList();
     public String callingCode = "";
-    public ArrayList<String> trunkPrefixes = new ArrayList<>();
-    public ArrayList<String> intlPrefixes = new ArrayList<>();
-    public ArrayList<RuleSet> ruleSets = new ArrayList<>();
-
-    public String matchingAccessCode(String str) {
-        Iterator<String> it = this.intlPrefixes.iterator();
-        while (it.hasNext()) {
-            String next = it.next();
-            if (str.startsWith(next)) {
-                return next;
-            }
-        }
-        return null;
-    }
-
-    String matchingTrunkCode(String str) {
-        Iterator<String> it = this.trunkPrefixes.iterator();
-        while (it.hasNext()) {
-            String next = it.next();
-            if (str.startsWith(next)) {
-                return next;
-            }
-        }
-        return null;
-    }
+    public ArrayList trunkPrefixes = new ArrayList();
+    public ArrayList intlPrefixes = new ArrayList();
+    public ArrayList ruleSets = new ArrayList();
 
     public String format(String str) {
         String str2;
@@ -50,20 +28,42 @@ public class CallingCodeInfo {
                 str3 = null;
             }
         }
-        Iterator<RuleSet> it = this.ruleSets.iterator();
+        Iterator it = this.ruleSets.iterator();
         while (it.hasNext()) {
-            String format = it.next().format(str2, str3, str4, true);
+            String format = ((RuleSet) it.next()).format(str2, str3, str4, true);
             if (format != null) {
                 return format;
             }
         }
-        Iterator<RuleSet> it2 = this.ruleSets.iterator();
+        Iterator it2 = this.ruleSets.iterator();
         while (it2.hasNext()) {
-            String format2 = it2.next().format(str2, str3, str4, false);
+            String format2 = ((RuleSet) it2.next()).format(str2, str3, str4, false);
             if (format2 != null) {
                 return format2;
             }
         }
         return (str3 == null || str2.length() == 0) ? str : String.format("%s %s", str3, str2);
+    }
+
+    public String matchingAccessCode(String str) {
+        Iterator it = this.intlPrefixes.iterator();
+        while (it.hasNext()) {
+            String str2 = (String) it.next();
+            if (str.startsWith(str2)) {
+                return str2;
+            }
+        }
+        return null;
+    }
+
+    String matchingTrunkCode(String str) {
+        Iterator it = this.trunkPrefixes.iterator();
+        while (it.hasNext()) {
+            String str2 = (String) it.next();
+            if (str.startsWith(str2)) {
+                return str2;
+            }
+        }
+        return null;
     }
 }

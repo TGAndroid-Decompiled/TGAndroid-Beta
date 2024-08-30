@@ -39,12 +39,12 @@ public class ColoredImageSpan extends ReplacementSpan {
         this(i, 0);
     }
 
-    public ColoredImageSpan(Drawable drawable) {
-        this(drawable, 0);
-    }
-
     public ColoredImageSpan(int i, int i2) {
         this(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate(), i2);
+    }
+
+    public ColoredImageSpan(Drawable drawable) {
+        this(drawable, 0);
     }
 
     public ColoredImageSpan(Drawable drawable, int i) {
@@ -63,71 +63,6 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.verticalAlignment = i;
     }
 
-    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
-        this.isRelativeSize = true;
-        this.fontMetrics = fontMetricsInt;
-        if (fontMetricsInt != null) {
-            setSize(Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent));
-            if (this.size == 0) {
-                setSize(AndroidUtilities.dp(20.0f));
-            }
-        }
-    }
-
-    public void setSize(int i) {
-        this.size = i;
-        this.drawable.setBounds(0, 0, i, i);
-    }
-
-    public void setTranslateX(float f) {
-        this.translateX = f;
-    }
-
-    public void setTranslateY(float f) {
-        this.translateY = f;
-    }
-
-    public void translate(float f, float f2) {
-        this.translateX = f;
-        this.translateY = f2;
-    }
-
-    public void rotate(float f) {
-        this.rotate = f;
-    }
-
-    public void setWidth(int i) {
-        this.sizeWidth = i;
-    }
-
-    @Override
-    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        float abs;
-        int i3;
-        if (this.isRelativeSize && this.fontMetrics != null) {
-            if (fontMetricsInt == null) {
-                fontMetricsInt = new Paint.FontMetricsInt();
-            }
-            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
-            fontMetricsInt.ascent = fontMetricsInt2.ascent;
-            fontMetricsInt.descent = fontMetricsInt2.descent;
-            fontMetricsInt.top = fontMetricsInt2.top;
-            fontMetricsInt.bottom = fontMetricsInt2.bottom;
-            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
-            i3 = this.size;
-        } else if (this.sizeWidth != 0) {
-            abs = Math.abs(this.scaleX);
-            i3 = this.sizeWidth;
-        } else {
-            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
-            i3 = this.size;
-            if (i3 == 0) {
-                i3 = this.drawable.getIntrinsicWidth();
-            }
-        }
-        return (int) (abs * i3);
-    }
-
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         Runnable runnable = this.checkColorDelegate;
@@ -136,13 +71,7 @@ public class ColoredImageSpan extends ReplacementSpan {
         } else if (this.recolorDrawable) {
             int i6 = this.overrideColor;
             if (i6 == 0) {
-                if (this.useLinkPaintColor && (paint instanceof TextPaint)) {
-                    i6 = ((TextPaint) paint).linkColor;
-                } else if (this.usePaintColor) {
-                    i6 = paint.getColor();
-                } else {
-                    i6 = Theme.getColor(this.colorKey);
-                }
+                i6 = (this.useLinkPaintColor && (paint instanceof TextPaint)) ? ((TextPaint) paint).linkColor : this.usePaintColor ? paint.getColor() : Theme.getColor(this.colorKey);
             }
             if (this.drawableColor != i6) {
                 this.drawableColor = i6;
@@ -185,13 +114,60 @@ public class ColoredImageSpan extends ReplacementSpan {
         canvas.restore();
     }
 
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+        float abs;
+        int i3;
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
+            i3 = this.size;
+        } else if (this.sizeWidth != 0) {
+            abs = Math.abs(this.scaleX);
+            i3 = this.sizeWidth;
+        } else {
+            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
+            i3 = this.size;
+            if (i3 == 0) {
+                i3 = this.drawable.getIntrinsicWidth();
+            }
+        }
+        return (int) (abs * i3);
+    }
+
+    public void rotate(float f) {
+        this.rotate = f;
+    }
+
+    public void setAlpha(float f) {
+        this.alpha = f;
+    }
+
     public void setColorKey(int i) {
         this.colorKey = i;
         this.usePaintColor = i < 0;
     }
 
-    public void setTopOffset(int i) {
-        this.topOffset = i;
+    public void setOverrideColor(int i) {
+        this.overrideColor = i;
+    }
+
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
     }
 
     public void setScale(float f) {
@@ -203,11 +179,29 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.scaleY = f2;
     }
 
-    public void setOverrideColor(int i) {
-        this.overrideColor = i;
+    public void setSize(int i) {
+        this.size = i;
+        this.drawable.setBounds(0, 0, i, i);
     }
 
-    public void setAlpha(float f) {
-        this.alpha = f;
+    public void setTopOffset(int i) {
+        this.topOffset = i;
+    }
+
+    public void setTranslateX(float f) {
+        this.translateX = f;
+    }
+
+    public void setTranslateY(float f) {
+        this.translateY = f;
+    }
+
+    public void setWidth(int i) {
+        this.sizeWidth = i;
+    }
+
+    public void translate(float f, float f2) {
+        this.translateX = f;
+        this.translateY = f2;
     }
 }

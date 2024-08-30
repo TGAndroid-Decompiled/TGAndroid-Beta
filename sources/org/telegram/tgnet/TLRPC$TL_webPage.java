@@ -120,7 +120,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
             int size = this.attributes.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                this.attributes.get(i).serializeToStream(abstractSerializedData);
+                ((TLRPC$WebPageAttribute) this.attributes.get(i)).serializeToStream(abstractSerializedData);
             }
         }
     }

@@ -20,16 +20,7 @@ public class StickerSetLinkIcon extends Drawable {
     private final RectF rect = new RectF();
     private boolean hit = false;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public StickerSetLinkIcon(int i, boolean z, ArrayList<TLRPC$Document> arrayList, boolean z2) {
+    public StickerSetLinkIcon(int i, boolean z, ArrayList arrayList, boolean z2) {
         this.out = z;
         int max = (int) Math.max(1.0d, Math.sqrt(arrayList.size()));
         this.N = max;
@@ -37,32 +28,11 @@ public class StickerSetLinkIcon extends Drawable {
         this.count = min;
         this.drawables = new AnimatedEmojiDrawable[min];
         if (!arrayList.isEmpty()) {
-            MessageObject.isAnimatedEmoji(arrayList.get(0));
+            MessageObject.isAnimatedEmoji((TLRPC$Document) arrayList.get(0));
         }
         int i2 = max < 2 ? 1 : 0;
         for (int i3 = 0; i3 < this.count; i3++) {
-            this.drawables[i3] = AnimatedEmojiDrawable.make(i, i2, arrayList.get(i3));
-        }
-    }
-
-    public boolean equals(ArrayList<TLRPC$Document> arrayList) {
-        if (arrayList == null) {
-            return this.drawables.length == 0;
-        }
-        if (this.drawables.length != arrayList.size()) {
-            return false;
-        }
-        int i = 0;
-        while (true) {
-            AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
-            if (i >= animatedEmojiDrawableArr.length) {
-                return true;
-            }
-            TLRPC$Document document = animatedEmojiDrawableArr[i].getDocument();
-            if ((document == null ? 0L : document.id) != arrayList.get(i).id) {
-                return false;
-            }
-            i++;
+            this.drawables[i3] = AnimatedEmojiDrawable.make(i, i2, (TLRPC$Document) arrayList.get(i3));
         }
     }
 
@@ -76,6 +46,10 @@ public class StickerSetLinkIcon extends Drawable {
         for (int i = 0; i < this.count; i++) {
             this.drawables[i].removeView(view);
         }
+    }
+
+    public boolean die() {
+        return this.hit;
     }
 
     @Override
@@ -113,9 +87,25 @@ public class StickerSetLinkIcon extends Drawable {
         canvas.restore();
     }
 
-    @Override
-    public void setAlpha(int i) {
-        this.alpha = i;
+    public boolean equals(ArrayList arrayList) {
+        if (arrayList == null) {
+            return this.drawables.length == 0;
+        }
+        if (this.drawables.length != arrayList.size()) {
+            return false;
+        }
+        int i = 0;
+        while (true) {
+            AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.drawables;
+            if (i >= animatedEmojiDrawableArr.length) {
+                return true;
+            }
+            TLRPC$Document document = animatedEmojiDrawableArr[i].getDocument();
+            if ((document == null ? 0L : document.id) != ((TLRPC$Document) arrayList.get(i)).id) {
+                return false;
+            }
+            i++;
+        }
     }
 
     @Override
@@ -128,15 +118,25 @@ public class StickerSetLinkIcon extends Drawable {
         return AndroidUtilities.dp(48.0f);
     }
 
-    public void readyToDie() {
-        this.hit = true;
+    @Override
+    public int getOpacity() {
+        return -2;
     }
 
     public void keepAlive() {
         this.hit = false;
     }
 
-    public boolean die() {
-        return this.hit;
+    public void readyToDie() {
+        this.hit = true;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.alpha = i;
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

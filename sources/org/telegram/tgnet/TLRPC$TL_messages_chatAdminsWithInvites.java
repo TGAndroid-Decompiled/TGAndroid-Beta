@@ -3,8 +3,8 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_messages_chatAdminsWithInvites extends TLObject {
-    public ArrayList<TLRPC$TL_chatAdminWithInvites> admins = new ArrayList<>();
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList admins = new ArrayList();
+    public ArrayList users = new ArrayList();
 
     public static TLRPC$TL_messages_chatAdminsWithInvites TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-1231326505 != i) {
@@ -59,13 +59,13 @@ public class TLRPC$TL_messages_chatAdminsWithInvites extends TLObject {
         int size = this.admins.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.admins.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$TL_chatAdminWithInvites) this.admins.get(i)).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.users.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            this.users.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i2)).serializeToStream(abstractSerializedData);
         }
     }
 }

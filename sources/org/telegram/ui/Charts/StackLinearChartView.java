@@ -8,25 +8,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.data.StackLinearChartData;
+import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.StackLinearViewData;
 
-public class StackLinearChartView<T extends StackLinearViewData> extends BaseChartView<StackLinearChartData, T> {
+public class StackLinearChartView extends BaseChartView {
     private float[] mapPoints;
     private Matrix matrix;
     Path ovalPath;
     boolean[] skipPoints;
     float[] startFromY;
-
-    @Override
-    public long findMaxValue(int i, int i2) {
-        return 100L;
-    }
-
-    @Override
-    protected float getMinDistance() {
-        return 0.1f;
-    }
 
     public StackLinearChartView(Context context) {
         super(context);
@@ -36,16 +27,6 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
         this.superDraw = true;
         this.useAlphaSignature = true;
         this.drawPointOnSelection = false;
-    }
-
-    @Override
-    public T createLineViewData(ChartData.Line line) {
-        return (T) new StackLinearViewData(line);
-    }
-
-    @Override
-    protected void drawChart(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.drawChart(android.graphics.Canvas):void");
     }
 
     private int quarterForPoint(float f, float f2) {
@@ -61,6 +42,16 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
     }
 
     @Override
+    public StackLinearViewData createLineViewData(ChartData.Line line) {
+        return new StackLinearViewData(line);
+    }
+
+    @Override
+    protected void drawChart(android.graphics.Canvas r41) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.drawChart(android.graphics.Canvas):void");
+    }
+
+    @Override
     protected void drawPickerChart(Canvas canvas) {
         long j;
         LineViewData lineViewData;
@@ -69,7 +60,7 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
         int i;
         boolean z;
         long j2;
-        if (this.chartData != 0) {
+        if (this.chartData != null) {
             int size = this.lines.size();
             for (int i2 = 0; i2 < size; i2++) {
                 ((StackLinearViewData) this.lines.get(i2)).chartPathPicker.reset();
@@ -181,6 +172,21 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
     }
 
     @Override
+    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams):void");
+    }
+
+    @Override
+    public long findMaxValue(int i, int i2) {
+        return 100L;
+    }
+
+    @Override
+    protected float getMinDistance() {
+        return 0.1f;
+    }
+
+    @Override
     public void onDraw(Canvas canvas) {
         tick();
         drawChart(canvas);
@@ -190,22 +196,16 @@ public class StackLinearChartView<T extends StackLinearViewData> extends BaseCha
         while (true) {
             this.tmpI = i;
             int i2 = this.tmpI;
-            if (i2 < this.tmpN) {
-                drawHorizontalLines(canvas, this.horizontalLines.get(i2));
-                drawSignaturesToHorizontalLines(canvas, this.horizontalLines.get(this.tmpI));
-                i = this.tmpI + 1;
-            } else {
+            if (i2 >= this.tmpN) {
                 drawBottomSignature(canvas);
                 drawPicker(canvas);
                 drawSelection(canvas);
                 super.onDraw(canvas);
                 return;
             }
+            drawHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(i2));
+            drawSignaturesToHorizontalLines(canvas, (ChartHorizontalLinesData) this.horizontalLines.get(this.tmpI));
+            i = this.tmpI + 1;
         }
-    }
-
-    @Override
-    public void fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Charts.StackLinearChartView.fillTransitionParams(org.telegram.ui.Charts.view_data.TransitionParams):void");
     }
 }

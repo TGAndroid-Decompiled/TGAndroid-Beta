@@ -59,9 +59,149 @@ public class NativeInstance {
 
     public static native void destroyVideoCapturer(long j);
 
+    public void lambda$onAudioLevelsUpdated$1(int[] iArr, float[] fArr, boolean[] zArr) {
+        this.audioLevelsCallback.run(iArr, fArr, zArr);
+    }
+
+    public void lambda$onEmitJoinPayload$3(int i, String str) {
+        this.payloadCallback.run(i, str);
+    }
+
+    public void lambda$onNetworkStateUpdated$0(boolean z, boolean z2) {
+        this.onStateUpdatedListener.onStateUpdated(z ? 1 : 0, z2);
+    }
+
+    public void lambda$onParticipantDescriptionsRequired$2(long j, int[] iArr) {
+        this.unknownParticipantsCallback.run(j, iArr);
+    }
+
+    public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j, AudioLevelsCallback audioLevelsCallback) {
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("create new tgvoip instance, version " + str);
+        }
+        NativeInstance nativeInstance = new NativeInstance();
+        nativeInstance.persistentStateFilePath = str2;
+        nativeInstance.audioLevelsCallback = audioLevelsCallback;
+        Point point = AndroidUtilities.displaySize;
+        float min = Math.min(point.x, point.y);
+        Point point2 = AndroidUtilities.displaySize;
+        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, min / Math.max(point2.x, point2.y));
+        return nativeInstance;
+    }
+
+    public static NativeInstance makeGroup(String str, long j, boolean z, boolean z2, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback) {
+        ContextUtils.initialize(ApplicationLoader.applicationContext);
+        NativeInstance nativeInstance = new NativeInstance();
+        nativeInstance.payloadCallback = payloadCallback;
+        nativeInstance.audioLevelsCallback = audioLevelsCallback;
+        nativeInstance.unknownParticipantsCallback = videoSourcesCallback;
+        nativeInstance.requestBroadcastPartCallback = requestBroadcastPartCallback;
+        nativeInstance.cancelRequestBroadcastPartCallback = requestBroadcastPartCallback2;
+        nativeInstance.requestCurrentTimeCallback = requestCurrentTimeCallback;
+        nativeInstance.isGroup = true;
+        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, SharedConfig.disableVoiceAudioEffects, j, z, z2);
+        return nativeInstance;
+    }
+
     private static native long makeGroupNativeInstance(NativeInstance nativeInstance, String str, boolean z, long j, boolean z2, boolean z3);
 
     private static native long makeNativeInstance(String str, NativeInstance nativeInstance, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j, float f);
+
+    private void onAudioLevelsUpdated(final int[] iArr, final float[] fArr, final boolean[] zArr) {
+        if (this.isGroup && iArr != null && iArr.length == 0) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NativeInstance.this.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
+            }
+        });
+    }
+
+    private void onCancelRequestBroadcastPart(long j, int i, int i2) {
+        this.cancelRequestBroadcastPartCallback.run(j, 0L, 0, 0);
+    }
+
+    private void onEmitJoinPayload(final String str, final int i) {
+        try {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    NativeInstance.this.lambda$onEmitJoinPayload$3(i, str);
+                }
+            });
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    private void onNetworkStateUpdated(final boolean z, final boolean z2) {
+        if (this.onStateUpdatedListener != null) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    NativeInstance.this.lambda$onNetworkStateUpdated$0(z, z2);
+                }
+            });
+        }
+    }
+
+    private void onParticipantDescriptionsRequired(final long j, final int[] iArr) {
+        if (this.unknownParticipantsCallback == null) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NativeInstance.this.lambda$onParticipantDescriptionsRequired$2(j, iArr);
+            }
+        });
+    }
+
+    private void onRemoteMediaStateUpdated(int i, int i2) {
+        Instance.OnRemoteMediaStateUpdatedListener onRemoteMediaStateUpdatedListener = this.onRemoteMediaStateUpdatedListener;
+        if (onRemoteMediaStateUpdatedListener != null) {
+            onRemoteMediaStateUpdatedListener.onMediaStateUpdated(i, i2);
+        }
+    }
+
+    private void onRequestBroadcastPart(long j, long j2, int i, int i2) {
+        this.requestBroadcastPartCallback.run(j, j2, i, i2);
+    }
+
+    private void onSignalBarsUpdated(int i) {
+        Instance.OnSignalBarsUpdatedListener onSignalBarsUpdatedListener = this.onSignalBarsUpdatedListener;
+        if (onSignalBarsUpdatedListener != null) {
+            onSignalBarsUpdatedListener.onSignalBarsUpdated(i);
+        }
+    }
+
+    private void onSignalingData(byte[] bArr) {
+        Instance.OnSignalingDataListener onSignalingDataListener = this.onSignalDataListener;
+        if (onSignalingDataListener != null) {
+            onSignalingDataListener.onSignalingData(bArr);
+        }
+    }
+
+    private void onStateUpdated(int i) {
+        Instance.OnStateUpdatedListener onStateUpdatedListener = this.onStateUpdatedListener;
+        if (onStateUpdatedListener != null) {
+            onStateUpdatedListener.onStateUpdated(i, false);
+        }
+    }
+
+    private void onStop(Instance.FinalState finalState) {
+        this.finalState = finalState;
+        CountDownLatch countDownLatch = this.stopBarrier;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+        }
+    }
+
+    private void requestCurrentTime(long j) {
+        this.requestCurrentTimeCallback.run(j);
+    }
 
     public static native void setVideoStateCapturer(long j, int i);
 
@@ -95,6 +235,10 @@ public class NativeInstance {
 
     public native boolean hasVideoCapturer();
 
+    public boolean isGroup() {
+        return this.isGroup;
+    }
+
     public native void onMediaDescriptionAvailable(long j, int[] iArr);
 
     public native void onRequestTimeComplete(long j, long j2);
@@ -125,52 +269,8 @@ public class NativeInstance {
 
     public native void setNoiseSuppressionEnabled(boolean z);
 
-    public native void setVideoEndpointQuality(String str, int i);
-
-    public native void setVideoState(int i);
-
-    public native void setVolume(int i, double d);
-
-    public native void setupOutgoingVideo(VideoSink videoSink, int i);
-
-    public native void setupOutgoingVideoCreated(long j);
-
-    public native void switchCamera(boolean z);
-
-    public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j, AudioLevelsCallback audioLevelsCallback) {
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("create new tgvoip instance, version " + str);
-        }
-        NativeInstance nativeInstance = new NativeInstance();
-        nativeInstance.persistentStateFilePath = str2;
-        nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = AndroidUtilities.displaySize;
-        float min = Math.min(point.x, point.y);
-        Point point2 = AndroidUtilities.displaySize;
-        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i, encryptionKey, videoSink, j, min / Math.max(point2.x, point2.y));
-        return nativeInstance;
-    }
-
-    public static NativeInstance makeGroup(String str, long j, boolean z, boolean z2, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback) {
-        ContextUtils.initialize(ApplicationLoader.applicationContext);
-        NativeInstance nativeInstance = new NativeInstance();
-        nativeInstance.payloadCallback = payloadCallback;
-        nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        nativeInstance.unknownParticipantsCallback = videoSourcesCallback;
-        nativeInstance.requestBroadcastPartCallback = requestBroadcastPartCallback;
-        nativeInstance.cancelRequestBroadcastPartCallback = requestBroadcastPartCallback2;
-        nativeInstance.requestCurrentTimeCallback = requestCurrentTimeCallback;
-        nativeInstance.isGroup = true;
-        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, SharedConfig.disableVoiceAudioEffects, j, z, z2);
-        return nativeInstance;
-    }
-
-    public boolean isGroup() {
-        return this.isGroup;
-    }
-
-    public void setOnStateUpdatedListener(Instance.OnStateUpdatedListener onStateUpdatedListener) {
-        this.onStateUpdatedListener = onStateUpdatedListener;
+    public void setOnRemoteMediaStateUpdatedListener(Instance.OnRemoteMediaStateUpdatedListener onRemoteMediaStateUpdatedListener) {
+        this.onRemoteMediaStateUpdatedListener = onRemoteMediaStateUpdatedListener;
     }
 
     public void setOnSignalBarsUpdatedListener(Instance.OnSignalBarsUpdatedListener onSignalBarsUpdatedListener) {
@@ -181,121 +281,19 @@ public class NativeInstance {
         this.onSignalDataListener = onSignalingDataListener;
     }
 
-    public void setOnRemoteMediaStateUpdatedListener(Instance.OnRemoteMediaStateUpdatedListener onRemoteMediaStateUpdatedListener) {
-        this.onRemoteMediaStateUpdatedListener = onRemoteMediaStateUpdatedListener;
+    public void setOnStateUpdatedListener(Instance.OnStateUpdatedListener onStateUpdatedListener) {
+        this.onStateUpdatedListener = onStateUpdatedListener;
     }
 
-    private void onStateUpdated(int i) {
-        Instance.OnStateUpdatedListener onStateUpdatedListener = this.onStateUpdatedListener;
-        if (onStateUpdatedListener != null) {
-            onStateUpdatedListener.onStateUpdated(i, false);
-        }
-    }
+    public native void setVideoEndpointQuality(String str, int i);
 
-    private void onSignalBarsUpdated(int i) {
-        Instance.OnSignalBarsUpdatedListener onSignalBarsUpdatedListener = this.onSignalBarsUpdatedListener;
-        if (onSignalBarsUpdatedListener != null) {
-            onSignalBarsUpdatedListener.onSignalBarsUpdated(i);
-        }
-    }
+    public native void setVideoState(int i);
 
-    private void onSignalingData(byte[] bArr) {
-        Instance.OnSignalingDataListener onSignalingDataListener = this.onSignalDataListener;
-        if (onSignalingDataListener != null) {
-            onSignalingDataListener.onSignalingData(bArr);
-        }
-    }
+    public native void setVolume(int i, double d);
 
-    private void onRemoteMediaStateUpdated(int i, int i2) {
-        Instance.OnRemoteMediaStateUpdatedListener onRemoteMediaStateUpdatedListener = this.onRemoteMediaStateUpdatedListener;
-        if (onRemoteMediaStateUpdatedListener != null) {
-            onRemoteMediaStateUpdatedListener.onMediaStateUpdated(i, i2);
-        }
-    }
+    public native void setupOutgoingVideo(VideoSink videoSink, int i);
 
-    private void onNetworkStateUpdated(final boolean z, final boolean z2) {
-        if (this.onStateUpdatedListener != null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    NativeInstance.this.lambda$onNetworkStateUpdated$0(z, z2);
-                }
-            });
-        }
-    }
-
-    public void lambda$onNetworkStateUpdated$0(boolean z, boolean z2) {
-        this.onStateUpdatedListener.onStateUpdated(z ? 1 : 0, z2);
-    }
-
-    private void onAudioLevelsUpdated(final int[] iArr, final float[] fArr, final boolean[] zArr) {
-        if (this.isGroup && iArr != null && iArr.length == 0) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                NativeInstance.this.lambda$onAudioLevelsUpdated$1(iArr, fArr, zArr);
-            }
-        });
-    }
-
-    public void lambda$onAudioLevelsUpdated$1(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.audioLevelsCallback.run(iArr, fArr, zArr);
-    }
-
-    private void onParticipantDescriptionsRequired(final long j, final int[] iArr) {
-        if (this.unknownParticipantsCallback == null) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                NativeInstance.this.lambda$onParticipantDescriptionsRequired$2(j, iArr);
-            }
-        });
-    }
-
-    public void lambda$onParticipantDescriptionsRequired$2(long j, int[] iArr) {
-        this.unknownParticipantsCallback.run(j, iArr);
-    }
-
-    public void lambda$onEmitJoinPayload$3(int i, String str) {
-        this.payloadCallback.run(i, str);
-    }
-
-    private void onEmitJoinPayload(final String str, final int i) {
-        try {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    NativeInstance.this.lambda$onEmitJoinPayload$3(i, str);
-                }
-            });
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    private void onRequestBroadcastPart(long j, long j2, int i, int i2) {
-        this.requestBroadcastPartCallback.run(j, j2, i, i2);
-    }
-
-    private void onCancelRequestBroadcastPart(long j, int i, int i2) {
-        this.cancelRequestBroadcastPartCallback.run(j, 0L, 0, 0);
-    }
-
-    private void requestCurrentTime(long j) {
-        this.requestCurrentTimeCallback.run(j);
-    }
-
-    private void onStop(Instance.FinalState finalState) {
-        this.finalState = finalState;
-        CountDownLatch countDownLatch = this.stopBarrier;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-        }
-    }
+    public native void setupOutgoingVideoCreated(long j);
 
     public Instance.FinalState stop() {
         this.stopBarrier = new CountDownLatch(1);
@@ -311,4 +309,6 @@ public class NativeInstance {
     public void stopGroup() {
         stopGroupNative();
     }
+
+    public native void switchCamera(boolean z);
 }

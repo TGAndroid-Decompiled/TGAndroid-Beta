@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class TLRPC$messages_AvailableEffects extends TLObject {
+public abstract class TLRPC$messages_AvailableEffects extends TLObject {
     public int hash;
-    public ArrayList<TLRPC$TL_availableEffect> effects = new ArrayList<>();
-    public ArrayList<TLRPC$Document> documents = new ArrayList<>();
+    public ArrayList effects = new ArrayList();
+    public ArrayList documents = new ArrayList();
 
     public static TLRPC$messages_AvailableEffects TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$messages_AvailableEffects tLRPC$messages_AvailableEffects = i != -1109696146 ? i != -772957605 ? null : new TLRPC$messages_AvailableEffects() {
@@ -60,15 +60,15 @@ public class TLRPC$messages_AvailableEffects extends TLObject {
                 abstractSerializedData2.writeInt32(this.hash);
                 abstractSerializedData2.writeInt32(481674261);
                 abstractSerializedData2.writeInt32(this.effects.size());
-                Iterator<TLRPC$TL_availableEffect> it = this.effects.iterator();
+                Iterator it = this.effects.iterator();
                 while (it.hasNext()) {
-                    it.next().serializeToStream(abstractSerializedData2);
+                    ((TLRPC$TL_availableEffect) it.next()).serializeToStream(abstractSerializedData2);
                 }
                 abstractSerializedData2.writeInt32(481674261);
                 abstractSerializedData2.writeInt32(this.documents.size());
-                Iterator<TLRPC$Document> it2 = this.documents.iterator();
+                Iterator it2 = this.documents.iterator();
                 while (it2.hasNext()) {
-                    it2.next().serializeToStream(abstractSerializedData2);
+                    ((TLRPC$Document) it2.next()).serializeToStream(abstractSerializedData2);
                 }
             }
         };

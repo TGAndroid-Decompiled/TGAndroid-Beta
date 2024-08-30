@@ -30,15 +30,6 @@ public class PhotoCropActivity extends BaseFragment {
     private boolean sameBitmap;
     private PhotoCropView view;
 
-    public interface PhotoEditActivityDelegate {
-        void didFinishEdit(Bitmap bitmap);
-    }
-
-    @Override
-    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
-    }
-
     public class PhotoCropView extends FrameLayout {
         int bitmapHeight;
         int bitmapWidth;
@@ -101,28 +92,30 @@ public class PhotoCropActivity extends BaseFragment {
         }
 
         private void updateBitmapSize() {
+            int i;
+            float f;
             if (this.viewWidth == 0 || this.viewHeight == 0 || PhotoCropActivity.this.imageToCrop == null) {
                 return;
             }
-            float f = this.rectX - this.bitmapX;
-            float f2 = this.bitmapWidth;
-            float f3 = f / f2;
-            float f4 = this.rectY - this.bitmapY;
-            float f5 = this.bitmapHeight;
-            float f6 = f4 / f5;
-            float f7 = this.rectSizeX / f2;
-            float f8 = this.rectSizeY / f5;
+            float f2 = this.rectX - this.bitmapX;
+            float f3 = this.bitmapWidth;
+            float f4 = f2 / f3;
+            float f5 = this.rectY - this.bitmapY;
+            float f6 = this.bitmapHeight;
+            float f7 = f5 / f6;
+            float f8 = this.rectSizeX / f3;
+            float f9 = this.rectSizeY / f6;
             float width = PhotoCropActivity.this.imageToCrop.getWidth();
             float height = PhotoCropActivity.this.imageToCrop.getHeight();
-            int i = this.viewWidth;
-            float f9 = i / width;
-            int i2 = this.viewHeight;
-            if (f9 > i2 / height) {
-                this.bitmapHeight = i2;
+            int i2 = this.viewWidth;
+            float f10 = i2 / width;
+            int i3 = this.viewHeight;
+            if (f10 > i3 / height) {
+                this.bitmapHeight = i3;
                 this.bitmapWidth = (int) Math.ceil(width * r9);
             } else {
-                this.bitmapWidth = i;
-                this.bitmapHeight = (int) Math.ceil(height * f9);
+                this.bitmapWidth = i2;
+                this.bitmapHeight = (int) Math.ceil(height * f10);
             }
             this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.dp(14.0f);
             int dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.dp(14.0f);
@@ -132,39 +125,30 @@ public class PhotoCropActivity extends BaseFragment {
                     this.rectY = dp;
                     this.rectX = this.bitmapX;
                     this.rectSizeX = this.bitmapWidth;
-                    this.rectSizeY = this.bitmapHeight;
+                    f = this.bitmapHeight;
                 } else {
                     if (this.bitmapWidth > this.bitmapHeight) {
                         this.rectY = dp;
                         this.rectX = ((this.viewWidth - r1) / 2) + AndroidUtilities.dp(14.0f);
-                        float f10 = this.bitmapHeight;
-                        this.rectSizeX = f10;
-                        this.rectSizeY = f10;
+                        i = this.bitmapHeight;
                     } else {
                         this.rectX = this.bitmapX;
                         this.rectY = ((this.viewHeight - r0) / 2) + AndroidUtilities.dp(14.0f);
-                        float f11 = this.bitmapWidth;
-                        this.rectSizeX = f11;
-                        this.rectSizeY = f11;
+                        i = this.bitmapWidth;
                     }
+                    f = i;
+                    this.rectSizeX = f;
                 }
+                this.rectSizeY = f;
             } else {
-                float f12 = this.bitmapWidth;
-                this.rectX = (f3 * f12) + this.bitmapX;
-                float f13 = this.bitmapHeight;
-                this.rectY = (f6 * f13) + dp;
-                this.rectSizeX = f7 * f12;
-                this.rectSizeY = f8 * f13;
+                float f11 = this.bitmapWidth;
+                this.rectX = (f4 * f11) + this.bitmapX;
+                float f12 = this.bitmapHeight;
+                this.rectY = (f7 * f12) + dp;
+                this.rectSizeX = f8 * f11;
+                this.rectSizeY = f9 * f12;
             }
             invalidate();
-        }
-
-        @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            this.viewWidth = (i3 - i) - AndroidUtilities.dp(28.0f);
-            this.viewHeight = (i4 - i2) - AndroidUtilities.dp(28.0f);
-            updateBitmapSize();
         }
 
         public Bitmap getBitmap() {
@@ -207,6 +191,18 @@ public class PhotoCropActivity extends BaseFragment {
         protected void onDraw(android.graphics.Canvas r16) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoCropActivity.PhotoCropView.onDraw(android.graphics.Canvas):void");
         }
+
+        @Override
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            this.viewWidth = (i3 - i) - AndroidUtilities.dp(28.0f);
+            this.viewHeight = (i4 - i2) - AndroidUtilities.dp(28.0f);
+            updateBitmapSize();
+        }
+    }
+
+    public interface PhotoEditActivityDelegate {
+        void didFinishEdit(Bitmap bitmap);
     }
 
     public PhotoCropActivity(Bundle bundle) {
@@ -214,6 +210,48 @@ public class PhotoCropActivity extends BaseFragment {
         this.delegate = null;
         this.sameBitmap = false;
         this.doneButtonPressed = false;
+    }
+
+    @Override
+    public View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.setItemsBackgroundColor(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.setItemsColor(-1, false);
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i != -1) {
+                    if (i != 1) {
+                        return;
+                    }
+                    if (PhotoCropActivity.this.delegate != null && !PhotoCropActivity.this.doneButtonPressed) {
+                        Bitmap bitmap = PhotoCropActivity.this.view.getBitmap();
+                        if (bitmap == PhotoCropActivity.this.imageToCrop) {
+                            PhotoCropActivity.this.sameBitmap = true;
+                        }
+                        PhotoCropActivity.this.delegate.didFinishEdit(bitmap);
+                        PhotoCropActivity.this.doneButtonPressed = true;
+                    }
+                }
+                PhotoCropActivity.this.lambda$onBackPressed$308();
+            }
+        });
+        this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
+        PhotoCropView photoCropView = new PhotoCropView(context);
+        this.view = photoCropView;
+        this.fragmentView = photoCropView;
+        photoCropView.freeform = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
+    }
+
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
@@ -258,44 +296,6 @@ public class PhotoCropActivity extends BaseFragment {
             this.imageToCrop = null;
         }
         this.drawable = null;
-    }
-
-    @Override
-    public View createView(Context context) {
-        this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.setItemsBackgroundColor(-12763843, false);
-        this.actionBar.setTitleColor(-1);
-        this.actionBar.setItemsColor(-1, false);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
-                    PhotoCropActivity.this.lambda$onBackPressed$308();
-                    return;
-                }
-                if (i == 1) {
-                    if (PhotoCropActivity.this.delegate != null && !PhotoCropActivity.this.doneButtonPressed) {
-                        Bitmap bitmap = PhotoCropActivity.this.view.getBitmap();
-                        if (bitmap == PhotoCropActivity.this.imageToCrop) {
-                            PhotoCropActivity.this.sameBitmap = true;
-                        }
-                        PhotoCropActivity.this.delegate.didFinishEdit(bitmap);
-                        PhotoCropActivity.this.doneButtonPressed = true;
-                    }
-                    PhotoCropActivity.this.lambda$onBackPressed$308();
-                }
-            }
-        });
-        this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
-        PhotoCropView photoCropView = new PhotoCropView(context);
-        this.view = photoCropView;
-        this.fragmentView = photoCropView;
-        photoCropView.freeform = getArguments().getBoolean("freeform", false);
-        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
-        return this.fragmentView;
     }
 
     public void setDelegate(PhotoEditActivityDelegate photoEditActivityDelegate) {

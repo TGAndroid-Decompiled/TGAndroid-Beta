@@ -18,58 +18,13 @@ public class SpeedLineParticles$Drawable {
     public RectF rect = new RectF();
     public RectF screenRect = new RectF();
     private Paint paint = new Paint();
-    ArrayList<Particle> particles = new ArrayList<>();
+    ArrayList particles = new ArrayList();
     public float speedScale = 1.0f;
     public int size1 = 14;
     public int size2 = 12;
     public int size3 = 10;
     public long minLifeTime = 2000;
     private final float dt = 1000.0f / AndroidUtilities.screenRefreshRate;
-
-    public SpeedLineParticles$Drawable(int i) {
-        this.count = i;
-        this.lines = new float[i * 4];
-    }
-
-    public void init() {
-        if (this.particles.isEmpty()) {
-            for (int i = 0; i < this.count; i++) {
-                this.particles.add(new Particle());
-            }
-        }
-        updateColors();
-    }
-
-    public void updateColors() {
-        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_premiumStartSmallStarsColor2), 80);
-        if (this.lastColor != alphaComponent) {
-            this.lastColor = alphaComponent;
-            this.paint.setColor(alphaComponent);
-        }
-    }
-
-    public void resetPositions() {
-        long currentTimeMillis = System.currentTimeMillis();
-        for (int i = 0; i < this.particles.size(); i++) {
-            this.particles.get(i).genPosition(currentTimeMillis, true);
-        }
-    }
-
-    public void onDraw(Canvas canvas) {
-        long currentTimeMillis = System.currentTimeMillis();
-        for (int i = 0; i < this.particles.size(); i++) {
-            Particle particle = this.particles.get(i);
-            if (this.paused) {
-                particle.draw(canvas, i, this.pausedTime);
-            } else {
-                particle.draw(canvas, i, currentTimeMillis);
-            }
-            if (currentTimeMillis > particle.lifeTime || !this.screenRect.contains(particle.x, particle.y)) {
-                particle.genPosition(currentTimeMillis, false);
-            }
-        }
-        canvas.drawLines(this.lines, this.paint);
-    }
 
     private class Particle {
         private int alpha;
@@ -109,7 +64,8 @@ public class SpeedLineParticles$Drawable {
 
         public void genPosition(long j, boolean z) {
             this.lifeTime = j + SpeedLineParticles$Drawable.this.minLifeTime + Utilities.fastRandom.nextInt(1000);
-            RectF rectF = z ? SpeedLineParticles$Drawable.this.screenRect : SpeedLineParticles$Drawable.this.rect;
+            SpeedLineParticles$Drawable speedLineParticles$Drawable = SpeedLineParticles$Drawable.this;
+            RectF rectF = z ? speedLineParticles$Drawable.screenRect : speedLineParticles$Drawable.rect;
             float abs = rectF.left + Math.abs(Utilities.fastRandom.nextInt() % rectF.width());
             float abs2 = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());
             this.x = abs;
@@ -119,6 +75,51 @@ public class SpeedLineParticles$Drawable {
             this.vecY = (float) Math.cos(atan2);
             this.alpha = (int) (((Utilities.fastRandom.nextInt(50) + 50) / 100.0f) * 255.0f);
             this.inProgress = 0.0f;
+        }
+    }
+
+    public SpeedLineParticles$Drawable(int i) {
+        this.count = i;
+        this.lines = new float[i * 4];
+    }
+
+    public void init() {
+        if (this.particles.isEmpty()) {
+            for (int i = 0; i < this.count; i++) {
+                this.particles.add(new Particle());
+            }
+        }
+        updateColors();
+    }
+
+    public void onDraw(Canvas canvas) {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < this.particles.size(); i++) {
+            Particle particle = (Particle) this.particles.get(i);
+            if (this.paused) {
+                particle.draw(canvas, i, this.pausedTime);
+            } else {
+                particle.draw(canvas, i, currentTimeMillis);
+            }
+            if (currentTimeMillis > particle.lifeTime || !this.screenRect.contains(particle.x, particle.y)) {
+                particle.genPosition(currentTimeMillis, false);
+            }
+        }
+        canvas.drawLines(this.lines, this.paint);
+    }
+
+    public void resetPositions() {
+        long currentTimeMillis = System.currentTimeMillis();
+        for (int i = 0; i < this.particles.size(); i++) {
+            ((Particle) this.particles.get(i)).genPosition(currentTimeMillis, true);
+        }
+    }
+
+    public void updateColors() {
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_premiumStartSmallStarsColor2), 80);
+        if (this.lastColor != alphaComponent) {
+            this.lastColor = alphaComponent;
+            this.paint.setColor(alphaComponent);
         }
     }
 }

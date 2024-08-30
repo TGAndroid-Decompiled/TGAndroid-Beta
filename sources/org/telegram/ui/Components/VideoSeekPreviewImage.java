@@ -26,7 +26,7 @@ import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 
-public class VideoSeekPreviewImage extends View {
+public abstract class VideoSeekPreviewImage extends View {
     private Paint bitmapPaint;
     private RectF bitmapRect;
     private BitmapShader bitmapShader;
@@ -99,6 +99,15 @@ public class VideoSeekPreviewImage extends View {
         });
     }
 
+    public void lambda$close$5() {
+        this.pendingProgress = 0.0f;
+        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
+        if (animatedFileDrawable != null) {
+            animatedFileDrawable.recycle();
+            this.fileDrawable = null;
+        }
+    }
+
     public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         int i;
         if (!z || this.webView == null) {
@@ -130,112 +139,49 @@ public class VideoSeekPreviewImage extends View {
         requestLayout();
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.youtubeBoardsReceiver.onAttachedToWindow();
+    public void lambda$open$3() {
+        this.loadRunnable = null;
+        if (this.fileDrawable != null) {
+            this.ready = true;
+            this.delegate.onReady();
+        }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.youtubeBoardsReceiver.onDetachedFromWindow();
-    }
-
-    public void setProgressForYouTube(PhotoViewerWebView photoViewerWebView, float f, int i) {
-        this.webView = photoViewerWebView;
-        this.isYoutube = true;
-        if (i != 0) {
-            this.pixelWidth = i;
-            int i2 = ((int) (i * f)) / 5;
-            if (this.currentPixel == i2) {
-                return;
+    public void lambda$open$4(Uri uri) {
+        File pathToAttach;
+        if ("tg".equals(uri.getScheme())) {
+            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
+            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
+            TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
+            tLRPC$TL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
+            tLRPC$TL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
+            tLRPC$TL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
+            tLRPC$TL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
+            tLRPC$TL_document.mime_type = uri.getQueryParameter("mime");
+            tLRPC$TL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
+            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
+            tLRPC$TL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
+            tLRPC$TL_document.attributes.add(tLRPC$TL_documentAttributeFilename);
+            tLRPC$TL_document.attributes.add(new TLRPC$TL_documentAttributeVideo());
+            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tLRPC$TL_document))) {
+                pathToAttach = new File(FileLoader.getDirectory(4), tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp");
             } else {
-                this.currentPixel = i2;
+                pathToAttach = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false);
             }
+            this.fileDrawable = new AnimatedFileDrawable(new File(pathToAttach.getAbsolutePath()), true, tLRPC$TL_document.size, 1, tLRPC$TL_document, null, parentObject, 0L, intValue, true, null);
+        } else {
+            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
         }
-        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
-        invalidate();
-        if (this.progressRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
-        }
-        int videoDuration = (int) ((f * photoViewerWebView.getVideoDuration()) / 1000.0f);
-        this.lastYoutubePosition = videoDuration;
-        String youtubeStoryboard = photoViewerWebView.getYoutubeStoryboard(videoDuration);
-        if (youtubeStoryboard != null) {
-            this.youtubeBoardsReceiver.setImage(youtubeStoryboard, null, null, null, 0L);
-        }
-    }
-
-    public void setProgress(final float f, int i) {
-        this.webView = null;
-        this.isYoutube = false;
-        this.youtubeBoardsReceiver.setImageBitmap((Drawable) null);
-        if (i != 0) {
-            this.pixelWidth = i;
-            int i2 = ((int) (i * f)) / 5;
-            if (this.currentPixel == i2) {
-                return;
-            } else {
-                this.currentPixel = i2;
-            }
-        }
-        final long j = ((float) this.duration) * f;
-        this.frameTime = AndroidUtilities.formatShortDuration((int) (j / 1000));
-        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r8));
-        invalidate();
-        if (this.progressRunnable != null) {
-            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
-        }
-        AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
-        if (animatedFileDrawable != null) {
-            animatedFileDrawable.resetStream(false);
-        }
-        DispatchQueue dispatchQueue = Utilities.globalQueue;
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$setProgress$2(f, j);
-            }
-        };
-        this.progressRunnable = runnable;
-        dispatchQueue.postRunnable(runnable);
-    }
-
-    public void lambda$setProgress$2(float f, long j) {
-        int i;
-        if (this.fileDrawable == null) {
-            this.pendingProgress = f;
-            return;
-        }
-        int max = Math.max(200, AndroidUtilities.dp(100.0f));
-        final Bitmap frameAtTime = this.fileDrawable.getFrameAtTime(j);
-        if (frameAtTime != null) {
-            int width = frameAtTime.getWidth();
-            int height = frameAtTime.getHeight();
-            if (width > height) {
-                i = (int) (height / (width / max));
-            } else {
-                int i2 = (int) (width / (height / max));
-                i = max;
-                max = i2;
-            }
-            try {
-                Bitmap createBitmap = Bitmaps.createBitmap(max, i, Bitmap.Config.ARGB_8888);
-                this.dstR.set(0.0f, 0.0f, max, i);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.drawBitmap(frameAtTime, (android.graphics.Rect) null, this.dstR, this.paint);
-                canvas.setBitmap(null);
-                frameAtTime = createBitmap;
-            } catch (Throwable unused) {
-                frameAtTime = null;
-            }
+        this.duration = this.fileDrawable.getDurationMs();
+        float f = this.pendingProgress;
+        if (f != 0.0f) {
+            setProgress(f, this.pixelWidth);
+            this.pendingProgress = 0.0f;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$setProgress$1(frameAtTime);
+                VideoSeekPreviewImage.this.lambda$open$3();
             }
         });
     }
@@ -277,113 +223,41 @@ public class VideoSeekPreviewImage extends View {
         this.progressRunnable = null;
     }
 
-    public void open(final Uri uri) {
-        if (uri == null || uri.equals(this.videoUri)) {
+    public void lambda$setProgress$2(float f, long j) {
+        int i;
+        if (this.fileDrawable == null) {
+            this.pendingProgress = f;
             return;
         }
-        this.videoUri = uri;
-        DispatchQueue dispatchQueue = Utilities.globalQueue;
-        Runnable runnable = new Runnable() {
-            @Override
-            public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$4(uri);
-            }
-        };
-        this.loadRunnable = runnable;
-        dispatchQueue.postRunnable(runnable);
-    }
-
-    public void lambda$open$4(Uri uri) {
-        String absolutePath;
-        if ("tg".equals(uri.getScheme())) {
-            int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
-            Object parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) uri.getQueryParameter("rid")).intValue());
-            TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();
-            tLRPC$TL_document.access_hash = Utilities.parseLong(uri.getQueryParameter("hash")).longValue();
-            tLRPC$TL_document.id = Utilities.parseLong(uri.getQueryParameter("id")).longValue();
-            tLRPC$TL_document.size = Utilities.parseLong(uri.getQueryParameter("size")).longValue();
-            tLRPC$TL_document.dc_id = Utilities.parseInt((CharSequence) uri.getQueryParameter("dc")).intValue();
-            tLRPC$TL_document.mime_type = uri.getQueryParameter("mime");
-            tLRPC$TL_document.file_reference = Utilities.hexToBytes(uri.getQueryParameter("reference"));
-            TLRPC$TL_documentAttributeFilename tLRPC$TL_documentAttributeFilename = new TLRPC$TL_documentAttributeFilename();
-            tLRPC$TL_documentAttributeFilename.file_name = uri.getQueryParameter("name");
-            tLRPC$TL_document.attributes.add(tLRPC$TL_documentAttributeFilename);
-            tLRPC$TL_document.attributes.add(new TLRPC$TL_documentAttributeVideo());
-            if (FileLoader.getInstance(intValue).isLoadingFile(FileLoader.getAttachFileName(tLRPC$TL_document))) {
-                absolutePath = new File(FileLoader.getDirectory(4), tLRPC$TL_document.dc_id + "_" + tLRPC$TL_document.id + ".temp").getAbsolutePath();
+        int max = Math.max(200, AndroidUtilities.dp(100.0f));
+        final Bitmap frameAtTime = this.fileDrawable.getFrameAtTime(j);
+        if (frameAtTime != null) {
+            int width = frameAtTime.getWidth();
+            int height = frameAtTime.getHeight();
+            if (width > height) {
+                i = (int) (height / (width / max));
             } else {
-                absolutePath = FileLoader.getInstance(intValue).getPathToAttach(tLRPC$TL_document, false).getAbsolutePath();
+                int i2 = (int) (width / (height / max));
+                i = max;
+                max = i2;
             }
-            this.fileDrawable = new AnimatedFileDrawable(new File(absolutePath), true, tLRPC$TL_document.size, 1, tLRPC$TL_document, null, parentObject, 0L, intValue, true, null);
-        } else {
-            this.fileDrawable = new AnimatedFileDrawable(new File(uri.getPath()), true, 0L, 0, null, null, null, 0L, 0, true, null);
-        }
-        this.duration = this.fileDrawable.getDurationMs();
-        float f = this.pendingProgress;
-        if (f != 0.0f) {
-            setProgress(f, this.pixelWidth);
-            this.pendingProgress = 0.0f;
+            try {
+                Bitmap createBitmap = Bitmaps.createBitmap(max, i, Bitmap.Config.ARGB_8888);
+                this.dstR.set(0.0f, 0.0f, max, i);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.drawBitmap(frameAtTime, (android.graphics.Rect) null, this.dstR, this.paint);
+                canvas.setBitmap(null);
+                frameAtTime = createBitmap;
+            } catch (Throwable unused) {
+                frameAtTime = null;
+            }
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoSeekPreviewImage.this.lambda$open$3();
+                VideoSeekPreviewImage.this.lambda$setProgress$1(frameAtTime);
             }
         });
-    }
-
-    public void lambda$open$3() {
-        this.loadRunnable = null;
-        if (this.fileDrawable != null) {
-            this.ready = true;
-            this.delegate.onReady();
-        }
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        super.onMeasure(i, i2);
-        setPivotY(getMeasuredHeight());
-    }
-
-    public boolean isReady() {
-        return this.ready;
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        Bitmap bitmap = this.bitmapToRecycle;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.bitmapToRecycle = null;
-        }
-        if (this.bitmapToDraw != null && this.bitmapShader != null) {
-            this.matrix.reset();
-            float measuredWidth = getMeasuredWidth() / this.bitmapToDraw.getWidth();
-            this.matrix.preScale(measuredWidth, measuredWidth);
-            this.bitmapRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.bitmapPaint);
-            this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.frameDrawable.draw(canvas);
-            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
-            return;
-        }
-        if (this.isYoutube) {
-            canvas.save();
-            this.ytPath.rewind();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.ytPath.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-            canvas.clipPath(this.ytPath);
-            canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
-            canvas.translate(-this.ytImageX, -this.ytImageY);
-            this.youtubeBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.youtubeBoardsReceiver.getBitmapHeight());
-            this.youtubeBoardsReceiver.draw(canvas);
-            canvas.restore();
-            this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            this.frameDrawable.draw(canvas);
-            canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
-        }
     }
 
     public void close() {
@@ -414,12 +288,136 @@ public class VideoSeekPreviewImage extends View {
         this.ready = false;
     }
 
-    public void lambda$close$5() {
-        this.pendingProgress = 0.0f;
+    public boolean isReady() {
+        return this.ready;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.youtubeBoardsReceiver.onAttachedToWindow();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.youtubeBoardsReceiver.onDetachedFromWindow();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Bitmap bitmap = this.bitmapToRecycle;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.bitmapToRecycle = null;
+        }
+        if (this.bitmapToDraw != null && this.bitmapShader != null) {
+            this.matrix.reset();
+            float measuredWidth = getMeasuredWidth() / this.bitmapToDraw.getWidth();
+            this.matrix.preScale(measuredWidth, measuredWidth);
+            this.bitmapRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            canvas.drawRoundRect(this.bitmapRect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.bitmapPaint);
+        } else {
+            if (!this.isYoutube) {
+                return;
+            }
+            canvas.save();
+            this.ytPath.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.ytPath.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(this.ytPath);
+            canvas.scale(getWidth() / this.ytImageWidth, getHeight() / this.ytImageHeight);
+            canvas.translate(-this.ytImageX, -this.ytImageY);
+            this.youtubeBoardsReceiver.setImageCoords(0.0f, 0.0f, r0.getBitmapWidth(), this.youtubeBoardsReceiver.getBitmapHeight());
+            this.youtubeBoardsReceiver.draw(canvas);
+            canvas.restore();
+        }
+        this.frameDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        this.frameDrawable.draw(canvas);
+        canvas.drawText(this.frameTime, (getMeasuredWidth() - this.timeWidth) / 2.0f, getMeasuredHeight() - AndroidUtilities.dp(9.0f), this.textPaint);
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        setPivotY(getMeasuredHeight());
+    }
+
+    public void open(final Uri uri) {
+        if (uri == null || uri.equals(this.videoUri)) {
+            return;
+        }
+        this.videoUri = uri;
+        DispatchQueue dispatchQueue = Utilities.globalQueue;
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$open$4(uri);
+            }
+        };
+        this.loadRunnable = runnable;
+        dispatchQueue.postRunnable(runnable);
+    }
+
+    public void setProgress(final float f, int i) {
+        this.webView = null;
+        this.isYoutube = false;
+        this.youtubeBoardsReceiver.setImageBitmap((Drawable) null);
+        if (i != 0) {
+            this.pixelWidth = i;
+            int i2 = ((int) (i * f)) / 5;
+            if (this.currentPixel == i2) {
+                return;
+            } else {
+                this.currentPixel = i2;
+            }
+        }
+        final long j = ((float) this.duration) * f;
+        this.frameTime = AndroidUtilities.formatShortDuration((int) (j / 1000));
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r8));
+        invalidate();
+        if (this.progressRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
+        }
         AnimatedFileDrawable animatedFileDrawable = this.fileDrawable;
         if (animatedFileDrawable != null) {
-            animatedFileDrawable.recycle();
-            this.fileDrawable = null;
+            animatedFileDrawable.resetStream(false);
+        }
+        DispatchQueue dispatchQueue = Utilities.globalQueue;
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                VideoSeekPreviewImage.this.lambda$setProgress$2(f, j);
+            }
+        };
+        this.progressRunnable = runnable;
+        dispatchQueue.postRunnable(runnable);
+    }
+
+    public void setProgressForYouTube(PhotoViewerWebView photoViewerWebView, float f, int i) {
+        this.webView = photoViewerWebView;
+        this.isYoutube = true;
+        if (i != 0) {
+            this.pixelWidth = i;
+            int i2 = ((int) (i * f)) / 5;
+            if (this.currentPixel == i2) {
+                return;
+            } else {
+                this.currentPixel = i2;
+            }
+        }
+        this.frameTime = AndroidUtilities.formatShortDuration((int) ((photoViewerWebView.getVideoDuration() * f) / 1000));
+        this.timeWidth = (int) Math.ceil(this.textPaint.measureText(r10));
+        invalidate();
+        if (this.progressRunnable != null) {
+            Utilities.globalQueue.cancelRunnable(this.progressRunnable);
+        }
+        int videoDuration = (int) ((f * photoViewerWebView.getVideoDuration()) / 1000.0f);
+        this.lastYoutubePosition = videoDuration;
+        String youtubeStoryboard = photoViewerWebView.getYoutubeStoryboard(videoDuration);
+        if (youtubeStoryboard != null) {
+            this.youtubeBoardsReceiver.setImage(youtubeStoryboard, null, null, null, 0L);
         }
     }
 }

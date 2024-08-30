@@ -5,12 +5,13 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import androidx.recyclerview.widget.RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
-public class ForegroundDetector implements Application.ActivityLifecycleCallbacks {
+public abstract class ForegroundDetector implements Application.ActivityLifecycleCallbacks {
     private static ForegroundDetector Instance;
     private int refs;
     private boolean wasInBackground = true;
@@ -18,9 +19,34 @@ public class ForegroundDetector implements Application.ActivityLifecycleCallback
     private CopyOnWriteArrayList<Listener> listeners = new CopyOnWriteArrayList<>();
 
     public interface Listener {
-        void onBecameBackground();
+    }
 
-        void onBecameForeground();
+    public ForegroundDetector(Application application) {
+        Instance = this;
+        application.registerActivityLifecycleCallbacks(this);
+    }
+
+    public static ForegroundDetector getInstance() {
+        return Instance;
+    }
+
+    public void addListener(Listener listener) {
+        this.listeners.add(listener);
+    }
+
+    public boolean isBackground() {
+        return this.refs == 0;
+    }
+
+    public boolean isForeground() {
+        return this.refs > 0;
+    }
+
+    public boolean isWasInBackground(boolean z) {
+        if (z && Build.VERSION.SDK_INT >= 21 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
+            this.wasInBackground = false;
+        }
+        return this.wasInBackground;
     }
 
     @Override
@@ -43,31 +69,6 @@ public class ForegroundDetector implements Application.ActivityLifecycleCallback
     public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
     }
 
-    public static ForegroundDetector getInstance() {
-        return Instance;
-    }
-
-    public ForegroundDetector(Application application) {
-        Instance = this;
-        application.registerActivityLifecycleCallbacks(this);
-    }
-
-    public boolean isForeground() {
-        return this.refs > 0;
-    }
-
-    public boolean isBackground() {
-        return this.refs == 0;
-    }
-
-    public void addListener(Listener listener) {
-        this.listeners.add(listener);
-    }
-
-    public void removeListener(Listener listener) {
-        this.listeners.remove(listener);
-    }
-
     @Override
     public void onActivityStarted(Activity activity) {
         int i = this.refs + 1;
@@ -81,24 +82,15 @@ public class ForegroundDetector implements Application.ActivityLifecycleCallback
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
+                RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
-                    it.next().onBecameForeground();
+                    throw null;
+                    break;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             }
         }
-    }
-
-    public boolean isWasInBackground(boolean z) {
-        if (z && Build.VERSION.SDK_INT >= 21 && SystemClock.elapsedRealtime() - this.enterBackgroundTime < 200) {
-            this.wasInBackground = false;
-        }
-        return this.wasInBackground;
-    }
-
-    public void resetBackgroundVar() {
-        this.wasInBackground = false;
     }
 
     @Override
@@ -113,12 +105,22 @@ public class ForegroundDetector implements Application.ActivityLifecycleCallback
             }
             Iterator<Listener> it = this.listeners.iterator();
             while (it.hasNext()) {
+                RecyclerView$ItemAnimator$$ExternalSyntheticThrowCCEIfNotNull0.m(it.next());
                 try {
-                    it.next().onBecameBackground();
+                    throw null;
+                    break;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             }
         }
+    }
+
+    public void removeListener(Listener listener) {
+        this.listeners.remove(listener);
+    }
+
+    public void resetBackgroundVar() {
+        this.wasInBackground = false;
     }
 }

@@ -2,6 +2,7 @@ package org.telegram.ui.web;
 
 import android.content.SharedPreferences;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -15,15 +16,42 @@ import org.telegram.messenger.MessagesController;
 public class RestrictedDomainsList {
     private static RestrictedDomainsList instance;
     private boolean loaded;
-    public final HashMap<String, Integer> openedDomains = new HashMap<>();
-    public final HashSet<String> restrictedDomainsSet = new HashSet<>();
-    public final ArrayList<ArrayList<String>> restrictedDomains = new ArrayList<>();
+    public final HashMap openedDomains = new HashMap();
+    public final HashSet restrictedDomainsSet = new HashSet();
+    public final ArrayList restrictedDomains = new ArrayList();
 
     public static RestrictedDomainsList getInstance() {
         if (instance == null) {
             instance = new RestrictedDomainsList();
         }
         return instance;
+    }
+
+    public int incrementOpen(String str) {
+        load();
+        Integer num = (Integer) this.openedDomains.get(str);
+        if (num == null) {
+            num = 0;
+        }
+        int intValue = num.intValue() + 1;
+        this.openedDomains.put(str, Integer.valueOf(intValue));
+        scheduleSave();
+        return intValue;
+    }
+
+    public boolean isRestricted(String str) {
+        load();
+        return this.restrictedDomainsSet.contains(str);
+    }
+
+    public boolean isRestricted(String... strArr) {
+        load();
+        for (String str : strArr) {
+            if (this.restrictedDomainsSet.contains(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void load() {
@@ -45,7 +73,7 @@ public class RestrictedDomainsList {
             JSONArray jSONArray = new JSONArray(globalMainSettings.getString("web_restricted_domains2", "[]"));
             for (int i = 0; i < jSONArray.length(); i++) {
                 JSONArray jSONArray2 = jSONArray.getJSONArray(i);
-                ArrayList<String> arrayList = new ArrayList<>();
+                ArrayList arrayList = new ArrayList();
                 for (int i2 = 0; i2 < jSONArray2.length(); i2++) {
                     String string = jSONArray2.getString(i2);
                     this.restrictedDomainsSet.add(string);
@@ -59,67 +87,34 @@ public class RestrictedDomainsList {
         this.loaded = true;
     }
 
-    public int incrementOpen(String str) {
-        load();
-        Integer num = this.openedDomains.get(str);
-        if (num == null) {
-            num = 0;
-        }
-        int intValue = num.intValue() + 1;
-        this.openedDomains.put(str, Integer.valueOf(intValue));
-        scheduleSave();
-        return intValue;
-    }
-
-    public boolean isRestricted(String... strArr) {
-        load();
-        for (String str : strArr) {
-            if (this.restrictedDomainsSet.contains(str)) {
-                return true;
+    public void save() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        try {
+            JSONObject jSONObject = new JSONObject();
+            for (Map.Entry entry : this.openedDomains.entrySet()) {
+                jSONObject.put((String) entry.getKey(), entry.getValue());
             }
+            edit.putString("web_opened_domains", jSONObject.toString());
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return false;
-    }
-
-    public boolean isRestricted(String str) {
-        load();
-        return this.restrictedDomainsSet.contains(str);
-    }
-
-    public void setRestricted(boolean z, String... strArr) {
-        load();
-        int i = -1;
-        for (int i2 = 0; i2 < this.restrictedDomains.size(); i2++) {
-            int i3 = 0;
-            while (true) {
-                if (i3 >= strArr.length) {
-                    break;
+        try {
+            JSONArray jSONArray = new JSONArray();
+            Iterator it = this.restrictedDomains.iterator();
+            while (it.hasNext()) {
+                ArrayList arrayList = (ArrayList) it.next();
+                JSONArray jSONArray2 = new JSONArray();
+                Iterator it2 = arrayList.iterator();
+                while (it2.hasNext()) {
+                    jSONArray2.put((String) it2.next());
                 }
-                if (strArr[i3] != null && this.restrictedDomains.get(i2).contains(strArr[i3])) {
-                    i = i2;
-                    break;
-                }
-                i3++;
+                jSONArray.put(jSONArray2);
             }
-            if (i >= 0) {
-                break;
-            }
+            edit.putString("web_restricted_domains2", jSONArray.toString());
+        } catch (Exception e2) {
+            FileLog.e(e2);
         }
-        if (z != isRestricted(strArr)) {
-            if (z) {
-                ArrayList<String> arrayList = new ArrayList<>();
-                for (String str : strArr) {
-                    if (str != null) {
-                        arrayList.add(str);
-                    }
-                }
-                this.restrictedDomainsSet.addAll(arrayList);
-                this.restrictedDomains.add(arrayList);
-            } else {
-                this.restrictedDomainsSet.removeAll(this.restrictedDomains.remove(i));
-            }
-            scheduleSave();
-        }
+        edit.apply();
     }
 
     public void scheduleSave() {
@@ -137,33 +132,39 @@ public class RestrictedDomainsList {
         }, 1000L);
     }
 
-    public void save() {
-        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
-        try {
-            JSONObject jSONObject = new JSONObject();
-            for (Map.Entry<String, Integer> entry : this.openedDomains.entrySet()) {
-                jSONObject.put(entry.getKey(), entry.getValue());
-            }
-            edit.putString("web_opened_domains", jSONObject.toString());
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        try {
-            JSONArray jSONArray = new JSONArray();
-            Iterator<ArrayList<String>> it = this.restrictedDomains.iterator();
-            while (it.hasNext()) {
-                ArrayList<String> next = it.next();
-                JSONArray jSONArray2 = new JSONArray();
-                Iterator<String> it2 = next.iterator();
-                while (it2.hasNext()) {
-                    jSONArray2.put(it2.next());
+    public void setRestricted(boolean z, String... strArr) {
+        load();
+        int i = -1;
+        for (int i2 = 0; i2 < this.restrictedDomains.size(); i2++) {
+            int i3 = 0;
+            while (true) {
+                if (i3 >= strArr.length) {
+                    break;
                 }
-                jSONArray.put(jSONArray2);
+                if (strArr[i3] != null && ((ArrayList) this.restrictedDomains.get(i2)).contains(strArr[i3])) {
+                    i = i2;
+                    break;
+                }
+                i3++;
             }
-            edit.putString("web_restricted_domains2", jSONArray.toString());
-        } catch (Exception e2) {
-            FileLog.e(e2);
+            if (i >= 0) {
+                break;
+            }
         }
-        edit.apply();
+        if (z != isRestricted(strArr)) {
+            if (z) {
+                ArrayList arrayList = new ArrayList();
+                for (String str : strArr) {
+                    if (str != null) {
+                        arrayList.add(str);
+                    }
+                }
+                this.restrictedDomainsSet.addAll(arrayList);
+                this.restrictedDomains.add(arrayList);
+            } else {
+                this.restrictedDomainsSet.removeAll((Collection) this.restrictedDomains.remove(i));
+            }
+            scheduleSave();
+        }
     }
 }

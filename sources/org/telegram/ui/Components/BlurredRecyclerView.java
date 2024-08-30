@@ -18,6 +18,42 @@ public class BlurredRecyclerView extends RecyclerListView {
         super(context);
     }
 
+    private void updateTopPadding() {
+        if (getLayoutParams() == null) {
+            return;
+        }
+        if (!SharedConfig.chatBlurEnabled()) {
+            this.blurTopPadding = 0;
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+        } else {
+            this.blurTopPadding = AndroidUtilities.dp(203.0f);
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
+        }
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        int i = this.blurTopPadding;
+        if (i != 0) {
+            canvas.clipRect(0, i, getMeasuredWidth(), getMeasuredHeight() + this.additionalClipBottom);
+        }
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        if (view.getY() + view.getMeasuredHeight() < this.blurTopPadding) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        updateTopPadding();
+    }
+
     @Override
     public void onMeasure(int i, int i2) {
         this.globalIgnoreLayout = true;
@@ -28,49 +64,11 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        updateTopPadding();
-    }
-
-    private void updateTopPadding() {
-        if (getLayoutParams() == null) {
-            return;
-        }
-        if (SharedConfig.chatBlurEnabled()) {
-            this.blurTopPadding = AndroidUtilities.dp(203.0f);
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
-        } else {
-            this.blurTopPadding = 0;
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
-        }
-    }
-
-    @Override
     public void requestLayout() {
         if (this.globalIgnoreLayout) {
             return;
         }
         super.requestLayout();
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        int i = this.blurTopPadding;
-        if (i != 0) {
-            canvas.clipRect(0, i, getMeasuredWidth(), getMeasuredHeight() + this.additionalClipBottom);
-            super.dispatchDraw(canvas);
-        } else {
-            super.dispatchDraw(canvas);
-        }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j) {
-        if (view.getY() + view.getMeasuredHeight() < this.blurTopPadding) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j);
     }
 
     @Override

@@ -59,17 +59,23 @@ public class LineViewData {
         paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(line.color);
-        this.linesPath = new float[z ? line.y.length * 8 : line.y.length << 2];
-        this.linesPathBottom = new float[z ? line.y.length * 8 : line.y.length << 2];
+        long[] jArr = line.y;
+        this.linesPath = new float[z ? jArr.length * 8 : jArr.length << 2];
+        long[] jArr2 = line.y;
+        this.linesPathBottom = new float[z ? jArr2.length * 8 : jArr2.length << 2];
     }
 
     public void updateColors() {
-        int i = this.line.colorKey;
-        if (i >= 0 && Theme.hasThemeKey(i)) {
-            this.lineColor = Theme.getColor(this.line.colorKey, this.resourcesProvider);
+        int i;
+        int i2 = this.line.colorKey;
+        if (i2 < 0 || !Theme.hasThemeKey(i2)) {
+            double calculateLuminance = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+            ChartData.Line line = this.line;
+            i = calculateLuminance < 0.5d ? line.colorDark : line.color;
         } else {
-            this.lineColor = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) < 0.5d ? this.line.colorDark : this.line.color;
+            i = Theme.getColor(this.line.colorKey, this.resourcesProvider);
         }
+        this.lineColor = i;
         this.paint.setColor(this.lineColor);
         this.bottomLinePaint.setColor(this.lineColor);
         this.selectionPaint.setColor(this.lineColor);

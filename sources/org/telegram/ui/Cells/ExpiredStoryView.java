@@ -31,9 +31,55 @@ public class ExpiredStoryView {
     public boolean visible;
     int width;
 
+    public void draw(Canvas canvas, ChatMessageCell chatMessageCell) {
+        float f;
+        float f2;
+        float f3;
+        TextPaint textPaint;
+        int i;
+        float dp = AndroidUtilities.dp(8.0f) + this.verticalPadding;
+        this.textY = dp;
+        if (chatMessageCell.pinnedTop) {
+            this.textY = dp - AndroidUtilities.dp(2.0f);
+        }
+        RectF rectF = AndroidUtilities.rectTmp;
+        if (chatMessageCell.getMessageObject().isOutOwner()) {
+            this.textX = (((((-(chatMessageCell.timeWidth + AndroidUtilities.dp(12.0f))) + chatMessageCell.getExtraTextX()) + chatMessageCell.getMeasuredWidth()) - this.width) + AndroidUtilities.dp(24.0f)) - this.horizontalPadding;
+            f = (chatMessageCell.getMeasuredWidth() - this.width) - this.horizontalPadding;
+            f2 = this.verticalPadding;
+            f3 = chatMessageCell.getMeasuredWidth() - this.horizontalPadding;
+        } else {
+            float dp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
+            this.textX = this.horizontalPadding + dp2 + AndroidUtilities.dp(12.0f);
+            f = dp2 + this.horizontalPadding;
+            f2 = this.verticalPadding;
+            f3 = this.width + f;
+        }
+        rectF.set(f, f2, f3, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
+        if (chatMessageCell.getMessageObject().isOutOwner()) {
+            textPaint = Theme.chat_replyTextPaint;
+            i = Theme.key_chat_outReplyNameText;
+        } else {
+            textPaint = Theme.chat_replyTextPaint;
+            i = Theme.key_chat_inReplyNameText;
+        }
+        textPaint.setColor(chatMessageCell.getThemedColor(i));
+        canvas.save();
+        canvas.translate(this.textX, this.textY);
+        StaticLayout staticLayout = this.titleLayout;
+        if (staticLayout != null) {
+            staticLayout.draw(canvas);
+            canvas.translate(0.0f, this.titleLayout.getHeight() + AndroidUtilities.dp(2.0f));
+        }
+        StaticLayout staticLayout2 = this.subtitleLayout;
+        if (staticLayout2 != null) {
+            staticLayout2.draw(canvas);
+        }
+        canvas.restore();
+    }
+
     public void measure(ChatMessageCell chatMessageCell) {
         TLRPC$Message tLRPC$Message;
-        int parentWidth;
         String str;
         CharSequence createExpiredStoryString = StoriesUtilities.createExpiredStoryString();
         MessageObject messageObject = chatMessageCell.getMessageObject();
@@ -42,19 +88,14 @@ public class ExpiredStoryView {
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaStory) {
                 TLRPC$User user = MessagesController.getInstance(chatMessageCell.currentAccount).getUser(Long.valueOf(((TLRPC$TL_messageMediaStory) tLRPC$MessageMedia).user_id));
                 String str2 = user == null ? "DELETED" : user.first_name;
-                if (AndroidUtilities.isTablet()) {
-                    parentWidth = AndroidUtilities.getMinTabletSide();
-                } else {
-                    parentWidth = chatMessageCell.getParentWidth();
-                }
-                int i = (int) (parentWidth * 0.4f);
+                int minTabletSide = (int) ((AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : chatMessageCell.getParentWidth()) * 0.4f);
                 String string = LocaleController.getString(R.string.From);
                 TextPaint textPaint = Theme.chat_forwardNamePaint;
                 int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
                 if (str2 == null) {
                     str2 = "";
                 }
-                String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - ceil, TextUtils.TruncateAt.END);
+                String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, minTabletSide - ceil, TextUtils.TruncateAt.END);
                 String string2 = LocaleController.getString(R.string.FromFormatted);
                 int indexOf = string2.indexOf("%1$s");
                 String format = String.format(string2, str3);
@@ -82,40 +123,5 @@ public class ExpiredStoryView {
         this.horizontalPadding = AndroidUtilities.dp(12.0f);
         this.height = 0;
         this.width = 0;
-    }
-
-    public void draw(Canvas canvas, ChatMessageCell chatMessageCell) {
-        float dp = AndroidUtilities.dp(8.0f) + this.verticalPadding;
-        this.textY = dp;
-        if (chatMessageCell.pinnedTop) {
-            this.textY = dp - AndroidUtilities.dp(2.0f);
-        }
-        RectF rectF = AndroidUtilities.rectTmp;
-        if (chatMessageCell.getMessageObject().isOutOwner()) {
-            this.textX = (((((-(chatMessageCell.timeWidth + AndroidUtilities.dp(12.0f))) + chatMessageCell.getExtraTextX()) + chatMessageCell.getMeasuredWidth()) - this.width) + AndroidUtilities.dp(24.0f)) - this.horizontalPadding;
-            rectF.set((chatMessageCell.getMeasuredWidth() - this.width) - this.horizontalPadding, this.verticalPadding, chatMessageCell.getMeasuredWidth() - this.horizontalPadding, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
-        } else {
-            float dp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
-            this.textX = this.horizontalPadding + dp2 + AndroidUtilities.dp(12.0f);
-            float f = dp2 + this.horizontalPadding;
-            rectF.set(f, this.verticalPadding, this.width + f, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
-        }
-        if (chatMessageCell.getMessageObject().isOutOwner()) {
-            Theme.chat_replyTextPaint.setColor(chatMessageCell.getThemedColor(Theme.key_chat_outReplyNameText));
-        } else {
-            Theme.chat_replyTextPaint.setColor(chatMessageCell.getThemedColor(Theme.key_chat_inReplyNameText));
-        }
-        canvas.save();
-        canvas.translate(this.textX, this.textY);
-        StaticLayout staticLayout = this.titleLayout;
-        if (staticLayout != null) {
-            staticLayout.draw(canvas);
-            canvas.translate(0.0f, this.titleLayout.getHeight() + AndroidUtilities.dp(2.0f));
-        }
-        StaticLayout staticLayout2 = this.subtitleLayout;
-        if (staticLayout2 != null) {
-            staticLayout2.draw(canvas);
-        }
-        canvas.restore();
     }
 }

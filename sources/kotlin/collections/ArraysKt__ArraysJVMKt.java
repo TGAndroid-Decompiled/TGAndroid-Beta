@@ -1,4 +1,4 @@
 package kotlin.collections;
 
-class ArraysKt__ArraysJVMKt {
+abstract class ArraysKt__ArraysJVMKt {
 }

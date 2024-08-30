@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -34,8 +33,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$TL_help_country;
-import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
-import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -55,58 +52,58 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
-    private final HashMap<Long, TLObject> allSelectedObjects;
+    private final HashMap allSelectedObjects;
     private final Paint backgroundPaint;
     private final SelectorBtnCell buttonContainer;
-    private final List<String> countriesLetters;
-    private final List<TLRPC$TL_help_country> countriesList;
-    private final Map<String, List<TLRPC$TL_help_country>> countriesMap;
+    private final List countriesLetters;
+    private final List countriesList;
+    private final Map countriesMap;
     private final TLRPC$Chat currentChat;
     private final SelectorHeaderCell headerView;
-    private final ArrayList<SelectorAdapter.Item> items;
+    private final ArrayList items;
     private int listPaddingTop;
-    private final ArrayList<SelectorAdapter.Item> oldItems;
+    private final ArrayList oldItems;
     private Runnable onCloseClick;
-    private final HashSet<Long> openedIds;
-    private final ArrayList<TLRPC$InputPeer> peers;
+    private final HashSet openedIds;
+    private final ArrayList peers;
     private String query;
     private final Runnable remoteSearchRunnable;
     private final SelectorSearchCell searchField;
     private final GraySectionCell sectionCell;
-    private final HashSet<Long> selectedIds;
+    private final HashSet selectedIds;
     private SelectedObjectsListener selectedObjectsListener;
     private SelectorAdapter selectorAdapter;
     private final AnimatedFloat statusBarT;
     private int top;
     private int type;
-    private final ArrayList<TLRPC$InputPeer> users;
+    private final ArrayList users;
 
     public interface SelectedObjectsListener {
 
-        public final class CC {
+        public abstract class CC {
             public static void $default$onShowToast(SelectedObjectsListener selectedObjectsListener, String str) {
             }
         }
 
-        void onChatsSelected(List<TLRPC$Chat> list, boolean z);
+        void onChatsSelected(List list, boolean z);
 
-        void onCountrySelected(List<TLRPC$TL_help_country> list);
+        void onCountrySelected(List list);
 
         void onShowToast(String str);
 
-        void onUsersSelected(List<TLRPC$User> list);
+        void onUsersSelected(List list);
     }
 
     public SelectorBottomSheet(BaseFragment baseFragment, boolean z, long j) {
         super(baseFragment, z, false);
         this.backgroundPaint = new Paint(1);
-        this.oldItems = new ArrayList<>();
-        ArrayList<SelectorAdapter.Item> arrayList = new ArrayList<>();
+        this.oldItems = new ArrayList();
+        ArrayList arrayList = new ArrayList();
         this.items = arrayList;
-        this.selectedIds = new HashSet<>();
-        this.openedIds = new HashSet<>();
-        this.peers = new ArrayList<>();
-        this.users = new ArrayList<>();
+        this.selectedIds = new HashSet();
+        this.openedIds = new HashSet();
+        this.peers = new ArrayList();
+        this.users = new ArrayList();
         this.countriesMap = new HashMap();
         this.countriesLetters = new ArrayList();
         this.countriesList = new ArrayList();
@@ -234,8 +231,114 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         loadData(3, true, null);
     }
 
+    public void clearSearchAfterSelectChannel() {
+        if (isSearching()) {
+            this.query = null;
+            this.searchField.setText("");
+            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+            this.peers.clear();
+            this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
+            updateList(false, false);
+            updateList(true, true);
+        }
+    }
+
+    private void drawFilledStatusBar(Canvas canvas, int i) {
+        this.backgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+        int max = Math.max(0, i);
+        int lerp = AndroidUtilities.lerp(max, 0, this.statusBarT.set(max < AndroidUtilities.statusBarHeight));
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, this.containerView.getHeight() + AndroidUtilities.dp(14.0f));
+        float dp = AndroidUtilities.dp(14.0f) * (1.0f - this.statusBarT.get());
+        canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
+    }
+
+    private boolean isSearching() {
+        return !TextUtils.isEmpty(this.query);
+    }
+
+    public void lambda$hasChanges$10() {
+        save(true);
+    }
+
+    public void lambda$hasChanges$11() {
+        this.selectedIds.clear();
+        this.openedIds.clear();
+        dismiss();
+    }
+
+    public void lambda$loadData$6(List list) {
+        if (isSearching()) {
+            this.peers.clear();
+            this.peers.addAll(list);
+            updateList(true, true);
+            scrollToTop(true);
+        }
+    }
+
+    public void lambda$loadData$7(boolean z, List list) {
+        if (z) {
+            this.users.addAll(list);
+        }
+        if (this.type == 1) {
+            this.peers.clear();
+            this.peers.addAll(list);
+            updateList(true, true);
+            scrollToTop(true);
+        }
+    }
+
+    public void lambda$loadData$8(String str, List list) {
+        this.countriesList.addAll(list);
+    }
+
+    public void lambda$loadData$9(boolean z, Pair pair) {
+        if (z) {
+            this.countriesMap.putAll((Map) pair.first);
+            this.countriesLetters.addAll((Collection) pair.second);
+            Map.EL.forEach(this.countriesMap, new BiConsumer() {
+                @Override
+                public final void accept(Object obj, Object obj2) {
+                    SelectorBottomSheet.this.lambda$loadData$8((String) obj, (List) obj2);
+                }
+
+                @Override
+                public BiConsumer andThen(BiConsumer biConsumer) {
+                    return BiConsumer.CC.$default$andThen(this, biConsumer);
+                }
+            });
+        }
+        if (this.type == 3) {
+            updateList(true, true);
+            scrollToTop(true);
+        }
+    }
+
     public void lambda$new$0(View view) {
         save(false);
+    }
+
+    public void lambda$new$1() {
+        updateList(true, false);
+    }
+
+    public void lambda$new$2() {
+        updateList(true, false);
+    }
+
+    public void lambda$new$3(long j) {
+        this.selectedIds.remove(Long.valueOf(j));
+        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
+            @Override
+            public final void run() {
+                SelectorBottomSheet.this.lambda$new$2();
+            }
+        }, null);
+        updateList(true, false);
+    }
+
+    public void lambda$new$4() {
+        updateList(true, false);
     }
 
     public void lambda$new$5(View view, int i, float f, float f2) {
@@ -248,7 +351,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 this.selectedIds.remove(Long.valueOf(j));
             } else {
                 this.selectedIds.add(Long.valueOf(j));
-                HashMap<Long, TLObject> hashMap = this.allSelectedObjects;
+                HashMap hashMap = this.allSelectedObjects;
                 Long valueOf = Long.valueOf(j);
                 if (user == null) {
                     user = chat;
@@ -301,50 +404,96 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorBottomSheet.this.lambda$new$4();
                 }
             }, this.countriesList);
-            if (isSearching()) {
-                this.query = null;
-                this.searchField.setText("");
-                updateList(false, false);
-                updateList(true, true);
+            if (!isSearching()) {
+                updateList(true, false);
                 return;
             }
-            updateList(true, false);
-        }
-    }
-
-    public void lambda$new$1() {
-        updateList(true, false);
-    }
-
-    public void lambda$new$3(long j) {
-        this.selectedIds.remove(Long.valueOf(j));
-        this.searchField.updateSpans(true, this.selectedIds, new Runnable() {
-            @Override
-            public final void run() {
-                SelectorBottomSheet.this.lambda$new$2();
-            }
-        }, null);
-        updateList(true, false);
-    }
-
-    public void lambda$new$2() {
-        updateList(true, false);
-    }
-
-    public void lambda$new$4() {
-        updateList(true, false);
-    }
-
-    public void clearSearchAfterSelectChannel() {
-        if (isSearching()) {
             this.query = null;
             this.searchField.setText("");
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            this.peers.clear();
-            this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
             updateList(false, false);
             updateList(true, true);
         }
+    }
+
+    public void lambda$prepare$12() {
+        updateList(true, false);
+    }
+
+    public void lambda$updateSectionCell$13(View view) {
+        this.selectedIds.clear();
+        this.searchField.spansContainer.removeAllSpans(true);
+        updateList(true, false);
+    }
+
+    public void loadData(int i, final boolean z, String str) {
+        if (i == 1) {
+            BoostRepository.loadChatParticipants(this.currentChat.id, 0, str, 0, 50, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    SelectorBottomSheet.this.lambda$loadData$7(z, (List) obj);
+                }
+            });
+        } else if (i == 2) {
+            BoostRepository.searchChats(this.currentChat.id, 0, str, 50, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    SelectorBottomSheet.this.lambda$loadData$6((List) obj);
+                }
+            });
+        } else {
+            if (i != 3) {
+                return;
+            }
+            BoostRepository.loadCountries(new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    SelectorBottomSheet.this.lambda$loadData$9(z, (Pair) obj);
+                }
+            });
+        }
+    }
+
+    private boolean matchLocal(TLObject tLObject, String str) {
+        if (TextUtils.isEmpty(str)) {
+            return true;
+        }
+        if (!(tLObject instanceof TLRPC$TL_help_country)) {
+            return false;
+        }
+        TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) tLObject;
+        String lowerCase = AndroidUtilities.translitSafe(tLRPC$TL_help_country.default_name).toLowerCase();
+        if (!lowerCase.startsWith(str)) {
+            if (!lowerCase.contains(" " + str)) {
+                String lowerCase2 = AndroidUtilities.translitSafe(tLRPC$TL_help_country.iso2).toLowerCase();
+                if (!lowerCase2.startsWith(str)) {
+                    if (!lowerCase2.contains(" " + str)) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public void onSearch(String str) {
+        this.query = str;
+        int i = this.type;
+        if (i != 1) {
+            if (i != 2) {
+                if (i != 3) {
+                    return;
+                }
+            } else if (!isSearching()) {
+                AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+                this.peers.clear();
+                this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
+            }
+            updateItems(false, true);
+            scrollToTop(true);
+            return;
+        }
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
     }
 
     private void save(boolean z) {
@@ -400,90 +549,124 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public void scrollToTop(boolean z) {
-        if (z) {
-            LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
-            linearSmoothScrollerCustom.setTargetPosition(1);
-            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(38.0f));
-            this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
-            return;
-        }
-        this.recyclerListView.scrollToPosition(0);
-    }
-
-    public void lambda$loadData$6(List list) {
-        if (isSearching()) {
-            this.peers.clear();
-            this.peers.addAll(list);
-            updateList(true, true);
-            scrollToTop(true);
+    private void showMaximumUsersToast() {
+        int i = this.type;
+        String formatPluralString = i != 1 ? i != 2 ? i != 3 ? "" : LocaleController.formatPluralString("BoostingSelectUpToWarningCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]) : LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsGroupsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]) : LocaleController.getString(R.string.BoostingSelectUpToWarningUsers);
+        SelectedObjectsListener selectedObjectsListener = this.selectedObjectsListener;
+        if (selectedObjectsListener != null) {
+            selectedObjectsListener.onShowToast(formatPluralString);
         }
     }
 
-    public void lambda$loadData$7(boolean z, List list) {
-        if (z) {
-            this.users.addAll(list);
-        }
-        if (this.type == 1) {
-            this.peers.clear();
-            this.peers.addAll(list);
-            updateList(true, true);
-            scrollToTop(true);
-        }
+    private void updateActionButton(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.updateActionButton(boolean):void");
     }
 
-    public void loadData(int i, final boolean z, String str) {
-        if (i == 1) {
-            BoostRepository.loadChatParticipants(this.currentChat.id, 0, str, 0, 50, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$7(z, (List) obj);
+    private void updateCheckboxes(boolean z) {
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
+            if (childAt instanceof SelectorUserCell) {
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
+                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
+                    SelectorAdapter.Item item = (SelectorAdapter.Item) this.items.get(childAdapterPosition);
+                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                    selectorUserCell.setChecked(item.checked, z);
+                    TLRPC$Chat tLRPC$Chat = item.chat;
+                    float f = 1.0f;
+                    if (tLRPC$Chat != null && this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200) {
+                        f = 0.3f;
+                    }
+                    selectorUserCell.setCheckboxAlpha(f, z);
                 }
-            });
-        } else if (i == 2) {
-            BoostRepository.searchChats(this.currentChat.id, 0, str, 50, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$6((List) obj);
-                }
-            });
-        } else {
-            if (i != 3) {
-                return;
             }
-            BoostRepository.loadCountries(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    SelectorBottomSheet.this.lambda$loadData$9(z, (Pair) obj);
-                }
-            });
+            if (childAt instanceof SelectorCountryCell) {
+                ((SelectorCountryCell) childAt).setChecked(this.selectedIds.contains(Long.valueOf(r1.getCountry().default_name.hashCode())), true);
+            }
         }
     }
 
-    public void lambda$loadData$9(boolean z, Pair pair) {
-        if (z) {
-            this.countriesMap.putAll((Map) pair.first);
-            this.countriesLetters.addAll((Collection) pair.second);
-            Map.EL.forEach(this.countriesMap, new BiConsumer() {
-                @Override
-                public final void accept(Object obj, Object obj2) {
-                    SelectorBottomSheet.this.lambda$loadData$8((String) obj, (List) obj2);
-                }
+    private void updateList(boolean z, boolean z2) {
+        updateItems(z, z2);
+        updateCheckboxes(z);
+        updateActionButton(z);
+    }
 
+    private void updateSection() {
+        String formatPluralStringComma;
+        int i = this.type;
+        if (i == 1) {
+            formatPluralStringComma = LocaleController.formatPluralStringComma(ChatObject.isChannelAndNotMegaGroup(this.currentChat) ? "Subscribers" : "Members", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
+        } else {
+            if (i != 2) {
+                if (i != 3) {
+                    formatPluralStringComma = "";
+                } else {
+                    formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
+                    this.sectionCell.setLayerHeight(1);
+                }
+                this.sectionCell.setText(formatPluralStringComma);
+            }
+            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
+        }
+        this.sectionCell.setLayerHeight(32);
+        this.sectionCell.setText(formatPluralStringComma);
+    }
+
+    private void updateSectionCell(boolean z) {
+        if (this.selectedIds.size() > 0 && this.type != 3) {
+            this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                 @Override
-                public BiConsumer andThen(BiConsumer biConsumer) {
-                    return BiConsumer.CC.$default$andThen(this, biConsumer);
+                public final void onClick(View view) {
+                    SelectorBottomSheet.this.lambda$updateSectionCell$13(view);
                 }
             });
-        }
-        if (this.type == 3) {
-            updateList(true, true);
-            scrollToTop(true);
+        } else if (z) {
+            this.sectionCell.setRightText(null);
+        } else {
+            this.sectionCell.setRightText((CharSequence) null, (View.OnClickListener) null);
         }
     }
 
-    public void lambda$loadData$8(String str, List list) {
-        this.countriesList.addAll(list);
+    @Override
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
+        this.selectorAdapter = selectorAdapter;
+        return selectorAdapter;
+    }
+
+    @Override
+    public void dismiss() {
+        Runnable runnable = this.onCloseClick;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    @Override
+    public void dismissInternal() {
+        super.dismissInternal();
+        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
+    }
+
+    @Override
+    protected CharSequence getTitle() {
+        int i;
+        int i2 = this.type;
+        if (i2 == 1) {
+            i = R.string.GiftPremium;
+        } else if (i2 == 2) {
+            i = R.string.BoostingAddChannelOrGroup;
+        } else {
+            if (i2 != 3) {
+                return "";
+            }
+            i = R.string.BoostingSelectCountry;
+        }
+        return LocaleController.getString(i);
+    }
+
+    public int getTop() {
+        return Math.max(0, this.top - (this.statusBarT.get() == 1.0f ? AndroidUtilities.statusBarHeight : 0));
     }
 
     public boolean hasChanges() {
@@ -504,154 +687,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         return true;
     }
 
-    public void lambda$hasChanges$10() {
-        save(true);
-    }
-
-    public void lambda$hasChanges$11() {
-        this.selectedIds.clear();
-        this.openedIds.clear();
-        dismiss();
-    }
-
     @Override
-    public void dismiss() {
-        Runnable runnable = this.onCloseClick;
-        if (runnable != null) {
-            runnable.run();
-        }
-    }
-
-    @Override
-    public void dismissInternal() {
-        super.dismissInternal();
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-    }
-
-    public void setSelectedObjectsListener(SelectedObjectsListener selectedObjectsListener) {
-        this.selectedObjectsListener = selectedObjectsListener;
-    }
-
-    public int getTop() {
-        return Math.max(0, this.top - (this.statusBarT.get() == 1.0f ? AndroidUtilities.statusBarHeight : 0));
-    }
-
-    public void setOnCloseClick(Runnable runnable) {
-        this.onCloseClick = runnable;
-    }
-
-    public void prepare(List<TLObject> list, int i) {
-        this.type = i;
-        this.query = null;
-        this.openedIds.clear();
-        this.selectedIds.clear();
-        this.peers.clear();
-        this.allSelectedObjects.clear();
-        if (i == 1) {
-            this.peers.addAll(this.users);
-        } else if (i == 2) {
-            this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
-        }
-        if (list != null) {
-            for (TLObject tLObject : list) {
-                long j = tLObject instanceof TLRPC$TL_inputPeerChat ? -((TLRPC$TL_inputPeerChat) tLObject).chat_id : 0L;
-                if (tLObject instanceof TLRPC$TL_inputPeerChannel) {
-                    j = -((TLRPC$TL_inputPeerChannel) tLObject).channel_id;
-                }
-                if (tLObject instanceof TLRPC$Chat) {
-                    j = -((TLRPC$Chat) tLObject).id;
-                }
-                if (tLObject instanceof TLRPC$User) {
-                    j = ((TLRPC$User) tLObject).id;
-                }
-                if (tLObject instanceof TLRPC$TL_help_country) {
-                    j = ((TLRPC$TL_help_country) tLObject).default_name.hashCode();
-                }
-                this.selectedIds.add(Long.valueOf(j));
-                this.allSelectedObjects.put(Long.valueOf(j), tLObject);
-            }
-        }
-        this.openedIds.addAll(this.selectedIds);
-        this.searchField.setText("");
-        this.searchField.spansContainer.removeAllSpans(false);
-        this.searchField.updateSpans(false, this.selectedIds, new Runnable() {
-            @Override
-            public final void run() {
-                SelectorBottomSheet.this.lambda$prepare$12();
-            }
-        }, this.countriesList);
-        updateSection();
-        updateList(false, true);
-        this.headerView.setText(getTitle());
-        updateActionButton(false);
-        scrollToTop(false);
-    }
-
-    public void lambda$prepare$12() {
-        updateList(true, false);
-    }
-
-    private void updateSection() {
-        String formatPluralStringComma;
-        int i = this.type;
-        if (i == 1) {
-            formatPluralStringComma = LocaleController.formatPluralStringComma(ChatObject.isChannelAndNotMegaGroup(this.currentChat) ? "Subscribers" : "Members", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
-            this.sectionCell.setLayerHeight(32);
-        } else if (i == 2) {
-            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
-            this.sectionCell.setLayerHeight(32);
-        } else if (i == 3) {
-            formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
-            this.sectionCell.setLayerHeight(1);
-        } else {
-            formatPluralStringComma = "";
-        }
-        this.sectionCell.setText(formatPluralStringComma);
-    }
-
-    private void showMaximumUsersToast() {
-        String string;
-        int i = this.type;
-        if (i == 1) {
-            string = LocaleController.getString(R.string.BoostingSelectUpToWarningUsers);
-        } else if (i == 2) {
-            string = LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsGroupsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
-        } else {
-            string = i != 3 ? "" : LocaleController.formatPluralString("BoostingSelectUpToWarningCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
-        }
-        SelectedObjectsListener selectedObjectsListener = this.selectedObjectsListener;
-        if (selectedObjectsListener != null) {
-            selectedObjectsListener.onShowToast(string);
-        }
-    }
-
-    private void updateList(boolean z, boolean z2) {
-        updateItems(z, z2);
-        updateCheckboxes(z);
-        updateActionButton(z);
-    }
-
-    private void updateCheckboxes(boolean z) {
-        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
-            View childAt = this.recyclerListView.getChildAt(i);
-            if (childAt instanceof SelectorUserCell) {
-                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
-                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
-                    SelectorAdapter.Item item = this.items.get(childAdapterPosition);
-                    SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                    selectorUserCell.setChecked(item.checked, z);
-                    TLRPC$Chat tLRPC$Chat = item.chat;
-                    if (tLRPC$Chat != null) {
-                        selectorUserCell.setCheckboxAlpha(this.selectorAdapter.getParticipantsCount(tLRPC$Chat) > 200 ? 0.3f : 1.0f, z);
-                    } else {
-                        selectorUserCell.setCheckboxAlpha(1.0f, z);
-                    }
-                }
-            }
-            if (childAt instanceof SelectorCountryCell) {
-                ((SelectorCountryCell) childAt).setChecked(this.selectedIds.contains(Long.valueOf(r1.getCountry().default_name.hashCode())), true);
-            }
-        }
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        updateItems(false, true);
     }
 
     @Override
@@ -664,86 +703,29 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         drawFilledStatusBar(canvas, i);
     }
 
-    private void drawFilledStatusBar(Canvas canvas, int i) {
-        this.backgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
-        int max = Math.max(0, i);
-        int lerp = AndroidUtilities.lerp(max, 0, this.statusBarT.set(max < AndroidUtilities.statusBarHeight));
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(this.backgroundPaddingLeft, lerp, this.containerView.getWidth() - this.backgroundPaddingLeft, this.containerView.getHeight() + AndroidUtilities.dp(14.0f));
-        float dp = AndroidUtilities.dp(14.0f) * (1.0f - this.statusBarT.get());
-        canvas.drawRoundRect(rectF, dp, dp, this.backgroundPaint);
+    public void prepare(java.util.List r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet.prepare(java.util.List, int):void");
     }
 
-    private void updateActionButton(boolean z) {
-        String string;
-        this.actionButton.setShowZero(false);
-        int i = this.type;
-        if (i == 1) {
-            string = LocaleController.getString(R.string.BoostingSaveRecipients);
-        } else if (i == 2 || i == 3) {
-            string = LocaleController.getString(R.string.Save);
-        } else {
-            string = "";
-        }
-        this.actionButton.setText(string, z);
-        this.actionButton.setCount(this.selectedIds.size(), z);
-        this.actionButton.setEnabled(this.selectedIds.size() > 0);
-    }
-
-    public void onSearch(String str) {
-        this.query = str;
-        int i = this.type;
-        if (i == 1) {
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
+    public void scrollToTop(boolean z) {
+        if (!z) {
+            this.recyclerListView.scrollToPosition(0);
             return;
         }
-        if (i != 2) {
-            if (i != 3) {
-                return;
-            }
-            updateItems(false, true);
-            scrollToTop(true);
-            return;
-        }
-        if (!isSearching()) {
-            AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-            this.peers.clear();
-            this.peers.addAll(BoostRepository.getMyChannels(this.currentChat.id));
-            updateItems(false, true);
-            scrollToTop(true);
-            return;
-        }
-        AndroidUtilities.cancelRunOnUIThread(this.remoteSearchRunnable);
-        AndroidUtilities.runOnUIThread(this.remoteSearchRunnable, 350L);
+        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
+        linearSmoothScrollerCustom.setTargetPosition(1);
+        linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(38.0f));
+        this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
     }
 
-    private void updateSectionCell(boolean z) {
-        if (this.selectedIds.size() > 0 && this.type != 3) {
-            this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    SelectorBottomSheet.this.lambda$updateSectionCell$13(view);
-                }
-            });
-        } else if (z) {
-            this.sectionCell.setRightText(null);
-        } else {
-            this.sectionCell.setRightText((CharSequence) null, (View.OnClickListener) null);
-        }
+    public void setOnCloseClick(Runnable runnable) {
+        this.onCloseClick = runnable;
     }
 
-    public void lambda$updateSectionCell$13(View view) {
-        this.selectedIds.clear();
-        this.searchField.spansContainer.removeAllSpans(true);
-        updateList(true, false);
+    public void setSelectedObjectsListener(SelectedObjectsListener selectedObjectsListener) {
+        this.selectedObjectsListener = selectedObjectsListener;
     }
 
-    private boolean isSearching() {
-        return !TextUtils.isEmpty(this.query);
-    }
-
-    @SuppressLint({"NotifyDataSetChanged"})
     public void updateItems(boolean z, boolean z2) {
         int i;
         SelectorAdapter selectorAdapter;
@@ -754,7 +736,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             i = 0;
             for (String str : this.countriesLetters) {
                 ArrayList arrayList = new ArrayList();
-                for (TLRPC$TL_help_country tLRPC$TL_help_country : this.countriesMap.get(str)) {
+                for (TLRPC$TL_help_country tLRPC$TL_help_country : (List) this.countriesMap.get(str)) {
                     if (!isSearching() || matchLocal(tLRPC$TL_help_country, AndroidUtilities.translitSafe(this.query).toLowerCase())) {
                         i += AndroidUtilities.dp(44.0f);
                         arrayList.add(SelectorAdapter.Item.asCountry(tLRPC$TL_help_country, this.selectedIds.contains(Long.valueOf(tLRPC$TL_help_country.default_name.hashCode()))));
@@ -769,11 +751,11 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             i = 0;
         }
-        Iterator<TLRPC$InputPeer> it = this.peers.iterator();
+        Iterator it = this.peers.iterator();
         while (it.hasNext()) {
-            TLRPC$InputPeer next = it.next();
+            TLRPC$InputPeer tLRPC$InputPeer = (TLRPC$InputPeer) it.next();
             i += AndroidUtilities.dp(56.0f);
-            this.items.add(SelectorAdapter.Item.asPeer(next, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(next)))));
+            this.items.add(SelectorAdapter.Item.asPeer(tLRPC$InputPeer, this.selectedIds.contains(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$InputPeer)))));
         }
         if (this.items.isEmpty()) {
             this.items.add(SelectorAdapter.Item.asNoUsers());
@@ -789,55 +771,5 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             selectorAdapter.notifyDataSetChanged();
         }
-    }
-
-    private boolean matchLocal(TLObject tLObject, String str) {
-        if (TextUtils.isEmpty(str)) {
-            return true;
-        }
-        if (!(tLObject instanceof TLRPC$TL_help_country)) {
-            return false;
-        }
-        TLRPC$TL_help_country tLRPC$TL_help_country = (TLRPC$TL_help_country) tLObject;
-        String lowerCase = AndroidUtilities.translitSafe(tLRPC$TL_help_country.default_name).toLowerCase();
-        if (!lowerCase.startsWith(str)) {
-            if (!lowerCase.contains(" " + str)) {
-                String lowerCase2 = AndroidUtilities.translitSafe(tLRPC$TL_help_country.iso2).toLowerCase();
-                if (!lowerCase2.startsWith(str)) {
-                    if (!lowerCase2.contains(" " + str)) {
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration configuration) {
-        super.onConfigurationChanged(configuration);
-        updateItems(false, true);
-    }
-
-    @Override
-    protected CharSequence getTitle() {
-        int i = this.type;
-        if (i == 1) {
-            return LocaleController.getString(R.string.GiftPremium);
-        }
-        if (i == 2) {
-            return LocaleController.getString(R.string.BoostingAddChannelOrGroup);
-        }
-        if (i == 3) {
-            return LocaleController.getString(R.string.BoostingSelectCountry);
-        }
-        return "";
-    }
-
-    @Override
-    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
-        this.selectorAdapter = selectorAdapter;
-        return selectorAdapter;
     }
 }

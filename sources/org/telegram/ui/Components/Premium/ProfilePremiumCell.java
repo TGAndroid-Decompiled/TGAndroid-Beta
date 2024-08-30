@@ -19,6 +19,14 @@ public class ProfilePremiumCell extends TextCell {
     }
 
     @Override
+    public void dispatchDraw(Canvas canvas) {
+        this.particles.process();
+        this.particles.draw(canvas, Theme.getColor(this.colorKey));
+        invalidate();
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
     public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         float x = this.imageView.getX() + (this.imageView.getWidth() / 2.0f);
@@ -26,13 +34,5 @@ public class ProfilePremiumCell extends TextCell {
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(x - AndroidUtilities.dp(16.0f), paddingTop - AndroidUtilities.dp(16.0f), x + AndroidUtilities.dp(16.0f), paddingTop + AndroidUtilities.dp(16.0f));
         this.particles.setBounds(rectF);
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        this.particles.process();
-        this.particles.draw(canvas, Theme.getColor(this.colorKey));
-        invalidate();
-        super.dispatchDraw(canvas);
     }
 }

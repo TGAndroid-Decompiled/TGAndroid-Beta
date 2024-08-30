@@ -19,29 +19,6 @@ public class CircularProgressDrawable extends Drawable {
     private long start;
     public float thickness;
 
-    @Override
-    public int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    public CircularProgressDrawable(int i) {
-        this.size = AndroidUtilities.dp(18.0f);
-        this.thickness = AndroidUtilities.dp(2.25f);
-        this.start = -1L;
-        this.segment = new float[2];
-        Paint paint = new Paint();
-        this.paint = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.bounds = new RectF();
-        setColor(i);
-    }
-
     public CircularProgressDrawable(float f, float f2, int i) {
         this.size = AndroidUtilities.dp(18.0f);
         this.thickness = AndroidUtilities.dp(2.25f);
@@ -58,8 +35,18 @@ public class CircularProgressDrawable extends Drawable {
         setColor(i);
     }
 
-    private void updateSegment() {
-        getSegments((float) ((SystemClock.elapsedRealtime() - this.start) % 5400), this.segment);
+    public CircularProgressDrawable(int i) {
+        this.size = AndroidUtilities.dp(18.0f);
+        this.thickness = AndroidUtilities.dp(2.25f);
+        this.start = -1L;
+        this.segment = new float[2];
+        Paint paint = new Paint();
+        this.paint = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.bounds = new RectF();
+        setColor(i);
     }
 
     public static void getSegments(float f, float[] fArr) {
@@ -72,6 +59,10 @@ public class CircularProgressDrawable extends Drawable {
             fArr[1] = f3 + (fastOutSlowInInterpolator.getInterpolation((f - (i * 1350)) / 667.0f) * 250.0f);
             fArr[0] = fArr[0] + (fastOutSlowInInterpolator.getInterpolation((f - (r5 + 667)) / 667.0f) * 250.0f);
         }
+    }
+
+    private void updateSegment() {
+        getSegments((float) ((SystemClock.elapsedRealtime() - this.start) % 5400), this.segment);
     }
 
     @Override
@@ -88,8 +79,18 @@ public class CircularProgressDrawable extends Drawable {
         invalidateSelf();
     }
 
+    @Override
+    public int getOpacity() {
+        return -2;
+    }
+
     public void reset() {
         this.start = -1L;
+    }
+
+    @Override
+    public void setAlpha(int i) {
+        this.paint.setAlpha(i);
     }
 
     public void setAngleOffset(float f) {
@@ -115,7 +116,6 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i) {
-        this.paint.setAlpha(i);
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -31,12 +31,91 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
         this.loadOperation = FileLoader.getInstance(i).loadStreamFile(this, this.document, this.location, this.parentObject, 0L, this.preview, i2, i3);
     }
 
-    public boolean isFinishedLoadingFile() {
-        return this.finishedLoadingFile;
+    private void cancelLoadingInternal() {
+        FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.document);
+        if (this.location != null) {
+            FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.location.location, "mp4");
+        }
+    }
+
+    public void cancel() {
+        cancel(true);
+    }
+
+    public void cancel(boolean z) {
+        if (this.canceled) {
+            return;
+        }
+        synchronized (this.sync) {
+            try {
+                CountDownLatch countDownLatch = this.countDownLatch;
+                if (countDownLatch != null) {
+                    countDownLatch.countDown();
+                    this.countDownLatch = null;
+                    if (z && !this.canceled && !this.preview) {
+                        FileLoader.getInstance(this.currentAccount).removeLoadingVideo(this.document, false, true);
+                    }
+                }
+                Object obj = this.parentObject;
+                if (obj instanceof MessageObject) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    if (DownloadController.getInstance(messageObject.currentAccount).isDownloading(messageObject.getId())) {
+                        z = false;
+                    }
+                }
+                if (z) {
+                    cancelLoadingInternal();
+                }
+                this.canceled = true;
+            } catch (Throwable th) {
+                throw th;
+            }
+        }
+    }
+
+    public int getCurrentAccount() {
+        return this.currentAccount;
+    }
+
+    public TLRPC$Document getDocument() {
+        return this.document;
     }
 
     public String getFinishedFilePath() {
         return this.finishedFilePath;
+    }
+
+    public ImageLocation getLocation() {
+        return this.location;
+    }
+
+    public Object getParentObject() {
+        return this.document;
+    }
+
+    public boolean isCanceled() {
+        return this.canceled;
+    }
+
+    public boolean isFinishedLoadingFile() {
+        return this.finishedLoadingFile;
+    }
+
+    public boolean isPreview() {
+        return this.preview;
+    }
+
+    public boolean isWaitingForLoad() {
+        return this.waitingForLoad;
+    }
+
+    @Override
+    public void newDataAvailable() {
+        CountDownLatch countDownLatch = this.countDownLatch;
+        if (countDownLatch != null) {
+            countDownLatch.countDown();
+            this.countDownLatch = null;
+        }
     }
 
     public int read(int i, int i2) {
@@ -127,88 +206,9 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
         }
     }
 
-    public void cancel() {
-        cancel(true);
-    }
-
-    public void cancel(boolean z) {
-        if (this.canceled) {
-            return;
-        }
-        synchronized (this.sync) {
-            try {
-                CountDownLatch countDownLatch = this.countDownLatch;
-                if (countDownLatch != null) {
-                    countDownLatch.countDown();
-                    this.countDownLatch = null;
-                    if (z && !this.canceled && !this.preview) {
-                        FileLoader.getInstance(this.currentAccount).removeLoadingVideo(this.document, false, true);
-                    }
-                }
-                Object obj = this.parentObject;
-                if (obj instanceof MessageObject) {
-                    MessageObject messageObject = (MessageObject) obj;
-                    if (DownloadController.getInstance(messageObject.currentAccount).isDownloading(messageObject.getId())) {
-                        z = false;
-                    }
-                }
-                if (z) {
-                    cancelLoadingInternal();
-                }
-                this.canceled = true;
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
-    }
-
-    private void cancelLoadingInternal() {
-        FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.document);
-        if (this.location != null) {
-            FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.location.location, "mp4");
-        }
-    }
-
     public void reset() {
         synchronized (this.sync) {
             this.canceled = false;
         }
-    }
-
-    public TLRPC$Document getDocument() {
-        return this.document;
-    }
-
-    public ImageLocation getLocation() {
-        return this.location;
-    }
-
-    public Object getParentObject() {
-        return this.document;
-    }
-
-    public boolean isPreview() {
-        return this.preview;
-    }
-
-    public int getCurrentAccount() {
-        return this.currentAccount;
-    }
-
-    public boolean isWaitingForLoad() {
-        return this.waitingForLoad;
-    }
-
-    @Override
-    public void newDataAvailable() {
-        CountDownLatch countDownLatch = this.countDownLatch;
-        if (countDownLatch != null) {
-            countDownLatch.countDown();
-            this.countDownLatch = null;
-        }
-    }
-
-    public boolean isCanceled() {
-        return this.canceled;
     }
 }

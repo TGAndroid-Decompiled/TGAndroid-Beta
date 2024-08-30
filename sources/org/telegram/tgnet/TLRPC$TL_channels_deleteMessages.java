@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class TLRPC$TL_channels_deleteMessages extends TLObject {
     public TLRPC$InputChannel channel;
-    public ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList id = new ArrayList();
 
     public static TLRPC$TL_channels_deleteMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (-2067661490 != i) {
@@ -47,7 +47,7 @@ public class TLRPC$TL_channels_deleteMessages extends TLObject {
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.id.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.id.get(i)).intValue());
         }
     }
 }

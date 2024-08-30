@@ -5,10 +5,46 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-public final class CollectionToArray {
+public abstract class CollectionToArray {
     private static final Object[] EMPTY = new Object[0];
 
-    public static final Object[] toArray(Collection<?> collection, Object[] objArr) {
+    public static final Object[] toArray(Collection collection) {
+        Intrinsics.checkNotNullParameter(collection, "collection");
+        int size = collection.size();
+        if (size != 0) {
+            Iterator it = collection.iterator();
+            if (it.hasNext()) {
+                Object[] objArr = new Object[size];
+                int i = 0;
+                while (true) {
+                    int i2 = i + 1;
+                    objArr[i] = it.next();
+                    if (i2 >= objArr.length) {
+                        if (!it.hasNext()) {
+                            return objArr;
+                        }
+                        int i3 = ((i2 * 3) + 1) >>> 1;
+                        if (i3 <= i2) {
+                            i3 = 2147483645;
+                            if (i2 >= 2147483645) {
+                                throw new OutOfMemoryError();
+                            }
+                        }
+                        objArr = Arrays.copyOf(objArr, i3);
+                        Intrinsics.checkNotNullExpressionValue(objArr, "copyOf(result, newSize)");
+                    } else if (!it.hasNext()) {
+                        Object[] copyOf = Arrays.copyOf(objArr, i2);
+                        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(result, size)");
+                        return copyOf;
+                    }
+                    i = i2;
+                }
+            }
+        }
+        return EMPTY;
+    }
+
+    public static final Object[] toArray(Collection collection, Object[] objArr) {
         Object[] objArr2;
         Intrinsics.checkNotNullParameter(collection, "collection");
         objArr.getClass();
@@ -21,7 +57,7 @@ public final class CollectionToArray {
             objArr[0] = null;
             return objArr;
         }
-        Iterator<?> it = collection.iterator();
+        Iterator it = collection.iterator();
         if (!it.hasNext()) {
             if (objArr.length <= 0) {
                 return objArr;
@@ -63,41 +99,5 @@ public final class CollectionToArray {
             }
             i = i2;
         }
-    }
-
-    public static final Object[] toArray(Collection<?> collection) {
-        Intrinsics.checkNotNullParameter(collection, "collection");
-        int size = collection.size();
-        if (size != 0) {
-            Iterator<?> it = collection.iterator();
-            if (it.hasNext()) {
-                Object[] objArr = new Object[size];
-                int i = 0;
-                while (true) {
-                    int i2 = i + 1;
-                    objArr[i] = it.next();
-                    if (i2 >= objArr.length) {
-                        if (!it.hasNext()) {
-                            return objArr;
-                        }
-                        int i3 = ((i2 * 3) + 1) >>> 1;
-                        if (i3 <= i2) {
-                            i3 = 2147483645;
-                            if (i2 >= 2147483645) {
-                                throw new OutOfMemoryError();
-                            }
-                        }
-                        objArr = Arrays.copyOf(objArr, i3);
-                        Intrinsics.checkNotNullExpressionValue(objArr, "copyOf(result, newSize)");
-                    } else if (!it.hasNext()) {
-                        Object[] copyOf = Arrays.copyOf(objArr, i2);
-                        Intrinsics.checkNotNullExpressionValue(copyOf, "copyOf(result, size)");
-                        return copyOf;
-                    }
-                    i = i2;
-                }
-            }
-        }
-        return EMPTY;
     }
 }

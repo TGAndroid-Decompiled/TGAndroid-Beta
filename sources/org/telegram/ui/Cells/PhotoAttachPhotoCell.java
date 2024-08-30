@@ -13,13 +13,11 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Region;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,16 +28,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$Document;
-import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -104,26 +96,26 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
-                if (PhotoAttachPhotoCell.this.spoilerEffect2 != null && view == PhotoAttachPhotoCell.this.imageView) {
-                    boolean drawChild = super.drawChild(canvas, view, j);
-                    if (PhotoAttachPhotoCell.this.hasSpoiler && PhotoAttachPhotoCell.this.spoilerRevealProgress != 1.0f && (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isAttachSpoilerRevealed)) {
-                        if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
-                            canvas.save();
-                            PhotoAttachPhotoCell.this.path.rewind();
-                            PhotoAttachPhotoCell.this.path.addCircle(PhotoAttachPhotoCell.this.spoilerRevealX, PhotoAttachPhotoCell.this.spoilerRevealY, PhotoAttachPhotoCell.this.spoilerMaxRadius * PhotoAttachPhotoCell.this.spoilerRevealProgress, Path.Direction.CW);
-                            canvas.clipPath(PhotoAttachPhotoCell.this.path, Region.Op.DIFFERENCE);
-                        }
-                        PhotoAttachPhotoCell.this.spoilerEffect2.draw(canvas, PhotoAttachPhotoCell.this.container, PhotoAttachPhotoCell.this.imageView.getMeasuredWidth(), PhotoAttachPhotoCell.this.imageView.getMeasuredHeight());
-                        if (PhotoAttachPhotoCell.this.photoEntry != null && PhotoAttachPhotoCell.this.photoEntry.starsAmount > 0) {
-                            PhotoAttachPhotoCell.this.imageView.drawBlurredText(canvas, 1.0f);
-                        }
-                        if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
-                            canvas.restore();
-                        }
-                    }
-                    return drawChild;
+                if (PhotoAttachPhotoCell.this.spoilerEffect2 == null || view != PhotoAttachPhotoCell.this.imageView) {
+                    return super.drawChild(canvas, view, j);
                 }
-                return super.drawChild(canvas, view, j);
+                boolean drawChild = super.drawChild(canvas, view, j);
+                if (PhotoAttachPhotoCell.this.hasSpoiler && PhotoAttachPhotoCell.this.spoilerRevealProgress != 1.0f && (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isAttachSpoilerRevealed)) {
+                    if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
+                        canvas.save();
+                        PhotoAttachPhotoCell.this.path.rewind();
+                        PhotoAttachPhotoCell.this.path.addCircle(PhotoAttachPhotoCell.this.spoilerRevealX, PhotoAttachPhotoCell.this.spoilerRevealY, PhotoAttachPhotoCell.this.spoilerMaxRadius * PhotoAttachPhotoCell.this.spoilerRevealProgress, Path.Direction.CW);
+                        canvas.clipPath(PhotoAttachPhotoCell.this.path, Region.Op.DIFFERENCE);
+                    }
+                    PhotoAttachPhotoCell.this.spoilerEffect2.draw(canvas, PhotoAttachPhotoCell.this.container, PhotoAttachPhotoCell.this.imageView.getMeasuredWidth(), PhotoAttachPhotoCell.this.imageView.getMeasuredHeight());
+                    if (PhotoAttachPhotoCell.this.photoEntry != null && PhotoAttachPhotoCell.this.photoEntry.starsAmount > 0) {
+                        PhotoAttachPhotoCell.this.imageView.drawBlurredText(canvas, 1.0f);
+                    }
+                    if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
+                        canvas.restore();
+                    }
+                }
+                return drawChild;
             }
         };
         this.container = frameLayout;
@@ -140,7 +132,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 if (imageReceiver == null) {
                     return;
                 }
-                if (this.width != -1 && this.height != -1) {
+                if (this.width == -1 || this.height == -1) {
+                    imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                    this.blurImageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                } else {
                     float width = (getWidth() - this.width) / 2;
                     int height = getHeight();
                     imageReceiver.setImageCoords(width, (height - r4) / 2, this.width, this.height);
@@ -148,9 +143,6 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
                     imageReceiver2.setImageCoords(width2, (height2 - r5) / 2, this.width, this.height);
-                } else {
-                    imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                    this.blurImageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
                 }
                 imageReceiver.draw(canvas);
                 if (PhotoAttachPhotoCell.this.hasSpoiler && PhotoAttachPhotoCell.this.spoilerRevealProgress != 1.0f && (PhotoAttachPhotoCell.this.photoEntry == null || !PhotoAttachPhotoCell.this.photoEntry.isAttachSpoilerRevealed)) {
@@ -239,89 +231,84 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.itemSize = AndroidUtilities.dp(80.0f);
     }
 
-    public void setHasSpoiler(boolean z) {
-        setHasSpoiler(z, null);
-    }
-
-    public void setHasSpoiler(boolean z, Float f) {
-        if (this.hasSpoiler != z) {
-            this.spoilerRevealProgress = 0.0f;
-            if (isLaidOut()) {
-                Bitmap bitmap = this.imageViewCrossfadeSnapshot;
-                this.imageViewCrossfadeSnapshot = AndroidUtilities.snapshotView(this.imageView);
-                if (bitmap != null) {
-                    bitmap.recycle();
-                }
-                this.imageViewCrossfadeProgress = 0.0f;
-            } else {
-                Bitmap bitmap2 = this.imageViewCrossfadeSnapshot;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                    this.imageViewCrossfadeSnapshot = null;
-                }
-                this.imageViewCrossfadeProgress = 1.0f;
-            }
-            this.hasSpoiler = z;
-            this.crossfadeDuration = f;
-            this.imageView.setHasBlur(z);
-            this.imageView.invalidate();
-            if (z) {
-                updateSpoilers2(z);
-            }
-        }
-    }
-
-    public void setStarsPrice(long j, boolean z) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (z == this.starsSelectedMultiple && j == this.stars) {
-            return;
-        }
-        this.stars = j;
-        this.starsSelectedMultiple = z;
-        if (j > 0) {
-            spannableStringBuilder = new SpannableStringBuilder();
-            if (this.star == null) {
-                this.star = new SpannableString("⭐");
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.star_small_inner);
-                coloredImageSpan.setScale(0.7f, 0.7f);
-                SpannableString spannableString = this.star;
-                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-            }
-            spannableStringBuilder.append((CharSequence) this.star);
-            spannableStringBuilder.append((CharSequence) "\u2009");
-            if (z) {
-                if (this.lock == null) {
-                    this.lock = new SpannableString("l");
-                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.msg_mini_lock2);
-                    SpannableString spannableString2 = this.lock;
-                    spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
-                }
-                spannableStringBuilder.append((CharSequence) this.lock);
-            } else {
-                spannableStringBuilder.append((CharSequence) Long.toString(j));
-            }
-        } else {
-            spannableStringBuilder = null;
-        }
-        this.imageView.setBlurredText(spannableStringBuilder);
-        this.imageView.invalidate();
-        this.container.invalidate();
-    }
-
     public void updateSpoilers2(boolean z) {
         BackupImageView backupImageView;
+        SpoilerEffect2 spoilerEffect2;
         if (this.container == null || (backupImageView = this.imageView) == null || backupImageView.getMeasuredHeight() <= 0 || this.imageView.getMeasuredWidth() <= 0) {
             return;
         }
-        if (z && SpoilerEffect2.supports()) {
-            if (this.spoilerEffect2 == null) {
-                this.spoilerEffect2 = SpoilerEffect2.getInstance(this.container);
+        if (!z || !SpoilerEffect2.supports()) {
+            SpoilerEffect2 spoilerEffect22 = this.spoilerEffect2;
+            if (spoilerEffect22 == null) {
+                return;
             }
+            spoilerEffect22.detach(this);
+            spoilerEffect2 = null;
+        } else if (this.spoilerEffect2 != null) {
+            return;
         } else {
-            SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
-            if (spoilerEffect2 != null) {
-                spoilerEffect2.detach(this);
-                this.spoilerEffect2 = null;
+            spoilerEffect2 = SpoilerEffect2.getInstance(this.container);
+        }
+        this.spoilerEffect2 = spoilerEffect2;
+    }
+
+    public void callDelegate() {
+        this.delegate.onCheckClick(this);
+    }
+
+    @Override
+    public void clearAnimation() {
+        super.clearAnimation();
+        AnimatorSet animatorSet = this.animator;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.animator = null;
+            this.container.setScaleX(this.checkBox.isChecked() ? 0.787f : 1.0f);
+            this.container.setScaleY(this.checkBox.isChecked() ? 0.787f : 1.0f);
+        }
+    }
+
+    public CheckBox2 getCheckBox() {
+        return this.checkBox;
+    }
+
+    public FrameLayout getCheckFrame() {
+        return this.checkFrame;
+    }
+
+    public BackupImageView getImageView() {
+        return this.imageView;
+    }
+
+    public MediaController.PhotoEntry getPhotoEntry() {
+        return this.photoEntry;
+    }
+
+    public float getScale() {
+        return this.container.getScaleX();
+    }
+
+    protected int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public View getVideoInfoContainer() {
+        return this.videoInfoContainer;
+    }
+
+    public boolean isChecked() {
+        return this.checkBox.isChecked();
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+        if (spoilerEffect2 != null) {
+            if (spoilerEffect2.destroyed) {
+                this.spoilerEffect2 = SpoilerEffect2.getInstance(this);
+            } else {
+                spoilerEffect2.attach(this);
             }
         }
     }
@@ -336,14 +323,151 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
-        if (spoilerEffect2 != null) {
-            if (spoilerEffect2.destroyed) {
-                this.spoilerEffect2 = SpoilerEffect2.getInstance(this);
+    protected void onDraw(Canvas canvas) {
+        MediaController.PhotoEntry photoEntry;
+        MediaController.SearchImage searchImage;
+        if (!this.checkBox.isChecked() && this.container.getScaleX() == 1.0f && this.imageView.getImageReceiver().hasNotThumb() && this.imageView.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.photoEntry) == null || !PhotoViewer.isShowingImage(photoEntry.path)) && ((searchImage = this.searchEntry) == null || !PhotoViewer.isShowingImage(searchImage.getPathToAttach())))) {
+            return;
+        }
+        this.backgroundPaint.setColor(getThemedColor(Theme.key_chat_attachPhotoBackground));
+        canvas.drawRect(0.0f, 0.0f, this.imageView.getMeasuredWidth(), this.imageView.getMeasuredHeight(), this.backgroundPaint);
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        String string;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+        StringBuilder sb = new StringBuilder();
+        MediaController.PhotoEntry photoEntry = this.photoEntry;
+        if (photoEntry == null || !photoEntry.isVideo) {
+            string = LocaleController.getString(R.string.AttachPhoto);
+        } else {
+            string = LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(this.photoEntry.duration);
+        }
+        sb.append(string);
+        if (this.photoEntry != null) {
+            sb.append(". ");
+            sb.append(LocaleController.getInstance().getFormatterStats().format(this.photoEntry.dateTaken * 1000));
+        }
+        accessibilityNodeInfo.setText(sb);
+        if (this.checkBox.isChecked()) {
+            accessibilityNodeInfo.setSelected(true);
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int makeMeasureSpec;
+        int dp;
+        if (this.itemSizeChanged) {
+            makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824);
+            dp = this.itemSize + AndroidUtilities.dp(5.0f);
+        } else {
+            if (this.isVertical) {
+                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824);
+                dp = AndroidUtilities.dp((this.isLast ? 0 : 6) + 80);
             } else {
-                spoilerEffect2.attach(this);
+                makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 0 : 6) + 80), 1073741824);
+                dp = AndroidUtilities.dp(80.0f);
+            }
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+    }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public boolean performAccessibilityAction(int i, Bundle bundle) {
+        if (i == R.id.acc_action_open_photo) {
+            View view = (View) getParent();
+            view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), 0, getLeft(), (getTop() + getHeight()) - 1, 0));
+            view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), 1, getLeft(), (getTop() + getHeight()) - 1, 0));
+        }
+        return super.performAccessibilityAction(i, bundle);
+    }
+
+    public void setChecked(int i, final boolean z, boolean z2) {
+        this.checkBox.setChecked(i, z, z2);
+        if (this.itemSizeChanged) {
+            AnimatorSet animatorSet = this.animator;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+                this.animator = null;
+            }
+            if (!z2) {
+                this.container.setScaleX(z ? 0.787f : 1.0f);
+                this.container.setScaleY(z ? 0.787f : 1.0f);
+                return;
+            }
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.animator = animatorSet2;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_X, z ? 0.787f : 1.0f), ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 0.787f : 1.0f));
+            this.animator.setDuration(200L);
+            this.animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationCancel(Animator animator) {
+                    if (PhotoAttachPhotoCell.this.animator == null || !PhotoAttachPhotoCell.this.animator.equals(animator)) {
+                        return;
+                    }
+                    PhotoAttachPhotoCell.this.animator = null;
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (PhotoAttachPhotoCell.this.animator == null || !PhotoAttachPhotoCell.this.animator.equals(animator)) {
+                        return;
+                    }
+                    PhotoAttachPhotoCell.this.animator = null;
+                    if (z) {
+                        return;
+                    }
+                    PhotoAttachPhotoCell.this.setBackgroundColor(0);
+                }
+            });
+            this.animator.start();
+        }
+    }
+
+    public void setDelegate(PhotoAttachPhotoCellDelegate photoAttachPhotoCellDelegate) {
+        this.delegate = photoAttachPhotoCellDelegate;
+    }
+
+    public void setHasSpoiler(boolean z) {
+        setHasSpoiler(z, null);
+    }
+
+    public void setHasSpoiler(boolean z, Float f) {
+        if (this.hasSpoiler != z) {
+            float f2 = 0.0f;
+            this.spoilerRevealProgress = 0.0f;
+            if (isLaidOut()) {
+                Bitmap bitmap = this.imageViewCrossfadeSnapshot;
+                this.imageViewCrossfadeSnapshot = AndroidUtilities.snapshotView(this.imageView);
+                if (bitmap != null) {
+                    bitmap.recycle();
+                }
+            } else {
+                Bitmap bitmap2 = this.imageViewCrossfadeSnapshot;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                    this.imageViewCrossfadeSnapshot = null;
+                }
+                f2 = 1.0f;
+            }
+            this.imageViewCrossfadeProgress = f2;
+            this.hasSpoiler = z;
+            this.crossfadeDuration = f;
+            this.imageView.setHasBlur(z);
+            this.imageView.invalidate();
+            if (z) {
+                updateSpoilers2(z);
             }
         }
     }
@@ -371,173 +495,6 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.itemSizeChanged = true;
     }
 
-    @Override
-    protected void onMeasure(int i, int i2) {
-        if (this.itemSizeChanged) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), View.MeasureSpec.makeMeasureSpec(this.itemSize + AndroidUtilities.dp(5.0f), 1073741824));
-            return;
-        }
-        if (this.isVertical) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 0 : 6) + 80), 1073741824));
-        } else {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp((this.isLast ? 0 : 6) + 80), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
-        }
-    }
-
-    public MediaController.PhotoEntry getPhotoEntry() {
-        return this.photoEntry;
-    }
-
-    public BackupImageView getImageView() {
-        return this.imageView;
-    }
-
-    public float getScale() {
-        return this.container.getScaleX();
-    }
-
-    public CheckBox2 getCheckBox() {
-        return this.checkBox;
-    }
-
-    public FrameLayout getCheckFrame() {
-        return this.checkFrame;
-    }
-
-    public View getVideoInfoContainer() {
-        return this.videoInfoContainer;
-    }
-
-    public void setPhotoEntry(MediaController.PhotoEntry photoEntry, boolean z, boolean z2, boolean z3) {
-        boolean z4 = false;
-        this.pressed = false;
-        this.photoEntry = photoEntry;
-        this.isLast = z3;
-        if (photoEntry.isVideo) {
-            this.imageView.setOrientation(0, true);
-            this.videoInfoContainer.setVisibility(0);
-            this.videoTextView.setText(AndroidUtilities.formatShortDuration(this.photoEntry.duration));
-        } else {
-            this.videoInfoContainer.setVisibility(4);
-        }
-        MediaController.PhotoEntry photoEntry2 = this.photoEntry;
-        String str = photoEntry2.thumbPath;
-        if (str != null) {
-            this.imageView.setImage(str, null, Theme.chat_attachEmptyDrawable);
-        } else if (photoEntry2.path != null) {
-            if (photoEntry2.isVideo) {
-                this.imageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
-            } else {
-                this.imageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                this.imageView.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
-            }
-        } else {
-            this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
-        }
-        if (z2 && PhotoViewer.isShowingImage(this.photoEntry.path)) {
-            z4 = true;
-        }
-        this.imageView.getImageReceiver().setVisible(!z4, true);
-        this.checkBox.setAlpha(z4 ? 0.0f : 1.0f);
-        this.videoInfoContainer.setAlpha(z4 ? 0.0f : 1.0f);
-        requestLayout();
-        setHasSpoiler(photoEntry.hasSpoiler);
-        setStarsPrice(photoEntry.starsAmount, z);
-    }
-
-    public void setPhotoEntry(MediaController.SearchImage searchImage, boolean z, boolean z2) {
-        this.pressed = false;
-        this.searchEntry = searchImage;
-        this.isLast = z2;
-        Drawable drawable = this.zoomOnSelect ? Theme.chat_attachEmptyDrawable : getResources().getDrawable(R.drawable.nophotos);
-        TLRPC$PhotoSize tLRPC$PhotoSize = searchImage.thumbPhotoSize;
-        if (tLRPC$PhotoSize != null) {
-            this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize, searchImage.photo), (String) null, drawable, searchImage);
-        } else {
-            TLRPC$PhotoSize tLRPC$PhotoSize2 = searchImage.photoSize;
-            if (tLRPC$PhotoSize2 != null) {
-                this.imageView.setImage(ImageLocation.getForPhoto(tLRPC$PhotoSize2, searchImage.photo), "80_80", drawable, searchImage);
-            } else {
-                String str = searchImage.thumbPath;
-                if (str != null) {
-                    this.imageView.setImage(str, null, drawable);
-                } else if (!TextUtils.isEmpty(searchImage.thumbUrl)) {
-                    ImageLocation forPath = ImageLocation.getForPath(searchImage.thumbUrl);
-                    if (searchImage.type == 1 && searchImage.thumbUrl.endsWith("mp4")) {
-                        forPath.imageType = 2;
-                    }
-                    this.imageView.setImage(forPath, (String) null, drawable, searchImage);
-                } else {
-                    TLRPC$Document tLRPC$Document = searchImage.document;
-                    if (tLRPC$Document != null) {
-                        MessageObject.getDocumentVideoThumb(tLRPC$Document);
-                        TLRPC$VideoSize documentVideoThumb = MessageObject.getDocumentVideoThumb(searchImage.document);
-                        if (documentVideoThumb != null) {
-                            this.imageView.setImage(ImageLocation.getForDocument(documentVideoThumb, searchImage.document), null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 90), searchImage.document), "52_52", null, -1L, 1, searchImage);
-                        } else {
-                            this.imageView.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320), searchImage.document), (String) null, drawable, searchImage);
-                        }
-                    } else {
-                        this.imageView.setImageDrawable(drawable);
-                    }
-                }
-            }
-        }
-        boolean z3 = z && PhotoViewer.isShowingImage(searchImage.getPathToAttach());
-        this.imageView.getImageReceiver().setVisible(!z3, true);
-        this.checkBox.setAlpha(z3 ? 0.0f : 1.0f);
-        this.videoInfoContainer.setAlpha(z3 ? 0.0f : 1.0f);
-        requestLayout();
-        setHasSpoiler(false);
-        setStarsPrice(0L, false);
-    }
-
-    public boolean isChecked() {
-        return this.checkBox.isChecked();
-    }
-
-    public void setChecked(int i, final boolean z, boolean z2) {
-        this.checkBox.setChecked(i, z, z2);
-        if (this.itemSizeChanged) {
-            AnimatorSet animatorSet = this.animator;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-                this.animator = null;
-            }
-            if (z2) {
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                this.animator = animatorSet2;
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_X, z ? 0.787f : 1.0f), ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 0.787f : 1.0f));
-                this.animator.setDuration(200L);
-                this.animator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (PhotoAttachPhotoCell.this.animator == null || !PhotoAttachPhotoCell.this.animator.equals(animator)) {
-                            return;
-                        }
-                        PhotoAttachPhotoCell.this.animator = null;
-                        if (z) {
-                            return;
-                        }
-                        PhotoAttachPhotoCell.this.setBackgroundColor(0);
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-                        if (PhotoAttachPhotoCell.this.animator == null || !PhotoAttachPhotoCell.this.animator.equals(animator)) {
-                            return;
-                        }
-                        PhotoAttachPhotoCell.this.animator = null;
-                    }
-                });
-                this.animator.start();
-                return;
-            }
-            this.container.setScaleX(z ? 0.787f : 1.0f);
-            this.container.setScaleY(z ? 0.787f : 1.0f);
-        }
-    }
-
     public void setNum(int i) {
         this.checkBox.setNum(i);
     }
@@ -546,16 +503,51 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.checkFrame.setOnClickListener(onClickListener);
     }
 
-    public void setDelegate(PhotoAttachPhotoCellDelegate photoAttachPhotoCellDelegate) {
-        this.delegate = photoAttachPhotoCellDelegate;
+    public void setPhotoEntry(org.telegram.messenger.MediaController.PhotoEntry r7, boolean r8, boolean r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.setPhotoEntry(org.telegram.messenger.MediaController$PhotoEntry, boolean, boolean, boolean):void");
     }
 
-    public void callDelegate() {
-        this.delegate.onCheckClick(this);
+    public void setPhotoEntry(org.telegram.messenger.MediaController.SearchImage r15, boolean r16, boolean r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.setPhotoEntry(org.telegram.messenger.MediaController$SearchImage, boolean, boolean):void");
     }
 
-    public void showImage() {
-        this.imageView.getImageReceiver().setVisible(true, true);
+    public void setStarsPrice(long j, boolean z) {
+        SpannableStringBuilder spannableStringBuilder;
+        CharSequence l;
+        if (z == this.starsSelectedMultiple && j == this.stars) {
+            return;
+        }
+        this.stars = j;
+        this.starsSelectedMultiple = z;
+        if (j > 0) {
+            spannableStringBuilder = new SpannableStringBuilder();
+            if (this.star == null) {
+                this.star = new SpannableString("⭐");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.star_small_inner);
+                coloredImageSpan.setScale(0.7f, 0.7f);
+                SpannableString spannableString = this.star;
+                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+            }
+            spannableStringBuilder.append((CharSequence) this.star);
+            spannableStringBuilder.append((CharSequence) "\u2009");
+            if (z) {
+                if (this.lock == null) {
+                    this.lock = new SpannableString("l");
+                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.msg_mini_lock2);
+                    SpannableString spannableString2 = this.lock;
+                    spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+                }
+                l = this.lock;
+            } else {
+                l = Long.toString(j);
+            }
+            spannableStringBuilder.append(l);
+        } else {
+            spannableStringBuilder = null;
+        }
+        this.imageView.setBlurredText(spannableStringBuilder);
+        this.imageView.invalidate();
+        this.container.invalidate();
     }
 
     public void showCheck(boolean z) {
@@ -588,69 +580,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         }
     }
 
-    @Override
-    public void clearAnimation() {
-        super.clearAnimation();
-        AnimatorSet animatorSet = this.animator;
-        if (animatorSet != null) {
-            animatorSet.cancel();
-            this.animator = null;
-            this.container.setScaleX(this.checkBox.isChecked() ? 0.787f : 1.0f);
-            this.container.setScaleY(this.checkBox.isChecked() ? 0.787f : 1.0f);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(android.view.MotionEvent r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.PhotoAttachPhotoCell.onTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        MediaController.PhotoEntry photoEntry;
-        MediaController.SearchImage searchImage;
-        if (!this.checkBox.isChecked() && this.container.getScaleX() == 1.0f && this.imageView.getImageReceiver().hasNotThumb() && this.imageView.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.photoEntry) == null || !PhotoViewer.isShowingImage(photoEntry.path)) && ((searchImage = this.searchEntry) == null || !PhotoViewer.isShowingImage(searchImage.getPathToAttach())))) {
-            return;
-        }
-        this.backgroundPaint.setColor(getThemedColor(Theme.key_chat_attachPhotoBackground));
-        canvas.drawRect(0.0f, 0.0f, this.imageView.getMeasuredWidth(), this.imageView.getMeasuredHeight(), this.backgroundPaint);
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setEnabled(true);
-        StringBuilder sb = new StringBuilder();
-        MediaController.PhotoEntry photoEntry = this.photoEntry;
-        if (photoEntry != null && photoEntry.isVideo) {
-            sb.append(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(this.photoEntry.duration));
-        } else {
-            sb.append(LocaleController.getString(R.string.AttachPhoto));
-        }
-        if (this.photoEntry != null) {
-            sb.append(". ");
-            sb.append(LocaleController.getInstance().getFormatterStats().format(this.photoEntry.dateTaken * 1000));
-        }
-        accessibilityNodeInfo.setText(sb);
-        if (this.checkBox.isChecked()) {
-            accessibilityNodeInfo.setSelected(true);
-        }
-        if (Build.VERSION.SDK_INT >= 21) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
-        }
-    }
-
-    @Override
-    public boolean performAccessibilityAction(int i, Bundle bundle) {
-        if (i == R.id.acc_action_open_photo) {
-            View view = (View) getParent();
-            view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), 0, getLeft(), (getTop() + getHeight()) - 1, 0));
-            view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(), SystemClock.uptimeMillis(), 1, getLeft(), (getTop() + getHeight()) - 1, 0));
-        }
-        return super.performAccessibilityAction(i, bundle);
-    }
-
-    protected int getThemedColor(int i) {
-        return Theme.getColor(i, this.resourcesProvider);
+    public void showImage() {
+        this.imageView.getImageReceiver().setVisible(true, true);
     }
 }

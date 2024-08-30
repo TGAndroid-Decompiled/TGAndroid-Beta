@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class TLRPC$TL_help_countryCode extends TLObject {
     public String country_code;
     public int flags;
-    public ArrayList<String> prefixes = new ArrayList<>();
-    public ArrayList<String> patterns = new ArrayList<>();
+    public ArrayList prefixes = new ArrayList();
+    public ArrayList patterns = new ArrayList();
 
     public static TLRPC$TL_help_countryCode TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (1107543535 != i) {
@@ -63,7 +63,7 @@ public class TLRPC$TL_help_countryCode extends TLObject {
             int size = this.prefixes.size();
             abstractSerializedData.writeInt32(size);
             for (int i = 0; i < size; i++) {
-                abstractSerializedData.writeString(this.prefixes.get(i));
+                abstractSerializedData.writeString((String) this.prefixes.get(i));
             }
         }
         if ((this.flags & 2) != 0) {
@@ -71,7 +71,7 @@ public class TLRPC$TL_help_countryCode extends TLObject {
             int size2 = this.patterns.size();
             abstractSerializedData.writeInt32(size2);
             for (int i2 = 0; i2 < size2; i2++) {
-                abstractSerializedData.writeString(this.patterns.get(i2));
+                abstractSerializedData.writeString((String) this.patterns.get(i2));
             }
         }
     }

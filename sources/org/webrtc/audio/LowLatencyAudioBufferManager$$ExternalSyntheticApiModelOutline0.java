@@ -1,4 +1,4 @@
 package org.webrtc.audio;
 
-public final class LowLatencyAudioBufferManager$$ExternalSyntheticApiModelOutline0 {
+public abstract class LowLatencyAudioBufferManager$$ExternalSyntheticApiModelOutline0 {
 }

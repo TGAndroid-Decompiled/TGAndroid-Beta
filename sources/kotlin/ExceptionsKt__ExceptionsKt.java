@@ -3,7 +3,7 @@ package kotlin;
 import kotlin.internal.PlatformImplementationsKt;
 import kotlin.jvm.internal.Intrinsics;
 
-public class ExceptionsKt__ExceptionsKt {
+public abstract class ExceptionsKt__ExceptionsKt {
     public static void addSuppressed(Throwable th, Throwable exception) {
         Intrinsics.checkNotNullParameter(th, "<this>");
         Intrinsics.checkNotNullParameter(exception, "exception");

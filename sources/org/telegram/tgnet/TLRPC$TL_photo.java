@@ -59,14 +59,14 @@ public class TLRPC$TL_photo extends TLRPC$Photo {
         int size = this.sizes.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.sizes.get(i2).serializeToStream(abstractSerializedData);
+            ((TLRPC$PhotoSize) this.sizes.get(i2)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.video_sizes.size();
             abstractSerializedData.writeInt32(size2);
             for (int i3 = 0; i3 < size2; i3++) {
-                this.video_sizes.get(i3).serializeToStream(abstractSerializedData);
+                ((TLRPC$VideoSize) this.video_sizes.get(i3)).serializeToStream(abstractSerializedData);
             }
         }
         abstractSerializedData.writeInt32(this.dc_id);

@@ -3,9 +3,9 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_peerColorProfileSet extends TLRPC$help_PeerColorSet {
-    public ArrayList<Integer> palette_colors = new ArrayList<>();
-    public ArrayList<Integer> bg_colors = new ArrayList<>();
-    public ArrayList<Integer> story_colors = new ArrayList<>();
+    public ArrayList palette_colors = new ArrayList();
+    public ArrayList bg_colors = new ArrayList();
+    public ArrayList story_colors = new ArrayList();
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -51,19 +51,19 @@ public class TLRPC$TL_help_peerColorProfileSet extends TLRPC$help_PeerColorSet {
         int size = this.palette_colors.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            abstractSerializedData.writeInt32(this.palette_colors.get(i).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.palette_colors.get(i)).intValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.bg_colors.size();
         abstractSerializedData.writeInt32(size2);
         for (int i2 = 0; i2 < size2; i2++) {
-            abstractSerializedData.writeInt32(this.bg_colors.get(i2).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.bg_colors.get(i2)).intValue());
         }
         abstractSerializedData.writeInt32(481674261);
         int size3 = this.story_colors.size();
         abstractSerializedData.writeInt32(size3);
         for (int i3 = 0; i3 < size3; i3++) {
-            abstractSerializedData.writeInt32(this.story_colors.get(i3).intValue());
+            abstractSerializedData.writeInt32(((Integer) this.story_colors.get(i3)).intValue());
         }
     }
 }

@@ -27,6 +27,10 @@ public class BotSwitchCell extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
+    public TextView getTextView() {
+        return this.textView;
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
@@ -34,9 +38,5 @@ public class BotSwitchCell extends FrameLayout {
 
     public void setText(String str) {
         this.textView.setText(str);
-    }
-
-    public TextView getTextView() {
-        return this.textView;
     }
 }

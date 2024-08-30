@@ -5,12 +5,12 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 
-final class SynchronizedLazyImpl<T> implements Lazy<T>, Serializable {
+final class SynchronizedLazyImpl implements Lazy, Serializable {
     private volatile Object _value;
-    private Function0<? extends T> initializer;
+    private Function0 initializer;
     private final Object lock;
 
-    public SynchronizedLazyImpl(Function0<? extends T> initializer, Object obj) {
+    public SynchronizedLazyImpl(Function0 initializer, Object obj) {
         Intrinsics.checkNotNullParameter(initializer, "initializer");
         this.initializer = initializer;
         this._value = UNINITIALIZED_VALUE.INSTANCE;
@@ -22,24 +22,24 @@ final class SynchronizedLazyImpl<T> implements Lazy<T>, Serializable {
     }
 
     @Override
-    public T getValue() {
-        T t;
-        T t2 = (T) this._value;
+    public Object getValue() {
+        Object obj;
+        Object obj2 = this._value;
         UNINITIALIZED_VALUE uninitialized_value = UNINITIALIZED_VALUE.INSTANCE;
-        if (t2 != uninitialized_value) {
-            return t2;
+        if (obj2 != uninitialized_value) {
+            return obj2;
         }
         synchronized (this.lock) {
-            t = (T) this._value;
-            if (t == uninitialized_value) {
-                Function0<? extends T> function0 = this.initializer;
+            obj = this._value;
+            if (obj == uninitialized_value) {
+                Function0 function0 = this.initializer;
                 Intrinsics.checkNotNull(function0);
-                t = function0.invoke();
-                this._value = t;
+                obj = function0.invoke();
+                this._value = obj;
                 this.initializer = null;
             }
         }
-        return t;
+        return obj;
     }
 
     public boolean isInitialized() {

@@ -59,70 +59,13 @@ public class FlatCheckBox extends View {
         this.checkPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
 
-    public void recolor(int i) {
-        this.colorActive = Theme.getColor(Theme.key_windowBackgroundWhite);
-        this.colorTextActive = -1;
-        this.colorInactive = i;
-        invalidate();
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.attached = true;
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.attached = false;
-    }
-
-    public void setChecked(boolean z) {
-        setChecked(z, true);
-    }
-
-    public void setChecked(boolean z, boolean z2) {
-        this.checked = z;
-        if (!this.attached || !z2) {
-            this.progress = z ? 1.0f : 0.0f;
-            return;
-        }
-        ValueAnimator valueAnimator = this.checkAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            this.checkAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, z ? 1.0f : 0.0f);
-        this.checkAnimator = ofFloat;
-        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                FlatCheckBox.this.lambda$setChecked$0(valueAnimator2);
-            }
-        });
-        this.checkAnimator.setDuration(300L);
-        this.checkAnimator.start();
-    }
-
     public void lambda$setChecked$0(ValueAnimator valueAnimator) {
         this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    public void setText(String str) {
-        this.text = str;
-        requestLayout();
-    }
-
-    @Override
-    protected void onMeasure(int i, int i2) {
-        String str = this.text;
-        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.P * 2), this.HEIGHT + AndroidUtilities.dp(4.0f));
-        if (getMeasuredWidth() != this.lastW) {
-            this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.rectF.inset(this.P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.P + (this.outLinePaint.getStrokeWidth() / 2.0f));
-        }
+    public void denied() {
+        AndroidUtilities.shakeView(this);
     }
 
     @Override
@@ -162,7 +105,64 @@ public class FlatCheckBox extends View {
         canvas.restore();
     }
 
-    public void denied() {
-        AndroidUtilities.shakeView(this);
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.attached = true;
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.attached = false;
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        String str = this.text;
+        setMeasuredDimension((str == null ? 0 : (int) this.textPaint.measureText(str)) + (this.INNER_PADDING << 1) + (this.P * 2), this.HEIGHT + AndroidUtilities.dp(4.0f));
+        if (getMeasuredWidth() != this.lastW) {
+            this.rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.rectF.inset(this.P + (this.outLinePaint.getStrokeWidth() / 2.0f), this.P + (this.outLinePaint.getStrokeWidth() / 2.0f));
+        }
+    }
+
+    public void recolor(int i) {
+        this.colorActive = Theme.getColor(Theme.key_windowBackgroundWhite);
+        this.colorTextActive = -1;
+        this.colorInactive = i;
+        invalidate();
+    }
+
+    public void setChecked(boolean z) {
+        setChecked(z, true);
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        this.checked = z;
+        if (!this.attached || !z2) {
+            this.progress = z ? 1.0f : 0.0f;
+            return;
+        }
+        ValueAnimator valueAnimator = this.checkAnimator;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.checkAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, z ? 1.0f : 0.0f);
+        this.checkAnimator = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                FlatCheckBox.this.lambda$setChecked$0(valueAnimator2);
+            }
+        });
+        this.checkAnimator.setDuration(300L);
+        this.checkAnimator.start();
+    }
+
+    public void setText(String str) {
+        this.text = str;
+        requestLayout();
     }
 }

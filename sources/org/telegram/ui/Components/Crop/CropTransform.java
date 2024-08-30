@@ -15,6 +15,76 @@ public class CropTransform {
     private float minScale;
     private float trueCropScale;
 
+    public CropTransform clone() {
+        CropTransform cropTransform = new CropTransform();
+        cropTransform.hasTransform = this.hasTransform;
+        cropTransform.cropPx = this.cropPx;
+        cropTransform.cropPy = this.cropPy;
+        cropTransform.cropAreaX = this.cropAreaX;
+        cropTransform.cropAreaY = this.cropAreaY;
+        cropTransform.cropScale = this.cropScale;
+        cropTransform.cropRotation = this.cropRotation;
+        cropTransform.isMirrored = this.isMirrored;
+        cropTransform.cropOrientation = this.cropOrientation;
+        cropTransform.cropPw = this.cropPw;
+        cropTransform.cropPh = this.cropPh;
+        cropTransform.trueCropScale = this.trueCropScale;
+        cropTransform.minScale = this.minScale;
+        return cropTransform;
+    }
+
+    public float getCropAreaX() {
+        return this.cropAreaX;
+    }
+
+    public float getCropAreaY() {
+        return this.cropAreaY;
+    }
+
+    public float getCropPh() {
+        return this.cropPh;
+    }
+
+    public float getCropPw() {
+        return this.cropPw;
+    }
+
+    public float getCropPx() {
+        return this.cropPx;
+    }
+
+    public float getCropPy() {
+        return this.cropPy;
+    }
+
+    public float getMinScale() {
+        return this.minScale;
+    }
+
+    public int getOrientation() {
+        return this.cropOrientation;
+    }
+
+    public float getRotation() {
+        return this.cropRotation;
+    }
+
+    public float getScale() {
+        return this.cropScale;
+    }
+
+    public float getTrueCropScale() {
+        return this.trueCropScale;
+    }
+
+    public boolean hasViewTransform() {
+        return this.hasTransform;
+    }
+
+    public boolean isMirrored() {
+        return this.isMirrored;
+    }
+
     public void setViewTransform(boolean z) {
         this.hasTransform = z;
     }
@@ -36,9 +106,7 @@ public class CropTransform {
         }
         while (true) {
             int i3 = this.cropOrientation;
-            if (i3 >= 360) {
-                this.cropOrientation = i3 - 360;
-            } else {
+            if (i3 < 360) {
                 this.cropPw = f7;
                 this.cropPh = f8;
                 this.cropAreaX = f9;
@@ -48,76 +116,7 @@ public class CropTransform {
                 this.isMirrored = z2;
                 return;
             }
+            this.cropOrientation = i3 - 360;
         }
-    }
-
-    public boolean hasViewTransform() {
-        return this.hasTransform;
-    }
-
-    public float getCropAreaX() {
-        return this.cropAreaX;
-    }
-
-    public float getCropAreaY() {
-        return this.cropAreaY;
-    }
-
-    public float getCropPx() {
-        return this.cropPx;
-    }
-
-    public float getCropPy() {
-        return this.cropPy;
-    }
-
-    public float getScale() {
-        return this.cropScale;
-    }
-
-    public float getRotation() {
-        return this.cropRotation;
-    }
-
-    public int getOrientation() {
-        return this.cropOrientation;
-    }
-
-    public float getTrueCropScale() {
-        return this.trueCropScale;
-    }
-
-    public float getMinScale() {
-        return this.minScale;
-    }
-
-    public float getCropPw() {
-        return this.cropPw;
-    }
-
-    public float getCropPh() {
-        return this.cropPh;
-    }
-
-    public boolean isMirrored() {
-        return this.isMirrored;
-    }
-
-    public CropTransform clone() {
-        CropTransform cropTransform = new CropTransform();
-        cropTransform.hasTransform = this.hasTransform;
-        cropTransform.cropPx = this.cropPx;
-        cropTransform.cropPy = this.cropPy;
-        cropTransform.cropAreaX = this.cropAreaX;
-        cropTransform.cropAreaY = this.cropAreaY;
-        cropTransform.cropScale = this.cropScale;
-        cropTransform.cropRotation = this.cropRotation;
-        cropTransform.isMirrored = this.isMirrored;
-        cropTransform.cropOrientation = this.cropOrientation;
-        cropTransform.cropPw = this.cropPw;
-        cropTransform.cropPh = this.cropPh;
-        cropTransform.trueCropScale = this.trueCropScale;
-        cropTransform.minScale = this.minScale;
-        return cropTransform;
     }
 }

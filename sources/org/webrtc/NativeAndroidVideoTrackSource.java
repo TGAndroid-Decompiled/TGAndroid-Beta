@@ -7,6 +7,14 @@ import org.webrtc.VideoSource;
 public class NativeAndroidVideoTrackSource {
     private final long nativeAndroidVideoTrackSource;
 
+    public NativeAndroidVideoTrackSource(long j) {
+        this.nativeAndroidVideoTrackSource = j;
+    }
+
+    static VideoProcessor.FrameAdaptationParameters createFrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z) {
+        return new VideoProcessor.FrameAdaptationParameters(i, i2, i3, i4, i5, i6, j, z);
+    }
+
     private static native VideoProcessor.FrameAdaptationParameters nativeAdaptFrame(long j, int i, int i2, int i3, long j2);
 
     private static native void nativeAdaptOutputFormat(long j, int i, int i2, Integer num, int i3, int i4, Integer num2, Integer num3);
@@ -17,32 +25,23 @@ public class NativeAndroidVideoTrackSource {
 
     private static native void nativeSetState(long j, boolean z);
 
-    public NativeAndroidVideoTrackSource(long j) {
-        this.nativeAndroidVideoTrackSource = j;
-    }
-
-    public void setState(boolean z) {
-        nativeSetState(this.nativeAndroidVideoTrackSource, z);
-    }
-
     public VideoProcessor.FrameAdaptationParameters adaptFrame(VideoFrame videoFrame) {
         return nativeAdaptFrame(this.nativeAndroidVideoTrackSource, videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotation(), videoFrame.getTimestampNs());
-    }
-
-    public void onFrameCaptured(VideoFrame videoFrame) {
-        nativeOnFrameCaptured(this.nativeAndroidVideoTrackSource, videoFrame.getRotation(), videoFrame.getTimestampNs(), videoFrame.getBuffer());
     }
 
     public void adaptOutputFormat(VideoSource.AspectRatio aspectRatio, Integer num, VideoSource.AspectRatio aspectRatio2, Integer num2, Integer num3) {
         nativeAdaptOutputFormat(this.nativeAndroidVideoTrackSource, aspectRatio.width, aspectRatio.height, num, aspectRatio2.width, aspectRatio2.height, num2, num3);
     }
 
+    public void onFrameCaptured(VideoFrame videoFrame) {
+        nativeOnFrameCaptured(this.nativeAndroidVideoTrackSource, videoFrame.getRotation(), videoFrame.getTimestampNs(), videoFrame.getBuffer());
+    }
+
     public void setIsScreencast(boolean z) {
         nativeSetIsScreencast(this.nativeAndroidVideoTrackSource, z);
     }
 
-    @CalledByNative
-    static VideoProcessor.FrameAdaptationParameters createFrameAdaptationParameters(int i, int i2, int i3, int i4, int i5, int i6, long j, boolean z) {
-        return new VideoProcessor.FrameAdaptationParameters(i, i2, i3, i4, i5, i6, j, z);
+    public void setState(boolean z) {
+        nativeSetState(this.nativeAndroidVideoTrackSource, z);
     }
 }

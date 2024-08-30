@@ -18,12 +18,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
@@ -37,106 +34,13 @@ import org.telegram.ui.GroupCallActivity;
 
 public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapter {
     private final GroupCallActivity activity;
-    private ArrayList<GroupCallMiniTextureView> attachedRenderers;
+    private ArrayList attachedRenderers;
     private final int currentAccount;
     private ChatObject.Call groupCall;
     private GroupCallRenderersContainer renderersContainer;
-    private final ArrayList<ChatObject.VideoParticipant> videoParticipants = new ArrayList<>();
-    private final ArrayList<TLRPC$TL_groupCallParticipant> participants = new ArrayList<>();
+    private final ArrayList videoParticipants = new ArrayList();
+    private final ArrayList participants = new ArrayList();
     private boolean visible = false;
-
-    @Override
-    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return false;
-    }
-
-    public GroupCallFullscreenAdapter(ChatObject.Call call, int i, GroupCallActivity groupCallActivity) {
-        this.groupCall = call;
-        this.currentAccount = i;
-        this.activity = groupCallActivity;
-    }
-
-    public void setRenderersPool(ArrayList<GroupCallMiniTextureView> arrayList, GroupCallRenderersContainer groupCallRenderersContainer) {
-        this.attachedRenderers = arrayList;
-        this.renderersContainer = groupCallRenderersContainer;
-    }
-
-    public void setGroupCall(ChatObject.Call call) {
-        this.groupCall = call;
-    }
-
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new RecyclerListView.Holder(new GroupCallUserCell(viewGroup.getContext()));
-    }
-
-    @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
-        ChatObject.VideoParticipant videoParticipant;
-        GroupCallUserCell groupCallUserCell = (GroupCallUserCell) viewHolder.itemView;
-        ChatObject.VideoParticipant videoParticipant2 = groupCallUserCell.videoParticipant;
-        if (i < this.videoParticipants.size()) {
-            videoParticipant = this.videoParticipants.get(i);
-            tLRPC$TL_groupCallParticipant = this.videoParticipants.get(i).participant;
-        } else {
-            if (i - this.videoParticipants.size() >= this.participants.size()) {
-                return;
-            }
-            tLRPC$TL_groupCallParticipant = this.participants.get(i - this.videoParticipants.size());
-            videoParticipant = null;
-        }
-        groupCallUserCell.setParticipant(videoParticipant, tLRPC$TL_groupCallParticipant);
-        if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && groupCallUserCell.attached && groupCallUserCell.getRenderer() != null) {
-            groupCallUserCell.attachRenderer(false);
-            if (videoParticipant != null) {
-                groupCallUserCell.attachRenderer(true);
-                return;
-            }
-            return;
-        }
-        if (groupCallUserCell.attached) {
-            if (groupCallUserCell.getRenderer() == null && videoParticipant != null && this.visible) {
-                groupCallUserCell.attachRenderer(true);
-            } else {
-                if (groupCallUserCell.getRenderer() == null || videoParticipant != null) {
-                    return;
-                }
-                groupCallUserCell.attachRenderer(false);
-            }
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return this.videoParticipants.size() + this.participants.size();
-    }
-
-    public void setVisibility(RecyclerListView recyclerListView, boolean z) {
-        this.visible = z;
-        for (int i = 0; i < recyclerListView.getChildCount(); i++) {
-            View childAt = recyclerListView.getChildAt(i);
-            if (childAt instanceof GroupCallUserCell) {
-                GroupCallUserCell groupCallUserCell = (GroupCallUserCell) childAt;
-                if (groupCallUserCell.getVideoParticipant() != null) {
-                    groupCallUserCell.attachRenderer(z);
-                }
-            }
-        }
-    }
-
-    public void scrollTo(ChatObject.VideoParticipant videoParticipant, RecyclerListView recyclerListView) {
-        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerListView.getLayoutManager();
-        if (linearLayoutManager == null) {
-            return;
-        }
-        for (int i = 0; i < this.videoParticipants.size(); i++) {
-            if (this.videoParticipants.get(i).equals(videoParticipant)) {
-                linearLayoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(13.0f));
-                return;
-            }
-        }
-    }
 
     public class GroupCallUserCell extends FrameLayout implements GroupCallStatusIcon.Callback {
         boolean attached;
@@ -197,6 +101,172 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             addView(this.muteButton, LayoutHelper.createFrame(24, 24.0f));
         }
 
+        private void drawSelection(android.graphics.Canvas r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.drawSelection(android.graphics.Canvas):void");
+        }
+
+        public void lambda$updateState$0(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+            this.lastColor = ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            this.lastWavesColor = ColorUtils.blendARGB(i3, i4, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+            this.muteButton.setColorFilter(new PorterDuffColorFilter(this.lastColor, PorterDuff.Mode.MULTIPLY));
+            this.textPaint.setColor(this.lastColor);
+            this.selectionPaint.setColor(this.lastWavesColor);
+            this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(this.lastWavesColor, 38));
+            invalidate();
+        }
+
+        private void setSelectedProgress(float f) {
+            if (this.selectionProgress != f) {
+                this.selectionProgress = f;
+                this.selectionPaint.setAlpha((int) (f * 255.0f));
+            }
+        }
+
+        public void attachRenderer(boolean z) {
+            if (GroupCallFullscreenAdapter.this.activity.isDismissed()) {
+                return;
+            }
+            if (z && this.renderer == null) {
+                this.renderer = GroupCallMiniTextureView.getOrCreate(GroupCallFullscreenAdapter.this.attachedRenderers, GroupCallFullscreenAdapter.this.renderersContainer, null, this, null, this.videoParticipant, GroupCallFullscreenAdapter.this.groupCall, GroupCallFullscreenAdapter.this.activity);
+            } else {
+                if (z) {
+                    return;
+                }
+                GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+                if (groupCallMiniTextureView != null) {
+                    groupCallMiniTextureView.setSecondaryView(null);
+                }
+                this.renderer = null;
+            }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+            if (groupCallMiniTextureView != null && groupCallMiniTextureView.isFullyVisible() && !GroupCallFullscreenAdapter.this.activity.drawingForBlur) {
+                drawSelection(canvas);
+                return;
+            }
+            if (this.progress > 0.0f) {
+                float measuredWidth = (getMeasuredWidth() / 2.0f) * (1.0f - this.progress);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.backgroundPaint);
+                drawSelection(canvas);
+            }
+            float x = this.avatarImageView.getX() + (this.avatarImageView.getMeasuredWidth() / 2);
+            float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
+            this.avatarWavesDrawable.update();
+            this.avatarWavesDrawable.draw(canvas, x, y, this);
+            float f = this.progress;
+            float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
+            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * dp);
+            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * dp);
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == this.muteButton) {
+                return true;
+            }
+            return super.drawChild(canvas, view, j);
+        }
+
+        public void drawOverlays(Canvas canvas) {
+            if (this.drawingName != null) {
+                canvas.save();
+                int measuredWidth = ((getMeasuredWidth() - this.nameWidth) - AndroidUtilities.dp(24.0f)) / 2;
+                this.textPaint.setAlpha((int) (this.progress * 255.0f * getAlpha()));
+                canvas.drawText(this.drawingName, AndroidUtilities.dp(22.0f) + measuredWidth, AndroidUtilities.dp(69.0f), this.textPaint);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(measuredWidth, AndroidUtilities.dp(53.0f));
+                if (this.muteButton.getDrawable() != null) {
+                    this.muteButton.getDrawable().setAlpha((int) (this.progress * 255.0f * getAlpha()));
+                    this.muteButton.draw(canvas);
+                    this.muteButton.getDrawable().setAlpha(255);
+                }
+                canvas.restore();
+            }
+        }
+
+        public BackupImageView getAvatarImageView() {
+            return this.avatarImageView;
+        }
+
+        public TLRPC$TL_groupCallParticipant getParticipant() {
+            return this.participant;
+        }
+
+        public long getPeerId() {
+            return this.peerId;
+        }
+
+        public float getProgressToFullscreen() {
+            return this.progress;
+        }
+
+        public GroupCallMiniTextureView getRenderer() {
+            return this.renderer;
+        }
+
+        public ChatObject.VideoParticipant getVideoParticipant() {
+            return this.videoParticipant;
+        }
+
+        @Override
+        public void invalidate() {
+            if (this.skipInvalidate) {
+                return;
+            }
+            this.skipInvalidate = true;
+            super.invalidate();
+            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+            if (groupCallMiniTextureView != null) {
+                groupCallMiniTextureView.invalidate();
+            } else {
+                GroupCallFullscreenAdapter.this.renderersContainer.invalidate();
+            }
+            this.skipInvalidate = false;
+        }
+
+        public boolean isRemoving(RecyclerListView recyclerListView) {
+            return recyclerListView.getChildAdapterPosition(this) == -1;
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            if (GroupCallFullscreenAdapter.this.visible && this.videoParticipant != null) {
+                attachRenderer(true);
+            }
+            this.attached = true;
+            this.statusIcon = GroupCallFullscreenAdapter.this.activity.statusIconPool.size() > 0 ? (GroupCallStatusIcon) GroupCallFullscreenAdapter.this.activity.statusIconPool.remove(GroupCallFullscreenAdapter.this.activity.statusIconPool.size() - 1) : new GroupCallStatusIcon();
+            this.statusIcon.setCallback(this);
+            this.statusIcon.setImageView(this.muteButton);
+            this.statusIcon.setParticipant(this.participant, false);
+            updateState(false);
+            this.avatarWavesDrawable.setShowWaves(this.statusIcon.isSpeaking(), this);
+            if (this.statusIcon.isSpeaking()) {
+                return;
+            }
+            this.avatarWavesDrawable.setAmplitude(0.0d);
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            attachRenderer(false);
+            this.attached = false;
+            if (this.statusIcon != null) {
+                GroupCallFullscreenAdapter.this.activity.statusIconPool.add(this.statusIcon);
+                this.statusIcon.setImageView(null);
+                this.statusIcon.setCallback(null);
+            }
+            this.statusIcon = null;
+        }
+
         @Override
         protected void onMeasure(int i, int i2) {
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -208,55 +278,27 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
         }
 
-        public void setParticipant(ChatObject.VideoParticipant videoParticipant, TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant) {
-            this.videoParticipant = videoParticipant;
-            this.participant = tLRPC$TL_groupCallParticipant;
-            long j = this.peerId;
-            long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
-            this.peerId = peerId;
-            if (peerId > 0) {
-                this.currentUser = AccountInstance.getInstance(GroupCallFullscreenAdapter.this.currentAccount).getMessagesController().getUser(Long.valueOf(this.peerId));
-                this.currentChat = null;
-                this.avatarDrawable.setInfo(GroupCallFullscreenAdapter.this.currentAccount, this.currentUser);
-                this.name = UserObject.getFirstName(this.currentUser);
-                this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
-                ImageLocation forUser = ImageLocation.getForUser(this.currentUser, 1);
-                this.hasAvatar = forUser != null;
-                this.avatarImageView.setImage(forUser, "50_50", this.avatarDrawable, this.currentUser);
-            } else {
-                this.currentChat = AccountInstance.getInstance(GroupCallFullscreenAdapter.this.currentAccount).getMessagesController().getChat(Long.valueOf(-this.peerId));
-                this.currentUser = null;
-                this.avatarDrawable.setInfo(GroupCallFullscreenAdapter.this.currentAccount, this.currentChat);
-                TLRPC$Chat tLRPC$Chat = this.currentChat;
-                if (tLRPC$Chat != null) {
-                    this.name = tLRPC$Chat.title;
-                    this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
-                    ImageLocation forChat = ImageLocation.getForChat(this.currentChat, 1);
-                    this.hasAvatar = forChat != null;
-                    this.avatarImageView.setImage(forChat, "50_50", this.avatarDrawable, this.currentChat);
-                }
-            }
-            boolean z = j == this.peerId;
-            if (videoParticipant == null) {
-                this.selected = GroupCallFullscreenAdapter.this.renderersContainer.fullscreenPeerId == MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
-            } else if (GroupCallFullscreenAdapter.this.renderersContainer.fullscreenParticipant != null) {
-                this.selected = GroupCallFullscreenAdapter.this.renderersContainer.fullscreenParticipant.equals(videoParticipant);
-            } else {
-                this.selected = false;
-            }
-            if (!z) {
-                setSelectedProgress(this.selected ? 1.0f : 0.0f);
-            }
-            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
-            if (groupCallStatusIcon != null) {
-                groupCallStatusIcon.setParticipant(tLRPC$TL_groupCallParticipant, z);
-                updateState(z);
-            }
+        @Override
+        public void onStatusChanged() {
+            this.avatarWavesDrawable.setShowWaves(this.statusIcon.isSpeaking(), this);
+            updateState(true);
         }
 
         @Override
         public void setAlpha(float f) {
             super.setAlpha(f);
+        }
+
+        public void setAmplitude(double d) {
+            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
+            if (groupCallStatusIcon != null) {
+                groupCallStatusIcon.setAmplitude(d);
+            }
+            this.avatarWavesDrawable.setAmplitude(d);
+        }
+
+        public void setParticipant(org.telegram.messenger.ChatObject.VideoParticipant r12, org.telegram.tgnet.TLRPC$TL_groupCallParticipant r13) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.setParticipant(org.telegram.messenger.ChatObject$VideoParticipant, org.telegram.tgnet.TLRPC$TL_groupCallParticipant):void");
         }
 
         public void setProgressToFullscreen(float f) {
@@ -290,196 +332,106 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             }
         }
 
-        @Override
-        protected void dispatchDraw(Canvas canvas) {
-            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
-            if (groupCallMiniTextureView != null && groupCallMiniTextureView.isFullyVisible() && !GroupCallFullscreenAdapter.this.activity.drawingForBlur) {
-                drawSelection(canvas);
-                return;
-            }
-            if (this.progress > 0.0f) {
-                float measuredWidth = (getMeasuredWidth() / 2.0f) * (1.0f - this.progress);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.backgroundPaint);
-                drawSelection(canvas);
-            }
-            float x = this.avatarImageView.getX() + (this.avatarImageView.getMeasuredWidth() / 2);
-            float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
-            this.avatarWavesDrawable.update();
-            this.avatarWavesDrawable.draw(canvas, x, y, this);
-            float f = this.progress;
-            float dp = ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * (1.0f - f)) + (f * 1.0f);
-            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * dp);
-            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * dp);
-            super.dispatchDraw(canvas);
-        }
-
-        private void drawSelection(android.graphics.Canvas r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.drawSelection(android.graphics.Canvas):void");
-        }
-
-        private void setSelectedProgress(float f) {
-            if (this.selectionProgress != f) {
-                this.selectionProgress = f;
-                this.selectionPaint.setAlpha((int) (f * 255.0f));
-            }
-        }
-
-        public long getPeerId() {
-            return this.peerId;
-        }
-
-        public BackupImageView getAvatarImageView() {
-            return this.avatarImageView;
-        }
-
-        public TLRPC$TL_groupCallParticipant getParticipant() {
-            return this.participant;
-        }
-
-        public ChatObject.VideoParticipant getVideoParticipant() {
-            return this.videoParticipant;
-        }
-
-        @Override
-        protected void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            if (GroupCallFullscreenAdapter.this.visible && this.videoParticipant != null) {
-                attachRenderer(true);
-            }
-            this.attached = true;
-            if (GroupCallFullscreenAdapter.this.activity.statusIconPool.size() > 0) {
-                this.statusIcon = GroupCallFullscreenAdapter.this.activity.statusIconPool.remove(GroupCallFullscreenAdapter.this.activity.statusIconPool.size() - 1);
-            } else {
-                this.statusIcon = new GroupCallStatusIcon();
-            }
-            this.statusIcon.setCallback(this);
-            this.statusIcon.setImageView(this.muteButton);
-            this.statusIcon.setParticipant(this.participant, false);
-            updateState(false);
-            this.avatarWavesDrawable.setShowWaves(this.statusIcon.isSpeaking(), this);
-            if (this.statusIcon.isSpeaking()) {
-                return;
-            }
-            this.avatarWavesDrawable.setAmplitude(0.0d);
-        }
-
-        @Override
-        protected void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            attachRenderer(false);
-            this.attached = false;
-            if (this.statusIcon != null) {
-                GroupCallFullscreenAdapter.this.activity.statusIconPool.add(this.statusIcon);
-                this.statusIcon.setImageView(null);
-                this.statusIcon.setCallback(null);
-            }
-            this.statusIcon = null;
-        }
-
-        public void attachRenderer(boolean z) {
-            if (GroupCallFullscreenAdapter.this.activity.isDismissed()) {
-                return;
-            }
-            if (z && this.renderer == null) {
-                this.renderer = GroupCallMiniTextureView.getOrCreate(GroupCallFullscreenAdapter.this.attachedRenderers, GroupCallFullscreenAdapter.this.renderersContainer, null, this, null, this.videoParticipant, GroupCallFullscreenAdapter.this.groupCall, GroupCallFullscreenAdapter.this.activity);
-            } else {
-                if (z) {
-                    return;
-                }
-                GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
-                if (groupCallMiniTextureView != null) {
-                    groupCallMiniTextureView.setSecondaryView(null);
-                }
-                this.renderer = null;
-            }
-        }
-
         public void setRenderer(GroupCallMiniTextureView groupCallMiniTextureView) {
             this.renderer = groupCallMiniTextureView;
-        }
-
-        public void drawOverlays(Canvas canvas) {
-            if (this.drawingName != null) {
-                canvas.save();
-                int measuredWidth = ((getMeasuredWidth() - this.nameWidth) - AndroidUtilities.dp(24.0f)) / 2;
-                this.textPaint.setAlpha((int) (this.progress * 255.0f * getAlpha()));
-                canvas.drawText(this.drawingName, AndroidUtilities.dp(22.0f) + measuredWidth, AndroidUtilities.dp(69.0f), this.textPaint);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(measuredWidth, AndroidUtilities.dp(53.0f));
-                if (this.muteButton.getDrawable() != null) {
-                    this.muteButton.getDrawable().setAlpha((int) (this.progress * 255.0f * getAlpha()));
-                    this.muteButton.draw(canvas);
-                    this.muteButton.getDrawable().setAlpha(255);
-                }
-                canvas.restore();
-            }
-        }
-
-        @Override
-        protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view == this.muteButton) {
-                return true;
-            }
-            return super.drawChild(canvas, view, j);
-        }
-
-        public float getProgressToFullscreen() {
-            return this.progress;
-        }
-
-        public GroupCallMiniTextureView getRenderer() {
-            return this.renderer;
-        }
-
-        public void setAmplitude(double d) {
-            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
-            if (groupCallStatusIcon != null) {
-                groupCallStatusIcon.setAmplitude(d);
-            }
-            this.avatarWavesDrawable.setAmplitude(d);
         }
 
         public void updateState(boolean r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallFullscreenAdapter.GroupCallUserCell.updateState(boolean):void");
         }
+    }
 
-        public void lambda$updateState$0(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
-            this.lastColor = ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            this.lastWavesColor = ColorUtils.blendARGB(i3, i4, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-            this.muteButton.setColorFilter(new PorterDuffColorFilter(this.lastColor, PorterDuff.Mode.MULTIPLY));
-            this.textPaint.setColor(this.lastColor);
-            this.selectionPaint.setColor(this.lastWavesColor);
-            this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(this.lastWavesColor, 38));
-            invalidate();
-        }
+    public GroupCallFullscreenAdapter(ChatObject.Call call, int i, GroupCallActivity groupCallActivity) {
+        this.groupCall = call;
+        this.currentAccount = i;
+        this.activity = groupCallActivity;
+    }
 
-        @Override
-        public void invalidate() {
-            if (this.skipInvalidate) {
+    @Override
+    public int getItemCount() {
+        return this.videoParticipants.size() + this.participants.size();
+    }
+
+    @Override
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        return false;
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
+        ChatObject.VideoParticipant videoParticipant;
+        GroupCallUserCell groupCallUserCell = (GroupCallUserCell) viewHolder.itemView;
+        ChatObject.VideoParticipant videoParticipant2 = groupCallUserCell.videoParticipant;
+        if (i < this.videoParticipants.size()) {
+            videoParticipant = (ChatObject.VideoParticipant) this.videoParticipants.get(i);
+            tLRPC$TL_groupCallParticipant = ((ChatObject.VideoParticipant) this.videoParticipants.get(i)).participant;
+        } else {
+            if (i - this.videoParticipants.size() >= this.participants.size()) {
                 return;
             }
-            this.skipInvalidate = true;
-            super.invalidate();
-            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
-            if (groupCallMiniTextureView == null) {
-                GroupCallFullscreenAdapter.this.renderersContainer.invalidate();
-            } else {
-                groupCallMiniTextureView.invalidate();
+            tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) this.participants.get(i - this.videoParticipants.size());
+            videoParticipant = null;
+        }
+        groupCallUserCell.setParticipant(videoParticipant, tLRPC$TL_groupCallParticipant);
+        boolean z = false;
+        if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && groupCallUserCell.attached && groupCallUserCell.getRenderer() != null) {
+            groupCallUserCell.attachRenderer(false);
+            if (videoParticipant == null) {
+                return;
             }
-            this.skipInvalidate = false;
+        } else {
+            if (!groupCallUserCell.attached) {
+                return;
+            }
+            if (groupCallUserCell.getRenderer() != null || videoParticipant == null || !this.visible) {
+                if (groupCallUserCell.getRenderer() == null || videoParticipant != null) {
+                    return;
+                }
+                groupCallUserCell.attachRenderer(z);
+            }
         }
+        z = true;
+        groupCallUserCell.attachRenderer(z);
+    }
 
-        @Override
-        public void onStatusChanged() {
-            this.avatarWavesDrawable.setShowWaves(this.statusIcon.isSpeaking(), this);
-            updateState(true);
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return new RecyclerListView.Holder(new GroupCallUserCell(viewGroup.getContext()));
+    }
+
+    public void scrollTo(ChatObject.VideoParticipant videoParticipant, RecyclerListView recyclerListView) {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerListView.getLayoutManager();
+        if (linearLayoutManager == null) {
+            return;
         }
+        for (int i = 0; i < this.videoParticipants.size(); i++) {
+            if (((ChatObject.VideoParticipant) this.videoParticipants.get(i)).equals(videoParticipant)) {
+                linearLayoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(13.0f));
+                return;
+            }
+        }
+    }
 
-        public boolean isRemoving(RecyclerListView recyclerListView) {
-            return recyclerListView.getChildAdapterPosition(this) == -1;
+    public void setGroupCall(ChatObject.Call call) {
+        this.groupCall = call;
+    }
+
+    public void setRenderersPool(ArrayList arrayList, GroupCallRenderersContainer groupCallRenderersContainer) {
+        this.attachedRenderers = arrayList;
+        this.renderersContainer = groupCallRenderersContainer;
+    }
+
+    public void setVisibility(RecyclerListView recyclerListView, boolean z) {
+        this.visible = z;
+        for (int i = 0; i < recyclerListView.getChildCount(); i++) {
+            View childAt = recyclerListView.getChildAt(i);
+            if (childAt instanceof GroupCallUserCell) {
+                GroupCallUserCell groupCallUserCell = (GroupCallUserCell) childAt;
+                if (groupCallUserCell.getVideoParticipant() != null) {
+                    groupCallUserCell.attachRenderer(z);
+                }
+            }
         }
     }
 
@@ -487,9 +439,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         if (this.groupCall == null) {
             return;
         }
-        if (z) {
-            final ArrayList arrayList = new ArrayList(this.participants);
-            final ArrayList arrayList2 = new ArrayList(this.videoParticipants);
+        if (!z) {
             this.participants.clear();
             ChatObject.Call call = this.groupCall;
             if (!call.call.rtmp_stream) {
@@ -500,44 +450,11 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             if (!call2.call.rtmp_stream) {
                 this.videoParticipants.addAll(call2.visibleVideoParticipants);
             }
-            DiffUtil.calculateDiff(new DiffUtil.Callback() {
-                @Override
-                public boolean areContentsTheSame(int i, int i2) {
-                    return true;
-                }
-
-                @Override
-                public int getOldListSize() {
-                    return arrayList2.size() + arrayList.size();
-                }
-
-                @Override
-                public int getNewListSize() {
-                    return GroupCallFullscreenAdapter.this.videoParticipants.size() + GroupCallFullscreenAdapter.this.participants.size();
-                }
-
-                @Override
-                public boolean areItemsTheSame(int i, int i2) {
-                    TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
-                    if (i < arrayList2.size() && i2 < GroupCallFullscreenAdapter.this.videoParticipants.size()) {
-                        return ((ChatObject.VideoParticipant) arrayList2.get(i)).equals(GroupCallFullscreenAdapter.this.videoParticipants.get(i2));
-                    }
-                    int size = i - arrayList2.size();
-                    int size2 = i2 - GroupCallFullscreenAdapter.this.videoParticipants.size();
-                    if (size2 >= 0 && size2 < GroupCallFullscreenAdapter.this.participants.size() && size >= 0 && size < arrayList.size()) {
-                        return MessageObject.getPeerId(((TLRPC$TL_groupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId(((TLRPC$TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
-                    }
-                    if (i < arrayList2.size()) {
-                        tLRPC$TL_groupCallParticipant = ((ChatObject.VideoParticipant) arrayList2.get(i)).participant;
-                    } else {
-                        tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) arrayList.get(size);
-                    }
-                    return MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer) == MessageObject.getPeerId((i2 < GroupCallFullscreenAdapter.this.videoParticipants.size() ? ((ChatObject.VideoParticipant) GroupCallFullscreenAdapter.this.videoParticipants.get(i2)).participant : (TLRPC$TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
-                }
-            }).dispatchUpdatesTo(this);
-            AndroidUtilities.updateVisibleRows(recyclerListView);
+            notifyDataSetChanged();
             return;
         }
+        final ArrayList arrayList = new ArrayList(this.participants);
+        final ArrayList arrayList2 = new ArrayList(this.videoParticipants);
         this.participants.clear();
         ChatObject.Call call3 = this.groupCall;
         if (!call3.call.rtmp_stream) {
@@ -548,6 +465,35 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         if (!call4.call.rtmp_stream) {
             this.videoParticipants.addAll(call4.visibleVideoParticipants);
         }
-        notifyDataSetChanged();
+        DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public boolean areContentsTheSame(int i, int i2) {
+                return true;
+            }
+
+            @Override
+            public boolean areItemsTheSame(int i, int i2) {
+                if (i < arrayList2.size() && i2 < GroupCallFullscreenAdapter.this.videoParticipants.size()) {
+                    return ((ChatObject.VideoParticipant) arrayList2.get(i)).equals(GroupCallFullscreenAdapter.this.videoParticipants.get(i2));
+                }
+                int size = i - arrayList2.size();
+                int size2 = i2 - GroupCallFullscreenAdapter.this.videoParticipants.size();
+                if (size2 < 0 || size2 >= GroupCallFullscreenAdapter.this.participants.size() || size < 0 || size >= arrayList.size()) {
+                    return MessageObject.getPeerId((i < arrayList2.size() ? ((ChatObject.VideoParticipant) arrayList2.get(i)).participant : (TLRPC$TL_groupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId((i2 < GroupCallFullscreenAdapter.this.videoParticipants.size() ? ((ChatObject.VideoParticipant) GroupCallFullscreenAdapter.this.videoParticipants.get(i2)).participant : (TLRPC$TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
+                }
+                return MessageObject.getPeerId(((TLRPC$TL_groupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId(((TLRPC$TL_groupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
+            }
+
+            @Override
+            public int getNewListSize() {
+                return GroupCallFullscreenAdapter.this.videoParticipants.size() + GroupCallFullscreenAdapter.this.participants.size();
+            }
+
+            @Override
+            public int getOldListSize() {
+                return arrayList2.size() + arrayList.size();
+            }
+        }).dispatchUpdatesTo(this);
+        AndroidUtilities.updateVisibleRows(recyclerListView);
     }
 }

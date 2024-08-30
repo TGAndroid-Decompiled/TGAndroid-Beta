@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$DraftMessage extends TLObject {
     public int date;
     public long effect;
-    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
+    public ArrayList entities = new ArrayList();
     public int flags;
     public boolean invert_media;
     public TLRPC$InputMedia media;
@@ -74,7 +74,7 @@ public abstract class TLRPC$DraftMessage extends TLObject {
                             int size = this.entities.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i3 = 0; i3 < size; i3++) {
-                                this.entities.get(i3).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.entities.get(i3)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         abstractSerializedData2.writeInt32(this.date);
@@ -139,7 +139,7 @@ public abstract class TLRPC$DraftMessage extends TLObject {
                             int size = this.entities.size();
                             abstractSerializedData2.writeInt32(size);
                             for (int i4 = 0; i4 < size; i4++) {
-                                this.entities.get(i4).serializeToStream(abstractSerializedData2);
+                                ((TLRPC$MessageEntity) this.entities.get(i4)).serializeToStream(abstractSerializedData2);
                             }
                         }
                         if ((this.flags & 32) != 0) {

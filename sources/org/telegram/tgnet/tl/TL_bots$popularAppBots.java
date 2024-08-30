@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC$User;
 public class TL_bots$popularAppBots extends TLObject {
     public int flags;
     public String next_offset;
-    public ArrayList<TLRPC$User> users = new ArrayList<>();
+    public ArrayList users = new ArrayList();
 
     public static TL_bots$popularAppBots TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (428978491 != i) {
@@ -57,7 +57,7 @@ public class TL_bots$popularAppBots extends TLObject {
         int size = this.users.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            this.users.get(i).serializeToStream(abstractSerializedData);
+            ((TLRPC$User) this.users.get(i)).serializeToStream(abstractSerializedData);
         }
     }
 }

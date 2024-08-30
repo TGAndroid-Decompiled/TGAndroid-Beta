@@ -1,4 +1,4 @@
 package org.telegram.messenger;
 
-public final class ImageLoader$7$$ExternalSyntheticApiModelOutline1 {
+public abstract class ImageLoader$7$$ExternalSyntheticApiModelOutline1 {
 }
