@@ -163,7 +163,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
         int i2 = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i2)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         setValue();
         return this.fragmentView;
@@ -427,12 +427,7 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
 
     public static boolean birthdaysEqual(TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_birthday tLRPC$TL_birthday2) {
         if ((tLRPC$TL_birthday == null) != (tLRPC$TL_birthday2 != null)) {
-            if (tLRPC$TL_birthday == null) {
-                return true;
-            }
-            if (tLRPC$TL_birthday.day == tLRPC$TL_birthday2.day && tLRPC$TL_birthday.month == tLRPC$TL_birthday2.month && tLRPC$TL_birthday.year == tLRPC$TL_birthday2.year) {
-                return true;
-            }
+            return tLRPC$TL_birthday == null || (tLRPC$TL_birthday.day == tLRPC$TL_birthday2.day && tLRPC$TL_birthday.month == tLRPC$TL_birthday2.month && tLRPC$TL_birthday.year == tLRPC$TL_birthday2.year);
         }
         return false;
     }
@@ -585,8 +580,9 @@ public class UserInfoActivity extends UniversalFragment implements NotificationC
             return;
         }
         this.wasSaved = true;
-        iArr[0] = iArr[0] + 1;
-        if (iArr[0] == arrayList.size()) {
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i == arrayList.size()) {
             lambda$onBackPressed$308();
         }
     }

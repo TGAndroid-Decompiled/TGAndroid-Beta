@@ -232,17 +232,22 @@ public interface VideoEncoder {
         }
 
         @CalledByNative
-        public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
-            return new ResolutionBitrateLimits[0];
-        }
-
-        @CalledByNative
         public static boolean $default$isHardwareEncoder(VideoEncoder videoEncoder) {
             return true;
         }
 
         @CalledByNative
-        public static EncoderInfo $default$getEncoderInfo(VideoEncoder _this) {
+        public static VideoCodecStatus $default$setRates(VideoEncoder videoEncoder, RateControlParameters rateControlParameters) {
+            return videoEncoder.setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        }
+
+        @CalledByNative
+        public static ResolutionBitrateLimits[] $default$getResolutionBitrateLimits(VideoEncoder videoEncoder) {
+            return new ResolutionBitrateLimits[0];
+        }
+
+        @CalledByNative
+        public static EncoderInfo $default$getEncoderInfo(VideoEncoder videoEncoder) {
             return new EncoderInfo(1, false);
         }
     }

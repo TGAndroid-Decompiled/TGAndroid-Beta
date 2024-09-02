@@ -12,12 +12,15 @@ public class AccountInstance {
         AccountInstance accountInstance = Instance[i];
         if (accountInstance == null) {
             synchronized (AccountInstance.class) {
-                accountInstance = Instance[i];
-                if (accountInstance == null) {
-                    AccountInstance[] accountInstanceArr = Instance;
-                    AccountInstance accountInstance2 = new AccountInstance(i);
-                    accountInstanceArr[i] = accountInstance2;
-                    accountInstance = accountInstance2;
+                try {
+                    accountInstance = Instance[i];
+                    if (accountInstance == null) {
+                        AccountInstance[] accountInstanceArr = Instance;
+                        AccountInstance accountInstance2 = new AccountInstance(i);
+                        accountInstanceArr[i] = accountInstance2;
+                        accountInstance = accountInstance2;
+                    }
+                } finally {
                 }
             }
         }

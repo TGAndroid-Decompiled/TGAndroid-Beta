@@ -24,17 +24,19 @@ public class TextPriceCell extends FrameLayout {
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.valueTextView = textView2;
-        textView2.setTextSize(1, 16.0f);
+        TextView textView3 = new TextView(context);
+        this.valueTextView = textView3;
+        textView3.setTextSize(1, 16.0f);
         this.valueTextView.setTypeface(AndroidUtilities.bold());
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.valueTextView.setEllipsize(truncateAt);
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 0.0f, 21.0f, 0.0f));
     }
@@ -75,8 +77,10 @@ public class TextPriceCell extends FrameLayout {
             setTag(Integer.valueOf(i2));
             this.textView.setTextColor(Theme.getColor(i2));
             this.valueTextView.setTextColor(Theme.getColor(i2));
-            this.textView.setTypeface(Typeface.DEFAULT);
-            this.valueTextView.setTypeface(Typeface.DEFAULT);
+            TextView textView = this.textView;
+            Typeface typeface = Typeface.DEFAULT;
+            textView.setTypeface(typeface);
+            this.valueTextView.setTypeface(typeface);
         }
         requestLayout();
     }

@@ -71,6 +71,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     private TLRPC$TL_theme info;
     private CharSequence infoText;
     private String lastCheckName;
+    private boolean lastNameAvailable;
     private LinearLayout linearLayoutTypeContainer;
     private EditTextBoldCursor linkField;
     private ThemePreviewMessagesCell messagesCell;
@@ -124,9 +125,12 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             try {
                 boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    Selection.removeSelection(spannable);
+                if (motionEvent.getAction() != 1) {
+                    if (motionEvent.getAction() == 3) {
+                    }
+                    return onTouchEvent;
                 }
+                Selection.removeSelection(spannable);
                 return onTouchEvent;
             } catch (Exception e) {
                 FileLog.e(e);
@@ -162,9 +166,9 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         if (this.creatingNewTheme) {
-            this.actionBar.setTitle(LocaleController.getString("NewThemeTitle", R.string.NewThemeTitle));
+            this.actionBar.setTitle(LocaleController.getString(R.string.NewThemeTitle));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("EditThemeTitle", R.string.EditThemeTitle));
+            this.actionBar.setTitle(LocaleController.getString(R.string.EditThemeTitle));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -176,7 +180,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 }
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());
+        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
         LinearLayout linearLayout = new LinearLayout(context);
         this.fragmentView = linearLayout;
         linearLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -197,7 +201,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         linearLayout2.addView(this.linearLayoutTypeContainer, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell = new HeaderCell(context, 23);
         this.headerCell = headerCell;
-        headerCell.setText(LocaleController.getString("Info", R.string.Info));
+        headerCell.setText(LocaleController.getString(R.string.Info));
         this.linearLayoutTypeContainer.addView(this.headerCell);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.nameField = editTextBoldCursor;
@@ -217,7 +221,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.nameField.setFilters(new InputFilter[]{new InputFilter.LengthFilter(128)});
         this.nameField.setInputType(163872);
         this.nameField.setImeOptions(6);
-        this.nameField.setHint(LocaleController.getString("ThemeNamePlaceholder", R.string.ThemeNamePlaceholder));
+        this.nameField.setHint(LocaleController.getString(R.string.ThemeNamePlaceholder));
         this.nameField.setCursorColor(Theme.getColor(i2));
         this.nameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.nameField.setCursorWidth(1.5f);
@@ -230,7 +234,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 return lambda$createView$1;
             }
         });
-        View view = new View(this, context) {
+        View view = new View(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -268,7 +272,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         this.linkField.setSingleLine(true);
         this.linkField.setInputType(163872);
         this.linkField.setImeOptions(6);
-        this.linkField.setHint(LocaleController.getString("SetUrlPlaceholder", R.string.SetUrlPlaceholder));
+        this.linkField.setHint(LocaleController.getString(R.string.SetUrlPlaceholder));
         this.linkField.setCursorColor(Theme.getColor(i2));
         this.linkField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.linkField.setCursorWidth(1.5f);
@@ -335,10 +339,10 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         textInfoPrivacyCell2.getTextView().setMovementMethod(new LinkMovementMethodMy());
         this.helpInfoCell.getTextView().setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection));
         if (this.creatingNewTheme) {
-            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString("ThemeCreateHelp", R.string.ThemeCreateHelp)));
+            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
         } else {
             TextInfoPrivacyCell textInfoPrivacyCell3 = this.helpInfoCell;
-            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("ThemeSetUrlHelp", R.string.ThemeSetUrlHelp));
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeSetUrlHelp));
             this.infoText = replaceTags;
             textInfoPrivacyCell3.setText(replaceTags);
         }
@@ -351,7 +355,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             TextSettingsCell textSettingsCell = new TextSettingsCell(context);
             this.createCell = textSettingsCell;
             textSettingsCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-            this.createCell.setText(LocaleController.getString("UseDifferentTheme", R.string.UseDifferentTheme), false);
+            this.createCell.setText(LocaleController.getString(R.string.UseDifferentTheme), false);
             linearLayout2.addView(this.createCell, LayoutHelper.createLinear(-1, -2));
             this.createCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -361,7 +365,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             });
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
             this.createInfoCell = textInfoPrivacyCell4;
-            textInfoPrivacyCell4.setText(AndroidUtilities.replaceTags(LocaleController.getString("UseDifferentThemeInfo", R.string.UseDifferentThemeInfo)));
+            textInfoPrivacyCell4.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.UseDifferentThemeInfo)));
             this.createInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i3, i4));
             linearLayout2.addView(this.createInfoCell, LayoutHelper.createLinear(-1, -2));
         } else {
@@ -400,9 +404,9 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$3(View view, boolean z) {
         if (z) {
-            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString("ThemeCreateHelp2", R.string.ThemeCreateHelp2)));
+            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
         } else {
-            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString("ThemeCreateHelp", R.string.ThemeCreateHelp)));
+            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
         }
     }
 
@@ -415,7 +419,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("ChooseTheme", R.string.ChooseTheme));
+        textView.setText(LocaleController.getString(R.string.ChooseTheme));
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -438,7 +442,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 arrayList.add(themeInfo);
             }
         }
-        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(this, context, this, 2, arrayList, new ArrayList()) {
+        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(context, this, 2, arrayList, new ArrayList()) {
             @Override
             protected void updateRows() {
                 builder.getDismissRunnable().run();
@@ -505,26 +509,27 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkReqId, true);
             }
         }
+        this.lastNameAvailable = false;
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
-                setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), Theme.key_text_RedRegular);
+                setCheckText(LocaleController.getString(R.string.SetUrlInvalid), Theme.key_text_RedRegular);
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
                 char charAt = str.charAt(i);
                 if (i == 0 && charAt >= '0' && charAt <= '9') {
                     if (z) {
-                        AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidStartNumber", R.string.SetUrlInvalidStartNumber));
+                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidStartNumber));
                     } else {
-                        setCheckText(LocaleController.getString("SetUrlInvalidStartNumber", R.string.SetUrlInvalidStartNumber), Theme.key_text_RedRegular);
+                        setCheckText(LocaleController.getString(R.string.SetUrlInvalidStartNumber), Theme.key_text_RedRegular);
                     }
                     return false;
                 }
                 if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
                     if (z) {
-                        AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid));
+                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalid));
                     } else {
-                        setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), Theme.key_text_RedRegular);
+                        setCheckText(LocaleController.getString(R.string.SetUrlInvalid), Theme.key_text_RedRegular);
                     }
                     return false;
                 }
@@ -532,17 +537,17 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
         if (str == null || str.length() < 5) {
             if (z) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidShort", R.string.SetUrlInvalidShort));
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidShort));
             } else {
-                setCheckText(LocaleController.getString("SetUrlInvalidShort", R.string.SetUrlInvalidShort), Theme.key_text_RedRegular);
+                setCheckText(LocaleController.getString(R.string.SetUrlInvalidShort), Theme.key_text_RedRegular);
             }
             return false;
         }
         if (str.length() > 64) {
             if (z) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidLong", R.string.SetUrlInvalidLong));
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidLong));
             } else {
-                setCheckText(LocaleController.getString("SetUrlInvalidLong", R.string.SetUrlInvalidLong), Theme.key_text_RedRegular);
+                setCheckText(LocaleController.getString(R.string.SetUrlInvalidLong), Theme.key_text_RedRegular);
             }
             return false;
         }
@@ -555,7 +560,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
                 return true;
             }
-            setCheckText(LocaleController.getString("SetUrlChecking", R.string.SetUrlChecking), Theme.key_windowBackgroundWhiteGrayText8);
+            setCheckText(LocaleController.getString(R.string.SetUrlChecking), Theme.key_windowBackgroundWhiteGrayText8);
             this.lastCheckName = str;
             Runnable runnable2 = new Runnable() {
                 @Override
@@ -597,10 +602,12 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         if (str2 == null || !str2.equals(str)) {
             return;
         }
-        if (tLRPC$TL_error == null || !("THEME_SLUG_INVALID".equals(tLRPC$TL_error.text) || "THEME_SLUG_OCCUPIED".equals(tLRPC$TL_error.text))) {
+        if (tLRPC$TL_error == null || (!"THEME_SLUG_INVALID".equals(tLRPC$TL_error.text) && !"THEME_SLUG_OCCUPIED".equals(tLRPC$TL_error.text))) {
             setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
+            this.lastNameAvailable = true;
         } else {
-            setCheckText(LocaleController.getString("SetUrlInUse", R.string.SetUrlInUse), Theme.key_text_RedRegular);
+            setCheckText(LocaleController.getString(R.string.SetUrlInUse), Theme.key_text_RedRegular);
+            this.lastNameAvailable = false;
         }
     }
 
@@ -629,13 +636,11 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
     public void saveTheme() {
         if (checkUrl(this.linkField.getText().toString(), true) && getParentActivity() != null) {
             if (this.nameField.length() == 0) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("ThemeNameInvalid", R.string.ThemeNameInvalid));
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNameInvalid));
                 return;
             }
             if (this.creatingNewTheme) {
-                TLRPC$TL_theme tLRPC$TL_theme = this.info;
-                String str = tLRPC$TL_theme.title;
-                String str2 = tLRPC$TL_theme.slug;
+                String str = this.info.title;
                 AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
                 this.progressDialog = alertDialog;
                 alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -646,40 +651,39 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                 });
                 this.progressDialog.show();
                 Theme.ThemeInfo themeInfo = this.themeInfo;
-                TLRPC$TL_theme tLRPC$TL_theme2 = this.info;
+                TLRPC$TL_theme tLRPC$TL_theme = this.info;
                 String obj = this.nameField.getText().toString();
-                tLRPC$TL_theme2.title = obj;
+                tLRPC$TL_theme.title = obj;
                 themeInfo.name = obj;
                 this.themeInfo.info.slug = this.linkField.getText().toString();
                 Theme.saveCurrentTheme(this.themeInfo, true, true, true);
                 return;
             }
-            TLRPC$TL_theme tLRPC$TL_theme3 = this.info;
-            String str3 = tLRPC$TL_theme3.slug;
-            if (str3 == null) {
-                str3 = "";
+            TLRPC$TL_theme tLRPC$TL_theme2 = this.info;
+            String str2 = tLRPC$TL_theme2.slug;
+            if (str2 == null) {
+                str2 = "";
             }
-            String str4 = tLRPC$TL_theme3.title;
-            String str5 = str4 != null ? str4 : "";
+            String str3 = tLRPC$TL_theme2.title;
+            String str4 = str3 != null ? str3 : "";
             String obj2 = this.linkField.getText().toString();
             String obj3 = this.nameField.getText().toString();
-            if (str3.equals(obj2) && str5.equals(obj3)) {
+            if (str2.equals(obj2) && str4.equals(obj3)) {
                 lambda$onBackPressed$308();
                 return;
             }
             this.progressDialog = new AlertDialog(getParentActivity(), 3);
             final TLRPC$TL_account_updateTheme tLRPC$TL_account_updateTheme = new TLRPC$TL_account_updateTheme();
             TLRPC$TL_inputTheme tLRPC$TL_inputTheme = new TLRPC$TL_inputTheme();
-            TLRPC$TL_theme tLRPC$TL_theme4 = this.info;
-            tLRPC$TL_inputTheme.id = tLRPC$TL_theme4.id;
-            tLRPC$TL_inputTheme.access_hash = tLRPC$TL_theme4.access_hash;
+            TLRPC$TL_theme tLRPC$TL_theme3 = this.info;
+            tLRPC$TL_inputTheme.id = tLRPC$TL_theme3.id;
+            tLRPC$TL_inputTheme.access_hash = tLRPC$TL_theme3.access_hash;
             tLRPC$TL_account_updateTheme.theme = tLRPC$TL_inputTheme;
             tLRPC$TL_account_updateTheme.format = "android";
             tLRPC$TL_account_updateTheme.slug = obj2;
-            int i = tLRPC$TL_account_updateTheme.flags | 1;
-            tLRPC$TL_account_updateTheme.flags = i;
+            int i = tLRPC$TL_account_updateTheme.flags;
             tLRPC$TL_account_updateTheme.title = obj3;
-            tLRPC$TL_account_updateTheme.flags = i | 2;
+            tLRPC$TL_account_updateTheme.flags = i | 3;
             final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updateTheme, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

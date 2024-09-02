@@ -205,20 +205,24 @@ public class FileLoader extends BaseController {
     }
 
     private int getPriorityValue(int i) {
+        int i2;
+        int i3;
         if (i == 4) {
             return Integer.MAX_VALUE;
         }
         if (i == 3) {
-            int i2 = this.priorityIncreasePointer + 1;
-            this.priorityIncreasePointer = i2;
-            return i2 + 1048576;
+            i2 = this.priorityIncreasePointer;
+            this.priorityIncreasePointer = i2 + 1;
+            i3 = 1048577;
+        } else {
+            if (i != 2) {
+                return i == 1 ? 65536 : 0;
+            }
+            i2 = this.priorityIncreasePointer;
+            this.priorityIncreasePointer = i2 + 1;
+            i3 = 65537;
         }
-        if (i != 2) {
-            return i == 1 ? 65536 : 0;
-        }
-        int i3 = this.priorityIncreasePointer + 1;
-        this.priorityIncreasePointer = i3;
-        return i3 + 65536;
+        return i2 + i3;
     }
 
     public DispatchQueue getFileLoaderQueue() {
@@ -254,10 +258,13 @@ public class FileLoader extends BaseController {
         FileLoader fileLoader = fileLoaderArr[i];
         if (fileLoader == null) {
             synchronized (FileLoader.class) {
-                fileLoader = fileLoaderArr[i];
-                if (fileLoader == null) {
-                    fileLoader = new FileLoader(i);
-                    fileLoaderArr[i] = fileLoader;
+                try {
+                    fileLoader = fileLoaderArr[i];
+                    if (fileLoader == null) {
+                        fileLoader = new FileLoader(i);
+                        fileLoaderArr[i] = fileLoader;
+                    }
+                } finally {
                 }
             }
         }
@@ -1035,16 +1042,44 @@ public class FileLoader extends BaseController {
         return false;
     }
 
-    private boolean canSaveToPublicStorage(java.lang.Object r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.canSaveToPublicStorage(java.lang.Object):boolean");
+    private boolean canSaveToPublicStorage(Object obj) {
+        FilePathDatabase.FileMeta fileMetadataFromParent;
+        MessageObject messageObject;
+        if (!BuildVars.NO_SCOPED_STORAGE && (fileMetadataFromParent = getFileMetadataFromParent(this.currentAccount, obj)) != null) {
+            long j = fileMetadataFromParent.dialogId;
+            long j2 = -j;
+            if (!getMessagesController().isChatNoForwards(getMessagesController().getChat(Long.valueOf(j2))) && !DialogObject.isEncryptedDialog(j)) {
+                int i = 2;
+                if (obj instanceof MessageObject) {
+                    messageObject = (MessageObject) obj;
+                    if (messageObject.isRoundVideo() || messageObject.isVoice() || messageObject.isAnyKindOfSticker() || messageObject.messageOwner.noforwards) {
+                        return false;
+                    }
+                } else {
+                    int i2 = fileMetadataFromParent.messageType;
+                    if (i2 != 5 && i2 != 13 && i2 != 2) {
+                        messageObject = null;
+                    }
+                }
+                if (j >= 0) {
+                    i = 1;
+                } else if (ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(j2)))) {
+                    i = 4;
+                }
+                if (SaveToGallerySettingsHelper.needSave(i, fileMetadataFromParent, messageObject, this.currentAccount)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void addOperationToQueue(FileLoadOperation fileLoadOperation, LinkedList<FileLoadOperation> linkedList) {
         int priority = fileLoadOperation.getPriority();
         if (priority > 0) {
             int size = linkedList.size();
-            int i = 0;
             int size2 = linkedList.size();
+            int i = 0;
             while (true) {
                 if (i >= size2) {
                     break;
@@ -1349,44 +1384,47 @@ public class FileLoader extends BaseController {
 
     public static String getMimeTypePart(String str) {
         int lastIndexOf = str.lastIndexOf(47);
-        return lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : "";
+        if (lastIndexOf != -1) {
+            return str.substring(lastIndexOf + 1);
+        }
+        return "";
     }
 
     public static String getExtensionByMimeType(String str) {
-        if (str == null) {
-            return "";
-        }
-        char c = 65535;
-        switch (str.hashCode()) {
-            case 187091926:
-                if (str.equals("audio/ogg")) {
-                    c = 0;
+        if (str != null) {
+            char c = 65535;
+            switch (str.hashCode()) {
+                case 187091926:
+                    if (str.equals("audio/ogg")) {
+                        c = 0;
+                        break;
+                    }
                     break;
-                }
-                break;
-            case 1331848029:
-                if (str.equals("video/mp4")) {
-                    c = 1;
+                case 1331848029:
+                    if (str.equals("video/mp4")) {
+                        c = 1;
+                        break;
+                    }
                     break;
-                }
-                break;
-            case 2039520277:
-                if (str.equals("video/x-matroska")) {
-                    c = 2;
+                case 2039520277:
+                    if (str.equals("video/x-matroska")) {
+                        c = 2;
+                        break;
+                    }
                     break;
-                }
-                break;
+            }
+            switch (c) {
+                case 0:
+                    return ".ogg";
+                case 1:
+                    return ".mp4";
+                case 2:
+                    return ".mkv";
+                default:
+                    return "";
+            }
         }
-        switch (c) {
-            case 0:
-                return ".ogg";
-            case 1:
-                return ".mp4";
-            case 2:
-                return ".mkv";
-            default:
-                return "";
-        }
+        return "";
     }
 
     public static File getInternalCacheDir() {

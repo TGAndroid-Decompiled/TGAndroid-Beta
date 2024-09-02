@@ -194,10 +194,7 @@ public class Painting {
                 valueAnimator.cancel();
                 this.helperAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.helperAlpha;
-            fArr[1] = this.helperShown ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.helperAlpha, this.helperShown ? 1.0f : 0.0f);
             this.helperAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -391,11 +388,11 @@ public class Painting {
     }
 
     public void paintStrokeInternal(Path path, boolean z, boolean z2) {
+        RectF rectF;
         this.activePath = path;
         if (path == null) {
             return;
         }
-        RectF rectF = null;
         GLES20.glBindFramebuffer(36160, getReusableFramebuffer());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, getPaintTexture(), 0);
         Utils.HasGLError();
@@ -430,6 +427,8 @@ public class Painting {
                 this.renderState.viewportScale = 1.0f;
             }
             rectF = Render.RenderPath(path, this.renderState, z2);
+        } else {
+            rectF = null;
         }
         GLES20.glBindFramebuffer(36160, 0);
         PaintingDelegate paintingDelegate = this.delegate;
@@ -887,66 +886,8 @@ public class Painting {
         Utils.HasGLError();
     }
 
-    private void renderBlitPath(int i, Path path, float f) {
-        if (path == null) {
-            return;
-        }
-        Brush brush = path.getBrush();
-        if (brush == null) {
-            brush = this.brush;
-        }
-        boolean z = this.masking && ((brush instanceof Brush.Radial) || (brush instanceof Brush.Eraser));
-        Map<String, Shader> map = this.shaders;
-        StringBuilder sb = new StringBuilder();
-        sb.append(brush.getShaderName(0));
-        sb.append(z ? "_masking" : "");
-        Shader shader = map.get(sb.toString());
-        if (shader == null) {
-            return;
-        }
-        GLES20.glUseProgram(shader.program);
-        GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
-        GLES20.glUniform1i(shader.getUniform("texture"), 0);
-        GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(path.getColor(), (int) (Color.alpha(r6) * brush.getOverrideAlpha() * f)));
-        GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, getTexture());
-        GLES20.glActiveTexture(33985);
-        GLES20.glBindTexture(3553, i);
-        if (z) {
-            GLES20.glUniform1i(shader.getUniform("otexture"), 2);
-            GLES20.glUniform1f(shader.getUniform("preview"), 0.4f);
-            GLES20.glActiveTexture(33986);
-            GLES20.glBindTexture(3553, this.originalBitmapTexture.texture());
-        }
-        Object obj = null;
-        if (brush instanceof Brush.Blurer) {
-            GLES20.glUniform1i(shader.getUniform("blured"), 2);
-            GLES20.glActiveTexture(33986);
-            BlurringShader.BlurManager blurManager = this.blurManager;
-            if (blurManager != null) {
-                obj = blurManager.getTextureLock();
-                GLES20.glBindTexture(3553, this.blurManager.getTexture());
-            } else {
-                Texture texture = this.bluredTexture;
-                if (texture != null) {
-                    GLES20.glBindTexture(3553, texture.texture());
-                }
-            }
-        }
-        GLES20.glBlendFunc(1, 771);
-        GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
-        GLES20.glEnableVertexAttribArray(0);
-        GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.textureBuffer);
-        GLES20.glEnableVertexAttribArray(1);
-        if (obj != null) {
-            synchronized (obj) {
-                GLES20.glDrawArrays(5, 0, 4);
-            }
-        } else {
-            GLES20.glDrawArrays(5, 0, 4);
-        }
-        Utils.HasGLError();
+    private void renderBlitPath(int r18, org.telegram.ui.Components.Paint.Path r19, float r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Painting.renderBlitPath(int, org.telegram.ui.Components.Paint.Path, float):void");
     }
 
     private void renderBlit(int i, float f) {

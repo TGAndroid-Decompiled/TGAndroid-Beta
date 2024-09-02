@@ -69,12 +69,12 @@ public class ReactionsUtils {
         if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
             return ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon;
         }
-        if (!(tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji)) {
-            return "";
+        if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
+            return spannableStringBuilder;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-        spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
-        return spannableStringBuilder;
+        return "";
     }
 
     public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TL_stories$StoryViews tL_stories$StoryViews) {

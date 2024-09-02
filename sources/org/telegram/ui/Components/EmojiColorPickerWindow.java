@@ -280,22 +280,24 @@ public class EmojiColorPickerWindow extends PopupWindow {
             } else if (i4 >= 1 && i4 <= 5 && ((i2 = this.touchY) == -1 || i2 == 0)) {
                 this.touchY = 0;
                 int[] iArr5 = this.selection;
-                iArr5[0] = i4 - 1;
+                int i5 = i4 - 1;
+                iArr5[0] = i5;
                 if (iArr5[1] == -1 || (this.both && z)) {
-                    iArr5[1] = iArr5[0];
+                    iArr5[1] = i5;
                 }
             } else if (i4 >= 6 && i4 <= 10 && ((i = this.touchY) == -1 || i == 1)) {
                 this.touchY = 1;
                 int[] iArr6 = this.selection;
-                iArr6[1] = i4 - 6;
+                int i6 = i4 - 6;
+                iArr6[1] = i6;
                 if (iArr6[0] == -1 || (this.both && z)) {
-                    iArr6[0] = iArr6[1];
+                    iArr6[0] = i6;
                 }
             }
             int[] iArr7 = this.lastSelection;
-            int i5 = iArr7[0];
+            int i7 = iArr7[0];
             int[] iArr8 = this.selection;
-            if (i5 != iArr8[0] || iArr7[1] != iArr8[1]) {
+            if (i7 != iArr8[0] || iArr7[1] != iArr8[1]) {
                 AndroidUtilities.vibrateCursor(this);
                 Utilities.Callback2<Integer, Integer> callback2 = this.onSelectionUpdate;
                 if (callback2 != null) {
@@ -362,10 +364,10 @@ public class EmojiColorPickerWindow extends PopupWindow {
                         int dp5 = (this.emojiSize * i7) + AndroidUtilities.dp((i7 * 4) + 5);
                         float min = ((1.0f - (Math.min(0.5f, Math.abs(i7 - f3)) * 2.0f)) * 0.1f) + 0.9f;
                         canvas.save();
+                        float f5 = this.emojiSize / 2.0f;
+                        canvas.scale(min, min, dp5 + f5, f5 + f4);
                         int i8 = this.emojiSize;
-                        canvas.scale(min, min, dp5 + (i8 / 2.0f), (i8 / 2.0f) + f4);
-                        int i9 = this.emojiSize;
-                        drawable2.setBounds(dp5, dp4, dp5 + i9, i9 + dp4);
+                        drawable2.setBounds(dp5, dp4, dp5 + i8, i8 + dp4);
                         drawable2.draw(canvas);
                         canvas.restore();
                     }

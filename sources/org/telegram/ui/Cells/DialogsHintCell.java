@@ -48,7 +48,8 @@ public class DialogsHintCell extends BlurredFrameLayout {
         linearLayout.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(24.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(24.0f), 0);
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(context);
         this.titleView = textViewEmojis;
-        textViewEmojis.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textViewEmojis.setEllipsize(truncateAt);
         textViewEmojis.setTextSize(1, 15.0f);
         textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setSingleLine();
@@ -57,7 +58,7 @@ public class DialogsHintCell extends BlurredFrameLayout {
         this.messageView = textView;
         textView.setTextSize(1, 14.0f);
         textView.setMaxLines(2);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setEllipsize(truncateAt);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 48));
         NotificationCenter.getGlobalInstance().listenGlobal(this, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
@@ -111,8 +112,11 @@ public class DialogsHintCell extends BlurredFrameLayout {
         TextView textView = this.messageView;
         int i = Theme.key_windowBackgroundWhiteGrayText;
         textView.setTextColor(Theme.getColor(i));
-        this.chevronView.setColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN);
-        this.closeView.setColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN);
+        ImageView imageView = this.chevronView;
+        int color = Theme.getColor(i);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(color, mode);
+        this.closeView.setColorFilter(Theme.getColor(i), mode);
         this.closeView.setBackground(Theme.AdaptiveRipple.filledCircle());
         setBackground(Theme.AdaptiveRipple.filledRect());
     }

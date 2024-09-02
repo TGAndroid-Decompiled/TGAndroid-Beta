@@ -17,18 +17,17 @@ public class LongSparseIntArray implements Cloneable {
     }
 
     public LongSparseIntArray clone() {
-        LongSparseIntArray longSparseIntArray = null;
         try {
-            LongSparseIntArray longSparseIntArray2 = (LongSparseIntArray) super.clone();
+            LongSparseIntArray longSparseIntArray = (LongSparseIntArray) super.clone();
             try {
-                longSparseIntArray2.mKeys = (long[]) this.mKeys.clone();
-                longSparseIntArray2.mValues = (int[]) this.mValues.clone();
-                return longSparseIntArray2;
+                longSparseIntArray.mKeys = (long[]) this.mKeys.clone();
+                longSparseIntArray.mValues = (int[]) this.mValues.clone();
+                return longSparseIntArray;
             } catch (CloneNotSupportedException unused) {
-                longSparseIntArray = longSparseIntArray2;
                 return longSparseIntArray;
             }
         } catch (CloneNotSupportedException unused2) {
+            return null;
         }
     }
 
@@ -68,11 +67,11 @@ public class LongSparseIntArray implements Cloneable {
         if (i3 >= this.mKeys.length) {
             growKeyAndValueArrays(i3 + 1);
         }
-        int i4 = this.mSize;
-        if (i4 - i2 != 0) {
+        int i4 = this.mSize - i2;
+        if (i4 != 0) {
             long[] jArr = this.mKeys;
             int i5 = i2 + 1;
-            System.arraycopy(jArr, i2, jArr, i5, i4 - i2);
+            System.arraycopy(jArr, i2, jArr, i5, i4);
             int[] iArr = this.mValues;
             System.arraycopy(iArr, i2, iArr, i5, this.mSize - i2);
         }

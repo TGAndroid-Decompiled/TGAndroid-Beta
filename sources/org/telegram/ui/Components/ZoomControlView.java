@@ -98,7 +98,7 @@ public class ZoomControlView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r15) {
+    public boolean onTouchEvent(android.view.MotionEvent r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ZoomControlView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 

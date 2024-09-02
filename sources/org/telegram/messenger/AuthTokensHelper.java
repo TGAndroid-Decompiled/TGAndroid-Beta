@@ -30,7 +30,7 @@ public class AuthTokensHelper {
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("saved_tokens", 0);
         ArrayList arrayList2 = new ArrayList();
         sharedPreferences.edit().clear().apply();
-        long currentTimeMillis = System.currentTimeMillis() / 1000;
+        System.currentTimeMillis();
         for (int i = 0; i < Math.min(20, arrayList.size()); i++) {
             arrayList2.add(arrayList.get(i));
         }

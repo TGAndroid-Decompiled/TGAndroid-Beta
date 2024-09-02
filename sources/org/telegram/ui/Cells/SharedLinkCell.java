@@ -217,7 +217,7 @@ public class SharedLinkCell extends FrameLayout {
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onMeasure(int r28, int r29) {
+    protected void onMeasure(int r31, int r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SharedLinkCell.onMeasure(int, int):void");
     }
 
@@ -274,9 +274,9 @@ public class SharedLinkCell extends FrameLayout {
         });
         int i4 = i - dp;
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        float f = 0.0f;
         int i5 = this.spoilerTypePressed;
         if (i5 == 0) {
+            float f = 0.0f;
             for (int i6 = 0; i6 < this.linkLayout.size(); i6++) {
                 StaticLayout staticLayout = this.linkLayout.get(i6);
                 f += staticLayout.getLineBottom(staticLayout.getLineCount() - 1);

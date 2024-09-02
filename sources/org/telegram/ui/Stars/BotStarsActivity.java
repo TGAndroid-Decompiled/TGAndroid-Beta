@@ -106,6 +106,8 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
     private boolean balanceEditTextIgnore = false;
     private boolean balanceEditTextAll = true;
     private ColoredImageSpan[] starRef = new ColoredImageSpan[1];
+    private int shakeDp = 4;
+    private final int BALANCE = 1;
     private Runnable setBalanceButtonText = new Runnable() {
         @Override
         public final void run() {
@@ -167,7 +169,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         int i2 = Theme.key_windowBackgroundWhite;
         actionBar.setBackgroundColor(Theme.getColor(i2));
         this.transactionsLayout = new StarsIntroActivity.StarsTransactionsLayout(context, this.currentAccount, this.bot_id, getClassGuid(), getResourceProvider());
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
@@ -212,7 +214,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditTextContainer = outlineTextContainerView;
         outlineTextContainerView.setText(LocaleController.getString(R.string.BotStarsWithdrawPlaceholder));
         this.balanceEditTextContainer.setLeftPadding(AndroidUtilities.dp(36.0f));
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, context) {
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             public void onDetachedFromWindow() {
                 super.onDetachedFromWindow();
@@ -291,7 +293,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceEditTextContainer.setVisibility(8);
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this, context, getResourceProvider()) {
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, getResourceProvider()) {
             @Override
             protected boolean subTextSplitToWords() {
                 return false;
@@ -702,6 +704,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
 
         @Override
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
+            int i4;
             if (view == BotStarsActivity.this.listView && BotStarsActivity.this.transactionsLayout.isAttachedToWindow()) {
                 boolean isSearchFieldVisible = ((BaseFragment) BotStarsActivity.this).actionBar.isSearchFieldVisible();
                 int top = (((View) BotStarsActivity.this.transactionsLayout.getParent()).getTop() - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight();
@@ -712,12 +715,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                         RecyclerListView currentListView = BotStarsActivity.this.transactionsLayout.getCurrentListView();
                         iArr[1] = i2;
                         if (top > 0) {
-                            iArr[1] = iArr[1] - i2;
+                            iArr[1] = i2 - i2;
                         }
-                        if (currentListView == null || iArr[1] <= 0) {
+                        if (currentListView == null || (i4 = iArr[1]) <= 0) {
                             return;
                         }
-                        currentListView.scrollBy(0, iArr[1]);
+                        currentListView.scrollBy(0, i4);
                         return;
                     }
                     if (i2 > 0) {
@@ -805,7 +808,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     twoStepVerificationActivity.needHideProgress();
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                builder.setTitle(LocaleController.getString("EditAdminTransferAlertTitle", R.string.EditAdminTransferAlertTitle));
+                builder.setTitle(LocaleController.getString(R.string.EditAdminTransferAlertTitle));
                 LinearLayout linearLayout = new LinearLayout(activity);
                 linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                 linearLayout.setOrientation(1);
@@ -824,12 +827,14 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 int i3 = R.drawable.list_circle;
                 imageView.setImageResource(i3);
                 imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                int color = Theme.getColor(i2);
+                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
                 TextView textView2 = new TextView(activity);
                 textView2.setTextColor(Theme.getColor(i2));
                 textView2.setTextSize(1, 16.0f);
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText1", R.string.EditAdminTransferAlertText1)));
+                textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText1)));
                 if (LocaleController.isRTL) {
                     linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2));
                     linearLayout2.addView(imageView, LayoutHelper.createLinear(-2, -2, 5));
@@ -843,12 +848,12 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                 ImageView imageView2 = new ImageView(activity);
                 imageView2.setImageResource(i3);
                 imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
                 TextView textView3 = new TextView(activity);
                 textView3.setTextColor(Theme.getColor(i2));
                 textView3.setTextSize(1, 16.0f);
                 textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-                textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText2", R.string.EditAdminTransferAlertText2)));
+                textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EditAdminTransferAlertText2)));
                 if (LocaleController.isRTL) {
                     linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
                     i = 5;
@@ -859,13 +864,13 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                     linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
                 }
                 if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
-                    builder.setPositiveButton(LocaleController.getString("EditAdminTransferSetPassword", R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString(R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i4) {
                             BotStarsActivity.this.lambda$initWithdraw$12(dialogInterface, i4);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 } else {
                     TextView textView4 = new TextView(activity);
                     textView4.setTextColor(Theme.getColor(i2));
@@ -874,9 +879,9 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
                         i = 3;
                     }
                     textView4.setGravity(i | 48);
-                    textView4.setText(LocaleController.getString("EditAdminTransferAlertText3", R.string.EditAdminTransferAlertText3));
+                    textView4.setText(LocaleController.getString(R.string.EditAdminTransferAlertText3));
                     linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
-                    builder.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
+                    builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
                 }
                 if (twoStepVerificationActivity != null) {
                     twoStepVerificationActivity.showDialog(builder.create());

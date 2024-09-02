@@ -70,7 +70,7 @@ public class SlideIntChooseView extends FrameLayout {
         animatedTextView3.setEmojiColor(-1);
         animatedTextView3.setEmojiCacheType(19);
         addView(animatedTextView3, LayoutHelper.createFrame(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
-        SeekBarView seekBarView = new SeekBarView(this, context) {
+        SeekBarView seekBarView = new SeekBarView(context) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {
@@ -228,12 +228,14 @@ public class SlideIntChooseView extends FrameLayout {
         public int min;
         public int minStringResId;
         public String resId;
+        public int style;
         public int valueMaxStringResId;
         public int valueMinStringResId;
         public int valueStringResId;
 
         public static Options make(int i, String str, int i2, int i3) {
             Options options = new Options();
+            options.style = i;
             options.min = i2;
             options.resId = str;
             options.max = i3;

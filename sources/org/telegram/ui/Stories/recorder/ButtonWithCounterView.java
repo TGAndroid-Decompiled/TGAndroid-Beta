@@ -54,6 +54,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     public final View rippleView;
     private boolean showZero;
     public final AnimatedTextView.AnimatedTextDrawable subText;
+    private final int subTextAlpha;
     private float subTextT;
     private boolean subTextVisible;
     private ValueAnimator subTextVisibleAnimator;
@@ -93,6 +94,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         this.enabledT = 1.0f;
         this.enabled = true;
         this.globalAlpha = 255;
+        this.subTextAlpha = 200;
         this.filled = z;
         this.resourcesProvider = resourcesProvider;
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
@@ -305,11 +307,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 valueAnimator.cancel();
                 this.loadingAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.loadingT;
+            float f = this.loadingT;
             this.loading = z;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
             this.loadingAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -408,11 +408,9 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 valueAnimator.cancel();
                 this.enabledAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.enabledT;
+            float f = this.enabledT;
             this.enabled = z;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
             this.enabledAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -512,7 +510,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
                 this.subText.draw(canvas);
                 canvas.restore();
             }
-            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - calculateCounterWidth) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 8) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {

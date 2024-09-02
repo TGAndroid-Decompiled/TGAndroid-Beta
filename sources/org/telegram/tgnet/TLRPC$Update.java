@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import androidx.annotation.Keep;
 import java.util.ArrayList;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.tgnet.tl.TL_bots$TL_updateBotMenuButton;
@@ -7,6 +8,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_updateReadStories;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStoriesStealthMode;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
 
+@Keep
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;

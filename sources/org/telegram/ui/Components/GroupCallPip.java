@@ -254,6 +254,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         AnimatorSet moveToBoundsAnimator;
         boolean pressed;
         Runnable pressedRunnable;
+        long startTime;
         float startX;
         float startY;
         final float val$touchSlop;
@@ -335,14 +336,11 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
     }
 
     public static boolean isShowing() {
-        if (RTMPStreamPipOverlay.isVisible() || instance != null) {
-            return true;
+        VoIPService sharedInstance;
+        if (!RTMPStreamPipOverlay.isVisible() && instance == null) {
+            return (!checkInlinePermissions() || (sharedInstance = VoIPService.getSharedInstance()) == null || sharedInstance.groupCall == null || sharedInstance.isHangingUp() || forceRemoved || (!ApplicationLoader.mainInterfaceStopped && GroupCallActivity.groupCallUiVisible)) ? false : true;
         }
-        if (!checkInlinePermissions()) {
-            return false;
-        }
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        return (sharedInstance != null && sharedInstance.groupCall != null && !sharedInstance.isHangingUp()) && !forceRemoved && (ApplicationLoader.mainInterfaceStopped || !GroupCallActivity.groupCallUiVisible);
+        return true;
     }
 
     public static boolean onBackPressed() {
@@ -456,24 +454,27 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         instance = null;
         AnimatorSet animatorSet = new AnimatorSet();
         long currentFrame = this.deleteIcon.getCurrentFrame() < 33 ? ((1.0f - (this.deleteIcon.getCurrentFrame() / 33.0f)) * ((float) this.deleteIcon.getDuration())) / 2.0f : 0L;
-        int i = this.windowLayoutParams.x;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(i, i + measuredWidth);
+        float f = this.windowLayoutParams.x;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f, measuredWidth + f);
         ofFloat.addUpdateListener(this.updateXlistener);
         ValueAnimator duration = ofFloat.setDuration(250L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         duration.setInterpolator(cubicBezierInterpolator);
         animatorSet.playTogether(ofFloat);
-        int i2 = this.windowLayoutParams.y;
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(i2, (i2 + measuredHeight) - AndroidUtilities.dp(30.0f), this.windowLayoutParams.y + measuredHeight);
+        float f2 = this.windowLayoutParams.y;
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f2, (f2 + measuredHeight) - AndroidUtilities.dp(30.0f), this.windowLayoutParams.y + measuredHeight);
         ofFloat2.addUpdateListener(this.updateYlistener);
         ofFloat2.setDuration(250L).setInterpolator(cubicBezierInterpolator);
         animatorSet.playTogether(ofFloat2);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) View.SCALE_X, frameLayout.getScaleX(), 0.1f).setDuration(180L));
-        animatorSet.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) View.SCALE_Y, frameLayout.getScaleY(), 0.1f).setDuration(180L));
-        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) View.ALPHA, 1.0f, 0.0f);
-        float f = (float) 350;
-        ofFloat3.setStartDelay(0.7f * f);
-        ofFloat3.setDuration(f * 0.3f);
+        Property property = View.SCALE_X;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, frameLayout.getScaleX(), 0.1f).setDuration(180L));
+        Property property2 = View.SCALE_Y;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property2, frameLayout.getScaleY(), 0.1f).setDuration(180L));
+        Property property3 = View.ALPHA;
+        ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property3, 1.0f, 0.0f);
+        float f3 = (float) 350;
+        ofFloat3.setStartDelay(f3 * 0.7f);
+        ofFloat3.setDuration(f3 * 0.3f);
         animatorSet.playTogether(ofFloat3);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -481,23 +482,23 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                 GroupCallPip.lambda$remove$2();
             }
         }, 370L);
-        long j = 350 + currentFrame + 180;
-        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) View.SCALE_X, 1.0f, 1.05f);
+        long j = currentFrame + 530;
+        ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) property, 1.0f, 1.05f);
         ofFloat4.setDuration(j);
         CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.EASE_BOTH;
         ofFloat4.setInterpolator(cubicBezierInterpolator2);
         animatorSet.playTogether(ofFloat4);
-        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) View.SCALE_Y, 1.0f, 1.05f);
+        ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) property2, 1.0f, 1.05f);
         ofFloat5.setDuration(j);
         ofFloat5.setInterpolator(cubicBezierInterpolator2);
         animatorSet.playTogether(ofFloat5);
-        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) View.SCALE_X, 1.0f, 0.3f);
+        ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) property, 1.0f, 0.3f);
         ofFloat6.setStartDelay(j);
         ofFloat6.setDuration(350L);
         CubicBezierInterpolator cubicBezierInterpolator3 = CubicBezierInterpolator.EASE_OUT_QUINT;
         ofFloat6.setInterpolator(cubicBezierInterpolator3);
         animatorSet.playTogether(ofFloat6);
-        ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) View.SCALE_Y, 1.0f, 0.3f);
+        ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) property2, 1.0f, 0.3f);
         ofFloat7.setStartDelay(j);
         ofFloat7.setDuration(350L);
         ofFloat7.setInterpolator(cubicBezierInterpolator3);
@@ -507,7 +508,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         ofFloat8.setDuration(350L);
         ofFloat8.setInterpolator(cubicBezierInterpolator3);
         animatorSet.playTogether(ofFloat8);
-        ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) View.ALPHA, 1.0f, 0.0f);
+        ObjectAnimator ofFloat9 = ObjectAnimator.ofFloat(this.removeTooltipView, (Property<View, Float>) property3, 1.0f, 0.0f);
         ofFloat9.setStartDelay(j);
         ofFloat9.setDuration(350L);
         ofFloat9.setInterpolator(cubicBezierInterpolator3);
@@ -724,26 +725,22 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.showRemoveAnimator = animatorSet2;
                 View view = this.removeTooltipView;
-                Property property = View.ALPHA;
-                float[] fArr = {view.getAlpha(), 1.0f};
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, view.getAlpha(), 1.0f);
                 View view2 = this.removeTooltipView;
-                Property property2 = View.SCALE_X;
-                float[] fArr2 = {view2.getScaleX(), 1.0f};
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view2, (Property<View, Float>) View.SCALE_X, view2.getScaleX(), 1.0f);
                 View view3 = this.removeTooltipView;
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr), ObjectAnimator.ofFloat(view2, (Property<View, Float>) property2, fArr2), ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.SCALE_Y, view3.getScaleY(), 1.0f));
+                animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(view3, (Property<View, Float>) View.SCALE_Y, view3.getScaleY(), 1.0f));
                 this.showRemoveAnimator.setDuration(150L).start();
                 return;
             }
             AnimatorSet animatorSet3 = new AnimatorSet();
             this.showRemoveAnimator = animatorSet3;
             View view4 = this.removeTooltipView;
-            Property property3 = View.ALPHA;
-            float[] fArr3 = {view4.getAlpha(), 0.0f};
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(view4, (Property<View, Float>) View.ALPHA, view4.getAlpha(), 0.0f);
             View view5 = this.removeTooltipView;
-            Property property4 = View.SCALE_X;
-            float[] fArr4 = {view5.getScaleX(), 0.5f};
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(view5, (Property<View, Float>) View.SCALE_X, view5.getScaleX(), 0.5f);
             View view6 = this.removeTooltipView;
-            animatorSet3.playTogether(ObjectAnimator.ofFloat(view4, (Property<View, Float>) property3, fArr3), ObjectAnimator.ofFloat(view5, (Property<View, Float>) property4, fArr4), ObjectAnimator.ofFloat(view6, (Property<View, Float>) View.SCALE_Y, view6.getScaleY(), 0.5f));
+            animatorSet3.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofFloat(view6, (Property<View, Float>) View.SCALE_Y, view6.getScaleY(), 0.5f));
             this.showRemoveAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -783,10 +780,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             valueAnimator.removeAllListeners();
             this.pinAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.pinnedProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pinnedProgress, z ? 1.0f : 0.0f);
         this.pinAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -838,8 +832,9 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
         float f = this.windowX;
         float f2 = this.pinnedProgress;
-        layoutParams.x = (int) ((f * (1.0f - f2)) + (measuredWidth * f2));
-        layoutParams.y = (int) ((this.windowY * (1.0f - f2)) + (measuredHeight * f2));
+        float f3 = 1.0f - f2;
+        layoutParams.x = (int) ((f * f3) + (measuredWidth * f2));
+        layoutParams.y = (int) ((this.windowY * f3) + (measuredHeight * f2));
         updateAvatarsPosition();
         if (this.windowView.getParent() != null) {
             this.windowManager.updateViewLayout(this.windowView, this.windowLayoutParams);
@@ -881,12 +876,8 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
 
     public static void updateVisibility(Context context) {
         VoIPService sharedInstance = VoIPService.getSharedInstance();
-        boolean z = false;
-        boolean z2 = (sharedInstance == null || sharedInstance.groupCall == null || sharedInstance.isHangingUp()) ? false : true;
-        if (AndroidUtilities.checkInlinePermissions(ApplicationLoader.applicationContext) && z2 && !forceRemoved && (ApplicationLoader.mainInterfaceStopped || !GroupCallActivity.groupCallUiVisible)) {
-            z = true;
-        }
-        if (z) {
+        boolean z = (sharedInstance == null || sharedInstance.groupCall == null || sharedInstance.isHangingUp()) ? false : true;
+        if (AndroidUtilities.checkInlinePermissions(ApplicationLoader.applicationContext) && z && !forceRemoved && (ApplicationLoader.mainInterfaceStopped || !GroupCallActivity.groupCallUiVisible)) {
             show(context, sharedInstance.getAccount());
             instance.showAvatars(true);
         } else {

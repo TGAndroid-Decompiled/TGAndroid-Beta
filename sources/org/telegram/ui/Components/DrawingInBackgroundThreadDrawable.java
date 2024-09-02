@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
@@ -36,7 +37,47 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
     private final Runnable bitmapCreateTask = new Runnable() {
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.DrawingInBackgroundThreadDrawable.AnonymousClass1.run():void");
+            int i;
+            Bitmap bitmap;
+            try {
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
+                i = drawingInBackgroundThreadDrawable.height + drawingInBackgroundThreadDrawable.padding;
+                bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
+            } catch (Exception e) {
+                FileLog.e(e);
+                DrawingInBackgroundThreadDrawable.this.error = true;
+            }
+            if (bitmap != null) {
+                int width = bitmap.getWidth();
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = DrawingInBackgroundThreadDrawable.this;
+                if (width == drawingInBackgroundThreadDrawable2.width) {
+                    if (drawingInBackgroundThreadDrawable2.backgroundBitmap.getHeight() != i) {
+                    }
+                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable3 = DrawingInBackgroundThreadDrawable.this;
+                    drawingInBackgroundThreadDrawable3.drawInBackground(drawingInBackgroundThreadDrawable3.backgroundCanvas);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+                    DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+                    AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
+                }
+            }
+            Bitmap bitmap2 = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            }
+            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable4 = DrawingInBackgroundThreadDrawable.this;
+            drawingInBackgroundThreadDrawable4.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable4.width, i, Bitmap.Config.ARGB_8888);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.translate(0.0f, r0.padding);
+            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable32 = DrawingInBackgroundThreadDrawable.this;
+            drawingInBackgroundThreadDrawable32.drawInBackground(drawingInBackgroundThreadDrawable32.backgroundCanvas);
+            DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+            DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+            AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
         }
     };
     Runnable uiFrameRunnable = new Runnable() {
@@ -152,11 +193,9 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
         }
         this.attachedToWindow = true;
         this.error = false;
-        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
+        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-        int i = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
-        this.currentOpenedLayerFlags = i;
-        if (i == 0 && this.paused) {
+        if (currentHeavyOperationFlags == 0 && this.paused) {
             this.paused = false;
             onResume();
         }
@@ -268,9 +307,7 @@ public class DrawingInBackgroundThreadDrawable implements NotificationCenter.Not
     public void setLayerNum(int i) {
         this.currentLayerNum = i;
         if (this.attachedToWindow) {
-            int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+            this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         }
     }
 }

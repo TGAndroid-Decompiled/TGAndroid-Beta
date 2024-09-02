@@ -55,6 +55,7 @@ import org.telegram.ui.GroupCallActivity;
 
 @SuppressLint({"ViewConstructor"})
 public class GroupCallRenderersContainer extends FrameLayout {
+    private boolean animateSpeakingOnNextDraw;
     private LongSparseIntArray attachedPeerIds;
     private final ArrayList<GroupCallMiniTextureView> attachedRenderers;
     private final ImageView backButton;
@@ -146,6 +147,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
         this.attachedPeerIds = new LongSparseIntArray();
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.speakingMembersToastChangeProgress = 1.0f;
+        this.animateSpeakingOnNextDraw = true;
         this.uiVisible = true;
         this.hideUiRunnable = new Runnable() {
             @Override
@@ -166,7 +168,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
         this.attachedRenderers = arrayList;
         this.call = call;
         this.groupCallActivity = groupCallActivity;
-        ImageView imageView = new ImageView(this, context) {
+        ImageView imageView = new ImageView(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(ActionBar.getCurrentActionBarHeight(), 1073741824));
@@ -261,13 +263,13 @@ public class GroupCallRenderersContainer extends FrameLayout {
         textView.setTextColor(-1);
         this.pinTextView.setTextSize(1, 15.0f);
         this.pinTextView.setTypeface(AndroidUtilities.bold());
-        this.pinTextView.setText(LocaleController.getString("CallVideoPin", R.string.CallVideoPin));
+        this.pinTextView.setText(LocaleController.getString(R.string.CallVideoPin));
         TextView textView2 = new TextView(context);
         this.unpinTextView = textView2;
         textView2.setTextColor(-1);
         this.unpinTextView.setTextSize(1, 15.0f);
         this.unpinTextView.setTypeface(AndroidUtilities.bold());
-        this.unpinTextView.setText(LocaleController.getString("CallVideoUnpin", R.string.CallVideoUnpin));
+        this.unpinTextView.setText(LocaleController.getString(R.string.CallVideoUnpin));
         addView(this.pinTextView, LayoutHelper.createFrame(-2, -2, 51));
         addView(this.unpinTextView, LayoutHelper.createFrame(-2, -2, 51));
         ImageView imageView3 = new ImageView(context);
@@ -784,10 +786,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
                     this.pinContainer.setVisibility(0);
                 }
                 onFullScreenModeChanged(true);
-                float[] fArr = new float[2];
-                fArr[0] = this.progressToFullscreenMode;
-                fArr[1] = this.inFullscreenMode ? 1.0f : 0.0f;
-                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(this.progressToFullscreenMode, this.inFullscreenMode ? 1.0f : 0.0f);
                 this.fullscreenAnimator = ofFloat4;
                 ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -850,7 +849,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
             }
         }).setDuration(100L).start();
         if (groupCallMiniTextureView2 != null) {
-            groupCallMiniTextureView2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).setListener(new AnimatorListenerAdapter(this) {
+            groupCallMiniTextureView2.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     groupCallMiniTextureView2.animateEnter = false;
@@ -860,7 +859,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
     }
 
     public void lambda$requestFullscreen$4(final GroupCallMiniTextureView groupCallMiniTextureView) {
-        groupCallMiniTextureView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setListener(new AnimatorListenerAdapter(this) {
+        groupCallMiniTextureView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 groupCallMiniTextureView.animateEnter = false;
@@ -928,20 +927,9 @@ public class GroupCallRenderersContainer extends FrameLayout {
     }
 
     private void animateSwipeToBack(boolean z) {
-        ValueAnimator ofFloat;
         if (this.swipeToBackGesture) {
             this.swipeToBackGesture = false;
-            float[] fArr = new float[2];
-            float f = this.swipeToBackDy;
-            if (z) {
-                fArr[0] = f;
-                fArr[1] = 0.0f;
-                ofFloat = ValueAnimator.ofFloat(fArr);
-            } else {
-                fArr[0] = f;
-                fArr[1] = 0.0f;
-                ofFloat = ValueAnimator.ofFloat(fArr);
-            }
+            ValueAnimator ofFloat = z ? ValueAnimator.ofFloat(this.swipeToBackDy, 0.0f) : ValueAnimator.ofFloat(this.swipeToBackDy, 0.0f);
             this.swipeToBackAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -1110,7 +1098,6 @@ public class GroupCallRenderersContainer extends FrameLayout {
             return;
         }
         int currentAccount = this.groupCallActivity.getCurrentAccount();
-        long j = 500;
         if (System.currentTimeMillis() - this.lastUpdateTooltipTime < 500) {
             if (this.updateTooltipRunnbale == null) {
                 Runnable runnable = new Runnable() {
@@ -1136,7 +1123,9 @@ public class GroupCallRenderersContainer extends FrameLayout {
             } else {
                 long peerId = MessageObject.getPeerId(tLRPC$TL_groupCallParticipant.peer);
                 i = i3;
-                if (SystemClock.uptimeMillis() - tLRPC$TL_groupCallParticipant.lastSpeakTime < j) {
+                if (SystemClock.uptimeMillis() - tLRPC$TL_groupCallParticipant.lastSpeakTime >= 500) {
+                    continue;
+                } else {
                     if (spannableStringBuilder == null) {
                         spannableStringBuilder = new SpannableStringBuilder();
                     }
@@ -1168,12 +1157,9 @@ public class GroupCallRenderersContainer extends FrameLayout {
                     if (i4 == 3) {
                         break;
                     }
-                } else {
-                    continue;
                 }
             }
             i3 = i + 1;
-            j = 500;
         }
         boolean z3 = i4 != 0;
         boolean z4 = this.showSpeakingMembersToast;

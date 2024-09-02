@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
@@ -23,6 +24,7 @@ public class TextDetailCell extends FrameLayout {
     private boolean multiline;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
+    private final TextView showMoreTextView;
     public final LinkSpanDrawable.LinksTextView textView;
     public final LinkSpanDrawable.LinksTextView valueTextView;
 
@@ -40,6 +42,7 @@ public class TextDetailCell extends FrameLayout {
 
     public TextDetailCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
+        this.showMoreTextView = null;
         this.resourcesProvider = resourcesProvider;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider) {
             @Override
@@ -64,7 +67,8 @@ public class TextDetailCell extends FrameLayout {
         linksTextView.setLines(1);
         linksTextView.setMaxLines(1);
         linksTextView.setSingleLine(true);
-        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        linksTextView.setEllipsize(truncateAt);
         linksTextView.setImportantForAccessibility(2);
         linksTextView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f));
         addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 17.0f, 6.0f, 17.0f, 0.0f));
@@ -96,7 +100,7 @@ public class TextDetailCell extends FrameLayout {
         linksTextView2.setTextSize(1, 13.0f);
         linksTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         linksTextView2.setImportantForAccessibility(2);
-        linksTextView2.setEllipsize(TextUtils.TruncateAt.END);
+        linksTextView2.setEllipsize(truncateAt);
         linksTextView2.setPadding(0, AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(6.0f));
         addView(linksTextView2, LayoutHelper.createFrame(-1, -2.0f, LocaleController.isRTL ? 5 : 3, 23.0f, 32.0f, 23.0f, 4.0f));
         updateColors();
@@ -129,9 +133,12 @@ public class TextDetailCell extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z = this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null;
-        if (!z) {
-            z = this.textView.hit(((int) motionEvent.getX()) - this.textView.getLeft(), ((int) motionEvent.getY()) - this.textView.getTop()) != null;
+        boolean z = false;
+        boolean z2 = this.valueTextView.hit(((int) motionEvent.getX()) - this.valueTextView.getLeft(), ((int) motionEvent.getY()) - this.valueTextView.getTop()) != null;
+        if (z2) {
+            z = z2;
+        } else if (this.textView.hit(((int) motionEvent.getX()) - this.textView.getLeft(), ((int) motionEvent.getY()) - this.textView.getTop()) != null) {
+            z = true;
         }
         if (z) {
             return true;

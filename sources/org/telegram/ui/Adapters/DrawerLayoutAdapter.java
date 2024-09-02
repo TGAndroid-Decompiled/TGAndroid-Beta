@@ -3,6 +3,7 @@ package org.telegram.ui.Adapters;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.annotation.Keep;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,8 +54,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     private int getAccountRowsCount() {
-        int size = this.accountNumbers.size() + 1;
-        return this.accountNumbers.size() < 4 ? size + 1 : size;
+        int size = this.accountNumbers.size();
+        return this.accountNumbers.size() < 4 ? size + 2 : size + 1;
     }
 
     @Override
@@ -270,9 +271,9 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             this.items.add(new Item(16, LocaleController.getString(R.string.MyProfile), R.drawable.left_status_profile));
             if (userConfig != null && userConfig.isPremium()) {
                 if (userConfig.getEmojiStatus() != null) {
-                    this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus), R.drawable.msg_status_edit));
+                    this.items.add(new Item(15, LocaleController.getString(R.string.ChangeEmojiStatus), R.drawable.msg_status_edit));
                 } else {
-                    this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), R.drawable.msg_status_set));
+                    this.items.add(new Item(15, LocaleController.getString(R.string.SetEmojiStatus), R.drawable.msg_status_set));
                 }
             }
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
@@ -289,17 +290,17 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 }
             }
             this.items.add(null);
-            this.items.add(new Item(2, LocaleController.getString("NewGroup", R.string.NewGroup), i));
-            this.items.add(new Item(6, LocaleController.getString("Contacts", R.string.Contacts), i2));
-            this.items.add(new Item(10, LocaleController.getString("Calls", R.string.Calls), i3));
+            this.items.add(new Item(2, LocaleController.getString(R.string.NewGroup), i));
+            this.items.add(new Item(6, LocaleController.getString(R.string.Contacts), i2));
+            this.items.add(new Item(10, LocaleController.getString(R.string.Calls), i3));
             if (this.hasGps) {
-                this.items.add(new Item(12, LocaleController.getString("PeopleNearby", R.string.PeopleNearby), i8));
+                this.items.add(new Item(12, LocaleController.getString(R.string.PeopleNearby), i8));
             }
-            this.items.add(new Item(11, LocaleController.getString("SavedMessages", R.string.SavedMessages), i4));
-            this.items.add(new Item(8, LocaleController.getString("Settings", R.string.Settings), i5));
+            this.items.add(new Item(11, LocaleController.getString(R.string.SavedMessages), i4));
+            this.items.add(new Item(8, LocaleController.getString(R.string.Settings), i5));
             this.items.add(null);
-            this.items.add(new Item(7, LocaleController.getString("InviteFriends", R.string.InviteFriends), i6));
-            this.items.add(new Item(13, LocaleController.getString("TelegramFeatures", R.string.TelegramFeatures), i7));
+            this.items.add(new Item(7, LocaleController.getString(R.string.InviteFriends), i6));
+            this.items.add(new Item(13, LocaleController.getString(R.string.TelegramFeatures), i7));
         }
     }
 
@@ -390,11 +391,13 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             drawerActionCell.setError(this.error);
         }
 
+        @Keep
         public Item onClick(View.OnClickListener onClickListener) {
             this.listener = onClickListener;
             return this;
         }
 
+        @Keep
         public Item withError() {
             this.error = true;
             return this;

@@ -11,6 +11,6 @@ public final class TimelineView$AudioWaveformLoader$$ExternalSyntheticLambda0 im
 
     @Override
     public final void run() {
-        TimelineView.AudioWaveformLoader.$r8$lambda$J9L4w_klQvdRjbFC_ibCkKdbApY(this.f$0);
+        TimelineView.AudioWaveformLoader.$r8$lambda$euafz_GZqdf0mOeuLVK7symE8Ls(this.f$0);
     }
 }

@@ -68,7 +68,7 @@ public class UserCell2 extends FrameLayout {
         View view = this.avatarImageView;
         boolean z = LocaleController.isRTL;
         addView(view, LayoutHelper.createFrame(48, 48.0f, (z ? 5 : 3) | 48, z ? 0.0f : i + 7, 11.0f, z ? i + 7 : 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+        SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
             public boolean setText(CharSequence charSequence) {
                 return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(15.0f), false));

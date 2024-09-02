@@ -44,12 +44,15 @@ public class BotStarsController {
         BotStarsController botStarsController = Instance[i];
         if (botStarsController == null) {
             synchronized (lockObjects[i]) {
-                botStarsController = Instance[i];
-                if (botStarsController == null) {
-                    BotStarsController[] botStarsControllerArr = Instance;
-                    BotStarsController botStarsController2 = new BotStarsController(i);
-                    botStarsControllerArr[i] = botStarsController2;
-                    botStarsController = botStarsController2;
+                try {
+                    botStarsController = Instance[i];
+                    if (botStarsController == null) {
+                        BotStarsController[] botStarsControllerArr = Instance;
+                        BotStarsController botStarsController2 = new BotStarsController(i);
+                        botStarsControllerArr[i] = botStarsController2;
+                        botStarsController = botStarsController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -211,7 +214,7 @@ public class BotStarsController {
         public final ArrayList<TLRPC$StarsTransaction>[] transactions;
         public final boolean[] transactionsExist;
 
-        private TransactionsState(BotStarsController botStarsController) {
+        private TransactionsState() {
             this.transactions = new ArrayList[]{new ArrayList<>(), new ArrayList<>(), new ArrayList<>()};
             this.transactionsExist = new boolean[3];
             this.offset = new String[3];

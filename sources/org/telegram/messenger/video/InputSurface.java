@@ -8,7 +8,6 @@ import android.opengl.EGLDisplay;
 import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.view.Surface;
-import java.util.Objects;
 
 @TargetApi(17)
 public class InputSurface {
@@ -20,7 +19,7 @@ public class InputSurface {
     private Surface mSurface;
 
     public InputSurface(Surface surface) {
-        Objects.requireNonNull(surface);
+        surface.getClass();
         this.mSurface = surface;
         eglSetup();
     }

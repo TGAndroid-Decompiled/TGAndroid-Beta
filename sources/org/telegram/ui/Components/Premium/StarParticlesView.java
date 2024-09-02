@@ -110,12 +110,7 @@ public class StarParticlesView extends View {
         if (this.doNotFling) {
             return;
         }
-        float f2 = 15.0f;
-        if (f < 60.0f) {
-            f2 = 5.0f;
-        } else if (f < 180.0f) {
-            f2 = 9.0f;
-        }
+        float f2 = f < 60.0f ? 5.0f : f < 180.0f ? 9.0f : 15.0f;
         AnimatorSet animatorSet = new AnimatorSet();
         ValueAnimator.AnimatorUpdateListener animatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -207,10 +202,10 @@ public class StarParticlesView extends View {
 
         public void init() {
             if (this.useRotate) {
-                int i = this.count;
-                this.points1 = new float[i * 2];
-                this.points2 = new float[i * 2];
-                this.points3 = new float[i * 2];
+                int i = this.count * 2;
+                this.points1 = new float[i];
+                this.points2 = new float[i];
+                this.points3 = new float[i];
             }
             generateBitmaps();
             if (this.particles.isEmpty()) {
@@ -328,31 +323,34 @@ public class StarParticlesView extends View {
                     Drawable drawable = Drawable.this;
                     float[] fArr = drawable.points1;
                     int i2 = drawable.pointsCount1;
-                    fArr[i2 * 2] = this.x;
-                    fArr[(i2 * 2) + 1] = this.y;
+                    int i3 = i2 * 2;
+                    fArr[i3] = this.x;
+                    fArr[i3 + 1] = this.y;
                     drawable.pointsCount1 = i2 + 1;
                     return;
                 }
                 if (i == 1) {
                     Drawable drawable2 = Drawable.this;
                     float[] fArr2 = drawable2.points2;
-                    int i3 = drawable2.pointsCount2;
-                    fArr2[i3 * 2] = this.x;
-                    fArr2[(i3 * 2) + 1] = this.y;
-                    drawable2.pointsCount2 = i3 + 1;
+                    int i4 = drawable2.pointsCount2;
+                    int i5 = i4 * 2;
+                    fArr2[i5] = this.x;
+                    fArr2[i5 + 1] = this.y;
+                    drawable2.pointsCount2 = i4 + 1;
                     return;
                 }
                 if (i == 2) {
                     Drawable drawable3 = Drawable.this;
                     float[] fArr3 = drawable3.points3;
-                    int i4 = drawable3.pointsCount3;
-                    fArr3[i4 * 2] = this.x;
-                    fArr3[(i4 * 2) + 1] = this.y;
-                    drawable3.pointsCount3 = i4 + 1;
+                    int i6 = drawable3.pointsCount3;
+                    int i7 = i6 * 2;
+                    fArr3[i7] = this.x;
+                    fArr3[i7 + 1] = this.y;
+                    drawable3.pointsCount3 = i6 + 1;
                 }
             }
 
-            public void draw(android.graphics.Canvas r12, long r13, float r15) {
+            public void draw(android.graphics.Canvas r10, long r11, float r13) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.StarParticlesView.Drawable.Particle.draw(android.graphics.Canvas, long, float):void");
             }
 
@@ -439,7 +437,7 @@ public class StarParticlesView extends View {
                 }
                 Drawable drawable4 = Drawable.this;
                 if (drawable4.flip[this.starIndex]) {
-                    atan2 = Math.toRadians(280.0f - (200.0f * Utilities.fastRandom.nextFloat()));
+                    atan2 = Math.toRadians(280.0f - (Utilities.fastRandom.nextFloat() * 200.0f));
                 } else if (drawable4.startFromCenter) {
                     atan2 = Utilities.fastRandom.nextDouble() * 3.141592653589793d * 2.0d;
                 } else {

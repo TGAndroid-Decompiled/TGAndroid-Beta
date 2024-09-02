@@ -73,8 +73,8 @@ public class AnimatedEmojiEffect {
         } else {
             long currentTimeMillis = System.currentTimeMillis();
             if (this.particles.size() < 12) {
-                long j = this.startTime;
-                if (currentTimeMillis - j < 1500 && currentTimeMillis - j > 200 && currentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
+                long j = currentTimeMillis - this.startTime;
+                if (j < 1500 && j > 200 && currentTimeMillis - this.lastGenerateTime > 50 && Utilities.fastRandom.nextInt() % 6 == 0) {
                     Particle particle2 = new Particle();
                     particle2.generate();
                     this.particles.add(particle2);
@@ -83,16 +83,14 @@ public class AnimatedEmojiEffect {
             }
         }
         ImageReceiver imageReceiver = this.effectImageReceiver;
-        if (imageReceiver != null && this.showGeneric) {
-            if (!(imageReceiver.getLottieAnimation() != null && this.effectImageReceiver.getLottieAnimation().isLastFrame())) {
-                if (this.longAnimation) {
-                    canvas.save();
-                    canvas.translate(this.bounds.width() / 3.0f, 0.0f);
-                    this.effectImageReceiver.draw(canvas);
-                    canvas.restore();
-                } else {
-                    this.effectImageReceiver.draw(canvas);
-                }
+        if (imageReceiver != null && this.showGeneric && (imageReceiver.getLottieAnimation() == null || !this.effectImageReceiver.getLottieAnimation().isLastFrame())) {
+            if (this.longAnimation) {
+                canvas.save();
+                canvas.translate(this.bounds.width() / 3.0f, 0.0f);
+                this.effectImageReceiver.draw(canvas);
+                canvas.restore();
+            } else {
+                this.effectImageReceiver.draw(canvas);
             }
         }
         canvas.save();
@@ -277,7 +275,7 @@ public class AnimatedEmojiEffect {
             return r0.bounds.width() * (Math.abs(Utilities.fastRandom.nextInt() % 100) / 100.0f);
         }
 
-        public void draw(android.graphics.Canvas r11) {
+        public void draw(android.graphics.Canvas r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.AnimatedEmojiEffect.Particle.draw(android.graphics.Canvas):void");
         }
     }

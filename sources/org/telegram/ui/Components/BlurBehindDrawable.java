@@ -38,6 +38,7 @@ public class BlurBehindDrawable {
     private boolean wasDraw;
     private boolean invalidate = true;
     private boolean animateAlpha = true;
+    private final float DOWN_SCALE = 6.0f;
     BlurBackgroundTask blurBackgroundTask = new BlurBackgroundTask();
     Paint emptyPaint = new Paint(2);
 
@@ -225,23 +226,25 @@ public class BlurBehindDrawable {
     public void lambda$clear$2() {
         Bitmap[] bitmapArr = this.renderingBitmap;
         if (bitmapArr != null) {
-            if (bitmapArr[0] != null) {
-                bitmapArr[0].recycle();
+            Bitmap bitmap = bitmapArr[0];
+            if (bitmap != null) {
+                bitmap.recycle();
             }
-            Bitmap[] bitmapArr2 = this.renderingBitmap;
-            if (bitmapArr2[1] != null) {
-                bitmapArr2[1].recycle();
+            Bitmap bitmap2 = this.renderingBitmap[1];
+            if (bitmap2 != null) {
+                bitmap2.recycle();
             }
             this.renderingBitmap = null;
         }
-        Bitmap[] bitmapArr3 = this.backgroundBitmap;
-        if (bitmapArr3 != null) {
-            if (bitmapArr3[0] != null) {
-                bitmapArr3[0].recycle();
+        Bitmap[] bitmapArr2 = this.backgroundBitmap;
+        if (bitmapArr2 != null) {
+            Bitmap bitmap3 = bitmapArr2[0];
+            if (bitmap3 != null) {
+                bitmap3.recycle();
             }
-            Bitmap[] bitmapArr4 = this.backgroundBitmap;
-            if (bitmapArr4[1] != null) {
-                bitmapArr4[1].recycle();
+            Bitmap bitmap4 = this.backgroundBitmap[1];
+            if (bitmap4 != null) {
+                bitmap4.recycle();
             }
             this.backgroundBitmap = null;
         }
@@ -305,13 +308,16 @@ public class BlurBehindDrawable {
             if (i != 0) {
                 dp = measuredHeight;
             }
-            if (bitmapArr[i] == null || bitmapArr[i].getHeight() != dp || bitmapArr[i].getWidth() != this.parentView.getMeasuredWidth()) {
+            Bitmap bitmap = bitmapArr[i];
+            if (bitmap == null || bitmap.getHeight() != dp || bitmapArr[i].getWidth() != this.parentView.getMeasuredWidth()) {
                 DispatchQueue dispatchQueue = this.queue;
                 if (dispatchQueue != null) {
                     dispatchQueue.cleanupQueue();
                 }
+                Bitmap[] bitmapArr2 = this.blurredBitmapTmp;
                 int i2 = (int) (measuredWidth / 6.0f);
-                this.blurredBitmapTmp[i] = Bitmap.createBitmap(i2, (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
+                Bitmap.Config config = Bitmap.Config.ARGB_8888;
+                bitmapArr2[i] = Bitmap.createBitmap(i2, (int) (dp / 6.0f), config);
                 if (i == 1) {
                     this.blurredBitmapTmp[i].eraseColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 }
@@ -319,7 +325,7 @@ public class BlurBehindDrawable {
                 if (i == 0) {
                     measuredHeight = this.toolbarH;
                 }
-                this.renderingBitmap[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 6.0f), Bitmap.Config.ARGB_8888);
+                this.renderingBitmap[i] = Bitmap.createBitmap(i2, (int) (measuredHeight / 6.0f), config);
                 this.renderingBitmapCanvas[i] = new Canvas(this.renderingBitmap[i]);
                 this.renderingBitmapCanvas[i].scale(this.renderingBitmap[i].getWidth() / this.blurredBitmapTmp[i].getWidth(), this.renderingBitmap[i].getHeight() / this.blurredBitmapTmp[i].getHeight());
                 this.blurCanvas[i].save();

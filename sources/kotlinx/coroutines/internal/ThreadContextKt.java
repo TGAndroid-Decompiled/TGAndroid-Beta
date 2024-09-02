@@ -1,6 +1,5 @@
 package kotlinx.coroutines.internal;
 
-import java.util.Objects;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
@@ -70,7 +69,9 @@ public final class ThreadContextKt {
             return;
         }
         Object fold = coroutineContext.fold(null, findOne);
-        Objects.requireNonNull(fold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
+        if (fold == null) {
+            throw new NullPointerException("null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
+        }
         ((ThreadContextElement) fold).restoreThreadContext(coroutineContext, obj);
     }
 }

@@ -120,7 +120,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         ActionBarMenuItem addItem2 = createActionMode.addItem(2, R.drawable.msg_delete);
         this.deleteItem = addItem2;
         addItem2.setContentDescription(LocaleController.getString(R.string.Delete));
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
@@ -310,10 +310,11 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             if (findReply != null && !findReply.isSpecial()) {
                 z = true;
             }
-            z2 = z;
+        } else {
+            z = z2;
         }
-        if (this.shownEditItem != z2) {
-            this.shownEditItem = z2;
+        if (this.shownEditItem != z) {
+            this.shownEditItem = z;
             this.editItem.animate().alpha(this.shownEditItem ? 1.0f : 0.0f).scaleX(this.shownEditItem ? 1.0f : 0.7f).scaleY(this.shownEditItem ? 1.0f : 0.7f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(340L).start();
         }
     }
@@ -355,7 +356,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity findActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
-        boolean z2 = (lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) && !z;
+        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final ?? r13 = new AlertDialog[1];
         if (z2) {
             builder = new AlertDialogDecor.Builder(context, resourcesProvider);
@@ -507,9 +508,9 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 if (callback3 != null) {
                     callback3.run(obj);
                 }
-                AlertDialog[] alertDialogArr = r13;
-                if (alertDialogArr[0] != null) {
-                    alertDialogArr[0].dismiss();
+                AlertDialog alertDialog = r13[0];
+                if (alertDialog != null) {
+                    alertDialog.dismiss();
                 }
                 if (r13[0] == QuickRepliesActivity.currentDialog) {
                     AlertDialog unused = QuickRepliesActivity.currentDialog = null;
@@ -527,7 +528,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                 QuickRepliesActivity.lambda$openRenameReplyAlert$6(EditTextBoldCursor.this, callback2, i, quickReply, textView2, callback, dialogInterface, i3);
             }
         });
-        r14.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        r14.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 dialogInterface.dismiss();
@@ -558,9 +559,10 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     QuickRepliesActivity.lambda$openRenameReplyAlert$10(EditTextBoldCursor.this, (Runnable) obj);
                 }
             });
+            AlertDialog create2 = r14.create();
             r1 = 0;
-            r13[0] = r14.create();
-            r13[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            r13[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -580,17 +582,16 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
 
     public static void lambda$openRenameReplyAlert$4(Runnable[] runnableArr, ValueAnimator[] valueAnimatorArr, final TextView textView, final TextView textView2, Boolean bool) {
         AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
-        if (valueAnimatorArr[0] != null) {
-            valueAnimatorArr[0].cancel();
+        ValueAnimator valueAnimator = valueAnimatorArr[0];
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = textView.getAlpha();
-        fArr[1] = bool.booleanValue() ? 1.0f : 0.0f;
-        valueAnimatorArr[0] = ValueAnimator.ofFloat(fArr);
-        valueAnimatorArr[0].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(textView.getAlpha(), bool.booleanValue() ? 1.0f : 0.0f);
+        valueAnimatorArr[0] = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                QuickRepliesActivity.lambda$openRenameReplyAlert$3(textView, textView2, valueAnimator);
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                QuickRepliesActivity.lambda$openRenameReplyAlert$3(textView, textView2, valueAnimator2);
             }
         });
         valueAnimatorArr[0].setDuration(320L);
@@ -838,9 +839,10 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     str2 = "36_36";
                     imageLocation = forObject2;
                 }
+                long j2 = j;
                 ImageReceiver imageReceiver2 = this.imageReceiver;
                 MessageObject messageObject2 = quickReply.topMessage;
-                imageReceiver2.setImage(imageLocation, str2, messageObject2.strippedThumb, j, (String) null, messageObject2, 0);
+                imageReceiver2.setImage(imageLocation, str2, messageObject2.strippedThumb, j2, (String) null, messageObject2, 0);
                 this.imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
             } else if (media != null && (tLRPC$WebPage = media.webpage) != null && (tLRPC$Photo = tLRPC$WebPage.photo) != null) {
                 TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, AndroidUtilities.dp(36.0f), true, null, true);
@@ -899,7 +901,8 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setSingleLine();
-            textView.setEllipsize(TextUtils.TruncateAt.END);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 16.0f);
@@ -908,7 +911,7 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
             TextView textView2 = new TextView(context);
             this.textView = textView2;
             textView2.setLines(2);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
             textView2.setTextSize(1, 15.0f);
             boolean z2 = LocaleController.isRTL;
@@ -971,9 +974,10 @@ public class QuickRepliesActivity extends BaseFragment implements NotificationCe
                     str = "36_36";
                     imageLocation = forObject2;
                 }
+                long j2 = j;
                 ImageReceiver imageReceiver2 = this.imageReceiver;
                 MessageObject messageObject3 = quickReply.topMessage;
-                imageReceiver2.setImage(imageLocation, str, messageObject3.strippedThumb, j, (String) null, messageObject3, 0);
+                imageReceiver2.setImage(imageLocation, str, messageObject3.strippedThumb, j2, (String) null, messageObject3, 0);
                 this.imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
             } else {
                 this.avatarDrawable.setInfo(UserConfig.getInstance(i).getCurrentUser());

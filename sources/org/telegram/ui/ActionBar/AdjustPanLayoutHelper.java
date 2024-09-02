@@ -36,6 +36,7 @@ public class AdjustPanLayoutHelper {
     private boolean ignoreOnce;
     boolean inverse;
     boolean isKeyboardVisible;
+    protected float keyboardSize;
     private boolean needDelay;
     AnimationNotificationsLocker notificationsLocker;
     ViewTreeObserver.OnPreDrawListener onPreDrawListener;
@@ -112,7 +113,7 @@ public class AdjustPanLayoutHelper {
         updateTransition(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public void startTransition(int r6, int r7, boolean r8) {
+    public void startTransition(int r8, int r9, boolean r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.AdjustPanLayoutHelper.startTransition(int, int, boolean):void");
     }
 
@@ -337,16 +338,19 @@ public class AdjustPanLayoutHelper {
         view.setWindowInsetsAnimationCallback(new WindowInsetsAnimation.Callback(1) {
             @Override
             public WindowInsets onProgress(WindowInsets windowInsets, List<WindowInsetsAnimation> list) {
+                WindowInsetsAnimation windowInsetsAnimation;
+                float interpolatedFraction;
+                int typeMask;
                 if (AdjustPanLayoutHelper.this.animationInProgress && AndroidUtilities.screenRefreshRate >= 90.0f) {
-                    WindowInsetsAnimation windowInsetsAnimation = null;
                     Iterator<WindowInsetsAnimation> it = list.iterator();
                     while (true) {
                         if (!it.hasNext()) {
+                            windowInsetsAnimation = null;
                             break;
                         }
-                        WindowInsetsAnimation next = it.next();
-                        if ((next.getTypeMask() & WindowInsetsCompat.Type.ime()) != 0) {
-                            windowInsetsAnimation = next;
+                        windowInsetsAnimation = AdjustPanLayoutHelper$4$$ExternalSyntheticApiModelOutline0.m(it.next());
+                        typeMask = windowInsetsAnimation.getTypeMask();
+                        if ((typeMask & WindowInsetsCompat.Type.ime()) != 0) {
                             break;
                         }
                     }
@@ -355,7 +359,9 @@ public class AdjustPanLayoutHelper {
                         AdjustPanLayoutHelper adjustPanLayoutHelper = AdjustPanLayoutHelper.this;
                         if (elapsedRealtime >= adjustPanLayoutHelper.startAfter) {
                             adjustPanLayoutHelper.usingInsetAnimator = true;
-                            AdjustPanLayoutHelper.this.updateTransition(windowInsetsAnimation.getInterpolatedFraction());
+                            AdjustPanLayoutHelper adjustPanLayoutHelper2 = AdjustPanLayoutHelper.this;
+                            interpolatedFraction = windowInsetsAnimation.getInterpolatedFraction();
+                            adjustPanLayoutHelper2.updateTransition(interpolatedFraction);
                         }
                     }
                 }

@@ -147,9 +147,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private int emojiPadding;
     private EmojiView emojiView;
     public boolean emojiViewVisible;
+    public boolean emojiViewWasVisible;
+    private int emojiWasPadding;
     public EntitiesContainerView entitiesView;
     private ArrayList<PhotoFace> faces;
     private Bitmap facesBitmap;
+    private boolean fillShapes;
     private boolean ignoreLayout;
     private boolean ignoreToolChangeAnimationOnce;
     private float imageHeight;
@@ -166,6 +169,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     private int lastSizeChangeValue1;
     private boolean lastSizeChangeValue2;
     private BigInteger lcm;
+    private Matrix matrix;
     private float offsetTranslationY;
     private Runnable onDoneButtonClickedListener;
     private Runnable openKeyboardRunnable;
@@ -326,6 +330,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.colorSwatchPaint = new Paint(1);
         this.colorSwatchOutlinePaint = new Paint(1);
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
+        this.fillShapes = false;
         this.toolsPaint = new Paint(1);
         this.zoomOutVisible = false;
         this.shadowAlpha = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -333,7 +338,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         Paint paint = new Paint(1);
         this.clearPaint = paint;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        new Matrix();
+        this.matrix = new Matrix();
         this.position = new float[2];
         this.pos2 = new int[2];
         this.openKeyboardRunnable = new Runnable() {
@@ -437,9 +442,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap2, i2, null), this.bitmapToEdit, null, null) {
             @Override
             public void selectBrush(Brush brush) {
-                int indexOf = Brush.BRUSHES_LIST.indexOf(brush) + 1;
-                if (indexOf > 1 && bitmap2 == null) {
-                    indexOf--;
+                int indexOf = Brush.BRUSHES_LIST.indexOf(brush);
+                int i4 = indexOf + 1;
+                if (i4 <= 1 || bitmap2 != null) {
+                    indexOf = i4;
                 }
                 LPhotoPaintView.this.paintToolsView.select(indexOf);
                 LPhotoPaintView.this.onBrushSelected(brush);
@@ -613,7 +619,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             }
         }
         this.entitiesView.setVisibility(4);
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             @SuppressLint({"ClickableViewAccessibility"})
             public boolean onTouchEvent(MotionEvent motionEvent) {
@@ -625,7 +631,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.topLayout = frameLayout2;
         frameLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        this.topLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, 0}));
+        FrameLayout frameLayout3 = this.topLayout;
+        GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
+        frameLayout3.setBackground(new GradientDrawable(orientation, new int[]{-16777216, 0}));
         addView(this.topLayout, LayoutHelper.createFrame(-1, -2, 48));
         ImageView imageView = new ImageView(context);
         this.undoButton = imageView;
@@ -718,12 +726,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.doneTextButton.setAlpha(0.0f);
         this.doneTextButton.setVisibility(8);
         this.topLayout.addView(this.doneTextButton, LayoutHelper.createFrame(-2, 32.0f, 5, 0.0f, 0.0f, 4.0f, 0.0f));
-        FrameLayout frameLayout3 = new FrameLayout(context) {
+        FrameLayout frameLayout4 = new FrameLayout(context) {
             private float lastRainbowX;
             private float lastRainbowY;
+            private Path path = new Path();
 
             {
-                new Path();
                 setWillNotDraw(false);
                 LPhotoPaintView.this.colorPickerRainbowPaint.setStyle(Paint.Style.STROKE);
                 LPhotoPaintView.this.colorPickerRainbowPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -741,9 +749,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             @Override
             public void setTranslationY(float f) {
                 super.setTranslationY(f);
-                FrameLayout frameLayout4 = LPhotoPaintView.this.overlayLayout;
-                if (frameLayout4 != null) {
-                    frameLayout4.invalidate();
+                FrameLayout frameLayout5 = LPhotoPaintView.this.overlayLayout;
+                if (frameLayout5 != null) {
+                    frameLayout5.invalidate();
                 }
             }
 
@@ -816,9 +824,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 canvas.restore();
             }
         };
-        this.bottomLayout = frameLayout3;
-        frameLayout3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0);
-        this.bottomLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, Integer.MIN_VALUE}));
+        this.bottomLayout = frameLayout4;
+        frameLayout4.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0);
+        this.bottomLayout.setBackground(new GradientDrawable(orientation, new int[]{0, Integer.MIN_VALUE}));
         addView(this.bottomLayout, LayoutHelper.createFrame(-1, 104, 80));
         PaintToolsView paintToolsView = new PaintToolsView(context, bitmap2 != null);
         this.paintToolsView = paintToolsView;
@@ -833,7 +841,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.textOptionsView.setDelegate(this);
         this.textOptionsView.setAlignment(PersistColorPalette.getInstance(i).getCurrentAlignment());
         this.bottomLayout.addView(this.textOptionsView, LayoutHelper.createFrame(-1, 48.0f));
-        FrameLayout frameLayout4 = new FrameLayout(context) {
+        FrameLayout frameLayout5 = new FrameLayout(context) {
             {
                 setWillNotDraw(false);
             }
@@ -864,8 +872,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 canvas.drawRoundRect(rectF, dp, dp, LPhotoPaintView.this.typefaceMenuOutlinePaint);
             }
         };
-        this.overlayLayout = frameLayout4;
-        addView(frameLayout4, LayoutHelper.createFrame(-1, -1.0f));
+        this.overlayLayout = frameLayout5;
+        addView(frameLayout5, LayoutHelper.createFrame(-1, -1.0f));
         PaintTypefaceListView paintTypefaceListView = new PaintTypefaceListView(context);
         this.typefaceListView = paintTypefaceListView;
         paintTypefaceListView.setVisibility(8);
@@ -877,7 +885,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         });
         this.textOptionsView.setTypefaceListView(this.typefaceListView);
         this.overlayLayout.addView(this.typefaceListView, LayoutHelper.createFrame(-2, -2.0f, 85, 0.0f, 0.0f, 8.0f, 8.0f));
-        this.typefaceMenuOutlinePaint.setStyle(Paint.Style.STROKE);
+        Paint paint2 = this.typefaceMenuOutlinePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
         this.typefaceMenuOutlinePaint.setColor(1728053247);
         this.typefaceMenuOutlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(1.0f)));
         this.typefaceMenuBackgroundPaint.setColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
@@ -937,10 +947,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             }
         });
         addView(this.weightChooserView, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout5 = new FrameLayout(context);
-        this.pipetteContainerLayout = frameLayout5;
-        addView(frameLayout5, LayoutHelper.createFrame(-1, -1.0f));
-        this.colorSwatchOutlinePaint.setStyle(Paint.Style.STROKE);
+        FrameLayout frameLayout6 = new FrameLayout(context);
+        this.pipetteContainerLayout = frameLayout6;
+        addView(frameLayout6, LayoutHelper.createFrame(-1, -1.0f));
+        this.colorSwatchOutlinePaint.setStyle(style);
         this.colorSwatchOutlinePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         setCurrentSwatch(this.colorSwatch, true);
         onBrushSelected(Brush.BRUSHES_LIST.get(0));
@@ -1232,8 +1242,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
-        float f = paintingSize.width;
-        textPaintView.setMinMaxFontSize((int) ((f / 9.0f) * 0.5f), (int) ((f / 9.0f) * 2.0f), new Runnable() {
+        float f = paintingSize.width / 9.0f;
+        textPaintView.setMinMaxFontSize((int) (0.5f * f), (int) (f * 2.0f), new Runnable() {
             @Override
             public final void run() {
                 LPhotoPaintView.this.lambda$createText$13();
@@ -1374,7 +1384,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 textPaintView2.getSwatch().brushWeight = this.colorSwatch.brushWeight;
                 setCurrentSwatch(textPaintView2.getSwatch(), true);
                 final float f = (int) (this.paintingSize.width / 9.0f);
-                this.weightChooserView.setValueOverride(new PaintWeightChooserView.ValueOverride(this) {
+                this.weightChooserView.setValueOverride(new PaintWeightChooserView.ValueOverride() {
                     @Override
                     public float get() {
                         return textPaintView2.getBaseFontSize() / f;
@@ -1438,14 +1448,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             int measuredHeight = view.getMeasuredHeight();
             MediaController.CropState cropState = this.currentCropState;
             int i2 = cropState.transformRotation;
-            if (i2 == 90 || i2 == 270) {
+            if (i2 != 90 && i2 != 270) {
                 measuredHeight = measuredWidth;
                 measuredWidth = measuredHeight;
             }
-            float scaleX = measuredWidth * cropState.cropPw * view.getScaleX();
+            float scaleX = measuredHeight * cropState.cropPw * view.getScaleX();
             MediaController.CropState cropState2 = this.currentCropState;
             int i3 = (int) (scaleX / cropState2.cropScale);
-            int scaleY = (int) (((measuredHeight * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
+            int scaleY = (int) (((measuredWidth * cropState2.cropPh) * view.getScaleY()) / this.currentCropState.cropScale);
             float ceil = ((float) Math.ceil((getMeasuredWidth() - i3) / 2.0f)) + this.transformX;
             float measuredHeight2 = ((((((getMeasuredHeight() - this.emojiPadding) - currentActionBarHeight) - AndroidUtilities.dp(48.0f)) + getAdditionalBottom()) - scaleY) / 2.0f) + AndroidUtilities.dp(8.0f) + i + this.transformY;
             canvas.clipRect(Math.max(0.0f, ceil), Math.max(0.0f, measuredHeight2), Math.min(ceil + i3, getMeasuredWidth()), Math.min(getMeasuredHeight(), measuredHeight2 + scaleY));
@@ -1677,7 +1687,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 LPhotoPaintView.this.lambda$openStickersView$18();
             }
         }, 350L);
-        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(this, getContext(), false, this.resourcesProvider, false) {
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), false, this.resourcesProvider, false) {
             @Override
             public boolean canShowWidget(Integer num) {
                 return num.intValue() == 2;
@@ -1770,6 +1780,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         chatAttachAlert.drawNavigationBar = true;
         chatAttachAlert.setupPhotoPicker(LocaleController.getString(R.string.AddImage));
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
+            long start;
+
             @Override
             public void didSelectBot(TLRPC$User tLRPC$User) {
                 ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, tLRPC$User);
@@ -1807,7 +1819,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public boolean selectItemOnClicking() {
-                System.currentTimeMillis();
+                this.start = System.currentTimeMillis();
                 return true;
             }
 
@@ -1993,7 +2005,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 measureKeyboardHeight = (measureKeyboardHeight() + i6) - this.emojiView.getMeasuredHeight();
             }
             EmojiView emojiView = this.emojiView;
-            emojiView.layout(0, measureKeyboardHeight, emojiView.getMeasuredWidth() + 0, this.emojiView.getMeasuredHeight() + measureKeyboardHeight);
+            emojiView.layout(0, measureKeyboardHeight, emojiView.getMeasuredWidth(), this.emojiView.getMeasuredHeight() + measureKeyboardHeight);
         }
         if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
             i7 = AndroidUtilities.statusBarHeight;
@@ -2058,8 +2070,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private boolean isSidewardOrientation() {
-        int i = this.originalBitmapRotation;
-        return i % 360 == 90 || i % 360 == 270;
+        int i = this.originalBitmapRotation % 360;
+        return i == 90 || i == 270;
     }
 
     private void detectFaces() {
@@ -2215,15 +2227,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, this.resourcesProvider);
-        builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
-        builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
-        builder.setPositiveButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+        builder.setMessage(LocaleController.getString(R.string.PhotoEditorDiscardAlert));
+        builder.setTitle(LocaleController.getString(R.string.DiscardChanges));
+        builder.setPositiveButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 runnable.run();
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         photoViewer.showAlertDialog(builder);
     }
 
@@ -2271,15 +2283,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         float f8;
         float f9;
         float f10;
-        float f11;
         this.scale = f;
         this.imageWidth = f4;
         this.imageHeight = f5;
         this.inputTransformX = f2;
         this.inputTransformY = f3;
         this.transformX = f2;
-        float f12 = f3 + this.panTranslationY;
-        this.transformY = f12;
+        float f11 = f3 + this.panTranslationY;
+        this.transformY = f11;
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 view = this.entitiesView;
@@ -2292,26 +2303,26 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             }
             MediaController.CropState cropState = this.currentCropState;
             if (cropState != null) {
-                float f13 = cropState.cropScale * 1.0f;
+                float f12 = cropState.cropScale * 1.0f;
                 int measuredWidth = view.getMeasuredWidth();
                 int measuredHeight = view.getMeasuredHeight();
                 if (measuredWidth == 0 || measuredHeight == 0) {
                     return;
                 }
                 int i2 = this.currentCropState.transformRotation;
-                if (i2 == 90 || i2 == 270) {
+                if (i2 != 90 && i2 != 270) {
                     measuredHeight = measuredWidth;
                     measuredWidth = measuredHeight;
                 }
-                float max = Math.max(f4 / ((int) (r12.cropPw * r9)), f5 / ((int) (r12.cropPh * r11)));
-                f10 = f13 * max;
+                float max = Math.max(f4 / ((int) (r12.cropPw * r11)), f5 / ((int) (r12.cropPh * r10)));
+                f7 = f12 * max;
                 MediaController.CropState cropState2 = this.currentCropState;
-                float f14 = cropState2.cropPx * measuredWidth * f * max;
-                float f15 = cropState2.cropScale;
-                f8 = (f14 * f15) + f2;
-                float f16 = (cropState2.cropPy * measuredHeight * f * max * f15) + f12;
-                f11 = cropState2.cropRotate + i2;
-                f9 = f16;
+                float f13 = cropState2.cropPx * measuredHeight * f * max;
+                float f14 = cropState2.cropScale;
+                f8 = (f13 * f14) + f2;
+                float f15 = (cropState2.cropPy * measuredWidth * f * max * f14) + f11;
+                f10 = cropState2.cropRotate + i2;
+                f9 = f15;
                 f6 = 1.0f;
             } else {
                 if (i == 0) {
@@ -2322,20 +2333,19 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     f7 = 1.0f;
                 }
                 f8 = f2;
-                f9 = f12;
-                f10 = f7;
-                f11 = 0.0f;
+                f9 = f11;
+                f10 = 0.0f;
             }
-            float f17 = f9 + ((-this.emojiPadding) / 2.0f);
-            float f18 = f10 * f;
-            if (!Float.isNaN(f18)) {
-                f6 = f18;
+            float f16 = f9 + ((-this.emojiPadding) / 2.0f);
+            float f17 = f7 * f;
+            if (!Float.isNaN(f17)) {
+                f6 = f17;
             }
             view.setScaleX(f6);
             view.setScaleY(f6);
             view.setTranslationX(f8);
-            view.setTranslationY(f17);
-            view.setRotation(f11);
+            view.setTranslationY(f16);
+            view.setRotation(f10);
             view.invalidate();
         }
         updateEntitiesSelections();
@@ -2487,12 +2497,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder(z ? 0.0f : 1000.0f));
             this.toolsTransformAnimation = springAnimation2;
             springAnimation2.setSpring(new SpringForce().setFinalPosition(z ? 1000.0f : 0.0f).setStiffness(1250.0f).setDampingRatio(1.0f));
-            boolean z2 = true;
-            final boolean[] zArr = new boolean[1];
-            if (!this.keyboardVisible && !this.emojiViewVisible) {
-                z2 = false;
-            }
-            zArr[0] = z2;
+            final boolean[] zArr = {this.keyboardVisible || this.emojiViewVisible};
             final float translationY = this.bottomLayout.getTranslationY();
             final ViewGroup barView = getBarView();
             this.toolsTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
@@ -2503,8 +2508,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             });
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
-                public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f, float f2) {
-                    LPhotoPaintView.this.lambda$showColorList$30(z, dynamicAnimation, z3, f, f2);
+                public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+                    LPhotoPaintView.this.lambda$showColorList$30(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -2528,11 +2533,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.cancelButton.setProgress(this.toolsTransformProgress);
         this.tabsLayout.setTranslationY(AndroidUtilities.dp(32.0f) * this.toolsTransformProgress);
         if (zArr[0]) {
-            float f6 = this.toolsTransformProgress;
-            if (!z) {
-                f6 = 1.0f - f6;
-            }
-            this.bottomLayout.setTranslationY(f - ((AndroidUtilities.dp(40.0f) * f6) * (z ? 1 : -1)));
+            this.bottomLayout.setTranslationY(f - ((AndroidUtilities.dp(40.0f) * (z ? this.toolsTransformProgress : 1.0f - this.toolsTransformProgress)) * (z ? 1 : -1)));
         }
         this.bottomLayout.invalidate();
         if (view == this.textOptionsView) {
@@ -2661,7 +2662,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             super(context);
             setOrientation(0);
             setBackground(Theme.getSelectorDrawable(Theme.getColor(Theme.key_listSelector, LPhotoPaintView.this.resourcesProvider), false));
-            FrameLayout frameLayout = new FrameLayout(context, LPhotoPaintView.this) {
+            FrameLayout frameLayout = new FrameLayout(context) {
                 Path path = new Path();
 
                 @Override
@@ -2685,14 +2686,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             addView(frameLayout, LayoutHelper.createLinear(-2, -2, 19, 16, 0, 16, 0));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             ImageView imageView2 = this.imageView;
             int i = Theme.key_actionBarDefaultSubmenuItem;
             imageView2.setColorFilter(LPhotoPaintView.this.getThemedColor(i));
             this.imagesView.addView(this.imageView, LayoutHelper.createFrame(-2, -2, 17));
             ImageView imageView3 = new ImageView(context);
             this.image2View = imageView3;
-            imageView3.setScaleType(ImageView.ScaleType.CENTER);
+            imageView3.setScaleType(scaleType);
             this.image2View.setColorFilter(LPhotoPaintView.this.getThemedColor(i));
             this.image2View.setVisibility(8);
             this.imagesView.addView(this.image2View, LayoutHelper.createFrame(-2, -2, 17));
@@ -2704,7 +2706,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             ImageView imageView4 = new ImageView(context);
             this.checkView = imageView4;
             imageView4.setImageResource(R.drawable.msg_text_check);
-            this.checkView.setScaleType(ImageView.ScaleType.CENTER);
+            this.checkView.setScaleType(scaleType);
             this.checkView.setColorFilter(new PorterDuffColorFilter(LPhotoPaintView.this.getThemedColor(Theme.key_radioBackgroundChecked), PorterDuff.Mode.MULTIPLY));
             this.checkView.setVisibility(8);
             addView(this.checkView, LayoutHelper.createLinear(50, -1));
@@ -2823,14 +2825,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         textPaintView.setAlign(i);
         int i2 = 2;
         textPaintView.getEditText().setGravity(i != 1 ? i != 2 ? 19 : 21 : 17);
-        if (Build.VERSION.SDK_INT >= 17) {
-            if (i == 1) {
-                i2 = 4;
-            } else if (i == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
-                i2 = 3;
-            }
-            textPaintView.getEditText().setTextAlignment(i2);
+        if (i == 1) {
+            i2 = 4;
+        } else if (i == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
+            i2 = 3;
         }
+        textPaintView.getEditText().setTextAlignment(i2);
     }
 
     @Override
@@ -2910,8 +2910,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(14.0f), 0);
         textView.setTextSize(1, 14.0f);
         textView.setTag(0);
-        textView.setText(LocaleController.getString("PaintDelete", R.string.PaintDelete));
-        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setText(LocaleController.getString(R.string.PaintDelete));
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -2926,9 +2927,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             textView2.setGravity(16);
             textView2.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView2.setTextSize(1, 14.0f);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             textView2.setTag(1);
-            textView2.setText(LocaleController.getString("PaintEdit", R.string.PaintEdit));
+            textView2.setText(LocaleController.getString(R.string.PaintEdit));
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -2942,11 +2943,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             textView3.setTextColor(getThemedColor(i));
             textView3.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textView3.setGravity(16);
-            textView3.setEllipsize(TextUtils.TruncateAt.END);
+            textView3.setEllipsize(truncateAt);
             textView3.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView3.setTextSize(1, 14.0f);
             textView3.setTag(2);
-            textView3.setText(LocaleController.getString("Flip", R.string.Flip));
+            textView3.setText(LocaleController.getString(R.string.Flip));
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -2961,11 +2962,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             textView4.setTextColor(getThemedColor(i));
             textView4.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textView4.setGravity(16);
-            textView4.setEllipsize(TextUtils.TruncateAt.END);
+            textView4.setEllipsize(truncateAt);
             textView4.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView4.setTextSize(1, 14.0f);
             textView4.setTag(2);
-            textView4.setText(LocaleController.getString("PaintDuplicate", R.string.PaintDuplicate));
+            textView4.setText(LocaleController.getString(R.string.PaintDuplicate));
             textView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -2981,7 +2982,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 textView5.setTextColor(getThemedColor(i));
                 textView5.setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 textView5.setGravity(16);
-                textView5.setEllipsize(TextUtils.TruncateAt.END);
+                textView5.setEllipsize(truncateAt);
                 textView5.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(16.0f), 0);
                 textView5.setTextSize(1, 14.0f);
                 textView5.setTag(5);
@@ -3052,27 +3053,29 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     private void duplicateSelectedEntity() {
-        EntityView entityView = this.currentEntityView;
-        if (entityView == null) {
+        EntityView entityView;
+        EntityView entityView2 = this.currentEntityView;
+        if (entityView2 == null) {
             return;
         }
-        EntityView entityView2 = null;
-        Point startPositionRelativeToEntity = startPositionRelativeToEntity(entityView);
+        Point startPositionRelativeToEntity = startPositionRelativeToEntity(entityView2);
         EntityView entityView3 = this.currentEntityView;
         if (entityView3 instanceof StickerView) {
             StickerView stickerView = new StickerView(getContext(), (StickerView) this.currentEntityView, startPositionRelativeToEntity);
             stickerView.setDelegate(this);
             this.entitiesView.addView(stickerView);
-            entityView2 = stickerView;
+            entityView = stickerView;
         } else if (entityView3 instanceof TextPaintView) {
             TextPaintView textPaintView = new TextPaintView(getContext(), (TextPaintView) this.currentEntityView, startPositionRelativeToEntity);
             textPaintView.setDelegate(this);
             textPaintView.setMaxWidth((int) (getPaintingSize().width - 20.0f));
             this.entitiesView.addView(textPaintView, LayoutHelper.createFrame(-2, -2.0f));
-            entityView2 = textPaintView;
+            entityView = textPaintView;
+        } else {
+            entityView = null;
         }
-        registerRemovalUndo(entityView2);
-        selectEntity(entityView2);
+        registerRemovalUndo(entityView);
+        selectEntity(entityView);
     }
 
     private Point startPositionRelativeToEntity(EntityView entityView) {
@@ -3520,6 +3523,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             boolean z = emojiView != null && emojiView.getVisibility() == 0;
             createEmojiView();
             this.emojiView.setVisibility(0);
+            this.emojiViewWasVisible = this.emojiViewVisible;
             this.emojiViewVisible = true;
             EmojiView emojiView2 = this.emojiView;
             if (this.keyboardHeight <= 0) {
@@ -3547,6 +3551,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     AndroidUtilities.hideKeyboard(((TextPaintView) entityView).getEditText());
                 }
             }
+            this.emojiWasPadding = i2;
             this.emojiPadding = i2;
             requestLayout();
             updateKeyboard();
@@ -3580,6 +3585,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
         EmojiView emojiView3 = this.emojiView;
         if (emojiView3 != null) {
+            this.emojiViewWasVisible = this.emojiViewVisible;
             this.emojiViewVisible = false;
             if (AndroidUtilities.usingHardwareInput || AndroidUtilities.isInMultiwindow) {
                 emojiView3.setVisibility(8);
@@ -3681,7 +3687,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 layoutParams.width = i4;
                 layoutParams.height = i2;
                 this.emojiView.setLayoutParams(layoutParams);
-                this.emojiPadding = layoutParams.height;
+                int i5 = layoutParams.height;
+                this.emojiWasPadding = i5;
+                this.emojiPadding = i5;
                 requestLayout();
                 updateKeyboard();
                 onWindowSizeChanged();
@@ -3758,6 +3766,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public class AnonymousClass22 implements EmojiView.EmojiViewDelegate {
+        int innerTextChange;
+
         @Override
         public boolean canSchedule() {
             return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
@@ -3886,17 +3896,24 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     selectionEnd = 0;
                 }
                 try {
-                    CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, textPaintView.getFontMetricsInt(), (int) (textPaintView.getFontSize() * 0.8f), false);
-                    if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
-                        for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
-                            emojiSpan.scale = 0.85f;
+                    try {
+                        this.innerTextChange = 2;
+                        CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) str, textPaintView.getFontMetricsInt(), (int) (textPaintView.getFontSize() * 0.8f), false);
+                        if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                            for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                                emojiSpan.scale = 0.85f;
+                            }
                         }
+                        editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
+                        int length = selectionEnd + replaceEmoji.length();
+                        editText.setSelection(length, length);
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
-                    editText.setText(editText.getText().insert(selectionEnd, replaceEmoji));
-                    int length = selectionEnd + replaceEmoji.length();
-                    editText.setSelection(length, length);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    this.innerTextChange = 0;
+                } catch (Throwable th) {
+                    this.innerTextChange = 0;
+                    throw th;
                 }
             }
         }
@@ -3913,33 +3930,40 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 selectionEnd = 0;
             }
             try {
-                SpannableString spannableString = new SpannableString(str);
-                if (tLRPC$Document != null) {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(tLRPC$Document, editText.getPaint().getFontMetricsInt());
-                } else {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(j, editText.getPaint().getFontMetricsInt());
+                try {
+                    this.innerTextChange = 2;
+                    SpannableString spannableString = new SpannableString(str);
+                    if (tLRPC$Document != null) {
+                        animatedEmojiSpan = new AnimatedEmojiSpan(tLRPC$Document, editText.getPaint().getFontMetricsInt());
+                    } else {
+                        animatedEmojiSpan = new AnimatedEmojiSpan(j, editText.getPaint().getFontMetricsInt());
+                    }
+                    spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
+                    editText.setText(editText.getText().insert(selectionEnd, spannableString));
+                    int length = selectionEnd + spannableString.length();
+                    editText.setSelection(length, length);
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-                spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
-                editText.setText(editText.getText().insert(selectionEnd, spannableString));
-                int length = selectionEnd + spannableString.length();
-                editText.setSelection(length, length);
-            } catch (Exception e) {
-                FileLog.e(e);
+                this.innerTextChange = 0;
+            } catch (Throwable th) {
+                this.innerTextChange = 0;
+                throw th;
             }
         }
 
         @Override
         public void onClearEmojiRecent() {
             AlertDialog.Builder builder = new AlertDialog.Builder(LPhotoPaintView.this.getContext(), LPhotoPaintView.this.resourcesProvider);
-            builder.setTitle(LocaleController.getString("ClearRecentEmojiTitle", R.string.ClearRecentEmojiTitle));
-            builder.setMessage(LocaleController.getString("ClearRecentEmojiText", R.string.ClearRecentEmojiText));
-            builder.setPositiveButton(LocaleController.getString("ClearButton", R.string.ClearButton), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(R.string.ClearRecentEmojiTitle));
+            builder.setMessage(LocaleController.getString(R.string.ClearRecentEmojiText));
+            builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LPhotoPaintView.AnonymousClass22.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             builder.show();
         }
 

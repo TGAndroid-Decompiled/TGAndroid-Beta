@@ -203,7 +203,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         if (tLRPC$TL_payments_checkedGiftCode3.boost != null) {
             String str2 = this.slug;
             if (str2 == null || str2.isEmpty()) {
-                textInfoCell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
+                textInfoCell.setText(LocaleController.getString(R.string.BoostingLinkNotActivated));
                 return;
             } else {
                 textInfoCell.setFixedSize(14);
@@ -213,11 +213,11 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         }
         if (this.isUnused) {
             if (tLRPC$TL_payments_checkedGiftCode3.to_id == -1) {
-                string = LocaleController.getString("BoostingSendLinkToAnyone", R.string.BoostingSendLinkToAnyone);
+                string = LocaleController.getString(R.string.BoostingSendLinkToAnyone);
             } else {
-                string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
+                string = LocaleController.getString(R.string.BoostingSendLinkToFriends);
             }
-            textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda3(this), this.resourcesProvider));
+            textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new GiftInfoAdapter$$ExternalSyntheticLambda2(this), this.resourcesProvider));
             return;
         }
         Date date = new Date(this.giftCode.used_date * 1000);
@@ -254,7 +254,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
     public void lambda$onBindViewHolder$1(ActionBtnCell actionBtnCell, TLRPC$TL_error tLRPC$TL_error) {
         actionBtnCell.updateLoading(false);
-        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda3(this));
+        BoostDialogs.processApplyGiftCodeError(tLRPC$TL_error, this.container, this.resourcesProvider, new GiftInfoAdapter$$ExternalSyntheticLambda2(this));
     }
 
     public void lambda$onBindViewHolder$3(View view) {

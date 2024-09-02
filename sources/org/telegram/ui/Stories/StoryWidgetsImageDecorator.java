@@ -117,35 +117,31 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             if (this.imageHolder.isLoaded()) {
                 StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
                 double d = storyWidgetsImageDecorator.imageX;
-                float f2 = storyWidgetsImageDecorator.imageW;
-                double d2 = f2;
+                double d2 = storyWidgetsImageDecorator.imageW;
                 TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.mediaArea.coordinates;
                 double d3 = tL_stories$MediaAreaCoordinates.x;
                 Double.isNaN(d2);
                 Double.isNaN(d);
-                float f3 = (float) (d + ((d2 * d3) / 100.0d));
+                float f2 = (float) (d + ((d3 * d2) / 100.0d));
                 double d4 = storyWidgetsImageDecorator.imageY;
-                float f4 = storyWidgetsImageDecorator.imageH;
-                double d5 = f4;
+                double d5 = storyWidgetsImageDecorator.imageH;
                 double d6 = tL_stories$MediaAreaCoordinates.y;
                 Double.isNaN(d5);
                 Double.isNaN(d4);
-                float f5 = (float) (d4 + ((d5 * d6) / 100.0d));
-                double d7 = f2;
-                double d8 = tL_stories$MediaAreaCoordinates.w;
-                Double.isNaN(d7);
-                float f6 = (float) ((d7 * d8) / 100.0d);
-                double d9 = f4;
-                double d10 = tL_stories$MediaAreaCoordinates.h;
-                Double.isNaN(d9);
-                float f7 = f6 / 2.0f;
-                float f8 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;
-                this.storyReactionWidgetBackground.setBounds((int) (f3 - f7), (int) (f5 - f8), (int) (f7 + f3), (int) (f8 + f5));
+                float f3 = (float) (d4 + ((d6 * d5) / 100.0d));
+                double d7 = tL_stories$MediaAreaCoordinates.w;
+                Double.isNaN(d2);
+                float f4 = (float) ((d2 * d7) / 100.0d);
+                double d8 = tL_stories$MediaAreaCoordinates.h;
+                Double.isNaN(d5);
+                float f5 = f4 / 2.0f;
+                float f6 = ((float) ((d5 * d8) / 100.0d)) / 2.0f;
+                this.storyReactionWidgetBackground.setBounds((int) (f2 - f5), (int) (f3 - f6), (int) (f5 + f2), (int) (f6 + f3));
                 this.storyReactionWidgetBackground.setAlpha((int) (255.0f * f));
                 canvas.save();
-                double d11 = this.mediaArea.coordinates.rotation;
-                if (d11 != 0.0d) {
-                    canvas.rotate((float) d11, f3, f5);
+                double d9 = this.mediaArea.coordinates.rotation;
+                if (d9 != 0.0d) {
+                    canvas.rotate((float) d9, f2, f3);
                 }
                 Rect rect = AndroidUtilities.rectTmp2;
                 float height = (this.storyReactionWidgetBackground.getBounds().height() * 0.61f) / 2.0f;
@@ -181,7 +177,7 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             Weather.State state = new Weather.State();
             state.emoji = tL_stories$TL_mediaAreaWeather.emoji;
             state.temperature = (float) tL_stories$TL_mediaAreaWeather.temperature_c;
-            LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, 1, AndroidUtilities.density, 0, StoryWidgetsImageDecorator.this) {
+            LocationMarker locationMarker = new LocationMarker(ApplicationLoader.applicationContext, 1, AndroidUtilities.density, 0) {
                 @Override
                 public void invalidate() {
                     if (WeatherWidget.this.parentView != null) {
@@ -202,36 +198,32 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         public void draw(Canvas canvas, ImageReceiver imageReceiver, float f) {
             StoryWidgetsImageDecorator storyWidgetsImageDecorator = StoryWidgetsImageDecorator.this;
             double d = storyWidgetsImageDecorator.imageX;
-            float f2 = storyWidgetsImageDecorator.imageW;
-            double d2 = f2;
+            double d2 = storyWidgetsImageDecorator.imageW;
             TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = this.mediaArea.coordinates;
             double d3 = tL_stories$MediaAreaCoordinates.x;
             Double.isNaN(d2);
             Double.isNaN(d);
-            float f3 = (float) (d + ((d2 * d3) / 100.0d));
+            float f2 = (float) (d + ((d3 * d2) / 100.0d));
             double d4 = storyWidgetsImageDecorator.imageY;
-            float f4 = storyWidgetsImageDecorator.imageH;
-            double d5 = f4;
+            double d5 = storyWidgetsImageDecorator.imageH;
             double d6 = tL_stories$MediaAreaCoordinates.y;
             Double.isNaN(d5);
             Double.isNaN(d4);
-            float f5 = (float) (d4 + ((d5 * d6) / 100.0d));
-            double d7 = f2;
-            double d8 = tL_stories$MediaAreaCoordinates.w;
-            Double.isNaN(d7);
-            float f6 = (float) ((d7 * d8) / 100.0d);
-            double d9 = f4;
-            double d10 = tL_stories$MediaAreaCoordinates.h;
-            Double.isNaN(d9);
+            float f3 = (float) (d4 + ((d6 * d5) / 100.0d));
+            double d7 = tL_stories$MediaAreaCoordinates.w;
+            Double.isNaN(d2);
+            float f4 = (float) ((d2 * d7) / 100.0d);
+            double d8 = tL_stories$MediaAreaCoordinates.h;
+            Double.isNaN(d5);
             canvas.save();
-            canvas.translate(f3, f5);
-            float min = Math.min(f6 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), ((float) ((d9 * d10) / 100.0d)) / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
+            canvas.translate(f2, f3);
+            float min = Math.min(f4 / ((this.marker.getWidthInternal() - this.marker.getPaddingLeft()) - this.marker.getPaddingRight()), ((float) ((d5 * d8) / 100.0d)) / ((this.marker.getHeightInternal() - this.marker.getPaddingTop()) - this.marker.getPaddingBottom()));
             canvas.scale(min, min);
-            double d11 = this.mediaArea.coordinates.rotation;
-            if (d11 != 0.0d) {
-                canvas.rotate((float) d11);
+            double d9 = this.mediaArea.coordinates.rotation;
+            if (d9 != 0.0d) {
+                canvas.rotate((float) d9);
             }
-            canvas.translate(((-r0) / 2.0f) - this.marker.getPaddingLeft(), ((-r1) / 2.0f) - this.marker.getPaddingTop());
+            canvas.translate(((-r14) / 2.0f) - this.marker.getPaddingLeft(), ((-r0) / 2.0f) - this.marker.getPaddingTop());
             this.marker.drawInternal(canvas);
             canvas.restore();
         }

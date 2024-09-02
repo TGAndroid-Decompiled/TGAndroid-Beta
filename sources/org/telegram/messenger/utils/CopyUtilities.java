@@ -329,8 +329,11 @@ public class CopyUtilities {
             }
             for (int length = parsedSpanArr.length; length > 0; length--) {
                 int i2 = length - 1;
-                if (editable.getSpanFlags(parsedSpanArr[i2]) == 17 && parsedSpanArr[i2].type == i) {
-                    return (T) parsedSpanArr[i2];
+                if (editable.getSpanFlags(parsedSpanArr[i2]) == 17) {
+                    T t = (T) parsedSpanArr[i2];
+                    if (t.type == i) {
+                        return t;
+                    }
                 }
             }
             return null;

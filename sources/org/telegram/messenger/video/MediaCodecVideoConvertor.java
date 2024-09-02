@@ -48,7 +48,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r87, boolean r88, int r89) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r94, boolean r95, int r96) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -205,15 +205,15 @@ public class MediaCodecVideoConvertor {
 
     private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo) {
         String readRes;
-        if (!z) {
-            return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
+        if (z) {
+            if (hDRInfo.getHDRType() == 1) {
+                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
+            } else {
+                readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
+            }
+            return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
         }
-        if (hDRInfo.getHDRType() == 1) {
-            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
-        } else {
-            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
-        }
-        return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+        return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {

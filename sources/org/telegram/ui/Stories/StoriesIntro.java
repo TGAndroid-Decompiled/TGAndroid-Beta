@@ -64,21 +64,21 @@ public class StoriesIntro extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString("StoriesIntroHeader", R.string.StoriesIntroHeader));
+        textView.setText(LocaleController.getString(R.string.StoriesIntroHeader));
         textView.setTextSize(1, 20.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
         final TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
-        textView2.setText(LocaleController.getString("StoriesIntroSubHeader", R.string.StoriesIntroSubHeader));
+        textView2.setText(LocaleController.getString(R.string.StoriesIntroSubHeader));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 68.0f, 8.0f, 68.0f, 36.0f));
         ArrayList<StoriesIntroItemView> arrayList = new ArrayList<>(4);
         this.items = arrayList;
-        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_forward, LocaleController.getString("StoriesIntroGoForwardHeader", R.string.StoriesIntroGoForwardHeader), LocaleController.getString("StoriesIntroGoForwardSubHeader", R.string.StoriesIntroGoForwardSubHeader)));
-        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_pause, LocaleController.getString("StoriesIntroPauseAndSeekHeader", R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString("StoriesIntroPauseAndSeekSubHeader", R.string.StoriesIntroPauseAndSeekSubHeader)));
-        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_back, LocaleController.getString("StoriesIntroGoBackHeader", R.string.StoriesIntroGoBackHeader), LocaleController.getString("StoriesIntroGoBackSubHeader", R.string.StoriesIntroGoBackSubHeader)));
-        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_to_next, LocaleController.getString("StoriesIntroGoToNextAuthorHeader", R.string.StoriesIntroGoToNextAuthorHeader), LocaleController.getString("StoriesIntroGoToNextAuthorSubHeader", R.string.StoriesIntroGoToNextAuthorSubHeader)));
+        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
+        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_pause, LocaleController.getString(R.string.StoriesIntroPauseAndSeekHeader), LocaleController.getString(R.string.StoriesIntroPauseAndSeekSubHeader)));
+        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_back, LocaleController.getString(R.string.StoriesIntroGoBackHeader), LocaleController.getString(R.string.StoriesIntroGoBackSubHeader)));
+        arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_to_next, LocaleController.getString(R.string.StoriesIntroGoToNextAuthorHeader), LocaleController.getString(R.string.StoriesIntroGoToNextAuthorSubHeader)));
         int measuredWidth = view.getMeasuredWidth() - AndroidUtilities.dp(100.0f);
         Iterator<StoriesIntroItemView> it = arrayList.iterator();
         while (it.hasNext()) {
@@ -96,7 +96,7 @@ public class StoriesIntro extends FrameLayout {
         final TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setText(LocaleController.getString("StoriesIntroDismiss", R.string.StoriesIntroDismiss));
+        textView3.setText(LocaleController.getString(R.string.StoriesIntroDismiss));
         textView3.setTextSize(1, 14.0f);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f, 73.0f, 0.0f, 0.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 17));
@@ -283,8 +283,8 @@ public class StoriesIntro extends FrameLayout {
                 this.backgroundPaint.setAlpha((int) (this.progress * 30.0f));
                 canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
                 canvas.save();
-                float f2 = this.progress;
-                canvas.scale((f2 * 0.05f) + 1.0f, (f2 * 0.05f) + 1.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                float f2 = (this.progress * 0.05f) + 1.0f;
+                canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
             }
             canvas.drawText(this.header, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dpf2(4.0f), this.headerTextPaint);
             canvas.drawText(this.subHeader, AndroidUtilities.dpf2(80.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(18.0f), this.subHeaderTextPaint);

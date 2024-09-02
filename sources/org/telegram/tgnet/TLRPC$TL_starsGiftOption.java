@@ -6,6 +6,7 @@ public class TLRPC$TL_starsGiftOption extends TLObject {
     public boolean extended;
     public int flags;
     public boolean loadingStorePrice;
+    public boolean missingStorePrice;
     public long stars;
     public String store_product;
 

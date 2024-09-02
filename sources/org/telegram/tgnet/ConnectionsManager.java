@@ -25,12 +25,9 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +40,6 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import javax.net.ssl.SSLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
@@ -268,10 +264,13 @@ public class ConnectionsManager extends BaseController {
         ConnectionsManager connectionsManager = connectionsManagerArr[i];
         if (connectionsManager == null) {
             synchronized (ConnectionsManager.class) {
-                connectionsManager = connectionsManagerArr[i];
-                if (connectionsManager == null) {
-                    connectionsManager = new ConnectionsManager(i);
-                    connectionsManagerArr[i] = connectionsManager;
+                try {
+                    connectionsManager = connectionsManagerArr[i];
+                    if (connectionsManager == null) {
+                        connectionsManager = new ConnectionsManager(i);
+                        connectionsManagerArr[i] = connectionsManager;
+                    }
+                } finally {
                 }
             }
         }
@@ -322,9 +321,9 @@ public class ConnectionsManager extends BaseController {
             str5 = "en";
         }
         String str8 = str5.trim().length() == 0 ? "en" : str5;
-        String str9 = str3.trim().length() == 0 ? "Android unknown" : str3;
+        str3 = str3.trim().length() == 0 ? "Android unknown" : str3;
         str2 = str2.trim().length() == 0 ? "App version unknown" : str2;
-        String str10 = str.trim().length() == 0 ? "SDK Unknown" : str;
+        String str9 = str.trim().length() == 0 ? "SDK Unknown" : str;
         getUserConfig().loadConfig();
         String regId = getRegId();
         String certificateSHA256Fingerprint = AndroidUtilities.getCertificateSHA256Fingerprint();
@@ -335,7 +334,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(SharedConfig.buildVersion(), 186, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
+        init(SharedConfig.buildVersion(), 186, BuildVars.APP_ID, str3, str9, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), getUserConfig().getCurrentUser() != null ? getUserConfig().getCurrentUser().premium : false, isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -427,15 +426,11 @@ public class ConnectionsManager extends BaseController {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
             tLObject.serializeToStream(nativeByteBuffer);
             tLObject.freeResources();
-            long j = 0;
-            if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                j = System.currentTimeMillis();
-            }
-            final long j2 = j;
+            final long currentTimeMillis = (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) ? System.currentTimeMillis() : 0L;
             listen(i4, new RequestDelegateInternal() {
                 @Override
-                public final void run(long j3, int i5, String str, int i6, long j4, long j5) {
-                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, j2, i4, j3, i5, str, i6, j4, j5);
+                public final void run(long j, int i5, String str, int i6, long j2, long j3) {
+                    ConnectionsManager.this.lambda$sendRequestInternal$4(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, currentTimeMillis, i4, j, i5, str, i6, j2, j3);
                 }
             }, quickAckDelegate, writeToSocketDelegate);
             native_sendRequest(this.currentAccount, nativeByteBuffer.address, i, i2, i3, z, i4);
@@ -1119,9 +1114,6 @@ public class ConnectionsManager extends BaseController {
 
     @SuppressLint({"NewApi"})
     protected byte getIpStrategy() {
-        if (Build.VERSION.SDK_INT < 19) {
-            return (byte) 0;
-        }
         if (BuildVars.LOGS_ENABLED) {
             try {
                 Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
@@ -1205,8 +1197,110 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public org.telegram.tgnet.ConnectionsManager.ResolvedDomain doInBackground(java.lang.Void... r11) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.ResolveHostByNameTask.doInBackground(java.lang.Void[]):org.telegram.tgnet.ConnectionsManager$ResolvedDomain");
+        public ResolvedDomain doInBackground(Void... voidArr) {
+            InputStream inputStream;
+            ByteArrayOutputStream byteArrayOutputStream;
+            JSONArray jSONArray;
+            int length;
+            try {
+                URLConnection openConnection = new URL("https://www.google.com/resolve?name=" + this.currentHostName + "&type=A").openConnection();
+                openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
+                openConnection.addRequestProperty("Host", "dns.google.com");
+                openConnection.setConnectTimeout(1000);
+                openConnection.setReadTimeout(2000);
+                openConnection.connect();
+                inputStream = openConnection.getInputStream();
+                try {
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                } catch (Throwable th) {
+                    th = th;
+                    byteArrayOutputStream = null;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                inputStream = null;
+                byteArrayOutputStream = null;
+            }
+            try {
+                byte[] bArr = new byte[32768];
+                while (true) {
+                    int read = inputStream.read(bArr);
+                    if (read <= 0) {
+                        break;
+                    }
+                    byteArrayOutputStream.write(bArr, 0, read);
+                }
+                JSONObject jSONObject = new JSONObject(new String(byteArrayOutputStream.toByteArray()));
+                if (jSONObject.has("Answer") && (length = (jSONArray = jSONObject.getJSONArray("Answer")).length()) > 0) {
+                    ArrayList arrayList = new ArrayList(length);
+                    for (int i = 0; i < length; i++) {
+                        arrayList.add(jSONArray.getJSONObject(i).getString("data"));
+                    }
+                    ResolvedDomain resolvedDomain = new ResolvedDomain(arrayList, SystemClock.elapsedRealtime());
+                    try {
+                        inputStream.close();
+                    } catch (Throwable th3) {
+                        FileLog.e(th3, false);
+                    }
+                    try {
+                        byteArrayOutputStream.close();
+                    } catch (Exception unused) {
+                    }
+                    return resolvedDomain;
+                }
+                try {
+                    inputStream.close();
+                } catch (Throwable th4) {
+                    FileLog.e(th4, false);
+                }
+                try {
+                    byteArrayOutputStream.close();
+                } catch (Exception unused2) {
+                    return null;
+                }
+            } catch (Throwable th5) {
+                th = th5;
+                try {
+                    FileLog.e(th, false);
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (Throwable th6) {
+                            FileLog.e(th6, false);
+                        }
+                    }
+                    if (byteArrayOutputStream != null) {
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused3) {
+                        }
+                    }
+                    try {
+                        InetAddress byName = InetAddress.getByName(this.currentHostName);
+                        ArrayList arrayList2 = new ArrayList(1);
+                        arrayList2.add(byName.getHostAddress());
+                        return new ResolvedDomain(arrayList2, SystemClock.elapsedRealtime());
+                    } catch (Exception e) {
+                        FileLog.e((Throwable) e, false);
+                        return null;
+                    }
+                } catch (Throwable th7) {
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (Throwable th8) {
+                            FileLog.e(th8, false);
+                        }
+                    }
+                    if (byteArrayOutputStream != null) {
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused4) {
+                        }
+                    }
+                    throw th7;
+                }
+            }
         }
 
         @Override
@@ -1239,120 +1333,8 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public NativeByteBuffer doInBackground(Void... voidArr) {
-            ByteArrayOutputStream byteArrayOutputStream;
-            InputStream inputStream;
-            InputStream inputStream2;
-            ByteArrayOutputStream byteArrayOutputStream2;
-            int read;
-            boolean z = false;
-            try {
-                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                int nextInt = Utilities.random.nextInt(116) + 13;
-                StringBuilder sb = new StringBuilder(nextInt);
-                for (int i = 0; i < nextInt; i++) {
-                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
-                }
-                URLConnection openConnection = new URL("https://dns.google.com/resolve?name=" + str + "&type=ANY&random_padding=" + ((Object) sb)).openConnection();
-                openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
-                openConnection.setConnectTimeout(5000);
-                openConnection.setReadTimeout(5000);
-                openConnection.connect();
-                inputStream2 = openConnection.getInputStream();
-                try {
-                    this.responseDate = (int) (openConnection.getDate() / 1000);
-                    byteArrayOutputStream2 = new ByteArrayOutputStream();
-                } catch (Throwable th) {
-                    th = th;
-                    inputStream = inputStream2;
-                    byteArrayOutputStream = null;
-                }
-            } catch (Throwable th2) {
-                th = th2;
-                byteArrayOutputStream = null;
-                inputStream = null;
-            }
-            try {
-                byte[] bArr = new byte[32768];
-                while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
-                    byteArrayOutputStream2.write(bArr, 0, read);
-                }
-                JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
-                int length = jSONArray.length();
-                ArrayList arrayList = new ArrayList(length);
-                for (int i2 = 0; i2 < length; i2++) {
-                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                    if (jSONObject.getInt("type") == 16) {
-                        arrayList.add(jSONObject.getString("data"));
-                    }
-                }
-                Collections.sort(arrayList, new Comparator() {
-                    @Override
-                    public final int compare(Object obj, Object obj2) {
-                        int lambda$doInBackground$0;
-                        lambda$doInBackground$0 = ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
-                        return lambda$doInBackground$0;
-                    }
-                });
-                StringBuilder sb2 = new StringBuilder();
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
-                }
-                byte[] decode = Base64.decode(sb2.toString(), 0);
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                nativeByteBuffer.writeBytes(decode);
-                if (inputStream2 != null) {
-                    try {
-                        inputStream2.close();
-                    } catch (Throwable th3) {
-                        FileLog.e(th3);
-                    }
-                }
-                try {
-                    byteArrayOutputStream2.close();
-                } catch (Exception unused) {
-                }
-                return nativeByteBuffer;
-            } catch (Throwable th4) {
-                byteArrayOutputStream = byteArrayOutputStream2;
-                th = th4;
-                inputStream = inputStream2;
-                try {
-                    if (!(th instanceof SocketTimeoutException) && !(th instanceof SSLException)) {
-                        z = true;
-                    }
-                    FileLog.e(th, z);
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th5) {
-                            FileLog.e(th5);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    return null;
-                } catch (Throwable th6) {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th7) {
-                            FileLog.e(th7);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused3) {
-                        }
-                    }
-                    throw th6;
-                }
-            }
+        public org.telegram.tgnet.NativeByteBuffer doInBackground(java.lang.Void... r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.GoogleDnsLoadTask.doInBackground(java.lang.Void[]):org.telegram.tgnet.NativeByteBuffer");
         }
 
         public static int lambda$doInBackground$0(String str, String str2) {
@@ -1402,115 +1384,8 @@ public class ConnectionsManager extends BaseController {
         }
 
         @Override
-        public NativeByteBuffer doInBackground(Void... voidArr) {
-            ByteArrayOutputStream byteArrayOutputStream;
-            InputStream inputStream;
-            int read;
-            try {
-                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                int nextInt = Utilities.random.nextInt(116) + 13;
-                StringBuilder sb = new StringBuilder(nextInt);
-                for (int i = 0; i < nextInt; i++) {
-                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
-                }
-                URLConnection openConnection = new URL("https://mozilla.cloudflare-dns.com/dns-query?name=" + str + "&type=TXT&random_padding=" + ((Object) sb)).openConnection();
-                openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
-                openConnection.addRequestProperty("accept", "application/dns-json");
-                openConnection.setConnectTimeout(5000);
-                openConnection.setReadTimeout(5000);
-                openConnection.connect();
-                InputStream inputStream2 = openConnection.getInputStream();
-                try {
-                    this.responseDate = (int) (openConnection.getDate() / 1000);
-                    ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
-                    try {
-                        byte[] bArr = new byte[32768];
-                        while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
-                            byteArrayOutputStream2.write(bArr, 0, read);
-                        }
-                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
-                        int length = jSONArray.length();
-                        ArrayList arrayList = new ArrayList(length);
-                        for (int i2 = 0; i2 < length; i2++) {
-                            JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                            if (jSONObject.getInt("type") == 16) {
-                                arrayList.add(jSONObject.getString("data"));
-                            }
-                        }
-                        Collections.sort(arrayList, new Comparator() {
-                            @Override
-                            public final int compare(Object obj, Object obj2) {
-                                int lambda$doInBackground$0;
-                                lambda$doInBackground$0 = ConnectionsManager.MozillaDnsLoadTask.lambda$doInBackground$0((String) obj, (String) obj2);
-                                return lambda$doInBackground$0;
-                            }
-                        });
-                        StringBuilder sb2 = new StringBuilder();
-                        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                            sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
-                        }
-                        byte[] decode = Base64.decode(sb2.toString(), 0);
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                        nativeByteBuffer.writeBytes(decode);
-                        if (inputStream2 != null) {
-                            try {
-                                inputStream2.close();
-                            } catch (Throwable th) {
-                                FileLog.e(th);
-                            }
-                        }
-                        try {
-                            byteArrayOutputStream2.close();
-                        } catch (Exception unused) {
-                        }
-                        return nativeByteBuffer;
-                    } catch (Throwable th2) {
-                        byteArrayOutputStream = byteArrayOutputStream2;
-                        th = th2;
-                        inputStream = inputStream2;
-                        try {
-                            FileLog.e(th, false);
-                            if (inputStream != null) {
-                                try {
-                                    inputStream.close();
-                                } catch (Throwable th3) {
-                                    FileLog.e(th3);
-                                }
-                            }
-                            if (byteArrayOutputStream != null) {
-                                try {
-                                    byteArrayOutputStream.close();
-                                } catch (Exception unused2) {
-                                }
-                            }
-                            return null;
-                        } catch (Throwable th4) {
-                            if (inputStream != null) {
-                                try {
-                                    inputStream.close();
-                                } catch (Throwable th5) {
-                                    FileLog.e(th5);
-                                }
-                            }
-                            if (byteArrayOutputStream != null) {
-                                try {
-                                    byteArrayOutputStream.close();
-                                } catch (Exception unused3) {
-                                }
-                            }
-                            throw th4;
-                        }
-                    }
-                } catch (Throwable th6) {
-                    th = th6;
-                    inputStream = inputStream2;
-                    byteArrayOutputStream = null;
-                }
-            } catch (Throwable th7) {
-                th = th7;
-                byteArrayOutputStream = null;
-                inputStream = null;
-            }
+        public org.telegram.tgnet.NativeByteBuffer doInBackground(java.lang.Void... r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.ConnectionsManager.MozillaDnsLoadTask.doInBackground(java.lang.Void[]):org.telegram.tgnet.NativeByteBuffer");
         }
 
         public static int lambda$doInBackground$0(String str, String str2) {
@@ -1661,16 +1536,25 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onPremiumFloodWait$19(i, z, i2);
+                ConnectionsManager.lambda$onPremiumFloodWait$21(i, z, i2);
             }
         });
     }
 
-    public static void lambda$onPremiumFloodWait$19(int i, boolean z, int i2) {
-        boolean z2;
+    public static void lambda$onPremiumFloodWait$21(final int i, final boolean z, final int i2) {
         if (UserConfig.selectedAccount != i) {
             return;
         }
+        FileLoader.getInstance(i).getFileLoaderQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onPremiumFloodWait$20(z, i, i2);
+            }
+        });
+    }
+
+    public static void lambda$onPremiumFloodWait$20(boolean z, final int i, int i2) {
+        final boolean z2;
         if (z) {
             FileUploadOperation findUploadOperationByRequestToken = FileLoader.getInstance(i).findUploadOperationByRequestToken(i2);
             if (findUploadOperationByRequestToken != null) {
@@ -1686,7 +1570,16 @@ public class ConnectionsManager extends BaseController {
             }
             z2 = false;
         }
-        if (z2) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.lambda$onPremiumFloodWait$19(z2, i);
+            }
+        });
+    }
+
+    public static void lambda$onPremiumFloodWait$19(boolean z, int i) {
+        if (z) {
             NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumFloodWaitReceived, new Object[0]);
         }
     }
@@ -1695,24 +1588,24 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, str, str2, i2);
+                ConnectionsManager.lambda$onIntegrityCheckClassic$24(i, str, str2, i2);
             }
         });
     }
 
-    public static void lambda$onIntegrityCheckClassic$22(final int i, String str, final String str2, final int i2) {
+    public static void lambda$onIntegrityCheckClassic$24(final int i, String str, final String str2, final int i2) {
         final long currentTimeMillis = System.currentTimeMillis();
         FileLog.d("account" + i + ": server requests integrity classic check with project = " + str + " nonce = " + str2);
         try {
             IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new OnSuccessListener() {
                 @Override
                 public final void onSuccess(Object obj) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$20(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$22(i, currentTimeMillis, i2, str2, (IntegrityTokenResponse) obj);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public final void onFailure(Exception exc) {
-                    ConnectionsManager.lambda$onIntegrityCheckClassic$21(i, currentTimeMillis, i2, str2, exc);
+                    ConnectionsManager.lambda$onIntegrityCheckClassic$23(i, currentTimeMillis, i2, str2, exc);
                 }
             });
         } catch (Exception unused) {
@@ -1721,7 +1614,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$20(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
+    public static void lambda$onIntegrityCheckClassic$22(int i, long j, int i2, String str, IntegrityTokenResponse integrityTokenResponse) {
         String str2 = integrityTokenResponse.token();
         if (str2 == null) {
             FileLog.e("account" + i + ": integrity check gave null token in " + (System.currentTimeMillis() - j) + "ms");
@@ -1736,7 +1629,7 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onIntegrityCheckClassic$21(int i, long j, int i2, String str, Exception exc) {
+    public static void lambda$onIntegrityCheckClassic$23(int i, long j, int i2, String str, Exception exc) {
         FileLog.e("account" + i + ": integrity check failed to give a token in " + (System.currentTimeMillis() - j) + "ms", exc);
         StringBuilder sb = new StringBuilder();
         sb.append("PLAYINTEGRITY_FAILED_EXCEPTION_");

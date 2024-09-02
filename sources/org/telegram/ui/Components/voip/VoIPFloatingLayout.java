@@ -27,6 +27,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public class VoIPFloatingLayout extends FrameLayout {
+    private final float FLOATING_MODE_SCALE;
     private boolean active;
     public boolean alwaysFloating;
     public int bottomOffset;
@@ -70,6 +71,7 @@ public class VoIPFloatingLayout extends FrameLayout {
     private boolean uiVisible;
     public float updatePositionFromX;
     public float updatePositionFromY;
+    final Paint xRefPaint;
 
     public interface VoIPFloatingLayoutDelegate {
         void onChange(float f, boolean z);
@@ -87,9 +89,10 @@ public class VoIPFloatingLayout extends FrameLayout {
 
     public VoIPFloatingLayout(Context context) {
         super(context);
+        this.FLOATING_MODE_SCALE = 0.23f;
         this.path = new Path();
         this.rectF = new RectF();
-        new Paint(1);
+        this.xRefPaint = new Paint(1);
         this.mutedPaint = new Paint(1);
         this.relativePositionToSetX = -1.0f;
         this.relativePositionToSetY = -1.0f;
@@ -264,21 +267,30 @@ public class VoIPFloatingLayout extends FrameLayout {
     }
 
     private void setRelativePositionInternal(float f, float f2, int i, int i2, boolean z) {
+        float f3;
         WindowInsets windowInsets;
+        int systemWindowInsetBottom;
         WindowInsets windowInsets2;
+        int systemWindowInsetTop;
         Object parent = getParent();
         if (parent == null || !this.floatingMode || this.switchingToFloatingMode || !this.active) {
             return;
         }
         int i3 = Build.VERSION.SDK_INT;
-        float f3 = 0.0f;
-        float systemWindowInsetTop = (i3 < 20 || (windowInsets2 = this.lastInsets) == null) ? 0.0f : windowInsets2.getSystemWindowInsetTop() + this.topPadding;
+        float f4 = 0.0f;
+        if (i3 < 20 || (windowInsets2 = this.lastInsets) == null) {
+            f3 = 0.0f;
+        } else {
+            systemWindowInsetTop = windowInsets2.getSystemWindowInsetTop();
+            f3 = systemWindowInsetTop + this.topPadding;
+        }
         if (i3 >= 20 && (windowInsets = this.lastInsets) != null) {
-            f3 = this.bottomPadding + windowInsets.getSystemWindowInsetBottom();
+            systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+            f4 = this.bottomPadding + systemWindowInsetBottom;
         }
         View view = (View) parent;
         float measuredWidth = this.leftPadding + ((((view.getMeasuredWidth() - this.leftPadding) - this.rightPadding) - i) * f);
-        float measuredHeight = systemWindowInsetTop + ((((view.getMeasuredHeight() - f3) - systemWindowInsetTop) - i2) * f2);
+        float measuredHeight = f3 + ((((view.getMeasuredHeight() - f4) - f3) - i2) * f2);
         if (z) {
             animate().setListener(null).cancel();
             animate().scaleX(1.0f).scaleY(1.0f).translationX(measuredWidth).translationY(measuredHeight).alpha(1.0f).setStartDelay(this.uiVisible ? 0L : 150L).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
@@ -424,10 +436,7 @@ public class VoIPFloatingLayout extends FrameLayout {
         if (valueAnimator2 != null) {
             valueAnimator2.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.mutedProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mutedProgress, z ? 1.0f : 0.0f);
         this.mutedAnimator = ofFloat;
         ofFloat.addUpdateListener(this.mutedUpdateListener);
         this.mutedAnimator.setDuration(150L);
@@ -446,16 +455,31 @@ public class VoIPFloatingLayout extends FrameLayout {
     }
 
     public void setRelativePosition(VoIPFloatingLayout voIPFloatingLayout) {
+        float f;
+        float f2;
         WindowInsets windowInsets;
+        int systemWindowInsetBottom;
         WindowInsets windowInsets2;
+        int systemWindowInsetTop;
         Object parent = getParent();
         if (parent == null) {
             return;
         }
         int i = Build.VERSION.SDK_INT;
-        float systemWindowInsetTop = (i < 20 || (windowInsets2 = this.lastInsets) == null) ? 0.0f : windowInsets2.getSystemWindowInsetTop() + this.topPadding;
+        if (i < 20 || (windowInsets2 = this.lastInsets) == null) {
+            f = 0.0f;
+        } else {
+            systemWindowInsetTop = windowInsets2.getSystemWindowInsetTop();
+            f = systemWindowInsetTop + this.topPadding;
+        }
+        if (i < 20 || (windowInsets = this.lastInsets) == null) {
+            f2 = 0.0f;
+        } else {
+            systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+            f2 = systemWindowInsetBottom + this.bottomPadding;
+        }
         View view = (View) parent;
-        setRelativePosition(Math.min(1.0f, Math.max(0.0f, (voIPFloatingLayout.getTranslationX() - this.leftPadding) / (((view.getMeasuredWidth() - this.leftPadding) - this.rightPadding) - voIPFloatingLayout.getMeasuredWidth()))), Math.min(1.0f, Math.max(0.0f, (voIPFloatingLayout.getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - ((i < 20 || (windowInsets = this.lastInsets) == null) ? 0.0f : windowInsets.getSystemWindowInsetBottom() + this.bottomPadding)) - systemWindowInsetTop) - voIPFloatingLayout.getMeasuredHeight()))));
+        setRelativePosition(Math.min(1.0f, Math.max(0.0f, (voIPFloatingLayout.getTranslationX() - this.leftPadding) / (((view.getMeasuredWidth() - this.leftPadding) - this.rightPadding) - voIPFloatingLayout.getMeasuredWidth()))), Math.min(1.0f, Math.max(0.0f, (voIPFloatingLayout.getTranslationY() - f) / (((view.getMeasuredHeight() - f2) - f) - voIPFloatingLayout.getMeasuredHeight()))));
     }
 
     public void setIsActive(boolean z) {
@@ -463,19 +487,33 @@ public class VoIPFloatingLayout extends FrameLayout {
     }
 
     public void saveRelativePosition() {
+        float f;
+        float f2;
         WindowInsets windowInsets;
+        int systemWindowInsetBottom;
         WindowInsets windowInsets2;
+        int systemWindowInsetTop;
         if (getMeasuredWidth() > 0 && this.relativePositionToSetX < 0.0f) {
             Object parent = getParent();
             if (parent == null) {
                 return;
             }
             int i = Build.VERSION.SDK_INT;
-            float systemWindowInsetTop = (i < 20 || (windowInsets2 = this.lastInsets) == null) ? 0.0f : windowInsets2.getSystemWindowInsetTop() + this.topPadding;
-            float systemWindowInsetBottom = (i < 20 || (windowInsets = this.lastInsets) == null) ? 0.0f : windowInsets.getSystemWindowInsetBottom() + this.bottomPadding;
+            if (i < 20 || (windowInsets2 = this.lastInsets) == null) {
+                f = 0.0f;
+            } else {
+                systemWindowInsetTop = windowInsets2.getSystemWindowInsetTop();
+                f = systemWindowInsetTop + this.topPadding;
+            }
+            if (i < 20 || (windowInsets = this.lastInsets) == null) {
+                f2 = 0.0f;
+            } else {
+                systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+                f2 = systemWindowInsetBottom + this.bottomPadding;
+            }
             View view = (View) parent;
             this.savedRelativePositionX = (getTranslationX() - this.leftPadding) / (((view.getMeasuredWidth() - this.leftPadding) - this.rightPadding) - getMeasuredWidth());
-            this.savedRelativePositionY = (getTranslationY() - systemWindowInsetTop) / (((view.getMeasuredHeight() - systemWindowInsetBottom) - systemWindowInsetTop) - getMeasuredHeight());
+            this.savedRelativePositionY = (getTranslationY() - f) / (((view.getMeasuredHeight() - f2) - f) - getMeasuredHeight());
             this.savedRelativePositionX = Math.max(0.0f, Math.min(1.0f, this.savedRelativePositionX));
             this.savedRelativePositionY = Math.max(0.0f, Math.min(1.0f, this.savedRelativePositionY));
             return;

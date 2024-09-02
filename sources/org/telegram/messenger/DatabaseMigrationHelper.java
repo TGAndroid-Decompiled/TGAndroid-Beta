@@ -1,11 +1,7 @@
 package org.telegram.messenger;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -813,9 +809,8 @@ public class DatabaseMigrationHelper {
                                     nativeByteBuffer = byteBufferValue7;
                                 }
                                 byteBufferValue6.reuse();
-                                NativeByteBuffer nativeByteBuffer5 = new NativeByteBuffer(TLdeserialize2.getObjectSize());
-                                TLdeserialize2.serializeToStream(nativeByteBuffer5);
-                                byteBufferValue6 = nativeByteBuffer5;
+                                byteBufferValue6 = new NativeByteBuffer(TLdeserialize2.getObjectSize());
+                                TLdeserialize2.serializeToStream(byteBufferValue6);
                             } else {
                                 i2 = intValue28;
                                 nativeByteBuffer = byteBufferValue7;
@@ -958,7 +953,7 @@ public class DatabaseMigrationHelper {
                     long makeFolderDialogId = DialogObject.makeFolderDialogId(intValue31);
                     executeFast16.requery();
                     executeFast16.bindLong(1, makeFolderDialogId);
-                    executeFast16.bindLong(2, 8589934592L | intValue31);
+                    executeFast16.bindLong(2, intValue31 | 8589934592L);
                     executeFast16.step();
                 }
                 executeFast16.dispose();
@@ -1397,146 +1392,7 @@ public class DatabaseMigrationHelper {
         return 155;
     }
 
-    public static boolean recoverDatabase(File file, File file2, File file3, int i) {
-        boolean z;
-        SQLiteDatabase sQLiteDatabase;
-        int intValue;
-        SQLiteDatabase sQLiteDatabase2;
-        SQLiteCursor sQLiteCursor;
-        int i2;
-        File file4 = new File(ApplicationLoader.getFilesDirFixed(), "recover_database_" + i + "/");
-        file4.mkdirs();
-        File file5 = new File(file4, "cache4.db");
-        File file6 = new File(file4, "cache4.db-wal");
-        File file7 = new File(file4, "cache4.db-shm");
-        try {
-            file5.delete();
-            file6.delete();
-            file7.delete();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        long j = 0;
-        ArrayList arrayList = new ArrayList();
-        ArrayList arrayList2 = new ArrayList();
-        FileLog.d("start recover database");
-        int i3 = 1;
-        int i4 = 0;
-        try {
-            j = System.currentTimeMillis();
-            sQLiteDatabase = new SQLiteDatabase(file5.getPath());
-            sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
-            sQLiteDatabase.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
-            sQLiteDatabase.executeFast("PRAGMA journal_mode = WAL").stepThis().dispose();
-            sQLiteDatabase.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
-            MessagesStorage.createTables(sQLiteDatabase);
-            sQLiteDatabase.executeFast("ATTACH DATABASE \"" + file.getAbsolutePath() + "\" AS old;").stepThis().dispose();
-            intValue = sQLiteDatabase.executeInt("PRAGMA old.user_version", new Object[0]).intValue();
-        } catch (Exception e2) {
-            FileLog.e(e2);
-            z = false;
-        }
-        if (intValue != 155) {
-            FileLog.e("can't restore database from version " + intValue);
-            return false;
-        }
-        HashSet hashSet = new HashSet();
-        hashSet.add("messages_v2");
-        hashSet.add("messages_holes");
-        hashSet.add("scheduled_messages_v2");
-        hashSet.add("media_holes_v2");
-        hashSet.add("media_v4");
-        hashSet.add("messages_holes_topics");
-        hashSet.add("messages_topics");
-        hashSet.add("media_topics");
-        hashSet.add("media_holes_topics");
-        hashSet.add("topics");
-        hashSet.add("media_counts_v2");
-        hashSet.add("media_counts_topics");
-        hashSet.add("dialogs");
-        hashSet.add("dialog_filter");
-        hashSet.add("dialog_filter_ep");
-        hashSet.add("dialog_filter_pin_v2");
-        int i5 = 0;
-        while (true) {
-            String[] strArr = MessagesStorage.DATABASE_TABLES;
-            if (i5 >= strArr.length) {
-                break;
-            }
-            String str = strArr[i5];
-            if (!hashSet.contains(str)) {
-                sQLiteDatabase.executeFast(String.format(Locale.US, "INSERT OR IGNORE INTO %s SELECT * FROM old.%s;", str, str)).stepThis().dispose();
-            }
-            i5++;
-        }
-        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT did FROM old.dialogs", new Object[0]);
-        while (queryFinalized.next()) {
-            long longValue = queryFinalized.longValue(0);
-            if (DialogObject.isEncryptedDialog(longValue)) {
-                arrayList.add(Long.valueOf(longValue));
-            } else {
-                arrayList2.add(Long.valueOf(longValue));
-            }
-        }
-        queryFinalized.dispose();
-        for (int i6 = 0; i6 < arrayList.size(); i6++) {
-            long longValue2 = ((Long) arrayList.get(i6)).longValue();
-            Locale locale = Locale.US;
-            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
-            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO messages_holes SELECT * FROM old.messages_holes WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
-            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO media_holes_v2 SELECT * FROM old.media_holes_v2 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
-            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO media_v4 SELECT * FROM old.media_v4 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
-        }
-        SQLitePreparedStatement executeFast = sQLiteDatabase.executeFast("REPLACE INTO messages_holes VALUES(?, ?, ?)");
-        SQLitePreparedStatement executeFast2 = sQLiteDatabase.executeFast("REPLACE INTO media_holes_v2 VALUES(?, ?, ?, ?)");
-        int i7 = 0;
-        while (i7 < arrayList2.size()) {
-            Long l = (Long) arrayList2.get(i7);
-            SQLiteCursor queryFinalized2 = sQLiteDatabase.queryFinalized("SELECT last_mid_i, last_mid FROM old.dialogs WHERE did = " + l, new Object[i4]);
-            if (queryFinalized2.next()) {
-                long longValue3 = queryFinalized2.longValue(i4);
-                SQLiteDatabase sQLiteDatabase3 = sQLiteDatabase;
-                long longValue4 = queryFinalized2.longValue(i3);
-                sQLiteDatabase3.executeFast("INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = " + l + " AND mid IN (" + longValue3 + "," + longValue4 + ")").stepThis().dispose();
-                sQLiteDatabase2 = sQLiteDatabase3;
-                sQLiteCursor = queryFinalized2;
-                i2 = i7;
-                MessagesStorage.createFirstHoles(l.longValue(), executeFast, executeFast2, (int) longValue4, 0L);
-            } else {
-                sQLiteDatabase2 = sQLiteDatabase;
-                sQLiteCursor = queryFinalized2;
-                i2 = i7;
-            }
-            sQLiteCursor.dispose();
-            i7 = i2 + 1;
-            sQLiteDatabase = sQLiteDatabase2;
-            i3 = 1;
-            i4 = 0;
-        }
-        SQLiteDatabase sQLiteDatabase4 = sQLiteDatabase;
-        executeFast.dispose();
-        executeFast2.dispose();
-        sQLiteDatabase4.executeFast("DETACH DATABASE old;").stepThis().dispose();
-        sQLiteDatabase4.close();
-        z = true;
-        if (!z) {
-            return false;
-        }
-        try {
-            file.delete();
-            file2.delete();
-            file3.delete();
-            AndroidUtilities.copyFile(file5, file);
-            AndroidUtilities.copyFile(file6, file2);
-            AndroidUtilities.copyFile(file7, file3);
-            file5.delete();
-            file6.delete();
-            file7.delete();
-            FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
-            return true;
-        } catch (IOException e3) {
-            e3.printStackTrace();
-            return false;
-        }
+    public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.DatabaseMigrationHelper.recoverDatabase(java.io.File, java.io.File, java.io.File, int):boolean");
     }
 }

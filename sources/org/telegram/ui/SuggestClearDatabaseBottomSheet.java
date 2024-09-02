@@ -23,6 +23,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
 
     @SuppressLint({"StaticFieldLeak"})
     private static SuggestClearDatabaseBottomSheet dialog;
+    BaseFragment fragment;
 
     public static void show(BaseFragment baseFragment) {
         if (dialog == null) {
@@ -34,6 +35,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
 
     private SuggestClearDatabaseBottomSheet(final BaseFragment baseFragment) {
         super(baseFragment.getParentActivity(), false);
+        this.fragment = baseFragment;
         Activity parentActivity = baseFragment.getParentActivity();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
         linearLayout.setOrientation(1);
@@ -47,7 +49,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView.setTextColor(Theme.getColor(i));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString("SuggestClearDatabaseTitle", R.string.SuggestClearDatabaseTitle));
+        textView.setText(LocaleController.getString(R.string.SuggestClearDatabaseTitle));
         linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
@@ -60,7 +62,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView3.setGravity(17);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setText(LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
+        textView3.setText(LocaleController.getString(R.string.ClearLocalDatabase));
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
@@ -77,10 +79,10 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
 
     public void lambda$new$1(final BaseFragment baseFragment, View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity());
-        builder.setTitle(LocaleController.getString("LocalDatabaseClearTextTitle", R.string.LocalDatabaseClearTextTitle));
-        builder.setMessage(LocaleController.getString("LocalDatabaseClearText", R.string.LocalDatabaseClearText));
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString("CacheClear", R.string.CacheClear), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(R.string.LocalDatabaseClearTextTitle));
+        builder.setMessage(LocaleController.getString(R.string.LocalDatabaseClearText));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        builder.setPositiveButton(LocaleController.getString(R.string.CacheClear), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 SuggestClearDatabaseBottomSheet.this.lambda$new$0(baseFragment, dialogInterface, i);

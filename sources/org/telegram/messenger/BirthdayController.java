@@ -37,12 +37,15 @@ public class BirthdayController {
         BirthdayController birthdayController = Instance[i];
         if (birthdayController == null) {
             synchronized (lockObjects[i]) {
-                birthdayController = Instance[i];
-                if (birthdayController == null) {
-                    BirthdayController[] birthdayControllerArr = Instance;
-                    BirthdayController birthdayController2 = new BirthdayController(i);
-                    birthdayControllerArr[i] = birthdayController2;
-                    birthdayController = birthdayController2;
+                try {
+                    birthdayController = Instance[i];
+                    if (birthdayController == null) {
+                        BirthdayController[] birthdayControllerArr = Instance;
+                        BirthdayController birthdayController2 = new BirthdayController(i);
+                        birthdayControllerArr[i] = birthdayController2;
+                        birthdayController = birthdayController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -100,23 +103,28 @@ public class BirthdayController {
         }
         long currentTimeMillis = System.currentTimeMillis();
         long j = this.lastCheckDate;
-        boolean z = j == 0;
-        if (!z) {
-            z = currentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
+        boolean z = false;
+        boolean z2 = j == 0;
+        if (!z2) {
+            z2 = currentTimeMillis - j > ((long) (BuildVars.DEBUG_PRIVATE_VERSION ? 25000 : 43200000));
         }
-        if (!z) {
+        if (z2) {
+            z = z2;
+        } else {
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(this.lastCheckDate);
             Calendar calendar2 = Calendar.getInstance();
             calendar2.setTimeInMillis(currentTimeMillis);
-            z = (calendar.get(5) == calendar2.get(5) && calendar.get(2) == calendar2.get(2) && calendar.get(1) == calendar2.get(1)) ? false : true;
+            if (calendar.get(5) != calendar2.get(5) || calendar.get(2) != calendar2.get(2) || calendar.get(1) != calendar2.get(1)) {
+                z = true;
+            }
         }
         if (z) {
             this.loading = true;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
                 @Override
-                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
-                    return TLRPC$TL_contacts_contactBirthdays.TLdeserialize(abstractSerializedData, i, z2);
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z3) {
+                    return TLRPC$TL_contacts_contactBirthdays.TLdeserialize(abstractSerializedData, i, z3);
                 }
 
                 @Override
@@ -253,12 +261,9 @@ public class BirthdayController {
                     if (tLRPC$User != null && !UserObject.isUserSelf(tLRPC$User)) {
                         arrayList.add(tLRPC$User);
                     }
-                } else {
-                    it = it2;
-                    i = i8;
+                    i8 = i;
+                    it2 = it;
                 }
-                i8 = i;
-                it2 = it;
             }
             return birthdayState;
         }

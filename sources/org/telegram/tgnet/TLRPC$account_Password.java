@@ -28,8 +28,9 @@ public abstract class TLRPC$account_Password extends TLObject {
                     this.flags = readInt32;
                     this.has_recovery = (readInt32 & 1) != 0;
                     this.has_secure_values = (readInt32 & 2) != 0;
-                    this.has_password = (readInt32 & 4) != 0;
-                    if ((readInt32 & 4) != 0) {
+                    int i2 = readInt32 & 4;
+                    this.has_password = i2 != 0;
+                    if (i2 != 0) {
                         this.current_algo = TLRPC$PasswordKdfAlgo.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
                     if ((this.flags & 4) != 0) {

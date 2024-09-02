@@ -184,11 +184,8 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                 return;
             }
         }
-        Boolean bool = null;
         TextCheckCell textCheckCell = this.paidCheckCell;
-        if (textCheckCell != null && this.info.paid_media_allowed) {
-            bool = Boolean.valueOf(textCheckCell.isChecked());
-        }
+        Boolean valueOf = (textCheckCell == null || !this.info.paid_media_allowed) ? null : Boolean.valueOf(textCheckCell.isChecked());
         this.actionButton.setLoading(true);
         MessagesController messagesController = getMessagesController();
         long j = this.chatId;
@@ -196,7 +193,7 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         List<TLRPC$Reaction> grabReactions = grabReactions(false);
         int i4 = this.reactionsCount;
         this.currentReactionsCount = i4;
-        messagesController.setCustomChatReactions(j, i3, grabReactions, i4, bool, new Utilities.Callback() {
+        messagesController.setCustomChatReactions(j, i3, grabReactions, i4, valueOf, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 ChatCustomReactionsEditActivity.this.lambda$createView$8((TLRPC$TL_error) obj);
@@ -634,10 +631,13 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
         ArrayList arrayList2 = new ArrayList();
         for (Long l : this.selectedEmojisIds) {
             if (l.longValue() != -1) {
-                boolean z2 = false;
                 Iterator<TLRPC$TL_availableReaction> it = this.allAvailableReactions.iterator();
                 while (true) {
                     if (!it.hasNext()) {
+                        TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
+                        tLRPC$TL_reactionCustomEmoji.document_id = l.longValue();
+                        arrayList.add(tLRPC$TL_reactionCustomEmoji);
+                        arrayList2.add(tLRPC$TL_reactionCustomEmoji);
                         break;
                     }
                     TLRPC$TL_availableReaction next = it.next();
@@ -645,15 +645,8 @@ public class ChatCustomReactionsEditActivity extends BaseFragment implements Not
                         TLRPC$TL_reactionEmoji tLRPC$TL_reactionEmoji = new TLRPC$TL_reactionEmoji();
                         tLRPC$TL_reactionEmoji.emoticon = next.reaction;
                         arrayList.add(tLRPC$TL_reactionEmoji);
-                        z2 = true;
                         break;
                     }
-                }
-                if (!z2) {
-                    TLRPC$TL_reactionCustomEmoji tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-                    tLRPC$TL_reactionCustomEmoji.document_id = l.longValue();
-                    arrayList.add(tLRPC$TL_reactionCustomEmoji);
-                    arrayList2.add(tLRPC$TL_reactionCustomEmoji);
                 }
             }
         }

@@ -219,7 +219,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View mo948getWindowView();
+        View mo995getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -423,6 +423,7 @@ public abstract class BaseFragment {
         ViewGroup viewGroup;
         if (this.parentLayout != iNavigationLayout) {
             this.parentLayout = iNavigationLayout;
+            boolean z = false;
             this.inBubbleMode = iNavigationLayout != null && iNavigationLayout.isInBubbleMode();
             View view = this.fragmentView;
             if (view != null) {
@@ -443,7 +444,9 @@ public abstract class BaseFragment {
             }
             if (this.actionBar != null) {
                 INavigationLayout iNavigationLayout3 = this.parentLayout;
-                boolean z = (iNavigationLayout3 == null || iNavigationLayout3.getView().getContext() == this.actionBar.getContext()) ? false : true;
+                if (iNavigationLayout3 != null && iNavigationLayout3.getView().getContext() != this.actionBar.getContext()) {
+                    z = true;
+                }
                 if ((this.actionBar.shouldAddToContainer() || z) && (viewGroup = (ViewGroup) this.actionBar.getParent()) != null) {
                     try {
                         viewGroup.removeViewInLayout(this.actionBar);
@@ -937,9 +940,10 @@ public abstract class BaseFragment {
         iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         baseFragment.onTransitionAnimationStart(true, false);
-        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, bottomSheetArr)};
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(getParentActivity(), true, baseFragment.getResourceProvider(), bottomSheetParams, iNavigationLayoutArr, baseFragment, r13);
+        final BottomSheet[] bottomSheetArr = {anonymousClass1};
         if (bottomSheetParams != null) {
-            bottomSheetArr[0].setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
+            anonymousClass1.setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
             bottomSheetArr[0].transitionFromRight(bottomSheetParams.transitionFromLeft);
         }
         baseFragment.setParentDialog(bottomSheetArr[0]);
@@ -963,17 +967,17 @@ public abstract class BaseFragment {
             return false;
         }
 
-        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, final BottomSheetParams bottomSheetParams, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, BottomSheet[] bottomSheetArr) {
+        AnonymousClass1(Context context, boolean z, Theme.ResourcesProvider resourcesProvider, final BottomSheetParams bottomSheetParams, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment, BottomSheet[] bottomSheetArr) {
             super(context, z, resourcesProvider);
             this.val$params = bottomSheetParams;
             this.val$actionBarLayout = iNavigationLayoutArr;
-            this.val$fragment = baseFragment2;
+            this.val$fragment = baseFragment;
             this.val$bottomSheet = bottomSheetArr;
             boolean z2 = bottomSheetParams != null && bottomSheetParams.occupyNavigationBar;
             this.occupyNavigationBar = z2;
             this.drawNavigationBar = true ^ z2;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
-            iNavigationLayoutArr[0].addFragmentToStack(baseFragment2);
+            iNavigationLayoutArr[0].addFragmentToStack(baseFragment);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();
             int i = this.backgroundPaddingLeft;
@@ -1014,20 +1018,18 @@ public abstract class BaseFragment {
 
         @Override
         protected boolean canSwipeToBack(MotionEvent motionEvent) {
+            INavigationLayout iNavigationLayout;
             BottomSheetParams bottomSheetParams = this.val$params;
-            if (bottomSheetParams != null && bottomSheetParams.transitionFromLeft) {
-                INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
-                if (iNavigationLayoutArr[0] != null && iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
-                    return this.val$actionBarLayout[0].getFragmentStack().size() != 1 || this.val$actionBarLayout[0].getFragmentStack().get(0).isSwipeBackEnabled(motionEvent);
-                }
+            if (bottomSheetParams == null || !bottomSheetParams.transitionFromLeft || (iNavigationLayout = this.val$actionBarLayout[0]) == null || iNavigationLayout.getFragmentStack().size() > 1) {
+                return false;
             }
-            return false;
+            return this.val$actionBarLayout[0].getFragmentStack().size() != 1 || this.val$actionBarLayout[0].getFragmentStack().get(0).isSwipeBackEnabled(motionEvent);
         }
 
         @Override
         public void onBackPressed() {
-            INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
-            if (iNavigationLayoutArr[0] == null || iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
+            INavigationLayout iNavigationLayout = this.val$actionBarLayout[0];
+            if (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= 1) {
                 super.onBackPressed();
             } else {
                 this.val$actionBarLayout[0].onBackPressed();
@@ -1059,9 +1061,9 @@ public abstract class BaseFragment {
 
         @Override
         protected void onInsetsChanged() {
-            INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
-            if (iNavigationLayoutArr[0] != null) {
-                for (BaseFragment baseFragment : iNavigationLayoutArr[0].getFragmentStack()) {
+            INavigationLayout iNavigationLayout = this.val$actionBarLayout[0];
+            if (iNavigationLayout != null) {
+                for (BaseFragment baseFragment : iNavigationLayout.getFragmentStack()) {
                     if (baseFragment.getFragmentView() != null) {
                         baseFragment.getFragmentView().requestLayout();
                     }
@@ -1097,14 +1099,18 @@ public abstract class BaseFragment {
     }
 
     public void setNavigationBarColor(int i) {
+        int navigationBarColor;
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
             ((LaunchActivity) parentActivity).setNavigationBarColor(i, true);
         } else if (parentActivity != null) {
             Window window = parentActivity.getWindow();
-            if (Build.VERSION.SDK_INT >= 26 && window != null && window.getNavigationBarColor() != i) {
-                window.setNavigationBarColor(i);
-                AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(i) >= 0.721f);
+            if (Build.VERSION.SDK_INT >= 26 && window != null) {
+                navigationBarColor = window.getNavigationBarColor();
+                if (navigationBarColor != i) {
+                    window.setNavigationBarColor(i);
+                    AndroidUtilities.setLightNavigationBar(window, AndroidUtilities.computePerceivedBrightness(i) >= 0.721f);
+                }
             }
         }
         INavigationLayout iNavigationLayout = this.parentLayout;
@@ -1176,8 +1182,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo948getWindowView());
-                    layoutContainer.addView(attachedSheet.mo948getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo995getWindowView());
+                    layoutContainer.addView(attachedSheet.mo995getWindowView());
                 }
             }
         }
@@ -1188,7 +1194,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.mo948getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo995getWindowView());
                 }
             }
         }
@@ -1205,28 +1211,8 @@ public abstract class BaseFragment {
         }
     }
 
-    public StoryViewer getOrCreateStoryViewer() {
-        if (this.sheetsStack == null) {
-            this.sheetsStack = new ArrayList<>();
-        }
-        StoryViewer storyViewer = null;
-        if (!this.sheetsStack.isEmpty()) {
-            ArrayList<AttachedSheet> arrayList = this.sheetsStack;
-            if (arrayList.get(arrayList.size() - 1) instanceof StoryViewer) {
-                ArrayList<AttachedSheet> arrayList2 = this.sheetsStack;
-                storyViewer = (StoryViewer) arrayList2.get(arrayList2.size() - 1);
-            }
-        }
-        if (storyViewer == null) {
-            storyViewer = new StoryViewer(this);
-            INavigationLayout iNavigationLayout = this.parentLayout;
-            if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
-                storyViewer.fromBottomSheet = true;
-            }
-            this.sheetsStack.add(storyViewer);
-            updateSheetsVisibility();
-        }
-        return storyViewer;
+    public org.telegram.ui.Stories.StoryViewer getOrCreateStoryViewer() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.BaseFragment.getOrCreateStoryViewer():org.telegram.ui.Stories.StoryViewer");
     }
 
     public void removeSheet(AttachedSheet attachedSheet) {

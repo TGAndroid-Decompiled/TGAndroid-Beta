@@ -104,8 +104,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
     @Override
     public boolean onFragmentCreate() {
         MessagesController.getGlobalMainSettings().edit().putLong("intro_crashed_time", System.currentTimeMillis()).apply();
-        this.titles = new String[]{LocaleController.getString("Page1Title", R.string.Page1Title), LocaleController.getString("Page2Title", R.string.Page2Title), LocaleController.getString("Page3Title", R.string.Page3Title), LocaleController.getString("Page5Title", R.string.Page5Title), LocaleController.getString("Page4Title", R.string.Page4Title), LocaleController.getString("Page6Title", R.string.Page6Title)};
-        this.messages = new String[]{LocaleController.getString("Page1Message", R.string.Page1Message), LocaleController.getString("Page2Message", R.string.Page2Message), LocaleController.getString("Page3Message", R.string.Page3Message), LocaleController.getString("Page5Message", R.string.Page5Message), LocaleController.getString("Page4Message", R.string.Page4Message), LocaleController.getString("Page6Message", R.string.Page6Message)};
+        this.titles = new String[]{LocaleController.getString(R.string.Page1Title), LocaleController.getString(R.string.Page2Title), LocaleController.getString(R.string.Page3Title), LocaleController.getString(R.string.Page5Title), LocaleController.getString(R.string.Page4Title), LocaleController.getString(R.string.Page6Title)};
+        this.messages = new String[]{LocaleController.getString(R.string.Page1Message), LocaleController.getString(R.string.Page2Message), LocaleController.getString(R.string.Page3Message), LocaleController.getString(R.string.Page5Message), LocaleController.getString(R.string.Page4Message), LocaleController.getString(R.string.Page6Message)};
         return true;
     }
 
@@ -208,7 +208,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 }
             }
         });
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             CellFlickerDrawable cellFlickerDrawable;
 
             @Override
@@ -237,7 +237,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             }
         };
         this.startMessagingButton = textView;
-        textView.setText(LocaleController.getString("StartMessaging", R.string.StartMessaging));
+        textView.setText(LocaleController.getString(R.string.StartMessaging));
         this.startMessagingButton.setGravity(17);
         this.startMessagingButton.setTypeface(AndroidUtilities.bold());
         this.startMessagingButton.setTextSize(1, 15.0f);
@@ -558,7 +558,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             textView.setTag(IntroActivity.this.pagerHeaderTag);
             final TextView textView2 = new TextView(viewGroup.getContext());
             textView2.setTag(IntroActivity.this.pagerMessageTag);
-            FrameLayout frameLayout = new FrameLayout(this, viewGroup.getContext()) {
+            FrameLayout frameLayout = new FrameLayout(viewGroup.getContext()) {
                 @Override
                 protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
                     int dp = (((((i5 - i3) / 4) * 3) - AndroidUtilities.dp(275.0f)) / 2) + AndroidUtilities.dp(150.0f) + AndroidUtilities.dp(16.0f);
@@ -642,6 +642,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             this.drawRunnable = new Runnable() {
                 @Override
                 public void run() {
+                    float[] supportedRefreshRates;
                     if (EGLThread.this.initied) {
                         long currentTimeMillis = System.currentTimeMillis();
                         if ((EGLThread.this.eglContext.equals(EGLThread.this.egl10.eglGetCurrentContext()) && EGLThread.this.eglSurface.equals(EGLThread.this.egl10.eglGetCurrentSurface(12377))) || EGLThread.this.egl10.eglMakeCurrent(EGLThread.this.eglDisplay, EGLThread.this.eglSurface, EGLThread.this.eglSurface, EGLThread.this.eglContext)) {
@@ -657,7 +658,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                                 if (Build.VERSION.SDK_INT < 21) {
                                     EGLThread.this.maxRefreshRate = 60.0f;
                                 } else {
-                                    for (float f3 : ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates()) {
+                                    supportedRefreshRates = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getSupportedRefreshRates();
+                                    for (float f3 : supportedRefreshRates) {
                                         if (f3 > f2) {
                                             f2 = f3;
                                         }
@@ -680,6 +682,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         }
 
         private boolean initGL() {
+            int[] iArr;
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
             this.egl10 = egl10;
             EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -698,16 +701,21 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                 finish();
                 return false;
             }
-            int[] iArr = new int[1];
+            int[] iArr2 = new int[1];
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-            if (!this.egl10.eglChooseConfig(this.eglDisplay, EmuDetector.with(IntroActivity.this.getParentActivity()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344}, eGLConfigArr, 1, iArr)) {
+            if (EmuDetector.with(IntroActivity.this.getParentActivity()).detect()) {
+                iArr = new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12344};
+            } else {
+                iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 24, 12326, 0, 12338, 1, 12337, 2, 12344};
+            }
+            if (!this.egl10.eglChooseConfig(this.eglDisplay, iArr, eGLConfigArr, 1, iArr2)) {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.e("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                 }
                 finish();
                 return false;
             }
-            if (iArr[0] > 0) {
+            if (iArr2[0] > 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
                 this.eglConfig = eGLConfig;
                 EGLContext eglCreateContext = this.egl10.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 2, 12344});
@@ -771,14 +779,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     loadTexture(this.telegramMaskProvider, 23);
                     updateTelegramTextures();
                     updatePowerfulTextures();
-                    int[] iArr2 = this.textures;
-                    Intro.setPrivateTextures(iArr2[19], iArr2[20]);
                     int[] iArr3 = this.textures;
-                    Intro.setFreeTextures(iArr3[14], iArr3[13]);
+                    Intro.setPrivateTextures(iArr3[19], iArr3[20]);
                     int[] iArr4 = this.textures;
-                    Intro.setFastTextures(iArr4[2], iArr4[3], iArr4[1], iArr4[0]);
+                    Intro.setFreeTextures(iArr4[14], iArr4[13]);
                     int[] iArr5 = this.textures;
-                    Intro.setIcTextures(iArr5[4], iArr5[5], iArr5[6], iArr5[7], iArr5[8], iArr5[9], iArr5[10], iArr5[11], iArr5[12]);
+                    Intro.setFastTextures(iArr5[2], iArr5[3], iArr5[1], iArr5[0]);
+                    int[] iArr6 = this.textures;
+                    Intro.setIcTextures(iArr6[4], iArr6[5], iArr6[6], iArr6[7], iArr6[8], iArr6[9], iArr6[10], iArr6[11], iArr6[12]);
                     Intro.onSurfaceCreated();
                     IntroActivity.this.currentDate = System.currentTimeMillis() - 1000;
                     return true;

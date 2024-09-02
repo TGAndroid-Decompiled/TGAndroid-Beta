@@ -64,7 +64,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
             this.currentButton = progressButton;
-            progressButton.setText(LocaleController.getString("Add", R.string.Add));
+            progressButton.setText(LocaleController.getString(R.string.Add));
             progressButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             progressButton.setProgressColor(Theme.getColor(Theme.key_featuredStickers_buttonProgress));
             progressButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
@@ -78,7 +78,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             progressButton2.setTextSize(1, 14.0f);
             int i = Theme.key_featuredStickers_removeButtonText;
             progressButton2.setTextColor(Theme.getColor(i));
-            progressButton2.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
+            progressButton2.setText(LocaleController.getString(R.string.StickersRemove));
             progressButton2.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(i)));
             progressButton2.setTypeface(AndroidUtilities.bold());
             ViewHelper.setPadding(progressButton2, 8.0f, 0.0f, 8.0f, 0.0f);
@@ -252,7 +252,16 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animatorSet = animatorSet2;
                 animatorSet2.setDuration(250L);
-                this.animatorSet.playTogether(ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.ALPHA, f), ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.SCALE_X, f), ObjectAnimator.ofFloat(this.deleteButton, (Property<Button, Float>) View.SCALE_Y, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.ALPHA, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.SCALE_X, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) View.SCALE_Y, f2));
+                AnimatorSet animatorSet3 = this.animatorSet;
+                Button button = this.deleteButton;
+                Property property = View.ALPHA;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(button, (Property<Button, Float>) property, f);
+                Button button2 = this.deleteButton;
+                Property property2 = View.SCALE_X;
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(button2, (Property<Button, Float>) property2, f);
+                Button button3 = this.deleteButton;
+                Property property3 = View.SCALE_Y;
+                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(button3, (Property<Button, Float>) property3, f), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(this.addButton, (Property<ProgressButton, Float>) property3, f2));
                 this.animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {

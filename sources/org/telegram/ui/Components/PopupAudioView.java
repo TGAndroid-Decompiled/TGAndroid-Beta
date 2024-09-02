@@ -253,7 +253,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
         }
         String formatLongDuration = AndroidUtilities.formatLongDuration(i);
         String str = this.lastTimeString;
-        if (str == null || (str != null && !str.equals(formatLongDuration))) {
+        if (str == null || !str.equals(formatLongDuration)) {
             this.timeWidth = (int) Math.ceil(this.timePaint.measureText(formatLongDuration));
             this.timeLayout = new StaticLayout(formatLongDuration, this.timePaint, this.timeWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }

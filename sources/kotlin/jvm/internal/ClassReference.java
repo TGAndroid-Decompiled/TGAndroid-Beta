@@ -40,10 +40,12 @@ import kotlin.reflect.KClass;
 import kotlin.text.StringsKt__StringsKt;
 
 public final class ClassReference implements KClass<Object>, ClassBasedDeclarationContainer {
+    public static final Companion Companion = new Companion(null);
     private static final Map<Class<Object>, Integer> FUNCTION_CLASSES;
     private static final HashMap<String, String> classFqNames;
     private static final HashMap<String, String> primitiveFqNames;
     private static final HashMap<String, String> primitiveWrapperFqNames;
+    private static final Map<String, String> simpleNames;
     private final Class<?> jClass;
 
     public ClassReference(Class<?> jClass) {
@@ -84,12 +86,12 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
         int mapCapacity;
         String substringAfterLast$default;
         String substringAfterLast$default2;
-        new Companion(null);
         int i = 0;
         listOf = CollectionsKt__CollectionsKt.listOf((Object[]) new Class[]{Function0.class, Function1.class, Function2.class, Function3.class, Function4.class, Function5.class, Function6.class, Function7.class, Function8.class, Function9.class, Function10.class, Function11.class, Function12.class, Function13.class, Function14.class, Function15.class, Function16.class, Function17.class, Function18.class, Function19.class, Function20.class, Function21.class, Function22.class});
-        collectionSizeOrDefault = CollectionsKt__IterablesKt.collectionSizeOrDefault(listOf, 10);
+        List list = listOf;
+        collectionSizeOrDefault = CollectionsKt__IterablesKt.collectionSizeOrDefault(list, 10);
         ArrayList arrayList = new ArrayList(collectionSizeOrDefault);
-        for (Object obj : listOf) {
+        for (Object obj : list) {
             int i2 = i + 1;
             if (i < 0) {
                 CollectionsKt__CollectionsKt.throwIndexOverflow();
@@ -154,17 +156,16 @@ public final class ClassReference implements KClass<Object>, ClassBasedDeclarati
             hashMap3.put(pair.getFirst(), pair.getSecond());
         }
         for (Map.Entry<Class<Object>, Integer> entry : FUNCTION_CLASSES.entrySet()) {
-            Class<Object> key = entry.getKey();
-            int intValue = entry.getValue().intValue();
-            hashMap3.put(key.getName(), "kotlin.Function" + intValue);
+            hashMap3.put(entry.getKey().getName(), "kotlin.Function" + entry.getValue().intValue());
         }
         classFqNames = hashMap3;
         mapCapacity = MapsKt__MapsJVMKt.mapCapacity(hashMap3.size());
         LinkedHashMap linkedHashMap = new LinkedHashMap(mapCapacity);
         for (Map.Entry entry2 : hashMap3.entrySet()) {
-            Object key2 = entry2.getKey();
+            Object key = entry2.getKey();
             substringAfterLast$default = StringsKt__StringsKt.substringAfterLast$default((String) entry2.getValue(), '.', null, 2, null);
-            linkedHashMap.put(key2, substringAfterLast$default);
+            linkedHashMap.put(key, substringAfterLast$default);
         }
+        simpleNames = linkedHashMap;
     }
 }

@@ -219,14 +219,15 @@ public class PinchToZoomHelper {
             float f2 = f / bitmapWidth;
             float f3 = this.imageHeight;
             float f4 = this.imageWidth;
-            if (f2 == f3 / f4) {
+            float f5 = f3 / f4;
+            if (f2 == f5) {
                 this.fullImageHeight = f3;
                 this.fullImageWidth = f4;
-            } else if (f / bitmapWidth < f3 / f4) {
+            } else if (f2 < f5) {
                 this.fullImageWidth = (bitmapWidth / f) * f3;
                 this.fullImageHeight = f3;
             } else {
-                this.fullImageHeight = (f / bitmapWidth) * f4;
+                this.fullImageHeight = f2 * f4;
                 this.fullImageWidth = f4;
             }
             if (messageObject != null && messageObject.isVideo() && MediaController.getInstance().isPlayingMessage(messageObject)) {
@@ -281,7 +282,7 @@ public class PinchToZoomHelper {
         if (messageObject != null && messageObject.isPhoto()) {
             ImageLocation imageLocation = getImageLocation(messageObject, new int[1]);
             if (imageLocation != null) {
-                this.fullImage.setImage(imageLocation, null, null, null, null, r1[0], null, messageObject, messageObject.isWebpage() ? 1 : 0);
+                this.fullImage.setImage(imageLocation, null, null, null, null, r0[0], null, messageObject, messageObject.isWebpage() ? 1 : 0);
                 this.fullImage.setCrossfadeAlpha((byte) 2);
             }
             updateViewsLocation();
@@ -296,8 +297,8 @@ public class PinchToZoomHelper {
             if (view == null) {
                 return false;
             }
-            f2 += view.getLeft();
-            f3 += view.getTop();
+            f3 += view.getLeft();
+            f2 += view.getTop();
             if (!(view.getParent() instanceof View)) {
                 break;
             }
@@ -312,8 +313,8 @@ public class PinchToZoomHelper {
         }
         this.fragmentOffsetX = f;
         this.fragmentOffsetY = f4;
-        this.parentOffsetX = f2;
-        this.parentOffsetY = f3;
+        this.parentOffsetX = f3;
+        this.parentOffsetY = f2;
         return true;
     }
 
@@ -472,8 +473,11 @@ public class PinchToZoomHelper {
             if (Build.VERSION.SDK_INT >= 21) {
                 FrameLayout frameLayout = new FrameLayout(context);
                 this.videoPlayerContainer = frameLayout;
-                frameLayout.setOutlineProvider(new ViewOutlineProvider(this, PinchToZoomHelper.this) {
-                    AnonymousClass1(ZoomOverlayView this, PinchToZoomHelper pinchToZoomHelper) {
+                frameLayout.setOutlineProvider(new ViewOutlineProvider() {
+                    final PinchToZoomHelper val$this$0;
+
+                    AnonymousClass1(PinchToZoomHelper pinchToZoomHelper) {
+                        r2 = pinchToZoomHelper;
                     }
 
                     @Override
@@ -495,11 +499,13 @@ public class PinchToZoomHelper {
                 });
                 this.videoPlayerContainer.setClipToOutline(true);
             } else {
-                this.videoPlayerContainer = new FrameLayout(context, PinchToZoomHelper.this) {
+                this.videoPlayerContainer = new FrameLayout(context) {
                     RectF rect = new RectF();
+                    final PinchToZoomHelper val$this$0;
 
                     AnonymousClass2(Context context2, PinchToZoomHelper pinchToZoomHelper) {
                         super(context2);
+                        r3 = pinchToZoomHelper;
                         this.rect = new RectF();
                     }
 
@@ -562,7 +568,10 @@ public class PinchToZoomHelper {
         }
 
         public class AnonymousClass1 extends ViewOutlineProvider {
-            AnonymousClass1(ZoomOverlayView this, PinchToZoomHelper pinchToZoomHelper) {
+            final PinchToZoomHelper val$this$0;
+
+            AnonymousClass1(PinchToZoomHelper pinchToZoomHelper) {
+                r2 = pinchToZoomHelper;
             }
 
             @Override
@@ -585,9 +594,11 @@ public class PinchToZoomHelper {
 
         public class AnonymousClass2 extends FrameLayout {
             RectF rect = new RectF();
+            final PinchToZoomHelper val$this$0;
 
             AnonymousClass2(Context context2, PinchToZoomHelper pinchToZoomHelper) {
                 super(context2);
+                r3 = pinchToZoomHelper;
                 this.rect = new RectF();
             }
 
@@ -808,8 +819,9 @@ public class PinchToZoomHelper {
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             if (closestPhotoSizeWithSize != null) {
                 if (iArr != null) {
-                    iArr[0] = closestPhotoSizeWithSize.size;
-                    if (iArr[0] == 0) {
+                    int i = closestPhotoSizeWithSize.size;
+                    iArr[0] = i;
+                    if (i == 0) {
                         iArr[0] = -1;
                     }
                 }
@@ -827,8 +839,9 @@ public class PinchToZoomHelper {
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize(), false, null, true);
                 if (closestPhotoSizeWithSize2 != null) {
                     if (iArr != null) {
-                        iArr[0] = closestPhotoSizeWithSize2.size;
-                        if (iArr[0] == 0) {
+                        int i2 = closestPhotoSizeWithSize2.size;
+                        iArr[0] = i2;
+                        if (i2 == 0) {
                             iArr[0] = -1;
                         }
                     }
@@ -846,8 +859,9 @@ public class PinchToZoomHelper {
                     if (MessageObject.isDocumentHasThumb(messageObject.getDocument())) {
                         TLRPC$PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
                         if (iArr != null) {
-                            iArr[0] = closestPhotoSizeWithSize3.size;
-                            if (iArr[0] == 0) {
+                            int i3 = closestPhotoSizeWithSize3.size;
+                            iArr[0] = i3;
+                            if (i3 == 0) {
                                 iArr[0] = -1;
                             }
                         }

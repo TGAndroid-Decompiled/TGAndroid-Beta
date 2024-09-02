@@ -2,11 +2,13 @@ package kotlin.jvm.internal;
 
 public final class PackageReference implements ClassBasedDeclarationContainer {
     private final Class<?> jClass;
+    private final String moduleName;
 
     public PackageReference(Class<?> jClass, String moduleName) {
         Intrinsics.checkNotNullParameter(jClass, "jClass");
         Intrinsics.checkNotNullParameter(moduleName, "moduleName");
         this.jClass = jClass;
+        this.moduleName = moduleName;
     }
 
     @Override

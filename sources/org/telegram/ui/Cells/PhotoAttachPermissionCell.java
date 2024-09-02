@@ -25,13 +25,17 @@ public class PhotoAttachPermissionCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_attachPermissionImage), PorterDuff.Mode.MULTIPLY));
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        ImageView imageView2 = this.imageView;
+        int themedColor = getThemedColor(Theme.key_chat_attachPermissionImage);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView2.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
         addView(this.imageView, LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.imageView2 = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_attachPermissionMark), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView3 = new ImageView(context);
+        this.imageView2 = imageView3;
+        imageView3.setScaleType(scaleType);
+        this.imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_attachPermissionMark), mode));
         addView(this.imageView2, LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -50,14 +54,14 @@ public class PhotoAttachPermissionCell extends FrameLayout {
         if (i == 0) {
             this.imageView.setImageResource(R.drawable.permissions_camera1);
             this.imageView2.setImageResource(R.drawable.permissions_camera2);
-            this.textView.setText(LocaleController.getString("CameraPermissionText", R.string.CameraPermissionText));
+            this.textView.setText(LocaleController.getString(R.string.CameraPermissionText));
             this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
             return;
         }
         this.imageView.setImageResource(R.drawable.permissions_gallery1);
         this.imageView2.setImageResource(R.drawable.permissions_gallery2);
-        this.textView.setText(LocaleController.getString("GalleryPermissionText", R.string.GalleryPermissionText));
+        this.textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
         this.imageView.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
         this.imageView2.setLayoutParams(LayoutHelper.createFrame(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
     }

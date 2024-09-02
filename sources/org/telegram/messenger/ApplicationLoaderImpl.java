@@ -56,17 +56,22 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     }
 
     @Override
+    protected void startAppCenterInternal(Activity activity) {
+    }
+
+    @Override
     protected String onGetApplicationId() {
         return "org.telegram.messenger.web";
     }
 
     @Override
-    protected void startAppCenterInternal(Activity activity) {
-    }
-
-    @Override
     public boolean checkApkInstallPermissions(Context context) {
-        if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
+        boolean canRequestPackageInstalls;
+        if (Build.VERSION.SDK_INT < 26) {
+            return true;
+        }
+        canRequestPackageInstalls = ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls();
+        if (canRequestPackageInstalls) {
             return true;
         }
         AlertsCreator.createApkRestrictedDialog(context, null).show();
@@ -134,11 +139,11 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
         if (SMSJobController.getInstance(UserConfig.selectedAccount).isAvailable()) {
-            CharSequence string = LocaleController.getString(2131696922);
+            CharSequence string = LocaleController.getString(2131695787);
             if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
                 string = PremiumPreviewFragment.applyNewSpan(string.toString());
             }
-            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, 2131231238).onClick(new View.OnClickListener() {
+            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, 2131231164).onClick(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     ApplicationLoaderImpl.lambda$extendDrawer$3(view);
@@ -163,7 +168,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (i == 2) {
             sMSJobController.checkSelectedSIMCard();
             if (sMSJobController.getSelectedSIM() == null) {
-                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131696927)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696926))).setPositiveButton(LocaleController.getString(2131694867), null).show();
+                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695792)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695791))).setPositiveButton(LocaleController.getString(2131693987), null).show();
                 return;
             }
         } else if (i == 1) {
@@ -185,7 +190,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         sMSJobController.checkSelectedSIMCard();
         if (sMSJobController.getSelectedSIM() == null) {
             sMSJobController.setState(2);
-            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131696927)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696926))).setPositiveButton(LocaleController.getString(2131694867), null).show();
+            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131695792)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131695791))).setPositiveButton(LocaleController.getString(2131693987), null).show();
         } else {
             ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
                 @Override
@@ -211,7 +216,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696720)).show();
             return;
         }
         sMSJobController.setState(3);
@@ -234,14 +239,14 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
         if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
-            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131696921));
-            charSequenceArr[1] = LocaleController.getString(2131696920);
+            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131695786));
+            charSequenceArr[1] = LocaleController.getString(2131695785);
             zArr[0] = false;
             return true;
         }
         if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
-            charSequenceArr[0] = LocaleController.getString(2131696924);
-            charSequenceArr[1] = LocaleController.getString(2131696923);
+            charSequenceArr[0] = LocaleController.getString(2131695789);
+            charSequenceArr[1] = LocaleController.getString(2131695788);
             zArr[0] = true;
             return true;
         }

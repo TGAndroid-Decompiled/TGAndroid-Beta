@@ -255,9 +255,9 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         for (int i5 = 0; i5 < this.views.length; i5++) {
             int dp = ((i5 % 3) * (AndroidUtilities.dp(6.0f) + width)) + AndroidUtilities.dp(10.0f);
             int dp2 = ((i5 / 3) * (AndroidUtilities.dp(6.0f) + height)) + AndroidUtilities.dp(10.0f);
-            View[] viewArr = this.views;
-            if (viewArr[i5] != null) {
-                viewArr[i5].layout(dp, dp2, dp + width, dp2 + height);
+            View view = this.views[i5];
+            if (view != null) {
+                view.layout(dp, dp2, dp + width, dp2 + height);
             }
         }
     }

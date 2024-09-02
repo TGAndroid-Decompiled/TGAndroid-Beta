@@ -129,7 +129,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     public class AnonymousClass1 extends TextView {
         final NotificationCenter.NotificationCenterDelegate delegate;
 
-        AnonymousClass1(NewContactBottomSheet newContactBottomSheet, Context context) {
+        AnonymousClass1(Context context) {
             super(context);
             this.delegate = new NotificationCenter.NotificationCenterDelegate() {
                 @Override
@@ -337,7 +337,8 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
     }
 
     public NewContactBottomSheet setInitialPhoneNumber(String str, boolean z) {
-        boolean z2;
+        String country;
+        Object systemService;
         this.initialPhoneNumber = str;
         this.initialPhoneNumberWithCountryCode = z;
         if (!TextUtils.isEmpty(str)) {
@@ -350,28 +351,29 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
                 String str2 = currentUser.phone;
                 int i = 4;
                 while (true) {
-                    z2 = false;
-                    if (i < 1) {
-                        break;
-                    }
-                    List<CountrySelectActivity.Country> list = this.codesMap.get(str2.substring(0, i));
-                    if (list == null || list.size() <= 0) {
-                        i--;
-                    } else {
-                        String str3 = list.get(0).code;
-                        this.codeField.setText(str3);
-                        if (str3.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
+                    if (i >= 1) {
+                        List<CountrySelectActivity.Country> list = this.codesMap.get(str2.substring(0, i));
+                        if (list == null || list.size() <= 0) {
+                            i--;
+                        } else {
+                            String str3 = list.get(0).code;
+                            this.codeField.setText(str3);
+                            if (str3.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
+                                this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
+                            }
+                        }
+                    } else if (Build.VERSION.SDK_INT >= 23) {
+                        Context context = ApplicationLoader.applicationContext;
+                        if (context != null) {
+                            systemService = context.getSystemService((Class<Object>) TelephonyManager.class);
+                            country = ((TelephonyManager) systemService).getSimCountryIso().toUpperCase(Locale.US);
+                        } else {
+                            country = Locale.getDefault().getCountry();
+                        }
+                        this.codeField.setText(country);
+                        if (country.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
                             this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
                         }
-                        z2 = true;
-                    }
-                }
-                if (!z2 && Build.VERSION.SDK_INT >= 23) {
-                    Context context = ApplicationLoader.applicationContext;
-                    String upperCase = context != null ? ((TelephonyManager) context.getSystemService(TelephonyManager.class)).getSimCountryIso().toUpperCase(Locale.US) : Locale.getDefault().getCountry();
-                    this.codeField.setText(upperCase);
-                    if (upperCase.endsWith("0") && this.initialPhoneNumber.startsWith("0")) {
-                        this.initialPhoneNumber = this.initialPhoneNumber.substring(1);
                     }
                 }
                 this.phoneField.setText(this.initialPhoneNumber);

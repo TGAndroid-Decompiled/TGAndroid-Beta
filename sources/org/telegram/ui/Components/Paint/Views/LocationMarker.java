@@ -40,11 +40,14 @@ public class LocationMarker extends View {
     private TLRPC$Document flagAnimatedDocument;
     private final ImageReceiver flagAnimatedImageReceiver;
     private TLRPC$Document flagDocument;
+    private final float flagIconPadding;
     private final ImageReceiver flagImageReceiver;
     private boolean forceEmoji;
     private float h;
     private boolean hasFlag;
     private final Drawable icon;
+    private final float iconPadding;
+    private final float iconSize;
     private boolean isVideo;
     private StaticLayout layout;
     private float layoutLeft;
@@ -54,10 +57,13 @@ public class LocationMarker extends View {
     private final RectF padding;
     public final int padx;
     public final int pady;
+    private final Path path;
     private boolean relayout;
     private String text;
     private final TextPaint textPaint;
     private float textScale;
+    public final int type;
+    public final int variant;
     private float w;
 
     public int getTypesCount() {
@@ -68,6 +74,9 @@ public class LocationMarker extends View {
         super(context);
         this.text = "";
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
+        this.iconPadding = 3.25f;
+        this.flagIconPadding = 2.25f;
+        this.iconSize = 21.33f;
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         this.outlinePaint = new Paint(1);
@@ -77,8 +86,9 @@ public class LocationMarker extends View {
         this.flagAnimatedImageReceiver = imageReceiver2;
         this.textScale = 1.0f;
         this.bounds = new RectF();
-        new Path();
+        this.path = new Path();
         this.animatedVideo = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.variant = i;
         this.density = f;
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setInvalidateAll(true);
@@ -89,6 +99,7 @@ public class LocationMarker extends View {
         int i4 = (int) (1.0f * f);
         this.pady = i4;
         setPadding(i3, i4, i3, i4);
+        this.type = i2;
         this.icon = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
         textPaint.setTextSize(f * 24.0f);
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
@@ -114,7 +125,7 @@ public class LocationMarker extends View {
         if (emojiBigDrawable == null) {
             return null;
         }
-        return new Drawable(this) {
+        return new Drawable() {
             @Override
             public void draw(Canvas canvas) {
                 canvas.save();
@@ -380,63 +391,69 @@ public class LocationMarker extends View {
             return;
         }
         RectF rectF = this.bounds;
-        int i = this.padx;
-        int i2 = this.pady;
-        rectF.set(i, i2, i + this.w, i2 + this.h);
+        float f = this.padx;
+        float f2 = this.pady;
+        rectF.set(f, f2, this.w + f, this.h + f2);
         RectF rectF2 = this.bounds;
-        float f = this.h;
-        canvas.drawRoundRect(rectF2, f * 0.2f, f * 0.2f, this.outlinePaint);
+        float f3 = this.h * 0.2f;
+        canvas.drawRoundRect(rectF2, f3, f3, this.outlinePaint);
         if (this.hasFlag) {
-            float f2 = this.animatedVideo.set(this.isVideo);
-            if (f2 > 0.0f) {
+            float f4 = this.animatedVideo.set(this.isVideo);
+            if (f4 > 0.0f) {
                 ImageReceiver imageReceiver = this.flagAnimatedImageReceiver;
-                float f3 = this.padx;
-                float f4 = this.padding.left + 2.25f;
-                float f5 = this.density;
-                imageReceiver.setImageCoords(f3 + (f4 * f5), this.pady + ((this.h - (f5 * 21.33f)) / 2.0f), f5 * 21.33f, f5 * 21.33f);
+                float f5 = this.padx;
+                float f6 = this.padding.left + 2.25f;
+                float f7 = this.density;
+                float f8 = f5 + (f6 * f7);
+                float f9 = f7 * 21.33f;
+                imageReceiver.setImageCoords(f8, this.pady + ((this.h - f9) / 2.0f), f9, f9);
                 canvas.save();
                 canvas.scale(1.2f, 1.2f, this.flagAnimatedImageReceiver.getCenterX(), this.flagAnimatedImageReceiver.getCenterY());
-                this.flagAnimatedImageReceiver.setAlpha(f2);
+                this.flagAnimatedImageReceiver.setAlpha(f4);
                 this.flagAnimatedImageReceiver.draw(canvas);
                 canvas.restore();
             }
-            if (f2 < 1.0f) {
+            if (f4 < 1.0f) {
                 ImageReceiver imageReceiver2 = this.flagImageReceiver;
-                float f6 = this.padx;
-                float f7 = this.padding.left + 2.25f;
-                float f8 = this.density;
-                imageReceiver2.setImageCoords(f6 + (f7 * f8), this.pady + ((this.h - (f8 * 21.33f)) / 2.0f), f8 * 21.33f, f8 * 21.33f);
+                float f10 = this.padx;
+                float f11 = this.padding.left + 2.25f;
+                float f12 = this.density;
+                float f13 = f10 + (f11 * f12);
+                float f14 = f12 * 21.33f;
+                imageReceiver2.setImageCoords(f13, this.pady + ((this.h - f14) / 2.0f), f14, f14);
                 canvas.save();
                 canvas.scale(1.2f, 1.2f, this.flagImageReceiver.getCenterX(), this.flagImageReceiver.getCenterY());
-                this.flagImageReceiver.setAlpha(1.0f - f2);
+                this.flagImageReceiver.setAlpha(1.0f - f4);
                 this.flagImageReceiver.draw(canvas);
                 canvas.restore();
             }
         } else if (!this.forceEmoji) {
             Drawable drawable = this.icon;
-            int i3 = this.padx;
-            float f9 = this.padding.left;
-            float f10 = this.density;
-            int i4 = this.pady;
-            float f11 = this.h;
-            drawable.setBounds(((int) (f9 * f10)) + i3, ((int) ((f11 - (f10 * 21.33f)) / 2.0f)) + i4, i3 + ((int) ((f9 + 21.33f) * f10)), i4 + ((int) ((f11 + (f10 * 21.33f)) / 2.0f)));
+            int i = this.padx;
+            float f15 = this.padding.left;
+            float f16 = this.density;
+            int i2 = this.pady;
+            float f17 = this.h;
+            float f18 = f16 * 21.33f;
+            drawable.setBounds(((int) (f15 * f16)) + i, ((int) ((f17 - f18) / 2.0f)) + i2, i + ((int) ((f15 + 21.33f) * f16)), i2 + ((int) ((f17 + f18) / 2.0f)));
             this.icon.draw(canvas);
         }
         canvas.save();
         canvas.translate(this.padx + ((this.padding.left + ((this.hasFlag || this.forceEmoji) ? 2.25f : 0.0f) + 21.33f + 3.25f) * this.density), this.pady + (this.h / 2.0f));
-        float f12 = this.textScale;
-        canvas.scale(f12, f12);
+        float f19 = this.textScale;
+        canvas.scale(f19, f19);
         canvas.translate(-this.layoutLeft, (-this.layout.getHeight()) / 2.0f);
         this.layout.draw(canvas);
         canvas.restore();
     }
 
     public void getEmojiBounds(RectF rectF) {
-        int i = this.padx;
-        float f = this.padding.left;
-        float f2 = this.density;
-        int i2 = this.pady;
-        float f3 = this.h;
-        rectF.set(i + ((f + 2.25f) * f2), i2 + ((f3 - (f2 * 21.33f)) / 2.0f), i + ((f + 2.25f + 21.33f) * f2), i2 + ((f3 + (f2 * 21.33f)) / 2.0f));
+        float f = this.padx;
+        float f2 = this.padding.left + 2.25f;
+        float f3 = this.density;
+        float f4 = this.pady;
+        float f5 = this.h;
+        float f6 = f3 * 21.33f;
+        rectF.set((f2 * f3) + f, ((f5 - f6) / 2.0f) + f4, f + ((f2 + 21.33f) * f3), f4 + ((f5 + f6) / 2.0f));
     }
 }

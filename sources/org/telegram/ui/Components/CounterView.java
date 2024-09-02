@@ -98,7 +98,6 @@ public class CounterView extends View {
         int type = 0;
 
         public CounterDrawable(View view, boolean z, Theme.ResourcesProvider resourcesProvider) {
-            this.drawBackground = true;
             this.parent = view;
             this.resourcesProvider = resourcesProvider;
             this.drawBackground = z;
@@ -122,6 +121,7 @@ public class CounterView extends View {
         }
 
         private void drawInternal(Canvas canvas) {
+            boolean z;
             float f = this.radius * 2.0f;
             float dp = (this.lastH - AndroidUtilities.dp(f)) / 2.0f;
             updateX(this.countWidth);
@@ -129,22 +129,21 @@ public class CounterView extends View {
             float f2 = this.x;
             rectF.set(f2, dp, this.countWidth + f2 + AndroidUtilities.dp(this.radius - 0.5f), AndroidUtilities.dp(f) + dp);
             if (this.circlePaint != null && this.drawBackground) {
-                boolean z = false;
                 if (this.circleScale != 1.0f) {
                     canvas.save();
                     float f3 = this.circleScale;
                     canvas.scale(f3, f3, this.rectF.centerX(), this.rectF.centerY());
                     z = true;
+                } else {
+                    z = false;
                 }
                 RectF rectF2 = this.rectF;
-                float f4 = this.radius;
-                float f5 = AndroidUtilities.density;
-                canvas.drawRoundRect(rectF2, f4 * f5, f4 * f5, this.circlePaint);
+                float f4 = this.radius * AndroidUtilities.density;
+                canvas.drawRoundRect(rectF2, f4, f4, this.circlePaint);
                 if (this.addServiceGradient && Theme.hasGradientService()) {
                     RectF rectF3 = this.rectF;
-                    float f6 = this.radius;
-                    float f7 = AndroidUtilities.density;
-                    canvas.drawRoundRect(rectF3, f6 * f7, f6 * f7, Theme.chat_actionBackgroundGradientDarkenPaint);
+                    float f5 = this.radius * AndroidUtilities.density;
+                    canvas.drawRoundRect(rectF3, f5, f5, Theme.chat_actionBackgroundGradientDarkenPaint);
                 }
                 if (z) {
                     canvas.restore();
@@ -258,9 +257,11 @@ public class CounterView extends View {
                             }
                         }
                         int max = Math.max(AndroidUtilities.dp(12.0f), (int) Math.ceil(this.textPaint.measureText(charSequence2.toString())));
-                        this.countOldLayout = new StaticLayout(spannableStringBuilder, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-                        this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, max, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+                        TextPaint textPaint = this.textPaint;
+                        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+                        this.countOldLayout = new StaticLayout(spannableStringBuilder, textPaint, max, alignment, 1.0f, 0.0f, false);
+                        this.countAnimationStableLayout = new StaticLayout(spannableStringBuilder3, this.textPaint, max, alignment, 1.0f, 0.0f, false);
+                        this.countAnimationInLayout = new StaticLayout(spannableStringBuilder2, this.textPaint, max, alignment, 1.0f, 0.0f, false);
                     } else {
                         this.countOldLayout = this.countLayout;
                     }
@@ -370,14 +371,12 @@ public class CounterView extends View {
                 }
                 if (this.drawBackground && (paint = this.circlePaint) != null) {
                     RectF rectF2 = this.rectF;
-                    float f11 = this.radius;
-                    float f12 = AndroidUtilities.density;
-                    canvas.drawRoundRect(rectF2, f11 * f12, f11 * f12, paint);
+                    float f11 = this.radius * AndroidUtilities.density;
+                    canvas.drawRoundRect(rectF2, f11, f11, paint);
                     if (this.addServiceGradient && Theme.hasGradientService()) {
                         RectF rectF3 = this.rectF;
-                        float f13 = this.radius;
-                        float f14 = AndroidUtilities.density;
-                        canvas.drawRoundRect(rectF3, f13 * f14, f13 * f14, Theme.chat_actionBackgroundGradientDarkenPaint);
+                        float f12 = this.radius * AndroidUtilities.density;
+                        canvas.drawRoundRect(rectF3, f12, f12, Theme.chat_actionBackgroundGradientDarkenPaint);
                     }
                 }
                 if (z) {
@@ -387,25 +386,25 @@ public class CounterView extends View {
                 boolean z2 = this.reverseAnimation != this.countAnimationIncrement;
                 if (this.countAnimationInLayout != null) {
                     canvas.save();
-                    float f15 = this.countLeft;
+                    float f13 = this.countLeft;
                     float dp2 = AndroidUtilities.dp(4.0f) + dp;
                     int dp3 = AndroidUtilities.dp(13.0f);
                     if (!z2) {
                         dp3 = -dp3;
                     }
-                    canvas.translate(f15, dp2 + (dp3 * (1.0f - f6)));
+                    canvas.translate(f13, dp2 + (dp3 * (1.0f - f6)));
                     this.textPaint.setAlpha((int) (f6 * 255.0f));
                     this.countAnimationInLayout.draw(canvas);
                     canvas.restore();
                 } else if (this.countLayout != null) {
                     canvas.save();
-                    float f16 = this.countLeft;
+                    float f14 = this.countLeft;
                     float dp4 = AndroidUtilities.dp(4.0f) + dp;
                     int dp5 = AndroidUtilities.dp(13.0f);
                     if (!z2) {
                         dp5 = -dp5;
                     }
-                    canvas.translate(f16, dp4 + (dp5 * (1.0f - f6)));
+                    canvas.translate(f14, dp4 + (dp5 * (1.0f - f6)));
                     this.textPaint.setAlpha((int) (f6 * 255.0f));
                     this.countLayout.draw(canvas);
                     canvas.restore();

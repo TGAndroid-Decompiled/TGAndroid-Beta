@@ -347,13 +347,14 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         int abs = Math.abs(i4);
         int i5 = this.itemWidth;
         int i6 = this.itemSpacing;
-        int i7 = -1;
-        if (abs > (i5 / 2) + i6) {
+        int i7 = (i5 / 2) + i6;
+        int i8 = -1;
+        if (abs > i7) {
             if (i4 > 0) {
-                i2 = i4 - ((i5 / 2) + i6);
+                i2 = i4 - i7;
                 i3 = 1;
             } else {
-                i2 = i4 + (i5 / 2) + i6;
+                i2 = i4 + i7;
                 i3 = -1;
             }
             i = i3 + (i2 / (i5 + (i6 * 2)));
@@ -365,19 +366,19 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         ArrayList<ImageLocation> imagesArrLocations = this.delegate.getImagesArrLocations();
         ArrayList<MessageObject> imagesArr = this.delegate.getImagesArr();
         List<TLRPC$PageBlock> pageBlockArr = this.delegate.getPageBlockArr();
-        int i8 = this.nextPhotoScrolling;
-        if (currentIndex != i8 && i8 >= 0 && i8 < this.currentPhotos.size()) {
+        int i9 = this.nextPhotoScrolling;
+        if (currentIndex != i9 && i9 >= 0 && i9 < this.currentPhotos.size()) {
             Object obj = this.currentObjects.get(this.nextPhotoScrolling);
             if (imagesArr != null && !imagesArr.isEmpty()) {
-                i7 = imagesArr.indexOf((MessageObject) obj);
+                i8 = imagesArr.indexOf((MessageObject) obj);
             } else if (pageBlockArr != null && !pageBlockArr.isEmpty()) {
-                i7 = pageBlockArr.indexOf((TLRPC$PageBlock) obj);
+                i8 = pageBlockArr.indexOf((TLRPC$PageBlock) obj);
             } else if (imagesArrLocations != null && !imagesArrLocations.isEmpty()) {
-                i7 = imagesArrLocations.indexOf((ImageLocation) obj);
+                i8 = imagesArrLocations.indexOf((ImageLocation) obj);
             }
-            if (i7 >= 0) {
+            if (i8 >= 0) {
                 this.ignoreChanges = true;
-                this.delegate.setCurrentIndex(i7);
+                this.delegate.setCurrentIndex(i8);
             }
         }
         if (!this.scrolling) {

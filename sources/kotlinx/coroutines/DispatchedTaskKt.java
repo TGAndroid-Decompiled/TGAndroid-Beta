@@ -18,18 +18,13 @@ public final class DispatchedTaskKt {
     }
 
     public static final <T> void dispatch(DispatchedTask<? super T> dispatchedTask, int i) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(i != -1)) {
-                throw new AssertionError();
-            }
-        }
         Continuation<? super T> delegate$kotlinx_coroutines_core = dispatchedTask.getDelegate$kotlinx_coroutines_core();
         boolean z = i == 4;
         if (!z && (delegate$kotlinx_coroutines_core instanceof DispatchedContinuation) && isCancellableMode(i) == isCancellableMode(dispatchedTask.resumeMode)) {
             CoroutineDispatcher coroutineDispatcher = ((DispatchedContinuation) delegate$kotlinx_coroutines_core).dispatcher;
             CoroutineContext context = delegate$kotlinx_coroutines_core.getContext();
             if (coroutineDispatcher.isDispatchNeeded(context)) {
-                coroutineDispatcher.mo154dispatch(context, dispatchedTask);
+                coroutineDispatcher.dispatch(context, dispatchedTask);
                 return;
             } else {
                 resumeUnconfined(dispatchedTask);
@@ -51,7 +46,7 @@ public final class DispatchedTaskKt {
             Result.Companion companion2 = Result.Companion;
             successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
         }
-        Object m150constructorimpl = Result.m150constructorimpl(successfulResult$kotlinx_coroutines_core);
+        Object m157constructorimpl = Result.m157constructorimpl(successfulResult$kotlinx_coroutines_core);
         if (z) {
             DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
             Continuation<T> continuation2 = dispatchedContinuation.continuation;
@@ -60,7 +55,7 @@ public final class DispatchedTaskKt {
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
             UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
             try {
-                dispatchedContinuation.continuation.resumeWith(m150constructorimpl);
+                dispatchedContinuation.continuation.resumeWith(m157constructorimpl);
                 Unit unit = Unit.INSTANCE;
                 if (updateUndispatchedCompletion != null) {
                     if (!clearThreadContext) {
@@ -74,7 +69,7 @@ public final class DispatchedTaskKt {
                 }
             }
         }
-        continuation.resumeWith(m150constructorimpl);
+        continuation.resumeWith(m157constructorimpl);
     }
 
     private static final void resumeUnconfined(DispatchedTask<?> dispatchedTask) {

@@ -89,21 +89,27 @@ public class ClippingImageView extends View {
     public void setAnimationProgress(float f) {
         this.animationProgress = f;
         float[][] fArr = this.animationValues;
-        setScaleX(fArr[0][0] + ((fArr[1][0] - fArr[0][0]) * f));
+        float f2 = fArr[0][0];
+        setScaleX(f2 + ((fArr[1][0] - f2) * f));
         float[][] fArr2 = this.animationValues;
-        setScaleY(fArr2[0][1] + ((fArr2[1][1] - fArr2[0][1]) * this.animationProgress));
+        float f3 = fArr2[0][1];
+        setScaleY(f3 + ((fArr2[1][1] - f3) * this.animationProgress));
         float[][] fArr3 = this.animationValues;
-        float f2 = fArr3[0][2];
-        float f3 = this.additionalTranslationX;
-        setTranslationX(f2 + f3 + ((((fArr3[1][2] + f3) - fArr3[0][2]) - f3) * this.animationProgress));
+        float f4 = fArr3[0][2];
+        float f5 = this.additionalTranslationX;
+        setTranslationX(f4 + f5 + ((((fArr3[1][2] + f5) - f4) - f5) * this.animationProgress));
         float[][] fArr4 = this.animationValues;
-        setTranslationY(fArr4[0][3] + ((fArr4[1][3] - fArr4[0][3]) * this.animationProgress));
+        float f6 = fArr4[0][3];
+        setTranslationY(f6 + ((fArr4[1][3] - f6) * this.animationProgress));
         float[][] fArr5 = this.animationValues;
-        setClipHorizontal((int) (fArr5[0][4] + ((fArr5[1][4] - fArr5[0][4]) * this.animationProgress)));
+        float f7 = fArr5[0][4];
+        setClipHorizontal((int) (f7 + ((fArr5[1][4] - f7) * this.animationProgress)));
         float[][] fArr6 = this.animationValues;
-        setClipTop((int) (fArr6[0][5] + ((fArr6[1][5] - fArr6[0][5]) * this.animationProgress)));
+        float f8 = fArr6[0][5];
+        setClipTop((int) (f8 + ((fArr6[1][5] - f8) * this.animationProgress)));
         float[][] fArr7 = this.animationValues;
-        setClipBottom((int) (fArr7[0][6] + ((fArr7[1][6] - fArr7[0][6]) * this.animationProgress)));
+        float f9 = fArr7[0][6];
+        setClipBottom((int) (f9 + ((fArr7[1][6] - f9) * this.animationProgress)));
         int i = 0;
         while (true) {
             int[] iArr = this.radius;
@@ -112,15 +118,19 @@ public class ClippingImageView extends View {
             }
             float[][] fArr8 = this.animationValues;
             int i2 = i + 7;
-            iArr[i] = (int) (fArr8[0][i2] + ((fArr8[1][i2] - fArr8[0][i2]) * this.animationProgress));
+            float f10 = fArr8[0][i2];
+            iArr[i] = (int) (f10 + ((fArr8[1][i2] - f10) * this.animationProgress));
             setRadius(iArr);
             i++;
         }
         float[][] fArr9 = this.animationValues;
-        if (fArr9[0].length > 11) {
-            setImageY((int) (fArr9[0][11] + ((fArr9[1][11] - fArr9[0][11]) * this.animationProgress)));
-            float[][] fArr10 = this.animationValues;
-            setImageX((int) (fArr10[0][12] + ((fArr10[1][12] - fArr10[0][12]) * this.animationProgress)));
+        float[] fArr10 = fArr9[0];
+        if (fArr10.length > 11) {
+            float f11 = fArr10[11];
+            setImageY((int) (f11 + ((fArr9[1][11] - f11) * this.animationProgress)));
+            float[][] fArr11 = this.animationValues;
+            float f12 = fArr11[0][12];
+            setImageX((int) (f12 + ((fArr11[1][12] - f12) * this.animationProgress)));
         }
         invalidate();
     }
@@ -130,7 +140,6 @@ public class ClippingImageView extends View {
         rectF.top = getTranslationY();
         rectF.right = rectF.left + (getMeasuredWidth() * getScaleX());
         float measuredHeight = rectF.top + (getMeasuredHeight() * getScaleY());
-        rectF.bottom = measuredHeight;
         rectF.left += this.clipLeft;
         rectF.top += this.clipTop;
         rectF.right -= this.clipRight;
@@ -178,13 +187,15 @@ public class ClippingImageView extends View {
             canvas.clipRect(this.clipLeft / scaleY, this.clipTop / scaleY, getWidth() - (this.clipRight / scaleY), getHeight() - (this.clipBottom / scaleY));
             int i = 0;
             while (true) {
-                if (i >= this.radius.length) {
+                int[] iArr = this.radius;
+                if (i >= iArr.length) {
                     break;
                 }
                 float[] fArr = radii;
                 int i2 = i * 2;
-                fArr[i2] = r1[i];
-                fArr[i2 + 1] = r1[i];
+                float f = iArr[i];
+                fArr[i2] = f;
+                fArr[i2 + 1] = f;
                 i++;
             }
             this.roundPath.reset();

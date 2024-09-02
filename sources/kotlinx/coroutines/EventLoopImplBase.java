@@ -1,5 +1,6 @@
 package kotlinx.coroutines;
 
+import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
@@ -95,10 +96,14 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             long nanoTime = System.nanoTime();
             do {
                 synchronized (delayedTaskQueue) {
-                    DelayedTask firstImpl = delayedTaskQueue.firstImpl();
-                    if (firstImpl != null) {
-                        DelayedTask delayedTask2 = firstImpl;
-                        delayedTask = delayedTask2.timeToExecute(nanoTime) ? enqueueImpl(delayedTask2) : false ? delayedTaskQueue.removeAtImpl(0) : null;
+                    try {
+                        DelayedTask firstImpl = delayedTaskQueue.firstImpl();
+                        if (firstImpl != null) {
+                            DelayedTask delayedTask2 = firstImpl;
+                            delayedTask = delayedTask2.timeToExecute(nanoTime) ? enqueueImpl(delayedTask2) : false ? delayedTaskQueue.removeAtImpl(0) : null;
+                        }
+                    } catch (Throwable th) {
+                        throw th;
                     }
                 }
             } while (delayedTask != null);
@@ -112,7 +117,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     @Override
-    public final void mo154dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public final void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         enqueue(runnable);
     }
 
@@ -121,37 +126,6 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             unpark();
         } else {
             DefaultExecutor.INSTANCE.enqueue(runnable);
-        }
-    }
-
-    private final void closeQueue() {
-        Symbol symbol;
-        Symbol symbol2;
-        if (DebugKt.getASSERTIONS_ENABLED() && !isCompleted()) {
-            throw new AssertionError();
-        }
-        while (true) {
-            Object obj = this._queue;
-            if (obj == null) {
-                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$FU;
-                symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                if (atomicReferenceFieldUpdater.compareAndSet(this, null, symbol)) {
-                    return;
-                }
-            } else if (!(obj instanceof LockFreeTaskQueueCore)) {
-                symbol2 = EventLoop_commonKt.CLOSED_EMPTY;
-                if (obj == symbol2) {
-                    return;
-                }
-                LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);
-                lockFreeTaskQueueCore.addLast((Runnable) obj);
-                if (_queue$FU.compareAndSet(this, obj, lockFreeTaskQueueCore)) {
-                    return;
-                }
-            } else {
-                ((LockFreeTaskQueueCore) obj).close();
-                return;
-            }
         }
     }
 
@@ -179,7 +153,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         }
         DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) this._delayed;
         if (delayedTaskQueue == null) {
-            _delayed$FU.compareAndSet(this, null, new DelayedTaskQueue(j));
+            AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_delayed$FU, this, null, new DelayedTaskQueue(j));
             Object obj = this._delayed;
             Intrinsics.checkNotNull(obj);
             delayedTaskQueue = (DelayedTaskQueue) obj;
@@ -225,7 +199,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             Symbol symbol;
             Object obj = this._heap;
             symbol = EventLoop_commonKt.DISPOSED_TASK;
-            if (!(obj != symbol)) {
+            if (obj == symbol) {
                 throw new IllegalArgumentException("Failed requirement.".toString());
             }
             this._heap = threadSafeHeap;
@@ -262,28 +236,32 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 return 2;
             }
             synchronized (delayedTaskQueue) {
-                DelayedTask firstImpl = delayedTaskQueue.firstImpl();
-                if (eventLoopImplBase.isCompleted()) {
-                    return 1;
-                }
-                if (firstImpl == null) {
-                    delayedTaskQueue.timeNow = j;
-                } else {
-                    long j2 = firstImpl.nanoTime;
-                    if (j2 - j < 0) {
-                        j = j2;
+                try {
+                    DelayedTask firstImpl = delayedTaskQueue.firstImpl();
+                    if (eventLoopImplBase.isCompleted()) {
+                        return 1;
                     }
-                    if (j - delayedTaskQueue.timeNow > 0) {
+                    if (firstImpl == null) {
                         delayedTaskQueue.timeNow = j;
+                    } else {
+                        long j2 = firstImpl.nanoTime;
+                        if (j2 - j < 0) {
+                            j = j2;
+                        }
+                        if (j - delayedTaskQueue.timeNow > 0) {
+                            delayedTaskQueue.timeNow = j;
+                        }
                     }
+                    long j3 = this.nanoTime;
+                    long j4 = delayedTaskQueue.timeNow;
+                    if (j3 - j4 < 0) {
+                        this.nanoTime = j4;
+                    }
+                    delayedTaskQueue.addImpl(this);
+                    return 0;
+                } catch (Throwable th) {
+                    throw th;
                 }
-                long j3 = this.nanoTime;
-                long j4 = delayedTaskQueue.timeNow;
-                if (j3 - j4 < 0) {
-                    this.nanoTime = j4;
-                }
-                delayedTaskQueue.addImpl(this);
-                return 0;
             }
         }
 
@@ -291,17 +269,21 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         public final synchronized void dispose() {
             Symbol symbol;
             Symbol symbol2;
-            Object obj = this._heap;
-            symbol = EventLoop_commonKt.DISPOSED_TASK;
-            if (obj == symbol) {
-                return;
+            try {
+                Object obj = this._heap;
+                symbol = EventLoop_commonKt.DISPOSED_TASK;
+                if (obj == symbol) {
+                    return;
+                }
+                DelayedTaskQueue delayedTaskQueue = obj instanceof DelayedTaskQueue ? (DelayedTaskQueue) obj : null;
+                if (delayedTaskQueue != null) {
+                    delayedTaskQueue.remove(this);
+                }
+                symbol2 = EventLoop_commonKt.DISPOSED_TASK;
+                this._heap = symbol2;
+            } catch (Throwable th) {
+                throw th;
             }
-            DelayedTaskQueue delayedTaskQueue = obj instanceof DelayedTaskQueue ? (DelayedTaskQueue) obj : null;
-            if (delayedTaskQueue != null) {
-                delayedTaskQueue.remove(this);
-            }
-            symbol2 = EventLoop_commonKt.DISPOSED_TASK;
-            this._heap = symbol2;
         }
 
         public String toString() {
@@ -325,7 +307,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 return false;
             }
             if (obj == null) {
-                if (_queue$FU.compareAndSet(this, null, runnable)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, null, runnable)) {
                     return true;
                 }
             } else if (!(obj instanceof LockFreeTaskQueueCore)) {
@@ -336,7 +318,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);
                 lockFreeTaskQueueCore.addLast((Runnable) obj);
                 lockFreeTaskQueueCore.addLast(runnable);
-                if (_queue$FU.compareAndSet(this, obj, lockFreeTaskQueueCore)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, obj, lockFreeTaskQueueCore)) {
                     return true;
                 }
             } else {
@@ -346,7 +328,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                     return true;
                 }
                 if (addLast == 1) {
-                    _queue$FU.compareAndSet(this, obj, lockFreeTaskQueueCore2.next());
+                    AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, obj, lockFreeTaskQueueCore2.next());
                 } else if (addLast == 2) {
                     return false;
                 }
@@ -366,7 +348,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 if (obj == symbol) {
                     return null;
                 }
-                if (_queue$FU.compareAndSet(this, obj, null)) {
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, obj, null)) {
                     return (Runnable) obj;
                 }
             } else {
@@ -375,7 +357,35 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 if (removeFirstOrNull != LockFreeTaskQueueCore.REMOVE_FROZEN) {
                     return (Runnable) removeFirstOrNull;
                 }
-                _queue$FU.compareAndSet(this, obj, lockFreeTaskQueueCore.next());
+                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, obj, lockFreeTaskQueueCore.next());
+            }
+        }
+    }
+
+    private final void closeQueue() {
+        Symbol symbol;
+        Symbol symbol2;
+        while (true) {
+            Object obj = this._queue;
+            if (obj == null) {
+                AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$FU;
+                symbol = EventLoop_commonKt.CLOSED_EMPTY;
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceFieldUpdater, this, null, symbol)) {
+                    return;
+                }
+            } else if (!(obj instanceof LockFreeTaskQueueCore)) {
+                symbol2 = EventLoop_commonKt.CLOSED_EMPTY;
+                if (obj == symbol2) {
+                    return;
+                }
+                LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);
+                lockFreeTaskQueueCore.addLast((Runnable) obj);
+                if (AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_queue$FU, this, obj, lockFreeTaskQueueCore)) {
+                    return;
+                }
+            } else {
+                ((LockFreeTaskQueueCore) obj).close();
+                return;
             }
         }
     }

@@ -23,7 +23,7 @@ public class PaintTypefaceListView extends RecyclerListView implements Notificat
         this.mask = new Path();
         setWillNotDraw(false);
         setLayoutManager(new LinearLayoutManager(context));
-        setAdapter(new RecyclerListView.SelectionAdapter(this) {
+        setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;

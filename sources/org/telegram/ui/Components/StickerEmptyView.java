@@ -144,7 +144,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         textView.setGravity(17);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 15.0f);
-        FrameLayout frameLayout = new FrameLayout(this, getContext()) {
+        FrameLayout frameLayout = new FrameLayout(getContext()) {
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 getParent().requestDisallowInterceptTouchEvent(true);

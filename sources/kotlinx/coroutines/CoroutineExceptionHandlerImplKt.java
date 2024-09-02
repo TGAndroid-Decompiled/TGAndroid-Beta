@@ -2,6 +2,7 @@ package kotlinx.coroutines;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ServiceLoader;
 import kotlin.ExceptionsKt__ExceptionsKt;
 import kotlin.Result;
 import kotlin.ResultKt;
@@ -17,7 +18,7 @@ public final class CoroutineExceptionHandlerImplKt {
     static {
         Sequence asSequence;
         List<CoroutineExceptionHandler> list;
-        asSequence = SequencesKt__SequencesKt.asSequence(CoroutineExceptionHandlerImplKt$$ExternalSyntheticServiceLoad0.m());
+        asSequence = SequencesKt__SequencesKt.asSequence(ServiceLoader.load(CoroutineExceptionHandler.class, CoroutineExceptionHandler.class.getClassLoader()).iterator());
         list = SequencesKt___SequencesKt.toList(asSequence);
         handlers = list;
     }
@@ -36,10 +37,10 @@ public final class CoroutineExceptionHandlerImplKt {
         try {
             Result.Companion companion = Result.Companion;
             ExceptionsKt__ExceptionsKt.addSuppressed(th, new DiagnosticCoroutineContextException(coroutineContext));
-            Result.m150constructorimpl(Unit.INSTANCE);
+            Result.m157constructorimpl(Unit.INSTANCE);
         } catch (Throwable th3) {
             Result.Companion companion2 = Result.Companion;
-            Result.m150constructorimpl(ResultKt.createFailure(th3));
+            Result.m157constructorimpl(ResultKt.createFailure(th3));
         }
         currentThread2.getUncaughtExceptionHandler().uncaughtException(currentThread2, th);
     }

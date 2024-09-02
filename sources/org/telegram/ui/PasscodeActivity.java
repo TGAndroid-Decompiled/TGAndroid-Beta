@@ -127,7 +127,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     }
 
     @Override
-    public android.view.View createView(final android.content.Context r29) {
+    public android.view.View createView(final android.content.Context r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PasscodeActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -162,7 +162,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setTitle(LocaleController.getString("AutoLock", R.string.AutoLock));
+                builder.setTitle(LocaleController.getString(R.string.AutoLock));
                 final NumberPicker numberPicker = new NumberPicker(getParentActivity());
                 numberPicker.setMinValue(0);
                 numberPicker.setMaxValue(4);
@@ -187,7 +187,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     }
                 });
                 builder.setView(numberPicker);
-                builder.setNegativeButton(LocaleController.getString("Done", R.string.Done), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {
                         PasscodeActivity.this.lambda$createView$4(numberPicker, i, dialogInterface, i3);
@@ -208,7 +208,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 if (SharedConfig.allowScreenCapture) {
                     return;
                 }
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString("ScreenCaptureAlert", R.string.ScreenCaptureAlert));
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.ScreenCaptureAlert));
             }
         }
     }
@@ -237,7 +237,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
 
     public static String lambda$createView$3(int i) {
         if (i == 0) {
-            return LocaleController.getString("AutoLockDisabled", R.string.AutoLockDisabled);
+            return LocaleController.getString(R.string.AutoLockDisabled);
         }
         return i == 1 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 1, new Object[0])) : i == 2 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Minutes", 5, new Object[0])) : i == 3 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 1, new Object[0])) : i == 4 ? LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Hours", 5, new Object[0])) : "";
     }
@@ -401,10 +401,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             this.fragmentView.requestLayout();
             return;
         }
-        float[] fArr = new float[2];
-        fArr[0] = z ? 0.0f : 1.0f;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
+        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(150L);
         duration.setInterpolator(z ? CubicBezierInterpolator.DEFAULT : Easings.easeInOutQuad);
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -448,39 +445,36 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             this.floatingAutoAnimator.setOffsetY(z ? 0.0f : AndroidUtilities.dp(70.0f));
             this.floatingButtonContainer.setAlpha(z ? 1.0f : 0.0f);
             this.floatingButtonContainer.setVisibility(z ? 0 : 8);
-            return;
-        }
-        float[] fArr = new float[2];
-        fArr[0] = z ? 0.0f : 1.0f;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(150L);
-        duration.setInterpolator(z ? AndroidUtilities.decelerateInterpolator : AndroidUtilities.accelerateInterpolator);
-        duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                PasscodeActivity.this.lambda$setFloatingButtonVisible$14(valueAnimator);
-            }
-        });
-        duration.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationStart(Animator animator2) {
-                if (z) {
-                    PasscodeActivity.this.floatingButtonContainer.setVisibility(0);
+        } else {
+            ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(150L);
+            duration.setInterpolator(z ? AndroidUtilities.decelerateInterpolator : AndroidUtilities.accelerateInterpolator);
+            duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    PasscodeActivity.this.lambda$setFloatingButtonVisible$14(valueAnimator);
                 }
-            }
+            });
+            duration.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animator2) {
+                    if (z) {
+                        PasscodeActivity.this.floatingButtonContainer.setVisibility(0);
+                    }
+                }
 
-            @Override
-            public void onAnimationEnd(Animator animator2) {
-                if (!z) {
-                    PasscodeActivity.this.floatingButtonContainer.setVisibility(8);
+                @Override
+                public void onAnimationEnd(Animator animator2) {
+                    if (!z) {
+                        PasscodeActivity.this.floatingButtonContainer.setVisibility(8);
+                    }
+                    if (PasscodeActivity.this.floatingButtonAnimator == animator2) {
+                        PasscodeActivity.this.floatingButtonAnimator = null;
+                    }
                 }
-                if (PasscodeActivity.this.floatingButtonAnimator == animator2) {
-                    PasscodeActivity.this.floatingButtonAnimator = null;
-                }
-            }
-        });
-        duration.start();
-        this.floatingButtonAnimator = duration;
+            });
+            duration.start();
+            this.floatingButtonAnimator = duration;
+        }
     }
 
     public void lambda$setFloatingButtonVisible$14(ValueAnimator valueAnimator) {
@@ -603,42 +597,27 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
 
     private void updateRows() {
         this.fingerprintRow = -1;
-        this.rowCount = 0;
-        int i = 0 + 1;
-        this.rowCount = i;
         this.utyanRow = 0;
-        int i2 = i + 1;
-        this.rowCount = i2;
-        this.hintRow = i;
-        this.rowCount = i2 + 1;
-        this.changePasscodeRow = i2;
+        this.hintRow = 1;
+        this.rowCount = 3;
+        this.changePasscodeRow = 2;
         try {
             if (Build.VERSION.SDK_INT >= 23 && BiometricManager.from(ApplicationLoader.applicationContext).canAuthenticate(15) == 0 && AndroidUtilities.isKeyguardSecure()) {
-                int i3 = this.rowCount;
-                this.rowCount = i3 + 1;
-                this.fingerprintRow = i3;
+                int i = this.rowCount;
+                this.rowCount = i + 1;
+                this.fingerprintRow = i;
             }
         } catch (Throwable th) {
             FileLog.e(th);
         }
-        int i4 = this.rowCount;
-        int i5 = i4 + 1;
-        this.rowCount = i5;
-        this.autoLockRow = i4;
-        int i6 = i5 + 1;
-        this.rowCount = i6;
-        this.autoLockDetailRow = i5;
-        int i7 = i6 + 1;
-        this.rowCount = i7;
-        this.captureHeaderRow = i6;
-        int i8 = i7 + 1;
-        this.rowCount = i8;
-        this.captureRow = i7;
-        int i9 = i8 + 1;
-        this.rowCount = i9;
-        this.captureDetailRow = i8;
-        this.rowCount = i9 + 1;
-        this.disablePasscodeRow = i9;
+        int i2 = this.rowCount;
+        this.autoLockRow = i2;
+        this.autoLockDetailRow = i2 + 1;
+        this.captureHeaderRow = i2 + 2;
+        this.captureRow = i2 + 3;
+        this.captureDetailRow = i2 + 4;
+        this.rowCount = i2 + 6;
+        this.disablePasscodeRow = i2 + 5;
     }
 
     @Override
@@ -727,8 +706,8 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         if (actionBarMenuItem != null) {
             actionBarMenuItem.setVisibility(8);
         }
-        this.titleTextView.setText(LocaleController.getString("ConfirmCreatePasscode", R.string.ConfirmCreatePasscode));
-        this.descriptionTextSwitcher.setText(AndroidUtilities.replaceTags(LocaleController.getString("PasscodeReinstallNotice", R.string.PasscodeReinstallNotice)));
+        this.titleTextView.setText(LocaleController.getString(R.string.ConfirmCreatePasscode));
+        this.descriptionTextSwitcher.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PasscodeReinstallNotice)));
         this.firstPassword = isPinCode() ? this.codeFieldContainer.getCode() : this.passwordEditText.getText().toString();
         this.passwordEditText.setText("");
         this.passwordEditText.setInputType(524417);
@@ -756,14 +735,14 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
     }
 
     public void processDone() {
+        int i = 0;
         if (isPassword() && this.passwordEditText.getText().length() == 0) {
             onPasscodeError();
             return;
         }
         String code = isPinCode() ? this.codeFieldContainer.getCode() : this.passwordEditText.getText().toString();
-        int i = this.type;
-        int i2 = 0;
-        if (i == 1) {
+        int i2 = this.type;
+        if (i2 == 1) {
             if (!this.firstPassword.equals(code)) {
                 AndroidUtilities.updateViewVisibilityAnimated(this.passcodesDoNotMatchTextView, true);
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
@@ -804,11 +783,11 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.hideKeyboard(this.passwordEditText);
             CodeNumberField[] codeNumberFieldArr = this.codeFieldContainer.codeField;
             int length2 = codeNumberFieldArr.length;
-            while (i2 < length2) {
-                CodeNumberField codeNumberField2 = codeNumberFieldArr[i2];
+            while (i < length2) {
+                CodeNumberField codeNumberField2 = codeNumberFieldArr[i];
                 codeNumberField2.clearFocus();
                 AndroidUtilities.hideKeyboard(codeNumberField2);
-                i2++;
+                i++;
             }
             this.keyboardView.setEditText(null);
             animateSuccessAnimation(new Runnable() {
@@ -819,7 +798,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             });
             return;
         }
-        if (i == 2) {
+        if (i2 == 2) {
             long j = SharedConfig.passcodeRetryInMs;
             if (j > 0) {
                 double d = j;
@@ -853,11 +832,11 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
             AndroidUtilities.hideKeyboard(this.passwordEditText);
             CodeNumberField[] codeNumberFieldArr2 = this.codeFieldContainer.codeField;
             int length3 = codeNumberFieldArr2.length;
-            while (i2 < length3) {
-                CodeNumberField codeNumberField5 = codeNumberFieldArr2[i2];
+            while (i < length3) {
+                CodeNumberField codeNumberField5 = codeNumberFieldArr2[i];
                 codeNumberField5.clearFocus();
                 AndroidUtilities.hideKeyboard(codeNumberField5);
-                i2++;
+                i++;
             }
             this.keyboardView.setEditText(null);
             animateSuccessAnimation(new Runnable() {
@@ -1046,13 +1025,13 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                 } else {
                     formatString = LocaleController.formatString("AutoLockInTime", R.string.AutoLockInTime, LocaleController.formatPluralString("Days", (int) Math.ceil(((i3 / 60.0f) / 60.0f) / 24.0f), new Object[0]));
                 }
-                textSettingsCell.setTextAndValue(LocaleController.getString("AutoLock", R.string.AutoLock), formatString, true);
+                textSettingsCell.setTextAndValue(LocaleController.getString(R.string.AutoLock), formatString, true);
                 int i4 = Theme.key_windowBackgroundWhiteBlackText;
                 textSettingsCell.setTag(Integer.valueOf(i4));
                 textSettingsCell.setTextColor(Theme.getColor(i4));
                 return;
             }
-            textSettingsCell.setText(LocaleController.getString("ChangePasscode", R.string.ChangePasscode), true);
+            textSettingsCell.setText(LocaleController.getString(R.string.ChangePasscode), true);
             if (SharedConfig.passcodeHash.length() == 0) {
                 int i5 = Theme.key_windowBackgroundWhiteGrayText7;
                 textSettingsCell.setTag(Integer.valueOf(i5));
@@ -1088,7 +1067,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         int i = Theme.key_windowBackgroundWhite;
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextCheckCell.class, TextSettingsCell.class}, null, null, null, i));
         arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, i));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, Theme.key_windowBackgroundGray));
         ActionBar actionBar = this.actionBar;
         int i2 = ThemeDescription.FLAG_BACKGROUND;
         int i3 = Theme.key_actionBarDefault;
@@ -1099,7 +1078,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUBACKGROUND, null, null, null, null, Theme.key_actionBarDefaultSubmenuBackground));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItem));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_AB_SUBMENUITEM, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBMENUITEM | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_actionBarDefaultSubmenuItemIcon));
         arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
         arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText6));
@@ -1108,7 +1087,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
         int i5 = Theme.key_windowBackgroundWhiteBlackText;
         arrayList.add(new ThemeDescription(editTextBoldCursor, i4, null, null, null, null, i5));
         arrayList.add(new ThemeDescription(this.passwordEditText, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputField));
-        arrayList.add(new ThemeDescription(this.passwordEditText, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
+        arrayList.add(new ThemeDescription(this.passwordEditText, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrack));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCheckCell.class}, new String[]{"checkBox"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));

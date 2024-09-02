@@ -84,13 +84,13 @@ public abstract class GradientHeaderActivity extends BaseFragment {
         int i2 = Theme.key_premiumGradientBackground2;
         int i3 = Theme.key_premiumGradientBackground3;
         int i4 = Theme.key_premiumGradientBackground4;
-        this.gradientTools = new PremiumGradient.PremiumGradientTools(this, i, i2, i3, i4) {
+        this.gradientTools = new PremiumGradient.PremiumGradientTools(i, i2, i3, i4) {
             @Override
             protected int getThemeColorByKey(int i5) {
                 return Theme.getDefaultColor(i5);
             }
         };
-        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(this, i, i2, i3, i4) {
+        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(i, i2, i3, i4) {
             @Override
             protected int getThemeColorByKey(int i5) {
                 return Theme.getDefaultColor(i5);
@@ -213,7 +213,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 GradientHeaderActivity.this.contentView.invalidate();
             }
         });
-        this.backgroundView = new BackgroundView(this, context) {
+        this.backgroundView = new BackgroundView(context) {
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                 return true;
@@ -249,6 +249,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     public class ContentView extends NestedSizeNotifierLayout {
         private LinearGradient backgroundGradient;
         private final Paint backgroundGradientPaint;
+        private final Paint backgroundPaint;
         boolean bottomInterceptedTouch;
         int lastSize;
         private Boolean lightStatusBar;
@@ -256,7 +257,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
 
         public ContentView(Context context) {
             super(context);
-            new Paint(1);
+            this.backgroundPaint = new Paint(1);
             this.backgroundGradientPaint = new Paint(1);
         }
 
@@ -347,9 +348,9 @@ public abstract class GradientHeaderActivity extends BaseFragment {
                 }
             }
             View findViewByPosition = GradientHeaderActivity.this.listView.getLayoutManager() != null ? GradientHeaderActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-            GradientHeaderActivity.this.currentYOffset = findViewByPosition == null ? 0 : findViewByPosition.getBottom();
+            GradientHeaderActivity.this.currentYOffset = findViewByPosition != null ? findViewByPosition.getBottom() : 0;
             int bottom = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
-            GradientHeaderActivity.this.totalProgress = 1.0f - ((r7.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
+            GradientHeaderActivity.this.totalProgress = 1.0f - ((r4.currentYOffset - bottom) / (GradientHeaderActivity.this.firstViewHeight - bottom));
             GradientHeaderActivity gradientHeaderActivity2 = GradientHeaderActivity.this;
             gradientHeaderActivity2.totalProgress = Utilities.clamp(gradientHeaderActivity2.totalProgress, 1.0f, 0.0f);
             int bottom2 = ((BaseFragment) GradientHeaderActivity.this).actionBar.getBottom() + AndroidUtilities.dp(16.0f);
@@ -386,7 +387,7 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             if (!GradientHeaderActivity.this.isDialogVisible) {
                 invalidate();
             }
-            GradientHeaderActivity.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), GradientHeaderActivity.this.progress * (-getMeasuredWidth()) * 0.1f, 0.0f);
+            GradientHeaderActivity.this.gradientTools.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * GradientHeaderActivity.this.progress, 0.0f);
             if (!GradientHeaderActivity.this.whiteBackground) {
                 canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), GradientHeaderActivity.this.currentYOffset + GradientHeaderActivity.this.yOffset + AndroidUtilities.dp(20.0f), GradientHeaderActivity.this.gradientTools.paint);
             } else {
@@ -417,9 +418,8 @@ public abstract class GradientHeaderActivity extends BaseFragment {
             Boolean bool = this.lightStatusBar;
             if (bool == null || bool.booleanValue() != z) {
                 View view = GradientHeaderActivity.this.fragmentView;
-                Boolean valueOf = Boolean.valueOf(z);
-                this.lightStatusBar = valueOf;
-                AndroidUtilities.setLightStatusBar(view, valueOf.booleanValue());
+                this.lightStatusBar = Boolean.valueOf(z);
+                AndroidUtilities.setLightStatusBar(view, z);
             }
         }
 
@@ -437,10 +437,10 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     }
 
     public StarParticlesView createParticlesView() {
-        return new StarParticlesView(this, getContext()) {
+        return new StarParticlesView(getContext()) {
             @Override
             public void configure() {
-                StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(this, 50) {
+                StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(50) {
                     @Override
                     protected int getPathColor(int i) {
                         return ColorUtils.setAlphaComponent(Theme.getDefaultColor(this.colorKey), 200);
@@ -618,27 +618,26 @@ public abstract class GradientHeaderActivity extends BaseFragment {
     }
 
     public void saveScrollPosition() {
+        View view;
+        int i;
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView == null || recyclerListView.getChildCount() <= 0) {
             return;
         }
-        View view = null;
-        int i = -1;
         int i2 = 0;
         while (true) {
-            if (i2 < this.listView.getChildCount()) {
-                View childAt = this.listView.getChildAt(i2);
-                int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition >= 0 && childAt.getTop() < Integer.MAX_VALUE) {
-                    childAt.getTop();
-                    view = childAt;
-                    i = childAdapterPosition;
-                    break;
-                }
-                i2++;
-            } else {
+            if (i2 >= this.listView.getChildCount()) {
+                view = null;
+                i = -1;
                 break;
             }
+            view = this.listView.getChildAt(i2);
+            i = this.listView.getChildAdapterPosition(view);
+            if (i >= 0 && view.getTop() < Integer.MAX_VALUE) {
+                view.getTop();
+                break;
+            }
+            i2++;
         }
         if (view != null) {
             this.savedScrollPosition = i;

@@ -5,6 +5,7 @@ import android.graphics.fonts.Font;
 import android.graphics.fonts.SystemFonts;
 import android.os.Build;
 import android.text.TextUtils;
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.charset.Charset;
@@ -14,6 +15,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -31,6 +33,7 @@ public class PaintTypeface {
     public static boolean loadingTypefaces;
     private static final List<String> preferable;
     private static List<PaintTypeface> typefaces;
+    private final Font font;
     private final String key;
     private final LazyTypeface lazyTypeface;
     private final String name;
@@ -159,6 +162,7 @@ public class PaintTypeface {
         this.name = null;
         this.typeface = null;
         this.lazyTypeface = lazyTypeface;
+        this.font = null;
     }
 
     PaintTypeface(final Font font, String str) {
@@ -174,10 +178,13 @@ public class PaintTypeface {
                 return lambda$new$7;
             }
         });
+        this.font = font;
     }
 
     public static Typeface lambda$new$7(Font font) {
-        return Typeface.createFromFile(font.getFile());
+        File file;
+        file = font.getFile();
+        return Typeface.createFromFile(file);
     }
 
     public String getKey() {
@@ -211,23 +218,31 @@ public class PaintTypeface {
     }
 
     public static void lambda$load$9() {
+        Set availableFonts;
+        File file;
         FontData parseFont;
         final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
         if (Build.VERSION.SDK_INT >= 29) {
+            availableFonts = SystemFonts.getAvailableFonts();
+            Iterator it = availableFonts.iterator();
             HashMap hashMap = new HashMap();
-            for (Font font : SystemFonts.getAvailableFonts()) {
-                if (!font.getFile().getName().contains("Noto") && (parseFont = parseFont(font)) != null) {
+            while (it.hasNext()) {
+                Font m = PaintTypeface$$ExternalSyntheticApiModelOutline1.m(it.next());
+                file = m.getFile();
+                if (!file.getName().contains("Noto") && (parseFont = parseFont(m)) != null) {
                     Family family = (Family) hashMap.get(parseFont.family);
                     if (family == null) {
                         family = new Family();
-                        hashMap.put(parseFont.family, family);
+                        String str = parseFont.family;
+                        family.family = str;
+                        hashMap.put(str, family);
                     }
                     family.fonts.add(parseFont);
                 }
             }
-            Iterator<String> it = preferable.iterator();
-            while (it.hasNext()) {
-                Family family2 = (Family) hashMap.get(it.next());
+            Iterator<String> it2 = preferable.iterator();
+            while (it2.hasNext()) {
+                Family family2 = (Family) hashMap.get(it2.next());
                 if (family2 != null) {
                     FontData bold = family2.getBold();
                     if (bold == null) {
@@ -276,6 +291,7 @@ public class PaintTypeface {
     }
 
     public static class Family {
+        String family;
         ArrayList<FontData> fonts = new ArrayList<>();
 
         Family() {
@@ -326,14 +342,16 @@ public class PaintTypeface {
 
     public static class NameRecord {
         final int encodingID;
+        final int languageID;
         final int nameID;
         final int nameLength;
+        final int platformID;
         final int stringOffset;
 
         public NameRecord(RandomAccessFile randomAccessFile) throws IOException {
-            randomAccessFile.readUnsignedShort();
+            this.platformID = randomAccessFile.readUnsignedShort();
             this.encodingID = randomAccessFile.readUnsignedShort();
-            randomAccessFile.readUnsignedShort();
+            this.languageID = randomAccessFile.readUnsignedShort();
             this.nameID = randomAccessFile.readUnsignedShort();
             this.nameLength = randomAccessFile.readUnsignedShort();
             this.stringOffset = randomAccessFile.readUnsignedShort();

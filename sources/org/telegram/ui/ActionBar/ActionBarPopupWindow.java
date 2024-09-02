@@ -12,7 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.Property;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,11 +40,12 @@ import org.telegram.ui.Components.PopupSwipeBackLayout;
 
 public class ActionBarPopupWindow extends PopupWindow {
     private static final ViewTreeObserver.OnScrollChangedListener NOP;
-    private static final boolean allowAnimation;
-    private static DecelerateInterpolator decelerateInterpolator;
+    private static final boolean allowAnimation = true;
+    private static DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
     private static Method layoutInScreenMethod;
     private static final Field superListenerField;
     private boolean animationEnabled;
+    private int currentAccount;
     private int dismissAnimationDuration;
     private boolean isClosingAnimated;
     private ViewTreeObserver.OnScrollChangedListener mSuperScrollListener;
@@ -68,13 +68,15 @@ public class ActionBarPopupWindow extends PopupWindow {
     }
 
     static {
-        allowAnimation = Build.VERSION.SDK_INT >= 18;
-        decelerateInterpolator = new DecelerateInterpolator();
-        Field field = null;
+        Field field;
         try {
             field = PopupWindow.class.getDeclaredField("mOnScrollChangedListener");
-            field.setAccessible(true);
-        } catch (NoSuchFieldException unused) {
+            try {
+                field.setAccessible(true);
+            } catch (NoSuchFieldException unused) {
+            }
+        } catch (NoSuchFieldException unused2) {
+            field = null;
         }
         superListenerField = field;
         NOP = new ViewTreeObserver.OnScrollChangedListener() {
@@ -211,11 +213,10 @@ public class ActionBarPopupWindow extends PopupWindow {
                                     if (!z && tag2 == null) {
                                         i5 = Math.max(i5, childAt.getMeasuredWidth());
                                     } else if (z) {
-                                        int max = Math.max(((Integer) tag).intValue(), childAt.getMeasuredWidth());
+                                        i6 = Math.max(((Integer) tag).intValue(), childAt.getMeasuredWidth());
                                         ActionBarPopupWindowLayout.this.gapStartY = childAt.getMeasuredHeight();
                                         ActionBarPopupWindowLayout actionBarPopupWindowLayout = ActionBarPopupWindowLayout.this;
                                         actionBarPopupWindowLayout.gapEndY = actionBarPopupWindowLayout.gapStartY + AndroidUtilities.dp(6.0f);
-                                        i6 = max;
                                     }
                                 }
                                 if (arrayList == null) {
@@ -374,18 +375,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         private void startChildAnimation(final View view) {
             if (this.animationEnabled) {
                 final AnimatorSet animatorSet = new AnimatorSet();
-                Animator[] animatorArr = new Animator[2];
-                Property property = View.ALPHA;
-                float[] fArr = new float[2];
-                fArr[0] = 0.0f;
-                fArr[1] = view.isEnabled() ? 1.0f : 0.5f;
-                animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
-                Property property2 = View.TRANSLATION_Y;
-                float[] fArr2 = new float[2];
-                fArr2[0] = AndroidUtilities.dp(this.shownFromBottom ? 6.0f : -6.0f);
-                fArr2[1] = 0.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2);
-                animatorSet.playTogether(animatorArr);
+                animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.ALPHA, 0.0f, view.isEnabled() ? 1.0f : 0.5f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(this.shownFromBottom ? 6.0f : -6.0f), 0.0f));
                 animatorSet.setDuration(180L);
                 animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -451,7 +441,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r21) {
+        public void dispatchDraw(android.graphics.Canvas r22) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -557,7 +547,7 @@ public class ActionBarPopupWindow extends PopupWindow {
     public ActionBarPopupWindow() {
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -567,7 +557,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         super(context);
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -577,7 +567,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         super(view, i, i2);
         this.animationEnabled = allowAnimation;
         this.dismissAnimationDuration = 150;
-        int i3 = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.outEmptyTime = -1L;
         this.notificationsLocker = new AnimationNotificationsLocker();
         init();
@@ -776,11 +766,11 @@ public class ActionBarPopupWindow extends PopupWindow {
         ActionBarPopupWindowLayout actionBarPopupWindowLayout;
         if (this.animationEnabled && this.windowAnimatorSet == null) {
             ViewGroup viewGroup = (ViewGroup) getContentView();
-            ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = null;
             if (viewGroup instanceof ActionBarPopupWindowLayout) {
                 actionBarPopupWindowLayout = (ActionBarPopupWindowLayout) viewGroup;
                 actionBarPopupWindowLayout.startAnimationPending = true;
             } else {
+                ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = null;
                 for (int i = 0; i < viewGroup.getChildCount(); i++) {
                     if (viewGroup.getChildAt(i) instanceof ActionBarPopupWindowLayout) {
                         actionBarPopupWindowLayout2 = (ActionBarPopupWindowLayout) viewGroup.getChildAt(i);
@@ -916,13 +906,7 @@ public class ActionBarPopupWindow extends PopupWindow {
                 animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.ALPHA, 0.0f));
                 this.windowAnimatorSet.setDuration(this.dismissAnimationDuration);
             } else {
-                Animator[] animatorArr = new Animator[2];
-                Property property = View.TRANSLATION_Y;
-                float[] fArr = new float[1];
-                fArr[0] = AndroidUtilities.dp((actionBarPopupWindowLayout == null || !actionBarPopupWindowLayout.shownFromBottom) ? -5.0f : 5.0f);
-                animatorArr[0] = ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) property, fArr);
-                animatorArr[1] = ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.ALPHA, 0.0f);
-                animatorSet3.playTogether(animatorArr);
+                animatorSet3.playTogether(ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.TRANSLATION_Y, AndroidUtilities.dp((actionBarPopupWindowLayout == null || !actionBarPopupWindowLayout.shownFromBottom) ? -5.0f : 5.0f)), ObjectAnimator.ofFloat(viewGroup, (Property<ViewGroup, Float>) View.ALPHA, 0.0f));
                 this.windowAnimatorSet.setDuration(this.dismissAnimationDuration);
             }
             this.windowAnimatorSet.addListener(new AnimatorListenerAdapter() {

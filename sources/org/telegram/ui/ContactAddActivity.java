@@ -171,9 +171,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         if (this.addContact) {
-            this.actionBar.setTitle(LocaleController.getString("NewContact", R.string.NewContact));
+            this.actionBar.setTitle(LocaleController.getString(R.string.NewContact));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("EditContact", R.string.EditContact));
+            this.actionBar.setTitle(LocaleController.getString(R.string.EditContact));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -201,7 +201,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 ContactAddActivity.this.lambda$onBackPressed$308();
             }
         });
-        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());
+        this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
         ScrollView scrollView = new ScrollView(context);
         this.fragmentView = scrollView;
         scrollView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
@@ -252,24 +252,26 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.nameTextView.setLines(1);
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.nameTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.nameTextView.setTypeface(AndroidUtilities.bold());
-        TextView textView2 = this.nameTextView;
+        TextView textView3 = this.nameTextView;
         boolean z = LocaleController.isRTL;
-        frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z ? 5 : 3) | 48, z ? 0.0f : 80.0f, 3.0f, z ? 80.0f : 0.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.onlineTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
+        frameLayout.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, (z ? 5 : 3) | 48, z ? 0.0f : 80.0f, 3.0f, z ? 80.0f : 0.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.onlineTextView = textView4;
+        textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, this.resourcesProvider));
         this.onlineTextView.setTextSize(1, 14.0f);
         this.onlineTextView.setLines(1);
         this.onlineTextView.setMaxLines(1);
         this.onlineTextView.setSingleLine(true);
-        this.onlineTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.onlineTextView.setEllipsize(truncateAt);
         this.onlineTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        TextView textView4 = this.onlineTextView;
+        TextView textView5 = this.onlineTextView;
         boolean z2 = LocaleController.isRTL;
-        frameLayout.addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 80.0f, 32.0f, z2 ? 80.0f : 0.0f, 0.0f));
+        frameLayout.addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 80.0f, 32.0f, z2 ? 80.0f : 0.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             @Override
             protected Theme.ResourcesProvider getResourcesProvider() {
@@ -296,16 +298,16 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.firstNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.firstNameField.setInputType(49152);
         this.firstNameField.setImeOptions(5);
-        this.firstNameField.setHint(LocaleController.getString("FirstName", R.string.FirstName));
+        this.firstNameField.setHint(LocaleController.getString(R.string.FirstName));
         this.firstNameField.setCursorColor(Theme.getColor(i, this.resourcesProvider));
         this.firstNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
         this.linearLayout.addView(this.firstNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 24.0f, 24.0f, 0.0f));
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView5, int i6, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView6, int i6, KeyEvent keyEvent) {
                 boolean lambda$createView$1;
-                lambda$createView$1 = ContactAddActivity.this.lambda$createView$1(textView5, i6, keyEvent);
+                lambda$createView$1 = ContactAddActivity.this.lambda$createView$1(textView6, i6, keyEvent);
                 return lambda$createView$1;
             }
         });
@@ -339,16 +341,16 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.lastNameField.setGravity(LocaleController.isRTL ? 5 : 3);
         this.lastNameField.setInputType(49152);
         this.lastNameField.setImeOptions(6);
-        this.lastNameField.setHint(LocaleController.getString("LastName", R.string.LastName));
+        this.lastNameField.setHint(LocaleController.getString(R.string.LastName));
         this.lastNameField.setCursorColor(Theme.getColor(i, this.resourcesProvider));
         this.lastNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);
         this.linearLayout.addView(this.lastNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 16.0f, 24.0f, 0.0f));
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView5, int i6, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView6, int i6, KeyEvent keyEvent) {
                 boolean lambda$createView$2;
-                lambda$createView$2 = ContactAddActivity.this.lambda$createView$2(textView5, i6, keyEvent);
+                lambda$createView$2 = ContactAddActivity.this.lambda$createView$2(textView6, i6, keyEvent);
                 return lambda$createView$2;
             }
         });
@@ -363,9 +365,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
             this.lastNameField.setText(user.last_name);
         }
-        TextView textView5 = new TextView(context);
-        this.infoTextView = textView5;
-        textView5.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
+        TextView textView6 = new TextView(context);
+        this.infoTextView = textView6;
+        textView6.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
         this.infoTextView.setTextSize(1, 14.0f);
         this.infoTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         if (this.addContact) {
@@ -376,7 +378,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 0);
                 this.checkBoxCell = checkBoxCell;
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", R.string.SharePhoneNumberWith)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), "", true, false);
+                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.SharePhoneNumberWith)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), "", true, false);
                 this.checkBoxCell.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
                 this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -443,7 +445,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             }
             this.oldAvatarView.setForUserOrChat(user.photo, this.avatarDrawable);
             this.oldPhotoCell.addView(this.oldAvatarView, LayoutHelper.createFrame(30, 30.0f, 16, 21.0f, 0.0f, 21.0f, 0.0f));
-            this.oldPhotoCell.setText(LocaleController.getString("ResetToOriginalPhoto", R.string.ResetToOriginalPhoto), false);
+            this.oldPhotoCell.setText(LocaleController.getString(R.string.ResetToOriginalPhoto), false);
             this.oldPhotoCell.getImageView().setVisibility(0);
             this.oldPhotoCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             this.oldPhotoCell.setColors(i7, i8);
@@ -548,7 +550,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     }
 
     public void lambda$createView$11(Context context, final TLRPC$User tLRPC$User, View view) {
-        AlertsCreator.createSimpleAlert(context, LocaleController.getString("ResetToOriginalPhotoTitle", R.string.ResetToOriginalPhotoTitle), LocaleController.formatString("ResetToOriginalPhotoMessage", R.string.ResetToOriginalPhotoMessage, tLRPC$User.first_name), LocaleController.getString("Reset", R.string.Reset), new Runnable() {
+        AlertsCreator.createSimpleAlert(context, LocaleController.getString(R.string.ResetToOriginalPhotoTitle), LocaleController.formatString("ResetToOriginalPhotoMessage", R.string.ResetToOriginalPhotoMessage, tLRPC$User.first_name), LocaleController.getString(R.string.Reset), new Runnable() {
             @Override
             public final void run() {
                 ContactAddActivity.this.lambda$createView$10(tLRPC$User);
@@ -600,49 +602,54 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             animatorSet.cancel();
             this.avatarAnimation = null;
         }
-        if (z2) {
-            AnimatorSet animatorSet2 = new AnimatorSet();
-            this.avatarAnimation = animatorSet2;
+        if (!z2) {
             if (z) {
+                this.avatarProgressView.setAlpha(1.0f);
                 this.avatarProgressView.setVisibility(0);
+                this.avatarOverlay.setAlpha(1.0f);
                 this.avatarOverlay.setVisibility(0);
-                this.avatarAnimation.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) View.ALPHA, 1.0f));
-            } else {
-                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.avatarProgressView, (Property<RadialProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) View.ALPHA, 0.0f));
+                return;
             }
-            this.avatarAnimation.setDuration(180L);
-            this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    if (ContactAddActivity.this.avatarAnimation == null || ContactAddActivity.this.avatarProgressView == null) {
-                        return;
-                    }
-                    if (!z) {
-                        ContactAddActivity.this.avatarProgressView.setVisibility(4);
-                        ContactAddActivity.this.avatarOverlay.setVisibility(4);
-                    }
-                    ContactAddActivity.this.avatarAnimation = null;
-                }
-
-                @Override
-                public void onAnimationCancel(Animator animator) {
-                    ContactAddActivity.this.avatarAnimation = null;
-                }
-            });
-            this.avatarAnimation.start();
+            this.avatarProgressView.setAlpha(0.0f);
+            this.avatarProgressView.setVisibility(4);
+            this.avatarOverlay.setAlpha(0.0f);
+            this.avatarOverlay.setVisibility(4);
             return;
         }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        this.avatarAnimation = animatorSet2;
         if (z) {
-            this.avatarProgressView.setAlpha(1.0f);
             this.avatarProgressView.setVisibility(0);
-            this.avatarOverlay.setAlpha(1.0f);
             this.avatarOverlay.setVisibility(0);
-            return;
+            AnimatorSet animatorSet3 = this.avatarAnimation;
+            RadialProgressView radialProgressView = this.avatarProgressView;
+            Property property = View.ALPHA;
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(radialProgressView, (Property<RadialProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) property, 1.0f));
+        } else {
+            RadialProgressView radialProgressView2 = this.avatarProgressView;
+            Property property2 = View.ALPHA;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(radialProgressView2, (Property<RadialProgressView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.avatarOverlay, (Property<View, Float>) property2, 0.0f));
         }
-        this.avatarProgressView.setAlpha(0.0f);
-        this.avatarProgressView.setVisibility(4);
-        this.avatarOverlay.setAlpha(0.0f);
-        this.avatarOverlay.setVisibility(4);
+        this.avatarAnimation.setDuration(180L);
+        this.avatarAnimation.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (ContactAddActivity.this.avatarAnimation == null || ContactAddActivity.this.avatarProgressView == null) {
+                    return;
+                }
+                if (!z) {
+                    ContactAddActivity.this.avatarProgressView.setVisibility(4);
+                    ContactAddActivity.this.avatarOverlay.setVisibility(4);
+                }
+                ContactAddActivity.this.avatarAnimation = null;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                ContactAddActivity.this.avatarAnimation = null;
+            }
+        });
+        this.avatarAnimation.start();
     }
 
     public void setDelegate(ContactAddActivityDelegate contactAddActivityDelegate) {
@@ -655,8 +662,8 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             return;
         }
         if (TextUtils.isEmpty(getPhone())) {
-            this.nameTextView.setText(LocaleController.getString("MobileHidden", R.string.MobileHidden));
-            this.infoTextView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("MobileHiddenExceptionInfo", R.string.MobileHiddenExceptionInfo)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)));
+            this.nameTextView.setText(LocaleController.getString(R.string.MobileHidden));
+            this.infoTextView.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.MobileHiddenExceptionInfo)), Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)));
         } else {
             this.nameTextView.setText(PhoneFormat.getInstance().format("+" + getPhone()));
             if (this.needAddException) {
@@ -876,10 +883,9 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         }
         if (tLRPC$InputFile2 != null) {
             tLRPC$TL_photos_uploadContactProfilePhoto.video = tLRPC$InputFile2;
-            int i2 = tLRPC$TL_photos_uploadContactProfilePhoto.flags | 2;
-            tLRPC$TL_photos_uploadContactProfilePhoto.flags = i2;
+            int i2 = tLRPC$TL_photos_uploadContactProfilePhoto.flags;
             tLRPC$TL_photos_uploadContactProfilePhoto.video_start_ts = d;
-            tLRPC$TL_photos_uploadContactProfilePhoto.flags = i2 | 4;
+            tLRPC$TL_photos_uploadContactProfilePhoto.flags = i2 | 6;
         }
         if (tLRPC$VideoSize != null) {
             tLRPC$TL_photos_uploadContactProfilePhoto.flags |= 32;

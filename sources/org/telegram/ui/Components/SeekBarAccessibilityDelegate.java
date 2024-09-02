@@ -89,6 +89,8 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
     }
 
     public void onInitializeAccessibilityNodeInfoInternal(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
+        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
         accessibilityNodeInfo.setClassName(SEEK_BAR_CLASS_NAME);
         CharSequence contentDescription = getContentDescription(view);
         if (!TextUtils.isEmpty(contentDescription)) {
@@ -96,10 +98,12 @@ public abstract class SeekBarAccessibilityDelegate extends View.AccessibilityDel
         }
         if (Build.VERSION.SDK_INT >= 21) {
             if (canScrollBackward(view)) {
-                accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
+                accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD;
+                accessibilityNodeInfo.addAction(accessibilityAction2);
             }
             if (canScrollForward(view)) {
-                accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+                accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD;
+                accessibilityNodeInfo.addAction(accessibilityAction);
             }
         }
     }

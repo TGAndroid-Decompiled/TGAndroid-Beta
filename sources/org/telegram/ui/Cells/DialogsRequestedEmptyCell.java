@@ -41,7 +41,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         this.currentAccount = UserConfig.selectedAccount;
         setOrientation(1);
         setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             Paint paint;
             Path path = new Path();
 
@@ -122,21 +122,21 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
 
     public void set(TLRPC$RequestPeerType tLRPC$RequestPeerType) {
         if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeBroadcast) {
-            this.titleView.setText(LocaleController.getString("NoSuchChannels", R.string.NoSuchChannels));
-            this.subtitleView.setText(LocaleController.getString("NoSuchChannelsInfo", R.string.NoSuchChannelsInfo));
+            this.titleView.setText(LocaleController.getString(R.string.NoSuchChannels));
+            this.subtitleView.setText(LocaleController.getString(R.string.NoSuchChannelsInfo));
             this.buttonView.setVisibility(0);
-            this.buttonView.setText(LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis));
+            this.buttonView.setText(LocaleController.getString(R.string.CreateChannelForThis));
             return;
         }
         if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeChat) {
-            this.titleView.setText(LocaleController.getString("NoSuchGroups", R.string.NoSuchGroups));
-            this.subtitleView.setText(LocaleController.getString("NoSuchGroupsInfo", R.string.NoSuchGroupsInfo));
+            this.titleView.setText(LocaleController.getString(R.string.NoSuchGroups));
+            this.subtitleView.setText(LocaleController.getString(R.string.NoSuchGroupsInfo));
             this.buttonView.setVisibility(0);
-            this.buttonView.setText(LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis));
+            this.buttonView.setText(LocaleController.getString(R.string.CreateGroupForThis));
             return;
         }
-        this.titleView.setText(LocaleController.getString("NoSuchUsers", R.string.NoSuchUsers));
-        this.subtitleView.setText(LocaleController.getString("NoSuchUsersInfo", R.string.NoSuchUsersInfo));
+        this.titleView.setText(LocaleController.getString(R.string.NoSuchUsers));
+        this.subtitleView.setText(LocaleController.getString(R.string.NoSuchUsersInfo));
         this.buttonView.setVisibility(8);
     }
 

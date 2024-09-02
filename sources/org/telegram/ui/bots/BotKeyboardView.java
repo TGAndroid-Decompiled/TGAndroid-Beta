@@ -124,7 +124,7 @@ public class BotKeyboardView extends LinearLayout {
             int i3 = 0;
             while (i3 < tLRPC$TL_keyboardButtonRow.buttons.size()) {
                 TLRPC$KeyboardButton tLRPC$KeyboardButton = tLRPC$TL_keyboardButtonRow.buttons.get(i3);
-                Button button = new Button(this, getContext(), tLRPC$KeyboardButton);
+                Button button = new Button(getContext(), tLRPC$KeyboardButton);
                 FrameLayout frameLayout = new FrameLayout(getContext());
                 frameLayout.addView(button, LayoutHelper.createFrame(-1, -1.0f));
                 linearLayout.addView(frameLayout, LayoutHelper.createLinear(0, -1, size, 0, 0, i3 != tLRPC$TL_keyboardButtonRow.buttons.size() + (-1) ? 10 : 0, 0));
@@ -158,11 +158,11 @@ public class BotKeyboardView extends LinearLayout {
     }
 
     public class Button extends TextView {
-        public Button(BotKeyboardView botKeyboardView, Context context, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+        public Button(Context context, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
             super(context);
             setTag(tLRPC$KeyboardButton);
-            setTextColor(botKeyboardView.getThemedColor(Theme.key_chat_botKeyboardButtonText));
-            setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), botKeyboardView.getThemedColor(Theme.key_chat_botKeyboardButtonBackground), botKeyboardView.getThemedColor(Theme.key_chat_botKeyboardButtonBackgroundPressed)));
+            setTextColor(BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonText));
+            setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonBackground), BotKeyboardView.this.getThemedColor(Theme.key_chat_botKeyboardButtonBackgroundPressed)));
             setTextSize(1, 16.0f);
             setGravity(17);
             setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);

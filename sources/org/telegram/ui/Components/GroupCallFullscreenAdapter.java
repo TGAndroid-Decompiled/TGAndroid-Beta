@@ -72,8 +72,8 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        ChatObject.VideoParticipant videoParticipant;
         TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant;
+        ChatObject.VideoParticipant videoParticipant;
         GroupCallUserCell groupCallUserCell = (GroupCallUserCell) viewHolder.itemView;
         ChatObject.VideoParticipant videoParticipant2 = groupCallUserCell.videoParticipant;
         if (i < this.videoParticipants.size()) {
@@ -83,8 +83,8 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             if (i - this.videoParticipants.size() >= this.participants.size()) {
                 return;
             }
-            videoParticipant = null;
             tLRPC$TL_groupCallParticipant = this.participants.get(i - this.videoParticipants.size());
+            videoParticipant = null;
         }
         groupCallUserCell.setParticipant(videoParticipant, tLRPC$TL_groupCallParticipant);
         if (videoParticipant2 != null && !videoParticipant2.equals(videoParticipant) && groupCallUserCell.attached && groupCallUserCell.getRenderer() != null) {
@@ -148,6 +148,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
         private TLRPC$Chat currentChat;
         private TLRPC$User currentUser;
         String drawingName;
+        boolean hasAvatar;
         int lastColor;
         int lastWavesColor;
         RLottieImageView muteButton;
@@ -184,7 +185,7 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
             this.selectionPaint.setStyle(Paint.Style.STROKE);
             this.selectionPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             this.textPaint.setColor(-1);
-            RLottieImageView rLottieImageView = new RLottieImageView(context, GroupCallFullscreenAdapter.this) {
+            RLottieImageView rLottieImageView = new RLottieImageView(context) {
                 @Override
                 public void invalidate() {
                     super.invalidate();
@@ -219,7 +220,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 this.avatarDrawable.setInfo(GroupCallFullscreenAdapter.this.currentAccount, this.currentUser);
                 this.name = UserObject.getFirstName(this.currentUser);
                 this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
-                this.avatarImageView.setImage(ImageLocation.getForUser(this.currentUser, 1), "50_50", this.avatarDrawable, this.currentUser);
+                ImageLocation forUser = ImageLocation.getForUser(this.currentUser, 1);
+                this.hasAvatar = forUser != null;
+                this.avatarImageView.setImage(forUser, "50_50", this.avatarDrawable, this.currentUser);
             } else {
                 this.currentChat = AccountInstance.getInstance(GroupCallFullscreenAdapter.this.currentAccount).getMessagesController().getChat(Long.valueOf(-this.peerId));
                 this.currentUser = null;
@@ -228,7 +231,9 @@ public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapte
                 if (tLRPC$Chat != null) {
                     this.name = tLRPC$Chat.title;
                     this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
-                    this.avatarImageView.setImage(ImageLocation.getForChat(this.currentChat, 1), "50_50", this.avatarDrawable, this.currentChat);
+                    ImageLocation forChat = ImageLocation.getForChat(this.currentChat, 1);
+                    this.hasAvatar = forChat != null;
+                    this.avatarImageView.setImage(forChat, "50_50", this.avatarDrawable, this.currentChat);
                 }
             }
             boolean z = j == this.peerId;

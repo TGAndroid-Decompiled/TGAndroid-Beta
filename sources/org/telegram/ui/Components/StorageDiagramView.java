@@ -78,7 +78,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         this.avatarImageReceiver = imageReceiver;
         imageReceiver.setParentView(this);
         if (j == Long.MAX_VALUE) {
-            this.dialogText = LocaleController.getString("CacheOtherChats", R.string.CacheOtherChats);
+            this.dialogText = LocaleController.getString(R.string.CacheOtherChats);
             this.avatarDrawable.setAvatarType(14);
             this.avatarImageReceiver.setForUserOrChat(null, this.avatarDrawable);
         } else {
@@ -205,14 +205,14 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             if (i2 >= clearViewDataArr.length) {
                 break;
             }
-            if (clearViewDataArr[i2] != null) {
-                float[] fArr = this.drawingPercentage;
-                if (fArr[i2] != 0.0f) {
-                    float f8 = fArr[i2];
-                    if (clearViewDataArr[i2].firstDraw) {
+            ClearViewData clearViewData = clearViewDataArr[i2];
+            if (clearViewData != null) {
+                float f8 = this.drawingPercentage[i2];
+                if (f8 != 0.0f) {
+                    if (clearViewData.firstDraw) {
                         float f9 = ((-360.0f) * f8) + ((1.0f - this.singleProgress) * 10.0f);
                         float f10 = f9 > 0.0f ? 0.0f : f9;
-                        clearViewDataArr[i2].paint.setColor(Theme.getColor(clearViewDataArr[i2].colorKey));
+                        clearViewData.paint.setColor(Theme.getColor(clearViewData.colorKey));
                         this.data[i2].paint.setAlpha(255);
                         double width = this.rectF.width() / 2.0f;
                         Double.isNaN(width);
@@ -251,14 +251,14 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             if (i3 >= clearViewDataArr2.length) {
                 break;
             }
-            if (clearViewDataArr2[i3] != null) {
-                float[] fArr2 = this.drawingPercentage;
-                if (fArr2[i3] != 0.0f) {
-                    float f14 = fArr2[i3];
-                    if (!clearViewDataArr2[i3].firstDraw) {
+            ClearViewData clearViewData2 = clearViewDataArr2[i3];
+            if (clearViewData2 != null) {
+                float f14 = this.drawingPercentage[i3];
+                if (f14 != 0.0f) {
+                    if (!clearViewData2.firstDraw) {
                         float f15 = (f14 * (-360.0f)) + ((1.0f - this.singleProgress) * 10.0f);
                         float f16 = f15 > 0.0f ? 0.0f : f15;
-                        clearViewDataArr2[i3].paint.setColor(Theme.getColor(clearViewDataArr2[i3].colorKey));
+                        clearViewData2.paint.setColor(Theme.getColor(clearViewData2.colorKey));
                         this.data[i3].paint.setAlpha(i);
                         double width2 = this.rectF.width() / 2.0f;
                         Double.isNaN(width2);
@@ -334,6 +334,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         public int colorKey;
         boolean firstDraw;
         Paint paint;
+        private final StorageDiagramView parentView;
         public long size;
 
         public ClearViewData(StorageDiagramView storageDiagramView) {
@@ -341,6 +342,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             this.paint = paint;
             this.clear = true;
             this.firstDraw = false;
+            this.parentView = storageDiagramView;
             paint.setStyle(Paint.Style.STROKE);
             this.paint.setStrokeWidth(AndroidUtilities.dp(5.0f));
             this.paint.setStrokeCap(Paint.Cap.ROUND);
@@ -356,18 +358,21 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
     }
 
     public void update(boolean z) {
+        boolean z2;
         final ClearViewData[] clearViewDataArr = this.data;
         if (clearViewDataArr == null) {
             return;
         }
         long j = 0;
+        long j2 = 0;
         for (int i = 0; i < clearViewDataArr.length; i++) {
             long selectedFilesSize = this.cacheModel.getSelectedFilesSize(i);
-            if (clearViewDataArr[i] != null && (clearViewDataArr[i].clear || selectedFilesSize > 0)) {
+            ClearViewData clearViewData = clearViewDataArr[i];
+            if (clearViewData != null && (clearViewData.clear || selectedFilesSize > 0)) {
                 if (selectedFilesSize <= 0) {
-                    selectedFilesSize = clearViewDataArr[i].size;
+                    selectedFilesSize = clearViewData.size;
                 }
-                j += selectedFilesSize;
+                j2 += selectedFilesSize;
             }
         }
         this.enabledCount = 0;
@@ -375,19 +380,25 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         float f2 = 0.0f;
         for (int i2 = 0; i2 < clearViewDataArr.length; i2++) {
             long selectedFilesSize2 = this.cacheModel.getSelectedFilesSize(i2);
-            if (clearViewDataArr[i2] != null && (clearViewDataArr[i2].clear || selectedFilesSize2 > 0)) {
+            ClearViewData clearViewData2 = clearViewDataArr[i2];
+            if (clearViewData2 != null && (clearViewData2.clear || selectedFilesSize2 > j)) {
                 this.enabledCount++;
             }
-            if (clearViewDataArr[i2] == null || (!clearViewDataArr[i2].clear && selectedFilesSize2 <= 0)) {
+            if (clearViewData2 == null || (!(z2 = clearViewData2.clear) && selectedFilesSize2 <= j)) {
                 this.animateToPercentage[i2] = 0.0f;
             } else {
-                float f3 = ((float) (selectedFilesSize2 > 0 ? selectedFilesSize2 : clearViewDataArr[i2].size)) / ((float) j);
+                float f3 = ((float) (selectedFilesSize2 > j ? selectedFilesSize2 : clearViewData2.size)) / ((float) j2);
                 if (f3 < 0.02777f) {
                     f3 = 0.02777f;
                 }
                 f += f3;
-                if (f3 > f2 && (clearViewDataArr[i2].clear || selectedFilesSize2 > 0)) {
-                    f2 = f3;
+                if (f3 > f2) {
+                    j = 0;
+                    if (z2 || selectedFilesSize2 > 0) {
+                        f2 = f3;
+                    }
+                } else {
+                    j = 0;
                 }
                 this.animateToPercentage[i2] = f3;
             }
@@ -419,7 +430,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
                 StorageDiagramView.this.lambda$update$0(clearViewDataArr, valueAnimator2);
             }
         });
-        this.valueAnimator.addListener(new AnimatorListenerAdapter(this) {
+        this.valueAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 int i4 = 0;
@@ -428,8 +439,9 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
                     if (i4 >= clearViewDataArr2.length) {
                         return;
                     }
-                    if (clearViewDataArr2[i4] != null) {
-                        clearViewDataArr2[i4].firstDraw = false;
+                    ClearViewData clearViewData3 = clearViewDataArr2[i4];
+                    if (clearViewData3 != null) {
+                        clearViewData3.firstDraw = false;
                     }
                     i4++;
                 }
@@ -531,10 +543,10 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         long j = 0;
         for (int i = 0; i < this.data.length; i++) {
             long selectedFilesSize = this.cacheModel.getSelectedFilesSize(i);
-            ClearViewData[] clearViewDataArr = this.data;
-            if (clearViewDataArr[i] != null && (clearViewDataArr[i].clear || selectedFilesSize > 0)) {
+            ClearViewData clearViewData = this.data[i];
+            if (clearViewData != null && (clearViewData.clear || selectedFilesSize > 0)) {
                 if (selectedFilesSize <= 0) {
-                    selectedFilesSize = clearViewDataArr[i].size;
+                    selectedFilesSize = clearViewData.size;
                 }
                 j += selectedFilesSize;
             }

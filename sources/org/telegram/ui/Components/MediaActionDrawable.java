@@ -251,7 +251,7 @@ public class MediaActionDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r34) {
+    public void draw(android.graphics.Canvas r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActionDrawable.draw(android.graphics.Canvas):void");
     }
 

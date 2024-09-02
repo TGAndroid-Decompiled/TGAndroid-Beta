@@ -61,7 +61,7 @@ public class EditTextCell extends FrameLayout {
 
     public void whenHitEnter(final Runnable runnable) {
         this.editText.setImeOptions(6);
-        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+        this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i != 6) {
@@ -149,7 +149,7 @@ public class EditTextCell extends FrameLayout {
         }
         editTextBoldCursor.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp((i > 0 ? 42 : 0) + 21), AndroidUtilities.dp(15.0f));
         editTextBoldCursor.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        editTextBoldCursor.setInputType((z ? 131072 : 0) | 16385 | 32768 | 524288);
+        editTextBoldCursor.setInputType((z ? 131072 : 0) | 573441);
         editTextBoldCursor.setRawInputType(573441);
         editTextBoldCursor.setHint(str);
         editTextBoldCursor.setCursorColor(Theme.getColor(i2, resourcesProvider));

@@ -11,14 +11,14 @@ public interface VideoDecoderFactory {
     VideoCodecInfo[] getSupportedCodecs();
 
     public final class CC {
+        @Deprecated
+        public static VideoDecoder $default$createDecoder(VideoDecoderFactory videoDecoderFactory, String str) {
+            throw new UnsupportedOperationException("Deprecated and not implemented.");
+        }
+
         @CalledByNative
         public static VideoCodecInfo[] $default$getSupportedCodecs(VideoDecoderFactory videoDecoderFactory) {
             return new VideoCodecInfo[0];
-        }
-
-        @Deprecated
-        public static VideoDecoder $default$createDecoder(VideoDecoderFactory _this, String str) {
-            throw new UnsupportedOperationException("Deprecated and not implemented.");
         }
     }
 }

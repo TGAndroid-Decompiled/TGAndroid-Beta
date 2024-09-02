@@ -332,8 +332,10 @@ public class NotificationBadge {
                         contentResolver.insert(parse, getContentValues(NotificationBadge.componentName, i, true));
                     }
                 }
-            } finally {
                 NotificationBadge.close(cursor);
+            } catch (Throwable th) {
+                NotificationBadge.close(cursor);
+                throw th;
             }
         }
 
@@ -497,6 +499,7 @@ public class NotificationBadge {
         @Override
         public void executeBadge(int i) {
             Intent intent = new Intent("launcher.action.CHANGE_APPLICATION_NOTIFICATION_NUM");
+            intent.setPackage("com.vivo.launcher");
             intent.putExtra("packageName", ApplicationLoader.applicationContext.getPackageName());
             intent.putExtra("className", NotificationBadge.componentName.getClassName());
             intent.putExtra("notificationNum", i);

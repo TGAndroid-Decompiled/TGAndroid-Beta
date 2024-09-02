@@ -252,7 +252,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 } else if (i2 != 3) {
                     headerCell = new AlertDialog.AlertDialogCell(context, null);
                 } else {
-                    headerCell = new SeekBarCell(FloatingDebugView.this, context);
+                    headerCell = new SeekBarCell(context);
                 }
                 headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(headerCell);
@@ -361,12 +361,13 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     private void updateDrawables() {
         Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
         combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), mode));
         this.bigLayout.setBackground(drawable);
         this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         invalidate();
@@ -411,6 +412,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     @SuppressLint({"NotifyDataSetChanged"})
     public void showBigMenu(final boolean z) {
+        int statusBarColor;
         if (this.isBigMenuShown == z) {
             return;
         }
@@ -437,7 +439,8 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         }
         final Window window = ((Activity) getContext()).getWindow();
         if (z && Build.VERSION.SDK_INT >= 21) {
-            this.wasStatusBar = window.getStatusBarColor();
+            statusBarColor = window.getStatusBarColor();
+            this.wasStatusBar = statusBarColor;
         }
         final float translationX = this.floatingButtonContainer.getTranslationX();
         final float translationY = this.floatingButtonContainer.getTranslationY();
@@ -515,14 +518,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugGeneral)));
-        if (Build.VERSION.SDK_INT >= 19) {
-            arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new Runnable() {
-                @Override
-                public final void run() {
-                    FloatingDebugView.this.lambda$getBuiltInDebugItems$6();
-                }
-            }));
-        }
+        arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new Runnable() {
+            @Override
+            public final void run() {
+                FloatingDebugView.this.lambda$getBuiltInDebugItems$6();
+            }
+        }));
         arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
             @Override
             public final void run() {
@@ -541,7 +542,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     public static void lambda$getBuiltInDebugItems$4() {
         SharedConfig.drawActionBarShadow = !SharedConfig.drawActionBarShadow;
         SharedConfig.saveDebugConfig();
-        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), FloatingDebugView$$ExternalSyntheticLambda3.INSTANCE);
+        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new FloatingDebugView$$ExternalSyntheticLambda7());
     }
 
     public void lambda$getBuiltInDebugItems$5() {
@@ -620,7 +621,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         private String title;
         private float value;
 
-        public SeekBarCell(FloatingDebugView floatingDebugView, Context context) {
+        public SeekBarCell(Context context) {
             super(context);
             setWillNotDraw(false);
             TextPaint textPaint = new TextPaint(1);
@@ -629,7 +630,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
             SeekBarView seekBarView = new SeekBarView(context);
             this.seekBar = seekBarView;
             seekBarView.setReportChanges(true);
-            this.seekBar.setDelegate(new SeekBarView.SeekBarViewDelegate(floatingDebugView) {
+            this.seekBar.setDelegate(new SeekBarView.SeekBarViewDelegate() {
                 @Override
                 public int getStepsCount() {
                     return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);

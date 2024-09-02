@@ -68,8 +68,8 @@ public class Bitmaps {
     public static Bitmap createBitmap(Bitmap bitmap, int i, int i2, int i3, int i4, Matrix matrix, boolean z) {
         Bitmap createBitmap;
         Paint paint;
-        int i5 = Build.VERSION.SDK_INT;
-        if (i5 >= 21) {
+        int i5;
+        if (Build.VERSION.SDK_INT >= 21) {
             return Bitmap.createBitmap(bitmap, i, i2, i3, i4, matrix, z);
         }
         checkXYSign(i, i2);
@@ -90,18 +90,9 @@ public class Bitmaps {
         RectF rectF = new RectF(0.0f, 0.0f, i3, i4);
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap.Config config2 = bitmap.getConfig();
-        if (config2 != null) {
-            int i8 = AnonymousClass2.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
-            if (i8 == 1) {
-                config = Bitmap.Config.ARGB_8888;
-            } else if (i8 == 2) {
-                config = Bitmap.Config.ALPHA_8;
-            } else {
-                config = Bitmap.Config.ARGB_8888;
-            }
-        }
+        Bitmap.Config config3 = (config2 == null || (i5 = AnonymousClass2.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()]) == 1 || i5 != 2) ? config : Bitmap.Config.ALPHA_8;
         if (matrix == null || matrix.isIdentity()) {
-            createBitmap = createBitmap(i3, i4, config);
+            createBitmap = createBitmap(i3, i4, config3);
             paint = null;
         } else {
             boolean z2 = !matrix.rectStaysRect();
@@ -109,8 +100,8 @@ public class Bitmaps {
             matrix.mapRect(rectF2, rectF);
             int round = Math.round(rectF2.width());
             int round2 = Math.round(rectF2.height());
-            if (z2) {
-                config = Bitmap.Config.ARGB_8888;
+            if (!z2) {
+                config = config3;
             }
             createBitmap = createBitmap(round, round2, config);
             canvas.translate(-rectF2.left, -rectF2.top);
@@ -123,9 +114,7 @@ public class Bitmaps {
         }
         createBitmap.setDensity(bitmap.getDensity());
         createBitmap.setHasAlpha(bitmap.hasAlpha());
-        if (i5 >= 19) {
-            createBitmap.setPremultiplied(bitmap.isPremultiplied());
-        }
+        createBitmap.setPremultiplied(bitmap.isPremultiplied());
         canvas.setBitmap(createBitmap);
         canvas.drawBitmap(bitmap, rect, rectF, paint);
         try {
@@ -181,8 +170,12 @@ public class Bitmaps {
         matrix.setScale(i / width, i2 / height);
         Bitmap createBitmap = createBitmap(bitmap, 0, 0, width, height, matrix, z);
         synchronized (Bitmap.class) {
-            if (sScaleMatrix == null) {
-                sScaleMatrix = matrix;
+            try {
+                if (sScaleMatrix == null) {
+                    sScaleMatrix = matrix;
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         return createBitmap;

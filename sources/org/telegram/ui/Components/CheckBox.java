@@ -49,16 +49,20 @@ public class CheckBox extends View {
             Paint paint2 = new Paint(1);
             eraser = paint2;
             paint2.setColor(0);
-            eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            Paint paint3 = new Paint(1);
-            eraser2 = paint3;
-            paint3.setColor(0);
-            eraser2.setStyle(Paint.Style.STROKE);
-            eraser2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            Paint paint3 = eraser;
+            PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+            paint3.setXfermode(new PorterDuffXfermode(mode));
             Paint paint4 = new Paint(1);
-            backgroundPaint = paint4;
-            paint4.setColor(-1);
-            backgroundPaint.setStyle(Paint.Style.STROKE);
+            eraser2 = paint4;
+            paint4.setColor(0);
+            Paint paint5 = eraser2;
+            Paint.Style style = Paint.Style.STROKE;
+            paint5.setStyle(style);
+            eraser2.setXfermode(new PorterDuffXfermode(mode));
+            Paint paint6 = new Paint(1);
+            backgroundPaint = paint6;
+            paint6.setColor(-1);
+            backgroundPaint.setStyle(style);
         }
         eraser2.setStrokeWidth(AndroidUtilities.dp(28.0f));
         backgroundPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
@@ -74,9 +78,12 @@ public class CheckBox extends View {
         super.setVisibility(i);
         if (i == 0 && this.drawBitmap == null) {
             try {
-                this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size), Bitmap.Config.ARGB_4444);
+                int dp = AndroidUtilities.dp(this.size);
+                int dp2 = AndroidUtilities.dp(this.size);
+                Bitmap.Config config = Bitmap.Config.ARGB_4444;
+                this.drawBitmap = Bitmap.createBitmap(dp, dp2, config);
                 this.bitmapCanvas = new Canvas(this.drawBitmap);
-                this.checkBitmap = Bitmap.createBitmap(AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size), Bitmap.Config.ARGB_4444);
+                this.checkBitmap = Bitmap.createBitmap(AndroidUtilities.dp(this.size), AndroidUtilities.dp(this.size), config);
                 this.checkCanvas = new Canvas(this.checkBitmap);
             } catch (Throwable unused) {
             }
@@ -149,9 +156,7 @@ public class CheckBox extends View {
 
     private void animateToCheckedState(boolean z) {
         this.isCheckAnimation = z;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.addListener(new AnimatorListenerAdapter() {
             @Override

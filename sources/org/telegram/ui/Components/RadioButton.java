@@ -118,9 +118,7 @@ public class RadioButton extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.checkAnimator.start();

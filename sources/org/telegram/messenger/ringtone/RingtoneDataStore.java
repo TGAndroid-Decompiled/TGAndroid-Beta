@@ -117,7 +117,7 @@ public class RingtoneDataStore {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
-                CachedTone cachedTone = new CachedTone(this);
+                CachedTone cachedTone = new CachedTone();
                 cachedTone.document = TLdeserialize;
                 cachedTone.localUri = string2;
                 int i3 = this.localIds;
@@ -171,7 +171,7 @@ public class RingtoneDataStore {
             if (str != null) {
                 edit.putString("tone_local_path" + i, str);
             }
-            CachedTone cachedTone = new CachedTone(this);
+            CachedTone cachedTone = new CachedTone();
             cachedTone.document = tLRPC$Document2;
             cachedTone.localUri = str;
             int i2 = this.localIds;
@@ -214,7 +214,7 @@ public class RingtoneDataStore {
     }
 
     public void addUploadingTone(String str) {
-        CachedTone cachedTone = new CachedTone(this);
+        CachedTone cachedTone = new CachedTone();
         cachedTone.localUri = str;
         int i = this.localIds;
         this.localIds = i + 1;
@@ -341,7 +341,7 @@ public class RingtoneDataStore {
         if (tLRPC$Document == null || contains(tLRPC$Document.id)) {
             return;
         }
-        CachedTone cachedTone = new CachedTone(this);
+        CachedTone cachedTone = new CachedTone();
         cachedTone.document = tLRPC$Document;
         int i = this.localIds;
         this.localIds = i + 1;
@@ -375,7 +375,7 @@ public class RingtoneDataStore {
         public String localUri;
         public boolean uploading;
 
-        public CachedTone(RingtoneDataStore ringtoneDataStore) {
+        public CachedTone() {
         }
     }
 }

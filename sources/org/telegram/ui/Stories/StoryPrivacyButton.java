@@ -119,10 +119,11 @@ public class StoryPrivacyButton extends View {
 
     private void setIcon(int i, float f) {
         Drawable[] drawableArr = this.icon;
-        drawableArr[1] = drawableArr[0];
+        Drawable drawable = drawableArr[0];
+        drawableArr[1] = drawable;
         float[] fArr = this.iconSize;
         fArr[1] = fArr[0];
-        if (drawableArr[0] == null || i != this.iconResId) {
+        if (drawable == null || i != this.iconResId) {
             Resources resources = getContext().getResources();
             this.iconResId = i;
             drawableArr[0] = resources.getDrawable(i).mutate();
@@ -175,8 +176,8 @@ public class StoryPrivacyButton extends View {
                 Drawable drawable = this.icon[1];
                 int i = (int) (dpf24 - ((this.iconSize[1] / 2.0f) * abs));
                 float centerY = rectF.centerY();
-                float[] fArr = this.iconSize;
-                drawable.setBounds(i, (int) (centerY - ((fArr[1] / 2.0f) * abs)), (int) (dpf24 + ((fArr[1] / 2.0f) * abs)), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * abs)));
+                float f2 = (this.iconSize[1] / 2.0f) * abs;
+                drawable.setBounds(i, (int) (centerY - f2), (int) (dpf24 + f2), (int) (rectF.centerY() + ((this.iconSize[1] / 2.0f) * abs)));
                 this.icon[1].draw(canvas);
             }
             if (this.icon[0] != null && f <= 0.5f) {
@@ -184,8 +185,8 @@ public class StoryPrivacyButton extends View {
                 Drawable drawable2 = this.icon[0];
                 int i2 = (int) (dpf25 - ((this.iconSize[0] / 2.0f) * abs));
                 float centerY2 = rectF.centerY();
-                float[] fArr2 = this.iconSize;
-                drawable2.setBounds(i2, (int) (centerY2 - ((fArr2[0] / 2.0f) * abs)), (int) (dpf25 + ((fArr2[0] / 2.0f) * abs)), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * abs)));
+                float f3 = (this.iconSize[0] / 2.0f) * abs;
+                drawable2.setBounds(i2, (int) (centerY2 - f3), (int) (dpf25 + f3), (int) (rectF.centerY() + ((this.iconSize[0] / 2.0f) * abs)));
                 this.icon[0].draw(canvas);
             }
             if (this.drawArrow) {

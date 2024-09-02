@@ -5,16 +5,12 @@ import kotlinx.coroutines.scheduling.DefaultIoScheduler;
 import kotlinx.coroutines.scheduling.DefaultScheduler;
 
 public final class Dispatchers {
-    private static final CoroutineDispatcher IO;
+    public static final Dispatchers INSTANCE = new Dispatchers();
+    private static final CoroutineDispatcher Default = DefaultScheduler.INSTANCE;
+    private static final CoroutineDispatcher Unconfined = Unconfined.INSTANCE;
+    private static final CoroutineDispatcher IO = DefaultIoScheduler.INSTANCE;
 
     private Dispatchers() {
-    }
-
-    static {
-        new Dispatchers();
-        DefaultScheduler defaultScheduler = DefaultScheduler.INSTANCE;
-        Unconfined unconfined = Unconfined.INSTANCE;
-        IO = DefaultIoScheduler.INSTANCE;
     }
 
     public static final MainCoroutineDispatcher getMain() {

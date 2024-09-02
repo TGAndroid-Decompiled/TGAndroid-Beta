@@ -48,7 +48,6 @@ public class ProgressButton extends Button {
             if (Math.abs(this.lastUpdateTime - System.currentTimeMillis()) < 1000) {
                 long j = currentTimeMillis - this.lastUpdateTime;
                 int i = (int) (this.angle + (((float) (360 * j)) / 2000.0f));
-                this.angle = i;
                 this.angle = i - ((i / 360) * 360);
                 if (this.drawProgress) {
                     float f = this.progressAlpha;

@@ -41,12 +41,14 @@ public class CrossOutDrawable extends Drawable {
         this.xRefPaint = paint;
         this.iconDrawable = ContextCompat.getDrawable(context, i);
         this.colorKey = i2;
-        this.paint.setStyle(Paint.Style.STROKE);
+        Paint paint2 = this.paint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
         this.paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setColor(-16777216);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(style);
         paint.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
     }
 

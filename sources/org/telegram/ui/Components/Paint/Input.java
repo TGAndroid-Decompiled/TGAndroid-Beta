@@ -30,6 +30,7 @@ public class Input {
     private boolean lastAngleSet;
     private Point lastLocation;
     private double lastRemainder;
+    private float lastScale;
     private Point lastThickLocation;
     private long lastVelocityUpdate;
     private int pointsCount;
@@ -179,7 +180,7 @@ public class Input {
         this.ignore = true;
     }
 
-    public void process(android.view.MotionEvent r21, float r22) {
+    public void process(android.view.MotionEvent r22, float r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Input.process(android.view.MotionEvent, float):void");
     }
 
@@ -196,40 +197,39 @@ public class Input {
         double d5 = cos * d4;
         double d6 = fArr[0];
         Double.isNaN(d6);
-        double d7 = d3 + (d6 * d5);
-        double d8 = point.y;
+        double d7 = point.y;
         Double.isNaN(d4);
-        double d9 = sin * d4;
-        double d10 = fArr[0];
+        double d8 = sin * d4;
+        Double.isNaN(d6);
+        Point point2 = new Point(d3 + (d5 * d6), d7 + (d6 * d8), d);
+        double d9 = point.x;
+        double d10 = floatValue;
         Double.isNaN(d10);
-        double d11 = point.x;
-        double d12 = floatValue;
-        Double.isNaN(d12);
-        double d13 = d11 + (d5 * d12);
-        double d14 = point.y;
-        Double.isNaN(d12);
-        paintPath(new Path(new Point[]{new Point(d7, d8 + (d10 * d9), d), new Point(d13, d14 + (d9 * d12), d, true)}));
+        double d11 = d9 + (d5 * d10);
+        double d12 = point.y;
+        Double.isNaN(d10);
+        paintPath(new Path(new Point[]{point2, new Point(d11, d12 + (d8 * d10), d, true)}));
         Double.isNaN(d2);
         double cos2 = Math.cos(d2 + 2.5918139392115793d);
         Double.isNaN(d2);
         double sin2 = Math.sin(d2 + 2.748893571891069d);
-        double d15 = point.x;
+        double d13 = point.x;
         Double.isNaN(d4);
-        double d16 = cos2 * d4;
-        double d17 = fArr[0];
-        Double.isNaN(d17);
-        double d18 = d15 + (d17 * d16);
-        double d19 = point.y;
+        double d14 = cos2 * d4;
+        double d15 = fArr[0];
+        Double.isNaN(d15);
+        double d16 = d13 + (d14 * d15);
+        double d17 = point.y;
         Double.isNaN(d4);
-        double d20 = d4 * sin2;
-        double d21 = fArr[0];
-        Double.isNaN(d21);
-        double d22 = point.x;
-        Double.isNaN(d12);
-        double d23 = d22 + (d16 * d12);
-        double d24 = point.y;
-        Double.isNaN(d12);
-        paintPath(new Path(new Point[]{new Point(d18, d19 + (d21 * d20), d), new Point(d23, d24 + (d20 * d12), d, true)}));
+        double d18 = sin2 * d4;
+        Double.isNaN(d15);
+        Point point3 = new Point(d16, d17 + (d15 * d18), d);
+        double d19 = point.x;
+        Double.isNaN(d10);
+        double d20 = d19 + (d14 * d10);
+        double d21 = point.y;
+        Double.isNaN(d10);
+        paintPath(new Path(new Point[]{point3, new Point(d20, d21 + (d18 * d10), d, true)}));
         if (!zArr[0] && floatValue > 0.4f) {
             zArr[0] = true;
             BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();

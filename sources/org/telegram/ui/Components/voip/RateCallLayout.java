@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -25,6 +24,7 @@ import org.telegram.ui.Components.voip.RateCallLayout;
 
 @SuppressLint({"ViewConstructor"})
 public class RateCallLayout extends FrameLayout {
+    private final VoIPBackgroundProvider backgroundProvider;
     private OnRateSelected onRateSelected;
     private final RateCallContainer rateCallContainer;
     private final FrameLayout starsContainer;
@@ -37,6 +37,7 @@ public class RateCallLayout extends FrameLayout {
     public RateCallLayout(final Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
         super(context);
         this.startsViews = new StarContainer[5];
+        this.backgroundProvider = voIPBackgroundProvider;
         setWillNotDraw(false);
         RateCallContainer rateCallContainer = new RateCallContainer(context, voIPBackgroundProvider);
         this.rateCallContainer = rateCallContainer;
@@ -115,25 +116,16 @@ public class RateCallLayout extends FrameLayout {
         this.rateCallContainer.setVisibility(0);
         this.starsContainer.setVisibility(0);
         AnimatorSet animatorSet = new AnimatorSet();
-        int i = 4;
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_X, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.SCALE_Y, 0.7f, 1.0f), ObjectAnimator.ofFloat(this.rateCallContainer, (Property<RateCallContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(24.0f), 0.0f));
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
         animatorSet.setDuration(250L);
-        int i2 = 0;
-        while (i2 < this.startsViews.length) {
+        for (int i = 0; i < this.startsViews.length; i++) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.startsViews[i2].setAlpha(0.0f);
-            Animator[] animatorArr = new Animator[i];
-            animatorArr[0] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.ALPHA, 0.0f, 1.0f);
-            animatorArr[1] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.SCALE_X, 0.3f, 1.0f);
-            animatorArr[2] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.SCALE_Y, 0.3f, 1.0f);
-            animatorArr[3] = ObjectAnimator.ofFloat(this.startsViews[i2], (Property<StarContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f);
-            animatorSet2.playTogether(animatorArr);
+            this.startsViews[i].setAlpha(0.0f);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_X, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.SCALE_Y, 0.3f, 1.0f), ObjectAnimator.ofFloat(this.startsViews[i], (Property<StarContainer, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(30.0f), 0.0f));
             animatorSet2.setDuration(250L);
-            animatorSet2.setStartDelay(i2 * 16);
+            animatorSet2.setStartDelay(i * 16);
             animatorSet2.start();
-            i2++;
-            i = 4;
         }
         animatorSet.start();
     }
@@ -225,15 +217,17 @@ public class RateCallLayout extends FrameLayout {
                         if (i2 > i) {
                             break;
                         }
-                        RLottieImageView rLottieImageView = allStartsViews[i2].defaultStar;
-                        RLottieImageView rLottieImageView2 = allStartsViews[i2].selectedStar;
+                        StarContainer starContainer = allStartsViews[i2];
+                        RLottieImageView rLottieImageView = starContainer.defaultStar;
+                        RLottieImageView rLottieImageView2 = starContainer.selectedStar;
                         rLottieImageView.animate().alpha(0.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                         rLottieImageView2.animate().alpha(1.0f).scaleX(0.8f).scaleY(0.8f).setDuration(250L).start();
                         i2++;
                     }
                     for (int i3 = i + 1; i3 < allStartsViews.length; i3++) {
-                        RLottieImageView rLottieImageView3 = allStartsViews[i3].defaultStar;
-                        RLottieImageView rLottieImageView4 = allStartsViews[i3].selectedStar;
+                        StarContainer starContainer2 = allStartsViews[i3];
+                        RLottieImageView rLottieImageView3 = starContainer2.defaultStar;
+                        RLottieImageView rLottieImageView4 = starContainer2.selectedStar;
                         rLottieImageView3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         rLottieImageView4.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
@@ -243,8 +237,9 @@ public class RateCallLayout extends FrameLayout {
                 if (allStarsProvider3 != null) {
                     StarContainer[] allStartsViews2 = allStarsProvider3.getAllStartsViews();
                     for (int i4 = 0; i4 <= this.pos; i4++) {
-                        RLottieImageView rLottieImageView5 = allStartsViews2[i4].defaultStar;
-                        RLottieImageView rLottieImageView6 = allStartsViews2[i4].selectedStar;
+                        StarContainer starContainer3 = allStartsViews2[i4];
+                        RLottieImageView rLottieImageView5 = starContainer3.defaultStar;
+                        RLottieImageView rLottieImageView6 = starContainer3.selectedStar;
                         rLottieImageView5.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                         rLottieImageView6.animate().scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     }
@@ -257,9 +252,9 @@ public class RateCallLayout extends FrameLayout {
                 StarContainer[] allStartsViews3 = allStarsProvider.getAllStartsViews();
                 int length = allStartsViews3.length;
                 while (i2 < length) {
-                    StarContainer starContainer = allStartsViews3[i2];
-                    RLottieImageView rLottieImageView7 = starContainer.defaultStar;
-                    RLottieImageView rLottieImageView8 = starContainer.selectedStar;
+                    StarContainer starContainer4 = allStartsViews3[i2];
+                    RLottieImageView rLottieImageView7 = starContainer4.defaultStar;
+                    RLottieImageView rLottieImageView8 = starContainer4.selectedStar;
                     rLottieImageView7.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     rLottieImageView8.animate().alpha(0.0f).scaleX(1.0f).scaleY(1.0f).setDuration(250L).start();
                     i2++;
@@ -284,7 +279,7 @@ public class RateCallLayout extends FrameLayout {
             TextView textView = new TextView(context);
             this.titleTextView = textView;
             textView.setTextColor(-1);
-            textView.setText(LocaleController.getString("VoipRateCallTitle", R.string.VoipRateCallTitle));
+            textView.setText(LocaleController.getString(R.string.VoipRateCallTitle));
             textView.setTextSize(1, 15.0f);
             textView.setGravity(1);
             textView.setTypeface(AndroidUtilities.bold());
@@ -293,7 +288,7 @@ public class RateCallLayout extends FrameLayout {
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(-1);
             textView2.setGravity(1);
-            textView2.setText(LocaleController.getString("VoipRateCallDescription", R.string.VoipRateCallDescription));
+            textView2.setText(LocaleController.getString(R.string.VoipRateCallDescription));
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 3, 0.0f, 24.0f, 0.0f, 0.0f));
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 3, 0.0f, 50.0f, 0.0f, 0.0f));
         }

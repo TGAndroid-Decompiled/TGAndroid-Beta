@@ -12,9 +12,9 @@ public final class IntProgressionIterator extends IntIterator {
     public IntProgressionIterator(int i, int i2, int i3) {
         this.step = i3;
         this.finalElement = i2;
-        boolean z = true;
-        if (i3 <= 0 ? i < i2 : i > i2) {
-            z = false;
+        boolean z = false;
+        if (i3 <= 0 ? i >= i2 : i <= i2) {
+            z = true;
         }
         this.hasNext = z;
         this.next = z ? i : i2;

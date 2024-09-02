@@ -14,12 +14,14 @@ public class SearchEngine {
     private static ArrayList<SearchEngine> searchEngines;
     public final String autocomplete_url;
     public final String name;
+    public final String privacy_policy_url;
     public final String search_url;
 
     public SearchEngine(String str, String str2, String str3, String str4) {
         this.name = str;
         this.search_url = str2;
         this.autocomplete_url = str3;
+        this.privacy_policy_url = str4;
     }
 
     public String getSearchURL(String str) {

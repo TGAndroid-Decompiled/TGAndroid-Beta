@@ -42,6 +42,9 @@ public class StorageUsageView extends FrameLayout {
     TextView telegramCacheTextView;
     TextView telegramDatabaseTextView;
     TextSettingsCell textSettingsCell;
+    private long totalDeviceFreeSize;
+    private long totalDeviceSize;
+    private long totalSize;
     TextView totlaSizeTextView;
     ValueAnimator valueAnimator;
     ValueAnimator valueAnimator2;
@@ -60,17 +63,19 @@ public class StorageUsageView extends FrameLayout {
         this.paintCalculcating.setStrokeWidth(AndroidUtilities.dp(6.0f));
         this.paintProgress.setStrokeWidth(AndroidUtilities.dp(6.0f));
         this.paintProgress2.setStrokeWidth(AndroidUtilities.dp(6.0f));
-        this.paintFill.setStrokeCap(Paint.Cap.ROUND);
-        this.paintCalculcating.setStrokeCap(Paint.Cap.ROUND);
-        this.paintProgress.setStrokeCap(Paint.Cap.ROUND);
-        this.paintProgress2.setStrokeCap(Paint.Cap.ROUND);
+        Paint paint = this.paintFill;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        this.paintCalculcating.setStrokeCap(cap);
+        this.paintProgress.setStrokeCap(cap);
+        this.paintProgress2.setStrokeCap(cap);
         ProgressView progressView = new ProgressView(context);
         this.progressView = progressView;
         addView(progressView, LayoutHelper.createFrame(-1, -2.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f));
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
@@ -167,6 +172,9 @@ public class StorageUsageView extends FrameLayout {
 
     public void setStorageUsage(boolean z, long j, long j2, long j3, long j4) {
         this.calculating = z;
+        this.totalSize = j2;
+        this.totalDeviceFreeSize = j3;
+        this.totalDeviceSize = j4;
         this.freeSizeTextView.setText(LocaleController.formatString("TotalDeviceFreeSize", R.string.TotalDeviceFreeSize, AndroidUtilities.formatFileSize(j3)));
         long j5 = j4 - j3;
         this.totlaSizeTextView.setText(LocaleController.formatString("TotalDeviceSize", R.string.TotalDeviceSize, AndroidUtilities.formatFileSize(j5)));
@@ -195,7 +203,7 @@ public class StorageUsageView extends FrameLayout {
                 this.textSettingsCell.setVisibility(0);
                 this.telegramCacheTextView.setVisibility(0);
                 this.telegramDatabaseTextView.setVisibility(8);
-                this.textSettingsCell.setTextAndValue(LocaleController.getString("ClearTelegramCache", R.string.ClearTelegramCache), AndroidUtilities.formatFileSize(j2), true);
+                this.textSettingsCell.setTextAndValue(LocaleController.getString(R.string.ClearTelegramCache), AndroidUtilities.formatFileSize(j2), true);
                 this.telegramCacheTextView.setText(LocaleController.formatString("TelegramCacheSize", R.string.TelegramCacheSize, AndroidUtilities.formatFileSize(j2 + j)));
             } else {
                 this.telegramCacheTextView.setVisibility(8);
@@ -206,16 +214,15 @@ public class StorageUsageView extends FrameLayout {
             }
             this.freeSizeTextView.setVisibility(0);
             this.totlaSizeTextView.setVisibility(0);
-            float f = (float) (j2 + j);
-            float f2 = (float) j4;
-            float f3 = f / f2;
-            float f4 = ((float) j5) / f2;
-            if (this.progress != f3) {
+            float f = (float) j4;
+            float f2 = ((float) (j2 + j)) / f;
+            float f3 = ((float) j5) / f;
+            if (this.progress != f2) {
                 ValueAnimator valueAnimator = this.valueAnimator;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f3);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f2);
                 this.valueAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -225,12 +232,12 @@ public class StorageUsageView extends FrameLayout {
                 });
                 this.valueAnimator.start();
             }
-            if (this.progress2 != f4) {
+            if (this.progress2 != f3) {
                 ValueAnimator valueAnimator2 = this.valueAnimator2;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.progress2, f4);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.progress2, f3);
                 this.valueAnimator2 = ofFloat2;
                 ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override

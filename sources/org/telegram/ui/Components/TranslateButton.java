@@ -115,8 +115,11 @@ public class TranslateButton extends FrameLayout {
         animatedTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         this.textView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 3));
         this.menuView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 7));
-        this.menuView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView = this.menuView;
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     protected void onMenuClick() {
@@ -128,7 +131,7 @@ public class TranslateButton extends FrameLayout {
         actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
-        ScrollView scrollView = new ScrollView(this, getContext()) {
+        ScrollView scrollView = new ScrollView(getContext()) {
             AnimatedFloat alphaFloat = new AnimatedFloat(this, 350, CubicBezierInterpolator.EASE_OUT_QUINT);
             Drawable topShadowDrawable;
             private boolean wasCanScrollVertically;
@@ -163,7 +166,7 @@ public class TranslateButton extends FrameLayout {
         actionBarPopupWindowLayout.swipeBackGravityRight = true;
         final int addViewToSwipeBack = actionBarPopupWindowLayout.addViewToSwipeBack(linearLayout);
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
-        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("TranslateTo", R.string.TranslateTo), R.drawable.msg_translate);
+        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.TranslateTo), R.drawable.msg_translate);
         actionBarMenuSubItem.setSubtext(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(translateController.getDialogTranslateTo(this.dialogId))));
         actionBarMenuSubItem.setItemHeight(56);
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -174,7 +177,7 @@ public class TranslateButton extends FrameLayout {
         });
         actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
         ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
-        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("Back", R.string.Back), R.drawable.ic_ab_back);
+        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.ic_ab_back);
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -255,7 +258,7 @@ public class TranslateButton extends FrameLayout {
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem6);
         }
         ActionBarMenuSubItem actionBarMenuSubItem7 = new ActionBarMenuSubItem(getContext(), true, false, this.resourcesProvider);
-        actionBarMenuSubItem7.setTextAndIcon(LocaleController.getString("Hide", R.string.Hide), R.drawable.msg_cancel);
+        actionBarMenuSubItem7.setTextAndIcon(LocaleController.getString(R.string.Hide), R.drawable.msg_cancel);
         actionBarMenuSubItem7.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -305,7 +308,7 @@ public class TranslateButton extends FrameLayout {
         } else {
             formatString = LocaleController.formatString("AddedToDoNotTranslateOther", R.string.AddedToDoNotTranslateOther, str2);
         }
-        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, TranslateAlert2.capitalFirst(AndroidUtilities.replaceTags(formatString)), LocaleController.getString("Settings", R.string.Settings), new Runnable() {
+        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, TranslateAlert2.capitalFirst(AndroidUtilities.replaceTags(formatString)), LocaleController.getString(R.string.Settings), new Runnable() {
             @Override
             public final void run() {
                 TranslateButton.this.lambda$onMenuClick$6();
@@ -323,13 +326,13 @@ public class TranslateButton extends FrameLayout {
         translateController.setHideTranslateDialog(this.dialogId, true);
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat)) {
-            string = LocaleController.getString("TranslationBarHiddenForChannel", R.string.TranslationBarHiddenForChannel);
+            string = LocaleController.getString(R.string.TranslationBarHiddenForChannel);
         } else if (chat != null) {
-            string = LocaleController.getString("TranslationBarHiddenForGroup", R.string.TranslationBarHiddenForGroup);
+            string = LocaleController.getString(R.string.TranslationBarHiddenForGroup);
         } else {
-            string = LocaleController.getString("TranslationBarHiddenForChat", R.string.TranslationBarHiddenForChat);
+            string = LocaleController.getString(R.string.TranslationBarHiddenForChat);
         }
-        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString("Undo", R.string.Undo), new Runnable() {
+        BulletinFactory.of(this.fragment).createSimpleBulletin(R.raw.msg_translate, AndroidUtilities.replaceTags(string), LocaleController.getString(R.string.Undo), new Runnable() {
             @Override
             public final void run() {
                 TranslateButton.this.lambda$onMenuClick$8(translateController);
@@ -346,7 +349,7 @@ public class TranslateButton extends FrameLayout {
         String formatString;
         TranslateController translateController = MessagesController.getInstance(this.currentAccount).getTranslateController();
         if (translateController.isTranslatingDialog(this.dialogId)) {
-            this.textView.setText(TextUtils.concat(this.translateIcon, " ", LocaleController.getString("ShowOriginalButton", R.string.ShowOriginalButton)));
+            this.textView.setText(TextUtils.concat(this.translateIcon, " ", LocaleController.getString(R.string.ShowOriginalButton)));
         } else {
             String dialogTranslateTo = translateController.getDialogTranslateTo(this.dialogId);
             if (dialogTranslateTo == null) {

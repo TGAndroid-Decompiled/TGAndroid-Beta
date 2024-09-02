@@ -102,22 +102,24 @@ public class VoIpSwitchLayout extends FrameLayout {
         int i = AnonymousClass4.$SwitchMap$org$telegram$ui$Components$voip$VoIpSwitchLayout$Type[type.ordinal()];
         if (i != 1) {
             if (i == 2) {
-                string = LocaleController.getString("VoipFlip", R.string.VoipFlip);
+                string = LocaleController.getString(R.string.VoipFlip);
             } else if (i != 3) {
                 if (i == 4) {
-                    string = LocaleController.getString("VoipAudioRoutingBluetooth", R.string.VoipAudioRoutingBluetooth);
+                    string = LocaleController.getString(R.string.VoipAudioRoutingBluetooth);
+                } else if (i == 5) {
+                    string = LocaleController.getString(R.string.VoipSpeaker);
                 } else {
-                    string = i != 5 ? "" : LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker);
+                    string = "";
                 }
             } else if (z) {
-                string = LocaleController.getString("VoipStartVideo", R.string.VoipStartVideo);
+                string = LocaleController.getString(R.string.VoipStartVideo);
             } else {
-                string = LocaleController.getString("VoipStopVideo", R.string.VoipStopVideo);
+                string = LocaleController.getString(R.string.VoipStopVideo);
             }
         } else if (z) {
-            string = LocaleController.getString("VoipUnmute", R.string.VoipUnmute);
+            string = LocaleController.getString(R.string.VoipUnmute);
         } else {
-            string = LocaleController.getString("VoipMute", R.string.VoipMute);
+            string = LocaleController.getString(R.string.VoipMute);
         }
         setContentDescription(string);
         if (this.currentTextView.getVisibility() == 8 && this.newTextView.getVisibility() == 8) {
@@ -242,28 +244,25 @@ public class VoIpSwitchLayout extends FrameLayout {
         }
 
         public void setSelectedState(boolean z, boolean z2, Type type) {
-            ValueAnimator ofInt;
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null && valueAnimator.isRunning()) {
+                this.animator.removeAllUpdateListeners();
+                this.animator.cancel();
+                z2 = false;
+            }
             if (z2) {
                 if (this.singleIcon != null) {
-                    ValueAnimator valueAnimator = this.animator;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllUpdateListeners();
+                    ValueAnimator valueAnimator2 = this.animator;
+                    if (valueAnimator2 != null) {
+                        valueAnimator2.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
-                    int[] iArr = {100, 20};
-                    if (z) {
-                        
-                        iArr[0] = 20;
-                        iArr[1] = 100;
-                        ofInt = ValueAnimator.ofInt(iArr);
-                    } else {
-                        ofInt = ValueAnimator.ofInt(iArr);
-                    }
+                    ValueAnimator ofInt = z ? ValueAnimator.ofInt(20, 100) : ValueAnimator.ofInt(100, 20);
                     this.animator = ofInt;
                     ofInt.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
-                        public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator2);
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                            VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$0(valueAnimator3);
                         }
                     });
                     this.animator.setDuration(200L);
@@ -273,9 +272,9 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.singleIcon.start();
                     }
                 } else {
-                    ValueAnimator valueAnimator2 = this.animator;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.removeAllUpdateListeners();
+                    ValueAnimator valueAnimator3 = this.animator;
+                    if (valueAnimator3 != null) {
+                        valueAnimator3.removeAllUpdateListeners();
                         this.animator.cancel();
                     }
                     ValueAnimator ofInt2 = ValueAnimator.ofInt(0, this.maxRadius);
@@ -284,8 +283,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.unselectedRadius = this.maxRadius;
                         ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator3);
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$1(valueAnimator4);
                             }
                         });
                         this.animator.addListener(new AnimatorListenerAdapter() {
@@ -303,8 +302,8 @@ public class VoIpSwitchLayout extends FrameLayout {
                         this.selectedRadius = this.maxRadius;
                         ofInt2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
-                            public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator3);
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                VoIpSwitchLayout.VoIpButtonView.this.lambda$setSelectedState$2(valueAnimator4);
                             }
                         });
                         this.animator.setDuration(200L);
@@ -323,8 +322,7 @@ public class VoIpSwitchLayout extends FrameLayout {
                 this.unselectedRadius = 0;
                 this.singleIconBackgroundAlphaPercent = 100;
                 if (type == Type.VIDEO || type == Type.MICRO) {
-                    RLottieDrawable rLottieDrawable = this.selectedIcon;
-                    rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1, false);
+                    this.selectedIcon.setCurrentFrame(r7.getFramesCount() - 1, false);
                 }
             } else {
                 this.selectedRadius = 0;
@@ -386,10 +384,7 @@ public class VoIpSwitchLayout extends FrameLayout {
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.pressedScale;
-            fArr[1] = z ? 0.8f : 1.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
             this.pressedScaleAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -435,9 +430,12 @@ public class VoIpSwitchLayout extends FrameLayout {
             }
             int i = this.unselectedRadius;
             int i2 = this.maxRadius;
-            boolean z = i == i2 && this.selectedRadius == 0;
+            boolean z = false;
+            boolean z2 = i == i2 && this.selectedRadius == 0;
             int i3 = this.selectedRadius;
-            boolean z2 = i3 == i2 && i == 0;
+            if (i3 == i2 && i == 0) {
+                z = true;
+            }
             if (i3 == i2 && i > 0 && i != i2) {
                 canvas.drawCircle(width, height, i3, this.whiteCirclePaint);
                 canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
@@ -450,14 +448,14 @@ public class VoIpSwitchLayout extends FrameLayout {
                 canvas.clipPath(this.clipPath);
                 canvas.drawCircle(width, height, this.unselectedRadius, this.maskPaint);
             }
-            if (z || this.unselectedRadius > 0) {
+            if (z2 || this.unselectedRadius > 0) {
                 canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getLightPaint());
                 if (this.backgroundProvider.isReveal()) {
                     canvas.drawCircle(width, height, this.unselectedRadius, this.backgroundProvider.getRevealPaint());
                 }
                 this.unSelectedIcon.draw(canvas);
             }
-            if (z2 || (this.selectedRadius > 0 && this.unselectedRadius == this.maxRadius)) {
+            if (z || (this.selectedRadius > 0 && this.unselectedRadius == this.maxRadius)) {
                 this.clipPath.reset();
                 this.clipPath.addCircle(width, height, this.selectedRadius, Path.Direction.CW);
                 canvas.clipPath(this.clipPath);

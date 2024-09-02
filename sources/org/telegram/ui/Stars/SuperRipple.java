@@ -14,6 +14,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 
 public class SuperRipple extends ISuperRipple {
+    public final int MAX_COUNT;
     public final float[] centerX;
     public final float[] centerY;
     public int count;
@@ -27,6 +28,7 @@ public class SuperRipple extends ISuperRipple {
     public int width;
 
     public static class Effect {
+        public final ValueAnimator animator;
         public final float cx;
         public final float cy;
         public final float intensity;
@@ -36,12 +38,15 @@ public class SuperRipple extends ISuperRipple {
             this.cx = f;
             this.cy = f2;
             this.intensity = f3;
+            this.animator = valueAnimator;
         }
     }
 
     public SuperRipple(View view) {
         super(view);
+        RenderEffect createRuntimeShaderEffect;
         this.effects = new ArrayList<>();
+        this.MAX_COUNT = 7;
         this.t = new float[7];
         this.centerX = new float[7];
         this.centerY = new float[7];
@@ -49,7 +54,8 @@ public class SuperRipple extends ISuperRipple {
         RuntimeShader runtimeShader = new RuntimeShader(RLottieDrawable.readRes(null, R.raw.superripple_effect));
         this.shader = runtimeShader;
         setupSizeUniforms(true);
-        this.effect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
+        createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(runtimeShader, "img");
+        this.effect = createRuntimeShaderEffect;
     }
 
     private void setupSizeUniforms(boolean r11) {
@@ -89,6 +95,7 @@ public class SuperRipple extends ISuperRipple {
     }
 
     public void updateProperties() {
+        RenderEffect createRuntimeShaderEffect;
         boolean z = false;
         if (!this.effects.isEmpty()) {
             boolean z2 = true;
@@ -115,7 +122,8 @@ public class SuperRipple extends ISuperRipple {
                 this.shader.setFloatUniform("centerY", this.centerY);
                 this.shader.setFloatUniform("intensity", this.intensity);
                 setupSizeUniforms(false);
-                this.effect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
+                createRuntimeShaderEffect = RenderEffect.createRuntimeShaderEffect(this.shader, "img");
+                this.effect = createRuntimeShaderEffect;
             }
             z = z2;
         }

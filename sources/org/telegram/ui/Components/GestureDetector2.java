@@ -6,11 +6,8 @@ import android.os.Message;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
-import java.util.Objects;
 
 public class GestureDetector2 {
-    public static final int DOUBLE_TAP_TIMEOUT;
-    private static final int TAP_TIMEOUT;
     private boolean mAlwaysInBiggerTapRegion;
     private boolean mAlwaysInTapRegion;
     private MotionEvent mCurrentDownEvent;
@@ -36,6 +33,9 @@ public class GestureDetector2 {
     private boolean mStillDown;
     private int mTouchSlopSquare;
     private VelocityTracker mVelocityTracker;
+    private static final int LONGPRESS_TIMEOUT = ViewConfiguration.getLongPressTimeout();
+    private static final int TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
+    public static final int DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
 
     public interface OnDoubleTapListener {
         boolean canDoubleTap(MotionEvent motionEvent);
@@ -61,12 +61,6 @@ public class GestureDetector2 {
         boolean onSingleTapUp(MotionEvent motionEvent);
 
         void onUp(MotionEvent motionEvent);
-    }
-
-    static {
-        ViewConfiguration.getLongPressTimeout();
-        TAP_TIMEOUT = ViewConfiguration.getTapTimeout();
-        DOUBLE_TAP_TIMEOUT = ViewConfiguration.getDoubleTapTimeout();
     }
 
     private class GestureHandler extends Handler {
@@ -128,29 +122,30 @@ public class GestureDetector2 {
 
     private void init(Context context) {
         int scaledTouchSlop;
+        int scaledDoubleTapSlop;
         int i;
-        int i2;
-        Objects.requireNonNull(this.mListener, "OnGestureListener must not be null");
+        if (this.mListener == null) {
+            throw new NullPointerException("OnGestureListener must not be null");
+        }
         this.mIsLongpressEnabled = true;
         if (context == null) {
             i = ViewConfiguration.getTouchSlop();
-            i2 = 100;
             this.mMinimumFlingVelocity = ViewConfiguration.getMinimumFlingVelocity();
             this.mMaximumFlingVelocity = ViewConfiguration.getMaximumFlingVelocity();
             scaledTouchSlop = i;
+            scaledDoubleTapSlop = 100;
         } else {
             ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
             scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
-            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
+            scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
             this.mMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
             this.mMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
             i = scaledTouchSlop2;
-            i2 = scaledDoubleTapSlop;
         }
-        this.mTouchSlopSquare = i * i;
-        this.mDoubleTapTouchSlopSquare = scaledTouchSlop * scaledTouchSlop;
-        this.mDoubleTapSlopSquare = i2 * i2;
+        this.mTouchSlopSquare = scaledTouchSlop * scaledTouchSlop;
+        this.mDoubleTapTouchSlopSquare = i * i;
+        this.mDoubleTapSlopSquare = scaledDoubleTapSlop * scaledDoubleTapSlop;
     }
 
     public void setOnDoubleTapListener(OnDoubleTapListener onDoubleTapListener) {

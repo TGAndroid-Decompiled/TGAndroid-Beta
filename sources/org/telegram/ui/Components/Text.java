@@ -183,6 +183,9 @@ public class Text {
 
     public CharSequence getText() {
         StaticLayout staticLayout = this.layout;
-        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
+        if (staticLayout == null || staticLayout.getText() == null) {
+            return "";
+        }
+        return this.layout.getText();
     }
 }

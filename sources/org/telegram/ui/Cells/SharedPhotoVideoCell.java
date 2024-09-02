@@ -82,7 +82,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             backupImageView.getImageReceiver().setNeedsQualityThumb(true);
             this.imageView.getImageReceiver().setShouldGenerateQualityThumb(true);
             this.container.addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
-            FrameLayout frameLayout2 = new FrameLayout(this, context, SharedPhotoVideoCell.this) {
+            FrameLayout frameLayout2 = new FrameLayout(context) {
                 private RectF rect = new RectF();
 
                 @Override
@@ -139,18 +139,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             if (z2) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animator = animatorSet2;
-                Animator[] animatorArr = new Animator[2];
-                FrameLayout frameLayout = this.container;
-                Property property = View.SCALE_X;
-                float[] fArr = new float[1];
-                fArr[0] = z ? 0.81f : 1.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
-                FrameLayout frameLayout2 = this.container;
-                Property property2 = View.SCALE_Y;
-                float[] fArr2 = new float[1];
-                fArr2[0] = z ? 0.81f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
-                animatorSet2.playTogether(animatorArr);
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_X, z ? 0.81f : 1.0f), ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 0.81f : 1.0f));
                 this.animator.setDuration(200L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -253,9 +242,9 @@ public class SharedPhotoVideoCell extends FrameLayout {
         public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             if (this.currentMessageObject.isVideo()) {
-                accessibilityNodeInfo.setText(LocaleController.getString("AttachVideo", R.string.AttachVideo) + ", " + LocaleController.formatDuration((int) this.currentMessageObject.getDuration()));
+                accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration((int) this.currentMessageObject.getDuration()));
             } else {
-                accessibilityNodeInfo.setText(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
+                accessibilityNodeInfo.setText(LocaleController.getString(R.string.AttachPhoto));
             }
             if (this.checkBox.isChecked()) {
                 accessibilityNodeInfo.setCheckable(true);

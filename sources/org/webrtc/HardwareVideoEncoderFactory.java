@@ -55,9 +55,9 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo) {
-        VideoCodecMimeType valueOf;
-        MediaCodecInfo findCodecForType;
-        if (Build.VERSION.SDK_INT < 19 || (findCodecForType = findCodecForType((valueOf = VideoCodecMimeType.valueOf(videoCodecInfo.name)))) == null) {
+        VideoCodecMimeType valueOf = VideoCodecMimeType.valueOf(videoCodecInfo.name);
+        MediaCodecInfo findCodecForType = findCodecForType(valueOf);
+        if (findCodecForType == null) {
             return null;
         }
         String name = findCodecForType.getName();
@@ -79,7 +79,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
 
     @Override
     public VideoCodecInfo[] getSupportedCodecs() {
-        if (Build.VERSION.SDK_INT < 19 || !(VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().groupCall == null)) {
+        if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().groupCall != null) {
             return new VideoCodecInfo[0];
         }
         ArrayList arrayList = new ArrayList();
@@ -185,7 +185,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             return false;
         }
         String name = mediaCodecInfo.getName();
-        if ((name.startsWith("OMX.qcom.") && Build.VERSION.SDK_INT >= 19) || ((name.startsWith("OMX.hisi.") && Build.VERSION.SDK_INT >= 19) || ((name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 23) || ((name.startsWith("OMX.Intel.") && Build.VERSION.SDK_INT >= 21 && this.enableIntelVp8Encoder) || (name.startsWith("c2.exynos.") && Build.VERSION.SDK_INT >= 23))))) {
+        if (name.startsWith("OMX.qcom.") || name.startsWith("OMX.hisi.") || ((name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 23) || ((name.startsWith("OMX.Intel.") && Build.VERSION.SDK_INT >= 21 && this.enableIntelVp8Encoder) || (name.startsWith("c2.exynos.") && Build.VERSION.SDK_INT >= 23)))) {
             return true;
         }
         if (!z) {
@@ -233,7 +233,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             return false;
         }
         String name = mediaCodecInfo.getName();
-        return (name.startsWith("OMX.qcom.") && Build.VERSION.SDK_INT >= 19) || (name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 21);
+        return name.startsWith("OMX.qcom.") || (name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 21);
     }
 
     private boolean isHardwareSupportedInCurrentSdkH265(MediaCodecInfo mediaCodecInfo) {
@@ -241,7 +241,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
             return false;
         }
         String name = mediaCodecInfo.getName();
-        return (name.startsWith("OMX.qcom.") && Build.VERSION.SDK_INT >= 19) || (name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 21);
+        return name.startsWith("OMX.qcom.") || (name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 21);
     }
 
     private boolean isMediaCodecAllowed(MediaCodecInfo mediaCodecInfo) {

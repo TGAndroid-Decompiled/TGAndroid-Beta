@@ -50,7 +50,7 @@ public class MaxFileSizeCell extends FrameLayout {
         this.sizeTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
         this.sizeTextView.setImportantForAccessibility(2);
         addView(this.sizeTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
-        SeekBarView seekBarView = new SeekBarView(this, context) {
+        SeekBarView seekBarView = new SeekBarView(context) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {
@@ -76,28 +76,32 @@ public class MaxFileSizeCell extends FrameLayout {
                 int i;
                 float f2;
                 float f3;
+                float f4;
                 if (f <= 0.25f) {
                     f2 = 512000;
-                    f3 = 536576.0f;
+                    f3 = f / 0.25f;
+                    f4 = 536576.0f;
                 } else {
-                    f -= 0.25f;
-                    if (f < 0.25f) {
+                    float f5 = f - 0.25f;
+                    if (f5 < 0.25f) {
                         f2 = 1048576;
-                        f3 = 9437184.0f;
+                        f3 = f5 / 0.25f;
+                        f4 = 9437184.0f;
                     } else {
-                        f -= 0.25f;
-                        if (f > 0.25f) {
-                            i = (int) (104857600 + (((float) (2097152000 - 104857600)) * ((f - 0.25f) / 0.25f)));
+                        float f6 = f5 - 0.25f;
+                        if (f6 > 0.25f) {
+                            i = (int) (104857600 + (((float) (2097152000 - 104857600)) * ((f6 - 0.25f) / 0.25f)));
                             long j = i;
                             MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
                             MaxFileSizeCell.this.currentSize = j;
                             MaxFileSizeCell.this.didChangedSizeValue(i);
                         }
                         f2 = 10485760;
-                        f3 = 9.437184E7f;
+                        f3 = f6 / 0.25f;
+                        f4 = 9.437184E7f;
                     }
                 }
-                i = (int) (f2 + ((f / 0.25f) * f3));
+                i = (int) (f2 + (f3 * f4));
                 long j2 = i;
                 MaxFileSizeCell.this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j2)));
                 MaxFileSizeCell.this.currentSize = j2;
@@ -160,50 +164,42 @@ public class MaxFileSizeCell extends FrameLayout {
     public void setSize(long j) {
         float max;
         float f;
+        float f2;
         this.currentSize = j;
         this.sizeTextView.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j)));
         long j2 = j - 512000;
         if (j2 < 536576) {
-            f = Math.max(0.0f, ((float) j2) / 536576.0f) * 0.25f;
+            f2 = Math.max(0.0f, ((float) j2) / 536576.0f) * 0.25f;
         } else {
-            long j3 = j2 - 536576;
+            long j3 = j - 1048576;
             if (j3 < 9437184) {
-                f = (Math.max(0.0f, ((float) j3) / 9437184.0f) * 0.25f) + 0.25f;
+                f2 = (Math.max(0.0f, ((float) j3) / 9437184.0f) * 0.25f) + 0.25f;
             } else {
-                float f2 = 0.5f;
-                long j4 = j3 - 9437184;
+                long j4 = j - 10485760;
                 if (j4 < 94371840) {
-                    max = Math.max(0.0f, ((float) j4) / 9.437184E7f);
+                    max = Math.max(0.0f, ((float) j4) / 9.437184E7f) * 0.25f;
+                    f = 0.5f;
                 } else {
-                    f2 = 0.75f;
-                    max = Math.max(0.0f, ((float) (j4 - 94371840)) / 1.9922944E9f);
+                    max = Math.max(0.0f, ((float) (j - 104857600)) / 1.9922944E9f) * 0.25f;
+                    f = 0.75f;
                 }
-                f = (max * 0.25f) + f2;
+                f2 = max + f;
             }
         }
-        this.seekBarView.setProgress(Math.min(1.0f, f));
+        this.seekBarView.setProgress(Math.min(1.0f, f2));
     }
 
     public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
         super.setEnabled(z);
         if (arrayList != null) {
-            TextView textView = this.textView;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
-            SeekBarView seekBarView = this.seekBarView;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(seekBarView, "alpha", fArr2));
-            TextView textView2 = this.sizeTextView;
-            float[] fArr3 = new float[1];
-            fArr3[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", fArr3));
-            return;
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, "alpha", z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.seekBarView, "alpha", z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.sizeTextView, "alpha", z ? 1.0f : 0.5f));
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+            this.seekBarView.setAlpha(z ? 1.0f : 0.5f);
+            this.sizeTextView.setAlpha(z ? 1.0f : 0.5f);
         }
-        this.textView.setAlpha(z ? 1.0f : 0.5f);
-        this.seekBarView.setAlpha(z ? 1.0f : 0.5f);
-        this.sizeTextView.setAlpha(z ? 1.0f : 0.5f);
     }
 
     @Override

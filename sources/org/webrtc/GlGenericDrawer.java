@@ -111,10 +111,11 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
 
     public GlGenericDrawer(String str, String str2, ShaderCallbacks shaderCallbacks) {
         this.currentShader = (GlShader[][]) Array.newInstance((Class<?>) GlShader.class, 3, 3);
-        this.inPosLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
-        this.inTcLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
-        this.texMatrixLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
-        this.texelLocation = (int[][]) Array.newInstance((Class<?>) int.class, 3, 3);
+        Class cls = Integer.TYPE;
+        this.inPosLocation = (int[][]) Array.newInstance((Class<?>) cls, 3, 3);
+        this.inTcLocation = (int[][]) Array.newInstance((Class<?>) cls, 3, 3);
+        this.texMatrixLocation = (int[][]) Array.newInstance((Class<?>) cls, 3, 3);
+        this.texelLocation = (int[][]) Array.newInstance((Class<?>) cls, 3, 3);
         this.renderTexture = new int[2];
         this.renderTextureWidth = new int[2];
         this.renderTextureHeight = new int[2];
@@ -298,39 +299,36 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
     }
 
     private void prepareShader(int i, float[] fArr, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
-        GlShader createShader;
         boolean z = i8 != 0;
-        GlShader[][] glShaderArr = this.currentShader;
-        if (glShaderArr[i][i8] != null) {
-            createShader = glShaderArr[i][i8];
-        } else {
+        GlShader glShader = this.currentShader[i][i8];
+        if (glShader == null) {
             try {
-                createShader = createShader(i, z);
-                this.currentShader[i][i8] = createShader;
-                createShader.useProgram();
+                glShader = createShader(i, z);
+                this.currentShader[i][i8] = glShader;
+                glShader.useProgram();
                 if (i == 2) {
-                    GLES20.glUniform1i(createShader.getUniformLocation("y_tex"), 0);
-                    GLES20.glUniform1i(createShader.getUniformLocation("u_tex"), 1);
-                    GLES20.glUniform1i(createShader.getUniformLocation("v_tex"), 2);
+                    GLES20.glUniform1i(glShader.getUniformLocation("y_tex"), 0);
+                    GLES20.glUniform1i(glShader.getUniformLocation("u_tex"), 1);
+                    GLES20.glUniform1i(glShader.getUniformLocation("v_tex"), 2);
                 } else {
-                    GLES20.glUniform1i(createShader.getUniformLocation("tex"), 0);
+                    GLES20.glUniform1i(glShader.getUniformLocation("tex"), 0);
                 }
                 GlUtil.checkNoGLES2Error("Create shader");
-                this.shaderCallbacks.onNewShader(createShader);
+                this.shaderCallbacks.onNewShader(glShader);
                 if (z) {
-                    this.texelLocation[i][0] = createShader.getUniformLocation("texelWidthOffset");
-                    this.texelLocation[i][1] = createShader.getUniformLocation("texelHeightOffset");
+                    this.texelLocation[i][0] = glShader.getUniformLocation("texelWidthOffset");
+                    this.texelLocation[i][1] = glShader.getUniformLocation("texelHeightOffset");
                 }
-                this.texMatrixLocation[i][i8] = createShader.getUniformLocation("tex_mat");
-                this.inPosLocation[i][i8] = createShader.getAttribLocation("in_pos");
-                this.inTcLocation[i][i8] = createShader.getAttribLocation("in_tc");
+                this.texMatrixLocation[i][i8] = glShader.getUniformLocation("tex_mat");
+                this.inPosLocation[i][i8] = glShader.getAttribLocation("in_pos");
+                this.inTcLocation[i][i8] = glShader.getAttribLocation("in_tc");
             } catch (Exception e) {
                 FileLog.e(e);
                 return;
             }
         }
-        GlShader glShader = createShader;
-        glShader.useProgram();
+        GlShader glShader2 = glShader;
+        glShader2.useProgram();
         if (z) {
             GLES20.glUniform1f(this.texelLocation[i][0], i8 == 1 ? 1.0f / i2 : 0.0f);
             GLES20.glUniform1f(this.texelLocation[i][1], i8 == 2 ? 1.0f / i3 : 0.0f);
@@ -340,7 +338,7 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
         GLES20.glEnableVertexAttribArray(this.inTcLocation[i][i8]);
         GLES20.glVertexAttribPointer(this.inTcLocation[i][i8], 2, 5126, false, 0, (Buffer) FULL_RECTANGLE_TEXTURE_BUFFER);
         GLES20.glUniformMatrix4fv(this.texMatrixLocation[i][i8], 1, false, fArr, 0);
-        this.shaderCallbacks.onPrepareShader(glShader, fArr, i4, i5, i6, i7);
+        this.shaderCallbacks.onPrepareShader(glShader2, fArr, i4, i5, i6, i7);
         GlUtil.checkNoGLES2Error("Prepare shader");
     }
 
@@ -349,10 +347,11 @@ public class GlGenericDrawer implements RendererCommon.GlDrawer {
         for (int i = 0; i < this.currentShader.length; i++) {
             int i2 = 0;
             while (true) {
-                GlShader[][] glShaderArr = this.currentShader;
-                if (i2 < glShaderArr[i].length) {
-                    if (glShaderArr[i][i2] != null) {
-                        glShaderArr[i][i2].release();
+                GlShader[] glShaderArr = this.currentShader[i];
+                if (i2 < glShaderArr.length) {
+                    GlShader glShader = glShaderArr[i2];
+                    if (glShader != null) {
+                        glShader.release();
                         this.currentShader[i][i2] = null;
                     }
                     i2++;

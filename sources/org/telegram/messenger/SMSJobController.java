@@ -81,12 +81,15 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         SMSJobController sMSJobController = Instance[i];
         if (sMSJobController == null) {
             synchronized (lockObjects[i]) {
-                sMSJobController = Instance[i];
-                if (sMSJobController == null) {
-                    SMSJobController[] sMSJobControllerArr = Instance;
-                    SMSJobController sMSJobController2 = new SMSJobController(i);
-                    sMSJobControllerArr[i] = sMSJobController2;
-                    sMSJobController = sMSJobController2;
+                try {
+                    sMSJobController = Instance[i];
+                    if (sMSJobController == null) {
+                        SMSJobController[] sMSJobControllerArr = Instance;
+                        SMSJobController sMSJobController2 = new SMSJobController(i);
+                        sMSJobControllerArr[i] = sMSJobController2;
+                        sMSJobController = sMSJobController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -331,7 +334,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696720)).show();
             return;
         }
         setState(3);
@@ -628,7 +631,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             abstractSerializedData.writeString(this.phone);
             abstractSerializedData.writeString(this.text);
             boolean[] zArr = this.received;
-            abstractSerializedData.writeInt32((zArr[1] ? 2 : 0) | (zArr[0] ? 1 : 0) | 0 | (this.finished ? 4 : 0));
+            abstractSerializedData.writeInt32((zArr[1] ? 2 : 0) | (zArr[0] ? 1 : 0) | (this.finished ? 4 : 0));
             abstractSerializedData.writeInt32(this.triesLeft);
             abstractSerializedData.writeInt64(this.sentTime);
         }
@@ -701,12 +704,14 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     }
 
     public static void receivedSMSIntent(Intent intent, int i) {
+        String str;
         boolean z;
         int i2;
         if (intent == null) {
             return;
         }
         int intExtra = intent.getIntExtra("tg_sms_id", 0);
+        String str2 = "sent";
         boolean booleanExtra = intent.getBooleanExtra("sent", false);
         boolean booleanExtra2 = intent.getBooleanExtra("delivered", false);
         PendingSMS pendingSMS = pending.get(Integer.valueOf(intExtra));
@@ -715,7 +720,14 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             sb.append("[smsjob] received sms callback with id ");
             sb.append(intExtra);
             sb.append(", ");
-            sb.append(booleanExtra ? "sent" : booleanExtra2 ? "delivered" : "null");
+            if (!booleanExtra) {
+                if (booleanExtra2) {
+                    str2 = "delivered";
+                } else {
+                    str2 = "null";
+                }
+            }
+            sb.append(str2);
             sb.append(": not found");
             FileLog.d(sb.toString());
             return;
@@ -724,16 +736,23 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         sb2.append("[smsjob] received sms callback with id ");
         sb2.append(intExtra);
         sb2.append(", ");
-        sb2.append(booleanExtra ? "sent" : booleanExtra2 ? "delivered" : "null");
+        if (!booleanExtra) {
+            if (booleanExtra2) {
+                str2 = "delivered";
+            } else {
+                str2 = "null";
+            }
+        }
+        sb2.append(str2);
         FileLog.d(sb2.toString());
         if (i == 101 && (i2 = pendingSMS.triesLeft) > 0) {
             pendingSMS.triesLeft = i2 - 1;
             resendPending(pendingSMS);
             return;
         }
-        String str = null;
         switch (i) {
             case -1:
+                str = null;
                 z = true;
                 break;
             case 0:
@@ -998,8 +1017,10 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
     private static void sendSMS(Context context, int i, String str, SIM sim, String str2, String str3) {
         SmsManager smsManager;
+        Object systemService;
         if (sim != null && Build.VERSION.SDK_INT >= 31) {
-            smsManager = ((SmsManager) context.getSystemService(SmsManager.class)).createForSubscriptionId(sim.id);
+            systemService = context.getSystemService((Class<Object>) SmsManager.class);
+            smsManager = ((SmsManager) systemService).createForSubscriptionId(sim.id);
         } else if (sim != null && Build.VERSION.SDK_INT >= 22) {
             smsManager = SmsManager.getSmsManagerForSubscriptionId(sim.id);
         } else {
@@ -1031,6 +1052,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
     private static void resendPending(PendingSMS pendingSMS) {
         SmsManager smsManager;
+        Object systemService;
         Context context = ApplicationLoader.applicationContext;
         if (context == null) {
             context = LaunchActivity.instance;
@@ -1042,7 +1064,8 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }
         int i = pendingSMS.simId;
         if (i != -1 && Build.VERSION.SDK_INT >= 31) {
-            smsManager = ((SmsManager) context.getSystemService(SmsManager.class)).createForSubscriptionId(pendingSMS.simId);
+            systemService = context.getSystemService((Class<Object>) SmsManager.class);
+            smsManager = ((SmsManager) systemService).createForSubscriptionId(pendingSMS.simId);
         } else if (i != -1 && Build.VERSION.SDK_INT >= 22) {
             smsManager = SmsManager.getSmsManagerForSubscriptionId(i);
         } else {
@@ -1108,15 +1131,45 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
         public static SIM from(SubscriptionManager subscriptionManager, SubscriptionInfo subscriptionInfo) {
             String number;
+            int subscriptionId;
+            int simSlotIndex;
+            CharSequence displayName;
+            CharSequence displayName2;
+            String charSequence;
+            String iccId;
+            String countryIso;
+            CharSequence carrierName;
+            CharSequence carrierName2;
+            int subscriptionId2;
+            String str = null;
             if (subscriptionInfo == null) {
                 return null;
             }
             if (Build.VERSION.SDK_INT >= 33) {
-                number = subscriptionManager.getPhoneNumber(subscriptionInfo.getSubscriptionId());
+                subscriptionId2 = subscriptionInfo.getSubscriptionId();
+                number = subscriptionManager.getPhoneNumber(subscriptionId2);
             } else {
                 number = subscriptionInfo.getNumber();
             }
-            return new SIM(subscriptionInfo.getSubscriptionId(), subscriptionInfo.getSimSlotIndex(), subscriptionInfo.getDisplayName() == null ? "" : subscriptionInfo.getDisplayName().toString(), subscriptionInfo.getIccId(), subscriptionInfo.getCountryIso(), subscriptionInfo.getCarrierName() != null ? subscriptionInfo.getCarrierName().toString() : null, number);
+            String str2 = number;
+            subscriptionId = subscriptionInfo.getSubscriptionId();
+            simSlotIndex = subscriptionInfo.getSimSlotIndex();
+            displayName = subscriptionInfo.getDisplayName();
+            if (displayName == null) {
+                charSequence = "";
+            } else {
+                displayName2 = subscriptionInfo.getDisplayName();
+                charSequence = displayName2.toString();
+            }
+            String str3 = charSequence;
+            iccId = subscriptionInfo.getIccId();
+            countryIso = subscriptionInfo.getCountryIso();
+            carrierName = subscriptionInfo.getCarrierName();
+            if (carrierName != null) {
+                carrierName2 = subscriptionInfo.getCarrierName();
+                str = carrierName2.toString();
+            }
+            return new SIM(subscriptionId, simSlotIndex, str3, iccId, countryIso, str, str2);
         }
 
         public String toString() {
@@ -1139,11 +1192,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     }
 
     private static ArrayList<SIM> getSIMs(Context context) {
+        SubscriptionManager from;
         ArrayList<SIM> arrayList = new ArrayList<>();
         int i = Build.VERSION.SDK_INT;
         if (i >= 22) {
-            SubscriptionManager from = SubscriptionManager.from(context);
-            List<SubscriptionInfo> completeActiveSubscriptionInfoList = i >= 30 ? from.getCompleteActiveSubscriptionInfoList() : null;
+            from = SubscriptionManager.from(context);
+            List completeActiveSubscriptionInfoList = i >= 30 ? from.getCompleteActiveSubscriptionInfoList() : null;
             if ((completeActiveSubscriptionInfoList == null || completeActiveSubscriptionInfoList.isEmpty()) && i >= 28) {
                 completeActiveSubscriptionInfoList = from.getAccessibleSubscriptionInfoList();
             }
@@ -1152,7 +1206,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             }
             if (completeActiveSubscriptionInfoList != null) {
                 for (int i2 = 0; i2 < completeActiveSubscriptionInfoList.size(); i2++) {
-                    SIM from2 = SIM.from(from, completeActiveSubscriptionInfoList.get(i2));
+                    SIM from2 = SIM.from(from, SMSJobController$$ExternalSyntheticApiModelOutline4.m(completeActiveSubscriptionInfoList.get(i2)));
                     if (from2 != null) {
                         arrayList.add(from2);
                     }
@@ -1203,7 +1257,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131696720)).show();
         } else {
             getInstance(this.currentAccount).loadStatus(true);
             getInstance(this.currentAccount).checkIsEligible(true, null);
@@ -1332,6 +1386,8 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         BufferedReader bufferedReader;
         String readLine;
         String[] split;
+        ?? r0 = 0;
+        boolean z = false;
         BufferedReader bufferedReader2 = null;
         if (str == null) {
             return null;
@@ -1342,52 +1398,55 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 try {
                     bufferedReader = new BufferedReader(new InputStreamReader(context.getResources().getAssets().open("countries.txt")));
                 } catch (Exception e) {
-                    e = e;
+                    FileLog.e(e);
+                    return "";
                 }
-                do {
-                    try {
-                        readLine = bufferedReader.readLine();
-                    } catch (Exception e2) {
-                        e = e2;
-                        bufferedReader2 = bufferedReader;
-                        FileLog.e(e);
-                        if (bufferedReader2 == null) {
-                            return "";
-                        }
-                        bufferedReader2.close();
-                        return "";
-                    } catch (Throwable th) {
-                        th = th;
-                        bufferedReader2 = bufferedReader;
-                        if (bufferedReader2 != null) {
-                            try {
-                                bufferedReader2.close();
-                            } catch (Exception e3) {
-                                FileLog.e(e3);
-                            }
-                        }
-                        throw th;
-                    }
-                    if (readLine == null) {
-                        bufferedReader.close();
-                        bufferedReader.close();
-                        return "";
-                    }
-                    split = readLine.split(";");
-                } while (!stripExceptNumbers.startsWith(split[0]));
-                String str2 = split[1];
-                try {
-                    bufferedReader.close();
-                } catch (Exception e4) {
-                    FileLog.e(e4);
-                }
-                return str2;
-            } catch (Throwable th2) {
-                th = th2;
+            } catch (Exception e2) {
+                e = e2;
             }
-        } catch (Exception e5) {
-            FileLog.e(e5);
-            return "";
+            do {
+                try {
+                    readLine = bufferedReader.readLine();
+                } catch (Exception e3) {
+                    e = e3;
+                    bufferedReader2 = bufferedReader;
+                    FileLog.e(e);
+                    if (bufferedReader2 == null) {
+                        return "";
+                    }
+                    bufferedReader2.close();
+                    r0 = bufferedReader2;
+                    return "";
+                } catch (Throwable th) {
+                    th = th;
+                    r0 = bufferedReader;
+                    if (r0 != 0) {
+                        try {
+                            r0.close();
+                        } catch (Exception e4) {
+                            FileLog.e(e4);
+                        }
+                    }
+                    throw th;
+                }
+                if (readLine == null) {
+                    bufferedReader.close();
+                    bufferedReader.close();
+                    r0 = z;
+                    return "";
+                }
+                split = readLine.split(";");
+                z = stripExceptNumbers.startsWith(split[0]);
+            } while (!z);
+            String str2 = split[1];
+            try {
+                bufferedReader.close();
+            } catch (Exception e5) {
+                FileLog.e(e5);
+            }
+            return str2;
+        } catch (Throwable th2) {
+            th = th2;
         }
     }
 

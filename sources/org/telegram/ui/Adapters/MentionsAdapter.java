@@ -87,6 +87,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private int contextQueryReqid;
     private Runnable contextQueryRunnable;
     private int contextUsernameReqid;
+    private boolean delayLocalResults;
     private MentionsAdapterDelegate delegate;
     private long dialog_id;
     private TLRPC$User foundContextBot;
@@ -135,6 +136,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private boolean allowStickers = true;
     private boolean allowBots = true;
     private boolean allowChats = true;
+    private final boolean USE_DIVIDERS = false;
     private int currentAccount = UserConfig.selectedAccount;
     private boolean needUsernames = true;
     private boolean needBotContext = true;
@@ -389,6 +391,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         ArrayList<StickerResult> arrayList;
         this.lastReqId = 0;
         if (str.equals(this.lastSticker) && (tLObject instanceof TLRPC$TL_messages_stickers)) {
+            this.delayLocalResults = false;
             TLRPC$TL_messages_stickers tLRPC$TL_messages_stickers = (TLRPC$TL_messages_stickers) tLObject;
             ArrayList<StickerResult> arrayList2 = this.stickers;
             int size = arrayList2 != null ? arrayList2.size() : 0;
@@ -419,11 +422,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             this.lastData = new Object[getItemCount()];
             while (true) {
                 Object[] objArr = this.lastData;
-                if (r1 >= objArr.length) {
+                if (r2 >= objArr.length) {
                     return;
                 }
-                objArr[r1] = getItem(r1);
-                r1++;
+                objArr[r2] = getItem(r2);
+                r2++;
             }
         } else {
             int itemCount = getItemCount();
@@ -433,12 +436,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             for (int i2 = 0; i2 < itemCount; i2++) {
                 objArr2[i2] = getItem(i2);
             }
-            while (r1 < min) {
-                if (r1 >= 0) {
+            while (r2 < min) {
+                if (r2 >= 0) {
                     Object[] objArr3 = this.lastData;
-                    r1 = (r1 < objArr3.length && r1 < itemCount && itemsEqual(objArr3[r1], objArr2[r1])) ? r1 + 1 : 0;
+                    r2 = (r2 < objArr3.length && r2 < itemCount && itemsEqual(objArr3[r2], objArr2[r2])) ? r2 + 1 : 0;
                 }
-                notifyItemChanged(r1);
+                notifyItemChanged(r2);
                 z = true;
             }
             notifyItemRangeRemoved(min, i - min);
@@ -624,16 +627,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 if (!MessagesController.getNotificationsSettings(this.currentAccount).getBoolean("inlinegeo_" + this.foundContextBot.id, false) && (chatActivity = this.parentFragment) != null && chatActivity.getParentActivity() != null) {
                     final TLRPC$User tLRPC$User2 = this.foundContextBot;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity());
-                    builder.setTitle(LocaleController.getString("ShareYouLocationTitle", R.string.ShareYouLocationTitle));
-                    builder.setMessage(LocaleController.getString("ShareYouLocationInline", R.string.ShareYouLocationInline));
+                    builder.setTitle(LocaleController.getString(R.string.ShareYouLocationTitle));
+                    builder.setMessage(LocaleController.getString(R.string.ShareYouLocationInline));
                     final boolean[] zArr = new boolean[1];
-                    builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$2(zArr, tLRPC$User2, dialogInterface, i);
                         }
                     });
-                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
                             MentionsAdapter.this.lambda$processFoundUser$3(zArr, dialogInterface, i);
@@ -845,13 +848,17 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     }
 
     private void checkLocationPermissionsOrStart() {
+        int checkSelfPermission;
         ChatActivity chatActivity = this.parentFragment;
         if (chatActivity == null || chatActivity.getParentActivity() == null) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= 23 && this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
-            this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
-            return;
+        if (Build.VERSION.SDK_INT >= 23) {
+            checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION");
+            if (checkSelfPermission != 0) {
+                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);
+                return;
+            }
         }
         TLRPC$User tLRPC$User = this.foundContextBot;
         if (tLRPC$User == null || !tLRPC$User.bot_inline_geo) {
@@ -873,7 +880,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (str == null || !str.equals("gif")) {
             return null;
         }
-        return LocaleController.getString("SearchGifsTitle", R.string.SearchGifsTitle);
+        return LocaleController.getString(R.string.SearchGifsTitle);
     }
 
     public void searchForContextBotForNextOffset() {
@@ -1028,7 +1035,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r23, final int r24, final java.util.ArrayList<org.telegram.messenger.MessageObject> r25, final boolean r26, final boolean r27) {
+    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r26, final int r27, final java.util.ArrayList<org.telegram.messenger.MessageObject> r28, final boolean r29, final boolean r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
     }
 
@@ -1064,12 +1071,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             tLRPC$TL_channels_getParticipants.limit = 20;
             tLRPC$TL_channels_getParticipants.offset = 0;
             TLRPC$TL_channelParticipantsMentions tLRPC$TL_channelParticipantsMentions = new TLRPC$TL_channelParticipantsMentions();
-            int i = tLRPC$TL_channelParticipantsMentions.flags | 1;
-            tLRPC$TL_channelParticipantsMentions.flags = i;
+            int i = tLRPC$TL_channelParticipantsMentions.flags;
+            tLRPC$TL_channelParticipantsMentions.flags = i | 1;
             tLRPC$TL_channelParticipantsMentions.q = this.val$usernameString;
             long j = this.val$threadId;
             if (j != 0) {
-                tLRPC$TL_channelParticipantsMentions.flags = i | 2;
+                tLRPC$TL_channelParticipantsMentions.flags = i | 3;
                 tLRPC$TL_channelParticipantsMentions.top_msg_id = (int) j;
             }
             tLRPC$TL_channels_getParticipants.filter = tLRPC$TL_channelParticipantsMentions;
@@ -1356,13 +1363,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList8 != null && i >= 0 && i < arrayList8.size()) {
                 ArrayList<TLRPC$User> arrayList9 = this.searchResultCommandsUsers;
                 if (arrayList9 != null && (this.botsCount != 1 || (this.info instanceof TLRPC$TL_channelFull))) {
-                    if (arrayList9.get(i) == null) {
-                        return String.format("%s", this.searchResultCommands.get(i));
+                    if (arrayList9.get(i) != null) {
+                        return String.format("%s@%s", this.searchResultCommands.get(i), this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "");
                     }
-                    Object[] objArr = new Object[2];
-                    objArr[0] = this.searchResultCommands.get(i);
-                    objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "";
-                    return String.format("%s@%s", objArr);
+                    return String.format("%s", this.searchResultCommands.get(i));
                 }
                 return this.searchResultCommands.get(i);
             }
@@ -1451,10 +1455,10 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
             if (currentChat != null) {
                 if (!ChatObject.hasAdminRights(currentChat) && (tLRPC$TL_chatBannedRights = currentChat.default_banned_rights) != null && tLRPC$TL_chatBannedRights.send_inline) {
-                    textView.setText(LocaleController.getString("GlobalAttachInlineRestricted", R.string.GlobalAttachInlineRestricted));
+                    textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
                     return;
                 } else if (AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
-                    textView.setText(LocaleController.getString("AttachInlineRestrictedForever", R.string.AttachInlineRestrictedForever));
+                    textView.setText(LocaleController.getString(R.string.AttachInlineRestrictedForever));
                     return;
                 } else {
                     textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));

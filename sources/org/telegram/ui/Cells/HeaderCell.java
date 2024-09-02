@@ -125,14 +125,10 @@ public class HeaderCell extends FrameLayout {
 
     public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
         if (arrayList != null) {
-            TextView textView = this.textView;
-            Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
-            return;
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, (Property<TextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
         }
-        this.textView.setAlpha(z ? 1.0f : 0.5f);
     }
 
     @Override
@@ -184,13 +180,14 @@ public class HeaderCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 28) {
+        if (Build.VERSION.SDK_INT >= 28) {
             accessibilityNodeInfo.setHeading(true);
-        } else if (i >= 19 && (collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo()) != null) {
-            accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
+        } else {
+            AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
+            if (collectionItemInfo != null) {
+                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(collectionItemInfo.getRowIndex(), collectionItemInfo.getRowSpan(), collectionItemInfo.getColumnIndex(), collectionItemInfo.getColumnSpan(), true));
+            }
         }
         accessibilityNodeInfo.setEnabled(true);
     }

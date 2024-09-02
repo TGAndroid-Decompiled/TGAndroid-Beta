@@ -183,9 +183,9 @@ public class QuoteHighlight extends Path {
         rect.bottom = f4 + f7;
         Rect rect2 = this.lastRect;
         if (rect2 != null) {
-            float f10 = rect2.bottom;
-            rect2.nextBottom = (f10 + f8) / 2.0f;
-            rect.prevTop = (f10 + f8) / 2.0f;
+            float f10 = (rect2.bottom + f8) / 2.0f;
+            rect2.nextBottom = f10;
+            rect.prevTop = f10;
         }
         this.rectangles.add(rect);
         this.lastRect = rect;

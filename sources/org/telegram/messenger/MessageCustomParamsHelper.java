@@ -50,7 +50,7 @@ public class MessageCustomParamsHelper {
         }
     }
 
-    public static class Params_v1 extends TLObject {
+    private static class Params_v1 extends TLObject {
         private static final int VERSION = 1;
         int flags;
         final TLRPC$Message message;
@@ -58,7 +58,7 @@ public class MessageCustomParamsHelper {
         private Params_v1(TLRPC$Message tLRPC$Message) {
             this.flags = 0;
             this.message = tLRPC$Message;
-            int i = (tLRPC$Message.voiceTranscription != null ? 1 : 0) + 0;
+            int i = tLRPC$Message.voiceTranscription != null ? 1 : 0;
             this.flags = i;
             int i2 = i + (tLRPC$Message.voiceTranscriptionForce ? 2 : 0);
             this.flags = i2;

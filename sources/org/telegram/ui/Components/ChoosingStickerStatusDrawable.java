@@ -12,6 +12,7 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
     Paint fillPaint;
     float progress;
     Paint strokePaint;
+    private boolean isChat = false;
     private long lastUpdateTime = 0;
     private boolean started = false;
     boolean increment = true;
@@ -27,10 +28,6 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-    }
-
-    @Override
-    public void setIsChat(boolean z) {
     }
 
     public ChoosingStickerStatusDrawable(boolean z) {
@@ -52,6 +49,11 @@ public class ChoosingStickerStatusDrawable extends StatusDrawable {
     @Override
     public void stop() {
         this.started = false;
+    }
+
+    @Override
+    public void setIsChat(boolean z) {
+        this.isChat = z;
     }
 
     @Override

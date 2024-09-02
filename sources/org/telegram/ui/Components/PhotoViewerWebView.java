@@ -299,9 +299,7 @@ public class PhotoViewerWebView extends FrameLayout {
         webView.getSettings().setJavaScriptEnabled(true);
         this.webView.getSettings().setDomStorageEnabled(true);
         int i = Build.VERSION.SDK_INT;
-        if (i >= 17) {
-            this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        }
+        this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
         if (i >= 21) {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);
@@ -354,17 +352,20 @@ public class PhotoViewerWebView extends FrameLayout {
         @Override
         public void onPageFinished(WebView webView, String str) {
             super.onPageFinished(webView, str);
-            if (!PhotoViewerWebView.this.isYouTube || Build.VERSION.SDK_INT < 17) {
-                PhotoViewerWebView.this.progressBar.setVisibility(4);
-                PhotoViewerWebView.this.progressBarBlackBackground.setVisibility(4);
-                PhotoViewerWebView.this.pipItem.setEnabled(true);
-                PhotoViewerWebView.this.pipItem.setAlpha(1.0f);
+            if (PhotoViewerWebView.this.isYouTube) {
+                return;
             }
+            PhotoViewerWebView.this.progressBar.setVisibility(4);
+            PhotoViewerWebView.this.progressBarBlackBackground.setVisibility(4);
+            PhotoViewerWebView.this.pipItem.setEnabled(true);
+            PhotoViewerWebView.this.pipItem.setAlpha(1.0f);
         }
 
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView webView, final WebResourceRequest webResourceRequest) {
-            final String uri = webResourceRequest.getUrl().toString();
+            Uri url;
+            url = webResourceRequest.getUrl();
+            final String uri = url.toString();
             if (!PhotoViewerWebView.this.isYouTube || !uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
                 return null;
             }
@@ -378,17 +379,24 @@ public class PhotoViewerWebView extends FrameLayout {
         }
 
         public void lambda$shouldInterceptRequest$0(String str, WebResourceRequest webResourceRequest) {
+            Map requestHeaders;
+            Map requestHeaders2;
             JSONObject optJSONObject;
             String optString;
             try {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
                 httpURLConnection.setRequestMethod("POST");
-                for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
-                    httpURLConnection.addRequestProperty(entry.getKey(), entry.getValue());
+                requestHeaders = webResourceRequest.getRequestHeaders();
+                for (Map.Entry entry : requestHeaders.entrySet()) {
+                    httpURLConnection.addRequestProperty((String) entry.getKey(), (String) entry.getValue());
                 }
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                outputStream.write(new JSONObject().put("context", new JSONObject().put("client", new JSONObject().put("userAgent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36,gzip(gfe)").put("clientName", "WEB").put("clientVersion", webResourceRequest.getRequestHeaders().get("X-Youtube-Client-Version")).put("osName", "Windows").put("osVersion", "10.0").put("originalUrl", "https://www.youtube.com/watch?v=" + PhotoViewerWebView.this.currentYoutubeId).put("platform", "DESKTOP"))).put("videoId", PhotoViewerWebView.this.currentYoutubeId).toString().getBytes("UTF-8"));
+                JSONObject jSONObject = new JSONObject();
+                JSONObject jSONObject2 = new JSONObject();
+                JSONObject put = new JSONObject().put("userAgent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36,gzip(gfe)").put("clientName", "WEB");
+                requestHeaders2 = webResourceRequest.getRequestHeaders();
+                outputStream.write(jSONObject.put("context", jSONObject2.put("client", put.put("clientVersion", requestHeaders2.get("X-Youtube-Client-Version")).put("osName", "Windows").put("osVersion", "10.0").put("originalUrl", "https://www.youtube.com/watch?v=" + PhotoViewerWebView.this.currentYoutubeId).put("platform", "DESKTOP"))).put("videoId", PhotoViewerWebView.this.currentYoutubeId).toString().getBytes("UTF-8"));
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getResponseCode() == 200 ? httpURLConnection.getInputStream() : httpURLConnection.getErrorStream();
                 byte[] bArr = new byte[10240];
@@ -695,12 +703,17 @@ public class PhotoViewerWebView extends FrameLayout {
     }
 
     @android.annotation.SuppressLint({"AddJavascriptInterface"})
-    public void init(int r11, org.telegram.tgnet.TLRPC$WebPage r12) {
+    public void init(int r9, org.telegram.tgnet.TLRPC$WebPage r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoViewerWebView.init(int, org.telegram.tgnet.TLRPC$WebPage):void");
     }
 
     public boolean checkInlinePermissions() {
-        if (Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(getContext())) {
+        boolean canDrawOverlays;
+        if (Build.VERSION.SDK_INT < 23) {
+            return true;
+        }
+        canDrawOverlays = Settings.canDrawOverlays(getContext());
+        if (canDrawOverlays) {
             return true;
         }
         AlertsCreator.createDrawOverlayPermissionDialog((Activity) getContext(), null);

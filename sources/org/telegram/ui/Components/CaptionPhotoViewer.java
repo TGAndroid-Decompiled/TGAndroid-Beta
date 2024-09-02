@@ -20,6 +20,7 @@ import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class CaptionPhotoViewer extends CaptionContainerView {
+    private final int SHOW_ONCE;
     private final ImageView addPhotoButton;
     private boolean addPhotoVisible;
     private final Runnable applyCaption;
@@ -50,12 +51,14 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     public CaptionPhotoViewer(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager, Runnable runnable) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
         this.timer = 0;
+        this.SHOW_ONCE = Integer.MAX_VALUE;
         this.values = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
         this.applyCaption = runnable;
         ImageView imageView = new ImageView(context);
         this.addPhotoButton = imageView;
         imageView.setImageResource(R.drawable.filled_add_photo);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         setAddPhotoVisible(false, false);
@@ -66,7 +69,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         this.timerDrawable = periodDrawable;
         imageView2.setImageDrawable(periodDrawable);
         imageView2.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         setTimerVisible(false, false);
         addView(imageView2, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 10.0f));
         HintView2 hintView2 = new HintView2(context, 3);

@@ -93,7 +93,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("EncryptionKey", R.string.EncryptionKey));
+        this.actionBar.setTitle(LocaleController.getString(R.string.EncryptionKey));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -104,7 +104,6 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -118,14 +117,14 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
         this.linearLayout.setWeightSum(100.0f);
-        frameLayout2.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout3.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.linearLayout.addView(frameLayout3, LayoutHelper.createLinear(-1, -1, 50.0f));
+        frameLayout.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        frameLayout2.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+        this.linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, -1, 50.0f));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        frameLayout3.addView(imageView, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout4 = new FrameLayout(context) {
+        frameLayout2.addView(imageView, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context) {
             @Override
             protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 super.onLayout(z, i, i2, i3, i4);
@@ -136,8 +135,8 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                 }
             }
         };
-        this.container = frameLayout4;
-        frameLayout4.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.container = frameLayout3;
+        frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         this.linearLayout.addView(this.container, LayoutHelper.createLinear(-1, -1, 50.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.linearLayout1 = linearLayout2;
@@ -194,8 +193,8 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
                 spannableStringBuilder.append((CharSequence) "\n");
                 for (int i4 = 0; i4 < 5; i4++) {
                     byte[] bArr2 = encryptedChat.key_hash;
-                    int i5 = (i4 * 4) + 16;
-                    int i6 = (bArr2[i5 + 3] & 255) | ((bArr2[i5] & Byte.MAX_VALUE) << 24) | ((bArr2[i5 + 1] & 255) << 16) | ((bArr2[i5 + 2] & 255) << 8);
+                    int i5 = i4 * 4;
+                    int i6 = (bArr2[i5 + 19] & 255) | ((bArr2[i5 + 16] & Byte.MAX_VALUE) << 24) | ((bArr2[i5 + 17] & 255) << 16) | ((bArr2[i5 + 18] & 255) << 8);
                     if (i4 != 0) {
                         sb.append(" ");
                     }
@@ -211,7 +210,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("EncryptionKeyDescription", i7, str, str)));
             int indexOf = spannableStringBuilder.toString().indexOf("telegram.org");
             if (indexOf != -1) {
-                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString("EncryptionKeyLink", R.string.EncryptionKeyLink)), indexOf, indexOf + 12, 33);
+                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString(R.string.EncryptionKeyLink)), indexOf, indexOf + 12, 33);
             }
             this.textView.setText(spannableStringBuilder);
         }
@@ -249,32 +248,7 @@ public class IdenticonActivity extends BaseFragment implements NotificationCente
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
-            Animator[] animatorArr = new Animator[6];
-            TextView textView = this.emojiTextView;
-            float[] fArr = new float[1];
-            fArr[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(textView, "alpha", fArr);
-            TextView textView2 = this.codeTextView;
-            float[] fArr2 = new float[1];
-            fArr2[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(textView2, "alpha", fArr2);
-            TextView textView3 = this.emojiTextView;
-            float[] fArr3 = new float[1];
-            fArr3[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[2] = ObjectAnimator.ofFloat(textView3, "scaleX", fArr3);
-            TextView textView4 = this.emojiTextView;
-            float[] fArr4 = new float[1];
-            fArr4[0] = this.emojiSelected ? 1.0f : 0.0f;
-            animatorArr[3] = ObjectAnimator.ofFloat(textView4, "scaleY", fArr4);
-            TextView textView5 = this.codeTextView;
-            float[] fArr5 = new float[1];
-            fArr5[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[4] = ObjectAnimator.ofFloat(textView5, "scaleX", fArr5);
-            TextView textView6 = this.codeTextView;
-            float[] fArr6 = new float[1];
-            fArr6[0] = this.emojiSelected ? 0.0f : 1.0f;
-            animatorArr[5] = ObjectAnimator.ofFloat(textView6, "scaleY", fArr6);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.emojiTextView, "alpha", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "alpha", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleX", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleY", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleX", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleY", this.emojiSelected ? 0.0f : 1.0f));
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

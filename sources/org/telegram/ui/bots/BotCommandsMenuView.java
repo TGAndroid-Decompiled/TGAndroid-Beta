@@ -256,7 +256,7 @@ public class BotCommandsMenuView extends View {
             super(context);
             setOrientation(0);
             setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-            TextView textView = new TextView(this, context) {
+            TextView textView = new TextView(context) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);

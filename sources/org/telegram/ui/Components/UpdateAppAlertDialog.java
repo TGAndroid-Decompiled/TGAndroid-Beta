@@ -99,14 +99,19 @@ public class UpdateAppAlertDialog extends BottomSheet {
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(180L);
             animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.textView[0], (Property<TextView, Float>) View.ALPHA, 1.0f, 0.0f), ObjectAnimator.ofFloat(this.textView[0], (Property<TextView, Float>) View.TRANSLATION_Y, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(10.0f), 0.0f));
+            TextView textView = this.textView[0];
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f, 0.0f);
+            TextView textView2 = this.textView[0];
+            Property property2 = View.TRANSLATION_Y;
+            animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, 0.0f, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property, 0.0f, 1.0f), ObjectAnimator.ofFloat(this.textView[1], (Property<TextView, Float>) property2, AndroidUtilities.dp(10.0f), 0.0f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     UpdateAppAlertDialog.this.animationInProgress = false;
-                    TextView textView = BottomSheetCell.this.textView[0];
+                    TextView textView3 = BottomSheetCell.this.textView[0];
                     BottomSheetCell.this.textView[0] = BottomSheetCell.this.textView[1];
-                    BottomSheetCell.this.textView[1] = textView;
+                    BottomSheetCell.this.textView[1] = textView3;
                 }
             });
             animatorSet.start();
@@ -121,7 +126,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setCanceledOnTouchOutside(false);
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
-        Drawable mutate = context.getResources().getDrawable(2131232027).mutate();
+        Drawable mutate = context.getResources().getDrawable(2131231945).mutate();
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -224,7 +229,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView.setTextColor(Theme.getColor(i2));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setText(LocaleController.getString("AppUpdate", 2131690061));
+        textView.setText(LocaleController.getString(2131689981));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
@@ -233,7 +238,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         int i3 = Theme.key_dialogTextLink;
         textView2.setLinkTextColor(Theme.getColor(i3));
         TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate2 = this.appUpdate;
-        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", 2131690067, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
+        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", 2131689987, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
         textView2.setGravity(49);
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         TextView textView3 = new TextView(getContext());
@@ -242,7 +247,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         textView3.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         textView3.setLinkTextColor(Theme.getColor(i3));
         if (TextUtils.isEmpty(this.appUpdate.text)) {
-            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("AppUpdateChangelogEmpty", 2131690062)));
+            textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131689982)));
         } else {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.appUpdate.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
@@ -259,7 +264,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         this.shadow.setTag(1);
         frameLayout.addView(this.shadow, layoutParams);
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, false);
-        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", 2131690063, new Object[0]), false);
+        bottomSheetCell.setText(LocaleController.formatString("AppUpdateDownloadNow", 2131689983, new Object[0]), false);
         bottomSheetCell.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -268,7 +273,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         });
         frameLayout.addView(bottomSheetCell, LayoutHelper.createFrame(-1, 50.0f, 83, 0.0f, 0.0f, 0.0f, 50.0f));
         BottomSheetCell bottomSheetCell2 = new BottomSheetCell(context, true);
-        bottomSheetCell2.setText(LocaleController.getString("AppUpdateRemindMeLater", 2131690066), false);
+        bottomSheetCell2.setText(LocaleController.getString(2131689986), false);
         bottomSheetCell2.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -301,13 +306,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.shadowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        View view = this.shadow;
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
             @Override

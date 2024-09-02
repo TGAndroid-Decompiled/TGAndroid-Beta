@@ -27,6 +27,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
     int headerRow;
     int lastViewRow;
     final ArrayList<DoubledLimitsBottomSheet$Limit> limits;
+    int limitsStartEnd;
     int limitsStartRow;
     private final Theme.ResourcesProvider resourcesProvider;
     int rowCount;
@@ -49,23 +50,23 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         premiumGradientTools.x2 = 0.0f;
         premiumGradientTools.y2 = 1.0f;
         MessagesController messagesController = MessagesController.getInstance(i);
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("GroupsAndChannelsLimitTitle", R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString("GroupsAndChannelsLimitSubtitle", R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium)), messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("PinChatsLimitTitle", R.string.PinChatsLimitTitle), LocaleController.formatString("PinChatsLimitSubtitle", R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium)), messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("PublicLinksLimitTitle", R.string.PublicLinksLimitTitle), LocaleController.formatString("PublicLinksLimitSubtitle", R.string.PublicLinksLimitSubtitle, Integer.valueOf(messagesController.publicLinksLimitPremium)), messagesController.publicLinksLimitDefault, messagesController.publicLinksLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("SavedGifsLimitTitle", R.string.SavedGifsLimitTitle), LocaleController.formatString("SavedGifsLimitSubtitle", R.string.SavedGifsLimitSubtitle, Integer.valueOf(messagesController.savedGifsLimitPremium)), messagesController.savedGifsLimitDefault, messagesController.savedGifsLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("FavoriteStickersLimitTitle", R.string.FavoriteStickersLimitTitle), LocaleController.formatString("FavoriteStickersLimitSubtitle", R.string.FavoriteStickersLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.stickersFavedLimitDefault, messagesController.stickersFavedLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("BioLimitTitle", R.string.BioLimitTitle), LocaleController.formatString("BioLimitSubtitle", R.string.BioLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.aboutLengthLimitDefault, messagesController.aboutLengthLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("CaptionsLimitTitle", R.string.CaptionsLimitTitle), LocaleController.formatString("CaptionsLimitSubtitle", R.string.CaptionsLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.captionLengthLimitDefault, messagesController.captionLengthLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("FoldersLimitTitle", R.string.FoldersLimitTitle), LocaleController.formatString("FoldersLimitSubtitle", R.string.FoldersLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersLimitPremium)), messagesController.dialogFiltersLimitDefault, messagesController.dialogFiltersLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ChatPerFolderLimitTitle", R.string.ChatPerFolderLimitTitle), LocaleController.formatString("ChatPerFolderLimitSubtitle", R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium)), messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, null));
-        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString("ConnectedAccountsLimitTitle", R.string.ConnectedAccountsLimitTitle), LocaleController.formatString("ConnectedAccountsLimitSubtitle", R.string.ConnectedAccountsLimitSubtitle, 4), 3, 4, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString("GroupsAndChannelsLimitSubtitle", R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium)), messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString("PinChatsLimitSubtitle", R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium)), messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.PublicLinksLimitTitle), LocaleController.formatString("PublicLinksLimitSubtitle", R.string.PublicLinksLimitSubtitle, Integer.valueOf(messagesController.publicLinksLimitPremium)), messagesController.publicLinksLimitDefault, messagesController.publicLinksLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.SavedGifsLimitTitle), LocaleController.formatString("SavedGifsLimitSubtitle", R.string.SavedGifsLimitSubtitle, Integer.valueOf(messagesController.savedGifsLimitPremium)), messagesController.savedGifsLimitDefault, messagesController.savedGifsLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.FavoriteStickersLimitTitle), LocaleController.formatString("FavoriteStickersLimitSubtitle", R.string.FavoriteStickersLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.stickersFavedLimitDefault, messagesController.stickersFavedLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.BioLimitTitle), LocaleController.formatString("BioLimitSubtitle", R.string.BioLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.aboutLengthLimitDefault, messagesController.aboutLengthLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.CaptionsLimitTitle), LocaleController.formatString("CaptionsLimitSubtitle", R.string.CaptionsLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium)), messagesController.captionLengthLimitDefault, messagesController.captionLengthLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.FoldersLimitTitle), LocaleController.formatString("FoldersLimitSubtitle", R.string.FoldersLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersLimitPremium)), messagesController.dialogFiltersLimitDefault, messagesController.dialogFiltersLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.ChatPerFolderLimitTitle), LocaleController.formatString("ChatPerFolderLimitSubtitle", R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium)), messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, null));
+        arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.ConnectedAccountsLimitTitle), LocaleController.formatString("ConnectedAccountsLimitSubtitle", R.string.ConnectedAccountsLimitSubtitle, 4), 3, 4, null));
         arrayList.add(new DoubledLimitsBottomSheet$Limit(LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium)), messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, null));
-        this.rowCount = 0;
-        int i2 = 1 + 0;
-        this.rowCount = i2;
+        this.rowCount = 1;
         this.headerRow = 0;
-        this.limitsStartRow = i2;
-        this.rowCount = i2 + arrayList.size();
+        this.limitsStartRow = 1;
+        int size = arrayList.size() + 1;
+        this.rowCount = size;
+        this.limitsStartEnd = size;
     }
 
     @Override
@@ -74,7 +75,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         Context context = viewGroup.getContext();
         if (i != 1) {
             if (i != 2) {
-                DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
+                ?? doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
                 doubledLimitsBottomSheet$LimitCell.previewView.setParentViewForGradien(this.containerView);
                 doubledLimitsBottomSheet$LimitCell.previewView.setStaticGradinet(this.gradientTools);
                 fixedHeightEmptyCell = doubledLimitsBottomSheet$LimitCell;
@@ -82,7 +83,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
                 fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 16);
             }
         } else if (this.drawHeader) {
-            FrameLayout frameLayout = new FrameLayout(this, context) {
+            ?? r15 = new FrameLayout(context) {
                 @Override
                 protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(86.0f), 1073741824));
@@ -94,14 +95,14 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             imageView.setImageDrawable(PremiumGradient.getInstance().createGradientDrawable(ContextCompat.getDrawable(context, R.drawable.other_2x_large)));
             linearLayout.addView(imageView, LayoutHelper.createFrame(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
             TextView textView = new TextView(context);
-            textView.setText(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
+            textView.setText(LocaleController.getString(R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
-            frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
-            fixedHeightEmptyCell = frameLayout;
+            r15.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
+            fixedHeightEmptyCell = r15;
         } else {
             fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 64);
         }

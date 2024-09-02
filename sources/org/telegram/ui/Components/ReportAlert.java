@@ -72,24 +72,24 @@ public class ReportAlert extends BottomSheet {
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         if (i == 0) {
-            textView.setText(LocaleController.getString("ReportTitleSpam", R.string.ReportTitleSpam));
+            textView.setText(LocaleController.getString(R.string.ReportTitleSpam));
         } else if (i == 6) {
-            textView.setText(LocaleController.getString("ReportTitleFake", R.string.ReportTitleFake));
+            textView.setText(LocaleController.getString(R.string.ReportTitleFake));
         } else if (i == 1) {
-            textView.setText(LocaleController.getString("ReportTitleViolence", R.string.ReportTitleViolence));
+            textView.setText(LocaleController.getString(R.string.ReportTitleViolence));
         } else if (i == 2) {
-            textView.setText(LocaleController.getString("ReportTitleChild", R.string.ReportTitleChild));
+            textView.setText(LocaleController.getString(R.string.ReportTitleChild));
         } else if (i == 5) {
-            textView.setText(LocaleController.getString("ReportTitlePornography", R.string.ReportTitlePornography));
+            textView.setText(LocaleController.getString(R.string.ReportTitlePornography));
         } else if (i == 100) {
-            textView.setText(LocaleController.getString("ReportChat", R.string.ReportChat));
+            textView.setText(LocaleController.getString(R.string.ReportChat));
         }
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
         textView2.setGravity(1);
-        textView2.setText(LocaleController.getString("ReportInfo", R.string.ReportInfo));
+        textView2.setText(LocaleController.getString(R.string.ReportInfo));
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
@@ -107,7 +107,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setGravity(LocaleController.isRTL ? 5 : 3);
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
-        this.editText.setHint(LocaleController.getString("ReportHint", R.string.ReportHint));
+        this.editText.setHint(LocaleController.getString(R.string.ReportHint));
         this.editText.setCursorColor(getThemedColor(i2));
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.editText.setCursorWidth(1.5f);
@@ -123,7 +123,7 @@ public class ReportAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, resourcesProvider);
         this.clearButton = bottomSheetCell;
         bottomSheetCell.setBackground(null);
-        this.clearButton.setText(LocaleController.getString("ReportSend", R.string.ReportSend));
+        this.clearButton.setText(LocaleController.getString(R.string.ReportSend));
         this.clearButton.background.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {

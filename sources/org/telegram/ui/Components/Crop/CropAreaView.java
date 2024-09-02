@@ -140,26 +140,27 @@ public class CropAreaView extends ViewGroup {
         paint.setColor(2130706432);
         Paint paint2 = new Paint();
         this.shadowPaint = paint2;
-        paint2.setStyle(Paint.Style.FILL);
+        Paint.Style style = Paint.Style.FILL;
+        paint2.setStyle(style);
         this.shadowPaint.setColor(436207616);
         this.shadowPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         Paint paint3 = new Paint();
         this.linePaint = paint3;
-        paint3.setStyle(Paint.Style.FILL);
+        paint3.setStyle(style);
         this.linePaint.setColor(-1);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         Paint paint4 = new Paint();
         this.handlePaint = paint4;
-        paint4.setStyle(Paint.Style.FILL);
+        paint4.setStyle(style);
         this.handlePaint.setColor(-1);
         Paint paint5 = new Paint();
         this.framePaint = paint5;
-        paint5.setStyle(Paint.Style.FILL);
+        paint5.setStyle(style);
         this.framePaint.setColor(-1291845633);
         Paint paint6 = new Paint(1);
         this.eraserPaint = paint6;
         paint6.setColor(0);
-        this.eraserPaint.setStyle(Paint.Style.FILL);
+        this.eraserPaint.setStyle(style);
         this.eraserPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         Paint paint7 = new Paint(2);
         this.bitmapPaint = paint7;
@@ -227,8 +228,8 @@ public class CropAreaView extends ViewGroup {
         this.freeform = z2;
         float f = z ? i2 / i : i / i2;
         if (!z2) {
-            this.lockAspectRatio = 1.0f;
             f = 1.0f;
+            this.lockAspectRatio = 1.0f;
         }
         setActualRect(f);
     }
@@ -366,8 +367,9 @@ public class CropAreaView extends ViewGroup {
                     float f22 = i24 + i13;
                     canvas.drawLine(f20, f21, f20, f22, this.shadowPaint);
                     canvas.drawLine(f20, f21, f20, f22, this.linePaint);
+                    int i25 = i24 + ((i13 / 3) * i16);
                     float f23 = i23;
-                    float f24 = i24 + ((i13 / 3) * i16);
+                    float f24 = i25;
                     float f25 = i23 + i12;
                     canvas.drawLine(f23, f24, f25, f24, this.shadowPaint);
                     canvas.drawLine(f23, f24, f25, f24, this.linePaint);
@@ -408,11 +410,11 @@ public class CropAreaView extends ViewGroup {
                     this.circleBitmap = null;
                 }
                 try {
-                    int i25 = this.size;
-                    this.circleBitmap = Bitmap.createBitmap(i25, i25, Bitmap.Config.ARGB_8888);
-                    Canvas canvas2 = new Canvas(this.circleBitmap);
                     int i26 = this.size;
-                    canvas2.drawRect(0.0f, 0.0f, i26, i26, this.dimPaint);
+                    this.circleBitmap = Bitmap.createBitmap(i26, i26, Bitmap.Config.ARGB_8888);
+                    Canvas canvas2 = new Canvas(this.circleBitmap);
+                    float f38 = this.size;
+                    canvas2.drawRect(0.0f, 0.0f, f38, f38, this.dimPaint);
                     int i27 = this.size;
                     canvas2.drawCircle(i27 / 2, i27 / 2, i27 / 2, this.eraserPaint);
                     canvas2.setBitmap(null);
@@ -426,21 +428,21 @@ public class CropAreaView extends ViewGroup {
             if (this.circleBitmap != null) {
                 this.bitmapPaint.setAlpha((int) (this.frameAlpha * 255.0f));
                 this.dimPaint.setAlpha((int) (this.frameAlpha * 127.0f));
-                float f38 = this.sidePadding;
-                int i28 = this.size;
-                this.left = ((measuredWidth - i28) / 2.0f) + f38;
-                float f39 = f38 + ((measuredHeight - i28) / 2.0f) + ((Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight);
-                this.top = f39;
-                float f40 = f39 + i28;
+                float f39 = this.sidePadding;
+                float f40 = this.size;
+                this.left = ((measuredWidth - f40) / 2.0f) + f39;
+                float f41 = f39 + ((measuredHeight - f40) / 2.0f) + ((Build.VERSION.SDK_INT < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight);
+                this.top = f41;
+                float f42 = f41 + f40;
                 canvas.drawRect(0.0f, 0.0f, getWidth(), (int) this.top, this.dimPaint);
-                float f41 = (int) f40;
-                canvas.drawRect(0.0f, (int) this.top, (int) this.left, f41, this.dimPaint);
-                canvas.drawRect((int) (r1 + i28), (int) this.top, getWidth(), f41, this.dimPaint);
-                canvas.drawRect(0.0f, f41, getWidth(), getHeight(), this.dimPaint);
+                float f43 = (int) f42;
+                canvas.drawRect(0.0f, (int) this.top, (int) this.left, f43, this.dimPaint);
+                canvas.drawRect((int) (r1 + f40), (int) this.top, getWidth(), f43, this.dimPaint);
+                canvas.drawRect(0.0f, f43, getWidth(), getHeight(), this.dimPaint);
                 canvas.drawBitmap(this.circleBitmap, (int) this.left, (int) this.top, this.bitmapPaint);
                 if (getMeasuredHeight() > getMeasuredWidth() && this.subtitleLayout != null) {
                     canvas.save();
-                    canvas.translate(getMeasuredWidth() / 2.0f, f40 + AndroidUtilities.dp(16.0f));
+                    canvas.translate(getMeasuredWidth() / 2.0f, f42 + AndroidUtilities.dp(16.0f));
                     this.subtitleLayout.draw(canvas);
                     canvas.restore();
                 }
@@ -453,9 +455,9 @@ public class CropAreaView extends ViewGroup {
                 j = 17;
             }
             this.lastUpdateTime = elapsedRealtime;
-            float f42 = this.frameAlpha + (((float) j) / 180.0f);
-            this.frameAlpha = f42;
-            if (f42 > 1.0f) {
+            float f44 = this.frameAlpha + (((float) j) / 180.0f);
+            this.frameAlpha = f44;
+            if (f44 > 1.0f) {
                 this.frameAlpha = 1.0f;
             }
             invalidate();
@@ -573,17 +575,16 @@ public class CropAreaView extends ViewGroup {
             AnimatorSet animatorSet = new AnimatorSet();
             this.animator = animatorSet;
             animatorSet.setDuration(300L);
-            float[] fArr = {rectF.left};
-            r0[0].setInterpolator(this.interpolator);
-            float[] fArr2 = {rectF.top};
-            r0[1].setInterpolator(this.interpolator);
-            float[] fArr3 = {rectF.right};
-            r0[2].setInterpolator(this.interpolator);
-            float[] fArr4 = {rectF.bottom};
-            r0[3].setInterpolator(this.interpolator);
-            Animator[] animatorArr = {ObjectAnimator.ofFloat(this, "cropLeft", fArr), ObjectAnimator.ofFloat(this, "cropTop", fArr2), ObjectAnimator.ofFloat(this, "cropRight", fArr3), ObjectAnimator.ofFloat(this, "cropBottom", fArr4), animator};
-            animatorArr[4].setInterpolator(this.interpolator);
-            animatorSet.playTogether(animatorArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "cropLeft", rectF.left);
+            ofFloat.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this, "cropTop", rectF.top);
+            ofFloat2.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this, "cropRight", rectF.right);
+            ofFloat3.setInterpolator(this.interpolator);
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this, "cropBottom", rectF.bottom);
+            ofFloat4.setInterpolator(this.interpolator);
+            animator.setInterpolator(this.interpolator);
+            animatorSet.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4, animator);
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator3) {
@@ -688,9 +689,9 @@ public class CropAreaView extends ViewGroup {
         float measuredWidth = getMeasuredWidth() / measuredHeight;
         float min = Math.min(getMeasuredWidth(), measuredHeight) - (this.sidePadding * 2.0f);
         float measuredWidth2 = getMeasuredWidth();
-        float f7 = this.sidePadding;
-        float f8 = measuredWidth2 - (f7 * 2.0f);
-        float f9 = measuredHeight - (f7 * 2.0f);
+        float f7 = this.sidePadding * 2.0f;
+        float f8 = measuredWidth2 - f7;
+        float f9 = measuredHeight - f7;
         float measuredWidth3 = getMeasuredWidth() / 2.0f;
         float f10 = f6 + (measuredHeight / 2.0f);
         if (Math.abs(1.0f - f) < 1.0E-4d) {

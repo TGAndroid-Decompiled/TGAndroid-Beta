@@ -172,7 +172,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
         this.viewPager = viewPagerFixed;
         viewPagerFixed.setOverScrollMode(2);
         viewPagerFixed.setClipToPadding(false);
-        viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter(this) {
+        viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
             @Override
             public void bindView(View view, int i, int i2) {
             }
@@ -253,7 +253,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
         });
         loadData(z2);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);

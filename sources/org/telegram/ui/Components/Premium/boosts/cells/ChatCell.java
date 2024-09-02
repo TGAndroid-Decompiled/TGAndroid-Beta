@@ -41,7 +41,7 @@ public class ChatCell extends BaseCell {
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
         imageView.setImageResource(R.drawable.poll_remove);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
-        imageView.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
+        imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z = LocaleController.isRTL;
         addView(imageView, LayoutHelper.createFrame(48, 50.0f, (z ? 3 : 5) | 17, z ? 3.0f : 0.0f, 0.0f, z ? 0.0f : 3.0f, 0.0f));
         this.titleTextView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
@@ -105,15 +105,15 @@ public class ChatCell extends BaseCell {
     public void setCounter(int i, int i2) {
         String string;
         boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat);
-        if (this.removable) {
-            if (i2 >= 1) {
-                string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
-            } else {
-                string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
-            }
-            setSubtitle(string);
+        if (!this.removable) {
+            setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
             return;
         }
-        setSubtitle(LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "BoostingChannelWillReceiveBoost" : "BoostingGroupWillReceiveBoost", i, new Object[0]));
+        if (i2 >= 1) {
+            string = LocaleController.formatPluralString(isChannelAndNotMegaGroup ? "Subscribers" : "Members", i2, new Object[0]);
+        } else {
+            string = LocaleController.getString(isChannelAndNotMegaGroup ? R.string.DiscussChannel : R.string.AccDescrGroup);
+        }
+        setSubtitle(string);
     }
 }

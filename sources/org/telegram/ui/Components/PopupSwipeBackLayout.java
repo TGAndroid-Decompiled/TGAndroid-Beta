@@ -165,26 +165,23 @@ public class PopupSwipeBackLayout extends FrameLayout {
             this.lastTransitionProgress = this.transitionProgress;
         }
         View childAt = getChildAt(0);
-        View view = null;
         int i2 = this.currentForegroundIndex;
-        if (i2 >= 0 && i2 < getChildCount()) {
-            view = getChildAt(this.currentForegroundIndex);
-        }
+        View childAt2 = (i2 < 0 || i2 >= getChildCount()) ? null : getChildAt(this.currentForegroundIndex);
         childAt.setTranslationX((-this.transitionProgress) * getWidth() * 0.5f);
         float f3 = ((1.0f - this.transitionProgress) * 0.05f) + 0.95f;
         childAt.setScaleX(f3);
         childAt.setScaleY(f3);
-        if (view != null) {
-            view.setTranslationX((1.0f - this.transitionProgress) * getWidth());
+        if (childAt2 != null) {
+            childAt2.setTranslationX((1.0f - this.transitionProgress) * getWidth());
         }
         invalidateVisibility();
         float measuredWidth = childAt.getMeasuredWidth();
         float measuredHeight = childAt.getMeasuredHeight();
-        if (view != null) {
-            f = view.getMeasuredWidth();
+        if (childAt2 != null) {
+            f = childAt2.getMeasuredWidth();
             f2 = this.overrideForegroundHeight;
             if (f2 == 0.0f) {
-                f2 = view.getMeasuredHeight();
+                f2 = childAt2.getMeasuredHeight();
             }
         } else {
             f = 0.0f;
@@ -203,9 +200,9 @@ public class PopupSwipeBackLayout extends FrameLayout {
         }
         actionBarPopupWindowLayout.updateAnimation = true;
         for (int i3 = 0; i3 < getChildCount(); i3++) {
-            View childAt2 = getChildAt(i3);
-            childAt2.setPivotX(0.0f);
-            childAt2.setPivotY(0.0f);
+            View childAt3 = getChildAt(i3);
+            childAt3.setPivotX(0.0f);
+            childAt3.setPivotY(0.0f);
         }
         invalidate();
     }

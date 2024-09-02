@@ -45,27 +45,26 @@ public class VideoTimeView extends View {
     }
 
     public void setTime(long j, boolean z) {
-        long j2 = j % 1000;
-        long j3 = j / 1000;
-        long j4 = j3 % 60;
-        long j5 = j3 - j4;
-        long j6 = j5 / 60;
-        long j7 = (j5 - (j6 * 60)) / 60;
+        long j2 = j / 1000;
+        long j3 = j2 % 60;
+        long j4 = j2 - j3;
+        long j5 = j4 / 60;
+        long j6 = (j4 - (j5 * 60)) / 60;
         StringBuilder sb = new StringBuilder(8);
-        if (j7 < 10) {
-            sb.append('0');
-        }
-        sb.append(j7);
-        sb.append(':');
         if (j6 < 10) {
             sb.append('0');
         }
         sb.append(j6);
         sb.append(':');
-        if (j4 < 10) {
+        if (j5 < 10) {
             sb.append('0');
         }
-        sb.append(j4);
+        sb.append(j5);
+        sb.append(':');
+        if (j3 < 10) {
+            sb.append('0');
+        }
+        sb.append(j3);
         if (TextUtils.equals(sb, this.textDrawable.getText())) {
             return;
         }

@@ -21,6 +21,7 @@ public class VoipCoverEmoji {
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
     private int fromRandomX;
     private int fromRandomY;
+    private int height;
     private boolean isShown;
     private final View parent;
     private int posX;
@@ -96,15 +97,15 @@ public class VoipCoverEmoji {
             }
         }
         this.isShown = true;
-        final int i = 350;
-        final int i2 = 12;
+        final int i = 12;
         this.diffX = this.posX > getCenterX() ? AndroidUtilities.dp(12) : -AndroidUtilities.dp(12);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.setInterpolator(new CubicBezierInterpolator(0.34d, 1.36d, 0.64d, 1.0d));
+        final int i2 = 350;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                VoipCoverEmoji.this.lambda$show$2(i2, i, valueAnimator);
+                VoipCoverEmoji.this.lambda$show$2(i, i2, valueAnimator);
             }
         });
         long j = 350;
@@ -163,6 +164,7 @@ public class VoipCoverEmoji {
 
     public void onLayout(int i, int i2) {
         this.width = i;
+        this.height = i2;
         this.parent.invalidate();
     }
 

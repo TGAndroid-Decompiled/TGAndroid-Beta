@@ -122,7 +122,7 @@ public class ManageChatUserCell extends FrameLayout {
                     ManageChatUserCell.this.lambda$new$0(view);
                 }
             });
-            this.optionsButton.setContentDescription(LocaleController.getString("AccDescrUserOptions", R.string.AccDescrUserOptions));
+            this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrUserOptions));
         }
     }
 

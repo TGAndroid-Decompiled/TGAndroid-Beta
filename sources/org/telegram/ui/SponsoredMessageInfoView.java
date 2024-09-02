@@ -24,7 +24,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("SponsoredMessageInfo", R.string.SponsoredMessageInfo));
+        textView.setText(LocaleController.getString(R.string.SponsoredMessageInfo));
         textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -68,7 +68,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         int i2 = Theme.key_featuredStickers_addButton;
         paint.setColor(Theme.getColor(i2, resourcesProvider));
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        TextView textView2 = new TextView(this, context) {
+        TextView textView2 = new TextView(context) {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
@@ -77,7 +77,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
             }
         };
-        textView2.setOnClickListener(new View.OnClickListener(this) {
+        textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Runnable runnable2 = runnable;
@@ -88,7 +88,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
             }
         });
         textView2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        textView2.setText(LocaleController.getString("SponsoredMessageAlertLearnMoreUrl", R.string.SponsoredMessageAlertLearnMoreUrl));
+        textView2.setText(LocaleController.getString(R.string.SponsoredMessageAlertLearnMoreUrl));
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 4.0f));
         textView2.setTextSize(1, 14.0f);

@@ -24,6 +24,7 @@ public class BoostCounterSpan extends ReplacementSpan {
     private int currentCount;
     public boolean isRtl;
     private final TextPaint namePaint;
+    private final View parent;
 
     public static Pair<SpannableString, BoostCounterSpan> create(View view, TextPaint textPaint, int i) {
         SpannableString spannableString = new SpannableString("d");
@@ -34,6 +35,7 @@ public class BoostCounterSpan extends ReplacementSpan {
 
     public BoostCounterSpan(View view, TextPaint textPaint, int i) {
         this.namePaint = textPaint;
+        this.parent = view;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable;
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -69,8 +71,11 @@ public class BoostCounterSpan extends ReplacementSpan {
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         if (this.namePaint.getColor() != this.countText.getTextColor()) {
             this.countText.setTextColor(this.namePaint.getColor());
-            this.boostProfileBadge.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), PorterDuff.Mode.MULTIPLY));
-            this.boostProfileBadge2.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), PorterDuff.Mode.MULTIPLY));
+            Drawable drawable = this.boostProfileBadge;
+            int textColor = this.countText.getTextColor();
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable.setColorFilter(new PorterDuffColorFilter(textColor, mode));
+            this.boostProfileBadge2.setColorFilter(new PorterDuffColorFilter(this.countText.getTextColor(), mode));
         }
         canvas.save();
         canvas.translate(f, -AndroidUtilities.dp(0.2f));

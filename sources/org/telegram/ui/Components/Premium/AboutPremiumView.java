@@ -19,17 +19,17 @@ public class AboutPremiumView extends LinearLayout {
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i));
         textView.setTypeface(AndroidUtilities.bold());
-        textView.setText(LocaleController.getString("AboutPremiumTitle", R.string.AboutPremiumTitle));
+        textView.setText(LocaleController.getString(R.string.AboutPremiumTitle));
         addView(textView);
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor(i));
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("AboutPremiumDescription", R.string.AboutPremiumDescription)));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AboutPremiumDescription)));
         addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 0, 0, 0));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(Theme.getColor(i));
-        textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("AboutPremiumDescription2", R.string.AboutPremiumDescription2)));
+        textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AboutPremiumDescription2)));
         addView(textView3, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 24, 0, 0));
     }
 }

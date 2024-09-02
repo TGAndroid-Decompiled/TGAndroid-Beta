@@ -175,6 +175,7 @@ public class MessagePrivateSeenView extends FrameLayout {
     }
 
     public static void showSheet(final Context context, final int i, long j, final boolean z, final Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider) {
+        String str;
         int i2;
         final BottomSheet bottomSheet;
         final BottomSheet bottomSheet2 = new BottomSheet(context, false, resourcesProvider);
@@ -202,13 +203,18 @@ public class MessagePrivateSeenView extends FrameLayout {
         textView2.setGravity(17);
         textView2.setTextColor(Theme.getColor(i3, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
-        String firstName = j > 0 ? UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j))) : "";
+        if (j <= 0) {
+            str = "";
+        } else {
+            str = UserObject.getFirstName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
+        }
+        String str2 = str;
         if (z) {
             i2 = premiumFeaturesBlocked ? R.string.PremiumLastSeenText1Locked : R.string.PremiumLastSeenText1;
         } else {
             i2 = premiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1;
         }
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, firstName)));
+        textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString(i2, str2)));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
         final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
@@ -253,7 +259,7 @@ public class MessagePrivateSeenView extends FrameLayout {
             textView4.setGravity(17);
             textView4.setTextColor(Theme.getColor(i3, resourcesProvider));
             textView4.setTextSize(1, 14.0f);
-            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, firstName)));
+            textView4.setText(AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, str2)));
             linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
             PremiumButtonView premiumButtonView = new PremiumButtonView(context, true, resourcesProvider);
             bottomSheet = bottomSheet2;

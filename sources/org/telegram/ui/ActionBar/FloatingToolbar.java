@@ -43,6 +43,7 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Space;
 import android.widget.TextView;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -302,6 +303,10 @@ public final class FloatingToolbar {
         }
 
         public FloatingToolbarPopup(Context context, View view) {
+            Drawable drawable;
+            Drawable drawable2;
+            Drawable drawable3;
+            Drawable drawable4;
             ViewGroup viewGroup;
             int themedColor;
             this.mParent = view;
@@ -318,21 +323,25 @@ public final class FloatingToolbar {
             this.mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563661);
             this.mLinearOutSlowInInterpolator = AnimationUtils.loadInterpolator(context, 17563662);
             this.mFastOutLinearInInterpolator = AnimationUtils.loadInterpolator(context, 17563663);
-            Drawable mutate = context.getDrawable(R.drawable.ft_avd_tooverflow).mutate();
+            drawable = context.getDrawable(R.drawable.ft_avd_tooverflow);
+            Drawable mutate = drawable.mutate();
             this.mArrow = mutate;
             mutate.setAutoMirrored(true);
-            Drawable mutate2 = context.getDrawable(R.drawable.ft_avd_toarrow).mutate();
+            drawable2 = context.getDrawable(R.drawable.ft_avd_toarrow);
+            Drawable mutate2 = drawable2.mutate();
             this.mOverflow = mutate2;
             mutate2.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) context.getDrawable(R.drawable.ft_avd_toarrow_animation).mutate();
-            this.mToArrow = animatedVectorDrawable;
-            animatedVectorDrawable.setAutoMirrored(true);
-            AnimatedVectorDrawable animatedVectorDrawable2 = (AnimatedVectorDrawable) context.getDrawable(R.drawable.ft_avd_tooverflow_animation).mutate();
-            this.mToOverflow = animatedVectorDrawable2;
-            animatedVectorDrawable2.setAutoMirrored(true);
+            drawable3 = context.getDrawable(R.drawable.ft_avd_toarrow_animation);
+            AnimatedVectorDrawable m = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable3.mutate());
+            this.mToArrow = m;
+            m.setAutoMirrored(true);
+            drawable4 = context.getDrawable(R.drawable.ft_avd_tooverflow_animation);
+            AnimatedVectorDrawable m2 = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable4.mutate());
+            this.mToOverflow = m2;
+            m2.setAutoMirrored(true);
             FrameLayout frameLayout = new FrameLayout(context);
             this.mOverflowButton = frameLayout;
-            ImageButton imageButton = new ImageButton(context, FloatingToolbar.this) {
+            ImageButton imageButton = new ImageButton(context) {
                 @Override
                 public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                     if (FloatingToolbarPopup.this.mIsOverflowOpen) {
@@ -379,8 +388,8 @@ public final class FloatingToolbar {
             }
             mutate2.setTint(themedColor);
             mutate.setTint(themedColor);
-            animatedVectorDrawable.setTint(themedColor);
-            animatedVectorDrawable2.setTint(themedColor);
+            m.setTint(themedColor);
+            m2.setTint(themedColor);
             textView.setTextColor(themedColor);
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -413,7 +422,10 @@ public final class FloatingToolbar {
         }
 
         public class AnonymousClass4 extends AnimatorListenerAdapter {
+            final FloatingToolbar val$this$0;
+
             AnonymousClass4(FloatingToolbar floatingToolbar) {
+                this.val$this$0 = floatingToolbar;
             }
 
             @Override
@@ -433,7 +445,10 @@ public final class FloatingToolbar {
         }
 
         public class AnonymousClass5 extends AnimatorListenerAdapter {
+            final FloatingToolbar val$this$0;
+
             AnonymousClass5(FloatingToolbar floatingToolbar) {
+                this.val$this$0 = floatingToolbar;
             }
 
             @Override
@@ -638,8 +653,10 @@ public final class FloatingToolbar {
         }
 
         private void openOverflow() {
-            final int width = this.mOverflowPanelSize.getWidth();
-            final int height = this.mOverflowPanelSize.getHeight();
+            final int width;
+            final int height;
+            width = this.mOverflowPanelSize.getWidth();
+            height = this.mOverflowPanelSize.getHeight();
             final int width2 = this.mContentContainer.getWidth();
             final int height2 = this.mContentContainer.getHeight();
             final float y = this.mContentContainer.getY();
@@ -705,7 +722,9 @@ public final class FloatingToolbar {
         }
 
         private void closeOverflow() {
-            final int width = this.mMainPanelSize.getWidth();
+            final int width;
+            final int height;
+            width = this.mMainPanelSize.getWidth();
             final int width2 = this.mContentContainer.getWidth();
             final float x = this.mContentContainer.getX();
             final float width3 = x + this.mContentContainer.getWidth();
@@ -725,7 +744,7 @@ public final class FloatingToolbar {
                     }
                 }
             };
-            final int height = this.mMainPanelSize.getHeight();
+            height = this.mMainPanelSize.getHeight();
             final int height2 = this.mContentContainer.getHeight();
             final float y = this.mContentContainer.getY() + this.mContentContainer.getHeight();
             Animation animation2 = new Animation() {
@@ -769,47 +788,79 @@ public final class FloatingToolbar {
         }
 
         public void setPanelsStatesAtRestingPosition() {
+            int width;
+            int width2;
+            int width3;
+            int width4;
+            int width5;
+            int height;
+            int height2;
+            int height3;
+            int height4;
+            int height5;
+            int width6;
+            int height6;
+            int height7;
+            int height8;
+            int height9;
+            int width7;
+            int width8;
             this.mOverflowButton.setEnabled(true);
             this.mOverflowPanel.awakenScrollBars();
             if (this.mIsOverflowOpen) {
-                setSize(this.mContentContainer, this.mOverflowPanelSize);
+                Size size = this.mOverflowPanelSize;
+                setSize(this.mContentContainer, size);
                 this.mMainPanel.setAlpha(0.0f);
                 this.mMainPanel.setVisibility(4);
                 this.mOverflowPanel.setAlpha(1.0f);
                 this.mOverflowPanel.setVisibility(0);
                 this.mOverflowButtonIcon.setImageDrawable(this.mArrow);
-                this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+                this.mOverflowButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
                     this.mMainPanel.setX(0.0f);
-                    this.mOverflowButton.setX(r0.getWidth() - this.mOverflowButtonSize.getWidth());
+                    FrameLayout frameLayout = this.mOverflowButton;
+                    width7 = size.getWidth();
+                    width8 = this.mOverflowButtonSize.getWidth();
+                    frameLayout.setX(width7 - width8);
                     this.mOverflowPanel.setX(0.0f);
                 } else {
-                    this.mContentContainer.setX((this.mPopupWindow.getWidth() - r0.getWidth()) - this.mMarginHorizontal);
+                    ViewGroup viewGroup = this.mContentContainer;
+                    int width9 = this.mPopupWindow.getWidth();
+                    width6 = size.getWidth();
+                    viewGroup.setX((width9 - width6) - this.mMarginHorizontal);
                     this.mMainPanel.setX(-this.mContentContainer.getX());
                     this.mOverflowButton.setX(0.0f);
                     this.mOverflowPanel.setX(0.0f);
                 }
                 if (this.mOpenOverflowUpwards) {
                     this.mContentContainer.setY(this.mMarginVertical);
-                    this.mMainPanel.setY(r0.getHeight() - this.mContentContainer.getHeight());
-                    this.mOverflowButton.setY(r0.getHeight() - this.mOverflowButtonSize.getHeight());
+                    ViewGroup viewGroup2 = this.mMainPanel;
+                    height7 = size.getHeight();
+                    viewGroup2.setY(height7 - this.mContentContainer.getHeight());
+                    FrameLayout frameLayout2 = this.mOverflowButton;
+                    height8 = size.getHeight();
+                    height9 = this.mOverflowButtonSize.getHeight();
+                    frameLayout2.setY(height8 - height9);
                     this.mOverflowPanel.setY(0.0f);
                     return;
                 }
                 this.mContentContainer.setY(this.mMarginVertical);
                 this.mMainPanel.setY(0.0f);
                 this.mOverflowButton.setY(0.0f);
-                this.mOverflowPanel.setY(this.mOverflowButtonSize.getHeight());
+                OverflowPanel overflowPanel = this.mOverflowPanel;
+                height6 = this.mOverflowButtonSize.getHeight();
+                overflowPanel.setY(height6);
                 return;
             }
-            setSize(this.mContentContainer, this.mMainPanelSize);
+            Size size2 = this.mMainPanelSize;
+            setSize(this.mContentContainer, size2);
             this.mMainPanel.setAlpha(1.0f);
             this.mMainPanel.setVisibility(0);
             this.mOverflowPanel.setAlpha(0.0f);
             this.mOverflowPanel.setVisibility(4);
             this.mOverflowButtonIcon.setImageDrawable(this.mOverflow);
-            this.mOverflowButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+            this.mOverflowButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
             if (hasOverflow()) {
                 if (isInRTLMode()) {
                     this.mContentContainer.setX(this.mMarginHorizontal);
@@ -817,22 +868,41 @@ public final class FloatingToolbar {
                     this.mOverflowButton.setX(0.0f);
                     this.mOverflowPanel.setX(0.0f);
                 } else {
-                    this.mContentContainer.setX((this.mPopupWindow.getWidth() - r0.getWidth()) - this.mMarginHorizontal);
+                    ViewGroup viewGroup3 = this.mContentContainer;
+                    int width10 = this.mPopupWindow.getWidth();
+                    width = size2.getWidth();
+                    viewGroup3.setX((width10 - width) - this.mMarginHorizontal);
                     this.mMainPanel.setX(0.0f);
-                    this.mOverflowButton.setX(r0.getWidth() - this.mOverflowButtonSize.getWidth());
-                    this.mOverflowPanel.setX(r0.getWidth() - this.mOverflowPanelSize.getWidth());
+                    FrameLayout frameLayout3 = this.mOverflowButton;
+                    width2 = size2.getWidth();
+                    width3 = this.mOverflowButtonSize.getWidth();
+                    frameLayout3.setX(width2 - width3);
+                    OverflowPanel overflowPanel2 = this.mOverflowPanel;
+                    width4 = size2.getWidth();
+                    width5 = this.mOverflowPanelSize.getWidth();
+                    overflowPanel2.setX(width4 - width5);
                 }
                 if (this.mOpenOverflowUpwards) {
-                    this.mContentContainer.setY((this.mMarginVertical + this.mOverflowPanelSize.getHeight()) - r0.getHeight());
+                    ViewGroup viewGroup4 = this.mContentContainer;
+                    int i = this.mMarginVertical;
+                    height2 = this.mOverflowPanelSize.getHeight();
+                    int i2 = i + height2;
+                    height3 = size2.getHeight();
+                    viewGroup4.setY(i2 - height3);
                     this.mMainPanel.setY(0.0f);
                     this.mOverflowButton.setY(0.0f);
-                    this.mOverflowPanel.setY(r0.getHeight() - this.mOverflowPanelSize.getHeight());
+                    OverflowPanel overflowPanel3 = this.mOverflowPanel;
+                    height4 = size2.getHeight();
+                    height5 = this.mOverflowPanelSize.getHeight();
+                    overflowPanel3.setY(height4 - height5);
                     return;
                 }
                 this.mContentContainer.setY(this.mMarginVertical);
                 this.mMainPanel.setY(0.0f);
                 this.mOverflowButton.setY(0.0f);
-                this.mOverflowPanel.setY(this.mOverflowButtonSize.getHeight());
+                OverflowPanel overflowPanel4 = this.mOverflowPanel;
+                height = this.mOverflowButtonSize.getHeight();
+                overflowPanel4.setY(height);
                 return;
             }
             this.mContentContainer.setX(this.mMarginHorizontal);
@@ -842,18 +912,26 @@ public final class FloatingToolbar {
         }
 
         private void updateOverflowHeight(int i) {
+            int height;
+            int height2;
+            int height3;
+            int width;
             if (hasOverflow()) {
-                int calculateOverflowHeight = calculateOverflowHeight((i - this.mOverflowButtonSize.getHeight()) / this.mLineHeight);
-                if (this.mOverflowPanelSize.getHeight() != calculateOverflowHeight) {
-                    this.mOverflowPanelSize = new Size(this.mOverflowPanelSize.getWidth(), calculateOverflowHeight);
+                height = this.mOverflowButtonSize.getHeight();
+                int calculateOverflowHeight = calculateOverflowHeight((i - height) / this.mLineHeight);
+                height2 = this.mOverflowPanelSize.getHeight();
+                if (height2 != calculateOverflowHeight) {
+                    width = this.mOverflowPanelSize.getWidth();
+                    this.mOverflowPanelSize = new Size(width, calculateOverflowHeight);
                 }
                 setSize(this.mOverflowPanel, this.mOverflowPanelSize);
                 if (this.mIsOverflowOpen) {
                     setSize(this.mContentContainer, this.mOverflowPanelSize);
                     if (this.mOpenOverflowUpwards) {
-                        int height = this.mOverflowPanelSize.getHeight() - calculateOverflowHeight;
+                        height3 = this.mOverflowPanelSize.getHeight();
+                        int i2 = height3 - calculateOverflowHeight;
                         ViewGroup viewGroup = this.mContentContainer;
-                        float f = height;
+                        float f = i2;
                         viewGroup.setY(viewGroup.getY() + f);
                         FrameLayout frameLayout = this.mOverflowButton;
                         frameLayout.setY(frameLayout.getY() - f);
@@ -867,21 +945,29 @@ public final class FloatingToolbar {
 
         private void updatePopupSize() {
             int i;
+            int width;
+            int height;
+            int width2;
+            int height2;
             Size size = this.mMainPanelSize;
             int i2 = 0;
             if (size != null) {
-                i2 = Math.max(0, size.getWidth());
-                i = Math.max(0, this.mMainPanelSize.getHeight());
+                width2 = size.getWidth();
+                i = Math.max(0, width2);
+                height2 = this.mMainPanelSize.getHeight();
+                i2 = Math.max(0, height2);
             } else {
                 i = 0;
             }
             Size size2 = this.mOverflowPanelSize;
             if (size2 != null) {
-                i2 = Math.max(i2, size2.getWidth());
-                i = Math.max(i, this.mOverflowPanelSize.getHeight());
+                width = size2.getWidth();
+                i = Math.max(i, width);
+                height = this.mOverflowPanelSize.getHeight();
+                i2 = Math.max(i2, height);
             }
-            this.mPopupWindow.setWidth(i2 + (this.mMarginHorizontal * 2));
-            this.mPopupWindow.setHeight(i + (this.mMarginVertical * 2));
+            this.mPopupWindow.setWidth(i + (this.mMarginHorizontal * 2));
+            this.mPopupWindow.setHeight(i2 + (this.mMarginVertical * 2));
             maybeComputeTransitionDurationScale();
         }
 
@@ -920,6 +1006,8 @@ public final class FloatingToolbar {
         }
 
         public List<MenuItem> layoutMainPanelItems(List<MenuItem> list, int i) {
+            int width;
+            int width2;
             LinkedList linkedList = new LinkedList(list);
             this.mMainPanel.removeAllViews();
             this.mMainPanel.setPaddingRelative(0, 0, 0, 0);
@@ -945,7 +1033,8 @@ public final class FloatingToolbar {
                     createMenuItemButton.setPaddingRelative(i3, paddingTop, (int) (paddingEnd * d2), createMenuItemButton.getPaddingBottom());
                     createMenuItemButton.measure(0, 0);
                     int min = Math.min(createMenuItemButton.getMeasuredWidth(), i);
-                    boolean z3 = min <= i2 - this.mOverflowButtonSize.getWidth();
+                    width2 = this.mOverflowButtonSize.getWidth();
+                    boolean z3 = min <= i2 - width2;
                     boolean z4 = z2 && min <= i2;
                     if (!z3 && !z4) {
                         break;
@@ -961,13 +1050,17 @@ public final class FloatingToolbar {
                 }
             }
             if (!linkedList.isEmpty()) {
-                this.mMainPanel.setPaddingRelative(0, 0, this.mOverflowButtonSize.getWidth(), 0);
+                ViewGroup viewGroup = this.mMainPanel;
+                width = this.mOverflowButtonSize.getWidth();
+                viewGroup.setPaddingRelative(0, 0, width, 0);
             }
             this.mMainPanelSize = measure(this.mMainPanel);
             return linkedList;
         }
 
         private void layoutOverflowPanelItems(List<MenuItem> list) {
+            int height;
+            int width;
             ArrayAdapter arrayAdapter = (ArrayAdapter) this.mOverflowPanel.getAdapter();
             arrayAdapter.clear();
             if (FloatingToolbar.this.premiumLockClickListener != null) {
@@ -996,9 +1089,13 @@ public final class FloatingToolbar {
             if (this.mOpenOverflowUpwards) {
                 this.mOverflowPanel.setY(0.0f);
             } else {
-                this.mOverflowPanel.setY(this.mOverflowButtonSize.getHeight());
+                OverflowPanel overflowPanel = this.mOverflowPanel;
+                height = this.mOverflowButtonSize.getHeight();
+                overflowPanel.setY(height);
             }
-            Size size2 = new Size(Math.max(getOverflowWidth(), this.mOverflowButtonSize.getWidth()), calculateOverflowHeight(4));
+            int overflowWidth = getOverflowWidth();
+            width = this.mOverflowButtonSize.getWidth();
+            Size size2 = new Size(Math.max(overflowWidth, width), calculateOverflowHeight(4));
             this.mOverflowPanelSize = size2;
             setSize(this.mOverflowPanel, size2);
         }
@@ -1038,10 +1135,18 @@ public final class FloatingToolbar {
         }
 
         public void positionContentYCoordinatesIfOpeningOverflowUpwards() {
+            int height;
+            int height2;
             if (this.mOpenOverflowUpwards) {
-                this.mMainPanel.setY(this.mContentContainer.getHeight() - this.mMainPanelSize.getHeight());
+                ViewGroup viewGroup = this.mMainPanel;
+                int height3 = this.mContentContainer.getHeight();
+                height = this.mMainPanelSize.getHeight();
+                viewGroup.setY(height3 - height);
                 this.mOverflowButton.setY(this.mContentContainer.getHeight() - this.mOverflowButton.getHeight());
-                this.mOverflowPanel.setY(this.mContentContainer.getHeight() - this.mOverflowPanelSize.getHeight());
+                OverflowPanel overflowPanel = this.mOverflowPanel;
+                int height4 = this.mContentContainer.getHeight();
+                height2 = this.mOverflowPanelSize.getHeight();
+                overflowPanel.setY(height4 - height2);
             }
         }
 
@@ -1055,8 +1160,12 @@ public final class FloatingToolbar {
         }
 
         private int calculateOverflowHeight(int i) {
+            int height;
             int min = Math.min(4, Math.min(Math.max(2, i), this.mOverflowPanel.getCount()));
-            return (min * this.mLineHeight) + this.mOverflowButtonSize.getHeight() + (min < this.mOverflowPanel.getCount() ? (int) (this.mLineHeight * 0.5f) : 0);
+            int i2 = min < this.mOverflowPanel.getCount() ? (int) (this.mLineHeight * 0.5f) : 0;
+            int i3 = min * this.mLineHeight;
+            height = this.mOverflowButtonSize.getHeight();
+            return i3 + height + i2;
         }
 
         private void setButtonTagAndClickListener(View view, MenuItem menuItem) {
@@ -1073,13 +1182,21 @@ public final class FloatingToolbar {
         }
 
         private void maybeComputeTransitionDurationScale() {
+            int width;
+            int width2;
+            int height;
+            int height2;
             Size size = this.mMainPanelSize;
             if (size == null || this.mOverflowPanelSize == null) {
                 return;
             }
-            int width = size.getWidth() - this.mOverflowPanelSize.getWidth();
-            int height = this.mOverflowPanelSize.getHeight() - this.mMainPanelSize.getHeight();
-            double sqrt = Math.sqrt((width * width) + (height * height));
+            width = size.getWidth();
+            width2 = this.mOverflowPanelSize.getWidth();
+            int i = width - width2;
+            height = this.mOverflowPanelSize.getHeight();
+            height2 = this.mMainPanelSize.getHeight();
+            int i2 = height - height2;
+            double sqrt = Math.sqrt((i * i) + (i2 * i2));
             double d = this.mContentContainer.getContext().getResources().getDisplayMetrics().density;
             Double.isNaN(d);
             this.mTransitionDurationScale = (int) (sqrt / d);
@@ -1089,8 +1206,10 @@ public final class FloatingToolbar {
             return new LinearLayout(this.mContext) {
                 @Override
                 protected void onMeasure(int i, int i2) {
+                    int width;
                     if (FloatingToolbarPopup.this.isOverflowAnimating() && FloatingToolbarPopup.this.mMainPanelSize != null) {
-                        i = View.MeasureSpec.makeMeasureSpec(FloatingToolbarPopup.this.mMainPanelSize.getWidth(), 1073741824);
+                        width = FloatingToolbarPopup.this.mMainPanelSize.getWidth();
+                        i = View.MeasureSpec.makeMeasureSpec(width, 1073741824);
                     }
                     super.onMeasure(i, i2);
                 }
@@ -1103,14 +1222,18 @@ public final class FloatingToolbar {
         }
 
         private OverflowPanel createOverflowPanel() {
-            final OverflowPanel overflowPanel = new OverflowPanel(this, this);
+            final OverflowPanel overflowPanel = new OverflowPanel(this);
             overflowPanel.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
             overflowPanel.setDivider(null);
             overflowPanel.setDividerHeight(0);
             overflowPanel.setAdapter((ListAdapter) new ArrayAdapter<MenuItem>(this.mContext, 0) {
                 @Override
                 public View getView(int i, View view, ViewGroup viewGroup) {
-                    return FloatingToolbarPopup.this.mOverflowPanelViewHelper.getView(getItem(i), FloatingToolbarPopup.this.mOverflowPanelSize.getWidth(), view);
+                    int width;
+                    OverflowPanelViewHelper overflowPanelViewHelper = FloatingToolbarPopup.this.mOverflowPanelViewHelper;
+                    MenuItem menuItem = (MenuItem) getItem(i);
+                    width = FloatingToolbarPopup.this.mOverflowPanelSize.getWidth();
+                    return overflowPanelViewHelper.getView(menuItem, width, view);
                 }
             });
             overflowPanel.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -1195,7 +1318,11 @@ public final class FloatingToolbar {
         }
 
         private void setSize(View view, Size size) {
-            setSize(view, size.getWidth(), size.getHeight());
+            int width;
+            int height;
+            width = size.getWidth();
+            height = size.getHeight();
+            setSize(view, width, height);
         }
 
         public void setWidth(View view, int i) {
@@ -1209,11 +1336,11 @@ public final class FloatingToolbar {
         public final class OverflowPanel extends ListView {
             private final FloatingToolbarPopup mPopup;
 
-            OverflowPanel(FloatingToolbarPopup floatingToolbarPopup, FloatingToolbarPopup floatingToolbarPopup2) {
-                super(floatingToolbarPopup2.mContext);
-                this.mPopup = floatingToolbarPopup2;
+            OverflowPanel(FloatingToolbarPopup floatingToolbarPopup) {
+                super(floatingToolbarPopup.mContext);
+                this.mPopup = floatingToolbarPopup;
                 setVerticalScrollBarEnabled(false);
-                setOutlineProvider(new ViewOutlineProvider(this, floatingToolbarPopup) {
+                setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     public void getOutline(View view, Outline outline) {
                         outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight() + AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
@@ -1224,7 +1351,11 @@ public final class FloatingToolbar {
 
             @Override
             protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(this.mPopup.mOverflowPanelSize.getHeight() - this.mPopup.mOverflowButtonSize.getHeight(), 1073741824));
+                int height;
+                int height2;
+                height = this.mPopup.mOverflowPanelSize.getHeight();
+                height2 = this.mPopup.mOverflowButtonSize.getHeight();
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(height - height2, 1073741824));
             }
 
             @Override
@@ -1242,9 +1373,11 @@ public final class FloatingToolbar {
         }
 
         private final class LogAccelerateInterpolator implements Interpolator {
+            private final int BASE;
             private final float LOGS_SCALE;
 
-            private LogAccelerateInterpolator(FloatingToolbarPopup floatingToolbarPopup) {
+            private LogAccelerateInterpolator() {
+                this.BASE = 100;
                 this.LOGS_SCALE = 1.0f / computeLog(1.0f, 100);
             }
 

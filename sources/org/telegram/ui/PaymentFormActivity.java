@@ -24,8 +24,6 @@ import android.util.Property;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.webkit.JavascriptInterface;
 import android.webkit.RenderProcessGoneDetail;
 import android.webkit.WebView;
@@ -254,6 +252,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private LinearLayout tipLayout;
     private TextPriceCell totalCell;
     private String[] totalPrice;
+    private String totalPriceDecimal;
     private TLRPC$TL_payments_validateRequestedInfo validateRequest;
     private boolean waitingForEmail;
     private WebView webView;
@@ -546,7 +545,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     @android.annotation.SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    public android.view.View createView(android.content.Context r35) {
+    public android.view.View createView(android.content.Context r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -710,14 +709,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         int intValue = ((Integer) textView.getTag()).intValue();
         while (true) {
-            intValue++;
+            int i2 = intValue + 1;
             EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-            if (intValue >= editTextBoldCursorArr.length) {
+            if (i2 >= editTextBoldCursorArr.length) {
                 break;
             }
-            if (intValue == 4) {
-                intValue++;
-            }
+            intValue = i2 == 4 ? intValue + 2 : i2;
             if (((View) editTextBoldCursorArr[intValue].getParent()).getVisibility() == 0) {
                 this.inputFields[intValue].requestFocus();
                 break;
@@ -783,8 +780,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         } else {
             this.inputFields[0].setText(LocaleController.getInstance().formatCurrencyString(j, false, true, true, this.paymentForm.invoice.currency));
         }
-        EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-        editTextBoldCursorArr[0].setSelection(editTextBoldCursorArr[0].length());
+        EditTextBoldCursor editTextBoldCursor = this.inputFields[0];
+        editTextBoldCursor.setSelection(editTextBoldCursor.length());
     }
 
     public void lambda$createView$16(View view) {
@@ -1006,27 +1003,27 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
         });
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("ResendCodeInfo", R.string.ResendCodeInfo));
-        builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
+        builder.setMessage(LocaleController.getString(R.string.ResendCodeInfo));
+        builder.setTitle(LocaleController.getString(R.string.AppName));
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         showDialog(builder.create());
     }
 
     public void lambda$createView$29(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        String string = LocaleController.getString("TurnPasswordOffQuestion", R.string.TurnPasswordOffQuestion);
+        String string = LocaleController.getString(R.string.TurnPasswordOffQuestion);
         if (this.currentPassword.has_secure_values) {
-            string = string + "\n\n" + LocaleController.getString("TurnPasswordOffPassport", R.string.TurnPasswordOffPassport);
+            string = string + "\n\n" + LocaleController.getString(R.string.TurnPasswordOffPassport);
         }
         builder.setMessage(string);
-        builder.setTitle(LocaleController.getString("TurnPasswordOffQuestionTitle", R.string.TurnPasswordOffQuestionTitle));
-        builder.setPositiveButton(LocaleController.getString("Disable", R.string.Disable), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(R.string.TurnPasswordOffQuestionTitle));
+        builder.setPositiveButton(LocaleController.getString(R.string.Disable), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PaymentFormActivity.this.lambda$createView$28(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         AlertDialog create = builder.create();
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
@@ -1064,7 +1061,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void showChoosePaymentMethod(final Runnable runnable) {
-        BottomSheet.Builder title = new BottomSheet.Builder(getParentActivity()).setTitle(LocaleController.getString("PaymentCheckoutMethod", R.string.PaymentCheckoutMethod), true);
+        BottomSheet.Builder title = new BottomSheet.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.PaymentCheckoutMethod), true);
         final ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         TLRPC$TL_paymentSavedCredentialsCard tLRPC$TL_paymentSavedCredentialsCard = this.savedCredentialsCard;
@@ -1142,7 +1139,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     } else {
                         str3 = PaymentFormActivity.this.cardName.substring(0, 1).toUpperCase() + PaymentFormActivity.this.cardName.substring(1);
                     }
-                    textDetailSettingsCell.setTextAndValueAndIcon(str3, LocaleController.getString("PaymentCheckoutMethod", R.string.PaymentCheckoutMethod), R.drawable.msg_payment_card, true);
+                    textDetailSettingsCell.setTextAndValueAndIcon(str3, LocaleController.getString(R.string.PaymentCheckoutMethod), R.drawable.msg_payment_card, true);
                     if (PaymentFormActivity.this.detailSettingsCell[1] != null) {
                         PaymentFormActivity.this.detailSettingsCell[1].setVisibility(0);
                     }
@@ -1187,28 +1184,28 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     public void setAddressFields(TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo) {
         TLRPC$TL_postAddress tLRPC$TL_postAddress = tLRPC$TL_paymentRequestedInfo.shipping_address;
         if (tLRPC$TL_postAddress != null) {
-            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString("PaymentShippingAddress", R.string.PaymentShippingAddress), R.drawable.msg_payment_address, true);
+            this.detailSettingsCell[2].setTextAndValueAndIcon(String.format("%s %s, %s, %s, %s, %s", tLRPC$TL_postAddress.street_line1, tLRPC$TL_postAddress.street_line2, tLRPC$TL_postAddress.city, tLRPC$TL_postAddress.state, tLRPC$TL_postAddress.country_iso2, tLRPC$TL_postAddress.post_code), LocaleController.getString(R.string.PaymentShippingAddress), R.drawable.msg_payment_address, true);
         }
         this.detailSettingsCell[2].setVisibility(tLRPC$TL_paymentRequestedInfo.shipping_address != null ? 0 : 8);
         String str = tLRPC$TL_paymentRequestedInfo.name;
         if (str != null) {
-            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString("PaymentCheckoutName", R.string.PaymentCheckoutName), R.drawable.msg_contacts, true);
+            this.detailSettingsCell[3].setTextAndValueAndIcon(str, LocaleController.getString(R.string.PaymentCheckoutName), R.drawable.msg_contacts, true);
         }
         this.detailSettingsCell[3].setVisibility(tLRPC$TL_paymentRequestedInfo.name != null ? 0 : 8);
         if (tLRPC$TL_paymentRequestedInfo.phone != null) {
-            this.detailSettingsCell[4].setTextAndValueAndIcon(PhoneFormat.getInstance().format(tLRPC$TL_paymentRequestedInfo.phone), LocaleController.getString("PaymentCheckoutPhoneNumber", R.string.PaymentCheckoutPhoneNumber), R.drawable.msg_calls, (tLRPC$TL_paymentRequestedInfo.email == null && this.shippingOption == null) ? false : true);
+            this.detailSettingsCell[4].setTextAndValueAndIcon(PhoneFormat.getInstance().format(tLRPC$TL_paymentRequestedInfo.phone), LocaleController.getString(R.string.PaymentCheckoutPhoneNumber), R.drawable.msg_calls, (tLRPC$TL_paymentRequestedInfo.email == null && this.shippingOption == null) ? false : true);
         }
         this.detailSettingsCell[4].setVisibility(tLRPC$TL_paymentRequestedInfo.phone != null ? 0 : 8);
         String str2 = tLRPC$TL_paymentRequestedInfo.email;
         if (str2 != null) {
-            this.detailSettingsCell[5].setTextAndValueAndIcon(str2, LocaleController.getString("PaymentCheckoutEmail", R.string.PaymentCheckoutEmail), R.drawable.msg_mention, this.shippingOption != null);
+            this.detailSettingsCell[5].setTextAndValueAndIcon(str2, LocaleController.getString(R.string.PaymentCheckoutEmail), R.drawable.msg_mention, this.shippingOption != null);
         }
         this.detailSettingsCell[5].setVisibility(tLRPC$TL_paymentRequestedInfo.email == null ? 8 : 0);
     }
 
     public void updateTotalPrice() {
         this.totalPrice[0] = getTotalPriceString(this.prices);
-        this.totalCell.setTextAndValue(LocaleController.getString("PaymentTransactionTotal", R.string.PaymentTransactionTotal), this.totalPrice[0], true);
+        this.totalCell.setTextAndValue(LocaleController.getString(R.string.PaymentTransactionTotal), this.totalPrice[0], true);
         TextView textView = this.payTextView;
         if (textView != null) {
             textView.setText(LocaleController.formatString("PaymentCheckoutPay", R.string.PaymentCheckoutPay, this.totalPrice[0]));
@@ -1312,7 +1309,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (tLRPC$TL_shippingOption != null) {
                 arrayList.addAll(tLRPC$TL_shippingOption.prices);
             }
-            jSONObject.put("totalPrice", getTotalPriceDecimalString(arrayList));
+            String totalPriceDecimalString = getTotalPriceDecimalString(arrayList);
+            this.totalPriceDecimal = totalPriceDecimalString;
+            jSONObject.put("totalPrice", totalPriceDecimalString);
             jSONObject.put("totalPriceStatus", "FINAL");
             if (!TextUtils.isEmpty(this.googlePayCountryCode)) {
                 jSONObject.put("countryCode", this.googlePayCountryCode);
@@ -1331,10 +1330,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void updatePasswordFields() {
+        int i = 0;
         if (this.currentStep != 6 || this.bottomCell[2] == null) {
             return;
         }
-        int i = 0;
         this.doneItem.setVisibility(0);
         if (this.currentPassword == null) {
             showEditDoneProgress(true, true);
@@ -1358,13 +1357,11 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (this.waitingForEmail) {
             TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCell[2];
             int i3 = R.string.EmailPasswordConfirmText2;
-            Object[] objArr = new Object[1];
             String str = this.currentPassword.email_unconfirmed_pattern;
             if (str == null) {
                 str = "";
             }
-            objArr[0] = str;
-            textInfoPrivacyCell.setText(LocaleController.formatString("EmailPasswordConfirmText2", i3, objArr));
+            textInfoPrivacyCell.setText(LocaleController.formatString("EmailPasswordConfirmText2", i3, str));
             this.bottomCell[2].setVisibility(0);
             this.settingsCell[0].setVisibility(0);
             this.settingsCell[1].setVisibility(0);
@@ -1385,7 +1382,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         this.bottomCell[2].setVisibility(8);
         this.settingsCell[0].setVisibility(8);
         this.settingsCell[1].setVisibility(8);
-        this.bottomCell[1].setText(LocaleController.getString("PaymentPasswordEmailInfo", R.string.PaymentPasswordEmailInfo));
+        this.bottomCell[1].setText(LocaleController.getString(R.string.PaymentPasswordEmailInfo));
         this.codeFieldCell.setVisibility(8);
         this.headerCell[0].setVisibility(0);
         this.headerCell[1].setVisibility(0);
@@ -1426,7 +1423,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, false)) {
-                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
                 return;
             }
             TLRPC$PaymentForm tLRPC$PaymentForm = this.paymentForm;
@@ -1464,7 +1461,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     private void showAlertWithText(String str, String str2) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         builder.setTitle(str);
         builder.setMessage(str2);
         showDialog(builder.create());
@@ -1475,15 +1472,15 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setTitle(LocaleController.getString("PaymentTransactionReview", R.string.PaymentTransactionReview));
+        builder.setTitle(LocaleController.getString(R.string.PaymentTransactionReview));
         builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("PaymentTransactionMessage2", R.string.PaymentTransactionMessage2, str, this.currentBotName, this.currentItemName)));
-        builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 PaymentFormActivity.this.lambda$showPayAlert$36(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -1520,7 +1517,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     private void initGooglePay(Context context) {
         IsReadyToPayRequest fromJson;
-        if (Build.VERSION.SDK_INT < 19 || getParentActivity() == null) {
+        if (getParentActivity() == null) {
             return;
         }
         this.paymentsClient = Wallet.getPaymentsClient(context, new Wallet.WalletOptions.Builder().setEnvironment(this.paymentForm.invoice.test ? 3 : 1).setTheme(1).build());
@@ -1602,48 +1599,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     @Override
     public void onFragmentDestroy() {
-        PaymentFormActivityDelegate paymentFormActivityDelegate = this.delegate;
-        if (paymentFormActivityDelegate != null) {
-            paymentFormActivityDelegate.onFragmentDestroyed();
-        }
-        AndroidUtilities.checkAndroidTheme(getContext(), false);
-        if (!this.paymentStatusSent) {
-            this.invoiceStatus = InvoiceStatus.CANCELLED;
-            if (this.paymentFormCallback != null && getOtherSameFragmentDiff() == 0) {
-                this.paymentFormCallback.onInvoiceStatusChanged(this.invoiceStatus);
-            }
-        }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.twoStepPasswordChanged);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didRemoveTwoStepPassword);
-        if (this.currentStep != 4 || this.isCheckoutPreview) {
-            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.paymentFinished);
-        }
-        WebView webView = this.webView;
-        if (webView != null) {
-            try {
-                ViewParent parent = webView.getParent();
-                if (parent != null) {
-                    ((ViewGroup) parent).removeView(this.webView);
-                }
-                this.webView.stopLoading();
-                this.webView.loadUrl("about:blank");
-                this.webViewUrl = null;
-                this.webView.destroy();
-                this.webView = null;
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        try {
-            int i = this.currentStep;
-            if ((i == 2 || i == 6) && Build.VERSION.SDK_INT >= 23 && (SharedConfig.passcodeHash.length() == 0 || SharedConfig.allowScreenCapture)) {
-                getParentActivity().getWindow().clearFlags(8192);
-            }
-        } catch (Throwable th) {
-            FileLog.e(th);
-        }
-        super.onFragmentDestroy();
-        this.canceled = true;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.onFragmentDestroy():void");
     }
 
     @Override
@@ -1766,7 +1722,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     this.cardName = card.getBrand() + " *" + card.getLast4();
                     goToNextStep();
                 }
-                ?? r2 = new TLRPC$InputPaymentCredentials() {
+                ?? r1 = new TLRPC$InputPaymentCredentials() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
                         this.payment_token = TLRPC$TL_dataJSON.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -1778,8 +1734,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                         this.payment_token.serializeToStream(abstractSerializedData);
                     }
                 };
-                this.googlePayCredentials = r2;
-                r2.payment_token = new TLRPC$TL_dataJSON();
+                this.googlePayCredentials = r1;
+                r1.payment_token = new TLRPC$TL_dataJSON();
                 this.googlePayCredentials.payment_token.data = jSONObject2.toString();
                 String optString = jSONObject.optString("description");
                 if (!TextUtils.isEmpty(optString)) {
@@ -2015,12 +1971,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         TLRPC$PaymentForm tLRPC$PaymentForm = this.paymentForm;
         if ((tLRPC$PaymentForm.password_missing || tLRPC$PaymentForm.can_save_credentials) && (this.webView == null || !this.webviewLoading)) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("PaymentCardSavePaymentInformationInfoLine1", R.string.PaymentCardSavePaymentInformationInfoLine1));
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.PaymentCardSavePaymentInformationInfoLine1));
             if (this.paymentForm.password_missing) {
                 loadPasswordInfo();
                 spannableStringBuilder.append((CharSequence) "\n");
                 int length = spannableStringBuilder.length();
-                String string = LocaleController.getString("PaymentCardSavePaymentInformationInfoLine2", R.string.PaymentCardSavePaymentInformationInfoLine2);
+                String string = LocaleController.getString(R.string.PaymentCardSavePaymentInformationInfoLine2);
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 spannableStringBuilder.append((CharSequence) string);
@@ -2037,14 +1993,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             this.bottomCell[0].setText(spannableStringBuilder);
             this.checkCell1.setVisibility(0);
             this.bottomCell[0].setVisibility(0);
-            ShadowSectionCell[] shadowSectionCellArr = this.sectionCell;
-            shadowSectionCellArr[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCellArr[2].getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            ShadowSectionCell shadowSectionCell = this.sectionCell[2];
+            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             return;
         }
         this.checkCell1.setVisibility(8);
         this.bottomCell[0].setVisibility(8);
-        ShadowSectionCell[] shadowSectionCellArr2 = this.sectionCell;
-        shadowSectionCellArr2[2].setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCellArr2[2].getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        ShadowSectionCell shadowSectionCell2 = this.sectionCell[2];
+        shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(shadowSectionCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
     }
 
     @android.annotation.SuppressLint({"HardwareIds"})
@@ -2080,8 +2036,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$TL_account_passwordInputSettings.flags = 2;
             tLRPC$TL_account_passwordInputSettings.email = "";
             tLRPC$TL_account_updatePasswordSettings.password = new TLRPC$TL_inputCheckPasswordEmpty();
-            str2 = null;
             str = null;
+            str2 = null;
         } else {
             String obj = this.inputFields[0].getText().toString();
             if (TextUtils.isEmpty(obj)) {
@@ -2090,7 +2046,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             if (!obj.equals(this.inputFields[1].getText().toString())) {
                 try {
-                    Toast.makeText(getParentActivity(), LocaleController.getString("PasswordDoNotMatch", R.string.PasswordDoNotMatch), 0).show();
+                    Toast.makeText(getParentActivity(), LocaleController.getString(R.string.PasswordDoNotMatch), 0).show();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -2111,20 +2067,20 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             tLRPC$TL_account_updatePasswordSettings.password = new TLRPC$TL_inputCheckPasswordEmpty();
             TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings2 = new TLRPC$TL_account_passwordInputSettings();
             tLRPC$TL_account_updatePasswordSettings.new_settings = tLRPC$TL_account_passwordInputSettings2;
-            int i = tLRPC$TL_account_passwordInputSettings2.flags | 1;
-            tLRPC$TL_account_passwordInputSettings2.flags = i;
+            int i = tLRPC$TL_account_passwordInputSettings2.flags;
+            tLRPC$TL_account_passwordInputSettings2.flags = i | 1;
             tLRPC$TL_account_passwordInputSettings2.hint = "";
             tLRPC$TL_account_passwordInputSettings2.new_algo = this.currentPassword.new_algo;
-            tLRPC$TL_account_passwordInputSettings2.flags = i | 2;
+            tLRPC$TL_account_passwordInputSettings2.flags = i | 3;
             tLRPC$TL_account_passwordInputSettings2.email = obj2.trim();
-            str = obj;
-            str2 = obj2;
+            str = obj2;
+            str2 = obj;
         }
         showEditDoneProgress(true, true);
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaymentFormActivity.this.lambda$sendSavePassword$48(z, str2, str, tLRPC$TL_account_updatePasswordSettings);
+                PaymentFormActivity.this.lambda$sendSavePassword$48(z, str, str2, tLRPC$TL_account_updatePasswordSettings);
             }
         });
     }
@@ -2164,10 +2120,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                showAlertWithText(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
                 return;
             }
-            showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString(R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -2239,14 +2195,14 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (tLRPC$TL_error.text.equals("EMAIL_UNCONFIRMED") || tLRPC$TL_error.text.startsWith("EMAIL_UNCONFIRMED_")) {
                 this.emailCodeLength = Utilities.parseInt((CharSequence) tLRPC$TL_error.text).intValue();
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         PaymentFormActivity.this.lambda$sendSavePassword$45(str, dialogInterface, i);
                     }
                 });
-                builder.setMessage(LocaleController.getString("YourEmailAlmostThereText", R.string.YourEmailAlmostThereText));
-                builder.setTitle(LocaleController.getString("YourEmailAlmostThere", R.string.YourEmailAlmostThere));
+                builder.setMessage(LocaleController.getString(R.string.YourEmailAlmostThereText));
+                builder.setTitle(LocaleController.getString(R.string.YourEmailAlmostThere));
                 Dialog showDialog = showDialog(builder.create());
                 if (showDialog != null) {
                     showDialog.setCanceledOnTouchOutside(false);
@@ -2256,7 +2212,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 return;
             }
             if (tLRPC$TL_error.text.equals("EMAIL_INVALID")) {
-                showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.getString("PasswordEmailInvalid", R.string.PasswordEmailInvalid));
+                showAlertWithText(LocaleController.getString(R.string.AppName), LocaleController.getString(R.string.PasswordEmailInvalid));
                 return;
             }
             if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
@@ -2266,10 +2222,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
                 }
-                showAlertWithText(LocaleController.getString("AppName", R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                showAlertWithText(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
                 return;
             }
-            showAlertWithText(LocaleController.getString("AppName", R.string.AppName), tLRPC$TL_error.text);
+            showAlertWithText(LocaleController.getString(R.string.AppName), tLRPC$TL_error.text);
         }
     }
 
@@ -2355,18 +2311,17 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                             PaymentFormActivity.this.paymentJson = str;
                             PaymentFormActivity.this.goToNextStep();
                         } else {
-                            AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", R.string.PaymentConnectionFailed));
+                            AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString(R.string.PaymentConnectionFailed));
                         }
                         PaymentFormActivity.this.showEditDoneProgress(true, false);
                         PaymentFormActivity.this.setDonePressed(false);
                     }
                 }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             }
-            return true;
         } catch (Exception e) {
             FileLog.e(e);
-            return true;
         }
+        return true;
     }
 
     public class AnonymousClass25 implements TokenCallback {
@@ -2401,7 +2356,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             PaymentFormActivity.this.showEditDoneProgress(true, false);
             PaymentFormActivity.this.setDonePressed(false);
             if ((exc instanceof APIConnectionException) || (exc instanceof APIException)) {
-                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString("PaymentConnectionFailed", R.string.PaymentConnectionFailed));
+                AlertsCreator.showSimpleToast(PaymentFormActivity.this, LocaleController.getString(R.string.PaymentConnectionFailed));
             } else {
                 AlertsCreator.showSimpleToast(PaymentFormActivity.this, exc.getMessage());
             }
@@ -2814,6 +2769,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     public void lambda$sendData$60(final TLRPC$Message[] tLRPC$MessageArr) {
+        String str;
         int i;
         String string;
         String formatString;
@@ -2844,7 +2800,11 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             paymentFormCallback.onInvoiceStatusChanged(this.invoiceStatus);
         }
         final long starsGiftUserId = getStarsGiftUserId();
-        String forcedFirstName = starsGiftUserId != 0 ? UserObject.getForcedFirstName(getMessagesController().getUser(Long.valueOf(starsGiftUserId))) : "";
+        if (starsGiftUserId == 0) {
+            str = "";
+        } else {
+            str = UserObject.getForcedFirstName(getMessagesController().getUser(Long.valueOf(starsGiftUserId)));
+        }
         long stars = getStars();
         if (z) {
             i = z2 ? R.raw.stars_send : R.raw.stars_topup;
@@ -2858,7 +2818,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             string = null;
         }
         if (z) {
-            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) stars, forcedFirstName);
+            formatString = LocaleController.formatPluralString(z2 ? "StarsGiftSentPopupInfo" : "StarsAcquiredInfo", (int) stars, str);
         } else {
             formatString = LocaleController.formatString(R.string.PaymentInfoHint, this.totalPrice[0], this.currentItemName);
         }
@@ -3127,9 +3087,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (actionBar != null && actionBar.getBackButton() != null) {
             this.actionBar.getBackButton().setEnabled(!this.donePressed);
         }
-        TextDetailSettingsCell[] textDetailSettingsCellArr = this.detailSettingsCell;
-        if (textDetailSettingsCellArr[0] != null) {
-            textDetailSettingsCellArr[0].setEnabled(!this.donePressed);
+        TextDetailSettingsCell textDetailSettingsCell = this.detailSettingsCell[0];
+        if (textDetailSettingsCell != null) {
+            textDetailSettingsCell.setEnabled(!this.donePressed);
         }
     }
 
@@ -3180,7 +3140,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (tLRPC$TL_error == null) {
             final TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             if (!TwoStepVerificationActivity.canHandleCurrentPassword(tLRPC$account_Password, false)) {
-                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString("UpdateAppAlert", R.string.UpdateAppAlert), true);
+                AlertsCreator.showUpdateAppAlert(getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
                 return;
             } else if (!tLRPC$account_Password.has_password) {
                 this.passwordOk = false;
@@ -3273,15 +3233,33 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (z2) {
                 this.progressView.setVisibility(0);
                 this.doneItem.setEnabled(false);
-                this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.ALPHA, 1.0f));
+                AnimatorSet animatorSet3 = this.doneItemAnimation;
+                View contentView = this.doneItem.getContentView();
+                Property property = View.SCALE_X;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(contentView, (Property<View, Float>) property, 0.1f);
+                View contentView2 = this.doneItem.getContentView();
+                Property property2 = View.SCALE_Y;
+                ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(contentView2, (Property<View, Float>) property2, 0.1f);
+                View contentView3 = this.doneItem.getContentView();
+                Property property3 = View.ALPHA;
+                animatorSet3.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(contentView3, (Property<View, Float>) property3, 0.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) property2, 1.0f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) property3, 1.0f));
             } else if (this.webView != null) {
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.ALPHA, 0.0f));
             } else {
                 this.doneItem.getContentView().setVisibility(0);
                 this.doneItem.setEnabled(true);
-                this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.progressView, (Property<ContextProgressView, Float>) View.ALPHA, 0.0f));
+                AnimatorSet animatorSet4 = this.doneItemAnimation;
+                ContextProgressView contextProgressView = this.progressView;
+                Property property4 = View.SCALE_X;
+                ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(contextProgressView, (Property<ContextProgressView, Float>) property4, 0.1f);
+                ContextProgressView contextProgressView2 = this.progressView;
+                Property property5 = View.SCALE_Y;
+                ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(contextProgressView2, (Property<ContextProgressView, Float>) property5, 0.1f);
+                ContextProgressView contextProgressView3 = this.progressView;
+                Property property6 = View.ALPHA;
+                animatorSet4.playTogether(ofFloat3, ofFloat4, ObjectAnimator.ofFloat(contextProgressView3, (Property<ContextProgressView, Float>) property6, 0.0f));
                 if (!isFinishing()) {
-                    this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) View.ALPHA, 1.0f));
+                    this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) property4, 1.0f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) property5, 1.0f), ObjectAnimator.ofFloat(this.doneItem.getContentView(), (Property<View, Float>) property6, 1.0f));
                 }
             }
             this.doneItemAnimation.addListener(new AnimatorListenerAdapter() {
@@ -3314,11 +3292,29 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             if (z2) {
                 this.progressViewButton.setVisibility(0);
                 this.bottomLayout.setEnabled(false);
-                this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.ALPHA, 1.0f));
+                AnimatorSet animatorSet5 = this.doneItemAnimation;
+                TextView textView = this.payTextView;
+                Property property7 = View.SCALE_X;
+                ObjectAnimator ofFloat5 = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property7, 0.1f);
+                TextView textView2 = this.payTextView;
+                Property property8 = View.SCALE_Y;
+                ObjectAnimator ofFloat6 = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property8, 0.1f);
+                TextView textView3 = this.payTextView;
+                Property property9 = View.ALPHA;
+                animatorSet5.playTogether(ofFloat5, ofFloat6, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property9, 0.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) property7, 1.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) property8, 1.0f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) property9, 1.0f));
             } else {
                 this.payTextView.setVisibility(0);
                 this.bottomLayout.setEnabled(true);
-                this.doneItemAnimation.playTogether(ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.progressViewButton, (Property<ContextProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) View.ALPHA, 1.0f));
+                AnimatorSet animatorSet6 = this.doneItemAnimation;
+                ContextProgressView contextProgressView4 = this.progressViewButton;
+                Property property10 = View.SCALE_X;
+                ObjectAnimator ofFloat7 = ObjectAnimator.ofFloat(contextProgressView4, (Property<ContextProgressView, Float>) property10, 0.1f);
+                ContextProgressView contextProgressView5 = this.progressViewButton;
+                Property property11 = View.SCALE_Y;
+                ObjectAnimator ofFloat8 = ObjectAnimator.ofFloat(contextProgressView5, (Property<ContextProgressView, Float>) property11, 0.1f);
+                ContextProgressView contextProgressView6 = this.progressViewButton;
+                Property property12 = View.ALPHA;
+                animatorSet6.playTogether(ofFloat7, ofFloat8, ObjectAnimator.ofFloat(contextProgressView6, (Property<ContextProgressView, Float>) property12, 0.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) property10, 1.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) property11, 1.0f), ObjectAnimator.ofFloat(this.payTextView, (Property<TextView, Float>) property12, 1.0f));
             }
             this.doneItemAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override

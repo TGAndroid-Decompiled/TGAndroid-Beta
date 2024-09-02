@@ -440,7 +440,7 @@ public class ItemOptions {
     }
 
     public ItemOptions addText(CharSequence charSequence, int i, int i2) {
-        TextView textView = new TextView(this, this.context) {
+        TextView textView = new TextView(this.context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(i3, i4);
@@ -833,11 +833,11 @@ public class ItemOptions {
         float f = 0.0f;
         float f2 = 0.0f;
         while (view != viewGroup) {
-            f += view.getY();
-            f2 += view.getX();
+            f2 += view.getY();
+            f += view.getX();
             if (view instanceof ScrollView) {
-                f2 -= view.getScrollX();
-                f -= view.getScrollY();
+                f -= view.getScrollX();
+                f2 -= view.getScrollY();
             }
             if (!(view.getParent() instanceof View)) {
                 break;
@@ -847,8 +847,8 @@ public class ItemOptions {
                 return;
             }
         }
-        fArr[0] = f2 - viewGroup.getPaddingLeft();
-        fArr[1] = f - viewGroup.getPaddingTop();
+        fArr[0] = f - viewGroup.getPaddingLeft();
+        fArr[1] = f2 - viewGroup.getPaddingTop();
     }
 
     public ItemOptions setViewAdditionalOffsets(int i, int i2, int i3, int i4) {

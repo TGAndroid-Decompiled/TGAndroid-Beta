@@ -70,7 +70,6 @@ public class VoIPWindowView extends FrameLayout {
             }
             this.velocityTracker.clear();
         } else {
-            boolean z = true;
             if (motionEvent.getAction() == 2) {
                 float x = motionEvent.getX() - this.startX;
                 float y = motionEvent.getY() - this.startY;
@@ -98,9 +97,6 @@ public class VoIPWindowView extends FrameLayout {
                 float xVelocity = this.velocityTracker.getXVelocity();
                 float yVelocity = this.velocityTracker.getYVelocity();
                 if (translationY >= getMeasuredHeight() / 3.0f || (xVelocity >= 3500.0f && xVelocity >= yVelocity)) {
-                    z = false;
-                }
-                if (!z) {
                     finish(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
                 } else {
                     animate().translationY(0.0f).start();

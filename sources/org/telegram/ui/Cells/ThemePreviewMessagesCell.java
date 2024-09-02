@@ -26,6 +26,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     private ChatMessageCell[] cells;
     public boolean customAnimation;
     public BaseFragment fragment;
+    private final Runnable invalidateRunnable;
     private Drawable oldBackgroundDrawable;
     private BackgroundGradientDrawable.Disposable oldBackgroundGradientDisposable;
     private Drawable overrideDrawable;
@@ -47,8 +48,9 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             if (i >= chatMessageCellArr.length) {
                 return;
             }
-            if (chatMessageCellArr[i] != null) {
-                chatMessageCellArr[i].invalidate();
+            ChatMessageCell chatMessageCell = chatMessageCellArr[i];
+            if (chatMessageCell != null) {
+                chatMessageCell.invalidate();
             }
             i++;
         }

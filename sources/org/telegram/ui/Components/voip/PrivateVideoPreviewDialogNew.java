@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Camera;
@@ -203,8 +204,10 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 PrivateVideoPreviewDialogNew.this.bgBlueVioletShaderTools.setBounds(0.0f, 0.0f, 80.0f, 80.0f);
                 PrivateVideoPreviewDialogNew.this.bgGreen.setAlpha(255);
                 PrivateVideoPreviewDialogNew.this.bgBlueViolet.setAlpha(255);
-                PrivateVideoPreviewDialogNew.this.bgGreenShaderTools.getCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
-                PrivateVideoPreviewDialogNew.this.bgBlueVioletShaderTools.getCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
+                Canvas canvas = PrivateVideoPreviewDialogNew.this.bgGreenShaderTools.getCanvas();
+                PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+                canvas.drawColor(0, mode);
+                PrivateVideoPreviewDialogNew.this.bgBlueVioletShaderTools.getCanvas().drawColor(0, mode);
                 PrivateVideoPreviewDialogNew.this.bgGreen.draw(PrivateVideoPreviewDialogNew.this.bgGreenShaderTools.getCanvas());
                 PrivateVideoPreviewDialogNew.this.bgBlueViolet.draw(PrivateVideoPreviewDialogNew.this.bgBlueVioletShaderTools.getCanvas());
                 paint.setColor(-1);
@@ -253,7 +256,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                 }
                 super.onDraw(canvas);
                 if (PrivateVideoPreviewDialogNew.this.positiveButtonDrawText) {
-                    canvas.drawText(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo), getWidth() / 2, (int) ((getHeight() / 2) - ((PrivateVideoPreviewDialogNew.this.positiveButton.getPaint().descent() + PrivateVideoPreviewDialogNew.this.positiveButton.getPaint().ascent()) / 2.0f)), PrivateVideoPreviewDialogNew.this.positiveButton.getPaint());
+                    canvas.drawText(LocaleController.getString(R.string.VoipShareVideo), getWidth() / 2, (int) ((getHeight() / 2) - ((PrivateVideoPreviewDialogNew.this.positiveButton.getPaint().descent() + PrivateVideoPreviewDialogNew.this.positiveButton.getPaint().ascent()) / 2.0f)), PrivateVideoPreviewDialogNew.this.positiveButton.getPaint());
                 }
             }
         };
@@ -269,7 +272,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         this.positiveButton.setGravity(17);
         this.positiveButton.setTypeface(AndroidUtilities.bold());
         this.positiveButton.getPaint().setTextAlign(Paint.Align.CENTER);
-        this.positiveButton.setContentDescription(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
+        this.positiveButton.setContentDescription(LocaleController.getString(R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 76)));
         }
@@ -319,11 +322,11 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         addView(this.titlesLayout, LayoutHelper.createFrame(-1, 64, 80));
         for (final int i2 = 0; i2 < this.titles.length; i2++) {
             if (i2 == 0) {
-                string = LocaleController.getString("VoipPhoneScreen", R.string.VoipPhoneScreen);
+                string = LocaleController.getString(R.string.VoipPhoneScreen);
             } else if (i2 == 1) {
-                string = LocaleController.getString("VoipFrontCamera", R.string.VoipFrontCamera);
+                string = LocaleController.getString(R.string.VoipFrontCamera);
             } else {
-                string = LocaleController.getString("VoipBackCamera", R.string.VoipBackCamera);
+                string = LocaleController.getString(R.string.VoipBackCamera);
             }
             this.titles[i2] = new VoIpBitmapTextView(context, string);
             this.titles[i2].setContentDescription(string);
@@ -340,7 +343,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             this.textureView.renderer.setMirror(sharedInstance.isFrontFaceCamera());
-            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents(this) {
+            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents() {
                 @Override
                 public void onFirstFrameRendered() {
                 }
@@ -445,14 +448,18 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     public void lambda$new$0(View view) {
+        Intent createScreenCaptureIntent;
         if (this.isDismissed) {
             return;
         }
         if (this.realCurrentPage == 0) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-        } else {
-            dismiss(false, true);
+            MediaProjectionManager m = PrivateVideoPreviewDialog$$ExternalSyntheticApiModelOutline0.m(getContext().getSystemService("media_projection"));
+            Activity activity = (Activity) getContext();
+            createScreenCaptureIntent = m.createScreenCaptureIntent();
+            activity.startActivityForResult(createScreenCaptureIntent, 520);
+            return;
         }
+        dismiss(false, true);
     }
 
     public void lambda$new$1(int i, View view) {
@@ -479,15 +486,16 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
     }
 
     private void showStub(boolean z, boolean z2) {
+        Bitmap bitmap;
         ImageView imageView = (ImageView) this.viewPager.findViewWithTag("image_stab");
         if (!z) {
             imageView.setVisibility(8);
             return;
         }
-        Bitmap bitmap = null;
         try {
             bitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
         } catch (Throwable unused) {
+            bitmap = null;
         }
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             imageView.setImageBitmap(bitmap);
@@ -592,7 +600,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         imageView.setImageResource(R.drawable.screencast_big);
         frameLayout2.addView(imageView, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
         TextView textView = new TextView(getContext());
-        textView.setText(LocaleController.getString("VoipVideoPrivateScreenSharing", R.string.VoipVideoPrivateScreenSharing));
+        textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         textView.setTextColor(-1);
@@ -617,14 +625,19 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             int i2 = point.y + AndroidUtilities.statusBarHeight + AndroidUtilities.navigationBarHeight;
             float dp = AndroidUtilities.dp(28.0f) - (AndroidUtilities.dp(28.0f) * this.openProgress1);
             this.clipPath.reset();
-            this.clipPath.addCircle(this.startLocationX + AndroidUtilities.dp(33.5f), this.startLocationY + AndroidUtilities.dp(26.6f), AndroidUtilities.dp(26.0f), Path.Direction.CW);
-            int dp2 = AndroidUtilities.dp(52.0f);
-            int dp3 = AndroidUtilities.dp(52.0f);
-            int lerp = AndroidUtilities.lerp(dp2, i, this.openProgress1);
-            int lerp2 = AndroidUtilities.lerp(dp3, i2, this.openProgress1);
-            float dp4 = this.openTranslationX - ((1.0f - this.openProgress1) * AndroidUtilities.dp(20.0f));
-            float dp5 = this.openTranslationY - ((1.0f - this.openProgress1) * AndroidUtilities.dp(51.0f));
-            this.clipPath.addRoundRect(dp4, dp5, dp4 + lerp, dp5 + lerp2, dp, dp, Path.Direction.CW);
+            Path path = this.clipPath;
+            float dp2 = this.startLocationX + AndroidUtilities.dp(33.5f);
+            float dp3 = this.startLocationY + AndroidUtilities.dp(26.6f);
+            float dp4 = AndroidUtilities.dp(26.0f);
+            Path.Direction direction = Path.Direction.CW;
+            path.addCircle(dp2, dp3, dp4, direction);
+            int dp5 = AndroidUtilities.dp(52.0f);
+            int dp6 = AndroidUtilities.dp(52.0f);
+            int lerp = AndroidUtilities.lerp(dp5, i, this.openProgress1);
+            int lerp2 = AndroidUtilities.lerp(dp6, i2, this.openProgress1);
+            float dp7 = this.openTranslationX - ((1.0f - this.openProgress1) * AndroidUtilities.dp(20.0f));
+            float dp8 = this.openTranslationY - ((1.0f - this.openProgress1) * AndroidUtilities.dp(51.0f));
+            this.clipPath.addRoundRect(dp7, dp8, dp7 + lerp, dp8 + lerp2, dp, dp, direction);
             canvas.clipPath(this.clipPath);
         }
         if (this.closeProgress > 0.0f) {

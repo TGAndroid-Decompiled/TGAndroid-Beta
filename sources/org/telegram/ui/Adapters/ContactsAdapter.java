@@ -88,8 +88,8 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             if (this.onlineContacts == null || z) {
                 this.onlineContacts = new ArrayList<>(ContactsController.getInstance(this.currentAccount).contacts);
                 long j = UserConfig.getInstance(this.currentAccount).clientUserId;
-                int i2 = 0;
                 int size = this.onlineContacts.size();
+                int i2 = 0;
                 while (true) {
                     if (i2 >= size) {
                         break;
@@ -420,13 +420,13 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
                 GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
                 int i4 = this.sortType;
                 if (i4 == 0) {
-                    graySectionCell.setText(LocaleController.getString("Contacts", R.string.Contacts));
+                    graySectionCell.setText(LocaleController.getString(R.string.Contacts));
                     return;
                 } else if (i4 == 1) {
-                    graySectionCell.setText(LocaleController.getString("SortedByName", R.string.SortedByName));
+                    graySectionCell.setText(LocaleController.getString(R.string.SortedByName));
                     return;
                 } else {
-                    graySectionCell.setText(LocaleController.getString("SortedByLastSeen", R.string.SortedByLastSeen));
+                    graySectionCell.setText(LocaleController.getString(R.string.SortedByLastSeen));
                     return;
                 }
             }
@@ -482,18 +482,18 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             }
             GraySectionCell graySectionCell2 = (GraySectionCell) viewHolder.itemView;
             if (this.hasStories) {
-                graySectionCell2.setText(LocaleController.getString("HiddenStories", R.string.HiddenStories));
+                graySectionCell2.setText(LocaleController.getString(R.string.HiddenStories));
                 return;
             }
             int i5 = this.sortType;
             if (i5 == 0) {
-                graySectionCell2.setText(LocaleController.getString("Contacts", R.string.Contacts));
+                graySectionCell2.setText(LocaleController.getString(R.string.Contacts));
                 return;
             } else if (i5 == 1) {
-                graySectionCell2.setText(LocaleController.getString("SortedByName", R.string.SortedByName));
+                graySectionCell2.setText(LocaleController.getString(R.string.SortedByName));
                 return;
             } else {
-                graySectionCell2.setText(LocaleController.getString("SortedByLastSeen", R.string.SortedByLastSeen));
+                graySectionCell2.setText(LocaleController.getString(R.string.SortedByLastSeen));
                 return;
             }
         }
@@ -501,11 +501,11 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         if (i == 0) {
             if (this.needPhonebook) {
                 if (i2 == 0) {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("InviteFriends", R.string.InviteFriends), R.drawable.msg_invite, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.InviteFriends), R.drawable.msg_invite, false);
                     return;
                 } else {
                     if (i2 == 1) {
-                        textCell.setTextAndIcon((CharSequence) LocaleController.getString("AddPeopleNearby", R.string.AddPeopleNearby), R.drawable.msg_location, false);
+                        textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.AddPeopleNearby), R.drawable.msg_location, false);
                         return;
                     }
                     return;
@@ -513,22 +513,22 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             }
             if (this.isAdmin) {
                 if (this.isChannel) {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("ChannelInviteViaLink", R.string.ChannelInviteViaLink), R.drawable.msg_link2, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.ChannelInviteViaLink), R.drawable.msg_link2, false);
                     return;
                 } else {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink), R.drawable.msg_link2, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.InviteToGroupByLink), R.drawable.msg_link2, false);
                     return;
                 }
             }
             if (i2 == 0) {
-                textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewGroup", R.string.NewGroup), R.drawable.msg_groups, false);
+                textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NewGroup), R.drawable.msg_groups, false);
                 return;
             } else if (i2 == 1) {
-                textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewSecretChat", R.string.NewSecretChat), R.drawable.msg_secret, false);
+                textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NewSecretChat), R.drawable.msg_secret, false);
                 return;
             } else {
                 if (i2 == 2) {
-                    textCell.setTextAndIcon((CharSequence) LocaleController.getString("NewChannel", R.string.NewChannel), R.drawable.msg_channel, false);
+                    textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NewChannel), R.drawable.msg_channel, false);
                     return;
                 }
                 return;

@@ -356,10 +356,7 @@ public class PipVideoOverlay {
     }
 
     public void toggleControls(boolean z) {
-        float[] fArr = new float[2];
-        fArr[0] = z ? 0.0f : 1.0f;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator duration = ValueAnimator.ofFloat(fArr).setDuration(200L);
+        ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
         this.controlsAnimator = duration;
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.controlsAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -537,9 +534,7 @@ public class PipVideoOverlay {
         this.isVideoCompleted = true;
         this.videoProgress = 0.0f;
         this.bufferProgress = 0.0f;
-        if (videoProgressView != null) {
-            videoProgressView.invalidate();
-        }
+        videoProgressView.invalidate();
         updatePlayButtonInternal();
         AndroidUtilities.cancelRunOnUIThread(this.progressRunnable);
         if (this.isShowingControls) {
@@ -588,8 +583,8 @@ public class PipVideoOverlay {
         if (pipX != -1.0f) {
             float f3 = rect.width;
             float f4 = pipX + (f3 / 2.0f);
-            int i = AndroidUtilities.displaySize.x;
-            rect.x = f4 >= ((float) i) / 2.0f ? (i - f3) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            float f5 = AndroidUtilities.displaySize.x;
+            rect.x = f4 >= f5 / 2.0f ? (f5 - f3) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
         } else {
             rect.x = (AndroidUtilities.displaySize.x - rect.width) - AndroidUtilities.dp(16.0f);
         }
@@ -651,9 +646,7 @@ public class PipVideoOverlay {
         ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3());
         this.scaleGestureDetector = scaleGestureDetector;
         int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 19) {
-            scaleGestureDetector.setQuickScaleEnabled(false);
-        }
+        scaleGestureDetector.setQuickScaleEnabled(false);
         if (i3 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
@@ -729,8 +722,8 @@ public class PipVideoOverlay {
                 PipVideoOverlay.this.windowManager.updateViewLayout(PipVideoOverlay.this.contentView, PipVideoOverlay.this.windowLayoutParams);
                 SpringForce spring = PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring();
                 float suggestedWidth = PipVideoOverlay.this.pipX + ((PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor) / 2.0f);
-                int i4 = AndroidUtilities.displaySize.x;
-                spring.setFinalPosition(suggestedWidth >= ((float) i4) / 2.0f ? (i4 - (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
+                float f = AndroidUtilities.displaySize.x;
+                spring.setFinalPosition(suggestedWidth >= f / 2.0f ? (f - (PipVideoOverlay.this.getSuggestedWidth() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f));
                 PipVideoOverlay.this.pipXSpring.start();
                 PipVideoOverlay.this.pipYSpring.setStartValue(PipVideoOverlay.this.pipY).getSpring().setFinalPosition(MathUtils.clamp(PipVideoOverlay.this.pipY, AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - (PipVideoOverlay.this.getSuggestedHeight() * PipVideoOverlay.this.scaleFactor)) - AndroidUtilities.dp(16.0f)));
                 PipVideoOverlay.this.pipYSpring.start();
@@ -780,7 +773,7 @@ public class PipVideoOverlay {
         this.contentView = pipVideoViewGroup;
         pipVideoViewGroup.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
         if (i3 >= 21) {
-            this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.contentFrameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view2, Outline outline) {
                     outline.setRoundRect(0, 0, view2.getMeasuredWidth(), view2.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
@@ -823,7 +816,9 @@ public class PipVideoOverlay {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
         int i4 = Theme.key_voipgroup_actionBarItems;
-        imageView.setColorFilter(Theme.getColor(i4), PorterDuff.Mode.MULTIPLY);
+        int color = Theme.getColor(i4);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(color, mode);
         int i5 = Theme.key_listSelector;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
         imageView.setPadding(dp, dp, dp, dp);
@@ -838,7 +833,7 @@ public class PipVideoOverlay {
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor(i4), PorterDuff.Mode.MULTIPLY);
+        imageView2.setColorFilter(Theme.getColor(i4), mode);
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
         imageView2.setPadding(dp, dp, dp, dp);
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -850,7 +845,7 @@ public class PipVideoOverlay {
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.playPauseButton = imageView3;
-        imageView3.setColorFilter(Theme.getColor(i4), PorterDuff.Mode.MULTIPLY);
+        imageView3.setColorFilter(Theme.getColor(i4), mode);
         this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i5)));
         this.playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1174,7 +1169,7 @@ public class PipVideoOverlay {
         }
         if (!z && (!z2 || !LaunchActivity.isResumed)) {
             Objects.requireNonNull(view);
-            LaunchActivity.onResumeStaticCallback = new EmbedBottomSheet$$ExternalSyntheticLambda7(view);
+            LaunchActivity.onResumeStaticCallback = new EmbedBottomSheet$$ExternalSyntheticLambda6(view);
             Context context = ApplicationLoader.applicationContext;
             Intent intent = new Intent(context, (Class<?>) LaunchActivity.class);
             intent.addFlags(268435456);
@@ -1245,13 +1240,17 @@ public class PipVideoOverlay {
             this.progressPaint = new Paint();
             this.bufferPaint = new Paint();
             this.progressPaint.setColor(-1);
-            this.progressPaint.setStyle(Paint.Style.STROKE);
-            this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
+            Paint paint = this.progressPaint;
+            Paint.Style style = Paint.Style.STROKE;
+            paint.setStyle(style);
+            Paint paint2 = this.progressPaint;
+            Paint.Cap cap = Paint.Cap.ROUND;
+            paint2.setStrokeCap(cap);
             this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             this.bufferPaint.setColor(this.progressPaint.getColor());
             this.bufferPaint.setAlpha((int) (this.progressPaint.getAlpha() * 0.3f));
-            this.bufferPaint.setStyle(Paint.Style.STROKE);
-            this.bufferPaint.setStrokeCap(Paint.Cap.ROUND);
+            this.bufferPaint.setStyle(style);
+            this.bufferPaint.setStrokeCap(cap);
             this.bufferPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         }
 

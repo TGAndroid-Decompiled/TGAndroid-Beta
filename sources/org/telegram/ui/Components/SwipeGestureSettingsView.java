@@ -53,12 +53,12 @@ public class SwipeGestureSettingsView extends FrameLayout {
         this.icons = new RLottieDrawable[6];
         this.iconViews = new RLottieImageView[2];
         this.colorProgress = 1.0f;
-        strArr[0] = LocaleController.getString("SwipeSettingsPin", R.string.SwipeSettingsPin);
-        this.strings[1] = LocaleController.getString("SwipeSettingsRead", R.string.SwipeSettingsRead);
-        this.strings[2] = LocaleController.getString("SwipeSettingsArchive", R.string.SwipeSettingsArchive);
-        this.strings[3] = LocaleController.getString("SwipeSettingsMute", R.string.SwipeSettingsMute);
-        this.strings[4] = LocaleController.getString("SwipeSettingsDelete", R.string.SwipeSettingsDelete);
-        this.strings[5] = LocaleController.getString("SwipeSettingsFolders", R.string.SwipeSettingsFolders);
+        strArr[0] = LocaleController.getString(R.string.SwipeSettingsPin);
+        this.strings[1] = LocaleController.getString(R.string.SwipeSettingsRead);
+        this.strings[2] = LocaleController.getString(R.string.SwipeSettingsArchive);
+        this.strings[3] = LocaleController.getString(R.string.SwipeSettingsMute);
+        this.strings[4] = LocaleController.getString(R.string.SwipeSettingsDelete);
+        this.strings[5] = LocaleController.getString(R.string.SwipeSettingsFolders);
         int[] iArr = this.backgroundKeys;
         int i2 = Theme.key_chats_archiveBackground;
         iArr[0] = i2;
@@ -67,13 +67,17 @@ public class SwipeGestureSettingsView extends FrameLayout {
         iArr[3] = i2;
         iArr[4] = Theme.key_dialogSwipeRemove;
         iArr[5] = Theme.key_chats_archivePinBackground;
-        this.outlinePaint.setStyle(Paint.Style.STROKE);
+        Paint paint = this.outlinePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        this.linePaint.setStyle(Paint.Style.STROKE);
-        this.linePaint.setStrokeCap(Paint.Cap.ROUND);
+        this.linePaint.setStyle(style);
+        Paint paint2 = this.linePaint;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(5.0f));
-        this.pickerDividersPaint.setStyle(Paint.Style.STROKE);
-        this.pickerDividersPaint.setStrokeCap(Paint.Cap.ROUND);
+        this.pickerDividersPaint.setStyle(style);
+        this.pickerDividersPaint.setStrokeCap(cap);
         this.pickerDividersPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         NumberPicker numberPicker = new NumberPicker(context, 13) {
             @Override

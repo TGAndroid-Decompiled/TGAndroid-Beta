@@ -55,6 +55,7 @@ public class StoryContainsEmojiButton extends View {
     private int lastContentWidth;
     private StaticLayout layout;
     private float layoutLeft;
+    private float layoutWidth;
     private ValueAnimator loadAnimator;
     private float loadT;
     private final LoadingDrawable loadingDrawable;
@@ -67,6 +68,7 @@ public class StoryContainsEmojiButton extends View {
     private boolean stickers;
     private final TextPaint textPaint;
     private CharSequence toSetText;
+    private TLRPC$Vector vector;
 
     public StoryContainsEmojiButton(Context context, int i, TLObject tLObject, Object obj, boolean z, ArrayList<TLRPC$InputStickerSet> arrayList, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -122,9 +124,7 @@ public class StoryContainsEmojiButton extends View {
         StaticLayout staticLayout = new StaticLayout(charSequence, this.textPaint, measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.layout = staticLayout;
         this.layoutLeft = staticLayout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
-        if (this.layout.getLineCount() > 0) {
-            this.layout.getLineWidth(0);
-        }
+        this.layoutWidth = this.layout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
         this.stack = AnimatedEmojiSpan.update(0, this, this.stack, this.layout);
     }
 
@@ -157,8 +157,14 @@ public class StoryContainsEmojiButton extends View {
         if (f < 1.0f) {
             this.loadingDrawable.setAlpha((int) ((1.0f - f) * 255.0f));
             this.loadingPath.rewind();
-            this.loadingPath.addRect(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + AndroidUtilities.dp(12.0f), Path.Direction.CW);
-            this.loadingPath.addRect(getPaddingLeft(), getPaddingTop() + AndroidUtilities.dp(16.0f), getPaddingLeft() + (((getMeasuredWidth() - getPaddingRight()) - getPaddingLeft()) * 0.46f), getPaddingTop() + AndroidUtilities.dp(28.0f), Path.Direction.CW);
+            Path path = this.loadingPath;
+            float paddingLeft = getPaddingLeft();
+            float paddingTop = getPaddingTop();
+            float measuredWidth = getMeasuredWidth() - getPaddingRight();
+            float paddingTop2 = getPaddingTop() + AndroidUtilities.dp(12.0f);
+            Path.Direction direction = Path.Direction.CW;
+            path.addRect(paddingLeft, paddingTop, measuredWidth, paddingTop2, direction);
+            this.loadingPath.addRect(getPaddingLeft(), getPaddingTop() + AndroidUtilities.dp(16.0f), getPaddingLeft() + (((getMeasuredWidth() - getPaddingRight()) - getPaddingLeft()) * 0.46f), getPaddingTop() + AndroidUtilities.dp(28.0f), direction);
             this.loadingDrawable.draw(canvas);
             invalidate();
         }
@@ -259,11 +265,11 @@ public class StoryContainsEmojiButton extends View {
     }
 
     public void lambda$load$1(TLObject tLObject, Object obj, ArrayList arrayList, boolean[] zArr, int i) {
-        boolean z;
         if (tLObject == null) {
             return;
         }
         TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
+        this.vector = tLRPC$Vector;
         lastRequestParentObject = obj;
         lastResponse = tLRPC$Vector;
         for (int i2 = 0; i2 < tLRPC$Vector.objects.size(); i2++) {
@@ -290,21 +296,17 @@ public class StoryContainsEmojiButton extends View {
                 int i4 = 0;
                 while (true) {
                     if (i4 >= this.inputSets.size()) {
-                        z = false;
+                        this.inputSets.add(tLRPC$InputStickerSet);
+                        break;
+                    } else if (this.inputSets.get(i4).id == j) {
                         break;
                     } else {
-                        if (this.inputSets.get(i4).id == j) {
-                            z = true;
-                            break;
-                        }
                         i4++;
                     }
                 }
-                if (!z) {
-                    this.inputSets.add(tLRPC$InputStickerSet);
-                }
             }
             this.emoji = true;
+            this.vector = null;
         }
         if (size2 == 1) {
             if (this.sets.size() >= 1) {
@@ -347,6 +349,7 @@ public class StoryContainsEmojiButton extends View {
     }
 
     private void set(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+        TLRPC$Document tLRPC$Document;
         CharSequence charSequence;
         String string;
         if (tLRPC$TL_messages_stickerSet == null) {
@@ -355,18 +358,19 @@ public class StoryContainsEmojiButton extends View {
         SpannableString spannableString = new SpannableString("x " + tLRPC$TL_messages_stickerSet.set.title);
         spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
         spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
-        TLRPC$Document tLRPC$Document = null;
         ArrayList<TLRPC$Document> arrayList = tLRPC$TL_messages_stickerSet.documents;
         int i = 0;
         while (true) {
             if (i >= arrayList.size()) {
+                tLRPC$Document = null;
                 break;
+            } else {
+                if (arrayList.get(i).id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
+                    tLRPC$Document = arrayList.get(i);
+                    break;
+                }
+                i++;
             }
-            if (arrayList.get(i).id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
-                tLRPC$Document = arrayList.get(i);
-                break;
-            }
-            i++;
         }
         if (tLRPC$Document == null && !arrayList.isEmpty()) {
             tLRPC$Document = arrayList.get(0);
@@ -435,13 +439,16 @@ public class StoryContainsEmojiButton extends View {
     }
 
     private void animateLoad(boolean z) {
+        final boolean z2 = true;
         ValueAnimator valueAnimator = this.loadAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         if (z) {
             this.loadAnimator = ValueAnimator.ofFloat(this.loadT, 1.0f);
-            final boolean z2 = this.layout == null || Math.abs(getMeasuredHeight() - ((getPaddingTop() + this.layout.getHeight()) + getPaddingBottom())) > AndroidUtilities.dp(3.0f);
+            if (this.layout != null && Math.abs(getMeasuredHeight() - ((getPaddingTop() + this.layout.getHeight()) + getPaddingBottom())) <= AndroidUtilities.dp(3.0f)) {
+                z2 = false;
+            }
             this.loadAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {

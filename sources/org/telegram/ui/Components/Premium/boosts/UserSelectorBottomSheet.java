@@ -257,7 +257,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             this.selectedIds.add(Long.valueOf(user.id));
             this.allSelectedObjects.put(Long.valueOf(user.id), user);
         }
-        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(this, getContext(), this.resourcesProvider) {
+        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
                 if (getResources().getConfiguration().orientation == 2) {
@@ -267,7 +267,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         };
         this.headerView = selectorHeaderCell;
-        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda4(this));
+        selectorHeaderCell.setOnCloseClickListener(new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
         selectorHeaderCell.setText(getTitle());
         selectorHeaderCell.setCloseImageVisible(false);
         selectorHeaderCell.backDrawable.setRotation(0.0f, false);
@@ -434,7 +434,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
                 if (selectorSearchCell != null) {
                     AndroidUtilities.hideKeyboard(selectorSearchCell.getEditText());
                 }
-                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda4(this));
+                StarsIntroActivity.GiftStarsSheet giftStarsSheet = new StarsIntroActivity.GiftStarsSheet(getContext(), this.resourcesProvider, user, new UserSelectorBottomSheet$$ExternalSyntheticLambda3(this));
                 if (!AndroidUtilities.isTablet()) {
                     giftStarsSheet.makeAttached(this.attachedFragment);
                 }
@@ -718,7 +718,7 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             if (userFull == null || userFull.birthday != null) {
                 i = 0;
             } else {
-                i = AndroidUtilities.dp(50.0f) + 0;
+                i = AndroidUtilities.dp(50.0f);
                 this.items.add(SelectorAdapter.Item.asButton(1, R.drawable.menu_birthday, LocaleController.getString(R.string.GiftsBirthdaySetup)));
             }
             if (this.userId >= 0) {
@@ -727,8 +727,8 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
             if (this.birthdays != null) {
                 i = i + addSection(this.items, LocaleController.getString(R.string.BirthdayToday), this.birthdays.today, true) + addSection(this.items, LocaleController.getString(R.string.BirthdayYesterday), this.birthdays.yesterday, true) + addSection(this.items, LocaleController.getString(R.string.BirthdayTomorrow), this.birthdays.tomorrow, true);
             }
-            SelectorAdapter.Item item = null;
             final ArrayList arrayList = new ArrayList();
+            SelectorAdapter.Item item = null;
             if (!this.hints.isEmpty()) {
                 ArrayList arrayList2 = new ArrayList();
                 Iterator<TLRPC$TL_topPeer> it = this.hints.iterator();
@@ -802,9 +802,10 @@ public class UserSelectorBottomSheet extends BottomSheetWithRecyclerListView imp
     public void lambda$updateItems$11(ArrayList arrayList, View view) {
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
-            long longValue = ((Long) it.next()).longValue();
-            this.selectedIds.remove(Long.valueOf(longValue));
-            this.allSelectedObjects.remove(Long.valueOf(longValue));
+            Long l = (Long) it.next();
+            l.longValue();
+            this.selectedIds.remove(l);
+            this.allSelectedObjects.remove(l);
         }
         checkEditTextHint();
         this.searchField.updateSpans(true, this.selectedIds, new Runnable() {

@@ -397,8 +397,10 @@ public class VoIpGradientLayout extends FrameLayout {
         Objects.requireNonNull(this.backgroundProvider);
         canvas.scale(1.12f, 1.12f, width, height);
         canvas.rotate(this.backgroundProvider.getDegree(), width, height);
-        this.backgroundProvider.getLightCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
-        this.backgroundProvider.getDarkCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
+        Canvas lightCanvas = this.backgroundProvider.getLightCanvas();
+        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+        lightCanvas.drawColor(0, mode);
+        this.backgroundProvider.getDarkCanvas().drawColor(0, mode);
         int i = this.alphaGreen;
         if (i != 0 && this.alphaOrangeRed != 255) {
             this.bgGreen.setAlpha(i);
@@ -438,7 +440,12 @@ public class VoIpGradientLayout extends FrameLayout {
         canvas.restore();
         if (this.showClip) {
             this.clipPath.rewind();
-            this.clipPath.addCircle(this.clipCx, this.clipCy, this.clipRadius, Path.Direction.CW);
+            Path path = this.clipPath;
+            float f = this.clipCx;
+            float f2 = this.clipCy;
+            float f3 = this.clipRadius;
+            Path.Direction direction = Path.Direction.CW;
+            path.addCircle(f, f2, f3, direction);
             canvas.clipPath(this.clipPath);
             Objects.requireNonNull(this.backgroundProvider);
             Objects.requireNonNull(this.backgroundProvider);
@@ -446,14 +453,14 @@ public class VoIpGradientLayout extends FrameLayout {
             this.bgGreen.setAlpha(255);
             this.bgGreen.draw(canvas);
             this.clipPath.rewind();
-            this.clipPath.addCircle(this.clipCx / 4.0f, this.clipCy / 4.0f, this.clipRadius / 4.0f, Path.Direction.CW);
-            this.backgroundProvider.getRevealCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
+            this.clipPath.addCircle(this.clipCx / 4.0f, this.clipCy / 4.0f, this.clipRadius / 4.0f, direction);
+            this.backgroundProvider.getRevealCanvas().drawColor(0, mode);
             this.backgroundProvider.getRevealCanvas().save();
             this.backgroundProvider.getRevealCanvas().clipPath(this.clipPath);
             this.bgGreenLightReveal.setAlpha(255);
             this.bgGreenLightReveal.draw(this.backgroundProvider.getRevealCanvas());
             this.backgroundProvider.getRevealCanvas().restore();
-            this.backgroundProvider.getRevealDrakCanvas().drawColor(0, PorterDuff.Mode.CLEAR);
+            this.backgroundProvider.getRevealDrakCanvas().drawColor(0, mode);
             this.backgroundProvider.getRevealDrakCanvas().save();
             this.backgroundProvider.getRevealDrakCanvas().clipPath(this.clipPath);
             this.bgGreenDarkReveal.setAlpha(255);

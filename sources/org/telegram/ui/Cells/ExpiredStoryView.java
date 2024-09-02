@@ -48,14 +48,14 @@ public class ExpiredStoryView {
                     parentWidth = chatMessageCell.getParentWidth();
                 }
                 int i = (int) (parentWidth * 0.4f);
-                String string = LocaleController.getString("From", R.string.From);
+                String string = LocaleController.getString(R.string.From);
                 TextPaint textPaint = Theme.chat_forwardNamePaint;
                 int ceil = (int) Math.ceil(textPaint.measureText(string + " "));
                 if (str2 == null) {
                     str2 = "";
                 }
                 String str3 = (String) TextUtils.ellipsize(str2.replace('\n', ' '), Theme.chat_replyNamePaint, i - ceil, TextUtils.TruncateAt.END);
-                String string2 = LocaleController.getString("FromFormatted", R.string.FromFormatted);
+                String string2 = LocaleController.getString(R.string.FromFormatted);
                 int indexOf = string2.indexOf("%1$s");
                 String format = String.format(string2, str3);
                 if (indexOf >= 0) {
@@ -66,8 +66,10 @@ public class ExpiredStoryView {
                     str = format;
                 }
                 TextPaint textPaint2 = Theme.chat_replyTextPaint;
-                this.titleLayout = new StaticLayout(createExpiredStoryString, textPaint2, ((int) (textPaint2.measureText(createExpiredStoryString, 0, createExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                int measureText = ((int) (textPaint2.measureText(createExpiredStoryString, 0, createExpiredStoryString.length()) + 1.0f)) + AndroidUtilities.dp(10.0f);
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                this.titleLayout = new StaticLayout(createExpiredStoryString, textPaint2, measureText, alignment, 1.0f, 0.0f, false);
+                this.subtitleLayout = new StaticLayout(str, textPaint2, ((int) (textPaint2.measureText((CharSequence) str, 0, str.length()) + 1.0f)) + AndroidUtilities.dp(10.0f), alignment, 1.0f, 0.0f, false);
                 this.height = 0;
                 this.verticalPadding = AndroidUtilities.dp(4.0f);
                 this.horizontalPadding = AndroidUtilities.dp(12.0f);
@@ -95,8 +97,8 @@ public class ExpiredStoryView {
         } else {
             float dp2 = chatMessageCell.isAvatarVisible ? AndroidUtilities.dp(48.0f) : 0.0f;
             this.textX = this.horizontalPadding + dp2 + AndroidUtilities.dp(12.0f);
-            float f = this.horizontalPadding;
-            rectF.set(dp2 + f, this.verticalPadding, dp2 + f + this.width, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
+            float f = dp2 + this.horizontalPadding;
+            rectF.set(f, this.verticalPadding, this.width + f, chatMessageCell.getMeasuredHeight() - this.verticalPadding);
         }
         if (chatMessageCell.getMessageObject().isOutOwner()) {
             Theme.chat_replyTextPaint.setColor(chatMessageCell.getThemedColor(Theme.key_chat_outReplyNameText));

@@ -269,8 +269,8 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         protected void onDraw(Canvas canvas) {
             float f = this.alpha.set(this.lastCount > 0 ? 1.0f : 0.0f);
             canvas.save();
-            float f2 = this.countScale;
-            canvas.scale(f2 * f, f2 * f, getWidth() / 2.0f, getHeight() / 2.0f);
+            float f2 = this.countScale * f;
+            canvas.scale(f2, f2, getWidth() / 2.0f, getHeight() / 2.0f);
             float currentWidth = this.textDrawable.getCurrentWidth() + AndroidUtilities.dpf2(12.66f);
             float dpf2 = AndroidUtilities.dpf2(20.3f);
             RectF rectF = AndroidUtilities.rectTmp;
@@ -316,7 +316,12 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     }
 
     public static boolean shouldAsk(Activity activity) {
-        if (activity == null || Build.VERSION.SDK_INT < 23 || activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS") == 0) {
+        int checkSelfPermission;
+        if (activity == null || Build.VERSION.SDK_INT < 23) {
+            return false;
+        }
+        checkSelfPermission = activity.checkSelfPermission("android.permission.POST_NOTIFICATIONS");
+        if (checkSelfPermission == 0) {
             return false;
         }
         long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsAfter", -1L);
@@ -329,11 +334,12 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
     public static void askLater() {
         long j = MessagesController.getGlobalMainSettings().getLong("askNotificationsDuration", 86400000L);
         long currentTimeMillis = System.currentTimeMillis() + j;
-        long j2 = 604800000;
-        if (j < 259200000) {
-            j2 = 259200000;
-        } else if (j >= 604800000) {
-            j2 = 2592000000L;
+        long j2 = 259200000;
+        if (j >= 259200000) {
+            j2 = 604800000;
+            if (j >= 604800000) {
+                j2 = 2592000000L;
+            }
         }
         MessagesController.getGlobalMainSettings().edit().putLong("askNotificationsAfter", currentTimeMillis).putLong("askNotificationsDuration", j2).apply();
     }

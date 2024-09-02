@@ -356,7 +356,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         public StickerView(Context context) {
             super(context);
             this.animateImage = true;
-            this.view = new View(context, PremiumStickersPreviewRecycler.this) {
+            this.view = new View(context) {
                 @Override
                 public void draw(Canvas canvas) {
                     super.draw(canvas);

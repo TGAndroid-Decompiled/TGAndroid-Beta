@@ -244,11 +244,13 @@ public class MessageTopicButton {
             if (i2 >= fArr2.length) {
                 break;
             }
-            if (f <= fArr2[i2]) {
+            float f2 = fArr2[i2];
+            if (f <= f2) {
                 int i3 = i2 - 1;
-                float f2 = (f - fArr2[i3]) / (fArr2[i2] - fArr2[i3]);
-                this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i3], fArr3[i2], f2);
-                this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i3], fArr4[i2], f2);
+                float f3 = fArr2[i3];
+                float f4 = (f - f3) / (f2 - f3);
+                this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i3], fArr3[i2], f4);
+                this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i3], fArr4[i2], f4);
                 break;
             }
             i2++;
@@ -431,8 +433,8 @@ public class MessageTopicButton {
             } else {
                 ImageReceiver imageReceiver = this.imageReceiver;
                 if (imageReceiver != null) {
-                    int i = this.avatarSize;
-                    imageReceiver.setImageCoords(0.0f, 0.0f, i, i);
+                    float f2 = this.avatarSize;
+                    imageReceiver.setImageCoords(0.0f, 0.0f, f2, f2);
                     this.imageReceiver.draw(canvas);
                 }
             }

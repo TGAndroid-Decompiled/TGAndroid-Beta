@@ -147,7 +147,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(view);
                 case 8:
-                    FrameLayout frameLayout = new FrameLayout(this, BoostsActivity.this.getContext()) {
+                    FrameLayout frameLayout = new FrameLayout(BoostsActivity.this.getContext()) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
@@ -163,7 +163,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                     view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                     return new RecyclerListView.Holder(view);
                 case 9:
-                    ManageChatTextCell manageChatTextCell = new ManageChatTextCell(this, BoostsActivity.this.getContext()) {
+                    ManageChatTextCell manageChatTextCell = new ManageChatTextCell(BoostsActivity.this.getContext()) {
                         @Override
                         protected int getFullHeight() {
                             return AndroidUtilities.dp(50.0f);
@@ -265,15 +265,15 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             }
             if (viewHolder.getItemViewType() == 0) {
                 StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
-                overviewCell.setData(0, Integer.toString(BoostsActivity.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
+                overviewCell.setData(0, Integer.toString(BoostsActivity.this.boostsStatus.level), null, LocaleController.getString(R.string.BoostsLevel2));
                 if (BoostsActivity.this.boostsStatus.premium_audience == null || BoostsActivity.this.boostsStatus.premium_audience.total == 0.0d) {
                     overviewCell.setData(1, "~0", "0%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 } else {
                     float f = (((float) BoostsActivity.this.boostsStatus.premium_audience.part) / ((float) BoostsActivity.this.boostsStatus.premium_audience.total)) * 100.0f;
                     overviewCell.setData(1, "≈" + ((int) BoostsActivity.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(BoostsActivity.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                 }
-                overviewCell.setData(2, String.valueOf(BoostsActivity.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
-                overviewCell.setData(3, String.valueOf(Math.max(0, BoostsActivity.this.boostsStatus.next_level_boosts - BoostsActivity.this.boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                overviewCell.setData(2, String.valueOf(BoostsActivity.this.boostsStatus.boosts), null, LocaleController.getString(R.string.BoostsExisting));
+                overviewCell.setData(3, String.valueOf(Math.max(0, BoostsActivity.this.boostsStatus.next_level_boosts - BoostsActivity.this.boostsStatus.boosts)), null, LocaleController.getString(R.string.BoostsToLevel));
                 overviewCell.setPadding(AndroidUtilities.dp(23.0f), overviewCell.getPaddingTop(), AndroidUtilities.dp(23.0f), overviewCell.getPaddingBottom());
                 return;
             }
@@ -363,64 +363,64 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
     public void updateRows(boolean z) {
         ArrayList<? extends AdapterWithDiffUtils.Item> arrayList = new ArrayList<>(this.items);
         this.items.clear();
-        this.items.add(new ItemInternal(this, 14, false));
+        this.items.add(new ItemInternal(14, false));
         if (this.boostsStatus != null) {
-            this.items.add(new ItemInternal(this, 16, LocaleController.getString("StatisticOverview", R.string.StatisticOverview)));
-            this.items.add(new ItemInternal(this, 0, false));
-            this.items.add(new ItemInternal(this, 2, false));
+            this.items.add(new ItemInternal(16, LocaleController.getString(R.string.StatisticOverview)));
+            this.items.add(new ItemInternal(0, false));
+            this.items.add(new ItemInternal(2, false));
             if (this.boostsStatus.prepaid_giveaways.size() > 0) {
-                this.items.add(new ItemInternal(this, 12, LocaleController.getString("BoostingPreparedGiveaways", R.string.BoostingPreparedGiveaways)));
+                this.items.add(new ItemInternal(12, LocaleController.getString(R.string.BoostingPreparedGiveaways)));
                 int i = 0;
                 while (i < this.boostsStatus.prepaid_giveaways.size()) {
-                    this.items.add(new ItemInternal(this, 11, this.boostsStatus.prepaid_giveaways.get(i), i == this.boostsStatus.prepaid_giveaways.size() - 1));
+                    this.items.add(new ItemInternal(11, this.boostsStatus.prepaid_giveaways.get(i), i == this.boostsStatus.prepaid_giveaways.size() - 1));
                     i++;
                 }
-                this.items.add(new ItemInternal(this, 6, LocaleController.getString("BoostingSelectPaidGiveaway", R.string.BoostingSelectPaidGiveaway)));
+                this.items.add(new ItemInternal(6, LocaleController.getString(R.string.BoostingSelectPaidGiveaway)));
             }
-            this.items.add(new ItemInternal(this, 13, LocaleController.getString("Boosters", R.string.Boosters)));
+            this.items.add(new ItemInternal(13, LocaleController.getString(R.string.Boosters)));
             if (this.selectedTab == 0) {
                 if (this.boosters.isEmpty()) {
-                    this.items.add(new ItemInternal(this, 8, false));
-                    this.items.add(new ItemInternal(this, 2, false));
+                    this.items.add(new ItemInternal(8, false));
+                    this.items.add(new ItemInternal(2, false));
                 } else {
                     int i2 = 0;
                     while (i2 < this.boosters.size()) {
-                        this.items.add(new ItemInternal(this, 5, this.boosters.get(i2), i2 == this.boosters.size() - 1 && !this.hasBoostsNext, this.selectedTab));
+                        this.items.add(new ItemInternal(5, this.boosters.get(i2), i2 == this.boosters.size() - 1 && !this.hasBoostsNext, this.selectedTab));
                         i2++;
                     }
                     if (this.hasBoostsNext) {
-                        this.items.add(new ItemInternal(this, 9, true));
+                        this.items.add(new ItemInternal(9, true));
                     } else {
-                        this.items.add(new ItemInternal(this, 7, false));
+                        this.items.add(new ItemInternal(7, false));
                     }
-                    this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
+                    this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
                 }
             } else if (this.gifts.isEmpty()) {
-                this.items.add(new ItemInternal(this, 8, false));
-                this.items.add(new ItemInternal(this, 2, false));
+                this.items.add(new ItemInternal(8, false));
+                this.items.add(new ItemInternal(2, false));
             } else {
                 int i3 = 0;
                 while (i3 < this.gifts.size()) {
-                    this.items.add(new ItemInternal(this, 5, this.gifts.get(i3), i3 == this.gifts.size() - 1 && !this.hasGiftsNext, this.selectedTab));
+                    this.items.add(new ItemInternal(5, this.gifts.get(i3), i3 == this.gifts.size() - 1 && !this.hasGiftsNext, this.selectedTab));
                     i3++;
                 }
                 if (this.hasGiftsNext) {
-                    this.items.add(new ItemInternal(this, 9, true));
+                    this.items.add(new ItemInternal(9, true));
                 } else {
-                    this.items.add(new ItemInternal(this, 7, false));
+                    this.items.add(new ItemInternal(7, false));
                 }
-                this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
+                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostersInfoDescription : R.string.BoostersInfoGroupDescription)));
             }
-            this.items.add(new ItemInternal(this, 1, LocaleController.getString("LinkForBoosting", R.string.LinkForBoosting)));
-            this.items.add(new ItemInternal(this, 3, this.boostsStatus.boost_url));
+            this.items.add(new ItemInternal(1, LocaleController.getString(R.string.LinkForBoosting)));
+            this.items.add(new ItemInternal(3, this.boostsStatus.boost_url));
             if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(this.currentChat)) {
-                this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
-                this.items.add(new ItemInternal(this, 10, true));
-                this.items.add(new ItemInternal(this, 6, LocaleController.getString(isChannel() ? R.string.BoostingGetMoreBoosts : R.string.BoostingGetMoreBoostsGroup)));
+                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingShareThisLink : R.string.BoostingShareThisLinkGroup)));
+                this.items.add(new ItemInternal(10, true));
+                this.items.add(new ItemInternal(6, LocaleController.getString(isChannel() ? R.string.BoostingGetMoreBoosts : R.string.BoostingGetMoreBoostsGroup)));
             } else {
-                this.items.add(new ItemInternal(this, 6, ""));
+                this.items.add(new ItemInternal(6, ""));
             }
-            this.items.add(new ItemInternal(this, 15, false));
+            this.items.add(new ItemInternal(15, false));
         }
         if (z) {
             this.adapter.setItems(arrayList, this.items);
@@ -736,25 +736,25 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         int tab;
         String title;
 
-        public ItemInternal(BoostsActivity boostsActivity, int i, String str) {
+        public ItemInternal(int i, String str) {
             super(i, false);
             this.title = str;
         }
 
-        public ItemInternal(BoostsActivity boostsActivity, int i, TL_stories$TL_boost tL_stories$TL_boost, boolean z, int i2) {
+        public ItemInternal(int i, TL_stories$TL_boost tL_stories$TL_boost, boolean z, int i2) {
             super(i, true);
             this.booster = tL_stories$TL_boost;
             this.isLast = z;
             this.tab = i2;
         }
 
-        public ItemInternal(BoostsActivity boostsActivity, int i, TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, boolean z) {
+        public ItemInternal(int i, TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, boolean z) {
             super(i, true);
             this.prepaidGiveaway = tL_stories$TL_prepaidGiveaway;
             this.isLast = z;
         }
 
-        public ItemInternal(BoostsActivity boostsActivity, int i, boolean z) {
+        public ItemInternal(int i, boolean z) {
             super(i, z);
         }
 
@@ -763,7 +763,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ItemInternal.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             ItemInternal itemInternal = (ItemInternal) obj;
@@ -787,7 +787,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
         LinearLayout linearLayout = new LinearLayout(context);
         this.progressLayout = linearLayout;
         linearLayout.setOrientation(1);
-        this.progressLayout.addView(new View(this, context) {
+        this.progressLayout.addView(new View(context) {
             private final CircularProgressDrawable drawable = new CircularProgressDrawable(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(3.0f), Theme.getColor(Theme.key_dialogTextBlue));
 
             @Override
@@ -1000,7 +1000,7 @@ public class BoostsActivity extends GradientHeaderActivity implements Notificati
                 if (z2 && boost.user_id == -1) {
                     Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getParentActivity(), getResourceProvider());
                     lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
-                    lottieLayout.textView.setText(LocaleController.getString("BoostingRecipientWillBeSelected", R.string.BoostingRecipientWillBeSelected));
+                    lottieLayout.textView.setText(LocaleController.getString(R.string.BoostingRecipientWillBeSelected));
                     lottieLayout.textView.setSingleLine(false);
                     lottieLayout.textView.setMaxLines(2);
                     Bulletin.make(this, lottieLayout, 2750).show();

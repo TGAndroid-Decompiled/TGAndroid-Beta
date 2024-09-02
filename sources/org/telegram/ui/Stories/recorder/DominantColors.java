@@ -26,11 +26,12 @@ public class DominantColors {
         float[] fArr = tempHsv;
         fArr[2] = Utilities.clamp(fArr[2] + (z ? -0.05f : 0.07f), 0.85f, 0.15f);
         float[] fArr2 = tempHsv;
-        if (fArr2[1] > 0.1f && fArr2[1] <= 0.95f) {
-            if (fArr2[1] <= 0.5f) {
-                fArr2[1] = Utilities.clamp(fArr2[1] + 0.2f, 1.0f, 0.0f);
-            } else if (fArr2[1] > 0.8f) {
-                fArr2[1] = Utilities.clamp(fArr2[1] - 0.4f, 1.0f, 0.0f);
+        float f = fArr2[1];
+        if (f > 0.1f && f <= 0.95f) {
+            if (f <= 0.5f) {
+                fArr2[1] = Utilities.clamp(f + 0.2f, 1.0f, 0.0f);
+            } else if (f > 0.8f) {
+                fArr2[1] = Utilities.clamp(f - 0.4f, 1.0f, 0.0f);
             }
         }
         return Color.HSVToColor(tempHsv);

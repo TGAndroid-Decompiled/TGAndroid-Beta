@@ -111,6 +111,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     private OnlyUserFiltersAdapter dialogsAdapter;
     StickerEmptyView emptyView;
     private boolean endReached;
+    private boolean firstLoading;
     private AnimatorSet floatingDateAnimation;
     private final ChatActionCell floatingDateView;
     private Runnable hideFloatingDateRunnable;
@@ -235,9 +236,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         SharedDocumentCell sharedDocumentCell = (SharedDocumentCell) childAt;
                         if (sharedDocumentCell.getMessage().getId() == messageObject.getId()) {
                             BackupImageView imageView2 = sharedDocumentCell.getImageView();
-                            ImageReceiver imageReceiver2 = imageView2.getImageReceiver();
+                            photoImage = imageView2.getImageReceiver();
                             imageView2.getLocationInWindow(iArr);
-                            photoImage = imageReceiver2;
                         }
                         photoImage = null;
                     } else {
@@ -265,7 +265,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         placeProviderObject.parentView.getLocationInWindow(iArr);
                         placeProviderObject.clipTopAddition = 0;
                         if (PhotoViewer.isShowingImage(messageObject) && (pinnedHeader = recyclerListView.getPinnedHeader()) != null) {
-                            int dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) + 0 : 0) - placeProviderObject.viewY;
+                            int dp = (childAt instanceof SharedDocumentCell ? AndroidUtilities.dp(8.0f) : 0) - placeProviderObject.viewY;
                             if (dp > childAt.getHeight()) {
                                 recyclerListView.scrollBy(0, -(dp + pinnedHeader.getHeight()));
                             } else {
@@ -284,6 +284,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 return null;
             }
         };
+        this.firstLoading = true;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.hideFloatingDateRunnable = new Runnable() {
             @Override
@@ -517,8 +518,8 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (i == 1 || i == 2) {
                 coloredImageSpan.setScale(0.85f);
             }
-            SpannableStringBuilder[] spannableStringBuilderArr2 = arrowSpan;
-            spannableStringBuilderArr2[i].setSpan(coloredImageSpan, 0, spannableStringBuilderArr2[i].length(), 0);
+            SpannableStringBuilder spannableStringBuilder = arrowSpan[i];
+            spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
         }
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         CharSequence charSequence = null;
@@ -558,9 +559,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
             }
             CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
-            charSequence = spannableStringBuilder;
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false)).append((char) 8202).append((CharSequence) arrowSpan[i]).append((char) 8202).append(replaceEmoji);
+            charSequence = spannableStringBuilder2;
         } else if (tLRPC$User != null) {
             charSequence = Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), textPaint != null ? textPaint.getFontMetricsInt() : null, false);
         } else if (chat != null) {
@@ -574,15 +575,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {
-        Locale locale = Locale.ENGLISH;
-        Object[] objArr = new Object[6];
-        objArr[0] = Long.valueOf(j);
-        objArr[1] = Long.valueOf(j2);
-        objArr[2] = Long.valueOf(j3);
-        objArr[3] = Integer.valueOf(mediaFilterData == null ? -1 : mediaFilterData.filterType);
-        objArr[4] = str;
-        objArr[5] = Boolean.valueOf(z);
-        final String format = String.format(locale, "%d%d%d%d%s%s", objArr);
+        final String format = String.format(Locale.ENGLISH, "%d%d%d%d%s%s", Long.valueOf(j), Long.valueOf(j2), Long.valueOf(j3), Integer.valueOf(mediaFilterData == null ? -1 : mediaFilterData.filterType), str, Boolean.valueOf(z));
         String str2 = this.lastSearchFilterQueryString;
         boolean z3 = str2 != null && str2.equals(format);
         boolean z4 = !z3 && z2;
@@ -611,6 +604,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 adapter.notifyDataSetChanged();
             }
             this.requestIndex++;
+            this.firstLoading = true;
             if (this.recyclerListView.getPinnedHeader() != null) {
                 this.recyclerListView.getPinnedHeader().setAlpha(0.0f);
             }
@@ -761,16 +755,15 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$search$2(int i, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i2, boolean z, String str, ArrayList arrayList, FiltersView.MediaFilterData mediaFilterData, long j, long j2, ArrayList arrayList2, ArrayList arrayList3) {
-        boolean z2;
         String string;
         if (i != this.requestIndex) {
             return;
         }
         this.isLoading = false;
         if (tLRPC$TL_error != null) {
-            this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewTitle2", R.string.SearchEmptyViewTitle2));
+            this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
             this.emptyView.subtitle.setVisibility(0);
-            this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+            this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
             this.emptyView.showProgress(false, true);
             return;
         }
@@ -811,28 +804,28 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (this.messages.isEmpty()) {
             if (mediaFilterData != null) {
                 if (TextUtils.isEmpty(this.currentDataQuery) && j == 0 && j2 == 0) {
-                    this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewTitle", R.string.SearchEmptyViewTitle));
+                    this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle));
                     int i4 = mediaFilterData.filterType;
                     if (i4 == 1) {
-                        string = LocaleController.getString("SearchEmptyViewFilteredSubtitleFiles", R.string.SearchEmptyViewFilteredSubtitleFiles);
+                        string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleFiles);
                     } else if (i4 == 0) {
-                        string = LocaleController.getString("SearchEmptyViewFilteredSubtitleMedia", R.string.SearchEmptyViewFilteredSubtitleMedia);
+                        string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleMedia);
                     } else if (i4 == 2) {
-                        string = LocaleController.getString("SearchEmptyViewFilteredSubtitleLinks", R.string.SearchEmptyViewFilteredSubtitleLinks);
+                        string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleLinks);
                     } else if (i4 == 3) {
-                        string = LocaleController.getString("SearchEmptyViewFilteredSubtitleMusic", R.string.SearchEmptyViewFilteredSubtitleMusic);
+                        string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleMusic);
                     } else {
-                        string = LocaleController.getString("SearchEmptyViewFilteredSubtitleVoice", R.string.SearchEmptyViewFilteredSubtitleVoice);
+                        string = LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitleVoice);
                     }
                     this.emptyView.subtitle.setVisibility(0);
                     this.emptyView.subtitle.setText(string);
                 } else {
-                    this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewTitle2", R.string.SearchEmptyViewTitle2));
+                    this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                     this.emptyView.subtitle.setVisibility(0);
-                    this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+                    this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
                 }
             } else {
-                this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewTitle2", R.string.SearchEmptyViewTitle2));
+                this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                 this.emptyView.subtitle.setVisibility(8);
             }
         }
@@ -866,28 +859,25 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (arrayList2 != null) {
                 this.localTipChats.addAll(arrayList2);
             }
-            if (str != null && str.length() >= 3 && (LocaleController.getString("SavedMessages", R.string.SavedMessages).toLowerCase().startsWith(str) || "saved messages".startsWith(str))) {
+            if (str != null && str.length() >= 3 && (LocaleController.getString(R.string.SavedMessages).toLowerCase().startsWith(str) || "saved messages".startsWith(str))) {
                 int i6 = 0;
                 while (true) {
-                    if (i6 >= this.localTipChats.size()) {
-                        z2 = false;
-                        break;
-                    } else {
+                    if (i6 < this.localTipChats.size()) {
                         if ((this.localTipChats.get(i6) instanceof TLRPC$User) && UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == ((TLRPC$User) this.localTipChats.get(i6)).id) {
-                            z2 = true;
                             break;
+                        } else {
+                            i6++;
                         }
-                        i6++;
+                    } else {
+                        this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                        break;
                     }
-                }
-                if (!z2) {
-                    this.localTipChats.add(0, UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
                 }
             }
             this.localTipDates.clear();
             this.localTipDates.addAll(arrayList3);
             this.localTipArchive = false;
-            if (str != null && str.length() >= 3 && (LocaleController.getString("ArchiveSearchFilter", R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str))) {
+            if (str != null && str.length() >= 3 && (LocaleController.getString(R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str))) {
                 this.localTipArchive = true;
             }
             Delegate delegate = this.delegate;
@@ -895,6 +885,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 delegate.updateFiltersView(TextUtils.isEmpty(this.currentDataQuery), this.localTipChats, this.localTipDates, this.localTipArchive);
             }
         }
+        this.firstLoading = false;
         final View view = null;
         final int i7 = -1;
         for (int i8 = 0; i8 < size; i8++) {
@@ -918,8 +909,9 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                         View childAt2 = FilteredSearchView.this.recyclerListView.getChildAt(i9);
                         if (view == null || FilteredSearchView.this.recyclerListView.getChildAdapterPosition(childAt2) >= i7) {
                             childAt2.setAlpha(0.0f);
+                            int min = (int) ((Math.min(FilteredSearchView.this.recyclerListView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / FilteredSearchView.this.recyclerListView.getMeasuredHeight()) * 100.0f);
                             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
-                            ofFloat.setStartDelay((int) ((Math.min(FilteredSearchView.this.recyclerListView.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / FilteredSearchView.this.recyclerListView.getMeasuredHeight()) * 100.0f));
+                            ofFloat.setStartDelay(min);
                             ofFloat.setDuration(200L);
                             animatorSet.playTogether(ofFloat);
                         }
@@ -1228,7 +1220,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 }
                 BottomSheet.Builder builder = new BottomSheet.Builder(FilteredSearchView.this.parentActivity);
                 builder.setTitle(str);
-                builder.setItems(new CharSequence[]{LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)}, new DialogInterface.OnClickListener() {
+                builder.setItems(new CharSequence[]{LocaleController.getString(R.string.Open), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
                         FilteredSearchView.SharedLinksAdapter.AnonymousClass1.this.lambda$onLinkPress$0(str, dialogInterface, i);
@@ -1638,7 +1630,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             if (this == obj) {
                 return true;
             }
-            if (obj == null || MessageHashId.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             MessageHashId messageHashId = (MessageHashId) obj;
@@ -1663,7 +1655,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             DialogCell dialogCell;
             if (i == 0) {
-                dialogCell = new DialogCell(this, null, viewGroup.getContext(), true, true) {
+                dialogCell = new DialogCell(null, viewGroup.getContext(), true, true) {
                     @Override
                     public boolean isForumCell() {
                         return false;
@@ -1676,7 +1668,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 dialogCell = flickerLoadingView;
             } else {
                 GraySectionCell graySectionCell = new GraySectionCell(viewGroup.getContext());
-                graySectionCell.setText(LocaleController.getString("SearchMessages", R.string.SearchMessages));
+                graySectionCell.setText(LocaleController.getString(R.string.SearchMessages));
                 dialogCell = graySectionCell;
             }
             dialogCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));

@@ -175,8 +175,8 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         int max = Math.max(AndroidUtilities.dp(10.0f), ceil);
         this.rect.set(((getMeasuredWidth() - max) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp, r4 + max + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(23.0f) + dp);
         RectF rectF = this.rect;
-        float f = AndroidUtilities.density;
-        canvas.drawRoundRect(rectF, f * 11.5f, f * 11.5f, Theme.dialogs_countPaint);
+        float f = AndroidUtilities.density * 11.5f;
+        canvas.drawRoundRect(rectF, f, f, Theme.dialogs_countPaint);
         RectF rectF2 = this.rect;
         canvas.drawText(format, rectF2.left + ((rectF2.width() - ceil) / 2.0f), dp + AndroidUtilities.dp(16.0f), Theme.dialogs_countTextPaint);
         this.textView.setRightPadding(max + AndroidUtilities.dp(26.0f));

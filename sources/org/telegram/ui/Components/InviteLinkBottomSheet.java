@@ -216,7 +216,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.InviteLinkBottomSheet.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 
@@ -225,9 +225,8 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 if (bool == null || bool.booleanValue() != z3) {
                     boolean z4 = AndroidUtilities.computePerceivedBrightness(InviteLinkBottomSheet.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
                     boolean z5 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(InviteLinkBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
-                    Boolean valueOf = Boolean.valueOf(z3);
-                    this.statusBarOpen = valueOf;
-                    if (!valueOf.booleanValue()) {
+                    this.statusBarOpen = Boolean.valueOf(z3);
+                    if (!z3) {
                         z4 = z5;
                     }
                     AndroidUtilities.setLightStatusBar(InviteLinkBottomSheet.this.getWindow(), z4);
@@ -320,15 +319,15 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setTypeface(AndroidUtilities.bold());
         if (!z) {
             if (tLRPC$TL_chatInviteExported.expired) {
-                this.titleTextView.setText(LocaleController.getString("ExpiredLink", R.string.ExpiredLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.ExpiredLink));
             } else if (tLRPC$TL_chatInviteExported.revoked) {
-                this.titleTextView.setText(LocaleController.getString("RevokedLink", R.string.RevokedLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.RevokedLink));
             } else {
-                this.titleTextView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
+                this.titleTextView.setText(LocaleController.getString(R.string.InviteLink));
             }
             this.titleVisible = true;
         } else {
-            this.titleTextView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
+            this.titleTextView.setText(LocaleController.getString(R.string.InviteLink));
             this.titleVisible = false;
             this.titleTextView.setVisibility(4);
             this.titleTextView.setAlpha(0.0f);
@@ -517,7 +516,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             Context context = viewGroup.getContext();
             switch (i) {
                 case 1:
-                    view = new RevenueUserCell(InviteLinkBottomSheet.this, context);
+                    view = new RevenueUserCell(context);
                     break;
                 case 2:
                     view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
@@ -553,7 +552,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     view = flickerLoadingView;
                     break;
                 case 6:
-                    view = new View(this, context) {
+                    view = new View(context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(5.0f), 1073741824));
@@ -568,7 +567,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     view = shadowSectionCell;
                     break;
                 case 8:
-                    view = new EmptyHintRow(InviteLinkBottomSheet.this, context);
+                    view = new EmptyHintRow(context);
                     break;
                 case 9:
                     view = new RevenueCell(context);
@@ -834,14 +833,14 @@ public class InviteLinkBottomSheet extends BottomSheet {
                         if (!TextUtils.isEmpty(tLRPC$ChannelParticipant.rank)) {
                             str2 = tLRPC$ChannelParticipant.rank;
                         } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantCreator) {
-                            str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                            str2 = LocaleController.getString(R.string.ChannelCreator);
                         } else if (tLRPC$ChannelParticipant instanceof TLRPC$TL_channelParticipantAdmin) {
-                            str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                            str2 = LocaleController.getString(R.string.ChannelAdmin);
                         }
                     } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantCreator) {
-                        str2 = LocaleController.getString("ChannelCreator", R.string.ChannelCreator);
+                        str2 = LocaleController.getString(R.string.ChannelCreator);
                     } else if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatParticipantAdmin) {
-                        str2 = LocaleController.getString("ChannelAdmin", R.string.ChannelAdmin);
+                        str2 = LocaleController.getString(R.string.ChannelAdmin);
                     }
                 }
                 revenueUserCell.setAdminRole(str2);
@@ -891,41 +890,39 @@ public class InviteLinkBottomSheet extends BottomSheet {
             timerPrivacyCell.setFixedSize(0);
             TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported4 = InviteLinkBottomSheet.this.invite;
             if (tLRPC$TL_chatInviteExported4.revoked) {
-                timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
+                timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsNoActive));
                 return;
             }
             if (tLRPC$TL_chatInviteExported4.expired) {
                 int i10 = tLRPC$TL_chatInviteExported4.usage_limit;
                 if (i10 > 0 && i10 == tLRPC$TL_chatInviteExported4.usage) {
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
+                    timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsExpiredLimitReached));
                     return;
                 } else {
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
+                    timerPrivacyCell.setText(LocaleController.getString(R.string.LinkIsExpired));
                     timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
                     return;
                 }
             }
             if (tLRPC$TL_chatInviteExported4.expire_date > 0) {
                 long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
-                int i11 = InviteLinkBottomSheet.this.invite.expire_date;
-                long j2 = (i11 * 1000) - currentTimeMillis;
-                if (j2 < 0) {
-                    j2 = 0;
+                long j2 = InviteLinkBottomSheet.this.invite.expire_date;
+                long j3 = (j2 * 1000) - currentTimeMillis;
+                if (j3 < 0) {
+                    j3 = 0;
                 }
-                if (j2 > 86400000) {
-                    timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(i11, false)));
+                if (j3 > 86400000) {
+                    timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(j2, false)));
                     return;
                 }
-                long j3 = j2 / 1000;
-                int i12 = (int) (j3 % 60);
-                long j4 = j3 / 60;
-                int i13 = (int) (j4 % 60);
-                int i14 = (int) (j4 / 60);
+                long j4 = j3 / 1000;
+                int i11 = (int) (j4 % 60);
+                long j5 = j4 / 60;
                 StringBuilder sb = new StringBuilder();
                 Locale locale = Locale.ENGLISH;
-                sb.append(String.format(locale, "%02d", Integer.valueOf(i14)));
-                sb.append(String.format(locale, ":%02d", Integer.valueOf(i13)));
-                sb.append(String.format(locale, ":%02d", Integer.valueOf(i12)));
+                sb.append(String.format(locale, "%02d", Integer.valueOf((int) (j5 / 60))));
+                sb.append(String.format(locale, ":%02d", Integer.valueOf((int) (j5 % 60))));
+                sb.append(String.format(locale, ":%02d", Integer.valueOf(i11)));
                 String sb2 = sb.toString();
                 timerPrivacyCell.timer = true;
                 timerPrivacyCell.runTimer();
@@ -998,22 +995,11 @@ public class InviteLinkBottomSheet extends BottomSheet {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.shadowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
         View view = this.shadow;
         Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, z ? 1.0f : 0.0f));
         if (!this.titleVisible) {
-            AnimatorSet animatorSet3 = this.shadowAnimation;
-            Animator[] animatorArr2 = new Animator[1];
-            TextView textView = this.titleTextView;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.0f;
-            animatorArr2[0] = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, fArr2);
-            animatorSet3.playTogether(animatorArr2);
+            this.shadowAnimation.playTogether(ObjectAnimator.ofFloat(this.titleTextView, (Property<TextView, Float>) property, z ? 1.0f : 0.0f));
         }
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -1060,11 +1046,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 TLRPC$User tLRPC$User = tLRPC$TL_messages_chatInviteImporters.users.get(i);
                 this.users.put(Long.valueOf(tLRPC$User.id), tLRPC$User);
             }
-            boolean z5 = true;
-            if (!z ? !(!z2 ? list.size() < tLRPC$TL_messages_chatInviteImporters.count || z3 || z4 : list.size() < tLRPC$TL_messages_chatInviteImporters.count || z3) : list.size() >= tLRPC$TL_messages_chatInviteImporters.count) {
-                z5 = false;
-            }
-            this.hasMore = z5;
+            this.hasMore = !z ? !(!z2 ? !(list.size() < tLRPC$TL_messages_chatInviteImporters.count || z3 || z4) : !(list.size() < tLRPC$TL_messages_chatInviteImporters.count || z3)) : list.size() >= tLRPC$TL_messages_chatInviteImporters.count;
             updateRows();
         }
         this.usersLoading = false;
@@ -1120,7 +1102,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
     public class EmptyHintRow extends FrameLayout {
         TextView textView;
 
-        public EmptyHintRow(InviteLinkBottomSheet inviteLinkBottomSheet, Context context) {
+        public EmptyHintRow(Context context) {
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -1145,7 +1127,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         public final TextView periodView;
         public final TextView priceView;
 
-        public RevenueUserCell(InviteLinkBottomSheet inviteLinkBottomSheet, Context context) {
+        public RevenueUserCell(Context context) {
             super(context, 6, 0, true);
             LinearLayout linearLayout = new LinearLayout(context);
             this.layout = linearLayout;
@@ -1275,11 +1257,10 @@ public class InviteLinkBottomSheet extends BottomSheet {
     }
 
     public static BottomSheet showSubscriptionSheet(final Context context, int i, long j, TLRPC$TL_starsSubscriptionPricing tLRPC$TL_starsSubscriptionPricing, final TLRPC$TL_chatInviteImporter tLRPC$TL_chatInviteImporter, TLRPC$ChannelParticipant tLRPC$ChannelParticipant, Theme.ResourcesProvider resourcesProvider) {
-        Object obj;
         BottomSheet.Builder builder;
+        Object obj;
         Object obj2;
-        BottomSheet.Builder builder2;
-        BottomSheet.Builder builder3 = new BottomSheet.Builder(context, false, resourcesProvider);
+        BottomSheet.Builder builder2 = new BottomSheet.Builder(context, false, resourcesProvider);
         final BottomSheet[] bottomSheetArr = new BottomSheet[1];
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -1330,15 +1311,16 @@ public class InviteLinkBottomSheet extends BottomSheet {
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         int i3 = tLRPC$TL_starsSubscriptionPricing.period;
         if (i3 == 2592000) {
-            obj = "min";
+            builder = builder2;
             textView2.setText(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatString(R.string.StarsSubscriptionPrice, Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount)), 0.8f));
-            builder = builder3;
+            obj = "min";
             obj2 = "5min";
         } else {
+            builder = builder2;
+            String str = i3 == 300 ? "5min" : "min";
             obj = "min";
-            builder = builder3;
             obj2 = "5min";
-            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(String.format(Locale.US, "⭐%1$d/%2$s", Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), i3 == 300 ? "5min" : obj), 0.8f));
+            textView2.setText(StarsIntroActivity.replaceStarsWithPlain(String.format(Locale.US, "⭐%1$d/%2$s", Long.valueOf(tLRPC$TL_starsSubscriptionPricing.amount), str), 0.8f));
         }
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TextView textView3 = new TextView(context);
@@ -1350,17 +1332,15 @@ public class InviteLinkBottomSheet extends BottomSheet {
             int i5 = R.string.StarsParticipantSubscriptionApproxMonth;
             BillingController billingController = BillingController.getInstance();
             Double.isNaN(tLRPC$TL_starsSubscriptionPricing.amount);
-            builder2 = builder;
             Double.isNaN(MessagesController.getInstance(i).starsUsdWithdrawRate1000);
-            textView3.setText(LocaleController.formatString(i5, billingController.formatCurrency((int) ((r14 / 1000.0d) * r12), "USD")));
+            textView3.setText(LocaleController.formatString(i5, billingController.formatCurrency((int) ((r13 / 1000.0d) * r8), "USD")));
         } else {
-            builder2 = builder;
             Object obj3 = i4 == 300 ? obj2 : obj;
             Locale locale = Locale.US;
             BillingController billingController2 = BillingController.getInstance();
             Double.isNaN(tLRPC$TL_starsSubscriptionPricing.amount);
             Double.isNaN(MessagesController.getInstance(i).starsUsdWithdrawRate1000);
-            textView3.setText(String.format(locale, "appx. %1$s per %2$s", billingController2.formatCurrency((int) ((r14 / 1000.0d) * r3), "USD"), obj3));
+            textView3.setText(String.format(locale, "appx. %1$s per %2$s", billingController2.formatCurrency((int) ((r14 / 1000.0d) * r8), "USD"), obj3));
         }
         linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TableView tableView = new TableView(context, resourcesProvider);
@@ -1428,11 +1408,12 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 InviteLinkBottomSheet.lambda$showSubscriptionSheet$8(bottomSheetArr, view);
             }
         });
-        BottomSheet.Builder builder4 = builder2;
-        builder4.setCustomView(linearLayout);
-        bottomSheetArr[0] = builder4.create();
-        bottomSheetArr[0].useBackgroundTopPadding = false;
-        bottomSheetArr[0].fixNavigationBar();
+        BottomSheet.Builder builder3 = builder;
+        builder3.setCustomView(linearLayout);
+        BottomSheet create = builder3.create();
+        bottomSheetArr[0] = create;
+        create.useBackgroundTopPadding = false;
+        create.fixNavigationBar();
         bottomSheetArr[0].show();
         return bottomSheetArr[0];
     }

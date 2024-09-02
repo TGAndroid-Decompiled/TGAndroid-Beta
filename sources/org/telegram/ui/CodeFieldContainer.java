@@ -161,8 +161,8 @@ public class CodeFieldContainer extends LinearLayout {
                                 }
                                 return true;
                             }
-                            CodeNumberField[] codeNumberFieldArr2 = CodeFieldContainer.this.codeField;
-                            codeNumberFieldArr2[i7 - 1].setSelection(codeNumberFieldArr2[i7 - 1].length());
+                            CodeNumberField codeNumberField2 = CodeFieldContainer.this.codeField[i7 - 1];
+                            codeNumberField2.setSelection(codeNumberField2.length());
                             while (true) {
                                 int i10 = i6;
                                 if (i8 >= i10) {
@@ -170,8 +170,9 @@ public class CodeFieldContainer extends LinearLayout {
                                     CodeFieldContainer.this.codeField[i6 - 1].setText("");
                                     return true;
                                 }
-                                if (i8 == i10 - 1) {
-                                    CodeFieldContainer.this.codeField[i10 - 1].requestFocus();
+                                int i11 = i10 - 1;
+                                if (i8 == i11) {
+                                    CodeFieldContainer.this.codeField[i11].requestFocus();
                                 } else {
                                     CodeFieldContainer.this.codeField[i8].clearFocus();
                                 }
@@ -231,26 +232,26 @@ public class CodeFieldContainer extends LinearLayout {
                                         editable.replace(0, length, obj.substring(i9, i9 + 1));
                                     } else {
                                         i8++;
-                                        int i10 = i6;
-                                        int i11 = i10 + i9;
+                                        int i10 = i6 + i9;
                                         CodeNumberField[] codeNumberFieldArr2 = CodeFieldContainer.this.codeField;
-                                        if (i11 < codeNumberFieldArr2.length) {
-                                            codeNumberFieldArr2[i10 + i9].setText(obj.substring(i9, i9 + 1));
+                                        if (i10 < codeNumberFieldArr2.length) {
+                                            codeNumberFieldArr2[i10].setText(obj.substring(i9, i9 + 1));
                                         }
                                     }
                                 }
                                 CodeFieldContainer.this.ignoreOnTextChange = false;
                             }
-                            int i12 = i8 + 1;
-                            if (i12 >= 0) {
+                            int i11 = i8 + 1;
+                            if (i11 >= 0) {
                                 CodeNumberField[] codeNumberFieldArr3 = CodeFieldContainer.this.codeField;
-                                if (i12 < codeNumberFieldArr3.length) {
-                                    codeNumberFieldArr3[i12].setSelection(codeNumberFieldArr3[i12].length());
-                                    CodeFieldContainer.this.codeField[i12].requestFocus();
+                                if (i11 < codeNumberFieldArr3.length) {
+                                    CodeNumberField codeNumberField2 = codeNumberFieldArr3[i11];
+                                    codeNumberField2.setSelection(codeNumberField2.length());
+                                    CodeFieldContainer.this.codeField[i11].requestFocus();
                                 }
                             }
-                            int i13 = i;
-                            if ((i8 == i13 - 1 || (i8 == i13 - 2 && length >= 2)) && CodeFieldContainer.this.getCode().length() == i) {
+                            int i12 = i;
+                            if ((i8 == i12 - 1 || (i8 == i12 - 2 && length >= 2)) && CodeFieldContainer.this.getCode().length() == i) {
                                 CodeFieldContainer.this.processNextPressed();
                             }
                         }

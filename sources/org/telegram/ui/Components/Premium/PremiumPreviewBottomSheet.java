@@ -200,7 +200,6 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         this.paddingRow = i;
         this.featuresStartRow = i2;
         int size = i2 + this.premiumFeatures.size();
-        this.rowCount = size;
         this.featuresEndRow = size;
         this.rowCount = size + 1;
         this.sectionRow = size;
@@ -430,19 +429,14 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 if (this.isOutboundGift) {
                     LinkSpanDrawable.LinksTextView linksTextView2 = linksTextViewArr[0];
                     int i5 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogTitleWithPlural;
-                    Object[] objArr = new Object[2];
                     TLRPC$User tLRPC$User4 = this.user;
-                    objArr[0] = tLRPC$User4 != null ? tLRPC$User4.first_name : "";
-                    objArr[1] = LocaleController.formatPluralString("GiftMonths", giftTier.getMonths(), new Object[0]);
-                    String formatString2 = LocaleController.formatString(i5, objArr);
+                    String formatString2 = LocaleController.formatString(i5, tLRPC$User4 != null ? tLRPC$User4.first_name : "", LocaleController.formatPluralString("GiftMonths", giftTier.getMonths(), new Object[0]));
                     Integer num2 = this.accentColor;
                     linksTextView2.setText(AndroidUtilities.replaceSingleLink(formatString2, num2 == null ? getThemedColor(Theme.key_windowBackgroundWhiteBlueButton) : num2.intValue()));
                     TextView textView2 = this.subtitleView;
                     int i6 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogSubtitle;
-                    Object[] objArr2 = new Object[1];
                     TLRPC$User tLRPC$User5 = this.user;
-                    objArr2[0] = tLRPC$User5 != null ? tLRPC$User5.first_name : "";
-                    String formatString3 = LocaleController.formatString(i6, objArr2);
+                    String formatString3 = LocaleController.formatString(i6, tLRPC$User5 != null ? tLRPC$User5.first_name : "");
                     Integer num3 = this.accentColor;
                     textView2.setText(AndroidUtilities.replaceSingleLink(formatString3, num3 == null ? getThemedColor(Theme.key_windowBackgroundWhiteBlueButton) : num3.intValue()));
                 } else {
@@ -478,8 +472,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             }
         }
         try {
-            LinkSpanDrawable.LinksTextView[] linksTextViewArr2 = this.titleView;
-            linksTextViewArr2[0].setText(Emoji.replaceEmoji(linksTextViewArr2[0].getText(), this.titleView[0].getPaint().getFontMetricsInt(), false));
+            LinkSpanDrawable.LinksTextView linksTextView6 = this.titleView[0];
+            linksTextView6.setText(Emoji.replaceEmoji(linksTextView6.getText(), this.titleView[0].getPaint().getFontMetricsInt(), false));
         } catch (Exception unused2) {
         }
     }
@@ -532,7 +526,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString("TelegramPremium", R.string.TelegramPremium);
+        return LocaleController.getString(R.string.TelegramPremium);
     }
 
     @Override
@@ -574,7 +568,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 PremiumPreviewBottomSheet premiumPreviewBottomSheet = PremiumPreviewBottomSheet.this;
                 View view2 = premiumPreviewBottomSheet.overrideTitleIcon;
                 if (view2 == null) {
-                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(this, context, i2) {
+                    premiumPreviewBottomSheet.iconTextureView = new GLIconTextureView(context, i2) {
                         @Override
                         public void onAttachedToWindow() {
                             super.onAttachedToWindow();
@@ -613,7 +607,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     PremiumPreviewBottomSheet.this.titleView = new LinkSpanDrawable.LinksTextView[2];
                     int i4 = 0;
                     while (i4 < 2) {
-                        PremiumPreviewBottomSheet.this.titleView[i4] = new LinkSpanDrawable.LinksTextView(this, context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
+                        PremiumPreviewBottomSheet.this.titleView[i4] = new LinkSpanDrawable.LinksTextView(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
                             @Override
                             protected int emojiCacheType() {
                                 return 3;
@@ -650,7 +644,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 }
                 linearLayout.addView(PremiumPreviewBottomSheet.this.subtitleView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 9, 16, 20));
                 PremiumPreviewBottomSheet.this.setTitle(false);
-                PremiumPreviewBottomSheet.this.starParticlesView = new StarParticlesView(this, context) {
+                PremiumPreviewBottomSheet.this.starParticlesView = new StarParticlesView(context) {
                     @Override
                     public void onMeasure(int i5, int i6) {
                         super.onMeasure(i5, i6);
@@ -707,7 +701,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
             } else if (i == 2) {
                 view = new ShadowSectionCell(context, 12, PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_windowBackgroundGray));
             } else if (i == 3) {
-                view = new View(this, context) {
+                view = new View(context) {
                     @Override
                     protected void onMeasure(int i5, int i6) {
                         super.onMeasure(i5, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
@@ -750,11 +744,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         }
 
         public void lambda$onCreateViewHolder$0() {
-            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString("TermsOfServiceUrl", R.string.TermsOfServiceUrl));
+            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.TermsOfServiceUrl));
         }
 
         public void lambda$onCreateViewHolder$1() {
-            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString("PrivacyPolicyUrl", R.string.PrivacyPolicyUrl));
+            Browser.openUrl(PremiumPreviewBottomSheet.this.fragment.getParentActivity(), LocaleController.getString(R.string.PrivacyPolicyUrl));
         }
 
         @Override
@@ -857,6 +851,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
 
     @Override
     public void mainContainerDispatchDraw(Canvas canvas) {
+        Drawable drawable;
         View view = this.overrideTitleIcon;
         if (view != null) {
             view.setVisibility(this.enterTransitionInProgress ? 4 : 0);
@@ -873,12 +868,11 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         canvas.save();
         float[] fArr = {this.startEnterFromX, this.startEnterFromY};
         this.startEnterFromView.getMatrix().mapPoints(fArr);
-        Drawable drawable = null;
         View view4 = this.startEnterFromView;
         if (view4 instanceof SimpleTextView) {
             drawable = ((SimpleTextView) view4).getRightDrawable();
-        } else if (view4 instanceof ChatMessageCell) {
-            drawable = ((ChatMessageCell) view4).currentNameStatusDrawable;
+        } else {
+            drawable = view4 instanceof ChatMessageCell ? ((ChatMessageCell) view4).currentNameStatusDrawable : null;
         }
         if (drawable == null) {
             canvas.restore();
@@ -936,8 +930,9 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         if (view instanceof SimpleTextView) {
             drawable = ((SimpleTextView) view).getRightDrawable();
         } else if (view instanceof ChatMessageCell) {
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = ((ChatMessageCell) view).currentNameStatusDrawable;
-            ((ChatMessageCell) view).invalidateOutbounds();
+            ChatMessageCell chatMessageCell = (ChatMessageCell) view;
+            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = chatMessageCell.currentNameStatusDrawable;
+            chatMessageCell.invalidateOutbounds();
             drawable = swapAnimatedEmojiDrawable;
         } else {
             drawable = null;

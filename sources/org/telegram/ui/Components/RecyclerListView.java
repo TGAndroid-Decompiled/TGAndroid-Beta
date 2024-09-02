@@ -125,6 +125,7 @@ public class RecyclerListView extends RecyclerView {
     private int sectionsCount;
     private int sectionsType;
     private Runnable selectChildRunnable;
+    HashSet<Integer> selectedPositions;
     protected Drawable selectorDrawable;
     protected int selectorPosition;
     private int selectorRadius;
@@ -627,7 +628,9 @@ public class RecyclerListView extends RecyclerView {
                         } else {
                             this.outLetterLayout = this.letterLayout;
                             int measureText = ((int) this.letterPaint.measureText(letter)) + 1;
-                            this.letterLayout = new StaticLayout(letter, this.letterPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                            TextPaint textPaint = this.letterPaint;
+                            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                            this.letterLayout = new StaticLayout(letter, textPaint, measureText, alignment, 1.0f, 0.0f, false);
                             if (this.outLetterLayout != null) {
                                 String[] split = letter.split(" ");
                                 String[] split2 = this.outLetterLayout.getText().toString().split(" ");
@@ -635,13 +638,13 @@ public class RecyclerListView extends RecyclerView {
                                     String charSequence = this.outLetterLayout.getText().toString();
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
                                     spannableStringBuilder.setSpan(new EmptyStubSpan(), split2[0].length(), charSequence.length(), 0);
-                                    this.outLetterLayout = new StaticLayout(spannableStringBuilder, this.letterPaint, ((int) this.letterPaint.measureText(charSequence)) + 1, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                                    this.outLetterLayout = new StaticLayout(spannableStringBuilder, this.letterPaint, ((int) this.letterPaint.measureText(charSequence)) + 1, alignment, 1.0f, 0.0f, false);
                                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(letter);
                                     spannableStringBuilder2.setSpan(new EmptyStubSpan(), split[0].length(), letter.length(), 0);
-                                    this.inLetterLayout = new StaticLayout(spannableStringBuilder2, this.letterPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                                    this.inLetterLayout = new StaticLayout(spannableStringBuilder2, this.letterPaint, measureText, alignment, 1.0f, 0.0f, false);
                                     SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(letter);
                                     spannableStringBuilder3.setSpan(new EmptyStubSpan(), 0, split[0].length(), 0);
-                                    this.stableLetterLayout = new StaticLayout(spannableStringBuilder3, this.letterPaint, measureText, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                                    this.stableLetterLayout = new StaticLayout(spannableStringBuilder3, this.letterPaint, measureText, alignment, 1.0f, 0.0f, false);
                                 } else {
                                     this.inLetterLayout = this.letterLayout;
                                     this.stableLetterLayout = null;
@@ -679,7 +682,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         @Override
-        protected void onDraw(android.graphics.Canvas r19) {
+        protected void onDraw(android.graphics.Canvas r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RecyclerListView.FastScroll.onDraw(android.graphics.Canvas):void");
         }
 
@@ -756,7 +759,7 @@ public class RecyclerListView extends RecyclerView {
         }
 
         public RecyclerListViewItemClickListener(Context context) {
-            RecyclerListView.this.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener(RecyclerListView.this) {
+            RecyclerListView.this.gestureDetector = new GestureDetectorFixDoubleTap(context, new GestureDetectorFixDoubleTap.OnGestureListener() {
                 private View doubleTapView;
 
                 @Override
@@ -1125,7 +1128,7 @@ public class RecyclerListView extends RecyclerView {
         this.lastX = Float.MAX_VALUE;
         this.lastY = Float.MAX_VALUE;
         this.accessibilityEnabled = true;
-        this.accessibilityDelegate = new View.AccessibilityDelegate(this) {
+        this.accessibilityDelegate = new View.AccessibilityDelegate() {
             @Override
             public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
@@ -2557,7 +2560,7 @@ public class RecyclerListView extends RecyclerView {
     public void startMultiselect(int i, boolean z, onMultiSelectionChanged onmultiselectionchanged) {
         if (!this.multiSelectionGesture) {
             this.listPaddings = new int[2];
-            new HashSet();
+            this.selectedPositions = new HashSet<>();
             requestDisallowInterceptTouchEvent(this, true);
             this.multiSelectionListener = onmultiselectionchanged;
             this.multiSelectionGesture = true;

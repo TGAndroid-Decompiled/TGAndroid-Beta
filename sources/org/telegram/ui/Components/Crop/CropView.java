@@ -6,8 +6,10 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
@@ -16,6 +18,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -50,6 +53,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     private boolean isVisible;
     private CropViewListener listener;
     private Matrix overlayMatrix;
+    private PaintingOverlay paintingOverlay;
     private RectF previousAreaRect;
     private float rotationStartScale;
     RectF sizeRect;
@@ -204,14 +208,13 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         }
 
         private void updateMinimumScale() {
-            float f = this.orientation;
-            float f2 = this.baseRotation;
-            float f3 = (f + f2) % 180.0f != 0.0f ? this.height : this.width;
-            float f4 = (f + f2) % 180.0f != 0.0f ? this.width : this.height;
+            float f = (this.orientation + this.baseRotation) % 180.0f;
+            float f2 = f != 0.0f ? this.height : this.width;
+            float f3 = f != 0.0f ? this.width : this.height;
             if (CropView.this.freeform) {
-                this.minimumScale = CropView.this.areaView.getCropWidth() / f3;
+                this.minimumScale = CropView.this.areaView.getCropWidth() / f2;
             } else {
-                this.minimumScale = Math.max(CropView.this.areaView.getCropWidth() / f3, CropView.this.areaView.getCropHeight() / f4);
+                this.minimumScale = Math.max(CropView.this.areaView.getCropWidth() / f2, CropView.this.areaView.getCropHeight() / f3);
             }
         }
 
@@ -291,6 +294,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void setBitmap(Bitmap bitmap, int i, boolean z, boolean z2, PaintingOverlay paintingOverlay, CropTransform cropTransform, VideoEditTextureView videoEditTextureView, final MediaController.CropState cropState) {
         this.freeform = z;
+        this.paintingOverlay = paintingOverlay;
         this.videoEditTextureView = videoEditTextureView;
         this.cropTransform = cropTransform;
         this.bitmapRotation = i;
@@ -400,6 +404,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void onHide() {
         this.videoEditTextureView = null;
+        this.paintingOverlay = null;
         this.isVisible = false;
     }
 
@@ -471,10 +476,10 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     private void fillAreaView(RectF rectF, boolean z) {
         final float f;
         final boolean z2;
+        int i = 0;
         if (this.state == null) {
             return;
         }
-        int i = 0;
         final float[] fArr = {1.0f};
         float max = Math.max(rectF.width() / this.areaView.getCropWidth(), rectF.height() / this.areaView.getCropHeight());
         if (this.state.getScale() * max > 30.0f) {
@@ -487,13 +492,13 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         if (Build.VERSION.SDK_INT >= 21 && !this.inBubbleMode) {
             i = AndroidUtilities.statusBarHeight;
         }
-        final float orientedWidth = this.state.getOrientedWidth() * ((rectF.centerX() - (this.imageView.getWidth() / 2)) / this.areaView.getCropWidth());
+        final float centerX = ((rectF.centerX() - (this.imageView.getWidth() / 2)) / this.areaView.getCropWidth()) * this.state.getOrientedWidth();
         final float centerY = ((rectF.centerY() - (((this.imageView.getHeight() - this.bottomPadding) + i) / 2.0f)) / this.areaView.getCropHeight()) * this.state.getOrientedHeight();
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                CropView.this.lambda$fillAreaView$0(f, fArr, orientedWidth, centerY, valueAnimator);
+                CropView.this.lambda$fillAreaView$0(f, fArr, centerX, centerY, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -509,9 +514,11 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public void lambda$fillAreaView$0(float f, float[] fArr, float f2, float f3, ValueAnimator valueAnimator) {
-        float floatValue = (((f - 1.0f) * ((Float) valueAnimator.getAnimatedValue()).floatValue()) + 1.0f) / fArr[0];
-        fArr[0] = fArr[0] * floatValue;
-        this.state.scale(floatValue, f2, f3);
+        float floatValue = ((f - 1.0f) * ((Float) valueAnimator.getAnimatedValue()).floatValue()) + 1.0f;
+        float f4 = fArr[0];
+        float f5 = floatValue / f4;
+        fArr[0] = f4 * f5;
+        this.state.scale(f5, f2, f3);
         updateMatrix();
     }
 
@@ -520,9 +527,9 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         float height = rectF.height() * f2;
         float width2 = (rectF.width() - width) / 2.0f;
         float height2 = (rectF.height() - height) / 2.0f;
-        float f3 = rectF.left;
-        float f4 = rectF.top;
-        rectF.set(f3 + width2, f4 + height2, f3 + width2 + width, f4 + height2 + height);
+        float f3 = rectF.left + width2;
+        float f4 = rectF.top + height2;
+        rectF.set(f3, f4, width + f3, height + f4);
         return f * f2;
     }
 
@@ -698,14 +705,19 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
 
     public void lambda$fitContentInBounds$1(float f, float[] fArr, float f2, float f3, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f4 = (f * floatValue) - fArr[1];
-        fArr[1] = fArr[1] + f4;
-        float f5 = (f2 * floatValue) - fArr[2];
-        fArr[2] = fArr[2] + f5;
-        this.state.translate(f4 * fArr[0], f5 * fArr[0]);
-        float f6 = (((f3 - 1.0f) * floatValue) + 1.0f) / fArr[0];
-        fArr[0] = fArr[0] * f6;
-        this.state.scale(f6, 0.0f, 0.0f);
+        float f4 = fArr[1];
+        float f5 = (f * floatValue) - f4;
+        fArr[1] = f4 + f5;
+        float f6 = fArr[2];
+        float f7 = (f2 * floatValue) - f6;
+        fArr[2] = f6 + f7;
+        CropState cropState = this.state;
+        float f8 = fArr[0];
+        cropState.translate(f5 * f8, f7 * f8);
+        float f9 = fArr[0];
+        float f10 = (((f3 - 1.0f) * floatValue) + 1.0f) / f9;
+        fArr[0] = f9 * f10;
+        this.state.scale(f10, 0.0f, 0.0f);
         updateMatrix();
     }
 
@@ -977,8 +989,73 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         fitContentInBounds(true, true, false);
     }
 
-    public static void editBitmap(android.content.Context r19, java.lang.String r20, android.graphics.Bitmap r21, android.graphics.Canvas r22, android.graphics.Bitmap r23, android.graphics.Bitmap.CompressFormat r24, android.graphics.Matrix r25, int r26, int r27, float r28, float r29, float r30, float r31, boolean r32, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r33, boolean r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Crop.CropView.editBitmap(android.content.Context, java.lang.String, android.graphics.Bitmap, android.graphics.Canvas, android.graphics.Bitmap, android.graphics.Bitmap$CompressFormat, android.graphics.Matrix, int, int, float, float, float, float, boolean, java.util.ArrayList, boolean):void");
+    public static void editBitmap(Context context, String str, Bitmap bitmap, Canvas canvas, Bitmap bitmap2, Bitmap.CompressFormat compressFormat, Matrix matrix, int i, int i2, float f, float f2, float f3, float f4, boolean z, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z2) {
+        int i3 = i;
+        if (z2) {
+            try {
+                bitmap2.eraseColor(0);
+            } catch (Throwable th) {
+                FileLog.e(th);
+                return;
+            }
+        }
+        Bitmap decodeFile = bitmap == null ? BitmapFactory.decodeFile(str) : bitmap;
+        float max = Math.max(decodeFile.getWidth(), decodeFile.getHeight()) / Math.max(i, i2);
+        Matrix matrix2 = new Matrix();
+        matrix2.postTranslate((-decodeFile.getWidth()) / 2, (-decodeFile.getHeight()) / 2);
+        if (z) {
+            matrix2.postScale(-1.0f, 1.0f);
+        }
+        float f5 = 1.0f / max;
+        matrix2.postScale(f5, f5);
+        matrix2.postRotate(f3);
+        matrix2.postConcat(matrix);
+        matrix2.postScale(f4, f4);
+        matrix2.postTranslate(bitmap2.getWidth() / 2, bitmap2.getHeight() / 2);
+        canvas.drawBitmap(decodeFile, matrix2, new Paint(2));
+        FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
+        bitmap2.compress(compressFormat, 87, fileOutputStream);
+        fileOutputStream.close();
+        if (arrayList != null && !arrayList.isEmpty()) {
+            int size = arrayList.size();
+            int i4 = 0;
+            while (i4 < size) {
+                VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i4);
+                float[] fArr = {(mediaEntity.x + (mediaEntity.width / 2.0f)) * decodeFile.getWidth(), (mediaEntity.y + (mediaEntity.height / 2.0f)) * decodeFile.getHeight(), mediaEntity.textViewX * decodeFile.getWidth(), mediaEntity.textViewY * decodeFile.getHeight()};
+                matrix2.mapPoints(fArr);
+                int width = decodeFile.getWidth();
+                int height = decodeFile.getHeight();
+                if (f3 == 90.0f || f3 == 270.0f) {
+                    width = decodeFile.getHeight();
+                    height = decodeFile.getWidth();
+                }
+                if (mediaEntity.type == 1) {
+                    mediaEntity.width = ((mediaEntity.width * i3) / bitmap2.getWidth()) * f4 * f;
+                    mediaEntity.height = ((mediaEntity.height * i2) / bitmap2.getHeight()) * f4 * f;
+                } else {
+                    float f6 = i3;
+                    float f7 = width;
+                    mediaEntity.viewWidth = (int) ((mediaEntity.viewWidth / f6) * f7);
+                    float f8 = i2;
+                    float f9 = height;
+                    mediaEntity.viewHeight = (int) ((mediaEntity.viewHeight / f8) * f9);
+                    mediaEntity.width = ((mediaEntity.width * f6) / f7) * f4 * f;
+                    mediaEntity.height = ((mediaEntity.height * f8) / f9) * f4 * f;
+                }
+                mediaEntity.x = (fArr[0] / bitmap2.getWidth()) - (mediaEntity.width / 2.0f);
+                mediaEntity.y = (fArr[1] / bitmap2.getHeight()) - (mediaEntity.height / 2.0f);
+                mediaEntity.textViewX = fArr[2] / bitmap2.getWidth();
+                mediaEntity.textViewY = fArr[3] / bitmap2.getHeight();
+                double d = mediaEntity.rotation;
+                double d2 = f2 + f3;
+                Double.isNaN(d2);
+                Double.isNaN(d);
+                mediaEntity.rotation = (float) (d - (d2 * 0.017453292519943295d));
+                i4++;
+                i3 = i;
+            }
+        }
+        decodeFile.recycle();
     }
 
     private void updateCropTransform() {
@@ -1008,13 +1085,14 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             i = (int) cropState3.width;
             f = cropState3.height;
         }
+        int i2 = (int) f;
         double d = ceil;
         float f3 = i;
         double ceil3 = Math.ceil(f3 * f2);
         Double.isNaN(d);
         float f4 = (float) (d / ceil3);
         double d2 = ceil2;
-        float f5 = (int) f;
+        float f5 = i2;
         double ceil4 = Math.ceil(f2 * f5);
         Double.isNaN(d2);
         float f6 = (float) (d2 / ceil4);
@@ -1127,6 +1205,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             i2 = (int) cropState5.width;
             f = cropState5.height;
         }
+        int i4 = (int) f;
         double d = ceil;
         float f3 = i2;
         double ceil3 = Math.ceil(f3 * f2);
@@ -1134,7 +1213,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         cropState.cropPw = (float) (d / ceil3);
         MediaController.CropState cropState6 = mediaEditState.cropState;
         double d2 = ceil2;
-        float f4 = (int) f;
+        float f4 = i4;
         double ceil4 = Math.ceil(f2 * f4);
         Double.isNaN(d2);
         cropState6.cropPh = (float) (d2 / ceil4);
@@ -1185,8 +1264,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         this.hasAspectRatioDialog = true;
         String[] strArr = new String[8];
         final Integer[][] numArr = {new Integer[]{3, 2}, new Integer[]{5, 3}, new Integer[]{4, 3}, new Integer[]{5, 4}, new Integer[]{7, 5}, new Integer[]{16, 9}};
-        strArr[0] = LocaleController.getString("CropOriginal", R.string.CropOriginal);
-        strArr[1] = LocaleController.getString("CropSquare", R.string.CropSquare);
+        strArr[0] = LocaleController.getString(R.string.CropOriginal);
+        strArr[1] = LocaleController.getString(R.string.CropSquare);
         int i = 2;
         for (int i2 = 0; i2 < 6; i2++) {
             Integer[] numArr2 = numArr[i2];

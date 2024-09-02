@@ -1,6 +1,5 @@
 package org.telegram.messenger.video;
 
-import android.media.MediaCodec;
 import android.media.MediaFormat;
 import com.coremedia.iso.boxes.AbstractMediaHeaderBox;
 import com.coremedia.iso.boxes.SampleDescriptionBox;
@@ -75,6 +74,7 @@ public class Track {
     }
 
     public Track(int i, MediaFormat mediaFormat, boolean z) {
+        String str;
         this.syncSamples = null;
         this.volume = 0.0f;
         this.trackId = i;
@@ -208,30 +208,30 @@ public class Track {
                 if (i2 == 3 && array[i6] == 1) {
                     if (i5 == -1) {
                         i5 = i6 - 3;
-                    } else if (i3 == -1) {
-                        i3 = i6 - 3;
                     } else if (i4 == -1) {
                         i4 = i6 - 3;
+                    } else if (i3 == -1) {
+                        i3 = i6 - 3;
                     }
                 }
                 i2 = array[i6] == 0 ? i2 + 1 : 0;
             }
-            byte[] bArr3 = new byte[i3 - 4];
-            byte[] bArr4 = new byte[(i4 - i3) - 4];
-            byte[] bArr5 = new byte[(array.length - i4) - 4];
+            byte[] bArr3 = new byte[i4 - 4];
+            byte[] bArr4 = new byte[(i3 - i4) - 4];
+            byte[] bArr5 = new byte[(array.length - i3) - 4];
             for (int i7 = 0; i7 < array.length; i7++) {
-                if (i7 < i3) {
+                if (i7 < i4) {
                     int i8 = i7 - 4;
                     if (i8 >= 0) {
                         bArr3[i8] = array[i7];
                     }
-                } else if (i7 < i4) {
-                    int i9 = (i7 - i3) - 4;
+                } else if (i7 < i3) {
+                    int i9 = (i7 - i4) - 4;
                     if (i9 >= 0) {
                         bArr4[i9] = array[i7];
                     }
                 } else {
-                    int i10 = (i7 - i4) - 4;
+                    int i10 = (i7 - i3) - 4;
                     if (i10 >= 0) {
                         bArr5[i10] = array[i7];
                     }
@@ -264,9 +264,13 @@ public class Track {
         SLConfigDescriptor sLConfigDescriptor = new SLConfigDescriptor();
         sLConfigDescriptor.setPredefined(2);
         eSDescriptor.setSlConfigDescriptor(sLConfigDescriptor);
-        String string2 = mediaFormat.containsKey("mime") ? mediaFormat.getString("mime") : "audio/mp4-latm";
+        if (mediaFormat.containsKey("mime")) {
+            str = mediaFormat.getString("mime");
+        } else {
+            str = "audio/mp4-latm";
+        }
         DecoderConfigDescriptor decoderConfigDescriptor = new DecoderConfigDescriptor();
-        if ("audio/mpeg".equals(string2)) {
+        if ("audio/mpeg".equals(str)) {
             decoderConfigDescriptor.setObjectTypeIndication(105);
         } else {
             decoderConfigDescriptor.setObjectTypeIndication(64);
@@ -294,15 +298,8 @@ public class Track {
         return this.trackId;
     }
 
-    public void addSample(long j, MediaCodec.BufferInfo bufferInfo) {
-        boolean z = (this.isAudio || (bufferInfo.flags & 1) == 0) ? false : true;
-        this.samples.add(new Sample(j, bufferInfo.size));
-        LinkedList<Integer> linkedList = this.syncSamples;
-        if (linkedList != null && z) {
-            linkedList.add(Integer.valueOf(this.samples.size()));
-        }
-        ArrayList<SamplePresentationTime> arrayList = this.samplePresentationTimes;
-        arrayList.add(new SamplePresentationTime(arrayList.size(), ((bufferInfo.presentationTimeUs * this.timeScale) + 500000) / 1000000));
+    public void addSample(long r6, android.media.MediaCodec.BufferInfo r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.Track.addSample(long, android.media.MediaCodec$BufferInfo):void");
     }
 
     public void prepare() {
@@ -330,15 +327,17 @@ public class Track {
             long j3 = samplePresentationTime.presentationTime - j2;
             j2 = samplePresentationTime.presentationTime;
             this.sampleDurations[samplePresentationTime.index] = j3;
-            long j4 = j;
+            int i3 = i2;
             if (samplePresentationTime.index != 0) {
                 this.duration += j3;
             }
-            j = (j3 <= 0 || j3 >= 2147483647L) ? j4 : Math.min(j4, j3);
-            if (samplePresentationTime.index != i2) {
+            if (j3 > 0 && j3 < 2147483647L) {
+                j = Math.min(j, j3);
+            }
+            if (samplePresentationTime.index != i3) {
                 z = true;
             }
-            i2++;
+            i2 = i3 + 1;
         }
         long[] jArr = this.sampleDurations;
         if (jArr.length > 0) {
@@ -350,8 +349,8 @@ public class Track {
         }
         if (z) {
             this.sampleCompositions = new int[this.samplePresentationTimes.size()];
-            for (int i3 = 0; i3 < this.samplePresentationTimes.size(); i3++) {
-                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i3);
+            for (int i4 = 0; i4 < this.samplePresentationTimes.size(); i4++) {
+                SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i4);
                 this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.dt);
             }
         }

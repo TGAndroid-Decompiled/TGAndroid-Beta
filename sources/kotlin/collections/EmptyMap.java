@@ -58,10 +58,6 @@ public final class EmptyMap implements Map, Serializable {
         throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
-    public String toString() {
-        return "{}";
-    }
-
     private EmptyMap() {
     }
 
@@ -96,6 +92,10 @@ public final class EmptyMap implements Map, Serializable {
     @Override
     public boolean equals(Object obj) {
         return (obj instanceof Map) && ((Map) obj).isEmpty();
+    }
+
+    public String toString() {
+        return "{}";
     }
 
     public Set<Map.Entry> getEntries() {

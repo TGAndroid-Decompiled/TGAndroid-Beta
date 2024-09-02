@@ -19,11 +19,14 @@ public class ScaleStateListAnimator {
         }
         view.setLayerType(2, null);
         AnimatorSet animatorSet = new AnimatorSet();
+        Property property = View.SCALE_X;
         float f3 = 1.0f - f;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, f3), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, f3));
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, f3);
+        Property property2 = View.SCALE_Y;
+        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, f3));
         animatorSet.setDuration(80L);
         AnimatorSet animatorSet2 = new AnimatorSet();
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.0f));
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, 1.0f));
         animatorSet2.setInterpolator(new OvershootInterpolator(f2));
         animatorSet2.setDuration(350L);
         StateListAnimator stateListAnimator = new StateListAnimator();

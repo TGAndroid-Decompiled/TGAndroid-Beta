@@ -77,12 +77,16 @@ public class FileUploadOperation {
     }
 
     public FileUploadOperation(int i, String str, boolean z, long j, int i2) {
+        boolean z2 = false;
         this.currentAccount = i;
         this.uploadingFilePath = str;
         this.isEncrypted = z;
         this.estimatedSize = j;
         this.currentType = i2;
-        this.uploadFirstPartLater = (j == 0 || z) ? false : true;
+        if (j != 0 && !z) {
+            z2 = true;
+        }
+        this.uploadFirstPartLater = z2;
     }
 
     public long getTotalFileSize() {
@@ -239,19 +243,19 @@ public class FileUploadOperation {
         if (this.uploadFirstPartLater) {
             if (this.isBigFile) {
                 long j = this.totalFileSize;
-                int i = this.uploadChunkSize;
-                this.totalPartsCount = ((int) ((((j - i) + i) - 1) / i)) + 1;
+                long j2 = this.uploadChunkSize;
+                this.totalPartsCount = ((int) ((((j - j2) + j2) - 1) / j2)) + 1;
                 return;
             } else {
-                long j2 = this.totalFileSize - 1024;
-                int i2 = this.uploadChunkSize;
-                this.totalPartsCount = ((int) (((j2 + i2) - 1) / i2)) + 1;
+                long j3 = this.totalFileSize - 1024;
+                long j4 = this.uploadChunkSize;
+                this.totalPartsCount = ((int) (((j3 + j4) - 1) / j4)) + 1;
                 return;
             }
         }
-        long j3 = this.totalFileSize;
-        int i3 = this.uploadChunkSize;
-        this.totalPartsCount = (int) (((j3 + i3) - 1) / i3);
+        long j5 = this.totalFileSize;
+        long j6 = this.uploadChunkSize;
+        this.totalPartsCount = (int) (((j5 + j6) - 1) / j6);
     }
 
     public void setForceSmallFile() {

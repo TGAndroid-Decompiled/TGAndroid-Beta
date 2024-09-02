@@ -145,34 +145,36 @@ public class SharingLiveLocationCell extends FrameLayout {
     }
 
     public void setDialog(long j, TLRPC$TL_channelLocation tLRPC$TL_channelLocation) {
+        String str;
         this.currentAccount = UserConfig.selectedAccount;
-        String str = tLRPC$TL_channelLocation.address;
+        String str2 = tLRPC$TL_channelLocation.address;
         this.avatarDrawable = null;
-        String str2 = "";
         if (DialogObject.isUserDialog(j)) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             if (user != null) {
                 this.avatarDrawable = new AvatarDrawable(user);
-                String userName = UserObject.getUserName(user);
+                str = UserObject.getUserName(user);
                 this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
-                str2 = userName;
             }
+            str = "";
         } else {
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
             if (chat != null) {
                 AvatarDrawable avatarDrawable = new AvatarDrawable(chat);
                 this.avatarDrawable = avatarDrawable;
-                str2 = chat.title;
+                String str3 = chat.title;
                 this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
+                str = str3;
             }
+            str = "";
         }
-        this.nameTextView.setText(str2);
+        this.nameTextView.setText(str);
         this.location.setLatitude(tLRPC$TL_channelLocation.geo_point.lat);
         this.location.setLongitude(tLRPC$TL_channelLocation.geo_point._long);
         TextView textView = this.distanceTextView;
         this.distanceTextViewSingle = true;
         textView.setSingleLine(true);
-        this.distanceTextView.setText(str);
+        this.distanceTextView.setText(str2);
     }
 
     private CharSequence getName(final double d, final double d2) {
@@ -342,7 +344,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         if (str2 != null) {
             this.distanceTextView.setText(str2);
         } else if (!z) {
-            this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
+            this.distanceTextView.setText(LocaleController.getString(R.string.Loading));
         } else {
             this.distanceTextView.setText("");
         }
@@ -369,7 +371,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.location.setLatitude(position.latitude);
         this.location.setLongitude(position.longitude);
         int i = liveLocation.object.edit_date;
-        String formatLocationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : r5.date);
+        String formatLocationUpdateDate = LocaleController.formatLocationUpdateDate(i != 0 ? i : r6.date);
         if (location != null) {
             this.distanceTextView.setText(String.format("%s - %s", formatLocationUpdateDate, LocaleController.formatDistance(this.location.distanceTo(location), 0)));
         } else {
@@ -422,9 +424,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         if (i2 >= currentTime || z) {
             float abs = z ? 1.0f : Math.abs(i2 - currentTime) / i;
             if (LocaleController.isRTL) {
-                this.rect.set(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
+                this.rect.set(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView != null ? 18.0f : 12.0f), AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView != null ? 48.0f : 42.0f));
             } else {
-                this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
+                this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView != null ? 18.0f : 12.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView != null ? 48.0f : 42.0f));
             }
             if (this.distanceTextView == null) {
                 themedColor = getThemedColor(Theme.key_dialog_liveLocationProgress);

@@ -92,6 +92,7 @@ public class ActionBarMenuItem extends FrameLayout {
     protected ActionBarMenuItemSearchListener listener;
     private int[] location;
     private boolean longClickEnabled;
+    private boolean measurePopup;
     private final AnimationNotificationsLocker notificationsLocker;
     private View.OnClickListener onClickListener;
     protected boolean overrideMenuClick;
@@ -110,6 +111,7 @@ public class ActionBarMenuItem extends FrameLayout {
     private CharSequence searchFieldHint;
     private CharSequence searchFieldText;
     private LinearLayout searchFilterLayout;
+    private ArrayList<SearchFilterView> searchFilterViews;
     public int searchItemPaddingStart;
     public int searchRightMargin;
     private int selectedFilterIndex;
@@ -224,10 +226,11 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public ActionBarMenuItem(Context context, ActionBarMenu actionBarMenu, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        new ArrayList();
+        this.searchFilterViews = new ArrayList<>();
         this.allowCloseAnimation = true;
         this.animationEnabled = true;
         this.animateClear = true;
+        this.measurePopup = true;
         this.showSubmenuByMove = true;
         this.currentSearchFilters = new ArrayList<>();
         this.selectedFilterIndex = -1;
@@ -881,7 +884,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
                 ActionBarPopupWindow actionBarPopupWindow3 = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
                 this.popupWindow = actionBarPopupWindow3;
-                if (this.animationEnabled && Build.VERSION.SDK_INT >= 19) {
+                if (this.animationEnabled) {
                     actionBarPopupWindow3.setAnimationStyle(0);
                 } else {
                     actionBarPopupWindow3.setAnimationStyle(R.style.PopupAnimation);
@@ -916,6 +919,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 if (frameLayout != null && frameLayout.getLayoutParams() != null && this.popupLayout.getSwipeBack() != null && (childAt = this.popupLayout.getSwipeBack().getChildAt(0)) != null && childAt.getMeasuredWidth() > 0) {
                     frameLayout.getLayoutParams().width = childAt.getMeasuredWidth() + AndroidUtilities.dp(16.0f);
                 }
+                this.measurePopup = false;
                 this.processedPopupClick = false;
                 this.popupWindow.setFocusable(true);
                 updateOrShowPopup(true, actionBarPopupWindowLayout.getMeasuredWidth() == 0);
@@ -1135,14 +1139,14 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public void onFiltersChanged() {
         final SearchFilterView searchFilterView;
-        FrameLayout frameLayout;
         boolean z = !this.currentSearchFilters.isEmpty();
         ArrayList arrayList = new ArrayList(this.currentSearchFilters);
-        if (Build.VERSION.SDK_INT >= 19 && (frameLayout = this.searchContainer) != null && frameLayout.getTag() != null) {
+        FrameLayout frameLayout = this.searchContainer;
+        if (frameLayout != null && frameLayout.getTag() != null) {
             TransitionSet transitionSet = new TransitionSet();
             ChangeBounds changeBounds = new ChangeBounds();
             changeBounds.setDuration(150L);
-            transitionSet.addTransition(new Visibility(this) {
+            transitionSet.addTransition(new Visibility() {
                 @Override
                 public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
                     if (view instanceof SearchFilterView) {
@@ -1472,14 +1476,11 @@ public class ActionBarMenuItem extends FrameLayout {
                 @Override
                 protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                     super.onLayout(z, i, i2, i3, i4);
-                    int i5 = 0;
-                    if (!LocaleController.isRTL && ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0) {
-                        i5 = AndroidUtilities.dp(4.0f) + ActionBarMenuItem.this.searchFieldCaption.getMeasuredWidth();
-                    }
+                    int measuredWidth = (!LocaleController.isRTL && ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0) ? ActionBarMenuItem.this.searchFieldCaption.getMeasuredWidth() + AndroidUtilities.dp(4.0f) : 0;
                     if (ActionBarMenuItem.this.searchFilterLayout.getVisibility() == 0) {
-                        i5 += ActionBarMenuItem.this.searchFilterLayout.getMeasuredWidth();
+                        measuredWidth += ActionBarMenuItem.this.searchFilterLayout.getMeasuredWidth();
                     }
-                    ActionBarMenuItem.this.searchField.layout(i5, ActionBarMenuItem.this.searchField.getTop(), ActionBarMenuItem.this.searchField.getMeasuredWidth() + i5, ActionBarMenuItem.this.searchField.getBottom());
+                    ActionBarMenuItem.this.searchField.layout(measuredWidth, ActionBarMenuItem.this.searchField.getTop(), ActionBarMenuItem.this.searchField.getMeasuredWidth() + measuredWidth, ActionBarMenuItem.this.searchField.getBottom());
                 }
             };
             this.searchContainer = frameLayout;
@@ -1487,7 +1488,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.wrappedSearchFrameLayout = null;
             if (this.wrapSearchInScrollView) {
                 this.wrappedSearchFrameLayout = new FrameLayout(getContext());
-                HorizontalScrollView horizontalScrollView = new HorizontalScrollView(this, getContext()) {
+                HorizontalScrollView horizontalScrollView = new HorizontalScrollView(getContext()) {
                     boolean isDragging;
 
                     @Override
@@ -1588,7 +1589,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchField.setPadding(0, 0, 0, 0);
             this.searchField.setInputType(this.searchField.getInputType() | 524288);
             if (Build.VERSION.SDK_INT < 23) {
-                this.searchField.setCustomSelectionActionModeCallback(new ActionMode.Callback(this) {
+                this.searchField.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                     @Override
                     public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
                         return false;
@@ -1718,7 +1719,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     ActionBarMenuItem.this.lambda$checkCreateSearchField$14(view);
                 }
             });
-            this.clearButton.setContentDescription(LocaleController.getString("ClearButton", R.string.ClearButton));
+            this.clearButton.setContentDescription(LocaleController.getString(R.string.ClearButton));
             if (this.wrapSearchInScrollView) {
                 this.wrappedSearchFrameLayout.addView(this.clearButton, LayoutHelper.createFrame(48, -1, 21));
             } else {
@@ -2067,6 +2068,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return;
         }
         findViewWithTag.setVisibility(8);
+        this.measurePopup = true;
     }
 
     public boolean hasSubItem(int i) {
@@ -2078,23 +2080,20 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public void checkHideMenuItem() {
-        boolean z;
         int i = 0;
+        int i2 = 0;
         while (true) {
-            if (i >= this.popupLayout.getItemsCount()) {
-                z = false;
+            if (i2 >= this.popupLayout.getItemsCount()) {
+                i = 8;
+                break;
+            } else if (this.popupLayout.getItemAt(i2).getVisibility() == 0) {
                 break;
             } else {
-                if (this.popupLayout.getItemAt(i).getVisibility() == 0) {
-                    z = true;
-                    break;
-                }
-                i++;
+                i2++;
             }
         }
-        int i2 = z ? 0 : 8;
-        if (i2 != getVisibility()) {
-            setVisibility(i2);
+        if (i != getVisibility()) {
+            setVisibility(i);
         }
     }
 
@@ -2121,6 +2120,7 @@ public class ActionBarMenuItem extends FrameLayout {
         findViewWithTag.setAlpha(0.0f);
         findViewWithTag.animate().alpha(1.0f).setInterpolator(CubicBezierInterpolator.DEFAULT).setDuration(150L).start();
         findViewWithTag.setVisibility(0);
+        this.measurePopup = true;
     }
 
     public void setSubItemShown(int i, boolean z) {
@@ -2232,7 +2232,8 @@ public class ActionBarMenuItem extends FrameLayout {
             TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
             tLRPC$TL_reactionCount.count = 1;
             tLRPC$TL_reactionCount.reaction = mediaFilterData.reaction.toTLReaction();
-            ReactionsLayoutInBubble.ReactionButton reactionButton = new ReactionsLayoutInBubble.ReactionButton(null, UserConfig.selectedAccount, this, tLRPC$TL_reactionCount, false, true, this.resourcesProvider) {
+            ReactionsLayoutInBubble.ReactionButton reactionButton = null;
+            ReactionsLayoutInBubble.ReactionButton reactionButton2 = new ReactionsLayoutInBubble.ReactionButton(reactionButton, UserConfig.selectedAccount, this, tLRPC$TL_reactionCount, false, true, this.resourcesProvider) {
                 @Override
                 protected int getCacheType() {
                     return 9;
@@ -2244,14 +2245,14 @@ public class ActionBarMenuItem extends FrameLayout {
                     this.lastDrawnTagDotColor = ColorUtils.blendARGB(this.fromTagDotColor, 1526726655, f);
                 }
             };
-            this.reactionButton = reactionButton;
-            reactionButton.isTag = true;
-            reactionButton.width = AndroidUtilities.dp(44.33f);
+            this.reactionButton = reactionButton2;
+            reactionButton2.isTag = true;
+            reactionButton2.width = AndroidUtilities.dp(44.33f);
             this.reactionButton.height = AndroidUtilities.dp(28.0f);
-            ReactionsLayoutInBubble.ReactionButton reactionButton2 = this.reactionButton;
-            reactionButton2.choosen = true;
+            ReactionsLayoutInBubble.ReactionButton reactionButton3 = this.reactionButton;
+            reactionButton3.choosen = true;
             if (this.attached) {
-                reactionButton2.attach();
+                reactionButton3.attach();
             }
         }
 
@@ -2424,10 +2425,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 valueAnimator.removeAllListeners();
                 this.selectAnimator.cancel();
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.selectedProgress;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectedProgress, z ? 1.0f : 0.0f);
             this.selectAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

@@ -32,7 +32,7 @@ public class Scroller {
     private float mVelocity;
     private static float DECELERATION_RATE = (float) (Math.log(0.75d) / Math.log(0.9d));
     private static float START_TENSION = 0.4f;
-    private static float END_TENSION = 1.0f - 0.4f;
+    private static float END_TENSION = 0.6f;
     private static final float[] SPLINE = new float[101];
 
     static {
@@ -190,7 +190,7 @@ public class Scroller {
         if (f2 < 1.0f) {
             exp = f2 - (1.0f - ((float) Math.exp(-f2)));
         } else {
-            exp = ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f) + 0.36787945f;
+            exp = 0.36787945f + ((1.0f - ((float) Math.exp(1.0f - f2))) * 0.63212055f);
         }
         return exp * sViscousFluidNormalize;
     }

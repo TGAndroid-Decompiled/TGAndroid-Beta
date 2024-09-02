@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.transition.ChangeBounds;
@@ -120,7 +119,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.extTextView.setMaxLines(1);
         this.extTextView.setSingleLine(true);
         this.extTextView.setGravity(17);
-        this.extTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView2 = this.extTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
         this.extTextView.setImportantForAccessibility(2);
         if (i == 1) {
             View view = this.extTextView;
@@ -151,13 +152,13 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             boolean z6 = LocaleController.isRTL;
             addView(view4, LayoutHelper.createFrame(40, 40.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : 12.0f, 8.0f, z6 ? 12.0f : 0.0f, 0.0f));
         }
-        TextView textView2 = new TextView(context);
-        this.nameTextView = textView2;
+        TextView textView3 = new TextView(context);
+        this.nameTextView = textView3;
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        textView2.setTextColor(getThemedColor(i3));
+        textView3.setTextColor(getThemedColor(i3));
         this.nameTextView.setTextSize(1, 16.0f);
         this.nameTextView.setTypeface(AndroidUtilities.bold());
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.nameTextView.setEllipsize(truncateAt);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         if (i == 1) {
             this.nameTextView.setLines(1);
@@ -171,9 +172,9 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             linearLayout.setOrientation(0);
             boolean z8 = LocaleController.isRTL;
             addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, (z8 ? 5 : 3) | 48, z8 ? 16.0f : 72.0f, 5.0f, z8 ? 72.0f : 16.0f, 0.0f));
-            TextView textView3 = new TextView(context);
-            this.rightDateTextView = textView3;
-            textView3.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
+            TextView textView4 = new TextView(context);
+            this.rightDateTextView = textView4;
+            textView4.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
             this.rightDateTextView.setTextSize(1, 14.0f);
             if (!LocaleController.isRTL) {
                 linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f));
@@ -183,13 +184,13 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
                 linearLayout.addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 1.0f, 0, 0, 4, 0));
             }
             this.nameTextView.setMaxLines(2);
-            TextView textView4 = new TextView(context);
-            this.captionTextView = textView4;
-            textView4.setTextColor(getThemedColor(i3));
+            TextView textView5 = new TextView(context);
+            this.captionTextView = textView5;
+            textView5.setTextColor(getThemedColor(i3));
             this.captionTextView.setLines(1);
             this.captionTextView.setMaxLines(1);
             this.captionTextView.setSingleLine(true);
-            this.captionTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.captionTextView.setEllipsize(truncateAt);
             this.captionTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.captionTextView.setTextSize(1, 13.0f);
             View view6 = this.captionTextView;
@@ -225,7 +226,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
         this.dateTextView.setLines(1);
         this.dateTextView.setMaxLines(1);
         this.dateTextView.setSingleLine(true);
-        this.dateTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.dateTextView.setEllipsize(truncateAt);
         this.dateTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         NotificationCenter.listenEmojiLoading(this.dateTextView);
         if (i == 1) {
@@ -433,7 +434,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
             }
             String documentFileName = (messageObject.isVideo() || (messageObject.messageOwner.media instanceof TLRPC$TL_messageMediaPhoto) || MessageObject.isGifDocument(document)) ? null : FileLoader.getDocumentFileName(document);
             if (TextUtils.isEmpty(documentFileName) && (str = document.mime_type) != null) {
-                documentFileName = str.startsWith("video") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachVideo", R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString("AttachGif", R.string.AttachGif) : LocaleController.getString("AttachPhoto", R.string.AttachPhoto) : document.mime_type.startsWith("audio") ? LocaleController.getString("AttachAudio", R.string.AttachAudio) : LocaleController.getString("AttachDocument", R.string.AttachDocument);
+                documentFileName = str.startsWith("video") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachVideo) : document.mime_type.startsWith("image") ? MessageObject.isGifDocument(document) ? LocaleController.getString(R.string.AttachGif) : LocaleController.getString(R.string.AttachPhoto) : document.mime_type.startsWith("audio") ? LocaleController.getString(R.string.AttachAudio) : LocaleController.getString(R.string.AttachDocument);
             }
             if (str4 == null) {
                 str4 = documentFileName;
@@ -528,7 +529,7 @@ public class SharedDocumentCell extends FrameLayout implements DownloadControlle
     }
 
     public void updateFileExistIcon(boolean z) {
-        if (z && Build.VERSION.SDK_INT >= 19) {
+        if (z) {
             TransitionSet transitionSet = new TransitionSet();
             ChangeBounds changeBounds = new ChangeBounds();
             changeBounds.setDuration(150L);

@@ -203,7 +203,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setBlurAllowed(true);
         this.container.addView(this.imageView, LayoutHelper.createFrame(-1, -1.0f));
-        FrameLayout frameLayout2 = new FrameLayout(this, context) {
+        FrameLayout frameLayout2 = new FrameLayout(context) {
             private RectF rect = new RectF();
 
             @Override
@@ -272,12 +272,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     public void setStarsPrice(long j, boolean z) {
+        SpannableStringBuilder spannableStringBuilder;
         if (z == this.starsSelectedMultiple && j == this.stars) {
             return;
         }
         this.stars = j;
         this.starsSelectedMultiple = z;
-        SpannableStringBuilder spannableStringBuilder = null;
         if (j > 0) {
             spannableStringBuilder = new SpannableStringBuilder();
             if (this.star == null) {
@@ -300,6 +300,8 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             } else {
                 spannableStringBuilder.append((CharSequence) Long.toString(j));
             }
+        } else {
+            spannableStringBuilder = null;
         }
         this.imageView.setBlurredText(spannableStringBuilder);
         this.imageView.invalidate();
@@ -505,18 +507,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             if (z2) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.animator = animatorSet2;
-                Animator[] animatorArr = new Animator[2];
-                FrameLayout frameLayout = this.container;
-                Property property = View.SCALE_X;
-                float[] fArr = new float[1];
-                fArr[0] = z ? 0.787f : 1.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
-                FrameLayout frameLayout2 = this.container;
-                Property property2 = View.SCALE_Y;
-                float[] fArr2 = new float[1];
-                fArr2[0] = z ? 0.787f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
-                animatorSet2.playTogether(animatorArr);
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_X, z ? 0.787f : 1.0f), ObjectAnimator.ofFloat(this.container, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 0.787f : 1.0f));
                 this.animator.setDuration(200L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
                     @Override
@@ -582,18 +573,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             animatorSet2.setInterpolator(new DecelerateInterpolator());
             this.animatorSet.setDuration(180L);
             AnimatorSet animatorSet3 = this.animatorSet;
-            Animator[] animatorArr = new Animator[2];
             FrameLayout frameLayout = this.videoInfoContainer;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
-            CheckBox2 checkBox2 = this.checkBox;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property2, fArr2);
-            animatorSet3.playTogether(animatorArr);
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.checkBox, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f));
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -641,9 +623,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         StringBuilder sb = new StringBuilder();
         MediaController.PhotoEntry photoEntry = this.photoEntry;
         if (photoEntry != null && photoEntry.isVideo) {
-            sb.append(LocaleController.getString("AttachVideo", R.string.AttachVideo) + ", " + LocaleController.formatDuration(this.photoEntry.duration));
+            sb.append(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(this.photoEntry.duration));
         } else {
-            sb.append(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
+            sb.append(LocaleController.getString(R.string.AttachPhoto));
         }
         if (this.photoEntry != null) {
             sb.append(". ");
@@ -654,7 +636,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             accessibilityNodeInfo.setSelected(true);
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString("Open", R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
         }
     }
 

@@ -388,10 +388,9 @@ public class ActionBarMenuSlider extends FrameLayout {
         if (bitmap == null) {
             return null;
         }
-        int[] iArr = this.location;
-        float f = iArr[0] / AndroidUtilities.displaySize.x;
+        float f = this.location[0] / AndroidUtilities.displaySize.x;
         int width = (int) (f * bitmap.getWidth());
-        int measuredWidth = (int) (((iArr[0] + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
+        int measuredWidth = (int) (((r1 + getMeasuredWidth()) / AndroidUtilities.displaySize.x) * bitmap.getWidth());
         int currentActionBarHeight = (int) ((((this.location[1] - AndroidUtilities.statusBarHeight) - ActionBar.getCurrentActionBarHeight()) / AndroidUtilities.displaySize.y) * bitmap.getHeight());
         if (width < 0 || width >= bitmap.getWidth() || measuredWidth < 0 || measuredWidth >= bitmap.getWidth() || currentActionBarHeight < 0 || currentActionBarHeight >= bitmap.getHeight()) {
             return null;
@@ -402,16 +401,16 @@ public class ActionBarMenuSlider extends FrameLayout {
     private void updatePseudoBlurColors() {
         int color;
         int i;
+        Bitmap bitmap;
         if (this.blurIsInChat) {
             Drawable cachedWallpaper = Theme.getCachedWallpaper();
             if (cachedWallpaper instanceof ColorDrawable) {
                 color = ((ColorDrawable) cachedWallpaper).getColor();
             } else {
-                Bitmap bitmap = null;
                 if (cachedWallpaper instanceof MotionBackgroundDrawable) {
                     bitmap = ((MotionBackgroundDrawable) cachedWallpaper).getBitmap();
-                } else if (cachedWallpaper instanceof BitmapDrawable) {
-                    bitmap = ((BitmapDrawable) cachedWallpaper).getBitmap();
+                } else {
+                    bitmap = cachedWallpaper instanceof BitmapDrawable ? ((BitmapDrawable) cachedWallpaper).getBitmap() : null;
                 }
                 Pair<Integer, Integer> bitmapGradientColors = getBitmapGradientColors(bitmap);
                 if (bitmapGradientColors != null) {
@@ -511,7 +510,7 @@ public class ActionBarMenuSlider extends FrameLayout {
 
                 @Override
                 public CharSequence getContentDescription(View view) {
-                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString("AccDescrSpeedSlider", R.string.AccDescrSpeedSlider);
+                    return SpeedIconDrawable.formatNumber(SpeedSlider.this.getSpeed()) + "x  " + LocaleController.getString(R.string.AccDescrSpeedSlider);
                 }
             };
             this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;

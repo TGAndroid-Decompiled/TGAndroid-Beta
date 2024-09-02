@@ -54,11 +54,12 @@ public class PremiumFeatureCell extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_INSIDE;
+        imageView.setScaleType(scaleType);
         addView(this.imageView, LayoutHelper.createFrame(28, 28.0f, 0, 18.0f, 12.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.nextIcon = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.msg_arrowright);
         imageView2.setColorFilter(Theme.getColor(Theme.key_switchTrack, resourcesProvider));
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));

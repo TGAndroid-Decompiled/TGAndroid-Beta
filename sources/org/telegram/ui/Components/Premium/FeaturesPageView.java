@@ -40,7 +40,7 @@ public class FeaturesPageView extends BaseListPageView {
     ArrayList<Item> items;
     public final int type;
 
-    public FeaturesPageView(android.content.Context r25, int r26, org.telegram.ui.ActionBar.Theme.ResourcesProvider r27) {
+    public FeaturesPageView(android.content.Context r17, int r18, org.telegram.ui.ActionBar.Theme.ResourcesProvider r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.FeaturesPageView.<init>(android.content.Context, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -66,7 +66,7 @@ public class FeaturesPageView extends BaseListPageView {
                     itemCell = new FixedHeightEmptyCell(FeaturesPageView.this.getContext(), 16);
                 } else {
                     FeaturesPageView featuresPageView2 = FeaturesPageView.this;
-                    itemCell = new ItemCell(featuresPageView2, featuresPageView2.getContext());
+                    itemCell = new ItemCell(featuresPageView2.getContext());
                 }
                 itemCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
                 return new RecyclerListView.Holder(itemCell);
@@ -104,11 +104,11 @@ public class FeaturesPageView extends BaseListPageView {
         String text;
         final int viewType;
 
-        private Item(FeaturesPageView featuresPageView, int i) {
+        private Item(int i) {
             this.viewType = i;
         }
 
-        public Item(FeaturesPageView featuresPageView, int i, int i2, String str, String str2, int i3) {
+        public Item(int i, int i2, String str, String str2, int i3) {
             this.viewType = i;
             this.iconRes = i2;
             this.text = str;
@@ -142,7 +142,7 @@ public class FeaturesPageView extends BaseListPageView {
                 textView.setTextSize(1, 20.0f);
                 textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
-                textView.setText(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
+                textView.setText(LocaleController.getString(R.string.UpgradedStories));
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
                 GradientTools gradientTools = this.gradientTools;
                 gradientTools.isLinear = true;
@@ -154,7 +154,7 @@ public class FeaturesPageView extends BaseListPageView {
                 return;
             }
             if (i == 1) {
-                StarParticlesView starParticlesView = new StarParticlesView(this, context, FeaturesPageView.this) {
+                StarParticlesView starParticlesView = new StarParticlesView(context) {
                     @Override
                     public void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, i3);
@@ -181,7 +181,7 @@ public class FeaturesPageView extends BaseListPageView {
                 };
                 this.starParticlesView = starParticlesView;
                 addView(starParticlesView, LayoutHelper.createFrame(-1, 190, 55));
-                GLIconTextureView gLIconTextureView = new GLIconTextureView(this, context, 1, 1, FeaturesPageView.this) {
+                GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 1) {
                     @Override
                     public void onAttachedToWindow() {
                         super.onAttachedToWindow();
@@ -262,7 +262,7 @@ public class FeaturesPageView extends BaseListPageView {
         ImageView imageView;
         TextView textView;
 
-        public ItemCell(FeaturesPageView featuresPageView, Context context) {
+        public ItemCell(Context context) {
             super(context);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
@@ -271,12 +271,12 @@ public class FeaturesPageView extends BaseListPageView {
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTypeface(AndroidUtilities.bold());
-            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, featuresPageView.resourcesProvider));
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 8.0f, 16.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.description = textView2;
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, featuresPageView.resourcesProvider));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, FeaturesPageView.this.resourcesProvider));
             this.description.setTextSize(1, 14.0f);
             addView(this.description, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 28.0f, 16.0f, 8.0f));
         }

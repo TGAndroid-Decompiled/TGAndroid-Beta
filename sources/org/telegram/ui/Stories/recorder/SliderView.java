@@ -170,17 +170,18 @@ public class SliderView extends View {
             canvas.drawPath(this.speaker2Path, this.speaker2Paint);
             float f3 = this.maxVolume;
             float f4 = this.minVolume;
-            double d = f3 - f4 != 0.0f ? f4 + (this.value * (f3 - f4)) : 0.0f;
-            float f5 = this.wave1Alpha.set(d > 0.25d);
+            float f5 = f3 - f4;
+            double d = f5 != 0.0f ? f4 + (this.value * f5) : 0.0f;
+            float f6 = this.wave1Alpha.set(d > 0.25d);
             canvas.save();
-            canvas.translate((-AndroidUtilities.dpf2(0.33f)) * (1.0f - f5), 0.0f);
-            this.speakerWave1Paint.setAlpha((int) (f5 * 255.0f));
+            canvas.translate((-AndroidUtilities.dpf2(0.33f)) * (1.0f - f6), 0.0f);
+            this.speakerWave1Paint.setAlpha((int) (f6 * 255.0f));
             canvas.drawPath(this.speakerWave1Path, this.speakerWave1Paint);
             canvas.restore();
-            float f6 = this.wave2Alpha.set(d > 0.5d);
+            float f7 = this.wave2Alpha.set(d > 0.5d);
             canvas.save();
-            canvas.translate((-AndroidUtilities.dpf2(0.66f)) * (1.0f - f6), 0.0f);
-            this.speakerWave2Paint.setAlpha((int) (f6 * 255.0f));
+            canvas.translate((-AndroidUtilities.dpf2(0.66f)) * (1.0f - f7), 0.0f);
+            this.speakerWave2Paint.setAlpha((int) (f7 * 255.0f));
             canvas.drawPath(this.speakerWave2Path, this.speakerWave2Paint);
             canvas.restore();
         }
@@ -204,7 +205,8 @@ public class SliderView extends View {
         } else if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
             float f = this.maxVolume;
             float f2 = this.minVolume;
-            float f3 = f - f2 != 0.0f ? f2 + (this.value * (f - f2)) : 0.0f;
+            float f3 = f - f2;
+            float f4 = f3 != 0.0f ? f2 + (this.value * f3) : 0.0f;
             if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.pressTime < ViewConfiguration.getTapTimeout()) {
                 this.valueAnimated.set(this.value, true);
                 this.value = x / this.w;
@@ -214,23 +216,24 @@ public class SliderView extends View {
                 this.valueIsAnimated = false;
                 z = true;
             }
-            float f4 = this.maxVolume;
-            float f5 = this.minVolume;
-            float f6 = f4 - f5 != 0.0f ? f5 + (this.value * (f4 - f5)) : 0.0f;
+            float f5 = this.maxVolume;
+            float f6 = this.minVolume;
+            float f7 = f5 - f6;
+            float f8 = f7 != 0.0f ? (this.value * f7) + f6 : 0.0f;
             if (z) {
-                if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                if ((f8 <= f6 && f4 > f8) || (f8 >= f5 && f4 < f8)) {
                     try {
                         performHapticFeedback(3, 1);
                     } catch (Exception unused) {
                     }
-                } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
+                } else if (Math.floor(f4 * 5.0f) != Math.floor(5.0f * f8)) {
                     AndroidUtilities.vibrateCursor(this);
                 }
             }
-            updateText(f6);
+            updateText(f8);
             Utilities.Callback<Float> callback = this.onValueChange;
             if (callback != null) {
-                callback.run(Float.valueOf(f6));
+                callback.run(Float.valueOf(f8));
             }
         }
         this.lastTouchX = x;

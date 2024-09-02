@@ -34,7 +34,7 @@ public class AddReactionsSpan extends ReplacementSpan {
 
     public void makeLayout() {
         if (this.layout == null) {
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString("ReactionAddReactionsHint", R.string.ReactionAddReactionsHint), this.textPaint, AndroidUtilities.displaySize.x, LocaleController.isRTL ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.ReactionAddReactionsHint), this.textPaint, AndroidUtilities.displaySize.x, LocaleController.isRTL ? Layout.Alignment.ALIGN_OPPOSITE : Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layout = staticLayout;
             this.width = staticLayout.getLineWidth(0);
             this.height = this.layout.getHeight();
@@ -82,7 +82,7 @@ public class AddReactionsSpan extends ReplacementSpan {
                 AddReactionsSpan.this.lambda$hide$1(view, valueAnimator);
             }
         });
-        ofInt.addListener(new AnimatorListenerAdapter(this) {
+        ofInt.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
                 runnable.run();

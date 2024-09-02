@@ -57,8 +57,8 @@ public class VoIPButtonsLayout extends FrameLayout {
             for (int i5 = 0; i5 < getChildCount(); i5++) {
                 View childAt = getChildAt(i5);
                 if (childAt.getVisibility() != 8) {
-                    int i6 = this.childPadding;
-                    childAt.layout(childCount + i6, 0, i6 + childCount + childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+                    int i6 = this.childPadding + childCount;
+                    childAt.layout(i6, 0, childAt.getMeasuredWidth() + i6, childAt.getMeasuredHeight());
                     childCount += (this.childPadding * 2) + childAt.getMeasuredWidth();
                 }
             }

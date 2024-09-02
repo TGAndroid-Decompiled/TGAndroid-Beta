@@ -125,6 +125,6 @@ public class ID3v2FrameHeader {
     }
 
     public String toString() {
-        return String.format("%s[id=%s, bodysize=%d]", ID3v2FrameHeader.class.getSimpleName(), this.frameId, Integer.valueOf(this.bodySize));
+        return String.format("%s[id=%s, bodysize=%d]", getClass().getSimpleName(), this.frameId, Integer.valueOf(this.bodySize));
     }
 }

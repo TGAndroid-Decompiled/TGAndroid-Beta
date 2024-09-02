@@ -210,28 +210,36 @@ public interface INavigationLayout {
             };
         }
 
-        public static void $default$rebuildFragments(INavigationLayout _this, int i) {
+        public static void $default$removeFragmentFromStack(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
+            iNavigationLayout.removeFragmentFromStack(baseFragment, false);
+        }
+
+        public static void $default$rebuildFragments(INavigationLayout iNavigationLayout, int i) {
             if ((i & 2) != 0) {
-                _this.showLastFragment();
+                iNavigationLayout.showLastFragment();
             } else {
                 boolean z = (i & 1) != 0;
-                _this.rebuildAllFragmentViews(z, z);
+                iNavigationLayout.rebuildAllFragmentViews(z, z);
             }
         }
 
-        public static BaseFragment $default$getBackgroundFragment(INavigationLayout _this) {
-            if (_this.getFragmentStack().size() <= 1) {
-                return null;
-            }
-            return _this.getFragmentStack().get(_this.getFragmentStack().size() - 2);
+        public static void $default$drawHeaderShadow(INavigationLayout iNavigationLayout, Canvas canvas, int i) {
+            iNavigationLayout.drawHeaderShadow(canvas, 255, i);
         }
 
-        public static BaseFragment $default$getSafeLastFragment(INavigationLayout _this) {
-            if (_this.getFragmentStack().isEmpty()) {
+        public static BaseFragment $default$getBackgroundFragment(INavigationLayout iNavigationLayout) {
+            if (iNavigationLayout.getFragmentStack().size() <= 1) {
                 return null;
             }
-            for (int size = _this.getFragmentStack().size() - 1; size >= 0; size--) {
-                BaseFragment baseFragment = _this.getFragmentStack().get(size);
+            return iNavigationLayout.getFragmentStack().get(iNavigationLayout.getFragmentStack().size() - 2);
+        }
+
+        public static BaseFragment $default$getSafeLastFragment(INavigationLayout iNavigationLayout) {
+            if (iNavigationLayout.getFragmentStack().isEmpty()) {
+                return null;
+            }
+            for (int size = iNavigationLayout.getFragmentStack().size() - 1; size >= 0; size--) {
+                BaseFragment baseFragment = iNavigationLayout.getFragmentStack().get(size);
                 if (baseFragment != null && !baseFragment.isFinishing() && !baseFragment.isRemovingFromStack()) {
                     return baseFragment;
                 }
@@ -239,8 +247,16 @@ public interface INavigationLayout {
             return null;
         }
 
-        public static Activity $default$getParentActivity(INavigationLayout _this) {
-            Context context = _this.getView().getContext();
+        public static void $default$animateThemedValues(INavigationLayout iNavigationLayout, Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
+            iNavigationLayout.animateThemedValues(new ThemeAnimationSettings(themeInfo, i, z, z2), null);
+        }
+
+        public static void $default$animateThemedValues(INavigationLayout iNavigationLayout, Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2, Runnable runnable) {
+            iNavigationLayout.animateThemedValues(new ThemeAnimationSettings(themeInfo, i, z, z2), runnable);
+        }
+
+        public static Activity $default$getParentActivity(INavigationLayout iNavigationLayout) {
+            Context context = iNavigationLayout.getView().getContext();
             if (context instanceof Activity) {
                 return (Activity) context;
             }
@@ -254,15 +270,49 @@ public interface INavigationLayout {
             throw new IllegalArgumentException("You should override getView() if you're not inheriting from it.");
         }
 
-        public static void $default$removeFragmentFromStack(INavigationLayout _this, int i) {
-            if (i < 0 || i >= _this.getFragmentStack().size()) {
-                return;
-            }
-            _this.removeFragmentFromStack(_this.getFragmentStack().get(i));
+        public static void $default$closeLastFragment(INavigationLayout iNavigationLayout) {
+            iNavigationLayout.closeLastFragment(true);
         }
 
-        public static void $default$dismissDialogs(INavigationLayout _this) {
-            List<BaseFragment> fragmentStack = _this.getFragmentStack();
+        public static void $default$removeFragmentFromStack(INavigationLayout iNavigationLayout, int i) {
+            if (i < 0 || i >= iNavigationLayout.getFragmentStack().size()) {
+                return;
+            }
+            iNavigationLayout.removeFragmentFromStack(iNavigationLayout.getFragmentStack().get(i));
+        }
+
+        public static boolean $default$addFragmentToStack(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
+            return iNavigationLayout.addFragmentToStack(baseFragment, -1);
+        }
+
+        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment));
+        }
+
+        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z));
+        }
+
+        public static boolean $default$presentFragmentAsPreview(INavigationLayout iNavigationLayout, BaseFragment baseFragment) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setPreview(true));
+        }
+
+        public static boolean $default$presentFragmentAsPreviewWithMenu(INavigationLayout iNavigationLayout, BaseFragment baseFragment, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setPreview(true).setMenuView(actionBarPopupWindowLayout));
+        }
+
+        @Deprecated
+        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4));
+        }
+
+        @Deprecated
+        public static boolean $default$presentFragment(INavigationLayout iNavigationLayout, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout) {
+            return iNavigationLayout.presentFragment(new NavigationParams(baseFragment).setRemoveLast(z).setNoAnimation(z2).setCheckPresentFromDelegate(z3).setPreview(z4).setMenuView(actionBarPopupWindowLayout));
+        }
+
+        public static void $default$dismissDialogs(INavigationLayout iNavigationLayout) {
+            List<BaseFragment> fragmentStack = iNavigationLayout.getFragmentStack();
             if (fragmentStack.isEmpty()) {
                 return;
             }

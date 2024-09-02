@@ -49,15 +49,15 @@ public class JoinToSendSettingsView extends LinearLayout {
         setOrientation(1);
         HeaderCell headerCell = new HeaderCell(context, 23);
         this.joinHeaderCell = headerCell;
-        headerCell.setText(LocaleController.getString("ChannelSettingsJoinTitle", R.string.ChannelSettingsJoinTitle));
+        headerCell.setText(LocaleController.getString(R.string.ChannelSettingsJoinTitle));
         this.joinHeaderCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         addView(this.joinHeaderCell);
-        TextCheckCell textCheckCell = new TextCheckCell(this, context) {
+        TextCheckCell textCheckCell = new TextCheckCell(context) {
         };
         this.joinToSendCell = textCheckCell;
         textCheckCell.setBackground(Theme.getSelectorDrawable(true));
         TextCheckCell textCheckCell2 = this.joinToSendCell;
-        String string = LocaleController.getString("ChannelSettingsJoinToSend", R.string.ChannelSettingsJoinToSend);
+        String string = LocaleController.getString(R.string.ChannelSettingsJoinToSend);
         boolean z2 = this.isJoinToSend;
         textCheckCell2.setTextAndCheck(string, z2, z2);
         this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
@@ -68,11 +68,11 @@ public class JoinToSendSettingsView extends LinearLayout {
             }
         });
         addView(this.joinToSendCell);
-        TextCheckCell textCheckCell3 = new TextCheckCell(this, context) {
+        TextCheckCell textCheckCell3 = new TextCheckCell(context) {
         };
         this.joinRequestCell = textCheckCell3;
         textCheckCell3.setBackground(Theme.getSelectorDrawable(true));
-        this.joinRequestCell.setTextAndCheck(LocaleController.getString("ChannelSettingsJoinRequest", R.string.ChannelSettingsJoinRequest), this.isJoinRequest, false);
+        this.joinRequestCell.setTextAndCheck(LocaleController.getString(R.string.ChannelSettingsJoinRequest), this.isJoinRequest, false);
         this.joinRequestCell.setPivotY(0.0f);
         TextCheckCell textCheckCell4 = this.joinRequestCell;
         if (!tLRPC$Chat.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
@@ -88,11 +88,11 @@ public class JoinToSendSettingsView extends LinearLayout {
         addView(this.joinRequestCell);
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
         this.joinToSendInfoCell = textInfoPrivacyCell;
-        textInfoPrivacyCell.setText(LocaleController.getString("ChannelSettingsJoinToSendInfo", R.string.ChannelSettingsJoinToSendInfo));
+        textInfoPrivacyCell.setText(LocaleController.getString(R.string.ChannelSettingsJoinToSendInfo));
         addView(this.joinToSendInfoCell);
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
         this.joinRequestInfoCell = textInfoPrivacyCell2;
-        textInfoPrivacyCell2.setText(LocaleController.getString("ChannelSettingsJoinRequestInfo", R.string.ChannelSettingsJoinRequestInfo));
+        textInfoPrivacyCell2.setText(LocaleController.getString(R.string.ChannelSettingsJoinRequestInfo));
         addView(this.joinRequestInfoCell);
         boolean z3 = this.isJoinToSend;
         this.toggleValue = z3 ? 1.0f : 0.0f;
@@ -155,12 +155,12 @@ public class JoinToSendSettingsView extends LinearLayout {
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2;
         this.currentChat = tLRPC$Chat;
-        boolean z = false;
+        boolean z = true;
         this.joinToSendCell.setEnabled(tLRPC$Chat.creator || ((tLRPC$TL_chatAdminRights2 = tLRPC$Chat.admin_rights) != null && tLRPC$TL_chatAdminRights2.ban_users));
         TextCheckCell textCheckCell = this.joinRequestCell;
         TLRPC$Chat tLRPC$Chat2 = this.currentChat;
-        if (tLRPC$Chat2.creator || ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) != null && tLRPC$TL_chatAdminRights.ban_users)) {
-            z = true;
+        if (!tLRPC$Chat2.creator && ((tLRPC$TL_chatAdminRights = tLRPC$Chat2.admin_rights) == null || !tLRPC$TL_chatAdminRights.ban_users)) {
+            z = false;
         }
         textCheckCell.setEnabled(z);
     }
@@ -204,10 +204,7 @@ public class JoinToSendSettingsView extends LinearLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.toggleValue;
-        fArr[1] = this.isJoinToSend ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.toggleValue, this.isJoinToSend ? 1.0f : 0.0f);
         this.toggleAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.toggleAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -241,7 +238,7 @@ public class JoinToSendSettingsView extends LinearLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         HeaderCell headerCell = this.joinHeaderCell;
         int i5 = i3 - i;
-        int measuredHeight = headerCell.getMeasuredHeight() + 0;
+        int measuredHeight = headerCell.getMeasuredHeight();
         headerCell.layout(0, 0, i5, measuredHeight);
         if (this.joinToSendCell.getVisibility() == 0) {
             TextCheckCell textCheckCell = this.joinToSendCell;

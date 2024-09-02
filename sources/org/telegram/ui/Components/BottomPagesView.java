@@ -13,6 +13,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class BottomPagesView extends View {
     private int colorKey;
     private int currentPage;
+    private DecelerateInterpolator decelerateInterpolator;
     private int pagesCount;
     private Paint paint;
     private float progress;
@@ -24,7 +25,7 @@ public class BottomPagesView extends View {
     public BottomPagesView(Context context, ViewPager viewPager, int i) {
         super(context);
         this.paint = new Paint(1);
-        new DecelerateInterpolator();
+        this.decelerateInterpolator = new DecelerateInterpolator();
         this.rect = new RectF();
         this.colorKey = -1;
         this.selectedColorKey = -1;

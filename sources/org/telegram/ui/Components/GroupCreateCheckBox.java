@@ -43,18 +43,20 @@ public class GroupCreateCheckBox extends View {
             Paint paint = new Paint(1);
             eraser = paint;
             paint.setColor(0);
-            eraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            Paint paint2 = new Paint(1);
-            eraser2 = paint2;
-            paint2.setColor(0);
+            Paint paint2 = eraser;
+            PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+            paint2.setXfermode(new PorterDuffXfermode(mode));
+            Paint paint3 = new Paint(1);
+            eraser2 = paint3;
+            paint3.setColor(0);
             eraser2.setStyle(Paint.Style.STROKE);
-            eraser2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+            eraser2.setXfermode(new PorterDuffXfermode(mode));
         }
         this.backgroundPaint = new Paint(1);
         this.backgroundInnerPaint = new Paint(1);
-        Paint paint3 = new Paint(1);
-        this.checkPaint = paint3;
-        paint3.setStyle(Paint.Style.STROKE);
+        Paint paint4 = new Paint(1);
+        this.checkPaint = paint4;
+        paint4.setStyle(Paint.Style.STROKE);
         this.innerRadDiff = AndroidUtilities.dp(2.0f);
         this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         eraser2.setStrokeWidth(AndroidUtilities.dp(28.0f));
@@ -104,9 +106,7 @@ public class GroupCreateCheckBox extends View {
 
     private void animateToCheckedState(boolean z) {
         this.isCheckAnimation = z;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.setDuration(300L);
         this.checkAnimator.start();

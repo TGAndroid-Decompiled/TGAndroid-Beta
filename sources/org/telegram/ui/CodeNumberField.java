@@ -43,6 +43,8 @@ public class CodeNumberField extends EditTextBoldCursor {
     boolean pressed;
     boolean replaceAnimation;
     private boolean showSoftInputOnFocusInternal;
+    float startX;
+    float startY;
     private float successProgress;
     private float successScaleProgress;
     private SpringAnimation successScaleSpringAnimation;
@@ -139,6 +141,8 @@ public class CodeNumberField extends EditTextBoldCursor {
         this.enterAnimation = 1.0f;
         this.exitAnimation = 1.0f;
         this.pressed = false;
+        this.startX = 0.0f;
+        this.startY = 0.0f;
         setBackground(null);
         setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         setMovementMethod(null);
@@ -291,10 +295,11 @@ public class CodeNumberField extends EditTextBoldCursor {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         ClipDescription primaryClipDescription;
+        int i;
         if (motionEvent.getAction() == 0) {
             this.pressed = true;
-            motionEvent.getX();
-            motionEvent.getY();
+            this.startX = motionEvent.getX();
+            this.startY = motionEvent.getY();
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
@@ -306,10 +311,10 @@ public class CodeNumberField extends EditTextBoldCursor {
                     }
                     primaryClipDescription.hasMimeType("text/plain");
                     ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
-                    int i = -1;
                     try {
                         i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
                     } catch (Exception unused) {
+                        i = -1;
                     }
                     if (i > 0) {
                         startActionMode(new ActionMode.Callback() {
@@ -355,15 +360,16 @@ public class CodeNumberField extends EditTextBoldCursor {
     public void pasteFromClipboard() {
         ClipboardManager clipboardManager;
         ClipData primaryClip;
+        int i;
         CodeFieldContainer codeFieldContainer = getParent() instanceof CodeFieldContainer ? (CodeFieldContainer) getParent() : null;
         if (codeFieldContainer == null || (clipboardManager = (ClipboardManager) ContextCompat.getSystemService(getContext(), ClipboardManager.class)) == null || (primaryClip = clipboardManager.getPrimaryClip()) == null) {
             return;
         }
-        int i = -1;
         String charSequence = primaryClip.getItemAt(0).getText().toString();
         try {
             i = Integer.parseInt(charSequence);
         } catch (Exception unused) {
+            i = -1;
         }
         if (i > 0) {
             codeFieldContainer.setText(charSequence, true);

@@ -5,7 +5,6 @@ import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AudioEffect;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
-import android.os.Build;
 import android.text.TextUtils;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
@@ -49,49 +48,47 @@ public class AudioRecordJNI {
             tryInit = tryInit(1, 44100);
         }
         if (tryInit) {
-            if (Build.VERSION.SDK_INT >= 16) {
-                try {
-                    if (AutomaticGainControl.isAvailable()) {
-                        AutomaticGainControl create = AutomaticGainControl.create(this.audioRecord.getAudioSessionId());
-                        this.agc = create;
-                        if (create != null) {
-                            create.setEnabled(false);
-                        }
-                    } else {
-                        VLog.w("AutomaticGainControl is not available on this device :(");
+            try {
+                if (AutomaticGainControl.isAvailable()) {
+                    AutomaticGainControl create = AutomaticGainControl.create(this.audioRecord.getAudioSessionId());
+                    this.agc = create;
+                    if (create != null) {
+                        create.setEnabled(false);
                     }
-                } catch (Throwable th) {
-                    VLog.e("error creating AutomaticGainControl", th);
+                } else {
+                    VLog.w("AutomaticGainControl is not available on this device :(");
                 }
-                try {
-                    if (NoiseSuppressor.isAvailable()) {
-                        NoiseSuppressor create2 = NoiseSuppressor.create(this.audioRecord.getAudioSessionId());
-                        this.ns = create2;
-                        if (create2 != null) {
-                            create2.setEnabled(Instance.getGlobalServerConfig().useSystemNs && isGoodAudioEffect(this.ns));
-                        }
-                    } else {
-                        VLog.w("NoiseSuppressor is not available on this device :(");
+            } catch (Throwable th) {
+                VLog.e("error creating AutomaticGainControl", th);
+            }
+            try {
+                if (NoiseSuppressor.isAvailable()) {
+                    NoiseSuppressor create2 = NoiseSuppressor.create(this.audioRecord.getAudioSessionId());
+                    this.ns = create2;
+                    if (create2 != null) {
+                        create2.setEnabled(Instance.getGlobalServerConfig().useSystemNs && isGoodAudioEffect(this.ns));
                     }
-                } catch (Throwable th2) {
-                    VLog.e("error creating NoiseSuppressor", th2);
+                } else {
+                    VLog.w("NoiseSuppressor is not available on this device :(");
                 }
-                try {
-                    if (AcousticEchoCanceler.isAvailable()) {
-                        AcousticEchoCanceler create3 = AcousticEchoCanceler.create(this.audioRecord.getAudioSessionId());
-                        this.aec = create3;
-                        if (create3 != null) {
-                            if (!Instance.getGlobalServerConfig().useSystemAec || !isGoodAudioEffect(this.aec)) {
-                                z = false;
-                            }
-                            create3.setEnabled(z);
+            } catch (Throwable th2) {
+                VLog.e("error creating NoiseSuppressor", th2);
+            }
+            try {
+                if (AcousticEchoCanceler.isAvailable()) {
+                    AcousticEchoCanceler create3 = AcousticEchoCanceler.create(this.audioRecord.getAudioSessionId());
+                    this.aec = create3;
+                    if (create3 != null) {
+                        if (!Instance.getGlobalServerConfig().useSystemAec || !isGoodAudioEffect(this.aec)) {
+                            z = false;
                         }
-                    } else {
-                        VLog.w("AcousticEchoCanceler is not available on this device");
+                        create3.setEnabled(z);
                     }
-                } catch (Throwable th3) {
-                    VLog.e("error creating AcousticEchoCanceler", th3);
+                } else {
+                    VLog.w("AcousticEchoCanceler is not available on this device");
                 }
+            } catch (Throwable th3) {
+                VLog.e("error creating AcousticEchoCanceler", th3);
             }
             this.buffer = ByteBuffer.allocateDirect(i4);
         }

@@ -10,6 +10,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.ActionBar.Theme;
 
 public class ImageReceiverSpan extends ReplacementSpan {
+    private final int currentAccount;
     public final ImageReceiver imageReceiver;
     private View parent;
     private float radius;
@@ -31,6 +32,7 @@ public class ImageReceiverSpan extends ReplacementSpan {
     private int shadowPaintAlpha = 255;
 
     public ImageReceiverSpan(View view, int i, float f) {
+        this.currentAccount = i;
         ImageReceiver imageReceiver = new ImageReceiver(view);
         this.imageReceiver = imageReceiver;
         imageReceiver.setCurrentAccount(i);

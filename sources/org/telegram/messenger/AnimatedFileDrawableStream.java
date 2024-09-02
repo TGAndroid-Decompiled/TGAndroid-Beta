@@ -43,78 +43,87 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
         long j;
         long j2;
         synchronized (this.sync) {
-            if (this.canceled) {
-                int i3 = this.debugCanceledCount + 1;
-                this.debugCanceledCount = i3;
-                if (!this.debugReportSend && i3 > 200) {
-                    this.debugReportSend = true;
-                    FileLog.e(new RuntimeException("infinity stream reading!!!"));
+            try {
+                if (this.canceled) {
+                    int i3 = this.debugCanceledCount + 1;
+                    this.debugCanceledCount = i3;
+                    if (!this.debugReportSend && i3 > 200) {
+                        this.debugReportSend = true;
+                        FileLog.e(new RuntimeException("infinity stream reading!!!"));
+                    }
+                    return 0;
                 }
-                return 0;
-            }
-            if (i2 == 0) {
-                return 0;
-            }
-            long j3 = 0;
-            while (j3 == 0) {
-                try {
-                    j = i;
-                    long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j, i2);
-                    j2 = downloadedLengthFromOffset[0];
+                if (i2 == 0) {
+                    return 0;
+                }
+                long j3 = 0;
+                while (j3 == 0) {
                     try {
-                        if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
-                            this.finishedLoadingFile = true;
-                            this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
-                        }
-                    } catch (Exception e) {
-                        e = e;
-                        j3 = j2;
-                    }
-                } catch (Exception e2) {
-                    e = e2;
-                }
-                if (j2 == 0) {
-                    synchronized (this.sync) {
-                        if (this.canceled) {
-                            cancelLoadingInternal();
-                            return 0;
-                        }
-                        this.countDownLatch = new CountDownLatch(1);
-                        if (this.loadOperation.isPaused() || this.lastOffset != j || this.preview) {
-                            FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j, this.preview, this.loadingPriority);
-                            FileLoadOperation fileLoadOperation = this.loadOperation;
-                            if (fileLoadOperation != loadStreamFile) {
-                                fileLoadOperation.removeStreamListener(this);
-                                this.loadOperation = loadStreamFile;
+                        j = i;
+                        long[] downloadedLengthFromOffset = this.loadOperation.getDownloadedLengthFromOffset(j, i2);
+                        j2 = downloadedLengthFromOffset[0];
+                        try {
+                            if (!this.finishedLoadingFile && downloadedLengthFromOffset[1] != 0) {
+                                this.finishedLoadingFile = true;
+                                this.finishedFilePath = this.loadOperation.getCacheFileFinal().getAbsolutePath();
                             }
-                            this.lastOffset = j + j2;
+                        } catch (Exception e) {
+                            e = e;
+                            j3 = j2;
                         }
+                    } catch (Exception e2) {
+                        e = e2;
+                    }
+                    if (j2 == 0) {
                         synchronized (this.sync) {
-                            if (this.canceled) {
-                                this.countDownLatch = null;
-                                cancelLoadingInternal();
-                                return 0;
+                            try {
+                                if (this.canceled) {
+                                    cancelLoadingInternal();
+                                    return 0;
+                                }
+                                this.countDownLatch = new CountDownLatch(1);
+                                if (this.loadOperation.isPaused() || this.lastOffset != j || this.preview) {
+                                    FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, this.location, this.parentObject, j, this.preview, this.loadingPriority);
+                                    FileLoadOperation fileLoadOperation = this.loadOperation;
+                                    if (fileLoadOperation != loadStreamFile) {
+                                        fileLoadOperation.removeStreamListener(this);
+                                        this.loadOperation = loadStreamFile;
+                                    }
+                                    this.lastOffset = j + j2;
+                                }
+                                synchronized (this.sync) {
+                                    try {
+                                        if (this.canceled) {
+                                            this.countDownLatch = null;
+                                            cancelLoadingInternal();
+                                            return 0;
+                                        }
+                                    } finally {
+                                    }
+                                }
+                                if (!this.preview) {
+                                    FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
+                                }
+                                CountDownLatch countDownLatch = this.countDownLatch;
+                                if (countDownLatch != null) {
+                                    this.waitingForLoad = true;
+                                    countDownLatch.await();
+                                    this.waitingForLoad = false;
+                                }
+                            } finally {
                             }
+                            e = e;
+                            j3 = j2;
+                            FileLog.e((Throwable) e, false);
+                            return (int) j3;
                         }
-                        if (!this.preview) {
-                            FileLoader.getInstance(this.currentAccount).setLoadingVideo(this.document, false, true);
-                        }
-                        CountDownLatch countDownLatch = this.countDownLatch;
-                        if (countDownLatch != null) {
-                            this.waitingForLoad = true;
-                            countDownLatch.await();
-                            this.waitingForLoad = false;
-                        }
-                        e = e;
-                        j3 = j2;
-                        FileLog.e((Throwable) e, false);
-                        return (int) j3;
                     }
+                    j3 = j2;
                 }
-                j3 = j2;
+                this.lastOffset = i + j3;
+                return (int) j3;
+            } finally {
             }
-            this.lastOffset = i + j3;
-            return (int) j3;
         }
     }
 
@@ -127,25 +136,29 @@ public class AnimatedFileDrawableStream implements FileLoadOperationStream {
             return;
         }
         synchronized (this.sync) {
-            CountDownLatch countDownLatch = this.countDownLatch;
-            if (countDownLatch != null) {
-                countDownLatch.countDown();
-                this.countDownLatch = null;
-                if (z && !this.canceled && !this.preview) {
-                    FileLoader.getInstance(this.currentAccount).removeLoadingVideo(this.document, false, true);
+            try {
+                CountDownLatch countDownLatch = this.countDownLatch;
+                if (countDownLatch != null) {
+                    countDownLatch.countDown();
+                    this.countDownLatch = null;
+                    if (z && !this.canceled && !this.preview) {
+                        FileLoader.getInstance(this.currentAccount).removeLoadingVideo(this.document, false, true);
+                    }
                 }
-            }
-            Object obj = this.parentObject;
-            if (obj instanceof MessageObject) {
-                MessageObject messageObject = (MessageObject) obj;
-                if (DownloadController.getInstance(messageObject.currentAccount).isDownloading(messageObject.getId())) {
-                    z = false;
+                Object obj = this.parentObject;
+                if (obj instanceof MessageObject) {
+                    MessageObject messageObject = (MessageObject) obj;
+                    if (DownloadController.getInstance(messageObject.currentAccount).isDownloading(messageObject.getId())) {
+                        z = false;
+                    }
                 }
+                if (z) {
+                    cancelLoadingInternal();
+                }
+                this.canceled = true;
+            } catch (Throwable th) {
+                throw th;
             }
-            if (z) {
-                cancelLoadingInternal();
-            }
-            this.canceled = true;
         }
     }
 

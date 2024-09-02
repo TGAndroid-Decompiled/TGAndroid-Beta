@@ -74,7 +74,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
     @Override
     public View createView(final Context context) {
         this.isChannel = ChatObject.isChannelAndNotMegaGroup(this.chatId, this.currentAccount);
-        this.actionBar.setTitle(LocaleController.getString("Reactions", R.string.Reactions));
+        this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -92,7 +92,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             TextCheckCell textCheckCell = new TextCheckCell(context);
             this.enableReactionsCell = textCheckCell;
             textCheckCell.setHeight(56);
-            this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
+            this.enableReactionsCell.setTextAndCheck(LocaleController.getString(R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
             TextCheckCell textCheckCell2 = this.enableReactionsCell;
             textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
             this.enableReactionsCell.setTypeface(AndroidUtilities.bold());
@@ -105,19 +105,19 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             linearLayout.addView(this.enableReactionsCell, LayoutHelper.createLinear(-1, -2));
         }
         HeaderCell headerCell = new HeaderCell(context);
-        headerCell.setText(LocaleController.getString("AvailableReactions", R.string.AvailableReactions));
+        headerCell.setText(LocaleController.getString(R.string.AvailableReactions));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.contorlsLayout = linearLayout2;
         linearLayout2.setOrientation(1);
         RadioCell radioCell = new RadioCell(context);
         this.allReactions = radioCell;
-        radioCell.setText(LocaleController.getString("AllReactions", R.string.AllReactions), false, true);
+        radioCell.setText(LocaleController.getString(R.string.AllReactions), false, true);
         RadioCell radioCell2 = new RadioCell(context);
         this.someReactions = radioCell2;
-        radioCell2.setText(LocaleController.getString("SomeReactions", R.string.SomeReactions), false, true);
+        radioCell2.setText(LocaleController.getString(R.string.SomeReactions), false, true);
         RadioCell radioCell3 = new RadioCell(context);
         this.disableReactions = radioCell3;
-        radioCell3.setText(LocaleController.getString("NoReactions", R.string.NoReactions), false, false);
+        radioCell3.setText(LocaleController.getString(R.string.NoReactions), false, false);
         this.contorlsLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2));
         this.contorlsLayout.addView(this.allReactions, LayoutHelper.createLinear(-1, -2));
         this.contorlsLayout.addView(this.someReactions, LayoutHelper.createLinear(-1, -2));
@@ -184,7 +184,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                 if (itemViewType != 0) {
                     if (itemViewType == 1) {
                         HeaderCell headerCell2 = (HeaderCell) viewHolder.itemView;
-                        headerCell2.setText(LocaleController.getString("OnlyAllowThisReactions", R.string.OnlyAllowThisReactions));
+                        headerCell2.setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
                         headerCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         return;
                     } else {
@@ -201,17 +201,17 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                 textInfoPrivacyCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
                 ChatReactionsEditActivity chatReactionsEditActivity = ChatReactionsEditActivity.this;
                 if (chatReactionsEditActivity.isChannel) {
-                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString("EnableReactionsChannelInfo", R.string.EnableReactionsChannelInfo) : LocaleController.getString("EnableReactionsGroupInfo", R.string.EnableReactionsGroupInfo));
+                    textInfoPrivacyCell.setText(ChatObject.isChannelAndNotMegaGroup(chatReactionsEditActivity.currentChat) ? LocaleController.getString(R.string.EnableReactionsChannelInfo) : LocaleController.getString(R.string.EnableReactionsGroupInfo));
                     return;
                 }
                 textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(chatReactionsEditActivity.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 int i4 = ChatReactionsEditActivity.this.selectedType;
                 if (i4 == 1) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("EnableSomeReactionsInfo", R.string.EnableSomeReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.EnableSomeReactionsInfo));
                 } else if (i4 == 0) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("EnableAllReactionsInfo", R.string.EnableAllReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.EnableAllReactionsInfo));
                 } else if (i4 == 2) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("DisableReactionsInfo", R.string.DisableReactionsInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.DisableReactionsInfo));
                 }
             }
 

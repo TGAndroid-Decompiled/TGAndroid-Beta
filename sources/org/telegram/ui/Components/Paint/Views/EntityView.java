@@ -401,6 +401,8 @@ public class EntityView extends FrameLayout {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
+        float rawX;
+        float rawY;
         if (!this.delegate.allowInteraction(this)) {
             return false;
         }
@@ -408,7 +410,10 @@ public class EntityView extends FrameLayout {
         boolean z2 = motionEvent.getPointerCount() > 1;
         if (z2) {
             if (Build.VERSION.SDK_INT >= 29) {
-                this.delegate.getTransformedTouch(motionEvent.getRawX(1), motionEvent.getRawY(1), this.xy2);
+                EntityViewDelegate entityViewDelegate = this.delegate;
+                rawX = motionEvent.getRawX(1);
+                rawY = motionEvent.getRawY(1);
+                entityViewDelegate.getTransformedTouch(rawX, rawY, this.xy2);
             } else {
                 z2 = false;
             }
@@ -872,10 +877,7 @@ public class EntityView extends FrameLayout {
                 this.selectT = 0.0f;
             }
             this.selectionView.updatePosition();
-            float[] fArr = new float[2];
-            fArr[0] = this.selectT;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.selectT, z ? 1.0f : 0.0f);
             this.selectAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -952,14 +954,16 @@ public class EntityView extends FrameLayout {
             this.shown = true;
             setWillNotDraw(false);
             this.paint.setColor(-1);
-            this.paint.setStyle(Paint.Style.STROKE);
+            Paint paint = this.paint;
+            Paint.Style style = Paint.Style.STROKE;
+            paint.setStyle(style);
             this.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             this.paint.setStrokeCap(Paint.Cap.ROUND);
             this.paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f)}, 0.5f));
             this.paint.setShadowLayer(AndroidUtilities.dpf2(0.75f), 0.0f, 0.0f, 1342177280);
             this.dotPaint.setColor(-15033089);
             this.dotStrokePaint.setColor(-1);
-            this.dotStrokePaint.setStyle(Paint.Style.STROKE);
+            this.dotStrokePaint.setStyle(style);
             this.dotStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(2.66f));
             this.dotStrokePaint.setShadowLayer(AndroidUtilities.dpf2(0.75f), 0.0f, 0.0f, 1342177280);
         }
@@ -997,10 +1001,7 @@ public class EntityView extends FrameLayout {
                 valueAnimator.cancel();
                 this.trashAnimator = null;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.trashScale;
-            fArr[1] = z ? 0.5f : 1.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.trashScale, z ? 0.5f : 1.0f);
             this.trashAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

@@ -21,11 +21,13 @@ import org.telegram.ui.Stories.recorder.FlashViews;
 public class PhotoVideoSwitcherView extends View implements FlashViews.Invertable {
     private ValueAnimator animator;
     private boolean mIsScrolling;
+    private boolean mIsTouch;
     private long mLastTouchTime;
     private float mLastX;
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
     private float mode;
+    private float modeAtTouchDown;
     private Utilities.Callback<Boolean> onSwitchModeListener;
     private Utilities.Callback<Float> onSwitchingModeListener;
     private RectF photoRect;
@@ -34,6 +36,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     private float photoTextLeft;
     private float photoTextWidth;
     private float scrollWidth;
+    private boolean scrolledEnough;
     private Paint selectorPaint;
     private RectF selectorRect;
     private TextPaint textPaint;
@@ -56,13 +59,17 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         this.textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
         this.textPaint.setShadowLayer(AndroidUtilities.dpf2(1.0f), 0.0f, AndroidUtilities.dpf2(0.4f), 855638016);
         String string = LocaleController.getString("StoryPhoto");
-        StaticLayout staticLayout = new StaticLayout(string == null ? "Photo" : string, this.textPaint, AndroidUtilities.displaySize.x / 2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        string = string == null ? "Photo" : string;
+        TextPaint textPaint = this.textPaint;
+        int i = AndroidUtilities.displaySize.x / 2;
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+        StaticLayout staticLayout = new StaticLayout(string, textPaint, i, alignment, 1.0f, 0.0f, false);
         this.photoText = staticLayout;
         this.photoTextLeft = staticLayout.getLineCount() > 0 ? this.photoText.getLineLeft(0) : 0.0f;
         this.photoTextWidth = this.photoText.getLineCount() > 0 ? this.photoText.getLineWidth(0) : 0.0f;
         this.photoTextHeight = this.photoText.getHeight();
         String string2 = LocaleController.getString("StoryVideo");
-        StaticLayout staticLayout2 = new StaticLayout(string2 == null ? "Video" : string2, this.textPaint, AndroidUtilities.displaySize.x / 2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        StaticLayout staticLayout2 = new StaticLayout(string2 == null ? "Video" : string2, this.textPaint, AndroidUtilities.displaySize.x / 2, alignment, 1.0f, 0.0f, false);
         this.videoText = staticLayout2;
         this.videoTextLeft = staticLayout2.getLineCount() > 0 ? this.videoText.getLineLeft(0) : 0.0f;
         this.videoTextWidth = this.videoText.getLineCount() > 0 ? this.videoText.getLineWidth(0) : 0.0f;
@@ -84,10 +91,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.mode;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.mode, z ? 1.0f : 0.0f);
         this.animator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -117,6 +121,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     public void scrollX(float f) {
         if (!this.mIsScrolling && Math.abs(f) > this.mTouchSlop) {
             this.mIsScrolling = true;
+            this.modeAtTouchDown = this.mode;
         }
         if (this.mIsScrolling) {
             float f2 = this.mode;
@@ -136,19 +141,18 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     }
 
     public boolean stopScroll(float f) {
-        boolean z = false;
         if (!this.mIsScrolling) {
+            this.scrolledEnough = false;
             return false;
         }
         this.mIsScrolling = false;
-        if (Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f) {
-            z = true;
-        }
+        boolean z = Math.abs(f) <= 500.0f ? this.mode > 0.5f : f < 0.0f;
         switchMode(z);
         Utilities.Callback<Boolean> callback = this.onSwitchModeListener;
         if (callback != null) {
             callback.run(Boolean.valueOf(z));
         }
+        this.scrolledEnough = false;
         return true;
     }
 
@@ -177,7 +181,7 @@ public class PhotoVideoSwitcherView extends View implements FlashViews.Invertabl
     }
 
     @Override
-    public boolean onTouchEvent(android.view.MotionEvent r7) {
+    public boolean onTouchEvent(android.view.MotionEvent r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PhotoVideoSwitcherView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 

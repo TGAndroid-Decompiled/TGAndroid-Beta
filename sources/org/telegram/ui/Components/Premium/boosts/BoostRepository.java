@@ -344,12 +344,10 @@ public class BoostRepository {
         tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
-        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        int i3 = i2 | 4;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 6;
         if (z3) {
-            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 22;
         }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
@@ -413,12 +411,10 @@ public class BoostRepository {
         tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
-        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        int i3 = i2 | 4;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 6;
         if (z3) {
-            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 22;
         }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
@@ -505,12 +501,10 @@ public class BoostRepository {
         tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
         tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
-        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags | 2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2;
-        int i3 = i2 | 4;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3;
+        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags;
+        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 6;
         if (z3) {
-            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i3 | 16;
+            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 22;
         }
         tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
         tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
@@ -642,7 +636,7 @@ public class BoostRepository {
     }
 
     public static void lambda$loadCountries$27(final Utilities.Callback callback, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        final Comparator comparator;
+        final Comparator boostRepository$$ExternalSyntheticLambda31;
         if (tLObject != null) {
             TLRPC$TL_help_countriesList tLRPC$TL_help_countriesList = (TLRPC$TL_help_countriesList) tLObject;
             final HashMap hashMap = new HashMap();
@@ -667,18 +661,18 @@ public class BoostRepository {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                comparator = new BoostRepository$$ExternalSyntheticLambda29(collator);
+                boostRepository$$ExternalSyntheticLambda31 = new BoostRepository$$ExternalSyntheticLambda30(collator);
             } else {
-                comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
+                boostRepository$$ExternalSyntheticLambda31 = new BoostRepository$$ExternalSyntheticLambda31();
             }
-            Collections.sort(arrayList, comparator);
+            Collections.sort(arrayList, boostRepository$$ExternalSyntheticLambda31);
             Iterator it = hashMap.values().iterator();
             while (it.hasNext()) {
                 Collections.sort((List) it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$loadCountries$25;
-                        lambda$loadCountries$25 = BoostRepository.lambda$loadCountries$25(comparator, (TLRPC$TL_help_country) obj, (TLRPC$TL_help_country) obj2);
+                        lambda$loadCountries$25 = BoostRepository.lambda$loadCountries$25(boostRepository$$ExternalSyntheticLambda31, (TLRPC$TL_help_country) obj, (TLRPC$TL_help_country) obj2);
                         return lambda$loadCountries$25;
                     }
                 });

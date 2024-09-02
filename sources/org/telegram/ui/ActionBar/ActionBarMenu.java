@@ -233,11 +233,10 @@ public class ActionBarMenu extends LinearLayout {
         }
 
         public void setAllowCloseAnimation(boolean z) {
-            Boolean valueOf = Boolean.valueOf(z);
-            this.allowCloseAnimation = valueOf;
+            this.allowCloseAnimation = Boolean.valueOf(z);
             ActionBarMenuItem actionBarMenuItem = this.cell;
             if (actionBarMenuItem != null) {
-                actionBarMenuItem.setAllowCloseAnimation(valueOf.booleanValue());
+                actionBarMenuItem.setAllowCloseAnimation(z);
             }
         }
 
@@ -260,7 +259,9 @@ public class ActionBarMenu extends LinearLayout {
                 for (int i2 = 0; i2 < this.parent.getChildCount(); i2++) {
                     Object tag = this.parent.getChildAt(i2).getTag();
                     if (tag instanceof Integer) {
-                        if (this.parent.ids.indexOf(Integer.valueOf(((Integer) tag).intValue())) > indexOf) {
+                        Integer num = (Integer) tag;
+                        num.intValue();
+                        if (this.parent.ids.indexOf(num) > indexOf) {
                             i = i2;
                             break;
                         }

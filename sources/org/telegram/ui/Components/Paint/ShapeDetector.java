@@ -26,6 +26,8 @@ public class ShapeDetector {
     SharedPreferences preferences;
     private boolean shapeDetected;
     private int templatesUsageScore;
+    private final int MIN_POINTS = 8;
+    private final long TIMEOUT = 150;
     private ArrayList<Point> points = new ArrayList<>();
     private ArrayList<Template> templates = new ArrayList<>();
     private ArrayList<Point> toSave = null;
@@ -242,63 +244,67 @@ public class ShapeDetector {
         this.busy.set(true);
         long currentTimeMillis = System.currentTimeMillis();
         synchronized (this) {
-            if (this.points.size() < 8) {
+            try {
+                if (this.points.size() < 8) {
+                    this.busy.set(false);
+                    return;
+                }
+                ArrayList<Point> resample = resample(fullClone(this.points), 48);
+                ArrayList<Point> fullClone = fullClone(resample);
+                rotate(fullClone, indicativeAngle(fullClone));
+                Point centroid = centroid(fullClone);
+                translate(fullClone, -centroid.x, -centroid.y);
+                scale(fullClone, 250.0d);
+                Point centroid2 = centroid(fullClone);
+                double d = Double.MAX_VALUE;
+                int i = 0;
+                int i2 = -1;
+                int i3 = -1;
+                while (i < this.templates.size()) {
+                    ArrayList<Point> arrayList = fullClone;
+                    int i4 = i;
+                    ArrayList<Point> arrayList2 = fullClone;
+                    int i5 = i2;
+                    double distanceAtBestAngle = distanceAtBestAngle(arrayList, centroid2, this.templates.get(i).points, -1.5707963267948966d, 1.5707963267948966d, 0.06981317007977318d);
+                    if (distanceAtBestAngle < d) {
+                        d = distanceAtBestAngle;
+                        i3 = this.templates.get(i4).shapeType;
+                        i2 = i4;
+                    } else {
+                        i2 = i5;
+                    }
+                    i = i4 + 1;
+                    fullClone = arrayList2;
+                }
+                final ArrayList<Point> arrayList3 = fullClone;
+                final int i6 = i2;
+                int i7 = 1.0d - (d / halfDiagonal) < 0.8d ? -1 : i3;
+                final Shape constructShape = constructShape(i7, resample);
+                if (BuildVars.LOGS_ENABLED) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("took ");
+                    sb.append(System.currentTimeMillis() - currentTimeMillis);
+                    sb.append("ms to ");
+                    sb.append(constructShape != null ? "" : "not ");
+                    sb.append("detect a shape");
+                    if (constructShape != null) {
+                        str = " (template#" + i6 + " shape#" + i7 + ")";
+                    } else {
+                        str = "";
+                    }
+                    sb.append(str);
+                    Log.i("shapedetector", sb.toString());
+                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ShapeDetector.this.lambda$new$1(constructShape, i6, arrayList3);
+                    }
+                });
                 this.busy.set(false);
-                return;
+            } catch (Throwable th) {
+                throw th;
             }
-            ArrayList<Point> resample = resample(fullClone(this.points), 48);
-            ArrayList<Point> fullClone = fullClone(resample);
-            rotate(fullClone, indicativeAngle(fullClone));
-            Point centroid = centroid(fullClone);
-            translate(fullClone, -centroid.x, -centroid.y);
-            scale(fullClone, 250.0d);
-            Point centroid2 = centroid(fullClone);
-            double d = Double.MAX_VALUE;
-            int i = 0;
-            int i2 = -1;
-            int i3 = -1;
-            while (i < this.templates.size()) {
-                ArrayList<Point> arrayList = fullClone;
-                int i4 = i;
-                ArrayList<Point> arrayList2 = fullClone;
-                int i5 = i2;
-                double distanceAtBestAngle = distanceAtBestAngle(arrayList, centroid2, this.templates.get(i).points, -1.5707963267948966d, 1.5707963267948966d, 0.06981317007977318d);
-                if (distanceAtBestAngle < d) {
-                    d = distanceAtBestAngle;
-                    i3 = this.templates.get(i4).shapeType;
-                    i2 = i4;
-                } else {
-                    i2 = i5;
-                }
-                i = i4 + 1;
-                fullClone = arrayList2;
-            }
-            final ArrayList<Point> arrayList3 = fullClone;
-            final int i6 = i2;
-            int i7 = 1.0d - (d / halfDiagonal) < 0.8d ? -1 : i3;
-            final Shape constructShape = constructShape(i7, resample);
-            if (BuildVars.LOGS_ENABLED) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("took ");
-                sb.append(System.currentTimeMillis() - currentTimeMillis);
-                sb.append("ms to ");
-                sb.append(constructShape != null ? "" : "not ");
-                sb.append("detect a shape");
-                if (constructShape != null) {
-                    str = " (template#" + i6 + " shape#" + i7 + ")";
-                } else {
-                    str = "";
-                }
-                sb.append(str);
-                Log.i("shapedetector", sb.toString());
-            }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ShapeDetector.this.lambda$new$1(constructShape, i6, arrayList3);
-                }
-            });
-            this.busy.set(false);
         }
     }
 
@@ -389,27 +395,25 @@ public class ShapeDetector {
     }
 
     private double distanceAtAngle(ArrayList<Point> arrayList, Point point, ArrayList<Point> arrayList2, double d) {
-        Point point2 = point;
         double cos = Math.cos(d);
         double sin = Math.sin(d);
         int min = Math.min(arrayList.size(), arrayList2.size());
         double d2 = 0.0d;
         int i = 0;
         while (i < min) {
-            Point point3 = arrayList.get(i);
-            Point point4 = arrayList2.get(i);
-            double d3 = point3.x;
+            Point point2 = arrayList.get(i);
+            Point point3 = arrayList2.get(i);
+            double d3 = point2.x;
             int i2 = i;
-            double d4 = point2.x;
-            double d5 = point3.y;
-            int i3 = min;
+            double d4 = point.x;
+            double d5 = d3 - d4;
             double d6 = point2.y;
-            double d7 = cos;
-            d2 += point4.distance((((d3 - d4) * cos) - ((d5 - d6) * sin)) + d4, ((d3 - d4) * sin) + ((d5 - d6) * d7) + d6);
+            int i3 = min;
+            double d7 = point.y;
+            double d8 = d6 - d7;
+            d2 += point3.distance(((d5 * cos) - (d8 * sin)) + d4, (d5 * sin) + (d8 * cos) + d7);
             i = i2 + 1;
-            point2 = point;
             min = i3;
-            cos = d7;
         }
         double size = arrayList.size();
         Double.isNaN(size);
@@ -456,11 +460,13 @@ public class ShapeDetector {
             Point point2 = arrayList.get(i);
             double d2 = point2.x;
             double d3 = point.x;
-            double d4 = point2.y;
+            double d4 = d2 - d3;
+            double d5 = point2.y;
             int i2 = i;
-            double d5 = point.y;
-            point2.y = ((d2 - d3) * sin) + ((d4 - d5) * cos) + d5;
-            point2.x = (((d2 - d3) * cos) - ((d4 - d5) * sin)) + d3;
+            double d6 = point.y;
+            double d7 = d5 - d6;
+            point2.y = (d4 * sin) + (d7 * cos) + d6;
+            point2.x = ((d4 * cos) - (d7 * sin)) + d3;
             i = i2 + 1;
         }
     }

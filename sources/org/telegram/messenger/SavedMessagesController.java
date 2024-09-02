@@ -190,8 +190,8 @@ public class SavedMessagesController {
         String translitSafe = AndroidUtilities.translitSafe(str.toLowerCase());
         for (int i = 0; i < this.allDialogs.size(); i++) {
             SavedDialog savedDialog = this.allDialogs.get(i);
-            String str3 = null;
             long j = savedDialog.dialogId;
+            String str3 = null;
             if (j == 2666000) {
                 str2 = LocaleController.getString(R.string.AnonymousForward);
             } else if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
@@ -319,9 +319,7 @@ public class SavedMessagesController {
     }
 
     public void lambda$loadDialogs$2(TLObject tLObject, ArrayList arrayList, TLRPC$TL_error tLRPC$TL_error) {
-        boolean z;
-        boolean z2;
-        boolean z3 = this.unsupported;
+        boolean z = this.unsupported;
         if (tLObject instanceof TLRPC$TL_messages_savedDialogs) {
             this.dialogsLoaded = true;
             TLRPC$TL_messages_savedDialogs tLRPC$TL_messages_savedDialogs = (TLRPC$TL_messages_savedDialogs) tLObject;
@@ -346,20 +344,14 @@ public class SavedMessagesController {
                 int i3 = 0;
                 while (true) {
                     if (i3 >= this.loadedDialogs.size()) {
-                        z2 = false;
+                        this.loadedDialogs.add(fromTL);
+                        if (fromTL.isHidden()) {
+                            this.dialogsCountHidden++;
+                        }
+                    } else if (this.loadedDialogs.get(i3).dialogId == fromTL.dialogId) {
                         break;
                     } else {
-                        if (this.loadedDialogs.get(i3).dialogId == fromTL.dialogId) {
-                            z2 = true;
-                            break;
-                        }
                         i3++;
-                    }
-                }
-                if (!z2) {
-                    this.loadedDialogs.add(fromTL);
-                    if (fromTL.isHidden()) {
-                        this.dialogsCountHidden++;
                     }
                 }
             }
@@ -392,20 +384,14 @@ public class SavedMessagesController {
                 int i6 = 0;
                 while (true) {
                     if (i6 >= this.loadedDialogs.size()) {
-                        z = false;
+                        this.loadedDialogs.add(fromTL2);
+                        if (fromTL2.isHidden()) {
+                            this.dialogsCountHidden++;
+                        }
+                    } else if (this.loadedDialogs.get(i6).dialogId == fromTL2.dialogId) {
                         break;
                     } else {
-                        if (this.loadedDialogs.get(i6).dialogId == fromTL2.dialogId) {
-                            z = true;
-                            break;
-                        }
                         i6++;
-                    }
-                }
-                if (!z) {
-                    this.loadedDialogs.add(fromTL2);
-                    if (fromTL2.isHidden()) {
-                        this.dialogsCountHidden++;
                     }
                 }
             }
@@ -432,7 +418,7 @@ public class SavedMessagesController {
                 this.unsupported = true;
             }
         }
-        if (this.unsupported != z3) {
+        if (this.unsupported != z) {
             MessagesController.getMainSettings(this.currentAccount).edit().putBoolean("savedMessagesUnsupported", this.unsupported).apply();
         }
         this.dialogsLoading = false;
@@ -580,11 +566,12 @@ public class SavedMessagesController {
         return false;
     }
 
-    public void update(long r5, org.telegram.tgnet.TLRPC$messages_Messages r7) {
+    public void update(long r3, org.telegram.tgnet.TLRPC$messages_Messages r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.update(long, org.telegram.tgnet.TLRPC$messages_Messages):void");
     }
 
     public void updateDeleted(LongSparseArray<ArrayList<Integer>> longSparseArray) {
+        SavedDialog savedDialog;
         ArrayList<SavedDialog> arrayList = new ArrayList<>();
         boolean z = false;
         for (int i = 0; i < longSparseArray.size(); i++) {
@@ -594,17 +581,18 @@ public class SavedMessagesController {
             for (int i3 = 0; i3 < valueAt.size(); i3++) {
                 i2 = Math.max(i2, valueAt.get(i3).intValue());
             }
-            SavedDialog savedDialog = null;
             int i4 = 0;
             while (true) {
                 if (i4 >= this.allDialogs.size()) {
+                    savedDialog = null;
                     break;
+                } else {
+                    if (this.allDialogs.get(i4).dialogId == keyAt) {
+                        savedDialog = this.allDialogs.get(i4);
+                        break;
+                    }
+                    i4++;
                 }
-                if (this.allDialogs.get(i4).dialogId == keyAt) {
-                    savedDialog = this.allDialogs.get(i4);
-                    break;
-                }
-                i4++;
             }
             if (savedDialog != null) {
                 if (savedDialog.messagesCountLoaded) {
@@ -633,26 +621,27 @@ public class SavedMessagesController {
     }
 
     private void invalidate() {
+        SavedDialog savedDialog;
         if (this.dialogsLoaded && this.loadedDialogs.isEmpty()) {
             return;
         }
         for (int i = 0; i < this.loadedDialogs.size(); i++) {
-            SavedDialog savedDialog = this.loadedDialogs.get(i);
-            SavedDialog savedDialog2 = null;
+            SavedDialog savedDialog2 = this.loadedDialogs.get(i);
             int i2 = 0;
             while (true) {
                 if (i2 >= this.cachedDialogs.size()) {
+                    savedDialog = null;
                     break;
                 }
-                SavedDialog savedDialog3 = this.cachedDialogs.get(i2);
-                if (savedDialog3.dialogId == savedDialog.dialogId) {
-                    savedDialog2 = savedDialog3;
+                savedDialog = this.cachedDialogs.get(i2);
+                if (savedDialog.dialogId == savedDialog2.dialogId) {
                     break;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
-            if (savedDialog2 == null && !savedDialog.pinned) {
-                this.cachedDialogs.add(savedDialog);
+            if (savedDialog == null && !savedDialog2.pinned) {
+                this.cachedDialogs.add(savedDialog2);
             }
         }
         this.loadedDialogs.clear();
@@ -725,11 +714,12 @@ public class SavedMessagesController {
         ArrayList<Long> currentPinnedOrder = getCurrentPinnedOrder(this.allDialogs);
         ArrayList<Long> arrayList2 = new ArrayList<>(currentPinnedOrder);
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            long longValue = arrayList.get(size).longValue();
-            if (z && !arrayList2.contains(Long.valueOf(longValue))) {
-                arrayList2.add(0, Long.valueOf(longValue));
+            Long l = arrayList.get(size);
+            l.longValue();
+            if (z && !arrayList2.contains(l)) {
+                arrayList2.add(0, l);
             } else if (!z) {
-                arrayList2.remove(Long.valueOf(longValue));
+                arrayList2.remove(l);
             }
         }
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
@@ -914,7 +904,7 @@ public class SavedMessagesController {
         });
     }
 
-    public void lambda$loadCache$7(org.telegram.messenger.MessagesStorage r32, long r33, final java.lang.Runnable r35) {
+    public void lambda$loadCache$7(org.telegram.messenger.MessagesStorage r36, long r37, final java.lang.Runnable r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$loadCache$7(org.telegram.messenger.MessagesStorage, long, java.lang.Runnable):void");
     }
 
@@ -944,7 +934,7 @@ public class SavedMessagesController {
         });
     }
 
-    public void lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage r20, java.util.ArrayList r21, long r22) {
+    public void lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage r19, java.util.ArrayList r20, long r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SavedMessagesController.lambda$updateDialogsLastMessage$9(org.telegram.messenger.MessagesStorage, java.util.ArrayList, long):void");
     }
 

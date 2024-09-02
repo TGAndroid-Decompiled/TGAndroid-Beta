@@ -92,23 +92,25 @@ public class TextCheckCell extends FrameLayout {
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        TextView textView3 = this.textView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
+        textView4.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
         this.valueTextView.setPadding(0, 0, 0, 0);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView4 = this.valueTextView;
+        this.valueTextView.setEllipsize(truncateAt);
+        TextView textView5 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
+        addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
         Switch r2 = new Switch(context, resourcesProvider);
         this.checkBox = r2;
         int i2 = Theme.key_switchTrack;
@@ -250,20 +252,10 @@ public class TextCheckCell extends FrameLayout {
         if (arrayList != null) {
             TextView textView = this.textView;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
-            Switch r2 = this.checkBox;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(r2, (Property<Switch, Float>) property2, fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.checkBox, (Property<Switch, Float>) property, z ? 1.0f : 0.5f));
             if (this.valueTextView.getVisibility() == 0) {
-                TextView textView2 = this.valueTextView;
-                Property property3 = View.ALPHA;
-                float[] fArr3 = new float[1];
-                fArr3[0] = z ? 1.0f : 0.5f;
-                arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property3, fArr3));
+                arrayList.add(ObjectAnimator.ofFloat(this.valueTextView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
                 return;
             }
             return;

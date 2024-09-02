@@ -117,8 +117,10 @@ public class FilterShaders {
     private int toolsShaderProgram;
     public FloatBuffer vertexBuffer;
     public FloatBuffer vertexInvertBuffer;
+    private int videoHeight;
     private float[] videoMatrix;
     private int videoTexture;
+    private int videoWidth;
     private int vignetteHandle;
     private int warmthHandle;
     private int widthHandle;
@@ -196,12 +198,13 @@ public class FilterShaders {
                 break;
             }
             double d = f;
-            fArr[i3] = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
+            float sqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
+            fArr[i3] = sqrt;
             if (i3 == 0) {
-                f2 += fArr[i3];
+                f2 += sqrt;
             } else {
                 double d2 = f2;
-                double d3 = fArr[i3];
+                double d3 = sqrt;
                 Double.isNaN(d3);
                 Double.isNaN(d2);
                 f2 = (float) (d2 + (d3 * 2.0d));
@@ -251,12 +254,13 @@ public class FilterShaders {
                 break;
             }
             double d = f;
-            fArr[i3] = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
+            float sqrt = (float) ((1.0d / Math.sqrt(Math.pow(d, 2.0d) * 6.283185307179586d)) * Math.exp((-Math.pow(i3, 2.0d)) / (Math.pow(d, 2.0d) * 2.0d)));
+            fArr[i3] = sqrt;
             if (i3 == 0) {
-                f2 += fArr[i3];
+                f2 += sqrt;
             } else {
                 double d2 = f2;
-                double d3 = fArr[i3];
+                double d3 = sqrt;
                 Double.isNaN(d3);
                 Double.isNaN(d2);
                 f2 = (float) (d2 + (d3 * 2.0d));
@@ -322,7 +326,6 @@ public class FilterShaders {
             int i;
             if (z) {
                 f2 = Math.round(f);
-                i = 0;
                 if (f2 >= 1.0f) {
                     double d = f2;
                     double pow = Math.pow(d, 2.0d) * (-2.0d);
@@ -331,6 +334,8 @@ public class FilterShaders {
                     Double.isNaN(d2);
                     int floor = (int) Math.floor(Math.sqrt(pow * Math.log(d2 * sqrt)));
                     i = floor + (floor % 2);
+                } else {
+                    i = 0;
                 }
             } else {
                 i = (int) f;
@@ -463,28 +468,21 @@ public class FilterShaders {
                         Double.isNaN(d2);
                         double d3 = d / d2;
                         double d4 = 1.0d - d3;
-                        float f4 = f - f3;
-                        int i4 = i3;
-                        double d5 = f4;
-                        double d6 = pointF.y;
+                        double d5 = pointF.y;
+                        Double.isNaN(d5);
+                        double d6 = pointF2.y;
                         Double.isNaN(d6);
-                        PointF pointF3 = pointF;
-                        int i5 = i2;
-                        double d7 = pointF2.y;
-                        Double.isNaN(d7);
-                        Double.isNaN(d5);
-                        Double.isNaN(d5);
-                        float f5 = (float) ((d6 * d4) + (d7 * d3) + (((d5 * d5) / 6.0d) * (((((d4 * d4) * d4) - d4) * secondDerivative[i]) + ((((d3 * d3) * d3) - d3) * secondDerivative[i5]))));
-                        if (f5 > 255.0f) {
-                            f5 = 255.0f;
-                        } else if (f5 < 0.0f) {
-                            f5 = 0.0f;
+                        Double.isNaN(d2);
+                        Double.isNaN(d2);
+                        float f4 = (float) ((d5 * d4) + (d6 * d3) + (((d2 * d2) / 6.0d) * (((((d4 * d4) * d4) - d4) * secondDerivative[i]) + ((((d3 * d3) * d3) - d3) * secondDerivative[i2]))));
+                        if (f4 > 255.0f) {
+                            f4 = 255.0f;
+                        } else if (f4 < 0.0f) {
+                            f4 = 0.0f;
                         }
-                        arrayList3.add(new PointF(f2, f5));
-                        i3 = i4 + 1;
+                        arrayList3.add(new PointF(f2, f4));
+                        i3++;
                         arrayList2 = arrayList3;
-                        pointF = pointF3;
-                        i2 = i5;
                     }
                 }
                 i = i2;
@@ -497,20 +495,17 @@ public class FilterShaders {
         private double[] secondDerivative(ArrayList<PointF> arrayList) {
             int i;
             int size = arrayList.size();
-            if (size <= 0) {
+            if (size <= 0 || size == 1) {
                 return null;
             }
-            char c = 1;
-            if (size == 1) {
-                return null;
-            }
-            char c2 = 0;
-            double[][] dArr = (double[][]) Array.newInstance((Class<?>) double.class, size, 3);
+            char c = 0;
+            double[][] dArr = (double[][]) Array.newInstance((Class<?>) Double.TYPE, size, 3);
             double[] dArr2 = new double[size];
-            dArr[0][1] = 1.0d;
+            double[] dArr3 = dArr[0];
+            dArr3[1] = 1.0d;
             double d = 0.0d;
-            dArr[0][0] = 0.0d;
-            dArr[0][2] = 0.0d;
+            dArr3[0] = 0.0d;
+            dArr3[2] = 0.0d;
             int i2 = 1;
             while (true) {
                 i = size - 1;
@@ -521,72 +516,73 @@ public class FilterShaders {
                 PointF pointF2 = arrayList.get(i2);
                 int i3 = i2 + 1;
                 PointF pointF3 = arrayList.get(i3);
-                double[] dArr3 = dArr[i2];
+                double[] dArr4 = dArr[i2];
                 float f = pointF2.x;
                 float f2 = pointF.x;
                 double d2 = f - f2;
                 Double.isNaN(d2);
-                dArr3[c2] = d2 / 6.0d;
-                double[] dArr4 = dArr[i2];
+                dArr4[c] = d2 / 6.0d;
                 float f3 = pointF3.x;
-                double[][] dArr5 = dArr;
                 double d3 = f3 - f2;
                 Double.isNaN(d3);
-                dArr4[c] = d3 / 3.0d;
-                double[] dArr6 = dArr5[i2];
+                dArr4[1] = d3 / 3.0d;
                 double d4 = f3 - f;
                 Double.isNaN(d4);
-                dArr6[2] = d4 / 6.0d;
+                dArr4[2] = d4 / 6.0d;
                 float f4 = pointF3.y;
                 float f5 = pointF2.y;
                 double d5 = f4 - f5;
-                double d6 = f3 - f;
                 Double.isNaN(d5);
-                Double.isNaN(d6);
-                double d7 = d5 / d6;
-                double d8 = f5 - pointF.y;
-                double d9 = f - f2;
-                Double.isNaN(d8);
-                Double.isNaN(d9);
-                dArr2[i2] = d7 - (d8 / d9);
+                Double.isNaN(d4);
+                double d6 = d5 / d4;
+                double d7 = f5 - pointF.y;
+                Double.isNaN(d7);
+                Double.isNaN(d2);
+                dArr2[i2] = d6 - (d7 / d2);
                 i2 = i3;
-                dArr = dArr5;
-                c = 1;
-                c2 = 0;
+                dArr = dArr;
+                c = 0;
                 d = 0.0d;
             }
-            double[][] dArr7 = dArr;
-            double d10 = d;
-            char c3 = 0;
-            dArr2[0] = d10;
-            dArr2[i] = d10;
-            dArr7[i][1] = 1.0d;
-            dArr7[i][0] = d10;
-            dArr7[i][2] = d10;
+            double[][] dArr5 = dArr;
+            double d8 = d;
+            char c2 = 0;
+            dArr2[0] = d8;
+            dArr2[i] = d8;
+            double[] dArr6 = dArr5[i];
+            dArr6[1] = 1.0d;
+            dArr6[0] = d8;
+            char c3 = 2;
+            dArr6[2] = d8;
             int i4 = 1;
             while (i4 < size) {
+                double[] dArr7 = dArr5[i4];
+                double d9 = dArr7[c2];
                 int i5 = i4 - 1;
-                double d11 = dArr7[i4][c3] / dArr7[i5][1];
-                double[] dArr8 = dArr7[i4];
-                dArr8[1] = dArr8[1] - (dArr7[i5][2] * d11);
-                dArr7[i4][0] = 0.0d;
-                dArr2[i4] = dArr2[i4] - (d11 * dArr2[i5]);
+                double[] dArr8 = dArr5[i5];
+                double d10 = d9 / dArr8[1];
+                dArr7[1] = dArr7[1] - (dArr8[c3] * d10);
+                dArr7[c2] = 0.0d;
+                dArr2[i4] = dArr2[i4] - (d10 * dArr2[i5]);
                 i4++;
-                c3 = 0;
+                c2 = 0;
+                c3 = 2;
             }
             for (int i6 = size - 2; i6 >= 0; i6--) {
+                double[] dArr9 = dArr5[i6];
+                double d11 = dArr9[2];
                 int i7 = i6 + 1;
-                double d12 = dArr7[i6][2] / dArr7[i7][1];
-                double[] dArr9 = dArr7[i6];
-                dArr9[1] = dArr9[1] - (dArr7[i7][0] * d12);
-                dArr7[i6][2] = 0.0d;
+                double[] dArr10 = dArr5[i7];
+                double d12 = d11 / dArr10[1];
+                dArr9[1] = dArr9[1] - (dArr10[0] * d12);
+                dArr9[2] = 0.0d;
                 dArr2[i6] = dArr2[i6] - (d12 * dArr2[i7]);
             }
-            double[] dArr10 = new double[size];
+            double[] dArr11 = new double[size];
             for (int i8 = 0; i8 < size; i8++) {
-                dArr10[i8] = dArr2[i8] / dArr7[i8][1];
+                dArr11[i8] = dArr2[i8] / dArr5[i8][1];
             }
-            return dArr10;
+            return dArr11;
         }
 
         private void updateToneCurveTexture() {
@@ -858,13 +854,13 @@ public class FilterShaders {
 
     private boolean setupExternalShaders() {
         String readRes;
-        int i;
         int loadShader;
         int loadShader2;
         int loadShader3;
         int loadShader4;
         int loadShader5;
         int loadShader6;
+        int i;
         StoryEntry.HDRInfo hDRInfo = this.hdrInfo;
         int hDRType = hDRInfo != null ? hDRInfo.getHDRType() : 0;
         if (hDRType == 1) {
@@ -911,24 +907,24 @@ public class FilterShaders {
                 if (iArr[0] == 0) {
                     GLES20.glDeleteProgram(this.rgbToHsvShaderProgram[i2]);
                     this.rgbToHsvShaderProgram[i2] = 0;
+                    i = 1;
                 } else {
                     this.rgbToHsvPositionHandle[i2] = GLES20.glGetAttribLocation(this.rgbToHsvShaderProgram[i2], "position");
                     this.rgbToHsvInputTexCoordHandle[i2] = GLES20.glGetAttribLocation(this.rgbToHsvShaderProgram[i2], "inputTexCoord");
                     this.rgbToHsvSourceImageHandle[i2] = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "sTexture");
+                    i = 1;
                     if (i2 == 1) {
                         this.rgbToHsvMatrixHandle = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "videoMatrix");
                         this.rgbToHsvTexSizeHandle = GLES20.glGetUniformLocation(this.rgbToHsvShaderProgram[i2], "texSize");
                     }
                 }
-                i2++;
+                i2 += i;
             } else {
                 if (z2) {
                     if (hDRType != 0) {
-                        i = hDRType;
                         loadShader = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
                         loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;void main() {vec4 inp = TEX(vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", readRes));
                     } else {
-                        i = hDRType;
                         loadShader2 = 0;
                         loadShader = 0;
                     }
@@ -937,7 +933,6 @@ public class FilterShaders {
                         loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str, str2));
                     }
                 } else {
-                    i = hDRType;
                     loadShader = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
                     loadShader2 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str, str2));
                 }
@@ -967,7 +962,7 @@ public class FilterShaders {
                     }
                 }
                 if (this.isVideo) {
-                    if (i != 0) {
+                    if (hDRType != 0) {
                         loadShader3 = loadShader(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;texCoord2 = inputTexCoord.xy;}");
                         loadShader4 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;varying highp vec2 texCoord2;uniform sampler2D toneCurveTexture;uniform sampler2D inputImageTexture3;uniform lowp float mixturePercent;void main() {vec4 image = TEX(vTextureCoord);vec4 mask = texture2D(inputImageTexture3, texCoord2);float redCurveValue = texture2D(toneCurveTexture, vec2(image.r, 0.0)).r;float greenCurveValue = texture2D(toneCurveTexture, vec2(image.g, 0.0)).g;float blueCurveValue = texture2D(toneCurveTexture, vec2(image.b, 0.0)).b;vec4 result = vec4(redCurveValue, greenCurveValue, blueCurveValue, image.a);vec4 tone = mix(image, result, mixturePercent);gl_FragColor = vec4(mix(image.rgb, tone.rgb, 1.0 - mask.b), 1.0);}", readRes));
                     } else {
@@ -1018,6 +1013,8 @@ public class FilterShaders {
     public void setRenderData(Bitmap bitmap, int i, int i2, int i3, int i4) {
         loadTexture(bitmap, i, i3, i4);
         this.videoTexture = i2;
+        this.videoWidth = i3;
+        this.videoHeight = i4;
         GLES20.glBindTexture(3553, this.enhanceTextures[0]);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9729);
@@ -1428,6 +1425,7 @@ public class FilterShaders {
     }
 
     private void loadTexture(Bitmap bitmap, int i, int i2, int i3) {
+        float f;
         Bitmap bitmap2 = bitmap;
         this.renderBufferWidth = i2;
         this.renderBufferHeight = i3;
@@ -1442,8 +1440,9 @@ public class FilterShaders {
             float photoSize = AndroidUtilities.getPhotoSize();
             boolean z = this.scaleBitmap;
             if ((z && (this.renderBufferWidth > photoSize || this.renderBufferHeight > photoSize)) || i % 360 != 0) {
-                float f = 1.0f;
-                if (z && (this.renderBufferWidth > photoSize || this.renderBufferHeight > photoSize)) {
+                if (!z || (this.renderBufferWidth <= photoSize && this.renderBufferHeight <= photoSize)) {
+                    f = 1.0f;
+                } else {
                     f = photoSize / bitmap.getWidth();
                     float height = photoSize / bitmap.getHeight();
                     if (f < height) {

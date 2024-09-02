@@ -221,14 +221,10 @@ public class SpoilerEffect2 {
         if (num.intValue() % 4 == 3) {
             canvas.scale(1.0f, -1.0f, i3 / 2.0f, i4 / 2.0f);
         }
-        float f2 = i;
-        float f3 = i2;
-        canvas.translate(f2 / 2.0f, f3 / 2.0f);
         if (i > i3 || i2 > i4) {
-            float max = Math.max(f2 / i3, f3 / i4);
+            float max = Math.max(i / i3, i2 / i4);
             canvas.scale(max, max);
         }
-        canvas.translate((-i) / 2.0f, (-i2) / 2.0f);
         if (z) {
             Bitmap bitmap = this.textureView.getBitmap();
             if (bitmap != null) {
@@ -344,6 +340,7 @@ public class SpoilerEffect2 {
         private float radius = AndroidUtilities.dpf2(1.2f);
         private boolean reset = true;
         private int currentBuffer = 0;
+        private final float timeScale = 0.65f;
         private int particlesCount = particlesCount();
 
         public SpoilerThread(SurfaceTexture surfaceTexture, int i, int i2, Runnable runnable) {
@@ -411,6 +408,18 @@ public class SpoilerEffect2 {
         }
 
         private void init() {
+            int glCreateShader;
+            int glCreateShader2;
+            int glCreateProgram;
+            int glGetUniformLocation;
+            int glGetUniformLocation2;
+            int glGetUniformLocation3;
+            int glGetUniformLocation4;
+            int glGetUniformLocation5;
+            int glGetUniformLocation6;
+            String glGetProgramInfoLog;
+            String glGetShaderInfoLog;
+            String glGetShaderInfoLog2;
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
             this.egl = egl10;
             EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
@@ -448,8 +457,8 @@ public class SpoilerEffect2 {
                 return;
             }
             genParticlesData();
-            int glCreateShader = GLES31.glCreateShader(35633);
-            int glCreateShader2 = GLES31.glCreateShader(35632);
+            glCreateShader = GLES31.glCreateShader(35633);
+            glCreateShader2 = GLES31.glCreateShader(35632);
             if (glCreateShader == 0 || glCreateShader2 == 0) {
                 this.running = false;
                 return;
@@ -459,7 +468,11 @@ public class SpoilerEffect2 {
             int[] iArr = new int[1];
             GLES31.glGetShaderiv(glCreateShader, 35713, iArr, 0);
             if (iArr[0] == 0) {
-                FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES31.glGetShaderInfoLog(glCreateShader));
+                StringBuilder sb = new StringBuilder();
+                sb.append("SpoilerEffect2, compile vertex shader error: ");
+                glGetShaderInfoLog2 = GLES31.glGetShaderInfoLog(glCreateShader);
+                sb.append(glGetShaderInfoLog2);
+                FileLog.e(sb.toString());
                 GLES31.glDeleteShader(glCreateShader);
                 this.running = false;
                 return;
@@ -468,12 +481,16 @@ public class SpoilerEffect2 {
             GLES31.glCompileShader(glCreateShader2);
             GLES31.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
             if (iArr[0] == 0) {
-                FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES31.glGetShaderInfoLog(glCreateShader2));
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SpoilerEffect2, compile fragment shader error: ");
+                glGetShaderInfoLog = GLES31.glGetShaderInfoLog(glCreateShader2);
+                sb2.append(glGetShaderInfoLog);
+                FileLog.e(sb2.toString());
                 GLES31.glDeleteShader(glCreateShader2);
                 this.running = false;
                 return;
             }
-            int glCreateProgram = GLES31.glCreateProgram();
+            glCreateProgram = GLES31.glCreateProgram();
             this.drawProgram = glCreateProgram;
             if (glCreateProgram == 0) {
                 this.running = false;
@@ -485,16 +502,26 @@ public class SpoilerEffect2 {
             GLES31.glLinkProgram(this.drawProgram);
             GLES31.glGetProgramiv(this.drawProgram, 35714, iArr, 0);
             if (iArr[0] == 0) {
-                FileLog.e("SpoilerEffect2, link draw program error: " + GLES31.glGetProgramInfoLog(this.drawProgram));
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append("SpoilerEffect2, link draw program error: ");
+                glGetProgramInfoLog = GLES31.glGetProgramInfoLog(this.drawProgram);
+                sb3.append(glGetProgramInfoLog);
+                FileLog.e(sb3.toString());
                 this.running = false;
                 return;
             }
-            this.resetHandle = GLES31.glGetUniformLocation(this.drawProgram, "reset");
-            this.timeHandle = GLES31.glGetUniformLocation(this.drawProgram, "time");
-            this.deltaTimeHandle = GLES31.glGetUniformLocation(this.drawProgram, "deltaTime");
-            this.sizeHandle = GLES31.glGetUniformLocation(this.drawProgram, "size");
-            this.radiusHandle = GLES31.glGetUniformLocation(this.drawProgram, "r");
-            this.seedHandle = GLES31.glGetUniformLocation(this.drawProgram, "seed");
+            glGetUniformLocation = GLES31.glGetUniformLocation(this.drawProgram, "reset");
+            this.resetHandle = glGetUniformLocation;
+            glGetUniformLocation2 = GLES31.glGetUniformLocation(this.drawProgram, "time");
+            this.timeHandle = glGetUniformLocation2;
+            glGetUniformLocation3 = GLES31.glGetUniformLocation(this.drawProgram, "deltaTime");
+            this.deltaTimeHandle = glGetUniformLocation3;
+            glGetUniformLocation4 = GLES31.glGetUniformLocation(this.drawProgram, "size");
+            this.sizeHandle = glGetUniformLocation4;
+            glGetUniformLocation5 = GLES31.glGetUniformLocation(this.drawProgram, "r");
+            this.radiusHandle = glGetUniformLocation5;
+            glGetUniformLocation6 = GLES31.glGetUniformLocation(this.drawProgram, "seed");
+            this.seedHandle = glGetUniformLocation6;
             GLES31.glViewport(0, 0, this.width, this.height);
             GLES31.glEnable(3042);
             GLES31.glBlendFunc(770, 771);
@@ -602,16 +629,20 @@ public class SpoilerEffect2 {
 
         private void checkResize() {
             synchronized (this.resizeLock) {
-                if (this.resize) {
-                    GLES31.glUniform2f(this.sizeHandle, this.width, this.height);
-                    GLES31.glViewport(0, 0, this.width, this.height);
-                    int particlesCount = particlesCount();
-                    if (particlesCount > this.particlesCount) {
-                        this.reset = true;
-                        genParticlesData();
+                try {
+                    if (this.resize) {
+                        GLES31.glUniform2f(this.sizeHandle, this.width, this.height);
+                        GLES31.glViewport(0, 0, this.width, this.height);
+                        int particlesCount = particlesCount();
+                        if (particlesCount > this.particlesCount) {
+                            this.reset = true;
+                            genParticlesData();
+                        }
+                        this.particlesCount = particlesCount;
+                        this.resize = false;
                     }
-                    this.particlesCount = particlesCount;
-                    this.resize = false;
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -626,14 +657,15 @@ public class SpoilerEffect2 {
             GLES31.glGenBuffers(2, iArr2, 0);
             for (int i = 0; i < 2; i++) {
                 GLES31.glBindBuffer(34962, this.particlesData[i]);
-                GLES31.glBufferData(34962, this.particlesCount * 6 * 4, null, 35048);
+                GLES31.glBufferData(34962, this.particlesCount * 24, null, 35048);
             }
             checkGlErrors();
         }
 
         private void checkGlErrors() {
+            int glGetError;
             while (true) {
-                int glGetError = GLES31.glGetError();
+                glGetError = GLES31.glGetError();
                 if (glGetError == 0) {
                     return;
                 }

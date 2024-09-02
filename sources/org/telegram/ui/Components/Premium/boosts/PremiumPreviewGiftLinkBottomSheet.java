@@ -65,16 +65,13 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
     @Override
     protected void updateRows() {
         int i = this.rowCount;
-        int i2 = i + 1;
-        this.rowCount = i2;
         this.paddingRow = i;
-        this.additionStartRow = i2;
-        int i3 = i2 + 1;
-        this.rowCount = i3;
-        this.additionEndRow = i3;
-        this.featuresStartRow = i3;
-        int size = i3 + this.premiumFeatures.size();
-        this.rowCount = size;
+        this.additionStartRow = i + 1;
+        int i2 = i + 2;
+        this.rowCount = i2;
+        this.additionEndRow = i2;
+        this.featuresStartRow = i2;
+        int size = i2 + this.premiumFeatures.size();
         this.featuresEndRow = size;
         this.rowCount = size + 1;
         this.sectionRow = size;
@@ -169,7 +166,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             Bulletin.Delegate.CC.$default$onShow(this, bulletin);
         }
 
-        AnonymousClass1(PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet) {
+        AnonymousClass1() {
         }
 
         @Override
@@ -179,7 +176,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
     }
 
     private void init() {
-        Bulletin.addDelegate((FrameLayout) this.containerView, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate((FrameLayout) this.containerView, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
@@ -215,7 +212,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
                 Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
 
-            AnonymousClass1(PremiumPreviewGiftLinkBottomSheet this) {
+            AnonymousClass1() {
             }
 
             @Override

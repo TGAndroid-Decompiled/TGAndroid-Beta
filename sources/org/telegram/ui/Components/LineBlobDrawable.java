@@ -10,16 +10,15 @@ public class LineBlobDrawable {
     private final float N;
     public float maxRadius;
     public float minRadius;
-    public Path path = new Path();
     private float[] progress;
     private float[] radius;
     private float[] radiusNext;
-    final Random random;
     private float[] speed;
+    public Path path = new Path();
+    public Paint paint = new Paint(1);
+    final Random random = new Random();
 
     public LineBlobDrawable(int i) {
-        new Paint(1);
-        this.random = new Random();
         this.N = i;
         int i2 = i + 1;
         this.radius = new float[i2];
@@ -47,14 +46,15 @@ public class LineBlobDrawable {
         for (int i = 0; i <= this.N; i++) {
             float[] fArr = this.progress;
             float f3 = fArr[i];
-            float[] fArr2 = this.speed;
-            fArr[i] = f3 + (fArr2[i] * BlobDrawable.MIN_SPEED) + (fArr2[i] * f * BlobDrawable.MAX_SPEED * f2);
-            if (fArr[i] >= 1.0f) {
+            float f4 = this.speed[i];
+            float f5 = f3 + (BlobDrawable.MIN_SPEED * f4) + (f4 * f * BlobDrawable.MAX_SPEED * f2);
+            fArr[i] = f5;
+            if (f5 >= 1.0f) {
                 fArr[i] = 0.0f;
-                float[] fArr3 = this.radius;
-                float[] fArr4 = this.radiusNext;
-                fArr3[i] = fArr4[i];
-                generateBlob(fArr4, i);
+                float[] fArr2 = this.radius;
+                float[] fArr3 = this.radiusNext;
+                fArr2[i] = fArr3[i];
+                generateBlob(fArr3, i);
             }
         }
     }
@@ -88,9 +88,9 @@ public class LineBlobDrawable {
                 float f12 = f11 + (fArr3[i2] * f10);
                 float f13 = fArr[i];
                 float f14 = (fArr2[i] * (1.0f - f13)) + (fArr3[i] * f13);
-                float f15 = f3 - f;
-                float f16 = (f15 / f8) * i2;
-                float f17 = (f15 / f8) * f7;
+                float f15 = (f3 - f) / f8;
+                float f16 = i2 * f15;
+                float f17 = f15 * f7;
                 float f18 = f16 + ((f17 - f16) / 2.0f);
                 float f19 = (1.0f - f6) * f5;
                 float f20 = ((f2 - f14) * f6) + f19;

@@ -138,8 +138,9 @@ public class MessageSeenView extends FrameLayout {
                 if (obj instanceof TLRPC$TL_readParticipantDate) {
                     TLRPC$TL_readParticipantDate tLRPC$TL_readParticipantDate = (TLRPC$TL_readParticipantDate) obj;
                     int i3 = tLRPC$TL_readParticipantDate.date;
-                    Long valueOf = Long.valueOf(tLRPC$TL_readParticipantDate.user_id);
-                    if (j != valueOf.longValue()) {
+                    long j2 = tLRPC$TL_readParticipantDate.user_id;
+                    Long valueOf = Long.valueOf(j2);
+                    if (j != j2) {
                         MessagesController.getInstance(i).getUser(valueOf);
                         arrayList3.add(new Pair(valueOf, Integer.valueOf(i3)));
                         arrayList.add(valueOf);
@@ -297,12 +298,12 @@ public class MessageSeenView extends FrameLayout {
         } else {
             this.avatarsImageView.setTranslationX(0.0f);
         }
-        this.titleView.setRightPadding(AndroidUtilities.dp((Math.min(2, this.users.size() - 1) * 12) + 32 + 6));
+        this.titleView.setRightPadding(AndroidUtilities.dp((Math.min(2, this.users.size() - 1) * 12) + 38));
         this.avatarsImageView.commitTransition(false);
         if (this.peerIds.size() == 1 && this.users.get(0) != null) {
             this.titleView.setText(ContactsController.formatName(this.users.get(0)));
         } else if (this.peerIds.size() == 0) {
-            this.titleView.setText(LocaleController.getString("NobodyViewed", R.string.NobodyViewed));
+            this.titleView.setText(LocaleController.getString(R.string.NobodyViewed));
         } else {
             this.titleView.setText(LocaleController.formatPluralString(this.isVoice ? "MessagePlayed" : "MessageSeen", this.peerIds.size(), new Object[0]));
         }
@@ -320,7 +321,7 @@ public class MessageSeenView extends FrameLayout {
         if (recyclerListView != null) {
             return recyclerListView;
         }
-        RecyclerListView recyclerListView2 = new RecyclerListView(this, getContext()) {
+        RecyclerListView recyclerListView2 = new RecyclerListView(getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i2);

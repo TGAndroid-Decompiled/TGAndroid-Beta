@@ -47,10 +47,10 @@ public class CircleBezierDrawable {
 
     public void draw(float f, float f2, Canvas canvas, Paint paint) {
         float f3 = this.radius;
-        float f4 = this.idleStateDiff;
-        float f5 = this.radiusDiff;
-        float f6 = (f3 - (f4 / 2.0f)) - (f5 / 2.0f);
-        float f7 = f3 + (f5 / 2.0f) + (f4 / 2.0f);
+        float f4 = this.idleStateDiff / 2.0f;
+        float f5 = this.radiusDiff / 2.0f;
+        float f6 = (f3 - f4) - f5;
+        float f7 = f3 + f5 + f4;
         float max = this.L * Math.max(f6, f7) * this.cubicBezierK;
         this.path.reset();
         int i = 0;

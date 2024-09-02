@@ -36,6 +36,8 @@ import org.telegram.tgnet.tl.TL_bots$popularAppBots;
 import org.telegram.ui.ActionBar.Theme;
 
 public class DialogsBotsAdapter extends UniversalAdapter {
+    private int allCount;
+    private final Context context;
     private final int currentAccount;
     public boolean expandedMyBots;
     public boolean expandedSearchBots;
@@ -77,6 +79,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 DialogsBotsAdapter.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
             }
         };
+        this.context = context;
         this.currentAccount = i;
         this.folderId = i2;
         this.resourcesProvider = resourcesProvider;
@@ -302,7 +305,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                     this.searchMessages.add(messageObject);
                 }
                 this.hasMore = tLRPC$messages_Messages instanceof TLRPC$TL_messages_messagesSlice;
-                Math.max(this.searchMessages.size(), tLRPC$messages_Messages.count);
+                this.allCount = Math.max(this.searchMessages.size(), tLRPC$messages_Messages.count);
                 this.nextRate = tLRPC$messages_Messages.next_rate;
             }
             update(true);
@@ -319,18 +322,20 @@ public class DialogsBotsAdapter extends UniversalAdapter {
     }
 
     public void lambda$searchMessages$3(TLRPC$TL_contacts_search tLRPC$TL_contacts_search, TLObject tLObject) {
+        TLRPC$TL_contacts_found tLRPC$TL_contacts_found;
         TLRPC$User user;
         TLRPC$User user2;
         if (!TextUtils.equals(tLRPC$TL_contacts_search.q, this.query) || TextUtils.isEmpty(this.query)) {
             return;
         }
         this.loadingBots = false;
-        TLRPC$TL_contacts_found tLRPC$TL_contacts_found = null;
         if (tLObject instanceof TLRPC$TL_contacts_found) {
             tLRPC$TL_contacts_found = (TLRPC$TL_contacts_found) tLObject;
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_found.users, tLRPC$TL_contacts_found.chats, true, true);
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_found.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_contacts_found.chats, false);
+        } else {
+            tLRPC$TL_contacts_found = null;
         }
         HashSet hashSet = new HashSet();
         this.searchMine.clear();

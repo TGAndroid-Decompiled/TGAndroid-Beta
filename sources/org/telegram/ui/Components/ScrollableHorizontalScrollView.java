@@ -18,6 +18,7 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
     protected boolean scrollingAnimation;
     private int scrollingTo;
     ValueAnimator showAnimator;
+    private boolean touch;
     boolean touching;
 
     public ScrollableHorizontalScrollView(Context context) {
@@ -125,8 +126,10 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
-            motionEvent.getAction();
+        if (motionEvent.getAction() == 0) {
+            this.touch = true;
+        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            this.touch = false;
         }
         return super.onTouchEvent(motionEvent);
     }

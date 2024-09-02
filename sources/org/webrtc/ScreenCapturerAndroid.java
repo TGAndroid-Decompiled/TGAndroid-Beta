@@ -8,6 +8,7 @@ import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
 import org.telegram.messenger.FileLog;
+import org.telegram.ui.Components.voip.PrivateVideoPreviewDialog$$ExternalSyntheticApiModelOutline0;
 import org.webrtc.VideoSink;
 
 @TargetApi(21)
@@ -62,11 +63,12 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
             throw new RuntimeException("surfaceTextureHelper not set.");
         }
         this.surfaceTextureHelper = surfaceTextureHelper;
-        this.mediaProjectionManager = (MediaProjectionManager) context.getSystemService("media_projection");
+        this.mediaProjectionManager = PrivateVideoPreviewDialog$$ExternalSyntheticApiModelOutline0.m(context.getSystemService("media_projection"));
     }
 
     @Override
     public synchronized void startCapture(int i, int i2, int i3) {
+        MediaProjection mediaProjection;
         if (this.mediaProjection != null || this.mediaProjectionManager == null) {
             return;
         }
@@ -74,7 +76,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
             checkNotDisposed();
             this.width = i;
             this.height = i2;
-            MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
+            mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
             this.mediaProjection = mediaProjection;
             mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());
             createVirtualDisplay();
@@ -140,9 +142,11 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     private void createVirtualDisplay() {
+        VirtualDisplay createVirtualDisplay;
         this.surfaceTextureHelper.setTextureSize(this.width, this.height);
         try {
-            this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
+            createVirtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
+            this.virtualDisplay = createVirtualDisplay;
         } catch (Throwable th) {
             FileLog.e(th);
         }

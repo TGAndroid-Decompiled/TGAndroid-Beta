@@ -1145,7 +1145,7 @@ public class TLRPC$Message extends TLObject {
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | 768;
                         this.flags = readInt32;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
@@ -1820,7 +1820,7 @@ public class TLRPC$Message extends TLObject {
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | 768;
                         this.flags = readInt32;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
@@ -2023,7 +2023,7 @@ public class TLRPC$Message extends TLObject {
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | 768;
                         this.flags = readInt32;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
@@ -3460,7 +3460,7 @@ public class TLRPC$Message extends TLObject {
                 tLRPC$Message = new TLRPC$TL_message_secret() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | 768;
                         this.flags = readInt32;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;
@@ -3595,7 +3595,7 @@ public class TLRPC$Message extends TLObject {
                 tLRPC$Message = new TLRPC$TL_message() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2) | 256 | 512;
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | 768;
                         this.flags = readInt32;
                         this.unread = (readInt32 & 1) != 0;
                         this.out = (readInt32 & 2) != 0;

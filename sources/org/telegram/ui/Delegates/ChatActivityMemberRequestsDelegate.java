@@ -76,7 +76,7 @@ public class ChatActivityMemberRequestsDelegate {
             LinearLayout linearLayout = new LinearLayout(this.fragment.getParentActivity());
             linearLayout.setOrientation(0);
             this.root.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 36.0f, 0.0f));
-            AvatarsImageView avatarsImageView = new AvatarsImageView(this, this.fragment.getParentActivity(), false) {
+            AvatarsImageView avatarsImageView = new AvatarsImageView(this.fragment.getParentActivity(), false) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.avatarsDrawable.count == 0 ? 0 : ((r2 - 1) * 20) + 24), 1073741824), i2);
@@ -101,7 +101,7 @@ public class ChatActivityMemberRequestsDelegate {
                 imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor(Theme.key_inappPlayerClose) & 436207615, 1, AndroidUtilities.dp(14.0f)));
             }
             this.closeView.setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelClose), PorterDuff.Mode.MULTIPLY));
-            this.closeView.setContentDescription(LocaleController.getString("Close", R.string.Close));
+            this.closeView.setContentDescription(LocaleController.getString(R.string.Close));
             this.closeView.setImageResource(R.drawable.miniplayer_close);
             this.closeView.setScaleType(ImageView.ScaleType.CENTER);
             this.closeView.setOnClickListener(new View.OnClickListener() {
@@ -221,10 +221,7 @@ public class ChatActivityMemberRequestsDelegate {
             valueAnimator.cancel();
         }
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = z ? 0.0f : 1.0f;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
             this.pendingRequestsAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

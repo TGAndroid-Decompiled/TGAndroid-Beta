@@ -66,7 +66,7 @@ public class EmptyTextProgressView extends FrameLayout {
         textView.setTextSize(1, 20.0f);
         this.textView.setTextColor(getThemedColor(Theme.key_emptyListPlaceholder));
         this.textView.setGravity(1);
-        this.textView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+        this.textView.setText(LocaleController.getString(R.string.NoResult));
         this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 17));
         addView(this.textViewLayout, LayoutHelper.createFrame(-2, -2.0f));
         AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 2.0f, false);

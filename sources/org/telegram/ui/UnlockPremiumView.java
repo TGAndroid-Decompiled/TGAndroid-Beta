@@ -28,17 +28,17 @@ public class UnlockPremiumView extends FrameLayout {
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         if (i == 0) {
-            textView.setText(LocaleController.getString("UnlockPremiumStickersDescription", R.string.UnlockPremiumStickersDescription));
+            textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
         } else if (i == 1) {
-            textView.setText(LocaleController.getString("UnlockPremiumReactionsDescription", R.string.UnlockPremiumReactionsDescription));
+            textView.setText(LocaleController.getString(R.string.UnlockPremiumReactionsDescription));
         }
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 16, 17, 17, 16));
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, false, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         if (i == 0) {
-            string = LocaleController.getString("UnlockPremiumStickers", R.string.UnlockPremiumStickers);
+            string = LocaleController.getString(R.string.UnlockPremiumStickers);
         } else {
-            string = LocaleController.getString("UnlockPremiumReactions", R.string.UnlockPremiumReactions);
+            string = LocaleController.getString(R.string.UnlockPremiumReactions);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "d ").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_premium_normal)), 0, 1, 0);

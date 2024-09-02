@@ -30,8 +30,9 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
     protected void drawPickerChart(Canvas canvas) {
         int i;
         int i2;
-        float f;
         int i3;
+        long[] jArr;
+        float f;
         int measuredHeight = getMeasuredHeight();
         int i4 = BaseChartView.PICKER_PADDING;
         int i5 = measuredHeight - i4;
@@ -46,46 +47,50 @@ public class BarChartView extends BaseChartView<ChartData, BarViewData> {
                     float[] fArr = this.chartData.xPercentage;
                     int length = fArr.length;
                     float f2 = fArr.length < 2 ? 1.0f : fArr[1] * this.pickerWidth;
-                    long[] jArr = barViewData.line.y;
+                    long[] jArr2 = barViewData.line.y;
                     float f3 = barViewData.alpha;
                     int i7 = 0;
                     int i8 = 0;
                     while (i7 < length) {
-                        if (jArr[i7] < 0) {
-                            i2 = i7;
-                            i3 = i6;
+                        long j = jArr2[i7];
+                        if (j < 0) {
+                            i2 = size;
+                            i3 = length;
+                            jArr = jArr2;
                         } else {
                             T t = this.chartData;
+                            i2 = size;
                             float f4 = t.xPercentage[i7] * this.pickerWidth;
                             if (BaseChartView.ANIMATE_PICKER_SIZES) {
                                 f = this.pickerMaxHeight;
-                                i2 = i7;
+                                i3 = length;
+                                jArr = jArr2;
                             } else {
-                                i2 = i7;
+                                i3 = length;
+                                jArr = jArr2;
                                 f = (float) t.maxValue;
                             }
-                            i3 = i6;
-                            float f5 = (1.0f - ((((float) jArr[i2]) / f) * f3)) * (i5 - measuredHeight2);
                             float[] fArr2 = barViewData.linesPath;
-                            int i9 = i8 + 1;
                             fArr2[i8] = f4;
-                            int i10 = i9 + 1;
-                            fArr2[i9] = f5;
-                            int i11 = i10 + 1;
-                            fArr2[i10] = f4;
-                            i8 = i11 + 1;
-                            fArr2[i11] = getMeasuredHeight() - this.chartBottom;
+                            fArr2[i8 + 1] = (1.0f - ((((float) j) / f) * f3)) * (i5 - measuredHeight2);
+                            int i9 = i8 + 3;
+                            fArr2[i8 + 2] = f4;
+                            i8 += 4;
+                            fArr2[i9] = getMeasuredHeight() - this.chartBottom;
                         }
-                        i6 = i3;
-                        i7 = i2 + 1;
+                        i7++;
+                        length = i3;
+                        size = i2;
+                        jArr2 = jArr;
                     }
-                    i = i6;
+                    i = size;
                     barViewData.paint.setStrokeWidth(f2 + 2.0f);
                     canvas.drawLines(barViewData.linesPath, 0, i8, barViewData.paint);
                 } else {
-                    i = i6;
+                    i = size;
                 }
-                i6 = i + 1;
+                i6++;
+                size = i;
             }
         }
     }

@@ -222,9 +222,6 @@ public class WebRtcAudioManager {
     }
 
     private int getSampleRateForApiLevel() {
-        if (Build.VERSION.SDK_INT < 17) {
-            return WebRtcAudioUtils.getDefaultSampleRateHz();
-        }
         String property = this.audioManager.getProperty("android.media.property.OUTPUT_SAMPLE_RATE");
         if (property == null) {
             return WebRtcAudioUtils.getDefaultSampleRateHz();
@@ -233,12 +230,12 @@ public class WebRtcAudioManager {
     }
 
     private int getLowLatencyOutputFramesPerBuffer() {
-        String property;
         assertTrue(isLowLatencyOutputSupported());
-        if (Build.VERSION.SDK_INT >= 17 && (property = this.audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER")) != null) {
-            return Integer.parseInt(property);
+        String property = this.audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER");
+        if (property == null) {
+            return 256;
         }
-        return 256;
+        return Integer.parseInt(property);
     }
 
     private static boolean isAcousticEchoCancelerSupported() {

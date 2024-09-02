@@ -1,6 +1,7 @@
 package org.telegram.messenger.browser;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +20,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.browser.Browser;
@@ -32,6 +34,9 @@ import org.telegram.messenger.support.customtabsclient.shared.ServiceConnectionC
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
+import org.telegram.tgnet.TLRPC$TL_webPage;
+import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -41,13 +46,14 @@ import org.telegram.ui.LaunchActivity;
 public class Browser {
     private static WeakReference<Activity> currentCustomTabsActivity;
     private static CustomTabsClient customTabsClient;
+    private static WeakReference<CustomTabsSession> customTabsCurrentSession;
     private static String customTabsPackageToBind;
     private static CustomTabsServiceConnection customTabsServiceConnection;
     private static CustomTabsSession customTabsSession;
     private static Pattern domainPattern;
 
     private static void setCurrentSession(CustomTabsSession customTabsSession2) {
-        new WeakReference(customTabsSession2);
+        customTabsCurrentSession = new WeakReference<>(customTabsSession2);
     }
 
     private static CustomTabsSession getSession() {
@@ -241,15 +247,15 @@ public class Browser {
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
-        openUrl(context, uri, z, z2, false, null, null, false);
+        openUrl(context, uri, z, z2, false, null, null, false, true);
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
-        openUrl(context, uri, z, z2, false, progress, null, false);
+        openUrl(context, uri, z, z2, false, progress, null, false, true);
     }
 
-    public static void openUrl(final android.content.Context r20, final android.net.Uri r21, boolean r22, boolean r23, boolean r24, final org.telegram.messenger.browser.Browser.Progress r25, java.lang.String r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean):void");
+    public static void openUrl(final android.content.Context r21, final android.net.Uri r22, boolean r23, boolean r24, boolean r25, final org.telegram.messenger.browser.Browser.Progress r26, java.lang.String r27, boolean r28, boolean r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, java.lang.String, boolean, boolean):void");
     }
 
     public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -261,16 +267,34 @@ public class Browser {
         });
     }
 
-    public static void lambda$openUrl$0(org.telegram.messenger.browser.Browser.Progress r2, org.telegram.ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.lambda$openUrl$0(org.telegram.messenger.browser.Browser$Progress, org.telegram.ui.ActionBar.AlertDialog[], org.telegram.tgnet.TLObject, int, android.net.Uri, android.content.Context, boolean):void");
+    public static void lambda$openUrl$0(Progress progress, AlertDialog[] alertDialogArr, TLObject tLObject, int i, Uri uri, Context context, boolean z) {
+        if (progress != null) {
+            progress.end();
+        } else {
+            try {
+                alertDialogArr[0].dismiss();
+            } catch (Throwable unused) {
+            }
+            alertDialogArr[0] = null;
+        }
+        if (tLObject instanceof TLRPC$TL_messageMediaWebPage) {
+            TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = (TLRPC$TL_messageMediaWebPage) tLObject;
+            TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_messageMediaWebPage.webpage;
+            if ((tLRPC$WebPage instanceof TLRPC$TL_webPage) && tLRPC$WebPage.cached_page != null) {
+                NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.openArticle, tLRPC$TL_messageMediaWebPage.webpage, uri.toString());
+                return;
+            }
+        }
+        openUrl(context, uri, z, false);
     }
 
     public static void lambda$openUrl$3(AlertDialog[] alertDialogArr, final int i) {
-        if (alertDialogArr[0] == null) {
+        AlertDialog alertDialog = alertDialogArr[0];
+        if (alertDialog == null) {
             return;
         }
         try {
-            alertDialogArr[0].setOnCancelListener(new DialogInterface.OnCancelListener() {
+            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
                     Browser.lambda$openUrl$2(i, dialogInterface);
@@ -374,18 +398,21 @@ public class Browser {
     }
 
     public static boolean isTonsitePunycode(String str) {
+        boolean matches;
         if (domainPattern == null) {
             domainPattern = Pattern.compile("^[a-zA-Z0-9\\-\\_\\.]+\\.[a-zA-Z0-9\\-\\_]+$");
         }
         String hostAuthority = AndroidUtilities.getHostAuthority(str, true);
         if (hostAuthority != null && (hostAuthority.endsWith(".ton") || hostAuthority.endsWith(".adnl"))) {
-            return !domainPattern.matcher(hostAuthority).matches();
+            matches = domainPattern.matcher(hostAuthority).matches();
+        } else {
+            Uri parse = Uri.parse(str);
+            if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
+                return false;
+            }
+            matches = domainPattern.matcher(parse.getScheme()).matches();
         }
-        Uri parse = Uri.parse(str);
-        if (parse.getScheme() == null || !parse.getScheme().equalsIgnoreCase("tonsite")) {
-            return false;
-        }
-        return !domainPattern.matcher(parse.getScheme()).matches();
+        return !matches;
     }
 
     public static boolean openInExternalApp(Context context, String str, boolean z) {
@@ -396,7 +423,7 @@ public class Browser {
         try {
             if (!isTonsite(str) && !isInternalUrl(str, null)) {
                 Uri parse = Uri.parse(str);
-                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
+                String replace = replace(parse, parse.getScheme() == null ? "https" : parse.getScheme(), null, parse.getHost() != null ? parse.getHost().toLowerCase() : parse.getHost(), TextUtils.isEmpty(parse.getPath()) ? "/" : parse.getPath());
                 Uri parse2 = Uri.parse(replace);
                 boolean z2 = parse2.getScheme() != null && parse2.getScheme().equalsIgnoreCase("intent");
                 if (z2 && !z) {
@@ -412,15 +439,18 @@ public class Browser {
                     intent.addCategory("android.intent.category.DEFAULT");
                     intent.addFlags(268435456);
                     intent.addFlags(1024);
-                } else if (!hasAppToOpen(context, replace)) {
+                } else if (!z2 && !hasAppToOpen(context, replace)) {
                     return false;
                 }
                 context.startActivity(intent);
                 return true;
             }
             return false;
-        } catch (Exception e) {
-            FileLog.e(e);
+        } catch (ActivityNotFoundException e) {
+            FileLog.e((Throwable) e, false);
+            return false;
+        } catch (Exception e2) {
+            FileLog.e(e2);
             return false;
         }
     }
@@ -474,6 +504,7 @@ public class Browser {
         String str;
         String str2;
         String hostAuthority = AndroidUtilities.getHostAuthority(uri);
+        String str3 = "";
         String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
         if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
             if (zArr != null) {
@@ -500,7 +531,11 @@ public class Browser {
             sb.append(str2);
             uri = Uri.parse(sb.toString());
             String host = uri.getHost();
-            lowerCase = host != null ? host.toLowerCase() : "";
+            if (host != null) {
+                str3 = host.toLowerCase();
+            }
+        } else {
+            str3 = lowerCase;
         }
         if ("ton".equals(uri.getScheme())) {
             try {
@@ -517,7 +552,7 @@ public class Browser {
         if ("tg".equals(uri.getScheme())) {
             return true;
         }
-        if ("telegram.dog".equals(lowerCase)) {
+        if ("telegram.dog".equals(str3)) {
             String path = uri.getPath();
             if (path != null && path.length() > 1) {
                 if (z) {
@@ -532,7 +567,7 @@ public class Browser {
                 }
                 return false;
             }
-        } else if ("telegram.me".equals(lowerCase) || "t.me".equals(lowerCase)) {
+        } else if ("telegram.me".equals(str3) || "t.me".equals(str3)) {
             String path2 = uri.getPath();
             if (path2 != null && path2.length() > 1) {
                 if (z) {
@@ -547,10 +582,10 @@ public class Browser {
                 }
             }
         } else {
-            if ("telegram.org".equals(lowerCase) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
+            if ("telegram.org".equals(str3) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
                 return true;
             }
-            if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
+            if (z && (str3.endsWith("telegram.org") || str3.endsWith("telegra.ph") || str3.endsWith("telesco.pe"))) {
                 return true;
             }
         }
@@ -769,10 +804,10 @@ public class Browser {
     }
 
     public static String replaceHostname(Uri uri, String str, String str2) {
-        return replace(uri, str2, str, null);
+        return replace(uri, str2, null, str, null);
     }
 
-    public static String replace(Uri uri, String str, String str2, String str3) {
+    public static String replace(Uri uri, String str, String str2, String str3, String str4) {
         StringBuilder sb = new StringBuilder();
         if (str == null) {
             str = uri.getScheme();
@@ -781,23 +816,28 @@ public class Browser {
             sb.append(str);
             sb.append("://");
         }
-        if (uri.getUserInfo() != null) {
-            sb.append(uri.getUserInfo());
+        if (str2 == null) {
+            if (uri.getUserInfo() != null) {
+                sb.append(uri.getUserInfo());
+                sb.append("@");
+            }
+        } else if (!TextUtils.isEmpty(str2)) {
+            sb.append(str2);
             sb.append("@");
         }
-        if (str2 == null) {
+        if (str3 == null) {
             if (uri.getHost() != null) {
                 sb.append(uri.getHost());
             }
         } else {
-            sb.append(str2);
+            sb.append(str3);
         }
         if (uri.getPort() != -1) {
             sb.append(":");
             sb.append(uri.getPort());
         }
-        if (str3 != null) {
-            sb.append(str3);
+        if (str4 != null) {
+            sb.append(str4);
         } else {
             sb.append(uri.getPath());
         }

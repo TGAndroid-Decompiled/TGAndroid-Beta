@@ -10,12 +10,14 @@ public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
     private Activity activity;
     private int keyboardHeight;
     private android.graphics.Rect rect;
+    private boolean useSmoothKeyboard;
     private boolean withoutWindow;
 
     public SizeNotifierFrameLayoutPhoto(Context context, Activity activity, boolean z) {
         super(context);
         this.rect = new android.graphics.Rect();
         setActivity(activity);
+        this.useSmoothKeyboard = z;
     }
 
     public void setActivity(Activity activity) {

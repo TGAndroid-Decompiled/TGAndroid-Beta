@@ -43,7 +43,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
         this.delegate = memberRequestsDelegate;
         memberRequestsDelegate.setShowLastItemDivider(false);
         setDimBehindAlpha(75);
-        this.searchView.searchEditText.setHint(LocaleController.getString("SearchMemberRequests", R.string.SearchMemberRequests));
+        this.searchView.searchEditText.setHint(LocaleController.getString(R.string.SearchMemberRequests));
         MemberRequestsDelegate.Adapter adapter = memberRequestsDelegate.getAdapter();
         this.listViewAdapter = adapter;
         this.searchListViewAdapter = adapter;
@@ -113,15 +113,17 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
 
     @Override
     protected void onSearchViewTouched(MotionEvent motionEvent, final EditTextBoldCursor editTextBoldCursor) {
+        BaseFragment baseFragment;
         if (motionEvent.getAction() == 0) {
             this.yOffset = this.scrollOffsetY;
             this.delegate.setAdapterItemsEnabled(false);
         } else if (motionEvent.getAction() == 1 && Math.abs(this.scrollOffsetY - this.yOffset) < this.touchSlop && !this.enterEventSent) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
-            BaseFragment baseFragment = null;
             if (findActivity instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) findActivity;
                 baseFragment = launchActivity.getActionBarLayout().getFragmentStack().get(launchActivity.getActionBarLayout().getFragmentStack().size() - 1);
+            } else {
+                baseFragment = null;
             }
             if (baseFragment instanceof ChatActivity) {
                 boolean needEnterText = ((ChatActivity) baseFragment).needEnterText();

@@ -21,6 +21,7 @@ public class BrightnessControlCell extends FrameLayout {
     private ImageView rightImageView;
     public final SeekBarView seekBarView;
     private final int size;
+    private int type;
 
     protected void didChangedValue(float f) {
     }
@@ -31,11 +32,12 @@ public class BrightnessControlCell extends FrameLayout {
 
     public BrightnessControlCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.type = i;
         this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
         this.leftImageView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
-        SeekBarView seekBarView = new SeekBarView(this, context, true, resourcesProvider) {
+        SeekBarView seekBarView = new SeekBarView(context, true, resourcesProvider) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {
@@ -48,11 +50,6 @@ public class BrightnessControlCell extends FrameLayout {
         seekBarView.setReportChanges(true);
         seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
-            public CharSequence getContentDescription() {
-                return " ";
-            }
-
-            @Override
             public int getStepsCount() {
                 return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
             }
@@ -64,6 +61,11 @@ public class BrightnessControlCell extends FrameLayout {
             @Override
             public void onSeekBarDrag(boolean z, float f) {
                 BrightnessControlCell.this.didChangedValue(f);
+            }
+
+            @Override
+            public CharSequence getContentDescription() {
+                return " ";
             }
         });
         seekBarView.setImportantForAccessibility(2);
@@ -87,8 +89,10 @@ public class BrightnessControlCell extends FrameLayout {
         super.onAttachedToWindow();
         ImageView imageView = this.leftImageView;
         int i = Theme.key_windowBackgroundWhiteGrayIcon;
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     @Override

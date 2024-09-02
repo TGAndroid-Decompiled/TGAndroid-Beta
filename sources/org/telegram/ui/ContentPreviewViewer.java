@@ -810,10 +810,13 @@ public class ContentPreviewViewer {
         ContentPreviewViewer contentPreviewViewer = Instance;
         if (contentPreviewViewer == null) {
             synchronized (PhotoViewer.class) {
-                contentPreviewViewer = Instance;
-                if (contentPreviewViewer == null) {
-                    contentPreviewViewer = new ContentPreviewViewer();
-                    Instance = contentPreviewViewer;
+                try {
+                    contentPreviewViewer = Instance;
+                    if (contentPreviewViewer == null) {
+                        contentPreviewViewer = new ContentPreviewViewer();
+                        Instance = contentPreviewViewer;
+                    }
+                } finally {
                 }
             }
         }
@@ -854,10 +857,12 @@ public class ContentPreviewViewer {
     }
 
     protected void runSmoothHaptic() {
+        VibrationEffect createWaveform;
         if (Build.VERSION.SDK_INT >= 26) {
             Vibrator vibrator = (Vibrator) this.containerView.getContext().getSystemService("vibrator");
             if (this.vibrationEffect == null) {
-                this.vibrationEffect = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                createWaveform = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                this.vibrationEffect = createWaveform;
             }
             vibrator.cancel();
             vibrator.vibrate(this.vibrationEffect);
@@ -865,6 +870,7 @@ public class ContentPreviewViewer {
     }
 
     public boolean onInterceptTouchEvent(MotionEvent motionEvent, final RecyclerListView recyclerListView, int i, ContentPreviewViewerDelegate contentPreviewViewerDelegate, final Theme.ResourcesProvider resourcesProvider) {
+        final int i2;
         this.delegate = contentPreviewViewerDelegate;
         if (contentPreviewViewerDelegate != null) {
             this.isPhotoEditor = contentPreviewViewerDelegate.isPhotoEditor();
@@ -875,8 +881,8 @@ public class ContentPreviewViewer {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
             int childCount = recyclerListView.getChildCount();
-            for (int i2 = 0; i2 < childCount; i2++) {
-                View childAt = recyclerListView.getChildAt(i2);
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt = recyclerListView.getChildAt(i3);
                 if (childAt == null) {
                     return false;
                 }
@@ -885,42 +891,44 @@ public class ContentPreviewViewer {
                 int left = childAt.getLeft();
                 int right = childAt.getRight();
                 if (top <= y && bottom >= y && left <= x && right >= x) {
-                    final int i3 = 2;
                     if (childAt instanceof StickerEmojiCell) {
                         if (((StickerEmojiCell) childAt).showingBitmap()) {
                             this.centerImage.setRoundRadius(0);
-                            i3 = 0;
+                            i2 = 0;
                         }
-                        i3 = -1;
+                        i2 = -1;
                     } else if (childAt instanceof StickerCell) {
                         if (((StickerCell) childAt).showingBitmap()) {
                             this.centerImage.setRoundRadius(0);
-                            i3 = 0;
+                            i2 = 0;
                         }
-                        i3 = -1;
+                        i2 = -1;
                     } else if (childAt instanceof ContextLinkCell) {
                         ContextLinkCell contextLinkCell = (ContextLinkCell) childAt;
                         if (contextLinkCell.showingBitmap()) {
                             if (contextLinkCell.isSticker()) {
                                 this.centerImage.setRoundRadius(0);
-                                i3 = 0;
+                                i2 = 0;
                             } else if (contextLinkCell.isGif()) {
                                 this.centerImage.setRoundRadius(AndroidUtilities.dp(6.0f));
-                                i3 = 1;
+                                i2 = 1;
                             }
                         }
-                        i3 = -1;
-                    } else if (childAt instanceof EmojiPacksAlert.EmojiImageView) {
-                        this.centerImage.setRoundRadius(0);
-                    } else if ((childAt instanceof EmojiView.ImageViewEmoji) && ((EmojiView.ImageViewEmoji) childAt).getSpan() != null) {
-                        this.centerImage.setRoundRadius(0);
+                        i2 = -1;
                     } else {
-                        if ((childAt instanceof SuggestEmojiView.EmojiImageView) && (((SuggestEmojiView.EmojiImageView) childAt).drawable instanceof AnimatedEmojiDrawable)) {
+                        i2 = 2;
+                        if (childAt instanceof EmojiPacksAlert.EmojiImageView) {
                             this.centerImage.setRoundRadius(0);
+                        } else if ((childAt instanceof EmojiView.ImageViewEmoji) && ((EmojiView.ImageViewEmoji) childAt).getSpan() != null) {
+                            this.centerImage.setRoundRadius(0);
+                        } else {
+                            if ((childAt instanceof SuggestEmojiView.EmojiImageView) && (((SuggestEmojiView.EmojiImageView) childAt).drawable instanceof AnimatedEmojiDrawable)) {
+                                this.centerImage.setRoundRadius(0);
+                            }
+                            i2 = -1;
                         }
-                        i3 = -1;
                     }
-                    if (i3 == -1) {
+                    if (i2 == -1) {
                         return false;
                     }
                     this.startX = x;
@@ -929,7 +937,7 @@ public class ContentPreviewViewer {
                     Runnable runnable = new Runnable() {
                         @Override
                         public final void run() {
-                            ContentPreviewViewer.this.lambda$onInterceptTouchEvent$5(recyclerListView, i3, resourcesProvider);
+                            ContentPreviewViewer.this.lambda$onInterceptTouchEvent$5(recyclerListView, i2, resourcesProvider);
                         }
                     };
                     this.openPreviewRunnable = runnable;
@@ -947,7 +955,6 @@ public class ContentPreviewViewer {
             return;
         }
         recyclerListView.setOnItemClickListener((RecyclerListView.OnItemClickListener) null);
-        boolean z = true;
         recyclerListView.requestDisallowInterceptTouchEvent(true);
         this.openPreviewRunnable = null;
         setParentActivity(AndroidUtilities.findActivity(recyclerListView.getContext()));
@@ -978,10 +985,11 @@ public class ContentPreviewViewer {
             }
         } else if (view instanceof EmojiPacksAlert.EmojiImageView) {
             TLRPC$Document document2 = ((EmojiPacksAlert.EmojiImageView) view).getDocument();
-            if (document2 != null) {
+            if (document2 == null) {
+                return;
+            } else {
                 open(document2, null, MessageObject.findAnimatedEmojiEmoticon(document2, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
             }
-            z = false;
         } else if (view instanceof EmojiView.ImageViewEmoji) {
             AnimatedEmojiSpan span = ((EmojiView.ImageViewEmoji) view).getSpan();
             if (span != null) {
@@ -992,26 +1000,27 @@ public class ContentPreviewViewer {
             } else {
                 tLRPC$Document = null;
             }
-            if (tLRPC$Document != null) {
+            if (tLRPC$Document == null) {
+                return;
+            } else {
                 open(tLRPC$Document, null, MessageObject.findAnimatedEmojiEmoticon(tLRPC$Document, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
             }
-            z = false;
         } else {
-            if (view instanceof SuggestEmojiView.EmojiImageView) {
-                Drawable drawable = ((SuggestEmojiView.EmojiImageView) view).drawable;
-                TLRPC$Document document3 = drawable instanceof AnimatedEmojiDrawable ? ((AnimatedEmojiDrawable) drawable).getDocument() : null;
-                if (document3 != null) {
-                    open(document3, null, MessageObject.findAnimatedEmojiEmoticon(document3, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
-                }
+            if (!(view instanceof SuggestEmojiView.EmojiImageView)) {
+                return;
             }
-            z = false;
+            Drawable drawable = ((SuggestEmojiView.EmojiImageView) view).drawable;
+            TLRPC$Document document3 = drawable instanceof AnimatedEmojiDrawable ? ((AnimatedEmojiDrawable) drawable).getDocument() : null;
+            if (document3 == null) {
+                return;
+            } else {
+                open(document3, null, MessageObject.findAnimatedEmojiEmoticon(document3, null, Integer.valueOf(this.currentAccount)), null, null, i, false, null, resourcesProvider);
+            }
         }
-        if (z) {
-            this.currentPreviewCell.performHapticFeedback(0, 2);
-            ContentPreviewViewerDelegate contentPreviewViewerDelegate4 = this.delegate;
-            if (contentPreviewViewerDelegate4 != null) {
-                contentPreviewViewerDelegate4.resetTouch();
-            }
+        this.currentPreviewCell.performHapticFeedback(0, 2);
+        ContentPreviewViewerDelegate contentPreviewViewerDelegate4 = this.delegate;
+        if (contentPreviewViewerDelegate4 != null) {
+            contentPreviewViewerDelegate4.resetTouch();
         }
     }
 
@@ -1259,10 +1268,7 @@ public class ContentPreviewViewer {
                     AndroidUtilities.runOnUIThread(this.showSheetRunnable, 1300L);
                 }
                 TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(tLRPC$InputStickerSet, true);
-                if (stickerSet != null && stickerSet.documents.isEmpty()) {
-                    tLRPC$InputStickerSet = null;
-                }
-                this.currentStickerSet = tLRPC$InputStickerSet;
+                this.currentStickerSet = (stickerSet == null || !stickerSet.documents.isEmpty()) ? tLRPC$InputStickerSet : null;
                 TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                 if (MessageObject.isVideoStickerDocument(tLRPC$Document)) {
                     this.centerImage.setImage(ImageLocation.getForDocument(tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize2, tLRPC$Document), null, null, 0L, "webp", this.currentStickerSet, 1);
@@ -1453,6 +1459,8 @@ public class ContentPreviewViewer {
         int i3;
         Drawable drawable;
         WindowInsets windowInsets;
+        int stableInsetBottom;
+        int stableInsetTop;
         float f;
         if (this.containerView == null || this.backgroundDrawable == null) {
             return;
@@ -1508,7 +1516,9 @@ public class ContentPreviewViewer {
         this.backgroundDrawable.draw(canvas);
         canvas.save();
         if (Build.VERSION.SDK_INT >= 21 && (windowInsets = this.lastInsets) != null) {
-            i2 = windowInsets.getStableInsetBottom() + this.lastInsets.getStableInsetTop();
+            stableInsetBottom = windowInsets.getStableInsetBottom();
+            stableInsetTop = this.lastInsets.getStableInsetTop();
+            i2 = stableInsetBottom + stableInsetTop;
             i = this.lastInsets.getStableInsetTop();
         } else {
             i = AndroidUtilities.statusBarHeight;
@@ -1773,8 +1783,8 @@ public class ContentPreviewViewer {
         TLRPC$TL_messages_getMyStickers tLRPC$TL_messages_getMyStickers = new TLRPC$TL_messages_getMyStickers();
         tLRPC$TL_messages_getMyStickers.limit = 100;
         getMyStickersRemote(tLRPC$TL_messages_getMyStickers, arrayList);
-        AnonymousClass5 anonymousClass5 = new RecyclerListView(this, this.parentActivity) {
-            AnonymousClass5(ContentPreviewViewer this, Context context) {
+        AnonymousClass5 anonymousClass5 = new RecyclerListView(this.parentActivity) {
+            AnonymousClass5(Context context) {
                 super(context);
             }
 
@@ -1789,10 +1799,10 @@ public class ContentPreviewViewer {
             }
         };
         anonymousClass5.setLayoutManager(new LinearLayoutManager(this.parentActivity));
-        anonymousClass5.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        anonymousClass5.addItemDecoration(new RecyclerView.ItemDecoration() {
             final List val$stickerSetCoveredList;
 
-            AnonymousClass6(ContentPreviewViewer this, List arrayList2) {
+            AnonymousClass6(List arrayList2) {
                 r2 = arrayList2;
             }
 
@@ -1836,7 +1846,7 @@ public class ContentPreviewViewer {
     }
 
     public class AnonymousClass5 extends RecyclerListView {
-        AnonymousClass5(ContentPreviewViewer this, Context context) {
+        AnonymousClass5(Context context) {
             super(context);
         }
 
@@ -1854,7 +1864,7 @@ public class ContentPreviewViewer {
     public class AnonymousClass6 extends RecyclerView.ItemDecoration {
         final List val$stickerSetCoveredList;
 
-        AnonymousClass6(ContentPreviewViewer this, List arrayList2) {
+        AnonymousClass6(List arrayList2) {
             r2 = arrayList2;
         }
 

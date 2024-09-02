@@ -46,13 +46,13 @@ public class EndCloseLayout extends FrameLayout {
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
         transitionSet.setOrdering(0);
-        transitionSet.addTransition(new AnonymousClass1(this));
+        transitionSet.addTransition(new AnonymousClass1());
         transitionSet.setDuration(500L);
         transitionSet.setInterpolator((TimeInterpolator) CubicBezierInterpolator.DEFAULT);
     }
 
     class AnonymousClass1 extends ChangeBounds {
-        AnonymousClass1(EndCloseLayout endCloseLayout) {
+        AnonymousClass1() {
         }
 
         @Override
@@ -60,10 +60,11 @@ public class EndCloseLayout extends FrameLayout {
             super.captureStartValues(transitionValues);
             View view = transitionValues.view;
             if (view instanceof EndCloseView) {
-                int i = ((EndCloseView) view).backColor;
-                int i2 = ((EndCloseView) view).round;
-                int i3 = ((EndCloseView) view).callDeclineAlpha;
-                int i4 = ((EndCloseView) view).closeTextAlpha;
+                EndCloseView endCloseView = (EndCloseView) view;
+                int i = endCloseView.backColor;
+                int i2 = endCloseView.round;
+                int i3 = endCloseView.callDeclineAlpha;
+                int i4 = endCloseView.closeTextAlpha;
                 transitionValues.values.put("back_color_end_close", Integer.valueOf(i));
                 transitionValues.values.put("round_end_close", Integer.valueOf(i2));
                 transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i3));
@@ -76,10 +77,11 @@ public class EndCloseLayout extends FrameLayout {
             super.captureEndValues(transitionValues);
             View view = transitionValues.view;
             if (view instanceof EndCloseView) {
-                int i = ((EndCloseView) view).backColor;
-                int i2 = ((EndCloseView) view).round;
-                int i3 = ((EndCloseView) view).callDeclineAlpha;
-                int i4 = ((EndCloseView) view).closeTextAlpha;
+                EndCloseView endCloseView = (EndCloseView) view;
+                int i = endCloseView.backColor;
+                int i2 = endCloseView.round;
+                int i3 = endCloseView.callDeclineAlpha;
+                int i4 = endCloseView.closeTextAlpha;
                 transitionValues.values.put("back_color_end_close", Integer.valueOf(i));
                 transitionValues.values.put("round_end_close", Integer.valueOf(i2));
                 transitionValues.values.put("decline_call_alpha_end_close", Integer.valueOf(i3));
@@ -137,7 +139,7 @@ public class EndCloseLayout extends FrameLayout {
                     }
                 });
                 animatorSet.playTogether(ofInt3);
-                animatorSet.addListener(new AnimatorListenerAdapter(this) {
+                animatorSet.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationStart(Animator animator) {
                         super.onAnimationStart(animator);
@@ -234,16 +236,17 @@ public class EndCloseLayout extends FrameLayout {
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
             paint.setTextSize(AndroidUtilities.dp(18.0f));
             paint.setTypeface(AndroidUtilities.bold());
-            paint.setTextAlign(Paint.Align.CENTER);
+            Paint.Align align = Paint.Align.CENTER;
+            paint.setTextAlign(align);
             paint.setColor(-16777216);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             paint2.setTextSize(AndroidUtilities.dp(18.0f));
             paint2.setTypeface(AndroidUtilities.bold());
-            paint2.setTextAlign(Paint.Align.CENTER);
+            paint2.setTextAlign(align);
             paint2.setColor(-16777216);
             setLayerType(2, null);
             setClickable(true);
-            this.closeText = LocaleController.getString("Close", R.string.Close);
+            this.closeText = LocaleController.getString(R.string.Close);
         }
 
         @Override
@@ -284,8 +287,8 @@ public class EndCloseLayout extends FrameLayout {
             this.backgroundPaint.setColor(this.backColor);
             this.backgroundRect.set(0.0f, 0.0f, getWidth(), getHeight());
             RectF rectF = this.backgroundRect;
-            int i = this.round;
-            canvas.drawRoundRect(rectF, i, i, this.backgroundPaint);
+            float f = this.round;
+            canvas.drawRoundRect(rectF, f, f, this.backgroundPaint);
             this.callDeclineDrawable.setBounds((int) (width - (r3.getIntrinsicWidth() / 2.0f)), (int) (height - (this.callDeclineDrawable.getIntrinsicHeight() / 2)), (int) ((this.callDeclineDrawable.getIntrinsicWidth() / 2) + width), (int) ((this.callDeclineDrawable.getIntrinsicHeight() / 2) + height));
             this.callDeclineDrawable.setAlpha(this.callDeclineAlpha);
             this.callDeclineDrawable.draw(canvas);

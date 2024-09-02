@@ -105,7 +105,7 @@ public class ChatbotsActivity extends BaseFragment {
         int i = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -165,7 +165,7 @@ public class ChatbotsActivity extends BaseFragment {
         float f = 1.0f / AndroidUtilities.density;
         boolean z = LocaleController.isRTL;
         frameLayout4.addView(view2, LayoutHelper.createFrame(-1, f, 87, z ? 0 : 21, 0.0f, z ? 21 : 0, 0.0f));
-        FrameLayout frameLayout5 = new FrameLayout(this, context) {
+        FrameLayout frameLayout5 = new FrameLayout(context) {
             @Override
             protected void onMeasure(int i4, int i5) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
@@ -182,7 +182,7 @@ public class ChatbotsActivity extends BaseFragment {
         textView2.setTextColor(getThemedColor(i4));
         this.emptyView.addView(this.emptyViewText, LayoutHelper.createFrame(-2, -2, 17));
         this.emptyViewLoading = new ImageView(context);
-        this.emptyViewLoading.setImageDrawable(new CircularProgressDrawable(this, getThemedColor(i4)) {
+        this.emptyViewLoading.setImageDrawable(new CircularProgressDrawable(getThemedColor(i4)) {
             @Override
             public int getIntrinsicWidth() {
                 return (int) (this.size + (this.thickness * 2.0f));
@@ -305,8 +305,11 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void updateSearchLoading() {
+        boolean z = true;
         if (this.wasLoading != (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0)) {
-            boolean z = this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0;
+            if (!this.searchHelper.isSearchInProgress() && !this.scheduledLoading && this.foundBots.size() <= 0) {
+                z = false;
+            }
             this.wasLoading = z;
             ViewPropertyAnimator duration = this.emptyViewText.animate().alpha(z ? 0.0f : 1.0f).translationY(z ? -AndroidUtilities.dp(8.0f) : 0.0f).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -521,18 +524,19 @@ public class ChatbotsActivity extends BaseFragment {
         if (tLRPC$TL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tLRPC$TL_error);
-        } else {
-            if (tLObject instanceof TLRPC$TL_boolFalse) {
-                this.doneButtonDrawable.animateToProgress(0.0f);
-                BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-                return;
-            }
-            iArr[0] = iArr[0] + 1;
-            if (iArr[0] == arrayList.size()) {
-                BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
-                getMessagesController().clearFullUsers();
-                lambda$onBackPressed$308();
-            }
+            return;
+        }
+        if (tLObject instanceof TLRPC$TL_boolFalse) {
+            this.doneButtonDrawable.animateToProgress(0.0f);
+            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+            return;
+        }
+        int i = iArr[0] + 1;
+        iArr[0] = i;
+        if (i == arrayList.size()) {
+            BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
+            getMessagesController().clearFullUsers();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -601,13 +605,13 @@ public class ChatbotsActivity extends BaseFragment {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString(R.string.BusinessBotUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     ChatbotsActivity.this.lambda$onBackPressed$7(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     ChatbotsActivity.this.lambda$onBackPressed$8(dialogInterface, i);

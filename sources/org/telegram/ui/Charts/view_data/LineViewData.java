@@ -46,22 +46,21 @@ public class LineViewData {
         this.resourcesProvider = resourcesProvider;
         this.line = line;
         paint2.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-        paint2.setStyle(Paint.Style.STROKE);
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
         if (!BaseChartView.USE_LINES) {
             paint2.setStrokeJoin(Paint.Join.ROUND);
         }
         paint2.setColor(line.color);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(style);
         paint.setColor(line.color);
         paint3.setStrokeWidth(AndroidUtilities.dpf2(10.0f));
-        paint3.setStyle(Paint.Style.STROKE);
+        paint3.setStyle(style);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(line.color);
-        long[] jArr = line.y;
-        this.linesPath = new float[z ? jArr.length * 8 : jArr.length << 2];
-        long[] jArr2 = line.y;
-        this.linesPathBottom = new float[z ? jArr2.length * 8 : jArr2.length << 2];
+        this.linesPath = new float[z ? line.y.length * 8 : line.y.length << 2];
+        this.linesPathBottom = new float[z ? line.y.length * 8 : line.y.length << 2];
     }
 
     public void updateColors() {
@@ -69,7 +68,7 @@ public class LineViewData {
         if (i >= 0 && Theme.hasThemeKey(i)) {
             this.lineColor = Theme.getColor(this.line.colorKey, this.resourcesProvider);
         } else {
-            this.lineColor = (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) > 0.5d ? 1 : (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) == 0.5d ? 0 : -1)) < 0 ? this.line.colorDark : this.line.color;
+            this.lineColor = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider)) < 0.5d ? this.line.colorDark : this.line.color;
         }
         this.paint.setColor(this.lineColor);
         this.bottomLinePaint.setColor(this.lineColor);

@@ -26,14 +26,13 @@ import org.telegram.ui.Stories.UserListPoller;
 public class UserListPoller {
     private static UserListPoller[] istances = new UserListPoller[4];
     final int currentAccount;
-    Runnable requestCollectedRunnables;
     LongSparseLongArray userPollLastTime = new LongSparseLongArray();
     ArrayList<Long> dialogIds = new ArrayList<>();
     ArrayList<Long> collectedDialogIds = new ArrayList<>();
+    ArrayList<Integer> runningRequests = new ArrayList<>();
+    Runnable requestCollectedRunnables = new AnonymousClass1();
 
     private UserListPoller(int i) {
-        new ArrayList();
-        this.requestCollectedRunnables = new AnonymousClass1();
         this.currentAccount = i;
     }
 

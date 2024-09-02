@@ -14,6 +14,7 @@ public class EntitiesContainerView extends FrameLayout {
     private EntitiesContainerViewDelegate delegate;
     public boolean drawForThumb;
     private boolean hasTransformed;
+    private float previousScale;
     private float px;
     private float py;
 
@@ -25,6 +26,7 @@ public class EntitiesContainerView extends FrameLayout {
 
     public EntitiesContainerView(Context context, EntitiesContainerViewDelegate entitiesContainerViewDelegate) {
         super(context);
+        this.previousScale = 1.0f;
         this.delegate = entitiesContainerViewDelegate;
     }
 
@@ -87,7 +89,7 @@ public class EntitiesContainerView extends FrameLayout {
     protected void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
         if (view instanceof TextPaintView) {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-            view.measure(FrameLayout.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
+            view.measure(ViewGroup.getChildMeasureSpec(i, getPaddingLeft() + getPaddingRight() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin + i2, marginLayoutParams.width), View.MeasureSpec.makeMeasureSpec(0, 0));
         } else {
             super.measureChildWithMargins(view, i, i2, i3, i4);
         }

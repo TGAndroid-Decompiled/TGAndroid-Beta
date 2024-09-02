@@ -36,23 +36,25 @@ public class DialogRadioCell extends FrameLayout {
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        TextView textView3 = this.textView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 23.0f : 61.0f, 0.0f, z2 ? 61.0f : 23.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
+        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 23.0f : 61.0f, 0.0f, z2 ? 61.0f : 23.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
         if (z) {
-            textView3.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2));
+            textView4.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2));
         } else {
-            textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
+            textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
         }
         this.valueTextView.setTextSize(1, 16.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.valueTextView.setEllipsize(truncateAt);
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         this.valueTextView.setVisibility(8);
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 23.0f, 0.0f, 23.0f, 0.0f));

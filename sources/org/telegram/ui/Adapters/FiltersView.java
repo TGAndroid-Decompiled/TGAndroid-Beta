@@ -129,7 +129,7 @@ public class FiltersView extends RecyclerListView {
         linearLayoutManager.setOrientation(0);
         setLayoutManager(this.layoutManager);
         setAdapter(new Adapter());
-        addItemDecoration(new RecyclerView.ItemDecoration(this) {
+        addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                 super.getItemOffsets(rect, view, recyclerView, state);
@@ -143,7 +143,9 @@ public class FiltersView extends RecyclerListView {
                 }
             }
         });
-        setItemAnimator(new DefaultItemAnimator(this) {
+        setItemAnimator(new DefaultItemAnimator() {
+            private final float scaleFrom = 0.0f;
+
             @Override
             protected long getAddAnimationDelay(long j, long j2, long j3) {
                 return 0L;
@@ -255,7 +257,7 @@ public class FiltersView extends RecyclerListView {
                 if (obj instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User = (TLRPC$User) obj;
                     if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == tLRPC$User.id) {
-                        formatName = LocaleController.getString("SavedMessages", R.string.SavedMessages);
+                        formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name, 10);
                     }
@@ -305,7 +307,7 @@ public class FiltersView extends RecyclerListView {
             return;
         }
         int i = R.string.SearchTipToday;
-        if (LocaleController.getString("SearchTipToday", i).toLowerCase().startsWith(trim) || "today".startsWith(trim)) {
+        if (LocaleController.getString(i).toLowerCase().startsWith(trim) || "today".startsWith(trim)) {
             Calendar calendar = Calendar.getInstance();
             int i2 = calendar.get(1);
             int i3 = calendar.get(2);
@@ -313,11 +315,11 @@ public class FiltersView extends RecyclerListView {
             calendar.set(i2, i3, i4, 0, 0, 0);
             long timeInMillis = calendar.getTimeInMillis();
             calendar.set(i2, i3, i4 + 1, 0, 0, 0);
-            arrayList.add(new DateData(LocaleController.getString("SearchTipToday", i), timeInMillis, calendar.getTimeInMillis() - 1));
+            arrayList.add(new DateData(LocaleController.getString(i), timeInMillis, calendar.getTimeInMillis() - 1));
             return;
         }
         int i5 = R.string.SearchTipYesterday;
-        if (LocaleController.getString("SearchTipYesterday", i5).toLowerCase().startsWith(trim) || "yesterday".startsWith(trim)) {
+        if (LocaleController.getString(i5).toLowerCase().startsWith(trim) || "yesterday".startsWith(trim)) {
             Calendar calendar2 = Calendar.getInstance();
             int i6 = calendar2.get(1);
             int i7 = calendar2.get(2);
@@ -325,7 +327,7 @@ public class FiltersView extends RecyclerListView {
             calendar2.set(i6, i7, i8, 0, 0, 0);
             long timeInMillis2 = calendar2.getTimeInMillis() - 86400000;
             calendar2.set(i6, i7, i8 + 1, 0, 0, 0);
-            arrayList.add(new DateData(LocaleController.getString("SearchTipYesterday", i5), timeInMillis2, calendar2.getTimeInMillis() - 86400001));
+            arrayList.add(new DateData(LocaleController.getString(i5), timeInMillis2, calendar2.getTimeInMillis() - 86400001));
             return;
         }
         int dayOfWeek = getDayOfWeek(trim);
@@ -489,7 +491,7 @@ public class FiltersView extends RecyclerListView {
             int i3 = 1;
             int i4 = Calendar.getInstance().get(1);
             long timeInMillis = Calendar.getInstance().getTimeInMillis();
-            GregorianCalendar gregorianCalendar = (GregorianCalendar) GregorianCalendar.getInstance();
+            GregorianCalendar gregorianCalendar = (GregorianCalendar) Calendar.getInstance();
             int i5 = i4;
             while (i5 >= 2013) {
                 if (i2 != i3 || i != 28 || gregorianCalendar.isLeapYear(i5)) {
@@ -540,7 +542,7 @@ public class FiltersView extends RecyclerListView {
     }
 
     public static int getMonth(String str) {
-        String[] strArr = {LocaleController.getString("January", R.string.January).toLowerCase(), LocaleController.getString("February", R.string.February).toLowerCase(), LocaleController.getString("March", R.string.March).toLowerCase(), LocaleController.getString("April", R.string.April).toLowerCase(), LocaleController.getString("May", R.string.May).toLowerCase(), LocaleController.getString("June", R.string.June).toLowerCase(), LocaleController.getString("July", R.string.July).toLowerCase(), LocaleController.getString("August", R.string.August).toLowerCase(), LocaleController.getString("September", R.string.September).toLowerCase(), LocaleController.getString("October", R.string.October).toLowerCase(), LocaleController.getString("November", R.string.November).toLowerCase(), LocaleController.getString("December", R.string.December).toLowerCase()};
+        String[] strArr = {LocaleController.getString(R.string.January).toLowerCase(), LocaleController.getString(R.string.February).toLowerCase(), LocaleController.getString(R.string.March).toLowerCase(), LocaleController.getString(R.string.April).toLowerCase(), LocaleController.getString(R.string.May).toLowerCase(), LocaleController.getString(R.string.June).toLowerCase(), LocaleController.getString(R.string.July).toLowerCase(), LocaleController.getString(R.string.August).toLowerCase(), LocaleController.getString(R.string.September).toLowerCase(), LocaleController.getString(R.string.October).toLowerCase(), LocaleController.getString(R.string.November).toLowerCase(), LocaleController.getString(R.string.December).toLowerCase()};
         String[] strArr2 = new String[12];
         Calendar calendar = Calendar.getInstance();
         for (int i = 1; i <= 12; i++) {
@@ -596,7 +598,7 @@ public class FiltersView extends RecyclerListView {
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            ViewHolder viewHolder = new ViewHolder(FiltersView.this, new FilterView(viewGroup.getContext(), ((RecyclerListView) FiltersView.this).resourcesProvider));
+            ViewHolder viewHolder = new ViewHolder(new FilterView(viewGroup.getContext(), ((RecyclerListView) FiltersView.this).resourcesProvider));
             RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(-2, AndroidUtilities.dp(32.0f));
             ((ViewGroup.MarginLayoutParams) layoutParams).topMargin = AndroidUtilities.dp(6.0f);
             viewHolder.itemView.setLayoutParams(layoutParams);
@@ -700,7 +702,7 @@ public class FiltersView extends RecyclerListView {
     public class ViewHolder extends RecyclerView.ViewHolder {
         FilterView filterView;
 
-        public ViewHolder(FiltersView filtersView, FilterView filterView) {
+        public ViewHolder(FilterView filterView) {
             super(filterView);
             this.filterView = filterView;
         }

@@ -56,6 +56,7 @@ public class GroupMedia {
     private int blurBitmapWidth;
     private final ButtonBounce bounce;
     private Text buttonText;
+    private long buttonTextPrice;
     public final ChatMessageCell cell;
     public int height;
     public boolean hidden;
@@ -160,16 +161,20 @@ public class GroupMedia {
             this.width = (int) ((groupedMessages.width / 1000.0f) * this.maxWidth);
             this.height = (int) (groupedMessages.height * groupedMessages.maxSizeHeight);
             if (this.hidden) {
-                Text text = new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContent", (int) tLRPC$TL_messageMediaPaidMedia.stars_amount), 0.7f), 14.0f, AndroidUtilities.bold());
+                long j = tLRPC$TL_messageMediaPaidMedia.stars_amount;
+                this.buttonTextPrice = j;
+                Text text = new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContent", (int) j), 0.7f), 14.0f, AndroidUtilities.bold());
                 this.buttonText = text;
                 if (text.getCurrentWidth() > this.width - AndroidUtilities.dp(30.0f)) {
-                    this.buttonText = new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContentShort", (int) tLRPC$TL_messageMediaPaidMedia.stars_amount), 0.7f), 14.0f, AndroidUtilities.bold());
+                    long j2 = tLRPC$TL_messageMediaPaidMedia.stars_amount;
+                    this.buttonTextPrice = j2;
+                    this.buttonText = new Text(StarsIntroActivity.replaceStarsWithPlain(LocaleController.formatPluralStringComma("UnlockPaidContentShort", (int) j2), 0.7f), 14.0f, AndroidUtilities.bold());
                 }
             }
             if (this.priceText == null || this.priceTextPrice != tLRPC$TL_messageMediaPaidMedia.stars_amount) {
-                long j = tLRPC$TL_messageMediaPaidMedia.stars_amount;
-                this.priceTextPrice = j;
-                this.priceText = new Text(StarsIntroActivity.replaceStars(LocaleController.formatPluralStringComma("PaidMediaPrice", (int) j), 0.9f), 12.0f, AndroidUtilities.bold());
+                long j3 = tLRPC$TL_messageMediaPaidMedia.stars_amount;
+                this.priceTextPrice = j3;
+                this.priceText = new Text(StarsIntroActivity.replaceStars(LocaleController.formatPluralStringComma("PaidMediaPrice", (int) j3), 0.9f), 12.0f, AndroidUtilities.bold());
             }
         }
     }
@@ -252,20 +257,20 @@ public class GroupMedia {
             float dp = AndroidUtilities.dp(28.0f) + this.buttonText.getCurrentWidth();
             float dp2 = AndroidUtilities.dp(32.0f);
             RectF rectF = this.clipRect;
-            int i = this.x;
-            int i2 = this.width;
-            int i3 = this.y;
-            int i4 = this.height;
-            rectF.set(i + ((i2 - dp) / 2.0f), i3 + ((i4 - dp2) / 2.0f), i + ((i2 + dp) / 2.0f), i3 + ((i4 + dp2) / 2.0f));
+            float f2 = this.x;
+            float f3 = this.width;
+            float f4 = this.y;
+            float f5 = this.height;
+            rectF.set(((f3 - dp) / 2.0f) + f2, ((f5 - dp2) / 2.0f) + f4, f2 + ((f3 + dp) / 2.0f), f4 + ((f5 + dp2) / 2.0f));
             this.clipPath.rewind();
-            float f2 = dp2 / 2.0f;
-            this.clipPath.addRoundRect(this.clipRect, f2, f2, Path.Direction.CW);
+            float f6 = dp2 / 2.0f;
+            this.clipPath.addRoundRect(this.clipRect, f6, f6, Path.Direction.CW);
             canvas.save();
             canvas.scale(scale, scale, this.x + (this.width / 2.0f), this.y + (this.height / 2.0f));
             canvas.save();
             canvas.clipPath(this.clipPath);
             drawBlurred(canvas, f);
-            canvas.drawColor(Theme.multAlpha(805306368, f));
+            canvas.drawColor(Theme.multAlpha(1342177280, f));
             this.buttonText.draw(canvas, ((this.x + (this.width / 2.0f)) - (dp / 2.0f)) + AndroidUtilities.dp(14.0f), (this.height / 2.0f) + this.y, -1, f);
             canvas.restore();
             if (isLoading()) {
@@ -290,7 +295,7 @@ public class GroupMedia {
             LoadingDrawable loadingDrawable4 = this.loadingDrawable;
             if (loadingDrawable4 != null) {
                 loadingDrawable4.setBounds(this.clipRect);
-                this.loadingDrawable.setRadiiDp(f2);
+                this.loadingDrawable.setRadiiDp(f6);
                 this.loadingDrawable.setAlpha((int) (255.0f * f));
                 this.loadingDrawable.draw(canvas);
             }
@@ -304,17 +309,16 @@ public class GroupMedia {
         float dp4 = AndroidUtilities.dp(17.0f);
         float dp5 = AndroidUtilities.dp(5.0f);
         RectF rectF2 = this.clipRect;
-        int i5 = this.x;
-        int i6 = this.width;
-        int i7 = this.y;
-        rectF2.set(((i5 + i6) - dp3) - dp5, i7 + dp5, (i5 + i6) - dp5, i7 + dp5 + dp4);
+        float f7 = this.x + this.width;
+        float f8 = this.y + dp5;
+        rectF2.set((f7 - dp3) - dp5, f8, f7 - dp5, f8 + dp4);
         this.clipPath.rewind();
-        float f3 = dp4 / 2.0f;
-        this.clipPath.addRoundRect(this.clipRect, f3, f3, Path.Direction.CW);
+        float f9 = dp4 / 2.0f;
+        this.clipPath.addRoundRect(this.clipRect, f9, f9, Path.Direction.CW);
         canvas.save();
         canvas.clipPath(this.clipPath);
         canvas.drawColor(Theme.multAlpha(1073741824, timeAlpha));
-        this.priceText.draw(canvas, (((this.x + this.width) - dp3) - dp5) + AndroidUtilities.dp(5.66f), this.y + dp5 + f3, -1, timeAlpha);
+        this.priceText.draw(canvas, (((this.x + this.width) - dp3) - dp5) + AndroidUtilities.dp(5.66f), this.y + dp5 + f9, -1, timeAlpha);
         canvas.restore();
     }
 
@@ -359,11 +363,10 @@ public class GroupMedia {
         }
         this.blurBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.blurBitmap);
-        float f = max;
-        int i7 = this.width;
-        canvas.scale(f / i7, f / i7);
-        for (int i8 = 0; i8 < this.holders.size(); i8++) {
-            MediaHolder mediaHolder2 = this.holders.get(i8);
+        float f = max / this.width;
+        canvas.scale(f, f);
+        for (int i7 = 0; i7 < this.holders.size(); i7++) {
+            MediaHolder mediaHolder2 = this.holders.get(i7);
             mediaHolder2.imageReceiver.setImageCoords(mediaHolder2.l, mediaHolder2.t, mediaHolder2.r - r4, mediaHolder2.b - r6);
             mediaHolder2.imageReceiver.draw(canvas);
         }
@@ -395,10 +398,10 @@ public class GroupMedia {
         float f = this.animatedHidden.set(this.hidden);
         MessageObject messageObject = this.cell.getMessageObject();
         this.clipPath2.rewind();
-        float f2 = Float.MIN_VALUE;
-        float f3 = Float.MIN_VALUE;
-        float f4 = Float.MAX_VALUE;
-        float f5 = Float.MAX_VALUE;
+        float f2 = Float.MAX_VALUE;
+        float f3 = Float.MAX_VALUE;
+        float f4 = Float.MIN_VALUE;
+        float f5 = Float.MIN_VALUE;
         int i = 0;
         while (i < this.holders.size()) {
             MediaHolder mediaHolder = this.holders.get(i);
@@ -413,10 +416,10 @@ public class GroupMedia {
                 mediaHolder.setTime(Math.round(((float) mediaHolder.imageReceiver.getAnimation().currentTime) / 1000.0f));
             }
             if (f > 0.0f) {
-                f4 = Math.min(this.x + mediaHolder.l, f4);
-                f5 = Math.min(this.y + mediaHolder.t, f5);
-                f2 = Math.max(this.x + mediaHolder.r, f2);
-                f3 = Math.max(this.y + mediaHolder.b, f3);
+                f3 = Math.min(this.x + mediaHolder.l, f3);
+                f2 = Math.min(this.y + mediaHolder.t, f2);
+                f5 = Math.max(this.x + mediaHolder.r, f5);
+                f4 = Math.max(this.y + mediaHolder.b, f4);
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f6 = mediaHolder.l + this.x;
                 int i6 = this.y;
@@ -448,9 +451,9 @@ public class GroupMedia {
         if (f > 0.0f && z) {
             canvas.save();
             canvas.clipPath(this.clipPath2);
-            canvas.translate(f4, f5);
-            int i7 = (int) (f2 - f4);
-            int i8 = (int) (f3 - f5);
+            canvas.translate(f3, f2);
+            int i7 = (int) (f5 - f3);
+            int i8 = (int) (f4 - f2);
             canvas.saveLayerAlpha(0.0f, 0.0f, i7, i8, (int) (255.0f * f), 31);
             SpoilerEffect2 spoilerEffect2 = this.spoilerEffect;
             ChatMessageCell chatMessageCell = this.cell;
@@ -465,21 +468,18 @@ public class GroupMedia {
                 float dp = AndroidUtilities.dp(11.4f) + mediaHolder2.durationText.getCurrentWidth();
                 float dp2 = AndroidUtilities.dp(17.0f);
                 float dp3 = AndroidUtilities.dp(5.0f);
-                RectF rectF2 = this.clipRect;
-                int i10 = this.x;
-                int i11 = mediaHolder2.l;
-                int i12 = this.y;
-                int i13 = mediaHolder2.t;
-                rectF2.set(i10 + i11 + dp3, i12 + i13 + dp3, i10 + i11 + dp3 + dp, i12 + i13 + dp3 + dp2);
+                float f8 = this.x + mediaHolder2.l + dp3;
+                float f9 = this.y + mediaHolder2.t + dp3;
+                this.clipRect.set(f8, f9, dp + f8, f9 + dp2);
                 if (this.priceText == null || this.clipRect.right <= ((this.x + this.width) - (AndroidUtilities.dp(11.32f) + this.priceText.getCurrentWidth())) - dp3 || this.clipRect.top > this.y + dp3) {
                     this.clipPath.rewind();
-                    float f8 = dp2 / 2.0f;
-                    this.clipPath.addRoundRect(this.clipRect, f8, f8, Path.Direction.CW);
+                    float f10 = dp2 / 2.0f;
+                    this.clipPath.addRoundRect(this.clipRect, f10, f10, Path.Direction.CW);
                     canvas.save();
                     canvas.clipPath(this.clipPath);
                     drawBlurred(canvas, f);
                     canvas.drawColor(Theme.multAlpha(1073741824, 1.0f));
-                    mediaHolder2.durationText.draw(canvas, this.x + mediaHolder2.l + dp3 + AndroidUtilities.dp(5.66f), this.y + mediaHolder2.t + dp3 + f8, -1, 1.0f);
+                    mediaHolder2.durationText.draw(canvas, this.x + mediaHolder2.l + dp3 + AndroidUtilities.dp(5.66f), this.y + mediaHolder2.t + dp3 + f10, -1, 1.0f);
                     canvas.restore();
                 }
             }
@@ -506,10 +506,12 @@ public class GroupMedia {
         public TLRPC$MessageExtendedMedia media;
         public int r;
         public final RadialProgress2 radialProgress;
-        public final float[] radii = new float[8];
         public int t;
         public boolean video;
         private final int w;
+        public final float[] radii = new float[8];
+        public final RectF clipRect = new RectF();
+        public final Path clipPath = new Path();
 
         @Override
         public void onFailedDownload(String str, boolean z) {
@@ -537,8 +539,6 @@ public class GroupMedia {
         }
 
         public MediaHolder(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, boolean z, int i, int i2) {
-            new RectF();
-            new Path();
             this.icon = 4;
             this.duration = 0;
             this.durationValue = 0;
@@ -712,6 +712,7 @@ public class GroupMedia {
     }
 
     public static class GroupedMessages {
+        public boolean hasSibling;
         float height;
         int maxX;
         int maxY;
@@ -721,12 +722,10 @@ public class GroupMedia {
         public HashMap<TLRPC$MessageExtendedMedia, MessageObject.GroupedMessagePosition> positions = new HashMap<>();
         public int maxSizeWidth = 800;
         public float maxSizeHeight = 814.0f;
+        public final TransitionParams transitionParams = new TransitionParams();
 
         public static class TransitionParams {
-        }
-
-        public GroupedMessages() {
-            new TransitionParams();
+            public float captionEnterProgress = 1.0f;
         }
 
         public MessageObject.GroupedMessagePosition getPosition(TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia) {
@@ -782,8 +781,9 @@ public class GroupMedia {
             }
             int i4 = iArr[0];
             for (int i5 = 1; i5 < 10; i5++) {
-                if (i4 < iArr[i5]) {
-                    i4 = iArr[i5];
+                int i6 = iArr[i5];
+                if (i4 < i6) {
+                    i4 = i6;
                 }
             }
             return i4;
@@ -802,8 +802,9 @@ public class GroupMedia {
             }
             float f2 = fArr[0];
             for (int i3 = 1; i3 < 10; i3++) {
-                if (f2 < fArr[i3]) {
-                    f2 = fArr[i3];
+                float f3 = fArr[i3];
+                if (f2 < f3) {
+                    f2 = f3;
                 }
             }
             return f2;
@@ -825,8 +826,9 @@ public class GroupMedia {
                 }
             }
             for (int i6 = 0; i6 < i4; i6++) {
-                if (f < fArr[i6]) {
-                    f = fArr[i6];
+                float f2 = fArr[i6];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;
@@ -847,8 +849,9 @@ public class GroupMedia {
                 }
             }
             for (int i5 = 0; i5 < i2; i5++) {
-                if (f < fArr[i5]) {
-                    f = fArr[i5];
+                float f2 = fArr[i5];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;

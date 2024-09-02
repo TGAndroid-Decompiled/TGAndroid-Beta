@@ -21,10 +21,15 @@ import org.telegram.ui.Cells.TextSelectionHelper;
 
 public class TableLayout extends View {
     public static final Alignment BASELINE;
+    public static final Alignment BOTTOM;
+    public static final Alignment CENTER;
     public static final Alignment END;
     public static final Alignment FILL;
     private static final Alignment LEADING;
+    public static final Alignment LEFT;
+    public static final Alignment RIGHT;
     public static final Alignment START;
+    public static final Alignment TOP;
     private static final Alignment TRAILING;
     static final Alignment UNDEFINED_ALIGNMENT = new Alignment() {
         @Override
@@ -47,6 +52,7 @@ public class TableLayout extends View {
     private boolean isStriped;
     private int itemPaddingLeft;
     private int itemPaddingTop;
+    private Path linePath;
     private int mAlignmentMode;
     private int mDefaultGap;
     private final Axis mHorizontalAxis;
@@ -262,83 +268,73 @@ public class TableLayout extends View {
                     if (f8 == TableLayout.this.getMeasuredHeight()) {
                         f8 -= dp;
                     }
-                    int i4 = this.x;
-                    canvas.drawLine(i4 + strokeWidth, f9, i4 + strokeWidth, f8, linePaint);
+                    float f10 = this.x + strokeWidth;
+                    canvas.drawLine(f10, f9, f10, f8, linePaint);
                 } else {
-                    canvas.drawLine(i2 - strokeWidth2, this.y, i2 - strokeWidth2, r9 + this.measuredHeight, linePaint2);
+                    float f11 = i2 - strokeWidth2;
+                    canvas.drawLine(f11, this.y, f11, r7 + this.measuredHeight, linePaint2);
                 }
-                int i5 = this.y;
-                if (i5 == 0) {
-                    int i6 = this.x;
-                    float f10 = i6;
-                    float f11 = this.measuredWidth + i6;
-                    if (i6 == 0) {
-                        f10 += dp;
+                int i4 = this.y;
+                if (i4 == 0) {
+                    int i5 = this.x;
+                    float f12 = i5;
+                    float f13 = this.measuredWidth + i5;
+                    if (i5 == 0) {
+                        f12 += dp;
                     }
-                    float f12 = f10;
-                    if (f11 == TableLayout.this.getMeasuredWidth()) {
-                        f11 -= dp;
+                    float f14 = f12;
+                    if (f13 == TableLayout.this.getMeasuredWidth()) {
+                        f13 -= dp;
                     }
-                    int i7 = this.y;
-                    canvas.drawLine(f12, i7 + strokeWidth, f11, i7 + strokeWidth, linePaint);
+                    float f15 = this.y + strokeWidth;
+                    canvas.drawLine(f14, f15, f13, f15, linePaint);
                 } else {
-                    canvas.drawLine(this.x, i5 - strokeWidth2, r8 + this.measuredWidth, i5 - strokeWidth2, linePaint2);
+                    float f16 = i4 - strokeWidth2;
+                    canvas.drawLine(this.x, f16, r8 + this.measuredWidth, f16, linePaint2);
                 }
-                float f13 = (z3 && (i = this.y) == 0) ? i + dp : this.y - strokeWidth;
+                float f17 = (z3 && (i = this.y) == 0) ? i + dp : this.y - strokeWidth;
                 if (z3 && z4) {
                     f = (this.y + this.measuredHeight) - dp;
                 } else {
                     f = (this.y + this.measuredHeight) - strokeWidth;
                 }
-                float f14 = f;
-                int i8 = this.x;
-                int i9 = this.measuredWidth;
-                canvas.drawLine((i8 + i9) - strokeWidth, f13, (i8 + i9) - strokeWidth, f14, linePaint);
-                int i10 = this.x;
-                float f15 = (i10 == 0 && z4) ? i10 + dp : i10 - strokeWidth;
+                float f18 = (this.x + this.measuredWidth) - strokeWidth;
+                canvas.drawLine(f18, f17, f18, f, linePaint);
+                int i6 = this.x;
+                float f19 = (i6 == 0 && z4) ? i6 + dp : i6 - strokeWidth;
                 if (z3 && z4) {
-                    f2 = (i10 + this.measuredWidth) - dp;
+                    f2 = (i6 + this.measuredWidth) - dp;
                 } else {
-                    f2 = (i10 + this.measuredWidth) - strokeWidth;
+                    f2 = (i6 + this.measuredWidth) - strokeWidth;
                 }
-                float f16 = f2;
-                int i11 = this.y;
-                int i12 = this.measuredHeight;
-                canvas.drawLine(f15, (i11 + i12) - strokeWidth, f16, (i11 + i12) - strokeWidth, linePaint);
+                float f20 = (this.y + this.measuredHeight) - strokeWidth;
+                canvas.drawLine(f19, f20, f2, f20, linePaint);
                 if (this.x == 0 && this.y == 0) {
-                    RectF rectF = TableLayout.this.rect;
-                    int i13 = this.x;
-                    int i14 = this.y;
-                    float f17 = dp * 2;
-                    rectF.set(i13 + strokeWidth, i14 + strokeWidth, i13 + strokeWidth + f17, i14 + strokeWidth + f17);
+                    float f21 = this.x + strokeWidth;
+                    float f22 = this.y + strokeWidth;
+                    float f23 = dp * 2;
+                    TableLayout.this.rect.set(f21, f22, f21 + f23, f23 + f22);
                     canvas.drawArc(TableLayout.this.rect, -180.0f, 90.0f, false, linePaint);
                 }
                 if (z3 && this.y == 0) {
-                    RectF rectF2 = TableLayout.this.rect;
-                    int i15 = this.x;
-                    int i16 = this.measuredWidth;
-                    float f18 = dp * 2;
-                    int i17 = this.y;
-                    rectF2.set(((i15 + i16) - strokeWidth) - f18, i17 + strokeWidth, (i15 + i16) - strokeWidth, i17 + strokeWidth + f18);
+                    float f24 = (this.x + this.measuredWidth) - strokeWidth;
+                    float f25 = dp * 2;
+                    float f26 = this.y + strokeWidth;
+                    TableLayout.this.rect.set(f24 - f25, f26, f24, f25 + f26);
                     canvas.drawArc(TableLayout.this.rect, 0.0f, -90.0f, false, linePaint);
                 }
                 if (this.x == 0 && z4) {
-                    RectF rectF3 = TableLayout.this.rect;
-                    int i18 = this.x;
-                    int i19 = this.y;
-                    int i20 = this.measuredHeight;
-                    float f19 = dp * 2;
-                    rectF3.set(i18 + strokeWidth, ((i19 + i20) - strokeWidth) - f19, i18 + strokeWidth + f19, (i19 + i20) - strokeWidth);
+                    float f27 = this.x + strokeWidth;
+                    float f28 = (this.y + this.measuredHeight) - strokeWidth;
+                    float f29 = dp * 2;
+                    TableLayout.this.rect.set(f27, f28 - f29, f29 + f27, f28);
                     canvas.drawArc(TableLayout.this.rect, 180.0f, -90.0f, false, linePaint);
                 }
                 if (z3 && z4) {
-                    RectF rectF4 = TableLayout.this.rect;
-                    int i21 = this.x;
-                    int i22 = this.measuredWidth;
-                    float f20 = dp * 2;
-                    int i23 = this.y;
-                    int i24 = this.measuredHeight;
-                    rectF4.set(((i21 + i22) - strokeWidth) - f20, ((i23 + i24) - strokeWidth) - f20, (i21 + i22) - strokeWidth, (i23 + i24) - strokeWidth);
+                    float f30 = (this.x + this.measuredWidth) - strokeWidth;
+                    float f31 = dp * 2;
+                    float f32 = (this.y + this.measuredHeight) - strokeWidth;
+                    TableLayout.this.rect.set(f30 - f31, f32 - f31, f30, f32);
                     canvas.drawArc(TableLayout.this.rect, 0.0f, 90.0f, false, linePaint);
                 }
             }
@@ -371,14 +367,13 @@ public class TableLayout extends View {
         Child child = new Child(this.childrens.size());
         child.cell = tLRPC$TL_pageTableCell;
         LayoutParams layoutParams = new LayoutParams();
-        boolean z = false;
         int i5 = tLRPC$TL_pageTableCell.rowspan;
         if (i5 == 0) {
             i5 = 1;
         }
         Interval interval = new Interval(i2, i5 + i2);
         Alignment alignment = FILL;
-        layoutParams.rowSpec = new Spec(z, interval, alignment, 0.0f);
+        layoutParams.rowSpec = new Spec(false, interval, alignment, 0.0f);
         layoutParams.columnSpec = new Spec(false, new Interval(i, i4 + i), alignment, 1.0f);
         child.layoutParams = layoutParams;
         child.rowspan = i2;
@@ -430,7 +425,7 @@ public class TableLayout extends View {
         this.itemPaddingLeft = AndroidUtilities.dp(8.0f);
         this.cellsToFixHeight = new ArrayList<>();
         this.rowSpans = new ArrayList<>();
-        new Path();
+        this.linePath = new Path();
         this.backgroundPath = new Path();
         this.rect = new RectF();
         this.radii = new float[8];
@@ -538,7 +533,7 @@ public class TableLayout extends View {
         Spec spec = z ? layoutParams.columnSpec : layoutParams.rowSpec;
         Axis axis = z ? this.mHorizontalAxis : this.mVerticalAxis;
         Interval interval = spec.span;
-        if (!((z && this.isRtl) != z2) ? interval.max == axis.getCount() : interval.min == 0) {
+        if ((z && this.isRtl) == z2 ? interval.max == axis.getCount() : interval.min == 0) {
             z3 = true;
         }
         return getDefaultMargin(child, z3, z, z2);
@@ -562,8 +557,8 @@ public class TableLayout extends View {
         Axis axis = z ? this.mHorizontalAxis : this.mVerticalAxis;
         int[] leadingMargins = z2 ? axis.getLeadingMargins() : axis.getTrailingMargins();
         LayoutParams layoutParams = child.getLayoutParams();
-        Interval interval = (z ? layoutParams.columnSpec : layoutParams.rowSpec).span;
-        return leadingMargins[z2 ? interval.min : interval.max];
+        Spec spec = z ? layoutParams.columnSpec : layoutParams.rowSpec;
+        return leadingMargins[z2 ? spec.span.min : spec.span.max];
     }
 
     private int getTotalMargin(Child child, boolean z) {
@@ -745,16 +740,16 @@ public class TableLayout extends View {
         int measure;
         int i3;
         boolean z;
-        boolean z2;
+        int i4;
         consistencyCheck();
         invalidateValues();
-        boolean z3 = false;
+        boolean z2 = false;
         this.colCount = 0;
         int childCount = getChildCount();
-        for (int i4 = 0; i4 < childCount; i4++) {
-            this.colCount = Math.max(this.colCount, getChildAt(i4).layoutParams.columnSpec.span.max);
+        for (int i5 = 0; i5 < childCount; i5++) {
+            this.colCount = Math.max(this.colCount, getChildAt(i5).layoutParams.columnSpec.span.max);
         }
-        boolean z4 = true;
+        boolean z3 = true;
         measureChildrenWithMargins(i, i2, true);
         if (this.mOrientation == 0) {
             measure = this.mHorizontalAxis.getMeasure(i);
@@ -774,70 +769,63 @@ public class TableLayout extends View {
         int[] locations = this.mHorizontalAxis.getLocations();
         int[] locations2 = this.mVerticalAxis.getLocations();
         this.cellsToFixHeight.clear();
-        int i5 = locations[locations.length - 1];
+        int i6 = locations[locations.length - 1];
         int childCount2 = getChildCount();
-        int i6 = 0;
-        while (i6 < childCount2) {
-            Child childAt = getChildAt(i6);
+        int i7 = 0;
+        while (i7 < childCount2) {
+            Child childAt = getChildAt(i7);
             LayoutParams layoutParams = childAt.getLayoutParams();
             Spec spec = layoutParams.columnSpec;
             Spec spec2 = layoutParams.rowSpec;
             Interval interval = spec.span;
             Interval interval2 = spec2.span;
-            int i7 = locations[interval.min];
-            int i8 = locations2[interval2.min];
-            int i9 = locations[interval.max] - i7;
-            int i10 = locations2[interval2.max] - i8;
-            int measurement = getMeasurement(childAt, z4);
-            int measurement2 = getMeasurement(childAt, z3);
-            Alignment absoluteAlignment = spec.getAbsoluteAlignment(z4);
-            Alignment absoluteAlignment2 = spec2.getAbsoluteAlignment(z3);
-            Bounds value = this.mHorizontalAxis.getGroupBounds().getValue(i6);
-            Bounds value2 = this.mVerticalAxis.getGroupBounds().getValue(i6);
-            int gravityOffset = absoluteAlignment.getGravityOffset(childAt, i9 - value.size(z4));
-            int gravityOffset2 = absoluteAlignment2.getGravityOffset(childAt, i10 - value2.size(z4));
-            int margin = getMargin(childAt, z4, z4);
-            int margin2 = getMargin(childAt, false, z4);
-            int margin3 = getMargin(childAt, z4, false);
-            int i11 = margin + margin3;
+            int i8 = locations[interval.min];
+            int i9 = locations2[interval2.min];
+            int i10 = locations[interval.max] - i8;
+            int i11 = locations2[interval2.max] - i9;
+            int measurement = getMeasurement(childAt, z3);
+            int measurement2 = getMeasurement(childAt, z2);
+            Alignment absoluteAlignment = spec.getAbsoluteAlignment(z3);
+            Alignment absoluteAlignment2 = spec2.getAbsoluteAlignment(z2);
+            Bounds value = this.mHorizontalAxis.getGroupBounds().getValue(i7);
+            Bounds value2 = this.mVerticalAxis.getGroupBounds().getValue(i7);
+            int gravityOffset = absoluteAlignment.getGravityOffset(childAt, i10 - value.size(z3));
+            int gravityOffset2 = absoluteAlignment2.getGravityOffset(childAt, i11 - value2.size(z3));
+            int margin = getMargin(childAt, z3, z3);
+            int margin2 = getMargin(childAt, false, z3);
+            int margin3 = getMargin(childAt, z3, false);
+            int i12 = margin + margin3;
             int margin4 = margin2 + getMargin(childAt, false, false);
-            int i12 = max2;
-            int offset = value.getOffset(this, childAt, absoluteAlignment, measurement + i11, true);
+            int i13 = max2;
+            int offset = value.getOffset(this, childAt, absoluteAlignment, measurement + i12, true);
             int offset2 = value2.getOffset(this, childAt, absoluteAlignment2, measurement2 + margin4, false);
-            int sizeInCell = absoluteAlignment.getSizeInCell(childAt, measurement, i9 - i11);
-            int sizeInCell2 = absoluteAlignment2.getSizeInCell(childAt, measurement2, i10 - margin4);
-            int i13 = i7 + gravityOffset + offset;
-            int i14 = !this.isRtl ? margin + i13 : ((i5 - sizeInCell) - margin3) - i13;
-            int i15 = i8 + gravityOffset2 + offset2 + margin2;
+            int sizeInCell = absoluteAlignment.getSizeInCell(childAt, measurement, i10 - i12);
+            int sizeInCell2 = absoluteAlignment2.getSizeInCell(childAt, measurement2, i11 - margin4);
+            int i14 = i8 + gravityOffset + offset;
+            int i15 = !this.isRtl ? margin + i14 : ((i6 - sizeInCell) - margin3) - i14;
+            int i16 = i9 + gravityOffset2 + offset2 + margin2;
             if (childAt.cell != null) {
                 if (sizeInCell != childAt.getMeasuredWidth() || sizeInCell2 != childAt.getMeasuredHeight()) {
                     childAt.measure(sizeInCell, sizeInCell2, false);
                 }
                 if (childAt.fixedHeight != 0 && childAt.fixedHeight != sizeInCell2 && childAt.layoutParams.rowSpec.span.max - childAt.layoutParams.rowSpec.span.min <= 1) {
                     int size = this.rowSpans.size();
-                    int i16 = 0;
                     while (true) {
-                        if (i16 >= size) {
-                            z2 = false;
+                        if (i4 < size) {
+                            Point point = this.rowSpans.get(i4);
+                            i4 = (point.x > ((float) childAt.layoutParams.rowSpec.span.min) || point.y <= ((float) childAt.layoutParams.rowSpec.span.min)) ? i4 + 1 : 0;
+                        } else {
+                            this.cellsToFixHeight.add(childAt);
                             break;
                         }
-                        Point point = this.rowSpans.get(i16);
-                        if (point.x <= childAt.layoutParams.rowSpec.span.min && point.y > childAt.layoutParams.rowSpec.span.min) {
-                            z2 = true;
-                            break;
-                        }
-                        i16++;
-                    }
-                    if (!z2) {
-                        this.cellsToFixHeight.add(childAt);
                     }
                 }
             }
-            childAt.layout(i14, i15, sizeInCell + i14, sizeInCell2 + i15);
-            i6++;
-            max2 = i12;
-            z3 = false;
-            z4 = true;
+            childAt.layout(i15, i16, sizeInCell + i15, sizeInCell2 + i16);
+            i7++;
+            max2 = i13;
+            z2 = false;
+            z3 = true;
         }
         int size2 = this.cellsToFixHeight.size();
         int i17 = 0;
@@ -913,7 +901,7 @@ public class TableLayout extends View {
             Child childAt2 = getChildAt(i25);
             this.delegate.onLayoutChild(childAt2.textLayout, childAt2.getTextX(), childAt2.getTextY());
         }
-        setMeasuredDimension(i5, max2);
+        setMeasuredDimension(i6, max2);
     }
 
     private int getMeasurement(Child child, boolean z) {
@@ -1153,8 +1141,9 @@ public class TableLayout extends View {
 
                 {
                     this.val$arcs = arcArr;
-                    this.result = new Arc[arcArr.length];
-                    this.cursor = r0.length - 1;
+                    int length = arcArr.length;
+                    this.result = new Arc[length];
+                    this.cursor = length - 1;
                     this.arcsByVertex = Axis.this.groupArcsByFirstVertex(arcArr);
                     this.visited = new int[Axis.this.getCount() + 1];
                 }
@@ -1512,13 +1501,14 @@ public class TableLayout extends View {
 
     public static class LayoutParams extends ViewGroup.MarginLayoutParams {
         private static final Interval DEFAULT_SPAN;
+        private static final int DEFAULT_SPAN_SIZE;
         public Spec columnSpec;
         public Spec rowSpec;
 
         static {
             Interval interval = new Interval(Integer.MIN_VALUE, -2147483647);
             DEFAULT_SPAN = interval;
-            interval.size();
+            DEFAULT_SPAN_SIZE = interval.size();
         }
 
         private LayoutParams(int i, int i2, int i3, int i4, int i5, int i6, Spec spec, Spec spec2) {
@@ -1551,7 +1541,7 @@ public class TableLayout extends View {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || LayoutParams.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             LayoutParams layoutParams = (LayoutParams) obj;
@@ -1773,7 +1763,7 @@ public class TableLayout extends View {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Spec.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Spec spec = (Spec) obj;
@@ -1843,11 +1833,13 @@ public class TableLayout extends View {
             }
         };
         TRAILING = alignment2;
+        TOP = alignment;
+        BOTTOM = alignment2;
         START = alignment;
         END = alignment2;
-        createSwitchingAlignment(alignment);
-        createSwitchingAlignment(alignment2);
-        new Alignment() {
+        LEFT = createSwitchingAlignment(alignment);
+        RIGHT = createSwitchingAlignment(alignment2);
+        CENTER = new Alignment() {
             @Override
             public int getAlignmentValue(Child child, int i) {
                 return i >> 1;
@@ -1871,7 +1863,7 @@ public class TableLayout extends View {
 
             @Override
             public Bounds getBounds() {
-                return new Bounds(this) {
+                return new Bounds() {
                     private int size;
 
                     @Override

@@ -61,6 +61,7 @@ public class XiaomiUtilities {
 
     public static Intent getPermissionManagerIntent() {
         Intent intent = new Intent("miui.intent.action.APP_PERM_EDITOR");
+        intent.setPackage("com.miui.securitycenter");
         intent.putExtra("extra_package_uid", Process.myUid());
         intent.putExtra("extra_pkgname", ApplicationLoader.applicationContext.getPackageName());
         return intent;

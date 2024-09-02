@@ -1,7 +1,7 @@
 package kotlinx.coroutines.internal;
 
+import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import kotlinx.coroutines.DebugKt;
 
 public abstract class AtomicOp<T> extends OpDescriptor {
     private static final AtomicReferenceFieldUpdater _consensus$FU = AtomicReferenceFieldUpdater.newUpdater(AtomicOp.class, Object.class, "_consensus");
@@ -21,14 +21,9 @@ public abstract class AtomicOp<T> extends OpDescriptor {
     public abstract Object prepare(T t);
 
     public final Object decide(Object obj) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(obj != AtomicKt.NO_DECISION)) {
-                throw new AssertionError();
-            }
-        }
         Object obj2 = this._consensus;
         Object obj3 = AtomicKt.NO_DECISION;
-        return obj2 != obj3 ? obj2 : _consensus$FU.compareAndSet(this, obj3, obj) ? obj : this._consensus;
+        return obj2 != obj3 ? obj2 : AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_consensus$FU, this, obj3, obj) ? obj : this._consensus;
     }
 
     @Override

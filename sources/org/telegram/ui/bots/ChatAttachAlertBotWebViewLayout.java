@@ -81,6 +81,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     private boolean ignoreLayout;
     private boolean ignoreMeasure;
     private boolean isBotButtonAvailable;
+    private long lastSwipeTime;
     private int measureOffsetY;
     private boolean needCloseConfirmation;
     private boolean needReload;
@@ -288,7 +289,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     public void lambda$new$3() {
         this.parentAlert.updateLayout(this, true, 0);
         this.webViewContainer.invalidateViewPortHeight();
-        System.currentTimeMillis();
+        this.lastSwipeTime = System.currentTimeMillis();
     }
 
     public void lambda$new$4() {
@@ -908,10 +909,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                                     if (WebViewSwipeContainer.this.fullsize && WebViewSwipeContainer.this.allowFullSizeSwipe) {
                                         float f3 = WebViewSwipeContainer.this.drawnSwipeOffsetY;
                                         WebViewSwipeContainer webViewSwipeContainer2 = WebViewSwipeContainer.this;
-                                        float f4 = webViewSwipeContainer2.offsetY;
-                                        float f5 = webViewSwipeContainer2.topActionBarOffsetY;
-                                        if (f3 == (-f4) + f5) {
-                                            webViewSwipeContainer2.stickTo((-f4) + f5);
+                                        float f4 = (-webViewSwipeContainer2.offsetY) + webViewSwipeContainer2.topActionBarOffsetY;
+                                        if (f3 == f4) {
+                                            webViewSwipeContainer2.stickTo(f4);
                                         }
                                     }
                                     if (WebViewSwipeContainer.this.delegate != null) {
@@ -923,9 +923,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                                 return true;
                             }
                             if (f2 <= -700.0f) {
-                                float f6 = WebViewSwipeContainer.this.swipeOffsetY;
+                                float f5 = WebViewSwipeContainer.this.swipeOffsetY;
                                 WebViewSwipeContainer webViewSwipeContainer3 = WebViewSwipeContainer.this;
-                                if (f6 > (-webViewSwipeContainer3.offsetY) + webViewSwipeContainer3.topActionBarOffsetY) {
+                                if (f5 > (-webViewSwipeContainer3.offsetY) + webViewSwipeContainer3.topActionBarOffsetY) {
                                     webViewSwipeContainer3.flingInProgress = true;
                                     WebViewSwipeContainer webViewSwipeContainer4 = WebViewSwipeContainer.this;
                                     webViewSwipeContainer4.stickTo((-webViewSwipeContainer4.offsetY) + webViewSwipeContainer4.topActionBarOffsetY);
@@ -1101,6 +1101,8 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         @Override
         public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            float rawX;
+            float rawY;
             if (this.isScrolling && motionEvent.getActionIndex() != 0) {
                 return false;
             }
@@ -1111,7 +1113,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             MotionEvent obtain = MotionEvent.obtain(motionEvent);
             int actionIndex = motionEvent.getActionIndex();
             if (Build.VERSION.SDK_INT >= 29) {
-                obtain.setLocation(motionEvent.getRawX(actionIndex), motionEvent.getRawY(actionIndex));
+                rawX = motionEvent.getRawX(actionIndex);
+                rawY = motionEvent.getRawY(actionIndex);
+                obtain.setLocation(rawX, rawY);
             } else {
                 obtain.setLocation(motionEvent.getX(actionIndex) + (motionEvent.getRawX() - motionEvent.getX()), motionEvent.getY(actionIndex) + (motionEvent.getRawY() - motionEvent.getY()));
             }
@@ -1126,11 +1130,12 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                     } else if (this.allowSwipes && (!this.shouldWaitWebViewScroll || this.swipeOffsetY != (-this.offsetY) + this.topActionBarOffsetY || allowingScroll(false))) {
                         float f = this.swipeOffsetY;
                         int i = this.swipeStickyRange;
-                        if (f <= (-i)) {
+                        float f2 = -i;
+                        if (f <= f2) {
                             if (this.stickToEdges) {
                                 stickTo((-this.offsetY) + this.topActionBarOffsetY);
                             }
-                        } else if (f > (-i) && f <= i && !this.fullsize) {
+                        } else if (f > f2 && f <= i && !this.fullsize) {
                             if (this.stickToEdges) {
                                 stickTo(0.0f);
                             }
@@ -1279,8 +1284,10 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         @Override
         public void draw(Canvas canvas) {
             super.draw(canvas);
-            float height = getHeight() - (this.bluePaint.getStrokeWidth() / 2.0f);
-            canvas.drawLine(0.0f, height, getWidth() * this.loadProgress, height, this.bluePaint);
+            if (this.loadProgress > 0.0f) {
+                float height = getHeight() - (this.bluePaint.getStrokeWidth() / 2.0f);
+                canvas.drawLine(0.0f, height, getWidth() * this.loadProgress, height, this.bluePaint);
+            }
         }
     }
 }

@@ -95,12 +95,12 @@ public class SendingFileDrawable extends StatusDrawable {
                 paint.setAlpha(255);
             }
             float dp = (AndroidUtilities.dp(5.0f) * i) + (AndroidUtilities.dp(5.0f) * this.progress);
-            float f = 7.0f;
+            float f = 8.0f;
             canvas.drawLine(dp, AndroidUtilities.dp(this.isChat ? 3.0f : 4.0f), dp + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(this.isChat ? 7.0f : 8.0f), paint);
             float dp2 = AndroidUtilities.dp(this.isChat ? 11.0f : 12.0f);
             float dp3 = dp + AndroidUtilities.dp(4.0f);
-            if (!this.isChat) {
-                f = 8.0f;
+            if (this.isChat) {
+                f = 7.0f;
             }
             canvas.drawLine(dp, dp2, dp3, AndroidUtilities.dp(f), paint);
         }

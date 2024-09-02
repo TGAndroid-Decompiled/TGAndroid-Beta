@@ -22,6 +22,7 @@ import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -33,6 +34,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 
 public class PatternCell extends BackupImageView implements DownloadController.FileDownloadProgressListener {
+    private final int SIZE;
     private int TAG;
     private MotionBackgroundDrawable backgroundDrawable;
     private Paint backgroundPaint;
@@ -75,6 +77,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
 
     public PatternCell(Context context, int i, PatternCellDelegate patternCellDelegate) {
         super(context);
+        this.SIZE = 100;
         this.rect = new RectF();
         this.currentAccount = UserConfig.selectedAccount;
         setRoundRadius(AndroidUtilities.dp(6.0f));
@@ -86,7 +89,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         this.backgroundPaint = new Paint(3);
         this.TAG = DownloadController.getInstance(this.currentAccount).generateObserverTag();
         if (Build.VERSION.SDK_INT >= 21) {
-            setOutlineProvider(new ViewOutlineProvider(this) {
+            setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(6.0f));
@@ -115,7 +118,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void updateSelected(boolean z) {
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) {
+        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || (selectedPattern != null && tLRPC$TL_wallPaper != null && tLRPC$TL_wallPaper.id == selectedPattern.id)) {
             updateButtonState(selectedPattern, false, z);
         } else {
             this.radialProgress.setIcon(4, false, z);
@@ -180,6 +183,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     @Override
     @SuppressLint({"DrawAllocation"})
     public void onDraw(Canvas canvas) {
+        BlendMode blendMode;
         float intensity = this.delegate.getIntensity();
         this.imageReceiver.setBlendMode(null);
         int backgroundColor = this.delegate.getBackgroundColor();
@@ -211,7 +215,9 @@ public class PatternCell extends BackupImageView implements DownloadController.F
                     } else {
                         this.imageReceiver.setGradientBitmap(null);
                         if (Build.VERSION.SDK_INT >= 29) {
-                            this.imageReceiver.setBlendMode(BlendMode.SOFT_LIGHT);
+                            ImageReceiver imageReceiver = this.imageReceiver;
+                            blendMode = BlendMode.SOFT_LIGHT;
+                            imageReceiver.setBlendMode(blendMode);
                         } else {
                             this.imageReceiver.setColorFilter(new PorterDuffColorFilter(this.delegate.getPatternColor(), PorterDuff.Mode.SRC_IN));
                         }
@@ -256,12 +262,13 @@ public class PatternCell extends BackupImageView implements DownloadController.F
     public void onFailedDownload(String str, boolean z) {
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) {
-            if (z) {
-                this.radialProgress.setIcon(4, false, true);
-            } else {
-                updateButtonState(tLRPC$TL_wallPaper, true, z);
-            }
+        if (!(tLRPC$TL_wallPaper == null && selectedPattern == null) && (selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) {
+            return;
+        }
+        if (z) {
+            this.radialProgress.setIcon(4, false, true);
+        } else {
+            updateButtonState(tLRPC$TL_wallPaper, true, z);
         }
     }
 
@@ -270,9 +277,10 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         this.radialProgress.setProgress(1.0f, true);
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if ((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) {
-            updateButtonState(tLRPC$TL_wallPaper, false, true);
+        if (!(tLRPC$TL_wallPaper == null && selectedPattern == null) && (selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) {
+            return;
         }
+        updateButtonState(tLRPC$TL_wallPaper, false, true);
     }
 
     @Override
@@ -280,7 +288,7 @@ public class PatternCell extends BackupImageView implements DownloadController.F
         this.radialProgress.setProgress(Math.min(1.0f, ((float) j) / ((float) j2)), true);
         TLRPC$TL_wallPaper selectedPattern = this.delegate.getSelectedPattern();
         TLRPC$TL_wallPaper tLRPC$TL_wallPaper = this.currentPattern;
-        if (!((tLRPC$TL_wallPaper == null && selectedPattern == null) || !(selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) || this.radialProgress.getIcon() == 10) {
+        if ((!(tLRPC$TL_wallPaper == null && selectedPattern == null) && (selectedPattern == null || tLRPC$TL_wallPaper == null || tLRPC$TL_wallPaper.id != selectedPattern.id)) || this.radialProgress.getIcon() == 10) {
             return;
         }
         updateButtonState(this.currentPattern, false, true);

@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -189,7 +190,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             }
 
             @Override
-            protected void onSizeChanged(int r26, int r27, int r28, int r29) {
+            protected void onSizeChanged(int r24, int r25, int r26, int r27) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.PrivateVideoPreviewDialog.AnonymousClass3.onSizeChanged(int, int, int, int):void");
             }
 
@@ -219,7 +220,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         textView2.setTextColor(Theme.getColor(i));
         this.positiveButton.setGravity(17);
         this.positiveButton.setTypeface(AndroidUtilities.bold());
-        this.positiveButton.setText(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
+        this.positiveButton.setText(LocaleController.getString(R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
             this.positiveButton.setForeground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 76)));
         }
@@ -249,11 +250,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i2].setSingleLine(true);
             this.titlesLayout.addView(this.titles[i2], LayoutHelper.createLinear(-2, -1));
             if (i2 == 0 && this.needScreencast) {
-                this.titles[i2].setText(LocaleController.getString("VoipPhoneScreen", R.string.VoipPhoneScreen));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipPhoneScreen));
             } else if (i2 == 0 || (i2 == 1 && this.needScreencast)) {
-                this.titles[i2].setText(LocaleController.getString("VoipFrontCamera", R.string.VoipFrontCamera));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipFrontCamera));
             } else {
-                this.titles[i2].setText(LocaleController.getString("VoipBackCamera", R.string.VoipBackCamera));
+                this.titles[i2].setText(LocaleController.getString(R.string.VoipBackCamera));
             }
             this.titles[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -270,7 +271,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
             this.textureView.renderer.setMirror(sharedInstance.isFrontFaceCamera());
-            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents(this) {
+            this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new RendererCommon.RendererEvents() {
                 @Override
                 public void onFirstFrameRendered() {
                 }
@@ -304,14 +305,18 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
     }
 
     public void lambda$new$0(View view) {
+        Intent createScreenCaptureIntent;
         if (this.isDismissed) {
             return;
         }
         if (this.currentPage == 0 && this.needScreencast) {
-            ((Activity) getContext()).startActivityForResult(((MediaProjectionManager) getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
-        } else {
-            dismiss(false, true);
+            MediaProjectionManager m = PrivateVideoPreviewDialog$$ExternalSyntheticApiModelOutline0.m(getContext().getSystemService("media_projection"));
+            Activity activity = (Activity) getContext();
+            createScreenCaptureIntent = m.createScreenCaptureIntent();
+            activity.startActivityForResult(createScreenCaptureIntent, 520);
+            return;
         }
+        dismiss(false, true);
     }
 
     public void lambda$new$1(int i, View view) {
@@ -341,11 +346,11 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
         int i = this.currentPage;
         TextView textView = textViewArr[i];
         TextView textView2 = i < textViewArr.length + (-1) ? textViewArr[i + 1] : null;
-        int measuredWidth = getMeasuredWidth() / 2;
+        getMeasuredWidth();
         float left = textView.getLeft() + (textView.getMeasuredWidth() / 2);
-        float measuredWidth2 = (getMeasuredWidth() / 2) - left;
+        float measuredWidth = (getMeasuredWidth() / 2) - left;
         if (textView2 != null) {
-            measuredWidth2 -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
+            measuredWidth -= ((textView2.getLeft() + (textView2.getMeasuredWidth() / 2)) - left) * this.pageOffset;
         }
         int i2 = 0;
         while (true) {
@@ -372,7 +377,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             this.titles[i2].setScaleY(f);
             i2++;
         }
-        this.titlesLayout.setTranslationX(measuredWidth2);
+        this.titlesLayout.setTranslationX(measuredWidth);
         this.positiveButton.invalidate();
         if (this.needScreencast && this.currentPage == 0 && this.pageOffset <= 0.0f) {
             this.textureView.setVisibility(4);
@@ -434,7 +439,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
                         createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg")));
-                        View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (this.needScreencast ? 0 : 1)));
+                        View findViewWithTag = this.viewPager.findViewWithTag(Integer.valueOf(this.visibleCameraPage - (1 ^ (this.needScreencast ? 1 : 0))));
                         if (findViewWithTag instanceof ImageView) {
                             ((ImageView) findViewWithTag).setImageBitmap(createScaledBitmap);
                         }
@@ -552,17 +557,18 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
 
         @Override
         public Object instantiateItem(ViewGroup viewGroup, int i) {
+            Bitmap bitmap;
             ImageView imageView;
             int i2 = 1;
             if (PrivateVideoPreviewDialog.this.needScreencast && i == 0) {
-                FrameLayout frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
+                ?? frameLayout = new FrameLayout(PrivateVideoPreviewDialog.this.getContext());
                 frameLayout.setBackground(new MotionBackgroundDrawable(-14602694, -13935795, -14395293, -14203560, true));
                 ImageView imageView2 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
                 imageView2.setScaleType(ImageView.ScaleType.CENTER);
                 imageView2.setImageResource(R.drawable.screencast_big);
                 frameLayout.addView(imageView2, LayoutHelper.createFrame(82, 82.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
                 TextView textView = new TextView(PrivateVideoPreviewDialog.this.getContext());
-                textView.setText(LocaleController.getString("VoipVideoPrivateScreenSharing", R.string.VoipVideoPrivateScreenSharing));
+                textView.setText(LocaleController.getString(R.string.VoipVideoPrivateScreenSharing));
                 textView.setGravity(17);
                 textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 textView.setTextColor(-1);
@@ -573,7 +579,6 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
             } else {
                 ImageView imageView3 = new ImageView(PrivateVideoPreviewDialog.this.getContext());
                 imageView3.setTag(Integer.valueOf(i));
-                Bitmap bitmap = null;
                 try {
                     File filesDirFixed = ApplicationLoader.getFilesDirFixed();
                     StringBuilder sb = new StringBuilder();
@@ -585,6 +590,7 @@ public abstract class PrivateVideoPreviewDialog extends FrameLayout implements V
                     sb.append(".jpg");
                     bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, sb.toString()).getAbsolutePath());
                 } catch (Throwable unused) {
+                    bitmap = null;
                 }
                 if (bitmap != null) {
                     imageView3.setImageBitmap(bitmap);

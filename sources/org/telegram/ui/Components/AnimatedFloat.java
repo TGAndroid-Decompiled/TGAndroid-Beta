@@ -22,7 +22,7 @@ public class AnimatedFloat {
     public AnimatedFloat(long j, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = null;
         this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;
@@ -32,7 +32,7 @@ public class AnimatedFloat {
     public AnimatedFloat(long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = null;
         this.transitionDelay = j;
         this.transitionDuration = j2;
@@ -51,7 +51,7 @@ public class AnimatedFloat {
     public AnimatedFloat(View view, long j, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;
@@ -61,7 +61,7 @@ public class AnimatedFloat {
     public AnimatedFloat(View view, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.transitionDelay = j;
         this.transitionDuration = j2;
@@ -72,7 +72,7 @@ public class AnimatedFloat {
     public AnimatedFloat(Runnable runnable, long j, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.invalidate = runnable;
         this.transitionDuration = j;
         this.transitionInterpolator = timeInterpolator;
@@ -82,7 +82,7 @@ public class AnimatedFloat {
     public AnimatedFloat(Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.invalidate = runnable;
         this.transitionDelay = j;
         this.transitionDuration = j2;
@@ -103,7 +103,7 @@ public class AnimatedFloat {
     public AnimatedFloat(float f, View view, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
         this.targetValue = f;
         this.value = f;
@@ -116,7 +116,7 @@ public class AnimatedFloat {
     public AnimatedFloat(float f, Runnable runnable, long j, long j2, TimeInterpolator timeInterpolator) {
         this.transitionDelay = 0L;
         this.transitionDuration = 200L;
-        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         this.invalidate = runnable;
         this.targetValue = f;
         this.value = f;

@@ -36,7 +36,6 @@ public class Switch extends View {
     private float iconProgress;
     private boolean isChecked;
     private int lastIconColor;
-    private OnCheckedChangeListener onCheckedChangeListener;
     private Bitmap[] overlayBitmap;
     private Canvas[] overlayCanvas;
     private float overlayCx;
@@ -61,11 +60,13 @@ public class Switch extends View {
     private int trackColorKey;
 
     public interface OnCheckedChangeListener {
-        void onCheckedChanged(Switch r1, boolean z);
     }
 
     protected int processColor(int i) {
         return i;
+    }
+
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
     }
 
     public Switch(Context context) {
@@ -202,9 +203,7 @@ public class Switch extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.checkAnimator.addListener(new AnimatorListenerAdapter() {
@@ -217,9 +216,7 @@ public class Switch extends View {
     }
 
     private void animateIcon(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", z ? 1.0f : 0.0f);
         this.iconAnimator = ofFloat;
         ofFloat.setDuration(200L);
         this.iconAnimator.addListener(new AnimatorListenerAdapter() {
@@ -243,10 +240,6 @@ public class Switch extends View {
         this.attachedToWindow = false;
     }
 
-    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
-        this.onCheckedChangeListener = onCheckedChangeListener;
-    }
-
     public void setChecked(boolean z, boolean z2) {
         setChecked(z, this.drawIconType, z2);
     }
@@ -259,10 +252,6 @@ public class Switch extends View {
             } else {
                 cancelCheckAnimator();
                 setProgress(z ? 1.0f : 0.0f);
-            }
-            OnCheckedChangeListener onCheckedChangeListener = this.onCheckedChangeListener;
-            if (onCheckedChangeListener != null) {
-                onCheckedChangeListener.onCheckedChanged(this, z);
             }
         }
         setDrawIconType(i, z2);

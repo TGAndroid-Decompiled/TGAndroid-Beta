@@ -474,7 +474,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             if (this == obj) {
                 return true;
             }
-            if (obj != null && Item.class == obj.getClass()) {
+            if (obj != null && getClass() == obj.getClass()) {
                 Item item = (Item) obj;
                 if (this.viewType == item.viewType && this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.values == item.values && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
                     return true;

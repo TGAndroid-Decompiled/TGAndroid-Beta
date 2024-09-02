@@ -2,12 +2,23 @@ package org.telegram.ui;
 
 import android.app.Activity;
 import android.view.ViewGroup;
+import androidx.annotation.Keep;
 
+@Keep
 public abstract class IUpdateLayout {
-    public abstract void updateAppUpdateViews(int i, boolean z);
+    @Keep
+    public void createUpdateUI(int i) {
+    }
 
-    public abstract void updateFileProgress(Object[] objArr);
+    @Keep
+    public void updateAppUpdateViews(int i, boolean z) {
+    }
 
+    @Keep
+    public void updateFileProgress(Object[] objArr) {
+    }
+
+    @Keep
     public IUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
     }
 }

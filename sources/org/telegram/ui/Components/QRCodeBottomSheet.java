@@ -40,7 +40,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         super(context, false);
         fixNavigationBar();
         setTitle(str, true);
-        final ImageView imageView = new ImageView(this, context) {
+        final ImageView imageView = new ImageView(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
@@ -49,7 +49,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         };
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         if (Build.VERSION.SDK_INT >= 21) {
-            imageView.setOutlineProvider(new ViewOutlineProvider(this) {
+            imageView.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));
@@ -99,7 +99,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setText(LocaleController.getString("ShareQrCode", R.string.ShareQrCode));
+        textView2.setText(LocaleController.getString(R.string.ShareQrCode));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -113,7 +113,7 @@ public class QRCodeBottomSheet extends BottomSheet {
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             this.button2TextView.setGravity(17);
             this.button2TextView.setTextSize(1, 14.0f);
-            this.button2TextView.setText(LocaleController.getString("ShareLink", R.string.ShareLink));
+            this.button2TextView.setText(LocaleController.getString(R.string.ShareLink));
             this.button2TextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -146,7 +146,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         Intent intent = new Intent("android.intent.action.SEND");
         intent.setType("text/plain");
         intent.putExtra("android.intent.extra.TEXT", str);
-        Intent createChooser = Intent.createChooser(intent, LocaleController.getString("ShareLink", R.string.ShareLink));
+        Intent createChooser = Intent.createChooser(intent, LocaleController.getString(R.string.ShareLink));
         createChooser.setFlags(268435456);
         context.startActivity(createChooser);
     }

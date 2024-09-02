@@ -43,7 +43,7 @@ public class Shape {
                 rectF.union(this.middleX, this.middleY);
             }
         }
-        float f7 = this.thickness;
-        rectF.inset((-f7) - 3.0f, (-f7) - 3.0f);
+        float f7 = (-this.thickness) - 3.0f;
+        rectF.inset(f7, f7);
     }
 }

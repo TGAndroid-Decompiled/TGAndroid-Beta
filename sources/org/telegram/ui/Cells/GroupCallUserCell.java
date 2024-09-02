@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -99,26 +100,33 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public void lambda$new$1() {
+        int i;
         int nextInt = Utilities.random.nextInt(100);
-        int i = 540;
-        int i2 = 420;
+        int i2 = 120;
         if (nextInt < 32) {
-            i = 120;
-            i2 = 0;
-        } else if (nextInt < 64) {
+            i = 0;
+        } else {
             i = 240;
-            i2 = 120;
-        } else if (nextInt < 97) {
-            i = 420;
-            i2 = 240;
-        } else if (nextInt != 98) {
-            i = 720;
-            i2 = 540;
+            if (nextInt < 64) {
+                i2 = 240;
+                i = 120;
+            } else {
+                i2 = 420;
+                if (nextInt >= 97) {
+                    i = 540;
+                    if (nextInt == 98) {
+                        i2 = 540;
+                        i = 420;
+                    } else {
+                        i2 = 720;
+                    }
+                }
+            }
         }
-        this.shakeHandDrawable.setCustomEndFrame(i);
-        this.shakeHandDrawable.setOnFinishCallback(this.shakeHandCallback, i - 1);
+        this.shakeHandDrawable.setCustomEndFrame(i2);
+        this.shakeHandDrawable.setOnFinishCallback(this.shakeHandCallback, i2 - 1);
         this.muteButton.setAnimation(this.shakeHandDrawable);
-        this.shakeHandDrawable.setCurrentFrame(i2);
+        this.shakeHandDrawable.setCurrentFrame(i);
         this.muteButton.playAnimation();
     }
 
@@ -407,17 +415,17 @@ public class GroupCallUserCell extends FrameLayout {
             } else {
                 if (i == 0) {
                     this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_listeningText));
-                    this.statusTextView[i].setText(LocaleController.getString("Listening", R.string.Listening));
+                    this.statusTextView[i].setText(LocaleController.getString(R.string.Listening));
                 } else if (i == 1) {
                     this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_speakingText));
-                    this.statusTextView[i].setText(LocaleController.getString("Speaking", R.string.Speaking));
+                    this.statusTextView[i].setText(LocaleController.getString(R.string.Speaking));
                     this.statusTextView[i].setDrawablePadding(AndroidUtilities.dp(2.0f));
                 } else if (i == 2) {
                     this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon));
-                    this.statusTextView[i].setText(LocaleController.getString("VoipGroupMutedForMe", R.string.VoipGroupMutedForMe));
+                    this.statusTextView[i].setText(LocaleController.getString(R.string.VoipGroupMutedForMe));
                 } else if (i == 3) {
                     this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_listeningText));
-                    this.statusTextView[i].setText(LocaleController.getString("WantsToSpeak", R.string.WantsToSpeak));
+                    this.statusTextView[i].setText(LocaleController.getString(R.string.WantsToSpeak));
                 }
                 SimpleTextView simpleTextView4 = this.statusTextView[i];
                 boolean z5 = LocaleController.isRTL;
@@ -441,9 +449,9 @@ public class GroupCallUserCell extends FrameLayout {
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         this.muteButton.setAnimation(this.muteDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            RippleDrawable rippleDrawable = (RippleDrawable) Theme.createSelectorDrawable(Theme.getColor(this.grayIconColor) & 620756991);
-            Theme.setRippleDrawableForceSoftware(rippleDrawable);
-            this.muteButton.setBackground(rippleDrawable);
+            RippleDrawable m = Theme$$ExternalSyntheticApiModelOutline0.m(Theme.createSelectorDrawable(Theme.getColor(this.grayIconColor) & 620756991));
+            Theme.setRippleDrawableForceSoftware(m);
+            this.muteButton.setBackground(m);
         }
         this.muteButton.setImportantForAccessibility(2);
         addView(this.muteButton, LayoutHelper.createFrame(48, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
@@ -541,7 +549,7 @@ public class GroupCallUserCell extends FrameLayout {
                 if (tLRPC$User2 != null && tLRPC$User2.premium) {
                     if (this.premiumDrawable == null) {
                         this.premiumDrawable = getContext().getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
-                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this, this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
+                        this.premiumDrawable = new AnimatedEmojiDrawable.WrapSizeDrawable(this.premiumDrawable, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f)) {
                             @Override
                             public void draw(Canvas canvas) {
                                 canvas.save();
@@ -583,7 +591,7 @@ public class GroupCallUserCell extends FrameLayout {
                     }
                     this.verifiedDrawable = drawable2;
                     swapAnimatedEmojiDrawable2.set(drawable2, z);
-                } else if (tLRPC$Chat2 != null && DialogObject.getEmojiStatusDocumentId(tLRPC$Chat2.emoji_status) != 0) {
+                } else if (DialogObject.getEmojiStatusDocumentId(tLRPC$Chat2.emoji_status) != 0) {
                     this.rightDrawable.set(DialogObject.getEmojiStatusDocumentId(this.currentChat.emoji_status), z);
                 } else {
                     this.rightDrawable.set((Drawable) null, z);
@@ -686,7 +694,7 @@ public class GroupCallUserCell extends FrameLayout {
         invalidate();
     }
 
-    private void applyParticipantChanges(boolean r19, boolean r20) {
+    private void applyParticipantChanges(boolean r20, boolean r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.applyParticipantChanges(boolean, boolean):void");
     }
 
@@ -876,21 +884,12 @@ public class GroupCallUserCell extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        int i;
-        String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (!accessibilityNodeInfo.isEnabled() || Build.VERSION.SDK_INT < 21) {
             return;
         }
         TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = this.participant;
-        if (!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) {
-            i = R.string.VoipMute;
-            str = "VoipMute";
-        } else {
-            i = R.string.VoipUnmute;
-            str = "VoipUnmute";
-        }
-        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(str, i)));
+        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString((!tLRPC$TL_groupCallParticipant.muted || tLRPC$TL_groupCallParticipant.can_self_unmute) ? R.string.VoipMute : R.string.VoipUnmute)));
     }
 
     public long getPeerId() {

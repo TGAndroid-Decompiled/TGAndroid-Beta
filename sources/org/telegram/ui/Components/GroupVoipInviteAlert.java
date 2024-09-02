@@ -149,7 +149,6 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
 
     private void updateRows() {
         this.addNewRow = -1;
-        this.emptyRow = -1;
         this.participantsStartRow = -1;
         this.participantsEndRow = -1;
         this.contactsHeaderRow = -1;
@@ -157,9 +156,8 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         this.contactsEndRow = -1;
         this.membersHeaderRow = -1;
         this.lastRow = -1;
-        boolean z = false;
-        this.rowCount = 0;
-        this.rowCount = 0 + 1;
+        boolean z = true;
+        this.rowCount = 1;
         this.emptyRow = 0;
         if (ChatObject.isPublic(this.currentChat) || ChatObject.canUserDoAdminAction(this.currentChat, 3)) {
             int i = this.rowCount;
@@ -167,7 +165,9 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             this.addNewRow = i;
         }
         if (!this.loadingUsers || this.firstLoaded) {
-            if (!this.contacts.isEmpty()) {
+            if (this.contacts.isEmpty()) {
+                z = false;
+            } else {
                 int i2 = this.rowCount;
                 int i3 = i2 + 1;
                 this.rowCount = i3;
@@ -176,7 +176,6 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
                 int size = i3 + this.contacts.size();
                 this.rowCount = size;
                 this.contactsEndRow = size;
-                z = true;
             }
             if (!this.participants.isEmpty()) {
                 if (z) {
@@ -213,8 +212,8 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
         if (this.showContacts) {
             this.contacts.addAll(ContactsController.getInstance(this.currentAccount).contacts);
             long j = UserConfig.getInstance(this.currentAccount).clientUserId;
-            int i = 0;
             int size = this.contacts.size();
+            int i = 0;
             while (i < size) {
                 TLObject tLObject = this.contacts.get(i);
                 if (tLObject instanceof TLRPC$TL_contact) {
@@ -466,7 +465,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             this.mContext = context;
             SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
             this.searchAdapterHelper = searchAdapterHelper;
-            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate(GroupVoipInviteAlert.this) {
+            searchAdapterHelper.setDelegate(new SearchAdapterHelper.SearchAdapterHelperDelegate() {
                 @Override
                 public boolean canApplySearchResults(int i) {
                     return SearchAdapterHelper.SearchAdapterHelperDelegate.CC.$default$canApplySearchResults(this, i);
@@ -624,8 +623,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
 
         @Override
         public void notifyDataSetChanged() {
-            this.totalCount = 0;
-            this.totalCount = 0 + 1;
+            this.totalCount = 1;
             this.emptyRow = 0;
             int size = this.searchAdapterHelper.getGroupSearch().size();
             if (size != 0) {
@@ -804,7 +802,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             if (itemViewType == 1) {
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (i == GroupVoipInviteAlert.this.addNewRow) {
-                    manageChatTextCell.setText(LocaleController.getString("VoipGroupCopyInviteLink", R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, (!GroupVoipInviteAlert.this.loadingUsers || GroupVoipInviteAlert.this.firstLoaded) && GroupVoipInviteAlert.this.membersHeaderRow == -1 && !GroupVoipInviteAlert.this.participants.isEmpty());
+                    manageChatTextCell.setText(LocaleController.getString(R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, (!GroupVoipInviteAlert.this.loadingUsers || GroupVoipInviteAlert.this.firstLoaded) && GroupVoipInviteAlert.this.membersHeaderRow == -1 && !GroupVoipInviteAlert.this.participants.isEmpty());
                     return;
                 }
                 return;
@@ -816,16 +814,16 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
             if (i != GroupVoipInviteAlert.this.membersHeaderRow) {
                 if (i == GroupVoipInviteAlert.this.contactsHeaderRow) {
                     if (GroupVoipInviteAlert.this.showContacts) {
-                        graySectionCell.setText(LocaleController.getString("YourContactsToInvite", R.string.YourContactsToInvite));
+                        graySectionCell.setText(LocaleController.getString(R.string.YourContactsToInvite));
                         return;
                     } else {
-                        graySectionCell.setText(LocaleController.getString("GroupContacts", R.string.GroupContacts));
+                        graySectionCell.setText(LocaleController.getString(R.string.GroupContacts));
                         return;
                     }
                 }
                 return;
             }
-            graySectionCell.setText(LocaleController.getString("ChannelOtherMembers", R.string.ChannelOtherMembers));
+            graySectionCell.setText(LocaleController.getString(R.string.ChannelOtherMembers));
         }
 
         @Override
@@ -868,7 +866,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         this.searchAdapter.searchUsers(str);
     }
 

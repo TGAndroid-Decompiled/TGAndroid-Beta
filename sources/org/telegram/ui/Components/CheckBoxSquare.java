@@ -76,9 +76,7 @@ public class CheckBoxSquare extends View {
     }
 
     private void animateToCheckedState(boolean z) {
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.setDuration(300L);
         this.checkAnimator.start();
@@ -134,12 +132,12 @@ public class CheckBoxSquare extends View {
         int themedColor2 = getThemedColor(this.key2);
         float f3 = this.progress;
         if (f3 <= 0.5f) {
-            f2 = f3 / 0.5f;
-            Theme.checkboxSquare_backgroundPaint.setColor(Color.rgb(Color.red(themedColor) + ((int) ((Color.red(themedColor2) - Color.red(themedColor)) * f2)), Color.green(themedColor) + ((int) ((Color.green(themedColor2) - Color.green(themedColor)) * f2)), Color.blue(themedColor) + ((int) ((Color.blue(themedColor2) - Color.blue(themedColor)) * f2))));
-            f = f2;
+            f = f3 / 0.5f;
+            Theme.checkboxSquare_backgroundPaint.setColor(Color.rgb(Color.red(themedColor) + ((int) ((Color.red(themedColor2) - Color.red(themedColor)) * f)), Color.green(themedColor) + ((int) ((Color.green(themedColor2) - Color.green(themedColor)) * f)), Color.blue(themedColor) + ((int) ((Color.blue(themedColor2) - Color.blue(themedColor)) * f))));
+            f2 = f;
         } else {
-            Theme.checkboxSquare_backgroundPaint.setColor(themedColor2);
             f = 2.0f - (f3 / 0.5f);
+            Theme.checkboxSquare_backgroundPaint.setColor(themedColor2);
             f2 = 1.0f;
         }
         if (this.isDisabled) {

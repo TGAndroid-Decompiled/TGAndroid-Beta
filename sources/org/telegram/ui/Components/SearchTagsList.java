@@ -48,7 +48,7 @@ import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda3;
+import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
@@ -181,7 +181,8 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
         int i2 = Theme.key_chat_messageLinkIn;
-        mutate.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        mutate.setColorFilter(new PorterDuffColorFilter(i2, mode));
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate);
         coloredImageSpan.setTranslateY(0.0f);
         coloredImageSpan.setTranslateX(0.0f);
@@ -199,7 +200,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.AddTagsToYourSavedMessages2));
         SpannableString spannableString2 = new SpannableString(">");
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
-        mutate2.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
+        mutate2.setColorFilter(new PorterDuffColorFilter(i2, mode));
         ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(mutate2);
         coloredImageSpan2.setScale(0.76f, 0.76f);
         coloredImageSpan2.setTranslateX(-AndroidUtilities.dp(1.0f));
@@ -221,7 +222,6 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         super(context, sizeNotifierFrameLayout);
         this.oldItems = new ArrayList<>();
         this.items = new ArrayList<>();
-        this.showWithCut = true;
         this.showWithCut = z;
         this.currentAccount = i;
         this.fragment = baseFragment;
@@ -267,7 +267,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                 return lambda$new$4;
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator(this) {
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
             public boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
                 return true;
@@ -406,7 +406,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity findActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
-        boolean z2 = (lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) && !z;
+        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final ?? r14 = new AlertDialog[1];
         if (z2) {
             builder = new AlertDialogDecor.Builder(context, resourcesProvider);
@@ -476,9 +476,9 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                     return true;
                 }
                 MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
-                AlertDialog[] alertDialogArr = r14;
-                if (alertDialogArr[0] != null) {
-                    alertDialogArr[0].dismiss();
+                AlertDialog alertDialog = r14[0];
+                if (alertDialog != null) {
+                    alertDialog.dismiss();
                 }
                 if (r14[0] == SearchTagsList.currentDialog) {
                     AlertDialog unused = SearchTagsList.currentDialog = null;
@@ -523,7 +523,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                 SearchTagsList.lambda$openRenameTagAlert$5(EditTextBoldCursor.this, i, tLRPC$Reaction, dialogInterface, i3);
             }
         });
-        r15.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        r15.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 dialogInterface.dismiss();
@@ -548,9 +548,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
+            AlertDialog create2 = r15.create();
             r1 = 0;
-            r14[0] = r15.create();
-            r14[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            r14[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -635,7 +636,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         }
         if (i == NotificationCenter.emojiLoaded) {
             invalidate();
-            AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) FloatingDebugView$$ExternalSyntheticLambda3.INSTANCE);
+            AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) new FloatingDebugView$$ExternalSyntheticLambda7());
         }
     }
 
@@ -764,10 +765,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         if (z) {
             setVisibility(0);
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.actionBarTagsT;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
         this.actionBarTagsAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

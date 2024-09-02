@@ -5,11 +5,12 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 
 public final class CoroutineContextKt {
+    public static final String getCoroutineName(CoroutineContext coroutineContext) {
+        return null;
+    }
+
     public static final UndispatchedCoroutine<?> updateUndispatchedCompletion(Continuation<?> continuation, CoroutineContext coroutineContext, Object obj) {
-        if (!(continuation instanceof CoroutineStackFrame)) {
-            return null;
-        }
-        if (!(coroutineContext.get(UndispatchedMarker.INSTANCE) != null)) {
+        if (!(continuation instanceof CoroutineStackFrame) || coroutineContext.get(UndispatchedMarker.INSTANCE) == null) {
             return null;
         }
         UndispatchedCoroutine<?> undispatchedCompletion = undispatchedCompletion((CoroutineStackFrame) continuation);
@@ -26,19 +27,5 @@ public final class CoroutineContextKt {
             }
         }
         return null;
-    }
-
-    public static final String getCoroutineName(CoroutineContext coroutineContext) {
-        CoroutineId coroutineId;
-        String name;
-        if (!DebugKt.getDEBUG() || (coroutineId = (CoroutineId) coroutineContext.get(CoroutineId.Key)) == null) {
-            return null;
-        }
-        CoroutineName coroutineName = (CoroutineName) coroutineContext.get(CoroutineName.Key);
-        String str = "coroutine";
-        if (coroutineName != null && (name = coroutineName.getName()) != null) {
-            str = name;
-        }
-        return str + '#' + coroutineId.getId();
     }
 }

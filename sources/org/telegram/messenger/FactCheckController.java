@@ -20,7 +20,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import kotlinx.coroutines.CoroutineId$$ExternalSyntheticBackport0;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -78,12 +77,15 @@ public class FactCheckController {
         FactCheckController factCheckController = Instance[i];
         if (factCheckController == null) {
             synchronized (lockObjects[i]) {
-                factCheckController = Instance[i];
-                if (factCheckController == null) {
-                    FactCheckController[] factCheckControllerArr = Instance;
-                    FactCheckController factCheckController2 = new FactCheckController(i);
-                    factCheckControllerArr[i] = factCheckController2;
-                    factCheckController = factCheckController2;
+                try {
+                    factCheckController = Instance[i];
+                    if (factCheckController == null) {
+                        FactCheckController[] factCheckControllerArr = Instance;
+                        FactCheckController factCheckController2 = new FactCheckController(i);
+                        factCheckControllerArr[i] = factCheckController2;
+                        factCheckController = factCheckController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -223,13 +225,16 @@ public class FactCheckController {
         }
         HashMap hashMap2 = new HashMap();
         for (int i2 = 0; i2 < Math.min(tLRPC$TL_getFactCheck.msg_id.size(), arrayList2.size()); i2++) {
-            int intValue = tLRPC$TL_getFactCheck.msg_id.get(i2).intValue();
-            hashMap2.put(Integer.valueOf(intValue), (TLRPC$TL_factCheck) arrayList2.get(i2));
+            Integer num = tLRPC$TL_getFactCheck.msg_id.get(i2);
+            num.intValue();
+            hashMap2.put(num, (TLRPC$TL_factCheck) arrayList2.get(i2));
         }
         int i3 = 0;
         for (int i4 = 0; i4 < tLRPC$TL_getFactCheck.msg_id.size(); i4++) {
             Key key = (Key) arrayList.get(i4);
-            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) hashMap2.get(Integer.valueOf(tLRPC$TL_getFactCheck.msg_id.get(i4).intValue()));
+            Integer num2 = tLRPC$TL_getFactCheck.msg_id.get(i4);
+            num2.intValue();
+            TLRPC$TL_factCheck tLRPC$TL_factCheck = (TLRPC$TL_factCheck) hashMap2.get(num2);
             Utilities.Callback callback = (Utilities.Callback) hashMap.get(key);
             if (tLRPC$TL_factCheck != null && !tLRPC$TL_factCheck.need_check && callback != null) {
                 callback.run(tLRPC$TL_factCheck);
@@ -254,7 +259,7 @@ public class FactCheckController {
         }
 
         public int hashCode() {
-            return CoroutineId$$ExternalSyntheticBackport0.m(this.hash);
+            return FactCheckController$Key$$ExternalSyntheticBackport0.m(this.hash);
         }
 
         public static Key of(MessageObject messageObject) {
@@ -406,7 +411,7 @@ public class FactCheckController {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity findActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = findActivity != null ? findActivity.getCurrentFocus() : null;
-        boolean z2 = (lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) && !z;
+        boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
         if (z2) {
             builder = new AlertDialogDecor.Builder(context, resourcesProvider);
@@ -496,11 +501,12 @@ public class FactCheckController {
                 TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = new TLRPC$TL_textWithEntities();
                 CharSequence[] charSequenceArr = {editTextCaption.getText()};
                 tLRPC$TL_textWithEntities2.entities = MediaDataController.getInstance(FactCheckController.this.currentAccount).getEntities(charSequenceArr, true);
-                tLRPC$TL_textWithEntities2.text = charSequenceArr[0] == null ? "" : charSequenceArr[0].toString();
+                CharSequence charSequence = charSequenceArr[0];
+                tLRPC$TL_textWithEntities2.text = charSequence == null ? "" : charSequence.toString();
                 FactCheckController.this.applyFactCheck(messageObject, tLRPC$TL_textWithEntities2, z4);
-                AlertDialog[] alertDialogArr2 = alertDialogArr;
-                if (alertDialogArr2[0] != null) {
-                    alertDialogArr2[0].dismiss();
+                AlertDialog alertDialog = alertDialogArr[0];
+                if (alertDialog != null) {
+                    alertDialog.dismiss();
                 }
                 if (alertDialogArr[0] == FactCheckController.currentDialog) {
                     AlertDialog unused = FactCheckController.currentDialog = null;
@@ -602,9 +608,10 @@ public class FactCheckController {
             currentDialog.showDelayed(250L);
             r1 = 0;
         } else {
+            AlertDialog create2 = builder2.create();
             r1 = 0;
-            alertDialogArr[0] = builder2.create();
-            alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            alertDialogArr[0] = create2;
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextCaption.this);
@@ -634,7 +641,8 @@ public class FactCheckController {
         TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
         CharSequence[] charSequenceArr = {editTextCaption.getText()};
         tLRPC$TL_textWithEntities.entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, true);
-        tLRPC$TL_textWithEntities.text = charSequenceArr[0] == null ? "" : charSequenceArr[0].toString();
+        CharSequence charSequence = charSequenceArr[0];
+        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
         applyFactCheck(messageObject, tLRPC$TL_textWithEntities, z);
         dialogInterface.dismiss();
     }

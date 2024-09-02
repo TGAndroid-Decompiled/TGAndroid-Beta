@@ -241,10 +241,7 @@ public class SelfStoryViewsView extends FrameLayout {
         boolean z = this.keyboardHeight >= AndroidUtilities.dp(20.0f);
         boolean z2 = i >= AndroidUtilities.dp(20.0f);
         if (z2 != z) {
-            float[] fArr = new float[2];
-            fArr[0] = this.progressToKeyboard;
-            fArr[1] = z2 ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToKeyboard, z2 ? 1.0f : 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -269,7 +266,7 @@ public class SelfStoryViewsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        int i3 = this.storyViewer.ATTACH_TO_FRAGMENT ? AndroidUtilities.statusBarHeight + 0 : 0;
+        int i3 = this.storyViewer.ATTACH_TO_FRAGMENT ? AndroidUtilities.statusBarHeight : 0;
         int size = View.MeasureSpec.getSize(i2);
         ((FrameLayout.LayoutParams) this.selfStoriesPreviewView.getLayoutParams()).topMargin = i3;
         this.toHeight = this.selfStoriesPreviewView.getFinalHeight();
@@ -334,12 +331,12 @@ public class SelfStoryViewsView extends FrameLayout {
         this.storyItems.clear();
         this.dialogId = j;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            this.storyItems.add(new StoryItemInternal(this, arrayList.get(i2)));
+            this.storyItems.add(new StoryItemInternal(arrayList.get(i2)));
         }
         ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.storyViewer.currentAccount).storiesController.getUploadingStories(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId());
         if (uploadingStories != null) {
             for (int i3 = 0; i3 < uploadingStories.size(); i3++) {
-                this.storyItems.add(new StoryItemInternal(this, uploadingStories.get(i3)));
+                this.storyItems.add(new StoryItemInternal(uploadingStories.get(i3)));
             }
         }
         this.selfStoriesPreviewView.setItems(this.storyItems, i);
@@ -472,11 +469,11 @@ public class SelfStoryViewsView extends FrameLayout {
         public TL_stories$StoryItem storyItem;
         public StoriesController.UploadingStory uploadingStory;
 
-        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, TL_stories$StoryItem tL_stories$StoryItem) {
+        public StoryItemInternal(TL_stories$StoryItem tL_stories$StoryItem) {
             this.storyItem = tL_stories$StoryItem;
         }
 
-        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, StoriesController.UploadingStory uploadingStory) {
+        public StoryItemInternal(StoriesController.UploadingStory uploadingStory) {
             this.uploadingStory = uploadingStory;
         }
     }

@@ -55,7 +55,7 @@ public class TextCheckCell2 extends FrameLayout {
             this.collapseViewContainer.setClipChildren(false);
             setClipChildren(false);
             addView(this.collapseViewContainer, LayoutHelper.createFrame(-2, -2, 16));
-            View view = new View(this, getContext()) {
+            View view = new View(getContext()) {
                 @Override
                 protected void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
@@ -91,23 +91,25 @@ public class TextCheckCell2 extends FrameLayout {
         this.textView.setMaxLines(1);
         this.textView.setSingleLine(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setEllipsize(TextUtils.TruncateAt.END);
         TextView textView2 = this.textView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView2.setEllipsize(truncateAt);
+        TextView textView3 = this.textView;
         boolean z = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 64.0f : 21.0f, 0.0f, z ? 21.0f : 64.0f, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        addView(textView3, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 64.0f : 21.0f, 0.0f, z ? 21.0f : 64.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
+        textView4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
         this.valueTextView.setPadding(0, 0, 0, 0);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView4 = this.valueTextView;
+        this.valueTextView.setEllipsize(truncateAt);
+        TextView textView5 = this.valueTextView;
         boolean z2 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 64.0f : 21.0f, 35.0f, z2 ? 21.0f : 64.0f, 0.0f));
+        addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 64.0f : 21.0f, 35.0f, z2 ? 21.0f : 64.0f, 0.0f));
         Switch r2 = new Switch(context);
         this.checkBox = r2;
         r2.setDrawIconType(1);

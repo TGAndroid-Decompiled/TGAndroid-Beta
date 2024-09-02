@@ -28,8 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
-import kotlinx.coroutines.CoroutineId$$ExternalSyntheticBackport0;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FactCheckController$Key$$ExternalSyntheticBackport0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -189,11 +189,13 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         if (cachedLists == null) {
             cachedLists = new LongSparseArray<>();
         }
-        LongSparseArray<StoriesController.BotPreviewsList> longSparseArray = cachedLists.get(currentAccount);
+        long j2 = currentAccount;
+        LongSparseArray<StoriesController.BotPreviewsList> longSparseArray = cachedLists.get(j2);
         if (longSparseArray == null) {
-            LongSparseArray<StoriesController.BotPreviewsList> longSparseArray2 = new LongSparseArray<>();
-            cachedLists.put(currentAccount, longSparseArray2);
-            longSparseArray = longSparseArray2;
+            LongSparseArray<LongSparseArray<StoriesController.BotPreviewsList>> longSparseArray2 = cachedLists;
+            LongSparseArray<StoriesController.BotPreviewsList> longSparseArray3 = new LongSparseArray<>();
+            longSparseArray2.put(j2, longSparseArray3);
+            longSparseArray = longSparseArray3;
         }
         StoriesController.BotPreviewsList botPreviewsList = longSparseArray.get(j);
         if (botPreviewsList == null) {
@@ -353,8 +355,11 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     }
 
     public String getCurrentLang() {
+        View view;
         View[] viewPages = this.viewPager.getViewPages();
-        View view = (Math.abs(((float) this.viewPager.getCurrentPosition()) - this.viewPager.getPositionAnimated()) >= 0.5f || viewPages[1] == null) ? viewPages[0] : viewPages[1];
+        if (Math.abs(this.viewPager.getCurrentPosition() - this.viewPager.getPositionAnimated()) >= 0.5f || (view = viewPages[1]) == null) {
+            view = viewPages[0];
+        }
         if (!(view instanceof BotPreviewsEditLangContainer)) {
             return null;
         }
@@ -390,7 +395,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     }
 
     public boolean canScroll(boolean z) {
-        return z ? this.viewPager.getCurrentPosition() == (this.langLists.size() + 1) - 1 : this.viewPager.getCurrentPosition() == 0;
+        return z ? this.viewPager.getCurrentPosition() == this.langLists.size() : this.viewPager.getCurrentPosition() == 0;
     }
 
     public boolean isSelectedAll() {
@@ -444,9 +449,9 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         this.visibleHeight = i;
         View[] viewPages = this.viewPager.getViewPages();
         if (viewPages != null) {
-            for (int i2 = 0; i2 < viewPages.length; i2++) {
-                if (viewPages[i2] instanceof BotPreviewsEditLangContainer) {
-                    ((BotPreviewsEditLangContainer) viewPages[i2]).setVisibleHeight(i);
+            for (View view : viewPages) {
+                if (view instanceof BotPreviewsEditLangContainer) {
+                    ((BotPreviewsEditLangContainer) view).setVisibleHeight(i);
                 }
             }
         }
@@ -498,7 +503,8 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         int i3 = 0;
         if (i == NotificationCenter.storiesListUpdated) {
-            if (objArr[0] == this.mainList) {
+            Object obj = objArr[0];
+            if (obj == this.mainList) {
                 updateLangs(true);
                 View[] viewPages = this.viewPager.getViewPages();
                 int length = viewPages.length;
@@ -514,7 +520,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
                 return;
             }
-            if (this.langLists.indexOf(objArr[0]) >= 0) {
+            if (this.langLists.indexOf(obj) >= 0) {
                 for (View view2 : this.viewPager.getViewPages()) {
                     if (view2 instanceof BotPreviewsEditLangContainer) {
                         BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = (BotPreviewsEditLangContainer) view2;
@@ -533,8 +539,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             int length2 = viewPages2.length;
             while (i3 < length2) {
                 View view3 = viewPages2[i3];
-                boolean z = view3 instanceof BotPreviewsEditLangContainer;
-                if (z && z) {
+                if ((view3 instanceof BotPreviewsEditLangContainer) && (view3 instanceof BotPreviewsEditLangContainer)) {
                     ((BotPreviewsEditLangContainer) view3).adapter.notifyDataSetChanged();
                 }
                 i3++;
@@ -652,10 +657,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 this.viewPager.setTranslationY(AndroidUtilities.dp(z ? 42.0f : 0.0f));
                 return;
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.tabsAlpha;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.tabsAlpha, z ? 1.0f : 0.0f);
             this.tabsAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -839,6 +841,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
         private final FlickerLoadingView progressView;
         Rect rect;
         private ItemTouchHelper reorder;
+        private final RecyclerAnimationScrollHelper scrollHelper;
         private boolean storiesColumnsCountSet;
         private final StoriesAdapter supportingAdapter;
         private final GridLayoutManager supportingLayoutManager;
@@ -957,7 +960,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             this.allowStoriesSingleColumn = false;
             this.storiesColumnsCountSet = false;
             this.rect = new Rect();
-            ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(this, context, 100, BotPreviewsEditContainer.this) {
+            ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 100) {
                 private final Size size = new Size();
 
                 @Override
@@ -1000,7 +1003,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 }
             };
             this.layoutManager = extendedGridLayoutManager;
-            extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(BotPreviewsEditContainer.this) {
+            extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int i) {
                     if (BotPreviewsEditLangContainer.this.adapter.getItemViewType(i) == 2) {
@@ -1015,7 +1018,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             defaultItemAnimator.setDurations(280L);
             defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             defaultItemAnimator.setSupportsChangeAnimations(false);
-            SharedMediaLayout.SharedMediaListView sharedMediaListView = new SharedMediaLayout.SharedMediaListView(context, BotPreviewsEditContainer.this) {
+            SharedMediaLayout.SharedMediaListView sharedMediaListView = new SharedMediaLayout.SharedMediaListView(context) {
                 @Override
                 public boolean isStories() {
                     return true;
@@ -1090,7 +1093,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             sharedMediaListView.setSectionsType(2);
             sharedMediaListView.setLayoutManager(extendedGridLayoutManager);
             addView(sharedMediaListView, LayoutHelper.createFrame(-1, -1.0f));
-            sharedMediaListView.addItemDecoration(new RecyclerView.ItemDecoration(BotPreviewsEditContainer.this) {
+            sharedMediaListView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     if (view instanceof SharedPhotoVideoCell2) {
@@ -1128,7 +1131,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             });
             SharedMediaLayout.InternalListView internalListView = new SharedMediaLayout.InternalListView(context);
             this.supportingListView = internalListView;
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3, BotPreviewsEditContainer.this) {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3) {
                 @Override
                 public boolean supportsPredictiveItemAnimations() {
                     return false;
@@ -1144,7 +1147,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             };
             this.supportingLayoutManager = gridLayoutManager;
             internalListView.setLayoutManager(gridLayoutManager);
-            internalListView.addItemDecoration(new RecyclerView.ItemDecoration(BotPreviewsEditContainer.this) {
+            internalListView.addItemDecoration(new RecyclerView.ItemDecoration() {
                 @Override
                 public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
                     if (view instanceof SharedPhotoVideoCell2) {
@@ -1169,7 +1172,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             gridLayoutManager.setSpanCount(this.animateToColumnsCount);
             internalListView.setVisibility(8);
             addView(internalListView, LayoutHelper.createFrame(-1, -1.0f));
-            StoriesAdapter storiesAdapter = new StoriesAdapter(context, BotPreviewsEditContainer.this) {
+            StoriesAdapter storiesAdapter = new StoriesAdapter(context) {
                 @Override
                 public void notifyDataSetChanged() {
                     super.notifyDataSetChanged();
@@ -1188,7 +1191,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             StoriesAdapter makeSupporting = storiesAdapter.makeSupporting();
             this.supportingAdapter = makeSupporting;
             internalListView.setAdapter(makeSupporting);
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, BotPreviewsEditContainer.this) {
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context) {
                 private final Paint backgroundPaint = new Paint();
 
                 @Override
@@ -1236,7 +1239,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                     BotPreviewsEditContainer.BotPreviewsEditLangContainer.this.lambda$new$6(view);
                 }
             });
-            TextView textView = new TextView(context, BotPreviewsEditContainer.this) {
+            TextView textView = new TextView(context) {
                 private final Paint paint = new Paint(1);
 
                 @Override
@@ -1271,8 +1274,8 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             stickerEmptyView.addView(flickerLoadingView, 0, LayoutHelper.createFrame(-1, -1.0f));
             sharedMediaListView.setEmptyView(stickerEmptyView);
             sharedMediaListView.setAnimateEmptyView(true, 0);
-            new RecyclerAnimationScrollHelper(sharedMediaListView, extendedGridLayoutManager);
-            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback(BotPreviewsEditContainer.this) {
+            this.scrollHelper = new RecyclerAnimationScrollHelper(sharedMediaListView, extendedGridLayoutManager);
+            ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
                 @Override
                 public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
                 }
@@ -1325,7 +1328,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             });
             this.reorder = itemTouchHelper;
             itemTouchHelper.attachToRecyclerView(sharedMediaListView);
-            FooterView footerView = new FooterView(this, context, BotPreviewsEditContainer.this.resourcesProvider);
+            FooterView footerView = new FooterView(context, BotPreviewsEditContainer.this.resourcesProvider);
             this.footer = footerView;
             addView(footerView, LayoutHelper.createFrame(-1, -2, 48));
         }
@@ -1526,11 +1529,11 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                         sharedPhotoVideoCell2.isStoryPinned = false;
                         if (uploadingStory.sharedMessageObject == null) {
                             TL_stories$TL_storyItem tL_stories$TL_storyItem = new TL_stories$TL_storyItem();
-                            int m = CoroutineId$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
+                            int m = FactCheckController$Key$$ExternalSyntheticBackport0.m(uploadingStory.random_id);
                             tL_stories$TL_storyItem.messageId = m;
                             tL_stories$TL_storyItem.id = m;
                             tL_stories$TL_storyItem.attachPath = uploadingStory.firstFramePath;
-                            MessageObject messageObject = new MessageObject(this, this.storiesList.currentAccount, tL_stories$TL_storyItem) {
+                            MessageObject messageObject = new MessageObject(this.storiesList.currentAccount, tL_stories$TL_storyItem) {
                                 @Override
                                 public float getProgress() {
                                     return this.uploadingStory.progress;
@@ -1837,10 +1840,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                         return;
                     }
                     final boolean z = f > 0.2f;
-                    float[] fArr = new float[2];
-                    fArr[0] = f;
-                    fArr[1] = z ? 1.0f : 0.0f;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f, z ? 1.0f : 0.0f);
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -1925,7 +1925,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
             private final TextView orTextView;
             private final TextView textView;
 
-            public FooterView(BotPreviewsEditLangContainer botPreviewsEditLangContainer, Context context, Theme.ResourcesProvider resourcesProvider) {
+            public FooterView(Context context, final Theme.ResourcesProvider resourcesProvider) {
                 super(context);
                 setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(21.0f));
                 setOrientation(1);
@@ -1937,7 +1937,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 textView.setGravity(17);
                 textView.setTextAlignment(4);
                 addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 19.0f));
-                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(this, context, resourcesProvider, botPreviewsEditLangContainer) {
+                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider) {
                     @Override
                     public void onMeasure(int i2, int i3) {
                         super.onMeasure(i2, i3);
@@ -1947,13 +1947,8 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                 buttonWithCounterView.setMinWidth(AndroidUtilities.dp(200.0f));
                 buttonWithCounterView.setText(LocaleController.getString(R.string.ProfileBotAddPreview), false);
                 addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 44, 17));
-                TextView textView2 = new TextView(this, context, botPreviewsEditLangContainer, resourcesProvider) {
+                TextView textView2 = new TextView(context) {
                     private final Paint paint = new Paint(1);
-                    final Theme.ResourcesProvider val$resourcesProvider;
-
-                    {
-                        this.val$resourcesProvider = resourcesProvider;
-                    }
 
                     @Override
                     protected void dispatchDraw(Canvas canvas) {
@@ -1961,7 +1956,7 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
                         int max = Math.max(1, AndroidUtilities.dp(0.66f));
                         Layout layout = getLayout();
                         if (layout != null) {
-                            this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.val$resourcesProvider), 0.45f));
+                            this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider), 0.45f));
                             float f = height;
                             float f2 = max / 2.0f;
                             float f3 = f - f2;
@@ -2016,12 +2011,14 @@ public class BotPreviewsEditContainer extends FrameLayout implements Notificatio
     public static class ChooseLanguageSheet extends BottomSheetWithRecyclerListView {
         private UniversalAdapter adapter;
         private final int currentAccount;
+        private FrameLayout searchContainer;
+        private ImageView searchImageView;
         private final CharSequence title;
 
         public ChooseLanguageSheet(BaseFragment baseFragment, CharSequence charSequence, final Utilities.Callback<String> callback) {
             super(baseFragment, true, false, false, baseFragment.getResourceProvider());
-            new FrameLayout(getContext());
-            new ImageView(getContext());
+            this.searchContainer = new FrameLayout(getContext());
+            this.searchImageView = new ImageView(getContext());
             this.currentAccount = baseFragment.getCurrentAccount();
             this.title = charSequence;
             updateTitle();

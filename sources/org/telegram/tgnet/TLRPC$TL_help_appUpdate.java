@@ -1,8 +1,11 @@
 package org.telegram.tgnet;
 
+import androidx.annotation.Keep;
 import java.util.ArrayList;
 
+@Keep
 public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
+    public static final int constructor = -860107216;
     public boolean can_not_skip;
     public TLRPC$Document document;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();

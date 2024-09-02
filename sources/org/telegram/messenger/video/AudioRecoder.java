@@ -74,10 +74,12 @@ public class AudioRecoder {
     public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) throws Exception {
         int dequeueInputBuffer;
         ShortBuffer asShortBuffer;
+        ByteBuffer inputBuffer;
         if (!this.encoderInputDone && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
             if (isInputAvailable()) {
                 if (Build.VERSION.SDK_INT >= 21) {
-                    asShortBuffer = this.encoder.getInputBuffer(dequeueInputBuffer).asShortBuffer();
+                    inputBuffer = this.encoder.getInputBuffer(dequeueInputBuffer);
+                    asShortBuffer = inputBuffer.asShortBuffer();
                 } else {
                     asShortBuffer = this.encoder.getInputBuffers()[dequeueInputBuffer].asShortBuffer();
                 }

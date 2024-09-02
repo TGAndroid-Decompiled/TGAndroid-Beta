@@ -212,7 +212,9 @@ public final class FloatingActionMode extends ActionMode {
     }
 
     private boolean isContentRectWithinBounds() {
-        ((WindowManager) this.mContext.getSystemService(WindowManager.class)).getDefaultDisplay().getRealSize(this.mDisplaySize);
+        Object systemService;
+        systemService = this.mContext.getSystemService((Class<Object>) WindowManager.class);
+        ((WindowManager) systemService).getDefaultDisplay().getRealSize(this.mDisplaySize);
         Rect rect = this.mScreenRect;
         Point point = this.mDisplaySize;
         rect.set(0, 0, point.x, point.y);

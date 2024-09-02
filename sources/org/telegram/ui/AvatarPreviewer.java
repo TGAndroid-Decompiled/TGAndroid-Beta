@@ -142,14 +142,18 @@ public class AvatarPreviewer {
     public static final class MenuItem {
         private static final MenuItem[] $VALUES;
         public static final MenuItem MENTION;
-        public static final MenuItem OPEN_CHANNEL;
         public static final MenuItem OPEN_GROUP;
-        public static final MenuItem OPEN_PROFILE;
         public static final MenuItem SEARCH_MESSAGES;
         public static final MenuItem SEND_MESSAGE;
         private final int iconResId;
         private final String labelKey;
         private final int labelResId;
+        public static final MenuItem OPEN_PROFILE = new MenuItem("OPEN_PROFILE", 0, "OpenProfile", R.string.OpenProfile, R.drawable.msg_openprofile);
+        public static final MenuItem OPEN_CHANNEL = new MenuItem("OPEN_CHANNEL", 1, "OpenChannel2", R.string.OpenChannel2, R.drawable.msg_channel);
+
+        private static MenuItem[] $values() {
+            return new MenuItem[]{OPEN_PROFILE, OPEN_CHANNEL, OPEN_GROUP, SEND_MESSAGE, MENTION, SEARCH_MESSAGES};
+        }
 
         public static MenuItem valueOf(String str) {
             return (MenuItem) Enum.valueOf(MenuItem.class, str);
@@ -160,21 +164,13 @@ public class AvatarPreviewer {
         }
 
         static {
-            MenuItem menuItem = new MenuItem("OPEN_PROFILE", 0, "OpenProfile", R.string.OpenProfile, R.drawable.msg_openprofile);
-            OPEN_PROFILE = menuItem;
-            MenuItem menuItem2 = new MenuItem("OPEN_CHANNEL", 1, "OpenChannel2", R.string.OpenChannel2, R.drawable.msg_channel);
-            OPEN_CHANNEL = menuItem2;
             int i = R.string.OpenGroup2;
             int i2 = R.drawable.msg_discussion;
-            MenuItem menuItem3 = new MenuItem("OPEN_GROUP", 2, "OpenGroup2", i, i2);
-            OPEN_GROUP = menuItem3;
-            MenuItem menuItem4 = new MenuItem("SEND_MESSAGE", 3, "SendMessage", R.string.SendMessage, i2);
-            SEND_MESSAGE = menuItem4;
-            MenuItem menuItem5 = new MenuItem("MENTION", 4, "Mention", R.string.Mention, R.drawable.msg_mention);
-            MENTION = menuItem5;
-            MenuItem menuItem6 = new MenuItem("SEARCH_MESSAGES", 5, "AvatarPreviewSearchMessages", R.string.AvatarPreviewSearchMessages, R.drawable.msg_search);
-            SEARCH_MESSAGES = menuItem6;
-            $VALUES = new MenuItem[]{menuItem, menuItem2, menuItem3, menuItem4, menuItem5, menuItem6};
+            OPEN_GROUP = new MenuItem("OPEN_GROUP", 2, "OpenGroup2", i, i2);
+            SEND_MESSAGE = new MenuItem("SEND_MESSAGE", 3, "SendMessage", R.string.SendMessage, i2);
+            MENTION = new MenuItem("MENTION", 4, "Mention", R.string.Mention, R.drawable.msg_mention);
+            SEARCH_MESSAGES = new MenuItem("SEARCH_MESSAGES", 5, "AvatarPreviewSearchMessages", R.string.AvatarPreviewSearchMessages, R.drawable.msg_search);
+            $VALUES = $values();
         }
 
         private MenuItem(String str, int i, String str2, int i2, int i3) {

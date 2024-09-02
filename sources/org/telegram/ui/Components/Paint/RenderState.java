@@ -26,7 +26,7 @@ public class RenderState {
             return;
         }
         this.allocatedCount = 256;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(256 * 5 * 4);
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(5120);
         this.buffer = allocateDirect;
         allocateDirect.order(ByteOrder.nativeOrder());
         this.buffer.position(0);
@@ -41,7 +41,7 @@ public class RenderState {
         if (byteBuffer == null || i < 0 || i >= this.allocatedCount) {
             return;
         }
-        byteBuffer.position(i * 5 * 4);
+        byteBuffer.position(i * 20);
     }
 
     public void appendValuesCount(int i) {
@@ -58,7 +58,7 @@ public class RenderState {
         }
         int max = Math.max(this.allocatedCount * 2, 256);
         this.allocatedCount = max;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 5 * 4);
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(max * 20);
         this.buffer = allocateDirect;
         allocateDirect.order(ByteOrder.nativeOrder());
         this.buffer.position(0);
@@ -70,7 +70,7 @@ public class RenderState {
             return false;
         }
         if (i != -1) {
-            this.buffer.position(i * 5 * 4);
+            this.buffer.position(i * 20);
         }
         this.buffer.putFloat(pointF.x);
         this.buffer.putFloat(pointF.y);

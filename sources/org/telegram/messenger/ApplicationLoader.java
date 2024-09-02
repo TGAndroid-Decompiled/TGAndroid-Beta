@@ -446,7 +446,11 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedOrConnectingToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
+            if (currentNetworkInfo != null) {
+                if (currentNetworkInfo.getType() != 1) {
+                    if (currentNetworkInfo.getType() == 9) {
+                    }
+                }
                 NetworkInfo.State state = currentNetworkInfo.getState();
                 if (state != NetworkInfo.State.CONNECTED && state != NetworkInfo.State.CONNECTING) {
                     if (state == NetworkInfo.State.SUSPENDED) {
@@ -463,7 +467,11 @@ public class ApplicationLoader extends Application {
     public static boolean isConnectedToWiFi() {
         try {
             ensureCurrentNetworkGet(false);
-            if (currentNetworkInfo != null && (currentNetworkInfo.getType() == 1 || currentNetworkInfo.getType() == 9)) {
+            if (currentNetworkInfo != null) {
+                if (currentNetworkInfo.getType() != 1) {
+                    if (currentNetworkInfo.getType() == 9) {
+                    }
+                }
                 if (currentNetworkInfo.getState() == NetworkInfo.State.CONNECTED) {
                     return true;
                 }
@@ -547,20 +555,20 @@ public class ApplicationLoader extends Application {
         try {
             ConnectivityManager connectivityManager2 = (ConnectivityManager) applicationContext.getSystemService("connectivity");
             NetworkInfo activeNetworkInfo = connectivityManager2.getActiveNetworkInfo();
-            if (activeNetworkInfo != null && (activeNetworkInfo.isConnectedOrConnecting() || activeNetworkInfo.isAvailable())) {
-                return true;
-            }
-            NetworkInfo networkInfo = connectivityManager2.getNetworkInfo(0);
-            if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
-                return true;
-            }
-            NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
-            if (networkInfo2 != null) {
-                if (networkInfo2.isConnectedOrConnecting()) {
+            if (activeNetworkInfo == null || (!activeNetworkInfo.isConnectedOrConnecting() && !activeNetworkInfo.isAvailable())) {
+                NetworkInfo networkInfo = connectivityManager2.getNetworkInfo(0);
+                if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
                     return true;
                 }
+                NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
+                if (networkInfo2 != null) {
+                    if (networkInfo2.isConnectedOrConnecting()) {
+                        return true;
+                    }
+                }
+                return false;
             }
-            return false;
+            return true;
         } catch (Exception e) {
             FileLog.e(e);
             return true;

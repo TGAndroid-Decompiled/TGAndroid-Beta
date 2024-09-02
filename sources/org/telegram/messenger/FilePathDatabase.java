@@ -360,44 +360,61 @@ public class FilePathDatabase {
         if (fileMeta == null) {
             fileMeta = this.metaTmp;
         }
-        long j = 0;
         int i3 = 0;
+        long j = 0;
         try {
             try {
                 sQLiteCursor = this.database.queryFinalized("SELECT dialog_id, message_id, message_type FROM paths_by_dialog_id WHERE path = '" + shield(file.getPath()) + "'", new Object[0]);
-                if (sQLiteCursor.next()) {
-                    j = sQLiteCursor.longValue(0);
-                    i = sQLiteCursor.intValue(1);
-                    try {
-                        i3 = i;
-                        i2 = sQLiteCursor.intValue(2);
-                    } catch (Exception e) {
-                        e = e;
-                        FileLog.e(e);
+            } catch (Exception e) {
+                e = e;
+                i = 0;
+            }
+            if (sQLiteCursor.next()) {
+                j = sQLiteCursor.longValue(0);
+                i = sQLiteCursor.intValue(1);
+                try {
+                    i3 = i;
+                    i2 = sQLiteCursor.intValue(2);
+                } catch (Exception e2) {
+                    e = e2;
+                    FileLog.e(e);
+                    if (sQLiteCursor != null) {
                         i3 = i;
                         i2 = 0;
-                        fileMeta.dialogId = j;
-                        fileMeta.messageId = i3;
-                        fileMeta.messageType = i2;
-                        return fileMeta;
+                        sQLiteCursor.dispose();
+                        int i4 = i3;
+                        i3 = i2;
+                        i = i4;
                     }
-                } else {
-                    i2 = 0;
+                    fileMeta.dialogId = j;
+                    fileMeta.messageId = i;
+                    fileMeta.messageType = i3;
+                    return fileMeta;
                 }
                 sQLiteCursor.dispose();
-            } finally {
-                if (0 != 0) {
-                    sQLiteCursor.dispose();
-                }
+                int i42 = i3;
+                i3 = i2;
+                i = i42;
+                fileMeta.dialogId = j;
+                fileMeta.messageId = i;
+                fileMeta.messageType = i3;
+                return fileMeta;
             }
-        } catch (Exception e2) {
-            e = e2;
-            i = 0;
+            i2 = 0;
+            sQLiteCursor.dispose();
+            int i422 = i3;
+            i3 = i2;
+            i = i422;
+            fileMeta.dialogId = j;
+            fileMeta.messageId = i;
+            fileMeta.messageType = i3;
+            return fileMeta;
+        } catch (Throwable th) {
+            if (sQLiteCursor != null) {
+                sQLiteCursor.dispose();
+            }
+            throw th;
         }
-        fileMeta.dialogId = j;
-        fileMeta.messageId = i3;
-        fileMeta.messageType = i2;
-        return fileMeta;
     }
 
     private String shield(String str) {
@@ -488,10 +505,13 @@ public class FilePathDatabase {
     private void ensureQueueExist() {
         if (this.dispatchQueue == null) {
             synchronized (this) {
-                if (this.dispatchQueue == null) {
-                    DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
-                    this.dispatchQueue = dispatchQueue;
-                    dispatchQueue.setPriority(10);
+                try {
+                    if (this.dispatchQueue == null) {
+                        DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
+                        this.dispatchQueue = dispatchQueue;
+                        dispatchQueue.setPriority(10);
+                    }
+                } finally {
                 }
             }
         }

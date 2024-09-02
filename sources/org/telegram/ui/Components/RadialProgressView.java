@@ -152,14 +152,13 @@ public class RadialProgressView extends View {
     }
 
     public void draw(Canvas canvas, float f, float f2) {
+        float f3 = this.size / 2.0f;
+        this.cicleRect.set(f - f3, f2 - f3, f + f3, f2 + f3);
         RectF rectF = this.cicleRect;
-        int i = this.size;
-        rectF.set(f - (i / 2.0f), f2 - (i / 2.0f), f + (i / 2.0f), f2 + (i / 2.0f));
-        RectF rectF2 = this.cicleRect;
-        float f3 = this.radOffset;
-        float f4 = this.currentCircleLength;
-        this.drawingCircleLenght = f4;
-        canvas.drawArc(rectF2, f3, f4, false, this.progressPaint);
+        float f4 = this.radOffset;
+        float f5 = this.currentCircleLength;
+        this.drawingCircleLenght = f5;
+        canvas.drawArc(rectF, f4, f5, false, this.progressPaint);
         updateAnimation();
     }
 

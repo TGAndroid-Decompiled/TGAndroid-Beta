@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 public class LruCache<T> {
@@ -30,13 +29,19 @@ public class LruCache<T> {
     }
 
     public final T get(String str) {
-        Objects.requireNonNull(str, "key == null");
+        if (str == null) {
+            throw new NullPointerException("key == null");
+        }
         synchronized (this) {
-            T t = this.map.get(str);
-            if (t != null) {
-                return t;
+            try {
+                T t = this.map.get(str);
+                if (t != null) {
+                    return t;
+                }
+                return null;
+            } catch (Throwable th) {
+                throw th;
             }
-            return null;
         }
     }
 
@@ -61,10 +66,14 @@ public class LruCache<T> {
             throw new NullPointerException("key == null || value == null");
         }
         synchronized (this) {
-            this.size += safeSizeOf(str, t);
-            put = this.map.put(str, t);
-            if (put != null) {
-                this.size -= safeSizeOf(str, put);
+            try {
+                this.size += safeSizeOf(str, t);
+                put = this.map.put(str, t);
+                if (put != null) {
+                    this.size -= safeSizeOf(str, put);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         String[] split = str.split("@");
@@ -88,23 +97,26 @@ public class LruCache<T> {
     private void trimToSize(int i, String str) {
         ArrayList<String> arrayList;
         synchronized (this) {
-            Iterator<Map.Entry<String, T>> it = this.map.entrySet().iterator();
-            while (it.hasNext() && this.size > i && !this.map.isEmpty()) {
-                Map.Entry<String, T> next = it.next();
-                String key = next.getKey();
-                if (str == null || !str.equals(key)) {
-                    T value = next.getValue();
-                    this.size -= safeSizeOf(key, value);
-                    it.remove();
-                    String[] split = key.split("@");
-                    if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
-                        arrayList.remove(split[1]);
-                        if (arrayList.isEmpty()) {
-                            this.mapFilters.remove(split[0]);
+            try {
+                Iterator<Map.Entry<String, T>> it = this.map.entrySet().iterator();
+                while (it.hasNext() && this.size > i && !this.map.isEmpty()) {
+                    Map.Entry<String, T> next = it.next();
+                    String key = next.getKey();
+                    if (str == null || !str.equals(key)) {
+                        T value = next.getValue();
+                        this.size -= safeSizeOf(key, value);
+                        it.remove();
+                        String[] split = key.split("@");
+                        if (split.length > 1 && (arrayList = this.mapFilters.get(split[0])) != null) {
+                            arrayList.remove(split[1]);
+                            if (arrayList.isEmpty()) {
+                                this.mapFilters.remove(split[0]);
+                            }
                         }
+                        entryRemoved(true, key, value, null);
                     }
-                    entryRemoved(true, key, value, null);
                 }
+            } finally {
             }
         }
     }
@@ -112,11 +124,17 @@ public class LruCache<T> {
     public final T remove(String str) {
         T remove;
         ArrayList<String> arrayList;
-        Objects.requireNonNull(str, "key == null");
+        if (str == null) {
+            throw new NullPointerException("key == null");
+        }
         synchronized (this) {
-            remove = this.map.remove(str);
-            if (remove != null) {
-                this.size -= safeSizeOf(str, remove);
+            try {
+                remove = this.map.remove(str);
+                if (remove != null) {
+                    this.size -= safeSizeOf(str, remove);
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
         if (remove != null) {

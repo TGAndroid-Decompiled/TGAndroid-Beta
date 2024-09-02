@@ -140,7 +140,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
         });
         this.searchItem = actionBarMenuItemSearchListener;
-        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
         searchField.setTextColor(Theme.getColor(i));
         searchField.setCursorColor(Theme.getColor(i));
@@ -170,9 +170,9 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 PhotoPickerSearchActivity.this.switchToCurrentSelectedMode(true);
                 PhotoPickerSearchActivity.this.animatingForward = z;
                 if (i4 == 0) {
-                    PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
+                    PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.SearchImagesTitle));
                 } else {
-                    PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString("SearchGifsTitle", R.string.SearchGifsTitle));
+                    PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.SearchGifsTitle));
                 }
             }
 
@@ -279,7 +279,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             @Override
-            public void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+            public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoPickerSearchActivity.AnonymousClass4.onLayout(boolean, int, int, int, int):void");
             }
 
@@ -299,31 +299,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                if (!PhotoPickerSearchActivity.this.tabsAnimationInProgress) {
-                    return false;
-                }
-                boolean z = true;
-                if (PhotoPickerSearchActivity.this.backAnimation) {
-                    if (Math.abs(PhotoPickerSearchActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
-                        PhotoPickerSearchActivity.this.viewPages[0].setTranslationX(0.0f);
-                        PhotoPickerSearchActivity.this.viewPages[1].setTranslationX(PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() * (PhotoPickerSearchActivity.this.animatingForward ? 1 : -1));
-                    }
-                    z = false;
-                } else {
-                    if (Math.abs(PhotoPickerSearchActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
-                        PhotoPickerSearchActivity.this.viewPages[0].setTranslationX(PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() * (PhotoPickerSearchActivity.this.animatingForward ? -1 : 1));
-                        PhotoPickerSearchActivity.this.viewPages[1].setTranslationX(0.0f);
-                    }
-                    z = false;
-                }
-                if (z) {
-                    if (PhotoPickerSearchActivity.this.tabsAnimation != null) {
-                        PhotoPickerSearchActivity.this.tabsAnimation.cancel();
-                        PhotoPickerSearchActivity.this.tabsAnimation = null;
-                    }
-                    PhotoPickerSearchActivity.this.tabsAnimationInProgress = false;
-                }
-                return PhotoPickerSearchActivity.this.tabsAnimationInProgress;
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoPickerSearchActivity.AnonymousClass4.checkTabsAnimationInProgress():boolean");
             }
 
             @Override
@@ -402,16 +378,28 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                         if (!PhotoPickerSearchActivity.this.backAnimation) {
                             measuredWidth = PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth() - Math.abs(x2);
                             if (PhotoPickerSearchActivity.this.animatingForward) {
-                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, -PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f));
+                                AnimatorSet animatorSet = PhotoPickerSearchActivity.this.tabsAnimation;
+                                ViewPage viewPage = PhotoPickerSearchActivity.this.viewPages[0];
+                                Property property = View.TRANSLATION_X;
+                                animatorSet.playTogether(ObjectAnimator.ofFloat(viewPage, (Property<ViewPage, Float>) property, -PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
                             } else {
-                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f));
+                                AnimatorSet animatorSet2 = PhotoPickerSearchActivity.this.tabsAnimation;
+                                ViewPage viewPage2 = PhotoPickerSearchActivity.this.viewPages[0];
+                                Property property2 = View.TRANSLATION_X;
+                                animatorSet2.playTogether(ObjectAnimator.ofFloat(viewPage2, (Property<ViewPage, Float>) property2, PhotoPickerSearchActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property2, 0.0f));
                             }
                         } else {
                             measuredWidth = Math.abs(x2);
                             if (PhotoPickerSearchActivity.this.animatingForward) {
-                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
+                                AnimatorSet animatorSet3 = PhotoPickerSearchActivity.this.tabsAnimation;
+                                ViewPage viewPage3 = PhotoPickerSearchActivity.this.viewPages[0];
+                                Property property3 = View.TRANSLATION_X;
+                                animatorSet3.playTogether(ObjectAnimator.ofFloat(viewPage3, (Property<ViewPage, Float>) property3, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property3, PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
                             } else {
-                                PhotoPickerSearchActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, -PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
+                                AnimatorSet animatorSet4 = PhotoPickerSearchActivity.this.tabsAnimation;
+                                ViewPage viewPage4 = PhotoPickerSearchActivity.this.viewPages[0];
+                                Property property4 = View.TRANSLATION_X;
+                                animatorSet4.playTogether(ObjectAnimator.ofFloat(viewPage4, (Property<ViewPage, Float>) property4, 0.0f), ObjectAnimator.ofFloat(PhotoPickerSearchActivity.this.viewPages[1], (Property<ViewPage, Float>) property4, -PhotoPickerSearchActivity.this.viewPages[1].getMeasuredWidth()));
                             }
                         }
                         PhotoPickerSearchActivity.this.tabsAnimation.setInterpolator(PhotoPickerSearchActivity.interpolator);
@@ -432,9 +420,9 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                 if (PhotoPickerSearchActivity.this.backAnimation) {
                                     PhotoPickerSearchActivity.this.viewPages[1].setVisibility(8);
                                 } else {
-                                    ViewPage viewPage = PhotoPickerSearchActivity.this.viewPages[0];
+                                    ViewPage viewPage5 = PhotoPickerSearchActivity.this.viewPages[0];
                                     PhotoPickerSearchActivity.this.viewPages[0] = PhotoPickerSearchActivity.this.viewPages[1];
-                                    PhotoPickerSearchActivity.this.viewPages[1] = viewPage;
+                                    PhotoPickerSearchActivity.this.viewPages[1] = viewPage5;
                                     PhotoPickerSearchActivity.this.viewPages[1].setVisibility(8);
                                     PhotoPickerSearchActivity photoPickerSearchActivity = PhotoPickerSearchActivity.this;
                                     photoPickerSearchActivity.swipeBackEnabled = photoPickerSearchActivity.viewPages[0].selectedType == PhotoPickerSearchActivity.this.scrollSlidingTextTabStrip.getFirstTabId();
@@ -511,15 +499,15 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 this.viewPages[i5].setVisibility(8);
             }
             this.viewPages[i5].listView.setScrollingTouchSlop(1);
-            ViewPage[] viewPageArr2 = this.viewPages;
-            viewPageArr2[i5].fragmentView = (FrameLayout) viewPageArr2[i5].parentFragment.getFragmentView();
+            ViewPage viewPage = this.viewPages[i5];
+            viewPage.fragmentView = (FrameLayout) viewPage.parentFragment.getFragmentView();
             this.viewPages[i5].listView.setClipToPadding(false);
-            ViewPage[] viewPageArr3 = this.viewPages;
-            viewPageArr3[i5].actionBar = viewPageArr3[i5].parentFragment.getActionBar();
-            ViewPage[] viewPageArr4 = this.viewPages;
-            viewPageArr4[i5].addView(viewPageArr4[i5].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
-            ViewPage[] viewPageArr5 = this.viewPages;
-            viewPageArr5[i5].addView(viewPageArr5[i5].actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            ViewPage viewPage2 = this.viewPages[i5];
+            viewPage2.actionBar = viewPage2.parentFragment.getActionBar();
+            ViewPage viewPage3 = this.viewPages[i5];
+            viewPage3.addView(viewPage3.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            ViewPage viewPage4 = this.viewPages[i5];
+            viewPage4.addView(viewPage4.actionBar, LayoutHelper.createFrame(-1, -2.0f));
             this.viewPages[i5].actionBar.setVisibility(8);
             final RecyclerView.OnScrollListener onScrollListener = this.viewPages[i5].listView.getOnScrollListener();
             this.viewPages[i5].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -703,8 +691,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         if (scrollSlidingTextTabStrip == null) {
             return;
         }
-        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString("ImagesTab2", R.string.ImagesTab2));
-        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString("GifsTab2", R.string.GifsTab2));
+        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString(R.string.ImagesTab2));
+        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString(R.string.GifsTab2));
         this.scrollSlidingTextTabStrip.setVisibility(0);
         this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
         int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();

@@ -25,9 +25,11 @@ public class ContextProgressView extends View {
         this.outerPaint = new Paint(1);
         this.cicleRect = new RectF();
         this.radOffset = 0;
-        this.innerPaint.setStyle(Paint.Style.STROKE);
+        Paint paint = this.innerPaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         this.innerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-        this.outerPaint.setStyle(Paint.Style.STROKE);
+        this.outerPaint.setStyle(style);
         this.outerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
         if (i == 0) {

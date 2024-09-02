@@ -29,7 +29,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.cancelButton.setGravity(17);
         this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
         this.cancelButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        this.cancelButton.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
+        this.cancelButton.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
         this.cancelButton.setTypeface(AndroidUtilities.bold());
         addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
         TextView textView2 = new TextView(context);
@@ -39,7 +39,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.doneButton.setGravity(17);
         this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
         this.doneButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        this.doneButton.setText(LocaleController.getString("Send", R.string.Send).toUpperCase());
+        this.doneButton.setText(LocaleController.getString(R.string.Send).toUpperCase());
         this.doneButton.setTypeface(AndroidUtilities.bold());
         addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
         TextView textView3 = new TextView(context);

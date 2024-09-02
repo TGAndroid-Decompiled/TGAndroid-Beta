@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -111,7 +112,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private boolean allReactionsAvailable;
     private boolean allReactionsIsDefault;
     public List<ReactionsLayoutInBubble.VisibleReaction> allReactionsList;
-    HashSet<ReactionsLayoutInBubble.VisibleReaction> alwaysSelectedReactions;
+    final HashSet<ReactionsLayoutInBubble.VisibleReaction> alwaysSelectedReactions;
     private boolean animatePopup;
     private final boolean animationEnabled;
     private Paint bgPaint;
@@ -131,6 +132,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private float flipVerticalProgress;
     BaseFragment fragment;
     public boolean hasHint;
+    private boolean hasStar;
     private boolean hintMeasured;
     public TextView hintView;
     public int hintViewHeight;
@@ -179,15 +181,20 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     Theme.ResourcesProvider resourcesProvider;
     private float rightAlpha;
     private Paint rightShadowPaint;
-    private Paint selectedPaint;
-    HashSet<ReactionsLayoutInBubble.VisibleReaction> selectedReactions;
+    private final Paint selectedPaint;
+    final HashSet<ReactionsLayoutInBubble.VisibleReaction> selectedReactions;
     private Drawable shadow;
     private android.graphics.Rect shadowPad;
     private boolean showExpandableReactions;
     boolean skipDraw;
     public boolean skipEnterAnimation;
     private float smallCircleRadius;
+    private LinearGradient starSelectedGradient;
+    private Matrix starSelectedGradientMatrix;
+    private Paint starSelectedGradientPaint;
+    private final Paint starSelectedPaint;
     private float transitionProgress;
+    private List<String> triggeredReactions;
     private final int type;
     private List<ReactionsLayoutInBubble.VisibleReaction> visibleReactionsList;
     private long waitingLoadingChatId;
@@ -243,7 +250,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public class InnerItem extends AdapterWithDiffUtils.Item {
         ReactionsLayoutInBubble.VisibleReaction reaction;
 
-        public InnerItem(ReactionsContainerLayout reactionsContainerLayout, int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        public InnerItem(int i, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
             super(i, false);
             this.reaction = visibleReaction;
         }
@@ -252,7 +259,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             if (this == obj) {
                 return true;
             }
-            if (obj == null || InnerItem.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             InnerItem innerItem = (InnerItem) obj;
@@ -285,21 +292,25 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.premiumLockedReactions = new ArrayList(10);
         this.allReactionsList = new ArrayList(20);
         this.rectF = new RectF();
+        this.hasStar = false;
         this.selectedReactions = new HashSet<>();
         this.alwaysSelectedReactions = new HashSet<>();
         this.location = new int[2];
         this.shadowPad = new android.graphics.Rect();
-        new ArrayList();
+        this.triggeredReactions = new ArrayList();
         this.lastVisibleViews = new HashSet<>();
         this.lastVisibleViewsTmp = new HashSet<>();
+        Paint paint = new Paint(1);
+        this.selectedPaint = paint;
+        Paint paint2 = new Paint(1);
+        this.starSelectedPaint = paint2;
         this.notificationsLocker = new AnimationNotificationsLocker();
         this.isHiddenNextReaction = true;
         this.paused = false;
         this.type = i;
         this.durationScale = Settings.Global.getFloat(context.getContentResolver(), "animator_duration_scale", 1.0f);
-        Paint paint = new Paint(1);
-        this.selectedPaint = paint;
         paint.setColor(Theme.getColor(Theme.key_listSelector, resourcesProvider));
+        paint2.setColor(Theme.getColor(Theme.key_reactionStarSelector, resourcesProvider));
         this.resourcesProvider = resourcesProvider;
         this.currentAccount = i2;
         this.fragment = baseFragment;
@@ -1029,8 +1040,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         int dp = AndroidUtilities.dp(24.0f);
         float height = getHeight() / 2.0f;
         int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground);
-        this.leftShadowPaint.setShader(new LinearGradient(0.0f, height, dp, height, color, 0, Shader.TileMode.CLAMP));
-        this.rightShadowPaint.setShader(new LinearGradient(getWidth(), height, getWidth() - dp, height, color, 0, Shader.TileMode.CLAMP));
+        Paint paint = this.leftShadowPaint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        paint.setShader(new LinearGradient(0.0f, height, dp, height, color, 0, tileMode));
+        this.rightShadowPaint.setShader(new LinearGradient(getWidth(), height, getWidth() - dp, height, color, 0, tileMode));
         invalidate();
     }
 
@@ -1071,6 +1084,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             setVisibility(4);
             return;
         }
+        this.hasStar = false;
         int i2 = this.type;
         if (i2 == 3) {
             this.allReactionsAvailable = UserConfig.getInstance(this.currentAccount).isPremium();
@@ -1081,6 +1095,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         } else if (this.hitLimit) {
             this.allReactionsAvailable = false;
             if (tLRPC$ChatFull != null && tLRPC$ChatFull.paid_reactions_available) {
+                this.hasStar = true;
                 arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
             }
             Iterator<TLRPC$ReactionCount> it2 = this.messageObject.messageOwner.reactions.results.iterator();
@@ -1089,6 +1104,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         } else if (tLRPC$ChatFull != null) {
             if (tLRPC$ChatFull.paid_reactions_available) {
+                this.hasStar = true;
                 arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
             }
             TLRPC$ChatReactions tLRPC$ChatReactions = tLRPC$ChatFull.available_reactions;
@@ -1782,10 +1798,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     ReactionsContainerLayout.LeftRightShadowsListener.lambda$startAnimator$4(androidx.core.util.Consumer.this, valueAnimator);
                 }
             });
-            duration.addListener(new AnimatorListenerAdapter(this) {
+            duration.addListener(new AnimatorListenerAdapter() {
                 final Runnable val$onEnd;
 
-                AnonymousClass1(LeftRightShadowsListener this, Runnable runnable2) {
+                AnonymousClass1(Runnable runnable2) {
                     r2 = runnable2;
                 }
 
@@ -1801,7 +1817,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         public class AnonymousClass1 extends AnimatorListenerAdapter {
             final Runnable val$onEnd;
 
-            AnonymousClass1(LeftRightShadowsListener this, Runnable runnable2) {
+            AnonymousClass1(Runnable runnable2) {
                 r2 = runnable2;
             }
 
@@ -1836,6 +1852,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         public BackupImageView pressedBackupImageView;
         float pressedX;
         float pressedY;
+        private final boolean recyclerReaction;
         public boolean selected;
         public boolean shouldSwitchToLoopView;
         public float sideScale;
@@ -1905,10 +1922,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
             };
             this.touchable = true;
+            this.recyclerReaction = z;
             this.enterImageView = new AnonymousClass2(context, ReactionsContainerLayout.this);
-            this.loopImageView = new BackupImageView(context, ReactionsContainerLayout.this) {
+            this.loopImageView = new BackupImageView(context) {
+                final ReactionsContainerLayout val$this$0;
+
                 AnonymousClass3(Context context2, ReactionsContainerLayout reactionsContainerLayout) {
                     super(context2);
+                    r3 = reactionsContainerLayout;
                 }
 
                 @Override
@@ -1918,7 +1939,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
 
                 class AnonymousClass1 extends ImageReceiver {
-                    AnonymousClass1(AnonymousClass3 anonymousClass3, View view) {
+                    AnonymousClass1(View view) {
                         super(view);
                     }
 
@@ -1936,8 +1957,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
                 @Override
                 protected ImageReceiver createImageReciever() {
-                    return new ImageReceiver(this, this) {
-                        AnonymousClass1(View this, View this) {
+                    return new ImageReceiver(this) {
+                        AnonymousClass1(View this) {
                             super(this);
                         }
 
@@ -1972,9 +1993,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             };
             this.enterImageView.getImageReceiver().setAutoRepeat(0);
             this.enterImageView.getImageReceiver().setAllowStartLottieAnimation(false);
-            this.pressedBackupImageView = new BackupImageView(context2, ReactionsContainerLayout.this) {
+            this.pressedBackupImageView = new BackupImageView(context2) {
+                final ReactionsContainerLayout val$this$0;
+
                 AnonymousClass4(Context context2, ReactionsContainerLayout reactionsContainerLayout) {
                     super(context2);
+                    r3 = reactionsContainerLayout;
                 }
 
                 @Override
@@ -2011,12 +2035,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public class AnonymousClass2 extends BackupImageView {
+            final ReactionsContainerLayout val$this$0;
+
             AnonymousClass2(Context context, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context);
+                this.val$this$0 = reactionsContainerLayout;
             }
 
             class AnonymousClass1 extends ImageReceiver {
-                AnonymousClass1(AnonymousClass2 anonymousClass2, View view) {
+                AnonymousClass1(View view) {
                     super(view);
                 }
 
@@ -2031,8 +2058,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
             @Override
             protected ImageReceiver createImageReciever() {
-                return new ImageReceiver(this, this) {
-                    AnonymousClass1(View this, View this) {
+                return new ImageReceiver(this) {
+                    AnonymousClass1(View this) {
                         super(this);
                     }
 
@@ -2103,8 +2130,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public class AnonymousClass3 extends BackupImageView {
+            final ReactionsContainerLayout val$this$0;
+
             AnonymousClass3(Context context2, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context2);
+                r3 = reactionsContainerLayout;
             }
 
             @Override
@@ -2114,7 +2144,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
 
             class AnonymousClass1 extends ImageReceiver {
-                AnonymousClass1(View this, View this) {
+                AnonymousClass1(View this) {
                     super(this);
                 }
 
@@ -2132,8 +2162,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
 
             @Override
             protected ImageReceiver createImageReciever() {
-                return new ImageReceiver(this, this) {
-                    AnonymousClass1(View this, View this) {
+                return new ImageReceiver(this) {
+                    AnonymousClass1(View this) {
                         super(this);
                     }
 
@@ -2168,8 +2198,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public class AnonymousClass4 extends BackupImageView {
+            final ReactionsContainerLayout val$this$0;
+
             AnonymousClass4(Context context2, ReactionsContainerLayout reactionsContainerLayout) {
                 super(context2);
+                r3 = reactionsContainerLayout;
             }
 
             @Override
@@ -2251,12 +2284,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
                     AnimatedEmojiDrawable animatedEmojiDrawable2 = new AnimatedEmojiDrawable(3, ReactionsContainerLayout.this.currentAccount, this.currentReaction.documentId);
                     if (ReactionsContainerLayout.this.type == 1 || ReactionsContainerLayout.this.type == 2 || ReactionsContainerLayout.this.type == 4) {
-                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(-1, mode));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(-1, mode));
                     } else {
                         int i2 = Theme.key_windowBackgroundWhiteBlueIcon;
-                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider), PorterDuff.Mode.SRC_IN));
-                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+                        int color = Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider);
+                        PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
+                        animatedEmojiDrawable.setColorFilter(new PorterDuffColorFilter(color, mode2));
+                        animatedEmojiDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ReactionsContainerLayout.this.resourcesProvider), mode2));
                     }
                     this.pressedBackupImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable);
                     this.loopImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable2);
@@ -2340,7 +2376,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             this.enterImageView.getImageReceiver().setImageBitmap(new RLottieDrawable(R.raw.star_reaction, "star_reaction", AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f)));
             this.loopImageView.getImageReceiver().setImageBitmap(getContext().getResources().getDrawable(R.drawable.star_reaction));
             if (this.particles == null) {
-                this.particles = new StarsReactionsSheet.Particles(1, 45);
+                this.particles = new StarsReactionsSheet.Particles(1, SharedConfig.getDevicePerformanceClass() == 2 ? 45 : 18);
             }
         }
 
@@ -2498,7 +2534,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         @Override
         protected void dispatchDraw(Canvas canvas) {
             if (this.selected && this.drawSelected) {
-                canvas.drawCircle(getMeasuredWidth() >> 1, getMeasuredHeight() >> 1, (getMeasuredWidth() >> 1) - AndroidUtilities.dp(1.0f), ReactionsContainerLayout.this.selectedPaint);
+                float measuredWidth = getMeasuredWidth() >> 1;
+                float measuredHeight = getMeasuredHeight() >> 1;
+                float measuredWidth2 = (getMeasuredWidth() >> 1) - AndroidUtilities.dp(1.0f);
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.currentReaction;
+                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth2, (visibleReaction == null || !visibleReaction.isStar) ? ReactionsContainerLayout.this.selectedPaint : ReactionsContainerLayout.this.starSelectedPaint);
             }
             AnimatedEmojiDrawable animatedEmojiDrawable = this.loopImageView.animatedEmojiDrawable;
             if (animatedEmojiDrawable != null && animatedEmojiDrawable.getImageReceiver() != null) {
@@ -2508,8 +2548,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                     this.loopImageView.animatedEmojiDrawable.getImageReceiver().setRoundRadius(this.selected ? AndroidUtilities.dp(6.0f) : 0);
                 }
             }
-            ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.currentReaction;
-            if (visibleReaction != null && visibleReaction.isStar && this.particles != null) {
+            ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
+            if (visibleReaction2 != null && visibleReaction2.isStar && this.particles != null && LiteMode.isEnabled(8200)) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 float height = ((int) (getHeight() * 0.7f)) / 2.0f;
                 rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);
@@ -2679,6 +2719,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     public class InternalImageView extends ImageView {
+        boolean isEnter;
         ValueAnimator valueAnimator;
 
         public InternalImageView(Context context) {
@@ -2686,6 +2727,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public void play(int i, boolean z) {
+            this.isEnter = true;
             invalidate();
             ValueAnimator valueAnimator = this.valueAnimator;
             if (valueAnimator != null) {
@@ -2719,6 +2761,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         public void resetAnimation() {
+            this.isEnter = false;
             setScaleX(0.0f);
             setScaleY(0.0f);
             ReactionsContainerLayout.this.customReactionsContainer.invalidate();
@@ -2889,15 +2932,15 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             for (int i = 0; i < ReactionsContainerLayout.this.visibleReactionsList.size(); i++) {
                 ReactionsLayoutInBubble.VisibleReaction visibleReaction = (ReactionsLayoutInBubble.VisibleReaction) ReactionsContainerLayout.this.visibleReactionsList.get(i);
                 ReactionsContainerLayout reactionsContainerLayout2 = ReactionsContainerLayout.this;
-                reactionsContainerLayout2.items.add(new InnerItem(reactionsContainerLayout2, visibleReaction.emojicon == null ? 3 : 0, visibleReaction));
+                reactionsContainerLayout2.items.add(new InnerItem(visibleReaction.emojicon == null ? 3 : 0, visibleReaction));
             }
             if (ReactionsContainerLayout.this.showUnlockPremiumButton()) {
                 ReactionsContainerLayout reactionsContainerLayout3 = ReactionsContainerLayout.this;
-                reactionsContainerLayout3.items.add(new InnerItem(reactionsContainerLayout3, 1, null));
+                reactionsContainerLayout3.items.add(new InnerItem(1, null));
             }
             if (ReactionsContainerLayout.this.showCustomEmojiReaction()) {
                 ReactionsContainerLayout reactionsContainerLayout4 = ReactionsContainerLayout.this;
-                reactionsContainerLayout4.items.add(new InnerItem(reactionsContainerLayout4, 2, null));
+                reactionsContainerLayout4.items.add(new InnerItem(2, null));
             }
             if (z) {
                 ReactionsContainerLayout reactionsContainerLayout5 = ReactionsContainerLayout.this;
@@ -2919,5 +2962,25 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return;
         }
         this.reactionsWindow.getSelectAnimatedEmojiDialog().setPaused(this.paused, this.pausedExceptSelected);
+    }
+
+    private Paint getStarGradientPaint(RectF rectF, float f) {
+        if (this.starSelectedGradientPaint == null) {
+            this.starSelectedGradientPaint = new Paint(1);
+        }
+        if (this.starSelectedGradientMatrix == null) {
+            this.starSelectedGradientMatrix = new Matrix();
+        }
+        if (this.starSelectedGradient == null) {
+            int color = Theme.getColor(Theme.key_reactionStarSelector, this.resourcesProvider);
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(64.0f), 0.0f, new int[]{color, Theme.multAlpha(color, 0.0f)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+            this.starSelectedGradient = linearGradient;
+            this.starSelectedGradientPaint.setShader(linearGradient);
+        }
+        this.starSelectedGradientMatrix.reset();
+        this.starSelectedGradientMatrix.postTranslate(rectF.left, rectF.top);
+        this.starSelectedGradient.setLocalMatrix(this.starSelectedGradientMatrix);
+        this.starSelectedGradientPaint.setAlpha((int) (f * 255.0f));
+        return this.starSelectedGradientPaint;
     }
 }

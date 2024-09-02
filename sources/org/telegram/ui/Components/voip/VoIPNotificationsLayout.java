@@ -53,7 +53,7 @@ public class VoIPNotificationsLayout extends LinearLayout {
         this.backgroundProvider = voIPBackgroundProvider;
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
-        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new Visibility(this) {
+        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new Visibility() {
             @Override
             public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
                 AnimatorSet animatorSet = new AnimatorSet();
@@ -98,7 +98,10 @@ public class VoIPNotificationsLayout extends LinearLayout {
     }
 
     public CharSequence ellipsize(CharSequence charSequence) {
-        return charSequence == null ? "" : TextUtils.ellipsize(charSequence, this.textPaint, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
+        if (charSequence == null) {
+            return "";
+        }
+        return TextUtils.ellipsize(charSequence, this.textPaint, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
     }
 
     public void removeNotification(String str) {

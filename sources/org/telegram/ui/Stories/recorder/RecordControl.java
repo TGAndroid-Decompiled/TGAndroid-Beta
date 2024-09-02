@@ -33,6 +33,7 @@ import org.telegram.ui.Components.Point;
 import org.telegram.ui.Stories.recorder.FlashViews;
 
 public class RecordControl extends View implements FlashViews.Invertable {
+    private final float HALF_PI;
     public float amplitude;
     public final AnimatedFloat animatedAmplitude;
     private final Paint buttonPaint;
@@ -97,8 +98,10 @@ public class RecordControl extends View implements FlashViews.Invertable {
     private final AnimatedFloat touchIsButtonT;
     private final AnimatedFloat touchIsCenter2T;
     private final AnimatedFloat touchIsCenterT;
+    private long touchStart;
     private final AnimatedFloat touchT;
     private float touchX;
+    private float touchY;
     private final Drawable unlockDrawable;
 
     public interface Delegate {
@@ -193,6 +196,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
         };
         this.metaballsPath = new Path();
         this.circlePath = new Path();
+        this.HALF_PI = 1.5707964f;
         this.p1 = new Point();
         this.p2 = new Point();
         this.p3 = new Point();
@@ -207,23 +211,26 @@ public class RecordControl extends View implements FlashViews.Invertable {
         radialGradient.setLocalMatrix(matrix);
         paint5.setShader(this.redGradient);
         paint.setColor(-1);
-        paint.setStyle(Paint.Style.STROKE);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         paint2.setColor(-577231);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStyle(Paint.Style.STROKE);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint2.setStrokeCap(cap);
+        paint2.setStyle(style);
         paint3.setColor(1677721600);
         paint4.setColor(-1);
         paint6.setColor(1493172223);
         paint7.setColor(402653184);
-        paint6.setStyle(Paint.Style.STROKE);
-        paint6.setStrokeCap(Paint.Cap.ROUND);
-        paint7.setStyle(Paint.Style.STROKE);
-        paint7.setStrokeCap(Paint.Cap.ROUND);
+        paint6.setStyle(style);
+        paint6.setStrokeCap(cap);
+        paint7.setStyle(style);
+        paint7.setStrokeCap(cap);
         imageReceiver.setParentView(this);
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), mutate);
         this.noGalleryDrawable = combinedDrawable;
         combinedDrawable.setFullsize(false);
@@ -232,19 +239,19 @@ public class RecordControl extends View implements FlashViews.Invertable {
         int i = R.drawable.msg_photo_switch2;
         Drawable mutate2 = resources.getDrawable(i).mutate();
         this.flipDrawableWhite = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate3 = context.getResources().getDrawable(i).mutate();
         this.flipDrawableBlack = mutate3;
-        mutate3.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        mutate3.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         Drawable mutate4 = context.getResources().getDrawable(R.drawable.msg_filled_unlockedrecord).mutate();
         this.unlockDrawable = mutate4;
-        mutate4.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        mutate4.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate5 = context.getResources().getDrawable(R.drawable.msg_filled_lockedrecord).mutate();
         this.lockDrawable = mutate5;
-        mutate5.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
+        mutate5.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         Drawable mutate6 = context.getResources().getDrawable(R.drawable.msg_round_pause_m).mutate();
         this.pauseDrawable = mutate6;
-        mutate6.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        mutate6.setColorFilter(new PorterDuffColorFilter(-1, mode));
         updateGalleryImage();
     }
 
@@ -258,10 +265,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
             return;
         }
         MediaController.AlbumEntry albumEntry = MediaController.allMediaAlbumEntry;
-        MediaController.PhotoEntry photoEntry = null;
-        if (albumEntry != null && (arrayList = albumEntry.photos) != null && !arrayList.isEmpty()) {
-            photoEntry = albumEntry.photos.get(0);
-        }
+        MediaController.PhotoEntry photoEntry = (albumEntry == null || (arrayList = albumEntry.photos) == null || arrayList.isEmpty()) ? null : albumEntry.photos.get(0);
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             this.galleryImage.setImage(ImageLocation.getForPath(str), "80_80", null, null, this.noGalleryDrawable, 0L, null, null, 0);
             return;
@@ -296,8 +300,11 @@ public class RecordControl extends View implements FlashViews.Invertable {
         this.buttonPaint.setColor(ColorUtils.blendARGB(1677721600, 369098752, f));
         this.hintLinePaintWhite.setColor(ColorUtils.blendARGB(1493172223, 285212671, f));
         this.hintLinePaintBlack.setColor(ColorUtils.blendARGB(402653184, 805306368, f));
-        this.flipDrawableWhite.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
-        this.unlockDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
+        Drawable drawable = this.flipDrawableWhite;
+        int blendARGB = ColorUtils.blendARGB(-1, -16777216, f);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, mode));
+        this.unlockDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), mode));
     }
 
     public void setAmplitude(float f, boolean z) {
@@ -455,8 +462,9 @@ public class RecordControl extends View implements FlashViews.Invertable {
         if (action == 0) {
             this.touch = true;
             this.discardParentTouch = this.recordButton.isPressed() || this.flipButton.isPressed();
-            System.currentTimeMillis();
+            this.touchStart = System.currentTimeMillis();
             this.touchX = clamp;
+            this.touchY = y;
             if (Math.abs(clamp - this.cx) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(this.onRecordLongPressRunnable, ViewConfiguration.getLongPressTimeout());
             }
@@ -468,6 +476,7 @@ public class RecordControl extends View implements FlashViews.Invertable {
                 return false;
             }
             this.touchX = Utilities.clamp(clamp, this.rightCx, this.leftCx);
+            this.touchY = y;
             invalidate();
             if (this.recording && !this.flipButtonWasPressed && isPressed) {
                 rotateFlip(180.0f);

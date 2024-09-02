@@ -88,16 +88,16 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         setOrientation(1);
         this.currentAccount = i;
         this.paint.setAlpha(234);
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (Build.VERSION.SDK_INT >= 21) {
                     VoIPService sharedInstance = VoIPService.getSharedInstance();
                     if (sharedInstance != null && ChatObject.isChannelOrGiga(sharedInstance.getChat())) {
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("VoipChannelOpenVoiceChat", R.string.VoipChannelOpenVoiceChat)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.VoipChannelOpenVoiceChat)));
                     } else {
-                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString("VoipGroupOpenVoiceChat", R.string.VoipGroupOpenVoiceChat)));
+                        accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.VoipGroupOpenVoiceChat)));
                     }
                 }
             }
@@ -155,7 +155,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         VoIPToggleButton voIPToggleButton3 = new VoIPToggleButton(context, 44.0f);
         this.leaveButton = voIPToggleButton3;
         voIPToggleButton3.setTextSize(12);
-        this.leaveButton.setData(R.drawable.calls_decline, -1, -3257782, 0.3f, false, LocaleController.getString("VoipGroupLeave", R.string.VoipGroupLeave), false, false);
+        this.leaveButton.setData(R.drawable.calls_decline, -1, -3257782, 0.3f, false, LocaleController.getString(R.string.VoipGroupLeave), false, false);
         this.leaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -181,10 +181,22 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
     }
 
     public void lambda$new$1(Context context, View view) {
+        boolean z;
+        boolean canDrawOverlays;
         if (VoIPService.getSharedInstance() == null) {
             return;
         }
-        VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(getContext(), Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        Context context2 = getContext();
+        if (Build.VERSION.SDK_INT >= 23) {
+            canDrawOverlays = Settings.canDrawOverlays(context);
+            if (!canDrawOverlays) {
+                z = false;
+                sharedInstance.toggleSpeakerphoneOrShowRouteSheet(context2, z);
+            }
+        }
+        z = true;
+        sharedInstance.toggleSpeakerphoneOrShowRouteSheet(context2, z);
     }
 
     public void lambda$new$2(Context context, View view) {
@@ -208,17 +220,29 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
     }
 
     public void lambda$new$4(final Context context, View view) {
-        GroupCallActivity.onLeaveClick(getContext(), new Runnable() {
+        boolean z;
+        boolean canDrawOverlays;
+        Context context2 = getContext();
+        Runnable runnable = new Runnable() {
             @Override
             public final void run() {
                 GroupCallPip.updateVisibility(context);
             }
-        }, Build.VERSION.SDK_INT < 23 || Settings.canDrawOverlays(context));
+        };
+        if (Build.VERSION.SDK_INT >= 23) {
+            canDrawOverlays = Settings.canDrawOverlays(context);
+            if (!canDrawOverlays) {
+                z = false;
+                GroupCallActivity.onLeaveClick(context2, runnable, z);
+            }
+        }
+        z = true;
+        GroupCallActivity.onLeaveClick(context2, runnable, z);
     }
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    protected void onDraw(android.graphics.Canvas r28) {
+    protected void onDraw(android.graphics.Canvas r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.GroupCallPipAlertView.onDraw(android.graphics.Canvas):void");
     }
 
@@ -252,7 +276,7 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
                 this.mutedByAdmin = VoIPService.getSharedInstance().mutedByAdmin();
             }
             this.mutedByAdminProgress = this.mutedByAdmin ? 1.0f : 0.0f;
-            this.muteProgress = VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.mutedByAdmin ? 1.0f : 0.0f;
+            this.muteProgress = (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().isMicMute() || this.mutedByAdmin) ? 1.0f : 0.0f;
         }
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.groupCallUpdated);
         updateButtons(false);
@@ -285,8 +309,6 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
 
     private void updateButtons(boolean z) {
         VoIPService sharedInstance;
-        int i;
-        String str;
         if (this.soundButton == null || this.muteButton == null || (sharedInstance = VoIPService.getSharedInstance()) == null) {
             return;
         }
@@ -294,28 +316,18 @@ public class GroupCallPipAlertView extends LinearLayout implements VoIPService.S
         boolean z2 = !isBluetoothOn && sharedInstance.isSpeakerphoneOn();
         this.soundButton.setChecked(z2, z);
         if (isBluetoothOn) {
-            this.soundButton.setData(R.drawable.calls_bluetooth, -1, 0, 0.1f, true, LocaleController.getString("VoipAudioRoutingBluetooth", R.string.VoipAudioRoutingBluetooth), false, z);
+            this.soundButton.setData(R.drawable.calls_bluetooth, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipAudioRoutingBluetooth), false, z);
         } else if (z2) {
-            this.soundButton.setData(R.drawable.calls_speaker, -1, 0, 0.3f, true, LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker), false, z);
+            this.soundButton.setData(R.drawable.calls_speaker, -1, 0, 0.3f, true, LocaleController.getString(R.string.VoipSpeaker), false, z);
         } else if (sharedInstance.isHeadsetPlugged()) {
-            this.soundButton.setData(R.drawable.calls_headphones, -1, 0, 0.1f, true, LocaleController.getString("VoipAudioRoutingHeadset", R.string.VoipAudioRoutingHeadset), false, z);
+            this.soundButton.setData(R.drawable.calls_headphones, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipAudioRoutingHeadset), false, z);
         } else {
-            this.soundButton.setData(R.drawable.calls_speaker, -1, 0, 0.1f, true, LocaleController.getString("VoipSpeaker", R.string.VoipSpeaker), false, z);
+            this.soundButton.setData(R.drawable.calls_speaker, -1, 0, 0.1f, true, LocaleController.getString(R.string.VoipSpeaker), false, z);
         }
         if (sharedInstance.mutedByAdmin()) {
-            this.muteButton.setData(R.drawable.calls_unmute, -1, ColorUtils.setAlphaComponent(-1, 76), 0.1f, true, LocaleController.getString("VoipMutedByAdminShort", R.string.VoipMutedByAdminShort), true, z);
+            this.muteButton.setData(R.drawable.calls_unmute, -1, ColorUtils.setAlphaComponent(-1, 76), 0.1f, true, LocaleController.getString(R.string.VoipMutedByAdminShort), true, z);
         } else {
-            VoIPToggleButton voIPToggleButton = this.muteButton;
-            int i2 = R.drawable.calls_unmute;
-            int alphaComponent = ColorUtils.setAlphaComponent(-1, (int) ((sharedInstance.isMicMute() ? 0.3f : 0.15f) * 255.0f));
-            if (sharedInstance.isMicMute()) {
-                i = R.string.VoipUnmute;
-                str = "VoipUnmute";
-            } else {
-                i = R.string.VoipMute;
-                str = "VoipMute";
-            }
-            voIPToggleButton.setData(i2, -1, alphaComponent, 0.1f, true, LocaleController.getString(str, i), sharedInstance.isMicMute(), z);
+            this.muteButton.setData(R.drawable.calls_unmute, -1, ColorUtils.setAlphaComponent(-1, (int) ((sharedInstance.isMicMute() ? 0.3f : 0.15f) * 255.0f)), 0.1f, true, LocaleController.getString(sharedInstance.isMicMute() ? R.string.VoipUnmute : R.string.VoipMute), sharedInstance.isMicMute(), z);
         }
         invalidate();
     }

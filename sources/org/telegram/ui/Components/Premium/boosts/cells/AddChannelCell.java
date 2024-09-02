@@ -36,11 +36,13 @@ public class AddChannelCell extends FrameLayout {
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        simpleTextView.setText(LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup));
+        simpleTextView.setText(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
         Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(Theme.key_switchTrackChecked, resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+        drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck, resourcesProvider), mode));
         imageView.setImageDrawable(new CombinedDrawable(drawable, drawable2));
         setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
     }
@@ -59,9 +61,9 @@ public class AddChannelCell extends FrameLayout {
         int i5 = i3 - i;
         int textHeight = ((i4 - i2) - this.textView.getTextHeight()) / 2;
         if (LocaleController.isRTL) {
-            dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() != 0 ? 23.0f : 68.0f);
+            dp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
         } else {
-            dp = AndroidUtilities.dp(this.imageView.getVisibility() != 0 ? 23.0f : 68.0f);
+            dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 23.0f);
         }
         SimpleTextView simpleTextView = this.textView;
         simpleTextView.layout(dp, textHeight, simpleTextView.getMeasuredWidth() + dp, this.textView.getMeasuredHeight() + textHeight);

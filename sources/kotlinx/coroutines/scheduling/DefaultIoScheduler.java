@@ -14,11 +14,6 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     private static final CoroutineDispatcher f0default;
 
-    @Override
-    public String toString() {
-        return "Dispatchers.IO";
-    }
-
     private DefaultIoScheduler() {
     }
 
@@ -33,16 +28,21 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     @Override
     public void execute(Runnable runnable) {
-        mo154dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+        dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override
-    public void mo154dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        f0default.mo154dispatch(coroutineContext, runnable);
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        f0default.dispatch(coroutineContext, runnable);
     }
 
     @Override
     public void close() {
         throw new IllegalStateException("Cannot be invoked on Dispatchers.IO".toString());
+    }
+
+    @Override
+    public String toString() {
+        return "Dispatchers.IO";
     }
 }

@@ -42,7 +42,7 @@ public class ParticipantsTypeCell extends BaseCell {
         setDivider(z2);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
         if (list.size() == 0) {
-            setSubtitle(withArrow(LocaleController.getString("BoostingFromAllCountries", R.string.BoostingFromAllCountries)));
+            setSubtitle(withArrow(LocaleController.getString(R.string.BoostingFromAllCountries)));
             return;
         }
         if (list.size() <= 3) {

@@ -59,10 +59,11 @@ public class HevcDecoderConfigurationRecord {
         this.general_profile_compatibility_flags = IsoTypeReader.readUInt32(byteBuffer);
         long readUInt48 = IsoTypeReader.readUInt48(byteBuffer);
         this.general_constraint_indicator_flags = readUInt48;
-        this.frame_only_constraint_flag = ((readUInt48 >> 44) & 8) > 0;
-        this.non_packed_constraint_flag = ((readUInt48 >> 44) & 4) > 0;
-        this.interlaced_source_flag = ((readUInt48 >> 44) & 2) > 0;
-        this.progressive_source_flag = ((readUInt48 >> 44) & 1) > 0;
+        long j = readUInt48 >> 44;
+        this.frame_only_constraint_flag = (8 & j) > 0;
+        this.non_packed_constraint_flag = (4 & j) > 0;
+        this.interlaced_source_flag = (2 & j) > 0;
+        this.progressive_source_flag = (j & 1) > 0;
         this.general_constraint_indicator_flags = readUInt48 & 140737488355327L;
         this.general_level_idc = IsoTypeReader.readUInt8(byteBuffer);
         int readUInt16 = IsoTypeReader.readUInt16(byteBuffer);

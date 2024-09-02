@@ -102,24 +102,28 @@ public class StickerSetCell extends FrameLayout {
             ImageView imageView = new ImageView(context);
             this.optionsButton = imageView;
             imageView.setFocusable(false);
-            this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView imageView2 = this.optionsButton;
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView2.setScaleType(scaleType);
             if (i != 3) {
                 this.optionsButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
             }
             if (i == 1) {
-                ImageView imageView2 = this.optionsButton;
+                ImageView imageView3 = this.optionsButton;
                 int i2 = Theme.key_stickers_menu;
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                int color = Theme.getColor(i2);
+                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+                imageView3.setColorFilter(new PorterDuffColorFilter(color, mode));
                 this.optionsButton.setImageResource(R.drawable.msg_actions);
-                this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+                this.optionsButton.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 addView(this.optionsButton, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? 3 : 5) | 16));
-                ImageView imageView3 = new ImageView(context);
-                this.reorderButton = imageView3;
-                imageView3.setAlpha(0.0f);
+                ImageView imageView4 = new ImageView(context);
+                this.reorderButton = imageView4;
+                imageView4.setAlpha(0.0f);
                 this.reorderButton.setVisibility(8);
-                this.reorderButton.setScaleType(ImageView.ScaleType.CENTER);
+                this.reorderButton.setScaleType(scaleType);
                 this.reorderButton.setImageResource(R.drawable.list_reorder);
-                this.reorderButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+                this.reorderButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
                 addView(this.reorderButton, LayoutHelper.createFrameRelatively(58.0f, 58.0f, 8388613));
                 CheckBox2 checkBox2 = new CheckBox2(context, 21);
                 this.checkBox = checkBox2;
@@ -130,9 +134,9 @@ public class StickerSetCell extends FrameLayout {
             } else if (i == 3) {
                 this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addedIcon), PorterDuff.Mode.MULTIPLY));
                 this.optionsButton.setImageResource(R.drawable.floating_check);
-                ImageView imageView4 = this.optionsButton;
+                ImageView imageView5 = this.optionsButton;
                 boolean z2 = LocaleController.isRTL;
-                addView(imageView4, LayoutHelper.createFrame(40, 40.0f, (z2 ? 3 : 5) | 48, z2 ? 10 : 0, 9.0f, z2 ? 0 : 10, 0.0f));
+                addView(imageView5, LayoutHelper.createFrame(40, 40.0f, (z2 ? 3 : 5) | 48, z2 ? 10 : 0, 9.0f, z2 ? 0 : 10, 0.0f));
             }
         }
         this.sideButtons = new FrameLayout(getContext());
@@ -140,7 +144,7 @@ public class StickerSetCell extends FrameLayout {
         this.addButtonView = textView;
         textView.setTextSize(1, 14.0f);
         this.addButtonView.setTypeface(AndroidUtilities.bold());
-        this.addButtonView.setText(LocaleController.getString("Add", R.string.Add));
+        this.addButtonView.setText(LocaleController.getString(R.string.Add));
         this.addButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         TextView textView2 = this.addButtonView;
         int i3 = Theme.key_featuredStickers_addButton;
@@ -158,7 +162,7 @@ public class StickerSetCell extends FrameLayout {
         this.removeButtonView = textView3;
         textView3.setTextSize(1, 14.0f);
         this.removeButtonView.setTypeface(AndroidUtilities.bold());
-        this.removeButtonView.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
+        this.removeButtonView.setText(LocaleController.getString(R.string.StickersRemove));
         this.removeButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText, resourcesProvider));
         this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor(i3, resourcesProvider) & 452984831, 4.0f));
         this.removeButtonView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
@@ -173,7 +177,7 @@ public class StickerSetCell extends FrameLayout {
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.setIcon(R.raw.unlock_icon);
-        this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
+        this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 StickerSetCell.this.lambda$new$2(view);
@@ -199,7 +203,7 @@ public class StickerSetCell extends FrameLayout {
                 StickerSetCell.this.lambda$new$3(view);
             }
         });
-        TextView textView4 = new TextView(this, context) {
+        TextView textView4 = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);
@@ -226,16 +230,16 @@ public class StickerSetCell extends FrameLayout {
         this.valueTextView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         addView(this.valueTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388611, 71.0f, 32.0f, 70.0f, 0.0f));
         if (i == 3) {
-            ImageView imageView5 = new ImageView(context);
-            this.deleteView = imageView5;
-            imageView5.setImageResource(R.drawable.msg_close);
+            ImageView imageView6 = new ImageView(context);
+            this.deleteView = imageView6;
+            imageView6.setImageResource(R.drawable.msg_close);
             this.deleteView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             this.deleteView.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), PorterDuff.Mode.SRC_IN);
             this.deleteView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector)));
             this.deleteView.setVisibility(8);
-            ImageView imageView6 = this.deleteView;
+            ImageView imageView7 = this.deleteView;
             boolean z3 = LocaleController.isRTL;
-            addView(imageView6, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 3 : 5) | 16, z3 ? 4.0f : 0.0f, 0.0f, z3 ? 0.0f : 4.0f, 0.0f));
+            addView(imageView7, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 3 : 5) | 16, z3 ? 4.0f : 0.0f, 0.0f, z3 ? 0.0f : 4.0f, 0.0f));
         }
         updateButtonState(0, false);
     }
@@ -278,10 +282,11 @@ public class StickerSetCell extends FrameLayout {
     }
 
     public void setSearchQuery(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, String str, Theme.ResourcesProvider resourcesProvider) {
+        String str2;
         TLRPC$StickerSet tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set;
-        String str2 = tLRPC$StickerSet.title;
+        String str3 = tLRPC$StickerSet.title;
         Locale locale = Locale.ROOT;
-        int indexOf = str2.toLowerCase(locale).indexOf(str);
+        int indexOf = str3.toLowerCase(locale).indexOf(str);
         if (indexOf != -1) {
             SpannableString spannableString = new SpannableString(tLRPC$StickerSet.title);
             spannableString.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), indexOf, str.length() + indexOf, 0);
@@ -289,9 +294,13 @@ public class StickerSetCell extends FrameLayout {
         }
         int indexOf2 = tLRPC$StickerSet.short_name.toLowerCase(locale).indexOf(str);
         if (indexOf2 != -1) {
-            String str3 = tLRPC$StickerSet.emojis ? "t.me/addemoji/" : "t.me/addstickers/";
-            int length = indexOf2 + str3.length();
-            SpannableString spannableString2 = new SpannableString(str3 + tLRPC$StickerSet.short_name);
+            if (!tLRPC$StickerSet.emojis) {
+                str2 = "t.me/addstickers/";
+            } else {
+                str2 = "t.me/addemoji/";
+            }
+            int length = indexOf2 + str2.length();
+            SpannableString spannableString2 = new SpannableString(str2 + tLRPC$StickerSet.short_name);
             spannableString2.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), length, str.length() + length, 0);
             this.valueTextView.setText(spannableString2);
         }
@@ -517,12 +526,8 @@ public class StickerSetCell extends FrameLayout {
 
     public void setReorderable(final boolean z, boolean z2) {
         if (this.option == 1) {
-            float[] fArr = new float[2];
-            fArr[0] = z ? 1.0f : 0.0f;
-            fArr[1] = z ? 0.0f : 1.0f;
-            float[] fArr2 = new float[2];
-            fArr2[0] = z ? 1.0f : 0.66f;
-            fArr2[1] = z ? 0.66f : 1.0f;
+            float[] fArr = {z ? 1.0f : 0.0f, z ? 0.0f : 1.0f};
+            float[] fArr2 = {z ? 1.0f : 0.66f, z ? 0.66f : 1.0f};
             if (z2) {
                 this.reorderButton.setVisibility(0);
                 ViewPropertyAnimator duration = this.reorderButton.animate().alpha(fArr[0]).scaleX(fArr2[0]).scaleY(fArr2[0]).setDuration(200L);
@@ -653,14 +658,14 @@ public class StickerSetCell extends FrameLayout {
             this.stateAnimator = null;
         }
         if (i == 1) {
-            this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
+            this.premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     StickerSetCell.this.lambda$updateButtonState$9(view);
                 }
             });
         } else if (i == 2) {
-            this.premiumButtonView.setButton(LocaleController.getString("Restore", R.string.Restore), new View.OnClickListener() {
+            this.premiumButtonView.setButton(LocaleController.getString(R.string.Restore), new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     StickerSetCell.this.lambda$updateButtonState$10(view);
@@ -673,53 +678,15 @@ public class StickerSetCell extends FrameLayout {
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.stateAnimator = animatorSet2;
-            Animator[] animatorArr = new Animator[9];
             PremiumButtonView premiumButtonView = this.premiumButtonView;
             Property property = FrameLayout.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = (i == 1 || i == 2) ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property, fArr);
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property, (i == 1 || i == 2) ? 1.0f : 0.0f);
             PremiumButtonView premiumButtonView2 = this.premiumButtonView;
             Property property2 = FrameLayout.SCALE_X;
-            float[] fArr2 = new float[1];
-            fArr2[0] = (i == 1 || i == 2) ? 1.0f : 0.6f;
-            animatorArr[1] = ObjectAnimator.ofFloat(premiumButtonView2, (Property<PremiumButtonView, Float>) property2, fArr2);
+            ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(premiumButtonView2, (Property<PremiumButtonView, Float>) property2, (i == 1 || i == 2) ? 1.0f : 0.6f);
             PremiumButtonView premiumButtonView3 = this.premiumButtonView;
             Property property3 = FrameLayout.SCALE_Y;
-            float[] fArr3 = new float[1];
-            fArr3[0] = (i == 1 || i == 2) ? 1.0f : 0.6f;
-            animatorArr[2] = ObjectAnimator.ofFloat(premiumButtonView3, (Property<PremiumButtonView, Float>) property3, fArr3);
-            TextView textView = this.addButtonView;
-            Property property4 = FrameLayout.ALPHA;
-            float[] fArr4 = new float[1];
-            fArr4[0] = i == 3 ? 1.0f : 0.0f;
-            animatorArr[3] = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property4, fArr4);
-            TextView textView2 = this.addButtonView;
-            Property property5 = FrameLayout.SCALE_X;
-            float[] fArr5 = new float[1];
-            fArr5[0] = i == 3 ? 1.0f : 0.6f;
-            animatorArr[4] = ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property5, fArr5);
-            TextView textView3 = this.addButtonView;
-            Property property6 = FrameLayout.SCALE_Y;
-            float[] fArr6 = new float[1];
-            fArr6[0] = i == 3 ? 1.0f : 0.6f;
-            animatorArr[5] = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property6, fArr6);
-            TextView textView4 = this.removeButtonView;
-            Property property7 = FrameLayout.ALPHA;
-            float[] fArr7 = new float[1];
-            fArr7[0] = i == 4 ? 1.0f : 0.0f;
-            animatorArr[6] = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property7, fArr7);
-            TextView textView5 = this.removeButtonView;
-            Property property8 = FrameLayout.SCALE_X;
-            float[] fArr8 = new float[1];
-            fArr8[0] = i == 4 ? 1.0f : 0.6f;
-            animatorArr[7] = ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property8, fArr8);
-            TextView textView6 = this.removeButtonView;
-            Property property9 = FrameLayout.SCALE_Y;
-            float[] fArr9 = new float[1];
-            fArr9[0] = i == 4 ? 1.0f : 0.6f;
-            animatorArr[8] = ObjectAnimator.ofFloat(textView6, (Property<TextView, Float>) property9, fArr9);
-            animatorSet2.playTogether(animatorArr);
+            animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(premiumButtonView3, (Property<PremiumButtonView, Float>) property3, (i == 1 || i == 2) ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property, i == 3 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property2, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.addButtonView, (Property<TextView, Float>) property3, i == 3 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property, i == 4 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property2, i == 4 ? 1.0f : 0.6f), ObjectAnimator.ofFloat(this.removeButtonView, (Property<TextView, Float>) property3, i == 4 ? 1.0f : 0.6f));
             this.stateAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationStart(Animator animator) {
@@ -734,7 +701,7 @@ public class StickerSetCell extends FrameLayout {
                     int i2 = i;
                     premiumButtonView4.setVisibility((i2 == 1 || i2 == 2) ? 0 : 8);
                     StickerSetCell.this.addButtonView.setVisibility(i == 3 ? 0 : 8);
-                    StickerSetCell.this.removeButtonView.setVisibility(i == 4 ? 0 : 8);
+                    StickerSetCell.this.removeButtonView.setVisibility(i != 4 ? 8 : 0);
                     StickerSetCell.this.updateRightMargin();
                 }
             });
@@ -754,7 +721,7 @@ public class StickerSetCell extends FrameLayout {
         this.removeButtonView.setAlpha(i == 4 ? 1.0f : 0.0f);
         this.removeButtonView.setScaleX(i == 4 ? 1.0f : 0.6f);
         this.removeButtonView.setScaleY(i == 4 ? 1.0f : 0.6f);
-        this.removeButtonView.setVisibility(i != 4 ? 8 : 0);
+        this.removeButtonView.setVisibility(i == 4 ? 0 : 8);
         updateRightMargin();
     }
 

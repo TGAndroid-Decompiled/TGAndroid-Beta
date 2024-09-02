@@ -54,6 +54,7 @@ import org.telegram.ui.PhotoViewer;
 public class MentionsContainerView extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private MentionsAdapter adapter;
     private boolean allowBlur;
+    private int animationIndex;
     BaseFragment baseFragment;
     private PhotoViewer.PhotoViewerProvider botContextProvider;
     private ArrayList<Object> botContextResults;
@@ -149,6 +150,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 MentionsContainerView.this.lambda$new$0();
             }
         };
+        this.animationIndex = -1;
         this.listViewHiding = false;
         this.hideT = 0.0f;
         this.switchLayoutManagerOnEnd = false;
@@ -211,13 +213,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 TLRPC$PhotoSize closestPhotoSizeWithSize;
                 if (i != 0) {
                     int i2 = i - 1;
-                    if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                        i2++;
+                    if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
+                        i = i2;
                     }
                     Size size = this.size;
                     size.width = 0.0f;
                     size.height = 0.0f;
-                    Object item = MentionsContainerView.this.adapter.getItem(i2);
+                    Object item = MentionsContainerView.this.adapter.getItem(i);
                     if (item instanceof TLRPC$BotInlineResult) {
                         TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) item;
                         TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
@@ -302,7 +304,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     return 20;
                 }
                 if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                    i2--;
+                    i2 = i - 2;
                 }
                 return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i2);
             }
@@ -397,13 +399,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             TLRPC$PhotoSize closestPhotoSizeWithSize;
             if (i != 0) {
                 int i2 = i - 1;
-                if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                    i2++;
+                if (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) {
+                    i = i2;
                 }
                 Size size = this.size;
                 size.width = 0.0f;
                 size.height = 0.0f;
-                Object item = MentionsContainerView.this.adapter.getItem(i2);
+                Object item = MentionsContainerView.this.adapter.getItem(i);
                 if (item instanceof TLRPC$BotInlineResult) {
                     TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) item;
                     TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
@@ -488,7 +490,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 return 20;
             }
             if (MentionsContainerView.this.adapter.getBotContextSwitch() != null || MentionsContainerView.this.adapter.getBotWebViewSwitch() != null) {
-                i2--;
+                i2 = i - 2;
             }
             return MentionsContainerView.this.gridLayoutManager.getSpanSizeForItem(i2);
         }
@@ -736,6 +738,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     private void updateListViewTranslation(final boolean z, boolean z2) {
         float f;
         int i;
+        float max;
         SpringAnimation springAnimation;
         if (this.listView == null || this.paddedAdapter == null) {
             this.scrollRangeUpdateTries = 0;
@@ -759,8 +762,12 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             f = padding;
         }
         this.scrollRangeUpdateTries = 0;
-        float f2 = this.listViewPadding;
-        float max = isReversed ? -Math.max(0.0f, f2 - f) : Math.max(0.0f, f2 - f) + (-f2);
+        if (isReversed) {
+            max = -Math.max(0.0f, this.listViewPadding - f);
+        } else {
+            float f2 = this.listViewPadding;
+            max = Math.max(0.0f, f2 - f) + (-f2);
+        }
         if (z && !isReversed) {
             max += this.listView.computeVerticalScrollOffset();
         }
@@ -777,14 +784,13 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
             final float f5 = z ? 1.0f : 0.0f;
             if (translationY == f3) {
                 this.listViewTranslationAnimator = null;
-                Integer valueOf = Integer.valueOf(z ? 8 : 0);
+                num = Integer.valueOf(z ? 8 : 0);
                 if (this.switchLayoutManagerOnEnd && z) {
                     this.switchLayoutManagerOnEnd = false;
                     this.listView.setLayoutManager(getNeededLayoutManager());
                     this.shown = true;
                     updateVisibility(true);
                 }
-                num = valueOf;
             } else {
                 SpringAnimation spring = new SpringAnimation(new FloatValueHolder(translationY)).setSpring(new SpringForce(f3).setDampingRatio(1.0f).setStiffness(550.0f));
                 this.listViewTranslationAnimator = spring;
@@ -887,6 +893,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
     }
 
     public void lambda$withDelegate$4(Delegate delegate, View view, int i) {
+        Paint.FontMetricsInt fontMetricsInt;
         AnimatedEmojiSpan animatedEmojiSpan;
         if (i == 0 || getAdapter().isBannedInline()) {
             return;
@@ -920,13 +927,17 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         } else if (item instanceof MediaDataController.KeywordResult) {
             String str = ((MediaDataController.KeywordResult) item).emoji;
             delegate.addEmojiToRecent(str);
-            if (str != null && str.startsWith("animated_")) {
-                Paint.FontMetricsInt fontMetricsInt = null;
+            if (str != null) {
                 try {
+                } catch (Exception unused) {
+                    delegate.replaceText(resultStartPosition, resultLength, str, true);
+                }
+                if (str.startsWith("animated_")) {
                     try {
                         fontMetricsInt = delegate.getFontMetrics();
                     } catch (Exception e) {
                         FileLog.e((Throwable) e, false);
+                        fontMetricsInt = null;
                     }
                     long parseLong = Long.parseLong(str.substring(9));
                     TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, parseLong);
@@ -938,12 +949,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     }
                     spannableString2.setSpan(animatedEmojiSpan, 0, spannableString2.length(), 33);
                     delegate.replaceText(resultStartPosition, resultLength, spannableString2, false);
-                } catch (Exception unused) {
-                    delegate.replaceText(resultStartPosition, resultLength, str, true);
+                    updateVisibility(false);
                 }
-            } else {
-                delegate.replaceText(resultStartPosition, resultLength, str, true);
             }
+            delegate.replaceText(resultStartPosition, resultLength, str, true);
             updateVisibility(false);
         }
         if (item instanceof TLRPC$BotInlineResult) {
@@ -971,8 +980,11 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
 
         public MentionsListView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            setOnScrollListener(new RecyclerView.OnScrollListener(MentionsContainerView.this) {
+            setOnScrollListener(new RecyclerView.OnScrollListener() {
+                final MentionsContainerView val$this$0;
+
                 AnonymousClass1(MentionsContainerView mentionsContainerView) {
+                    r2 = mentionsContainerView;
                 }
 
                 @Override
@@ -990,8 +1002,11 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     MentionsContainerView.this.onScrolled(!r2.canScrollVertically(-1), true ^ MentionsListView.this.canScrollVertically(1));
                 }
             });
-            addItemDecoration(new RecyclerView.ItemDecoration(MentionsContainerView.this) {
+            addItemDecoration(new RecyclerView.ItemDecoration() {
+                final MentionsContainerView val$this$0;
+
                 AnonymousClass2(MentionsContainerView mentionsContainerView) {
+                    r2 = mentionsContainerView;
                 }
 
                 @Override
@@ -1014,7 +1029,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                         if (i == 0) {
                             return;
                         }
-                        i--;
+                        i = childAdapterPosition - 2;
                         if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i)) {
                             rect.top = AndroidUtilities.dp(2.0f);
                         }
@@ -1025,7 +1040,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         }
 
         public class AnonymousClass1 extends RecyclerView.OnScrollListener {
+            final MentionsContainerView val$this$0;
+
             AnonymousClass1(MentionsContainerView mentionsContainerView) {
+                r2 = mentionsContainerView;
             }
 
             @Override
@@ -1045,7 +1063,10 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         }
 
         public class AnonymousClass2 extends RecyclerView.ItemDecoration {
+            final MentionsContainerView val$this$0;
+
             AnonymousClass2(MentionsContainerView mentionsContainerView) {
+                r2 = mentionsContainerView;
             }
 
             @Override
@@ -1068,7 +1089,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                     if (i == 0) {
                         return;
                     }
-                    i--;
+                    i = childAdapterPosition - 2;
                     if (!MentionsContainerView.this.gridLayoutManager.isFirstRow(i)) {
                         rect.top = AndroidUtilities.dp(2.0f);
                     }

@@ -50,9 +50,6 @@ class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     }
 
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
-        if (Build.VERSION.SDK_INT < 19) {
-            return null;
-        }
         ArrayList<MediaCodecInfo> sortedCodecsList = MediaCodecUtils.getSortedCodecsList();
         int size = sortedCodecsList.size();
         for (int i = 0; i < size; i++) {

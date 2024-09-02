@@ -20,83 +20,72 @@ public final class ObjLoader {
         try {
             DataInputStream dataInputStream = new DataInputStream(context.getAssets().open(str));
             int readInt = dataInputStream.readInt();
-            int i2 = 0;
-            for (int i3 = 0; i3 < readInt; i3++) {
+            for (int i2 = 0; i2 < readInt; i2++) {
                 arrayList.add(Float.valueOf(dataInputStream.readFloat()));
             }
             int readInt2 = dataInputStream.readInt();
-            for (int i4 = 0; i4 < readInt2; i4++) {
+            for (int i3 = 0; i3 < readInt2; i3++) {
                 arrayList3.add(Float.valueOf(dataInputStream.readFloat()));
             }
             int readInt3 = dataInputStream.readInt();
-            for (int i5 = 0; i5 < readInt3; i5++) {
+            for (int i4 = 0; i4 < readInt3; i4++) {
                 arrayList2.add(Float.valueOf(dataInputStream.readFloat()));
             }
             int readInt4 = dataInputStream.readInt();
             this.numFaces = readInt4;
-            this.normals = new float[readInt4 * 3];
+            int i5 = readInt4 * 3;
+            this.normals = new float[i5];
             this.textureCoordinates = new float[readInt4 * 2];
-            this.positions = new float[readInt4 * 3];
+            this.positions = new float[i5];
             int i6 = 0;
             int i7 = 0;
             int i8 = 0;
-            while (i2 < readInt4) {
+            for (int i9 = 0; i9 < readInt4; i9++) {
                 int readInt5 = dataInputStream.readInt() * 3;
-                int i9 = i6 + 1;
-                int i10 = readInt5 + 1;
                 this.positions[i6] = ((Float) arrayList.get(readInt5)).floatValue();
-                int i11 = i9 + 1;
-                this.positions[i9] = ((Float) arrayList.get(i10)).floatValue();
-                int i12 = i11 + 1;
-                this.positions[i11] = ((Float) arrayList.get(i10 + 1)).floatValue();
+                float[] fArr = this.positions;
+                int i10 = i6 + 2;
+                fArr[i6 + 1] = ((Float) arrayList.get(readInt5 + 1)).floatValue();
+                i6 += 3;
+                this.positions[i10] = ((Float) arrayList.get(readInt5 + 2)).floatValue();
                 int readInt6 = dataInputStream.readInt() * 2;
-                float[] fArr = this.textureCoordinates;
-                int i13 = i7 + 1;
+                float[] fArr2 = this.textureCoordinates;
+                int i11 = i7 + 1;
                 float f2 = 0.0f;
                 if (readInt6 >= 0 && readInt6 < arrayList3.size()) {
                     f = ((Float) arrayList3.get(readInt6)).floatValue();
-                    fArr[i7] = f;
+                    fArr2[i7] = f;
                     i = readInt6 + 1;
-                    float[] fArr2 = this.textureCoordinates;
-                    int i14 = i13 + 1;
+                    float[] fArr3 = this.textureCoordinates;
+                    i7 += 2;
                     if (i >= 0 && i < arrayList3.size()) {
                         f2 = 1.0f - ((Float) arrayList3.get(i)).floatValue();
                     }
-                    fArr2[i13] = f2;
+                    fArr3[i11] = f2;
                     int readInt7 = dataInputStream.readInt() * 3;
-                    int i15 = i8 + 1;
-                    int i16 = readInt7 + 1;
                     this.normals[i8] = ((Float) arrayList2.get(readInt7)).floatValue();
-                    int i17 = i15 + 1;
-                    this.normals[i15] = ((Float) arrayList2.get(i16)).floatValue();
-                    int i18 = i17 + 1;
-                    this.normals[i17] = ((Float) arrayList2.get(i16 + 1)).floatValue();
-                    i2++;
-                    i7 = i14;
-                    i8 = i18;
-                    i6 = i12;
+                    float[] fArr4 = this.normals;
+                    int i12 = i8 + 2;
+                    fArr4[i8 + 1] = ((Float) arrayList2.get(readInt7 + 1)).floatValue();
+                    i8 += 3;
+                    this.normals[i12] = ((Float) arrayList2.get(readInt7 + 2)).floatValue();
                 }
                 f = 0.0f;
-                fArr[i7] = f;
+                fArr2[i7] = f;
                 i = readInt6 + 1;
-                float[] fArr22 = this.textureCoordinates;
-                int i142 = i13 + 1;
+                float[] fArr32 = this.textureCoordinates;
+                i7 += 2;
                 if (i >= 0) {
                     f2 = 1.0f - ((Float) arrayList3.get(i)).floatValue();
                 }
-                fArr22[i13] = f2;
+                fArr32[i11] = f2;
                 int readInt72 = dataInputStream.readInt() * 3;
-                int i152 = i8 + 1;
-                int i162 = readInt72 + 1;
                 this.normals[i8] = ((Float) arrayList2.get(readInt72)).floatValue();
-                int i172 = i152 + 1;
-                this.normals[i152] = ((Float) arrayList2.get(i162)).floatValue();
-                int i182 = i172 + 1;
-                this.normals[i172] = ((Float) arrayList2.get(i162 + 1)).floatValue();
-                i2++;
-                i7 = i142;
-                i8 = i182;
-                i6 = i12;
+                float[] fArr42 = this.normals;
+                int i122 = i8 + 2;
+                fArr42[i8 + 1] = ((Float) arrayList2.get(readInt72 + 1)).floatValue();
+                i8 += 3;
+                this.normals[i122] = ((Float) arrayList2.get(readInt72 + 2)).floatValue();
             }
         } catch (IOException e) {
             e.printStackTrace();

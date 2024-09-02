@@ -84,9 +84,9 @@ public class LoadingStickerDrawable extends Drawable {
         this.totalTranslation += (((float) abs) * this.gradientWidth) / 1800.0f;
         while (true) {
             float f = this.totalTranslation;
-            float f2 = this.gradientWidth;
-            if (f >= f2 * 2.0f) {
-                this.totalTranslation = f - (f2 * 2.0f);
+            float f2 = this.gradientWidth * 2.0f;
+            if (f >= f2) {
+                this.totalTranslation = f - f2;
             } else {
                 this.placeholderMatrix.setTranslate(f, 0.0f);
                 this.placeholderGradient.setLocalMatrix(this.placeholderMatrix);

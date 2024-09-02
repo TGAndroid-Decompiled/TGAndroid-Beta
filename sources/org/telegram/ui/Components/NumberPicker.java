@@ -24,6 +24,7 @@ public class NumberPicker extends LinearLayout {
     private static final CubicBezierInterpolator interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
     private int SELECTOR_MIDDLE_ITEM_INDEX;
     private int SELECTOR_WHEEL_ITEM_COUNT;
+    private SeekBarAccessibilityDelegate accessibilityDelegate;
     private Integer allItemsCount;
     private boolean drawDividers;
     private Scroller mAdjustScroller;
@@ -62,6 +63,7 @@ public class NumberPicker extends LinearLayout {
     private int mScrollState;
     private Paint mSelectionDivider;
     private int mSelectionDividerHeight;
+    private int mSelectionDividersDistance;
     private int mSelectorElementHeight;
     private final SparseArray<String> mSelectorIndexToStringCache;
     private int[] mSelectorIndices;
@@ -133,7 +135,7 @@ public class NumberPicker extends LinearLayout {
         this.mSelectionDivider = paint;
         paint.setColor(getThemedColor(Theme.key_featuredStickers_addButton));
         this.mSelectionDividerHeight = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
-        TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
+        this.mSelectionDividersDistance = (int) TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
         this.mMinHeight = -1;
         int applyDimension = (int) TypedValue.applyDimension(1, 180.0f, getResources().getDisplayMetrics());
         this.mMaxHeight = applyDimension;
@@ -170,7 +172,7 @@ public class NumberPicker extends LinearLayout {
         this.mAdjustScroller = new Scroller(getContext(), new DecelerateInterpolator(2.5f));
         updateInputTextView();
         setImportantForAccessibility(1);
-        setAccessibilityDelegate(new SeekBarAccessibilityDelegate() {
+        SeekBarAccessibilityDelegate seekBarAccessibilityDelegate = new SeekBarAccessibilityDelegate() {
             @Override
             protected boolean canScrollBackward(View view) {
                 return true;
@@ -191,7 +193,9 @@ public class NumberPicker extends LinearLayout {
                 NumberPicker numberPicker = NumberPicker.this;
                 return numberPicker.getContentDescription(numberPicker.mValue);
             }
-        });
+        };
+        this.accessibilityDelegate = seekBarAccessibilityDelegate;
+        setAccessibilityDelegate(seekBarAccessibilityDelegate);
     }
 
     protected CharSequence getContentDescription(int i) {
@@ -222,7 +226,7 @@ public class NumberPicker extends LinearLayout {
     public NumberPicker(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.SELECTOR_WHEEL_ITEM_COUNT = 3;
-        this.SELECTOR_MIDDLE_ITEM_INDEX = 3 / 2;
+        this.SELECTOR_MIDDLE_ITEM_INDEX = 1;
         this.mLongPressUpdateInterval = 300L;
         this.mSelectorIndexToStringCache = new SparseArray<>();
         this.mSelectorIndices = new int[this.SELECTOR_WHEEL_ITEM_COUNT];
@@ -569,16 +573,8 @@ public class NumberPicker extends LinearLayout {
         return this.mWrapSelectorWheel;
     }
 
-    public void setWrapSelectorWheel(boolean z) {
-        Integer num;
-        boolean z2 = false;
-        if ((this.mMaxValueSet && this.mMinValueSet && ((num = this.allItemsCount) == null || (this.mMaxValue - this.mMinValue) + 1 < num.intValue())) ? false : true) {
-            this.mWrapSelectorWheelSetting = z;
-            if (z) {
-                z2 = true;
-            }
-        }
-        this.mWrapSelectorWheel = z2;
+    public void setWrapSelectorWheel(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.NumberPicker.setWrapSelectorWheel(boolean):void");
     }
 
     public void setAllItemsCount(int i) {
@@ -800,7 +796,7 @@ public class NumberPicker extends LinearLayout {
                 i2 = getWrappedSelectorIndex(i2);
             }
             iArr[i] = i2;
-            ensureCachedScrollSelectorValue(iArr[i]);
+            ensureCachedScrollSelectorValue(i2);
         }
     }
 
@@ -912,18 +908,14 @@ public class NumberPicker extends LinearLayout {
     private int getWrappedSelectorIndex(int i) {
         int i2;
         int i3;
-        if (this.mMaxValueSet && i > (i3 = this.mMaxValue)) {
-            if (i3 - this.mMinValue != 0) {
-                return (r1 + ((i - i3) % (i3 - r1))) - 1;
-            }
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        if (!this.mMaxValueSet || i <= (i5 = this.mMaxValue) || (i7 = i5 - (i6 = this.mMinValue)) == 0) {
+            return (!this.mMinValueSet || i >= (i2 = this.mMinValue) || (i4 = (i3 = this.mMaxValue) - i2) == 0) ? i : (i3 - ((i2 - i) % i4)) + 1;
         }
-        if (this.mMinValueSet && i < (i2 = this.mMinValue)) {
-            int i4 = this.mMaxValue;
-            if (i4 - i2 != 0) {
-                return (i4 - ((i2 - i) % (i4 - i2))) + 1;
-            }
-        }
-        return i;
+        return (i6 + ((i - i5) % i7)) - 1;
     }
 
     private void incrementSelectorIndices(int[] iArr) {
@@ -1034,6 +1026,8 @@ public class NumberPicker extends LinearLayout {
     }
 
     public class PressedStateHelper implements Runnable {
+        private final int MODE_PRESS = 1;
+        private final int MODE_TAPPED = 2;
         private int mManagedButton;
         private int mMode;
 

@@ -43,6 +43,18 @@ public abstract class Brush {
         return 1.0f;
     }
 
+    public float getSmoothThicknessRate() {
+        return 1.0f;
+    }
+
+    public float getSpacing() {
+        return 0.15f;
+    }
+
+    public boolean isEraser() {
+        return false;
+    }
+
     public String getShaderName(int i) {
         if (i == 0) {
             return "blitWithMask";
@@ -54,18 +66,6 @@ public abstract class Brush {
             return null;
         }
         return "brush";
-    }
-
-    public float getSmoothThicknessRate() {
-        return 1.0f;
-    }
-
-    public float getSpacing() {
-        return 0.15f;
-    }
-
-    public boolean isEraser() {
-        return false;
     }
 
     public int getStampResId() {
@@ -169,6 +169,11 @@ public abstract class Brush {
         }
 
         @Override
+        public float getSpacing() {
+            return 0.07f;
+        }
+
+        @Override
         public String getShaderName(int i) {
             if (i == 0) {
                 return "blitWithMaskLight";
@@ -180,11 +185,6 @@ public abstract class Brush {
                 return null;
             }
             return "brushLight";
-        }
-
-        @Override
-        public float getSpacing() {
-            return 0.07f;
         }
 
         @Override
@@ -237,6 +237,11 @@ public abstract class Brush {
         }
 
         @Override
+        public boolean isEraser() {
+            return true;
+        }
+
+        @Override
         public String getShaderName(int i) {
             if (i == 0) {
                 return "blitWithMaskEraser";
@@ -248,11 +253,6 @@ public abstract class Brush {
                 return null;
             }
             return "brush";
-        }
-
-        @Override
-        public boolean isEraser() {
-            return true;
         }
 
         @Override
@@ -309,17 +309,6 @@ public abstract class Brush {
             return 0;
         }
 
-        @Override
-        public String getShaderName(int i) {
-            if (i == 0 || i == 1) {
-                return "shape";
-            }
-            if (i != 2) {
-                return null;
-            }
-            return "brush";
-        }
-
         public String getShapeName() {
             return null;
         }
@@ -338,6 +327,17 @@ public abstract class Brush {
                 throw new IndexOutOfBoundsException(sb.toString());
             }
             return SHAPES_LIST.get(i);
+        }
+
+        @Override
+        public String getShaderName(int i) {
+            if (i == 0 || i == 1) {
+                return "shape";
+            }
+            if (i != 2) {
+                return null;
+            }
+            return "brush";
         }
 
         public static class Circle extends Shape {

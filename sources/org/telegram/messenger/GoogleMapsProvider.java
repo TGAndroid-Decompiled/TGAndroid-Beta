@@ -40,11 +40,6 @@ import org.telegram.messenger.IMapsProvider;
 
 public class GoogleMapsProvider implements IMapsProvider {
     @Override
-    public String getMapsAppPackageName() {
-        return "com.google.android.apps.maps";
-    }
-
-    @Override
     public void initializeMaps(Context context) {
         MapsInitializer.initialize(context);
     }
@@ -77,6 +72,11 @@ public class GoogleMapsProvider implements IMapsProvider {
     @Override
     public IMapsProvider.IMapStyleOptions loadRawResourceStyle(Context context, int i) {
         return new GoogleMapStyleOptions(MapStyleOptions.loadRawResourceStyle(context, i));
+    }
+
+    @Override
+    public String getMapsAppPackageName() {
+        return "com.google.android.apps.maps";
     }
 
     @Override
@@ -151,11 +151,12 @@ public class GoogleMapsProvider implements IMapsProvider {
         }
 
         public static void lambda$setOnCameraMoveStartedListener$0(IMapsProvider.OnCameraMoveStartedListener onCameraMoveStartedListener, int i) {
-            int i2 = 3;
-            if (i == 2) {
-                i2 = 2;
-            } else if (i != 3) {
-                i2 = 1;
+            int i2 = 2;
+            if (i != 2) {
+                i2 = 3;
+                if (i != 3) {
+                    i2 = 1;
+                }
             }
             onCameraMoveStartedListener.onCameraMoveStarted(i2);
         }

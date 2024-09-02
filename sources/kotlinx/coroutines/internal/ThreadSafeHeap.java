@@ -3,7 +3,6 @@ package kotlinx.coroutines.internal;
 import java.lang.Comparable;
 import java.util.Arrays;
 import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.DebugKt;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
 
 public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>> {
@@ -21,17 +20,11 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
     public final boolean remove(T t) {
         boolean z;
         synchronized (this) {
-            z = true;
             if (t.getHeap() == null) {
                 z = false;
             } else {
-                int index = t.getIndex();
-                if (DebugKt.getASSERTIONS_ENABLED()) {
-                    if (!(index >= 0)) {
-                        throw new AssertionError();
-                    }
-                }
-                removeAtImpl(index);
+                removeAtImpl(t.getIndex());
+                z = true;
             }
         }
         return z;
@@ -66,11 +59,6 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
     }
 
     public final T removeAtImpl(int i) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(getSize() > 0)) {
-                throw new AssertionError();
-            }
-        }
         T[] tArr = this.a;
         Intrinsics.checkNotNull(tArr);
         setSize(getSize() - 1);
@@ -91,11 +79,6 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
         }
         T t3 = tArr[getSize()];
         Intrinsics.checkNotNull(t3);
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(t3.getHeap() == this)) {
-                throw new AssertionError();
-            }
-        }
         t3.setHeap(null);
         t3.setIndex(-1);
         tArr[getSize()] = null;
@@ -103,11 +86,6 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
     }
 
     public final void addImpl(T t) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(t.getHeap() == null)) {
-                throw new AssertionError();
-            }
-        }
         t.setHeap(this);
         T[] realloc = realloc();
         int size = getSize();
@@ -134,34 +112,8 @@ public class ThreadSafeHeap<T extends ThreadSafeHeapNode & Comparable<? super T>
         }
     }
 
-    private final void siftDownFrom(int i) {
-        while (true) {
-            int i2 = (i * 2) + 1;
-            if (i2 >= getSize()) {
-                return;
-            }
-            T[] tArr = this.a;
-            Intrinsics.checkNotNull(tArr);
-            int i3 = i2 + 1;
-            if (i3 < getSize()) {
-                T t = tArr[i3];
-                Intrinsics.checkNotNull(t);
-                T t2 = tArr[i2];
-                Intrinsics.checkNotNull(t2);
-                if (((Comparable) t).compareTo(t2) < 0) {
-                    i2 = i3;
-                }
-            }
-            T t3 = tArr[i];
-            Intrinsics.checkNotNull(t3);
-            T t4 = tArr[i2];
-            Intrinsics.checkNotNull(t4);
-            if (((Comparable) t3).compareTo(t4) <= 0) {
-                return;
-            }
-            swap(i, i2);
-            i = i2;
-        }
+    private final void siftDownFrom(int r6) {
+        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.ThreadSafeHeap.siftDownFrom(int):void");
     }
 
     private final T[] realloc() {

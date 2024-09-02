@@ -121,7 +121,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
 
     public void lambda$loadSizes$2() {
         File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
-        long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length() + 0;
+        long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length();
         File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
         if (databasePath2 != null && databasePath2.exists()) {
             length += databasePath2.length();
@@ -136,7 +136,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
         final long j = length;
         File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-        final long directorySize = file3.exists() ? 0 + getDirectorySize(file3, Boolean.TRUE) : 0L;
+        final long directorySize = file3.exists() ? getDirectorySize(file3, Boolean.TRUE) : 0L;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -159,9 +159,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     public View createView(Context context) {
         Drawable mutate = context.getResources().getDrawable(R.drawable.poll_add_circle).mutate();
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.poll_add_plus).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
-        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
-        this.addIcon = new CombinedDrawable(this, mutate, mutate2) {
+        int themedColor = getThemedColor(Theme.key_switchTrackChecked);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        mutate.setColorFilter(new PorterDuffColorFilter(themedColor, mode));
+        mutate2.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_checkboxCheck), mode));
+        this.addIcon = new CombinedDrawable(mutate, mutate2) {
             @Override
             public void setColorFilter(ColorFilter colorFilter) {
             }
@@ -184,7 +186,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     @Override
-    public void fillItems(java.util.ArrayList<org.telegram.ui.Components.UItem> r10, org.telegram.ui.Components.UniversalAdapter r11) {
+    public void fillItems(java.util.ArrayList<org.telegram.ui.Components.UItem> r9, org.telegram.ui.Components.UniversalAdapter r10) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebBrowserSettings.fillItems(java.util.ArrayList, org.telegram.ui.Components.UniversalAdapter):void");
     }
 
@@ -219,12 +221,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         if (i2 == 2) {
             AlertDialog.Builder title = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCacheClear));
             int i3 = R.string.BrowserSettingsCacheClearText;
-            Object[] objArr = new Object[1];
             if (this.cacheSize != 0) {
                 str = " (" + AndroidUtilities.formatFileSize(this.cacheSize) + ")";
             }
-            objArr[0] = str;
-            title.setMessage(LocaleController.formatString(i3, objArr)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+            title.setMessage(LocaleController.formatString(i3, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i4) {
                     WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
@@ -235,12 +235,10 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         if (i2 == 3) {
             AlertDialog.Builder title2 = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCookiesClear));
             int i4 = R.string.BrowserSettingsCookiesClearText;
-            Object[] objArr2 = new Object[1];
             if (this.cookiesSize != 0) {
                 str = " (" + AndroidUtilities.formatFileSize(this.cookiesSize) + ")";
             }
-            objArr2[0] = str;
-            title2.setMessage(LocaleController.formatString(i4, objArr2)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
+            title2.setMessage(LocaleController.formatString(i4, str)).setPositiveButton(LocaleController.getString(R.string.Clear), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i5) {
                     WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
@@ -249,8 +247,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             return;
         }
         if (i2 == 7) {
-            long j = Long.MAX_VALUE;
             Iterator<BrowserHistory.Entry> it = BrowserHistory.getHistory().iterator();
+            long j = Long.MAX_VALUE;
             while (it.hasNext()) {
                 j = Math.min(j, it.next().time);
             }
@@ -264,13 +262,14 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         }
         if (i2 == 9) {
             final HistoryFragment[] historyFragmentArr = {null};
-            historyFragmentArr[0] = new HistoryFragment(null, new Utilities.Callback() {
+            HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
                     WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
                 }
             });
-            presentFragment(historyFragmentArr[0]);
+            historyFragmentArr[0] = historyFragment;
+            presentFragment(historyFragment);
             return;
         }
         if (i2 == 5) {
@@ -334,7 +333,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             textView.setTextSize(1, 16.0f);
             textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
             linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-            final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
+            final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                 @Override
                 public void onMeasure(int i8, int i9) {
                     super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
@@ -346,7 +345,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
                 }
             };
-            editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
+            editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
                     if (i8 != 6) {
@@ -377,14 +376,15 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
                     runnable.run();
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i8) {
                     dialogInterface.dismiss();
                 }
             });
-            final AlertDialog[] alertDialogArr = {builder.create()};
-            alertDialogArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog create2 = builder.create();
+            final AlertDialog[] alertDialogArr = {create2};
+            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
@@ -493,25 +493,26 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         RestrictedDomainsList.getInstance().setRestricted(true, lowerCase);
         WebMetadataCache.WebMetadata webMetadata = WebMetadataCache.getInstance().get(lowerCase);
         if (webMetadata != null && !TextUtils.isEmpty(webMetadata.sitename) && webMetadata.favicon != null) {
-            if (alertDialogArr[0] != null) {
-                alertDialogArr[0].dismiss();
+            AlertDialog alertDialog = alertDialogArr[0];
+            if (alertDialog != null) {
+                alertDialog.dismiss();
             }
             this.listView.adapter.update(true);
             return;
         }
-        final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
+        final AlertDialog alertDialog2 = new AlertDialog(getContext(), 3);
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog);
+                WebBrowserSettings.this.lambda$onClick$9(alertDialogArr, alertDialog2);
             }
         };
         AndroidUtilities.runOnUIThread(runnable, 5000L);
-        alertDialog.showDelayed(300L);
+        alertDialog2.showDelayed(300L);
         WebMetadataCache.retrieveFaviconAndSitename("https://" + obj + "/", new Utilities.Callback2() {
             @Override
             public final void run(Object obj2, Object obj3) {
-                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog, lowerCase, (String) obj2, (Bitmap) obj3);
+                WebBrowserSettings.this.lambda$onClick$10(runnable, alertDialog2, lowerCase, (String) obj2, (Bitmap) obj3);
             }
         });
     }
@@ -554,7 +555,8 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             textView.setTextSize(1, 16.0f);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setMaxLines(1);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
             TextView textView2 = new TextView(context) {
                 @Override
@@ -567,7 +569,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
             textView2.setTextSize(1, 13.0f);
             textView2.setMaxLines(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             textView2.setPivotX(0.0f);
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
@@ -607,7 +609,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             if (bitmap != null) {
                 this.imageView.setImageBitmap(bitmap);
             } else {
-                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(this, charSequence2) {
+                CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), 0.1f)), new Drawable(charSequence2) {
                     private final Text text;
                     final String val$s;
 
@@ -696,7 +698,7 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
             return j;
         }
         if (bool == null || bool.booleanValue() == file.getName().startsWith("Cookies")) {
-            return 0 + file.length();
+            return file.length();
         }
         return 0L;
     }

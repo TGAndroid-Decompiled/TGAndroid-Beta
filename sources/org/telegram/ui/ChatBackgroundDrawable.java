@@ -208,12 +208,13 @@ public class ChatBackgroundDrawable extends Drawable {
             this.motionBackgroundDrawable.draw(canvas);
             return;
         }
-        boolean z = false;
-        if (!this.imageReceiver.hasImageLoaded() || this.imageReceiver.getCurrentAlpha() != 1.0f) {
-            z = true;
-        } else if (!this.colorFilterSetted) {
-            this.colorFilterSetted = true;
-            this.imageReceiver.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(-16777216, (int) (this.dimAmount * 255.0f)), PorterDuff.Mode.DARKEN));
+        boolean z = true;
+        if (this.imageReceiver.hasImageLoaded() && this.imageReceiver.getCurrentAlpha() == 1.0f) {
+            if (!this.colorFilterSetted) {
+                this.colorFilterSetted = true;
+                this.imageReceiver.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(-16777216, (int) (this.dimAmount * 255.0f)), PorterDuff.Mode.DARKEN));
+            }
+            z = false;
         }
         this.imageReceiver.setImageCoords(getBounds());
         this.imageReceiver.setAlpha(this.alpha / 255.0f);

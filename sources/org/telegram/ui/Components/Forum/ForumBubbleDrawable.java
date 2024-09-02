@@ -105,9 +105,9 @@ public class ForumBubbleDrawable extends Drawable {
             this.colorIndex = 0;
         }
         final int[] iArr2 = this.currentColors;
-        int i2 = this.colorIndex;
-        this.color = iArr[i2];
-        this.currentColors = colorsMap.get(iArr[i2]);
+        int i2 = iArr[this.colorIndex];
+        this.color = i2;
+        this.currentColors = colorsMap.get(i2);
         if (Theme.isCurrentThemeDark()) {
             this.currentColors = new int[]{ColorUtils.blendARGB(this.currentColors[0], -1, 0.2f), ColorUtils.blendARGB(this.currentColors[1], -1, 0.2f)};
         }

@@ -1,9 +1,7 @@
 package kotlin;
 
 final class KotlinVersionCurrentValue {
-    static {
-        new KotlinVersionCurrentValue();
-    }
+    public static final KotlinVersionCurrentValue INSTANCE = new KotlinVersionCurrentValue();
 
     private KotlinVersionCurrentValue() {
     }

@@ -51,10 +51,11 @@ public class HintView extends FrameLayout {
     public TextView textView;
     private float translationY;
     private boolean useScale;
-    VisibilityListener visibleListener;
 
     public interface VisibilityListener {
-        void onVisible(boolean z);
+    }
+
+    public void setVisibleListener(VisibilityListener visibilityListener) {
     }
 
     public HintView(Context context, int i) {
@@ -100,7 +101,7 @@ public class HintView extends FrameLayout {
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, z ? 6.0f : 0.0f, 0.0f, z ? 0.0f : 6.0f));
         }
         if (i == 0) {
-            this.textView.setText(LocaleController.getString("AutoplayVideoInfo", R.string.AutoplayVideoInfo));
+            this.textView.setText(LocaleController.getString(R.string.AutoplayVideoInfo));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setImageResource(R.drawable.tooltip_sound);
@@ -204,15 +205,15 @@ public class HintView extends FrameLayout {
             dp = i5 + i2;
             this.shownY = i2;
             if (num.intValue() == -1) {
-                this.textView.setText(LocaleController.getString("PollSelectOption", R.string.PollSelectOption));
+                this.textView.setText(LocaleController.getString(R.string.PollSelectOption));
             } else if (chatMessageCell.getMessageObject().isQuiz()) {
                 if (num.intValue() == 0) {
-                    this.textView.setText(LocaleController.getString("NoVotesQuiz", R.string.NoVotesQuiz));
+                    this.textView.setText(LocaleController.getString(R.string.NoVotesQuiz));
                 } else {
                     this.textView.setText(LocaleController.formatPluralString("Answer", num.intValue(), new Object[0]));
                 }
             } else if (num.intValue() == 0) {
-                this.textView.setText(LocaleController.getString("NoVotes", R.string.NoVotes));
+                this.textView.setText(LocaleController.getString(R.string.NoVotes));
             } else {
                 this.textView.setText(LocaleController.formatPluralString("Vote", num.intValue(), new Object[0]));
             }
@@ -222,7 +223,7 @@ public class HintView extends FrameLayout {
             MessageObject messageObject = chatMessageCell.getMessageObject();
             String str = this.overrideText;
             if (str == null) {
-                this.textView.setText(LocaleController.getString("HidAccount", R.string.HidAccount));
+                this.textView.setText(LocaleController.getString(R.string.HidAccount));
             } else {
                 this.textView.setText(str);
             }
@@ -294,10 +295,6 @@ public class HintView extends FrameLayout {
         }
         setTag(1);
         setVisibility(0);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(true);
-        }
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
@@ -355,10 +352,6 @@ public class HintView extends FrameLayout {
         }
         setTag(1);
         setVisibility(0);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(true);
-        }
         if (z) {
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.animatorSet = animatorSet2;
@@ -449,10 +442,7 @@ public class HintView extends FrameLayout {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     HintView.this.setVisibility(4);
-                    VisibilityListener visibilityListener = HintView.this.visibleListener;
-                    if (visibilityListener != null) {
-                        visibilityListener.onVisible(false);
-                    }
+                    HintView.this.getClass();
                     HintView.this.currentView = null;
                     HintView.this.messageCell = null;
                     HintView.this.animatorSet = null;
@@ -462,10 +452,6 @@ public class HintView extends FrameLayout {
             return;
         }
         setVisibility(4);
-        VisibilityListener visibilityListener = this.visibleListener;
-        if (visibilityListener != null) {
-            visibilityListener.onVisible(false);
-        }
         this.currentView = null;
         this.messageCell = null;
         this.animatorSet = null;
@@ -497,10 +483,6 @@ public class HintView extends FrameLayout {
 
     public void setUseScale(boolean z) {
         this.useScale = z;
-    }
-
-    public void setVisibleListener(VisibilityListener visibilityListener) {
-        this.visibleListener = visibilityListener;
     }
 
     @Override

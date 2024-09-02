@@ -184,14 +184,10 @@ public class TextInfoPrivacyCell extends FrameLayout {
 
     public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
         if (arrayList != null) {
-            TextView textView = this.textView;
-            Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
-            return;
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, (Property<TextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
         }
-        this.textView.setAlpha(z ? 1.0f : 0.5f);
     }
 
     public void setTextGravity(int i) {

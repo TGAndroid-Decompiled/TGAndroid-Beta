@@ -190,7 +190,7 @@ public class PollVotesAlert extends BottomSheet {
             textView.setTextSize(1, 14.0f);
             this.middleTextView.setTextColor(Theme.getColor(i));
             this.middleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), PollVotesAlert.this) {
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext()) {
                 @Override
                 public boolean post(Runnable runnable) {
                     return ((BottomSheet) PollVotesAlert.this).containerView.post(runnable);
@@ -285,9 +285,9 @@ public class PollVotesAlert extends BottomSheet {
                 }
             }
             if (i3 == 1) {
-                this.righTextView.setText(LocaleController.getString("PollExpand", R.string.PollExpand), z);
+                this.righTextView.setText(LocaleController.getString(R.string.PollExpand), z);
             } else {
-                this.righTextView.setText(LocaleController.getString("PollCollapse", R.string.PollCollapse), z);
+                this.righTextView.setText(LocaleController.getString(R.string.PollCollapse), z);
             }
         }
     }
@@ -360,15 +360,17 @@ public class PollVotesAlert extends BottomSheet {
             }
             ArrayList<Animator> arrayList = this.animators;
             if (arrayList != null) {
-                arrayList.add(ObjectAnimator.ofFloat(this.avatarImageView, (Property<BackupImageView, Float>) View.ALPHA, 0.0f, 1.0f));
-                this.animators.add(ObjectAnimator.ofFloat(this.nameTextView, (Property<SimpleTextView, Float>) View.ALPHA, 0.0f, 1.0f));
+                BackupImageView backupImageView = this.avatarImageView;
+                Property property = View.ALPHA;
+                arrayList.add(ObjectAnimator.ofFloat(backupImageView, (Property<BackupImageView, Float>) property, 0.0f, 1.0f));
+                this.animators.add(ObjectAnimator.ofFloat(this.nameTextView, (Property<SimpleTextView, Float>) property, 0.0f, 1.0f));
                 this.animators.add(ObjectAnimator.ofFloat(this, PollVotesAlert.USER_CELL_PROPERTY, 1.0f, 0.0f));
-            } else {
-                if (this.drawPlaceholder) {
-                    return;
-                }
-                this.placeholderAlpha = 0.0f;
+                return;
             }
+            if (this.drawPlaceholder) {
+                return;
+            }
+            this.placeholderAlpha = 0.0f;
         }
 
         @Keep
@@ -519,13 +521,14 @@ public class PollVotesAlert extends BottomSheet {
                 final int i8 = i4;
                 i = size;
                 i2 = i4;
-                numArr[i2] = Integer.valueOf(chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getPollVotes, new RequestDelegate() {
+                Integer valueOf = Integer.valueOf(chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getPollVotes, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                         PollVotesAlert.this.lambda$new$1(numArr, i8, chatActivity, arrayList, tLRPC$TL_pollAnswerVoters, tLObject, tLRPC$TL_error);
                     }
                 }));
-                this.queries.add(numArr[i2]);
+                numArr[i2] = valueOf;
+                this.queries.add(valueOf);
             }
             i4 = i2 + 1;
             size = i;
@@ -714,7 +717,7 @@ public class PollVotesAlert extends BottomSheet {
         defaultItemAnimator.setTranslationInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setClipToPadding(false);
-        this.listView.setLayoutManager(new LinearLayoutManager(this, getContext(), 1, false) {
+        this.listView.setLayoutManager(new LinearLayoutManager(getContext(), 1, false) {
             @Override
             public int getExtraLayoutSpace(RecyclerView.State state) {
                 return AndroidUtilities.dp(4000.0f);
@@ -797,7 +800,7 @@ public class PollVotesAlert extends BottomSheet {
         this.actionBar.setSubtitleColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(false);
         this.actionBar.setAlpha(0.0f);
-        this.actionBar.setTitle(LocaleController.getString("PollResults", R.string.PollResults));
+        this.actionBar.setTitle(LocaleController.getString(R.string.PollResults));
         if (this.poll.quiz) {
             this.actionBar.setSubtitle(LocaleController.formatPluralString("Answer", tLRPC$TL_messageMediaPoll.results.total_voters, new Object[0]));
         } else {
@@ -931,10 +934,9 @@ public class PollVotesAlert extends BottomSheet {
                 tLRPC$TL_messages_getPollVotes.peer = this.peer;
                 tLRPC$TL_messages_getPollVotes.id = this.messageObject.getId();
                 tLRPC$TL_messages_getPollVotes.limit = 50;
-                int i3 = tLRPC$TL_messages_getPollVotes.flags | 1;
-                tLRPC$TL_messages_getPollVotes.flags = i3;
+                int i3 = tLRPC$TL_messages_getPollVotes.flags;
                 tLRPC$TL_messages_getPollVotes.option = votesList.option;
-                tLRPC$TL_messages_getPollVotes.flags = i3 | 2;
+                tLRPC$TL_messages_getPollVotes.flags = i3 | 3;
                 tLRPC$TL_messages_getPollVotes.offset = votesList.next_offset;
                 this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getPollVotes, new RequestDelegate() {
                     @Override
@@ -1099,18 +1101,9 @@ public class PollVotesAlert extends BottomSheet {
             this.actionBarAnimation = animatorSet2;
             animatorSet2.setDuration(180L);
             AnimatorSet animatorSet3 = this.actionBarAnimation;
-            Animator[] animatorArr = new Animator[2];
             ActionBar actionBar = this.actionBar;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z2 ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, fArr);
-            View view = this.actionBarShadow;
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z2 ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property2, fArr2);
-            animatorSet3.playTogether(animatorArr);
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(actionBar, (Property<ActionBar, Float>) property, z2 ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.actionBarShadow, (Property<View, Float>) property, z2 ? 1.0f : 0.0f));
             this.actionBarAnimation.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -1152,6 +1145,7 @@ public class PollVotesAlert extends BottomSheet {
     }
 
     public class Adapter extends RecyclerListView.SectionsAdapter {
+        private int currentAccount = UserConfig.selectedAccount;
         private Context mContext;
 
         @Override
@@ -1160,7 +1154,6 @@ public class PollVotesAlert extends BottomSheet {
         }
 
         public Adapter(Context context) {
-            int i = UserConfig.selectedAccount;
             this.mContext = context;
         }
 
@@ -1241,8 +1234,8 @@ public class PollVotesAlert extends BottomSheet {
             } else {
                 view.setAlpha(1.0f);
                 VotesList votesList = (VotesList) PollVotesAlert.this.voters.get(i - 1);
-                int i2 = 0;
                 int size = PollVotesAlert.this.poll.answers.size();
+                int i2 = 0;
                 while (true) {
                     if (i2 >= size) {
                         break;
@@ -1379,8 +1372,8 @@ public class PollVotesAlert extends BottomSheet {
                 if (pinnedHeader.getTag(i2) instanceof VotesList) {
                     SectionCell sectionCell = (SectionCell) pinnedHeader;
                     VotesList votesList = (VotesList) pinnedHeader.getTag(i2);
-                    int i3 = 0;
                     int size = this.poll.answers.size();
+                    int i3 = 0;
                     while (true) {
                         if (i3 < size) {
                             TLRPC$PollAnswer tLRPC$PollAnswer = this.poll.answers.get(i3);

@@ -25,7 +25,9 @@ public class NotificationsService extends Service {
     public void onDestroy() {
         super.onDestroy();
         if (MessagesController.getGlobalNotificationsSettings().getBoolean("pushService", true)) {
-            sendBroadcast(new Intent("org.telegram.start"));
+            Intent intent = new Intent("org.telegram.start");
+            intent.setPackage(getPackageName());
+            sendBroadcast(intent);
         }
     }
 }

@@ -83,6 +83,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     private RecyclerListView listView;
     private AnimatedFloat listViewCenterAnimated;
     private AnimatedFloat listViewWidthAnimated;
+    private OvershootInterpolator overshootInterpolator;
     private Path path;
     private ContentPreviewViewer.ContentPreviewViewerDelegate previewDelegate;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -299,7 +300,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             if (!AndroidUtilities.addToClipboard(valueOf) || SuggestEmojiView.this.enterView == null) {
                 return;
             }
-            BulletinFactory.of(SuggestEmojiView.this.enterView.getParentFragment()).createCopyBulletin(LocaleController.getString("EmojiCopied", R.string.EmojiCopied)).show();
+            BulletinFactory.of(SuggestEmojiView.this.enterView.getParentFragment()).createCopyBulletin(LocaleController.getString(R.string.EmojiCopied)).show();
         }
 
         @Override
@@ -340,7 +341,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             if (parentFragment != null) {
                 if (tLRPC$Document == null) {
                     Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(SuggestEmojiView.this.getContext(), SuggestEmojiView.this.resourcesProvider);
-                    simpleLayout.textView.setText(LocaleController.getString("RemoveStatusInfo", R.string.RemoveStatusInfo));
+                    simpleLayout.textView.setText(LocaleController.getString(R.string.RemoveStatusInfo));
                     simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
                     Bulletin.UndoButton undoButton = new Bulletin.UndoButton(SuggestEmojiView.this.getContext(), true, SuggestEmojiView.this.resourcesProvider);
                     undoButton.setUndoAction(runnable);
@@ -348,7 +349,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                     Bulletin.make(parentFragment, simpleLayout, 1500).show();
                     return;
                 }
-                BulletinFactory.of(parentFragment).createEmojiBulletin(tLRPC$Document, LocaleController.getString("SetAsEmojiStatusInfo", R.string.SetAsEmojiStatusInfo), LocaleController.getString("Undo", R.string.Undo), runnable).show();
+                BulletinFactory.of(parentFragment).createEmojiBulletin(tLRPC$Document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.Undo), runnable).show();
             }
         }
 
@@ -447,7 +448,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.showFloat1 = new AnimatedFloat(frameLayout, 120L, 350L, cubicBezierInterpolator);
         this.showFloat2 = new AnimatedFloat(this.containerView, 150L, 600L, cubicBezierInterpolator);
-        new OvershootInterpolator(0.4f);
+        this.overshootInterpolator = new OvershootInterpolator(0.4f);
         this.leftGradientAlpha = new AnimatedFloat(this.containerView, 300L, cubicBezierInterpolator);
         this.rightGradientAlpha = new AnimatedFloat(this.containerView, 300L, cubicBezierInterpolator);
         this.arrowXAnimated = new AnimatedFloat(this.containerView, 200L, cubicBezierInterpolator);
@@ -576,8 +577,10 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
         Drawable drawable = Theme.chat_gradientLeftDrawable;
         int i = Theme.key_chat_stickersHintPanel;
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i, this.resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), mode));
     }
 
     public void forceClose() {
@@ -1151,17 +1154,19 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         private int direction;
         public Drawable drawable;
         private String emoji;
+        private final int paddingDp;
         private AnimatedFloat pressed;
 
         public EmojiImageView(Context context) {
             super(context);
             this.direction = 0;
             this.pressed = new AnimatedFloat(this, 350L, new OvershootInterpolator(5.0f));
+            this.paddingDp = 3;
         }
 
         @Override
         protected void onMeasure(int i, int i2) {
-            setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 0.0f : 6.66f) + 3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 6.66f : 0.0f) + 3.0f));
+            setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction == 0 ? 0.0f : 6.66f) + 3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp((this.direction != 0 ? 0.0f : 6.66f) + 3.0f));
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
         }
 

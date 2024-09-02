@@ -41,6 +41,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     protected static final boolean ANIMATE_PICKER_SIZES;
     public static FastOutSlowInInterpolator INTERPOLATOR;
     public static final boolean USE_LINES;
+    private final int ANIM_DURATION;
     ValueAnimator alphaAnimator;
     ValueAnimator alphaBottomAnimator;
     public boolean animateLegentTo;
@@ -109,6 +110,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     boolean postTransition;
     protected Theme.ResourcesProvider resourcesProvider;
     Paint ripplePaint;
+    protected float selectedCoordinate;
     protected int selectedIndex;
     Paint selectedLinePaint;
     public float selectionA;
@@ -198,6 +200,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.horizontalLines = new ArrayList<>(10);
         this.bottomSignatureDate = new ArrayList<>(25);
         this.lines = new ArrayList<>();
+        this.ANIM_DURATION = 400;
         this.drawPointOnSelection = true;
         this.currentMaxHeight = 250.0f;
         this.currentMinHeight = 0.0f;
@@ -224,6 +227,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.pickerDelegate = new ChartPickerDelegate(this);
         this.chartCaptured = false;
         this.selectedIndex = -1;
+        this.selectedCoordinate = -1.0f;
         this.legendShowing = false;
         this.selectionA = 0.0f;
         this.superDraw = false;
@@ -308,7 +312,9 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         this.bottomSignaturePaint.setTextSize(f);
         this.bottomSignaturePaint.setTextAlign(Paint.Align.CENTER);
         this.selectionBackgroundPaint.setStrokeWidth(AndroidUtilities.dpf2(6.0f));
-        this.selectionBackgroundPaint.setStrokeCap(Paint.Cap.ROUND);
+        Paint paint = this.selectionBackgroundPaint;
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
         setLayerType(2, null);
         setWillNotDraw(false);
         LegendSignatureView createLegendView = createLegendView();
@@ -316,7 +322,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         createLegendView.setVisibility(8);
         this.whiteLinePaint.setColor(-1);
         this.whiteLinePaint.setStrokeWidth(AndroidUtilities.dpf2(3.0f));
-        this.whiteLinePaint.setStrokeCap(Paint.Cap.ROUND);
+        this.whiteLinePaint.setStrokeCap(cap);
         updateColors();
     }
 
@@ -367,9 +373,10 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             this.lastH = getMeasuredHeight();
             float measuredWidth = getMeasuredWidth();
             float f = HORIZONTAL_PADDING;
-            this.bottomChartBitmap = Bitmap.createBitmap((int) (measuredWidth - (f * 2.0f)), this.pikerHeight, Bitmap.Config.ARGB_4444);
+            float f2 = 2.0f * f;
+            this.bottomChartBitmap = Bitmap.createBitmap((int) (measuredWidth - f2), this.pikerHeight, Bitmap.Config.ARGB_4444);
             this.bottomChartCanvas = new Canvas(this.bottomChartBitmap);
-            this.sharedUiComponents.getPickerMaskBitmap(this.pikerHeight, (int) (getMeasuredWidth() - (2.0f * f)));
+            this.sharedUiComponents.getPickerMaskBitmap(this.pikerHeight, (int) (getMeasuredWidth() - f2));
             measureSizes();
             if (this.legendShowing) {
                 moveLegend((this.chartFullWidth * this.pickerDelegate.pickerStart) - f);
@@ -537,15 +544,17 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 if (i9 >= 0) {
                     long[] jArr = this.chartData.x;
                     if (i9 < jArr.length - 1) {
-                        float f3 = ((((float) (jArr[i9] - jArr[0])) / ((float) (jArr[jArr.length - 1] - jArr[0]))) * this.chartFullWidth) - f2;
+                        long j = jArr[i9];
+                        long j2 = jArr[0];
+                        float f3 = ((((float) (j - j2)) / ((float) (jArr[jArr.length - 1] - j2))) * this.chartFullWidth) - f2;
                         float f4 = f3 - BOTTOM_SIGNATURE_OFFSET;
                         if (f4 > 0.0f) {
                             float f5 = this.chartWidth;
                             float f6 = HORIZONTAL_PADDING;
                             if (f4 <= f5 + f6) {
-                                int i10 = BOTTOM_SIGNATURE_START_ALPHA;
-                                if (f4 < i10) {
-                                    this.bottomSignaturePaint.setAlpha((int) (i3 * (1.0f - ((i10 - f4) / i10)) * this.bottomSignaturePaintAlpha * f));
+                                float f7 = BOTTOM_SIGNATURE_START_ALPHA;
+                                if (f4 < f7) {
+                                    this.bottomSignaturePaint.setAlpha((int) (i3 * (1.0f - ((f7 - f4) / f7)) * this.bottomSignaturePaintAlpha * f));
                                 } else if (f4 > f5) {
                                     this.bottomSignaturePaint.setAlpha((int) (i3 * (1.0f - ((f4 - f5) / f6)) * this.bottomSignaturePaintAlpha * f));
                                 } else {
@@ -648,103 +657,98 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     protected void setMaxMinValue(long j, long j2, boolean z, boolean z2, boolean z3) {
-        if ((Math.abs(((float) ChartHorizontalLinesData.lookupHeight(j)) - this.animateToMaxHeight) >= this.thresholdMaxHeight && j != 0) || ((float) j) != this.animateToMinHeight) {
-            final ChartHorizontalLinesData createHorizontalLinesData = createHorizontalLinesData(j, j2, this.chartData.yTickFormatter);
-            long[] jArr = createHorizontalLinesData.values;
-            long j3 = jArr[jArr.length - 1];
-            long j4 = jArr[0];
-            if (!z3) {
-                float f = this.currentMaxHeight;
-                float f2 = this.currentMinHeight;
-                float f3 = (float) (j3 - j4);
-                float f4 = (f - f2) / f3;
-                if (f4 > 1.0f) {
-                    f4 = f3 / (f - f2);
-                }
-                float f5 = 0.045f;
-                double d = f4;
-                if (d > 0.7d) {
-                    f5 = 0.1f;
-                } else if (d < 0.1d) {
-                    f5 = 0.03f;
-                }
-                boolean z4 = ((float) j3) != this.animateToMaxHeight;
-                if (this.useMinHeight && ((float) j4) != this.animateToMinHeight) {
-                    z4 = true;
-                }
-                if (z4) {
-                    Animator animator = this.maxValueAnimator;
-                    if (animator != null) {
-                        animator.removeAllListeners();
-                        this.maxValueAnimator.cancel();
-                    }
-                    this.startFromMaxH = this.currentMaxHeight;
-                    this.startFromMinH = this.currentMinHeight;
-                    this.startFromMax = 0.0f;
-                    this.startFromMin = 0.0f;
-                    this.minMaxUpdateStep = f5;
-                }
+        if ((Math.abs(((float) ChartHorizontalLinesData.lookupHeight(j)) - this.animateToMaxHeight) < this.thresholdMaxHeight || j == 0) && ((float) j) == this.animateToMinHeight) {
+            return;
+        }
+        final ChartHorizontalLinesData createHorizontalLinesData = createHorizontalLinesData(j, j2, this.chartData.yTickFormatter);
+        long[] jArr = createHorizontalLinesData.values;
+        long j3 = jArr[jArr.length - 1];
+        long j4 = jArr[0];
+        if (!z3) {
+            float f = this.currentMaxHeight - this.currentMinHeight;
+            float f2 = (float) (j3 - j4);
+            float f3 = f / f2;
+            if (f3 > 1.0f) {
+                f3 = f2 / f;
             }
-            float f6 = (float) j3;
-            this.animateToMaxHeight = f6;
-            float f7 = (float) j4;
-            this.animateToMinHeight = f7;
-            measureHeightThreshold();
-            long currentTimeMillis = System.currentTimeMillis();
-            if (currentTimeMillis - this.lastTime >= 320 || z2) {
-                this.lastTime = currentTimeMillis;
-                ValueAnimator valueAnimator = this.alphaAnimator;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    this.alphaAnimator.cancel();
+            double d = f3;
+            float f4 = d > 0.7d ? 0.1f : d < 0.1d ? 0.03f : 0.045f;
+            boolean z4 = ((float) j3) != this.animateToMaxHeight;
+            if (this.useMinHeight && ((float) j4) != this.animateToMinHeight) {
+                z4 = true;
+            }
+            if (z4) {
+                Animator animator = this.maxValueAnimator;
+                if (animator != null) {
+                    animator.removeAllListeners();
+                    this.maxValueAnimator.cancel();
                 }
-                if (!z) {
-                    this.currentMaxHeight = f6;
-                    this.currentMinHeight = f7;
-                    this.horizontalLines.clear();
-                    this.horizontalLines.add(createHorizontalLinesData);
-                    createHorizontalLinesData.alpha = 255;
-                    return;
-                }
+                this.startFromMaxH = this.currentMaxHeight;
+                this.startFromMinH = this.currentMinHeight;
+                this.startFromMax = 0.0f;
+                this.startFromMin = 0.0f;
+                this.minMaxUpdateStep = f4;
+            }
+        }
+        float f5 = (float) j3;
+        this.animateToMaxHeight = f5;
+        float f6 = (float) j4;
+        this.animateToMinHeight = f6;
+        measureHeightThreshold();
+        long currentTimeMillis = System.currentTimeMillis();
+        if (currentTimeMillis - this.lastTime >= 320 || z2) {
+            this.lastTime = currentTimeMillis;
+            ValueAnimator valueAnimator = this.alphaAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.alphaAnimator.cancel();
+            }
+            if (!z) {
+                this.currentMaxHeight = f5;
+                this.currentMinHeight = f6;
+                this.horizontalLines.clear();
                 this.horizontalLines.add(createHorizontalLinesData);
-                if (z3) {
-                    Animator animator2 = this.maxValueAnimator;
-                    if (animator2 != null) {
-                        animator2.removeAllListeners();
-                        this.maxValueAnimator.cancel();
-                    }
-                    this.minMaxUpdateStep = 0.0f;
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    animatorSet.playTogether(createAnimator(this.currentMaxHeight, f6, this.heightUpdateListener));
-                    if (this.useMinHeight) {
-                        animatorSet.playTogether(createAnimator(this.currentMinHeight, f7, this.minHeightUpdateListener));
-                    }
-                    this.maxValueAnimator = animatorSet;
-                    animatorSet.start();
-                }
-                int size = this.horizontalLines.size();
-                for (int i = 0; i < size; i++) {
-                    ChartHorizontalLinesData chartHorizontalLinesData = this.horizontalLines.get(i);
-                    if (chartHorizontalLinesData != createHorizontalLinesData) {
-                        chartHorizontalLinesData.fixedAlpha = chartHorizontalLinesData.alpha;
-                    }
-                }
-                ValueAnimator createAnimator = createAnimator(0.0f, 255.0f, new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        BaseChartView.this.lambda$setMaxMinValue$2(createHorizontalLinesData, valueAnimator2);
-                    }
-                });
-                this.alphaAnimator = createAnimator;
-                createAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator3) {
-                        BaseChartView.this.horizontalLines.clear();
-                        BaseChartView.this.horizontalLines.add(createHorizontalLinesData);
-                    }
-                });
-                this.alphaAnimator.start();
+                createHorizontalLinesData.alpha = 255;
+                return;
             }
+            this.horizontalLines.add(createHorizontalLinesData);
+            if (z3) {
+                Animator animator2 = this.maxValueAnimator;
+                if (animator2 != null) {
+                    animator2.removeAllListeners();
+                    this.maxValueAnimator.cancel();
+                }
+                this.minMaxUpdateStep = 0.0f;
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.playTogether(createAnimator(this.currentMaxHeight, f5, this.heightUpdateListener));
+                if (this.useMinHeight) {
+                    animatorSet.playTogether(createAnimator(this.currentMinHeight, f6, this.minHeightUpdateListener));
+                }
+                this.maxValueAnimator = animatorSet;
+                animatorSet.start();
+            }
+            int size = this.horizontalLines.size();
+            for (int i = 0; i < size; i++) {
+                ChartHorizontalLinesData chartHorizontalLinesData = this.horizontalLines.get(i);
+                if (chartHorizontalLinesData != createHorizontalLinesData) {
+                    chartHorizontalLinesData.fixedAlpha = chartHorizontalLinesData.alpha;
+                }
+            }
+            ValueAnimator createAnimator = createAnimator(0.0f, 255.0f, new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    BaseChartView.this.lambda$setMaxMinValue$2(createHorizontalLinesData, valueAnimator2);
+                }
+            });
+            this.alphaAnimator = createAnimator;
+            createAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator3) {
+                    BaseChartView.this.horizontalLines.clear();
+                    BaseChartView.this.horizontalLines.add(createHorizontalLinesData);
+                }
+            });
+            this.alphaAnimator.start();
         }
     }
 
@@ -869,10 +873,13 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
         float f = this.chartFullWidth;
         float f2 = (this.pickerDelegate.pickerStart * f) - HORIZONTAL_PADDING;
         float f3 = (i + f2) / f;
+        this.selectedCoordinate = f3;
         if (f3 < 0.0f) {
             this.selectedIndex = 0;
+            this.selectedCoordinate = 0.0f;
         } else if (f3 > 1.0f) {
             this.selectedIndex = t.x.length - 1;
+            this.selectedCoordinate = 1.0f;
         } else {
             int findIndex = t.findIndex(this.startXIndex, this.endXIndex, f3);
             this.selectedIndex = findIndex;
@@ -908,10 +915,12 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     }
 
     public void runSmoothHaptic() {
+        VibrationEffect createWaveform;
         if (Build.VERSION.SDK_INT >= 26) {
             Vibrator vibrator = (Vibrator) getContext().getSystemService("vibrator");
             if (this.vibrationEffect == null) {
-                this.vibrationEffect = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                createWaveform = VibrationEffect.createWaveform(new long[]{0, 2}, -1);
+                this.vibrationEffect = createWaveform;
             }
             vibrator.cancel();
             vibrator.vibrate(this.vibrationEffect);
@@ -1083,22 +1092,22 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
             L next = it.next();
             boolean z = next.enabled;
             if (z) {
-                long j = next.line.maxValue;
-                if (((float) j) > this.pickerMaxHeight) {
-                    this.pickerMaxHeight = (float) j;
+                float f = (float) next.line.maxValue;
+                if (f > this.pickerMaxHeight) {
+                    this.pickerMaxHeight = f;
                 }
             }
             if (z) {
-                long j2 = next.line.minValue;
-                if (((float) j2) < this.pickerMinHeight) {
-                    this.pickerMinHeight = (float) j2;
+                float f2 = (float) next.line.minValue;
+                if (f2 < this.pickerMinHeight) {
+                    this.pickerMinHeight = f2;
                 }
             }
-            float f = this.pickerMaxHeight;
-            float f2 = this.pickerMinHeight;
-            if (f == f2) {
-                this.pickerMaxHeight = f + 1.0f;
-                this.pickerMinHeight = f2 - 1.0f;
+            float f3 = this.pickerMaxHeight;
+            float f4 = this.pickerMinHeight;
+            if (f3 == f4) {
+                this.pickerMaxHeight = f3 + 1.0f;
+                this.pickerMinHeight = f4 - 1.0f;
             }
         }
     }
@@ -1311,8 +1320,8 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
 
     public void updatePickerMinMaxHeight() {
         if (ANIMATE_PICKER_SIZES) {
-            long j = Long.MAX_VALUE;
             Iterator<L> it = this.lines.iterator();
+            long j = Long.MAX_VALUE;
             long j2 = 0;
             while (it.hasNext()) {
                 L next = it.next();
@@ -1389,22 +1398,22 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
     public void updatePicker(ChartData chartData, long j) {
         int length = chartData.x.length;
         long j2 = j - (j % 86400000);
-        long j3 = (86400000 + j2) - 1;
+        long j3 = 86399999 + j2;
         int i = 0;
         int i2 = 0;
         for (int i3 = 0; i3 < length; i3++) {
-            long[] jArr = chartData.x;
-            if (j2 > jArr[i3]) {
-                i = i3;
-            }
-            if (j3 > jArr[i3]) {
+            long j4 = chartData.x[i3];
+            if (j2 > j4) {
                 i2 = i3;
+            }
+            if (j3 > j4) {
+                i = i3;
             }
         }
         ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
         float[] fArr = chartData.xPercentage;
-        chartPickerDelegate.pickerStart = fArr[i];
-        chartPickerDelegate.pickerEnd = fArr[i2];
+        chartPickerDelegate.pickerStart = fArr[i2];
+        chartPickerDelegate.pickerEnd = fArr[i];
     }
 
     public void moveLegend() {

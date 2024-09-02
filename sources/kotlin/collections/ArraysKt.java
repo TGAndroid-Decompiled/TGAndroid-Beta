@@ -5,7 +5,7 @@ public final class ArraysKt extends ArraysKt___ArraysKt {
         return ArraysKt___ArraysKt.single(cArr);
     }
 
-    public static <T> T singleOrNull(T[] tArr) {
-        return (T) ArraysKt___ArraysKt.singleOrNull(tArr);
+    public static Object singleOrNull(Object[] objArr) {
+        return ArraysKt___ArraysKt.singleOrNull(objArr);
     }
 }

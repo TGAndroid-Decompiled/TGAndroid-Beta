@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Premium;
 
 class DoubledLimitsBottomSheet$Limit {
+    final int current;
     final int defaultLimit;
     final int premiumLimit;
     final String subtitle;
@@ -12,6 +13,7 @@ class DoubledLimitsBottomSheet$Limit {
     }
 
     private DoubledLimitsBottomSheet$Limit(String str, String str2, int i, int i2) {
+        this.current = -1;
         this.title = str;
         this.subtitle = str2;
         this.defaultLimit = i;

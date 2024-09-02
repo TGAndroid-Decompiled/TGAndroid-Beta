@@ -331,10 +331,10 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         } else {
             switch (i) {
                 case -3:
-                    view = new FullscreenCustomFrameLayout(this, this.context);
+                    view = new FullscreenCustomFrameLayout(this.context);
                     break;
                 case -2:
-                    view = new FrameLayout(this, this.context) {
+                    view = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824);
@@ -348,7 +348,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     };
                     break;
                 case -1:
-                    view = new FrameLayout(this, this.context) {
+                    view = new FrameLayout(this.context) {
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
@@ -1025,7 +1025,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
         if (itemViewType < UItem.factoryViewTypeStartsWith ? itemViewType == 3 || itemViewType == 5 || itemViewType == 6 || itemViewType == 30 || itemViewType == 4 || itemViewType == 10 || itemViewType == 11 || itemViewType == 12 || itemViewType == 17 || itemViewType == 16 || itemViewType == 29 || itemViewType == 25 || itemViewType == 27 || itemViewType == 32 || itemViewType == 33 || itemViewType == 35 || itemViewType == 36 || itemViewType == 37 || itemViewType == 41 || itemViewType == 39 || itemViewType == 40 || itemViewType == 38 : (findFactory = UItem.findFactory(itemViewType)) != null && findFactory.isClickable()) {
-            return item == null || item.enabled;
+            if (item == null || item.enabled) {
+                return true;
+            }
         }
         return false;
     }
@@ -1044,7 +1046,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
     public class FullscreenCustomFrameLayout extends FrameLayout {
         private int minusHeight;
 
-        public FullscreenCustomFrameLayout(UniversalAdapter universalAdapter, Context context) {
+        public FullscreenCustomFrameLayout(Context context) {
             super(context);
             this.minusHeight = 0;
         }

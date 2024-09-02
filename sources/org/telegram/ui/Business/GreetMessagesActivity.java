@@ -40,8 +40,6 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 
 public class GreetMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public TLRPC$TL_businessGreetingMessage currentValue;
-    private final int[] daysOfInactivity;
-    private final String[] daysOfInactivityTexts;
     private ActionBarMenuItem doneButton;
     private CrossfadeDrawable doneButtonDrawable;
     public boolean enabled;
@@ -49,20 +47,19 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
     private UniversalRecyclerView listView;
     private BusinessRecipientsHelper recipientsHelper;
     private boolean valueSet;
+    private final int[] daysOfInactivity = {7, 14, 21, 28};
     private int shiftDp = -4;
     public int inactivityDays = 7;
+    private final String[] daysOfInactivityTexts = new String[4];
 
     public GreetMessagesActivity() {
-        int[] iArr = {7, 14, 21, 28};
-        this.daysOfInactivity = iArr;
-        this.daysOfInactivityTexts = new String[iArr.length];
         int i = 0;
         while (true) {
-            int[] iArr2 = this.daysOfInactivity;
-            if (i >= iArr2.length) {
+            int[] iArr = this.daysOfInactivity;
+            if (i >= iArr.length) {
                 return;
             }
-            this.daysOfInactivityTexts[i] = LocaleController.formatPluralString("DaysSchedule", iArr2[i], new Object[0]);
+            this.daysOfInactivityTexts[i] = LocaleController.formatPluralString("DaysSchedule", iArr[i], new Object[0]);
             i++;
         }
     }
@@ -88,7 +85,7 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
         int i = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -271,13 +268,13 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString(R.string.BusinessGreetUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     GreetMessagesActivity.this.lambda$onBackPressed$3(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     GreetMessagesActivity.this.lambda$onBackPressed$4(dialogInterface, i);
@@ -316,18 +313,17 @@ public class GreetMessagesActivity extends BaseFragment implements NotificationC
             this.recipientsHelper.fillItems(arrayList);
             arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessGreetRecipientsInfo)));
             arrayList.add(UItem.asHeader(LocaleController.getString(R.string.BusinessGreetPeriod)));
-            int i = -1;
-            int i2 = 0;
+            int i = 0;
             while (true) {
                 int[] iArr = this.daysOfInactivity;
-                if (i2 >= iArr.length) {
+                if (i >= iArr.length) {
+                    i = -1;
                     break;
-                }
-                if (iArr[i2] == this.inactivityDays) {
-                    i = i2;
+                } else if (iArr[i] == this.inactivityDays) {
                     break;
+                } else {
+                    i++;
                 }
-                i2++;
             }
             arrayList.add(UItem.asSlideView(this.daysOfInactivityTexts, i, new Utilities.Callback() {
                 @Override

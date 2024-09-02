@@ -46,7 +46,12 @@ public class EglBase14Impl implements EglBase14 {
         @Override
         @TargetApi(21)
         public long getNativeEglContext() {
-            return EglBase14Impl.CURRENT_SDK_VERSION >= 21 ? this.egl14Context.getNativeHandle() : this.egl14Context.getHandle();
+            long nativeHandle;
+            if (EglBase14Impl.CURRENT_SDK_VERSION < 21) {
+                return this.egl14Context.getHandle();
+            }
+            nativeHandle = this.egl14Context.getNativeHandle();
+            return nativeHandle;
         }
 
         public Context(EGLContext eGLContext) {
@@ -198,10 +203,14 @@ public class EglBase14Impl implements EglBase14 {
             throw new RuntimeException("No EGLSurface - can't make current");
         }
         synchronized (EglBase.lock) {
-            EGLDisplay eGLDisplay = this.eglDisplay;
-            EGLSurface eGLSurface = this.eglSurface;
-            if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+            try {
+                EGLDisplay eGLDisplay = this.eglDisplay;
+                EGLSurface eGLSurface = this.eglSurface;
+                if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -213,10 +222,14 @@ public class EglBase14Impl implements EglBase14 {
             throw new RuntimeException("No EGLSurface - can't make current");
         }
         synchronized (EglBase.lock) {
-            EGLDisplay eGLDisplay = this.eglDisplay;
-            EGLSurface eGLSurface = this.eglSurfaceBackground;
-            if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
-                throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+            try {
+                EGLDisplay eGLDisplay = this.eglDisplay;
+                EGLSurface eGLSurface = this.eglSurfaceBackground;
+                if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext)) {
+                    throw new RuntimeException("eglMakeCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -229,10 +242,14 @@ public class EglBase14Impl implements EglBase14 {
     @Override
     public void detachCurrent() {
         synchronized (EglBase.lock) {
-            EGLDisplay eGLDisplay = this.eglDisplay;
-            EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
-            if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT)) {
-                throw new RuntimeException("eglDetachCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+            try {
+                EGLDisplay eGLDisplay = this.eglDisplay;
+                EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
+                if (!EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT)) {
+                    throw new RuntimeException("eglDetachCurrent failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

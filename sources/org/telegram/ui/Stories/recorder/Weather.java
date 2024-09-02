@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
 import j$.util.DesugarTimeZone;
 import java.util.Calendar;
@@ -40,15 +38,14 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_BotResults;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.Weather;
 
 public class Weather {
-    public static int LOCATION_REQUEST = 3332;
     private static String cacheKey;
     private static State cacheValue;
-    private static Utilities.Callback<Boolean> latestPermissionCallback;
 
     public static boolean isDefaultCelsius() {
         String id = TimeZone.getDefault().getID();
@@ -269,8 +266,9 @@ public class Weather {
             TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
             messagesController.putUsers(tLRPC$TL_contacts_resolvedPeer.users, false);
             messagesController.putChats(tLRPC$TL_contacts_resolvedPeer.chats, false);
-            tLRPC$UserArr[0] = messagesController.getUser(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$TL_contacts_resolvedPeer.peer)));
-            if (tLRPC$UserArr[0] != null) {
+            TLRPC$User user = messagesController.getUser(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$TL_contacts_resolvedPeer.peer)));
+            tLRPC$UserArr[0] = user;
+            if (user != null) {
                 runnable.run();
                 return;
             }
@@ -279,68 +277,11 @@ public class Weather {
     }
 
     public static void lambda$fetch$8(int[] iArr, ConnectionsManager connectionsManager) {
-        if (iArr[0] != 0) {
-            connectionsManager.cancelRequest(iArr[0], true);
+        int i = iArr[0];
+        if (i != 0) {
+            connectionsManager.cancelRequest(i, true);
             iArr[0] = 0;
         }
-    }
-
-    public static boolean hasLocationPermission() {
-        Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return false;
-        }
-        return Build.VERSION.SDK_INT < 23 || activity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0;
-    }
-
-    public static void ensureLocationPermission(Utilities.Callback<Boolean> callback) {
-        if (callback == null) {
-            return;
-        }
-        final Activity activity = LaunchActivity.instance;
-        if (activity == null) {
-            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
-        }
-        if (activity == null) {
-            return;
-        }
-        latestPermissionCallback = callback;
-        if (Build.VERSION.SDK_INT >= 23) {
-            if (ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0 || ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION") == 0) {
-                callback.run(Boolean.TRUE);
-                return;
-            } else if (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION")) {
-                new AlertDialog.Builder(activity, null).setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoLocationStory))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i) {
-                        Weather.lambda$ensureLocationPermission$9(activity, dialogInterface, i);
-                    }
-                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
-                callback.run(Boolean.FALSE);
-                return;
-            } else {
-                activity.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, LOCATION_REQUEST);
-                return;
-            }
-        }
-        callback.run(Boolean.TRUE);
-    }
-
-    public static void lambda$ensureLocationPermission$9(Activity activity, DialogInterface dialogInterface, int i) {
-        try {
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-            activity.startActivity(intent);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    public static void receivePermissionIntent(java.lang.String[] r4, int[] r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.Weather.receivePermissionIntent(java.lang.String[], int[]):void");
     }
 
     @SuppressLint({"MissingPermission"})
@@ -348,15 +289,15 @@ public class Weather {
         if (callback == null) {
             return;
         }
-        ensureLocationPermission(new Utilities.Callback() {
+        PermissionRequest.ensureEitherPermission(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                Weather.lambda$getUserLocation$12(Utilities.Callback.this, z, (Boolean) obj);
+                Weather.lambda$getUserLocation$11(Utilities.Callback.this, z, (Boolean) obj);
             }
         });
     }
 
-    public static void lambda$getUserLocation$12(Utilities.Callback callback, boolean z, Boolean bool) {
+    public static void lambda$getUserLocation$11(Utilities.Callback callback, boolean z, Boolean bool) {
         if (!bool.booleanValue()) {
             callback.run(null);
             return;
@@ -384,7 +325,7 @@ public class Weather {
                         builder.setPositiveButton(LocaleController.getString(R.string.Enable), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                Weather.lambda$getUserLocation$10(context, dialogInterface, i);
+                                Weather.lambda$getUserLocation$9(context, dialogInterface, i);
                             }
                         });
                         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -400,7 +341,7 @@ public class Weather {
                     LocationListener locationListener = new LocationListener() {
                         @Override
                         public final void onLocationChanged(Location location2) {
-                            Weather.lambda$getUserLocation$11(locationListenerArr, locationManager, callbackArr, location2);
+                            Weather.lambda$getUserLocation$10(locationListenerArr, locationManager, callbackArr, location2);
                         }
                     };
                     locationListenerArr[0] = locationListener;
@@ -416,20 +357,22 @@ public class Weather {
         callback.run(location);
     }
 
-    public static void lambda$getUserLocation$10(Context context, DialogInterface dialogInterface, int i) {
+    public static void lambda$getUserLocation$9(Context context, DialogInterface dialogInterface, int i) {
         try {
             context.startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
         } catch (Exception unused) {
         }
     }
 
-    public static void lambda$getUserLocation$11(LocationListener[] locationListenerArr, LocationManager locationManager, Utilities.Callback[] callbackArr, Location location) {
-        if (locationListenerArr[0] != null) {
-            locationManager.removeUpdates(locationListenerArr[0]);
+    public static void lambda$getUserLocation$10(LocationListener[] locationListenerArr, LocationManager locationManager, Utilities.Callback[] callbackArr, Location location) {
+        LocationListener locationListener = locationListenerArr[0];
+        if (locationListener != null) {
+            locationManager.removeUpdates(locationListener);
             locationListenerArr[0] = null;
         }
-        if (callbackArr[0] != null) {
-            callbackArr[0].run(location);
+        Utilities.Callback callback = callbackArr[0];
+        if (callback != null) {
+            callback.run(location);
             callbackArr[0] = null;
         }
     }

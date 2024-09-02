@@ -126,6 +126,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         public float midtonesLevel = 50.0f;
         public float highlightsLevel = 75.0f;
         public float whitesLevel = 100.0f;
+        public float previousBlacksLevel = 0.0f;
+        public float previousShadowsLevel = 25.0f;
+        public float previousMidtonesLevel = 50.0f;
+        public float previousHighlightsLevel = 75.0f;
+        public float previousWhitesLevel = 100.0f;
 
         public float[] getDataPoints() {
             if (this.cachedDataPoints == null) {
@@ -135,52 +140,55 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public float[] interpolateCurve() {
-            float f = this.blacksLevel;
-            int i = 1;
-            float f2 = 0.0f;
-            float f3 = this.whitesLevel;
-            float[] fArr = {-0.001f, f / 100.0f, 0.0f, f / 100.0f, 0.25f, this.shadowsLevel / 100.0f, 0.5f, this.midtonesLevel / 100.0f, 0.75f, this.highlightsLevel / 100.0f, 1.0f, f3 / 100.0f, 1.001f, f3 / 100.0f};
+            float f = this.blacksLevel / 100.0f;
+            float f2 = this.shadowsLevel / 100.0f;
+            float f3 = this.midtonesLevel / 100.0f;
+            float f4 = this.highlightsLevel / 100.0f;
+            float f5 = this.whitesLevel / 100.0f;
+            int i = 5;
+            float f6 = 0.5f;
+            float[] fArr = {-0.001f, f, 0.0f, f, 0.25f, f2, 0.5f, f3, 0.75f, f4, 1.0f, f5, 1.001f, f5};
             ArrayList arrayList = new ArrayList(100);
             ArrayList arrayList2 = new ArrayList(100);
             arrayList2.add(Float.valueOf(fArr[0]));
             arrayList2.add(Float.valueOf(fArr[1]));
             int i2 = 1;
-            while (i2 < 5) {
+            while (i2 < i) {
                 int i3 = (i2 - 1) * 2;
-                float f4 = fArr[i3];
-                float f5 = fArr[i3 + i];
+                float f7 = fArr[i3];
+                float f8 = fArr[i3 + 1];
                 int i4 = i2 * 2;
-                float f6 = fArr[i4];
-                float f7 = fArr[i4 + 1];
+                float f9 = fArr[i4];
+                float f10 = fArr[i4 + 1];
                 int i5 = i2 + 1;
                 int i6 = i5 * 2;
-                float f8 = fArr[i6];
-                float f9 = fArr[i6 + 1];
+                float f11 = fArr[i6];
+                float f12 = fArr[i6 + 1];
                 int i7 = (i2 + 2) * 2;
-                float f10 = fArr[i7];
-                float f11 = fArr[i7 + i];
+                float f13 = fArr[i7];
+                float f14 = fArr[i7 + 1];
                 int i8 = 1;
                 while (i8 < 100) {
-                    float f12 = i8 * 0.01f;
-                    float f13 = f12 * f12;
-                    float f14 = f13 * f12;
-                    float f15 = ((f6 * 2.0f) + ((f8 - f4) * f12) + (((((f4 * 2.0f) - (f6 * 5.0f)) + (f8 * 4.0f)) - f10) * f13) + (((((f6 * 3.0f) - f4) - (f8 * 3.0f)) + f10) * f14)) * 0.5f;
-                    float max = Math.max(f2, Math.min(1.0f, ((f7 * 2.0f) + ((f9 - f5) * f12) + (((((2.0f * f5) - (5.0f * f7)) + (4.0f * f9)) - f11) * f13) + (((((f7 * 3.0f) - f5) - (3.0f * f9)) + f11) * f14)) * 0.5f));
-                    if (f15 > f4) {
-                        arrayList2.add(Float.valueOf(f15));
+                    float f15 = i8 * 0.01f;
+                    float f16 = f15 * f15;
+                    float f17 = f16 * f15;
+                    float f18 = ((f9 * 2.0f) + ((f11 - f7) * f15) + (((((f7 * 2.0f) - (f9 * 5.0f)) + (f11 * 4.0f)) - f13) * f16) + (((((f9 * 3.0f) - f7) - (f11 * 3.0f)) + f13) * f17)) * f6;
+                    float max = Math.max(0.0f, Math.min(1.0f, ((f10 * 2.0f) + ((f12 - f8) * f15) + (((((2.0f * f8) - (5.0f * f10)) + (4.0f * f12)) - f14) * f16) + (((((f10 * 3.0f) - f8) - (3.0f * f12)) + f14) * f17)) * f6));
+                    if (f18 > f7) {
+                        arrayList2.add(Float.valueOf(f18));
                         arrayList2.add(Float.valueOf(max));
                     }
                     if ((i8 - 1) % 2 == 0) {
                         arrayList.add(Float.valueOf(max));
                     }
                     i8++;
-                    f2 = 0.0f;
+                    f6 = 0.5f;
                 }
-                arrayList2.add(Float.valueOf(f8));
-                arrayList2.add(Float.valueOf(f9));
+                arrayList2.add(Float.valueOf(f11));
+                arrayList2.add(Float.valueOf(f12));
                 i2 = i5;
-                i = 1;
-                f2 = 0.0f;
+                i = 5;
+                f6 = 0.5f;
             }
             arrayList2.add(Float.valueOf(fArr[12]));
             arrayList2.add(Float.valueOf(fArr[13]));
@@ -215,11 +223,21 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
 
         public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-            this.blacksLevel = abstractSerializedData.readFloat(z);
-            this.shadowsLevel = abstractSerializedData.readFloat(z);
-            this.midtonesLevel = abstractSerializedData.readFloat(z);
-            this.highlightsLevel = abstractSerializedData.readFloat(z);
-            this.whitesLevel = abstractSerializedData.readFloat(z);
+            float readFloat = abstractSerializedData.readFloat(z);
+            this.previousBlacksLevel = readFloat;
+            this.blacksLevel = readFloat;
+            float readFloat2 = abstractSerializedData.readFloat(z);
+            this.previousShadowsLevel = readFloat2;
+            this.shadowsLevel = readFloat2;
+            float readFloat3 = abstractSerializedData.readFloat(z);
+            this.previousMidtonesLevel = readFloat3;
+            this.midtonesLevel = readFloat3;
+            float readFloat4 = abstractSerializedData.readFloat(z);
+            this.previousHighlightsLevel = readFloat4;
+            this.highlightsLevel = readFloat4;
+            float readFloat5 = abstractSerializedData.readFloat(z);
+            this.previousWhitesLevel = readFloat5;
+            this.whitesLevel = readFloat5;
         }
     }
 
@@ -275,7 +293,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         this(context, videoEditTextureView, bitmap, null, i, savedFilterState, paintingOverlay, i2, z, z2, blurManager, resourcesProvider);
     }
 
-    public PhotoFilterView(android.content.Context r26, org.telegram.ui.Components.VideoEditTextureView r27, android.graphics.Bitmap r28, android.graphics.Bitmap r29, int r30, org.telegram.messenger.MediaController.SavedFilterState r31, org.telegram.ui.Components.PaintingOverlay r32, int r33, boolean r34, boolean r35, org.telegram.ui.Components.BlurringShader.BlurManager r36, org.telegram.ui.ActionBar.Theme.ResourcesProvider r37) {
+    public PhotoFilterView(android.content.Context r24, org.telegram.ui.Components.VideoEditTextureView r25, android.graphics.Bitmap r26, android.graphics.Bitmap r27, int r28, org.telegram.messenger.MediaController.SavedFilterState r29, org.telegram.ui.Components.PaintingOverlay r30, int r31, boolean r32, boolean r33, org.telegram.ui.Components.BlurringShader.BlurManager r34, org.telegram.ui.ActionBar.Theme.ResourcesProvider r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterView.<init>(android.content.Context, org.telegram.ui.Components.VideoEditTextureView, android.graphics.Bitmap, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.PaintingOverlay, int, boolean, boolean, org.telegram.ui.Components.BlurringShader$BlurManager, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -532,8 +550,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.bottomPaint = paint2;
             this.topAlpha = new AnimatedFloat(this);
             this.bottomAlpha = new AnimatedFloat(this);
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode));
+            paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode));
         }
 
         @Override
@@ -690,8 +709,8 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             int i4 = i2 - (dp2 + ((i3 < 21 || this.inBubbleMode) ? 0 : AndroidUtilities.statusBarHeight));
             Bitmap bitmap = this.bitmapToEdit;
             if (bitmap != null) {
-                int i5 = this.orientation;
-                if (i5 % 360 == 90 || i5 % 360 == 270) {
+                int i5 = this.orientation % 360;
+                if (i5 == 90 || i5 == 270) {
                     width = bitmap.getHeight();
                     height = this.bitmapToEdit.getWidth();
                 } else {
@@ -934,7 +953,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             }
             View childAt = this.recyclerListView.getChildAt(i);
             if ((childAt instanceof PhotoEditToolCell) && this.recyclerListView.getChildAdapterPosition(childAt) == this.enhanceTool) {
-                ((PhotoEditToolCell) childAt).setIconAndTextAndValue(LocaleController.getString("Enhance", R.string.Enhance), this.enhanceValue, 0, 100);
+                ((PhotoEditToolCell) childAt).setIconAndTextAndValue(LocaleController.getString(R.string.Enhance), this.enhanceValue, 0, 100);
                 break;
             }
             i++;
@@ -1047,11 +1066,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoEditRadioCell photoEditRadioCell = (PhotoEditRadioCell) viewHolder.itemView;
                 photoEditRadioCell.setTag(Integer.valueOf(i));
                 if (i == PhotoFilterView.this.tintShadowsTool) {
-                    photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintShadows", R.string.TintShadows), 0, PhotoFilterView.this.tintShadowsColor);
+                    photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString(R.string.TintShadows), 0, PhotoFilterView.this.tintShadowsColor);
                     return;
                 } else {
                     if (i == PhotoFilterView.this.tintHighlightsTool) {
-                        photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString("TintHighlights", R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
+                        photoEditRadioCell.setIconAndTextAndValue(LocaleController.getString(R.string.TintHighlights), 0, PhotoFilterView.this.tintHighlightsColor);
                         return;
                     }
                     return;
@@ -1060,47 +1079,47 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             PhotoEditToolCell photoEditToolCell = (PhotoEditToolCell) viewHolder.itemView;
             photoEditToolCell.setTag(Integer.valueOf(i));
             if (i == PhotoFilterView.this.enhanceTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Enhance", R.string.Enhance), PhotoFilterView.this.enhanceValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Enhance), PhotoFilterView.this.enhanceValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.highlightsTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Highlights", R.string.Highlights), PhotoFilterView.this.highlightsValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Highlights), PhotoFilterView.this.highlightsValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.contrastTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Contrast", R.string.Contrast), PhotoFilterView.this.contrastValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Contrast), PhotoFilterView.this.contrastValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.exposureTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Exposure", R.string.Exposure), PhotoFilterView.this.exposureValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Exposure), PhotoFilterView.this.exposureValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.warmthTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Warmth", R.string.Warmth), PhotoFilterView.this.warmthValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Warmth), PhotoFilterView.this.warmthValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.saturationTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Saturation", R.string.Saturation), PhotoFilterView.this.saturationValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Saturation), PhotoFilterView.this.saturationValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.vignetteTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Vignette", R.string.Vignette), PhotoFilterView.this.vignetteValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Vignette), PhotoFilterView.this.vignetteValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.shadowsTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Shadows", R.string.Shadows), PhotoFilterView.this.shadowsValue, -100, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Shadows), PhotoFilterView.this.shadowsValue, -100, 100);
                 return;
             }
             if (i == PhotoFilterView.this.grainTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Grain", R.string.Grain), PhotoFilterView.this.grainValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Grain), PhotoFilterView.this.grainValue, 0, 100);
                 return;
             }
             if (i == PhotoFilterView.this.sharpenTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Sharpen", R.string.Sharpen), PhotoFilterView.this.sharpenValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Sharpen), PhotoFilterView.this.sharpenValue, 0, 100);
             } else if (i == PhotoFilterView.this.fadeTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("Fade", R.string.Fade), PhotoFilterView.this.fadeValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.Fade), PhotoFilterView.this.fadeValue, 0, 100);
             } else if (i == PhotoFilterView.this.softenSkinTool) {
-                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString("SoftenSkin", R.string.SoftenSkin), PhotoFilterView.this.softenSkinValue, 0, 100);
+                photoEditToolCell.setIconAndTextAndValue(LocaleController.getString(R.string.SoftenSkin), PhotoFilterView.this.softenSkinValue, 0, 100);
             }
         }
 
@@ -1163,7 +1182,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             this.bottomTextPaint.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
             this.bottomTextPaint.setTextSize(AndroidUtilities.dp(58.0f));
             if (this.topText == null) {
-                StaticLayout staticLayout = new StaticLayout(LocaleController.getString("Enhance", R.string.Enhance), this.topTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), this.topTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.topText = staticLayout;
                 this.topTextWidth = staticLayout.getLineCount() > 0 ? this.topText.getLineWidth(0) : 0.0f;
                 this.topTextLeft = this.topText.getLineCount() > 0 ? this.topText.getLineLeft(0) : 0.0f;

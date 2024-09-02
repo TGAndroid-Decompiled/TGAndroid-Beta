@@ -50,8 +50,11 @@ public class CellFlickerDrawable {
         this.repeatProgress = 1.2f;
         this.animationSpeedScale = 1.0f;
         this.size = AndroidUtilities.dp(i3);
-        this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i), 0}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
+        float f = this.size;
+        int[] iArr = {0, ColorUtils.setAlphaComponent(-1, i), 0};
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.gradientShader = new LinearGradient(0.0f, 0.0f, f, 0.0f, iArr, (float[]) null, tileMode);
+        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, tileMode);
         this.paint.setShader(this.gradientShader);
         this.paintOutline.setShader(this.gradientShader2);
         this.paintOutline.setStyle(Paint.Style.STROKE);
@@ -59,8 +62,11 @@ public class CellFlickerDrawable {
     }
 
     public void setColors(int i, int i2, int i3) {
-        this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
-        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i3), 0}, (float[]) null, Shader.TileMode.CLAMP);
+        float f = this.size;
+        int[] iArr = {0, ColorUtils.setAlphaComponent(i, i2), 0};
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.gradientShader = new LinearGradient(0.0f, 0.0f, f, 0.0f, iArr, (float[]) null, tileMode);
+        this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(i, i3), 0}, (float[]) null, tileMode);
         this.paint.setShader(this.gradientShader);
         this.paintOutline.setShader(this.gradientShader2);
     }

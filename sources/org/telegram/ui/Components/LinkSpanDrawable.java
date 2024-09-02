@@ -55,6 +55,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     private final boolean mSupportsLongPress;
     private final float mTouchX;
     private final float mTouchY;
+    private final float rippleAlpha;
+    private final float selectionAlpha;
 
     public LinkSpanDrawable(S s, Theme.ResourcesProvider resourcesProvider, float f, float f2) {
         this(s, resourcesProvider, f, f2, true);
@@ -66,6 +68,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         this.circlePath = new Path();
         this.mStart = -1L;
         this.mReleaseStart = -1L;
+        this.selectionAlpha = 0.2f;
+        this.rippleAlpha = 0.8f;
         this.isLite = !LiteMode.isEnabled(98784);
         this.mSpan = s;
         this.mResourcesProvider = resourcesProvider;
@@ -187,8 +191,8 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         float min = j < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j)) / 100.0f));
         if (this.mSupportsLongPress) {
             long j2 = elapsedRealtime - this.mStart;
-            long j3 = this.mDuration;
-            float max = Math.max(0.0f, ((float) (j2 - (j3 * 2))) / ((float) (this.mLongPressDuration - (j3 * 2))));
+            long j3 = this.mDuration * 2;
+            float max = Math.max(0.0f, ((float) (j2 - j3)) / ((float) (this.mLongPressDuration - j3)));
             f = (max > 1.0f ? 1.0f - (((float) ((elapsedRealtime - this.mStart) - this.mLongPressDuration)) / ((float) this.mDuration)) : max * 0.5f) * (1.0f - min);
         } else {
             f = 1.0f;
@@ -283,20 +287,22 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         public void removeLink(final LinkSpanDrawable linkSpanDrawable, boolean z) {
+            Pair<LinkSpanDrawable, Object> pair;
             if (linkSpanDrawable == null) {
                 return;
             }
-            Pair<LinkSpanDrawable, Object> pair = null;
             int i = 0;
             while (true) {
                 if (i >= this.mLinksCount) {
+                    pair = null;
                     break;
+                } else {
+                    if (this.mLinks.get(i).first == linkSpanDrawable) {
+                        pair = this.mLinks.get(i);
+                        break;
+                    }
+                    i++;
                 }
-                if (this.mLinks.get(i).first == linkSpanDrawable) {
-                    pair = this.mLinks.get(i);
-                    break;
-                }
-                i++;
             }
             if (pair == null) {
                 return;
@@ -316,7 +322,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                     public final void run() {
                         LinkSpanDrawable.LinkCollector.this.lambda$removeLink$0(linkSpanDrawable);
                     }
-                }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 75 + 100));
+                }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
             }
         }
 
@@ -339,7 +345,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                         public final void run() {
                             LinkSpanDrawable.LinkCollector.this.lambda$removeLink$1(linkSpanDrawable);
                         }
-                    }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 75 + 100));
+                    }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 175));
                     return;
                 }
                 return;
@@ -669,7 +675,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         @Override
-        public void onDraw(android.graphics.Canvas r15) {
+        public void onDraw(android.graphics.Canvas r16) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
         }
 

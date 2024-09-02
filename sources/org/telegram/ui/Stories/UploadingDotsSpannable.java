@@ -15,6 +15,7 @@ public class UploadingDotsSpannable extends ReplacementSpan {
     private View parent;
     float swapProgress;
     boolean waitForNextAnimation;
+    private final String text = "…";
     int swapPosition1 = 1;
     int swapPosition2 = 2;
     CubicBezierInterpolator circle = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);

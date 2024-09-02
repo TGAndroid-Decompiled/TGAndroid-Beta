@@ -30,6 +30,7 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
     private final Path clipPath;
     private int currentIcon;
     private Drawable drawable;
+    private float scale;
     private boolean selected;
 
     public ToggleButton2(Context context) {
@@ -40,6 +41,7 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
         Paint paint2 = new Paint(3);
         this.activeBitmapPaint = paint2;
         this.animatedSelected = new AnimatedFloat(this, 0L, 380L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.scale = 1.0f;
         paint.setColor(-1);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
     }
@@ -65,12 +67,13 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
             this.animator.start();
             return;
         }
+        this.scale = 1.0f;
         setDrawable(i);
     }
 
     public void lambda$setIcon$0(AtomicBoolean atomicBoolean, int i, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        Math.abs(floatValue - 0.5f);
+        this.scale = Math.abs(floatValue - 0.5f) + 0.5f;
         if (floatValue < 0.5f || atomicBoolean.get()) {
             return;
         }

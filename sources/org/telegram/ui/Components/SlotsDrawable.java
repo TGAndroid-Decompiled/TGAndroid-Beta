@@ -84,8 +84,9 @@ public class SlotsDrawable extends RLottieDrawable {
                         frame = RLottieDrawable.getFrame(jArr[i], this.frameNums[i], this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), i == 0);
                         if (i != 0) {
                             int[] iArr = this.frameNums;
-                            if (iArr[i] + 1 < this.frameCounts[i]) {
-                                iArr[i] = iArr[i] + 1;
+                            int i2 = iArr[i] + 1;
+                            if (i2 < this.frameCounts[i]) {
+                                iArr[i] = i2;
                             } else if (i != 4) {
                                 iArr[i] = 0;
                                 this.nextFrameIsLast = false;
@@ -98,51 +99,57 @@ public class SlotsDrawable extends RLottieDrawable {
                     }
                 } else {
                     if (this.setLastFrame) {
-                        int i2 = 0;
+                        int i3 = 0;
                         while (true) {
                             int[] iArr2 = this.secondFrameNums;
-                            if (i2 >= iArr2.length) {
+                            if (i3 >= iArr2.length) {
                                 break;
                             }
-                            iArr2[i2] = this.secondFrameCounts[i2] - 1;
-                            i2++;
+                            iArr2[i3] = this.secondFrameCounts[i3] - 1;
+                            i3++;
                         }
                     }
                     if (this.playWinAnimation) {
                         int[] iArr3 = this.frameNums;
-                        if (iArr3[0] + 1 < this.frameCounts[0]) {
-                            iArr3[0] = iArr3[0] + 1;
+                        int i4 = iArr3[0] + 1;
+                        if (i4 < this.frameCounts[0]) {
+                            iArr3[0] = i4;
                         } else {
                             iArr3[0] = -1;
                         }
                     }
                     RLottieDrawable.getFrame(this.nativePtrs[0], Math.max(this.frameNums[0], 0), this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), true);
-                    int i3 = 0;
+                    int i5 = 0;
                     while (true) {
                         long[] jArr2 = this.secondNativePtrs;
-                        if (i3 >= jArr2.length) {
+                        if (i5 >= jArr2.length) {
                             break;
                         }
-                        long j = jArr2[i3];
-                        int[] iArr4 = this.secondFrameNums;
-                        RLottieDrawable.getFrame(j, iArr4[i3] >= 0 ? iArr4[i3] : this.secondFrameCounts[i3] - 1, this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), false);
+                        long j = jArr2[i5];
+                        int i6 = this.secondFrameNums[i5];
+                        if (i6 < 0) {
+                            i6 = this.secondFrameCounts[i5] - 1;
+                        }
+                        RLottieDrawable.getFrame(j, i6, this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), false);
                         if (!this.nextFrameIsLast) {
-                            int[] iArr5 = this.secondFrameNums;
-                            if (iArr5[i3] + 1 < this.secondFrameCounts[i3]) {
-                                iArr5[i3] = iArr5[i3] + 1;
+                            int[] iArr4 = this.secondFrameNums;
+                            int i7 = iArr4[i5] + 1;
+                            if (i7 < this.secondFrameCounts[i5]) {
+                                iArr4[i5] = i7;
                             } else {
-                                iArr5[i3] = -1;
+                                iArr4[i5] = -1;
                             }
                         }
-                        i3++;
+                        i5++;
                     }
                     frame = RLottieDrawable.getFrame(this.nativePtrs[4], this.frameNums[4], this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), false);
-                    int[] iArr6 = this.frameNums;
-                    if (iArr6[4] + 1 < this.frameCounts[4]) {
-                        iArr6[4] = iArr6[4] + 1;
+                    int[] iArr5 = this.frameNums;
+                    int i8 = iArr5[4] + 1;
+                    if (i8 < this.frameCounts[4]) {
+                        iArr5[4] = i8;
                     }
-                    int[] iArr7 = this.secondFrameNums;
-                    if (iArr7[0] == -1 && iArr7[1] == -1 && iArr7[2] == -1) {
+                    int[] iArr6 = this.secondFrameNums;
+                    if (iArr6[0] == -1 && iArr6[1] == -1 && iArr6[2] == -1) {
                         this.nextFrameIsLast = true;
                         this.autoRepeatPlayCount++;
                     }
@@ -229,6 +236,7 @@ public class SlotsDrawable extends RLottieDrawable {
     }
 
     public void lambda$setBaseDice$5(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final int i, final MessageObject messageObject, final ChatMessageCell chatMessageCell) {
+        int i2;
         if (this.destroyAfterLoading) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -238,25 +246,27 @@ public class SlotsDrawable extends RLottieDrawable {
             });
             return;
         }
-        int i2 = 0;
+        int i3 = 0;
         boolean z = false;
         while (true) {
             long[] jArr = this.nativePtrs;
-            if (i2 >= jArr.length) {
+            if (i3 >= jArr.length) {
                 break;
             }
-            if (jArr[i2] == 0) {
-                int i3 = 2;
-                if (i2 == 0) {
-                    i3 = 1;
-                } else if (i2 == 1) {
-                    i3 = 8;
-                } else if (i2 == 2) {
-                    i3 = 14;
-                } else if (i2 == 3) {
-                    i3 = 20;
+            if (jArr[i3] == 0) {
+                if (i3 == 0) {
+                    i2 = 1;
+                } else if (i3 == 1) {
+                    i2 = 8;
+                } else {
+                    i2 = 2;
+                    if (i3 == 2) {
+                        i2 = 14;
+                    } else if (i3 == 3) {
+                        i2 = 20;
+                    }
                 }
-                final TLRPC$Document tLRPC$Document = tLRPC$TL_messages_stickerSet.documents.get(i3);
+                final TLRPC$Document tLRPC$Document = tLRPC$TL_messages_stickerSet.documents.get(i2);
                 String readRes = RLottieDrawable.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), 0);
                 if (TextUtils.isEmpty(readRes)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
@@ -267,11 +277,11 @@ public class SlotsDrawable extends RLottieDrawable {
                     });
                     z = true;
                 } else {
-                    this.nativePtrs[i2] = RLottieDrawable.createWithJson(readRes, "dice", this.metaData, null);
-                    this.frameCounts[i2] = this.metaData[0];
+                    this.nativePtrs[i3] = RLottieDrawable.createWithJson(readRes, "dice", this.metaData, null);
+                    this.frameCounts[i3] = this.metaData[0];
                 }
             }
-            i2++;
+            i3++;
         }
         if (z) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -394,8 +404,9 @@ public class SlotsDrawable extends RLottieDrawable {
             if (i2 >= jArr.length) {
                 break;
             }
-            if (jArr[i2] != 0) {
-                if (jArr[i2] == this.nativePtr) {
+            long j = jArr[i2];
+            if (j != 0) {
+                if (j == this.nativePtr) {
                     this.nativePtr = 0L;
                 }
                 RLottieDrawable.destroy(this.nativePtrs[i2]);
@@ -405,18 +416,20 @@ public class SlotsDrawable extends RLottieDrawable {
         }
         while (true) {
             long[] jArr2 = this.secondNativePtrs;
-            if (i >= jArr2.length) {
+            if (i < jArr2.length) {
+                long j2 = jArr2[i];
+                if (j2 != 0) {
+                    if (j2 == this.secondNativePtr) {
+                        this.secondNativePtr = 0L;
+                    }
+                    RLottieDrawable.destroy(this.secondNativePtrs[i]);
+                    this.secondNativePtrs[i] = 0;
+                }
+                i++;
+            } else {
                 recycleResources();
                 return;
             }
-            if (jArr2[i] != 0) {
-                if (jArr2[i] == this.secondNativePtr) {
-                    this.secondNativePtr = 0L;
-                }
-                RLottieDrawable.destroy(this.secondNativePtrs[i]);
-                this.secondNativePtrs[i] = 0;
-            }
-            i++;
         }
     }
 
@@ -432,8 +445,9 @@ public class SlotsDrawable extends RLottieDrawable {
                     if (i2 >= jArr.length) {
                         break;
                     }
-                    if (jArr[i2] != 0) {
-                        RLottieDrawable.destroy(jArr[i2]);
+                    long j = jArr[i2];
+                    if (j != 0) {
+                        RLottieDrawable.destroy(j);
                         this.nativePtrs[i2] = 0;
                     }
                     i2++;
@@ -443,8 +457,9 @@ public class SlotsDrawable extends RLottieDrawable {
                     if (i >= jArr2.length) {
                         break;
                     }
-                    if (jArr2[i] != 0) {
-                        RLottieDrawable.destroy(jArr2[i]);
+                    long j2 = jArr2[i];
+                    if (j2 != 0) {
+                        RLottieDrawable.destroy(j2);
                         this.secondNativePtrs[i] = 0;
                     }
                     i++;

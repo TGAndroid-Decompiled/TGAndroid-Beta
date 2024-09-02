@@ -144,7 +144,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         };
         this.maxCount = i;
         this.selectorListener = selectorListener;
-        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(this, getContext(), this.resourcesProvider) {
+        SelectorHeaderCell selectorHeaderCell = new SelectorHeaderCell(getContext(), this.resourcesProvider) {
             @Override
             protected int getHeaderHeight() {
                 if (getResources().getConfiguration().orientation == 2) {
@@ -190,7 +190,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 MultiContactsSelectorBottomSheet.this.onSearch((String) obj);
             }
         });
-        selectorSearchCell.setHintText(LocaleController.getString("Search", R.string.Search), false);
+        selectorSearchCell.setHintText(LocaleController.getString(R.string.Search), false);
         View view = new View(getContext()) {
             @Override
             protected void onDraw(Canvas canvas) {
@@ -426,9 +426,9 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (this.selectedIds.size() == 0) {
             spannableStringBuilder.append((CharSequence) "d").setSpan(this.recipientsBtnSpaceSpan, 0, 1, 33);
-            spannableStringBuilder.append((CharSequence) LocaleController.getString("ChooseUsers", R.string.ChooseUsers));
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ChooseUsers));
         } else {
-            spannableStringBuilder.append((CharSequence) LocaleController.getString("GiftPremiumProceedBtn", R.string.GiftPremiumProceedBtn));
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.GiftPremiumProceedBtn));
         }
         this.actionButton.setCount(this.selectedIds.size(), true);
         this.actionButton.setText(spannableStringBuilder, z, false);
@@ -507,7 +507,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
                 }
                 if (!arrayList.isEmpty()) {
                     i += AndroidUtilities.dp(32.0f);
-                    this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString("GiftPremiumFrequentContacts", R.string.GiftPremiumFrequentContacts)));
+                    this.items.add(SelectorAdapter.Item.asTopSection(LocaleController.getString(R.string.GiftPremiumFrequentContacts)));
                     this.items.addAll(arrayList);
                 }
             }
@@ -552,7 +552,7 @@ public class MultiContactsSelectorBottomSheet extends BottomSheetWithRecyclerLis
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString("ChooseUsers", R.string.ChooseUsers);
+        return LocaleController.getString(R.string.ChooseUsers);
     }
 
     @Override

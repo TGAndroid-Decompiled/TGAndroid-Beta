@@ -77,6 +77,7 @@ public class UndoView extends FrameLayout {
     private TextView subinfoTextView;
     private TextPaint textPaint;
     private int textWidth;
+    int textWidthOut;
     StaticLayout timeLayout;
     StaticLayout timeLayoutOut;
     private long timeLeft;
@@ -113,18 +114,18 @@ public class UndoView extends FrameLayout {
         public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
             CharacterStyle[] characterStyleArr;
             try {
-                if (motionEvent.getAction() == 0 && ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) == null || characterStyleArr.length == 0)) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
-                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        UndoView.this.didPressUrl(characterStyleArr2[0]);
+                if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                    if (motionEvent.getAction() == 1) {
+                        CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                        if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                            UndoView.this.didPressUrl(characterStyleArr2[0]);
+                        }
+                        Selection.removeSelection(spannable);
+                        return true;
                     }
-                    Selection.removeSelection(spannable);
-                    return true;
+                    return super.onTouchEvent(textView, spannable, motionEvent);
                 }
-                return super.onTouchEvent(textView, spannable, motionEvent);
+                return false;
             } catch (Exception e) {
                 FileLog.e(e);
                 return false;
@@ -217,7 +218,7 @@ public class UndoView extends FrameLayout {
         textView2.setTextSize(1, 14.0f);
         this.undoTextView.setTypeface(AndroidUtilities.bold());
         this.undoTextView.setTextColor(getThemedColor(i2));
-        this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
+        this.undoTextView.setText(LocaleController.getString(R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
         this.rect = new RectF(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(33.0f), AndroidUtilities.dp(33.0f));
         Paint paint = new Paint(1);
@@ -319,11 +320,7 @@ public class UndoView extends FrameLayout {
             if (i != 0) {
                 AnimatorSet animatorSet = new AnimatorSet();
                 if (i == 1) {
-                    Animator[] animatorArr = new Animator[1];
-                    float[] fArr = new float[1];
-                    fArr[0] = (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight);
-                    animatorArr[0] = ObjectAnimator.ofFloat(this, "enterOffset", fArr);
-                    animatorSet.playTogether(animatorArr);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(this, "enterOffset", (this.fromTop ? -1.0f : 1.0f) * (this.enterOffsetMargin + this.undoViewHeight)));
                     animatorSet.setDuration(250L);
                 } else {
                     animatorSet.playTogether(ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_X, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.SCALE_Y, 0.8f), ObjectAnimator.ofFloat(this, (Property<UndoView, Float>) View.ALPHA, 0.0f));
@@ -369,7 +366,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r19, int r20, java.lang.Object r21, java.lang.Object r22, java.lang.Runnable r23, java.lang.Runnable r24) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r25, int r26, java.lang.Object r27, java.lang.Object r28, java.lang.Runnable r29, java.lang.Runnable r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 
@@ -450,7 +447,7 @@ public class UndoView extends FrameLayout {
         }
         int i = this.currentAction;
         if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
-            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r6) / 1000.0f) : 0;
+            int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) r10) / 1000.0f) : 0;
             if (this.prevSeconds != ceil) {
                 this.prevSeconds = ceil;
                 this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(1, ceil)));
@@ -458,8 +455,9 @@ public class UndoView extends FrameLayout {
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
+                    this.textWidthOut = this.textWidth;
                 }
-                this.textWidth = (int) Math.ceil(this.textPaint.measureText(r0));
+                this.textWidth = (int) Math.ceil(this.textPaint.measureText(r2));
                 this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             float f = this.timeReplaceProgress;
@@ -497,7 +495,7 @@ public class UndoView extends FrameLayout {
                 }
                 canvas.restore();
             }
-            canvas.drawArc(this.rect, -90.0f, (((float) this.timeLeft) / 5000.0f) * (-360.0f), false, this.progressPaint);
+            canvas.drawArc(this.rect, -90.0f, (-360.0f) * (((float) this.timeLeft) / 5000.0f), false, this.progressPaint);
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j = this.timeLeft - (elapsedRealtime - this.lastUpdateTime);

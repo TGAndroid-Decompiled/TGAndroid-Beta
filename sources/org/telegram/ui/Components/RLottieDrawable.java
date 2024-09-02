@@ -7,15 +7,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
-import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -34,7 +31,6 @@ import org.telegram.messenger.utils.BitmapsCache;
 import org.telegram.ui.Components.RLottieDrawable;
 
 public class RLottieDrawable extends BitmapDrawable implements Animatable, BitmapsCache.Cacheable {
-    public static Gson gson;
     public static DispatchQueue lottieCacheGenerateQueue;
     private boolean allowDrawFramesWhileCacheGenerating;
     private boolean allowVibration;
@@ -44,6 +40,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     protected int autoRepeat;
     protected int autoRepeatCount;
     protected int autoRepeatPlayCount;
+    protected long autoRepeatTimeout;
     protected volatile Bitmap backgroundBitmap;
     private Paint[] backgroundPaint;
     BitmapsCache bitmapsCache;
@@ -123,12 +120,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private static ThreadLocal<byte[]> bufferLocal = new ThreadLocal<>();
     private static final DispatchQueuePool loadFrameRunnableQueue = new DispatchQueuePool(4);
 
-    public class LottieMetadata {
-        float fr;
-        float ip;
-        float op;
-    }
-
     public static native long create(String str, String str2, int i, int i2, int[] iArr, boolean z, int[] iArr2, boolean z2, int i3);
 
     public static native long createWithJson(String str, String str2, int[] iArr, int[] iArr2);
@@ -148,9 +139,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     @Override
     public int getOpacity() {
         return -2;
-    }
-
-    public void setAutoRepeatTimeout(long j) {
     }
 
     public class AnonymousClass3 implements Runnable {
@@ -362,6 +350,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -473,6 +463,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -522,35 +514,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.timeBetweenFrames = Math.max(this.shouldLimitFps ? 33 : 16, (int) (1000.0f / iArr2[c]));
     }
 
-    private void parseLottieMetadata(File file, String str, int[] iArr) {
-        LottieMetadata lottieMetadata;
-        if (gson == null) {
-            gson = new Gson();
-        }
-        try {
-            if (file == null) {
-                lottieMetadata = (LottieMetadata) gson.fromJson(str, LottieMetadata.class);
-            } else {
-                FileReader fileReader = new FileReader(file.getAbsolutePath());
-                lottieMetadata = (LottieMetadata) gson.fromJson(fileReader, LottieMetadata.class);
-                try {
-                    fileReader.close();
-                } catch (Exception unused) {
-                }
-            }
-            iArr[0] = (int) (lottieMetadata.op - lottieMetadata.ip);
-            iArr[1] = (int) lottieMetadata.fr;
-        } catch (Exception e) {
-            FileLog.e((Throwable) e, false);
-            String absolutePath = file.getAbsolutePath();
-            int i = this.width;
-            int i2 = this.height;
-            NativePtrArgs nativePtrArgs = this.args;
-            long create = create(absolutePath, str, i, i2, iArr, false, nativePtrArgs.colorReplacement, this.shouldLimitFps, nativePtrArgs.fitzModifier);
-            if (create != 0) {
-                destroy(create);
-            }
-        }
+    private void parseLottieMetadata(java.io.File r15, java.lang.String r16, int[] r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.parseLottieMetadata(java.io.File, java.lang.String, int[]):void");
     }
 
     public RLottieDrawable(int i, String str, int i2, int i3) {
@@ -616,6 +581,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -814,6 +781,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
             }
         };
         this.loadFrameRunnable = new Runnable() {
+            private long lastUpdate = 0;
+
             @Override
             public void run() {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.AnonymousClass5.run():void");
@@ -942,24 +911,21 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     public void checkCacheCancel() {
-        View view;
         if (this.bitmapsCache == null || lottieCacheGenerateQueue == null || this.cacheGenerateTask == null) {
             return;
         }
-        boolean z = true;
-        boolean z2 = this.parentViews.isEmpty() && getCallback() == null;
-        if (Build.VERSION.SDK_INT < 19 ? !z2 || this.masterParent != null : !z2 || ((view = this.masterParent) != null && view.isAttachedToWindow())) {
-            z = false;
-        }
-        if (z) {
-            Runnable runnable = this.cacheGenerateTask;
-            if (runnable != null) {
-                lottieCacheGenerateQueue.cancelRunnable(runnable);
-                BitmapsCache.decrementTaskCounter();
-                this.cacheGenerateTask = null;
+        if (this.parentViews.isEmpty() && getCallback() == null) {
+            View view = this.masterParent;
+            if (view == null || !view.isAttachedToWindow()) {
+                Runnable runnable = this.cacheGenerateTask;
+                if (runnable != null) {
+                    lottieCacheGenerateQueue.cancelRunnable(runnable);
+                    BitmapsCache.decrementTaskCounter();
+                    this.cacheGenerateTask = null;
+                }
+                this.generatingCache = false;
+                this.genCacheSend = false;
             }
-            this.generatingCache = false;
-            this.genCacheSend = false;
         }
     }
 
@@ -1021,6 +987,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public void setAutoRepeatCount(int i) {
         this.autoRepeatCount = i;
+    }
+
+    public void setAutoRepeatTimeout(long j) {
+        this.autoRepeatTimeout = j;
     }
 
     protected void finalize() throws Throwable {
@@ -1304,9 +1274,8 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     }
 
     public void drawInternal(Canvas canvas, Paint paint, boolean z, long j, int i) {
+        float width;
         float f;
-        boolean z2;
-        float f2;
         if (!canLoadFrames() || this.destroyWhenDone) {
             return;
         }
@@ -1320,7 +1289,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         if (paint.getAlpha() == 0 || this.isInvalid || this.renderingBitmap == null) {
             return;
         }
-        boolean z3 = true;
+        boolean z2 = true;
         if (!z) {
             rectF.set(getBounds());
             if (this.applyTransformation) {
@@ -1328,22 +1297,23 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
                 this.scaleY = rectF.height() / this.height;
                 this.applyTransformation = false;
                 if (Math.abs(rectF.width() - this.width) < AndroidUtilities.dp(1.0f) && Math.abs(rectF.height() - this.height) < AndroidUtilities.dp(1.0f)) {
-                    z3 = false;
+                    z2 = false;
                 }
-                this.needScale = z3;
+                this.needScale = z2;
             }
-            f2 = this.scaleX;
+            float f2 = this.scaleX;
             f = this.scaleY;
+            width = f2;
             z2 = this.needScale;
         } else {
-            float width = rectF.width() / this.width;
+            width = rectF.width() / this.width;
             float height = rectF.height() / this.height;
-            if (Math.abs(rectF.width() - this.width) < AndroidUtilities.dp(1.0f) && Math.abs(rectF.height() - this.height) < AndroidUtilities.dp(1.0f)) {
-                z3 = false;
+            if (Math.abs(rectF.width() - this.width) >= AndroidUtilities.dp(1.0f) || Math.abs(rectF.height() - this.height) >= AndroidUtilities.dp(1.0f)) {
+                f = height;
+            } else {
+                f = height;
+                z2 = false;
             }
-            f = height;
-            z2 = z3;
-            f2 = width;
         }
         if (!z2) {
             canvas.drawBitmap(this.renderingBitmap, rectF.left, rectF.top, paint);
@@ -1353,7 +1323,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         } else {
             canvas.save();
             canvas.translate(rectF.left, rectF.top);
-            canvas.scale(f2, f);
+            canvas.scale(width, f);
             canvas.drawBitmap(this.renderingBitmap, 0.0f, 0.0f, paint);
             canvas.restore();
         }

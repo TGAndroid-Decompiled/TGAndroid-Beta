@@ -49,10 +49,12 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadDrawable = rLottieDrawable;
         int i2 = Theme.key_actionBarDefaultIcon;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i2);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(color, mode));
         RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadCompleteDrawable = rLottieDrawable2;
-        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);
@@ -82,8 +84,11 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.currentColor = Theme.getColor(i2);
             this.paint.setColor(Theme.getColor(i2));
             this.paint2.setColor(Theme.getColor(i2));
-            this.downloadImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
-            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+            ImageReceiver imageReceiver = this.downloadImageReceiver;
+            int color = Theme.getColor(i2);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            imageReceiver.setColorFilter(new PorterDuffColorFilter(color, mode));
+            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), mode));
             this.paint2.setAlpha(100);
         }
         float f = this.currentProgress;

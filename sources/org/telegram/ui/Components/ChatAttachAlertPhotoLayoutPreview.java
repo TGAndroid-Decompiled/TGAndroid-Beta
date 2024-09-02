@@ -66,6 +66,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     private float draggingCellTop;
     private float draggingCellTouchX;
     private float draggingCellTouchY;
+    private final long durationMultiplier;
     private PreviewGroupsView groupsView;
     public TextView header;
     private ViewPropertyAnimator headerAnimator;
@@ -103,6 +104,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
 
     public ChatAttachAlertPhotoLayoutPreview(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
         super(chatAttachAlert, context, resourcesProvider);
+        this.durationMultiplier = 1L;
         this.draggingCellTouchX = 0.0f;
         this.draggingCellTouchY = 0.0f;
         this.draggingCellTop = 0.0f;
@@ -135,7 +137,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setMaxLines(1);
         this.header.setEllipsize(TextUtils.TruncateAt.END);
         this.header.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        this.header.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
+        this.header.setText(LocaleController.getString(R.string.AttachMediaPreview));
         this.header.setTypeface(AndroidUtilities.bold());
         this.header.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.header.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);
@@ -335,25 +337,26 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         int maxX;
         int maxY;
         ArrayList<MediaController.PhotoEntry> photos;
+        int width;
         public ArrayList<MessageObject.GroupedMessagePosition> posArray = new ArrayList<>();
         public HashMap<MediaController.PhotoEntry, MessageObject.GroupedMessagePosition> positions = new HashMap<>();
-        int width;
+        private final int maxSizeWidth = 1000;
 
         public class MessageGroupedLayoutAttempt {
             public float[] heights;
             public int[] lineCounts;
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, float f, float f2) {
+            public MessageGroupedLayoutAttempt(int i, int i2, float f, float f2) {
                 this.lineCounts = new int[]{i, i2};
                 this.heights = new float[]{f, f2};
             }
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, int i3, float f, float f2, float f3) {
+            public MessageGroupedLayoutAttempt(int i, int i2, int i3, float f, float f2, float f3) {
                 this.lineCounts = new int[]{i, i2, i3};
                 this.heights = new float[]{f, f2, f3};
             }
 
-            public MessageGroupedLayoutAttempt(GroupCalculator groupCalculator, int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {
+            public MessageGroupedLayoutAttempt(int i, int i2, int i3, int i4, float f, float f2, float f3, float f4) {
                 this.lineCounts = new int[]{i, i2, i3, i4};
                 this.heights = new float[]{f, f2, f3, f4};
             }
@@ -390,8 +393,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
             int i4 = iArr[0];
             for (int i5 = 1; i5 < 10; i5++) {
-                if (i4 < iArr[i5]) {
-                    i4 = iArr[i5];
+                int i6 = iArr[i5];
+                if (i4 < i6) {
+                    i4 = i6;
                 }
             }
             return i4;
@@ -410,8 +414,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             }
             float f2 = fArr[0];
             for (int i3 = 1; i3 < 10; i3++) {
-                if (f2 < fArr[i3]) {
-                    f2 = fArr[i3];
+                float f3 = fArr[i3];
+                if (f2 < f3) {
+                    f2 = f3;
                 }
             }
             return f2;
@@ -433,8 +438,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
             for (int i6 = 0; i6 < i4; i6++) {
-                if (f < fArr[i6]) {
-                    f = fArr[i6];
+                float f2 = fArr[i6];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;
@@ -455,8 +461,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
             }
             for (int i5 = 0; i5 < i2; i5++) {
-                if (f < fArr[i5]) {
-                    f = fArr[i5];
+                float f2 = fArr[i5];
+                if (f < f2) {
+                    f = f2;
                 }
             }
             return f;
@@ -579,6 +586,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         private float draggingT;
         private ArrayList<PreviewGroupCell> groupCells;
         private ChatActionCell hintView;
+        private HashMap<MediaController.PhotoEntry, ImageReceiver> images;
         boolean[] lastGroupSeen;
         private int lastMeasuredHeight;
         private int paddingBottom;
@@ -649,11 +657,11 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             };
             this.photoViewerProvider = new GroupingPhotoViewerProvider();
             this.undoViewId = 0;
-            new HashMap();
+            this.images = new HashMap<>();
             setWillNotDraw(false);
             ChatActionCell chatActionCell = new ChatActionCell(context, true, ChatAttachAlertPhotoLayoutPreview.this.themeDelegate);
             this.hintView = chatActionCell;
-            chatActionCell.setCustomText(LocaleController.getString("AttachMediaDragHint", R.string.AttachMediaDragHint));
+            chatActionCell.setCustomText(LocaleController.getString(R.string.AttachMediaDragHint));
             addView(this.hintView);
         }
 
@@ -692,7 +700,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             int size = this.photosOrder.size();
             int i2 = size - 1;
             for (int i3 = 0; i3 < size; i3++) {
-                arrayList.add((MediaController.PhotoEntry) this.photosMap.get(Integer.valueOf(((Integer) this.photosOrder.get(i3)).intValue())));
+                Integer num = (Integer) this.photosOrder.get(i3);
+                num.intValue();
+                arrayList.add((MediaController.PhotoEntry) this.photosMap.get(num));
                 if (i3 % 10 == 9 || i3 == i2) {
                     PreviewGroupCell previewGroupCell = new PreviewGroupCell();
                     previewGroupCell.setGroup(new GroupCalculator(arrayList), false);
@@ -703,7 +713,6 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public void calcPhotoArrays() {
-            boolean z;
             String str;
             this.photosMap = ChatAttachAlertPhotoLayoutPreview.this.photoLayout.getSelectedPhotos();
             this.photosMapKeys = new ArrayList(this.photosMap.entrySet());
@@ -723,34 +732,30 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         } else {
                             int i3 = 0;
                             while (true) {
-                                if (i3 >= this.photosMapKeys.size()) {
-                                    z = false;
-                                    break;
-                                }
-                                Map.Entry<Object, Object> entry = this.photosMapKeys.get(i3);
-                                Object value = entry.getValue();
-                                if (value == photoEntry) {
-                                    Object key = entry.getKey();
-                                    this.selectedPhotos.put(key, value);
-                                    this.photosOrder.add(key);
-                                    z = true;
-                                    break;
-                                }
-                                i3++;
-                            }
-                            if (!z) {
-                                int i4 = 0;
-                                while (true) {
-                                    if (i4 < this.photosMapKeys.size()) {
-                                        Map.Entry<Object, Object> entry2 = this.photosMapKeys.get(i4);
-                                        Object value2 = entry2.getValue();
-                                        if ((value2 instanceof MediaController.PhotoEntry) && (str = ((MediaController.PhotoEntry) value2).path) != null && photoEntry != null && str.equals(photoEntry.path)) {
-                                            Object key2 = entry2.getKey();
-                                            this.selectedPhotos.put(key2, value2);
-                                            this.photosOrder.add(key2);
-                                            break;
+                                if (i3 < this.photosMapKeys.size()) {
+                                    Map.Entry<Object, Object> entry = this.photosMapKeys.get(i3);
+                                    Object value = entry.getValue();
+                                    if (value == photoEntry) {
+                                        Object key = entry.getKey();
+                                        this.selectedPhotos.put(key, value);
+                                        this.photosOrder.add(key);
+                                        break;
+                                    }
+                                    i3++;
+                                } else {
+                                    int i4 = 0;
+                                    while (true) {
+                                        if (i4 < this.photosMapKeys.size()) {
+                                            Map.Entry<Object, Object> entry2 = this.photosMapKeys.get(i4);
+                                            Object value2 = entry2.getValue();
+                                            if ((value2 instanceof MediaController.PhotoEntry) && (str = ((MediaController.PhotoEntry) value2).path) != null && photoEntry != null && str.equals(photoEntry.path)) {
+                                                Object key2 = entry2.getKey();
+                                                this.selectedPhotos.put(key2, value2);
+                                                this.photosOrder.add(key2);
+                                                break;
+                                            }
+                                            i4++;
                                         }
-                                        i4++;
                                     }
                                 }
                             }
@@ -851,30 +856,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         public void onScroll() {
-            int i = 0;
-            boolean z = true;
-            boolean z2 = this.lastGroupSeen == null;
-            if (!z2) {
-                boolean[] groupSeen = groupSeen();
-                if (groupSeen.length == this.lastGroupSeen.length) {
-                    while (true) {
-                        if (i >= groupSeen.length) {
-                            z = z2;
-                            break;
-                        } else if (groupSeen[i] != this.lastGroupSeen[i]) {
-                            break;
-                        } else {
-                            i++;
-                        }
-                    }
-                }
-                z2 = z;
-            } else {
-                this.lastGroupSeen = groupSeen();
-            }
-            if (z2) {
-                invalidate();
-            }
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onScroll():void");
         }
 
         public void remeasure() {
@@ -892,57 +874,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
-            float f = this.paddingTop;
-            int computeVerticalScrollOffset = ChatAttachAlertPhotoLayoutPreview.this.listView.computeVerticalScrollOffset();
-            this.viewTop = Math.max(0, computeVerticalScrollOffset - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding());
-            this.viewBottom = (ChatAttachAlertPhotoLayoutPreview.this.listView.getMeasuredHeight() - ChatAttachAlertPhotoLayoutPreview.this.getListTopPadding()) + computeVerticalScrollOffset;
-            canvas.save();
-            canvas.translate(0.0f, this.paddingTop);
-            int size = this.groupCells.size();
-            int i = 0;
-            int i2 = 0;
-            while (true) {
-                boolean z = true;
-                if (i >= size) {
-                    break;
-                }
-                PreviewGroupCell previewGroupCell = this.groupCells.get(i);
-                float measure = previewGroupCell.measure();
-                previewGroupCell.y = f;
-                previewGroupCell.indexStart = i2;
-                float f2 = this.viewTop;
-                if (f < f2 || f > this.viewBottom) {
-                    float f3 = f + measure;
-                    if ((f3 < f2 || f3 > this.viewBottom) && (f > f2 || f3 < this.viewBottom)) {
-                        z = false;
-                    }
-                }
-                if (z && previewGroupCell.draw(canvas)) {
-                    invalidate();
-                }
-                canvas.translate(0.0f, measure);
-                f += measure;
-                i2 += previewGroupCell.group.photos.size();
-                i++;
-            }
-            ChatActionCell chatActionCell = this.hintView;
-            chatActionCell.setVisiblePart(f, chatActionCell.getMeasuredHeight());
-            if (this.hintView.hasGradientService()) {
-                this.hintView.drawBackground(canvas, true);
-            }
-            this.hintView.draw(canvas);
-            canvas.restore();
-            if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell != null) {
-                canvas.save();
-                Point dragTranslate = dragTranslate();
-                canvas.translate(dragTranslate.x, dragTranslate.y);
-                if (ChatAttachAlertPhotoLayoutPreview.this.draggingCell.draw(canvas, true)) {
-                    invalidate();
-                }
-                canvas.restore();
-            }
-            super.onDraw(canvas);
+        public void onDraw(android.graphics.Canvas r11) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.onDraw(android.graphics.Canvas):void");
         }
 
         Point dragTranslate() {
@@ -1313,12 +1246,14 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
             private float right;
             public long stars;
             private float top;
+            private final long updateDuration;
             private float width;
             public float y;
 
             private PreviewGroupCell() {
                 this.y = 0.0f;
                 this.indexStart = 0;
+                this.updateDuration = 200L;
                 this.lastMediaUpdate = 0L;
                 this.groupWidth = 0.0f;
                 this.groupHeight = 0.0f;
@@ -1377,6 +1312,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 private Paint strokePaint;
                 private RectF tempRect;
                 private TextPaint textPaint;
+                private final long updateDuration;
                 private Bitmap videoDurationBitmap;
                 private String videoDurationBitmapText;
                 private String videoDurationText;
@@ -1389,6 +1325,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.fromRect = null;
                     this.rect = new RectF();
                     this.lastUpdate = 0L;
+                    this.updateDuration = 200L;
                     this.positionFlags = 0;
                     this.fromScale = 1.0f;
                     this.scale = 0.0f;
@@ -1552,26 +1489,26 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         this.lastUpdate = SystemClock.elapsedRealtime();
                     }
                     float f = groupedMessagePosition.left;
-                    int i = groupCalculator.width;
-                    float f2 = f / i;
-                    float f3 = groupedMessagePosition.top;
-                    float f4 = groupCalculator.height;
-                    float f5 = f3 / f4;
-                    float f6 = groupedMessagePosition.pw / i;
-                    float f7 = groupedMessagePosition.ph / f4;
+                    float f2 = groupCalculator.width;
+                    float f3 = f / f2;
+                    float f4 = groupedMessagePosition.top;
+                    float f5 = groupCalculator.height;
+                    float f6 = f4 / f5;
+                    float f7 = groupedMessagePosition.pw / f2;
+                    float f8 = groupedMessagePosition.ph / f5;
                     this.scale = 1.0f;
-                    this.rect.set(f2, f5, f6 + f2, f7 + f5);
+                    this.rect.set(f3, f6, f7 + f3, f8 + f6);
                     float dp = AndroidUtilities.dp(2.0f);
                     float dp2 = AndroidUtilities.dp(SharedConfig.bubbleRadius - 1);
                     RectF rectF4 = this.roundRadiuses;
-                    int i2 = this.positionFlags;
-                    float f8 = (i2 & 5) == 5 ? dp2 : dp;
-                    float f9 = (i2 & 6) == 6 ? dp2 : dp;
-                    float f10 = (i2 & 10) == 10 ? dp2 : dp;
-                    if ((i2 & 9) == 9) {
+                    int i = this.positionFlags;
+                    float f9 = (i & 5) == 5 ? dp2 : dp;
+                    float f10 = (i & 6) == 6 ? dp2 : dp;
+                    float f11 = (i & 10) == 10 ? dp2 : dp;
+                    if ((i & 9) == 9) {
                         dp = dp2;
                     }
-                    rectF4.set(f8, f9, f10, dp);
+                    rectF4.set(f9, f10, f11, dp);
                     if (this.fromRect == null) {
                         RectF rectF5 = new RectF();
                         this.fromRect = rectF5;
@@ -1614,17 +1551,17 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                         }
                         int i = this.positionFlags;
                         if ((i & 4) == 0) {
-                            int i2 = PreviewGroupCell.this.halfGap;
-                            f3 += i2;
-                            height -= i2;
+                            float f4 = PreviewGroupCell.this.halfGap;
+                            f3 += f4;
+                            height -= f4;
                         }
                         if ((i & 8) == 0) {
                             height -= PreviewGroupCell.this.halfGap;
                         }
                         if ((i & 1) == 0) {
-                            int i3 = PreviewGroupCell.this.halfGap;
-                            f2 += i3;
-                            width -= i3;
+                            float f5 = PreviewGroupCell.this.halfGap;
+                            f2 += f5;
+                            width -= f5;
                         }
                         if ((i & 2) == 0) {
                             width -= PreviewGroupCell.this.halfGap;
@@ -1779,7 +1716,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     return draw(canvas, getT(), z);
                 }
 
-                public boolean draw(android.graphics.Canvas r20, float r21, boolean r22) {
+                public boolean draw(android.graphics.Canvas r21, float r22, boolean r23) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell.draw(android.graphics.Canvas, float, boolean):boolean");
                 }
             }
@@ -1792,9 +1729,9 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                 }
                 groupCalculator.calculate();
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j = this.lastMediaUpdate;
-                if (elapsedRealtime - j < 200) {
-                    float f = ((float) (elapsedRealtime - j)) / 200.0f;
+                long j = elapsedRealtime - this.lastMediaUpdate;
+                if (j < 200) {
+                    float f = ((float) j) / 200.0f;
                     this.previousGroupHeight = AndroidUtilities.lerp(this.previousGroupHeight, this.groupHeight, f);
                     this.previousGroupWidth = AndroidUtilities.lerp(this.previousGroupWidth, this.groupWidth, f);
                 } else {
@@ -1888,17 +1825,17 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                     this.messageBackground.setAlpha((int) (f * 255.0f));
                     this.messageBackground.drawCached(canvas, this.backgroundCacheParams);
                     float f2 = this.top;
-                    int i = this.padding;
-                    this.top = f2 + i;
-                    this.left += i;
-                    this.bottom -= i;
-                    this.right -= i;
+                    float f3 = this.padding;
+                    this.top = f2 + f3;
+                    this.left += f3;
+                    this.bottom -= f3;
+                    this.right -= f3;
                 }
                 this.width = this.right - this.left;
                 this.height = this.bottom - this.top;
                 int size = this.media.size();
-                for (int i2 = 0; i2 < size; i2++) {
-                    MediaCell mediaCell = this.media.get(i2);
+                for (int i = 0; i < size; i++) {
+                    MediaCell mediaCell = this.media.get(i);
                     if (mediaCell != null && ((ChatAttachAlertPhotoLayoutPreview.this.draggingCell == null || ChatAttachAlertPhotoLayoutPreview.this.draggingCell.photoEntry != mediaCell.photoEntry) && mediaCell.draw(canvas))) {
                         z = true;
                     }

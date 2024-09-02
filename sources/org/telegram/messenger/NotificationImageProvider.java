@@ -142,10 +142,13 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.fileLoaded) {
             synchronized (this.sync) {
-                String str = (String) objArr[0];
-                if (this.waitingForFiles.remove(str)) {
-                    this.fileStartTimes.remove(str);
-                    this.sync.notifyAll();
+                try {
+                    String str = (String) objArr[0];
+                    if (this.waitingForFiles.remove(str)) {
+                        this.fileStartTimes.remove(str);
+                        this.sync.notifyAll();
+                    }
+                } finally {
                 }
             }
         }

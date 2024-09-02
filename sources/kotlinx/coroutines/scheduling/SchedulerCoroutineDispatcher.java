@@ -22,7 +22,7 @@ public class SchedulerCoroutineDispatcher extends ExecutorCoroutineDispatcher {
     }
 
     @Override
-    public void mo154dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         CoroutineScheduler.dispatch$default(this.coroutineScheduler, runnable, null, false, 6, null);
     }
 

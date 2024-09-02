@@ -172,11 +172,11 @@ public class SvgHelper {
                             totalTranslation += (((float) j2) * f5) / 1800.0f;
                             while (true) {
                                 float f6 = totalTranslation;
-                                float f7 = gradientWidth;
-                                if (f6 < f7 * 2.0f) {
+                                float f7 = gradientWidth * 2.0f;
+                                if (f6 < f7) {
                                     break;
                                 } else {
-                                    totalTranslation = f6 - (f7 * 2.0f);
+                                    totalTranslation = f6 - f7;
                                 }
                             }
                         }
@@ -200,14 +200,14 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = new Runnable() {
+                        Runnable runnable2 = new Runnable() {
                             @Override
                             public final void run() {
                                 SvgHelper.SvgDrawable.shiftRunnable = null;
                             }
                         };
-                        shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
-                        AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        shiftRunnable = runnable2;
+                        AndroidUtilities.runOnUIThread(runnable2, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
                     if (imageReceiver == null || z) {
@@ -218,9 +218,9 @@ public class SvgHelper {
                         i2 = iArr[0];
                     }
                     int i4 = z ? i + 1 : 0;
-                    Matrix[] matrixArr = this.placeholderMatrix;
-                    if (matrixArr[i4] != null) {
-                        matrixArr[i4].reset();
+                    Matrix matrix = this.placeholderMatrix[i4];
+                    if (matrix != null) {
+                        matrix.reset();
                         if (z) {
                             this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                         } else {
@@ -328,7 +328,7 @@ public class SvgHelper {
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
-                    int alphaComponent = ColorUtils.setAlphaComponent(iArr[z ? 1 : 0], 70);
+                    int alphaComponent = ColorUtils.setAlphaComponent(color, 70);
                     if (z) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
@@ -346,11 +346,13 @@ public class SvgHelper {
                 float dp = AndroidUtilities.dp(180.0f) / gradientWidth;
                 int argb = Color.argb((int) ((Color.alpha(color) / 2) * this.colorAlpha), Color.red(color), Color.green(color), Color.blue(color));
                 float f2 = (1.0f - dp) / 2.0f;
+                LinearGradient[] linearGradientArr = this.placeholderGradient;
                 float f3 = dp / 2.0f;
-                this.placeholderGradient[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f2 + f3, 1.0f}, Shader.TileMode.REPEAT);
+                Shader.TileMode tileMode = Shader.TileMode.REPEAT;
+                linearGradientArr[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f3 + f2, 1.0f}, tileMode);
                 int i2 = Build.VERSION.SDK_INT;
                 if (i2 >= 28) {
-                    bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{argb, argb}, (float[]) null, Shader.TileMode.REPEAT);
+                    bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{argb, argb}, (float[]) null, tileMode);
                 } else {
                     Bitmap[] bitmapArr = this.backgroundBitmap;
                     if (bitmapArr[z ? 1 : 0] == null) {
@@ -358,9 +360,7 @@ public class SvgHelper {
                         this.backgroundCanvas[z ? 1 : 0] = new Canvas(this.backgroundBitmap[z ? 1 : 0]);
                     }
                     this.backgroundCanvas[z ? 1 : 0].drawColor(argb);
-                    Bitmap bitmap = this.backgroundBitmap[z ? 1 : 0];
-                    Shader.TileMode tileMode = Shader.TileMode.REPEAT;
-                    bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                    bitmapShader = new BitmapShader(this.backgroundBitmap[z ? 1 : 0], tileMode, tileMode);
                 }
                 this.placeholderMatrix[z ? 1 : 0] = new Matrix();
                 this.placeholderGradient[z ? 1 : 0].setLocalMatrix(this.placeholderMatrix[z ? 1 : 0]);
@@ -656,9 +656,9 @@ public class SvgHelper {
                 return null;
             }
             float floatValue = ((Float) parseNumbers2.numbers.get(0)).floatValue();
-            r6 = parseNumbers2.numbers.size() > 1 ? ((Float) parseNumbers2.numbers.get(1)).floatValue() : 0.0f;
+            r4 = parseNumbers2.numbers.size() > 1 ? ((Float) parseNumbers2.numbers.get(1)).floatValue() : 0.0f;
             Matrix matrix2 = new Matrix();
-            matrix2.postTranslate(floatValue, r6);
+            matrix2.postTranslate(floatValue, r4);
             return matrix2;
         }
         if (str.startsWith("scale(")) {
@@ -667,9 +667,9 @@ public class SvgHelper {
                 return null;
             }
             float floatValue2 = ((Float) parseNumbers3.numbers.get(0)).floatValue();
-            r6 = parseNumbers3.numbers.size() > 1 ? ((Float) parseNumbers3.numbers.get(1)).floatValue() : 0.0f;
+            r4 = parseNumbers3.numbers.size() > 1 ? ((Float) parseNumbers3.numbers.get(1)).floatValue() : 0.0f;
             Matrix matrix3 = new Matrix();
-            matrix3.postScale(floatValue2, r6);
+            matrix3.postScale(floatValue2, r4);
             return matrix3;
         }
         if (str.startsWith("skewX(")) {
@@ -701,19 +701,20 @@ public class SvgHelper {
         }
         float floatValue5 = ((Float) parseNumbers6.numbers.get(0)).floatValue();
         if (parseNumbers6.numbers.size() > 2) {
-            r6 = ((Float) parseNumbers6.numbers.get(1)).floatValue();
-            f = ((Float) parseNumbers6.numbers.get(2)).floatValue();
+            float floatValue6 = ((Float) parseNumbers6.numbers.get(1)).floatValue();
+            r4 = ((Float) parseNumbers6.numbers.get(2)).floatValue();
+            f = floatValue6;
         } else {
             f = 0.0f;
         }
         Matrix matrix6 = new Matrix();
-        matrix6.postTranslate(r6, f);
+        matrix6.postTranslate(f, r4);
         matrix6.postRotate(floatValue5);
-        matrix6.postTranslate(-r6, -f);
+        matrix6.postTranslate(-f, -r4);
         return matrix6;
     }
 
-    public static android.graphics.Path doPath(java.lang.String r23) {
+    public static android.graphics.Path doPath(java.lang.String r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SvgHelper.doPath(java.lang.String):android.graphics.Path");
     }
 
@@ -1345,8 +1346,8 @@ public class SvgHelper {
                             this.canvas = canvas;
                             float f3 = this.scale;
                             if (f3 != 0.0f) {
-                                float f4 = this.globalScale;
-                                canvas.scale(f4 * f3, f4 * f3);
+                                float f4 = this.globalScale * f3;
+                                canvas.scale(f4, f4);
                                 return;
                             }
                             return;
@@ -1506,8 +1507,9 @@ public class SvgHelper {
                     int i = 0;
                     while (true) {
                         if (i < split.length) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
-                            if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
+                            String replace = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = replace;
+                            if (replace.length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
                             i++;
@@ -1621,16 +1623,16 @@ public class SvgHelper {
             if (i >= 67108864) {
                 i++;
             }
-            double d2 = i;
-            double[] dArr = SvgHelper.pow10;
             if (i2 > 0) {
-                double d3 = dArr[i2];
+                double d2 = i;
+                double d3 = SvgHelper.pow10[i2];
                 Double.isNaN(d2);
                 d = d2 * d3;
             } else {
-                double d4 = dArr[-i2];
-                Double.isNaN(d2);
-                d = d2 / d4;
+                double d4 = i;
+                double d5 = SvgHelper.pow10[-i2];
+                Double.isNaN(d4);
+                d = d4 / d5;
             }
             return (float) d;
         }
@@ -1650,14 +1652,14 @@ public class SvgHelper {
             for (byte b : bArr) {
                 int i = b & 255;
                 if (i >= 192) {
-                    sb.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt((i - 128) - 64));
+                    sb.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i - 192));
                 } else {
                     if (i >= 128) {
                         sb.append(',');
                     } else if (i >= 64) {
                         sb.append('-');
                     }
-                    sb.append(i & 63);
+                    sb.append(b & 63);
                 }
             }
             sb.append('z');

@@ -91,17 +91,18 @@ public class BlobDrawable {
             for (int i = 0; i < this.N; i++) {
                 float[] fArr = this.progress;
                 float f3 = fArr[i];
-                float[] fArr2 = this.speed;
-                fArr[i] = f3 + (fArr2[i] * MIN_SPEED) + (fArr2[i] * f * MAX_SPEED * f2);
-                if (fArr[i] >= 1.0f) {
+                float f4 = this.speed[i];
+                float f5 = f3 + (MIN_SPEED * f4) + (f4 * f * MAX_SPEED * f2);
+                fArr[i] = f5;
+                if (f5 >= 1.0f) {
                     fArr[i] = 0.0f;
-                    float[] fArr3 = this.radius;
-                    float[] fArr4 = this.radiusNext;
-                    fArr3[i] = fArr4[i];
-                    float[] fArr5 = this.angle;
-                    float[] fArr6 = this.angleNext;
-                    fArr5[i] = fArr6[i];
-                    generateBlob(fArr4, fArr6, i);
+                    float[] fArr2 = this.radius;
+                    float[] fArr3 = this.radiusNext;
+                    fArr2[i] = fArr3[i];
+                    float[] fArr4 = this.angle;
+                    float[] fArr5 = this.angleNext;
+                    fArr4[i] = fArr5[i];
+                    generateBlob(fArr3, fArr5, i);
                 }
             }
         }

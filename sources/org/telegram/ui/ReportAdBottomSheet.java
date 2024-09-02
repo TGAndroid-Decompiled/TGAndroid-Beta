@@ -112,8 +112,9 @@ public class ReportAdBottomSheet extends BottomSheet {
 
     public ReportAdBottomSheet setReportChooseOption(final TLRPC$TL_channels_sponsoredMessageReportResultChooseOption tLRPC$TL_channels_sponsoredMessageReportResultChooseOption) {
         final View[] viewPages = this.viewPager.getViewPages();
-        if (viewPages[0] instanceof Page) {
-            ((Page) viewPages[0]).bind(0);
+        View view = viewPages[0];
+        if (view instanceof Page) {
+            ((Page) view).bind(0);
             this.containerView.post(new Runnable() {
                 @Override
                 public final void run() {
@@ -121,8 +122,9 @@ public class ReportAdBottomSheet extends BottomSheet {
                 }
             });
         }
-        if (viewPages[1] instanceof Page) {
-            ((Page) viewPages[1]).bind(1);
+        View view2 = viewPages[1];
+        if (view2 instanceof Page) {
+            ((Page) view2).bind(1);
         }
         return this;
     }
@@ -252,9 +254,9 @@ public class ReportAdBottomSheet extends BottomSheet {
                 }
             }
             float f = this.isActionBar.set(this.top <= ((float) AndroidUtilities.statusBarHeight) ? 1.0f : 0.0f);
-            int i = AndroidUtilities.statusBarHeight;
-            float f2 = i * f;
-            this.top = Math.max(i, this.top) - (AndroidUtilities.statusBarHeight * f);
+            float f2 = AndroidUtilities.statusBarHeight;
+            float f3 = f2 * f;
+            this.top = Math.max(f2, this.top) - (AndroidUtilities.statusBarHeight * f);
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(((BottomSheet) ReportAdBottomSheet.this).backgroundPaddingLeft, this.top, getWidth() - ((BottomSheet) ReportAdBottomSheet.this).backgroundPaddingLeft, getHeight() + AndroidUtilities.dp(8.0f));
             float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(14.0f), 0, f);
@@ -265,7 +267,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             canvas.clipPath(this.path);
             super.dispatchDraw(canvas);
             canvas.restore();
-            updateLightStatusBar(f2 > ((float) AndroidUtilities.statusBarHeight) / 2.0f);
+            updateLightStatusBar(f3 > ((float) AndroidUtilities.statusBarHeight) / 2.0f);
         }
 
         @Override
@@ -292,9 +294,8 @@ public class ReportAdBottomSheet extends BottomSheet {
             if (bool == null || bool.booleanValue() != z) {
                 boolean z2 = AndroidUtilities.computePerceivedBrightness(ReportAdBottomSheet.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
                 boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(ReportAdBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
-                Boolean valueOf = Boolean.valueOf(z);
-                this.statusBarOpen = valueOf;
-                if (!valueOf.booleanValue()) {
+                this.statusBarOpen = Boolean.valueOf(z);
+                if (!z) {
                     z2 = z3;
                 }
                 AndroidUtilities.setLightStatusBar(ReportAdBottomSheet.this.getWindow(), z2);
@@ -316,7 +317,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             frameLayout.setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
             frameLayout.setClipToPadding(true);
             addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
-            BigHeaderCell bigHeaderCell = new BigHeaderCell(this, context, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider);
+            BigHeaderCell bigHeaderCell = new BigHeaderCell(context, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider);
             this.headerView = bigHeaderCell;
             bigHeaderCell.setOnBackClickListener(new Runnable() {
                 @Override
@@ -324,7 +325,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                     ReportAdBottomSheet.Page.this.lambda$new$0();
                 }
             });
-            bigHeaderCell.setText(LocaleController.getString("ReportAd", R.string.ReportAd));
+            bigHeaderCell.setText(LocaleController.getString(R.string.ReportAd));
             bigHeaderCell.backDrawable.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
             bigHeaderCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
             addView(bigHeaderCell, LayoutHelper.createFrame(-1, -2, 55));
@@ -342,7 +343,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             this.listView = universalRecyclerView;
             universalRecyclerView.setClipToPadding(false);
             universalRecyclerView.layoutManager.setReverseLayout(true);
-            universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(ReportAdBottomSheet.this) {
+            universalRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                     Page.this.contentView.invalidate();
@@ -446,7 +447,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                     frameLayout.setBackground(combinedDrawable);
                     LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
                     linksTextView.setTextSize(1, 14.0f);
-                    linksTextView.setText(AndroidUtilities.replaceLinks(LocaleController.getString("ReportAdLearnMore", R.string.ReportAdLearnMore), ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
+                    linksTextView.setText(AndroidUtilities.replaceLinks(LocaleController.getString(R.string.ReportAdLearnMore), ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
                     linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, ((BottomSheet) ReportAdBottomSheet.this).resourcesProvider));
                     linksTextView.setGravity(17);
                     frameLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 16.0f, 16.0f, 16.0f, 16.0f));
@@ -490,7 +491,7 @@ public class ReportAdBottomSheet extends BottomSheet {
             private Runnable onBackClickListener;
             private final TextView textView;
 
-            public BigHeaderCell(Page page, Context context, Theme.ResourcesProvider resourcesProvider) {
+            public BigHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
                 super(context);
                 TextView textView = new TextView(context);
                 this.textView = textView;
@@ -531,12 +532,7 @@ public class ReportAdBottomSheet extends BottomSheet {
                 this.btnBack.setVisibility(z ? 0 : 8);
                 TextView textView = this.textView;
                 boolean z2 = LocaleController.isRTL;
-                float f = 22.0f;
-                float f2 = (z2 || !z) ? 22.0f : 53.0f;
-                if (z2 && z) {
-                    f = 53.0f;
-                }
-                textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, 55, f2, 14.0f, f, 12.0f));
+                textView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, 55, (z2 || !z) ? 22.0f : 53.0f, 14.0f, (z2 && z) ? 53.0f : 22.0f, 12.0f));
             }
 
             public void setOnBackClickListener(Runnable runnable) {

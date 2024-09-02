@@ -1,5 +1,6 @@
 package kotlinx.coroutines.internal;
 
+import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 public class LockFreeTaskQueue<E> {
@@ -20,7 +21,7 @@ public class LockFreeTaskQueue<E> {
             if (lockFreeTaskQueueCore.close()) {
                 return;
             } else {
-                _cur$FU.compareAndSet(this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
+                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
             }
         }
     }
@@ -33,7 +34,7 @@ public class LockFreeTaskQueue<E> {
                 return true;
             }
             if (addLast == 1) {
-                _cur$FU.compareAndSet(this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
+                AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
             } else if (addLast == 2) {
                 return false;
             }
@@ -47,7 +48,7 @@ public class LockFreeTaskQueue<E> {
             if (e != LockFreeTaskQueueCore.REMOVE_FROZEN) {
                 return e;
             }
-            _cur$FU.compareAndSet(this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
+            AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_cur$FU, this, lockFreeTaskQueueCore, lockFreeTaskQueueCore.next());
         }
     }
 }

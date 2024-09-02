@@ -28,6 +28,7 @@ public abstract class AudioInfo {
     protected String title;
     protected short track;
     protected short tracks;
+    protected String version;
     protected short year;
 
     public long getDuration() {

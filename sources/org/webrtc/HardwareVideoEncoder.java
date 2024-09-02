@@ -71,11 +71,6 @@ public class HardwareVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public String getImplementationName() {
-        return "HWEncoder";
-    }
-
-    @Override
     public VideoEncoder.ResolutionBitrateLimits[] getResolutionBitrateLimits() {
         return VideoEncoder.CC.$default$getResolutionBitrateLimits(this);
     }
@@ -87,9 +82,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        VideoCodecStatus rateAllocation;
-        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
-        return rateAllocation;
+        return VideoEncoder.CC.$default$setRates(this, rateControlParameters);
     }
 
     public static class BusyCount {
@@ -108,10 +101,14 @@ public class HardwareVideoEncoder implements VideoEncoder {
 
         public void decrement() {
             synchronized (this.countLock) {
-                int i = this.count - 1;
-                this.count = i;
-                if (i == 0) {
-                    this.countLock.notifyAll();
+                try {
+                    int i = this.count - 1;
+                    this.count = i;
+                    if (i == 0) {
+                        this.countLock.notifyAll();
+                    }
+                } catch (Throwable th) {
+                    throw th;
                 }
             }
         }
@@ -320,6 +317,11 @@ public class HardwareVideoEncoder implements VideoEncoder {
             }
         }
         return VideoEncoder.ScalingSettings.OFF;
+    }
+
+    @Override
+    public String getImplementationName() {
+        return "HWEncoder";
     }
 
     private VideoCodecStatus resetCodec(int i, int i2, boolean z) {

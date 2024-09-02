@@ -65,10 +65,10 @@ public class RestrictedDomainsList {
         if (num == null) {
             num = 0;
         }
-        Integer valueOf = Integer.valueOf(num.intValue() + 1);
-        this.openedDomains.put(str, valueOf);
+        int intValue = num.intValue() + 1;
+        this.openedDomains.put(str, Integer.valueOf(intValue));
         scheduleSave();
-        return valueOf.intValue();
+        return intValue;
     }
 
     public boolean isRestricted(String... strArr) {
@@ -108,9 +108,9 @@ public class RestrictedDomainsList {
         if (z != isRestricted(strArr)) {
             if (z) {
                 ArrayList<String> arrayList = new ArrayList<>();
-                for (int i4 = 0; i4 < strArr.length; i4++) {
-                    if (strArr[i4] != null) {
-                        arrayList.add(strArr[i4]);
+                for (String str : strArr) {
+                    if (str != null) {
+                        arrayList.add(str);
                     }
                 }
                 this.restrictedDomainsSet.addAll(arrayList);

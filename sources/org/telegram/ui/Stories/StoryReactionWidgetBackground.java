@@ -21,6 +21,8 @@ public class StoryReactionWidgetBackground extends Drawable {
     Paint shadowPaint;
     int style;
     private Paint xRefPaint;
+    private final int STYLE_FILLED = 0;
+    private final int STYLE_TRANSCLUENT = 1;
     int alpha = 255;
     float[] points = new float[15];
     Path path = new Path();

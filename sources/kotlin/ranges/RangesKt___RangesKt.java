@@ -16,8 +16,4 @@ public class RangesKt___RangesKt extends RangesKt__RangesKt {
     public static long coerceAtMost(long j, long j2) {
         return j > j2 ? j2 : j;
     }
-
-    public static IntProgression downTo(int i, int i2) {
-        return IntProgression.Companion.fromClosedRange(i, i2, -1);
-    }
 }

@@ -38,11 +38,11 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo948getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo995getWindowView().getContext(), R.style.TransparentDialog);
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView mo948getWindowView = sheet.mo948getWindowView();
-        this.sheetView = mo948getWindowView;
-        WindowView windowView = new WindowView(mo948getWindowView);
+        BottomSheetTabsOverlay.SheetView mo995getWindowView = sheet.mo995getWindowView();
+        this.sheetView = mo995getWindowView;
+        WindowView windowView = new WindowView(mo995getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
     }
@@ -88,11 +88,17 @@ public class BottomSheetTabDialog extends Dialog {
     }
 
     public static WindowInsets lambda$onCreate$0(View view, WindowInsets windowInsets) {
-        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        int systemWindowInsetBottom;
+        WindowInsets consumeSystemWindowInsets;
+        WindowInsets windowInsets2;
+        systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+        view.setPadding(0, 0, 0, systemWindowInsetBottom);
         if (Build.VERSION.SDK_INT >= 30) {
-            return WindowInsets.CONSUMED;
+            windowInsets2 = WindowInsets.CONSUMED;
+            return windowInsets2;
         }
-        return windowInsets.consumeSystemWindowInsets();
+        consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+        return consumeSystemWindowInsets;
     }
 
     public void updateNavigationBarColor() {

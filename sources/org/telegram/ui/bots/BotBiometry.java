@@ -266,6 +266,7 @@ public class BotBiometry {
     }
 
     private SecretKey getSecretKey() throws Exception {
+        KeyGenParameterSpec build;
         if (keyStore == null) {
             KeyStore keyStore2 = KeyStore.getInstance("AndroidKeyStore");
             keyStore = keyStore2;
@@ -286,7 +287,8 @@ public class BotBiometry {
             builder.setInvalidatedByBiometricEnrollment(true);
         }
         KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-        keyGenerator.init(builder.build());
+        build = builder.build();
+        keyGenerator.init(build);
         return keyGenerator.generateKey();
     }
 
@@ -386,10 +388,10 @@ public class BotBiometry {
         final HashMap hashMap = new HashMap();
         Iterator it2 = arrayList.iterator();
         while (it2.hasNext()) {
-            long longValue = ((Long) it2.next()).longValue();
-            BotBiometry botBiometry = new BotBiometry(context, i, longValue);
+            Long l = (Long) it2.next();
+            BotBiometry botBiometry = new BotBiometry(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
-                hashMap.put(Long.valueOf(longValue), Boolean.valueOf(!botBiometry.disabled));
+                hashMap.put(l, Boolean.valueOf(!botBiometry.disabled));
             }
         }
         if (arrayList.isEmpty()) {

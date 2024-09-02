@@ -15,7 +15,6 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.view.animation.Interpolator;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import java.util.ArrayList;
@@ -30,11 +29,13 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -70,10 +71,12 @@ public class ReactionsLayoutInBubble {
     private boolean animateMove;
     private boolean animateWidth;
     boolean attached;
+    int availableWidth;
     public float drawServiceShaderBackground;
     public int fromWidth;
     private float fromX;
     private float fromY;
+    public boolean hasPaidReaction;
     public boolean hasUnreadReactions;
     public int height;
     public boolean isEmpty;
@@ -158,7 +161,7 @@ public class ReactionsLayoutInBubble {
         return (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
     }
 
-    public void setMessage(org.telegram.messenger.MessageObject r18, boolean r19, boolean r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21) {
+    public void setMessage(org.telegram.messenger.MessageObject r20, boolean r21, boolean r22, org.telegram.ui.ActionBar.Theme.ResourcesProvider r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.setMessage(org.telegram.messenger.MessageObject, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
@@ -170,6 +173,7 @@ public class ReactionsLayoutInBubble {
         if (this.isEmpty) {
             return;
         }
+        this.availableWidth = i;
         int i3 = 0;
         int i4 = 0;
         int i5 = 0;
@@ -193,7 +197,7 @@ public class ReactionsLayoutInBubble {
                 reactionButton.width = AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(4.0f);
                 if (reactionButton.avatarsDrawable != null && reactionButton.users.size() > 0) {
                     reactionButton.users.size();
-                    reactionButton.width = (int) (reactionButton.width + AndroidUtilities.dp(2.0f) + (AndroidUtilities.dp(20.0f) * 1) + ((reactionButton.users.size() > 1 ? reactionButton.users.size() - 1 : 0) * AndroidUtilities.dp(20.0f) * 0.8f) + AndroidUtilities.dp(1.0f));
+                    reactionButton.width = (int) (reactionButton.width + AndroidUtilities.dp(2.0f) + AndroidUtilities.dp(20.0f) + ((reactionButton.users.size() > 1 ? reactionButton.users.size() - 1 : 0) * AndroidUtilities.dp(20.0f) * 0.8f) + AndroidUtilities.dp(1.0f));
                     reactionButton.avatarsDrawable.height = AndroidUtilities.dp(26.0f);
                 } else if (reactionButton.hasName) {
                     reactionButton.width = (int) (reactionButton.width + reactionButton.textDrawable.getAnimateToWidth() + AndroidUtilities.dp(8.0f));
@@ -266,16 +270,14 @@ public class ReactionsLayoutInBubble {
             if (this.scrimViewReaction == null && num == null && this.scrimProgress < 0.5f) {
                 reactionButton.detachPreview();
             }
-            if (!Objects.equals(Integer.valueOf(reactionButton.reaction.hashCode()), this.scrimViewReaction) && (num == null || reactionButton.reaction.hashCode() == num.intValue())) {
+            if (!Integer.valueOf(reactionButton.reaction.hashCode()).equals(this.scrimViewReaction) && (num == null || reactionButton.reaction.hashCode() == num.intValue())) {
                 canvas.save();
-                int i2 = reactionButton.x;
-                float f8 = i2;
-                int i3 = reactionButton.y;
-                float f9 = i3;
+                float f8 = reactionButton.x;
+                float f9 = reactionButton.y;
                 if (f != 1.0f && reactionButton.animationType == 3) {
                     float f10 = 1.0f - f;
-                    f8 = (reactionButton.animateFromX * f10) + (i2 * f);
-                    f9 = (i3 * f) + (reactionButton.animateFromY * f10);
+                    f8 = (f8 * f) + (reactionButton.animateFromX * f10);
+                    f9 = (f9 * f) + (reactionButton.animateFromY * f10);
                 }
                 if (f == 1.0f || reactionButton.animationType != 1) {
                     f2 = 1.0f;
@@ -284,18 +286,73 @@ public class ReactionsLayoutInBubble {
                     canvas.scale(f11, f11, f6 + f8 + (reactionButton.width / 2.0f), f7 + f9 + (reactionButton.height / 2.0f));
                     f2 = f;
                 }
-                reactionButton.draw(canvas, f8 + f6, f7 + f9, reactionButton.animationType == 3 ? f : 1.0f, f2, num != null);
+                reactionButton.draw(canvas, f6 + f8, f7 + f9, reactionButton.animationType == 3 ? f : 1.0f, f2, num != null);
                 canvas.restore();
             }
         }
-        for (int i4 = 0; i4 < this.outButtons.size(); i4++) {
-            ReactionButton reactionButton2 = this.outButtons.get(i4);
+        for (int i2 = 0; i2 < this.outButtons.size(); i2++) {
+            ReactionButton reactionButton2 = this.outButtons.get(i2);
             float f12 = 1.0f - f;
             float f13 = (f12 * 0.5f) + 0.5f;
             canvas.save();
             canvas.scale(f13, f13, reactionButton2.x + f6 + (reactionButton2.width / 2.0f), reactionButton2.y + f7 + (reactionButton2.height / 2.0f));
-            this.outButtons.get(i4).draw(canvas, reactionButton2.x + f6, f7 + reactionButton2.y, 1.0f, f12, false);
+            this.outButtons.get(i2).draw(canvas, reactionButton2.x + f6, f7 + reactionButton2.y, 1.0f, f12, false);
             canvas.restore();
+        }
+    }
+
+    public boolean hasOverlay() {
+        return this.hasPaidReaction && !(this.isEmpty && this.outButtons.isEmpty()) && LiteMode.isEnabled(8200);
+    }
+
+    public void drawOverlay(Canvas canvas, float f) {
+        float f2;
+        if (this.isEmpty && this.outButtons.isEmpty()) {
+            return;
+        }
+        float f3 = this.x;
+        float f4 = this.y;
+        if (this.isEmpty) {
+            f3 = this.lastDrawnX;
+            f4 = this.lastDrawnY;
+        } else if (this.animateMove) {
+            float f5 = 1.0f - f;
+            f3 = (f3 * f) + (this.fromX * f5);
+            f4 = (f4 * f) + (this.fromY * f5);
+        }
+        float f6 = f3;
+        float f7 = f4;
+        for (int i = 0; i < this.reactionButtons.size(); i++) {
+            ReactionButton reactionButton = this.reactionButtons.get(i);
+            if (reactionButton.paid) {
+                canvas.save();
+                float f8 = reactionButton.x;
+                float f9 = reactionButton.y;
+                if (f != 1.0f && reactionButton.animationType == 3) {
+                    float f10 = 1.0f - f;
+                    f8 = (f8 * f) + (reactionButton.animateFromX * f10);
+                    f9 = (f9 * f) + (reactionButton.animateFromY * f10);
+                }
+                if (f == 1.0f || reactionButton.animationType != 1) {
+                    f2 = 1.0f;
+                } else {
+                    float f11 = (f * 0.5f) + 0.5f;
+                    canvas.scale(f11, f11, f6 + f8 + (reactionButton.width / 2.0f), f7 + f9 + (reactionButton.height / 2.0f));
+                    f2 = f;
+                }
+                reactionButton.drawOverlay(canvas, f6 + f8, f7 + f9, reactionButton.animationType == 3 ? f : 1.0f, f2, false);
+                canvas.restore();
+            }
+        }
+        for (int i2 = 0; i2 < this.outButtons.size(); i2++) {
+            if (this.outButtons.get(i2).paid) {
+                float f12 = 1.0f - f;
+                float f13 = (f12 * 0.5f) + 0.5f;
+                canvas.save();
+                canvas.scale(f13, f13, r1.x + f6 + (r1.width / 2.0f), r1.y + f7 + (r1.height / 2.0f));
+                this.outButtons.get(i2).drawOverlay(canvas, r1.x + f6, f7 + r1.y, 1.0f, f12, false);
+                canvas.restore();
+            }
         }
     }
 
@@ -312,9 +369,9 @@ public class ReactionsLayoutInBubble {
                 float dp2 = AndroidUtilities.dp(14.0f);
                 float clamp = Utilities.clamp(rectF.left - AndroidUtilities.dp(12.0f), ((this.parentView != null ? r5.getParentWidth() : AndroidUtilities.displaySize.x) - dp) - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 RectF rectF2 = this.scrimRect;
-                float f = rectF.top;
+                float f = rectF.top - dp2;
                 float f2 = i;
-                rectF2.set(clamp, ((f - dp2) - dp) + f2, dp + clamp, (f - dp2) + f2);
+                rectF2.set(clamp, (f - dp) + f2, dp + clamp, f + f2);
                 float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(this.scrimProgress);
                 RectF rectF3 = this.scrimRect;
                 AndroidUtilities.lerp(rectF, rectF3, interpolation, rectF3);
@@ -572,6 +629,7 @@ public class ReactionsLayoutInBubble {
         public AnimatedTextView.AnimatedTextDrawable textDrawable;
         ArrayList<TLObject> users;
         VisibleReaction visibleReaction;
+        public boolean wasDrawn;
         public int width;
         public int x;
         public int y;
@@ -666,8 +724,15 @@ public class ReactionsLayoutInBubble {
                 VisibleReaction visibleReaction = this.visibleReaction;
                 if (visibleReaction.isStar) {
                     this.paid = true;
-                    this.imageReceiver.setImageBitmap(new RLottieDrawable(R.raw.star_reaction_click, "star_reaction_click", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f)));
-                    this.particles = (reactionButton == null || (particles = reactionButton.particles) == null) ? new StarsReactionsSheet.Particles(1, 30) : particles;
+                    if (LiteMode.isEnabled(8200)) {
+                        this.imageReceiver.setImageBitmap(new RLottieDrawable(R.raw.star_reaction_click, "star_reaction_click", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f)));
+                    } else {
+                        this.imageReceiver.setImageBitmap(ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.star_reaction).mutate());
+                    }
+                    if (reactionButton == null || (particles = reactionButton.particles) == null) {
+                        particles = new StarsReactionsSheet.Particles(1, SharedConfig.getDevicePerformanceClass() == 2 ? 25 : 8);
+                    }
+                    this.particles = particles;
                 } else if (visibleReaction.emojicon != null) {
                     TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(i).getReactionsMap().get(this.visibleReaction.emojicon);
                     if (tLRPC$TL_availableReaction != null) {
@@ -687,9 +752,10 @@ public class ReactionsLayoutInBubble {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textDrawable;
                 animatedTextDrawable2.setText(Emoji.replaceEmoji(this.name, animatedTextDrawable2.getPaint().getFontMetricsInt(), false), !LocaleController.isRTL);
                 if (drawTextWithCounter()) {
-                    Integer.toString(tLRPC$ReactionCount.count);
+                    this.countText = Integer.toString(tLRPC$ReactionCount.count);
                     this.counterDrawable.setCount(this.count, false);
                 } else {
+                    this.countText = "";
                     this.counterDrawable.setCount(0, false);
                 }
             } else {
@@ -697,7 +763,7 @@ public class ReactionsLayoutInBubble {
                 if (animatedTextDrawable3 != null) {
                     animatedTextDrawable3.setText("", false);
                 }
-                Integer.toString(tLRPC$ReactionCount.count);
+                this.countText = Integer.toString(tLRPC$ReactionCount.count);
                 this.counterDrawable.setCount(this.count, false);
             }
             this.counterDrawable.setType(2);
@@ -722,6 +788,30 @@ public class ReactionsLayoutInBubble {
             return ((i == 0 || (this.isTag && !this.hasName && i == 1)) && this.counterDrawable.countChangeProgress == 1.0f) ? false : true;
         }
 
+        public void drawOverlay(Canvas canvas, float f, float f2, float f3, float f4, boolean z) {
+            if (this.particles != null && LiteMode.isEnabled(8200)) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(f, f2, this.width + f, this.height + f2);
+                float f5 = this.height / 2.0f;
+                this.tagPath.rewind();
+                this.tagPath.addRoundRect(rectF, f5, f5, Path.Direction.CW);
+                this.particles.bounds.set(rectF);
+                this.particles.bounds.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+                StarsReactionsSheet.Particles particles = this.particles;
+                particles.setBounds(particles.bounds);
+                this.particles.process();
+                View view = this.parentView;
+                if (view != null) {
+                    view.invalidate();
+                }
+                this.particles.draw(canvas, ColorUtils.blendARGB(ColorUtils.setAlphaComponent(this.backgroundColor, 255), ColorUtils.blendARGB(this.serviceTextColor, ColorUtils.setAlphaComponent(this.backgroundColor, 255), 0.4f), getDrawServiceShaderBackground()));
+                canvas.save();
+                canvas.clipPath(this.tagPath);
+                this.particles.draw(canvas, this.textColor);
+                canvas.restore();
+            }
+        }
+
         public void draw(android.graphics.Canvas r18, float r19, float r20, float r21, float r22, boolean r23) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.ReactionButton.draw(android.graphics.Canvas, float, float, float, float, boolean):void");
         }
@@ -736,8 +826,8 @@ public class ReactionsLayoutInBubble {
         public void drawImage(Canvas canvas, Rect rect, float f) {
             boolean z;
             AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-            ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
-            if (rect != null) {
+            ImageReceiver imageReceiver = (animatedEmojiDrawable == null || animatedEmojiDrawable.getImageReceiver() == null) ? this.imageReceiver : this.animatedEmojiDrawable.getImageReceiver();
+            if (imageReceiver != null && rect != null) {
                 imageReceiver.setImageCoords(rect);
             }
             AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
@@ -791,7 +881,7 @@ public class ReactionsLayoutInBubble {
                     AvatarsDrawable avatarsDrawable = new AvatarsDrawable(this.parentView, false);
                     this.avatarsDrawable = avatarsDrawable;
                     avatarsDrawable.transitionDuration = 250L;
-                    Interpolator interpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
+                    avatarsDrawable.transitionInterpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
                     avatarsDrawable.setSize(AndroidUtilities.dp(20.0f));
                     this.avatarsDrawable.width = AndroidUtilities.dp(100.0f);
                     AvatarsDrawable avatarsDrawable2 = this.avatarsDrawable;
@@ -1221,7 +1311,7 @@ public class ReactionsLayoutInBubble {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || VisibleReaction.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             VisibleReaction visibleReaction = (VisibleReaction) obj;

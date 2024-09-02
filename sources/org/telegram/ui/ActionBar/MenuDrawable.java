@@ -109,7 +109,7 @@ public class MenuDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r26) {
+    public void draw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.MenuDrawable.draw(android.graphics.Canvas):void");
     }
 

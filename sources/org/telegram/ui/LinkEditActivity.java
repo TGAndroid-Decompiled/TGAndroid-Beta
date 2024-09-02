@@ -45,7 +45,7 @@ public class LinkEditActivity extends BaseFragment {
     private TextInfoPrivacyCell divider;
     private TextInfoPrivacyCell dividerName;
     private TextInfoPrivacyCell dividerUses;
-    private boolean firstLayout;
+    private boolean finished;
     private boolean ignoreSet;
     TLRPC$TL_chatInviteExported inviteToEdit;
     boolean loading;
@@ -67,6 +67,7 @@ public class LinkEditActivity extends BaseFragment {
     private EditText usesEditText;
     private HeaderCell usesHeaderCell;
     private int shakeDp = -3;
+    private boolean firstLayout = true;
     private ArrayList<Integer> dispalyedDates = new ArrayList<>();
     private final int[] defaultDates = {3600, 86400, 604800};
     private ArrayList<Integer> dispalyedUses = new ArrayList<>();
@@ -105,10 +106,12 @@ public class LinkEditActivity extends BaseFragment {
             return;
         }
         TextCheckCell textCheckCell3 = (TextCheckCell) view;
-        boolean z = !textCheckCell3.isChecked();
+        boolean isChecked = textCheckCell3.isChecked();
+        boolean z = !isChecked;
         textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
         textCheckCell3.setChecked(z);
-        setUsesVisible(!z);
+        setUsesVisible(isChecked);
+        this.firstLayout = true;
         if (this.subCell != null) {
             if (textCheckCell3.isChecked()) {
                 this.subCell.setChecked(false);
@@ -209,15 +212,15 @@ public class LinkEditActivity extends BaseFragment {
 
     public void lambda$createView$10(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-        builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
-        builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
-        builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
+        builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
+        builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 LinkEditActivity.this.lambda$createView$9(dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
@@ -286,39 +289,41 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     public void chooseUses(int i) {
+        int i2;
         this.dispalyedUses.clear();
-        int i2 = 0;
-        boolean z = false;
         int i3 = 0;
+        boolean z = false;
+        int i4 = 0;
         while (true) {
             int[] iArr = this.defaultUses;
-            if (i2 >= iArr.length) {
+            if (i3 >= iArr.length) {
                 break;
             }
-            if (!z && i <= iArr[i2]) {
-                if (i != iArr[i2]) {
+            if (!z && i <= (i2 = iArr[i3])) {
+                if (i != i2) {
                     this.dispalyedUses.add(Integer.valueOf(i));
                 }
-                i3 = i2;
                 z = true;
+                i4 = i3;
             }
-            this.dispalyedUses.add(Integer.valueOf(this.defaultUses[i2]));
-            i2++;
+            this.dispalyedUses.add(Integer.valueOf(this.defaultUses[i3]));
+            i3++;
         }
         if (!z) {
             this.dispalyedUses.add(Integer.valueOf(i));
-            i3 = this.defaultUses.length;
+            i4 = this.defaultUses.length;
         }
-        int size = this.dispalyedUses.size() + 1;
-        String[] strArr = new String[size];
-        for (int i4 = 0; i4 < size; i4++) {
-            if (i4 == size - 1) {
-                strArr[i4] = LocaleController.getString("NoLimit", R.string.NoLimit);
+        int size = this.dispalyedUses.size();
+        int i5 = size + 1;
+        String[] strArr = new String[i5];
+        for (int i6 = 0; i6 < i5; i6++) {
+            if (i6 == size) {
+                strArr[i6] = LocaleController.getString(R.string.NoLimit);
             } else {
-                strArr[i4] = this.dispalyedUses.get(i4).toString();
+                strArr[i6] = this.dispalyedUses.get(i6).toString();
             }
         }
-        this.usesChooseView.setOptions(i3, strArr);
+        this.usesChooseView.setOptions(i4, strArr);
     }
 
     private void chooseDate(int i) {
@@ -346,25 +351,26 @@ public class LinkEditActivity extends BaseFragment {
             this.dispalyedDates.add(Integer.valueOf(currentTime));
             i3 = this.defaultDates.length;
         }
-        int size = this.dispalyedDates.size() + 1;
-        String[] strArr = new String[size];
-        for (int i4 = 0; i4 < size; i4++) {
-            if (i4 == size - 1) {
-                strArr[i4] = LocaleController.getString("NoLimit", R.string.NoLimit);
-            } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[0]) {
-                strArr[i4] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
-            } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[1]) {
-                strArr[i4] = LocaleController.formatPluralString("Days", 1, new Object[0]);
-            } else if (this.dispalyedDates.get(i4).intValue() == this.defaultDates[2]) {
-                strArr[i4] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
+        int size = this.dispalyedDates.size();
+        int i4 = size + 1;
+        String[] strArr = new String[i4];
+        for (int i5 = 0; i5 < i4; i5++) {
+            if (i5 == size) {
+                strArr[i5] = LocaleController.getString(R.string.NoLimit);
+            } else if (this.dispalyedDates.get(i5).intValue() == this.defaultDates[0]) {
+                strArr[i5] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
+            } else if (this.dispalyedDates.get(i5).intValue() == this.defaultDates[1]) {
+                strArr[i5] = LocaleController.formatPluralString("Days", 1, new Object[0]);
+            } else if (this.dispalyedDates.get(i5).intValue() == this.defaultDates[2]) {
+                strArr[i5] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
             } else {
                 long j2 = currentTime;
                 if (j2 < 86400) {
-                    strArr[i4] = LocaleController.getString("MessageScheduleToday", R.string.MessageScheduleToday);
+                    strArr[i5] = LocaleController.getString(R.string.MessageScheduleToday);
                 } else if (j2 < 31449600) {
-                    strArr[i4] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
+                    strArr[i5] = LocaleController.getInstance().getFormatterScheduleDay().format(j * 1000);
                 } else {
-                    strArr[i4] = LocaleController.getInstance().getFormatterYear().format(j * 1000);
+                    strArr[i5] = LocaleController.getInstance().getFormatterYear().format(j * 1000);
                 }
             }
         }
@@ -380,7 +386,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedDates.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString("NoLimit", R.string.NoLimit));
+                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString(R.string.NoLimit));
                 return;
             }
         }
@@ -399,7 +405,7 @@ public class LinkEditActivity extends BaseFragment {
                 this.dispalyedUses.add(Integer.valueOf(iArr[i]));
                 i++;
             } else {
-                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString("NoLimit", R.string.NoLimit));
+                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString(R.string.NoLimit));
                 return;
             }
         }
@@ -470,6 +476,7 @@ public class LinkEditActivity extends BaseFragment {
     @Override
     public void lambda$onBackPressed$308() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
+        this.finished = true;
         super.lambda$onBackPressed$308();
     }
 

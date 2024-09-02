@@ -39,12 +39,15 @@ public class TimezonesController {
         TimezonesController timezonesController = Instance[i];
         if (timezonesController == null) {
             synchronized (lockObjects[i]) {
-                timezonesController = Instance[i];
-                if (timezonesController == null) {
-                    TimezonesController[] timezonesControllerArr = Instance;
-                    TimezonesController timezonesController2 = new TimezonesController(i);
-                    timezonesControllerArr[i] = timezonesController2;
-                    timezonesController = timezonesController2;
+                try {
+                    timezonesController = Instance[i];
+                    if (timezonesController == null) {
+                        TimezonesController[] timezonesControllerArr = Instance;
+                        TimezonesController timezonesController2 = new TimezonesController(i);
+                        timezonesControllerArr[i] = timezonesController2;
+                        timezonesController = timezonesController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -173,36 +176,37 @@ public class TimezonesController {
         String str = sb3.toString() + ":";
         StringBuilder sb4 = new StringBuilder();
         sb4.append(str);
-        sb4.append(i2 >= 10 ? "" : "0");
+        sb4.append(i2 < 10 ? "0" : "");
         sb4.append(i2);
         return sb4.toString();
     }
 
     public String getTimezoneName(String str, boolean z) {
+        String str2;
         TLRPC$TL_timezone findTimezone = findTimezone(str);
         if (findTimezone != null) {
             return getTimezoneName(findTimezone, z);
         }
         ZoneId of = ZoneId.of(str);
-        String str2 = "";
+        String str3 = "";
         if (of == null) {
             return "";
         }
-        String str3 = null;
         if (z) {
             String displayName = of.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            if (displayName.length() == 1 && displayName.charAt(0) == 'Z') {
-                str3 = "GMT";
-            } else {
-                str3 = "GMT" + displayName;
+            str2 = "GMT";
+            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
+                str2 = "GMT" + displayName;
             }
+        } else {
+            str2 = null;
         }
         StringBuilder sb = new StringBuilder();
         sb.append(of.getId().replace("/", ", ").replace("_", " "));
-        if (str3 != null) {
-            str2 = ", " + str3;
+        if (str2 != null) {
+            str3 = ", " + str2;
         }
-        sb.append(str2);
+        sb.append(str3);
         return sb.toString();
     }
 }

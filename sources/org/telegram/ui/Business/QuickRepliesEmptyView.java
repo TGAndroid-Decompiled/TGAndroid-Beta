@@ -16,7 +16,7 @@ public class QuickRepliesEmptyView extends LinearLayout {
     private TextView titleView;
 
     private class DotTextView extends TextView {
-        public DotTextView(QuickRepliesEmptyView quickRepliesEmptyView, Context context) {
+        public DotTextView(Context context) {
             super(context);
         }
 

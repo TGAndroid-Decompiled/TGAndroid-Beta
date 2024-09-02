@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -36,6 +35,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -58,8 +58,10 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     private AnimatedStatusView animatedStatus;
     private ImageView arrowView;
     private BackupImageView avatarImageView;
+    private Paint backPaint;
     private Integer currentColor;
     private Integer currentMoonColor;
+    private int darkThemeBackgroundColor;
     private RLottieImageView darkThemeView;
     private Rect destRect;
     public boolean drawPremium;
@@ -87,7 +89,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.srcRect = new Rect();
         this.destRect = new Rect();
         this.paint = new Paint();
-        new Paint(1);
+        this.backPaint = new Paint(1);
         this.lastAccount = -1;
         this.lastUser = null;
         this.premiumStar = null;
@@ -168,7 +170,8 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         addView(this.phoneTextView, LayoutHelper.createFrame(-1, -2.0f, 83, 16.0f, 0.0f, 52.0f, 9.0f));
         ImageView imageView2 = new ImageView(context);
         this.arrowView = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView2.setScaleType(scaleType);
         this.arrowView.setImageResource(R.drawable.msg_expand);
         addView(this.arrowView, LayoutHelper.createFrame(59, 59, 85));
         setArrowState(false);
@@ -186,14 +189,14 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                 sunDrawable.setCustomEndFrame(36);
             }
         }
-        RLottieImageView rLottieImageView = new RLottieImageView(this, context) {
+        RLottieImageView rLottieImageView = new RLottieImageView(context) {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (Theme.isCurrentThemeDark()) {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToDayTheme", R.string.AccDescrSwitchToDayTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
                 } else {
-                    accessibilityNodeInfo.setText(LocaleController.getString("AccDescrSwitchToNightTheme", R.string.AccDescrSwitchToNightTheme));
+                    accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrSwitchToNightTheme));
                 }
             }
         };
@@ -208,11 +211,14 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         sunDrawable.setLayerColor("Path.**", color);
         sunDrawable.setLayerColor("Path 5.**", color);
         sunDrawable.commitApplyLayerColors();
-        this.darkThemeView.setScaleType(ImageView.ScaleType.CENTER);
+        this.darkThemeView.setScaleType(scaleType);
         this.darkThemeView.setAnimation(sunDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 1, AndroidUtilities.dp(17.0f)));
-            Theme.setRippleDrawableForceSoftware((RippleDrawable) this.darkThemeView.getBackground());
+            RLottieImageView rLottieImageView2 = this.darkThemeView;
+            int color2 = Theme.getColor(Theme.key_listSelector);
+            this.darkThemeBackgroundColor = color2;
+            rLottieImageView2.setBackgroundDrawable(Theme.createSelectorDrawable(color2, 1, AndroidUtilities.dp(17.0f)));
+            Theme.setRippleDrawableForceSoftware(Theme$$ExternalSyntheticApiModelOutline0.m(this.darkThemeView.getBackground()));
         }
         if (!z && sunDrawable.getCustomEndFrame() != sunDrawable.getCurrentFrame()) {
             this.darkThemeView.playAnimation();
@@ -602,8 +608,6 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     }
 
     private void setArrowState(boolean z) {
-        int i;
-        String str;
         float f = this.accountsShown ? 180.0f : 0.0f;
         if (z) {
             this.arrowView.animate().rotation(f).setDuration(220L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
@@ -611,15 +615,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             this.arrowView.animate().cancel();
             this.arrowView.setRotation(f);
         }
-        ImageView imageView = this.arrowView;
-        if (this.accountsShown) {
-            i = R.string.AccDescrHideAccounts;
-            str = "AccDescrHideAccounts";
-        } else {
-            i = R.string.AccDescrShowAccounts;
-            str = "AccDescrShowAccounts";
-        }
-        imageView.setContentDescription(LocaleController.getString(str, i));
+        this.arrowView.setContentDescription(LocaleController.getString(this.accountsShown ? R.string.AccDescrHideAccounts : R.string.AccDescrShowAccounts));
     }
 
     @Override

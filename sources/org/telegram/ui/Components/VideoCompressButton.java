@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -49,12 +50,14 @@ public class VideoCompressButton extends View {
         animatedTextDrawable2.setTextSize(AndroidUtilities.dpf2(8.6f));
         animatedTextDrawable2.setCallback(this);
         animatedTextDrawable2.setGravity(5);
-        animatedTextDrawable2.getPaint().setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        TextPaint paint4 = animatedTextDrawable2.getPaint();
+        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+        paint4.setXfermode(new PorterDuffXfermode(mode));
         animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint2.setColor(-1);
-        paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint3.setXfermode(new PorterDuffXfermode(mode));
     }
 
     public void setState(boolean z, boolean z2, int i) {

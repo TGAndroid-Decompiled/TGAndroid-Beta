@@ -63,6 +63,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TL_stories$TL_myBoost> allUsedBoosts;
     private final SelectorBtnCell buttonContainer;
     private final TLRPC$Chat currentChat;
+    private final TL_stories$TL_premium_myBoosts myBoosts;
     private final List<TL_stories$TL_myBoost> selectedBoosts;
     private CountDownTimer timer;
     private TopCell topCell;
@@ -78,6 +79,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         this.selectedBoosts = new ArrayList();
         this.allUsedBoosts = new ArrayList();
         this.topPadding = 0.3f;
+        this.myBoosts = tL_stories$TL_premium_myBoosts;
         this.currentChat = tLRPC$Chat;
         Iterator<TL_stories$TL_myBoost> it = tL_stories$TL_premium_myBoosts.my_boosts.iterator();
         while (it.hasNext()) {
@@ -119,7 +121,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         fixNavigationBar();
         updateTitle();
         updateActionButton(false);
-        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate() {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
@@ -278,9 +280,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private void updateActionButton(boolean z) {
         this.actionButton.setShowZero(false);
         if (this.selectedBoosts.size() > 1) {
-            this.actionButton.setText(LocaleController.getString("BoostingReassignBoosts", R.string.BoostingReassignBoosts), z);
+            this.actionButton.setText(LocaleController.getString(R.string.BoostingReassignBoosts), z);
         } else {
-            this.actionButton.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost), z);
+            this.actionButton.setText(LocaleController.getString(R.string.BoostingReassignBoost), z);
         }
         this.actionButton.setCount(this.selectedBoosts.size(), z);
         this.actionButton.setEnabled(this.selectedBoosts.size() > 0);
@@ -288,7 +290,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     protected CharSequence getTitle() {
-        return LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost);
+        return LocaleController.getString(R.string.BoostingReassignBoost);
     }
 
     @Override
@@ -348,7 +350,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-                    headerCell.setText(LocaleController.getString("BoostingRemoveBoostFrom", R.string.BoostingRemoveBoostFrom));
+                    headerCell.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
                     return;
                 }
                 if (viewHolder.getItemViewType() == 0) {
@@ -394,7 +396,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             addView(frameLayout, LayoutHelper.createLinear(-1, 70, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
-            textView.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost));
+            textView.setText(LocaleController.getString(R.string.BoostingReassignBoost));
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 15, 0, 7));
@@ -409,11 +411,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void setData(TLRPC$Chat tLRPC$Chat, final BottomSheet bottomSheet) {
             try {
-                int boostsPerSentGift = BoostRepository.boostsPerSentGift();
-                Object[] objArr = new Object[2];
-                objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
-                objArr[1] = "%3$s";
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", boostsPerSentGift, objArr));
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", BoostRepository.boostsPerSentGift(), tLRPC$Chat == null ? "" : tLRPC$Chat.title, "%3$s"));
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new Runnable() {
                     @Override
                     public final void run() {
@@ -548,12 +546,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                         ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.setScaleY(0.1f);
                         ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.setScaleX(0.1f);
                         ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j).setInterpolator(cubicBezierInterpolator).start();
-                        f = 0.0f;
-                        f2 = 0.1f;
                     }
+                    f = 0.0f;
+                    f2 = 0.1f;
                 }
-                f = 0.0f;
-                f2 = 0.1f;
             }
             AvatarHolderView avatarHolderView5 = this.toAvatar;
             if (avatarHolderView5.chat == null) {

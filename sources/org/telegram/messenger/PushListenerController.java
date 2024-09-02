@@ -2,9 +2,11 @@ package org.telegram.messenger;
 
 import android.os.SystemClock;
 import android.text.TextUtils;
+import androidx.annotation.Keep;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -16,12 +18,14 @@ import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
 import org.telegram.tgnet.TLRPC$TL_jsonNull;
 import org.telegram.tgnet.TLRPC$TL_updates;
 
+@Keep
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
     public static final int PUSH_TYPE_FIREBASE = 2;
     public static final int PUSH_TYPE_HUAWEI = 13;
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
+    @Keep
     public interface IPushListenerServiceProvider {
         String getLogTitle();
 
@@ -135,7 +139,7 @@ public class PushListenerController {
         });
     }
 
-    public static void lambda$processRemoteMessage$5(java.lang.String r52, java.lang.String r53, long r54) {
+    public static void lambda$processRemoteMessage$5(java.lang.String r59, java.lang.String r60, long r61) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$5(java.lang.String, java.lang.String, long):void");
     }
 
@@ -476,16 +480,16 @@ public class PushListenerController {
         private Boolean hasServices;
 
         @Override
-        public String getLogTitle() {
-            return "Google Play Services";
-        }
-
-        @Override
         public int getPushType() {
             return 2;
         }
 
         private GooglePushListenerServiceProvider() {
+        }
+
+        @Override
+        public String getLogTitle() {
+            return "Google Play Services";
         }
 
         @Override
@@ -509,6 +513,7 @@ public class PushListenerController {
         public void lambda$onRequestPushToken$1() {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
+                FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
                 FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public final void onComplete(Task task) {

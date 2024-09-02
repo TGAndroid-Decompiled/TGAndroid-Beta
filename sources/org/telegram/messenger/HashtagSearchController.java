@@ -38,12 +38,15 @@ public class HashtagSearchController {
         HashtagSearchController hashtagSearchController = Instance[i];
         if (hashtagSearchController == null) {
             synchronized (lockObjects[i]) {
-                hashtagSearchController = Instance[i];
-                if (hashtagSearchController == null) {
-                    HashtagSearchController[] hashtagSearchControllerArr = Instance;
-                    HashtagSearchController hashtagSearchController2 = new HashtagSearchController(i);
-                    hashtagSearchControllerArr[i] = hashtagSearchController2;
-                    hashtagSearchController = hashtagSearchController2;
+                try {
+                    hashtagSearchController = Instance[i];
+                    if (hashtagSearchController == null) {
+                        HashtagSearchController[] hashtagSearchControllerArr = Instance;
+                        HashtagSearchController hashtagSearchController2 = new HashtagSearchController(i);
+                        hashtagSearchControllerArr[i] = hashtagSearchController2;
+                        hashtagSearchController = hashtagSearchController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -149,6 +152,7 @@ public class HashtagSearchController {
             }
             final String str2 = str;
             searchResult.lastHashtag = str2;
+            final int i4 = 30;
             if (i2 == 1) {
                 TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal = new TLRPC$TL_messages_searchGlobal();
                 tLRPC$TL_messages_searchGlobal.limit = 30;
@@ -175,7 +179,6 @@ public class HashtagSearchController {
                     tLRPC$TL_channels_searchPosts = tLRPC$TL_channels_searchPosts2;
                 }
             }
-            final int i4 = 30;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_searchPosts, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

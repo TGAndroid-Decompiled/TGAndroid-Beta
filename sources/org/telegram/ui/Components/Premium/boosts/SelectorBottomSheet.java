@@ -600,11 +600,11 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else if (i == 2) {
             formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToGroupChannelPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
             this.sectionCell.setLayerHeight(32);
-        } else if (i != 3) {
-            formatPluralStringComma = "";
-        } else {
+        } else if (i == 3) {
             formatPluralStringComma = LocaleController.formatPluralString("BoostingSelectUpToCountriesPlural", (int) BoostRepository.giveawayCountriesMax(), new Object[0]);
             this.sectionCell.setLayerHeight(1);
+        } else {
+            formatPluralStringComma = "";
         }
         this.sectionCell.setText(formatPluralStringComma);
     }
@@ -613,7 +613,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         String string;
         int i = this.type;
         if (i == 1) {
-            string = LocaleController.getString("BoostingSelectUpToWarningUsers", R.string.BoostingSelectUpToWarningUsers);
+            string = LocaleController.getString(R.string.BoostingSelectUpToWarningUsers);
         } else if (i == 2) {
             string = LocaleController.formatPluralString("BoostingSelectUpToWarningChannelsGroupsPlural", (int) BoostRepository.giveawayAddPeersMax(), new Object[0]);
         } else {
@@ -678,10 +678,12 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         String string;
         this.actionButton.setShowZero(false);
         int i = this.type;
-        if (i != 1) {
-            string = (i == 2 || i == 3) ? LocaleController.getString("Save", R.string.Save) : "";
+        if (i == 1) {
+            string = LocaleController.getString(R.string.BoostingSaveRecipients);
+        } else if (i == 2 || i == 3) {
+            string = LocaleController.getString(R.string.Save);
         } else {
-            string = LocaleController.getString("BoostingSaveRecipients", R.string.BoostingSaveRecipients);
+            string = "";
         }
         this.actionButton.setText(string, z);
         this.actionButton.setCount(this.selectedIds.size(), z);
@@ -821,12 +823,15 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     protected CharSequence getTitle() {
         int i = this.type;
         if (i == 1) {
-            return LocaleController.getString("GiftPremium", R.string.GiftPremium);
+            return LocaleController.getString(R.string.GiftPremium);
         }
-        if (i != 2) {
-            return i != 3 ? "" : LocaleController.getString("BoostingSelectCountry", R.string.BoostingSelectCountry);
+        if (i == 2) {
+            return LocaleController.getString(R.string.BoostingAddChannelOrGroup);
         }
-        return LocaleController.getString("BoostingAddChannelOrGroup", R.string.BoostingAddChannelOrGroup);
+        if (i == 3) {
+            return LocaleController.getString(R.string.BoostingSelectCountry);
+        }
+        return "";
     }
 
     @Override

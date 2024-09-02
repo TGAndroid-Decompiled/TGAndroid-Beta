@@ -210,7 +210,6 @@ public class RecyclerAnimationScrollHelper {
                 }
                 height = (this.val$scrollDown ? -i9 : i10 - RecyclerAnimationScrollHelper.this.recyclerView.getHeight()) + i14;
             }
-            final int i16 = height;
             if (RecyclerAnimationScrollHelper.this.animator != null) {
                 RecyclerAnimationScrollHelper.this.animator.removeAllListeners();
                 RecyclerAnimationScrollHelper.this.animator.cancel();
@@ -219,6 +218,7 @@ public class RecyclerAnimationScrollHelper {
             ValueAnimator valueAnimator = RecyclerAnimationScrollHelper.this.animator;
             final ArrayList arrayList2 = this.val$oldViews;
             final boolean z2 = this.val$scrollDown;
+            final int i16 = height;
             valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
@@ -289,7 +289,7 @@ public class RecyclerAnimationScrollHelper {
                 if (z) {
                     min = 600;
                 } else {
-                    long measuredHeight = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                    long measuredHeight = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
                     min = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
                 }
                 RecyclerAnimationScrollHelper.this.animator.setDuration(min);
@@ -298,7 +298,7 @@ public class RecyclerAnimationScrollHelper {
                 recyclerAnimationScrollHelper.animator.setDuration(150L);
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
             } else {
-                long measuredHeight2 = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                long measuredHeight2 = ((height / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
                 RecyclerAnimationScrollHelper.this.animator.setDuration(Math.min(measuredHeight2 >= 300 ? measuredHeight2 : 300L, 1300L));
                 RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             }

@@ -82,6 +82,7 @@ public class AddressBarList extends FrameLayout {
     private final Drawable currentViewBackground;
     private int grayBackgroundColor;
     public boolean hideCurrent;
+    private float[] hsv;
     private AsyncTask<String, Void, String> lastTask;
     private int listBackgroundColor;
     public UniversalRecyclerView listView;
@@ -103,6 +104,7 @@ public class AddressBarList extends FrameLayout {
         this.currentAccount = i;
         this.suggestions = new ArrayList<>();
         this.openProgress = 0.0f;
+        this.hsv = new float[3];
         setWillNotDraw(false);
         int i2 = UserConfig.selectedAccount;
         Utilities.Callback2 callback2 = new Utilities.Callback2() {
@@ -178,7 +180,7 @@ public class AddressBarList extends FrameLayout {
                 AddressBarList.this.lambda$new$0();
             }
         });
-        this.space = new View(this, context) {
+        this.space = new View(context) {
             @Override
             protected void onMeasure(int i3, int i4) {
                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));
@@ -434,20 +436,21 @@ public class AddressBarList extends FrameLayout {
             this.lastTask = null;
         }
         final boolean z = !this.suggestions.isEmpty();
-        if (!TextUtils.isEmpty(str)) {
-            this.lastTask = new HttpGetTask(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    AddressBarList.this.lambda$setInput$6(z, (String) obj);
-                }
-            }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
+        if (TextUtils.isEmpty(str)) {
+            this.suggestions.clear();
+            this.listView.adapter.update(true);
+            if (z != (!this.suggestions.isEmpty())) {
+                this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
+                return;
+            }
             return;
         }
-        this.suggestions.clear();
-        this.listView.adapter.update(true);
-        if (z != (!this.suggestions.isEmpty())) {
-            this.listView.layoutManager.scrollToPositionWithOffset(0, 0);
-        }
+        this.lastTask = new HttpGetTask(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                AddressBarList.this.lambda$setInput$6(z, (String) obj);
+            }
+        }).execute(SearchEngine.getCurrent().getAutocompleteURL(str));
     }
 
     public void lambda$setInput$6(final boolean z, final String str) {
@@ -491,7 +494,8 @@ public class AddressBarList extends FrameLayout {
             this.dividerPaint = new Paint(1);
             ImageView imageView = new ImageView(context);
             this.iconView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             imageView.setImageResource(R.drawable.menu_clear_recent);
             addView(imageView, LayoutHelper.createFrame(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
             TextView textView = new TextView(context);
@@ -500,15 +504,18 @@ public class AddressBarList extends FrameLayout {
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
             ImageView imageView2 = new ImageView(context);
             this.insertView = imageView2;
-            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            imageView2.setScaleType(scaleType);
             imageView2.setImageResource(R.drawable.menu_browser_arrowup);
             addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
         }
 
         public void setColors(int i, int i2) {
             this.textView.setTextColor(i2);
-            this.iconView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
-            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), PorterDuff.Mode.SRC_IN));
+            ImageView imageView = this.iconView;
+            int multAlpha = Theme.multAlpha(i2, 0.6f);
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView.setColorFilter(new PorterDuffColorFilter(multAlpha, mode));
+            this.insertView.setColorFilter(new PorterDuffColorFilter(Theme.multAlpha(i2, 0.6f), mode));
             this.insertView.setBackground(Theme.createRadSelectorDrawable(0, Theme.multAlpha(i2, 0.15f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         }
 
@@ -602,13 +609,14 @@ public class AddressBarList extends FrameLayout {
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
             textView.setMaxLines(1);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView.setEllipsize(truncateAt);
             linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 51));
             TextView textView2 = new TextView(context);
             this.subtextView = textView2;
             textView2.setTextSize(1, 13.0f);
             textView2.setMaxLines(1);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
+            textView2.setEllipsize(truncateAt);
             linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 51, 0, 3, 0, 0));
             FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 19, 64.0f, 0.0f, 70.0f, 0.0f);
             this.textLayoutParams = createFrame;
@@ -617,7 +625,7 @@ public class AddressBarList extends FrameLayout {
             this.timeView = textView3;
             textView3.setTextSize(1, 13.0f);
             textView3.setMaxLines(1);
-            textView3.setEllipsize(TextUtils.TruncateAt.END);
+            textView3.setEllipsize(truncateAt);
             textView3.setGravity(5);
             textView3.setTextAlignment(6);
             addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 21, 64.0f, -10.0f, 12.0f, 0.0f));

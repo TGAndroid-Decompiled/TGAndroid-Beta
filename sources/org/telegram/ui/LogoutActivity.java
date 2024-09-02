@@ -51,8 +51,7 @@ public class LogoutActivity extends BaseFragment {
     @Override
     public boolean onFragmentCreate() {
         super.onFragmentCreate();
-        this.rowCount = 0;
-        this.rowCount = 0 + 1;
+        this.rowCount = 1;
         this.alternativeHeaderRow = 0;
         if (UserConfig.getActivatedAccountsCount() < 4) {
             int i = this.rowCount;
@@ -69,30 +68,20 @@ public class LogoutActivity extends BaseFragment {
             this.passcodeRow = -1;
         }
         int i3 = this.rowCount;
-        int i4 = i3 + 1;
-        this.rowCount = i4;
         this.cacheRow = i3;
-        int i5 = i4 + 1;
-        this.rowCount = i5;
-        this.phoneRow = i4;
-        int i6 = i5 + 1;
-        this.rowCount = i6;
-        this.supportRow = i5;
-        int i7 = i6 + 1;
-        this.rowCount = i7;
-        this.alternativeSectionRow = i6;
-        int i8 = i7 + 1;
-        this.rowCount = i8;
-        this.logoutRow = i7;
-        this.rowCount = i8 + 1;
-        this.logoutSectionRow = i8;
+        this.phoneRow = i3 + 1;
+        this.supportRow = i3 + 2;
+        this.alternativeSectionRow = i3 + 3;
+        this.logoutRow = i3 + 4;
+        this.rowCount = i3 + 6;
+        this.logoutSectionRow = i3 + 5;
         return true;
     }
 
     @Override
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString("LogOutTitle", R.string.LogOutTitle));
+        this.actionBar.setTitle(LocaleController.getString(R.string.LogOutTitle));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
@@ -185,16 +174,16 @@ public class LogoutActivity extends BaseFragment {
 
     public static AlertDialog makeLogOutDialog(Context context, final int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(LocaleController.getString("AreYouSureLogout", R.string.AreYouSureLogout));
+        builder.setMessage(LocaleController.getString(R.string.AreYouSureLogout));
         int i2 = R.string.LogOut;
-        builder.setTitle(LocaleController.getString("LogOut", i2));
-        builder.setPositiveButton(LocaleController.getString("LogOut", i2), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(i2));
+        builder.setPositiveButton(LocaleController.getString(i2), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 LogoutActivity.lambda$makeLogOutDialog$1(i, dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         AlertDialog create = builder.create();
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
@@ -239,7 +228,7 @@ public class LogoutActivity extends BaseFragment {
             if (itemViewType == 0) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 if (i == LogoutActivity.this.alternativeHeaderRow) {
-                    headerCell.setText(LocaleController.getString("AlternativeOptions", R.string.AlternativeOptions));
+                    headerCell.setText(LocaleController.getString(R.string.AlternativeOptions));
                     return;
                 }
                 return;
@@ -249,7 +238,7 @@ public class LogoutActivity extends BaseFragment {
                     TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                     if (i == LogoutActivity.this.logoutRow) {
                         textSettingsCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-                        textSettingsCell.setText(LocaleController.getString("LogOutTitle", R.string.LogOutTitle), false);
+                        textSettingsCell.setText(LocaleController.getString(R.string.LogOutTitle), false);
                         return;
                     }
                     return;
@@ -259,7 +248,7 @@ public class LogoutActivity extends BaseFragment {
                 }
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 if (i == LogoutActivity.this.logoutSectionRow) {
-                    textInfoPrivacyCell.setText(LocaleController.getString("LogOutInfo", R.string.LogOutInfo));
+                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.LogOutInfo));
                     return;
                 }
                 return;
@@ -270,21 +259,21 @@ public class LogoutActivity extends BaseFragment {
                     if (i != LogoutActivity.this.cacheRow) {
                         if (i != LogoutActivity.this.phoneRow) {
                             if (i == LogoutActivity.this.supportRow) {
-                                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ContactSupport", R.string.ContactSupport), LocaleController.getString("ContactSupportInfo", R.string.ContactSupportInfo), R.drawable.msg_help, false);
+                                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.ContactSupport), LocaleController.getString(R.string.ContactSupportInfo), R.drawable.msg_help, false);
                                 return;
                             }
                             return;
                         }
-                        textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ChangePhoneNumber", R.string.ChangePhoneNumber), LocaleController.getString("ChangePhoneNumberInfo", R.string.ChangePhoneNumberInfo), R.drawable.msg_newphone, true);
+                        textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.ChangePhoneNumber), LocaleController.getString(R.string.ChangePhoneNumberInfo), R.drawable.msg_newphone, true);
                         return;
                     }
-                    textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("ClearCache", R.string.ClearCache), LocaleController.getString("ClearCacheInfo", R.string.ClearCacheInfo), R.drawable.msg_clearcache, true);
+                    textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.ClearCache), LocaleController.getString(R.string.ClearCacheInfo), R.drawable.msg_clearcache, true);
                     return;
                 }
-                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("SetPasscode", R.string.SetPasscode), LocaleController.getString("SetPasscodeInfo", R.string.SetPasscodeInfo), R.drawable.msg_permissions, true);
+                textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.SetPasscode), LocaleController.getString(R.string.SetPasscodeInfo), R.drawable.msg_permissions, true);
                 return;
             }
-            textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString("AddAnotherAccount", R.string.AddAnotherAccount), LocaleController.getString("AddAnotherAccountInfo", R.string.AddAnotherAccountInfo), R.drawable.msg_contact_add, true);
+            textDetailSettingsCell.setTextAndValueAndIcon(LocaleController.getString(R.string.AddAnotherAccount), LocaleController.getString(R.string.AddAnotherAccountInfo), R.drawable.msg_contact_add, true);
         }
 
         @Override

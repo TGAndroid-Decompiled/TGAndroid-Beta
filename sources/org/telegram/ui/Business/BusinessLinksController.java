@@ -45,12 +45,15 @@ public class BusinessLinksController {
         BusinessLinksController businessLinksController = Instance[i];
         if (businessLinksController == null) {
             synchronized (lockObjects[i]) {
-                businessLinksController = Instance[i];
-                if (businessLinksController == null) {
-                    BusinessLinksController[] businessLinksControllerArr = Instance;
-                    BusinessLinksController businessLinksController2 = new BusinessLinksController(i);
-                    businessLinksControllerArr[i] = businessLinksController2;
-                    businessLinksController = businessLinksController2;
+                try {
+                    businessLinksController = Instance[i];
+                    if (businessLinksController == null) {
+                        BusinessLinksController[] businessLinksControllerArr = Instance;
+                        BusinessLinksController businessLinksController2 = new BusinessLinksController(i);
+                        businessLinksControllerArr[i] = businessLinksController2;
+                        businessLinksController = businessLinksController2;
+                    }
+                } finally {
                 }
             }
         }

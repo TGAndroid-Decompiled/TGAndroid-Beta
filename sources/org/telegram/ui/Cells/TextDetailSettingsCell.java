@@ -136,7 +136,7 @@ public class TextDetailSettingsCell extends FrameLayout {
         float measuredHeight = getMeasuredHeight() - 1;
         int measuredWidth = getMeasuredWidth();
         if (LocaleController.isRTL) {
-            i = AndroidUtilities.dp(this.imageView.getVisibility() != 0 ? 20.0f : 71.0f);
+            i = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
         } else {
             i = 0;
         }

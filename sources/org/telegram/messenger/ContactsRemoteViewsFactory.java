@@ -98,12 +98,12 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
         if (this.deleted) {
             RemoteViews remoteViews = new RemoteViews(this.mContext.getPackageName(), R.layout.widget_deleted);
-            remoteViews.setTextViewText(R.id.widget_deleted_text, LocaleController.getString("WidgetLoggedOff", R.string.WidgetLoggedOff));
+            remoteViews.setTextViewText(R.id.widget_deleted_text, LocaleController.getString(R.string.WidgetLoggedOff));
             return remoteViews;
         }
         if (i >= getCount() - 1) {
             RemoteViews remoteViews2 = new RemoteViews(this.mContext.getPackageName(), R.layout.widget_edititem);
-            remoteViews2.setTextViewText(R.id.widget_edititem_text, LocaleController.getString("TapToEditWidgetShort", R.string.TapToEditWidgetShort));
+            remoteViews2.setTextViewText(R.id.widget_edititem_text, LocaleController.getString(R.string.TapToEditWidgetShort));
             Bundle bundle = new Bundle();
             bundle.putInt("appWidgetId", this.appWidgetId);
             bundle.putInt("appWidgetType", 1);
@@ -125,11 +125,11 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                 if (DialogObject.isUserDialog(l.longValue())) {
                     tLRPC$User = this.accountInstance.getMessagesController().getUser(l);
                     if (UserObject.isUserSelf(tLRPC$User)) {
-                        str = LocaleController.getString("SavedMessages", R.string.SavedMessages);
+                        str = LocaleController.getString(R.string.SavedMessages);
                     } else if (UserObject.isReplyUser(tLRPC$User)) {
-                        str = LocaleController.getString("RepliesTitle", R.string.RepliesTitle);
+                        str = LocaleController.getString(R.string.RepliesTitle);
                     } else if (UserObject.isDeleted(tLRPC$User)) {
-                        str = LocaleController.getString("HiddenName", R.string.HiddenName);
+                        str = LocaleController.getString(R.string.HiddenName);
                     } else {
                         str = UserObject.getFirstName(tLRPC$User);
                     }

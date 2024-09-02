@@ -228,9 +228,9 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                                 setCurrentItem(PremiumFeatureBottomSheet.this.selectedPosition + 1, true);
                             }
                         } else {
-                            int i4 = PremiumFeatureBottomSheet.this.selectedPosition;
-                            if (i4 - 1 >= 0) {
-                                setCurrentItem(i4 - 1, true);
+                            int i4 = PremiumFeatureBottomSheet.this.selectedPosition - 1;
+                            if (i4 >= 0) {
+                                setCurrentItem(i4, true);
                             }
                         }
                         this.smoothScroll = false;
@@ -322,7 +322,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.buttonContainer.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         linearLayout.addView(this.buttonContainer, LayoutHelper.createLinear(-1, 68, 80));
         if (UserConfig.getInstance(i).isPremium()) {
-            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), false, false);
+            this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.OK), false, false);
         }
         final ScrollView scrollView = new ScrollView(getContext());
         scrollView.addView(linearLayout);
@@ -332,6 +332,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         this.customViewGravity = 83;
         final Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
         FrameLayout frameLayout3 = new FrameLayout(getContext()) {
+            int lastSize;
             Path path = new Path();
 
             @Override
@@ -347,6 +348,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
 
             @Override
             protected void onMeasure(int i4, int i5) {
+                this.lastSize = (i4 + i5) << 16;
                 PremiumFeatureBottomSheet.this.topGlobalOffset = 0;
                 scrollView.measure(i4, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i5), Integer.MIN_VALUE));
                 PremiumFeatureBottomSheet.this.topGlobalOffset = (View.MeasureSpec.getSize(i5) - scrollView.getMeasuredHeight()) + ((BottomSheet) PremiumFeatureBottomSheet.this).backgroundPaddingTop;
@@ -431,10 +433,10 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         @Override
         public void onPageSelected(int i) {
             if (PremiumFeatureBottomSheet.this.premiumFeatures.get(i).type == 0) {
-                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.DoubledLimits));
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
             } else if (PremiumFeatureBottomSheet.this.premiumFeatures.get(i).type == 14) {
-                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
+                PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.UpgradedStories));
                 PremiumFeatureBottomSheet.this.actionBar.requestLayout();
             } else if (PremiumFeatureBottomSheet.this.premiumFeatures.get(i).type == 28) {
                 PremiumFeatureBottomSheet.this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
@@ -583,13 +585,13 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
         ((FrameLayout.LayoutParams) this.actionBar.getLayoutParams()).topMargin = (-this.backgroundPaddingTop) - AndroidUtilities.dp(2.0f);
         AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, false, 1.0f, false);
         if (this.premiumFeatures.get(this.selectedPosition).type == 14) {
-            this.actionBar.setTitle(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
+            this.actionBar.setTitle(LocaleController.getString(R.string.UpgradedStories));
             this.actionBar.requestLayout();
         } else if (this.premiumFeatures.get(this.selectedPosition).type == 28) {
             this.actionBar.setTitle(LocaleController.getString(R.string.TelegramBusiness));
             this.actionBar.requestLayout();
         } else {
-            this.actionBar.setTitle(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
+            this.actionBar.setTitle(LocaleController.getString(R.string.DoubledLimits));
             this.actionBar.requestLayout();
         }
     }
@@ -609,7 +611,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             setButtonText();
         } else if (i == NotificationCenter.currentUserPremiumStatusChanged) {
             if (UserConfig.getInstance(this.currentAccount).isPremium()) {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), false, true);
+                this.premiumButtonView.setOverlayText(LocaleController.getString(R.string.OK), false, true);
             } else {
                 this.premiumButtonView.clearOverlayText();
             }
@@ -749,8 +751,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                                         this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewDownloadSpeedDescription2)));
                                     }
                                 } else {
-                                    this.title.setText(LocaleController.getString("PremiumPreviewAppIcon", R.string.PremiumPreviewAppIcon));
-                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString("PremiumPreviewAppIconDescription2", R.string.PremiumPreviewAppIconDescription2)));
+                                    this.title.setText(LocaleController.getString(R.string.PremiumPreviewAppIcon));
+                                    this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewAppIconDescription2)));
                                 }
                             } else {
                                 this.title.setText(LocaleController.getString(R.string.PremiumPreviewTags));
@@ -761,8 +763,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                             this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PremiumPreviewNoAdsDescription2)));
                         }
                     } else {
-                        this.title.setText(LocaleController.getString("AdditionalReactions", R.string.AdditionalReactions));
-                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString("AdditionalReactionsDescription", R.string.AdditionalReactionsDescription)));
+                        this.title.setText(LocaleController.getString(R.string.AdditionalReactions));
+                        this.description.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AdditionalReactionsDescription)));
                     }
                     this.topViewOnFullHeight = false;
                 } else {
@@ -807,7 +809,7 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             return featuresPageView;
         }
         if (i2 == 5) {
-            return new PremiumStickersPreviewRecycler(this, context, this.currentAccount) {
+            return new PremiumStickersPreviewRecycler(context, this.currentAccount) {
                 @Override
                 public void setOffset(float f) {
                     setAutoPlayEnabled(f == 0.0f);
@@ -827,10 +829,10 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
             View view = ((ViewPage) this.viewPager.getChildAt(0)).topView;
             if (view instanceof PremiumAppIconsPreviewView) {
                 final PremiumAppIconsPreviewView premiumAppIconsPreviewView = (PremiumAppIconsPreviewView) view;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(r0.getMeasuredWidth(), 0.0f);
-                premiumAppIconsPreviewView.setOffset(r0.getMeasuredWidth());
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(r2.getMeasuredWidth(), 0.0f);
+                premiumAppIconsPreviewView.setOffset(r2.getMeasuredWidth());
                 this.enterAnimationIsRunning = true;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         premiumAppIconsPreviewView.setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());

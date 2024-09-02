@@ -174,6 +174,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int currentDialogFolderDialogsCount;
     private int currentDialogFolderId;
     private long currentDialogId;
+    private int currentEditDate;
     private TextPaint currentMessagePaint;
     private float currentRevealBounceProgress;
     private float currentRevealProgress;
@@ -186,6 +187,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean draftVoice;
     public boolean drawArchive;
     public boolean drawAvatar;
+    public boolean drawAvatarSelector;
     private boolean drawCheck1;
     private boolean drawCheck2;
     private boolean drawClock;
@@ -442,9 +444,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (this.currentDialogId != j) {
             this.lastStatusDrawableParams = -1;
         }
-        Drawable[] drawableArr = messageObject.topicIconDrawable;
-        if (drawableArr[0] instanceof ForumBubbleDrawable) {
-            ((ForumBubbleDrawable) drawableArr[0]).setColor(tLRPC$TL_forumTopic.icon_color);
+        Drawable drawable = messageObject.topicIconDrawable[0];
+        if (drawable instanceof ForumBubbleDrawable) {
+            ((ForumBubbleDrawable) drawable).setColor(tLRPC$TL_forumTopic.icon_color);
         }
         this.currentDialogId = j;
         this.lastDialogChangedTime = System.currentTimeMillis();
@@ -453,7 +455,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.showTopicIconInName = z;
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         this.lastMessageDate = tLRPC$Message.date;
-        int i = tLRPC$Message.edit_date;
+        this.currentEditDate = tLRPC$Message.edit_date;
         this.markUnread = false;
         this.messageId = messageObject.getId();
         this.lastUnreadState = messageObject.isUnread();
@@ -611,9 +613,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             ImageReceiver[] imageReceiverArr = this.thumbImage;
             if (i2 < imageReceiverArr.length) {
                 imageReceiverArr[i2] = new ImageReceiver(this);
-                ImageReceiver[] imageReceiverArr2 = this.thumbImage;
-                imageReceiverArr2[i2].ignoreNotifications = true;
-                imageReceiverArr2[i2].setRoundRadius(AndroidUtilities.dp(2.0f));
+                ImageReceiver imageReceiver = this.thumbImage[i2];
+                imageReceiver.ignoreNotifications = true;
+                imageReceiver.setRoundRadius(AndroidUtilities.dp(2.0f));
                 this.thumbImage[i2].setAllowLoadingOnAttachedOnly(true);
                 i2++;
             } else {
@@ -733,9 +735,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.useMeForMyMessages = z;
         this.isDialogCell = false;
         this.lastMessageDate = i;
-        if (messageObject != null) {
-            int i2 = messageObject.messageOwner.edit_date;
-        }
+        this.currentEditDate = messageObject != null ? messageObject.messageOwner.edit_date : 0;
         this.unreadCount = 0;
         this.markUnread = false;
         this.messageId = messageObject != null ? messageObject.getId() : 0;
@@ -980,7 +980,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 } else if (tLRPC$User == null) {
                     continue;
                 } else if (UserObject.isDeleted(tLRPC$User)) {
-                    removeDiacritics = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    removeDiacritics = LocaleController.getString(R.string.HiddenName);
                 } else {
                     removeDiacritics = AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' '));
                 }
@@ -1073,7 +1073,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
         valueOf.insert(0, (CharSequence) " ");
-        valueOf.setSpan(new FixedWidthSpan(AndroidUtilities.dp((((this.thumbSize + 2) * this.thumbsCount) - 2) + 5)), 0, 1, 33);
+        valueOf.setSpan(new FixedWidthSpan(AndroidUtilities.dp(((this.thumbSize + 2) * this.thumbsCount) + 3)), 0, 1, 33);
         return valueOf;
     }
 
@@ -1236,7 +1236,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return update(i, true);
     }
 
-    public boolean update(int r36, boolean r37) {
+    public boolean update(int r40, boolean r41) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 
@@ -1301,7 +1301,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
 
     @Override
     @android.annotation.SuppressLint({"DrawAllocation"})
-    public void onDraw(android.graphics.Canvas r42) {
+    public void onDraw(android.graphics.Canvas r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1320,7 +1320,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    public boolean drawAvatarOverlays(android.graphics.Canvas r25) {
+    public boolean drawAvatarOverlays(android.graphics.Canvas r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.drawAvatarOverlays(android.graphics.Canvas):boolean");
     }
 
@@ -1433,9 +1433,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 f2 = 1.0f;
                 interpolation = CubicBezierInterpolator.EASE_IN.getInterpolation(1.0f - ((f3 - 0.5f) * 2.0f)) * 0.1f;
             }
+            float f10 = interpolation + f2;
             canvas.save();
-            float f10 = (interpolation + f2) * f;
-            canvas.scale(f10, f10, this.rect.centerX(), this.rect.centerY());
+            float f11 = f10 * f;
+            canvas.scale(f11, f11, this.rect.centerX(), this.rect.centerY());
             if (z4) {
                 if (this.counterPath == null || (rectF2 = this.counterPathRect) == null || !rectF2.equals(this.rect)) {
                     RectF rectF4 = this.counterPathRect;
@@ -1466,8 +1467,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 canvas.restore();
             }
             int alpha = Theme.dialogs_countTextPaint.getAlpha();
-            float f11 = alpha;
-            Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f6));
+            float f12 = alpha;
+            Theme.dialogs_countTextPaint.setAlpha((int) (f12 * f6));
             if (this.countAnimationInLayout != null) {
                 canvas.save();
                 canvas.translate(f8, ((this.countAnimationIncrement ? AndroidUtilities.dp(13.0f) : -AndroidUtilities.dp(13.0f)) * f7) + f9 + AndroidUtilities.dp(4.0f));
@@ -1480,7 +1481,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 canvas.restore();
             }
             if (this.countOldLayout != null) {
-                Theme.dialogs_countTextPaint.setAlpha((int) (f11 * f7));
+                Theme.dialogs_countTextPaint.setAlpha((int) (f12 * f7));
                 canvas.save();
                 canvas.translate(f8, ((this.countAnimationIncrement ? -AndroidUtilities.dp(13.0f) : AndroidUtilities.dp(13.0f)) * f6) + f9 + AndroidUtilities.dp(4.0f));
                 this.countOldLayout.draw(canvas);
@@ -1604,7 +1605,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             accessibilityNodeInfo.addAction(16);
             accessibilityNodeInfo.addAction(32);
             if (!isFolderCell() && this.parentFragment != null && Build.VERSION.SDK_INT >= 21) {
-                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_chat_preview, LocaleController.getString("AccActionChatPreview", R.string.AccActionChatPreview)));
+                accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_chat_preview, LocaleController.getString(R.string.AccActionChatPreview)));
             }
         }
         CheckBox2 checkBox2 = this.checkBox;
@@ -1623,15 +1624,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         super.onPopulateAccessibilityEvent(accessibilityEvent);
         StringBuilder sb = new StringBuilder();
         if (this.currentDialogFolderId == 1) {
-            sb.append(LocaleController.getString("ArchivedChats", R.string.ArchivedChats));
+            sb.append(LocaleController.getString(R.string.ArchivedChats));
             sb.append(". ");
         } else {
             if (this.encryptedChat != null) {
-                sb.append(LocaleController.getString("AccDescrSecretChat", R.string.AccDescrSecretChat));
+                sb.append(LocaleController.getString(R.string.AccDescrSecretChat));
                 sb.append(". ");
             }
             if (this.isTopic && this.forumTopic != null) {
-                sb.append(LocaleController.getString("AccDescrTopic", R.string.AccDescrTopic));
+                sb.append(LocaleController.getString(R.string.AccDescrTopic));
                 sb.append(". ");
                 sb.append(this.forumTopic.title);
                 sb.append(". ");
@@ -1639,17 +1640,17 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 TLRPC$User tLRPC$User = this.user;
                 if (tLRPC$User != null) {
                     if (UserObject.isReplyUser(tLRPC$User)) {
-                        sb.append(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
+                        sb.append(LocaleController.getString(R.string.RepliesTitle));
                     } else if (UserObject.isAnonymous(this.user)) {
                         sb.append(LocaleController.getString(R.string.AnonymousForward));
                     } else {
                         if (this.user.bot) {
-                            sb.append(LocaleController.getString("Bot", R.string.Bot));
+                            sb.append(LocaleController.getString(R.string.Bot));
                             sb.append(". ");
                         }
                         TLRPC$User tLRPC$User2 = this.user;
                         if (tLRPC$User2.self) {
-                            sb.append(LocaleController.getString("SavedMessages", R.string.SavedMessages));
+                            sb.append(LocaleController.getString(R.string.SavedMessages));
                         } else {
                             sb.append(ContactsController.formatName(tLRPC$User2.first_name, tLRPC$User2.last_name));
                         }
@@ -1659,9 +1660,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     TLRPC$Chat tLRPC$Chat = this.chat;
                     if (tLRPC$Chat != null) {
                         if (tLRPC$Chat.broadcast) {
-                            sb.append(LocaleController.getString("AccDescrChannel", R.string.AccDescrChannel));
+                            sb.append(LocaleController.getString(R.string.AccDescrChannel));
                         } else {
-                            sb.append(LocaleController.getString("AccDescrGroup", R.string.AccDescrGroup));
+                            sb.append(LocaleController.getString(R.string.AccDescrGroup));
                         }
                         sb.append(". ");
                         sb.append(this.chat.title);
@@ -1671,15 +1672,15 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
         }
         if (this.drawVerified) {
-            sb.append(LocaleController.getString("AccDescrVerified", R.string.AccDescrVerified));
+            sb.append(LocaleController.getString(R.string.AccDescrVerified));
             sb.append(". ");
         }
         if (this.dialogMuted) {
-            sb.append(LocaleController.getString("AccDescrNotificationsMuted", R.string.AccDescrNotificationsMuted));
+            sb.append(LocaleController.getString(R.string.AccDescrNotificationsMuted));
             sb.append(". ");
         }
         if (isOnline()) {
-            sb.append(LocaleController.getString("AccDescrUserOnline", R.string.AccDescrUserOnline));
+            sb.append(LocaleController.getString(R.string.AccDescrUserOnline));
             sb.append(". ");
         }
         int i = this.unreadCount;
@@ -1693,7 +1694,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             sb.append(". ");
         }
         if (this.reactionMentionCount > 0) {
-            sb.append(LocaleController.getString("AccDescrMentionReaction", R.string.AccDescrMentionReaction));
+            sb.append(LocaleController.getString(R.string.AccDescrMentionReaction));
             sb.append(". ");
         }
         MessageObject messageObject = this.message;
@@ -1976,7 +1977,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return null;
         }
         if (this.message.isOutOwner()) {
-            return LocaleController.getString("FromYou", R.string.FromYou);
+            return LocaleController.getString(R.string.FromYou);
         }
         if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
             return AndroidUtilities.removeDiacritics(UserObject.getFirstName(user).replace("\n", ""));
@@ -1986,11 +1987,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return AndroidUtilities.removeDiacritics(str2);
         }
         if (tLRPC$User == null) {
-            return (chat == null || (str = chat.title) == null) ? "DELETED" : AndroidUtilities.removeDiacritics(str.replace("\n", ""));
+            if (chat != null && (str = chat.title) != null) {
+                return AndroidUtilities.removeDiacritics(str.replace("\n", ""));
+            }
+            return "DELETED";
         }
         if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
             if (UserObject.isDeleted(tLRPC$User)) {
-                return LocaleController.getString("HiddenName", R.string.HiddenName);
+                return LocaleController.getString(R.string.HiddenName);
             }
             return AndroidUtilities.removeDiacritics(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", ""));
         }
@@ -2001,7 +2005,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         TLRPC$Message tLRPC$Message;
         CharSequence charSequence2;
         String formatPluralString;
-        String formatPluralString2;
         CharSequence charSequence3;
         String str2;
         SpannableStringBuilder valueOf;
@@ -2045,12 +2048,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 str2 = "🎤 ";
             } else if (captionMessage.isMusic()) {
                 str2 = "🎧 ";
+            } else if (captionMessage.isPhoto()) {
+                str2 = "🖼 ";
             } else {
-                str2 = captionMessage.isPhoto() ? "🖼 " : "📎 ";
+                str2 = "📎 ";
             }
             if (captionMessage.hasHighlightedWords() && !TextUtils.isEmpty(captionMessage.messageOwner.message)) {
                 CharSequence charSequence7 = captionMessage.messageTrimmedToHighlight;
-                int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp((this.messagePaddingStart + 23) + 24);
+                int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(this.messagePaddingStart + 47);
                 if (this.hasNameInMessage) {
                     if (!TextUtils.isEmpty(charSequence)) {
                         measuredWidth = (int) (measuredWidth - this.currentMessagePaint.measureText(charSequence.toString()));
@@ -2087,53 +2092,39 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             TLRPC$MessageMedia tLRPC$MessageMedia = messageObject3.messageOwner.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
                 TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia;
-                if (Build.VERSION.SDK_INT >= 18) {
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = tLRPC$TL_messageMediaPoll.poll.question;
-                    if (tLRPC$TL_textWithEntities == null || tLRPC$TL_textWithEntities.entities == null) {
-                        charSequence2 = String.format("📊 \u2068%s\u2069", tLRPC$TL_textWithEntities.text);
-                    } else {
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
-                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = tLRPC$TL_messageMediaPoll.poll.question;
-                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities2.entities, tLRPC$TL_textWithEntities2.text, spannableStringBuilder2);
-                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                        charSequence2 = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableStringBuilder2).append((CharSequence) "\u2069");
-                    }
+                TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = tLRPC$TL_messageMediaPoll.poll.question;
+                if (tLRPC$TL_textWithEntities == null || tLRPC$TL_textWithEntities.entities == null) {
+                    charSequence2 = String.format("📊 \u2068%s\u2069", tLRPC$TL_textWithEntities.text);
                 } else {
-                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities3 = tLRPC$TL_messageMediaPoll.poll.question;
-                    if (tLRPC$TL_textWithEntities3 == null || tLRPC$TL_textWithEntities3.entities == null) {
-                        charSequence2 = String.format("📊 %s", tLRPC$TL_textWithEntities3.text);
-                    } else {
-                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
-                        TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities4 = tLRPC$TL_messageMediaPoll.poll.question;
-                        MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities4.entities, tLRPC$TL_textWithEntities4.text, spannableStringBuilder3);
-                        MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder3, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
-                        charSequence2 = new SpannableStringBuilder("📊 ").append((CharSequence) spannableStringBuilder3);
-                    }
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(tLRPC$TL_messageMediaPoll.poll.question.text.replace('\n', ' '));
+                    TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2 = tLRPC$TL_messageMediaPoll.poll.question;
+                    MediaDataController.addTextStyleRuns(tLRPC$TL_textWithEntities2.entities, tLRPC$TL_textWithEntities2.text, spannableStringBuilder2);
+                    MediaDataController.addAnimatedEmojiSpans(tLRPC$TL_messageMediaPoll.poll.question.entities, spannableStringBuilder2, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt());
+                    charSequence2 = new SpannableStringBuilder("📊 \u2068").append((CharSequence) spannableStringBuilder2).append((CharSequence) "\u2069");
                 }
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
-                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title) : String.format("🎮 %s", tLRPC$MessageMedia.game.title);
+                charSequence2 = String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title);
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
                 charSequence2 = tLRPC$MessageMedia.title;
             } else if (messageObject3.type == 14) {
-                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle()) : String.format("🎧 %s - %s", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
+                charSequence2 = String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
             } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPaidMedia) {
                 int size = ((TLRPC$TL_messageMediaPaidMedia) tLRPC$MessageMedia).extended_media.size();
                 if (this.hasVideoThumb) {
-                    formatPluralString2 = size > 1 ? LocaleController.formatPluralString("Media", size, new Object[0]) : LocaleController.getString(R.string.AttachVideo);
+                    formatPluralString = size > 1 ? LocaleController.formatPluralString("Media", size, new Object[0]) : LocaleController.getString(R.string.AttachVideo);
                 } else {
-                    formatPluralString2 = size > 1 ? LocaleController.formatPluralString("Photos", size, new Object[0]) : LocaleController.getString(R.string.AttachPhoto);
+                    formatPluralString = size > 1 ? LocaleController.formatPluralString("Photos", size, new Object[0]) : LocaleController.getString(R.string.AttachPhoto);
                 }
-                charSequence2 = StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.AttachPaidMedia, formatPluralString2));
+                charSequence2 = StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.AttachPaidMedia, formatPluralString));
                 i2 = Theme.key_chats_actionMessage;
             } else if (this.thumbsCount > 1) {
                 if (this.hasVideoThumb) {
                     ArrayList<MessageObject> arrayList2 = this.groupMessages;
-                    formatPluralString = LocaleController.formatPluralString("Media", arrayList2 == null ? 0 : arrayList2.size(), new Object[0]);
+                    charSequence2 = LocaleController.formatPluralString("Media", arrayList2 == null ? 0 : arrayList2.size(), new Object[0]);
                 } else {
                     ArrayList<MessageObject> arrayList3 = this.groupMessages;
-                    formatPluralString = LocaleController.formatPluralString("Photos", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
+                    charSequence2 = LocaleController.formatPluralString("Photos", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
                 }
-                charSequence2 = formatPluralString;
                 i2 = Theme.key_chats_actionMessage;
             } else {
                 charSequence2 = charSequence4.toString();
@@ -2146,16 +2137,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 charSequence2 = applyThumbs(charSequence2);
             }
             SpannableStringBuilder formatInternal = formatInternal(i, charSequence2, charSequence);
-            if (isForumCell()) {
-                return formatInternal;
+            if (!isForumCell()) {
+                try {
+                    formatInternal.setSpan(new ForegroundColorSpanThemable(i2, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, formatInternal.length(), 33);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
             }
-            try {
-                formatInternal.setSpan(new ForegroundColorSpanThemable(i2, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, formatInternal.length(), 33);
-                return formatInternal;
-            } catch (Exception e) {
-                FileLog.e(e);
-                return formatInternal;
-            }
+            return formatInternal;
         }
         MessageObject messageObject4 = this.message;
         CharSequence charSequence8 = messageObject4.messageOwner.message;
@@ -2165,7 +2154,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (charSequence9 != null) {
                     charSequence8 = charSequence9;
                 }
-                int measuredWidth2 = getMeasuredWidth() - AndroidUtilities.dp((this.messagePaddingStart + 23) + 10);
+                int measuredWidth2 = getMeasuredWidth() - AndroidUtilities.dp(this.messagePaddingStart + 33);
                 if (this.hasNameInMessage) {
                     if (!TextUtils.isEmpty(charSequence)) {
                         measuredWidth2 = (int) (measuredWidth2 - this.currentMessagePaint.measureText(charSequence.toString()));
@@ -2181,22 +2170,22 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 }
                 charSequence8 = AndroidUtilities.replaceNewLines(charSequence8);
             }
-            ?? spannableStringBuilder4 = new SpannableStringBuilder(charSequence8);
+            ?? spannableStringBuilder3 = new SpannableStringBuilder(charSequence8);
             MessageObject messageObject5 = this.message;
             if (messageObject5 != null) {
                 messageObject5.spoilLoginCode();
             }
-            MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder4, 264);
+            MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder3, 264);
             MessageObject messageObject6 = this.message;
             if (messageObject6 != null && (tLRPC$Message = messageObject6.messageOwner) != null) {
                 ArrayList<TLRPC$MessageEntity> arrayList4 = tLRPC$Message.entities;
                 TextPaint textPaint2 = this.currentMessagePaint;
-                MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder4, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
+                MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder3, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
             }
             if (z) {
-                spannableStringBuilder4 = applyThumbs(spannableStringBuilder4);
+                spannableStringBuilder3 = applyThumbs(spannableStringBuilder3);
             }
-            return formatInternal(i, spannableStringBuilder4, charSequence);
+            return formatInternal(i, spannableStringBuilder3, charSequence);
         }
         return new SpannableStringBuilder();
     }
@@ -2350,6 +2339,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
 
         public void formatTopicsNames(int i, MessageObject messageObject, TLRPC$Chat tLRPC$Chat) {
+            long j;
             boolean z;
             int i2;
             int id = (messageObject == null || tLRPC$Chat == null) ? 0 : messageObject.getId();
@@ -2374,7 +2364,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                             }
                         }));
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                        long j = 0;
                         if (messageObject != null) {
                             j = MessageObject.getTopicId(i, messageObject.messageOwner, true);
                             TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, j);
@@ -2401,6 +2390,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                                 z = false;
                             }
                         } else {
+                            j = 0;
                             z = false;
                             i2 = 0;
                         }
@@ -2425,7 +2415,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     }
                     if (!MessagesController.getInstance(i).getTopicsController().endIsReached(tLRPC$Chat.id)) {
                         MessagesController.getInstance(i).getTopicsController().preloadTopics(tLRPC$Chat.id);
-                        this.formattedNames = LocaleController.getString("Loading", R.string.Loading);
+                        this.formattedNames = LocaleController.getString(R.string.Loading);
                         this.isLoadingState = true;
                         return;
                     }

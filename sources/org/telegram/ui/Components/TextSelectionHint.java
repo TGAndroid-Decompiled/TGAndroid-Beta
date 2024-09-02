@@ -141,6 +141,7 @@ public class TextSelectionHint extends View {
     @Override
     public void onDraw(Canvas canvas) {
         int i;
+        Path.Direction direction;
         float f;
         if (this.textLayout == null) {
             return;
@@ -170,8 +171,10 @@ public class TextSelectionHint extends View {
         float f3 = f2 / 2.0f;
         canvas.scale(interpolation, interpolation, f3, f3);
         this.path.reset();
-        this.path.addCircle(f3, f3, f3, Path.Direction.CCW);
-        this.path.addRect(0.0f, 0.0f, f3, f3, Path.Direction.CCW);
+        Path path = this.path;
+        Path.Direction direction2 = Path.Direction.CCW;
+        path.addCircle(f3, f3, f3, direction2);
+        this.path.addRect(0.0f, 0.0f, f3, f3, direction2);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         int lineForOffset2 = this.textLayout.getLineForOffset(this.currentStart);
@@ -179,11 +182,13 @@ public class TextSelectionHint extends View {
         int lineBottom2 = this.textLayout.getLineBottom(lineForOffset2);
         if (this.currentStart == this.animateToStart) {
             i = lineBottom2;
+            direction = direction2;
             f = f3;
             roundedRect(this.path, -AndroidUtilities.dp(4.0f), this.textLayout.getLineTop(lineForOffset2), 0.0f, this.textLayout.getLineBottom(lineForOffset2), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), true, false);
             canvas.drawPath(this.path, this.selectionPaint);
         } else {
             i = lineBottom2;
+            direction = direction2;
             f = f3;
         }
         canvas.save();
@@ -191,8 +196,9 @@ public class TextSelectionHint extends View {
         float f4 = f;
         canvas.scale(interpolation, interpolation, f4, f4);
         this.path.reset();
-        this.path.addCircle(f4, f4, f4, Path.Direction.CCW);
-        this.path.addRect(f4, 0.0f, f2, f4, Path.Direction.CCW);
+        Path.Direction direction3 = direction;
+        this.path.addCircle(f4, f4, f4, direction3);
+        this.path.addRect(f4, 0.0f, f2, f4, direction3);
         canvas.drawPath(this.path, this.textPaint);
         canvas.restore();
         canvas.restore();

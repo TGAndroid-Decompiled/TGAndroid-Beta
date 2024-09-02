@@ -110,7 +110,7 @@ public class StoryLinkPreviewDialog extends Dialog {
                 StoryLinkPreviewDialog.this.lambda$new$0(view);
             }
         });
-        LinearLayout linearLayout = new LinearLayout(this, context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
             protected void onMeasure(int i2, int i3) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i3), AndroidUtilities.dp(800.0f)), 1073741824));
@@ -237,19 +237,42 @@ public class StoryLinkPreviewDialog extends Dialog {
             frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    int i2 = Build.VERSION.SDK_INT;
-                    if (i2 < 30) {
-                        StoryLinkPreviewDialog.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+                    int stableInsetLeft;
+                    int stableInsetTop;
+                    int stableInsetRight;
+                    int stableInsetBottom;
+                    WindowInsets consumeSystemWindowInsets;
+                    WindowInsets windowInsets2;
+                    Insets insets;
+                    int i2;
+                    int i3;
+                    int i4;
+                    int i5;
+                    int i6 = Build.VERSION.SDK_INT;
+                    if (i6 < 30) {
+                        Rect rect = StoryLinkPreviewDialog.this.insets;
+                        stableInsetLeft = windowInsets.getStableInsetLeft();
+                        stableInsetTop = windowInsets.getStableInsetTop();
+                        stableInsetRight = windowInsets.getStableInsetRight();
+                        stableInsetBottom = windowInsets.getStableInsetBottom();
+                        rect.set(stableInsetLeft, stableInsetTop, stableInsetRight, stableInsetBottom);
                     } else {
-                        Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
-                        StoryLinkPreviewDialog.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
+                        insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
+                        Rect rect2 = StoryLinkPreviewDialog.this.insets;
+                        i2 = insets.left;
+                        i3 = insets.top;
+                        i4 = insets.right;
+                        i5 = insets.bottom;
+                        rect2.set(i2, i3, i4, i5);
                     }
                     StoryLinkPreviewDialog.this.windowView.setPadding(StoryLinkPreviewDialog.this.insets.left, StoryLinkPreviewDialog.this.insets.top, StoryLinkPreviewDialog.this.insets.right, StoryLinkPreviewDialog.this.insets.bottom);
                     StoryLinkPreviewDialog.this.windowView.requestLayout();
-                    if (i2 >= 30) {
-                        return WindowInsets.CONSUMED;
+                    if (i6 >= 30) {
+                        windowInsets2 = WindowInsets.CONSUMED;
+                        return windowInsets2;
                     }
-                    return windowInsets.consumeSystemWindowInsets();
+                    consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+                    return consumeSystemWindowInsets;
                 }
             });
         }
@@ -261,17 +284,17 @@ public class StoryLinkPreviewDialog extends Dialog {
 
     public void lambda$new$1(int i, View view) {
         LinkPreview.WebPagePreview webPagePreview = this.link;
-        boolean z = !webPagePreview.captionAbove;
-        webPagePreview.captionAbove = z;
-        this.captionButton.setState(!z, true);
+        boolean z = webPagePreview.captionAbove;
+        webPagePreview.captionAbove = !z;
+        this.captionButton.setState(z, true);
         this.linkView.set(i, this.link, true);
     }
 
     public void lambda$new$2(int i, View view) {
         LinkPreview.WebPagePreview webPagePreview = this.link;
-        boolean z = !webPagePreview.largePhoto;
-        webPagePreview.largePhoto = z;
-        this.photoButton.setState(!z, true);
+        boolean z = webPagePreview.largePhoto;
+        webPagePreview.largePhoto = !z;
+        this.photoButton.setState(z, true);
         this.linkView.set(i, this.link, true);
     }
 
@@ -296,18 +319,14 @@ public class StoryLinkPreviewDialog extends Dialog {
         attributes.gravity = 119;
         attributes.dimAmount = 0.0f;
         int i = attributes.flags & (-3);
-        attributes.flags = i;
         attributes.softInputMode = 16;
-        int i2 = i | 131072;
-        attributes.flags = i2;
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
-            attributes.flags = i2 | (-1946091264);
+        attributes.flags = 131072 | i;
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 21) {
+            attributes.flags = i | (-1945960192);
         }
-        int i4 = attributes.flags | 1024;
-        attributes.flags = i4;
-        attributes.flags = i4 | 128;
-        if (i3 >= 28) {
+        attributes.flags |= 1152;
+        if (i2 >= 28) {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
@@ -320,10 +339,7 @@ public class StoryLinkPreviewDialog extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.openProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
         this.openAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -448,7 +464,7 @@ public class StoryLinkPreviewDialog extends Dialog {
     }
 
     public void setStoryPreviewView(final PreviewView previewView) {
-        this.backgroundView.setImageDrawable(new Drawable(this) {
+        this.backgroundView.setImageDrawable(new Drawable() {
             @Override
             public int getOpacity() {
                 return -2;

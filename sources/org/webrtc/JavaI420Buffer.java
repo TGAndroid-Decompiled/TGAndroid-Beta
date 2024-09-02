@@ -63,18 +63,17 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
         int i3 = (i2 + 1) / 2;
         int i4 = (i + 1) / 2;
         int i5 = i * i2;
-        int i6 = i5 + 0;
-        int i7 = i4 * i3;
-        int i8 = i6 + i7;
-        final ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer(i5 + (i4 * 2 * i3));
+        int i6 = i4 * i3;
+        int i7 = i5 + i6;
+        final ByteBuffer nativeAllocateByteBuffer = JniCommon.nativeAllocateByteBuffer((i4 * 2 * i3) + i5);
         nativeAllocateByteBuffer.position(0);
-        nativeAllocateByteBuffer.limit(i6);
+        nativeAllocateByteBuffer.limit(i5);
         ByteBuffer slice = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i6);
-        nativeAllocateByteBuffer.limit(i8);
+        nativeAllocateByteBuffer.position(i5);
+        nativeAllocateByteBuffer.limit(i7);
         ByteBuffer slice2 = nativeAllocateByteBuffer.slice();
-        nativeAllocateByteBuffer.position(i8);
-        nativeAllocateByteBuffer.limit(i8 + i7);
+        nativeAllocateByteBuffer.position(i7);
+        nativeAllocateByteBuffer.limit(i7 + i6);
         return new JavaI420Buffer(i, i2, slice, i, slice2, i4, nativeAllocateByteBuffer.slice(), i4, new Runnable() {
             @Override
             public final void run() {

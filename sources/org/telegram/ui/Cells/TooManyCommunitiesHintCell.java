@@ -47,7 +47,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         textPaint.setTypeface(AndroidUtilities.bold());
         final Paint paint = new Paint(1);
         final String str = "500";
-        FrameLayout frameLayout = new FrameLayout(this, context) {
+        FrameLayout frameLayout = new FrameLayout(context) {
             RectF rect = new RectF();
 
             @Override
@@ -68,7 +68,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         frameLayout.setWillNotDraw(false);
         this.imageLayout.addView(this.imageView, LayoutHelper.createFrame(-2, -2, 1));
         addView(this.imageLayout, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
-        this.headerTextView.setText(LocaleController.getString("TooManyCommunities", R.string.TooManyCommunities));
+        this.headerTextView.setText(LocaleController.getString(R.string.TooManyCommunities));
         this.imageView.setImageResource(R.drawable.groups_limit1);
     }
 

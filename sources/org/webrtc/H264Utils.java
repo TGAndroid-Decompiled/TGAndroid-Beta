@@ -21,10 +21,16 @@ class H264Utils {
     }
 
     public static Map<String, String> getDefaultH264Params(boolean z) {
+        String str;
         HashMap hashMap = new HashMap();
         hashMap.put("level-asymmetry-allowed", "1");
         hashMap.put("packetization-mode", "1");
-        hashMap.put("profile-level-id", z ? "640c1f" : "42e01f");
+        if (z) {
+            str = "640c1f";
+        } else {
+            str = "42e01f";
+        }
+        hashMap.put("profile-level-id", str);
         return hashMap;
     }
 

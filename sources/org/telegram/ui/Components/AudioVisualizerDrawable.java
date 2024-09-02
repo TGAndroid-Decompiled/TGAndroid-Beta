@@ -25,6 +25,7 @@ public class AudioVisualizerDrawable {
     public float WAVE_RADIUS = AndroidUtilities.dp(12.0f) * 0.36f;
     public float ANIMATION_DURATION = 120.0f;
     public int ALPHA = 61;
+    final int MAX_SAMPLE_SUM = 6;
     private float[] lastAmplitude = new float[6];
     private final CircleBezierDrawable[] drawables = new CircleBezierDrawable[2];
 
@@ -73,10 +74,7 @@ public class AudioVisualizerDrawable {
                     fArr[i4] = (this.random.nextInt() % 500) / 1000.0f;
                 }
             }
-            float f2 = this.ANIMATION_DURATION;
-            if (z3) {
-                f2 *= 2.0f;
-            }
+            float f2 = z3 ? this.ANIMATION_DURATION * 2.0f : this.ANIMATION_DURATION;
             if (this.lastAmplitudeCount > 6) {
                 float f3 = 0.0f;
                 for (int i5 = 0; i5 < 6; i5++) {
@@ -103,8 +101,9 @@ public class AudioVisualizerDrawable {
                 i++;
             }
             float[] fArr4 = this.animateTo;
-            fArr4[7] = z ? 1.0f : 0.0f;
-            this.dt[7] = (fArr4[7] - this.current[7]) / 120.0f;
+            float f5 = z ? 1.0f : 0.0f;
+            fArr4[7] = f5;
+            this.dt[7] = (f5 - this.current[7]) / 120.0f;
         }
     }
 
@@ -135,35 +134,37 @@ public class AudioVisualizerDrawable {
                 float[] fArr = this.animateTo;
                 float f3 = fArr[i];
                 float[] fArr2 = this.current;
-                if (f3 != fArr2[i]) {
-                    float f4 = fArr2[i];
+                float f4 = fArr2[i];
+                if (f3 != f4) {
                     float[] fArr3 = this.dt;
-                    fArr2[i] = f4 + (fArr3[i] * 16.0f);
-                    if ((fArr3[i] > 0.0f && fArr2[i] > fArr[i]) || (fArr3[i] < 0.0f && fArr2[i] < fArr[i])) {
+                    float f5 = f4 + (fArr3[i] * 16.0f);
+                    fArr2[i] = f5;
+                    float f6 = fArr3[i];
+                    if ((f6 > 0.0f && f5 > fArr[i]) || (f6 < 0.0f && f5 < fArr[i])) {
                         fArr2[i] = fArr[i];
                     }
                     this.parentView.invalidate();
                 }
             }
             if (this.idleScaleInc) {
-                float f5 = this.idleScale + 0.02f;
-                this.idleScale = f5;
-                if (f5 > 1.0f) {
+                float f7 = this.idleScale + 0.02f;
+                this.idleScale = f7;
+                if (f7 > 1.0f) {
                     this.idleScaleInc = false;
                     this.idleScale = 1.0f;
                 }
             } else {
-                float f6 = this.idleScale - 0.02f;
-                this.idleScale = f6;
-                if (f6 < 0.0f) {
+                float f8 = this.idleScale - 0.02f;
+                this.idleScale = f8;
+                if (f8 < 0.0f) {
                     this.idleScaleInc = true;
                     this.idleScale = 0.0f;
                 }
             }
             float[] fArr4 = this.current;
-            float f7 = fArr4[7];
-            float f8 = fArr4[6] * fArr4[0];
-            if (f7 == 0.0f && f8 == 0.0f) {
+            float f9 = fArr4[7];
+            float f10 = fArr4[6] * fArr4[0];
+            if (f9 == 0.0f && f10 == 0.0f) {
                 return;
             }
             for (int i2 = 0; i2 < 3; i2++) {
@@ -174,7 +175,7 @@ public class AudioVisualizerDrawable {
                 this.tmpWaveform[i3] = (int) (this.current[i3 + 3] * this.WAVE_RADIUS);
             }
             this.drawables[1].setAdditionals(this.tmpWaveform);
-            float dp = AndroidUtilities.dp(22.0f) + (AndroidUtilities.dp(4.0f) * f8) + (this.IDLE_RADIUS * f7);
+            float dp = AndroidUtilities.dp(22.0f) + (AndroidUtilities.dp(4.0f) * f10) + (this.IDLE_RADIUS * f9);
             if (dp > AndroidUtilities.dp(26.0f)) {
                 dp = AndroidUtilities.dp(26.0f);
             }
@@ -185,17 +186,17 @@ public class AudioVisualizerDrawable {
             canvas.save();
             double d = this.rotation;
             Double.isNaN(d);
-            float f9 = (float) (d + 0.6d);
-            this.rotation = f9;
-            canvas.rotate(f9, f, f2);
+            float f11 = (float) (d + 0.6d);
+            this.rotation = f11;
+            canvas.rotate(f11, f, f2);
             canvas.save();
-            float f10 = (this.idleScale * 0.04f) + 1.0f;
-            canvas.scale(f10, f10, f, f2);
+            float f12 = (this.idleScale * 0.04f) + 1.0f;
+            canvas.scale(f12, f12, f, f2);
             this.drawables[0].draw(f, f2, canvas, this.p1);
             canvas.restore();
             canvas.rotate(60.0f, f, f2);
-            float f11 = ((1.0f - this.idleScale) * 0.04f) + 1.0f;
-            canvas.scale(f11, f11, f, f2);
+            float f13 = ((1.0f - this.idleScale) * 0.04f) + 1.0f;
+            canvas.scale(f13, f13, f, f2);
             this.drawables[1].draw(f, f2, canvas, this.p1);
             canvas.restore();
         }

@@ -648,7 +648,7 @@ public class Bulletin {
     }
 
     private static boolean isTransitionsEnabled() {
-        return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && Build.VERSION.SDK_INT >= 18;
+        return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true);
     }
 
     public void updatePosition() {
@@ -1036,11 +1036,11 @@ public class Bulletin {
             boolean isWideScreen = isWideScreen();
             int i = isWideScreen ? this.wideScreenWidth : -1;
             if (isWideScreen) {
-                r3 = (this.top ? 48 : 80) | this.wideScreenGravity;
-            } else if (!this.top) {
-                r3 = 80;
+                r2 = (this.top ? 48 : 80) | this.wideScreenGravity;
+            } else if (this.top) {
+                r2 = 48;
             }
-            setLayoutParams(LayoutHelper.createFrame(i, -2, r3));
+            setLayoutParams(LayoutHelper.createFrame(i, -2, r2));
         }
 
         private boolean isWideScreen() {
@@ -1196,11 +1196,11 @@ public class Bulletin {
                 ofFloat.setDuration(this.duration);
                 ofFloat.setInterpolator(Easings.easeOutQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter(this) {
+                    ofFloat.addListener(new AnimatorListenerAdapter() {
                         final Runnable val$endAction;
                         final Runnable val$startAction;
 
-                        AnonymousClass1(DefaultTransition this, Runnable runnable3, Runnable runnable22) {
+                        AnonymousClass1(Runnable runnable3, Runnable runnable22) {
                             r2 = runnable3;
                             r3 = runnable22;
                         }
@@ -1237,7 +1237,7 @@ public class Bulletin {
                 final Runnable val$endAction;
                 final Runnable val$startAction;
 
-                AnonymousClass1(DefaultTransition this, Runnable runnable3, Runnable runnable22) {
+                AnonymousClass1(Runnable runnable3, Runnable runnable22) {
                     r2 = runnable3;
                     r3 = runnable22;
                 }
@@ -1269,11 +1269,11 @@ public class Bulletin {
                 ofFloat.setDuration(175L);
                 ofFloat.setInterpolator(Easings.easeInQuad);
                 if (runnable != null || runnable2 != null) {
-                    ofFloat.addListener(new AnimatorListenerAdapter(this) {
+                    ofFloat.addListener(new AnimatorListenerAdapter() {
                         final Runnable val$endAction;
                         final Runnable val$startAction;
 
-                        AnonymousClass2(DefaultTransition this, Runnable runnable3, Runnable runnable22) {
+                        AnonymousClass2(Runnable runnable3, Runnable runnable22) {
                             r2 = runnable3;
                             r3 = runnable22;
                         }
@@ -1310,7 +1310,7 @@ public class Bulletin {
                 final Runnable val$endAction;
                 final Runnable val$startAction;
 
-                AnonymousClass2(DefaultTransition this, Runnable runnable3, Runnable runnable22) {
+                AnonymousClass2(Runnable runnable3, Runnable runnable22) {
                     r2 = runnable3;
                     r3 = runnable22;
                 }
@@ -1976,8 +1976,8 @@ public class Bulletin {
             this.imageView = rLottieImageView;
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
-            AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(this, context) {
-                AnonymousClass1(LottieLayout this, Context context2) {
+            AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(context) {
+                AnonymousClass1(Context context2) {
                     super(context2);
                     setDisablePaddingsOffset(true);
                 }
@@ -2001,7 +2001,7 @@ public class Bulletin {
         }
 
         public class AnonymousClass1 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass1(LottieLayout this, Context context2) {
+            AnonymousClass1(Context context2) {
                 super(context2);
                 setDisablePaddingsOffset(true);
             }
@@ -2107,8 +2107,8 @@ public class Bulletin {
             this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
             addView(this.avatarsImageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
             if (!z) {
-                AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(this, context) {
-                    AnonymousClass1(UsersLayout this, Context context2) {
+                AnonymousClass1 anonymousClass1 = new LinkSpanDrawable.LinksTextView(context) {
+                    AnonymousClass1(Context context2) {
                         super(context2);
                     }
 
@@ -2130,8 +2130,8 @@ public class Bulletin {
                 this.linearLayout = linearLayout;
                 linearLayout.setOrientation(1);
                 addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
-                AnonymousClass2 anonymousClass2 = new LinkSpanDrawable.LinksTextView(this, context2) {
-                    AnonymousClass2(UsersLayout this, Context context2) {
+                AnonymousClass2 anonymousClass2 = new LinkSpanDrawable.LinksTextView(context2) {
+                    AnonymousClass2(Context context2) {
                         super(context2);
                     }
 
@@ -2142,17 +2142,21 @@ public class Bulletin {
                 };
                 this.textView = anonymousClass2;
                 NotificationCenter.listenEmojiLoading(anonymousClass2);
-                this.textView.setTypeface(Typeface.SANS_SERIF);
+                TextView textView = this.textView;
+                Typeface typeface = Typeface.SANS_SERIF;
+                textView.setTypeface(typeface);
                 this.textView.setTextSize(1, 14.0f);
                 this.textView.setTypeface(AndroidUtilities.bold());
-                this.textView.setEllipsize(TextUtils.TruncateAt.END);
+                TextView textView2 = this.textView;
+                TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+                textView2.setEllipsize(truncateAt);
                 this.textView.setMaxLines(1);
                 this.linearLayout.addView(this.textView);
                 LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context2);
                 this.subtitleView = linksTextView;
-                linksTextView.setTypeface(Typeface.SANS_SERIF);
+                linksTextView.setTypeface(typeface);
                 this.subtitleView.setTextSize(1, 12.0f);
-                this.subtitleView.setEllipsize(TextUtils.TruncateAt.END);
+                this.subtitleView.setEllipsize(truncateAt);
                 this.subtitleView.setSingleLine(false);
                 this.subtitleView.setMaxLines(3);
                 this.subtitleView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
@@ -2164,7 +2168,7 @@ public class Bulletin {
         }
 
         public class AnonymousClass1 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass1(UsersLayout this, Context context2) {
+            AnonymousClass1(Context context2) {
                 super(context2);
             }
 
@@ -2175,7 +2179,7 @@ public class Bulletin {
         }
 
         public class AnonymousClass2 extends LinkSpanDrawable.LinksTextView {
-            AnonymousClass2(UsersLayout this, Context context2) {
+            AnonymousClass2(Context context2) {
                 super(context2);
             }
 
@@ -2263,7 +2267,7 @@ public class Bulletin {
                 this.undoTextView.setTextSize(1, 14.0f);
                 this.undoTextView.setTypeface(AndroidUtilities.bold());
                 this.undoTextView.setTextColor(themedColor);
-                this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
+                this.undoTextView.setText(LocaleController.getString(R.string.Undo));
                 this.undoTextView.setGravity(16);
                 ViewHelper.setPaddingRelative(this.undoTextView, z2 ? 34.0f : 12.0f, 8.0f, 12.0f, 8.0f);
                 addView(this.undoTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 16, 8.0f, 0.0f, 8.0f, 0.0f));
@@ -2500,7 +2504,7 @@ public class Bulletin {
                     bulletinWindowLayout.setSystemUiVisibility(1280);
                 }
             }
-            Bulletin.addDelegate(bulletinWindowLayout, new Delegate(this) {
+            Bulletin.addDelegate(bulletinWindowLayout, new Delegate() {
                 final Delegate val$delegate;
 
                 @Override
@@ -2528,7 +2532,7 @@ public class Bulletin {
                     Delegate.CC.$default$onShow(this, bulletin);
                 }
 
-                AnonymousClass1(BulletinWindow this, Delegate delegate2) {
+                AnonymousClass1(Delegate delegate2) {
                     r2 = delegate2;
                 }
 
@@ -2564,16 +2568,9 @@ public class Bulletin {
                 attributes.gravity = 51;
                 attributes.dimAmount = 0.0f;
                 int i2 = attributes.flags & (-3);
-                attributes.flags = i2;
-                int i3 = i2 | 8;
-                attributes.flags = i3;
-                if (i >= 19) {
-                    attributes.flags = i3 | 201326592;
-                }
-                int i4 = attributes.flags | 16;
-                attributes.flags = i4;
+                attributes.flags = 201326616 | i2;
                 if (i >= 21) {
-                    attributes.flags = i4 | (-2147417856);
+                    attributes.flags = i2 | (-1946091240);
                 }
                 attributes.flags &= -1025;
                 if (i >= 28) {
@@ -2589,12 +2586,16 @@ public class Bulletin {
         }
 
         public WindowInsets lambda$new$0(View view, WindowInsets windowInsets) {
+            WindowInsets consumeSystemWindowInsets;
+            WindowInsets windowInsets2;
             applyInsets(windowInsets);
             view.requestLayout();
             if (Build.VERSION.SDK_INT >= 30) {
-                return WindowInsets.CONSUMED;
+                windowInsets2 = WindowInsets.CONSUMED;
+                return windowInsets2;
             }
-            return windowInsets.consumeSystemWindowInsets();
+            consumeSystemWindowInsets = windowInsets.consumeSystemWindowInsets();
+            return consumeSystemWindowInsets;
         }
 
         public class AnonymousClass1 implements Delegate {
@@ -2625,7 +2626,7 @@ public class Bulletin {
                 Delegate.CC.$default$onShow(this, bulletin);
             }
 
-            AnonymousClass1(BulletinWindow this, Delegate delegate2) {
+            AnonymousClass1(Delegate delegate2) {
                 r2 = delegate2;
             }
 
@@ -2659,9 +2660,17 @@ public class Bulletin {
         }
 
         private void applyInsets(WindowInsets windowInsets) {
+            int systemWindowInsetLeft;
+            int systemWindowInsetTop;
+            int systemWindowInsetRight;
+            int systemWindowInsetBottom;
             BulletinWindowLayout bulletinWindowLayout = this.container;
             if (bulletinWindowLayout != null) {
-                bulletinWindowLayout.setPadding(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+                systemWindowInsetLeft = windowInsets.getSystemWindowInsetLeft();
+                systemWindowInsetTop = windowInsets.getSystemWindowInsetTop();
+                systemWindowInsetRight = windowInsets.getSystemWindowInsetRight();
+                systemWindowInsetBottom = windowInsets.getSystemWindowInsetBottom();
+                bulletinWindowLayout.setPadding(systemWindowInsetLeft, systemWindowInsetTop, systemWindowInsetRight, systemWindowInsetBottom);
             }
         }
 

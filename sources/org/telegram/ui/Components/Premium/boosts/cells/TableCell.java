@@ -47,6 +47,7 @@ public class TableCell extends FrameLayout {
     private final BackupImageView fromImageView;
     private final TextView fromNameTextView;
     private final TextView fromTextView;
+    private TLRPC$TL_payments_checkedGiftCode giftCode;
     private final TextView giftNameTextView;
     private final TextView giftTextView;
     private final Paint linePaint;
@@ -69,15 +70,15 @@ public class TableCell extends FrameLayout {
         this.roundRect = new RectF();
         paint.setStyle(Paint.Style.STROKE);
         this.resourcesProvider = resourcesProvider;
-        TextView createTextView = createTextView(LocaleController.getString("BoostingFrom", R.string.BoostingFrom), false);
+        TextView createTextView = createTextView(LocaleController.getString(R.string.BoostingFrom), false);
         this.fromNameTextView = createTextView;
-        TextView createTextView2 = createTextView(LocaleController.getString("BoostingTo", R.string.BoostingTo), false);
+        TextView createTextView2 = createTextView(LocaleController.getString(R.string.BoostingTo), false);
         this.toNameTextView = createTextView2;
-        TextView createTextView3 = createTextView(LocaleController.getString("BoostingGift", R.string.BoostingGift), false);
+        TextView createTextView3 = createTextView(LocaleController.getString(R.string.BoostingGift), false);
         this.giftNameTextView = createTextView3;
-        TextView createTextView4 = createTextView(LocaleController.getString("BoostingReason", R.string.BoostingReason), false);
+        TextView createTextView4 = createTextView(LocaleController.getString(R.string.BoostingReason), false);
         this.reasonNameTextView = createTextView4;
-        TextView createTextView5 = createTextView(LocaleController.getString("BoostingDate", R.string.BoostingDate), false);
+        TextView createTextView5 = createTextView(LocaleController.getString(R.string.BoostingDate), false);
         this.dateNameTextView = createTextView5;
         TextView createTextView6 = createTextView(true);
         this.fromTextView = createTextView6;
@@ -191,7 +192,7 @@ public class TableCell extends FrameLayout {
         }
         addView(tableLayout, LayoutHelper.createFrame(-1, -2.0f));
         if (Build.VERSION.SDK_INT >= 21) {
-            tableLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            tableLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
@@ -203,6 +204,7 @@ public class TableCell extends FrameLayout {
     }
 
     public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback<TLObject> callback) {
+        this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
@@ -211,7 +213,7 @@ public class TableCell extends FrameLayout {
         if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "**");
-            spannableStringBuilder.append((CharSequence) LocaleController.getString("BoostingGiveaway", R.string.BoostingGiveaway));
+            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.BoostingGiveaway));
             spannableStringBuilder.append((CharSequence) "**");
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
@@ -265,7 +267,7 @@ public class TableCell extends FrameLayout {
         if (tLRPC$TL_payments_checkedGiftCode.to_id == -1 && tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
             SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
             spannableStringBuilder3.append((CharSequence) "**");
-            spannableStringBuilder3.append((CharSequence) LocaleController.getString("BoostingIncompleteGiveaway", R.string.BoostingIncompleteGiveaway));
+            spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
             spannableStringBuilder3.append((CharSequence) "**");
             this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
@@ -273,7 +275,7 @@ public class TableCell extends FrameLayout {
                     Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
                 }
             }, this.resourcesProvider));
-            this.toTextView.setText(LocaleController.getString("BoostingNoRecipient", R.string.BoostingNoRecipient));
+            this.toTextView.setText(LocaleController.getString(R.string.BoostingNoRecipient));
             this.toTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).leftMargin = 0;
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).rightMargin = 0;

@@ -70,6 +70,7 @@ import org.telegram.ui.FilteredSearchView;
 public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     private Runnable cancelShowMoreAnimation;
     private int currentItemCount;
+    private String currentMessagesQuery;
     public DialogsSearchAdapterDelegate delegate;
     private final DialogsActivity dialogsActivity;
     private int dialogsType;
@@ -101,6 +102,13 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     private long selfUserId;
     public View showMoreHeader;
     int waitingResponseCount;
+    public final int VIEW_TYPE_DIALOG_CELL = 2;
+    public final int VIEW_TYPE_TOPIC_CELL = 3;
+    public final int VIEW_TYPE_LOADING = 4;
+    public final int VIEW_TYPE_HASHTAG_CELL = 5;
+    public final int VIEW_TYPE_CATEGORY_LIST = 6;
+    public final int VIEW_TYPE_ADD_BY_PHONE = 7;
+    public final int VIEW_TYPE_INVITE_CONTACT_CELL = 8;
     private ArrayList<Object> searchResult = new ArrayList<>();
     private final ArrayList<ContactsController.Contact> searchContacts = new ArrayList<>();
     private final ArrayList<TLRPC$TL_forumTopic> searchTopics = new ArrayList<>();
@@ -449,6 +457,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         if (i == this.lastForumReqId && (i2 <= 0 || i2 == this.lastSearchId)) {
             this.waitingResponseCount--;
             if (tLRPC$TL_error == null) {
+                this.currentMessagesQuery = str;
                 TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
                 MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$messages_Messages.users, false);
@@ -596,10 +605,11 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public void lambda$searchMessagesInternal$2(int i, int i2, TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject, TLRPC$TL_messages_searchGlobal tLRPC$TL_messages_searchGlobal, ArrayList arrayList) {
-        boolean z;
+        int i3;
         if (i == this.lastReqId && (i2 <= 0 || i2 == this.lastSearchId)) {
             this.waitingResponseCount--;
             if (tLRPC$TL_error == null) {
+                this.currentMessagesQuery = str;
                 TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
                 MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$messages_Messages.users, false);
@@ -608,26 +618,15 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     this.searchResultMessages.clear();
                 }
                 this.nextSearchRate = tLRPC$messages_Messages.next_rate;
-                for (int i3 = 0; i3 < tLRPC$messages_Messages.messages.size(); i3++) {
-                    TLRPC$Message tLRPC$Message = tLRPC$messages_Messages.messages.get(i3);
-                    int i4 = MessagesController.getInstance(this.currentAccount).deletedHistory.get(MessageObject.getDialogId(tLRPC$Message));
-                    if (i4 == 0 || tLRPC$Message.id > i4) {
-                        MessageObject messageObject = (MessageObject) arrayList.get(i3);
+                for (int i4 = 0; i4 < tLRPC$messages_Messages.messages.size(); i4++) {
+                    TLRPC$Message tLRPC$Message = tLRPC$messages_Messages.messages.get(i4);
+                    int i5 = MessagesController.getInstance(this.currentAccount).deletedHistory.get(MessageObject.getDialogId(tLRPC$Message));
+                    if (i5 == 0 || tLRPC$Message.id > i5) {
+                        MessageObject messageObject = (MessageObject) arrayList.get(i4);
                         if (!this.searchForumResultMessages.isEmpty()) {
-                            int i5 = 0;
-                            while (true) {
-                                if (i5 >= this.searchForumResultMessages.size()) {
-                                    z = false;
-                                    break;
-                                }
-                                MessageObject messageObject2 = this.searchForumResultMessages.get(i5);
-                                if (messageObject2 != null && messageObject != null && messageObject.getId() == messageObject2.getId() && messageObject.getDialogId() == messageObject2.getDialogId()) {
-                                    z = true;
-                                    break;
-                                }
-                                i5++;
-                            }
-                            if (z) {
+                            while (i3 < this.searchForumResultMessages.size()) {
+                                MessageObject messageObject2 = this.searchForumResultMessages.get(i3);
+                                i3 = (messageObject2 == null || messageObject == null || messageObject.getId() != messageObject2.getId() || messageObject.getDialogId() != messageObject2.getDialogId()) ? i3 + 1 : 0;
                             }
                         }
                         this.searchResultMessages.add(messageObject);
@@ -706,7 +705,6 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public static void lambda$loadRecentSearch$7(int i, int i2, final OnRecentSearchLoaded onRecentSearchLoaded) {
-        boolean z;
         try {
             SQLiteCursor queryFinalized = MessagesStorage.getInstance(i).getDatabase().queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
             ArrayList<Long> arrayList = new ArrayList<>();
@@ -722,30 +720,32 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                         int encryptedChatId = DialogObject.getEncryptedChatId(longValue);
                         if (!arrayList3.contains(Integer.valueOf(encryptedChatId))) {
                             arrayList3.add(Integer.valueOf(encryptedChatId));
-                            z = true;
+                            RecentSearchObject recentSearchObject = new RecentSearchObject();
+                            recentSearchObject.did = longValue;
+                            recentSearchObject.date = queryFinalized.intValue(1);
+                            arrayList4.add(recentSearchObject);
+                            longSparseArray.put(recentSearchObject.did, recentSearchObject);
                         }
                     }
-                    z = false;
                 } else if (DialogObject.isUserDialog(longValue)) {
                     if (i2 != 2 && !arrayList.contains(Long.valueOf(longValue))) {
                         arrayList.add(Long.valueOf(longValue));
-                        z = true;
+                        RecentSearchObject recentSearchObject2 = new RecentSearchObject();
+                        recentSearchObject2.did = longValue;
+                        recentSearchObject2.date = queryFinalized.intValue(1);
+                        arrayList4.add(recentSearchObject2);
+                        longSparseArray.put(recentSearchObject2.did, recentSearchObject2);
                     }
-                    z = false;
                 } else {
                     long j = -longValue;
                     if (!arrayList2.contains(Long.valueOf(j))) {
                         arrayList2.add(Long.valueOf(j));
-                        z = true;
+                        RecentSearchObject recentSearchObject22 = new RecentSearchObject();
+                        recentSearchObject22.did = longValue;
+                        recentSearchObject22.date = queryFinalized.intValue(1);
+                        arrayList4.add(recentSearchObject22);
+                        longSparseArray.put(recentSearchObject22.did, recentSearchObject22);
                     }
-                    z = false;
-                }
-                if (z) {
-                    RecentSearchObject recentSearchObject = new RecentSearchObject();
-                    recentSearchObject.did = longValue;
-                    recentSearchObject.date = queryFinalized.intValue(1);
-                    arrayList4.add(recentSearchObject);
-                    longSparseArray.put(recentSearchObject.did, recentSearchObject);
                 }
             }
             queryFinalized.dispose();
@@ -754,9 +754,9 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 ArrayList<TLRPC$EncryptedChat> arrayList6 = new ArrayList<>();
                 MessagesStorage.getInstance(i).getEncryptedChatsInternal(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                 for (int i3 = 0; i3 < arrayList6.size(); i3++) {
-                    RecentSearchObject recentSearchObject2 = (RecentSearchObject) longSparseArray.get(DialogObject.makeEncryptedDialogId(arrayList6.get(i3).id));
-                    if (recentSearchObject2 != null) {
-                        recentSearchObject2.object = arrayList6.get(i3);
+                    RecentSearchObject recentSearchObject3 = (RecentSearchObject) longSparseArray.get(DialogObject.makeEncryptedDialogId(arrayList6.get(i3).id));
+                    if (recentSearchObject3 != null) {
+                        recentSearchObject3.object = arrayList6.get(i3);
                     }
                 }
             }
@@ -767,15 +767,15 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     TLRPC$Chat tLRPC$Chat = arrayList7.get(i4);
                     long j2 = -tLRPC$Chat.id;
                     if (tLRPC$Chat.migrated_to != null) {
-                        RecentSearchObject recentSearchObject3 = (RecentSearchObject) longSparseArray.get(j2);
+                        RecentSearchObject recentSearchObject4 = (RecentSearchObject) longSparseArray.get(j2);
                         longSparseArray.remove(j2);
-                        if (recentSearchObject3 != null) {
-                            arrayList4.remove(recentSearchObject3);
+                        if (recentSearchObject4 != null) {
+                            arrayList4.remove(recentSearchObject4);
                         }
                     } else {
-                        RecentSearchObject recentSearchObject4 = (RecentSearchObject) longSparseArray.get(j2);
-                        if (recentSearchObject4 != null) {
-                            recentSearchObject4.object = tLRPC$Chat;
+                        RecentSearchObject recentSearchObject5 = (RecentSearchObject) longSparseArray.get(j2);
+                        if (recentSearchObject5 != null) {
+                            recentSearchObject5.object = tLRPC$Chat;
                         }
                     }
                 }
@@ -784,9 +784,9 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 MessagesStorage.getInstance(i).getUsersInternal(arrayList, arrayList5);
                 for (int i5 = 0; i5 < arrayList5.size(); i5++) {
                     TLRPC$User tLRPC$User = arrayList5.get(i5);
-                    RecentSearchObject recentSearchObject5 = (RecentSearchObject) longSparseArray.get(tLRPC$User.id);
-                    if (recentSearchObject5 != null) {
-                        recentSearchObject5.object = tLRPC$User;
+                    RecentSearchObject recentSearchObject6 = (RecentSearchObject) longSparseArray.get(tLRPC$User.id);
+                    if (recentSearchObject6 != null) {
+                        recentSearchObject6.object = tLRPC$User;
                     }
                 }
             }
@@ -974,7 +974,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         updateSearchResults(arrayList, arrayList2, arrayList3, arrayList4, i);
         FiltersView.fillTipDates(str, this.localTipDates);
         this.localTipArchive = false;
-        if (str.length() >= 3 && (LocaleController.getString("ArchiveSearchFilter", R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str2))) {
+        if (str.length() >= 3 && (LocaleController.getString(R.string.ArchiveSearchFilter).toLowerCase().startsWith(str) || "archive".startsWith(str2))) {
             this.localTipArchive = true;
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -1273,10 +1273,10 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             return 0;
         }
         if (!this.searchResultHashtags.isEmpty()) {
-            return this.searchResultHashtags.size() + 1 + 0;
+            return this.searchResultHashtags.size() + 1;
         }
         if (isRecentSearchDisplayed()) {
-            i = getRecentItemsCount() + 0;
+            i = getRecentItemsCount();
             if (!this.searchWas) {
                 return i;
             }
@@ -1520,7 +1520,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 view = new GraySectionCell(this.mContext);
                 break;
             case 2:
-                view = new DialogCell(this, null, this.mContext, false, true) {
+                view = new DialogCell(null, this.mContext, false, true) {
                     @Override
                     public boolean isForumCell() {
                         return false;
@@ -1540,7 +1540,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 view = new HashtagSearchCell(this.mContext);
                 break;
             case 6:
-                RecyclerListView recyclerListView = new RecyclerListView(this, this.mContext) {
+                RecyclerListView recyclerListView = new RecyclerListView(this.mContext) {
                     @Override
                     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
                         if (getParent() != null && getParent().getParent() != null) {
@@ -1558,7 +1558,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                 recyclerListView.setTag(9);
                 recyclerListView.setItemAnimator(null);
                 recyclerListView.setLayoutAnimation(null);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, this.mContext) {
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.mContext) {
                     @Override
                     public boolean supportsPredictiveItemAnimations() {
                         return false;
@@ -1631,24 +1631,13 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     public void lambda$onBindViewHolder$22(GraySectionCell graySectionCell) {
-        int i;
-        String str;
         boolean z = !this.phoneCollapsed;
         this.phoneCollapsed = z;
-        if (z) {
-            i = R.string.ShowMore;
-            str = "ShowMore";
-        } else {
-            i = R.string.ShowLess;
-            str = "ShowLess";
-        }
-        graySectionCell.setRightText(LocaleController.getString(str, i));
+        graySectionCell.setRightText(LocaleController.getString(z ? R.string.ShowMore : R.string.ShowLess));
         notifyDataSetChanged();
     }
 
     public void lambda$onBindViewHolder$25(ArrayList arrayList, final int i, GraySectionCell graySectionCell) {
-        int i2;
-        String str;
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (elapsedRealtime - this.lastShowMoreUpdate < 300) {
             return;
@@ -1664,30 +1653,23 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         boolean z2 = !this.globalSearchCollapsed;
         this.globalSearchCollapsed = z2;
-        if (z2) {
-            i2 = R.string.ShowMore;
-            str = "ShowMore";
-        } else {
-            i2 = R.string.ShowLess;
-            str = "ShowLess";
-        }
-        graySectionCell.setRightText(LocaleController.getString(str, i2), this.globalSearchCollapsed);
+        graySectionCell.setRightText(LocaleController.getString(z2 ? R.string.ShowMore : R.string.ShowLess), this.globalSearchCollapsed);
         this.showMoreHeader = null;
         final View view = (View) graySectionCell.getParent();
         if (view instanceof RecyclerView) {
             RecyclerView recyclerView = (RecyclerView) view;
-            int i3 = !this.globalSearchCollapsed ? i + 4 : i + size + 1;
-            int i4 = 0;
+            int i2 = !this.globalSearchCollapsed ? i + 4 : i + size + 1;
+            int i3 = 0;
             while (true) {
-                if (i4 >= recyclerView.getChildCount()) {
+                if (i3 >= recyclerView.getChildCount()) {
                     break;
                 }
-                View childAt = recyclerView.getChildAt(i4);
-                if (recyclerView.getChildAdapterPosition(childAt) == i3) {
+                View childAt = recyclerView.getChildAt(i3);
+                if (recyclerView.getChildAdapterPosition(childAt) == i2) {
                     this.showMoreHeader = childAt;
                     break;
                 }
-                i4++;
+                i3++;
             }
         }
         if (!this.globalSearchCollapsed) {
@@ -1757,6 +1739,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     public void filterRecent(String str) {
         DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate;
         String str2;
+        String str3;
         this.filteredRecentQuery = str;
         this.filtered2RecentSearchObjects.clear();
         int i = 0;
@@ -1778,10 +1761,10 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             RecentSearchObject recentSearchObject = this.recentSearchObjects.get(i);
             if (recentSearchObject != null && recentSearchObject.object != null && (((dialogsSearchAdapterDelegate = this.delegate) == null || dialogsSearchAdapterDelegate.getSearchForumDialogId() != recentSearchObject.did) && filter(this.recentSearchObjects.get(i).object))) {
                 TLObject tLObject = recentSearchObject.object;
-                String str3 = null;
                 if (tLObject instanceof TLRPC$Chat) {
-                    str3 = ((TLRPC$Chat) tLObject).title;
-                    str2 = ((TLRPC$Chat) tLObject).username;
+                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
+                    str3 = tLRPC$Chat.title;
+                    str2 = tLRPC$Chat.username;
                 } else if (tLObject instanceof TLRPC$User) {
                     str3 = UserObject.getUserName((TLRPC$User) tLObject);
                     str2 = ((TLRPC$User) recentSearchObject.object).username;
@@ -1790,6 +1773,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     str2 = null;
                 } else {
                     str2 = null;
+                    str3 = null;
                 }
                 if ((str3 != null && wordStartsWith(str3.toLowerCase(), lowerCase)) || (str2 != null && wordStartsWith(str2.toLowerCase(), lowerCase))) {
                     this.filtered2RecentSearchObjects.add(recentSearchObject);
@@ -1808,7 +1792,8 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         String[] split = str.toLowerCase().split(" ");
         for (int i = 0; i < split.length; i++) {
-            if (split[i] != null && (split[i].startsWith(str2) || str2.startsWith(split[i]))) {
+            String str3 = split[i];
+            if (str3 != null && (str3.startsWith(str2) || str2.startsWith(split[i]))) {
                 return true;
             }
         }

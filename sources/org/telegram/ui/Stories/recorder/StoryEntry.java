@@ -377,7 +377,7 @@ public class StoryEntry {
         Matrix matrix = new Matrix();
         int i = this.invert;
         final boolean z = true;
-        matrix.postScale(i == 1 ? -1.0f : 1.0f, i != 2 ? 1.0f : -1.0f, this.width / 2.0f, this.height / 2.0f);
+        matrix.postScale(i == 1 ? -1.0f : 1.0f, i == 2 ? -1.0f : 1.0f, this.width / 2.0f, this.height / 2.0f);
         matrix.postRotate(-this.orientation);
         final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         this.matrix.preScale(this.width / createBitmap.getWidth(), this.height / createBitmap.getHeight());
@@ -838,7 +838,7 @@ public class StoryEntry {
         int i3 = this.height;
         int i4 = this.orientation + i;
         int i5 = this.invert;
-        matrix.postScale(i5 == 1 ? -1.0f : 1.0f, i5 != 2 ? 1.0f : -1.0f, i2 / 2.0f, i3 / 2.0f);
+        matrix.postScale(i5 == 1 ? -1.0f : 1.0f, i5 == 2 ? -1.0f : 1.0f, i2 / 2.0f, i3 / 2.0f);
         if (i4 != 0) {
             matrix.postTranslate((-i2) / 2.0f, (-i3) / 2.0f);
             matrix.postRotate(i4);
@@ -863,9 +863,9 @@ public class StoryEntry {
     }
 
     public void setupGradient(final Runnable runnable) {
+        final Bitmap bitmap;
         if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0) {
             if (this.thumbPath != null) {
-                final Bitmap bitmap = null;
                 try {
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     if (this.thumbPath.startsWith("vthumb://")) {
@@ -887,6 +887,7 @@ public class StoryEntry {
                         bitmap = BitmapFactory.decodeFile(this.thumbPath);
                     }
                 } catch (Exception unused) {
+                    bitmap = null;
                 }
                 if (bitmap != null) {
                     DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
@@ -953,7 +954,7 @@ public class StoryEntry {
         long maxMemory = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory());
         int i3 = options.outWidth;
         int i4 = options.outHeight;
-        if (!((((long) (i3 * i4)) * 4) * 2 <= maxMemory) || Math.max(i3, i4) > 4200 || SharedConfig.getDevicePerformanceClass() <= 0) {
+        if (i3 * i4 * 8 > maxMemory || Math.max(i3, i4) > 4200 || SharedConfig.getDevicePerformanceClass() <= 0) {
             options.inScaled = true;
             options.inDensity = options.outWidth;
             options.inTargetDensity = i;
@@ -1036,14 +1037,15 @@ public class StoryEntry {
             long j = (long) iArr[4];
             this.duration = j;
             videoEditedInfo.originalDuration = j * 1000;
-            long j2 = ((long) (this.left * ((float) j))) * 1000;
+            float f = (float) j;
+            long j2 = this.left * f * 1000;
             videoEditedInfo.startTime = j2;
-            long j3 = this.right * ((float) j) * 1000;
+            long j3 = this.right * f * 1000;
             videoEditedInfo.endTime = j3;
             videoEditedInfo.estimatedDuration = j3 - j2;
             videoEditedInfo.volume = this.videoVolume;
             videoEditedInfo.muted = this.muted;
-            videoEditedInfo.estimatedSize = iArr[5] + (((iArr[4] / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
+            videoEditedInfo.estimatedSize = iArr[5] + (((r1 / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
             videoEditedInfo.filterState = this.filterState;
             File file5 = this.paintBlurFile;
@@ -1100,30 +1102,30 @@ public class StoryEntry {
         if (file7 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(file7.getAbsolutePath());
             mixedSoundInfo.volume = this.roundVolume;
-            float f = this.roundLeft;
-            long j7 = this.roundDuration;
-            mixedSoundInfo.audioOffset = ((float) j7) * f * 1000;
+            float f2 = this.roundLeft;
+            float f3 = (float) this.roundDuration;
+            mixedSoundInfo.audioOffset = f2 * f3 * 1000;
             if (this.isVideo) {
                 mixedSoundInfo.startTime = (((float) this.roundOffset) - (this.left * ((float) this.duration))) * 1000;
             } else {
                 mixedSoundInfo.startTime = 0L;
             }
-            mixedSoundInfo.duration = (this.roundRight - f) * ((float) j7) * 1000;
+            mixedSoundInfo.duration = (this.roundRight - f2) * f3 * 1000;
             videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo);
         }
         String str2 = this.audioPath;
         if (str2 != null) {
             MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo2 = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
             mixedSoundInfo2.volume = this.audioVolume;
-            float f2 = this.audioLeft;
-            long j8 = this.audioDuration;
-            mixedSoundInfo2.audioOffset = ((float) j8) * f2 * 1000;
+            float f4 = this.audioLeft;
+            float f5 = (float) this.audioDuration;
+            mixedSoundInfo2.audioOffset = f4 * f5 * 1000;
             if (this.isVideo) {
                 mixedSoundInfo2.startTime = (((float) this.audioOffset) - (this.left * ((float) this.duration))) * 1000;
             } else {
                 mixedSoundInfo2.startTime = 0L;
             }
-            mixedSoundInfo2.duration = (this.audioRight - f2) * ((float) j8) * 1000;
+            mixedSoundInfo2.duration = (this.audioRight - f4) * f5 * 1000;
             videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo2);
         }
         callback.run(videoEditedInfo);
@@ -1161,6 +1163,8 @@ public class StoryEntry {
         public int colorRange;
         public int colorStandard;
         public int colorTransfer;
+        public float maxlum;
+        public float minlum;
 
         public int getHDRType() {
             if (this.colorStandard != 6) {
@@ -1205,6 +1209,8 @@ public class StoryEntry {
                 if (hDRInfo == null) {
                     hDRInfo = new HDRInfo();
                     this.hdrInfo = hDRInfo;
+                    hDRInfo.maxlum = 1000.0f;
+                    hDRInfo.minlum = 0.001f;
                 }
                 MediaExtractor mediaExtractor = new MediaExtractor();
                 mediaExtractor.setDataSource(this.file.getAbsolutePath());
@@ -1454,13 +1460,14 @@ public class StoryEntry {
     public static long getCoverTime(TL_stories$StoryItem tL_stories$StoryItem) {
         TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$Document tLRPC$Document;
+        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo;
         if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || (tLRPC$Document = tLRPC$MessageMedia.document) == null) {
             return 0L;
         }
-        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = null;
         int i = 0;
         while (true) {
             if (i >= tLRPC$Document.attributes.size()) {
+                tLRPC$TL_documentAttributeVideo = null;
                 break;
             }
             if (tLRPC$Document.attributes.get(i) instanceof TLRPC$TL_documentAttributeVideo) {

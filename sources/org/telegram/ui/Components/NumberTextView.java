@@ -19,13 +19,14 @@ public class NumberTextView extends View {
     private ArrayList<StaticLayout> letters;
     private ArrayList<StaticLayout> oldLetters;
     private float oldTextWidth;
-    private OnTextWidthProgressChangedListener onTextWidthProgressChangedListener;
     private float progress;
     private TextPaint textPaint;
     private float textWidth;
 
     public interface OnTextWidthProgressChangedListener {
-        void onTextWidthProgress(float f, float f2, float f3);
+    }
+
+    public void setOnTextWidthProgressChangedListener(OnTextWidthProgressChangedListener onTextWidthProgressChangedListener) {
     }
 
     public NumberTextView(Context context) {
@@ -37,20 +38,12 @@ public class NumberTextView extends View {
         this.currentNumber = 1;
     }
 
-    public void setOnTextWidthProgressChangedListener(OnTextWidthProgressChangedListener onTextWidthProgressChangedListener) {
-        this.onTextWidthProgressChangedListener = onTextWidthProgressChangedListener;
-    }
-
     @Keep
     public void setProgress(float f) {
         if (this.progress == f) {
             return;
         }
         this.progress = f;
-        OnTextWidthProgressChangedListener onTextWidthProgressChangedListener = this.onTextWidthProgressChangedListener;
-        if (onTextWidthProgressChangedListener != null) {
-            onTextWidthProgressChangedListener.onTextWidthProgress(this.oldTextWidth, this.textWidth, f);
-        }
         invalidate();
     }
 

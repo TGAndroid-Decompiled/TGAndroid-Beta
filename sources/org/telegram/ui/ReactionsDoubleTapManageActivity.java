@@ -3,7 +3,6 @@ package org.telegram.ui;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -55,7 +54,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
 
     @Override
     public View createView(final Context context) {
-        this.actionBar.setTitle(LocaleController.getString("Reactions", R.string.Reactions));
+        this.actionBar.setTitle(LocaleController.getString(R.string.Reactions));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -84,14 +83,12 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                 View view;
                 if (i == 0) {
                     ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, ((BaseFragment) ReactionsDoubleTapManageActivity.this).parentLayout, 2);
-                    if (Build.VERSION.SDK_INT >= 19) {
-                        themePreviewMessagesCell.setImportantForAccessibility(4);
-                    }
+                    themePreviewMessagesCell.setImportantForAccessibility(4);
                     themePreviewMessagesCell.fragment = ReactionsDoubleTapManageActivity.this;
                     view = themePreviewMessagesCell;
                 } else if (i == 2) {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-                    textInfoPrivacyCell.setText(LocaleController.getString("DoubleTapPreviewRational", R.string.DoubleTapPreviewRational));
+                    textInfoPrivacyCell.setText(LocaleController.getString(R.string.DoubleTapPreviewRational));
                     textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     view = textInfoPrivacyCell;
                 } else if (i == 3) {
@@ -99,7 +96,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
                     setDefaultReactionCell.update(false);
                     view = setDefaultReactionCell;
                 } else if (i == 4) {
-                    View view2 = new View(this, context) {
+                    View view2 = new View(context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
@@ -188,7 +185,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
             this.textView.setTextColor(ReactionsDoubleTapManageActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-            this.textView.setText(LocaleController.getString("DoubleTapSetting", R.string.DoubleTapSetting));
+            this.textView.setText(LocaleController.getString(R.string.DoubleTapSetting));
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
             this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(24.0f));
         }
@@ -237,22 +234,19 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
         }
     }
 
-    public void showSelectStatusDialog(final org.telegram.ui.ReactionsDoubleTapManageActivity.SetDefaultReactionCell r17) {
+    public void showSelectStatusDialog(final org.telegram.ui.ReactionsDoubleTapManageActivity.SetDefaultReactionCell r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ReactionsDoubleTapManageActivity.showSelectStatusDialog(org.telegram.ui.ReactionsDoubleTapManageActivity$SetDefaultReactionCell):void");
     }
 
     private void updateRows() {
-        this.rowCount = 0;
-        int i = 0 + 1;
-        this.rowCount = i;
         this.previewRow = 0;
-        this.rowCount = i + 1;
-        this.infoRow = i;
+        this.rowCount = 2;
+        this.infoRow = 1;
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             this.reactionsStartRow = -1;
-            int i2 = this.rowCount;
-            this.rowCount = i2 + 1;
-            this.premiumReactionRow = i2;
+            int i = this.rowCount;
+            this.rowCount = i + 1;
+            this.premiumReactionRow = i;
             return;
         }
         this.premiumReactionRow = -1;

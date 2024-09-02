@@ -77,21 +77,23 @@ public class SelectorSearchCell extends ScrollView {
         this.allSpans = new ArrayList<>();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.topGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.topGradient = linearGradient;
         Paint paint = new Paint(1);
         this.topGradientPaint = paint;
         this.topGradientMatrix = new Matrix();
         this.bottomGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.bottomGradient = linearGradient2;
         Paint paint2 = new Paint(1);
         this.bottomGradientPaint = paint2;
         this.bottomGradientMatrix = new Matrix();
         paint.setShader(linearGradient);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+        paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setXfermode(new PorterDuffXfermode(mode));
         this.resourcesProvider = resourcesProvider;
         this.updateHeight = runnable;
         setVerticalScrollBarEnabled(false);
@@ -138,8 +140,8 @@ public class SelectorSearchCell extends ScrollView {
         this.spansContainer.addView(this.editText);
         EditTextBoldCursor editTextBoldCursor3 = this.editText;
         int i2 = R.string.Search;
-        editTextBoldCursor3.setHintText(LocaleController.getString("Search", i2));
-        this.hintTextWidth = (int) this.editText.getPaint().measureText(LocaleController.getString("Search", i2));
+        editTextBoldCursor3.setHintText(LocaleController.getString(i2));
+        this.hintTextWidth = (int) this.editText.getPaint().measureText(LocaleController.getString(i2));
         this.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
@@ -164,7 +166,6 @@ public class SelectorSearchCell extends ScrollView {
     }
 
     public void updateSpans(boolean z, final HashSet<Long> hashSet, final Runnable runnable, List<TLRPC$TL_help_country> list) {
-        boolean z2;
         Object chat;
         Object obj;
         MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -178,44 +179,39 @@ public class SelectorSearchCell extends ScrollView {
         }
         Iterator<Long> it = hashSet.iterator();
         while (it.hasNext()) {
-            long longValue = it.next().longValue();
+            Long next = it.next();
+            long longValue = next.longValue();
             int i2 = 0;
             while (true) {
                 if (i2 >= this.allSpans.size()) {
-                    z2 = false;
+                    if (longValue >= 0) {
+                        chat = messagesController.getUser(next);
+                    } else {
+                        chat = messagesController.getChat(Long.valueOf(-longValue));
+                    }
+                    if (list != null) {
+                        for (TLRPC$TL_help_country tLRPC$TL_help_country : list) {
+                            if (tLRPC$TL_help_country.default_name.hashCode() == longValue) {
+                                obj = tLRPC$TL_help_country;
+                                break;
+                            }
+                        }
+                    }
+                    obj = chat;
+                    if (obj != null) {
+                        GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
+                        groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view) {
+                                SelectorSearchCell.this.lambda$updateSpans$0(hashSet, runnable, view);
+                            }
+                        });
+                        arrayList2.add(groupCreateSpan2);
+                    }
+                } else if (this.allSpans.get(i2).getUid() == longValue) {
                     break;
                 } else {
-                    if (this.allSpans.get(i2).getUid() == longValue) {
-                        z2 = true;
-                        break;
-                    }
                     i2++;
-                }
-            }
-            if (!z2) {
-                if (longValue >= 0) {
-                    chat = messagesController.getUser(Long.valueOf(longValue));
-                } else {
-                    chat = messagesController.getChat(Long.valueOf(-longValue));
-                }
-                if (list != null) {
-                    for (TLRPC$TL_help_country tLRPC$TL_help_country : list) {
-                        if (tLRPC$TL_help_country.default_name.hashCode() == longValue) {
-                            obj = tLRPC$TL_help_country;
-                            break;
-                        }
-                    }
-                }
-                obj = chat;
-                if (obj != null) {
-                    GroupCreateSpan groupCreateSpan2 = new GroupCreateSpan(getContext(), obj, null, true, this.resourcesProvider);
-                    groupCreateSpan2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            SelectorSearchCell.this.lambda$updateSpans$0(hashSet, runnable, view);
-                        }
-                    });
-                    arrayList2.add(groupCreateSpan2);
                 }
             }
         }
@@ -345,6 +341,10 @@ public class SelectorSearchCell extends ScrollView {
         private boolean animationStarted;
         private ArrayList<Animator> animators;
         private AnimatorSet currentAnimation;
+        private final int heightDp;
+        private final int padDp;
+        private final int padXDp;
+        private final int padYDp;
         private final ArrayList<View> removingSpans;
 
         public SpansContainer(Context context) {
@@ -353,6 +353,10 @@ public class SelectorSearchCell extends ScrollView {
             this.animRemovingSpans = new ArrayList<>();
             this.animators = new ArrayList<>();
             this.removingSpans = new ArrayList<>();
+            this.padDp = 14;
+            this.padYDp = 4;
+            this.padXDp = 6;
+            this.heightDp = 28;
         }
 
         @Override
@@ -465,6 +469,7 @@ public class SelectorSearchCell extends ScrollView {
                 for (int i4 = 0; i4 < arrayList.size(); i4++) {
                     removeView(arrayList.get(i4));
                 }
+                this.addingSpan = null;
                 this.removingSpans.clear();
                 this.currentAnimation = null;
                 this.animationStarted = false;

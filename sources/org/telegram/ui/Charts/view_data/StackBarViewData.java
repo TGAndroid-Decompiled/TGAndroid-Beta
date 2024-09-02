@@ -24,8 +24,10 @@ public class StackBarViewData extends LineViewData {
         this.blendColor = 0;
         this.resourcesProvider = resourcesProvider;
         this.paint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-        this.paint.setStyle(Paint.Style.STROKE);
-        paint.setStyle(Paint.Style.STROKE);
+        Paint paint2 = this.paint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
         this.paint.setAntiAlias(false);
     }
 }

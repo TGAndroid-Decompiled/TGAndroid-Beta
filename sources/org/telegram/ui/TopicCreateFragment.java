@@ -114,18 +114,18 @@ public class TopicCreateFragment extends BaseFragment {
     @Override
     public View createView(Context context) {
         if (this.topicForEdit != null) {
-            this.actionBar.setTitle(LocaleController.getString("EditTopic", R.string.EditTopic));
+            this.actionBar.setTitle(LocaleController.getString(R.string.EditTopic));
         } else {
-            this.actionBar.setTitle(LocaleController.getString("NewTopic", R.string.NewTopic));
+            this.actionBar.setTitle(LocaleController.getString(R.string.NewTopic));
         }
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1());
         if (this.topicForEdit == null) {
-            this.actionBar.createMenu().addItem(1, LocaleController.getString("Create", R.string.Create).toUpperCase());
+            this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Create).toUpperCase());
         } else {
             this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_done);
         }
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this, context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             boolean keyboardWasShown;
 
             @Override
@@ -149,14 +149,14 @@ public class TopicCreateFragment extends BaseFragment {
         HeaderCell headerCell = new HeaderCell(context);
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic = this.topicForEdit;
         if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id == 1) {
-            headerCell.setText(LocaleController.getString("CreateGeneralTopicTitle", R.string.CreateGeneralTopicTitle));
+            headerCell.setText(LocaleController.getString(R.string.CreateGeneralTopicTitle));
         } else {
-            headerCell.setText(LocaleController.getString("CreateTopicTitle", R.string.CreateTopicTitle));
+            headerCell.setText(LocaleController.getString(R.string.CreateTopicTitle));
         }
         FrameLayout frameLayout = new FrameLayout(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editTextBoldCursor = editTextBoldCursor;
-        editTextBoldCursor.setHintText(LocaleController.getString("EnterTopicName", R.string.EnterTopicName));
+        editTextBoldCursor.setHintText(LocaleController.getString(R.string.EnterTopicName));
         this.editTextBoldCursor.setHintColor(getThemedColor(Theme.key_chat_messagePanelHint));
         this.editTextBoldCursor.setTextColor(getThemedColor(Theme.key_chat_messagePanelText));
         this.editTextBoldCursor.setPadding(AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
@@ -194,7 +194,7 @@ public class TopicCreateFragment extends BaseFragment {
                 }
             }
         });
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(this, context);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(context);
         anonymousClass4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -268,7 +268,7 @@ public class TopicCreateFragment extends BaseFragment {
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
             textCheckCell2.getCheckBox().setDrawIconType(0);
-            this.checkBoxCell.setTextAndCheck(LocaleController.getString("EditTopicHide", R.string.EditTopicHide), !this.topicForEdit.hidden, false);
+            this.checkBoxCell.setTextAndCheck(LocaleController.getString(R.string.EditTopicHide), !this.topicForEdit.hidden, false);
             this.checkBoxCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor(Theme.key_windowBackgroundWhite), getThemedColor(Theme.key_listSelector)));
             this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -278,7 +278,7 @@ public class TopicCreateFragment extends BaseFragment {
             });
             frameLayout2.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50.0f, 48, 0.0f, 8.0f, 0.0f, 0.0f));
             TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-            textInfoPrivacyCell.setText(LocaleController.getString("EditTopicHideInfo", R.string.EditTopicHideInfo));
+            textInfoPrivacyCell.setText(LocaleController.getString(R.string.EditTopicHideInfo));
             textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, i3, getResourceProvider()));
             frameLayout2.addView(textInfoPrivacyCell, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 58.0f, 0.0f, 0.0f));
         }
@@ -304,7 +304,7 @@ public class TopicCreateFragment extends BaseFragment {
         }
 
         @Override
-        public void onItemClick(int r13) {
+        public void onItemClick(int r12) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicCreateFragment.AnonymousClass1.onItemClick(int):void");
         }
 
@@ -373,7 +373,7 @@ public class TopicCreateFragment extends BaseFragment {
         boolean pressed;
         float pressedProgress;
 
-        AnonymousClass4(TopicCreateFragment topicCreateFragment, Context context) {
+        AnonymousClass4(Context context) {
             super(context);
         }
 
@@ -463,7 +463,7 @@ public class TopicCreateFragment extends BaseFragment {
         if (!z && longValue != 0 && !getUserConfig().isPremium()) {
             TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, l.longValue());
             if (findDocument != null) {
-                BulletinFactory.of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiHint", R.string.UnlockPremiumEmojiHint)), LocaleController.getString("PremiumMore", R.string.PremiumMore), new Runnable() {
+                BulletinFactory.of(this).createEmojiBulletin(findDocument, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiHint)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
                         TopicCreateFragment.this.lambda$selectEmoji$2();
@@ -488,9 +488,10 @@ public class TopicCreateFragment extends BaseFragment {
         }
         BackupImageView[] backupImageViewArr = this.backupImageView;
         BackupImageView backupImageView = backupImageViewArr[0];
-        backupImageViewArr[0] = backupImageViewArr[1];
+        BackupImageView backupImageView2 = backupImageViewArr[1];
+        backupImageViewArr[0] = backupImageView2;
         backupImageViewArr[1] = backupImageView;
-        AndroidUtilities.updateViewVisibilityAnimated(backupImageViewArr[0], true, 0.5f, true);
+        AndroidUtilities.updateViewVisibilityAnimated(backupImageView2, true, 0.5f, true);
         AndroidUtilities.updateViewVisibilityAnimated(this.backupImageView[1], false, 0.5f, true);
     }
 

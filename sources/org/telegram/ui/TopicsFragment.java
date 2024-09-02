@@ -203,14 +203,17 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private int hiddenCount;
     private boolean hiddenShown;
     private ActionBarMenuItem hideItem;
+    private boolean ignoreDiffUtil;
     boolean isSlideBackTransition;
     private DefaultItemAnimator itemAnimator;
     private ItemTouchHelper itemTouchHelper;
     private TouchHelperCallback itemTouchHelperCallback;
     RecyclerItemsEnterAnimator itemsEnterAnimator;
+    private boolean joinRequested;
     private int lastItemsCount;
     LinearLayoutManager layoutManager;
     private boolean loadingTopics;
+    private ArrayList<MessagesController.DialogFilter> movingDialogFilters;
     private boolean mute;
     private ActionBarMenuItem muteItem;
     private final AnimationNotificationsLocker notificationsLocker;
@@ -233,6 +236,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private boolean removeFragmentOnTransitionEnd;
     private boolean reordering;
     private ActionBarMenuSubItem restartTopic;
+    private RecyclerAnimationScrollHelper scrollHelper;
     private boolean scrollToTop;
     private float searchAnimationProgress;
     ValueAnimator searchAnimator;
@@ -328,7 +332,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.mute = false;
         this.notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.topicsDidLoaded});
         this.slideFragmentProgress = 1.0f;
-        new ArrayList();
+        this.movingDialogFilters = new ArrayList<>();
         this.chatId = this.arguments.getLong("chat_id", 0L);
         this.opnendForSelect = this.arguments.getBoolean("for_select", false);
         this.openedForForward = this.arguments.getBoolean("forward_to", false);
@@ -365,12 +369,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         return new TopicsFragment(bundle);
     }
 
-    public static void prepareToSwitchAnimation(org.telegram.ui.ChatActivity r7) {
+    public static void prepareToSwitchAnimation(org.telegram.ui.ChatActivity r6) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TopicsFragment.prepareToSwitchAnimation(org.telegram.ui.ChatActivity):void");
     }
 
     @Override
     public View createView(Context context) {
+        Property property;
         int i;
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             private Paint actionBarPaint;
@@ -518,7 +523,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             });
             this.searchItem = actionBarMenuItemSearchListener;
             actionBarMenuItemSearchListener.setSearchPaddingStart(56);
-            this.searchItem.setSearchFieldHint(LocaleController.getString("Search", R.string.Search));
+            this.searchItem.setSearchFieldHint(LocaleController.getString(R.string.Search));
             EditTextBoldCursor searchField = this.searchItem.getSearchField();
             searchField.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             searchField.setHintTextColor(Theme.getColor(Theme.key_player_time));
@@ -526,16 +531,16 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         ActionBarMenuItem addItem2 = createMenu.addItem(0, R.drawable.ic_ab_other, this.themeDelegate);
         this.other = addItem2;
-        addItem2.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString("TopicViewAsMessages", R.string.TopicViewAsMessages));
-        this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString("AddMember", R.string.AddMember));
+        addItem2.addSubItem(1, R.drawable.msg_discussion, LocaleController.getString(R.string.TopicViewAsMessages));
+        this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;
         int i2 = R.raw.boosts;
         this.boostGroupSubmenu = actionBarMenuItem.addSubItem(14, 0, new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f)), TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingBoostGroupMenu)), true, false);
         ActionBarMenuItem actionBarMenuItem2 = this.other;
         int i3 = R.drawable.msg_topic_create;
         int i4 = R.string.CreateTopic;
-        this.createTopicSubmenu = actionBarMenuItem2.addSubItem(3, i3, LocaleController.getString("CreateTopic", i4));
-        this.deleteChatSubmenu = this.other.addSubItem(11, R.drawable.msg_leave, LocaleController.getString("LeaveMegaMenu", R.string.LeaveMegaMenu), this.themeDelegate);
+        this.createTopicSubmenu = actionBarMenuItem2.addSubItem(3, i3, LocaleController.getString(i4));
+        this.deleteChatSubmenu = this.other.addSubItem(11, R.drawable.msg_leave, LocaleController.getString(R.string.LeaveMegaMenu), this.themeDelegate);
         ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, this, false);
         this.avatarContainer = chatAvatarContainer;
         chatAvatarContainer.getAvatarImageView().setRoundRadius(AndroidUtilities.dp(16.0f));
@@ -569,7 +574,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ForumUtilities.GeneralTopicDrawable createGeneralTopicDrawable = ForumUtilities.createGeneralTopicDrawable(getContext(), 0.85f, -1, false);
         createGeneralTopicDrawable.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
         spannableString.setSpan(new ImageSpan(createGeneralTopicDrawable, 2), 0, 1, 33);
-        PullForegroundDrawable pullForegroundDrawable = new PullForegroundDrawable(AndroidUtilities.replaceCharSequence("#", LocaleController.getString("AccSwipeForGeneral", R.string.AccSwipeForGeneral), spannableString), AndroidUtilities.replaceCharSequence("#", LocaleController.getString("AccReleaseForGeneral", R.string.AccReleaseForGeneral), spannableString)) {
+        PullForegroundDrawable pullForegroundDrawable = new PullForegroundDrawable(AndroidUtilities.replaceCharSequence("#", LocaleController.getString(R.string.AccSwipeForGeneral), spannableString), AndroidUtilities.replaceCharSequence("#", LocaleController.getString(R.string.AccReleaseForGeneral), spannableString)) {
             @Override
             protected float getViewOffset() {
                 return TopicsFragment.this.recyclerListView.getViewOffset();
@@ -633,7 +638,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         AnonymousClass10 anonymousClass10 = new AnonymousClass10(context);
         this.layoutManager = anonymousClass10;
         topicsRecyclerView2.setLayoutManager(anonymousClass10);
-        new RecyclerAnimationScrollHelper(this.recyclerListView, this.layoutManager);
+        this.scrollHelper = new RecyclerAnimationScrollHelper(this.recyclerListView, this.layoutManager);
         this.recyclerListView.setAdapter(this.adapter);
         this.recyclerListView.setClipToPadding(false);
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -699,11 +704,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         } else {
             StateListAnimator stateListAnimator = new StateListAnimator();
             FrameLayout frameLayout3 = this.floatingButtonContainer;
-            Property property = View.TRANSLATION_Z;
+            property = View.TRANSLATION_Z;
             stateListAnimator.addState(new int[]{16842919}, ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f)).setDuration(200L));
             stateListAnimator.addState(new int[0], ObjectAnimator.ofFloat(this.floatingButtonContainer, (Property<FrameLayout, Float>) property, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f)).setDuration(200L));
             this.floatingButtonContainer.setStateListAnimator(stateListAnimator);
-            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider(this) {
+            this.floatingButtonContainer.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @SuppressLint({"NewApi"})
                 public void getOutline(View view, Outline outline) {
@@ -715,18 +720,21 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.floatingButton = rLottieImageView;
         rLottieImageView.setImageResource(R.drawable.ic_chatlist_add_2);
-        this.floatingButtonContainer.setContentDescription(LocaleController.getString("CreateTopic", i4));
+        this.floatingButtonContainer.setContentDescription(LocaleController.getString(i4));
         this.floatingButtonContainer.addView(this.floatingButton, LayoutHelper.createFrame(24, 24, 17));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         flickerLoadingView.setViewType(24);
         flickerLoadingView.setVisibility(8);
         flickerLoadingView.showDate(true);
-        final EmptyViewContainer emptyViewContainer = new EmptyViewContainer(this, context);
+        final EmptyViewContainer emptyViewContainer = new EmptyViewContainer(context);
         emptyViewContainer.textView.setAlpha(0.0f);
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(this, context, flickerLoadingView, 0) {
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, flickerLoadingView, 0) {
+            boolean showProgressInternal;
+
             @Override
             public void showProgress(boolean z2, boolean z3) {
                 super.showProgress(z2, z3);
+                this.showProgressInternal = z2;
                 if (z3) {
                     emptyViewContainer.textView.animate().alpha(z2 ? 0.0f : 1.0f).start();
                 } else {
@@ -741,13 +749,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         } catch (Exception unused) {
         }
         this.topicsEmptyView.showProgress(this.loadingTopics, this.fragmentBeginToShow);
-        this.topicsEmptyView.title.setText(LocaleController.getString("NoTopics", R.string.NoTopics));
+        this.topicsEmptyView.title.setText(LocaleController.getString(R.string.NoTopics));
         updateTopicsEmptyViewText();
         emptyViewContainer.addView(flickerLoadingView);
         emptyViewContainer.addView(this.topicsEmptyView);
         this.contentView.addView(emptyViewContainer);
         this.recyclerListView.setEmptyView(emptyViewContainer);
-        this.bottomOverlayContainer = new FrameLayout(this, context) {
+        this.bottomOverlayContainer = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 Theme.chat_composeShadowDrawable.setBounds(0, 0, getMeasuredWidth(), Theme.chat_composeShadowDrawable.getIntrinsicHeight());
@@ -768,7 +776,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         ImageView imageView = new ImageView(context);
         this.closeReportSpam = imageView;
         imageView.setImageResource(R.drawable.miniplayer_close);
-        this.closeReportSpam.setContentDescription(LocaleController.getString("Close", R.string.Close));
+        this.closeReportSpam.setContentDescription(LocaleController.getString(R.string.Close));
         int i8 = Build.VERSION.SDK_INT;
         if (i8 >= 21) {
             this.closeReportSpam.setBackground(Theme.AdaptiveRipple.circle(getThemedColor(Theme.key_chat_topPanelClose)));
@@ -917,6 +925,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             TLRPC$ChatParticipants tLRPC$ChatParticipants;
             TopicDialogCell topicDialogCell;
             TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
+            int i2 = 0;
             if (i == -1) {
                 if (TopicsFragment.this.selectedTopics.size() > 0) {
                     TopicsFragment.this.clearSelectedTopics();
@@ -927,7 +936,6 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             }
             TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = null;
-            int i2 = 0;
             switch (i) {
                 case 1:
                     TopicsFragment.this.getMessagesController().getTopicsController().toggleViewForumAsMessages(TopicsFragment.this.chatId, true);
@@ -1134,8 +1142,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (tLRPC$TL_messages_invitedUsers2 != null) {
                 tLRPC$TL_messages_invitedUsers.missing_invitees.addAll(tLRPC$TL_messages_invitedUsers2.missing_invitees);
             }
-            iArr[0] = iArr[0] + 1;
-            if (iArr[0] == i) {
+            int i2 = iArr[0] + 1;
+            iArr[0] = i2;
+            if (i2 == i) {
                 if (tLRPC$TL_messages_invitedUsers.missing_invitees.isEmpty()) {
                     BulletinFactory.of(TopicsFragment.this).createUsersAddedBulletin(arrayList, TopicsFragment.this.getMessagesController().getChat(Long.valueOf(j))).show();
                 } else {
@@ -1438,10 +1447,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         coloredImageSpan.setSize(AndroidUtilities.dp(16.0f));
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         if (ChatObject.canUserDoAdminAction(getCurrentChat(), 15)) {
-            this.topicsEmptyView.subtitle.setText(AndroidUtilities.replaceCharSequence("%s", AndroidUtilities.replaceTags(LocaleController.getString("NoTopicsDescription", R.string.NoTopicsDescription)), spannableStringBuilder));
+            this.topicsEmptyView.subtitle.setText(AndroidUtilities.replaceCharSequence("%s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.NoTopicsDescription)), spannableStringBuilder));
             return;
         }
-        String string = LocaleController.getString("General", R.string.General);
+        String string = LocaleController.getString(R.string.General);
         TLRPC$TL_forumTopic findTopic = getMessagesController().getTopicsController().findTopic(this.chatId, 1L);
         if (findTopic != null) {
             string = findTopic.title;
@@ -1830,10 +1839,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (hashSet.size() == 1) {
             builder.setMessage(LocaleController.formatString("DeleteSelectedTopic", R.string.DeleteSelectedTopic, this.topicsController.findTopic(this.chatId, ((Integer) arrayList.get(0)).intValue()).title));
         } else {
-            builder.setMessage(LocaleController.getString("DeleteSelectedTopics", R.string.DeleteSelectedTopics));
+            builder.setMessage(LocaleController.getString(R.string.DeleteSelectedTopics));
         }
-        builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new AnonymousClass20(hashSet, arrayList, runnable));
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener(this) {
+        builder.setPositiveButton(LocaleController.getString(R.string.Delete), new AnonymousClass20(hashSet, arrayList, runnable));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -1906,9 +1915,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (ChatObject.canManageTopics(getCurrentChat())) {
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(getParentActivity(), true, false);
             if (tLRPC$TL_forumTopic.pinned) {
-                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("DialogUnpin", R.string.DialogUnpin), R.drawable.msg_unpin);
+                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.DialogUnpin), R.drawable.msg_unpin);
             } else {
-                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString("DialogPin", R.string.DialogPin), R.drawable.msg_pin);
+                actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.DialogPin), R.drawable.msg_pin);
             }
             actionBarMenuSubItem.setMinimumWidth(160);
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -1921,9 +1930,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         }
         ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(getParentActivity(), false, false);
         if (getMessagesController().isDialogMuted(-this.chatId, tLRPC$TL_forumTopic.id)) {
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("Unmute", R.string.Unmute), R.drawable.msg_mute);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.Unmute), R.drawable.msg_mute);
         } else {
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("Mute", R.string.Mute), R.drawable.msg_unmute);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.Mute), R.drawable.msg_unmute);
         }
         actionBarMenuSubItem2.setMinimumWidth(160);
         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
@@ -1936,9 +1945,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (ChatObject.canManageTopic(this.currentAccount, getCurrentChat(), tLRPC$TL_forumTopic)) {
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getParentActivity(), false, false);
             if (tLRPC$TL_forumTopic.closed) {
-                actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("RestartTopic", R.string.RestartTopic), R.drawable.msg_topic_restart);
+                actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.RestartTopic), R.drawable.msg_topic_restart);
             } else {
-                actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("CloseTopic", R.string.CloseTopic), R.drawable.msg_topic_close);
+                actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.CloseTopic), R.drawable.msg_topic_close);
             }
             actionBarMenuSubItem3.setMinimumWidth(160);
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
@@ -1992,12 +2001,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         @Override
         public void toggleSound() {
             SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(((BaseFragment) TopicsFragment.this).currentAccount);
-            boolean z = !notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), true);
-            notificationsSettings.edit().putBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), z).apply();
+            boolean z = notificationsSettings.getBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), true);
+            boolean z2 = !z;
+            notificationsSettings.edit().putBoolean("sound_enabled_" + NotificationsController.getSharedPrefKey(-TopicsFragment.this.chatId, this.val$topic.id), z2).apply();
             TopicsFragment.this.finishPreviewFragment();
             if (BulletinFactory.canShowBulletin(TopicsFragment.this)) {
                 TopicsFragment topicsFragment = TopicsFragment.this;
-                BulletinFactory.createSoundEnabledBulletin(topicsFragment, !z ? 1 : 0, topicsFragment.getResourceProvider()).show();
+                BulletinFactory.createSoundEnabledBulletin(topicsFragment, z ? 1 : 0, topicsFragment.getResourceProvider()).show();
             }
         }
 
@@ -2123,10 +2133,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             this.fullscreenView.addView(this.searchTabsView, LayoutHelper.createFrame(-1, 44.0f));
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.searchAnimationProgress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        this.searchAnimator = ValueAnimator.ofFloat(fArr);
+        this.searchAnimator = ValueAnimator.ofFloat(this.searchAnimationProgress, z ? 1.0f : 0.0f);
         AndroidUtilities.updateViewVisibilityAnimated(this.searchContainer, false, 1.0f, true);
         DialogsActivity dialogsActivity = this.parentDialogsActivity;
         if (dialogsActivity != null && (rightSlidingDialogContainer = dialogsActivity.rightSlidingDialogContainer) != null) {
@@ -2232,6 +2239,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void lambda$joinToGroup$15() {
+        this.joinRequested = false;
         updateChatInfo(true);
     }
 
@@ -2255,18 +2263,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private void toggleSelection(View view) {
         TopicDialogCell topicDialogCell;
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
-        int i;
-        String str;
-        int i2;
-        String str2;
         if (!(view instanceof TopicDialogCell) || (tLRPC$TL_forumTopic = (topicDialogCell = (TopicDialogCell) view).forumTopic) == null) {
             return;
         }
-        int i3 = tLRPC$TL_forumTopic.id;
-        if (!this.selectedTopics.remove(Integer.valueOf(i3))) {
-            this.selectedTopics.add(Integer.valueOf(i3));
+        int i = tLRPC$TL_forumTopic.id;
+        if (!this.selectedTopics.remove(Integer.valueOf(i))) {
+            this.selectedTopics.add(Integer.valueOf(i));
         }
-        topicDialogCell.setChecked(this.selectedTopics.contains(Integer.valueOf(i3)), true);
+        topicDialogCell.setChecked(this.selectedTopics.contains(Integer.valueOf(i)), true);
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         if (this.selectedTopics.size() > 0) {
             chekActionMode();
@@ -2276,103 +2280,87 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.actionBar.showActionMode(true);
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             Iterator<Integer> it = this.selectedTopics.iterator();
+            int i2 = 0;
+            int i3 = 0;
             int i4 = 0;
             int i5 = 0;
-            int i6 = 0;
-            int i7 = 0;
             while (it.hasNext()) {
                 long intValue = it.next().intValue();
                 TLRPC$TL_forumTopic findTopic = this.topicsController.findTopic(this.chatId, intValue);
                 if (findTopic != null) {
                     if (findTopic.unread_count != 0) {
-                        i4++;
+                        i2++;
                     }
                     if (ChatObject.canManageTopics(chat) && !findTopic.hidden) {
                         if (findTopic.pinned) {
-                            i7++;
+                            i5++;
                         } else {
-                            i6++;
+                            i4++;
                         }
                     }
                 }
                 if (getMessagesController().isDialogMuted(-this.chatId, intValue)) {
-                    i5++;
+                    i3++;
                 }
             }
-            if (i4 > 0) {
+            if (i2 > 0) {
                 this.readItem.setVisibility(0);
-                this.readItem.setTextAndIcon(LocaleController.getString("MarkAsRead", R.string.MarkAsRead), R.drawable.msg_markread);
+                this.readItem.setTextAndIcon(LocaleController.getString(R.string.MarkAsRead), R.drawable.msg_markread);
             } else {
                 this.readItem.setVisibility(8);
             }
-            if (i5 != 0) {
+            if (i3 != 0) {
                 this.mute = false;
                 this.muteItem.setIcon(R.drawable.msg_unmute);
-                this.muteItem.setContentDescription(LocaleController.getString("ChatsUnmute", R.string.ChatsUnmute));
+                this.muteItem.setContentDescription(LocaleController.getString(R.string.ChatsUnmute));
             } else {
                 this.mute = true;
                 this.muteItem.setIcon(R.drawable.msg_mute);
-                this.muteItem.setContentDescription(LocaleController.getString("ChatsMute", R.string.ChatsMute));
+                this.muteItem.setContentDescription(LocaleController.getString(R.string.ChatsMute));
             }
-            this.pinItem.setVisibility((i6 == 1 && i7 == 0) ? 0 : 8);
-            this.unpinItem.setVisibility((i7 == 1 && i6 == 0) ? 0 : 8);
+            this.pinItem.setVisibility((i4 == 1 && i5 == 0) ? 0 : 8);
+            this.unpinItem.setVisibility((i5 == 1 && i4 == 0) ? 0 : 8);
             this.selectedDialogsCountTextView.setNumber(this.selectedTopics.size(), true);
             Iterator<Integer> it2 = this.selectedTopics.iterator();
+            int i6 = 0;
+            int i7 = 0;
             int i8 = 0;
             int i9 = 0;
             int i10 = 0;
-            int i11 = 0;
-            int i12 = 0;
             while (it2.hasNext()) {
-                int i13 = i8;
+                int i11 = i6;
                 TLRPC$TL_forumTopic findTopic2 = this.topicsController.findTopic(this.chatId, it2.next().intValue());
                 if (findTopic2 != null) {
                     if (ChatObject.canDeleteTopic(this.currentAccount, chat, findTopic2)) {
-                        i10++;
+                        i8++;
                     }
                     if (ChatObject.canManageTopic(this.currentAccount, chat, findTopic2)) {
                         if (findTopic2.id == 1) {
                             if (findTopic2.hidden) {
-                                i12++;
-                            } else {
-                                i11++;
-                            }
-                        }
-                        if (!findTopic2.hidden) {
-                            if (findTopic2.closed) {
-                                i8 = i13 + 1;
+                                i10++;
                             } else {
                                 i9++;
                             }
                         }
+                        if (!findTopic2.hidden) {
+                            if (findTopic2.closed) {
+                                i6 = i11 + 1;
+                            } else {
+                                i7++;
+                            }
+                        }
                     }
                 }
-                i8 = i13;
+                i6 = i11;
             }
-            int i14 = i8;
-            this.closeTopic.setVisibility((i14 != 0 || i9 <= 0) ? 8 : 0);
-            ActionBarMenuSubItem actionBarMenuSubItem = this.closeTopic;
-            if (i9 > 1) {
-                i = R.string.CloseTopics;
-                str = "CloseTopics";
-            } else {
-                i = R.string.CloseTopic;
-                str = "CloseTopic";
-            }
-            actionBarMenuSubItem.setText(LocaleController.getString(str, i));
-            this.restartTopic.setVisibility((i9 != 0 || i14 <= 0) ? 8 : 0);
-            ActionBarMenuSubItem actionBarMenuSubItem2 = this.restartTopic;
-            if (i14 > 1) {
-                i2 = R.string.RestartTopics;
-                str2 = "RestartTopics";
-            } else {
-                i2 = R.string.RestartTopic;
-                str2 = "RestartTopic";
-            }
-            actionBarMenuSubItem2.setText(LocaleController.getString(str2, i2));
-            this.deleteItem.setVisibility(i10 == this.selectedTopics.size() ? 0 : 8);
-            this.hideItem.setVisibility((i11 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
-            this.showItem.setVisibility((i12 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
+            int i12 = i6;
+            this.closeTopic.setVisibility((i12 != 0 || i7 <= 0) ? 8 : 0);
+            this.closeTopic.setText(LocaleController.getString(i7 > 1 ? R.string.CloseTopics : R.string.CloseTopic));
+            this.restartTopic.setVisibility((i7 != 0 || i12 <= 0) ? 8 : 0);
+            this.restartTopic.setText(LocaleController.getString(i12 > 1 ? R.string.RestartTopics : R.string.RestartTopic));
+            this.deleteItem.setVisibility(i8 == this.selectedTopics.size() ? 0 : 8);
+            this.hideItem.setVisibility((i9 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
+            this.showItem.setVisibility((i10 == 1 && this.selectedTopics.size() == 1) ? 0 : 8);
             this.otherItem.checkHideMenuItem();
             updateReordering();
             return;
@@ -2398,6 +2386,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         }
         getMessagesController().getTopicsController().reorderPinnedTopics(this.chatId, arrayList);
+        this.ignoreDiffUtil = true;
     }
 
     private void chekActionMode() {
@@ -2426,18 +2415,18 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.pinItem = createActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));
         this.unpinItem = createActionMode.addItemWithWidth(5, R.drawable.msg_unpin, AndroidUtilities.dp(54.0f));
         this.muteItem = createActionMode.addItemWithWidth(6, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
-        this.deleteItem = createActionMode.addItemWithWidth(7, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
-        ActionBarMenuItem addItemWithWidth = createActionMode.addItemWithWidth(12, R.drawable.msg_archive_hide, AndroidUtilities.dp(54.0f), LocaleController.getString("Hide", R.string.Hide));
+        this.deleteItem = createActionMode.addItemWithWidth(7, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Delete));
+        ActionBarMenuItem addItemWithWidth = createActionMode.addItemWithWidth(12, R.drawable.msg_archive_hide, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Hide));
         this.hideItem = addItemWithWidth;
         addItemWithWidth.setVisibility(8);
-        ActionBarMenuItem addItemWithWidth2 = createActionMode.addItemWithWidth(13, R.drawable.msg_archive_show, AndroidUtilities.dp(54.0f), LocaleController.getString("Show", R.string.Show));
+        ActionBarMenuItem addItemWithWidth2 = createActionMode.addItemWithWidth(13, R.drawable.msg_archive_show, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.Show));
         this.showItem = addItemWithWidth2;
         addItemWithWidth2.setVisibility(8);
-        ActionBarMenuItem addItemWithWidth3 = createActionMode.addItemWithWidth(0, R.drawable.ic_ab_other, AndroidUtilities.dp(54.0f), LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
+        ActionBarMenuItem addItemWithWidth3 = createActionMode.addItemWithWidth(0, R.drawable.ic_ab_other, AndroidUtilities.dp(54.0f), LocaleController.getString(R.string.AccDescrMoreOptions));
         this.otherItem = addItemWithWidth3;
-        this.readItem = addItemWithWidth3.addSubItem(8, R.drawable.msg_markread, LocaleController.getString("MarkAsRead", R.string.MarkAsRead));
-        this.closeTopic = this.otherItem.addSubItem(9, R.drawable.msg_topic_close, LocaleController.getString("CloseTopic", R.string.CloseTopic));
-        this.restartTopic = this.otherItem.addSubItem(10, R.drawable.msg_topic_restart, LocaleController.getString("RestartTopic", R.string.RestartTopic));
+        this.readItem = addItemWithWidth3.addSubItem(8, R.drawable.msg_markread, LocaleController.getString(R.string.MarkAsRead));
+        this.closeTopic = this.otherItem.addSubItem(9, R.drawable.msg_topic_close, LocaleController.getString(R.string.CloseTopic));
+        this.restartTopic = this.otherItem.addSubItem(10, R.drawable.msg_topic_restart, LocaleController.getString(R.string.RestartTopic));
     }
 
     public class TouchHelperCallback extends ItemTouchHelper.Callback {
@@ -2463,6 +2452,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (TopicsFragment.this.selectedTopics.isEmpty()) {
                 View view = viewHolder.itemView;
                 if ((view instanceof TopicDialogCell) && tLRPC$TL_forumTopic.id == 1) {
+                    this.swipeFolderBack = false;
                     this.swipingFolder = true;
                     ((TopicDialogCell) view).setSliding(true);
                     return ItemTouchHelper.Callback.makeMovementFlags(0, 4);
@@ -2555,7 +2545,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (chatFull != null) {
             lowerCase = LocaleController.formatPluralString("Members", chatFull.participants_count, new Object[0]);
         } else {
-            lowerCase = LocaleController.getString("Loading", R.string.Loading).toLowerCase();
+            lowerCase = LocaleController.getString(R.string.Loading).toLowerCase();
         }
         this.avatarContainer.setSubtitle(lowerCase);
     }
@@ -2655,11 +2645,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             for (int i = 0; i < topics.size(); i++) {
                 HashSet<Integer> hashSet = this.excludeTopics;
                 if (hashSet == null || !hashSet.contains(Integer.valueOf(topics.get(i).id))) {
-                    this.forumTopics.add(new Item(this, 0, topics.get(i)));
+                    this.forumTopics.add(new Item(0, topics.get(i)));
                 }
             }
             if (!this.forumTopics.isEmpty() && !this.topicsController.endIsReached(this.chatId) && this.canShowProgress) {
-                this.forumTopics.add(new Item(this, 1, null));
+                this.forumTopics.add(new Item(1, null));
             }
             int size2 = this.forumTopics.size();
             if (this.fragmentBeginToShow && z2 && size2 > size) {
@@ -2854,7 +2844,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                                     int dp3 = AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : (TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 4);
                                     if (LocaleController.isRTL) {
                                         i4 = size - dp3;
-                                        dp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 5 + 8);
+                                        dp = AndroidUtilities.dp((TopicsFragment.this.isInPreviewMode() ? 11 : 50) + 13);
                                     } else {
                                         i4 = size - dp3;
                                         dp = AndroidUtilities.dp(22.0f);
@@ -3120,10 +3110,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             this.hidden = Boolean.valueOf(z);
             if (z2) {
-                float[] fArr = new float[2];
-                fArr[0] = this.hiddenT;
-                fArr[1] = z ? 1.0f : 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.hiddenT, z ? 1.0f : 0.0f);
                 this.hiddenAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -3150,8 +3137,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 ((ForumUtilities.GeneralTopicDrawable) drawable).setColor(ColorUtils.blendARGB(TopicsFragment.this.getThemedColor(Theme.key_chats_archivePullDownBackground), TopicsFragment.this.getThemedColor(Theme.key_avatar_background2Saved), this.hiddenT));
             }
             Drawable[] drawableArr = this.topicIconInName;
-            if (drawableArr != null && (drawableArr[0] instanceof ForumUtilities.GeneralTopicDrawable)) {
-                ((ForumUtilities.GeneralTopicDrawable) drawableArr[0]).setColor(ColorUtils.blendARGB(TopicsFragment.this.getThemedColor(Theme.key_chats_archivePullDownBackground), TopicsFragment.this.getThemedColor(Theme.key_avatar_background2Saved), this.hiddenT));
+            if (drawableArr != null) {
+                Drawable drawable2 = drawableArr[0];
+                if (drawable2 instanceof ForumUtilities.GeneralTopicDrawable) {
+                    ((ForumUtilities.GeneralTopicDrawable) drawable2).setColor(ColorUtils.blendARGB(TopicsFragment.this.getThemedColor(Theme.key_chats_archivePullDownBackground), TopicsFragment.this.getThemedColor(Theme.key_avatar_background2Saved), this.hiddenT));
+                }
             }
             invalidate();
         }
@@ -3169,10 +3159,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.floatingHidden = z;
         if (this.fragmentBeginToShow && z2) {
             AnimatorSet animatorSet = new AnimatorSet();
-            float[] fArr = new float[2];
-            fArr[0] = this.floatingButtonHideProgress;
-            fArr[1] = this.floatingHidden ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.floatingButtonHideProgress, this.floatingHidden ? 1.0f : 0.0f);
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -3214,23 +3201,23 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         float progress;
         TextView textView;
 
-        public EmptyViewContainer(TopicsFragment topicsFragment, Context context) {
+        public EmptyViewContainer(Context context) {
             super(context);
             SpannableStringBuilder spannableStringBuilder;
             this.textView = new TextView(context);
             if (LocaleController.isRTL) {
                 spannableStringBuilder = new SpannableStringBuilder("  ");
                 spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.attach_arrow_left), 0, 1, 0);
-                spannableStringBuilder.append((CharSequence) LocaleController.getString("TapToCreateTopicHint", R.string.TapToCreateTopicHint));
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.TapToCreateTopicHint));
             } else {
-                spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("TapToCreateTopicHint", R.string.TapToCreateTopicHint));
+                spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.TapToCreateTopicHint));
                 spannableStringBuilder.append((CharSequence) "  ");
                 spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.arrow_newchat), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
             }
             this.textView.setText(spannableStringBuilder);
             this.textView.setTextSize(1, 14.0f);
             this.textView.setLayerType(2, null);
-            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, topicsFragment.getResourceProvider()));
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, TopicsFragment.this.getResourceProvider()));
             TextView textView = this.textView;
             boolean z = LocaleController.isRTL;
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, 81, z ? 72.0f : 32.0f, 0.0f, z ? 32.0f : 72.0f, 32.0f));
@@ -3302,7 +3289,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.searchResultMessages = new ArrayList<>();
             this.selectedItems = new ArrayList<>();
             this.searchContainer = new FrameLayout(context);
-            this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate(TopicsFragment.this) {
+            this.chatPreviewDelegate = new SearchViewPager.ChatPreviewDelegate() {
                 @Override
                 public void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
                     TopicsFragment.this.showChatPreview(dialogCell);
@@ -3339,7 +3326,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                     TopicsFragment.MessagesSearchContainer.this.lambda$new$0(view, i);
                 }
             });
-            this.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener(TopicsFragment.this) {
+            this.recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                     super.onScrolled(recyclerView, i, i2);
@@ -3367,7 +3354,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             this.flickerLoadingView.setUseHeaderOffset(true);
             StickerEmptyView stickerEmptyView = new StickerEmptyView(context, this.flickerLoadingView, 1);
             this.emptyView = stickerEmptyView;
-            stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
+            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
             this.emptyView.subtitle.setVisibility(8);
             this.emptyView.setVisibility(8);
             this.emptyView.addView(this.flickerLoadingView, 0);
@@ -3400,7 +3387,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             int filterIndex;
             private final int type;
 
-            private Item(MessagesSearchContainer messagesSearchContainer, int i) {
+            private Item(int i) {
                 this.type = i;
             }
         }
@@ -3443,7 +3430,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 if (i == 2) {
                     TopicsFragment topicsFragment = TopicsFragment.this;
                     SearchDownloadsContainer searchDownloadsContainer = new SearchDownloadsContainer(topicsFragment, ((BaseFragment) topicsFragment).currentAccount);
-                    searchDownloadsContainer.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener(this) {
+                    searchDownloadsContainer.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                         @Override
                         public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                             super.onScrolled(recyclerView, i2, i3);
@@ -3455,7 +3442,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 FilteredSearchView filteredSearchView = new FilteredSearchView(TopicsFragment.this);
                 filteredSearchView.setChatPreviewDelegate(MessagesSearchContainer.this.chatPreviewDelegate);
                 filteredSearchView.setUiCallback(MessagesSearchContainer.this);
-                filteredSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener(this) {
+                filteredSearchView.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                     @Override
                     public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                         super.onScrolled(recyclerView, i2, i3);
@@ -3468,11 +3455,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             public String getItemTitle(int i) {
                 if (this.items.get(i).type != 0) {
                     if (this.items.get(i).type == 1) {
-                        return LocaleController.getString("DownloadsTabs", R.string.DownloadsTabs);
+                        return LocaleController.getString(R.string.DownloadsTabs);
                     }
                     return FiltersView.filters[this.items.get(i).filterIndex].getTitle();
                 }
-                return LocaleController.getString("SearchMessages", R.string.SearchMessages);
+                return LocaleController.getString(R.string.SearchMessages);
             }
 
             @Override
@@ -3745,10 +3732,10 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 if (getItemViewType(i) == 1) {
                     GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
                     if (i == MessagesSearchContainer.this.topicsHeaderRow) {
-                        graySectionCell.setText(LocaleController.getString("Topics", R.string.Topics));
+                        graySectionCell.setText(LocaleController.getString(R.string.Topics));
                     }
                     if (i == MessagesSearchContainer.this.messagesHeaderRow) {
-                        graySectionCell.setText(LocaleController.getString("SearchMessages", R.string.SearchMessages));
+                        graySectionCell.setText(LocaleController.getString(R.string.SearchMessages));
                     }
                 }
                 if (getItemViewType(i) == 2) {
@@ -4029,7 +4016,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     public class Item extends AdapterWithDiffUtils.Item {
         TLRPC$TL_forumTopic topic;
 
-        public Item(TopicsFragment topicsFragment, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public Item(int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             super(i, true);
             this.topic = tLRPC$TL_forumTopic;
         }
@@ -4038,7 +4025,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             if (this == obj) {
                 return true;
             }
-            if (obj != null && Item.class == obj.getClass()) {
+            if (obj != null && getClass() == obj.getClass()) {
                 Item item = (Item) obj;
                 int i = this.viewType;
                 return i == item.viewType && i == 0 && this.topic.id == item.topic.id;
@@ -4108,15 +4095,13 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     }
 
     public void lambda$getThemeDescriptions$21() {
+        ViewGroup viewGroup;
         for (int i = 0; i < 2; i++) {
-            ViewGroup viewGroup = null;
             if (i == 0) {
                 viewGroup = this.recyclerListView;
             } else {
                 MessagesSearchContainer messagesSearchContainer = this.searchContainer;
-                if (messagesSearchContainer != null) {
-                    viewGroup = messagesSearchContainer.recyclerView;
-                }
+                viewGroup = messagesSearchContainer != null ? messagesSearchContainer.recyclerView : null;
             }
             if (viewGroup != null) {
                 int childCount = viewGroup.getChildCount();

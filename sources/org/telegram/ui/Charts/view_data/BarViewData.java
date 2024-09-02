@@ -16,8 +16,10 @@ public class BarViewData extends LineViewData {
         this.unselectedPaint = paint;
         this.blendColor = 0;
         this.resourcesProvider = resourcesProvider;
-        this.paint.setStyle(Paint.Style.STROKE);
-        paint.setStyle(Paint.Style.STROKE);
+        Paint paint2 = this.paint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint.setStyle(style);
         this.paint.setAntiAlias(false);
     }
 

@@ -68,39 +68,39 @@ public class TimerDrawable extends Drawable {
             if (i2 >= 1 && i2 < 60) {
                 str = "" + i;
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerSeconds", R.string.SecretChatTimerSeconds);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerSeconds);
                 }
             } else if (i2 >= 60 && i2 < 3600) {
                 str = "" + (i / 60);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerMinutes", R.string.SecretChatTimerMinutes);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerMinutes);
                 }
             } else if (i2 >= 3600 && i2 < 86400) {
                 str = "" + ((i / 60) / 60);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerHours", R.string.SecretChatTimerHours);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerHours);
                 }
             } else if (i2 >= 86400 && i2 < 604800) {
                 str = "" + (((i / 60) / 60) / 24);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerDays", R.string.SecretChatTimerDays);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerDays);
                 }
             } else if (i2 < 2678400) {
                 str = "" + ((((i / 60) / 60) / 24) / 7);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerWeeks", R.string.SecretChatTimerWeeks);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerWeeks);
                 } else if (str.length() > 2) {
                     str = "c";
                 }
             } else if (i2 < 31449600) {
                 str = "" + ((((i / 60) / 60) / 24) / 30);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerMonths", R.string.SecretChatTimerMonths);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerMonths);
                 }
             } else {
                 str = "" + ((((i / 60) / 60) / 24) / 364);
                 if (str.length() < 2) {
-                    str = str + LocaleController.getString("SecretChatTimerYears", R.string.SecretChatTimerYears);
+                    str = str + LocaleController.getString(R.string.SecretChatTimerYears);
                 }
             }
             String str2 = str;

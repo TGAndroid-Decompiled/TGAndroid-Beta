@@ -29,7 +29,7 @@ public class LocationDirectionCell extends FrameLayout {
         this.buttonTextView.setDrawablePadding(AndroidUtilities.dp(8.0f));
         this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(14);
-        this.buttonTextView.setText(LocaleController.getString("Directions", R.string.Directions));
+        this.buttonTextView.setText(LocaleController.getString(R.string.Directions));
         this.buttonTextView.setLeftDrawable(R.drawable.filled_directions);
         this.buttonTextView.setTypeface(AndroidUtilities.bold());
         this.frameLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, -1.0f));

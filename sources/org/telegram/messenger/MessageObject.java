@@ -678,7 +678,7 @@ public class MessageObject {
         if (!this.messageOwner.restriction_reason.isEmpty()) {
             for (int i = 0; i < this.messageOwner.restriction_reason.size(); i++) {
                 TLRPC$RestrictionReason tLRPC$RestrictionReason = this.messageOwner.restriction_reason.get(i);
-                if ("sensitive".equals(tLRPC$RestrictionReason.reason) && ("all".equals(tLRPC$RestrictionReason.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason.platform)))) {
+                if ("sensitive".equals(tLRPC$RestrictionReason.reason) && ("all".equals(tLRPC$RestrictionReason.platform) || (((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION) && "android".equals(tLRPC$RestrictionReason.platform)))) {
                     this.isSensitiveCached = Boolean.TRUE;
                     return true;
                 }
@@ -687,7 +687,7 @@ public class MessageObject {
         if (getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.restriction_reason != null) {
             for (int i2 = 0; i2 < chat.restriction_reason.size(); i2++) {
                 TLRPC$RestrictionReason tLRPC$RestrictionReason2 = chat.restriction_reason.get(i2);
-                if ("sensitive".equals(tLRPC$RestrictionReason2.reason) && ("all".equals(tLRPC$RestrictionReason2.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason2.platform)))) {
+                if ("sensitive".equals(tLRPC$RestrictionReason2.reason) && ("all".equals(tLRPC$RestrictionReason2.platform) || (((!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp()) || BuildVars.DEBUG_PRIVATE_VERSION) && "android".equals(tLRPC$RestrictionReason2.platform)))) {
                     this.isSensitiveCached = Boolean.TRUE;
                     return true;
                 }
@@ -835,6 +835,7 @@ public class MessageObject {
         private ArrayList<String> phones = new ArrayList<>();
 
         public static CharSequence parse(String str) {
+            String[] strArr;
             byte[] decodeQuotedPrintable;
             try {
                 BufferedReader bufferedReader = new BufferedReader(new StringReader(str));
@@ -860,8 +861,12 @@ public class MessageObject {
                                 str2 = readLine.substring(0, readLine.length() - 1);
                             } else {
                                 int indexOf = readLine.indexOf(":");
+                                if (indexOf >= 0) {
+                                    strArr = new String[]{readLine.substring(0, indexOf), readLine.substring(indexOf + 1).trim()};
+                                } else {
+                                    strArr = new String[]{readLine.trim()};
+                                }
                                 int i = 2;
-                                String[] strArr = indexOf >= 0 ? new String[]{readLine.substring(0, indexOf), readLine.substring(indexOf + 1).trim()} : new String[]{readLine.trim()};
                                 if (strArr.length >= 2 && vCardData != null) {
                                     if (strArr[0].startsWith("ORG")) {
                                         String[] split = strArr[0].split(";");
@@ -995,16 +1000,14 @@ public class MessageObject {
         }
 
         public float collapsed(ChatMessageCell.TransitionParams transitionParams) {
-            boolean z = true;
+            boolean collapsed;
             if (transitionParams.animateExpandedQuotes) {
                 HashSet<Integer> hashSet = transitionParams.animateExpandedQuotesFrom;
-                if (hashSet != null && hashSet.contains(Integer.valueOf(this.index))) {
-                    z = false;
-                }
+                collapsed = hashSet == null || !hashSet.contains(Integer.valueOf(this.index));
             } else {
-                z = collapsed();
+                collapsed = collapsed();
             }
-            return AndroidUtilities.lerp(z ? 1.0f : 0.0f, collapsed() ? 1.0f : 0.0f, transitionParams.animateChangeProgress);
+            return AndroidUtilities.lerp(collapsed ? 1.0f : 0.0f, collapsed() ? 1.0f : 0.0f, transitionParams.animateChangeProgress);
         }
 
         public boolean collapsed() {
@@ -1094,7 +1097,7 @@ public class MessageObject {
             if (str == null) {
                 return null;
             }
-            String replaceAll = str.toLowerCase().replaceAll("\\W", "");
+            String replaceAll = str.toLowerCase().replaceAll("\\W|lang$", "");
             replaceAll.hashCode();
             char c = 65535;
             switch (replaceAll.hashCode()) {
@@ -1176,261 +1179,267 @@ public class MessageObject {
                         break;
                     }
                     break;
+                case 3304:
+                    if (replaceAll.equals("go")) {
+                        c = '\r';
+                        break;
+                    }
+                    break;
                 case 3401:
                     if (replaceAll.equals("js")) {
-                        c = '\r';
+                        c = 14;
                         break;
                     }
                     break;
                 case 3479:
                     if (replaceAll.equals("md")) {
-                        c = 14;
+                        c = 15;
                         break;
                     }
                     break;
                 case 3593:
                     if (replaceAll.equals("py")) {
-                        c = 15;
+                        c = 16;
                         break;
                     }
                     break;
                 case 3632:
                     if (replaceAll.equals("rb")) {
-                        c = 16;
+                        c = 17;
                         break;
                     }
                     break;
                 case 3704:
                     if (replaceAll.equals("tl")) {
-                        c = 17;
+                        c = 18;
                         break;
                     }
                     break;
                 case 3711:
                     if (replaceAll.equals("ts")) {
-                        c = 18;
+                        c = 19;
                         break;
                     }
                     break;
                 case 96891:
                     if (replaceAll.equals("asm")) {
-                        c = 19;
+                        c = 20;
                         break;
                     }
                     break;
                 case 98723:
                     if (replaceAll.equals("cpp")) {
-                        c = 20;
+                        c = 21;
                         break;
                     }
                     break;
                 case 98819:
                     if (replaceAll.equals("css")) {
-                        c = 21;
+                        c = 22;
                         break;
                     }
                     break;
                 case 98822:
                     if (replaceAll.equals("csv")) {
-                        c = 22;
+                        c = 23;
                         break;
                     }
                     break;
                 case 104420:
                     if (replaceAll.equals("ini")) {
-                        c = 23;
+                        c = 24;
                         break;
                     }
                     break;
                 case 105551:
                     if (replaceAll.equals("jsx")) {
-                        c = 24;
+                        c = 25;
                         break;
                     }
                     break;
                 case 107512:
                     if (replaceAll.equals("lua")) {
-                        c = 25;
+                        c = 26;
                         break;
                     }
                     break;
                 case 110968:
                     if (replaceAll.equals("php")) {
-                        c = 26;
+                        c = 27;
                         break;
                     }
                     break;
                 case 114922:
                     if (replaceAll.equals("tlb")) {
-                        c = 27;
+                        c = 28;
                         break;
                     }
                     break;
                 case 115161:
                     if (replaceAll.equals("tsx")) {
-                        c = 28;
+                        c = 29;
                         break;
                     }
                     break;
                 case 118807:
                     if (replaceAll.equals("xml")) {
-                        c = 29;
+                        c = 30;
                         break;
                     }
                     break;
                 case 119768:
                     if (replaceAll.equals("yml")) {
-                        c = 30;
+                        c = 31;
                         break;
                     }
                     break;
                 case 3075967:
                     if (replaceAll.equals("dart")) {
-                        c = 31;
+                        c = ' ';
                         break;
                     }
                     break;
                 case 3142865:
                     if (replaceAll.equals("fift")) {
-                        c = ' ';
+                        c = '!';
                         break;
                     }
                     break;
                 case 3154628:
                     if (replaceAll.equals("func")) {
-                        c = '!';
+                        c = '\"';
                         break;
                     }
                     break;
                 case 3175934:
                     if (replaceAll.equals("glsl")) {
-                        c = '\"';
+                        c = '#';
                         break;
                     }
                     break;
                 case 3205725:
                     if (replaceAll.equals("hlsl")) {
-                        c = '#';
+                        c = '$';
                         break;
                     }
                     break;
                 case 3213227:
                     if (replaceAll.equals("html")) {
-                        c = '$';
+                        c = '%';
                         break;
                     }
                     break;
                 case 3213448:
                     if (replaceAll.equals("http")) {
-                        c = '%';
+                        c = '&';
                         break;
                     }
                     break;
                 case 3254818:
                     if (replaceAll.equals("java")) {
-                        c = '&';
+                        c = '\'';
                         break;
                     }
                     break;
                 case 3271912:
                     if (replaceAll.equals("json")) {
-                        c = '\'';
+                        c = '(';
                         break;
                     }
                     break;
                 case 3318169:
                     if (replaceAll.equals("less")) {
-                        c = '(';
+                        c = ')';
                         break;
                     }
                     break;
                 case 3373901:
                     if (replaceAll.equals("nasm")) {
-                        c = ')';
+                        c = '*';
                         break;
                     }
                     break;
                 case 3404364:
                     if (replaceAll.equals("objc")) {
-                        c = '*';
+                        c = '+';
                         break;
                     }
                     break;
                 case 3511770:
                     if (replaceAll.equals("ruby")) {
-                        c = '+';
+                        c = ',';
                         break;
                     }
                     break;
                 case 3512292:
                     if (replaceAll.equals("rust")) {
-                        c = ',';
+                        c = '-';
                         break;
                     }
                     break;
                 case 3524784:
                     if (replaceAll.equals("scss")) {
-                        c = '-';
+                        c = '.';
                         break;
                     }
                     break;
                 case 3561037:
                     if (replaceAll.equals("tl-b")) {
-                        c = '.';
+                        c = '/';
                         break;
                     }
                     break;
                 case 3642020:
                     if (replaceAll.equals("wasm")) {
-                        c = '/';
+                        c = '0';
                         break;
                     }
                     break;
                 case 3701415:
                     if (replaceAll.equals("yaml")) {
-                        c = '0';
+                        c = '1';
                         break;
                     }
                     break;
                 case 94833107:
                     if (replaceAll.equals("cobol")) {
-                        c = '1';
+                        c = '2';
                         break;
                     }
                     break;
                 case 101429325:
                     if (replaceAll.equals("json5")) {
-                        c = '2';
+                        c = '3';
                         break;
                     }
                     break;
                 case 109854227:
                     if (replaceAll.equals("swift")) {
-                        c = '3';
+                        c = '4';
                         break;
                     }
                     break;
                 case 188995949:
                     if (replaceAll.equals("javascript")) {
-                        c = '4';
+                        c = '5';
                         break;
                     }
                     break;
                 case 213985633:
                     if (replaceAll.equals("autohotkey")) {
-                        c = '5';
+                        c = '6';
                         break;
                     }
                     break;
                 case 246938863:
                     if (replaceAll.equals("markdown")) {
-                        c = '6';
+                        c = '7';
                         break;
                     }
                     break;
                 case 1067478602:
                     if (replaceAll.equals("objectivec")) {
-                        c = '7';
+                        c = '8';
                         break;
                     }
                     break;
@@ -1449,63 +1458,64 @@ public class MessageObject {
                 case 6:
                 case '\b':
                 case '\n':
-                case 25:
-                case 31:
+                case '\r':
+                case 26:
                 case ' ':
-                case '&':
-                case ',':
-                case '3':
+                case '!':
+                case '\'':
+                case '-':
+                case '4':
                     return capitalizeFirst(str);
                 case 7:
-                case 15:
+                case 16:
                     return "Python";
                 case '\t':
-                case 18:
+                case 19:
                     return "TypeScript";
                 case 11:
-                case 17:
-                case 19:
-                case 21:
+                case 18:
+                case 20:
                 case 22:
                 case 23:
                 case 24:
-                case 26:
-                case 28:
+                case 25:
+                case 27:
                 case 29:
                 case 30:
-                case '\"':
+                case 31:
                 case '#':
                 case '$':
                 case '%':
-                case '\'':
+                case '&':
                 case '(':
                 case ')':
-                case '-':
-                case '/':
+                case '*':
+                case '.':
                 case '0':
                 case '1':
                 case '2':
+                case '3':
                     return str.toUpperCase();
-                case '\r':
-                case '4':
-                    return "JavaScript";
                 case 14:
-                case '6':
-                    return "Markdown";
-                case 16:
-                case '+':
-                    return "Ruby";
-                case 20:
-                    return "C++";
-                case 27:
-                case '.':
-                    return "TL-B";
-                case '!':
-                    return "FunC";
-                case '*':
-                case '7':
-                    return "Objective-C";
                 case '5':
+                    return "JavaScript";
+                case 15:
+                case '7':
+                    return "Markdown";
+                case 17:
+                case ',':
+                    return "Ruby";
+                case 21:
+                    return "C++";
+                case 28:
+                case '/':
+                    return "TL-B";
+                case '\"':
+                    return "FunC";
+                case '+':
+                case '8':
+                    return "Objective-C";
+                case '6':
                     return "AutoHotKey";
                 default:
                     return str;
@@ -1896,9 +1906,9 @@ public class MessageObject {
                     }
                 } else if (this.messageOwner.entities.size() == 1 && (this.messageOwner.entities.get(0) instanceof TLRPC$TL_messageEntityCustomEmoji)) {
                     try {
-                        Long valueOf = Long.valueOf(((TLRPC$TL_messageEntityCustomEmoji) this.messageOwner.entities.get(0)).document_id);
-                        this.emojiAnimatedStickerId = valueOf;
-                        TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, valueOf.longValue());
+                        long j = ((TLRPC$TL_messageEntityCustomEmoji) this.messageOwner.entities.get(0)).document_id;
+                        this.emojiAnimatedStickerId = Long.valueOf(j);
+                        TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, j);
                         this.emojiAnimatedSticker = findDocument;
                         if (findDocument == null) {
                             CharSequence charSequence3 = this.messageText;
@@ -2012,36 +2022,31 @@ public class MessageObject {
                 case 0:
                 case 1:
                 case 2:
-                    TextPaint[] textPaintArr = Theme.chat_msgTextPaintEmoji;
-                    textPaint = z2 ? textPaintArr[0] : textPaintArr[2];
+                    textPaint = z2 ? Theme.chat_msgTextPaintEmoji[0] : Theme.chat_msgTextPaintEmoji[2];
                     i4 = 1;
                     break;
                 case 3:
-                    TextPaint[] textPaintArr2 = Theme.chat_msgTextPaintEmoji;
-                    textPaint = z2 ? textPaintArr2[1] : textPaintArr2[3];
+                    textPaint = z2 ? Theme.chat_msgTextPaintEmoji[1] : Theme.chat_msgTextPaintEmoji[3];
                     i4 = 1;
                     break;
                 case 4:
-                    TextPaint[] textPaintArr3 = Theme.chat_msgTextPaintEmoji;
-                    textPaint = z2 ? textPaintArr3[2] : textPaintArr3[4];
+                    textPaint = z2 ? Theme.chat_msgTextPaintEmoji[2] : Theme.chat_msgTextPaintEmoji[4];
                     i4 = 1;
                     break;
                 case 5:
-                    TextPaint[] textPaintArr4 = Theme.chat_msgTextPaintEmoji;
                     if (z2) {
-                        textPaint = textPaintArr4[3];
+                        textPaint = Theme.chat_msgTextPaintEmoji[3];
                         break;
                     } else {
-                        textPaint = textPaintArr4[5];
+                        textPaint = Theme.chat_msgTextPaintEmoji[5];
                         break;
                     }
                 case 6:
-                    TextPaint[] textPaintArr5 = Theme.chat_msgTextPaintEmoji;
                     if (z2) {
-                        textPaint = textPaintArr5[4];
+                        textPaint = Theme.chat_msgTextPaintEmoji[4];
                         break;
                     } else {
-                        textPaint = textPaintArr5[5];
+                        textPaint = Theme.chat_msgTextPaintEmoji[5];
                         break;
                     }
                 default:
@@ -2087,20 +2092,15 @@ public class MessageObject {
                 case 0:
                 case 1:
                 case 2:
-                    TextPaint[] textPaintArr = Theme.chat_msgTextPaintEmoji;
-                    return z ? textPaintArr[0] : textPaintArr[2];
+                    return z ? Theme.chat_msgTextPaintEmoji[0] : Theme.chat_msgTextPaintEmoji[2];
                 case 3:
-                    TextPaint[] textPaintArr2 = Theme.chat_msgTextPaintEmoji;
-                    return z ? textPaintArr2[1] : textPaintArr2[3];
+                    return z ? Theme.chat_msgTextPaintEmoji[1] : Theme.chat_msgTextPaintEmoji[3];
                 case 4:
-                    TextPaint[] textPaintArr3 = Theme.chat_msgTextPaintEmoji;
-                    return z ? textPaintArr3[2] : textPaintArr3[4];
+                    return z ? Theme.chat_msgTextPaintEmoji[2] : Theme.chat_msgTextPaintEmoji[4];
                 case 5:
-                    TextPaint[] textPaintArr4 = Theme.chat_msgTextPaintEmoji;
-                    return z ? textPaintArr4[3] : textPaintArr4[5];
+                    return z ? Theme.chat_msgTextPaintEmoji[3] : Theme.chat_msgTextPaintEmoji[5];
                 case 6:
-                    TextPaint[] textPaintArr5 = Theme.chat_msgTextPaintEmoji;
-                    return z ? textPaintArr5[4] : textPaintArr5[5];
+                    return z ? Theme.chat_msgTextPaintEmoji[4] : Theme.chat_msgTextPaintEmoji[5];
                 default:
                     return Theme.chat_msgTextPaintEmoji[5];
             }
@@ -2108,7 +2108,7 @@ public class MessageObject {
         return Theme.chat_msgTextPaint;
     }
 
-    public MessageObject(int r32, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r33, java.util.ArrayList<org.telegram.messenger.MessageObject> r34, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r35, org.telegram.tgnet.TLRPC$Chat r36, int[] r37, boolean r38) {
+    public MessageObject(int r33, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r34, java.util.ArrayList<org.telegram.messenger.MessageObject> r35, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r36, org.telegram.tgnet.TLRPC$Chat r37, int[] r38, boolean r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 
@@ -2143,7 +2143,7 @@ public class MessageObject {
 
     private CharSequence getStringFrom(TLRPC$ChatReactions tLRPC$ChatReactions) {
         if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsAll) {
-            return LocaleController.getString("AllReactions", R.string.AllReactions);
+            return LocaleController.getString(R.string.AllReactions);
         }
         if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
             TLRPC$TL_chatReactionsSome tLRPC$TL_chatReactionsSome = (TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions;
@@ -2156,12 +2156,12 @@ public class MessageObject {
             }
             return spannableStringBuilder;
         }
-        return LocaleController.getString("NoReactions", R.string.NoReactions);
+        return LocaleController.getString(R.string.NoReactions);
     }
 
     private String getUsernamesString(ArrayList<String> arrayList) {
         if (arrayList == null || arrayList.size() == 0) {
-            return LocaleController.getString("UsernameEmpty", R.string.UsernameEmpty).toLowerCase();
+            return LocaleController.getString(R.string.UsernameEmpty).toLowerCase();
         }
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < arrayList.size(); i++) {
@@ -2179,21 +2179,20 @@ public class MessageObject {
         String publicUsername;
         long j;
         String str2;
+        String str3;
         long j2;
-        String formatName;
         if (tLObject == null) {
-            str2 = null;
+            str2 = "";
+            str3 = null;
             j2 = 0;
-            str = "";
         } else {
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                 if (tLRPC$User.deleted) {
-                    formatName = LocaleController.getString("HiddenName", R.string.HiddenName);
+                    str = LocaleController.getString(R.string.HiddenName);
                 } else {
-                    formatName = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
+                    str = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
                 }
-                str = formatName;
                 publicUsername = UserObject.getPublicUsername(tLRPC$User);
                 j = tLRPC$User.id;
             } else {
@@ -2202,27 +2201,28 @@ public class MessageObject {
                 publicUsername = ChatObject.getPublicUsername(tLRPC$Chat);
                 j = -tLRPC$Chat.id;
             }
-            str2 = publicUsername;
+            str2 = str;
+            str3 = publicUsername;
             j2 = j;
         }
         if (i >= 0) {
             TLRPC$TL_messageEntityMentionName tLRPC$TL_messageEntityMentionName = new TLRPC$TL_messageEntityMentionName();
             tLRPC$TL_messageEntityMentionName.user_id = j2;
             tLRPC$TL_messageEntityMentionName.offset = i;
-            tLRPC$TL_messageEntityMentionName.length = str.length();
+            tLRPC$TL_messageEntityMentionName.length = str2.length();
             arrayList.add(tLRPC$TL_messageEntityMentionName);
         }
-        if (TextUtils.isEmpty(str2)) {
-            return str;
+        if (TextUtils.isEmpty(str3)) {
+            return str2;
         }
         if (i >= 0) {
             TLRPC$TL_messageEntityMentionName tLRPC$TL_messageEntityMentionName2 = new TLRPC$TL_messageEntityMentionName();
             tLRPC$TL_messageEntityMentionName2.user_id = j2;
-            tLRPC$TL_messageEntityMentionName2.offset = i + str.length() + 2;
-            tLRPC$TL_messageEntityMentionName2.length = str2.length() + 1;
+            tLRPC$TL_messageEntityMentionName2.offset = i + str2.length() + 2;
+            tLRPC$TL_messageEntityMentionName2.length = str3.length() + 1;
             arrayList.add(tLRPC$TL_messageEntityMentionName2);
         }
-        return String.format("%1$s (@%2$s)", str, str2);
+        return String.format("%1$s (@%2$s)", str2, str3);
     }
 
     public boolean updateTranslation() {
@@ -2308,11 +2308,8 @@ public class MessageObject {
         if (tLRPC$User == null && isFromUser()) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.messageOwner.from_id.user_id));
         }
-        TLRPC$TL_game tLRPC$TL_game = null;
         MessageObject messageObject = this.replyMessageObject;
-        if (messageObject != null && getMedia(messageObject) != null && getMedia(this.replyMessageObject).game != null) {
-            tLRPC$TL_game = getMedia(this.replyMessageObject).game;
-        }
+        TLRPC$TL_game tLRPC$TL_game = (messageObject == null || getMedia(messageObject) == null || getMedia(this.replyMessageObject).game == null) ? null : getMedia(this.replyMessageObject).game;
         if (tLRPC$TL_game == null) {
             if (tLRPC$User == null || tLRPC$User.id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                 this.messageText = replaceWithLink(LocaleController.formatString("ActionUserScored", R.string.ActionUserScored, LocaleController.formatPluralString("Points", this.messageOwner.action.score, new Object[0])), "un1", tLRPC$User);
@@ -2346,33 +2343,38 @@ public class MessageObject {
 
     public void generatePaymentSentMessageText(TLRPC$User tLRPC$User) {
         String str;
+        String str2;
         if (tLRPC$User == null) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(getDialogId()));
         }
-        String firstName = tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : "";
+        if (tLRPC$User != null) {
+            str = UserObject.getFirstName(tLRPC$User);
+        } else {
+            str = "";
+        }
         try {
             if ("XTR".equals(this.messageOwner.action.currency)) {
-                str = "XTR " + this.messageOwner.action.total_amount;
+                str2 = "XTR " + this.messageOwner.action.total_amount;
             } else {
                 LocaleController localeController = LocaleController.getInstance();
                 TLRPC$MessageAction tLRPC$MessageAction = this.messageOwner.action;
-                str = localeController.formatCurrencyString(tLRPC$MessageAction.total_amount, tLRPC$MessageAction.currency);
+                str2 = localeController.formatCurrencyString(tLRPC$MessageAction.total_amount, tLRPC$MessageAction.currency);
             }
         } catch (Exception e) {
             FileLog.e(e);
-            str = "<error>";
+            str2 = "<error>";
         }
         MessageObject messageObject = this.replyMessageObject;
         if (messageObject != null && (getMedia(messageObject) instanceof TLRPC$TL_messageMediaInvoice)) {
             if (this.messageOwner.action.recurring_init) {
-                this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidRecurrent, str, firstName, getMedia(this.replyMessageObject).title);
+                this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidRecurrent, str2, str, getMedia(this.replyMessageObject).title);
             } else {
-                this.messageText = LocaleController.formatString("PaymentSuccessfullyPaid", R.string.PaymentSuccessfullyPaid, str, firstName, getMedia(this.replyMessageObject).title);
+                this.messageText = LocaleController.formatString("PaymentSuccessfullyPaid", R.string.PaymentSuccessfullyPaid, str2, str, getMedia(this.replyMessageObject).title);
             }
         } else if (this.messageOwner.action.recurring_init) {
-            this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidNoItemRecurrent, str, firstName);
+            this.messageText = LocaleController.formatString(R.string.PaymentSuccessfullyPaidNoItemRecurrent, str2, str);
         } else {
-            this.messageText = LocaleController.formatString("PaymentSuccessfullyPaidNoItem", R.string.PaymentSuccessfullyPaidNoItem, str, firstName);
+            this.messageText = LocaleController.formatString("PaymentSuccessfullyPaidNoItem", R.string.PaymentSuccessfullyPaidNoItem, str2, str);
         }
         this.messageText = StarsIntroActivity.replaceStars(this.messageText);
     }
@@ -2397,7 +2399,7 @@ public class MessageObject {
             TLRPC$Message tLRPC$Message = messageObject.messageOwner;
             if (!(tLRPC$Message instanceof TLRPC$TL_messageEmpty) && !(tLRPC$Message.action instanceof TLRPC$TL_messageActionHistoryClear)) {
                 if (messageObject.isMusic()) {
-                    String string = LocaleController.getString("ActionPinnedMusic", R.string.ActionPinnedMusic);
+                    String string = LocaleController.getString(R.string.ActionPinnedMusic);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2405,7 +2407,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isVideo()) {
-                    String string2 = LocaleController.getString("ActionPinnedVideo", R.string.ActionPinnedVideo);
+                    String string2 = LocaleController.getString(R.string.ActionPinnedVideo);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2413,7 +2415,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isGif()) {
-                    String string3 = LocaleController.getString("ActionPinnedGif", R.string.ActionPinnedGif);
+                    String string3 = LocaleController.getString(R.string.ActionPinnedGif);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2421,7 +2423,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isVoice()) {
-                    String string4 = LocaleController.getString("ActionPinnedVoice", R.string.ActionPinnedVoice);
+                    String string4 = LocaleController.getString(R.string.ActionPinnedVoice);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2429,7 +2431,7 @@ public class MessageObject {
                     return;
                 }
                 if (this.replyMessageObject.isRoundVideo()) {
-                    String string5 = LocaleController.getString("ActionPinnedRound", R.string.ActionPinnedRound);
+                    String string5 = LocaleController.getString(R.string.ActionPinnedRound);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2437,7 +2439,7 @@ public class MessageObject {
                     return;
                 }
                 if ((this.replyMessageObject.isSticker() || this.replyMessageObject.isAnimatedSticker()) && !this.replyMessageObject.isAnimatedEmoji()) {
-                    String string6 = LocaleController.getString("ActionPinnedSticker", R.string.ActionPinnedSticker);
+                    String string6 = LocaleController.getString(R.string.ActionPinnedSticker);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2445,7 +2447,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaDocument) {
-                    String string7 = LocaleController.getString("ActionPinnedFile", R.string.ActionPinnedFile);
+                    String string7 = LocaleController.getString(R.string.ActionPinnedFile);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2453,7 +2455,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaGeo) {
-                    String string8 = LocaleController.getString("ActionPinnedGeo", R.string.ActionPinnedGeo);
+                    String string8 = LocaleController.getString(R.string.ActionPinnedGeo);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2461,7 +2463,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaGeoLive) {
-                    String string9 = LocaleController.getString("ActionPinnedGeoLive", R.string.ActionPinnedGeoLive);
+                    String string9 = LocaleController.getString(R.string.ActionPinnedGeoLive);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2469,7 +2471,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaContact) {
-                    String string10 = LocaleController.getString("ActionPinnedContact", R.string.ActionPinnedContact);
+                    String string10 = LocaleController.getString(R.string.ActionPinnedContact);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2478,14 +2480,14 @@ public class MessageObject {
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaPoll) {
                     if (((TLRPC$TL_messageMediaPoll) getMedia(this.replyMessageObject)).poll.quiz) {
-                        String string11 = LocaleController.getString("ActionPinnedQuiz", R.string.ActionPinnedQuiz);
+                        String string11 = LocaleController.getString(R.string.ActionPinnedQuiz);
                         if (tLRPC$User == null) {
                             tLRPC$User = tLRPC$Chat;
                         }
                         this.messageText = replaceWithLink(string11, "un1", tLRPC$User);
                         return;
                     }
-                    String string12 = LocaleController.getString("ActionPinnedPoll", R.string.ActionPinnedPoll);
+                    String string12 = LocaleController.getString(R.string.ActionPinnedPoll);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2493,7 +2495,7 @@ public class MessageObject {
                     return;
                 }
                 if (getMedia(this.replyMessageObject) instanceof TLRPC$TL_messageMediaPhoto) {
-                    String string13 = LocaleController.getString("ActionPinnedPhoto", R.string.ActionPinnedPhoto);
+                    String string13 = LocaleController.getString(R.string.ActionPinnedPhoto);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
@@ -2536,14 +2538,14 @@ public class MessageObject {
                             replaceEmoji = new SpannableStringBuilder(replaceEmoji).append((CharSequence) "...");
                         }
                     }
-                    SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString("ActionPinnedText", R.string.ActionPinnedText), replaceEmoji);
+                    SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(LocaleController.getString(R.string.ActionPinnedText), replaceEmoji);
                     if (tLRPC$User == null) {
                         tLRPC$User = tLRPC$Chat;
                     }
                     this.messageText = replaceWithLink(formatSpannable, "un1", tLRPC$User);
                     return;
                 }
-                String string14 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
+                String string14 = LocaleController.getString(R.string.ActionPinnedNoText);
                 if (tLRPC$User == null) {
                     tLRPC$User = tLRPC$Chat;
                 }
@@ -2551,7 +2553,7 @@ public class MessageObject {
                 return;
             }
         }
-        String string15 = LocaleController.getString("ActionPinnedNoText", R.string.ActionPinnedNoText);
+        String string15 = LocaleController.getString(R.string.ActionPinnedNoText);
         if (tLRPC$User == null) {
             tLRPC$User = tLRPC$Chat;
         }
@@ -2826,9 +2828,9 @@ public class MessageObject {
                 if (chat == null) {
                     return false;
                 }
-                Boolean valueOf = Boolean.valueOf(chat.megagroup);
-                this.cachedIsSupergroup = valueOf;
-                return valueOf.booleanValue();
+                boolean z = chat.megagroup;
+                this.cachedIsSupergroup = Boolean.valueOf(z);
+                return z;
             }
         }
         this.cachedIsSupergroup = Boolean.FALSE;
@@ -2988,7 +2990,7 @@ public class MessageObject {
                 sb2.append(i);
                 sb2.append(i3);
                 if ((tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonBuy) && (getMedia(this.messageOwner).flags & 4) != 0) {
-                    replaceEmoji = LocaleController.getString("PaymentReceipt", R.string.PaymentReceipt);
+                    replaceEmoji = LocaleController.getString(R.string.PaymentReceipt);
                 } else {
                     String str = tLRPC$KeyboardButton.text;
                     if (str == null) {
@@ -3040,7 +3042,7 @@ public class MessageObject {
         return tLRPC$Chat == null ? MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j)) : tLRPC$Chat;
     }
 
-    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r25, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r26, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r27, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r28) {
+    private void updateMessageText(java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$User> r30, java.util.AbstractMap<java.lang.Long, org.telegram.tgnet.TLRPC$Chat> r31, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$User> r32, androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.updateMessageText(java.util.AbstractMap, java.util.AbstractMap, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
@@ -3125,7 +3127,7 @@ public class MessageObject {
                 } else if (isMediaEmpty()) {
                     this.type = 0;
                     if (TextUtils.isEmpty(this.messageText) && this.eventId == 0) {
-                        this.messageText = LocaleController.getString("EventLogOriginalCaptionEmpty", R.string.EventLogOriginalCaptionEmpty);
+                        this.messageText = LocaleController.getString(R.string.EventLogOriginalCaptionEmpty);
                     }
                 } else if (hasExtendedMediaPreview()) {
                     this.type = 20;
@@ -3241,35 +3243,38 @@ public class MessageObject {
                         this.photoThumbsObject = this.messageOwner.action.photo;
                     } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionLoginUnknownLocation) {
                         this.type = 0;
-                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode) && ((TLRPC$TL_messageActionGiftCode) tLRPC$MessageAction).boost_peer != null) {
-                        this.contentType = 1;
-                        this.type = 25;
-                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftPremium) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode)) {
-                        this.contentType = 1;
-                        this.type = 18;
-                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
-                        this.contentType = 1;
-                        this.type = 30;
-                    } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionChatEditPhoto) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionUserUpdatedPhoto)) {
-                        this.contentType = 1;
-                        this.type = 11;
-                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageEncryptedAction) {
-                        TLRPC$DecryptedMessageAction tLRPC$DecryptedMessageAction = tLRPC$MessageAction.encryptedAction;
-                        if ((tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionScreenshotMessages) || (tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionSetMessageTTL)) {
+                    } else {
+                        boolean z = tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftCode;
+                        if (z && ((TLRPC$TL_messageActionGiftCode) tLRPC$MessageAction).boost_peer != null) {
                             this.contentType = 1;
-                            this.type = 10;
-                        } else {
+                            this.type = 25;
+                        } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftPremium) || z) {
+                            this.contentType = 1;
+                            this.type = 18;
+                        } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
+                            this.contentType = 1;
+                            this.type = 30;
+                        } else if ((tLRPC$MessageAction instanceof TLRPC$TL_messageActionChatEditPhoto) || (tLRPC$MessageAction instanceof TLRPC$TL_messageActionUserUpdatedPhoto)) {
+                            this.contentType = 1;
+                            this.type = 11;
+                        } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageEncryptedAction) {
+                            TLRPC$DecryptedMessageAction tLRPC$DecryptedMessageAction = tLRPC$MessageAction.encryptedAction;
+                            if ((tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionScreenshotMessages) || (tLRPC$DecryptedMessageAction instanceof TLRPC$TL_decryptedMessageActionSetMessageTTL)) {
+                                this.contentType = 1;
+                                this.type = 10;
+                            } else {
+                                this.contentType = -1;
+                                this.type = -1;
+                            }
+                        } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionHistoryClear) {
                             this.contentType = -1;
                             this.type = -1;
+                        } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPhoneCall) {
+                            this.type = 16;
+                        } else {
+                            this.contentType = 1;
+                            this.type = 10;
                         }
-                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionHistoryClear) {
-                        this.contentType = -1;
-                        this.type = -1;
-                    } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPhoneCall) {
-                        this.type = 16;
-                    } else {
-                        this.contentType = 1;
-                        this.type = 10;
                     }
                 }
             }
@@ -3331,7 +3336,10 @@ public class MessageObject {
             return getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto ? "image/jpeg" : (!(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(this.messageOwner).webpage.photo == null) ? "" : "image/jpeg";
         }
         TLRPC$WebDocument tLRPC$WebDocument = ((TLRPC$TL_messageMediaInvoice) getMedia(this.messageOwner)).webPhoto;
-        return tLRPC$WebDocument != null ? tLRPC$WebDocument.mime_type : "";
+        if (tLRPC$WebDocument != null) {
+            return tLRPC$WebDocument.mime_type;
+        }
+        return "";
     }
 
     public boolean canPreviewDocument() {
@@ -3718,16 +3726,16 @@ public class MessageObject {
     }
 
     public CharSequence replaceWithLink(CharSequence charSequence, String str, ArrayList<Long> arrayList, AbstractMap<Long, TLRPC$User> abstractMap, LongSparseArray<TLRPC$User> longSparseArray) {
+        TLRPC$User tLRPC$User;
         if (TextUtils.indexOf(charSequence, str) < 0) {
             return charSequence;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("");
         for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC$User tLRPC$User = null;
             if (abstractMap != null) {
                 tLRPC$User = abstractMap.get(arrayList.get(i));
-            } else if (longSparseArray != null) {
-                tLRPC$User = longSparseArray.get(arrayList.get(i).longValue());
+            } else {
+                tLRPC$User = longSparseArray != null ? longSparseArray.get(arrayList.get(i).longValue()) : null;
             }
             if (tLRPC$User == null) {
                 tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(arrayList.get(i));
@@ -3754,7 +3762,6 @@ public class MessageObject {
         if (indexOf < 0) {
             return charSequence;
         }
-        TLObject tLObject3 = null;
         if (tLObject instanceof TLRPC$User) {
             TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
             charSequence2 = UserObject.getUserName(tLRPC$User).replace('\n', ' ');
@@ -3780,15 +3787,19 @@ public class MessageObject {
                 str2 = "0";
                 charSequence2 = "";
             }
-            String str4 = str3;
-            tLObject3 = tLObject2;
-            str2 = str4;
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
+            URLSpanNoUnderlineBold uRLSpanNoUnderlineBold = new URLSpanNoUnderlineBold("" + str3);
+            uRLSpanNoUnderlineBold.setObject(tLObject2);
+            spannableStringBuilder.setSpan(uRLSpanNoUnderlineBold, indexOf, charSequence2.length() + indexOf, 33);
+            return spannableStringBuilder;
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
-        URLSpanNoUnderlineBold uRLSpanNoUnderlineBold = new URLSpanNoUnderlineBold("" + str2);
-        uRLSpanNoUnderlineBold.setObject(tLObject3);
-        spannableStringBuilder.setSpan(uRLSpanNoUnderlineBold, indexOf, charSequence2.length() + indexOf, 33);
-        return spannableStringBuilder;
+        str3 = str2;
+        tLObject2 = null;
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
+        URLSpanNoUnderlineBold uRLSpanNoUnderlineBold2 = new URLSpanNoUnderlineBold("" + str3);
+        uRLSpanNoUnderlineBold2.setObject(tLObject2);
+        spannableStringBuilder2.setSpan(uRLSpanNoUnderlineBold2, indexOf, charSequence2.length() + indexOf, 33);
+        return spannableStringBuilder2;
     }
 
     public String getExtension() {
@@ -3813,11 +3824,17 @@ public class MessageObject {
         if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaDocument) {
             return FileLoader.getAttachFileName(getDocument(tLRPC$Message));
         }
-        if (!(getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto)) {
-            return (!(getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(tLRPC$Message).webpage == null) ? "" : FileLoader.getAttachFileName(getMedia(tLRPC$Message).webpage.document);
+        if (getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) {
+            ArrayList<TLRPC$PhotoSize> arrayList = getMedia(tLRPC$Message).photo.sizes;
+            if (arrayList.size() > 0 && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) != null) {
+                return FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+            }
+            return "";
         }
-        ArrayList<TLRPC$PhotoSize> arrayList = getMedia(tLRPC$Message).photo.sizes;
-        return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? "" : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+        if ((getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) && getMedia(tLRPC$Message).webpage != null) {
+            return FileLoader.getAttachFileName(getMedia(tLRPC$Message).webpage.document);
+        }
+        return "";
     }
 
     public static String getFileName(TLRPC$MessageMedia tLRPC$MessageMedia) {
@@ -3826,11 +3843,17 @@ public class MessageObject {
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) {
             return FileLoader.getAttachFileName(tLRPC$MessageMedia.document);
         }
-        if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto)) {
-            return (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null) ? "" : FileLoader.getAttachFileName(tLRPC$WebPage.document);
+        if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
+            ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$MessageMedia.photo.sizes;
+            if (arrayList.size() > 0 && (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) != null) {
+                return FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+            }
+            return "";
         }
-        ArrayList<TLRPC$PhotoSize> arrayList = tLRPC$MessageMedia.photo.sizes;
-        return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? "" : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+        if ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaWebPage) && (tLRPC$WebPage = tLRPC$MessageMedia.webpage) != null) {
+            return FileLoader.getAttachFileName(tLRPC$WebPage.document);
+        }
+        return "";
     }
 
     public int getMediaType() {
@@ -3917,7 +3940,7 @@ public class MessageObject {
             return null;
         }
         if (TextUtils.isEmpty(str)) {
-            SpannableString spannableString = new SpannableString(LocaleController.getString("NoWordsRecognized", R.string.NoWordsRecognized));
+            SpannableString spannableString = new SpannableString(LocaleController.getString(R.string.NoWordsRecognized));
             spannableString.setSpan(new CharacterStyle() {
                 @Override
                 public void updateDrawState(TextPaint textPaint) {
@@ -3933,13 +3956,21 @@ public class MessageObject {
 
     public float measureVoiceTranscriptionHeight() {
         StaticLayout staticLayout;
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
         CharSequence voiceTranscription = getVoiceTranscription();
         if (voiceTranscription == null) {
             return 0.0f;
         }
         int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(needDrawAvatar() ? 147.0f : 95.0f);
         if (Build.VERSION.SDK_INT >= 24) {
-            staticLayout = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, dp).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+            obtain = StaticLayout.Builder.obtain(voiceTranscription, 0, voiceTranscription.length(), Theme.chat_msgTextPaint, dp);
+            breakStrategy = obtain.setBreakStrategy(1);
+            hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+            alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            staticLayout = alignment.build();
         } else {
             staticLayout = new StaticLayout(voiceTranscription, Theme.chat_msgTextPaint, dp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
@@ -3965,15 +3996,18 @@ public class MessageObject {
     }
 
     public static int[] getWebDocumentWidthAndHeight(TLRPC$WebDocument tLRPC$WebDocument) {
-        int i;
         if (tLRPC$WebDocument == null) {
             return null;
         }
         int size = tLRPC$WebDocument.attributes.size();
-        while (i < size) {
+        for (int i = 0; i < size; i++) {
             TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$WebDocument.attributes.get(i);
-            i = ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) ? 0 : i + 1;
-            return new int[]{tLRPC$DocumentAttribute.w, tLRPC$DocumentAttribute.h};
+            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {
+                return new int[]{tLRPC$DocumentAttribute.w, tLRPC$DocumentAttribute.h};
+            }
+            if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) {
+                return new int[]{tLRPC$DocumentAttribute.w, tLRPC$DocumentAttribute.h};
+            }
         }
         return null;
     }
@@ -4272,54 +4306,61 @@ public class MessageObject {
     }
 
     public int getMaxMessageTextWidth() {
+        int dp;
+        Uri parse;
+        String lastPathSegment;
         if (AndroidUtilities.isTablet() && this.eventId != 0) {
             this.generatedWithMinSize = AndroidUtilities.dp(530.0f);
         } else {
             this.generatedWithMinSize = AndroidUtilities.isTablet() ? AndroidUtilities.getMinTabletSide() : getParentWidth();
         }
         this.generatedWithDensity = AndroidUtilities.density;
-        int i = 0;
         if (this.hasCode && !this.isSaved) {
-            i = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
+            dp = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
             if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
-                i -= AndroidUtilities.dp(52.0f);
+                dp -= AndroidUtilities.dp(52.0f);
             }
         } else if ((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && getMedia(this.messageOwner).webpage != null && "telegram_background".equals(getMedia(this.messageOwner).webpage.type)) {
             try {
-                Uri parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
-                String lastPathSegment = parse.getLastPathSegment();
-                if (parse.getQueryParameter("bg_color") != null) {
-                    i = AndroidUtilities.dp(220.0f);
-                } else if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
-                    i = AndroidUtilities.dp(200.0f);
-                }
+                parse = Uri.parse(getMedia(this.messageOwner).webpage.url);
+                lastPathSegment = parse.getLastPathSegment();
             } catch (Exception unused) {
             }
-        } else if (isAndroidTheme()) {
-            i = AndroidUtilities.dp(200.0f);
+            if (parse.getQueryParameter("bg_color") != null) {
+                dp = AndroidUtilities.dp(220.0f);
+            } else {
+                if (lastPathSegment.length() == 6 || (lastPathSegment.length() == 13 && lastPathSegment.charAt(6) == '-')) {
+                    dp = AndroidUtilities.dp(200.0f);
+                }
+                dp = 0;
+            }
+        } else {
+            if (isAndroidTheme()) {
+                dp = AndroidUtilities.dp(200.0f);
+            }
+            dp = 0;
         }
-        if (i == 0) {
-            int dp = this.generatedWithMinSize - AndroidUtilities.dp(80.0f);
+        if (dp == 0) {
+            dp = this.generatedWithMinSize - AndroidUtilities.dp(80.0f);
             if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
                 dp -= AndroidUtilities.dp(52.0f);
             }
             if (needDrawShareButton() && (this.isSaved || !isOutOwner())) {
                 dp -= AndroidUtilities.dp((this.isSaved && isOutOwner()) ? 40.0f : 14.0f);
             }
-            i = dp;
             if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame) {
-                i -= AndroidUtilities.dp(10.0f);
+                dp -= AndroidUtilities.dp(10.0f);
             }
         }
-        int i2 = this.emojiOnlyCount;
-        if (i2 < 1) {
-            return i;
+        int i = this.emojiOnlyCount;
+        if (i < 1) {
+            return dp;
         }
-        int i3 = this.totalAnimatedEmojiCount;
-        if (i3 <= 100) {
-            return i2 - i3 < (SharedConfig.getDevicePerformanceClass() < 2 ? 50 : 100) ? (hasValidReplyMessageObject() || isForwarded()) ? Math.min(i, (int) (this.generatedWithMinSize * 0.65f)) : i : i;
+        int i2 = this.totalAnimatedEmojiCount;
+        if (i2 <= 100) {
+            return i - i2 < (SharedConfig.getDevicePerformanceClass() < 2 ? 50 : 100) ? (hasValidReplyMessageObject() || isForwarded()) ? Math.min(dp, (int) (this.generatedWithMinSize * 0.65f)) : dp : dp;
         }
-        return i;
+        return dp;
     }
 
     public void applyTimestampsHighlightForReplyMsg() {
@@ -4343,39 +4384,50 @@ public class MessageObject {
     }
 
     public static StaticLayout makeStaticLayout(CharSequence charSequence, TextPaint textPaint, int i, float f, float f2, boolean z) {
+        StaticLayout.Builder obtain;
+        StaticLayout.Builder lineSpacing;
+        StaticLayout.Builder breakStrategy;
+        StaticLayout.Builder hyphenationFrequency;
+        StaticLayout.Builder alignment;
+        StaticLayout build;
+        StaticLayout.Builder obtain2;
+        StaticLayout.Builder lineSpacing2;
+        StaticLayout.Builder breakStrategy2;
+        StaticLayout.Builder hyphenationFrequency2;
+        StaticLayout.Builder alignment2;
+        StaticLayout build2;
         int i2 = Build.VERSION.SDK_INT;
         if (i2 >= 24) {
-            boolean z2 = true;
-            StaticLayout.Builder alignment = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
+            obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i);
+            lineSpacing = obtain.setLineSpacing(f2, f);
+            breakStrategy = lineSpacing.setBreakStrategy(1);
+            hyphenationFrequency = breakStrategy.setHyphenationFrequency(0);
+            alignment = hyphenationFrequency.setAlignment(Layout.Alignment.ALIGN_NORMAL);
             if (z) {
                 alignment.setIncludePad(false);
                 if (i2 >= 28) {
                     alignment.setUseLineSpacingFromFallbacks(false);
                 }
             }
-            StaticLayout build = alignment.build();
-            int i3 = 0;
-            while (true) {
-                if (i3 >= build.getLineCount()) {
-                    z2 = false;
-                    break;
-                }
+            build = alignment.build();
+            for (int i3 = 0; i3 < build.getLineCount(); i3++) {
                 if (build.getLineRight(i3) > i) {
-                    break;
+                    obtain2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i);
+                    lineSpacing2 = obtain2.setLineSpacing(f2, f);
+                    breakStrategy2 = lineSpacing2.setBreakStrategy(0);
+                    hyphenationFrequency2 = breakStrategy2.setHyphenationFrequency(0);
+                    alignment2 = hyphenationFrequency2.setAlignment(Layout.Alignment.ALIGN_NORMAL);
+                    if (z) {
+                        alignment2.setIncludePad(false);
+                        if (Build.VERSION.SDK_INT >= 28) {
+                            alignment2.setUseLineSpacingFromFallbacks(false);
+                        }
+                    }
+                    build2 = alignment2.build();
+                    return build2;
                 }
-                i3++;
             }
-            if (!z2) {
-                return build;
-            }
-            StaticLayout.Builder alignment2 = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i).setLineSpacing(f2, f).setBreakStrategy(0).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL);
-            if (z) {
-                alignment2.setIncludePad(false);
-                if (Build.VERSION.SDK_INT >= 28) {
-                    alignment2.setUseLineSpacingFromFallbacks(false);
-                }
-            }
-            return alignment2.build();
+            return build;
         }
         return new StaticLayout(charSequence, textPaint, i, Layout.Alignment.ALIGN_NORMAL, f, f2, false);
     }
@@ -4474,9 +4526,8 @@ public class MessageObject {
                 if ((tLRPC$Peer3 == null || tLRPC$Peer3.user_id != clientUserId) && !tLRPC$MessageFwdHeader.saved_out) {
                     z = false;
                 }
-                Boolean valueOf = Boolean.valueOf(z);
-                this.isOutOwnerCached = valueOf;
-                return valueOf.booleanValue();
+                this.isOutOwnerCached = Boolean.valueOf(z);
+                return z;
             }
             this.isOutOwnerCached = Boolean.TRUE;
             return true;
@@ -4505,17 +4556,15 @@ public class MessageObject {
                         if ((!(tLRPC$Peer6 instanceof TLRPC$TL_peerUser) || tLRPC$Peer6.user_id != clientUserId || ((tLRPC$Peer2 = tLRPC$MessageFwdHeader2.saved_from_peer) != null && tLRPC$Peer2.user_id != clientUserId)) && ((tLRPC$Peer = tLRPC$MessageFwdHeader2.saved_from_peer) == null || tLRPC$Peer.user_id != clientUserId || (tLRPC$Peer6 != null && tLRPC$Peer6.user_id != clientUserId))) {
                             z = false;
                         }
-                        Boolean valueOf2 = Boolean.valueOf(z);
-                        this.isOutOwnerCached = valueOf2;
-                        return valueOf2.booleanValue();
+                        this.isOutOwnerCached = Boolean.valueOf(z);
+                        return z;
                     }
                     TLRPC$Peer tLRPC$Peer7 = this.messageOwner.fwd_from.saved_from_peer;
                     if (tLRPC$Peer7 != null && tLRPC$Peer7.user_id != clientUserId) {
                         z = false;
                     }
-                    Boolean valueOf3 = Boolean.valueOf(z);
-                    this.isOutOwnerCached = valueOf3;
-                    return valueOf3.booleanValue();
+                    this.isOutOwnerCached = Boolean.valueOf(z);
+                    return z;
                 }
             }
         }
@@ -4712,7 +4761,10 @@ public class MessageObject {
         if (tLObject instanceof TLRPC$User) {
             return UserObject.getUserName((TLRPC$User) tLObject);
         }
-        return tLObject instanceof TLRPC$Chat ? ((TLRPC$Chat) tLObject).title : "DELETED";
+        if (tLObject instanceof TLRPC$Chat) {
+            return ((TLRPC$Chat) tLObject).title;
+        }
+        return "DELETED";
     }
 
     public boolean isFromUser() {
@@ -5353,9 +5405,7 @@ public class MessageObject {
             return isGifDocument(getMedia(tLRPC$Message).webpage.document);
         }
         if (getMedia(tLRPC$Message) != null) {
-            if (isGifDocument(getMedia(tLRPC$Message).document, tLRPC$Message.grouped_id != 0)) {
-                return true;
-            }
+            return isGifDocument(getMedia(tLRPC$Message).document, (tLRPC$Message.grouped_id > 0L ? 1 : (tLRPC$Message.grouped_id == 0L ? 0 : -1)) != 0);
         }
         return false;
     }
@@ -5808,7 +5858,10 @@ public class MessageObject {
             return null;
         }
         TLRPC$TL_messageMediaDice tLRPC$TL_messageMediaDice = (TLRPC$TL_messageMediaDice) getMedia(this.messageOwner);
-        return TextUtils.isEmpty(tLRPC$TL_messageMediaDice.emoticon) ? "🎲" : tLRPC$TL_messageMediaDice.emoticon.replace("️", "");
+        if (TextUtils.isEmpty(tLRPC$TL_messageMediaDice.emoticon)) {
+            return "🎲";
+        }
+        return tLRPC$TL_messageMediaDice.emoticon.replace("️", "");
     }
 
     public int getDiceValue() {
@@ -6020,7 +6073,7 @@ public class MessageObject {
                         return str;
                     }
                     String documentFileName = FileLoader.getDocumentFileName(document);
-                    return (TextUtils.isEmpty(documentFileName) && z) ? LocaleController.getString("AudioUnknownTitle", R.string.AudioUnknownTitle) : documentFileName;
+                    return (TextUtils.isEmpty(documentFileName) && z) ? LocaleController.getString(R.string.AudioUnknownTitle) : documentFileName;
                 }
                 if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo) && tLRPC$DocumentAttribute.round_message) {
                     if (isQuickReply()) {
@@ -6034,7 +6087,7 @@ public class MessageObject {
                 return documentFileName2;
             }
         }
-        return LocaleController.getString("AudioUnknownTitle", R.string.AudioUnknownTitle);
+        return LocaleController.getString(R.string.AudioUnknownTitle);
     }
 
     public double getDuration() {
@@ -6118,7 +6171,7 @@ public class MessageObject {
         return getMusicAuthor(true);
     }
 
-    public java.lang.String getMusicAuthor(boolean r12) {
+    public java.lang.String getMusicAuthor(boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.getMusicAuthor(boolean):java.lang.String");
     }
 
@@ -6851,15 +6904,8 @@ public class MessageObject {
         if (tLRPC$Message.reactions == null) {
             tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
             TLRPC$Message tLRPC$Message2 = this.messageOwner;
-            TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message2.reactions;
-            long dialogId = getDialogId(tLRPC$Message2);
-            boolean z3 = true;
-            tLRPC$TL_messageReactions.reactions_as_tags = dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
-            TLRPC$TL_messageReactions tLRPC$TL_messageReactions2 = this.messageOwner.reactions;
-            if (!isFromGroup() && !isFromUser()) {
-                z3 = false;
-            }
-            tLRPC$TL_messageReactions2.can_see_list = z3;
+            tLRPC$Message2.reactions.reactions_as_tags = getDialogId(tLRPC$Message2) == UserConfig.getInstance(this.currentAccount).getClientUserId();
+            this.messageOwner.reactions.can_see_list = isFromGroup() || isFromUser();
         }
         addPaidReactions(this.currentAccount, this.messageOwner.reactions, i, z2, z);
     }
@@ -7318,7 +7364,10 @@ public class MessageObject {
     public static CharSequence peerNameWithIcon(int i, long j, boolean z) {
         if (j >= 0) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-            return user != null ? AndroidUtilities.removeDiacritics(UserObject.getUserName(user)) : "";
+            if (user != null) {
+                return AndroidUtilities.removeDiacritics(UserObject.getUserName(user));
+            }
+            return "";
         }
         TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (chat != null) {
@@ -7408,11 +7457,17 @@ public class MessageObject {
         boolean z = !this.isRestrictedMessage && (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage);
         TLRPC$WebPage tLRPC$WebPage = z ? getMedia(this.messageOwner).webpage : null;
         String str = tLRPC$WebPage != null ? tLRPC$WebPage.type : null;
-        return z && !isGiveawayOrGiveawayResults() && tLRPC$WebPage != null && (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) && !((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || isSponsored() || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_videochat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str) || "telegram_group_boost".equals(str) || "telegram_chat".equals(str));
+        if (!z || isGiveawayOrGiveawayResults() || tLRPC$WebPage == null) {
+            return false;
+        }
+        if (tLRPC$WebPage.photo != null || isVideoDocument(tLRPC$WebPage.document)) {
+            return ((TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) || isSponsored() || "telegram_megagroup".equals(str) || "telegram_background".equals(str) || "telegram_voicechat".equals(str) || "telegram_videochat".equals(str) || "telegram_livestream".equals(str) || "telegram_user".equals(str) || "telegram_story".equals(str) || "telegram_channel_boost".equals(str) || "telegram_group_boost".equals(str) || "telegram_chat".equals(str)) ? false : true;
+        }
+        return false;
     }
 
     public boolean isLinkMediaSmall() {
-        TLRPC$WebPage tLRPC$WebPage = !this.isRestrictedMessage && (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage) ? getMedia(this.messageOwner).webpage : null;
+        TLRPC$WebPage tLRPC$WebPage = (!this.isRestrictedMessage && (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) && (getMedia(this.messageOwner).webpage instanceof TLRPC$TL_webPage)) ? getMedia(this.messageOwner).webpage : null;
         String str = tLRPC$WebPage != null ? tLRPC$WebPage.type : null;
         return !(tLRPC$WebPage != null && TextUtils.isEmpty(tLRPC$WebPage.description) && TextUtils.isEmpty(tLRPC$WebPage.title)) && ("app".equals(str) || "profile".equals(str) || "article".equals(str) || "telegram_bot".equals(str) || "telegram_user".equals(str) || "telegram_channel".equals(str) || "telegram_megagroup".equals(str) || "telegram_voicechat".equals(str) || "telegram_videochat".equals(str) || "telegram_livestream".equals(str) || "telegram_channel_boost".equals(str) || "telegram_group_boost".equals(str) || "telegram_chat".equals(str));
     }
@@ -7441,6 +7496,7 @@ public class MessageObject {
     }
 
     public static void cutIntoRanges(CharSequence charSequence, ArrayList<TextRange> arrayList) {
+        String str;
         int i;
         if (charSequence == null) {
             return;
@@ -7454,8 +7510,9 @@ public class MessageObject {
         Spanned spanned = (Spanned) charSequence;
         QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) spanned.getSpans(0, spanned.length(), QuoteSpan.QuoteStyleSpan.class);
         for (int i2 = 0; i2 < quoteStyleSpanArr.length; i2++) {
-            quoteStyleSpanArr[i2].span.adaptLineHeight = false;
-            int spanStart = spanned.getSpanStart(quoteStyleSpanArr[i2]);
+            QuoteSpan.QuoteStyleSpan quoteStyleSpan = quoteStyleSpanArr[i2];
+            quoteStyleSpan.span.adaptLineHeight = false;
+            int spanStart = spanned.getSpanStart(quoteStyleSpan);
             int spanEnd = spanned.getSpanEnd(quoteStyleSpanArr[i2]);
             treeSet.add(Integer.valueOf(spanStart));
             hashMap.put(Integer.valueOf(spanStart), Integer.valueOf((hashMap.containsKey(Integer.valueOf(spanStart)) ? ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue() : 0) | (quoteStyleSpanArr[i2].span.isCollapsing ? 16 : 1)));
@@ -7464,12 +7521,13 @@ public class MessageObject {
         }
         Iterator it = treeSet.iterator();
         while (it.hasNext()) {
-            int intValue = ((Integer) it.next()).intValue();
-            if (intValue >= 0 && intValue < spanned.length() && hashMap.containsKey(Integer.valueOf(intValue))) {
-                int intValue2 = ((Integer) hashMap.get(Integer.valueOf(intValue))).intValue();
+            Integer num = (Integer) it.next();
+            int intValue = num.intValue();
+            if (intValue >= 0 && intValue < spanned.length() && hashMap.containsKey(num)) {
+                int intValue2 = ((Integer) hashMap.get(num)).intValue();
                 if ((intValue2 & 1) != 0 && (intValue2 & 2) != 0 && spanned.charAt(intValue) != '\n' && (intValue - 1 <= 0 || spanned.charAt(i) != '\n')) {
                     it.remove();
-                    hashMap.remove(Integer.valueOf(intValue));
+                    hashMap.remove(num);
                 }
             }
         }
@@ -7489,16 +7547,18 @@ public class MessageObject {
         int i6 = 0;
         int i7 = 0;
         while (it2.hasNext()) {
-            int intValue3 = ((Integer) it2.next()).intValue();
-            int intValue4 = ((Integer) hashMap.get(Integer.valueOf(intValue3))).intValue();
+            Integer num2 = (Integer) it2.next();
+            int intValue3 = num2.intValue();
+            int intValue4 = ((Integer) hashMap.get(num2)).intValue();
             if (i6 != intValue3) {
                 int i8 = intValue3 - 1;
                 if (i8 >= 0 && i8 < charSequence.length() && charSequence.charAt(i8) == '\n') {
                     intValue3--;
                 }
                 int i9 = intValue3;
-                String str = null;
-                if ((intValue4 & 8) != 0 && i5 < spanArr.length) {
+                if ((intValue4 & 8) == 0 || i5 >= spanArr.length) {
+                    str = null;
+                } else {
                     str = spanArr[i5].lng;
                     i5++;
                 }
@@ -7637,7 +7697,10 @@ public class MessageObject {
             return quickReplyName;
         }
         QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(this.currentAccount).findReply(getQuickReplyId());
-        return findReply != null ? findReply.name : "";
+        if (findReply != null) {
+            return findReply.name;
+        }
+        return "";
     }
 
     public static boolean isQuickReply(TLRPC$Message tLRPC$Message) {

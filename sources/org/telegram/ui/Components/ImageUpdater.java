@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -85,6 +84,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     private String videoPath;
     private double videoTimestamp;
     private int currentAccount = UserConfig.selectedAccount;
+    private File picturePath = null;
     private boolean useAttachMenu = true;
     private boolean searchAvailable = true;
     private boolean uploadAfterSelect = true;
@@ -223,29 +223,29 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         } else if (i == 2) {
             builder.setTitle(LocaleController.formatString("SuggestPhotoFor", R.string.SuggestPhotoFor, this.user.first_name), true);
         } else {
-            builder.setTitle(LocaleController.getString("ChoosePhoto", R.string.ChoosePhoto), true);
+            builder.setTitle(LocaleController.getString(R.string.ChoosePhoto), true);
         }
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         final ArrayList arrayList3 = new ArrayList();
-        arrayList.add(LocaleController.getString("ChooseTakePhoto", R.string.ChooseTakePhoto));
+        arrayList.add(LocaleController.getString(R.string.ChooseTakePhoto));
         arrayList2.add(Integer.valueOf(R.drawable.msg_camera));
         arrayList3.add(0);
         if (this.canSelectVideo) {
-            arrayList.add(LocaleController.getString("ChooseRecordVideo", R.string.ChooseRecordVideo));
+            arrayList.add(LocaleController.getString(R.string.ChooseRecordVideo));
             arrayList2.add(Integer.valueOf(R.drawable.msg_video));
             arrayList3.add(4);
         }
-        arrayList.add(LocaleController.getString("ChooseFromGallery", R.string.ChooseFromGallery));
+        arrayList.add(LocaleController.getString(R.string.ChooseFromGallery));
         arrayList2.add(Integer.valueOf(R.drawable.msg_photos));
         arrayList3.add(1);
         if (this.searchAvailable) {
-            arrayList.add(LocaleController.getString("ChooseFromSearch", R.string.ChooseFromSearch));
+            arrayList.add(LocaleController.getString(R.string.ChooseFromSearch));
             arrayList2.add(Integer.valueOf(R.drawable.msg_search));
             arrayList3.add(2);
         }
         if (z) {
-            arrayList.add(LocaleController.getString("DeletePhoto", R.string.DeletePhoto));
+            arrayList.add(LocaleController.getString(R.string.DeletePhoto));
             arrayList2.add(Integer.valueOf(R.drawable.msg_delete));
             arrayList3.add(3);
         }
@@ -788,7 +788,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                                 this.imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, sendingMediaInfo.searchImage.photo), null, null, "jpg", null, 1);
                             }
                         }
-                        loadBitmap = null;
                     } else if (searchImage.imageUrl != null) {
                         File file = new File(FileLoader.getDirectory(4), Utilities.MD5(sendingMediaInfo.searchImage.imageUrl) + "." + ImageLoader.getHttpUrlExtension(sendingMediaInfo.searchImage.imageUrl, "jpg"));
                         this.finalPath = file.getAbsolutePath();
@@ -811,15 +810,19 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public void openCamera() {
+        int checkSelfPermission;
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
         try {
             int i = Build.VERSION.SDK_INT;
-            if (i >= 23 && this.parentFragment.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
-                return;
+            if (i >= 23) {
+                checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.CAMERA");
+                if (checkSelfPermission != 0) {
+                    this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
+                    return;
+                }
             }
             Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
             File generatePicturePath = AndroidUtilities.generatePicturePath();
@@ -840,15 +843,19 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public void openVideoCamera() {
+        int checkSelfPermission;
         BaseFragment baseFragment = this.parentFragment;
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
         try {
             int i = Build.VERSION.SDK_INT;
-            if (i >= 23 && this.parentFragment.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
-                return;
+            if (i >= 23) {
+                checkSelfPermission = this.parentFragment.getParentActivity().checkSelfPermission("android.permission.CAMERA");
+                if (checkSelfPermission != 0) {
+                    this.parentFragment.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 19);
+                    return;
+                }
             }
             Intent intent = new Intent("android.media.action.VIDEO_CAPTURE");
             File generateVideoPath = AndroidUtilities.generateVideoPath();
@@ -857,7 +864,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     intent.putExtra("output", FileProvider.getUriForFile(this.parentFragment.getParentActivity(), ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
                     intent.addFlags(2);
                     intent.addFlags(1);
-                } else if (i >= 18) {
+                } else {
                     intent.putExtra("output", Uri.fromFile(generateVideoPath));
                 }
                 intent.putExtra("android.intent.extras.CAMERA_FACING", 1);
@@ -885,44 +892,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public void openGallery() {
-        BaseFragment baseFragment = this.parentFragment;
-        if (baseFragment == null) {
-            return;
-        }
-        Activity parentActivity = baseFragment.getParentActivity();
-        int i = Build.VERSION.SDK_INT;
-        if (i >= 33 && parentActivity != null) {
-            if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0) {
-                parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 151);
-                return;
-            }
-        } else if (i >= 23 && parentActivity != null && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-            parentActivity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 151);
-            return;
-        }
-        PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(this.canSelectVideo ? PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR_VIDEO : PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR, false, false, null);
-        photoAlbumPickerActivity.setAllowSearchImages(this.searchAvailable);
-        photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
-            AnonymousClass3() {
-            }
-
-            @Override
-            public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i2) {
-                ImageUpdater.this.didSelectPhotos(arrayList);
-            }
-
-            @Override
-            public void startPhotoSelectActivity() {
-                try {
-                    Intent intent = new Intent("android.intent.action.GET_CONTENT");
-                    intent.setType("image/*");
-                    ImageUpdater.this.parentFragment.startActivityForResult(intent, 14);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-        });
-        this.parentFragment.presentFragment(photoAlbumPickerActivity);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ImageUpdater.openGallery():void");
     }
 
     public class AnonymousClass3 implements PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate {
@@ -930,7 +900,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         }
 
         @Override
-        public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i2) {
+        public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
             ImageUpdater.this.didSelectPhotos(arrayList);
         }
 

@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.TransitionManager;
@@ -128,7 +127,7 @@ public class LegendSignatureView extends FrameLayout {
         this.content.removeAllViews();
         this.holders = new Holder[i];
         for (int i2 = 0; i2 < i; i2++) {
-            this.holders[i2] = new Holder(this);
+            this.holders[i2] = new Holder();
             this.content.addView(this.holders[i2].root);
         }
     }
@@ -139,7 +138,7 @@ public class LegendSignatureView extends FrameLayout {
         TextView textView;
         int length = this.holders.length;
         int i4 = 2;
-        if (z && Build.VERSION.SDK_INT >= 19) {
+        if (z) {
             TransitionSet transitionSet = new TransitionSet();
             transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(150L)).addTransition(new Fade(1).setDuration(150L));
             transitionSet.setOrdering(0);
@@ -316,12 +315,12 @@ public class LegendSignatureView extends FrameLayout {
         final TextView signature;
         final AnimatedEmojiSpan.TextViewEmojis value;
 
-        Holder(LegendSignatureView legendSignatureView) {
-            LinearLayout linearLayout = new LinearLayout(legendSignatureView.getContext());
+        Holder() {
+            LinearLayout linearLayout = new LinearLayout(LegendSignatureView.this.getContext());
             this.root = linearLayout;
             linearLayout.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
-            if (legendSignatureView.showPercentage) {
-                TextView textView = new TextView(legendSignatureView.getContext());
+            if (LegendSignatureView.this.showPercentage) {
+                TextView textView = new TextView(LegendSignatureView.this.getContext());
                 this.percentage = textView;
                 linearLayout.addView(textView);
                 this.percentage.getLayoutParams().width = AndroidUtilities.dp(36.0f);
@@ -329,10 +328,10 @@ public class LegendSignatureView extends FrameLayout {
                 this.percentage.setTypeface(AndroidUtilities.bold());
                 this.percentage.setTextSize(1, 13.0f);
             }
-            TextView textView2 = new TextView(legendSignatureView.getContext());
+            TextView textView2 = new TextView(LegendSignatureView.this.getContext());
             this.signature = textView2;
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 20.0f, 0.0f));
-            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(legendSignatureView.getContext());
+            AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(LegendSignatureView.this.getContext());
             this.value = textViewEmojis;
             linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-1, -2));
             textView2.setGravity(8388611);

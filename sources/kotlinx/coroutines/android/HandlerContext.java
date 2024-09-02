@@ -6,10 +6,11 @@ import java.util.concurrent.CancellationException;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.Delay;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.JobKt;
 
-public final class HandlerContext extends HandlerDispatcher {
+public final class HandlerContext extends HandlerDispatcher implements Delay {
     private volatile HandlerContext _immediate;
     private final Handler handler;
     private final HandlerContext immediate;
@@ -49,7 +50,7 @@ public final class HandlerContext extends HandlerDispatcher {
     }
 
     @Override
-    public void mo154dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         if (this.handler.post(runnable)) {
             return;
         }
@@ -58,7 +59,7 @@ public final class HandlerContext extends HandlerDispatcher {
 
     private final void cancelOnRejection(CoroutineContext coroutineContext, Runnable runnable) {
         JobKt.cancel(coroutineContext, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        Dispatchers.getIO().mo154dispatch(coroutineContext, runnable);
+        Dispatchers.getIO().dispatch(coroutineContext, runnable);
     }
 
     @Override

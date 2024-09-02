@@ -39,6 +39,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
     private int plusIcon;
     private ImageView plusView;
     private TypefaceCell typefaceCell;
+    private PaintTypefaceListView typefaceListView;
     private int x;
 
     public interface Delegate {
@@ -53,15 +54,12 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         void onTypefaceButtonClicked();
     }
 
-    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
-    }
-
     static {
-        int i = 0;
-        int i2 = 1;
-        int i3 = 2;
-        int i4 = 40;
-        ALIGN_PAIRS = Arrays.asList(new AlignFramePair(0, 1, 20, i), new AlignFramePair(0, 2, 20, 40), new AlignFramePair(i2, i, 0, 20), new AlignFramePair(i2, 2, 60, 40), new AlignFramePair(i3, 0, i4, 20), new AlignFramePair(i3, 1, i4, 60));
+        int i = 40;
+        int i2 = 2;
+        int i3 = 20;
+        int i4 = 0;
+        ALIGN_PAIRS = Arrays.asList(new AlignFramePair(0, 1, 20, 0), new AlignFramePair(0, i2, 20, i), new AlignFramePair(1, i4, 0, i3), new AlignFramePair(1, i2, 60, i), new AlignFramePair(2, i4, 40, i3), new AlignFramePair(2, 1, 40, 60));
     }
 
     public PaintTextOptionsView(Context context) {
@@ -84,7 +82,9 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         animatedDrawable.setPlayInDirectionOfCustomEndFrame(true);
         animatedDrawable.setCustomEndFrame(20);
         animatedDrawable.setCurrentFrame(20);
-        this.alignView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        RLottieImageView rLottieImageView2 = this.alignView;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        rLottieImageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.alignView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -107,7 +107,7 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
         ImageView imageView2 = new ImageView(context);
         this.plusView = imageView2;
         imageView2.setImageResource(R.drawable.msg_add);
-        this.plusView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        this.plusView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.plusView.setBackground(Theme.createSelectorDrawable(1090519039));
         this.plusView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,6 +190,10 @@ public class PaintTextOptionsView extends FrameLayout implements NotificationCen
 
     public TypefaceCell getTypefaceCell() {
         return this.typefaceCell;
+    }
+
+    public void setTypefaceListView(PaintTypefaceListView paintTypefaceListView) {
+        this.typefaceListView = paintTypefaceListView;
     }
 
     public View getColorClickableView() {

@@ -24,6 +24,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class PhotoPickerPhotoCell extends FrameLayout {
+    private Paint backgroundPaint;
     public CheckBox2 checkBox;
     public FrameLayout checkFrame;
     private int extraWidth;
@@ -34,7 +35,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
 
     public PhotoPickerPhotoCell(Context context) {
         super(context);
-        new Paint();
+        this.backgroundPaint = new Paint();
         setWillNotDraw(false);
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
@@ -43,7 +44,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         this.checkFrame = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(42, 42, 53));
-        FrameLayout frameLayout2 = new FrameLayout(this, context) {
+        FrameLayout frameLayout2 = new FrameLayout(context) {
             private Path path = new Path();
             float[] radii = new float[8];
             private RectF rect = new RectF();
@@ -130,12 +131,12 @@ public class PhotoPickerPhotoCell extends FrameLayout {
             if (photoEntry.isVideo) {
                 this.videoInfoContainer.setVisibility(0);
                 this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
-                setContentDescription(LocaleController.getString("AttachVideo", R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
+                setContentDescription(LocaleController.getString(R.string.AttachVideo) + ", " + LocaleController.formatDuration(photoEntry.duration));
                 this.imageView.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
                 return;
             }
             this.videoInfoContainer.setVisibility(4);
-            setContentDescription(LocaleController.getString("AttachPhoto", R.string.AttachPhoto));
+            setContentDescription(LocaleController.getString(R.string.AttachPhoto));
             this.imageView.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, drawable);
             return;
         }

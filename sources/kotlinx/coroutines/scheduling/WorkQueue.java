@@ -1,9 +1,9 @@
 package kotlinx.coroutines.scheduling;
 
+import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import kotlinx.coroutines.DebugKt;
 
 public final class WorkQueue {
     private static final AtomicReferenceFieldUpdater lastScheduledTask$FU = AtomicReferenceFieldUpdater.newUpdater(WorkQueue.class, Object.class, "lastScheduledTask");
@@ -64,44 +64,22 @@ public final class WorkQueue {
     }
 
     private final void decrementIfBlocking(Task task) {
-        if (task != null) {
-            if (task.taskContext.getTaskMode() == 1) {
-                int decrementAndGet = blockingTasksInBuffer$FU.decrementAndGet(this);
-                if (DebugKt.getASSERTIONS_ENABLED()) {
-                    if (!(decrementAndGet >= 0)) {
-                        throw new AssertionError();
-                    }
-                }
-            }
+        if (task == null || task.taskContext.getTaskMode() != 1) {
+            return;
         }
+        blockingTasksInBuffer$FU.decrementAndGet(this);
     }
 
     public final long tryStealFrom(WorkQueue workQueue) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(getBufferSize$kotlinx_coroutines_core() == 0)) {
-                throw new AssertionError();
-            }
-        }
         Task pollBuffer = workQueue.pollBuffer();
         if (pollBuffer != null) {
-            Task add$default = add$default(this, pollBuffer, false, 2, null);
-            if (!DebugKt.getASSERTIONS_ENABLED()) {
-                return -1L;
-            }
-            if (add$default == null) {
-                return -1L;
-            }
-            throw new AssertionError();
+            add$default(this, pollBuffer, false, 2, null);
+            return -1L;
         }
         return tryStealLastScheduled(workQueue, false);
     }
 
     public final long tryStealBlockingFrom(WorkQueue workQueue) {
-        if (DebugKt.getASSERTIONS_ENABLED()) {
-            if (!(getBufferSize$kotlinx_coroutines_core() == 0)) {
-                throw new AssertionError();
-            }
-        }
         int i = workQueue.producerIndex;
         AtomicReferenceArray<Task> atomicReferenceArray = workQueue.buffer;
         for (int i2 = workQueue.consumerIndex; i2 != i; i2++) {
@@ -110,12 +88,10 @@ public final class WorkQueue {
                 break;
             }
             Task task = atomicReferenceArray.get(i3);
-            if (task != null) {
-                if ((task.taskContext.getTaskMode() == 1) && atomicReferenceArray.compareAndSet(i3, task, null)) {
-                    blockingTasksInBuffer$FU.decrementAndGet(workQueue);
-                    add$default(this, task, false, 2, null);
-                    return -1L;
-                }
+            if (task != null && task.taskContext.getTaskMode() == 1 && WorkQueue$$ExternalSyntheticBackportWithForwarding0.m(atomicReferenceArray, i3, task, null)) {
+                blockingTasksInBuffer$FU.decrementAndGet(workQueue);
+                add$default(this, task, false, 2, null);
+                return -1L;
             }
         }
         return tryStealLastScheduled(workQueue, true);
@@ -137,17 +113,15 @@ public final class WorkQueue {
             if (task == null) {
                 return -2L;
             }
-            if (z) {
-                if (!(task.taskContext.getTaskMode() == 1)) {
-                    return -2L;
-                }
+            if (z && task.taskContext.getTaskMode() != 1) {
+                return -2L;
             }
             long nanoTime = TasksKt.schedulerTimeSource.nanoTime() - task.submissionTime;
             long j = TasksKt.WORK_STEALING_TIME_RESOLUTION_NS;
             if (nanoTime < j) {
                 return j - nanoTime;
             }
-        } while (!lastScheduledTask$FU.compareAndSet(workQueue, task, null));
+        } while (!AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(lastScheduledTask$FU, workQueue, task, null));
         add$default(this, task, false, 2, null);
         return -1L;
     }

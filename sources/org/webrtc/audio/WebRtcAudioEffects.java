@@ -3,7 +3,6 @@ package org.webrtc.audio;
 import android.media.audiofx.AcousticEchoCanceler;
 import android.media.audiofx.AudioEffect;
 import android.media.audiofx.NoiseSuppressor;
-import android.os.Build;
 import java.util.UUID;
 import org.webrtc.Logging;
 
@@ -19,16 +18,10 @@ class WebRtcAudioEffects {
     private boolean shouldEnableNs;
 
     public static boolean isAcousticEchoCancelerSupported() {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_AEC, AOSP_ACOUSTIC_ECHO_CANCELER);
     }
 
     public static boolean isNoiseSuppressorSupported() {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS, AOSP_NOISE_SUPPRESSOR);
     }
 
@@ -68,6 +61,7 @@ class WebRtcAudioEffects {
 
     public void enable(int i) {
         Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i + ")");
+        boolean z = false;
         assertTrue(this.aec == null);
         assertTrue(this.ns == null);
         if (isAcousticEchoCancelerSupported()) {
@@ -75,15 +69,15 @@ class WebRtcAudioEffects {
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
-                boolean z = this.shouldEnableAec && isAcousticEchoCancelerSupported();
-                if (this.aec.setEnabled(z) != 0) {
+                boolean z2 = this.shouldEnableAec && isAcousticEchoCancelerSupported();
+                if (this.aec.setEnabled(z2) != 0) {
                     Logging.e("WebRtcAudioEffectsExternal", "Failed to set the AcousticEchoCanceler state");
                 }
                 StringBuilder sb = new StringBuilder();
                 sb.append("AcousticEchoCanceler: was ");
                 sb.append(enabled ? "enabled" : "disabled");
                 sb.append(", enable: ");
-                sb.append(z);
+                sb.append(z2);
                 sb.append(", is now: ");
                 sb.append(this.aec.getEnabled() ? "enabled" : "disabled");
                 Logging.d("WebRtcAudioEffectsExternal", sb.toString());
@@ -96,15 +90,17 @@ class WebRtcAudioEffects {
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
-                boolean z2 = this.shouldEnableNs && isNoiseSuppressorSupported();
-                if (this.ns.setEnabled(z2) != 0) {
+                if (this.shouldEnableNs && isNoiseSuppressorSupported()) {
+                    z = true;
+                }
+                if (this.ns.setEnabled(z) != 0) {
                     Logging.e("WebRtcAudioEffectsExternal", "Failed to set the NoiseSuppressor state");
                 }
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("NoiseSuppressor: was ");
                 sb2.append(enabled2 ? "enabled" : "disabled");
                 sb2.append(", enable: ");
-                sb2.append(z2);
+                sb2.append(z);
                 sb2.append(", is now: ");
                 sb2.append(this.ns.getEnabled() ? "enabled" : "disabled");
                 Logging.d("WebRtcAudioEffectsExternal", sb2.toString());
@@ -129,9 +125,6 @@ class WebRtcAudioEffects {
     }
 
     private boolean effectTypeIsVoIP(UUID uuid) {
-        if (Build.VERSION.SDK_INT < 18) {
-            return false;
-        }
         return (AudioEffect.EFFECT_TYPE_AEC.equals(uuid) && isAcousticEchoCancelerSupported()) || (AudioEffect.EFFECT_TYPE_NS.equals(uuid) && isNoiseSuppressorSupported());
     }
 

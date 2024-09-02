@@ -103,6 +103,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     private int groupsDetailRow;
     private int groupsRow;
     private int lastSeenRow;
+    private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
     private int newChatsHeaderRow;
@@ -230,20 +231,21 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
-        recyclerListView.setLayoutManager(new LinearLayoutManager(this, context, 1, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return false;
             }
-        });
+        };
+        this.layoutManager = linearLayoutManager;
+        recyclerListView.setLayoutManager(linearLayoutManager);
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setLayoutAnimation(null);
         this.listView.setItemAnimator(null);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -281,20 +283,29 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 presentFragment(this.webSessionsActivityPreload);
                 return;
             }
+            int i2 = 4;
             if (i == this.deleteAccountRow) {
                 if (getParentActivity() == null) {
                     return;
                 }
                 int deleteAccountTTL = getContactsController().getDeleteAccountTTL();
-                int i2 = deleteAccountTTL <= 31 ? 0 : deleteAccountTTL <= 93 ? 1 : deleteAccountTTL <= 182 ? 2 : 3;
+                if (deleteAccountTTL <= 31) {
+                    i2 = 0;
+                } else if (deleteAccountTTL <= 93) {
+                    i2 = 1;
+                } else if (deleteAccountTTL <= 182) {
+                    i2 = 2;
+                } else if (deleteAccountTTL != 548) {
+                    i2 = 3;
+                }
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                 builder.setTitle(LocaleController.getString("DeleteAccountTitle", R.string.DeleteAccountTitle));
-                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0])};
+                String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Years", 1, new Object[0]), LocaleController.getString("OneAndHalfYear")};
                 LinearLayout linearLayout = new LinearLayout(getParentActivity());
                 linearLayout.setOrientation(1);
                 builder.setView(linearLayout);
                 int i3 = 0;
-                while (i3 < 4) {
+                while (i3 < 5) {
                     RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
                     radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                     radioColorCell.setTag(Integer.valueOf(i3));
@@ -309,7 +320,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     });
                     i3++;
                 }
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 showDialog(builder.create());
                 return;
             }
@@ -548,8 +559,10 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             i = 90;
         } else if (num.intValue() == 2) {
             i = 182;
+        } else if (num.intValue() == 3) {
+            i = 365;
         } else {
-            i = num.intValue() == 3 ? 365 : 0;
+            i = num.intValue() == 4 ? 548 : 0;
         }
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         alertDialog.setCanCancel(false);
@@ -671,8 +684,9 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         CheckBoxCell checkBoxCell = (CheckBoxCell) view;
         int intValue = ((Integer) checkBoxCell.getTag()).intValue();
         boolean[] zArr = this.clear;
-        zArr[intValue] = !zArr[intValue];
-        checkBoxCell.setChecked(zArr[intValue], true);
+        boolean z = !zArr[intValue];
+        zArr[intValue] = z;
+        checkBoxCell.setChecked(z, true);
     }
 
     public void lambda$createView$18(DialogInterface dialogInterface, int i) {
@@ -718,9 +732,10 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             }
         });
         boolean[] zArr2 = this.clear;
-        if (zArr2[0] && zArr2[1]) {
+        boolean z = zArr2[0];
+        if (z && zArr2[1]) {
             string = LocaleController.getString("PrivacyPaymentsPaymentShippingCleared", R.string.PrivacyPaymentsPaymentShippingCleared);
-        } else if (zArr2[0]) {
+        } else if (z) {
             string = LocaleController.getString("PrivacyPaymentsShippingInfoCleared", R.string.PrivacyPaymentsShippingInfoCleared);
         } else if (!zArr2[1]) {
             return;
@@ -775,29 +790,21 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     }
 
     private void updateRows(boolean z) {
-        this.rowCount = 0;
-        int i = 0 + 1;
-        this.rowCount = i;
         this.securitySectionRow = 0;
-        int i2 = i + 1;
-        this.rowCount = i2;
-        this.passwordRow = i;
-        int i3 = i2 + 1;
-        this.rowCount = i3;
-        this.autoDeleteMesages = i2;
-        int i4 = i3 + 1;
-        this.rowCount = i4;
-        this.passcodeRow = i3;
+        this.passwordRow = 1;
+        this.autoDeleteMesages = 2;
+        this.rowCount = 4;
+        this.passcodeRow = 3;
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         if (tLRPC$account_Password == null ? SharedConfig.hasEmailLogin : tLRPC$account_Password.login_email_pattern != null) {
-            this.rowCount = i4 + 1;
-            this.emailLoginRow = i4;
+            this.rowCount = 5;
+            this.emailLoginRow = 4;
         } else {
             this.emailLoginRow = -1;
         }
-        int i5 = this.rowCount;
-        this.rowCount = i5 + 1;
-        this.blockedRow = i5;
+        int i = this.rowCount;
+        this.rowCount = i + 1;
+        this.blockedRow = i;
         if (tLRPC$account_Password != null) {
             boolean z2 = tLRPC$account_Password.login_email_pattern != null;
             if (SharedConfig.hasEmailLogin != z2) {
@@ -805,141 +812,91 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                 SharedConfig.saveConfig();
             }
         }
-        int i6 = this.rowCount;
-        int i7 = i6 + 1;
-        this.rowCount = i7;
-        this.sessionsRow = i6;
-        int i8 = i7 + 1;
-        this.rowCount = i8;
-        this.sessionsDetailRow = i7;
-        int i9 = i8 + 1;
-        this.rowCount = i9;
-        this.privacySectionRow = i8;
-        int i10 = i9 + 1;
-        this.rowCount = i10;
-        this.phoneNumberRow = i9;
-        int i11 = i10 + 1;
-        this.rowCount = i11;
-        this.lastSeenRow = i10;
-        int i12 = i11 + 1;
-        this.rowCount = i12;
-        this.profilePhotoRow = i11;
-        int i13 = i12 + 1;
-        this.rowCount = i13;
-        this.forwardsRow = i12;
-        this.rowCount = i13 + 1;
-        this.callsRow = i13;
+        int i2 = this.rowCount;
+        this.sessionsRow = i2;
+        this.sessionsDetailRow = i2 + 1;
+        this.privacySectionRow = i2 + 2;
+        this.phoneNumberRow = i2 + 3;
+        this.lastSeenRow = i2 + 4;
+        this.profilePhotoRow = i2 + 5;
+        this.forwardsRow = i2 + 6;
+        this.rowCount = i2 + 8;
+        this.callsRow = i2 + 7;
         this.groupsDetailRow = -1;
         if (!getMessagesController().premiumFeaturesBlocked() || getUserConfig().isPremium()) {
-            int i14 = this.rowCount;
-            int i15 = i14 + 1;
-            this.rowCount = i15;
-            this.voicesRow = i14;
-            this.rowCount = i15 + 1;
-            this.noncontactsRow = i15;
+            int i3 = this.rowCount;
+            this.voicesRow = i3;
+            this.rowCount = i3 + 2;
+            this.noncontactsRow = i3 + 1;
         } else {
             this.voicesRow = -1;
             this.noncontactsRow = -1;
         }
-        int i16 = this.rowCount;
-        int i17 = i16 + 1;
-        this.rowCount = i17;
-        this.birthdayRow = i16;
-        int i18 = i17 + 1;
-        this.rowCount = i18;
-        this.bioRow = i17;
-        int i19 = i18 + 1;
-        this.rowCount = i19;
-        this.groupsRow = i18;
-        this.rowCount = i19 + 1;
-        this.privacyShadowRow = i19;
+        int i4 = this.rowCount;
+        this.birthdayRow = i4;
+        this.bioRow = i4 + 1;
+        this.groupsRow = i4 + 2;
+        this.rowCount = i4 + 4;
+        this.privacyShadowRow = i4 + 3;
         if (getMessagesController().autoarchiveAvailable || getUserConfig().isPremium()) {
-            int i20 = this.rowCount;
-            int i21 = i20 + 1;
-            this.rowCount = i21;
-            this.newChatsHeaderRow = i20;
-            int i22 = i21 + 1;
-            this.rowCount = i22;
-            this.newChatsRow = i21;
-            this.rowCount = i22 + 1;
-            this.newChatsSectionRow = i22;
+            int i5 = this.rowCount;
+            this.newChatsHeaderRow = i5;
+            this.newChatsRow = i5 + 1;
+            this.rowCount = i5 + 3;
+            this.newChatsSectionRow = i5 + 2;
         } else {
             this.newChatsHeaderRow = -1;
             this.newChatsRow = -1;
             this.newChatsSectionRow = -1;
         }
-        int i23 = this.rowCount;
-        int i24 = i23 + 1;
-        this.rowCount = i24;
-        this.advancedSectionRow = i23;
-        int i25 = i24 + 1;
-        this.rowCount = i25;
-        this.deleteAccountRow = i24;
-        int i26 = i25 + 1;
-        this.rowCount = i26;
-        this.deleteAccountDetailRow = i25;
-        this.rowCount = i26 + 1;
-        this.botsSectionRow = i26;
+        int i6 = this.rowCount;
+        this.advancedSectionRow = i6;
+        this.deleteAccountRow = i6 + 1;
+        this.deleteAccountDetailRow = i6 + 2;
+        this.rowCount = i6 + 4;
+        this.botsSectionRow = i6 + 3;
         if (getUserConfig().hasSecureData) {
-            int i27 = this.rowCount;
-            this.rowCount = i27 + 1;
-            this.passportRow = i27;
+            int i7 = this.rowCount;
+            this.rowCount = i7 + 1;
+            this.passportRow = i7;
         } else {
             this.passportRow = -1;
         }
-        int i28 = this.rowCount;
-        this.rowCount = i28 + 1;
-        this.paymentsClearRow = i28;
+        int i8 = this.rowCount;
+        this.rowCount = i8 + 1;
+        this.paymentsClearRow = i8;
         if (!this.biometryBots.isEmpty()) {
-            int i29 = this.rowCount;
-            this.rowCount = i29 + 1;
-            this.botsBiometryRow = i29;
+            int i9 = this.rowCount;
+            this.rowCount = i9 + 1;
+            this.botsBiometryRow = i9;
         } else {
             this.botsBiometryRow = -1;
         }
         SessionsActivity sessionsActivity = this.webSessionsActivityPreload;
         if (sessionsActivity != null && sessionsActivity.getSessionsCount() > 0) {
-            int i30 = this.rowCount;
-            int i31 = i30 + 1;
-            this.rowCount = i31;
-            this.webSessionsRow = i30;
-            this.rowCount = i31 + 1;
-            this.botsDetailRow = i31;
+            int i10 = this.rowCount;
+            this.webSessionsRow = i10;
+            this.rowCount = i10 + 2;
+            this.botsDetailRow = i10 + 1;
             this.botsAndWebsitesShadowRow = -1;
         } else {
             this.webSessionsRow = -1;
             this.botsDetailRow = -1;
-            int i32 = this.rowCount;
-            this.rowCount = i32 + 1;
-            this.botsAndWebsitesShadowRow = i32;
+            int i11 = this.rowCount;
+            this.rowCount = i11 + 1;
+            this.botsAndWebsitesShadowRow = i11;
         }
-        int i33 = this.rowCount;
-        int i34 = i33 + 1;
-        this.rowCount = i34;
-        this.contactsSectionRow = i33;
-        int i35 = i34 + 1;
-        this.rowCount = i35;
-        this.contactsDeleteRow = i34;
-        int i36 = i35 + 1;
-        this.rowCount = i36;
-        this.contactsSyncRow = i35;
-        int i37 = i36 + 1;
-        this.rowCount = i37;
-        this.contactsSuggestRow = i36;
-        int i38 = i37 + 1;
-        this.rowCount = i38;
-        this.contactsDetailRow = i37;
-        int i39 = i38 + 1;
-        this.rowCount = i39;
-        this.secretSectionRow = i38;
-        int i40 = i39 + 1;
-        this.rowCount = i40;
-        this.secretMapRow = i39;
-        int i41 = i40 + 1;
-        this.rowCount = i41;
-        this.secretWebpageRow = i40;
-        this.rowCount = i41 + 1;
-        this.secretDetailRow = i41;
+        int i12 = this.rowCount;
+        this.contactsSectionRow = i12;
+        this.contactsDeleteRow = i12 + 1;
+        this.contactsSyncRow = i12 + 2;
+        this.contactsSuggestRow = i12 + 3;
+        this.contactsDetailRow = i12 + 4;
+        this.secretSectionRow = i12 + 5;
+        this.secretMapRow = i12 + 6;
+        this.secretWebpageRow = i12 + 7;
+        this.rowCount = i12 + 9;
+        this.secretDetailRow = i12 + 8;
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter == null || !z) {
             return;
@@ -1111,7 +1068,40 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int adapterPosition = viewHolder.getAdapterPosition();
-            return adapterPosition == PrivacySettingsActivity.this.passcodeRow || adapterPosition == PrivacySettingsActivity.this.passwordRow || adapterPosition == PrivacySettingsActivity.this.blockedRow || adapterPosition == PrivacySettingsActivity.this.sessionsRow || adapterPosition == PrivacySettingsActivity.this.secretWebpageRow || adapterPosition == PrivacySettingsActivity.this.webSessionsRow || (adapterPosition == PrivacySettingsActivity.this.groupsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(1)) || ((adapterPosition == PrivacySettingsActivity.this.lastSeenRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(0)) || ((adapterPosition == PrivacySettingsActivity.this.callsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(2)) || ((adapterPosition == PrivacySettingsActivity.this.profilePhotoRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(4)) || ((adapterPosition == PrivacySettingsActivity.this.bioRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(9)) || ((adapterPosition == PrivacySettingsActivity.this.birthdayRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(11)) || ((adapterPosition == PrivacySettingsActivity.this.forwardsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(5)) || ((adapterPosition == PrivacySettingsActivity.this.phoneNumberRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(6)) || ((adapterPosition == PrivacySettingsActivity.this.voicesRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(8)) || adapterPosition == PrivacySettingsActivity.this.noncontactsRow || ((adapterPosition == PrivacySettingsActivity.this.deleteAccountRow && !PrivacySettingsActivity.this.getContactsController().getLoadingDeleteInfo()) || ((adapterPosition == PrivacySettingsActivity.this.newChatsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingGlobalSettings()) || adapterPosition == PrivacySettingsActivity.this.emailLoginRow || adapterPosition == PrivacySettingsActivity.this.paymentsClearRow || adapterPosition == PrivacySettingsActivity.this.secretMapRow || adapterPosition == PrivacySettingsActivity.this.contactsSyncRow || adapterPosition == PrivacySettingsActivity.this.passportRow || adapterPosition == PrivacySettingsActivity.this.contactsDeleteRow || adapterPosition == PrivacySettingsActivity.this.contactsSuggestRow || adapterPosition == PrivacySettingsActivity.this.autoDeleteMesages || adapterPosition == PrivacySettingsActivity.this.botsBiometryRow))))))))));
+            if (adapterPosition == PrivacySettingsActivity.this.passcodeRow || adapterPosition == PrivacySettingsActivity.this.passwordRow || adapterPosition == PrivacySettingsActivity.this.blockedRow || adapterPosition == PrivacySettingsActivity.this.sessionsRow || adapterPosition == PrivacySettingsActivity.this.secretWebpageRow || adapterPosition == PrivacySettingsActivity.this.webSessionsRow) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.groupsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(1)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.lastSeenRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(0)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.callsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(2)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.profilePhotoRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(4)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.bioRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(9)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.birthdayRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(11)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.forwardsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(5)) {
+                return true;
+            }
+            if (adapterPosition == PrivacySettingsActivity.this.phoneNumberRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(6)) {
+                return true;
+            }
+            if ((adapterPosition == PrivacySettingsActivity.this.voicesRow && !PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(8)) || adapterPosition == PrivacySettingsActivity.this.noncontactsRow) {
+                return true;
+            }
+            if (adapterPosition != PrivacySettingsActivity.this.deleteAccountRow || PrivacySettingsActivity.this.getContactsController().getLoadingDeleteInfo()) {
+                return (adapterPosition == PrivacySettingsActivity.this.newChatsRow && !PrivacySettingsActivity.this.getContactsController().getLoadingGlobalSettings()) || adapterPosition == PrivacySettingsActivity.this.emailLoginRow || adapterPosition == PrivacySettingsActivity.this.paymentsClearRow || adapterPosition == PrivacySettingsActivity.this.secretMapRow || adapterPosition == PrivacySettingsActivity.this.contactsSyncRow || adapterPosition == PrivacySettingsActivity.this.passportRow || adapterPosition == PrivacySettingsActivity.this.contactsDeleteRow || adapterPosition == PrivacySettingsActivity.this.contactsSuggestRow || adapterPosition == PrivacySettingsActivity.this.autoDeleteMesages || adapterPosition == PrivacySettingsActivity.this.botsBiometryRow;
+            }
+            return true;
         }
 
         @Override
@@ -1157,26 +1147,27 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             String str4;
             String string4;
             String str5;
+            boolean z2 = false;
             int itemViewType = viewHolder.getItemViewType();
-            int i3 = 16;
             String str6 = null;
+            int i3 = 16;
             if (itemViewType == 0) {
-                boolean z2 = viewHolder.itemView.getTag() != null && ((Integer) viewHolder.itemView.getTag()).intValue() == i;
+                boolean z3 = viewHolder.itemView.getTag() != null && ((Integer) viewHolder.itemView.getTag()).intValue() == i;
                 viewHolder.itemView.setTag(Integer.valueOf(i));
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                 if (i != PrivacySettingsActivity.this.webSessionsRow) {
                     if (i == PrivacySettingsActivity.this.phoneNumberRow) {
                         if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(6)) {
+                            z2 = true;
                             i3 = 30;
-                            r9 = true;
                         } else {
                             str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 6);
                         }
                         textSettingsCell.setTextAndValue(LocaleController.getString("PrivacyPhone", R.string.PrivacyPhone), str6, true);
                     } else if (i == PrivacySettingsActivity.this.lastSeenRow) {
                         if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(0)) {
+                            z2 = true;
                             i3 = 30;
-                            r9 = true;
                         } else {
                             str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 0);
                         }
@@ -1187,45 +1178,45 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                 i3 = 30;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 1);
-                                r10 = false;
+                                r3 = false;
                             }
                             textSettingsCell.setTextAndValue(LocaleController.getString(R.string.PrivacyInvites), str6, false);
                         } else if (i == PrivacySettingsActivity.this.callsRow) {
                             if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(2)) {
+                                z2 = true;
                                 i3 = 30;
-                                r9 = true;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 2);
                             }
                             textSettingsCell.setTextAndValue(LocaleController.getString("Calls", R.string.Calls), str6, true);
                         } else if (i == PrivacySettingsActivity.this.profilePhotoRow) {
                             if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(4)) {
+                                z2 = true;
                                 i3 = 30;
-                                r9 = true;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 4);
                             }
                             textSettingsCell.setTextAndValue(LocaleController.getString("PrivacyProfilePhoto", R.string.PrivacyProfilePhoto), str6, true);
                         } else if (i == PrivacySettingsActivity.this.bioRow) {
                             if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(9)) {
+                                z2 = true;
                                 i3 = 30;
-                                r9 = true;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 9);
                             }
                             textSettingsCell.setTextAndValue(LocaleController.getString("PrivacyBio", R.string.PrivacyBio), str6, true);
                         } else if (i == PrivacySettingsActivity.this.birthdayRow) {
                             if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(11)) {
+                                z2 = true;
                                 i3 = 30;
-                                r9 = true;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 11);
                             }
                             textSettingsCell.setTextAndValue(LocaleController.getString(R.string.PrivacyBirthday), str6, true);
                         } else if (i == PrivacySettingsActivity.this.forwardsRow) {
                             if (PrivacySettingsActivity.this.getContactsController().getLoadingPrivacyInfo(5)) {
+                                z2 = true;
                                 i3 = 30;
-                                r9 = true;
                             } else {
                                 str6 = PrivacySettingsActivity.formatRulesString(PrivacySettingsActivity.this.getAccountInstance(), 5);
                             }
@@ -1244,7 +1235,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             }
                             textSettingsCell.setTextAndValue(PrivacySettingsActivity.this.addPremiumStar(LocaleController.getString(R.string.PrivacyVoiceMessages)), str6, PrivacySettingsActivity.this.noncontactsRow != -1);
                             textSettingsCell.getValueImageView().setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
-                            r9 = z;
+                            z2 = z;
                         } else if (i == PrivacySettingsActivity.this.noncontactsRow) {
                             textSettingsCell.setTextAndValue(PrivacySettingsActivity.this.getMessagesController().newNoncontactPeersRequirePremiumWithoutOwnpremium ? LocaleController.getString(R.string.PrivacyMessages) : PrivacySettingsActivity.this.addPremiumStar(LocaleController.getString(R.string.PrivacyMessages)), LocaleController.getString(PrivacySettingsActivity.this.noncontactsValue ? R.string.ContactsAndPremium : R.string.P2PEverybody), PrivacySettingsActivity.this.bioRow != -1);
                         } else if (i != PrivacySettingsActivity.this.passportRow) {
@@ -1255,10 +1246,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                                         str6 = LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]);
                                     } else if (deleteAccountTTL == 365) {
                                         str6 = LocaleController.formatPluralString("Years", deleteAccountTTL / 365, new Object[0]);
+                                    } else if (deleteAccountTTL == 548) {
+                                        str6 = LocaleController.getString(R.string.OneAndHalfYear);
                                     } else {
                                         str6 = LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
                                     }
-                                    r10 = false;
+                                    r3 = false;
                                 }
                                 textSettingsCell.setTextAndValue(LocaleController.getString("DeleteAccountIfAwayFor3", R.string.DeleteAccountIfAwayFor3), str6, PrivacySettingsActivity.this.deleteAccountUpdate, false);
                                 PrivacySettingsActivity.this.deleteAccountUpdate = false;
@@ -1291,12 +1284,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         } else {
                             textSettingsCell.setText(LocaleController.getString("TelegramPassport", R.string.TelegramPassport), true);
                         }
-                        r9 = r10;
+                        z2 = r3;
                     }
                 } else {
                     textSettingsCell.setText(LocaleController.getString("WebSessionsTitle", R.string.WebSessionsTitle), false);
                 }
-                textSettingsCell.setDrawLoading(r9, i3, z2);
+                textSettingsCell.setDrawLoading(z2, i3, z3);
                 return;
             }
             if (itemViewType == 1) {
@@ -1393,7 +1386,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
             }
             View view = viewHolder.itemView;
             TextCell textCell = (TextCell) view;
-            boolean z3 = view.getTag() != null && ((Integer) viewHolder.itemView.getTag()).intValue() == i;
+            boolean z4 = view.getTag() != null && ((Integer) viewHolder.itemView.getTag()).intValue() == i;
             viewHolder.itemView.setTag(Integer.valueOf(i));
             textCell.setPrioritizeTitleOverValue(false);
             if (i != PrivacySettingsActivity.this.autoDeleteMesages) {
@@ -1402,7 +1395,6 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     if (PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount() == 0) {
                         if (PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount == 0) {
                             str4 = "";
-                            r9 = true;
                             PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount = PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount();
                             textCell.setTextAndValueAndIcon(LocaleController.getString("SessionsTitle", R.string.SessionsTitle), str4, true, R.drawable.msg2_devices, false);
                         } else {
@@ -1412,74 +1404,77 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         format2 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount()));
                     }
                     str4 = format2;
+                    r3 = false;
                     PrivacySettingsActivity.this.getMessagesController().lastKnownSessionsCount = PrivacySettingsActivity.this.devicesActivityPreload.getSessionsCount();
                     textCell.setTextAndValueAndIcon(LocaleController.getString("SessionsTitle", R.string.SessionsTitle), str4, true, R.drawable.msg2_devices, false);
-                } else if (i == PrivacySettingsActivity.this.emailLoginRow) {
-                    if (PrivacySettingsActivity.this.currentPassword == null) {
-                        r9 = true;
-                        str3 = str7;
-                    } else {
-                        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(PrivacySettingsActivity.this.currentPassword.login_email_pattern);
-                        int indexOf = PrivacySettingsActivity.this.currentPassword.login_email_pattern.indexOf(42);
-                        int lastIndexOf = PrivacySettingsActivity.this.currentPassword.login_email_pattern.lastIndexOf(42);
-                        str3 = valueOf;
-                        str3 = valueOf;
-                        str3 = valueOf;
-                        if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                            TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                            textStyleRun.flags |= 256;
-                            textStyleRun.start = indexOf;
-                            int i5 = lastIndexOf + 1;
-                            textStyleRun.end = i5;
-                            valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i5, 0);
+                } else {
+                    if (i == PrivacySettingsActivity.this.emailLoginRow) {
+                        if (PrivacySettingsActivity.this.currentPassword == null) {
+                            z2 = true;
+                            str3 = str7;
+                        } else {
+                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(PrivacySettingsActivity.this.currentPassword.login_email_pattern);
+                            int indexOf = PrivacySettingsActivity.this.currentPassword.login_email_pattern.indexOf(42);
+                            int lastIndexOf = PrivacySettingsActivity.this.currentPassword.login_email_pattern.lastIndexOf(42);
                             str3 = valueOf;
+                            str3 = valueOf;
+                            str3 = valueOf;
+                            if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                                textStyleRun.flags |= 256;
+                                textStyleRun.start = indexOf;
+                                int i5 = lastIndexOf + 1;
+                                textStyleRun.end = i5;
+                                valueOf.setSpan(new TextStyleSpan(textStyleRun), indexOf, i5, 0);
+                                str3 = valueOf;
+                            }
                         }
-                    }
-                    textCell.setPrioritizeTitleOverValue(true);
-                    textCell.setTextAndSpoilersValueAndIcon(LocaleController.getString(R.string.EmailLogin), str3, R.drawable.msg2_email, true);
-                } else if (i == PrivacySettingsActivity.this.passwordRow) {
-                    if (PrivacySettingsActivity.this.currentPassword == null) {
-                        str2 = "";
-                        r9 = true;
-                    } else {
-                        if (PrivacySettingsActivity.this.currentPassword.has_password) {
-                            string3 = LocaleController.getString("PasswordOn", R.string.PasswordOn);
+                        textCell.setPrioritizeTitleOverValue(true);
+                        textCell.setTextAndSpoilersValueAndIcon(LocaleController.getString(R.string.EmailLogin), str3, R.drawable.msg2_email, true);
+                    } else if (i == PrivacySettingsActivity.this.passwordRow) {
+                        if (PrivacySettingsActivity.this.currentPassword == null) {
+                            str2 = "";
                         } else {
-                            string3 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
+                            if (PrivacySettingsActivity.this.currentPassword.has_password) {
+                                string3 = LocaleController.getString("PasswordOn", R.string.PasswordOn);
+                            } else {
+                                string3 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
+                            }
+                            str2 = string3;
+                            r3 = false;
                         }
-                        str2 = string3;
-                    }
-                    textCell.setTextAndValueAndIcon(LocaleController.getString("TwoStepVerification", R.string.TwoStepVerification), str2, true, R.drawable.msg2_permissions, true);
-                } else if (i != PrivacySettingsActivity.this.passcodeRow) {
-                    if (i == PrivacySettingsActivity.this.blockedRow) {
-                        int i6 = PrivacySettingsActivity.this.getMessagesController().totalBlockedCount;
-                        if (i6 == 0) {
-                            format = LocaleController.getString("BlockedEmpty", R.string.BlockedEmpty);
-                        } else if (i6 > 0) {
-                            format = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(i6));
-                        } else {
-                            str = "";
-                            r9 = true;
+                        textCell.setTextAndValueAndIcon(LocaleController.getString("TwoStepVerification", R.string.TwoStepVerification), str2, true, R.drawable.msg2_permissions, true);
+                    } else if (i != PrivacySettingsActivity.this.passcodeRow) {
+                        if (i == PrivacySettingsActivity.this.blockedRow) {
+                            int i6 = PrivacySettingsActivity.this.getMessagesController().totalBlockedCount;
+                            if (i6 == 0) {
+                                format = LocaleController.getString("BlockedEmpty", R.string.BlockedEmpty);
+                            } else if (i6 > 0) {
+                                format = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(i6));
+                            } else {
+                                str = "";
+                                textCell.setTextAndValueAndIcon(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), str, true, R.drawable.msg2_block2, true);
+                            }
+                            str = format;
+                            r3 = false;
                             textCell.setTextAndValueAndIcon(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), str, true, R.drawable.msg2_block2, true);
                         }
-                        str = format;
-                        textCell.setTextAndValueAndIcon(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), str, true, R.drawable.msg2_block2, true);
-                    }
-                } else {
-                    if (SharedConfig.passcodeHash.length() != 0) {
-                        string2 = LocaleController.getString("PasswordOn", R.string.PasswordOn);
-                        i2 = R.drawable.msg2_secret;
                     } else {
-                        string2 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
-                        i2 = R.drawable.msg2_secret;
+                        if (SharedConfig.passcodeHash.length() != 0) {
+                            string2 = LocaleController.getString("PasswordOn", R.string.PasswordOn);
+                            i2 = R.drawable.msg2_secret;
+                        } else {
+                            string2 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
+                            i2 = R.drawable.msg2_secret;
+                        }
+                        textCell.setTextAndValueAndIcon(LocaleController.getString("Passcode", R.string.Passcode), string2, true, i2, true);
                     }
-                    textCell.setTextAndValueAndIcon(LocaleController.getString("Passcode", R.string.Passcode), string2, true, i2, true);
+                    textCell.setDrawLoading(z2, 16, z4);
                 }
             } else {
                 int globalTTl = PrivacySettingsActivity.this.getUserConfig().getGlobalTTl();
                 if (globalTTl == -1) {
                     str5 = null;
-                    r9 = true;
                 } else {
                     if (globalTTl > 0) {
                         string4 = LocaleController.formatTTLString(globalTTl * 60);
@@ -1487,10 +1482,12 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         string4 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
                     }
                     str5 = string4;
+                    r3 = false;
                 }
                 textCell.setTextAndValueAndIcon(LocaleController.getString("AutoDeleteMessages", R.string.AutoDeleteMessages), str5, true, R.drawable.msg2_autodelete, true);
             }
-            textCell.setDrawLoading(r9, 16, z3);
+            z2 = r3;
+            textCell.setDrawLoading(z2, 16, z4);
         }
 
         @Override

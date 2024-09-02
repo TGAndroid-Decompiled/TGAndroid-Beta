@@ -30,12 +30,15 @@ public class BusinessChatbotController {
         BusinessChatbotController businessChatbotController = Instance[i];
         if (businessChatbotController == null) {
             synchronized (lockObjects[i]) {
-                businessChatbotController = Instance[i];
-                if (businessChatbotController == null) {
-                    BusinessChatbotController[] businessChatbotControllerArr = Instance;
-                    BusinessChatbotController businessChatbotController2 = new BusinessChatbotController(i);
-                    businessChatbotControllerArr[i] = businessChatbotController2;
-                    businessChatbotController = businessChatbotController2;
+                try {
+                    businessChatbotController = Instance[i];
+                    if (businessChatbotController == null) {
+                        BusinessChatbotController[] businessChatbotControllerArr = Instance;
+                        BusinessChatbotController businessChatbotController2 = new BusinessChatbotController(i);
+                        businessChatbotControllerArr[i] = businessChatbotController2;
+                        businessChatbotController = businessChatbotController2;
+                    }
+                } finally {
                 }
             }
         }

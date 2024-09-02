@@ -91,7 +91,9 @@ public class ColorPickerBottomSheet extends BottomSheet {
         ImageView imageView = new ImageView(context);
         this.pipetteView = imageView;
         imageView.setImageResource(R.drawable.picker);
-        this.pipetteView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        ImageView imageView2 = this.pipetteView;
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.pipetteView.setBackground(Theme.createSelectorDrawable(1090519039));
         this.pipetteView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,10 +101,10 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 ColorPickerBottomSheet.this.lambda$new$0(context, view);
             }
         });
-        ImageView imageView2 = new ImageView(context);
-        this.doneView = imageView2;
-        imageView2.setImageResource(R.drawable.ic_ab_done);
-        this.doneView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        ImageView imageView3 = new ImageView(context);
+        this.doneView = imageView3;
+        imageView3.setImageResource(R.drawable.ic_ab_done);
+        this.doneView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         this.doneView.setBackground(Theme.createSelectorDrawable(1090519039));
         this.doneView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +115,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
         AlphaPickerView alphaPickerView = new AlphaPickerView(context);
         this.alphaPickerView = alphaPickerView;
         alphaPickerView.setColor(-65536);
-        ColorPickerView colorPickerView = new ColorPickerView(this, context);
+        ColorPickerView colorPickerView = new ColorPickerView(context);
         this.pickerView = colorPickerView;
         linearLayout.addView(colorPickerView, LayoutHelper.createLinear(-1, 0));
         ScrollView scrollView = new ScrollView(context) {
@@ -242,22 +244,23 @@ public class ColorPickerBottomSheet extends BottomSheet {
         private GradientPickerView gradientPickerView;
         private GridPickerView gridPickerView;
         private SlidersPickerView slidersPickerView;
+        private ViewPagerFixed.TabsView tabsView;
 
-        public ColorPickerView(ColorPickerBottomSheet colorPickerBottomSheet, Context context) {
+        public ColorPickerView(Context context) {
             super(context);
             setOrientation(1);
             GridPickerView gridPickerView = new GridPickerView(context);
             this.gridPickerView = gridPickerView;
-            gridPickerView.setCurrentColor(colorPickerBottomSheet.mColor);
+            gridPickerView.setCurrentColor(ColorPickerBottomSheet.this.mColor);
             this.gradientPickerView = new GradientPickerView(context);
             this.slidersPickerView = new SlidersPickerView(context);
-            ViewPagerFixed viewPagerFixed = new ViewPagerFixed(this, context, ((BottomSheet) colorPickerBottomSheet).resourcesProvider, colorPickerBottomSheet) {
+            ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context, ((BottomSheet) ColorPickerBottomSheet.this).resourcesProvider) {
                 @Override
                 protected int tabMarginDp() {
                     return 0;
                 }
             };
-            viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter(colorPickerBottomSheet) {
+            viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
                 @Override
                 public void bindView(View view, int i, int i2) {
                 }
@@ -292,13 +295,15 @@ public class ColorPickerBottomSheet extends BottomSheet {
                 }
             });
             addView(viewPagerFixed, LayoutHelper.createLinear(-1, 0, 1.0f));
-            addView(colorPickerBottomSheet.alphaPickerView, LayoutHelper.createLinear(-1, 48, 12.0f, 0.0f, 12.0f, 0.0f));
+            addView(ColorPickerBottomSheet.this.alphaPickerView, LayoutHelper.createLinear(-1, 48, 12.0f, 0.0f, 12.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setGravity(16);
-            linearLayout.addView(colorPickerBottomSheet.pipetteView, LayoutHelper.createLinear(28, 28));
-            linearLayout.addView(viewPagerFixed.createTabsView(false, 8), LayoutHelper.createLinear(-1, 40, 1.0f, 16, 12, 0, 12, 0));
-            linearLayout.addView(colorPickerBottomSheet.doneView, LayoutHelper.createLinear(28, 28));
+            linearLayout.addView(ColorPickerBottomSheet.this.pipetteView, LayoutHelper.createLinear(28, 28));
+            ViewPagerFixed.TabsView createTabsView = viewPagerFixed.createTabsView(false, 8);
+            this.tabsView = createTabsView;
+            linearLayout.addView(createTabsView, LayoutHelper.createLinear(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+            linearLayout.addView(ColorPickerBottomSheet.this.doneView, LayoutHelper.createLinear(28, 28));
             addView(linearLayout, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         }
     }
@@ -335,9 +340,9 @@ public class ColorPickerBottomSheet extends BottomSheet {
                         this.colorMap.put(Long.valueOf((i << 16) + i2), Integer.valueOf(ColorUtils.blendARGB(-1, -16777216, i / 11.0f)));
                     } else {
                         if (i2 < 6) {
-                            blendARGB = ColorUtils.blendARGB(this.colors[i], -16777216, (((6 - i2) - 1) / 4.0f) * 0.5f);
+                            blendARGB = ColorUtils.blendARGB(this.colors[i], -16777216, ((5 - i2) / 4.0f) * 0.5f);
                         } else {
-                            blendARGB = ColorUtils.blendARGB(this.colors[i], -1, 0.5f - ((((10 - i2) - 1) / 5.0f) * 0.5f));
+                            blendARGB = ColorUtils.blendARGB(this.colors[i], -1, 0.5f - (((9 - i2) / 5.0f) * 0.5f));
                         }
                         this.colorMap.put(Long.valueOf((i << 16) + i2), Integer.valueOf(blendARGB));
                     }
@@ -511,8 +516,8 @@ public class ColorPickerBottomSheet extends BottomSheet {
             Drawable drawable2 = this.shadowDrawable;
             int i = (int) ((paddingLeft - dp) - rect.left);
             int i2 = (int) ((paddingTop - dp) - rect.top);
-            int i3 = rect.bottom;
-            drawable2.setBounds(i, i2, (int) (paddingLeft + dp + i3), (int) (paddingTop + dp + i3));
+            float f3 = rect.bottom;
+            drawable2.setBounds(i, i2, (int) (paddingLeft + dp + f3), (int) (paddingTop + dp + f3));
             this.shadowDrawable.draw(canvas);
             canvas.drawCircle(paddingLeft, paddingTop, dp, this.outlinePaint);
             PaintColorsListView.drawColorCircle(canvas, paddingLeft, paddingTop, strokeWidth, ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
@@ -563,7 +568,9 @@ public class ColorPickerBottomSheet extends BottomSheet {
             Color.colorToHSV(i, this.hsv);
             if (z) {
                 float[] fArr = this.hsv;
-                this.positionX = ((fArr[1] * 0.5f) + 1.0f) - (fArr[2] <= 0.5f ? 1.0f - (((1.0f - fArr[2]) * 0.22000003f) + 0.78f) : 1.0f - ((1.0f - fArr[2]) * 0.22f));
+                float f = (fArr[1] * 0.5f) + 1.0f;
+                float f2 = fArr[2];
+                this.positionX = f - (1.0f - (f2 <= 0.5f ? ((1.0f - f2) * 0.22000003f) + 0.78f : (1.0f - f2) * 0.22f));
                 this.positionY = fArr[0] / 360.0f;
             }
             invalidate();
@@ -614,7 +621,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.hexEdit.setImeOptions(6);
             this.hexEdit.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
             this.hexEdit.setTypeface(AndroidUtilities.bold());
-            this.hexEdit.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
+            this.hexEdit.addTextChangedListener(new TextWatcher() {
                 private Pattern pattern = Pattern.compile("^[0-9a-fA-F]*$");
                 private CharSequence previous;
 
@@ -714,7 +721,7 @@ public class ColorPickerBottomSheet extends BottomSheet {
             this.valueView.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
             this.valueView.setInputType(2);
             this.valueView.setTypeface(AndroidUtilities.bold());
-            this.valueView.addTextChangedListener(new TextWatcher(ColorPickerBottomSheet.this) {
+            this.valueView.addTextChangedListener(new TextWatcher() {
                 private CharSequence previous;
 
                 @Override

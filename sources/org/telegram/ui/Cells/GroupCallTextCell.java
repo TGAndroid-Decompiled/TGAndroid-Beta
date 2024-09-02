@@ -54,12 +54,13 @@ public class GroupCallTextCell extends FrameLayout {
         addView(this.valueTextView);
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
         addView(this.imageView);
         ImageView imageView2 = new ImageView(context);
         this.valueImageView = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         addView(this.valueImageView);
         setFocusable(true);
     }
@@ -162,7 +163,7 @@ public class GroupCallTextCell extends FrameLayout {
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.imageView.getVisibility() != 0 ? 20.0f : 68.0f);
+                i = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 68.0f : 20.0f);
             } else {
                 i = 0;
             }

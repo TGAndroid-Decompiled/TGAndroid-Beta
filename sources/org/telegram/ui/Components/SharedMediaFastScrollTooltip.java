@@ -22,13 +22,13 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
     public SharedMediaFastScrollTooltip(Context context) {
         super(context);
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("SharedMediaFastScrollHint", R.string.SharedMediaFastScrollHint));
+        textView.setText(LocaleController.getString(R.string.SharedMediaFastScrollHint));
         textView.setTextSize(1, 14.0f);
         textView.setMaxLines(3);
         textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
         setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
-        addView(new TooltipDrawableView(this, context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
+        addView(new TooltipDrawableView(context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
         Random random;
         float toProgress;
 
-        public TooltipDrawableView(SharedMediaFastScrollTooltip sharedMediaFastScrollTooltip, Context context) {
+        public TooltipDrawableView(Context context) {
             super(context);
             this.random = new Random();
             this.paint = new Paint(1);
@@ -58,11 +58,14 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
             paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 76));
             this.paint2.setColor(Theme.getColor(i));
             this.fadePaint = new Paint();
-            this.fadePaint.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(4.0f), 0.0f, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.fadePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            this.fadePaint.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(4.0f), 0.0f, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+            Paint paint2 = this.fadePaint;
+            PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+            paint2.setXfermode(new PorterDuffXfermode(mode));
             this.fadePaintBack = new Paint();
-            this.fadePaintBack.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(4.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.fadePaintBack.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            this.fadePaintBack.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(4.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+            this.fadePaintBack.setXfermode(new PorterDuffXfermode(mode));
         }
 
         @Override

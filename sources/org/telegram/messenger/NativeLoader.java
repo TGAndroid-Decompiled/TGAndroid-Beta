@@ -27,34 +27,35 @@ public class NativeLoader {
     }
 
     public static String getAbiFolder() {
-        String str = "x86_64";
-        String str2 = "armeabi";
+        String str;
+        String str2 = "mips";
+        String str3 = "armeabi";
         try {
-            String str3 = Build.CPU_ABI;
-            if (!str3.equalsIgnoreCase("x86_64")) {
-                if (str3.equalsIgnoreCase("arm64-v8a")) {
-                    str = "arm64-v8a";
-                } else if (str3.equalsIgnoreCase("armeabi-v7a")) {
-                    str = "armeabi-v7a";
-                } else {
-                    if (!str3.equalsIgnoreCase("armeabi")) {
-                        if (str3.equalsIgnoreCase("x86")) {
-                            str = "x86";
-                        } else if (str3.equalsIgnoreCase("mips")) {
-                            str = "mips";
-                        } else if (BuildVars.LOGS_ENABLED) {
-                            FileLog.e("Unsupported arch: " + str3);
-                        }
-                    }
-                    str = "armeabi";
-                }
-            }
-            str2 = str;
+            str = Build.CPU_ABI;
         } catch (Exception e) {
             FileLog.e(e);
         }
-        String property = System.getProperty("os.arch");
-        return (property == null || !property.contains("686")) ? str2 : "x86";
+        if (str.equalsIgnoreCase("x86_64")) {
+            str2 = "x86_64";
+        } else if (str.equalsIgnoreCase("arm64-v8a")) {
+            str2 = "arm64-v8a";
+        } else if (str.equalsIgnoreCase("armeabi-v7a")) {
+            str2 = "armeabi-v7a";
+        } else if (str.equalsIgnoreCase("armeabi")) {
+            str2 = "armeabi";
+        } else if (str.equalsIgnoreCase("x86")) {
+            str2 = "x86";
+        } else if (!str.equalsIgnoreCase("mips")) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("Unsupported arch: " + str);
+            }
+            String property = System.getProperty("os.arch");
+            return (property == null && property.contains("686")) ? "x86" : str3;
+        }
+        str3 = str2;
+        String property2 = System.getProperty("os.arch");
+        if (property2 == null) {
+        }
     }
 
     public static boolean loaded() {

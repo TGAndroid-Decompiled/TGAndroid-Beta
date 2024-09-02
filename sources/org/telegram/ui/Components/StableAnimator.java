@@ -64,7 +64,8 @@ public class StableAnimator extends TimeAnimator {
                 if (fArr != null && fArr.length == 2) {
                     float interpolation = getInterpolator().getInterpolation(1.0f - (i3 / i));
                     float[] fArr2 = this.floatValues;
-                    this.animatedValue = Float.valueOf(fArr2[0] + ((fArr2[1] - fArr2[0]) * interpolation));
+                    float f = fArr2[0];
+                    this.animatedValue = Float.valueOf(f + ((fArr2[1] - f) * interpolation));
                     this.updateListener.onAnimationUpdate(this);
                     return;
                 }

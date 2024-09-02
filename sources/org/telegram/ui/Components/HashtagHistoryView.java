@@ -108,12 +108,7 @@ public class HashtagHistoryView extends FrameLayout {
         setTag(z ? 1 : null);
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.animation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(this, (Property<HashtagHistoryView, Float>) property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, (Property<HashtagHistoryView, Float>) View.ALPHA, z ? 1.0f : 0.0f));
         this.animation.setInterpolator(CubicBezierInterpolator.EASE_IN);
         this.animation.setDuration(180L);
         this.animation.addListener(new AnimatorListenerAdapter() {
@@ -179,15 +174,15 @@ public class HashtagHistoryView extends FrameLayout {
         }
         final String str = this.history.get(i2 - 1);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        builder.setTitle(LocaleController.getString("ClearSearchSingleAlertTitle", R.string.ClearSearchSingleAlertTitle));
+        builder.setTitle(LocaleController.getString(R.string.ClearSearchSingleAlertTitle));
         builder.setMessage(LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str));
-        builder.setPositiveButton(LocaleController.getString("ClearSearchRemove", R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.ClearSearchRemove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
                 HashtagHistoryView.this.lambda$onLongClick$0(str, dialogInterface, i3);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         builder.create().show();
         return true;
     }

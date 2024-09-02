@@ -37,7 +37,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
-import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$StickerSet;
@@ -56,7 +55,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     AdjustPanLayoutHelper adjustPanLayoutHelper;
     private boolean allowAnimatedEmoji;
     private int currentStyle;
-    private EditTextEmojiDelegate delegate;
     private boolean destroyed;
     private EditTextCaption editText;
     private ImageView emojiButton;
@@ -85,7 +83,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     private boolean waitingForKeyboardOpen;
 
     public interface EditTextEmojiDelegate {
-        void onWindowSizeChanged(int i);
     }
 
     protected boolean allowSearch() {
@@ -123,6 +120,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     protected void onWaitingForKeyboard() {
+    }
+
+    public void setDelegate(EditTextEmojiDelegate editTextEmojiDelegate) {
     }
 
     protected void updatedEmojiExpanded() {
@@ -351,7 +351,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 EditTextEmoji.this.lambda$new$0(sizeNotifierFrameLayout, resourcesProvider, view);
             }
         });
-        this.emojiButton.setContentDescription(LocaleController.getString("Emoji", R.string.Emoji));
+        this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
     }
 
     public void lambda$new$0(SizeNotifierFrameLayout sizeNotifierFrameLayout, Theme.ResourcesProvider resourcesProvider, View view) {
@@ -475,10 +475,6 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
     public EmojiView getEmojiView() {
         return this.emojiView;
-    }
-
-    public void setDelegate(EditTextEmojiDelegate editTextEmojiDelegate) {
-        this.delegate = editTextEmojiDelegate;
     }
 
     public void onPause() {
@@ -765,14 +761,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     private void onWindowSizeChanged() {
-        int height = this.sizeNotifierLayout.getHeight();
-        if (!this.keyboardVisible) {
-            height -= this.emojiPadding;
-        }
-        EditTextEmojiDelegate editTextEmojiDelegate = this.delegate;
-        if (editTextEmojiDelegate != null) {
-            editTextEmojiDelegate.onWindowSizeChanged(height);
-        }
+        this.sizeNotifierLayout.getHeight();
     }
 
     public void createEmojiView() {
@@ -786,14 +775,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         }
         BaseFragment baseFragment = this.parentFragment;
         boolean z = this.allowAnimatedEmoji;
-        boolean z2 = false;
-        boolean z3 = false;
         Context context = getContext();
         boolean allowSearch = allowSearch();
-        TLRPC$ChatFull tLRPC$ChatFull = null;
-        ViewGroup viewGroup = null;
         int i = this.currentStyle;
-        EmojiView emojiView2 = new EmojiView(baseFragment, z, z2, z3, context, allowSearch, tLRPC$ChatFull, viewGroup, (i == 2 || i == 3) ? false : true, this.resourcesProvider, false) {
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, allowSearch, null, null, (i == 2 || i == 3) ? false : true, this.resourcesProvider, false) {
             private boolean changedExpanded;
             private boolean lastExpanded;
             private int lastHeight;
@@ -807,9 +792,9 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             }
 
             @Override
-            protected void onLayout(boolean z4, int i2, int i3, int i4, int i5) {
+            protected void onLayout(boolean z2, int i2, int i3, int i4, int i5) {
                 int i6;
-                super.onLayout(z4, i2, i3, i4, i5);
+                super.onLayout(z2, i2, i3, i4, i5);
                 if (EditTextEmoji.this.allowSearch()) {
                     int i7 = i5 - i3;
                     if (!this.lastExpanded && EditTextEmoji.this.emojiExpanded) {
@@ -1040,23 +1025,25 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-            } finally {
                 EditTextEmoji.this.innerTextChange = 0;
+            } catch (Throwable th) {
+                EditTextEmoji.this.innerTextChange = 0;
+                throw th;
             }
         }
 
         @Override
         public void onClearEmojiRecent() {
             AlertDialog.Builder builder = new AlertDialog.Builder(EditTextEmoji.this.getContext(), EditTextEmoji.this.resourcesProvider);
-            builder.setTitle(LocaleController.getString("ClearRecentEmojiTitle", R.string.ClearRecentEmojiTitle));
-            builder.setMessage(LocaleController.getString("ClearRecentEmojiText", R.string.ClearRecentEmojiText));
-            builder.setPositiveButton(LocaleController.getString("ClearButton", R.string.ClearButton), new DialogInterface.OnClickListener() {
+            builder.setTitle(LocaleController.getString(R.string.ClearRecentEmojiTitle));
+            builder.setMessage(LocaleController.getString(R.string.ClearRecentEmojiText));
+            builder.setPositiveButton(LocaleController.getString(R.string.ClearButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     EditTextEmoji.AnonymousClass7.this.lambda$onClearEmojiRecent$0(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             if (EditTextEmoji.this.parentFragment != null) {
                 EditTextEmoji.this.parentFragment.showDialog(builder.create());
             } else {

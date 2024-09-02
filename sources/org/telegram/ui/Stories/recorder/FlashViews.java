@@ -28,6 +28,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.LaunchActivity;
 
 public class FlashViews {
+    public static final int[] COLORS = {-1, -70004, -7544833};
     private ValueAnimator animator;
     public final View backgroundView;
     private int color;
@@ -252,6 +253,13 @@ public class FlashViews {
     }
 
     public void invalidateGradient() {
+        ColorSpace.Named named;
+        ColorSpace colorSpace;
+        Color valueOf;
+        long pack;
+        ColorSpace colorSpace2;
+        Color valueOf2;
+        long pack2;
         if (this.lastColor == this.color && this.lastWidth == this.backgroundView.getMeasuredWidth() && this.lastHeight == this.backgroundView.getMeasuredHeight() && Math.abs(this.lastInvert - this.invert) <= 0.005f) {
             return;
         }
@@ -264,9 +272,19 @@ public class FlashViews {
             return;
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            this.gradient = new RadialGradient(this.lastWidth * 0.5f, this.lastHeight * 0.4f, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new long[]{Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(ColorSpace.Named.EXTENDED_SRGB)).pack()}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            float f = this.lastWidth * 0.5f;
+            float f2 = this.lastHeight * 0.4f;
+            float min = (Math.min(r5, r10) / 2.0f) * 1.35f * (2.0f - this.invert);
+            named = ColorSpace.Named.EXTENDED_SRGB;
+            colorSpace = ColorSpace.get(named);
+            valueOf = Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 0.0f, colorSpace);
+            pack = valueOf.pack();
+            colorSpace2 = ColorSpace.get(named);
+            valueOf2 = Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, colorSpace2);
+            pack2 = valueOf2.pack();
+            this.gradient = new RadialGradient(f, f2, min, new long[]{pack, pack2}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            this.gradient = new RadialGradient(this.lastWidth * 0.5f, 0.4f * this.lastHeight, (Math.min(r2, r7) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = new RadialGradient(this.lastWidth * 0.5f, this.lastHeight * 0.4f, (Math.min(r5, r6) / 2.0f) * 1.35f * (2.0f - this.invert), new int[]{ColorUtils.setAlphaComponent(this.color, 0), this.color}, new float[]{AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f}, Shader.TileMode.CLAMP);
         }
         this.paint.setShader(this.gradient);
         invalidate();

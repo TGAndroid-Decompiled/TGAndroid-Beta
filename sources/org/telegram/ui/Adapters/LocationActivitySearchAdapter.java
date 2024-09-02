@@ -43,7 +43,7 @@ public class LocationActivitySearchAdapter extends BaseLocationAdapter {
 
     @Override
     public int getItemCount() {
-        int size = this.locations.isEmpty() ? 0 : 0 + this.locations.size() + 1;
+        int size = !this.locations.isEmpty() ? this.locations.size() + 1 : 0;
         if (this.myLocationDenied) {
             return size;
         }
@@ -73,24 +73,26 @@ public class LocationActivitySearchAdapter extends BaseLocationAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue;
         int i2;
         boolean z = true;
         if (viewHolder.getItemViewType() == 0) {
-            TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue = null;
             int i3 = !this.locations.isEmpty() ? i - 1 : i;
             if (i3 >= 0 && i3 < this.locations.size()) {
                 tLRPC$TL_messageMediaVenue = this.locations.get(i3);
                 i2 = 2;
             } else {
                 if (!isSearching()) {
-                    i2 = i3 - this.locations.size();
+                    int size = i3 - this.locations.size();
                     if (!this.searchingLocations && !this.locations.isEmpty()) {
-                        i2--;
+                        size--;
                     }
+                    i2 = size;
                     if (i2 >= 0 && i2 < this.places.size()) {
                         tLRPC$TL_messageMediaVenue = this.places.get(i2);
                     }
                 }
+                tLRPC$TL_messageMediaVenue = null;
                 i2 = i;
             }
             LocationCell locationCell = (LocationCell) viewHolder.itemView;
@@ -102,9 +104,9 @@ public class LocationActivitySearchAdapter extends BaseLocationAdapter {
         }
         if (viewHolder.getItemViewType() == 1) {
             if (i == 0 && !this.locations.isEmpty()) {
-                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString("LocationOnMap", R.string.LocationOnMap));
+                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.LocationOnMap));
             } else {
-                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString("NearbyVenue", R.string.NearbyVenue));
+                ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.NearbyVenue));
             }
         }
     }

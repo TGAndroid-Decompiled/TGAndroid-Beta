@@ -154,6 +154,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     private boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
+        ChatActivity chatActivity;
         if (!z3 && (AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             showPasscodeActivity();
             this.passcodeSaveIntent = intent;
@@ -170,8 +171,9 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
             finish();
             return false;
         }
-        ChatActivity chatActivity = null;
-        if (intent.getAction() != null && intent.getAction().startsWith("com.tmessages.openchat")) {
+        if (intent.getAction() == null || !intent.getAction().startsWith("com.tmessages.openchat")) {
+            chatActivity = null;
+        } else {
             long longExtra = intent.getLongExtra("chatId", 0L);
             long longExtra2 = intent.getLongExtra("userId", 0L);
             Bundle bundle = new Bundle();

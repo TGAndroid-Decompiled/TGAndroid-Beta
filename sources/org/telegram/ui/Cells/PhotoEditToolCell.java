@@ -31,7 +31,10 @@ public class PhotoEditToolCell extends FrameLayout {
             public void run() {
                 PhotoEditToolCell.this.valueTextView.setTag(null);
                 PhotoEditToolCell.this.valueAnimation = new AnimatorSet();
-                PhotoEditToolCell.this.valueAnimation.playTogether(ObjectAnimator.ofFloat(PhotoEditToolCell.this.valueTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(PhotoEditToolCell.this.nameTextView, (Property<TextView, Float>) View.ALPHA, 1.0f));
+                AnimatorSet animatorSet = PhotoEditToolCell.this.valueAnimation;
+                TextView textView = PhotoEditToolCell.this.valueTextView;
+                Property property = View.ALPHA;
+                animatorSet.playTogether(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(PhotoEditToolCell.this.nameTextView, (Property<TextView, Float>) property, 1.0f));
                 PhotoEditToolCell.this.valueAnimation.setDuration(250L);
                 PhotoEditToolCell.this.valueAnimation.setInterpolator(new DecelerateInterpolator());
                 PhotoEditToolCell.this.valueAnimation.addListener(new AnimatorListenerAdapter() {
@@ -91,7 +94,9 @@ public class PhotoEditToolCell extends FrameLayout {
             this.valueTextView.setTag(1);
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.valueAnimation = animatorSet2;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.valueTextView, (Property<TextView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, (Property<TextView, Float>) View.ALPHA, 0.0f));
+            TextView textView = this.valueTextView;
+            Property property = View.ALPHA;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, (Property<TextView, Float>) property, 0.0f));
             this.valueAnimation.setDuration(250L);
             this.valueAnimation.setInterpolator(new DecelerateInterpolator());
             this.valueAnimation.addListener(new AnimatorListenerAdapter() {

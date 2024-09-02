@@ -95,10 +95,12 @@ public class RendererCommon {
     }
 
     private static void adjustOrigin(float[] fArr) {
-        fArr[12] = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
-        fArr[13] = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
-        fArr[12] = fArr[12] + 0.5f;
-        fArr[13] = fArr[13] + 0.5f;
+        float f = fArr[12] - ((fArr[0] + fArr[4]) * 0.5f);
+        fArr[12] = f;
+        float f2 = fArr[13] - ((fArr[1] + fArr[5]) * 0.5f);
+        fArr[13] = f2;
+        fArr[12] = f + 0.5f;
+        fArr[13] = f2 + 0.5f;
     }
 
     public static class AnonymousClass1 {

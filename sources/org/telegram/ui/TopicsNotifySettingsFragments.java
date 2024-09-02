@@ -39,6 +39,10 @@ import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.TopicsNotifySettingsFragments;
 
 public class TopicsNotifySettingsFragments extends BaseFragment {
+    private final int VIEW_TYPE_ADD_EXCEPTION;
+    private final int VIEW_TYPE_DELETE_ALL;
+    private final int VIEW_TYPE_DIVIDER;
+    private final int VIEW_TYPE_TOPIC;
     Adapter adapter;
     long dialogId;
     HashSet<Integer> exceptionsTopics;
@@ -50,6 +54,10 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
 
     public TopicsNotifySettingsFragments(Bundle bundle) {
         super(bundle);
+        this.VIEW_TYPE_ADD_EXCEPTION = 1;
+        this.VIEW_TYPE_TOPIC = 2;
+        this.VIEW_TYPE_DIVIDER = 3;
+        this.VIEW_TYPE_DELETE_ALL = 4;
         this.items = new ArrayList<>();
         this.exceptionsTopics = new HashSet<>();
     }
@@ -116,15 +124,15 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             }
             if (TopicsNotifySettingsFragments.this.items.get(i).viewType == 4) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(TopicsNotifySettingsFragments.this.getParentActivity());
-                builder.setTitle(LocaleController.getString("NotificationsDeleteAllExceptionTitle", R.string.NotificationsDeleteAllExceptionTitle));
-                builder.setMessage(LocaleController.getString("NotificationsDeleteAllExceptionAlert", R.string.NotificationsDeleteAllExceptionAlert));
-                builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setTitle(LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle));
+                builder.setMessage(LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert));
+                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         TopicsNotifySettingsFragments.AnonymousClass2.this.lambda$onItemClick$2(dialogInterface, i2);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 AlertDialog create = builder.create();
                 TopicsNotifySettingsFragments.this.showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
@@ -280,7 +288,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             View view2;
             if (i == 1) {
                 TextCell textCell = new TextCell(viewGroup.getContext());
-                textCell.setTextAndIcon((CharSequence) LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
+                textCell.setTextAndIcon((CharSequence) LocaleController.getString(R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
                 textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 view = textCell;
@@ -292,7 +300,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 view = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
                 TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
+                textCell2.setText(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
                 textCell2.setColors(-1, Theme.key_text_RedRegular);
                 textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 view = textCell2;
@@ -339,7 +347,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
     public class Item extends AdapterWithDiffUtils.Item {
         final TLRPC$TL_forumTopic topic;
 
-        private Item(TopicsNotifySettingsFragments topicsNotifySettingsFragments, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        private Item(int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             super(i, false);
             this.topic = tLRPC$TL_forumTopic;
         }
@@ -349,7 +357,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Item.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Item item = (Item) obj;

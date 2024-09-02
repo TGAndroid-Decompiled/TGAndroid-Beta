@@ -186,15 +186,13 @@ public class TextPaintView extends EntityView {
         int align = getAlign();
         int i = 2;
         this.editText.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
-        if (Build.VERSION.SDK_INT >= 17) {
-            int align2 = getAlign();
-            if (align2 == 1) {
-                i = 4;
-            } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
-                i = 3;
-            }
-            this.editText.setTextAlignment(i);
+        int align2 = getAlign();
+        if (align2 == 1) {
+            i = 4;
+        } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
+            i = 3;
         }
+        this.editText.setTextAlignment(i);
     }
 
     public int getBaseFontSize() {
@@ -247,22 +245,17 @@ public class TextPaintView extends EntityView {
     }
 
     public void setTypeface(String str) {
-        boolean z;
         Iterator<PaintTypeface> it = PaintTypeface.get().iterator();
         while (true) {
             if (!it.hasNext()) {
-                z = false;
                 break;
             }
             PaintTypeface next = it.next();
             if (next.getKey().equals(str)) {
                 setTypeface(next);
-                z = true;
+                str = null;
                 break;
             }
-        }
-        if (z) {
-            str = null;
         }
         this.lastTypefaceKey = str;
         updateSelectionView();
@@ -377,7 +370,7 @@ public class TextPaintView extends EntityView {
         } else if (i2 == 1) {
             this.editText.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -1728053248 : -1711276033);
         } else if (i2 == 2) {
-            this.editText.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) < 0.25f ? -1 : -16777216);
+            this.editText.setFrameColor(AndroidUtilities.computePerceivedBrightness(i) >= 0.25f ? -16777216 : -1);
         } else {
             this.editText.setFrameColor(0);
         }
@@ -402,14 +395,14 @@ public class TextPaintView extends EntityView {
 
     @Override
     public TextViewSelectionView createSelectionView() {
-        return new TextViewSelectionView(this, getContext());
+        return new TextViewSelectionView(getContext());
     }
 
     public class TextViewSelectionView extends EntityView.SelectionView {
         private final Paint clearPaint;
         private Path path;
 
-        public TextViewSelectionView(TextPaintView textPaintView, Context context) {
+        public TextViewSelectionView(Context context) {
             super(context);
             Paint paint = new Paint(1);
             this.clearPaint = paint;

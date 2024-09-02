@@ -86,8 +86,9 @@ public class ClearHistoryAlert extends BottomSheet {
     }
 
     public static void lambda$new$0(boolean[] zArr, View view) {
-        zArr[0] = !zArr[0];
-        ((CheckBoxCell) view).setChecked(zArr[0], true);
+        boolean z = !zArr[0];
+        zArr[0] = z;
+        ((CheckBoxCell) view).setChecked(z, true);
     }
 
     public void lambda$new$1(View view) {

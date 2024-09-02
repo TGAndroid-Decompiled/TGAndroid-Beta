@@ -21,7 +21,6 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -99,7 +98,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         } else {
             addView(backupImageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         }
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(10.0f), false), bufferType);
@@ -194,11 +193,11 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             invalidate();
             this.avatarDrawable.setInfo(this.currentAccount, this.user);
             if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("RepliesTitle", R.string.RepliesTitle));
+                this.nameTextView.setText(LocaleController.getString(R.string.RepliesTitle));
                 this.avatarDrawable.setAvatarType(12);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else if (this.currentType != 2 && UserObject.isUserSelf(this.user)) {
-                this.nameTextView.setText(LocaleController.getString("SavedMessages", R.string.SavedMessages));
+                this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages));
                 this.avatarDrawable.setAvatarType(1);
                 this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             } else {
@@ -306,7 +305,7 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     @Override
-    protected boolean drawChild(android.graphics.Canvas r25, android.view.View r26, long r27) {
+    protected boolean drawChild(android.graphics.Canvas r26, android.view.View r27, long r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ShareDialogCell.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 
@@ -362,7 +361,6 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.story_repost, "story_repost", AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
                 this.lottieDrawable = rLottieDrawable;
                 rLottieDrawable.setMasterParent(view);
-                Objects.requireNonNull(rLottieDrawable);
                 AndroidUtilities.runOnUIThread(new ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0(rLottieDrawable), 450L);
                 this.drawable = null;
                 return;

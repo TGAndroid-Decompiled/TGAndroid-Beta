@@ -74,11 +74,15 @@ public class NetworkMonitor {
 
     public void startMonitoring(Context context) {
         synchronized (this.networkChangeDetectorLock) {
-            this.numObservers++;
-            if (this.networkChangeDetector == null) {
-                this.networkChangeDetector = createNetworkChangeDetector(context);
+            try {
+                this.numObservers++;
+                if (this.networkChangeDetector == null) {
+                    this.networkChangeDetector = createNetworkChangeDetector(context);
+                }
+                this.currentConnectionType = this.networkChangeDetector.getCurrentConnectionType();
+            } catch (Throwable th) {
+                throw th;
             }
-            this.currentConnectionType = this.networkChangeDetector.getCurrentConnectionType();
         }
     }
 
@@ -103,11 +107,15 @@ public class NetworkMonitor {
 
     public void stopMonitoring() {
         synchronized (this.networkChangeDetectorLock) {
-            int i = this.numObservers - 1;
-            this.numObservers = i;
-            if (i == 0) {
-                this.networkChangeDetector.destroy();
-                this.networkChangeDetector = null;
+            try {
+                int i = this.numObservers - 1;
+                this.numObservers = i;
+                if (i == 0) {
+                    this.networkChangeDetector.destroy();
+                    this.networkChangeDetector = null;
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }
@@ -125,8 +133,11 @@ public class NetworkMonitor {
     private boolean networkBindingSupported() {
         boolean z;
         synchronized (this.networkChangeDetectorLock) {
-            NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
-            z = networkChangeDetector != null && networkChangeDetector.supportNetworkCallback();
+            try {
+                NetworkChangeDetector networkChangeDetector = this.networkChangeDetector;
+                z = networkChangeDetector != null && networkChangeDetector.supportNetworkCallback();
+            } finally {
+            }
         }
         return z;
     }

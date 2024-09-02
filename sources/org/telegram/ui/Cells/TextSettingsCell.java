@@ -82,17 +82,20 @@ public class TextSettingsCell extends FrameLayout {
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        rLottieImageView.setScaleType(scaleType);
         ImageView imageView = this.imageView;
         int i2 = Theme.key_windowBackgroundWhiteGrayIcon;
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        int color = Theme.getColor(i2, resourcesProvider);
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
         this.imageView.setVisibility(8);
         addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.valueImageView = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         this.valueImageView.setVisibility(4);
-        this.valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
         addView(this.valueImageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, f, 0.0f, f, 0.0f));
     }
 
@@ -216,21 +219,12 @@ public class TextSettingsCell extends FrameLayout {
     public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
         setEnabled(z);
         if (arrayList != null) {
-            TextView textView = this.textView;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", fArr));
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, "alpha", z ? 1.0f : 0.5f));
             if (this.valueTextView.getVisibility() == 0) {
-                AnimatedTextView animatedTextView = this.valueTextView;
-                float[] fArr2 = new float[1];
-                fArr2[0] = z ? 1.0f : 0.5f;
-                arrayList.add(ObjectAnimator.ofFloat(animatedTextView, "alpha", fArr2));
+                arrayList.add(ObjectAnimator.ofFloat(this.valueTextView, "alpha", z ? 1.0f : 0.5f));
             }
             if (this.valueImageView.getVisibility() == 0) {
-                ImageView imageView = this.valueImageView;
-                float[] fArr3 = new float[1];
-                fArr3[0] = z ? 1.0f : 0.5f;
-                arrayList.add(ObjectAnimator.ofFloat(imageView, "alpha", fArr3));
+                arrayList.add(ObjectAnimator.ofFloat(this.valueImageView, "alpha", z ? 1.0f : 0.5f));
                 return;
             }
             return;
@@ -247,12 +241,17 @@ public class TextSettingsCell extends FrameLayout {
     @Override
     public void setEnabled(boolean z) {
         super.setEnabled(z);
+        float f = 1.0f;
         this.textView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
         if (this.valueTextView.getVisibility() == 0) {
             this.valueTextView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
         }
         if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
+            ImageView imageView = this.valueImageView;
+            if (!z && this.canDisable) {
+                f = 0.5f;
+            }
+            imageView.setAlpha(f);
         }
     }
 
@@ -356,8 +355,8 @@ public class TextSettingsCell extends FrameLayout {
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.valueBackupImageView = backupImageView;
             int i = (LocaleController.isRTL ? 3 : 5) | 16;
-            int i2 = this.padding;
-            addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, i, i2, 0.0f, i2, 0.0f));
+            float f = this.padding;
+            addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, i, f, 0.0f, f, 0.0f));
         }
         return this.valueBackupImageView;
     }
@@ -377,20 +376,20 @@ public class TextSettingsCell extends FrameLayout {
         removeView(this.textView);
         TextView textView = this.textView;
         int i = (LocaleController.isRTL ? 5 : 3) | 48;
-        int i2 = this.padding;
-        addView(textView, LayoutHelper.createFrame(-1, -1.0f, i, i2, 0.0f, i2, 0.0f));
+        float f = this.padding;
+        addView(textView, LayoutHelper.createFrame(-1, -1.0f, i, f, 0.0f, f, 0.0f));
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         removeView(this.valueTextView);
         AnimatedTextView animatedTextView = this.valueTextView;
-        int i3 = (LocaleController.isRTL ? 3 : 5) | 48;
-        int i4 = this.padding;
-        addView(animatedTextView, LayoutHelper.createFrame(-2, -1.0f, i3, i4, 0.0f, i4, 0.0f));
+        int i2 = (LocaleController.isRTL ? 3 : 5) | 48;
+        float f2 = this.padding;
+        addView(animatedTextView, LayoutHelper.createFrame(-2, -1.0f, i2, f2, 0.0f, f2, 0.0f));
         removeView(this.imageView);
         addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         removeView(this.valueImageView);
         ImageView imageView = this.valueImageView;
-        int i5 = LocaleController.isRTL ? 3 : 5;
-        int i6 = this.padding;
-        addView(imageView, LayoutHelper.createFrame(-2, -2.0f, i5 | 16, i6, 0.0f, i6, 0.0f));
+        int i3 = LocaleController.isRTL ? 3 : 5;
+        float f3 = this.padding;
+        addView(imageView, LayoutHelper.createFrame(-2, -2.0f, i3 | 16, f3, 0.0f, f3, 0.0f));
     }
 }

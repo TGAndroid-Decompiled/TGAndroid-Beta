@@ -1,10 +1,10 @@
 package kotlinx.coroutines.internal;
 
+import androidx.concurrent.futures.AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlinx.coroutines.DebugKt;
 
 public final class LockFreeTaskQueueCore<E> {
     public static final Companion Companion = new Companion(null);
@@ -24,22 +24,22 @@ public final class LockFreeTaskQueueCore<E> {
         int i2 = i - 1;
         this.mask = i2;
         this.array = new AtomicReferenceArray(i);
-        if (!(i2 <= 1073741823)) {
+        if (i2 > 1073741823) {
             throw new IllegalStateException("Check failed.".toString());
         }
-        if (!((i & i2) == 0)) {
+        if ((i & i2) != 0) {
             throw new IllegalStateException("Check failed.".toString());
         }
     }
 
     public final boolean isEmpty() {
         long j = this._state;
-        return ((int) ((1073741823 & j) >> 0)) == ((int) ((j & 1152921503533105152L) >> 30));
+        return ((int) (1073741823 & j)) == ((int) ((j & 1152921503533105152L) >> 30));
     }
 
     public final int getSize() {
         long j = this._state;
-        return 1073741823 & (((int) ((j & 1152921503533105152L) >> 30)) - ((int) ((1073741823 & j) >> 0)));
+        return 1073741823 & (((int) ((j & 1152921503533105152L) >> 30)) - ((int) (1073741823 & j)));
     }
 
     private final LockFreeTaskQueueCore<E> fillPlaceholder(int i, E e) {
@@ -57,7 +57,7 @@ public final class LockFreeTaskQueueCore<E> {
 
     private final LockFreeTaskQueueCore<E> allocateNextCopy(long j) {
         LockFreeTaskQueueCore<E> lockFreeTaskQueueCore = new LockFreeTaskQueueCore<>(this.capacity * 2, this.singleConsumer);
-        int i = (int) ((1073741823 & j) >> 0);
+        int i = (int) (1073741823 & j);
         int i2 = (int) ((1152921503533105152L & j) >> 30);
         while (true) {
             int i3 = this.mask;
@@ -100,7 +100,7 @@ public final class LockFreeTaskQueueCore<E> {
         }
 
         public final long updateHead(long j, int i) {
-            return wo(j, 1073741823L) | (i << 0);
+            return wo(j, 1073741823L) | i;
         }
 
         public final long updateTail(long j, int i) {
@@ -122,7 +122,7 @@ public final class LockFreeTaskQueueCore<E> {
         return true;
     }
 
-    public final int addLast(E r14) {
+    public final int addLast(E r12) {
         throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.internal.LockFreeTaskQueueCore.addLast(java.lang.Object):int");
     }
 
@@ -132,8 +132,7 @@ public final class LockFreeTaskQueueCore<E> {
             if ((1152921504606846976L & j) != 0) {
                 return REMOVE_FROZEN;
             }
-            Companion companion = Companion;
-            int i = (int) ((1073741823 & j) >> 0);
+            int i = (int) (1073741823 & j);
             int i2 = (int) ((1152921503533105152L & j) >> 30);
             int i3 = this.mask;
             if ((i2 & i3) == (i & i3)) {
@@ -149,7 +148,7 @@ public final class LockFreeTaskQueueCore<E> {
                     return null;
                 }
                 int i4 = (i + 1) & 1073741823;
-                if (_state$FU.compareAndSet(this, j, companion.updateHead(j, i4))) {
+                if (_state$FU.compareAndSet(this, j, Companion.updateHead(j, i4))) {
                     this.array.set(this.mask & i, null);
                     return obj;
                 }
@@ -166,22 +165,15 @@ public final class LockFreeTaskQueueCore<E> {
 
     private final LockFreeTaskQueueCore<E> removeSlowPath(int i, int i2) {
         long j;
-        Companion companion;
         int i3;
         do {
             j = this._state;
-            companion = Companion;
-            i3 = (int) ((1073741823 & j) >> 0);
-            if (DebugKt.getASSERTIONS_ENABLED()) {
-                if (!(i3 == i)) {
-                    throw new AssertionError();
-                }
-            }
+            i3 = (int) (1073741823 & j);
             if ((1152921504606846976L & j) != 0) {
                 return next();
             }
-        } while (!_state$FU.compareAndSet(this, j, companion.updateHead(j, i2)));
-        this.array.set(this.mask & i3, null);
+        } while (!_state$FU.compareAndSet(this, j, Companion.updateHead(j, i2)));
+        this.array.set(i3 & this.mask, null);
         return null;
     }
 
@@ -204,7 +196,7 @@ public final class LockFreeTaskQueueCore<E> {
             if (lockFreeTaskQueueCore != null) {
                 return lockFreeTaskQueueCore;
             }
-            _next$FU.compareAndSet(this, null, allocateNextCopy(j));
+            AbstractResolvableFuture$SafeAtomicHelper$$ExternalSyntheticBackportWithForwarding0.m(_next$FU, this, null, allocateNextCopy(j));
         }
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
@@ -50,6 +49,7 @@ import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline4;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.QuoteSpan;
 
@@ -204,8 +204,8 @@ public class EditTextBoldCursor extends EditTextEffects {
         @Override
         public void onGetContentRect(ActionMode actionMode, View view, android.graphics.Rect rect) {
             ActionMode.Callback callback = this.mWrapped;
-            if (callback instanceof ActionMode.Callback2) {
-                ((ActionMode.Callback2) callback).onGetContentRect(actionMode, view, rect);
+            if (EditTextBoldCursor$ActionModeCallback2Wrapper$$ExternalSyntheticApiModelOutline0.m(callback)) {
+                TextSelectionHelper$$ExternalSyntheticApiModelOutline4.m(callback).onGetContentRect(actionMode, view, rect);
             } else {
                 super.onGetContentRect(actionMode, view, rect);
             }
@@ -397,7 +397,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                 } catch (Exception unused2) {
                 }
                 try {
-                    Method declaredMethod = editorClass.getDeclaredMethod("invalidateTextDisplayList", new Class[0]);
+                    Method declaredMethod = editorClass.getDeclaredMethod("invalidateTextDisplayList", null);
                     mEditorInvalidateDisplayList = declaredMethod;
                     declaredMethod.setAccessible(true);
                 } catch (Exception unused3) {
@@ -453,9 +453,9 @@ public class EditTextBoldCursor extends EditTextEffects {
                 this.editor = mEditor.get(this);
             }
             if (this.listenerFixer == null) {
-                Method declaredMethod = editorClass.getDeclaredMethod("getPositionListener", new Class[0]);
+                Method declaredMethod = editorClass.getDeclaredMethod("getPositionListener", null);
                 declaredMethod.setAccessible(true);
-                this.listenerFixer = (ViewTreeObserver.OnPreDrawListener) declaredMethod.invoke(this.editor, new Object[0]);
+                this.listenerFixer = (ViewTreeObserver.OnPreDrawListener) declaredMethod.invoke(this.editor, null);
             }
             final ViewTreeObserver.OnPreDrawListener onPreDrawListener = this.listenerFixer;
             Objects.requireNonNull(onPreDrawListener);
@@ -717,11 +717,7 @@ public class EditTextBoldCursor extends EditTextEffects {
             if (z) {
                 AnimatorSet animatorSet2 = new AnimatorSet();
                 this.headerTransformAnimation = animatorSet2;
-                Animator[] animatorArr = new Animator[1];
-                float[] fArr = new float[1];
-                fArr[0] = z2 ? 1.0f : 0.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(this, "headerAnimationProgress", fArr);
-                animatorSet2.playTogether(animatorArr);
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "headerAnimationProgress", z2 ? 1.0f : 0.0f));
                 this.headerTransformAnimation.setDuration(200L);
                 this.headerTransformAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.headerTransformAnimation.start();
@@ -791,7 +787,7 @@ public class EditTextBoldCursor extends EditTextEffects {
                     }
                     Object obj = this.editor;
                     if (obj != null) {
-                        mEditorInvalidateDisplayList.invoke(obj, new Object[0]);
+                        mEditorInvalidateDisplayList.invoke(obj, null);
                     }
                 }
             } catch (Exception unused) {
@@ -937,27 +933,24 @@ public class EditTextBoldCursor extends EditTextEffects {
         if (this.mTempRect == null) {
             this.mTempRect = new android.graphics.Rect();
         }
-        int i2 = 0;
         if (drawable != null) {
             drawable.getPadding(this.mTempRect);
-            i2 = drawable.getIntrinsicWidth();
+            i = drawable.getIntrinsicWidth();
         } else {
             this.mTempRect.setEmpty();
+            i = 0;
         }
         int scrollX = getScrollX();
         float f2 = max - scrollX;
         int width = (getWidth() - getCompoundPaddingLeft()) - getCompoundPaddingRight();
         float f3 = width;
         if (f2 >= f3 - 1.0f) {
-            return (width + scrollX) - (i2 - this.mTempRect.right);
+            return (width + scrollX) - (i - this.mTempRect.right);
         }
         if (Math.abs(f2) <= 1.0f || (TextUtils.isEmpty(getText()) && 1048576 - scrollX <= f3 + 1.0f && max <= 1.0f)) {
-            i = this.mTempRect.left;
-        } else {
-            scrollX = (int) max;
-            i = this.mTempRect.left;
+            return scrollX - this.mTempRect.left;
         }
-        return scrollX - i;
+        return ((int) max) - this.mTempRect.left;
     }
 
     private void updateCursorPosition(int i, int i2, float f) {
@@ -1110,16 +1103,20 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     public void setHandlesColor(int i) {
+        Drawable textSelectHandleLeft;
+        Drawable textSelectHandle;
+        Drawable textSelectHandleRight;
         if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
             try {
-                Drawable textSelectHandleLeft = getTextSelectHandleLeft();
-                textSelectHandleLeft.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                textSelectHandleLeft = getTextSelectHandleLeft();
+                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+                textSelectHandleLeft.setColorFilter(i, mode);
                 setTextSelectHandleLeft(textSelectHandleLeft);
-                Drawable textSelectHandle = getTextSelectHandle();
-                textSelectHandle.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                textSelectHandle = getTextSelectHandle();
+                textSelectHandle.setColorFilter(i, mode);
                 setTextSelectHandle(textSelectHandle);
-                Drawable textSelectHandleRight = getTextSelectHandleRight();
-                textSelectHandleRight.setColorFilter(i, PorterDuff.Mode.SRC_IN);
+                textSelectHandleRight = getTextSelectHandleRight();
+                textSelectHandleRight.setColorFilter(i, mode);
                 setTextSelectHandleRight(textSelectHandleRight);
             } catch (Exception unused) {
             }

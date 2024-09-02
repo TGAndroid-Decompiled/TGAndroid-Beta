@@ -58,6 +58,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     public final AnimatedFloat parentHighlightScaleAlpha;
     private View parentView;
     float[] point;
+    private final float[] radii;
     private final Rect rect;
     private final RectF rectF;
     private Theme.ResourcesProvider resourcesProvider;
@@ -91,6 +92,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         paint.setColor(-1);
         this.clipPath = new Path();
+        this.radii = new float[8];
         this.shined = false;
         this.parentView = view;
         this.resourcesProvider = resourcesProvider;
@@ -177,9 +179,7 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 }
                 view.setOnClickListener(this);
                 addView(view);
-                TL_stories$MediaAreaCoordinates tL_stories$MediaAreaCoordinates = tL_stories$MediaArea.coordinates;
-                double d = tL_stories$MediaAreaCoordinates.w;
-                double d2 = tL_stories$MediaAreaCoordinates.h;
+                double d = tL_stories$MediaArea.coordinates.w;
             }
         }
         this.malicious = false;
@@ -668,8 +668,9 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
             if (this.supportsShining) {
                 this.shining = true;
                 this.startTime = System.currentTimeMillis();
-                this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-                this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
+                this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, tileMode);
                 invalidate();
             }
         }

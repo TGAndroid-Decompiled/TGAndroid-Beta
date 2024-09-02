@@ -32,6 +32,7 @@ public class PremiumLockIconView extends ImageView {
     AnimatedEmojiDrawable emojiDrawable;
     private float iconScale;
     ImageReceiver imageReceiver;
+    public boolean isEnter;
     private boolean locked;
     Paint oldShaderPaint;
     public Paint paint;
@@ -87,9 +88,14 @@ public class PremiumLockIconView extends ImageView {
             this.path.rewind();
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            this.path.addCircle(rectF.width() / 2.0f, rectF.centerY(), rectF.width() / 2.0f, Path.Direction.CW);
+            Path path = this.path;
+            float width = rectF.width() / 2.0f;
+            float centerY = rectF.centerY();
+            float width2 = rectF.width() / 2.0f;
+            Path.Direction direction = Path.Direction.CW;
+            path.addCircle(width, centerY, width2, direction);
             rectF.set((getMeasuredWidth() / 2.0f) + AndroidUtilities.dp(2.5f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dpf2(5.7f), getMeasuredWidth() - AndroidUtilities.dpf2(0.2f), getMeasuredHeight());
-            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Path.Direction.CW);
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), direction);
             this.path.close();
             this.starParticles.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             this.starParticles.rect.inset(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f));
@@ -295,6 +301,7 @@ public class PremiumLockIconView extends ImageView {
     }
 
     public void play(int i) {
+        this.isEnter = true;
         CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
         if (cellFlickerDrawable != null) {
             cellFlickerDrawable.progress = 0.0f;
@@ -305,6 +312,7 @@ public class PremiumLockIconView extends ImageView {
     }
 
     public void resetAnimation() {
+        this.isEnter = false;
         setScaleX(0.0f);
         setScaleY(0.0f);
     }

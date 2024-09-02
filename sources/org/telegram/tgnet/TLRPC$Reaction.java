@@ -5,22 +5,14 @@ public abstract class TLRPC$Reaction extends TLObject {
 
     public static TLRPC$Reaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Reaction tLRPC$TL_reactionCustomEmoji;
-        switch (i) {
-            case -1992950669:
-                tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
-                break;
-            case 455247544:
-                tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionEmoji();
-                break;
-            case 1379771627:
-                tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionPaid();
-                break;
-            case 2046153753:
-                tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionEmpty();
-                break;
-            default:
-                tLRPC$TL_reactionCustomEmoji = null;
-                break;
+        if (i == -1992950669) {
+            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionCustomEmoji();
+        } else if (i == 455247544) {
+            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionEmoji();
+        } else if (i != 1379771627) {
+            tLRPC$TL_reactionCustomEmoji = i != 2046153753 ? null : new TLRPC$TL_reactionEmpty();
+        } else {
+            tLRPC$TL_reactionCustomEmoji = new TLRPC$TL_reactionPaid();
         }
         if (tLRPC$TL_reactionCustomEmoji == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in Reaction", Integer.valueOf(i)));

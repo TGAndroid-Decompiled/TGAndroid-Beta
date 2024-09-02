@@ -80,8 +80,11 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     private View mapMarker;
     private BackupImageView mapPreview;
     private FrameLayout mapPreviewContainer;
-    private int shiftDp = -4;
     private boolean valueSet;
+    final int MAX_NAME_LENGTH = 96;
+    private int shiftDp = -4;
+    private final int BUTTON_MAP = 1;
+    private final int BUTTON_CLEAR = 2;
 
     @Override
     public View createView(Context context) {
@@ -104,7 +107,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         int i = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -185,7 +188,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
                 LocationActivity.this.checkDone(true);
             }
         });
-        this.editText.setFilters(new InputFilter[]{new InputFilter(this) {
+        this.editText.setFilters(new InputFilter[]{new InputFilter() {
             @Override
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
                 if (charSequence == null) {
@@ -504,13 +507,13 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString(R.string.BusinessLocationUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LocationActivity.this.lambda$onBackPressed$2(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     LocationActivity.this.lambda$onBackPressed$3(dialogInterface, i);

@@ -130,7 +130,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString(R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);
         try {
@@ -155,13 +155,13 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         if (messageObject != null && MessageObject.isGifMessage(messageObject.messageOwner)) {
             NotificationCompat.Builder builder = this.builder;
             int i = R.string.SendingGif;
-            builder.setTicker(LocaleController.getString("SendingGif", i));
-            this.builder.setContentText(LocaleController.getString("SendingGif", i));
+            builder.setTicker(LocaleController.getString(i));
+            this.builder.setContentText(LocaleController.getString(i));
         } else {
             NotificationCompat.Builder builder2 = this.builder;
             int i2 = R.string.SendingVideo;
-            builder2.setTicker(LocaleController.getString("SendingVideo", i2));
-            this.builder.setContentText(LocaleController.getString("SendingVideo", i2));
+            builder2.setTicker(LocaleController.getString(i2));
+            this.builder.setContentText(LocaleController.getString(i2));
         }
         this.builder.setProgress(100, 0, true);
     }

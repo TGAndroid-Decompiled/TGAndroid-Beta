@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import org.webrtc.DataChannel;
 import org.webrtc.MediaStreamTrack;
 import org.webrtc.RtpTransceiver;
@@ -866,7 +865,9 @@ public class PeerConnection {
     }
 
     public boolean removeTrack(RtpSender rtpSender) {
-        Objects.requireNonNull(rtpSender, "No RtpSender specified for removeTrack.");
+        if (rtpSender == null) {
+            throw new NullPointerException("No RtpSender specified for removeTrack.");
+        }
         return nativeRemoveTrack(rtpSender.getNativeRtpSender());
     }
 
@@ -875,7 +876,9 @@ public class PeerConnection {
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack mediaStreamTrack, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        Objects.requireNonNull(mediaStreamTrack, "No MediaStreamTrack specified for addTransceiver.");
+        if (mediaStreamTrack == null) {
+            throw new NullPointerException("No MediaStreamTrack specified for addTransceiver.");
+        }
         if (rtpTransceiverInit == null) {
             rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
         }
@@ -892,7 +895,9 @@ public class PeerConnection {
     }
 
     public RtpTransceiver addTransceiver(MediaStreamTrack.MediaType mediaType, RtpTransceiver.RtpTransceiverInit rtpTransceiverInit) {
-        Objects.requireNonNull(mediaType, "No MediaType specified for addTransceiver.");
+        if (mediaType == null) {
+            throw new NullPointerException("No MediaType specified for addTransceiver.");
+        }
         if (rtpTransceiverInit == null) {
             rtpTransceiverInit = new RtpTransceiver.RtpTransceiverInit();
         }

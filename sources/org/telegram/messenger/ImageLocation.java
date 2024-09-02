@@ -329,8 +329,9 @@ public class ImageLocation {
             tLRPC$TL_inputStickerSetShortName = new TLRPC$TL_inputStickerSetShortName();
             tLRPC$TL_inputStickerSetShortName.short_name = tLRPC$StickerSet.short_name;
         }
+        TLRPC$InputStickerSet tLRPC$InputStickerSet = tLRPC$TL_inputStickerSetShortName;
         TLRPC$FileLocation tLRPC$FileLocation = closestPhotoSizeWithSize.location;
-        return getForPhoto(tLRPC$FileLocation, closestPhotoSizeWithSize.size, null, null, null, 1, tLRPC$FileLocation.dc_id, tLRPC$TL_inputStickerSetShortName, closestPhotoSizeWithSize.type);
+        return getForPhoto(tLRPC$FileLocation, closestPhotoSizeWithSize.size, null, null, null, 1, tLRPC$FileLocation.dc_id, tLRPC$InputStickerSet, closestPhotoSizeWithSize.type);
     }
 
     private static ImageLocation getForPhoto(TLRPC$FileLocation tLRPC$FileLocation, int i, TLRPC$Photo tLRPC$Photo, TLRPC$Document tLRPC$Document, TLRPC$InputPeer tLRPC$InputPeer, int i2, int i3, TLRPC$InputStickerSet tLRPC$InputStickerSet, String str) {

@@ -67,6 +67,7 @@ public class PhotoCropView extends FrameLayout {
 
     public PhotoCropView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.isReset = true;
         this.thumbImageVisibleOverride = true;
         this.thumbAnimationProgress = 1.0f;
         this.flashAlpha = 0.0f;
@@ -321,12 +322,7 @@ public class PhotoCropView extends FrameLayout {
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.thumbOverrideAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        Property<PhotoCropView, Float> property = this.PROGRESS_VALUE;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(this, property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.PROGRESS_VALUE, z ? 1.0f : 0.0f));
         this.thumbOverrideAnimation.setDuration(180L);
         this.thumbOverrideAnimation.addListener(new AnimatorListenerAdapter() {
             @Override

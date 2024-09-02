@@ -32,7 +32,7 @@ public class EncryptedFileInputStream extends FileInputStream {
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, bArr.length);
+        System.arraycopy(secureDocumentKey.file_key, 0, bArr, 0, 32);
         byte[] bArr2 = secureDocumentKey.file_iv;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);

@@ -52,6 +52,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     private AnimatorSet hideShowAnimation;
     private ImageView imageView;
     private Runnable onCloseRunnable;
+    private Activity parentActivity;
     private SharedPreferences preferences;
     private RectF rect = new RectF();
     private TextureView textureView;
@@ -62,7 +63,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
     private FrameLayout windowView;
 
     public class PipFrameLayout extends FrameLayout {
-        public PipFrameLayout(PipRoundVideoView pipRoundVideoView, Context context) {
+        public PipFrameLayout(Context context) {
             super(context);
         }
     }
@@ -131,8 +132,8 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                         }
                         if (PipRoundVideoView.this.windowLayoutParams.y < 0) {
                             PipRoundVideoView.this.windowLayoutParams.y = 0;
-                        } else if (PipRoundVideoView.this.windowLayoutParams.y > (AndroidUtilities.displaySize.y - PipRoundVideoView.this.windowLayoutParams.height) + 0) {
-                            PipRoundVideoView.this.windowLayoutParams.y = (AndroidUtilities.displaySize.y - PipRoundVideoView.this.windowLayoutParams.height) + 0;
+                        } else if (PipRoundVideoView.this.windowLayoutParams.y > AndroidUtilities.displaySize.y - PipRoundVideoView.this.windowLayoutParams.height) {
+                            PipRoundVideoView.this.windowLayoutParams.y = AndroidUtilities.displaySize.y - PipRoundVideoView.this.windowLayoutParams.height;
                         }
                         PipRoundVideoView.this.windowManager.updateViewLayout(PipRoundVideoView.this.windowView, PipRoundVideoView.this.windowLayoutParams);
                         this.startX = rawX;
@@ -184,7 +185,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                 }
             };
             this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-            aspectRatioFrameLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+            aspectRatioFrameLayout.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 @TargetApi(21)
                 public void getOutline(View view, Outline outline) {
@@ -268,6 +269,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
             this.windowManager.addView(this.windowView, layoutParams2);
+            this.parentActivity = activity;
             int i4 = UserConfig.selectedAccount;
             this.currentAccount = i4;
             NotificationCenter.getInstance(i4).addObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
@@ -345,6 +347,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         if (instance == this) {
             instance = null;
         }
+        this.parentActivity = null;
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagePlayingProgressDidChanged);
     }
 
@@ -365,23 +368,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.hideShowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[3];
-        FrameLayout frameLayout = this.windowView;
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
-        FrameLayout frameLayout2 = this.windowView;
-        Property property2 = View.SCALE_X;
-        float[] fArr2 = new float[1];
-        fArr2[0] = z ? 1.0f : 0.8f;
-        animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
-        FrameLayout frameLayout3 = this.windowView;
-        Property property3 = View.SCALE_Y;
-        float[] fArr3 = new float[1];
-        fArr3[0] = z ? 1.0f : 0.8f;
-        animatorArr[2] = ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property3, fArr3);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_X, z ? 1.0f : 0.8f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 1.0f : 0.8f));
         this.hideShowAnimation.setDuration(150L);
         if (this.decelerateInterpolator == null) {
             this.decelerateInterpolator = new DecelerateInterpolator();
@@ -405,23 +392,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.hideShowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[3];
-        FrameLayout frameLayout = this.windowView;
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
-        FrameLayout frameLayout2 = this.windowView;
-        Property property2 = View.SCALE_X;
-        float[] fArr2 = new float[1];
-        fArr2[0] = z ? 1.0f : 0.8f;
-        animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
-        FrameLayout frameLayout3 = this.windowView;
-        Property property3 = View.SCALE_Y;
-        float[] fArr3 = new float[1];
-        fArr3[0] = z ? 1.0f : 0.8f;
-        animatorArr[2] = ObjectAnimator.ofFloat(frameLayout3, (Property<FrameLayout, Float>) property3, fArr3);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.ALPHA, z ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_X, z ? 1.0f : 0.8f), ObjectAnimator.ofFloat(this.windowView, (Property<FrameLayout, Float>) View.SCALE_Y, z ? 1.0f : 0.8f));
         this.hideShowAnimation.setDuration(150L);
         if (this.decelerateInterpolator == null) {
             this.decelerateInterpolator = new DecelerateInterpolator();

@@ -49,7 +49,7 @@ public class HeaderCell extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
-        GLIconTextureView gLIconTextureView = new GLIconTextureView(this, context, 1) {
+        GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1) {
             @Override
             public void onAttachedToWindow() {
                 super.onAttachedToWindow();
@@ -127,7 +127,7 @@ public class HeaderCell extends FrameLayout {
 
     public void setBoostViaGifsText(TLRPC$Chat tLRPC$Chat) {
         if (Build.VERSION.SDK_INT >= 21) {
-            setOutlineProvider(new ViewOutlineProvider(this) {
+            setOutlineProvider(new ViewOutlineProvider() {
                 @Override
                 public void getOutline(View view, Outline outline) {
                     float dp = AndroidUtilities.dp(12.0f);
@@ -162,7 +162,7 @@ public class HeaderCell extends FrameLayout {
 
     public void setGiftLinkToUserText(long j, final Utilities.Callback<TLObject> callback) {
         this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
-        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser));
+        SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
         final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
         this.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", replaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
             @Override

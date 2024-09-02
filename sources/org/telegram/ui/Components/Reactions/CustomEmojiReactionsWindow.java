@@ -58,6 +58,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 
 public class CustomEmojiReactionsWindow {
+    private int account;
     boolean attachToParent;
     BaseFragment baseFragment;
     private boolean cascadeAnimation;
@@ -226,7 +227,7 @@ public class CustomEmojiReactionsWindow {
             i2 = 1;
         }
         this.selectAnimatedEmojiDialog.setPaused(reactionsContainerLayout.paused, reactionsContainerLayout.pausedExceptSelected);
-        this.selectAnimatedEmojiDialog.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener(this) {
+        this.selectAnimatedEmojiDialog.setOnLongPressedListener(new SelectAnimatedEmojiDialog.onLongPressedListener() {
             @Override
             public void onLongPressed(SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji) {
                 if (imageViewEmoji.isDefaultReaction) {
@@ -236,7 +237,7 @@ public class CustomEmojiReactionsWindow {
                 }
             }
         });
-        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener(this, reactionsContainerLayout) {
+        this.selectAnimatedEmojiDialog.setOnRecentClearedListener(new SelectAnimatedEmojiDialog.onRecentClearedListener() {
         });
         this.selectAnimatedEmojiDialog.setRecentReactions(list);
         this.selectAnimatedEmojiDialog.setSelectedReactions(hashSet);
@@ -345,7 +346,7 @@ public class CustomEmojiReactionsWindow {
         protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
             if (this.val$baseFragment != null && this.val$reactionsContainerLayout.getWindowType() != 13 && !UserConfig.getInstance(this.val$baseFragment.getCurrentAccount()).isPremium()) {
                 CustomEmojiReactionsWindow.this.windowView.performHapticFeedback(3);
-                BulletinFactory.of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString("UnlockPremiumEmojiReaction", R.string.UnlockPremiumEmojiReaction)), LocaleController.getString("PremiumMore", R.string.PremiumMore), new Runnable() {
+                BulletinFactory.of(CustomEmojiReactionsWindow.this.windowView, null).createEmojiBulletin(tLRPC$Document, AndroidUtilities.replaceTags(LocaleController.getString(R.string.UnlockPremiumEmojiReaction)), LocaleController.getString(R.string.PremiumMore), new Runnable() {
                     @Override
                     public final void run() {
                         CustomEmojiReactionsWindow.AnonymousClass2.this.lambda$onEmojiSelected$0();
@@ -503,7 +504,7 @@ public class CustomEmojiReactionsWindow {
         updateContainersAlpha();
         this.selectAnimatedEmojiDialog.setEnterAnimationInProgress(true);
         this.selectAnimatedEmojiDialog.emojiTabs.showRecentTabStub(z && this.cascadeAnimation);
-        int i2 = UserConfig.selectedAccount;
+        this.account = UserConfig.selectedAccount;
         this.notificationsLocker.lock();
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
@@ -511,15 +512,9 @@ public class CustomEmojiReactionsWindow {
         }
         this.transition = true;
         if (this.type == 4) {
-            float[] fArr = new float[2];
-            fArr[0] = this.enterTransitionProgress;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ofFloat = ValueAnimator.ofFloat(fArr);
+            ofFloat = ValueAnimator.ofFloat(this.enterTransitionProgress, z ? 1.0f : 0.0f);
         } else {
-            float[] fArr2 = new float[2];
-            fArr2[0] = this.enterTransitionProgress;
-            fArr2[1] = z ? 1.0f : 0.0f;
-            ofFloat = StableAnimator.ofFloat(fArr2);
+            ofFloat = StableAnimator.ofFloat(this.enterTransitionProgress, z ? 1.0f : 0.0f);
         }
         this.valueAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -934,7 +929,7 @@ public class CustomEmojiReactionsWindow {
         }
 
         @Override
-        protected void onMeasure(int r8, int r9) {
+        protected void onMeasure(int r9, int r10) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.CustomEmojiReactionsWindow.ContainerView.onMeasure(int, int):void");
         }
 
@@ -1234,8 +1229,8 @@ public class CustomEmojiReactionsWindow {
                                 canvas.translate(x4, (y4 + customEmojiReactionsWindow14.fromRect.top) - customEmojiReactionsWindow14.drawingRect.top);
                                 i2 = i8;
                                 canvas.saveLayerAlpha(0.0f, 0.0f, view.getMeasuredWidth(), view.getMeasuredHeight(), (int) ((1.0f - clamp) * 255.0f), 31);
-                                float f15 = CustomEmojiReactionsWindow.this.enterTransitionProgress;
-                                canvas.scale(1.0f - f15, 1.0f - f15, view.getMeasuredWidth() >> 1, view.getMeasuredHeight() >> 1);
+                                float f15 = 1.0f - CustomEmojiReactionsWindow.this.enterTransitionProgress;
+                                canvas.scale(f15, f15, view.getMeasuredWidth() >> 1, view.getMeasuredHeight() >> 1);
                                 view.draw(canvas);
                                 canvas.restore();
                             }

@@ -50,6 +50,7 @@ public class NotificationsCheckCell extends FrameLayout {
         float f3;
         float f4;
         float f5;
+        float f6;
         this.drawLine = true;
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
@@ -73,7 +74,6 @@ public class NotificationsCheckCell extends FrameLayout {
         TextView textView2 = this.textView;
         boolean z2 = LocaleController.isRTL;
         int i3 = (z2 ? 5 : 3) | 48;
-        float f6 = 80.0f;
         if (z2) {
             f = 80.0f;
         } else {
@@ -133,6 +133,8 @@ public class NotificationsCheckCell extends FrameLayout {
         float f9 = (38 - (z ? 2 : 0)) + ((this.currentHeight - 70) / 2);
         if (z4) {
             f6 = z ? 64 : i;
+        } else {
+            f6 = 80.0f;
         }
         addView(textView4, LayoutHelper.createFrame(-2, -2.0f, i6, f5, f9, f6, 0.0f));
         Switch r3 = new Switch(context, resourcesProvider) {
@@ -244,7 +246,7 @@ public class NotificationsCheckCell extends FrameLayout {
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                i = AndroidUtilities.dp(this.imageView == null ? 20.0f : 64.0f);
+                i = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
             } else {
                 i = 0;
             }

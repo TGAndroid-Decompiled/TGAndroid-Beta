@@ -35,6 +35,7 @@ public class ReactionTabHolderView extends FrameLayout {
     private Paint outlinePaint;
     private float outlineProgress;
     View overlaySelectorView;
+    private Path path;
     private float radius;
     private BackupImageView reactView;
     private ReactionsLayoutInBubble.VisibleReaction reaction;
@@ -44,7 +45,7 @@ public class ReactionTabHolderView extends FrameLayout {
         super(context);
         this.outlinePaint = new Paint(1);
         this.bgPaint = new Paint(1);
-        new Path();
+        this.path = new Path();
         this.rect = new RectF();
         this.radius = AndroidUtilities.dp(32.0f);
         View view = new View(context);

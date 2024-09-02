@@ -277,7 +277,7 @@ public class VideoTimelinePlayView extends View {
                     this.progressRight = dp8 + f6;
                 } else {
                     float f7 = this.minProgressDiff;
-                    if (f7 != 0.0f && f4 - dp8 < f7) {
+                    if (f7 != 0.0f && f5 < f7) {
                         float f8 = f4 - f7;
                         this.progressLeft = f8;
                         if (f8 < 0.0f) {
@@ -316,7 +316,7 @@ public class VideoTimelinePlayView extends View {
                     this.progressLeft = dp9 - f14;
                 } else {
                     float f15 = this.minProgressDiff;
-                    if (f15 != 0.0f && dp9 - f12 < f15) {
+                    if (f15 != 0.0f && f13 < f15) {
                         float f16 = f12 + f15;
                         this.progressRight = f16;
                         if (f16 > 1.0f) {
@@ -416,12 +416,7 @@ public class VideoTimelinePlayView extends View {
         }
         if (i == 0) {
             this.frameHeight = AndroidUtilities.dp(38.0f);
-            float f = 1.0f;
-            int i3 = this.videoWidth;
-            if (i3 != 0 && (i2 = this.videoHeight) != 0) {
-                f = i3 / i2;
-            }
-            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp(f, 1.3333334f, 0.5625f))));
+            this.framesToLoad = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.frameHeight * Utilities.clamp((this.videoWidth == 0 || (i2 = this.videoHeight) == 0) ? 1.0f : r2 / i2, 1.3333334f, 0.5625f))));
             this.frameWidth = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / this.framesToLoad);
             this.frameTimeOffset = this.videoLength / this.framesToLoad;
         }

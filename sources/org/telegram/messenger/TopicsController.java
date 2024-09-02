@@ -109,7 +109,7 @@ public class TopicsController extends BaseController {
         if (z) {
             getMessagesStorage().loadTopics(-j, new Consumer() {
                 @Override
-                public final void accept(Object obj) {
+                public final void r(Object obj) {
                     TopicsController.this.lambda$loadTopics$1(j, z, i, (ArrayList) obj);
                 }
 
@@ -216,7 +216,7 @@ public class TopicsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.topicsDidLoaded, Long.valueOf(j), Boolean.FALSE);
     }
 
-    public void processTopics(final long r18, java.util.ArrayList<org.telegram.tgnet.TLRPC$TL_forumTopic> r20, android.util.SparseArray<org.telegram.tgnet.TLRPC$Message> r21, boolean r22, int r23, int r24) {
+    public void processTopics(final long r20, java.util.ArrayList<org.telegram.tgnet.TLRPC$TL_forumTopic> r22, android.util.SparseArray<org.telegram.tgnet.TLRPC$Message> r23, boolean r24, int r25, int r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.processTopics(long, java.util.ArrayList, android.util.SparseArray, boolean, int, int):void");
     }
 
@@ -292,7 +292,7 @@ public class TopicsController extends BaseController {
         });
     }
 
-    public void lambda$updateTopicsWithDeletedMessages$8(long r16, java.util.ArrayList r18, final long r19) {
+    public void lambda$updateTopicsWithDeletedMessages$8(long r17, java.util.ArrayList r19, final long r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TopicsController.lambda$updateTopicsWithDeletedMessages$8(long, java.util.ArrayList, long):void");
     }
 
@@ -410,7 +410,10 @@ public class TopicsController extends BaseController {
         if (i == 0) {
             i = tLRPC$MessageReplyHeader.reply_to_msg_id;
         }
-        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, (long) i)) == null) ? "" : findTopic.title;
+        if (i != 0 && (findTopic = findTopic(tLRPC$Chat.id, i)) != null) {
+            return findTopic.title;
+        }
+        return "";
     }
 
     public CharSequence getTopicIconName(TLRPC$Chat tLRPC$Chat, MessageObject messageObject, TextPaint textPaint) {
@@ -675,7 +678,7 @@ public class TopicsController extends BaseController {
     }
 
     public void lambda$pinTopic$15(BaseFragment baseFragment) {
-        baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext()).setTitle(LocaleController.getString("LimitReached", R.string.LimitReached)).setMessage(LocaleController.formatString("LimitReachedPinnedTopics", R.string.LimitReachedPinnedTopics, Integer.valueOf(MessagesController.getInstance(this.currentAccount).topicsPinnedLimit))).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).create());
+        baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext()).setTitle(LocaleController.getString(R.string.LimitReached)).setMessage(LocaleController.formatString("LimitReachedPinnedTopics", R.string.LimitReachedPinnedTopics, Integer.valueOf(MessagesController.getInstance(this.currentAccount).topicsPinnedLimit))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
     }
 
     public void reorderPinnedTopics(long j, ArrayList<Integer> arrayList) {
@@ -1010,7 +1013,7 @@ public class TopicsController extends BaseController {
     public void loadTopic(final long j, final long j2, final Runnable runnable) {
         getMessagesStorage().loadTopics(-j, new Consumer() {
             @Override
-            public final void accept(Object obj) {
+            public final void r(Object obj) {
                 TopicsController.this.lambda$loadTopic$24(j, j2, runnable, (ArrayList) obj);
             }
 

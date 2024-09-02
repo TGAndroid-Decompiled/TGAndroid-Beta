@@ -66,24 +66,13 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
         getMessagesController().loadFullChat(this.chatId, this.classGuid, true);
         this.loading = true;
-        this.rowCount = 0;
-        int i = 0 + 1;
-        this.rowCount = i;
         this.linkRow = 0;
-        int i2 = i + 1;
-        this.rowCount = i2;
-        this.linkInfoRow = i;
-        int i3 = i2 + 1;
-        this.rowCount = i3;
-        this.copyLinkRow = i2;
-        int i4 = i3 + 1;
-        this.rowCount = i4;
-        this.revokeLinkRow = i3;
-        int i5 = i4 + 1;
-        this.rowCount = i5;
-        this.shareLinkRow = i4;
-        this.rowCount = i5 + 1;
-        this.shadowRow = i5;
+        this.linkInfoRow = 1;
+        this.copyLinkRow = 2;
+        this.revokeLinkRow = 3;
+        this.shareLinkRow = 4;
+        this.rowCount = 6;
+        this.shadowRow = 5;
         return true;
     }
 
@@ -97,7 +86,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("InviteLink", R.string.InviteLink));
+        this.actionBar.setTitle(LocaleController.getString(R.string.InviteLink));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -109,18 +98,17 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showProgress();
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1, 51));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setEmptyView(this.emptyView);
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -156,7 +144,7 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 Intent intent = new Intent("android.intent.action.SEND");
                 intent.setType("text/plain");
                 intent.putExtra("android.intent.extra.TEXT", this.invite.link);
-                getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink)), 500);
+                getParentActivity().startActivityForResult(Intent.createChooser(intent, LocaleController.getString(R.string.InviteToGroupByLink)), 500);
                 return;
             } catch (Exception e2) {
                 FileLog.e(e2);
@@ -165,15 +153,15 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
         }
         if (i == this.revokeLinkRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
-            builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
-            builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
+            builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
+            builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+            builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
                     GroupInviteActivity.this.lambda$createView$0(dialogInterface, i2);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             showDialog(builder.create());
         }
     }
@@ -245,9 +233,9 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-                builder.setMessage(LocaleController.getString("RevokeAlertNewLink", R.string.RevokeAlertNewLink));
-                builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
-                builder.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
+                builder.setMessage(LocaleController.getString(R.string.RevokeAlertNewLink));
+                builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+                builder.setNegativeButton(LocaleController.getString(R.string.OK), null);
                 showDialog(builder.create());
             }
         }
@@ -299,15 +287,15 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 if (i != GroupInviteActivity.this.copyLinkRow) {
                     if (i != GroupInviteActivity.this.shareLinkRow) {
                         if (i == GroupInviteActivity.this.revokeLinkRow) {
-                            textSettingsCell.setText(LocaleController.getString("RevokeLink", R.string.RevokeLink), true);
+                            textSettingsCell.setText(LocaleController.getString(R.string.RevokeLink), true);
                             return;
                         }
                         return;
                     }
-                    textSettingsCell.setText(LocaleController.getString("ShareLink", R.string.ShareLink), false);
+                    textSettingsCell.setText(LocaleController.getString(R.string.ShareLink), false);
                     return;
                 }
-                textSettingsCell.setText(LocaleController.getString("CopyLink", R.string.CopyLink), true);
+                textSettingsCell.setText(LocaleController.getString(R.string.CopyLink), true);
                 return;
             }
             if (itemViewType != 1) {
@@ -322,9 +310,9 @@ public class GroupInviteActivity extends BaseFragment implements NotificationCen
                 if (i == GroupInviteActivity.this.linkInfoRow) {
                     TLRPC$Chat chat = GroupInviteActivity.this.getMessagesController().getChat(Long.valueOf(GroupInviteActivity.this.chatId));
                     if (ChatObject.isChannel(chat) && !chat.megagroup) {
-                        textInfoPrivacyCell.setText(LocaleController.getString("ChannelLinkInfo", R.string.ChannelLinkInfo));
+                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.ChannelLinkInfo));
                     } else {
-                        textInfoPrivacyCell.setText(LocaleController.getString("LinkInfo", R.string.LinkInfo));
+                        textInfoPrivacyCell.setText(LocaleController.getString(R.string.LinkInfo));
                     }
                     textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     return;

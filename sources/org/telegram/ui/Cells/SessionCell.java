@@ -50,7 +50,7 @@ public class SessionCell extends FrameLayout {
     private boolean showStub;
     private AnimatedFloat showStubValue;
 
-    public SessionCell(android.content.Context r22, int r23) {
+    public SessionCell(android.content.Context r24, int r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.SessionCell.<init>(android.content.Context, int):void");
     }
 
@@ -115,7 +115,7 @@ public class SessionCell extends FrameLayout {
             this.nameTextView.setText(sb);
             if ((tLRPC$TL_authorization.flags & 1) != 0) {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteValueText));
-                stringForMessageListDate = LocaleController.getString("Online", R.string.Online);
+                stringForMessageListDate = LocaleController.getString(R.string.Online);
             } else {
                 setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteGrayText3));
                 stringForMessageListDate = LocaleController.stringForMessageListDate(tLRPC$TL_authorization.date_active);
@@ -275,6 +275,8 @@ public class SessionCell extends FrameLayout {
     }
 
     public static class CircleGradientDrawable extends Drawable {
+        private int colorBottom;
+        private int colorTop;
         private Paint paint;
         private int size;
 
@@ -289,6 +291,8 @@ public class SessionCell extends FrameLayout {
 
         public CircleGradientDrawable(int i, int i2, int i3) {
             this.size = i;
+            this.colorTop = i2;
+            this.colorBottom = i3;
             Paint paint = new Paint(1);
             this.paint = paint;
             paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, new int[]{i2, i3}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));

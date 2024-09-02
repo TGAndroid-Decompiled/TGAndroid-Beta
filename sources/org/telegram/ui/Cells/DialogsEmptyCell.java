@@ -124,30 +124,30 @@ public class DialogsEmptyCell extends LinearLayout {
         this.currentType = i;
         if (i == 0 || i == 1) {
             i2 = R.raw.utyan_newborn;
-            string = LocaleController.getString("NoChatsHelp", R.string.NoChatsHelp);
-            this.titleView.setText(LocaleController.getString("NoChats", R.string.NoChats));
+            string = LocaleController.getString(R.string.NoChatsHelp);
+            this.titleView.setText(LocaleController.getString(R.string.NoChats));
         } else if (i == 2) {
             this.imageView.setAutoRepeat(false);
             i2 = R.raw.filter_no_chats;
             if (z) {
-                this.titleView.setText(LocaleController.getString("FilterNoChatsToForward", R.string.FilterNoChatsToForward));
-                string = LocaleController.getString("FilterNoChatsToForwardInfo", R.string.FilterNoChatsToForwardInfo);
+                this.titleView.setText(LocaleController.getString(R.string.FilterNoChatsToForward));
+                string = LocaleController.getString(R.string.FilterNoChatsToForwardInfo);
             } else {
-                this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", R.string.FilterNoChatsToDisplay));
-                string = LocaleController.getString("FilterNoChatsToDisplayInfo", R.string.FilterNoChatsToDisplayInfo);
+                this.titleView.setText(LocaleController.getString(R.string.FilterNoChatsToDisplay));
+                string = LocaleController.getString(R.string.FilterNoChatsToDisplayInfo);
             }
         } else {
             this.imageView.setAutoRepeat(true);
             i2 = R.raw.filter_new;
-            string = LocaleController.getString("FilterAddingChatsInfo", R.string.FilterAddingChatsInfo);
-            this.titleView.setText(LocaleController.getString("FilterAddingChats", R.string.FilterAddingChats));
+            string = LocaleController.getString(R.string.FilterAddingChatsInfo);
+            this.titleView.setText(LocaleController.getString(R.string.FilterAddingChats));
         }
         if (i2 != 0) {
             this.imageView.setVisibility(0);
             if (this.currentType == 1) {
                 if (isUtyanAnimationTriggered()) {
                     this.utyanCollapseProgress = 1.0f;
-                    String string2 = LocaleController.getString("NoChatsContactsHelp", R.string.NoChatsContactsHelp);
+                    String string2 = LocaleController.getString(R.string.NoChatsContactsHelp);
                     if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                         string2 = string2.replace('\n', ' ');
                     }
@@ -220,7 +220,7 @@ public class DialogsEmptyCell extends LinearLayout {
         }
         this.utyanAnimationTriggered = true;
         if (z) {
-            String string = LocaleController.getString("NoChatsContactsHelp", R.string.NoChatsContactsHelp);
+            String string = LocaleController.getString(R.string.NoChatsContactsHelp);
             if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                 string = string.replace('\n', ' ');
             }

@@ -71,6 +71,8 @@ public class HintView2 extends View {
     private final ButtonBounce bounce;
     private ValueAnimator bounceAnimator;
     private float bounceT;
+    private float bounceX;
+    private float bounceY;
     private final RectF bounds;
     private final Rect boundsWithArrow;
     private boolean closeButton;
@@ -123,6 +125,7 @@ public class HintView2 extends View {
     private boolean useAlpha;
     private boolean useBlur;
     private boolean useScale;
+    private boolean useTranslate;
 
     public HintView2(Context context) {
         this(context, 0);
@@ -134,6 +137,7 @@ public class HintView2 extends View {
         this.jointTranslate = 0.0f;
         this.duration = 3500L;
         this.useScale = true;
+        this.useTranslate = true;
         this.useAlpha = true;
         this.useBlur = false;
         this.textMaxWidth = -1;
@@ -312,7 +316,8 @@ public class HintView2 extends View {
         }
         int i2 = i;
         for (int i3 = 0; i3 < coloredImageSpanArr.length; i3++) {
-            i2 += coloredImageSpanArr[i3].getSize(textPaint, charSequence, spanned.getSpanStart(coloredImageSpanArr[i3]), spanned.getSpanEnd(coloredImageSpanArr[i3]), textPaint.getFontMetricsInt());
+            ColoredImageSpan coloredImageSpan = coloredImageSpanArr[i3];
+            i2 += coloredImageSpan.getSize(textPaint, charSequence, spanned.getSpanStart(coloredImageSpan), spanned.getSpanEnd(coloredImageSpanArr[i3]), textPaint.getFontMetricsInt());
         }
         for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
             i2 = (int) (i2 + animatedEmojiSpan.size);
@@ -666,19 +671,19 @@ public class HintView2 extends View {
     public void dispatchDraw(Canvas canvas) {
         float f;
         float f2;
-        float f3;
         if (this.drawingMyBlur) {
             return;
         }
         if (this.multiline && this.textLayout == null) {
             return;
         }
-        float f4 = this.show.set(this.shown && !this.firstDraw);
+        float f3 = this.show.set(this.shown && !this.firstDraw);
         if (this.firstDraw) {
             this.firstDraw = false;
             invalidate();
         }
-        if (f4 <= 0.0f) {
+        float f4 = 0.0f;
+        if (f3 <= 0.0f) {
             return;
         }
         float currentWidth = this.multiline ? this.textLayoutWidth : this.textDrawable.getCurrentWidth();
@@ -704,10 +709,10 @@ public class HintView2 extends View {
             this.pathLastHeight = f6;
             rewindPath(f5, f6);
         }
-        float f7 = this.useAlpha ? f4 : 1.0f;
+        float f7 = this.useAlpha ? f3 : 1.0f;
         canvas.save();
-        if (f4 < 1.0f && this.useScale) {
-            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f4);
+        if (f3 < 1.0f && this.useScale) {
+            float lerp = AndroidUtilities.lerp(0.5f, 1.0f, f3);
             canvas.scale(lerp, lerp, this.arrowX, this.arrowY);
         }
         float scale = this.bounce.getScale(0.025f);
@@ -726,8 +731,8 @@ public class HintView2 extends View {
         int alpha = this.backgroundPaint.getAlpha();
         RectF rectF2 = AndroidUtilities.rectTmp;
         rectF2.set(this.bounds);
-        float f8 = this.arrowHeight;
-        rectF2.inset(-f8, -f8);
+        float f8 = -this.arrowHeight;
+        rectF2.inset(f8, f8);
         Paint paint = this.blurBackgroundPaint;
         if (paint == null || !this.useBlur) {
             f = f7;
@@ -751,35 +756,30 @@ public class HintView2 extends View {
         Drawable drawable2 = this.icon;
         if (drawable2 != null) {
             if (this.iconLeft) {
-                float f11 = this.iconTx;
-                float f12 = rectF3.left;
-                float f13 = rectF4.left;
-                float f14 = this.iconTy;
-                int i2 = this.iconHeight;
-                drawable2.setBounds((int) (f11 + f12 + (f13 / 2.0f)), (int) ((f14 + f10) - (i2 / 2.0f)), (int) (f11 + f12 + (f13 / 2.0f) + this.iconWidth), (int) (f14 + f10 + (i2 / 2.0f)));
-                f3 = 0.0f + this.iconWidth + this.iconMargin;
+                float f11 = this.iconTx + rectF3.left + (rectF4.left / 2.0f);
+                float f12 = this.iconTy + f10;
+                float f13 = this.iconHeight / 2.0f;
+                drawable2.setBounds((int) f11, (int) (f12 - f13), (int) (f11 + this.iconWidth), (int) (f12 + f13));
+                f4 = 0.0f + this.iconWidth + this.iconMargin;
             } else {
-                float f15 = this.iconTx;
-                float f16 = rectF3.right;
-                float f17 = rectF4.right;
-                float f18 = this.iconTy;
-                int i3 = this.iconHeight;
-                drawable2.setBounds((int) (((f15 + f16) - (f17 / 2.0f)) - this.iconWidth), (int) ((f18 + f10) - (i3 / 2.0f)), (int) ((f15 + f16) - (f17 / 2.0f)), (int) (f18 + f10 + (i3 / 2.0f)));
-                f3 = 0.0f;
+                float f14 = (this.iconTx + rectF3.right) - (rectF4.right / 2.0f);
+                float f15 = this.iconTy + f10;
+                float f16 = this.iconHeight / 2.0f;
+                drawable2.setBounds((int) (f14 - this.iconWidth), (int) (f15 - f16), (int) f14, (int) (f15 + f16));
             }
             this.icon.setAlpha((int) (f7 * 255.0f));
             this.icon.draw(canvas);
-            f2 = f3;
+            f2 = f4;
         } else {
             f2 = 0.0f;
         }
         if (this.multiline) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), Math.max(getHeight(), f6), (int) (f7 * 255.0f), 31);
-            float f19 = ((f2 + this.bounds.left) + this.innerPadding.left) - this.textLayoutLeft;
-            this.textX = f19;
-            float f20 = f10 - (this.textLayoutHeight / 2.0f);
-            this.textY = f20;
-            canvas.translate(f19, f20);
+            float f17 = ((f2 + this.bounds.left) + this.innerPadding.left) - this.textLayoutLeft;
+            this.textX = f17;
+            float f18 = f10 - (this.textLayoutHeight / 2.0f);
+            this.textY = f18;
+            canvas.translate(f17, f18);
             if (this.links.draw(canvas)) {
                 invalidate();
             }
@@ -793,10 +793,10 @@ public class HintView2 extends View {
                 this.textToSet = null;
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-            float f21 = this.bounds.left;
-            float f22 = this.innerPadding.left;
-            float f23 = this.textLayoutHeight;
-            animatedTextDrawable.setBounds((int) (f2 + f21 + f22), (int) (f10 - (f23 / 2.0f)), (int) (f21 + f22 + currentWidth), (int) (f10 + (f23 / 2.0f)));
+            float f19 = this.bounds.left;
+            float f20 = this.innerPadding.left;
+            float f21 = this.textLayoutHeight / 2.0f;
+            animatedTextDrawable.setBounds((int) (f2 + f19 + f20), (int) (f10 - f21), (int) (f19 + f20 + currentWidth), (int) (f10 + f21));
             this.textDrawable.setAlpha((int) (f7 * 255.0f));
             this.textDrawable.draw(canvas);
         }
@@ -856,11 +856,10 @@ public class HintView2 extends View {
             this.path.lineTo(this.bounds.left, this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f));
             this.path.lineTo(this.bounds.left, this.arrowHalfWidth + clamp);
             this.path.lineTo(this.bounds.left - this.arrowHeight, AndroidUtilities.dp(1.0f) + clamp);
-            float f9 = this.bounds.left;
-            float f10 = this.arrowHeight;
-            this.arrowX = f9 - f10;
+            float f9 = this.bounds.left - this.arrowHeight;
+            this.arrowX = f9;
             this.arrowY = clamp;
-            this.path.lineTo(f9 - f10, clamp - AndroidUtilities.dp(1.0f));
+            this.path.lineTo(f9, clamp - AndroidUtilities.dp(1.0f));
             this.path.lineTo(this.bounds.left, clamp - this.arrowHalfWidth);
             this.path.lineTo(this.bounds.left, (clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
             this.boundsWithArrow.left = (int) (r10.left - this.arrowHeight);
@@ -886,11 +885,10 @@ public class HintView2 extends View {
             this.path.lineTo(this.bounds.right, (clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
             this.path.lineTo(this.bounds.right, clamp - this.arrowHalfWidth);
             this.path.lineTo(this.bounds.right + this.arrowHeight, clamp - AndroidUtilities.dp(1.0f));
-            float f11 = this.bounds.right;
-            float f12 = this.arrowHeight;
-            this.arrowX = f11 + f12;
+            float f10 = this.bounds.right + this.arrowHeight;
+            this.arrowX = f10;
             this.arrowY = clamp;
-            this.path.lineTo(f11 + f12, AndroidUtilities.dp(1.0f) + clamp);
+            this.path.lineTo(f10, AndroidUtilities.dp(1.0f) + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f));
             this.boundsWithArrow.right = (int) (r10.right + this.arrowHeight);
@@ -934,6 +932,8 @@ public class HintView2 extends View {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         if (motionEvent.getAction() == 0 && containsTouch(motionEvent, 0.0f, 0.0f)) {
+            this.bounceX = x;
+            this.bounceY = y;
             this.bounce.setPressed(true);
             Drawable drawable = this.selectorDrawable;
             if (drawable != null && Build.VERSION.SDK_INT >= 21) {

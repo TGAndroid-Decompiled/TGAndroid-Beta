@@ -62,7 +62,7 @@ public class StickerTabView extends FrameLayout {
             addView(this.imageView, LayoutHelper.createFrame(26, 26, 17));
             this.visibleView = this.imageView;
         }
-        TextView textView = new TextView(this, context) {
+        TextView textView = new TextView(context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(charSequence, bufferType);

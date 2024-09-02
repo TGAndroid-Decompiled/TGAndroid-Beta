@@ -89,6 +89,7 @@ public class MP4Builder {
     }
 
     public long writeSampleData(int i, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, boolean z) throws Exception {
+        boolean z2;
         if (this.writeNewMdat) {
             this.mdat.setContentSize(0L);
             this.mdat.getBox(this.fc);
@@ -101,8 +102,8 @@ public class MP4Builder {
         interleaveChunkMdat.setContentSize(interleaveChunkMdat.getContentSize() + bufferInfo.size);
         long j = this.wroteSinceLastMdat + bufferInfo.size;
         this.wroteSinceLastMdat = j;
-        boolean z2 = true;
         if (j >= 32768) {
+            z2 = true;
             if (this.splitMdat) {
                 flushCurrentMdat();
                 this.writeNewMdat = true;
@@ -236,11 +237,6 @@ public class MP4Builder {
             return j + 8 < 4294967296L;
         }
 
-        @Override
-        public String getType() {
-            return "mdat";
-        }
-
         public void parse(DataSource dataSource, ByteBuffer byteBuffer, long j, BoxParser boxParser) {
         }
 
@@ -273,6 +269,11 @@ public class MP4Builder {
 
         public long getContentSize() {
             return this.contentSize;
+        }
+
+        @Override
+        public String getType() {
+            return "mdat";
         }
 
         @Override
@@ -409,8 +410,8 @@ public class MP4Builder {
         if (sampleCompositions == null) {
             return;
         }
-        CompositionTimeToSample.Entry entry = null;
         ArrayList arrayList = new ArrayList();
+        CompositionTimeToSample.Entry entry = null;
         for (int i : sampleCompositions) {
             if (entry != null && entry.getOffset() == i) {
                 entry.setCount(entry.getCount() + 1);
@@ -456,20 +457,19 @@ public class MP4Builder {
         int size = track.getSamples().size();
         int i = -1;
         int i2 = 0;
-        int i3 = 0;
-        int i4 = 1;
-        while (i2 < size) {
-            Sample sample = track.getSamples().get(i2);
-            i3++;
-            if (i2 == size + (-1) || sample.getOffset() + sample.getSize() != track.getSamples().get(i2 + 1).getOffset()) {
-                if (i != i3) {
-                    sampleToChunkBox.getEntries().add(new SampleToChunkBox.Entry(i4, i3, 1L));
-                    i = i3;
-                }
-                i4++;
-                i3 = 0;
-            }
+        int i3 = 1;
+        for (int i4 = 0; i4 < size; i4++) {
+            Sample sample = track.getSamples().get(i4);
+            long offset = sample.getOffset() + sample.getSize();
             i2++;
+            if (i4 == size - 1 || offset != track.getSamples().get(i4 + 1).getOffset()) {
+                if (i != i2) {
+                    sampleToChunkBox.getEntries().add(new SampleToChunkBox.Entry(i3, i2, 1L));
+                    i = i2;
+                }
+                i3++;
+                i2 = 0;
+            }
         }
         sampleTableBox.addBox(sampleToChunkBox);
     }

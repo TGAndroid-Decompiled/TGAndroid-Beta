@@ -33,6 +33,7 @@ public class StoryPrivacySelector extends View {
     private final Paint backgroundPaint;
     private final RectF clickRect;
     private final int currentAccount;
+    private boolean edited;
     private Runnable longPressRunnable;
     private final RectF rect;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -166,6 +167,7 @@ public class StoryPrivacySelector extends View {
     }
 
     public void lambda$open$1(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
+        this.edited = true;
         this.value = storyPrivacy;
         String storyPrivacy2 = storyPrivacy.toString();
         this.textDrawable.setText(storyPrivacy2);

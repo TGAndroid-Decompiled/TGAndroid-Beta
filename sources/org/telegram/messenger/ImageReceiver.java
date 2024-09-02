@@ -40,6 +40,9 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public static final int TYPE_IMAGE = 0;
     public static final int TYPE_MEDIA = 3;
     public static final int TYPE_THUMB = 1;
+    private static final float[] radii;
+    private static PorterDuffColorFilter selectedColorFilter;
+    private static PorterDuffColorFilter selectedGroupColorFilter;
     private boolean allowCrossfadeWithImage;
     private boolean allowDecodeSingleFrame;
     private boolean allowDrawWhileCacheGenerating;
@@ -161,9 +164,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private boolean useRoundRadius;
     private boolean useSharedAnimationQueue;
     private boolean videoThumbIsSame;
-    private static PorterDuffColorFilter selectedColorFilter = new PorterDuffColorFilter(-2236963, PorterDuff.Mode.MULTIPLY);
-    private static PorterDuffColorFilter selectedGroupColorFilter = new PorterDuffColorFilter(-4473925, PorterDuff.Mode.MULTIPLY);
-    private static final float[] radii = new float[8];
 
     public static abstract class Decorator {
         public void onAttachedToWindow(ImageReceiver imageReceiver) {
@@ -361,6 +361,13 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
+    static {
+        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+        selectedColorFilter = new PorterDuffColorFilter(-2236963, mode);
+        selectedGroupColorFilter = new PorterDuffColorFilter(-4473925, mode);
+        radii = new float[8];
+    }
+
     public ImageReceiver() {
         this(null);
     }
@@ -449,7 +456,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         setForUserOrChat(tLObject, drawable, obj, false, 0, false);
     }
 
-    public void setForUserOrChat(org.telegram.tgnet.TLObject r17, android.graphics.drawable.Drawable r18, java.lang.Object r19, boolean r20, int r21, boolean r22) {
+    public void setForUserOrChat(org.telegram.tgnet.TLObject r18, android.graphics.drawable.Drawable r19, java.lang.Object r20, boolean r21, int r22, boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.setForUserOrChat(org.telegram.tgnet.TLObject, android.graphics.drawable.Drawable, java.lang.Object, boolean, int, boolean):void");
     }
 
@@ -597,9 +604,12 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         }
         if (this.crossfadeWithOldImage) {
             Object obj2 = this.currentParentObject;
-            if ((obj2 instanceof MessageObject) && ((MessageObject) obj2).lastGeoWebFileSet != null && (MessageObject.getMedia((MessageObject) obj2) instanceof TLRPC$TL_messageMediaGeoLive)) {
-                Object obj3 = this.currentParentObject;
-                ((MessageObject) obj3).lastGeoWebFileLoaded = ((MessageObject) obj3).lastGeoWebFileSet;
+            if (obj2 instanceof MessageObject) {
+                MessageObject messageObject = (MessageObject) obj2;
+                if (messageObject.lastGeoWebFileSet != null && (MessageObject.getMedia(messageObject) instanceof TLRPC$TL_messageMediaGeoLive)) {
+                    MessageObject messageObject2 = (MessageObject) this.currentParentObject;
+                    messageObject2.lastGeoWebFileLoaded = messageObject2.lastGeoWebFileSet;
+                }
             }
             Drawable drawable4 = this.currentMediaDrawable;
             if (drawable4 != null) {
@@ -770,9 +780,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public void setLayerNum(int i) {
         this.currentLayerNum = i;
         if (this.attachedToWindow) {
-            int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-            this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+            this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         }
     }
 
@@ -902,17 +910,17 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     private void setStaticDrawable(Drawable drawable) {
+        AttachableDrawable attachableDrawable;
         Drawable drawable2 = this.staticThumbDrawable;
         if (drawable == drawable2) {
             return;
         }
-        AttachableDrawable attachableDrawable = null;
-        if (drawable2 instanceof AttachableDrawable) {
-            if (drawable2.equals(drawable)) {
-                return;
-            } else {
-                attachableDrawable = (AttachableDrawable) this.staticThumbDrawable;
-            }
+        if (!(drawable2 instanceof AttachableDrawable)) {
+            attachableDrawable = null;
+        } else if (drawable2.equals(drawable)) {
+            return;
+        } else {
+            attachableDrawable = (AttachableDrawable) this.staticThumbDrawable;
         }
         this.staticThumbDrawable = drawable;
         if (this.attachedToWindow && (drawable instanceof AttachableDrawable)) {
@@ -1101,9 +1109,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return false;
         }
         this.attachedToWindow = true;
-        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags();
-        this.currentOpenedLayerFlags = currentHeavyOperationFlags;
-        this.currentOpenedLayerFlags = currentHeavyOperationFlags & (this.currentLayerNum ^ (-1));
+        this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (this.currentLayerNum ^ (-1));
         if (!this.ignoreNotifications) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didReplacedPhotoInMemCache);
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
@@ -1301,7 +1307,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return draw(canvas, null);
     }
 
-    public boolean draw(android.graphics.Canvas r37, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r38) {
+    public boolean draw(android.graphics.Canvas r38, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r39) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.draw(android.graphics.Canvas, org.telegram.messenger.ImageReceiver$BackgroundThreadDrawHolder):boolean");
     }
 
@@ -1448,8 +1454,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         getDrawable();
         AnimatedFileDrawable animation = getAnimation();
         if (animation != null) {
-            int i = this.imageOrientation;
-            return (i % 360 == 0 || i % 360 == 180) ? animation.getIntrinsicWidth() : animation.getIntrinsicHeight();
+            int i = this.imageOrientation % 360;
+            return (i == 0 || i == 180) ? animation.getIntrinsicWidth() : animation.getIntrinsicHeight();
         }
         RLottieDrawable lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null) {
@@ -1463,16 +1469,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             return 1;
         }
-        int i2 = this.imageOrientation;
-        return (i2 % 360 == 0 || i2 % 360 == 180) ? bitmap.getWidth() : bitmap.getHeight();
+        int i2 = this.imageOrientation % 360;
+        return (i2 == 0 || i2 == 180) ? bitmap.getWidth() : bitmap.getHeight();
     }
 
     public int getBitmapHeight() {
         getDrawable();
         AnimatedFileDrawable animation = getAnimation();
         if (animation != null) {
-            int i = this.imageOrientation;
-            return (i % 360 == 0 || i % 360 == 180) ? animation.getIntrinsicHeight() : animation.getIntrinsicWidth();
+            int i = this.imageOrientation % 360;
+            return (i == 0 || i == 180) ? animation.getIntrinsicHeight() : animation.getIntrinsicWidth();
         }
         RLottieDrawable lottieAnimation = getLottieAnimation();
         if (lottieAnimation != null) {
@@ -1486,8 +1492,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             return 1;
         }
-        int i2 = this.imageOrientation;
-        return (i2 % 360 == 0 || i2 % 360 == 180) ? bitmap.getHeight() : bitmap.getWidth();
+        int i2 = this.imageOrientation % 360;
+        return (i2 == 0 || i2 == 180) ? bitmap.getHeight() : bitmap.getWidth();
     }
 
     public void setVisible(boolean z, boolean z2) {
@@ -1776,13 +1782,15 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (i2 >= iArr2.length) {
                 break;
             }
-            if (iArr2[i2] != iArr[i2]) {
+            int i3 = iArr2[i2];
+            int i4 = iArr[i2];
+            if (i3 != i4) {
                 z = true;
             }
-            if (i != iArr[i2]) {
+            if (i != i4) {
                 this.isRoundRect = false;
             }
-            iArr2[i2] = iArr[i2];
+            iArr2[i2] = i4;
             i2++;
         }
         if (z) {
@@ -1809,7 +1817,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         if (this.useRoundRadius != z) {
             this.useRoundRadius = z;
             if (!z && this.emptyRoundRadius == null) {
-                this.emptyRoundRadius = r5;
+                this.emptyRoundRadius = r3;
                 int[] iArr = {0, 0, 0, 0};
             }
             Drawable drawable = this.currentImageDrawable;
@@ -2174,19 +2182,21 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             String str2 = this.currentMediaKey;
             if (str2 != null && str2.equals(str)) {
                 this.currentMediaKey = (String) objArr[1];
-                this.currentMediaLocation = (ImageLocation) objArr[2];
+                ImageLocation imageLocation = (ImageLocation) objArr[2];
+                this.currentMediaLocation = imageLocation;
                 SetImageBackup setImageBackup = this.setImageBackup;
                 if (setImageBackup != null) {
-                    setImageBackup.mediaLocation = (ImageLocation) objArr[2];
+                    setImageBackup.mediaLocation = imageLocation;
                 }
             }
             String str3 = this.currentImageKey;
             if (str3 != null && str3.equals(str)) {
                 this.currentImageKey = (String) objArr[1];
-                this.currentImageLocation = (ImageLocation) objArr[2];
+                ImageLocation imageLocation2 = (ImageLocation) objArr[2];
+                this.currentImageLocation = imageLocation2;
                 SetImageBackup setImageBackup2 = this.setImageBackup;
                 if (setImageBackup2 != null) {
-                    setImageBackup2.imageLocation = (ImageLocation) objArr[2];
+                    setImageBackup2.imageLocation = imageLocation2;
                 }
             }
             String str4 = this.currentThumbKey;
@@ -2194,10 +2204,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
             this.currentThumbKey = (String) objArr[1];
-            this.currentThumbLocation = (ImageLocation) objArr[2];
+            ImageLocation imageLocation3 = (ImageLocation) objArr[2];
+            this.currentThumbLocation = imageLocation3;
             SetImageBackup setImageBackup3 = this.setImageBackup;
             if (setImageBackup3 != null) {
-                setImageBackup3.thumbLocation = (ImageLocation) objArr[2];
+                setImageBackup3.thumbLocation = imageLocation3;
                 return;
             }
             return;
@@ -2287,34 +2298,29 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
 
     public void moveLottieToFront() {
         BitmapDrawable bitmapDrawable;
-        BitmapDrawable bitmapDrawable2;
         String str;
         Drawable drawable = this.currentMediaDrawable;
-        String str2 = null;
         if (drawable instanceof RLottieDrawable) {
-            bitmapDrawable2 = (BitmapDrawable) drawable;
+            bitmapDrawable = (BitmapDrawable) drawable;
             str = this.currentMediaKey;
         } else {
             Drawable drawable2 = this.currentImageDrawable;
-            if (!(drawable2 instanceof RLottieDrawable)) {
+            if (drawable2 instanceof RLottieDrawable) {
+                bitmapDrawable = (BitmapDrawable) drawable2;
+                str = this.currentImageKey;
+            } else {
                 bitmapDrawable = null;
-                if (str2 != null || bitmapDrawable == null) {
-                }
-                ImageLoader.getInstance().moveToFront(str2);
-                if (ImageLoader.getInstance().isInMemCache(str2, true)) {
-                    return;
-                }
-                ImageLoader.getInstance().getLottieMemCahce().put(str2, bitmapDrawable);
-                return;
+                str = null;
             }
-            bitmapDrawable2 = (BitmapDrawable) drawable2;
-            str = this.currentImageKey;
         }
-        BitmapDrawable bitmapDrawable3 = bitmapDrawable2;
-        str2 = str;
-        bitmapDrawable = bitmapDrawable3;
-        if (str2 != null) {
+        if (str == null || bitmapDrawable == null) {
+            return;
         }
+        ImageLoader.getInstance().moveToFront(str);
+        if (ImageLoader.getInstance().isInMemCache(str, true)) {
+            return;
+        }
+        ImageLoader.getInstance().getLottieMemCahce().put(str, bitmapDrawable);
     }
 
     public View getParentView() {

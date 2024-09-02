@@ -177,8 +177,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.searchAdapter = new SearchAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.listView = new RecyclerListView(context);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(200L);
@@ -188,9 +187,9 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.layoutManager = linearLayoutManager;
         linearLayoutManager.setOrientation(1);
         this.listView.setLayoutManager(this.layoutManager);
-        FrameLayout frameLayout3 = new FrameLayout(context);
-        this.emptyFrameView = frameLayout3;
-        frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.emptyFrameView = frameLayout2;
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, getResourceProvider());
         this.loadingView = flickerLoadingView;
         flickerLoadingView.setViewType(19);
@@ -201,10 +200,10 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.emptyView = stickerEmptyView;
         VerticalPositionAutoAnimator.attach(stickerEmptyView);
         this.emptyFrameView.addView(this.emptyView);
-        frameLayout2.addView(this.emptyFrameView);
+        frameLayout.addView(this.emptyFrameView);
         this.emptyFrameView.setVisibility(8);
         this.listView.setEmptyView(this.emptyFrameView);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -299,8 +298,6 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
 
         @Override
         public boolean onCustomButtonPressed() {
-            boolean z;
-            boolean z2;
             int findFirstVisibleItemPosition = GroupStickersActivity.this.layoutManager.findFirstVisibleItemPosition();
             RecyclerListView.Holder holder = (RecyclerListView.Holder) GroupStickersActivity.this.listView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
             int top = holder != null ? holder.itemView.getTop() : Integer.MAX_VALUE;
@@ -329,15 +326,11 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                         View childAt = GroupStickersActivity.this.listView.getChildAt(i2);
                         if (GroupStickersActivity.this.listView.getChildViewHolder(childAt).getAdapterPosition() == GroupStickersActivity.this.stickersStartRow + i) {
                             ((StickerSetCell) childAt).setChecked(false, true);
-                            z2 = true;
                             break;
                         }
                     }
                 }
-                z2 = false;
-                if (!z2) {
-                    GroupStickersActivity.this.listAdapter.notifyItemChanged(i);
-                }
+                GroupStickersActivity.this.listAdapter.notifyItemChanged(i);
             }
             if (GroupStickersActivity.this.selectedStickerSetIndex != -1) {
                 if (!GroupStickersActivity.this.searching) {
@@ -345,15 +338,11 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                         View childAt2 = GroupStickersActivity.this.listView.getChildAt(i3);
                         if (GroupStickersActivity.this.listView.getChildViewHolder(childAt2).getAdapterPosition() == GroupStickersActivity.this.stickersStartRow + GroupStickersActivity.this.selectedStickerSetIndex) {
                             ((StickerSetCell) childAt2).setChecked(true, true);
-                            z = true;
                             break;
                         }
                     }
                 }
-                z = false;
-                if (!z) {
-                    GroupStickersActivity.this.listAdapter.notifyItemChanged(GroupStickersActivity.this.selectedStickerSetIndex);
-                }
+                GroupStickersActivity.this.listAdapter.notifyItemChanged(GroupStickersActivity.this.selectedStickerSetIndex);
             }
             if (top != Integer.MAX_VALUE && !GroupStickersActivity.this.isEmoji) {
                 GroupStickersActivity.this.layoutManager.scrollToPositionWithOffset(findFirstVisibleItemPosition + 1, top);
@@ -515,7 +504,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             return;
         }
         if (getParentActivity() != null) {
-            Toast.makeText(getParentActivity(), LocaleController.getString("ErrorOccurred", R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
+            Toast.makeText(getParentActivity(), LocaleController.getString(R.string.ErrorOccurred) + "\n" + tLRPC$TL_error.text, 0).show();
         }
     }
 
@@ -540,37 +529,34 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
         this.addEmojiPackHintRow = -1;
         this.rowCount = 0;
         if (this.isEmoji) {
-            int i = 0 + 1;
-            this.rowCount = i;
             this.addEmojiPackTitleRow = 0;
-            int i2 = i + 1;
-            this.rowCount = i2;
-            this.addEmojiPackRow = i;
+            this.rowCount = 2;
+            this.addEmojiPackRow = 1;
             if (this.selectedStickerSet != null) {
-                this.rowCount = i2 + 1;
-                this.currentEmojiPackRow = i2;
+                this.rowCount = 3;
+                this.currentEmojiPackRow = 2;
             }
-            int i3 = this.rowCount;
-            this.rowCount = i3 + 1;
-            this.addEmojiPackHintRow = i3;
+            int i = this.rowCount;
+            this.rowCount = i + 1;
+            this.addEmojiPackHintRow = i;
         }
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(this.currentAccount).getStickerSets(getStickerSetType());
         if (!stickerSets.isEmpty()) {
-            int i4 = this.rowCount;
-            int i5 = i4 + 1;
-            this.rowCount = i5;
-            this.headerRow = i4;
-            this.stickersStartRow = i5;
-            this.stickersEndRow = i5 + stickerSets.size();
+            int i2 = this.rowCount;
+            int i3 = i2 + 1;
+            this.rowCount = i3;
+            this.headerRow = i2;
+            this.stickersStartRow = i3;
+            this.stickersEndRow = i3 + stickerSets.size();
             this.rowCount += stickerSets.size();
         } else {
             this.headerRow = -1;
             this.stickersStartRow = -1;
             this.stickersEndRow = -1;
         }
-        int i6 = this.rowCount;
-        this.rowCount = i6 + 1;
-        this.infoRow = i6;
+        int i4 = this.rowCount;
+        this.rowCount = i4 + 1;
+        this.infoRow = i4;
         updateSelectedStickerSetIndex();
         if (!z || (listAdapter = this.listAdapter) == null) {
             return;
@@ -948,9 +934,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
     }
 
     public void selectSetAfterSearch(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
-        boolean z;
         int i = this.selectedStickerSetIndex;
-        boolean z2 = false;
         if (tLRPC$TL_messages_stickerSet == null) {
             if (this.selectedStickerSet != null) {
                 BulletinFactory.of(this).createSimpleBulletin(R.raw.done, LocaleController.getString(R.string.GroupsEmojiPackUpdated)).show();
@@ -970,34 +954,21 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                     View childAt = this.listView.getChildAt(i2);
                     if (this.listView.getChildViewHolder(childAt).getAdapterPosition() == this.stickersStartRow + i) {
                         ((StickerSetCell) childAt).setChecked(false, true);
-                        z = true;
                         break;
                     }
                 }
             }
-            z = false;
-            if (!z) {
-                this.listAdapter.notifyItemChanged(this.stickersStartRow + i);
-            }
+            this.listAdapter.notifyItemChanged(this.stickersStartRow + i);
         }
         if (this.selectedStickerSetIndex != -1) {
             if (!this.searching) {
-                int i3 = 0;
-                while (true) {
-                    if (i3 >= this.listView.getChildCount()) {
-                        break;
-                    }
+                for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
                     View childAt2 = this.listView.getChildAt(i3);
                     if (this.listView.getChildViewHolder(childAt2).getAdapterPosition() == this.stickersStartRow + this.selectedStickerSetIndex) {
                         ((StickerSetCell) childAt2).setChecked(true, true);
-                        z2 = true;
-                        break;
+                        return;
                     }
-                    i3++;
                 }
-            }
-            if (z2) {
-                return;
             }
             this.listAdapter.notifyItemChanged(this.stickersStartRow + this.selectedStickerSetIndex);
         }

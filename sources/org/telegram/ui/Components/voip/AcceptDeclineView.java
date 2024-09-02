@@ -67,6 +67,7 @@ public class AcceptDeclineView extends View {
     Drawable rippleDrawable;
     float smallRadius;
     boolean startDrag;
+    float startX;
     float startY;
     float touchSlop;
 
@@ -111,12 +112,14 @@ public class AcceptDeclineView extends View {
         TextPaint textPaint = new TextPaint(1);
         textPaint.setTextSize(AndroidUtilities.dp(11.0f));
         textPaint.setColor(-1);
-        String string = LocaleController.getString("AcceptCall", R.string.AcceptCall);
-        String string2 = LocaleController.getString("DeclineCall", R.string.DeclineCall);
-        String string3 = LocaleController.getString("RetryCall", R.string.RetryCall);
-        this.acceptLayout = new StaticLayout(string, textPaint, (int) textPaint.measureText(string), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        String string = LocaleController.getString(R.string.AcceptCall);
+        String string2 = LocaleController.getString(R.string.DeclineCall);
+        String string3 = LocaleController.getString(R.string.RetryCall);
+        int measureText = (int) textPaint.measureText(string);
+        Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+        this.acceptLayout = new StaticLayout(string, textPaint, measureText, alignment, 1.0f, 0.0f, false);
+        this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
+        this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), alignment, 1.0f, 0.0f, false);
         this.callDrawable = ContextCompat.getDrawable(context, R.drawable.calls_decline).mutate();
         Drawable mutate = ContextCompat.getDrawable(context, R.drawable.ic_close_white).mutate();
         this.cancelDrawable = mutate;
@@ -422,6 +425,7 @@ public class AcceptDeclineView extends View {
 
         @Override
         public AccessibilityNodeInfo createAccessibilityNodeInfo(int i) {
+            AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
             if (i == -1) {
                 AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(this.hostView);
                 obtain.setPackageName(this.hostView.getContext().getPackageName());
@@ -434,7 +438,8 @@ public class AcceptDeclineView extends View {
             obtain2.setPackageName(this.hostView.getContext().getPackageName());
             int i3 = Build.VERSION.SDK_INT;
             if (i3 >= 21) {
-                obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
+                accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK;
+                obtain2.addAction(accessibilityAction);
             }
             obtain2.setText(getVirtualViewText(i));
             obtain2.setClassName(Button.class.getName());

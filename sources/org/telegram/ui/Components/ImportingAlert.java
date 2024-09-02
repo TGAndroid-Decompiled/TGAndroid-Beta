@@ -159,7 +159,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, resourcesProvider);
         this.cell = bottomSheetCell;
         bottomSheetCell.setBackground(null);
-        this.cell.setText(LocaleController.getString("ImportDone", R.string.ImportDone));
+        this.cell.setText(LocaleController.getString(R.string.ImportDone));
         this.cell.setVisibility(4);
         this.cell.background.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,7 +182,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.infoTextView[i3].setGravity(1);
             frameLayout.addView(this.infoTextView[i3], LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
             if (i3 == 0) {
-                this.infoTextView[i3].setText(LocaleController.getString("ImportImportingInfo", R.string.ImportImportingInfo));
+                this.infoTextView[i3].setText(LocaleController.getString(R.string.ImportImportingInfo));
             } else {
                 this.infoTextView[i3].setAlpha(0.0f);
                 this.infoTextView[i3].setTranslationY(AndroidUtilities.dp(10.0f));
@@ -191,23 +191,23 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             }
         }
         if (this.parentFragment != null) {
-            textView.setText(LocaleController.getString("ImportImportingTitle", R.string.ImportImportingTitle));
+            textView.setText(LocaleController.getString(R.string.ImportImportingTitle));
             SendMessagesHelper.ImportingHistory importingHistory = this.parentFragment.getSendMessagesHelper().getImportingHistory(this.parentFragment.getDialogId());
             this.percentTextView.setText(String.format("%d%%", Integer.valueOf(importingHistory.uploadProgress)));
             this.lineProgressView.setProgress(importingHistory.uploadProgress / 100.0f, false);
             this.importCountTextView[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingHistory.getUploadedCount()), AndroidUtilities.formatFileSize(importingHistory.getTotalCount())));
-            this.infoTextView[1].setText(LocaleController.getString("ImportDoneInfo", R.string.ImportDoneInfo));
-            this.importCountTextView[1].setText(LocaleController.getString("ImportDoneTitle", R.string.ImportDoneTitle));
+            this.infoTextView[1].setText(LocaleController.getString(R.string.ImportDoneInfo));
+            this.importCountTextView[1].setText(LocaleController.getString(R.string.ImportDoneTitle));
             this.parentFragment.getNotificationCenter().addObserver(this, NotificationCenter.historyImportProgressChanged);
             return;
         }
-        textView.setText(LocaleController.getString("ImportStickersImportingTitle", R.string.ImportStickersImportingTitle));
+        textView.setText(LocaleController.getString(R.string.ImportStickersImportingTitle));
         SendMessagesHelper.ImportingStickers importingStickers = SendMessagesHelper.getInstance(this.currentAccount).getImportingStickers(str);
         this.percentTextView.setText(String.format("%d%%", Integer.valueOf(importingStickers.uploadProgress)));
         this.lineProgressView.setProgress(importingStickers.uploadProgress / 100.0f, false);
         this.importCountTextView[0].setText(LocaleController.formatString("ImportCount", R.string.ImportCount, AndroidUtilities.formatFileSize(importingStickers.getUploadedCount()), AndroidUtilities.formatFileSize(importingStickers.getTotalCount())));
-        this.infoTextView[1].setText(LocaleController.getString("ImportStickersDoneInfo", R.string.ImportStickersDoneInfo));
-        this.importCountTextView[1].setText(LocaleController.getString("ImportStickersDoneTitle", R.string.ImportStickersDoneTitle));
+        this.infoTextView[1].setText(LocaleController.getString(R.string.ImportStickersDoneInfo));
+        this.importCountTextView[1].setText(LocaleController.getString(R.string.ImportStickersDoneTitle));
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersImportProgressChanged);
     }
 
@@ -222,7 +222,12 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.percentTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.percentTextView, (Property<TextView, Float>) View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) View.TRANSLATION_Y, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) View.TRANSLATION_Y, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, (Property<LineProgressView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, (Property<LinearLayout, Float>) View.TRANSLATION_Y, AndroidUtilities.dp(8.0f), 0.0f));
+        TextView textView = this.percentTextView;
+        Property property = View.ALPHA;
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, 0.0f);
+        TextView textView2 = this.percentTextView;
+        Property property2 = View.TRANSLATION_Y;
+        animatorSet.playTogether(ofFloat, ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.infoTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[0], (Property<TextView, Float>) property2, -AndroidUtilities.dp(10.0f)), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.infoTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.importCountTextView[1], (Property<TextView, Float>) property2, 0.0f), ObjectAnimator.ofFloat(this.lineProgressView, (Property<LineProgressView, Float>) property, 0.0f), ObjectAnimator.ofFloat(this.cell.linearLayout, (Property<LinearLayout, Float>) property2, AndroidUtilities.dp(8.0f), 0.0f));
         this.cell.background.animate().scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.animate().scaleY(1.0f).scaleX(1.0f).setInterpolator(new OvershootInterpolator(1.02f)).setDuration(250L).start();
         this.cell.imageView.playAnimation();

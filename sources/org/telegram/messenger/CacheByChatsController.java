@@ -62,7 +62,7 @@ public class CacheByChatsController {
         if (i == KEEP_MEDIA_ONE_MONTH) {
             return LocaleController.formatPluralString("Months", 1, new Object[0]);
         }
-        return LocaleController.getString("AutoDeleteMediaNever", R.string.AutoDeleteMediaNever);
+        return LocaleController.getString(R.string.AutoDeleteMediaNever);
     }
 
     public static long getDaysInSeconds(int i) {
@@ -119,11 +119,8 @@ public class CacheByChatsController {
     }
 
     public int getKeepMedia(int i) {
-        int[] iArr = this.keepMediaByTypes;
-        if (iArr[i] == -1) {
-            return SharedConfig.keepMedia;
-        }
-        return iArr[i];
+        int i2 = this.keepMediaByTypes[i];
+        return i2 == -1 ? SharedConfig.keepMedia : i2;
     }
 
     public void setKeepMedia(int i, int i2) {

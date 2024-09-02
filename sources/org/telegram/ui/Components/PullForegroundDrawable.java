@@ -49,6 +49,7 @@ public class PullForegroundDrawable {
     public float outCx;
     public float outCy;
     public float outImageSize;
+    public float outOverScroll;
     public float outProgress;
     public float outRadius;
     public float pullProgress;
@@ -107,7 +108,7 @@ public class PullForegroundDrawable {
     public PullForegroundDrawable(CharSequence charSequence, CharSequence charSequence2) {
         TextPaint textPaint = new TextPaint(1);
         this.tooltipTextPaint = textPaint;
-        this.arrowDrawable = new ArrowDrawable(this);
+        this.arrowDrawable = new ArrowDrawable();
         this.circleClipPath = new Path();
         this.textSwappingProgress = 1.0f;
         this.arrowRotateProgress = 1.0f;
@@ -453,9 +454,11 @@ public class PullForegroundDrawable {
         float f38 = this.outProgress;
         float f39 = dp5 + ((1.0f - dp5) * f38) + f2;
         float f40 = f5;
-        canvas.translate((i7 - f40) * (1.0f - f38), (height3 - f4) * (1.0f - f38));
-        float f41 = f4;
-        canvas.scale(f39, f39, f40, f41);
+        float f41 = i7 - f40;
+        float f42 = 1.0f - f38;
+        canvas.translate(f41 * f42, (height3 - f4) * f42);
+        float f43 = f4;
+        canvas.scale(f39, f39, f40, f43);
         Theme.dialogs_archiveAvatarDrawable.setProgress(0.0f);
         if (!Theme.dialogs_archiveAvatarDrawableRecolored) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
@@ -464,8 +467,8 @@ public class PullForegroundDrawable {
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
-        float f42 = f37 / 2.0f;
-        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f40 - f42), (int) (f41 - f42), (int) (f40 + f42), (int) (f41 + f42));
+        float f44 = f37 / 2.0f;
+        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f40 - f44), (int) (f43 - f44), (int) (f40 + f44), (int) (f43 + f44));
         Theme.dialogs_archiveAvatarDrawable.draw(canvas);
         canvas.restore();
     }
@@ -485,10 +488,7 @@ public class PullForegroundDrawable {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                float[] fArr = new float[2];
-                fArr[0] = this.textSwappingProgress;
-                fArr[1] = z ? 0.0f : 1.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.textSwappingProgress, z ? 0.0f : 1.0f);
                 this.textSwipingAnimator = ofFloat;
                 ofFloat.addUpdateListener(this.textSwappingUpdateListener);
                 this.textSwipingAnimator.setInterpolator(new LinearInterpolator());
@@ -502,10 +502,7 @@ public class PullForegroundDrawable {
             if (valueAnimator3 != null) {
                 valueAnimator3.cancel();
             }
-            float[] fArr2 = new float[2];
-            fArr2[0] = this.arrowRotateProgress;
-            fArr2[1] = this.arrowAnimateTo ? 0.0f : 1.0f;
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr2);
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.arrowRotateProgress, this.arrowAnimateTo ? 0.0f : 1.0f);
             this.arrowRotateAnimator = ofFloat2;
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -623,8 +620,7 @@ public class PullForegroundDrawable {
         this.animateOut = true;
         this.bounceIn = true;
         this.bounceProgress = 0.0f;
-        this.listView.getTranslationY();
-        AndroidUtilities.dp(100.0f);
+        this.outOverScroll = this.listView.getTranslationY() / AndroidUtilities.dp(100.0f);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -788,7 +784,7 @@ public class PullForegroundDrawable {
         public void setColorFilter(ColorFilter colorFilter) {
         }
 
-        public ArrowDrawable(PullForegroundDrawable pullForegroundDrawable) {
+        public ArrowDrawable() {
             updatePath();
         }
 

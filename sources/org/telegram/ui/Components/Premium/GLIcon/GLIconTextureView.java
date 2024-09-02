@@ -379,14 +379,18 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     }
 
     public synchronized void drawSingleFrame(float f) {
-        checkCurrent();
-        GLIconRenderer gLIconRenderer = this.mRenderer;
-        if (gLIconRenderer != null) {
-            gLIconRenderer.setDeltaTime(f);
-            this.mRenderer.onDrawFrame(this.mGl);
+        try {
+            checkCurrent();
+            GLIconRenderer gLIconRenderer = this.mRenderer;
+            if (gLIconRenderer != null) {
+                gLIconRenderer.setDeltaTime(f);
+                this.mRenderer.onDrawFrame(this.mGl);
+            }
+            checkGlError();
+            this.mEgl.eglSwapBuffers(this.mEglDisplay, this.mEglSurface);
+        } catch (Throwable th) {
+            throw th;
         }
-        checkGlError();
-        this.mEgl.eglSwapBuffers(this.mEglDisplay, this.mEglSurface);
     }
 
     public void setDimensions(int i, int i2) {
@@ -422,6 +426,7 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
     }
 
     public void initGL() {
+        int[] iArr;
         EGL10 egl10 = (EGL10) EGLContext.getEGL();
         this.mEgl = egl10;
         EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
@@ -432,14 +437,19 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
         if (!this.mEgl.eglInitialize(eglGetDisplay, new int[2])) {
             throw new RuntimeException("eglInitialize failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
         }
-        int[] iArr = new int[1];
+        int[] iArr2 = new int[1];
         EGLConfig[] eGLConfigArr = new EGLConfig[1];
-        int[] iArr2 = EmuDetector.with(getContext()).detect() ? new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12344} : new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
+        if (EmuDetector.with(getContext()).detect()) {
+            iArr = new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12344};
+        } else {
+            iArr = new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 16, 12326, 0, 12338, 1, 12344};
+        }
+        int[] iArr3 = iArr;
         this.eglConfig = null;
-        if (!this.mEgl.eglChooseConfig(this.mEglDisplay, iArr2, eGLConfigArr, 1, iArr)) {
+        if (!this.mEgl.eglChooseConfig(this.mEglDisplay, iArr3, eGLConfigArr, 1, iArr2)) {
             throw new IllegalArgumentException("eglChooseConfig failed " + GLUtils.getEGLErrorString(this.mEgl.eglGetError()));
         }
-        if (iArr[0] > 0) {
+        if (iArr2[0] > 0) {
             this.eglConfig = eGLConfigArr[0];
         }
         EGLConfig eGLConfig = this.eglConfig;

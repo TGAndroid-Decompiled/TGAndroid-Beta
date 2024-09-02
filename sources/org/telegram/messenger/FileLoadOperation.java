@@ -213,11 +213,11 @@ public class FileLoadOperation {
     public boolean checkPrefixPreloadFinished() {
         int i = this.preloadPrefixSize;
         if (i > 0 && this.downloadedBytes > i) {
-            long j = Long.MAX_VALUE;
             ArrayList<Range> arrayList = this.notLoadedBytesRanges;
             if (arrayList == null) {
                 return true;
             }
+            long j = Long.MAX_VALUE;
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 try {
                     j = Math.min(j, arrayList.get(i2).start);
@@ -330,7 +330,7 @@ public class FileLoadOperation {
             tLRPC$InputFileLocation.access_hash = imageLocation.access_hash;
             byte[] bArr = new byte[32];
             this.iv = bArr;
-            System.arraycopy(imageLocation.iv, 0, bArr, 0, bArr.length);
+            System.arraycopy(imageLocation.iv, 0, bArr, 0, 32);
             this.key = imageLocation.key;
         } else if (imageLocation.photoPeer != null) {
             TLRPC$TL_inputPeerPhotoFileLocation tLRPC$TL_inputPeerPhotoFileLocation = new TLRPC$TL_inputPeerPhotoFileLocation();
@@ -680,23 +680,26 @@ public class FileLoadOperation {
             filesQueueByteBuffer.writeLong(range.end);
         }
         synchronized (this) {
-            RandomAccessFile randomAccessFile = this.filePartsStream;
-            if (randomAccessFile == null) {
-                return;
-            }
-            randomAccessFile.seek(0L);
-            this.filePartsStream.write(filesQueueByteBuffer.buf, 0, i);
-            this.writingToFilePartsStream = false;
-            if (this.closeFilePartsStreamOnWriteEnd) {
-                try {
-                    this.filePartsStream.getChannel().close();
-                } catch (Exception e2) {
-                    FileLog.e(e2);
+            try {
+                RandomAccessFile randomAccessFile = this.filePartsStream;
+                if (randomAccessFile == null) {
+                    return;
                 }
-                this.filePartsStream.close();
-                this.filePartsStream = null;
+                randomAccessFile.seek(0L);
+                this.filePartsStream.write(filesQueueByteBuffer.buf, 0, i);
+                this.writingToFilePartsStream = false;
+                if (this.closeFilePartsStreamOnWriteEnd) {
+                    try {
+                        this.filePartsStream.getChannel().close();
+                    } catch (Exception e2) {
+                        FileLog.e(e2);
+                    }
+                    this.filePartsStream.close();
+                    this.filePartsStream = null;
+                }
+                this.totalTime += System.currentTimeMillis() - currentTimeMillis;
+            } finally {
             }
-            this.totalTime += System.currentTimeMillis() - currentTimeMillis;
         }
     }
 
@@ -882,7 +885,7 @@ public class FileLoadOperation {
         return start(this.stream, this.streamOffset, this.streamPriority);
     }
 
-    public boolean start(final org.telegram.messenger.FileLoadOperationStream r29, final long r30, final boolean r32) {
+    public boolean start(final org.telegram.messenger.FileLoadOperationStream r30, final long r31, final boolean r33) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.start(org.telegram.messenger.FileLoadOperationStream, long, boolean):boolean");
     }
 
@@ -891,10 +894,10 @@ public class FileLoadOperation {
             this.streamListeners = new ArrayList<>();
         }
         if (z) {
-            int i = this.currentDownloadChunkSize;
-            long j2 = (j / i) * i;
+            long j2 = this.currentDownloadChunkSize;
+            long j3 = (j / j2) * j2;
             RequestInfo requestInfo = this.priorityRequestInfo;
-            if (requestInfo != null && requestInfo.offset != j2) {
+            if (requestInfo != null && requestInfo.offset != j3) {
                 this.requestInfos.remove(this.priorityRequestInfo);
                 this.requestedBytesCount -= this.currentDownloadChunkSize;
                 removePart(this.notRequestedBytesRanges, this.priorityRequestInfo.offset, this.currentDownloadChunkSize + this.priorityRequestInfo.offset);
@@ -908,11 +911,11 @@ public class FileLoadOperation {
                 this.priorityRequestInfo = null;
             }
             if (this.priorityRequestInfo == null) {
-                this.streamPriorityStartOffset = j2;
+                this.streamPriorityStartOffset = j3;
             }
         } else {
-            int i2 = this.currentDownloadChunkSize;
-            this.streamStartOffset = (j / i2) * i2;
+            long j4 = this.currentDownloadChunkSize;
+            this.streamStartOffset = (j / j4) * j4;
         }
         if (!this.streamListeners.contains(fileLoadOperationStream)) {
             this.streamListeners.add(fileLoadOperationStream);
@@ -1146,8 +1149,9 @@ public class FileLoadOperation {
     public static void lambda$cancelRequests$13(RequestInfo requestInfo, int[] iArr, Runnable runnable) {
         requestInfo.whenCancelled = null;
         requestInfo.cancelled = true;
-        iArr[0] = iArr[0] - 1;
-        if (iArr[0] == 0) {
+        int i = iArr[0] - 1;
+        iArr[0] = i;
+        if (i == 0) {
             runnable.run();
         }
     }
@@ -1452,7 +1456,7 @@ public class FileLoadOperation {
         }
     }
 
-    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r42, org.telegram.tgnet.TLRPC$TL_error r43) {
+    protected boolean processRequestResult(org.telegram.messenger.FileLoadOperation.RequestInfo r45, org.telegram.tgnet.TLRPC$TL_error r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.processRequestResult(org.telegram.messenger.FileLoadOperation$RequestInfo, org.telegram.tgnet.TLRPC$TL_error):boolean");
     }
 
@@ -1606,7 +1610,7 @@ public class FileLoadOperation {
         FileRefController.getInstance(this.currentAccount).requestReference(this.parentObject, this.location, this, requestInfo);
     }
 
-    public void startDownloadRequest(int r30) {
+    public void startDownloadRequest(int r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoadOperation.startDownloadRequest(int):void");
     }
 

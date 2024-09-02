@@ -240,53 +240,53 @@ public class ForumUtilities {
 
     public static CharSequence getTopicSpannedName(TLRPC$ForumTopic tLRPC$ForumTopic, Paint paint, Drawable[] drawableArr, boolean z) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (!(tLRPC$ForumTopic instanceof TLRPC$TL_forumTopic)) {
-            return "DELETED";
-        }
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = (TLRPC$TL_forumTopic) tLRPC$ForumTopic;
-        if (tLRPC$TL_forumTopic.id == 1) {
-            try {
-                GeneralTopicDrawable createGeneralTopicDrawable = createGeneralTopicDrawable(ApplicationLoader.applicationContext, 1.0f, paint == null ? Theme.getColor(Theme.key_chat_inMenu) : paint.getColor(), z);
-                createGeneralTopicDrawable.setBounds(0, 0, paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize(), paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize());
+        if (tLRPC$ForumTopic instanceof TLRPC$TL_forumTopic) {
+            TLRPC$TL_forumTopic tLRPC$TL_forumTopic = (TLRPC$TL_forumTopic) tLRPC$ForumTopic;
+            if (tLRPC$TL_forumTopic.id == 1) {
+                try {
+                    GeneralTopicDrawable createGeneralTopicDrawable = createGeneralTopicDrawable(ApplicationLoader.applicationContext, 1.0f, paint == null ? Theme.getColor(Theme.key_chat_inMenu) : paint.getColor(), z);
+                    createGeneralTopicDrawable.setBounds(0, 0, paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize(), paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize());
+                    spannableStringBuilder.append((CharSequence) " ");
+                    if (drawableArr != null) {
+                        drawableArr[0] = createGeneralTopicDrawable;
+                    }
+                    spannableStringBuilder.setSpan(new ImageSpan(createGeneralTopicDrawable, 2), 0, 1, 33);
+                } catch (Exception unused) {
+                }
+            } else if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
                 spannableStringBuilder.append((CharSequence) " ");
-                if (drawableArr != null) {
-                    drawableArr[0] = createGeneralTopicDrawable;
-                }
-                spannableStringBuilder.setSpan(new ImageSpan(createGeneralTopicDrawable, 2), 0, 1, 33);
-            } catch (Exception unused) {
-            }
-        } else if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
-            spannableStringBuilder.append((CharSequence) " ");
-            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(tLRPC$TL_forumTopic.icon_emoji_id, 0.95f, paint == null ? null : paint.getFontMetricsInt());
-            spannableStringBuilder.setSpan(animatedEmojiSpan, 0, 1, 33);
-            animatedEmojiSpan.top = true;
-            animatedEmojiSpan.cacheType = 13;
-        } else {
-            spannableStringBuilder.append((CharSequence) " ");
-            Drawable createTopicDrawable = createTopicDrawable(tLRPC$TL_forumTopic, z);
-            if (drawableArr != null) {
-                drawableArr[0] = ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
-            }
-            createTopicDrawable.setBounds(0, 0, (int) (createTopicDrawable.getIntrinsicWidth() * 0.65f), (int) (createTopicDrawable.getIntrinsicHeight() * 0.65f));
-            if (createTopicDrawable instanceof CombinedDrawable) {
-                CombinedDrawable combinedDrawable = (CombinedDrawable) createTopicDrawable;
-                if (combinedDrawable.getIcon() instanceof LetterDrawable) {
-                    ((LetterDrawable) combinedDrawable.getIcon()).scale = 0.7f;
-                }
-            }
-            if (paint != null) {
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(createTopicDrawable);
-                coloredImageSpan.setSize((int) (Math.abs(paint.getFontMetrics().descent) + Math.abs(paint.getFontMetrics().ascent)));
-                spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
+                AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(tLRPC$TL_forumTopic.icon_emoji_id, 0.95f, paint == null ? null : paint.getFontMetricsInt());
+                spannableStringBuilder.setSpan(animatedEmojiSpan, 0, 1, 33);
+                animatedEmojiSpan.top = true;
+                animatedEmojiSpan.cacheType = 13;
             } else {
-                spannableStringBuilder.setSpan(new ImageSpan(createTopicDrawable), 0, 1, 33);
+                spannableStringBuilder.append((CharSequence) " ");
+                Drawable createTopicDrawable = createTopicDrawable(tLRPC$TL_forumTopic, z);
+                if (drawableArr != null) {
+                    drawableArr[0] = ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
+                }
+                createTopicDrawable.setBounds(0, 0, (int) (createTopicDrawable.getIntrinsicWidth() * 0.65f), (int) (createTopicDrawable.getIntrinsicHeight() * 0.65f));
+                if (createTopicDrawable instanceof CombinedDrawable) {
+                    CombinedDrawable combinedDrawable = (CombinedDrawable) createTopicDrawable;
+                    if (combinedDrawable.getIcon() instanceof LetterDrawable) {
+                        ((LetterDrawable) combinedDrawable.getIcon()).scale = 0.7f;
+                    }
+                }
+                if (paint != null) {
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(createTopicDrawable);
+                    coloredImageSpan.setSize((int) (Math.abs(paint.getFontMetrics().descent) + Math.abs(paint.getFontMetrics().ascent)));
+                    spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
+                } else {
+                    spannableStringBuilder.setSpan(new ImageSpan(createTopicDrawable), 0, 1, 33);
+                }
             }
+            if (!TextUtils.isEmpty(tLRPC$TL_forumTopic.title)) {
+                spannableStringBuilder.append((CharSequence) " ");
+                spannableStringBuilder.append((CharSequence) tLRPC$TL_forumTopic.title);
+            }
+            return spannableStringBuilder;
         }
-        if (!TextUtils.isEmpty(tLRPC$TL_forumTopic.title)) {
-            spannableStringBuilder.append((CharSequence) " ");
-            spannableStringBuilder.append((CharSequence) tLRPC$TL_forumTopic.title);
-        }
-        return spannableStringBuilder;
+        return "DELETED";
     }
 
     public static void applyTopic(ChatActivity chatActivity, MessagesStorage.TopicKey topicKey) {
@@ -333,13 +333,14 @@ public class ForumUtilities {
             if ((i & 4) != 0) {
                 return AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceCharSequence("%2$s", LocaleController.getString(tLRPC$TL_messageActionTopicEdit.closed ? R.string.TopicWasClosedAction : R.string.TopicWasReopenedAction), getTopicSpannedName(tLRPC$TL_forumTopic, null, false)), str);
             }
-            if ((i & 1) != 0 && (i & 2) != 0) {
+            int i2 = i & 1;
+            if (i2 != 0 && (i & 2) != 0) {
                 TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = new TLRPC$TL_forumTopic();
                 tLRPC$TL_forumTopic2.icon_emoji_id = tLRPC$TL_messageActionTopicEdit.icon_emoji_id;
                 tLRPC$TL_forumTopic2.title = tLRPC$TL_messageActionTopicEdit.title;
                 return AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceCharSequence("%2$s", LocaleController.getString(R.string.TopicWasRenamedToAction2), getTopicSpannedName(tLRPC$TL_forumTopic2, null, false)), str);
             }
-            if ((i & 1) != 0) {
+            if (i2 != 0) {
                 return AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceCharSequence("%2$s", LocaleController.getString(R.string.TopicWasRenamedToAction), tLRPC$TL_messageActionTopicEdit.title), str);
             }
             if ((i & 2) != 0) {
@@ -359,9 +360,9 @@ public class ForumUtilities {
     public static void applyTopicToMessage(MessageObject messageObject) {
         TLRPC$TL_forumTopic findTopic;
         if (messageObject.getDialogId() <= 0 && (findTopic = MessagesController.getInstance(messageObject.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(messageObject.currentAccount, messageObject.messageOwner, true))) != null) {
-            Drawable[] drawableArr = messageObject.topicIconDrawable;
-            if (drawableArr[0] instanceof ForumBubbleDrawable) {
-                ((ForumBubbleDrawable) drawableArr[0]).setColor(findTopic.icon_color);
+            Drawable drawable = messageObject.topicIconDrawable[0];
+            if (drawable instanceof ForumBubbleDrawable) {
+                ((ForumBubbleDrawable) drawable).setColor(findTopic.icon_color);
             }
         }
     }

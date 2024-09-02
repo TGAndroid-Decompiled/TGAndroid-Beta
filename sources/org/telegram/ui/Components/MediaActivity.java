@@ -139,11 +139,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i != NotificationCenter.userInfoDidLoad) {
-            if (i != NotificationCenter.currentUserPremiumStatusChanged) {
-                int i3 = NotificationCenter.storiesEnabledUpdate;
-            }
-        } else if (((Long) objArr[0]).longValue() == this.dialogId) {
+        if (i == NotificationCenter.userInfoDidLoad && ((Long) objArr[0]).longValue() == this.dialogId) {
             TLRPC$UserFull tLRPC$UserFull = (TLRPC$UserFull) objArr[1];
             this.currentUserInfo = tLRPC$UserFull;
             SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
@@ -154,7 +150,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     @Override
-    public android.view.View createView(android.content.Context r33) {
+    public android.view.View createView(android.content.Context r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.MediaActivity.createView(android.content.Context):android.view.View");
     }
 
@@ -164,8 +160,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public void onItemClick(int i) {
-            int i2;
-            String str;
             if (i == -1) {
                 if (MediaActivity.this.sharedMediaLayout.closeActionMode(true)) {
                     return;
@@ -189,8 +183,8 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             }
             if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
-                for (int i3 = 0; i3 < MediaActivity.this.actionModeMessageObjects.size(); i3++) {
-                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i3)).storyItem;
+                for (int i2 = 0; i2 < MediaActivity.this.actionModeMessageObjects.size(); i2++) {
+                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i2)).storyItem;
                     if (tL_stories$StoryItem != null) {
                         arrayList.add(tL_stories$StoryItem);
                     }
@@ -199,25 +193,18 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                     return;
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(MediaActivity.this.getContext(), MediaActivity.this.getResourceProvider());
-                if (arrayList.size() > 1) {
-                    i2 = R.string.DeleteStoriesTitle;
-                    str = "DeleteStoriesTitle";
-                } else {
-                    i2 = R.string.DeleteStoryTitle;
-                    str = "DeleteStoryTitle";
-                }
-                builder.setTitle(LocaleController.getString(str, i2));
+                builder.setTitle(LocaleController.getString(arrayList.size() > 1 ? R.string.DeleteStoriesTitle : R.string.DeleteStoryTitle));
                 builder.setMessage(LocaleController.formatPluralString("DeleteStoriesSubtitle", arrayList.size(), new Object[0]));
-                builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i4) {
+                    public void onClick(DialogInterface dialogInterface, int i3) {
                         MediaActivity.this.getMessagesController().getStoriesController().deleteStories(MediaActivity.this.dialogId, arrayList);
                         MediaActivity.this.sharedMediaLayout.closeActionMode(false);
                     }
                 });
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i4) {
+                    public final void onClick(DialogInterface dialogInterface, int i3) {
                         dialogInterface.dismiss();
                     }
                 });
@@ -464,7 +451,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                         SparseArray<MessageObject> sparseArray = this.actionModeMessageObjects;
                         buttonWithCounterView.setText(LocaleController.formatPluralString("ArchiveStories", sparseArray == null ? 0 : sparseArray.size(), new Object[0]), z3);
                     } else {
-                        buttonWithCounterView.setText(LocaleController.getString("SaveToProfile", R.string.SaveToProfile), z3);
+                        buttonWithCounterView.setText(LocaleController.getString(R.string.SaveToProfile), z3);
                     }
                     this.lastTab = closestTab;
                 }
@@ -555,22 +542,18 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             boolean z3 = !zArr2[i] && z2;
             zArr2[i] = false;
             zArr[i] = z;
-            ValueAnimator[] valueAnimatorArr = this.subtitleAnimator;
-            if (valueAnimatorArr[i] != null) {
-                valueAnimatorArr[i].cancel();
+            ValueAnimator valueAnimator = this.subtitleAnimator[i];
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
                 this.subtitleAnimator[i] = null;
             }
             if (z3) {
                 this.subtitleTextView[i].setVisibility(0);
-                ValueAnimator[] valueAnimatorArr2 = this.subtitleAnimator;
-                float[] fArr = new float[2];
-                fArr[0] = this.subtitleT[i];
-                fArr[1] = z ? 1.0f : 0.0f;
-                valueAnimatorArr2[i] = ValueAnimator.ofFloat(fArr);
+                this.subtitleAnimator[i] = ValueAnimator.ofFloat(this.subtitleT[i], z ? 1.0f : 0.0f);
                 this.subtitleAnimator[i].addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator);
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                        MediaActivity.this.lambda$showSubtitle$12(i, valueAnimator2);
                     }
                 });
                 this.subtitleAnimator[i].addListener(new AnimatorListenerAdapter() {
@@ -630,13 +613,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.actionBar.setItemsColor(Theme.getColor(i), true);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setTitleColor(Theme.getColor(i));
-        SimpleTextView[] simpleTextViewArr = this.nameTextView;
-        if (simpleTextViewArr[0] != null) {
-            simpleTextViewArr[0].setTextColor(Theme.getColor(i));
+        SimpleTextView simpleTextView = this.nameTextView[0];
+        if (simpleTextView != null) {
+            simpleTextView.setTextColor(Theme.getColor(i));
         }
-        SimpleTextView[] simpleTextViewArr2 = this.nameTextView;
-        if (simpleTextViewArr2[1] != null) {
-            simpleTextViewArr2[1].setTextColor(Theme.getColor(i));
+        SimpleTextView simpleTextView2 = this.nameTextView[1];
+        if (simpleTextView2 != null) {
+            simpleTextView2.setTextColor(Theme.getColor(i));
         }
     }
 
@@ -675,17 +658,15 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
     @Override
     public List<FloatingDebugController.DebugItem> onGetDebugItems() {
-        FloatingDebugController.DebugItem[] debugItemArr = new FloatingDebugController.DebugItem[1];
         StringBuilder sb = new StringBuilder();
         sb.append(ShapeDetector.isLearning(getContext()) ? "Disable" : "Enable");
         sb.append(" shape detector learning debug");
-        debugItemArr[0] = new FloatingDebugController.DebugItem(sb.toString(), new Runnable() {
+        return Arrays.asList(new FloatingDebugController.DebugItem(sb.toString(), new Runnable() {
             @Override
             public final void run() {
                 MediaActivity.this.lambda$onGetDebugItems$13();
             }
-        });
-        return Arrays.asList(debugItemArr);
+        }));
     }
 
     public void lambda$onGetDebugItems$13() {
@@ -693,13 +674,13 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     private class StoriesTabsView extends BottomPagerTabs {
-        public StoriesTabsView(MediaActivity mediaActivity, Context context, Theme.ResourcesProvider resourcesProvider) {
+        public StoriesTabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
         }
 
         @Override
         public BottomPagerTabs.Tab[] createTabs() {
-            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
+            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, 20, 40, LocaleController.getString(R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, 0, 0, LocaleController.getString(R.string.ProfileStoriesArchiveTab))};
         }
     }
 

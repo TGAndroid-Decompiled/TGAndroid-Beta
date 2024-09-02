@@ -7,7 +7,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.MotionEvent;
@@ -16,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -79,6 +79,7 @@ public class CaptionStory extends CaptionContainerView {
     private boolean recordTouch;
     private boolean recording;
     public ImageView roundButton;
+    public ButtonBounce roundButtonBounce;
     private final Drawable roundDrawable;
     private final Paint roundPaint;
     private float slideProgress;
@@ -188,10 +189,12 @@ public class CaptionStory extends CaptionContainerView {
         };
         ImageView imageView = new ImageView(context);
         this.roundButton = imageView;
-        new ButtonBounce(imageView);
+        this.roundButtonBounce = new ButtonBounce(imageView);
         this.roundButton.setImageResource(R.drawable.input_video_story);
         this.roundButton.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
-        this.roundButton.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView imageView2 = this.roundButton;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView2.setScaleType(scaleType);
         addView(this.roundButton, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 10.0f));
         this.roundButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,13 +202,13 @@ public class CaptionStory extends CaptionContainerView {
                 CaptionStory.this.lambda$new$0(view);
             }
         });
-        ImageView imageView2 = new ImageView(context);
-        this.periodButton = imageView2;
+        ImageView imageView3 = new ImageView(context);
+        this.periodButton = imageView3;
         CaptionContainerView.PeriodDrawable periodDrawable = new CaptionContainerView.PeriodDrawable();
         this.periodDrawable = periodDrawable;
-        imageView2.setImageDrawable(periodDrawable);
+        imageView3.setImageDrawable(periodDrawable);
         this.periodButton.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
-        this.periodButton.setScaleType(ImageView.ScaleType.CENTER);
+        this.periodButton.setScaleType(scaleType);
         setPeriod(86400, false);
         addView(this.periodButton, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 51.0f, 10.0f));
         this.periodButton.setOnClickListener(new View.OnClickListener() {
@@ -304,7 +307,7 @@ public class CaptionStory extends CaptionContainerView {
             return;
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            this.flipButton = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(), R.drawable.avd_flip);
+            this.flipButton = AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(ContextCompat.getDrawable(getContext(), R.drawable.avd_flip));
         } else {
             this.flipButton = getContext().getResources().getDrawable(R.drawable.vd_flip).mutate();
         }
@@ -390,7 +393,7 @@ public class CaptionStory extends CaptionContainerView {
                 }
                 this.cancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - this.timerTextDrawable.getCurrentWidth()));
                 float centerX2 = (rectF.centerX() - (this.cancelText.getWidth() / 2.0f)) + ((rectF.width() / 4.0f) * f6);
-                this.cancelText.draw(canvas, centerX2, rectF.centerY(), Theme.multAlpha(paint2 == null ? -2130706433 : -1, f5), 1.0f);
+                this.cancelText.draw(canvas, centerX2, rectF.centerY(), Theme.multAlpha(paint2 != null ? -1 : -2130706433, f5), 1.0f);
                 this.cancelBounds.set(centerX2 - AndroidUtilities.dp(12.0f), rectF.top, centerX2 + this.cancelText.getWidth() + AndroidUtilities.dp(12.0f), rectF.bottom);
             }
             if (paint2 != null) {
@@ -446,7 +449,9 @@ public class CaptionStory extends CaptionContainerView {
         canvas.drawCircle(lerp, dp2, min, this.roundPaint);
         canvas.save();
         this.circlePath.rewind();
-        this.circlePath.addCircle(lerp, dp2, min, Path.Direction.CW);
+        Path path = this.circlePath;
+        Path.Direction direction = Path.Direction.CW;
+        path.addCircle(lerp, dp2, min, direction);
         canvas.clipPath(this.circlePath);
         this.roundDrawable.setBounds((int) (lerp - (((r6.getIntrinsicWidth() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (dp2 - (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (((this.roundDrawable.getIntrinsicWidth() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + lerp), (int) (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + dp2));
         this.roundDrawable.setAlpha((int) (f5 * 255.0f * (this.stopping ? f : 1.0f)));
@@ -462,7 +467,7 @@ public class CaptionStory extends CaptionContainerView {
         if (this.cancelling && (this.roundButton.getVisibility() == 4 || this.periodButton.getVisibility() == 4 || this.collapsedT.get() > 0.0f)) {
             canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.keyboardT) * 255.0f), 31);
             this.boundsPath.rewind();
-            this.boundsPath.addRoundRect(rectF, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f), Path.Direction.CW);
+            this.boundsPath.addRoundRect(rectF, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f), direction);
             canvas.clipPath(this.boundsPath);
             if (this.roundButton.getVisibility() == 4 || this.collapsedT.get() > 0.0f) {
                 canvas.save();
@@ -643,8 +648,8 @@ public class CaptionStory extends CaptionContainerView {
                         this.currentRecorder.cameraView.switchCamera();
                         if (Build.VERSION.SDK_INT >= 21) {
                             Drawable drawable2 = this.flipButton;
-                            if (drawable2 instanceof AnimatedVectorDrawable) {
-                                ((AnimatedVectorDrawable) drawable2).start();
+                            if (CaptionStory$$ExternalSyntheticApiModelOutline0.m(drawable2)) {
+                                AnimatedVectorDrawableCompat$$ExternalSyntheticApiModelOutline0.m(drawable2).start();
                             }
                         }
                     }

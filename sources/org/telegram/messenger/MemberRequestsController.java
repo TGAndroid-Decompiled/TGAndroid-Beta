@@ -22,10 +22,13 @@ public class MemberRequestsController extends BaseController {
         MemberRequestsController memberRequestsController = memberRequestsControllerArr[i];
         if (memberRequestsController == null) {
             synchronized (MemberRequestsController.class) {
-                memberRequestsController = memberRequestsControllerArr[i];
-                if (memberRequestsController == null) {
-                    memberRequestsController = new MemberRequestsController(i);
-                    memberRequestsControllerArr[i] = memberRequestsController;
+                try {
+                    memberRequestsController = memberRequestsControllerArr[i];
+                    if (memberRequestsController == null) {
+                        memberRequestsController = new MemberRequestsController(i);
+                        memberRequestsControllerArr[i] = memberRequestsController;
+                    }
+                } finally {
                 }
             }
         }

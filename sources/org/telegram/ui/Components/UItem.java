@@ -33,6 +33,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
     public boolean collapsed;
     public long dialogId;
     public boolean enabled;
+    public int flags;
     public boolean hideDivider;
     public int iconResId;
     public int id;
@@ -262,6 +263,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
         uItem.include = z;
         uItem.text = charSequence;
         uItem.chatType = str;
+        uItem.flags = i;
         return uItem;
     }
 
@@ -476,7 +478,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (this == obj) {
             return true;
         }
-        if (obj == null || UItem.class != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         UItem uItem = (UItem) obj;
@@ -502,7 +504,7 @@ public class UItem extends AdapterWithDiffUtils.Item {
         if (this == item) {
             return true;
         }
-        if (item == null || UItem.class != item.getClass()) {
+        if (item == null || getClass() != item.getClass()) {
             return false;
         }
         UItem uItem = (UItem) item;
@@ -578,7 +580,33 @@ public class UItem extends AdapterWithDiffUtils.Item {
         return new UItem(getFactory(cls).viewType, false);
     }
 
-    public static <F extends org.telegram.ui.Components.UItem.UItemFactory<?>> org.telegram.ui.Components.UItem.UItemFactory<?> getFactory(java.lang.Class<F> r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UItem.getFactory(java.lang.Class):org.telegram.ui.Components.UItem$UItemFactory");
+    public static <F extends UItemFactory<?>> UItemFactory<?> getFactory(Class<F> cls) {
+        if (factoryInstances == null) {
+            factoryInstances = new HashMap<>();
+        }
+        if (factories == null) {
+            factories = new LongSparseArray<>();
+        }
+        UItemFactory<?> uItemFactory = factoryInstances.get(cls);
+        Exception e = null;
+        if (uItemFactory == null) {
+            try {
+                HashMap<Class<? extends UItemFactory<?>>, UItemFactory<?>> hashMap = factoryInstances;
+                F newInstance = cls.getDeclaredConstructor(null).newInstance(null);
+                try {
+                    hashMap.put(cls, newInstance);
+                    factories.put(newInstance.viewType, newInstance);
+                } catch (Exception e2) {
+                    e = e2;
+                }
+                uItemFactory = newInstance;
+            } catch (Exception e3) {
+                e = e3;
+            }
+        }
+        if (uItemFactory != null) {
+            return uItemFactory;
+        }
+        throw new RuntimeException("couldnt create factory of " + cls, e);
     }
 }

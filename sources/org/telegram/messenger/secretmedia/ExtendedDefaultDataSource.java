@@ -196,7 +196,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
     private DataSource getRtmpDataSource() {
         if (this.rtmpDataSource == null) {
             try {
-                DataSource dataSource = (DataSource) Class.forName("com.google.android.exoplayer2.ext.rtmp.RtmpDataSource").getConstructor(new Class[0]).newInstance(new Object[0]);
+                DataSource dataSource = (DataSource) Class.forName("com.google.android.exoplayer2.ext.rtmp.RtmpDataSource").getConstructor(null).newInstance(null);
                 this.rtmpDataSource = dataSource;
                 addListenersToDataSource(dataSource);
             } catch (ClassNotFoundException unused) {

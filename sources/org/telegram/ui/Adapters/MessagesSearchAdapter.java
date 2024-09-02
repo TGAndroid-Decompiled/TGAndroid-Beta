@@ -176,37 +176,41 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        boolean z;
         int i2;
+        boolean z;
         int i3;
+        int i4;
         if (viewHolder.getItemViewType() == 0) {
             DialogCell dialogCell = (DialogCell) viewHolder.itemView;
             dialogCell.useSeparator = true;
             MessageObject messageObject = (MessageObject) getItem(i);
             long dialogId = messageObject.getDialogId();
-            int i4 = messageObject.messageOwner.date;
+            int i5 = messageObject.messageOwner.date;
             if (this.isSavedMessages) {
                 dialogCell.isSavedDialog = true;
-                dialogId = messageObject.getSavedDialogId();
+                long savedDialogId = messageObject.getSavedDialogId();
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
                 TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
-                if (tLRPC$MessageFwdHeader == null || ((i3 = tLRPC$MessageFwdHeader.date) == 0 && tLRPC$MessageFwdHeader.saved_date == 0)) {
-                    i2 = tLRPC$Message.date;
-                } else if (i3 == 0) {
-                    i2 = tLRPC$MessageFwdHeader.saved_date;
+                if (tLRPC$MessageFwdHeader == null || ((i4 = tLRPC$MessageFwdHeader.date) == 0 && tLRPC$MessageFwdHeader.saved_date == 0)) {
+                    i3 = tLRPC$Message.date;
+                } else if (i4 == 0) {
+                    i3 = tLRPC$MessageFwdHeader.saved_date;
                 } else {
-                    i4 = i3;
+                    dialogId = savedDialogId;
+                    i2 = i4;
                     z = false;
                 }
-                i4 = i2;
+                i2 = i3;
                 z = false;
+                dialogId = savedDialogId;
             } else {
                 if (messageObject.isOutOwner()) {
                     dialogId = messageObject.getFromChatId();
                 }
+                i2 = i5;
                 z = true;
             }
-            dialogCell.setDialog(dialogId, messageObject, i4, z, false);
+            dialogCell.setDialog(dialogId, messageObject, i2, z, false);
             return;
         }
         if (viewHolder.getItemViewType() == 2) {

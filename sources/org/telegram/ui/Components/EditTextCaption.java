@@ -37,6 +37,7 @@ import org.telegram.messenger.utils.CopyUtilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.TextSelectionHelper$$ExternalSyntheticApiModelOutline4;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 
@@ -197,9 +198,9 @@ public class EditTextCaption extends EditTextBoldCursor {
             builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
         }
         ?? r2 = builder;
-        r2.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
+        r2.setTitle(LocaleController.getString(R.string.CreateLink));
         ?? frameLayout = new FrameLayout(getContext());
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
             @Override
             public void onMeasure(int i, int i2) {
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824));
@@ -208,7 +209,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText("http://");
         editTextBoldCursor.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-        editTextBoldCursor.setHintText(LocaleController.getString("URL", R.string.URL));
+        editTextBoldCursor.setHintText(LocaleController.getString(R.string.URL));
         editTextBoldCursor.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
@@ -244,7 +245,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 EditTextCaption.this.lambda$makeSelectedUrl$1(editTextBoldCursor, runnable, view);
             }
         });
-        editTextBoldCursor.addTextChangedListener(new TextWatcher(this) {
+        editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence2, int i, int i2, int i3) {
             }
@@ -281,13 +282,13 @@ public class EditTextCaption extends EditTextBoldCursor {
             i = getSelectionStart();
             selectionEnd = getSelectionEnd();
         }
-        r2.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+        r2.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 EditTextCaption.this.lambda$makeSelectedUrl$2(i, selectionEnd, editTextBoldCursor, dialogInterface, i2);
             }
         });
-        r2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        r2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         if (this.adaptiveCreateLinkDialog) {
             AlertDialog create = r2.create();
             this.creationLinkDialog = create;
@@ -428,8 +429,9 @@ public class EditTextCaption extends EditTextBoldCursor {
             for (int i2 = 0; i2 < quoteSpanArr.length; i2++) {
                 text.removeSpan(quoteSpanArr[i2]);
                 text.removeSpan(quoteSpanArr[i2].styleSpan);
-                if (quoteSpanArr[i2].collapsedSpan != null) {
-                    text.removeSpan(quoteSpanArr[i2].collapsedSpan);
+                QuoteSpan.QuoteCollapsedPart quoteCollapsedPart = quoteSpanArr[i2].collapsedSpan;
+                if (quoteCollapsedPart != null) {
+                    text.removeSpan(quoteCollapsedPart);
                 }
             }
             if (quoteSpanArr.length > 0) {
@@ -487,7 +489,7 @@ public class EditTextCaption extends EditTextBoldCursor {
                 callback.onDestroyActionMode(actionMode);
             }
         };
-        return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2(this) {
+        return Build.VERSION.SDK_INT >= 23 ? new ActionMode.Callback2() {
             @Override
             public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
                 return callback2.onCreateActionMode(actionMode, menu);
@@ -511,8 +513,8 @@ public class EditTextCaption extends EditTextBoldCursor {
             @Override
             public void onGetContentRect(ActionMode actionMode, View view, android.graphics.Rect rect) {
                 ActionMode.Callback callback3 = callback;
-                if (callback3 instanceof ActionMode.Callback2) {
-                    ((ActionMode.Callback2) callback3).onGetContentRect(actionMode, view, rect);
+                if (EditTextBoldCursor$ActionModeCallback2Wrapper$$ExternalSyntheticApiModelOutline0.m(callback3)) {
+                    TextSelectionHelper$$ExternalSyntheticApiModelOutline4.m(callback3).onGetContentRect(actionMode, view, rect);
                 } else {
                     super.onGetContentRect(actionMode, view, rect);
                 }
@@ -655,8 +657,8 @@ public class EditTextCaption extends EditTextBoldCursor {
             wrap.setHintText(this.caption);
         }
         List<AccessibilityNodeInfoCompat.AccessibilityActionCompat> actionList = wrap.getActionList();
-        int i = 0;
         int size = actionList.size();
+        int i = 0;
         while (true) {
             if (i >= size) {
                 break;
@@ -669,14 +671,14 @@ public class EditTextCaption extends EditTextBoldCursor {
             i++;
         }
         if (hasSelection()) {
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString("Spoiler", R.string.Spoiler)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString("Bold", R.string.Bold)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString("Italic", R.string.Italic)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString("Mono", R.string.Mono)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString("Strike", R.string.Strike)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString("Underline", R.string.Underline)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString("CreateLink", R.string.CreateLink)));
-            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString("Regular", R.string.Regular)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_bold, LocaleController.getString(R.string.Bold)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_italic, LocaleController.getString(R.string.Italic)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_mono, LocaleController.getString(R.string.Mono)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_strike, LocaleController.getString(R.string.Strike)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_underline, LocaleController.getString(R.string.Underline)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_link, LocaleController.getString(R.string.CreateLink)));
+            wrap.addAction(new AccessibilityNodeInfoCompat.AccessibilityActionCompat(R.id.menu_regular, LocaleController.getString(R.string.Regular)));
         }
     }
 

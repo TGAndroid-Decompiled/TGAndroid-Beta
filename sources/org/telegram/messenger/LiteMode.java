@@ -193,7 +193,7 @@ public class LiteMode {
                     i = globalMainSettings.getBoolean("loopStickers", true) ? i | 2 : i & (-3);
                 }
                 if (globalMainSettings.contains("autoplay_video")) {
-                    i = globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false) ? i | 1024 : i & (-1025);
+                    i = (globalMainSettings.getBoolean("autoplay_video", true) || globalMainSettings.getBoolean("autoplay_video_liteforce", false)) ? i | 1024 : i & (-1025);
                 }
                 if (globalMainSettings.contains("autoplay_gif")) {
                     i = globalMainSettings.getBoolean("autoplay_gif", true) ? i | 2048 : i & (-2049);

@@ -30,6 +30,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 public abstract class RightSlidingDialogContainer extends FrameLayout {
     public static long fragmentDialogId;
     private Paint actionModePaint;
+    private int currentAccount;
     ActionBar currentActionBarView;
     BaseFragment currentFragment;
     View currentFragmentFullscreenView;
@@ -75,7 +76,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         super(context);
         this.openedProgress = 0.0f;
         this.notificationsLocker = new AnimationNotificationsLocker();
-        int i = UserConfig.selectedAccount;
+        this.currentAccount = UserConfig.selectedAccount;
         this.enabled = true;
     }
 
@@ -418,7 +419,8 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
             if (this.startedTracking) {
                 float f2 = this.swipeBackX;
                 float xVelocity = this.velocityTracker.getXVelocity();
-                if (!(f2 < ((float) getMeasuredWidth()) / 3.0f && (xVelocity < 3500.0f || xVelocity < this.velocityTracker.getYVelocity()))) {
+                float yVelocity = this.velocityTracker.getYVelocity();
+                if (f2 >= getMeasuredWidth() / 3.0f || (xVelocity >= 3500.0f && xVelocity >= yVelocity)) {
                     finishPreviewInernal();
                 } else {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(this.openedProgress, 1.0f);

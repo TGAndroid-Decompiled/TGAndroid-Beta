@@ -97,7 +97,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         };
         new ItemTouchHelper(new TouchHelperCallback()).attachToRecyclerView(this.recyclerListView);
         addView(this.recyclerListView);
-        this.recyclerListView.setLayoutManager(new LinearLayoutManager(this, baseFragment.getParentActivity()) {
+        this.recyclerListView.setLayoutManager(new LinearLayoutManager(baseFragment.getParentActivity()) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
                 return true;
@@ -150,6 +150,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         if (message == null) {
             return;
         }
+        boolean z = false;
         if (this.uiCallback.actionModeShowing()) {
             this.uiCallback.toggleItemSelection(message, view, 0);
             this.messageHashIdTmp.set(message.getId(), message.getDialogId());
@@ -171,19 +172,26 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
                     return;
                 }
                 boolean canPreviewDocument = message2.canPreviewDocument();
-                if (!canPreviewDocument) {
-                    TLRPC$Message tLRPC$Message = message2.messageOwner;
-                    boolean z = tLRPC$Message != null && tLRPC$Message.noforwards;
-                    TLRPC$Chat chat = message.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.channel_id)) : null;
-                    if (chat == null) {
-                        chat = message.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.chat_id)) : null;
-                    }
-                    if (chat != null) {
-                        z = chat.noforwards;
-                    }
-                    canPreviewDocument = canPreviewDocument || z;
-                }
                 if (canPreviewDocument) {
+                    z = canPreviewDocument;
+                } else {
+                    TLRPC$Message tLRPC$Message = message2.messageOwner;
+                    boolean z2 = tLRPC$Message != null && tLRPC$Message.noforwards;
+                    TLRPC$Chat tLRPC$Chat = null;
+                    TLRPC$Chat chat = message.messageOwner.peer_id.channel_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.channel_id)) : null;
+                    if (chat != null) {
+                        tLRPC$Chat = chat;
+                    } else if (message.messageOwner.peer_id.chat_id != 0) {
+                        tLRPC$Chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(message.messageOwner.peer_id.chat_id));
+                    }
+                    if (tLRPC$Chat != null) {
+                        z2 = tLRPC$Chat.noforwards;
+                    }
+                    if (canPreviewDocument || z2) {
+                        z = true;
+                    }
+                }
+                if (z) {
                     PhotoViewer.getInstance().setParentActivity(this.parentFragment);
                     ArrayList<MessageObject> arrayList = new ArrayList<>();
                     arrayList.add(message2);
@@ -302,7 +310,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             updateListInternal(z, this.currentLoadingFilesTmp, this.recentLoadingFilesTmp);
             if (this.rowCount == 0) {
                 this.emptyView.showProgress(false, false);
-                this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewDownloads", R.string.SearchEmptyViewDownloads));
+                this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewDownloads));
                 this.emptyView.subtitle.setVisibility(8);
             }
             this.emptyView.setStickerType(9);
@@ -371,9 +379,9 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             updateListInternal(true, arrayList, arrayList2);
             if (this.rowCount == 0) {
                 this.emptyView.showProgress(false, true);
-                this.emptyView.title.setText(LocaleController.getString("SearchEmptyViewTitle2", R.string.SearchEmptyViewTitle2));
+                this.emptyView.title.setText(LocaleController.getString(R.string.SearchEmptyViewTitle2));
                 this.emptyView.subtitle.setVisibility(0);
-                this.emptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+                this.emptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
             }
         }
     }
@@ -537,9 +545,9 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             if (i == 0) {
                 view = new GraySectionCell(viewGroup.getContext());
             } else if (i == 1) {
-                view = new Cell(SearchDownloadsContainer.this, viewGroup.getContext());
+                view = new Cell(viewGroup.getContext());
             } else {
-                view = new SharedAudioCell(this, viewGroup.getContext()) {
+                view = new SharedAudioCell(viewGroup.getContext()) {
                     @Override
                     public boolean needPlayMessage(MessageObject messageObject) {
                         return MediaController.getInstance().playMessage(messageObject);
@@ -628,7 +636,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
     public class Cell extends FrameLayout {
         SharedDocumentCell sharedDocumentCell;
 
-        public Cell(SearchDownloadsContainer searchDownloadsContainer, Context context) {
+        public Cell(Context context) {
             super(context);
             SharedDocumentCell sharedDocumentCell = new SharedDocumentCell(context, 2);
             this.sharedDocumentCell = sharedDocumentCell;
@@ -666,7 +674,7 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
 
         @Override
         public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-            if (!(viewHolder.getAdapterPosition() >= SearchDownloadsContainer.this.downloadingFilesStartRow && viewHolder.getAdapterPosition() < SearchDownloadsContainer.this.downloadingFilesEndRow)) {
+            if (viewHolder.getAdapterPosition() < SearchDownloadsContainer.this.downloadingFilesStartRow || viewHolder.getAdapterPosition() >= SearchDownloadsContainer.this.downloadingFilesEndRow) {
                 return ItemTouchHelper.Callback.makeMovementFlags(0, 0);
             }
             return ItemTouchHelper.Callback.makeMovementFlags(3, 0);
@@ -674,24 +682,23 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (!(viewHolder2.getAdapterPosition() >= SearchDownloadsContainer.this.downloadingFilesStartRow && viewHolder2.getAdapterPosition() < SearchDownloadsContainer.this.downloadingFilesEndRow)) {
-                return false;
+            if (viewHolder2.getAdapterPosition() >= SearchDownloadsContainer.this.downloadingFilesStartRow && viewHolder2.getAdapterPosition() < SearchDownloadsContainer.this.downloadingFilesEndRow) {
+                int adapterPosition = viewHolder.getAdapterPosition();
+                int adapterPosition2 = viewHolder2.getAdapterPosition();
+                SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
+                int i = searchDownloadsContainer.downloadingFilesStartRow;
+                int i2 = adapterPosition - i;
+                int i3 = adapterPosition2 - i;
+                searchDownloadsContainer.currentLoadingFiles.indexOf(Integer.valueOf(i2));
+                SearchDownloadsContainer searchDownloadsContainer2 = SearchDownloadsContainer.this;
+                searchDownloadsContainer2.currentLoadingFiles.get(adapterPosition - searchDownloadsContainer2.downloadingFilesStartRow);
+                MessageObject messageObject = SearchDownloadsContainer.this.currentLoadingFiles.get(i2);
+                MessageObject messageObject2 = SearchDownloadsContainer.this.currentLoadingFiles.get(i3);
+                SearchDownloadsContainer.this.currentLoadingFiles.set(i2, messageObject2);
+                SearchDownloadsContainer.this.currentLoadingFiles.set(i3, messageObject);
+                DownloadController.getInstance(SearchDownloadsContainer.this.currentAccount).swapLoadingPriority(messageObject, messageObject2);
+                SearchDownloadsContainer.this.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
             }
-            int adapterPosition = viewHolder.getAdapterPosition();
-            int adapterPosition2 = viewHolder2.getAdapterPosition();
-            SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
-            int i = searchDownloadsContainer.downloadingFilesStartRow;
-            int i2 = adapterPosition - i;
-            int i3 = adapterPosition2 - i;
-            searchDownloadsContainer.currentLoadingFiles.indexOf(Integer.valueOf(adapterPosition - i));
-            SearchDownloadsContainer searchDownloadsContainer2 = SearchDownloadsContainer.this;
-            searchDownloadsContainer2.currentLoadingFiles.get(adapterPosition - searchDownloadsContainer2.downloadingFilesStartRow);
-            MessageObject messageObject = SearchDownloadsContainer.this.currentLoadingFiles.get(i2);
-            MessageObject messageObject2 = SearchDownloadsContainer.this.currentLoadingFiles.get(i3);
-            SearchDownloadsContainer.this.currentLoadingFiles.set(i2, messageObject2);
-            SearchDownloadsContainer.this.currentLoadingFiles.set(i3, messageObject);
-            DownloadController.getInstance(SearchDownloadsContainer.this.currentAccount).swapLoadingPriority(messageObject, messageObject2);
-            SearchDownloadsContainer.this.adapter.notifyItemMoved(adapterPosition, adapterPosition2);
             return false;
         }
 

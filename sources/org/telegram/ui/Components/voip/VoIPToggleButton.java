@@ -82,7 +82,7 @@ public class VoIPToggleButton extends FrameLayout {
             textView.setTextSize(1, 11.0f);
             textView.setTextColor(-1);
             textView.setImportantForAccessibility(2);
-            this.textLayoutContainer.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 6.0f + f, 0.0f, 0.0f));
+            this.textLayoutContainer.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, f + 6.0f, 0.0f, 0.0f));
             this.textView[i] = textView;
         }
         this.textView[1].setVisibility(8);
@@ -109,10 +109,7 @@ public class VoIPToggleButton extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.pressedScale;
-        fArr[1] = z ? 0.8f : 1.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.pressedScale, z ? 0.8f : 1.0f);
         this.pressedScaleAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -235,6 +232,8 @@ public class VoIPToggleButton extends FrameLayout {
         this.replaceAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
+                Drawable[] drawableArr;
+                Drawable drawable;
                 VoIPToggleButton voIPToggleButton = VoIPToggleButton.this;
                 voIPToggleButton.replaceAnimator = null;
                 if (z5) {
@@ -242,14 +241,11 @@ public class VoIPToggleButton extends FrameLayout {
                     TextView textView = textViewArr[0];
                     textViewArr[0] = textViewArr[1];
                     textViewArr[1] = textView;
-                    textViewArr[1].setVisibility(8);
+                    textView.setVisibility(8);
                 }
-                if (!VoIPToggleButton.this.iconChangeColor) {
-                    Drawable[] drawableArr = VoIPToggleButton.this.icon;
-                    if (drawableArr[1] != null) {
-                        drawableArr[0] = drawableArr[1];
-                        drawableArr[1] = null;
-                    }
+                if (!VoIPToggleButton.this.iconChangeColor && (drawable = (drawableArr = VoIPToggleButton.this.icon)[1]) != null) {
+                    drawableArr[0] = drawable;
+                    drawableArr[1] = null;
                 }
                 VoIPToggleButton.this.iconChangeColor = false;
                 if (!VoIPToggleButton.this.checkable) {
@@ -325,10 +321,7 @@ public class VoIPToggleButton extends FrameLayout {
                     valueAnimator.removeAllListeners();
                     this.checkAnimator.cancel();
                 }
-                float[] fArr = new float[2];
-                fArr[0] = this.checkedProgress;
-                fArr[1] = this.checked ? 1.0f : 0.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.checkedProgress, this.checked ? 1.0f : 0.0f);
                 this.checkAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override

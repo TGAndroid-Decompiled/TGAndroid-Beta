@@ -51,8 +51,10 @@ public class FlatCheckBox extends View {
         this.textPaint.setTextAlign(Paint.Align.CENTER);
         this.textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
         this.outLinePaint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-        this.outLinePaint.setStyle(Paint.Style.STROKE);
-        this.checkPaint.setStyle(Paint.Style.STROKE);
+        Paint paint = this.outLinePaint;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        this.checkPaint.setStyle(style);
         this.checkPaint.setStrokeCap(Paint.Cap.ROUND);
         this.checkPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
     }
@@ -91,10 +93,7 @@ public class FlatCheckBox extends View {
             valueAnimator.removeAllListeners();
             this.checkAnimator.cancel();
         }
-        float[] fArr = new float[2];
-        fArr[0] = this.progress;
-        fArr[1] = z ? 1.0f : 0.0f;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, z ? 1.0f : 0.0f);
         this.checkAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -142,25 +141,23 @@ public class FlatCheckBox extends View {
         }
         int measuredHeight = getMeasuredHeight() >> 1;
         this.outLinePaint.setColor(this.colorInactive);
-        RectF rectF = this.rectF;
-        int i = this.HEIGHT;
-        canvas.drawRoundRect(rectF, i / 2.0f, i / 2.0f, this.fillPaint);
-        RectF rectF2 = this.rectF;
-        int i2 = this.HEIGHT;
-        canvas.drawRoundRect(rectF2, i2 / 2.0f, i2 / 2.0f, this.outLinePaint);
+        float f3 = this.HEIGHT / 2.0f;
+        canvas.drawRoundRect(this.rectF, f3, f3, this.fillPaint);
+        float f4 = this.HEIGHT / 2.0f;
+        canvas.drawRoundRect(this.rectF, f4, f4, this.outLinePaint);
         String str = this.text;
         if (str != null) {
             canvas.drawText(str, (getMeasuredWidth() >> 1) + (f * this.TRANSLETE_TEXT), measuredHeight + (this.textPaint.getTextSize() * 0.35f), this.textPaint);
         }
-        float f3 = 2.0f - (this.progress / 0.5f);
+        float f5 = 2.0f - (this.progress / 0.5f);
         canvas.save();
         canvas.scale(0.9f, 0.9f, AndroidUtilities.dpf2(7.0f), measuredHeight);
         canvas.translate(AndroidUtilities.dp(12.0f), measuredHeight - AndroidUtilities.dp(9.0f));
         if (this.progress > 0.5f) {
             this.checkPaint.setColor(this.colorTextActive);
-            float f4 = 1.0f - f3;
-            canvas.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f4)), this.checkPaint);
-            canvas.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) + (AndroidUtilities.dp(8.0f) * f4)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f4)), this.checkPaint);
+            float f6 = 1.0f - f5;
+            canvas.drawLine(AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) - (AndroidUtilities.dp(4.0f) * f6)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(4.0f) * f6)), this.checkPaint);
+            canvas.drawLine((int) AndroidUtilities.dpf2(7.0f), (int) AndroidUtilities.dpf2(13.0f), (int) (AndroidUtilities.dpf2(7.0f) + (AndroidUtilities.dp(8.0f) * f6)), (int) (AndroidUtilities.dpf2(13.0f) - (AndroidUtilities.dp(8.0f) * f6)), this.checkPaint);
         }
         canvas.restore();
     }

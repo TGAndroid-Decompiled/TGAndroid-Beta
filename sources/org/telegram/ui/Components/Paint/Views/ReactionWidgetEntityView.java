@@ -168,7 +168,7 @@ public class ReactionWidgetEntityView extends EntityView {
 
     @Override
     protected EntityView.SelectionView createSelectionView() {
-        return new StickerViewSelectionView(this, getContext());
+        return new StickerViewSelectionView(getContext());
     }
 
     public void setCurrentReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z) {
@@ -287,7 +287,7 @@ public class ReactionWidgetEntityView extends EntityView {
     public class StickerViewSelectionView extends EntityView.SelectionView {
         private RectF arcRect;
 
-        public StickerViewSelectionView(ReactionWidgetEntityView reactionWidgetEntityView, Context context) {
+        public StickerViewSelectionView(Context context) {
             super(context);
             this.arcRect = new RectF();
         }

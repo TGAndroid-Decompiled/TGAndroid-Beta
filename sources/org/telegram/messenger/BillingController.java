@@ -65,40 +65,6 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private ArrayList<Runnable> setupListeners = new ArrayList<>();
     private int triesLeft = 0;
 
-    public static String getResponseCodeString(int i) {
-        if (i == 12) {
-            return "NETWORK_ERROR";
-        }
-        switch (i) {
-            case -3:
-                return "SERVICE_TIMEOUT";
-            case -2:
-                return "FEATURE_NOT_SUPPORTED";
-            case -1:
-                return "SERVICE_DISCONNECTED";
-            case 0:
-                return "OK";
-            case 1:
-                return "USER_CANCELED";
-            case 2:
-                return "SERVICE_UNAVAILABLE";
-            case 3:
-                return "BILLING_UNAVAILABLE";
-            case 4:
-                return "ITEM_UNAVAILABLE";
-            case 5:
-                return "DEVELOPER_ERROR";
-            case 6:
-                return "ERROR";
-            case 7:
-                return "ITEM_ALREADY_OWNED";
-            case 8:
-                return "ITEM_NOT_OWNED";
-            default:
-                return null;
-        }
-    }
-
     public static void lambda$consumeGiftPurchase$5(BillingResult billingResult, String str) {
     }
 
@@ -366,7 +332,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onPurchasesUpdated$4(AlertDialog alertDialog, Purchase purchase, AccountInstance accountInstance, BillingResult billingResult, TLRPC$TL_payments_assignPlayMarketTransaction tLRPC$TL_payments_assignPlayMarketTransaction, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         Objects.requireNonNull(alertDialog);
-        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda8(alertDialog));
+        AndroidUtilities.runOnUIThread(new BillingController$$ExternalSyntheticLambda10(alertDialog));
         this.requestingTokens.remove(purchase.getPurchaseToken());
         if (!(tLObject instanceof TLRPC$Updates)) {
             if (tLRPC$TL_error != null) {
@@ -427,7 +393,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             this.isDisconnected = false;
             this.triesLeft = 3;
             try {
-                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+                queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda3(this));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -490,9 +456,43 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     public void lambda$onQueriedPremiumProductDetails$7() {
         try {
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda2(this));
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new BillingController$$ExternalSyntheticLambda3(this));
         } catch (Exception e) {
             FileLog.e(e);
         }
+    }
+
+    public static String getResponseCodeString(int i) {
+        if (i != 12) {
+            switch (i) {
+                case -3:
+                    return "SERVICE_TIMEOUT";
+                case -2:
+                    return "FEATURE_NOT_SUPPORTED";
+                case -1:
+                    return "SERVICE_DISCONNECTED";
+                case 0:
+                    return "OK";
+                case 1:
+                    return "USER_CANCELED";
+                case 2:
+                    return "SERVICE_UNAVAILABLE";
+                case 3:
+                    return "BILLING_UNAVAILABLE";
+                case 4:
+                    return "ITEM_UNAVAILABLE";
+                case 5:
+                    return "DEVELOPER_ERROR";
+                case 6:
+                    return "ERROR";
+                case 7:
+                    return "ITEM_ALREADY_OWNED";
+                case 8:
+                    return "ITEM_NOT_OWNED";
+                default:
+                    return null;
+            }
+        }
+        return "NETWORK_ERROR";
     }
 }

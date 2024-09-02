@@ -40,9 +40,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     private final Context context;
     private boolean isGreenSelector;
     private List<Item> items;
+    private RecyclerListView listView;
     public boolean needChecks;
     private final Theme.ResourcesProvider resourcesProvider;
     private GraySectionCell topSectionCell;
+    private View.OnClickListener topSectionClickListener;
 
     public SelectorAdapter(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
@@ -63,9 +65,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     public void setData(List<Item> list, RecyclerListView recyclerListView) {
         this.items = list;
+        this.listView = recyclerListView;
     }
 
     public void setTopSectionClickListener(View.OnClickListener onClickListener) {
+        this.topSectionClickListener = onClickListener;
         GraySectionCell graySectionCell = this.topSectionCell;
         if (graySectionCell != null) {
             if (onClickListener == null) {
@@ -94,8 +98,8 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             view = new SelectorUserCell(this.context, this.needChecks, this.resourcesProvider, this.isGreenSelector);
         } else if (i == 5) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 1, this.resourcesProvider);
-            stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
-            stickerEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
+            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
+            stickerEmptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
             stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
             view = stickerEmptyView;
         } else if (i == 7) {
@@ -167,9 +171,9 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             selectorUserCell.setCheckboxAlpha(1.0f, false);
             int i3 = i + 1;
             if (i3 < this.items.size() && this.items.get(i3).viewType != itemViewType) {
-                r5 = false;
+                r4 = false;
             }
-            selectorUserCell.setDivider(r5);
+            selectorUserCell.setDivider(r4);
             if (i3 < this.items.size() && this.items.get(i3).viewType == 7) {
                 selectorUserCell.setDivider(false);
             }
@@ -359,7 +363,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || Item.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             Item item = (Item) obj;
@@ -391,7 +395,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (this == item) {
                 return true;
             }
-            if (item == null || Item.class != item.getClass()) {
+            if (item == null || getClass() != item.getClass()) {
                 return false;
             }
             Item item2 = (Item) item;

@@ -71,13 +71,17 @@ public class Camera1Enumerator implements CameraEnumerator {
     static synchronized List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(int i) {
         List<CameraEnumerationAndroid.CaptureFormat> list;
         synchronized (Camera1Enumerator.class) {
-            if (cachedSupportedFormats == null) {
-                cachedSupportedFormats = new ArrayList();
-                for (int i2 = 0; i2 < Camera.getNumberOfCameras(); i2++) {
-                    cachedSupportedFormats.add(enumerateFormats(i2));
+            try {
+                if (cachedSupportedFormats == null) {
+                    cachedSupportedFormats = new ArrayList();
+                    for (int i2 = 0; i2 < Camera.getNumberOfCameras(); i2++) {
+                        cachedSupportedFormats.add(enumerateFormats(i2));
+                    }
                 }
+                list = cachedSupportedFormats.get(i);
+            } catch (Throwable th) {
+                throw th;
             }
-            list = cachedSupportedFormats.get(i);
         }
         return list;
     }

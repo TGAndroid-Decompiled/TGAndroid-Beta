@@ -136,7 +136,6 @@ public class DocumentObject {
     public static SvgHelper.SvgDrawable getSvgThumb(TLRPC$Document tLRPC$Document, int i, float f, float f2, Theme.ResourcesProvider resourcesProvider) {
         int i2;
         int i3;
-        TLRPC$DocumentAttribute tLRPC$DocumentAttribute;
         SvgHelper.SvgDrawable svgDrawable = null;
         if (tLRPC$Document == null) {
             return null;
@@ -150,23 +149,16 @@ public class DocumentObject {
             TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Document.thumbs.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 int size2 = tLRPC$Document.attributes.size();
-                int i5 = 0;
-                while (true) {
-                    i2 = 512;
-                    if (i5 >= size2) {
-                        i3 = 512;
-                        break;
-                    }
-                    tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i5);
+                for (int i5 = 0; i5 < size2; i5++) {
+                    TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i5);
                     if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeVideo)) {
+                        i2 = tLRPC$DocumentAttribute.w;
+                        i3 = tLRPC$DocumentAttribute.h;
                         break;
                     }
-                    i5++;
                 }
-                int i6 = tLRPC$DocumentAttribute.w;
-                int i7 = tLRPC$DocumentAttribute.h;
-                i2 = i6;
-                i3 = i7;
+                i2 = 512;
+                i3 = 512;
                 if (i2 != 0 && i3 != 0 && (svgDrawable = SvgHelper.getDrawableByPath(((TLRPC$TL_photoPathSize) tLRPC$PhotoSize).svgPath, (int) (i2 * f2), (int) (i3 * f2))) != null) {
                     svgDrawable.setupGradient(i, resourcesProvider, f, false);
                 }

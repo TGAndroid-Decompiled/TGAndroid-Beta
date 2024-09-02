@@ -49,6 +49,7 @@ public class RecyclerItemsEnterAnimator {
     }
 
     public void showItemsAnimated(int i) {
+        Animator ofFloat;
         final View progressView = getProgressView();
         final RecyclerView.LayoutManager layoutManager = this.listView.getLayoutManager();
         if (progressView != null && layoutManager != null) {
@@ -56,7 +57,11 @@ public class RecyclerItemsEnterAnimator {
             this.ignoreView.add(progressView);
             this.listView.addView(progressView);
             layoutManager.ignoreView(progressView);
-            Animator ofFloat = this.animateAlphaProgressView ? ObjectAnimator.ofFloat(progressView, (Property<View, Float>) View.ALPHA, progressView.getAlpha(), 0.0f) : ValueAnimator.ofFloat(0.0f, 1.0f);
+            if (this.animateAlphaProgressView) {
+                ofFloat = ObjectAnimator.ofFloat(progressView, (Property<View, Float>) View.ALPHA, progressView.getAlpha(), 0.0f);
+            } else {
+                ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            }
             ofFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

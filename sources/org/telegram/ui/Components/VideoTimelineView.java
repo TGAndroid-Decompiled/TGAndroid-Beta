@@ -211,7 +211,7 @@ public class VideoTimelineView extends View {
                     this.progressRight = dp4 + f4;
                 } else {
                     float f5 = this.minProgressDiff;
-                    if (f5 != 0.0f && f2 - dp4 < f5) {
+                    if (f5 != 0.0f && f3 < f5) {
                         float f6 = f2 - f5;
                         this.progressLeft = f6;
                         if (f6 < 0.0f) {
@@ -243,7 +243,7 @@ public class VideoTimelineView extends View {
                     this.progressLeft = dp5 - f9;
                 } else {
                     float f10 = this.minProgressDiff;
-                    if (f10 != 0.0f && dp5 - f7 < f10) {
+                    if (f10 != 0.0f && f8 < f10) {
                         float f11 = f7 + f10;
                         this.progressRight = f11;
                         if (f11 > 1.0f) {
@@ -512,28 +512,28 @@ public class VideoTimelineView extends View {
             paint.setColor(0);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             canvas2.drawColor(Theme.getColor(Theme.key_chat_messagePanelBackground));
-            int i5 = this.roundCornersSize;
-            canvas2.drawCircle(i5, i5, i5, paint);
+            float f = this.roundCornersSize;
+            canvas2.drawCircle(f, f, f, paint);
         }
-        int i6 = this.roundCornersSize >> 1;
+        int i5 = this.roundCornersSize >> 1;
         canvas.save();
-        float f = i3;
-        float f2 = i4;
-        canvas.drawBitmap(this.roundCornerBitmap, f, f2, (Paint) null);
-        float f3 = (i + i4) - i6;
-        canvas.rotate(-90.0f, i3 + i6, f3);
-        canvas.drawBitmap(this.roundCornerBitmap, f, r9 - this.roundCornersSize, (Paint) null);
+        float f2 = i3;
+        float f3 = i4;
+        canvas.drawBitmap(this.roundCornerBitmap, f2, f3, (Paint) null);
+        float f4 = (i + i4) - i5;
+        canvas.rotate(-90.0f, i3 + i5, f4);
+        canvas.drawBitmap(this.roundCornerBitmap, f2, r9 - this.roundCornersSize, (Paint) null);
         canvas.restore();
         canvas.save();
-        float f4 = (i3 + i2) - i6;
-        canvas.rotate(180.0f, f4, f3);
+        float f5 = (i3 + i2) - i5;
+        canvas.rotate(180.0f, f5, f4);
         Bitmap bitmap = this.roundCornerBitmap;
-        int i7 = this.roundCornersSize;
-        canvas.drawBitmap(bitmap, r11 - i7, r9 - i7, (Paint) null);
+        int i6 = this.roundCornersSize;
+        canvas.drawBitmap(bitmap, r11 - i6, r9 - i6, (Paint) null);
         canvas.restore();
         canvas.save();
-        canvas.rotate(90.0f, f4, i4 + i6);
-        canvas.drawBitmap(this.roundCornerBitmap, r11 - this.roundCornersSize, f2, (Paint) null);
+        canvas.rotate(90.0f, f5, i4 + i5);
+        canvas.drawBitmap(this.roundCornerBitmap, r11 - this.roundCornersSize, f3, (Paint) null);
         canvas.restore();
     }
 

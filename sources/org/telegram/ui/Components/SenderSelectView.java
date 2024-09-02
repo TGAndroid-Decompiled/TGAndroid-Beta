@@ -126,8 +126,10 @@ public class SenderSelectView extends View {
             str = UserObject.getFirstName((TLRPC$User) tLObject);
         } else if (tLObject instanceof TLRPC$Chat) {
             str = ((TLRPC$Chat) tLObject).title;
+        } else if (!(tLObject instanceof TLRPC$ChatInvite)) {
+            str = "";
         } else {
-            str = tLObject instanceof TLRPC$ChatInvite ? ((TLRPC$ChatInvite) tLObject).title : "";
+            str = ((TLRPC$ChatInvite) tLObject).title;
         }
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
         this.avatarDrawable.setInfo(tLObject);

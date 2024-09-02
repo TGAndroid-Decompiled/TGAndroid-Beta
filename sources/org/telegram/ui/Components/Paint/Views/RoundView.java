@@ -13,6 +13,7 @@ import android.graphics.RectF;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -35,6 +36,7 @@ public class RoundView extends EntityView {
     private AnimatedFloat shownT;
     public final Rect src;
     public TextureView textureView;
+    private FrameLayout.LayoutParams textureViewParams;
     public Bitmap thumbBitmap;
 
     @Override
@@ -69,7 +71,9 @@ public class RoundView extends EntityView {
         }
         TextureView textureView = new TextureView(context);
         this.textureView = textureView;
-        addView(textureView, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -1.0f);
+        this.textureViewParams = createFrame;
+        addView(textureView, createFrame);
         this.mirrorT = new AnimatedFloat(this, 0L, 500L, cubicBezierInterpolator);
         updatePosition();
         setWillNotDraw(false);
@@ -210,7 +214,7 @@ public class RoundView extends EntityView {
 
     @Override
     protected EntityView.SelectionView createSelectionView() {
-        return new RoundViewSelectionView(this, getContext());
+        return new RoundViewSelectionView(getContext());
     }
 
     public Size getBaseSize() {
@@ -220,7 +224,7 @@ public class RoundView extends EntityView {
     public class RoundViewSelectionView extends EntityView.SelectionView {
         private final RectF arcRect;
 
-        public RoundViewSelectionView(RoundView roundView, Context context) {
+        public RoundViewSelectionView(Context context) {
             super(context);
             this.arcRect = new RectF();
         }

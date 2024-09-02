@@ -133,7 +133,7 @@ public class ProxySettingsActivity extends BaseFragment {
 
     @Override
     public View createView(final Context context) {
-        this.actionBar.setTitle(LocaleController.getString("ProxyDetails", R.string.ProxyDetails));
+        this.actionBar.setTitle(LocaleController.getString(R.string.ProxyDetails));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(false);
         if (AndroidUtilities.isTablet()) {
@@ -188,16 +188,15 @@ public class ProxySettingsActivity extends BaseFragment {
         });
         ActionBarMenuItem addItemWithWidth = this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f));
         this.doneItem = addItemWithWidth;
-        addItemWithWidth.setContentDescription(LocaleController.getString("Done", R.string.Done));
+        addItemWithWidth.setContentDescription(LocaleController.getString(R.string.Done));
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ScrollView scrollView = new ScrollView(context);
         this.scrollView = scrollView;
         scrollView.setFillViewport(true);
         AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor(Theme.key_actionBarDefault));
-        frameLayout2.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout2 = linearLayout;
         linearLayout.setOrientation(1);
@@ -214,9 +213,9 @@ public class ProxySettingsActivity extends BaseFragment {
             this.typeCell[i].setBackground(Theme.getSelectorDrawable(true));
             this.typeCell[i].setTag(Integer.valueOf(i));
             if (i == 0) {
-                this.typeCell[i].setText(LocaleController.getString("UseProxySocks5", R.string.UseProxySocks5), i == this.currentType, true);
+                this.typeCell[i].setText(LocaleController.getString(R.string.UseProxySocks5), i == this.currentType, true);
             } else {
-                this.typeCell[i].setText(LocaleController.getString("UseProxyTelegram", R.string.UseProxyTelegram), i == this.currentType, false);
+                this.typeCell[i].setText(LocaleController.getString(R.string.UseProxyTelegram), i == this.currentType, false);
             }
             this.linearLayout2.addView(this.typeCell[i], LayoutHelper.createLinear(-1, 50));
             this.typeCell[i].setOnClickListener(onClickListener);
@@ -236,8 +235,8 @@ public class ProxySettingsActivity extends BaseFragment {
         this.inputFields = new EditTextBoldCursor[5];
         int i2 = 0;
         for (int i3 = 5; i2 < i3; i3 = 5) {
-            FrameLayout frameLayout3 = new FrameLayout(context);
-            this.inputFieldsContainer.addView(frameLayout3, LayoutHelper.createLinear(-1, 64));
+            FrameLayout frameLayout2 = new FrameLayout(context);
+            this.inputFieldsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 64));
             this.inputFields[i2] = new EditTextBoldCursor(context);
             this.inputFields[i2].setTag(Integer.valueOf(i2));
             this.inputFields[i2].setTextSize(1, 16.0f);
@@ -325,25 +324,25 @@ public class ProxySettingsActivity extends BaseFragment {
             }
             this.inputFields[i2].setImeOptions(268435461);
             if (i2 == 0) {
-                this.inputFields[i2].setHintText(LocaleController.getString("UseProxyAddress", R.string.UseProxyAddress));
+                this.inputFields[i2].setHintText(LocaleController.getString(R.string.UseProxyAddress));
                 this.inputFields[i2].setText(this.currentProxyInfo.address);
             } else if (i2 == 1) {
-                this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPort", R.string.UseProxyPort));
+                this.inputFields[i2].setHintText(LocaleController.getString(R.string.UseProxyPort));
                 this.inputFields[i2].setText("" + this.currentProxyInfo.port);
             } else if (i2 == 2) {
-                this.inputFields[i2].setHintText(LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername));
+                this.inputFields[i2].setHintText(LocaleController.getString(R.string.UseProxyUsername));
                 this.inputFields[i2].setText(this.currentProxyInfo.username);
             } else if (i2 == 3) {
-                this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPassword", R.string.UseProxyPassword));
+                this.inputFields[i2].setHintText(LocaleController.getString(R.string.UseProxyPassword));
                 this.inputFields[i2].setText(this.currentProxyInfo.password);
             } else if (i2 == 4) {
-                this.inputFields[i2].setHintText(LocaleController.getString("UseProxySecret", R.string.UseProxySecret));
+                this.inputFields[i2].setHintText(LocaleController.getString(R.string.UseProxySecret));
                 this.inputFields[i2].setText(this.currentProxyInfo.secret);
             }
-            EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-            editTextBoldCursorArr[i2].setSelection(editTextBoldCursorArr[i2].length());
+            EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i2];
+            editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
             this.inputFields[i2].setPadding(0, 0, 0, 0);
-            frameLayout3.addView(this.inputFields[i2], LayoutHelper.createFrame(-1, -1.0f, 51, 17.0f, i2 == 0 ? 12.0f : 0.0f, 17.0f, 0.0f));
+            frameLayout2.addView(this.inputFields[i2], LayoutHelper.createFrame(-1, -1.0f, 51, 17.0f, i2 == 0 ? 12.0f : 0.0f, 17.0f, 0.0f));
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
                 public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
@@ -358,9 +357,9 @@ public class ProxySettingsActivity extends BaseFragment {
             this.bottomCells[i5] = new TextInfoPrivacyCell(context);
             this.bottomCells[i5].setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             if (i5 == 0) {
-                this.bottomCells[i5].setText(LocaleController.getString("UseProxyInfo", R.string.UseProxyInfo));
+                this.bottomCells[i5].setText(LocaleController.getString(R.string.UseProxyInfo));
             } else {
-                this.bottomCells[i5].setText(LocaleController.getString("UseProxyTelegramInfo", R.string.UseProxyTelegramInfo) + "\n\n" + LocaleController.getString("UseProxyTelegramInfo2", R.string.UseProxyTelegramInfo2));
+                this.bottomCells[i5].setText(LocaleController.getString(R.string.UseProxyTelegramInfo) + "\n\n" + LocaleController.getString(R.string.UseProxyTelegramInfo2));
                 this.bottomCells[i5].setVisibility(8);
             }
             this.linearLayout2.addView(this.bottomCells[i5], LayoutHelper.createLinear(-1, -2));
@@ -368,7 +367,7 @@ public class ProxySettingsActivity extends BaseFragment {
         TextSettingsCell textSettingsCell = new TextSettingsCell(this.fragmentView.getContext());
         this.pasteCell = textSettingsCell;
         textSettingsCell.setBackground(Theme.getSelectorDrawable(true));
-        this.pasteCell.setText(LocaleController.getString("PasteFromClipboard", R.string.PasteFromClipboard), false);
+        this.pasteCell.setText(LocaleController.getString(R.string.PasteFromClipboard), false);
         TextSettingsCell textSettingsCell2 = this.pasteCell;
         int i6 = Theme.key_windowBackgroundWhiteBlueText4;
         textSettingsCell2.setTextColor(Theme.getColor(i6));
@@ -391,7 +390,7 @@ public class ProxySettingsActivity extends BaseFragment {
         TextSettingsCell textSettingsCell3 = new TextSettingsCell(context);
         this.shareCell = textSettingsCell3;
         textSettingsCell3.setBackgroundDrawable(Theme.getSelectorDrawable(true));
-        this.shareCell.setText(LocaleController.getString("ShareFile", R.string.ShareFile), false);
+        this.shareCell.setText(LocaleController.getString(R.string.ShareFile), false);
         this.shareCell.setTextColor(Theme.getColor(i6));
         this.linearLayout2.addView(this.shareCell, LayoutHelper.createLinear(-1, -2));
         this.shareCell.setOnClickListener(new View.OnClickListener() {
@@ -445,9 +444,10 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i < strArr.length) {
                 int i2 = this.pasteType;
                 if ((i2 != 0 || i != 4) && (i2 != 1 || (i != 2 && i != 3))) {
-                    if (strArr[i] != null) {
+                    String str = strArr[i];
+                    if (str != null) {
                         try {
-                            this.inputFields[i].setText(URLDecoder.decode(strArr[i], "UTF-8"));
+                            this.inputFields[i].setText(URLDecoder.decode(str, "UTF-8"));
                         } catch (UnsupportedEncodingException unused) {
                             this.inputFields[i].setText(this.pasteFields[i]);
                         }
@@ -457,8 +457,8 @@ public class ProxySettingsActivity extends BaseFragment {
                 }
                 i++;
             } else {
-                EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
-                editTextBoldCursorArr[0].setSelection(editTextBoldCursorArr[0].length());
+                EditTextBoldCursor editTextBoldCursor = this.inputFields[0];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 setProxyType(this.pasteType, true, new Runnable() {
                     @Override
                     public final void run() {
@@ -527,7 +527,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (sb.length() == 0) {
                 return;
             }
-            QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, LocaleController.getString("ShareQrCode", R.string.ShareQrCode), str + sb.toString(), LocaleController.getString("QRCodeLinkHelpProxy", R.string.QRCodeLinkHelpProxy), true);
+            QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, LocaleController.getString(R.string.ShareQrCode), str + sb.toString(), LocaleController.getString(R.string.QRCodeLinkHelpProxy), true);
             qRCodeBottomSheet.setCenterImage(SvgHelper.getBitmap(RLottieDrawable.readRes(null, R.raw.qr_dog), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false));
             showDialog(qRCodeBottomSheet);
         } catch (Exception unused) {
@@ -582,10 +582,11 @@ public class ProxySettingsActivity extends BaseFragment {
         }
         EditTextBoldCursor[] editTextBoldCursorArr = this.inputFields;
         boolean z2 = false;
-        if (editTextBoldCursorArr[0] == null || editTextBoldCursorArr[1] == null) {
+        EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
+        if (editTextBoldCursor == null || editTextBoldCursorArr[1] == null) {
             return;
         }
-        if (editTextBoldCursorArr[0].length() != 0 && Utilities.parseInt((CharSequence) this.inputFields[1].getText().toString()).intValue() != 0) {
+        if (editTextBoldCursor.length() != 0 && Utilities.parseInt((CharSequence) this.inputFields[1].getText().toString()).intValue() != 0) {
             z2 = true;
         }
         setShareDoneEnabled(z2, z);
@@ -605,7 +606,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (z && i2 >= 21) {
                 TransitionSet duration = new TransitionSet().addTransition(new Fade(2)).addTransition(new ChangeBounds()).addTransition(new Fade(1)).setInterpolator((TimeInterpolator) CubicBezierInterpolator.DEFAULT).setDuration(250L);
                 if (runnable != null) {
-                    duration.addListener(new Transition.TransitionListener(this) {
+                    duration.addListener(new Transition.TransitionListener() {
                         @Override
                         public void onTransitionCancel(Transition transition) {
                         }

@@ -60,7 +60,7 @@ public class CompoundEmoji {
             if (str.length() != 2) {
                 if (str.length() == 4) {
                     i = getSkinTone(str);
-                    r1 = i >= 0 ? i : -1;
+                    r3 = i >= 0 ? i : -1;
                     split = str.split("\u200d");
                     if (split.length == 2 || !split[0].startsWith("🫱") || !split[1].startsWith("🫲")) {
                         return null;
@@ -68,13 +68,13 @@ public class CompoundEmoji {
                     if (split[0].length() != 2 && (split[0].length() != 4 || (i = getSkinTone(split[0])) < 0)) {
                         return null;
                     }
-                    if (split[1].length() == 2 || (split[1].length() == 4 && (r1 = getSkinTone(split[1])) >= 0)) {
-                        return new Pair<>(Integer.valueOf(i), Integer.valueOf(r1));
+                    if (split[1].length() == 2 || (split[1].length() == 4 && (r3 = getSkinTone(split[1])) >= 0)) {
+                        return new Pair<>(Integer.valueOf(i), Integer.valueOf(r3));
                     }
                     return null;
                 }
             }
-            return new Pair<>(Integer.valueOf(r1), Integer.valueOf(r1));
+            return new Pair<>(Integer.valueOf(r3), Integer.valueOf(r3));
         }
         i = -1;
         split = str.split("\u200d");
@@ -115,13 +115,15 @@ public class CompoundEmoji {
 
         public DrawableInfo(int i, int i2, int i3) {
             if (i2 == -2) {
-                i2 = -1;
                 this.placeholder = true;
+                i2 = -1;
             }
             this.emoji = i;
+            Integer valueOf = Integer.valueOf(i);
             this.skin = i2;
+            Integer valueOf2 = Integer.valueOf(i2);
             this.place = i3;
-            this.hash = Objects.hash(Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3));
+            this.hash = Objects.hash(valueOf, valueOf2, Integer.valueOf(i3));
         }
 
         public DrawableInfo updateSkin(int i) {
@@ -157,8 +159,9 @@ public class CompoundEmoji {
             Bitmap loadBitmap = Emoji.loadBitmap("emoji/compound/" + this.emoji + "_" + this.skin + "_" + this.place + ".png");
             if (loadBitmap != null) {
                 bitmaps.put(this.hash, loadBitmap);
-                AndroidUtilities.cancelRunOnUIThread(Emoji.invalidateUiRunnable);
-                AndroidUtilities.runOnUIThread(Emoji.invalidateUiRunnable);
+                Runnable runnable = Emoji.invalidateUiRunnable;
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                AndroidUtilities.runOnUIThread(runnable);
             }
             loading.remove(Integer.valueOf(this.hash));
         }
@@ -304,13 +307,15 @@ public class CompoundEmoji {
         }
 
         private void drawDrawableInfo(Canvas canvas, DrawableInfo drawableInfo, Rect rect2, float f) {
+            int i;
             Bitmap bitmap = drawableInfo.getBitmap();
             if (bitmap != null) {
                 Paint paint2 = drawableInfo.placeholder ? CompoundEmoji.placeholderPaint : paint;
-                int i = 255;
                 if (f < 1.0f) {
                     i = paint2.getAlpha();
                     paint2.setAlpha((int) (i * f));
+                } else {
+                    i = 255;
                 }
                 canvas.drawBitmap(bitmap, (Rect) null, rect2, paint2);
                 if (f < 1.0f) {

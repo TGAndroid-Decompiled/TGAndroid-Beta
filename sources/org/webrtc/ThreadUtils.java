@@ -99,8 +99,8 @@ public class ThreadUtils {
                 z = countDownLatch.await(j2, TimeUnit.MILLISECONDS);
                 break;
             } catch (InterruptedException unused) {
-                z2 = true;
                 j2 = j - (SystemClock.elapsedRealtime() - elapsedRealtime);
+                z2 = true;
             }
         } while (j2 > 0);
         if (z2) {

@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
@@ -72,6 +71,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     private boolean isScrollingListView;
     private boolean isSwipingViewPager;
     private final ActionBar parentActionBar;
+    private final int parentClassGuid;
     private final RecyclerListView parentListView;
     Path path;
     private ArrayList<TLRPC$Photo> photos;
@@ -160,7 +160,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         setOffscreenPageLimit(2);
         this.isProfileFragment = false;
         this.parentListView = recyclerListView;
-        ConnectionsManager.generateClassGuid();
+        this.parentClassGuid = ConnectionsManager.generateClassGuid();
         this.parentActionBar = actionBar;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.callback = callback;
@@ -297,6 +297,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.isProfileFragment = true;
         this.dialogId = j;
         this.parentListView = recyclerListView;
+        this.parentClassGuid = i;
         this.parentActionBar = actionBar;
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), avatarImageView, actionBar);
         this.adapter = viewPagerAdapter;
@@ -420,101 +421,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        int i;
-        if (this.adapter == null) {
-            return false;
-        }
-        if (this.parentListView.getScrollState() != 0 && !this.isScrollingListView && this.isSwipingViewPager) {
-            this.isSwipingViewPager = false;
-            MotionEvent obtain = MotionEvent.obtain(motionEvent);
-            obtain.setAction(3);
-            super.onTouchEvent(obtain);
-            obtain.recycle();
-            return false;
-        }
-        int action = motionEvent.getAction();
-        if (this.pinchToZoomHelper != null && getCurrentItemView() != null) {
-            if (action != 0 && this.isDownReleased && !this.pinchToZoomHelper.isInOverlayMode()) {
-                this.pinchToZoomHelper.checkPinchToZoom(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0), this, getCurrentItemView().getImageReceiver(), null, null, null);
-            } else if (this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this, getCurrentItemView().getImageReceiver(), null, null, null)) {
-                if (!this.isDownReleased) {
-                    this.isDownReleased = true;
-                    this.callback.onRelease();
-                }
-                return true;
-            }
-        }
-        if (action == 0) {
-            this.isScrollingListView = true;
-            this.isSwipingViewPager = true;
-            this.scrolledByUser = true;
-            this.downPoint.set(motionEvent.getX(), motionEvent.getY());
-            if (this.adapter.getCount() > 1) {
-                this.callback.onDown(motionEvent.getX() < ((float) getWidth()) / 3.0f);
-            }
-            this.isDownReleased = false;
-        } else if (action == 1) {
-            if (!this.isDownReleased) {
-                int realCount = getRealCount();
-                int currentItem = getCurrentItem();
-                if (realCount > 1) {
-                    if (motionEvent.getX() > getWidth() / 3.0f) {
-                        i = this.adapter.getExtraCount();
-                        int i2 = currentItem + 1;
-                        if (i2 < realCount + i) {
-                            i = i2;
-                        }
-                    } else {
-                        int i3 = (-1) + currentItem;
-                        i = i3 < this.adapter.getExtraCount() ? (realCount + r0) - 1 : i3;
-                    }
-                    this.callback.onRelease();
-                    setCurrentItem(i, false);
-                }
-            }
-        } else if (action == 2) {
-            float x = motionEvent.getX() - this.downPoint.x;
-            float y = motionEvent.getY() - this.downPoint.y;
-            boolean z = Math.abs(y) >= ((float) this.touchSlop) || Math.abs(x) >= ((float) this.touchSlop);
-            if (z) {
-                this.isDownReleased = true;
-                this.callback.onRelease();
-            }
-            boolean z2 = this.isSwipingViewPager;
-            if (z2 && this.isScrollingListView) {
-                if (z) {
-                    if (Math.abs(y) > Math.abs(x)) {
-                        this.isSwipingViewPager = false;
-                        MotionEvent obtain2 = MotionEvent.obtain(motionEvent);
-                        obtain2.setAction(3);
-                        super.onTouchEvent(obtain2);
-                        obtain2.recycle();
-                    } else {
-                        this.isScrollingListView = false;
-                        MotionEvent obtain3 = MotionEvent.obtain(motionEvent);
-                        obtain3.setAction(3);
-                        this.parentListView.onTouchEvent(obtain3);
-                        obtain3.recycle();
-                    }
-                }
-            } else if (z2 && !canScrollHorizontally(-1) && x > this.touchSlop) {
-                return false;
-            }
-        }
-        boolean onTouchEvent = this.isScrollingListView ? this.parentListView.onTouchEvent(motionEvent) : false;
-        if (this.isSwipingViewPager) {
-            try {
-                onTouchEvent |= super.onTouchEvent(motionEvent);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        if (action == 1 || action == 3) {
-            this.isScrollingListView = false;
-            this.isSwipingViewPager = false;
-        }
-        return onTouchEvent;
+    public boolean onTouchEvent(android.view.MotionEvent r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProfileGalleryView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
@@ -839,7 +747,6 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         ImageLocation imageLocation2;
         ArrayList<TLRPC$PhotoSize> arrayList;
         TLRPC$Photo tLRPC$Photo;
-        boolean z;
         TLRPC$Photo tLRPC$Photo2;
         if (i == NotificationCenter.dialogPhotosUpdate) {
             MessagesController.DialogPhotos dialogPhotos2 = (MessagesController.DialogPhotos) objArr[0];
@@ -932,12 +839,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                         if (imageLocation != null) {
                             int size2 = tLRPC$Photo4.sizes.size();
                             int i5 = 0;
-                            while (true) {
-                                if (i5 >= size2) {
-                                    imageLocation2 = imageLocation;
-                                    z = false;
-                                    break;
-                                }
+                            while (i5 < size2) {
                                 TLRPC$FileLocation tLRPC$FileLocation = tLRPC$Photo4.sizes.get(i5).location;
                                 if (tLRPC$FileLocation != null) {
                                     int i6 = tLRPC$FileLocation.local_id;
@@ -949,7 +851,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                                             if (!tLRPC$Photo4.video_sizes.isEmpty()) {
                                                 this.videoLocations.set(0, ImageLocation.getForPhoto(FileLoader.getClosestVideoSizeWithSize(tLRPC$Photo4.video_sizes, 1000), tLRPC$Photo4));
                                             }
-                                            z = true;
+                                            tLRPC$Photo3 = null;
                                         } else {
                                             i5++;
                                             imageLocation = imageLocation2;
@@ -960,12 +862,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                                 i5++;
                                 imageLocation = imageLocation2;
                             }
-                            if (z) {
-                                tLRPC$Photo3 = null;
-                            }
-                        } else {
-                            imageLocation2 = imageLocation;
                         }
+                        imageLocation2 = imageLocation;
                         TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo4.sizes, 640);
                         if (closestPhotoSizeWithSize2 != null) {
                             int i7 = tLRPC$Photo4.dc_id;
@@ -990,14 +888,15 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                                         TLRPC$VideoSize vectorMarkupVideoSize = FileLoader.getVectorMarkupVideoSize(tLRPC$Photo4);
                                         if (vectorMarkupVideoSize != null) {
                                             this.vectorAvatars.add(new VectorAvatarThumbDrawable(vectorMarkupVideoSize, user != null && user.premium, 2));
+                                            tLRPC$Photo = null;
                                             this.videoLocations.add(null);
                                             this.videoFileNames.add(null);
                                         } else {
                                             this.vectorAvatars.add(null);
                                             this.videoLocations.add(ImageLocation.getForPhoto(closestVideoSizeWithSize2, tLRPC$Photo4));
                                             this.videoFileNames.add(FileLoader.getAttachFileName(closestVideoSizeWithSize2));
+                                            tLRPC$Photo = null;
                                         }
-                                        tLRPC$Photo = null;
                                     } else {
                                         this.vectorAvatars.add(this.prevVectorAvatarThumbDrawable);
                                         tLRPC$Photo = null;
@@ -1118,6 +1017,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
     public class ViewPagerAdapter extends CircularViewPager.Adapter {
         private final Context context;
+        private final ActionBar parentActionBar;
         private BackupImageView parentAvatarImageView;
         private final Paint placeholderPaint;
         private final ArrayList<Item> objects = new ArrayList<>();
@@ -1126,6 +1026,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         public ViewPagerAdapter(Context context, ProfileActivity.AvatarImageView avatarImageView, ActionBar actionBar) {
             this.context = context;
             this.parentAvatarImageView = avatarImageView;
+            this.parentActionBar = actionBar;
             Paint paint = new Paint(1);
             this.placeholderPaint = paint;
             paint.setColor(-16777216);
@@ -1349,7 +1250,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     }
                     Drawable drawable = getImageReceiver().getDrawable();
                     long j = 0;
-                    if (!(realPosition >= ProfileGalleryView.this.imagesUploadProgress.size() || ProfileGalleryView.this.imagesUploadProgress.get(realPosition) == null ? !(drawable == null || (this.isVideo && (!(drawable instanceof AnimatedFileDrawable) || ((AnimatedFileDrawable) drawable).getDurationMs() <= 0))) : ((Float) ProfileGalleryView.this.imagesUploadProgress.get(realPosition)).floatValue() >= 1.0f)) {
+                    if (realPosition >= ProfileGalleryView.this.imagesUploadProgress.size() || ProfileGalleryView.this.imagesUploadProgress.get(realPosition) == null ? drawable == null || (this.isVideo && (!(drawable instanceof AnimatedFileDrawable) || ((AnimatedFileDrawable) drawable).getDurationMs() <= 0)) : ((Float) ProfileGalleryView.this.imagesUploadProgress.get(realPosition)).floatValue() < 1.0f) {
                         if (this.firstDrawTime < 0) {
                             this.firstDrawTime = System.currentTimeMillis();
                         } else {
@@ -1399,8 +1300,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                             ProfileGalleryView.this.path.reset();
                             ProfileGalleryView.this.rect.set(0.0f, 0.0f, getWidth(), getHeight());
                             for (int i = 0; i < 4; i++) {
-                                ProfileGalleryView.this.radii[i] = r0.roundTopRadius;
-                                ProfileGalleryView.this.radii[i + 4] = r0.roundBottomRadius;
+                                ProfileGalleryView.this.radii[i] = r4.roundTopRadius;
+                                ProfileGalleryView.this.radii[i + 4] = r4.roundBottomRadius;
                             }
                             ProfileGalleryView profileGalleryView = ProfileGalleryView.this;
                             profileGalleryView.path.addRoundRect(profileGalleryView.rect, profileGalleryView.radii, Path.Direction.CW);
@@ -1441,7 +1342,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     public class TextureStubView extends View {
-        public TextureStubView(ProfileGalleryView profileGalleryView, Context context) {
+        public TextureStubView(Context context) {
             super(context);
         }
     }

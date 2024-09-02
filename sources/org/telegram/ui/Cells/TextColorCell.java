@@ -63,13 +63,8 @@ public class TextColorCell extends FrameLayout {
         if (arrayList != null) {
             TextView textView = this.textView;
             Property property = View.ALPHA;
-            float[] fArr = new float[1];
-            fArr[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
-            Property property2 = View.ALPHA;
-            float[] fArr2 = new float[1];
-            fArr2[0] = z ? 1.0f : 0.5f;
-            arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property2, fArr2));
+            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this, (Property<TextColorCell, Float>) property, z ? 1.0f : 0.5f));
             return;
         }
         this.textView.setAlpha(z ? 1.0f : 0.5f);

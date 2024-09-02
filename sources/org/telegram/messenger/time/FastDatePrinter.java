@@ -63,6 +63,7 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     protected List<Rule> parsePattern() {
+        int i;
         Rule selectNumberRule;
         Rule rule;
         Rule timeZoneNameRule;
@@ -75,43 +76,43 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         String[] shortWeekdays = dateFormatSymbols.getShortWeekdays();
         String[] amPmStrings = dateFormatSymbols.getAmPmStrings();
         int length = this.mPattern.length();
-        int[] iArr = new int[1];
-        int i = 0;
         int i2 = 0;
-        while (i2 < length) {
-            iArr[i] = i2;
+        int i3 = 0;
+        while (i3 < length) {
+            int[] iArr = {i3};
             String parseToken = parseToken(this.mPattern, iArr);
-            int i3 = iArr[i];
+            int i4 = iArr[i2];
             int length2 = parseToken.length();
             if (length2 == 0) {
                 return arrayList;
             }
-            char charAt = parseToken.charAt(i);
+            char charAt = parseToken.charAt(i2);
             if (charAt != 'y') {
                 if (charAt != 'z') {
                     switch (charAt) {
                         case '\'':
                             String substring = parseToken.substring(1);
                             if (substring.length() == 1) {
-                                timeZoneNameRule = new CharacterLiteral(substring.charAt(0));
-                                break;
+                                selectNumberRule = new CharacterLiteral(substring.charAt(0));
                             } else {
-                                timeZoneNameRule = new StringLiteral(substring);
-                                break;
+                                selectNumberRule = new StringLiteral(substring);
                             }
+                            i = 1;
+                            break;
                         case 'S':
-                            selectNumberRule = selectNumberRule(14, length2);
+                            timeZoneNameRule = selectNumberRule(14, length2);
                             break;
                         case 'W':
-                            selectNumberRule = selectNumberRule(4, length2);
+                            timeZoneNameRule = selectNumberRule(4, length2);
                             break;
                         case 'Z':
                             if (length2 == 1) {
-                                selectNumberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
+                                timeZoneNameRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
+                                break;
                             } else {
-                                selectNumberRule = TimeZoneNumberRule.INSTANCE_COLON;
+                                timeZoneNameRule = TimeZoneNumberRule.INSTANCE_COLON;
+                                break;
                             }
-                            break;
                         case 'a':
                             timeZoneNameRule = new TextField(9, amPmStrings);
                             break;
@@ -139,7 +140,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                     timeZoneNameRule = selectNumberRule(6, length2);
                                     break;
                                 case 'E':
-                                    timeZoneNameRule = new TextField(7, length2 < 4 ? shortWeekdays : weekdays);
+                                    selectNumberRule = new TextField(7, length2 < 4 ? shortWeekdays : weekdays);
+                                    i = 1;
                                     break;
                                 case 'F':
                                     timeZoneNameRule = selectNumberRule(8, length2);
@@ -201,20 +203,26 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                 } else {
                     rule = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 0);
                     selectNumberRule = rule;
+                    i = 1;
                 }
                 selectNumberRule = timeZoneNameRule;
+                i = 1;
             } else if (length2 == 2) {
                 rule = TwoDigitYearField.INSTANCE;
                 selectNumberRule = rule;
+                i = 1;
             } else {
                 if (length2 < 4) {
+                    i = 1;
                     length2 = 4;
+                } else {
+                    i = 1;
                 }
-                selectNumberRule = selectNumberRule(1, length2);
+                selectNumberRule = selectNumberRule(i, length2);
             }
             arrayList.add(selectNumberRule);
-            i2 = i3 + 1;
-            i = 0;
+            i3 = i4 + i;
+            i2 = 0;
         }
         return arrayList;
     }

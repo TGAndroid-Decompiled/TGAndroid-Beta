@@ -191,7 +191,7 @@ public class DialogMeUrlCell extends BaseCell {
         }
         String str4 = MessagesController.getInstance(this.currentAccount).linkPrefix + "/" + this.recentMeUrl.url;
         if (TextUtils.isEmpty(str)) {
-            str = LocaleController.getString("HiddenName", R.string.HiddenName);
+            str = LocaleController.getString(R.string.HiddenName);
         }
         if (!LocaleController.isRTL) {
             measuredWidth = getMeasuredWidth() - this.nameLeft;

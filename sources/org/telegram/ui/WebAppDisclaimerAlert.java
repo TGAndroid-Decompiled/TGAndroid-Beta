@@ -25,7 +25,7 @@ public class WebAppDisclaimerAlert {
     public static void show(final Context context, final Consumer<Boolean> consumer, TLRPC$User tLRPC$User, final Runnable runnable) {
         final WebAppDisclaimerAlert webAppDisclaimerAlert = new WebAppDisclaimerAlert();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(LocaleController.getString("TermsOfUse", R.string.TermsOfUse));
+        builder.setTitle(LocaleController.getString(R.string.TermsOfUse));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
@@ -41,21 +41,21 @@ public class WebAppDisclaimerAlert {
         webAppDisclaimerAlert.cell.getTextView().setTextSize(1, 14.0f);
         linearLayout.addView(webAppDisclaimerAlert.cell, LayoutHelper.createLinear(-1, 48, 3, 8, 0, 8, 0));
         final boolean[] zArr = new boolean[1];
-        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString("BotWebAppDisclaimerSubtitle", R.string.BotWebAppDisclaimerSubtitle)));
-        webAppDisclaimerAlert.cell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("BotWebAppDisclaimerCheck", R.string.BotWebAppDisclaimerCheck), new Runnable() {
+        textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BotWebAppDisclaimerSubtitle)));
+        webAppDisclaimerAlert.cell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new Runnable() {
             @Override
             public final void run() {
                 WebAppDisclaimerAlert.lambda$show$0(context);
             }
         }), "", false, false);
         builder.setView(linearLayout);
-        builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 WebAppDisclaimerAlert.lambda$show$1(Consumer.this, zArr, dialogInterface, i);
             }
         });
-        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
@@ -84,7 +84,7 @@ public class WebAppDisclaimerAlert {
     }
 
     public static void lambda$show$0(Context context) {
-        Browser.openUrl(context, LocaleController.getString("WebAppDisclaimerUrl", R.string.WebAppDisclaimerUrl));
+        Browser.openUrl(context, LocaleController.getString(R.string.WebAppDisclaimerUrl));
     }
 
     public static void lambda$show$1(Consumer consumer, boolean[] zArr, DialogInterface dialogInterface, int i) {

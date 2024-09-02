@@ -21,6 +21,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
     private StarParticlesView.Drawable drawable;
     private TextView subtitleView;
     private TextView titleView;
+    private TLRPC$User user;
 
     public PremiumGiftHeaderCell(Context context) {
         super(context);
@@ -74,6 +75,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
     }
 
     public void bind(TLRPC$User tLRPC$User) {
+        this.user = tLRPC$User;
         this.avatarDrawable.setInfo(tLRPC$User);
         this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
         this.titleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.GiftTelegramPremiumTitle)));

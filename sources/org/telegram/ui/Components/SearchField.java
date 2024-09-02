@@ -56,7 +56,8 @@ public class SearchField extends FrameLayout {
         addView(this.searchBackground, createFrame);
         ImageView imageView = new ImageView(context);
         this.searchIconImageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
         this.searchIconImageView.setImageResource(R.drawable.smiles_inputsearch);
         this.searchIconImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogSearchIcon), PorterDuff.Mode.MULTIPLY));
         if (z) {
@@ -67,7 +68,7 @@ public class SearchField extends FrameLayout {
         addView(this.searchIconImageView, createFrame2);
         ImageView imageView2 = new ImageView(context);
         this.clearSearchImageView = imageView2;
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setScaleType(scaleType);
         ImageView imageView3 = this.clearSearchImageView;
         CloseProgressDrawable2 closeProgressDrawable2 = new CloseProgressDrawable2() {
             @Override

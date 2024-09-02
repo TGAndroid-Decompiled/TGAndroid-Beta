@@ -57,6 +57,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
     private ButtonWithCounterView button;
     private FrameLayout buttonContainer;
     private boolean captionAbove;
+    public boolean editing;
     private boolean ignoreUrlEdit;
     private String lastCheckedStr;
     private boolean loading;
@@ -301,6 +302,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
     public void set(LinkPreview.WebPagePreview webPagePreview) {
         this.ignoreUrlEdit = true;
+        this.editing = true;
         if (webPagePreview != null) {
             this.webpage = webPagePreview.webpage;
             this.loading = false;
@@ -331,7 +333,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
 
     @Override
     protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this, this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 StoryLinkSheet.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -508,13 +510,14 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             paint.setColor(-16777216);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
+            ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+            imageView.setScaleType(scaleType);
             imageView.setImageResource(R.drawable.filled_link);
             imageView.setColorFilter(new PorterDuffColorFilter(-15033089, PorterDuff.Mode.SRC_IN));
             addView(imageView, LayoutHelper.createFrame(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView2 = new ImageView(context);
             this.loadingView = imageView2;
-            imageView2.setBackground(new CircularProgressDrawable(this, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089) {
+            imageView2.setBackground(new CircularProgressDrawable(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089) {
                 @Override
                 public int getIntrinsicHeight() {
                     return AndroidUtilities.dp(26.0f);
@@ -559,7 +562,7 @@ public class StoryLinkSheet extends BottomSheetWithRecyclerListView implements N
             this.closeView = imageView3;
             imageView3.setColorFilter(new PorterDuffColorFilter(1694498815, PorterDuff.Mode.MULTIPLY));
             imageView3.setImageResource(R.drawable.input_clear);
-            imageView3.setScaleType(ImageView.ScaleType.CENTER);
+            imageView3.setScaleType(scaleType);
             imageView3.setBackground(Theme.createSelectorDrawable(436207615, 1, AndroidUtilities.dp(18.0f)));
             addView(imageView3, LayoutHelper.createFrame(48, 48.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
         }

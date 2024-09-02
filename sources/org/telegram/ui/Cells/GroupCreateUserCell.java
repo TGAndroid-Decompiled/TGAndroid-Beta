@@ -125,7 +125,7 @@ public class GroupCreateUserCell extends FrameLayout {
         BackupImageView backupImageView2 = this.avatarImageView;
         boolean z3 = LocaleController.isRTL;
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : this.padding + 13, 6.0f, z3 ? this.padding + 13 : 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(this, context) {
+        SimpleTextView simpleTextView = new SimpleTextView(context) {
             @Override
             public boolean setText(CharSequence charSequence, boolean z4) {
                 return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), z4);
@@ -279,9 +279,10 @@ public class GroupCreateUserCell extends FrameLayout {
 
     public void lambda$setChecked$1(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        float f = this.isChecked ? 1.0f - (0.18f * floatValue) : 0.82f + (0.18f * floatValue);
-        this.avatarImageView.setScaleX(f);
-        this.avatarImageView.setScaleY(f);
+        float f = 0.18f * floatValue;
+        float f2 = this.isChecked ? 1.0f - f : 0.82f + f;
+        this.avatarImageView.setScaleX(f2);
+        this.avatarImageView.setScaleY(f2);
         if (!this.isChecked) {
             floatValue = 1.0f - floatValue;
         }
@@ -478,7 +479,7 @@ public class GroupCreateUserCell extends FrameLayout {
             if (obj2 instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) obj2;
                 if (this.showSelfAsSaved && UserObject.isUserSelf(tLRPC$User)) {
-                    this.nameTextView.setText(LocaleController.getString("SavedMessages", R.string.SavedMessages), true);
+                    this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages), true);
                     this.statusTextView.setText(null);
                     this.avatarDrawable.setAvatarType(1);
                     this.avatarImageView.setImage((ImageLocation) null, "50_50", this.avatarDrawable, tLRPC$User);
@@ -533,7 +534,7 @@ public class GroupCreateUserCell extends FrameLayout {
                             i2 = Theme.key_voipgroup_lastSeenText;
                         }
                         simpleTextView2.setTextColor(Theme.getColor(i2, this.resourcesProvider));
-                        this.statusTextView.setText(LocaleController.getString("Bot", R.string.Bot));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Bot));
                     } else if (tLRPC$User.id == UserConfig.getInstance(this.currentAccount).getClientUserId() || (((tLRPC$UserStatus = tLRPC$User.status) != null && tLRPC$UserStatus.expires > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) || MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(tLRPC$User.id)))) {
                         SimpleTextView simpleTextView3 = this.statusTextView;
                         int i3 = Theme.key_windowBackgroundWhiteBlueText;
@@ -543,7 +544,7 @@ public class GroupCreateUserCell extends FrameLayout {
                             i3 = Theme.key_voipgroup_listeningText;
                         }
                         simpleTextView4.setTextColor(Theme.getColor(i3, this.resourcesProvider));
-                        this.statusTextView.setText(LocaleController.getString("Online", R.string.Online));
+                        this.statusTextView.setText(LocaleController.getString(R.string.Online));
                     } else {
                         SimpleTextView simpleTextView5 = this.statusTextView;
                         int i4 = Theme.key_windowBackgroundWhiteGrayText;
@@ -605,17 +606,17 @@ public class GroupCreateUserCell extends FrameLayout {
                             this.statusTextView.setText(LocaleController.formatPluralString("Members", tLRPC$Chat2.participants_count, new Object[0]));
                         }
                     } else if (tLRPC$Chat2.has_geo) {
-                        this.statusTextView.setText(LocaleController.getString("MegaLocation", R.string.MegaLocation));
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaLocation));
                     } else if (!ChatObject.isPublic(tLRPC$Chat2)) {
                         if (ChatObject.isChannel(tLRPC$Chat2) && !tLRPC$Chat2.megagroup) {
-                            this.statusTextView.setText(LocaleController.getString("ChannelPrivate", R.string.ChannelPrivate));
+                            this.statusTextView.setText(LocaleController.getString(R.string.ChannelPrivate));
                         } else {
-                            this.statusTextView.setText(LocaleController.getString("MegaPrivate", R.string.MegaPrivate));
+                            this.statusTextView.setText(LocaleController.getString(R.string.MegaPrivate));
                         }
                     } else if (ChatObject.isChannel(tLRPC$Chat2) && !tLRPC$Chat2.megagroup) {
-                        this.statusTextView.setText(LocaleController.getString("ChannelPublic", R.string.ChannelPublic));
+                        this.statusTextView.setText(LocaleController.getString(R.string.ChannelPublic));
                     } else {
-                        this.statusTextView.setText(LocaleController.getString("MegaPublic", R.string.MegaPublic));
+                        this.statusTextView.setText(LocaleController.getString(R.string.MegaPublic));
                     }
                 }
                 this.avatarImageView.setForUserOrChat(tLRPC$Chat2, this.avatarDrawable);

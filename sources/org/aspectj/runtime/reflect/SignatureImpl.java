@@ -13,6 +13,8 @@ abstract class SignatureImpl implements Signature {
     String name;
     Cache stringCache;
     private String stringRep;
+    static String[] EMPTY_STRING_ARRAY = new String[0];
+    static Class[] EMPTY_CLASS_ARRAY = new Class[0];
 
     public interface Cache {
         String get(int i);
@@ -23,7 +25,6 @@ abstract class SignatureImpl implements Signature {
     protected abstract String createToString(StringMaker stringMaker);
 
     public SignatureImpl(int i, String str, Class cls) {
-        this.modifiers = -1;
         this.modifiers = i;
         this.name = str;
         this.declaringType = cls;

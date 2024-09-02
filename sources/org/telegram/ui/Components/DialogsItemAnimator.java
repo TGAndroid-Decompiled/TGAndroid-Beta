@@ -462,7 +462,9 @@ public class DialogsItemAnimator extends SimpleItemAnimator {
         }
         final AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(viewHolder.itemView, (Property<View, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(viewHolder2.itemView, (Property<View, Float>) View.ALPHA, 1.0f));
+        View view = viewHolder.itemView;
+        Property property = View.ALPHA;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(view, (Property<View, Float>) property, 0.0f), ObjectAnimator.ofFloat(viewHolder2.itemView, (Property<View, Float>) property, 1.0f));
         this.mChangeAnimations.add(changeInfo.oldHolder);
         this.mChangeAnimations.add(changeInfo.newHolder);
         animatorSet.addListener(new AnimatorListenerAdapter() {

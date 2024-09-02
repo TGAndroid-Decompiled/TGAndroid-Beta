@@ -42,6 +42,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     private ListAdapter adapter;
     private FiltersListBottomSheetDelegate delegate;
     private ArrayList<MessagesController.DialogFilter> dialogFilters;
+    private final DialogsActivity fragment;
     private boolean ignoreLayout;
     private RecyclerListView listView;
     private int scrollOffsetY;
@@ -62,6 +63,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
     public FiltersListBottomSheet(DialogsActivity dialogsActivity, ArrayList<Long> arrayList) {
         super(dialogsActivity.getParentActivity(), false);
         this.selectedDialogs = arrayList;
+        this.fragment = dialogsActivity;
         this.dialogFilters = new ArrayList<>(dialogsActivity.getMessagesController().dialogFilters);
         int i = 0;
         while (i < this.dialogFilters.size()) {
@@ -135,7 +137,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             }
 
             @Override
-            protected void onDraw(android.graphics.Canvas r13) {
+            protected void onDraw(android.graphics.Canvas r12) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FiltersListBottomSheet.AnonymousClass1.onDraw(android.graphics.Canvas):void");
             }
 
@@ -144,9 +146,8 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
                 if (bool == null || bool.booleanValue() != z) {
                     boolean z2 = AndroidUtilities.computePerceivedBrightness(FiltersListBottomSheet.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
                     boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(FiltersListBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
-                    Boolean valueOf = Boolean.valueOf(z);
-                    this.statusBarOpen = valueOf;
-                    if (!valueOf.booleanValue()) {
+                    this.statusBarOpen = Boolean.valueOf(z);
+                    if (!z) {
                         z2 = z3;
                     }
                     AndroidUtilities.setLightStatusBar(FiltersListBottomSheet.this.getWindow(), z2);
@@ -267,13 +268,7 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.shadowAnimation = animatorSet2;
-        Animator[] animatorArr = new Animator[1];
-        View view = this.shadow;
-        Property property = View.ALPHA;
-        float[] fArr = new float[1];
-        fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
-        animatorSet2.playTogether(animatorArr);
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(this.shadow, (Property<View, Float>) View.ALPHA, z ? 1.0f : 0.0f));
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -448,11 +443,13 @@ public class FiltersListBottomSheet extends BottomSheet implements NotificationC
             bottomSheetCell.getImageView().setColorFilter((ColorFilter) null);
             Drawable drawable = this.context.getResources().getDrawable(R.drawable.poll_add_circle);
             Drawable drawable2 = this.context.getResources().getDrawable(R.drawable.poll_add_plus);
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
-            drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
+            int color = Theme.getColor(Theme.key_switchTrackChecked);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+            drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), mode));
             CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
             bottomSheetCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
-            bottomSheetCell.setTextAndIcon(LocaleController.getString("CreateNewFilter", R.string.CreateNewFilter), combinedDrawable);
+            bottomSheetCell.setTextAndIcon(LocaleController.getString(R.string.CreateNewFilter), combinedDrawable);
         }
     }
 }

@@ -12,10 +12,10 @@ public final class NonDisposableHandle implements DisposableHandle, ChildHandle 
     public void dispose() {
     }
 
-    public String toString() {
-        return "NonDisposableHandle";
+    private NonDisposableHandle() {
     }
 
-    private NonDisposableHandle() {
+    public String toString() {
+        return "NonDisposableHandle";
     }
 }

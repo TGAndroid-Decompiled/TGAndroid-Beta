@@ -1,7 +1,6 @@
 package org.telegram.ui.Adapters;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
-import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -23,18 +20,13 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_contact;
-import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.RecyclerListView;
 
 public class SearchAdapter extends RecyclerListView.SelectionAdapter {
@@ -203,14 +195,15 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
             if ((this.allowSelf || !user.self) && ((!this.onlyMutual || user.mutual_contact) && ((longSparseArray = this.ignoreUsers) == null || longSparseArray.indexOfKey(tLRPC$TL_contact.user_id) < 0))) {
                 String[] strArr4 = new String[3];
                 strArr4[0] = ContactsController.formatName(user.first_name, user.last_name).toLowerCase();
-                strArr4[1] = LocaleController.getInstance().getTranslitString(strArr4[0]);
-                if (strArr4[0].equals(strArr4[1])) {
+                String translitString2 = LocaleController.getInstance().getTranslitString(strArr4[0]);
+                strArr4[1] = translitString2;
+                if (strArr4[0].equals(translitString2)) {
                     strArr4[1] = null;
                 }
                 if (UserObject.isReplyUser(user)) {
-                    strArr4[2] = LocaleController.getString("RepliesTitle", R.string.RepliesTitle).toLowerCase();
+                    strArr4[2] = LocaleController.getString(R.string.RepliesTitle).toLowerCase();
                 } else if (user.self) {
-                    strArr4[2] = LocaleController.getString("SavedMessages", R.string.SavedMessages).toLowerCase();
+                    strArr4[2] = LocaleController.getString(R.string.SavedMessages).toLowerCase();
                 }
                 int i7 = i6;
                 int i8 = 0;
@@ -276,7 +269,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 ContactEntry contactEntry = new ContactEntry();
                 contactEntry.contact = next;
                 contactEntry.q1 = (next.first_name + " " + next.last_name).toLowerCase();
-                (next.last_name + " " + next.first_name).toLowerCase();
+                contactEntry.q2 = (next.last_name + " " + next.first_name).toLowerCase();
                 this.allUnregistredContacts.add(contactEntry);
             }
         }
@@ -398,120 +391,8 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        long j;
-        boolean z;
-        String str;
-        CharSequence charSequence;
-        int itemViewType = viewHolder.getItemViewType();
-        if (itemViewType != 0) {
-            if (itemViewType == 1) {
-                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
-                if (i == this.unregistredContactsHeaderRow) {
-                    graySectionCell.setText(LocaleController.getString("InviteToTelegramShort", R.string.InviteToTelegramShort));
-                    return;
-                } else if (getItem(i) == null) {
-                    graySectionCell.setText(LocaleController.getString("GlobalSearch", R.string.GlobalSearch));
-                    return;
-                } else {
-                    graySectionCell.setText(LocaleController.getString("PhoneNumberSearch", R.string.PhoneNumberSearch));
-                    return;
-                }
-            }
-            if (itemViewType == 2) {
-                String str2 = (String) getItem(i);
-                TextCell textCell = (TextCell) viewHolder.itemView;
-                textCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText2);
-                textCell.setText(LocaleController.formatString("AddContactByPhone", R.string.AddContactByPhone, PhoneFormat.getInstance().format("+" + str2)), false);
-                return;
-            }
-            if (itemViewType != 3) {
-                return;
-            }
-            ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
-            ContactsController.Contact contact = (ContactsController.Contact) getItem(i);
-            profileSearchCell.useSeparator = getItem(i + 1) instanceof ContactsController.Contact;
-            profileSearchCell.setData(contact, null, ContactsController.formatName(contact.first_name, contact.last_name), PhoneFormat.getInstance().format("+" + contact.shortPhones.get(0)), false, false);
-            return;
-        }
-        TLObject tLObject = (TLObject) getItem(i);
-        if (tLObject != null) {
-            CharSequence charSequence2 = null;
-            if (tLObject instanceof TLRPC$User) {
-                TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
-                str = UserObject.getPublicUsername(tLRPC$User);
-                if (str != null && this.lastQuery != null && !str.toLowerCase().contains(this.lastQuery.toLowerCase()) && tLRPC$User.usernames != null) {
-                    for (int i2 = 0; i2 < tLRPC$User.usernames.size(); i2++) {
-                        TLRPC$TL_username tLRPC$TL_username = tLRPC$User.usernames.get(i2);
-                        if (tLRPC$TL_username != null && tLRPC$TL_username.active && tLRPC$TL_username.username.toLowerCase().contains(this.lastQuery.toLowerCase())) {
-                            str = tLRPC$TL_username.username;
-                        }
-                    }
-                }
-                long j2 = tLRPC$User.id;
-                z = tLRPC$User.self;
-                j = j2;
-            } else if (tLObject instanceof TLRPC$Chat) {
-                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-                str = ChatObject.getPublicUsername(tLRPC$Chat);
-                j = tLRPC$Chat.id;
-                z = false;
-            } else {
-                j = 0;
-                z = false;
-                str = null;
-            }
-            if (i < this.searchResult.size()) {
-                CharSequence charSequence3 = this.searchResultNames.get(i);
-                if (charSequence3 != null && str != null && str.length() > 0) {
-                    if (charSequence3.toString().startsWith("@" + str)) {
-                        charSequence = charSequence3;
-                    }
-                }
-                charSequence = null;
-                charSequence2 = charSequence3;
-            } else if (i <= this.searchResult.size() || str == null) {
-                charSequence = null;
-            } else {
-                String lastFoundUsername = this.searchAdapterHelper.getLastFoundUsername();
-                if (lastFoundUsername != null && lastFoundUsername.startsWith("@")) {
-                    lastFoundUsername = lastFoundUsername.substring(1);
-                }
-                try {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) "@");
-                    spannableStringBuilder.append((CharSequence) str);
-                    charSequence = spannableStringBuilder;
-                    if (lastFoundUsername != null) {
-                        int indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str, lastFoundUsername);
-                        charSequence = spannableStringBuilder;
-                        if (indexOfIgnoreCase != -1) {
-                            int length = lastFoundUsername.length();
-                            if (indexOfIgnoreCase == 0) {
-                                length++;
-                            } else {
-                                indexOfIgnoreCase++;
-                            }
-                            spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4), indexOfIgnoreCase, length + indexOfIgnoreCase, 33);
-                            charSequence = spannableStringBuilder;
-                        }
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    charSequence = str;
-                }
-            }
-            if (this.useUserCell) {
-                UserCell userCell = (UserCell) viewHolder.itemView;
-                userCell.setData(tLObject, charSequence2, charSequence, 0);
-                userCell.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
-            } else {
-                ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
-                profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
-                profileSearchCell2.useSeparator = (i == getItemCount() - 1 || i == this.searchResult.size() - 1) ? false : true;
-                profileSearchCell2.setChecked(this.selectedUsers.indexOfKey(j) >= 0, false);
-            }
-        }
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.SearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 
     @Override
@@ -526,6 +407,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
     public static class ContactEntry {
         ContactsController.Contact contact;
         String q1;
+        String q2;
 
         private ContactEntry() {
         }

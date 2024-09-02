@@ -17,18 +17,17 @@ public class SparseLongArray implements Cloneable {
     }
 
     public SparseLongArray clone() {
-        SparseLongArray sparseLongArray = null;
         try {
-            SparseLongArray sparseLongArray2 = (SparseLongArray) super.clone();
+            SparseLongArray sparseLongArray = (SparseLongArray) super.clone();
             try {
-                sparseLongArray2.mKeys = (int[]) this.mKeys.clone();
-                sparseLongArray2.mValues = (long[]) this.mValues.clone();
-                return sparseLongArray2;
+                sparseLongArray.mKeys = (int[]) this.mKeys.clone();
+                sparseLongArray.mValues = (long[]) this.mValues.clone();
+                return sparseLongArray;
             } catch (CloneNotSupportedException unused) {
-                sparseLongArray = sparseLongArray2;
                 return sparseLongArray;
             }
         } catch (CloneNotSupportedException unused2) {
+            return null;
         }
     }
 
@@ -68,11 +67,11 @@ public class SparseLongArray implements Cloneable {
         if (i3 >= this.mKeys.length) {
             growKeyAndValueArrays(i3 + 1);
         }
-        int i4 = this.mSize;
-        if (i4 - i2 != 0) {
+        int i4 = this.mSize - i2;
+        if (i4 != 0) {
             int[] iArr = this.mKeys;
             int i5 = i2 + 1;
-            System.arraycopy(iArr, i2, iArr, i5, i4 - i2);
+            System.arraycopy(iArr, i2, iArr, i5, i4);
             long[] jArr = this.mValues;
             System.arraycopy(jArr, i2, jArr, i5, this.mSize - i2);
         }

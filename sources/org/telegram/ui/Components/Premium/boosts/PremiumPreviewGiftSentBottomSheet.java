@@ -52,16 +52,14 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
 
     @Override
     protected void updateRows() {
-        this.rowCount = 0;
-        int i = 0 + 1;
-        this.rowCount = i;
+        this.rowCount = 1;
         this.paddingRow = 0;
-        this.featuresStartRow = i;
-        int size = i + this.premiumFeatures.size();
-        this.rowCount = size;
-        this.featuresEndRow = size;
-        this.rowCount = size + 1;
-        this.termsRow = size;
+        this.featuresStartRow = 1;
+        int size = this.premiumFeatures.size();
+        int i = size + 1;
+        this.featuresEndRow = i;
+        this.rowCount = size + 2;
+        this.termsRow = i;
     }
 
     @Override
@@ -122,7 +120,7 @@ public class PremiumPreviewGiftSentBottomSheet extends PremiumPreviewBottomSheet
     protected void afterCellCreated(int i, View view) {
         if (i == 0) {
             if (Build.VERSION.SDK_INT >= 21) {
-                view.setOutlineProvider(new ViewOutlineProvider(this) {
+                view.setOutlineProvider(new ViewOutlineProvider() {
                     @Override
                     public void getOutline(View view2, Outline outline) {
                         float dp = AndroidUtilities.dp(12.0f);

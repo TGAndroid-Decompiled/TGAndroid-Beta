@@ -49,7 +49,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(i, resourcesProvider)));
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(80, 80, 1, 0, 28, 0, 0));
         TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString("AboutRevenueSharingAds", R.string.AboutRevenueSharingAds));
+        textView.setText(LocaleController.getString(R.string.AboutRevenueSharingAds));
         textView.setTypeface(AndroidUtilities.bold());
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
@@ -57,16 +57,16 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView.setGravity(1);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 22, 14, 22, 0));
         TextView textView2 = new TextView(context);
-        textView2.setText(LocaleController.getString("RevenueSharingAdsAlertSubtitle", R.string.RevenueSharingAdsAlertSubtitle));
+        textView2.setText(LocaleController.getString(R.string.RevenueSharingAdsAlertSubtitle));
         textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 22, 8, 22, 0));
-        linearLayout.addView(new FeatureCell(this, context, R.drawable.menu_privacy, LocaleController.getString("RevenueSharingAdsInfo1Title", R.string.RevenueSharingAdsInfo1Title), LocaleController.getString("RevenueSharingAdsInfo1Subtitle", R.string.RevenueSharingAdsInfo1Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 20, 0, 0));
-        linearLayout.addView(new FeatureCell(this, context, R.drawable.menu_feature_split, LocaleController.getString("RevenueSharingAdsInfo2Title", R.string.RevenueSharingAdsInfo2Title), LocaleController.getString("RevenueSharingAdsInfo2Subtitle", R.string.RevenueSharingAdsInfo2Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
+        linearLayout.addView(new FeatureCell(context, R.drawable.menu_privacy, LocaleController.getString(R.string.RevenueSharingAdsInfo1Title), LocaleController.getString(R.string.RevenueSharingAdsInfo1Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 20, 0, 0));
+        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_split, LocaleController.getString(R.string.RevenueSharingAdsInfo2Title), LocaleController.getString(R.string.RevenueSharingAdsInfo2Subtitle)), LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         String formatString = LocaleController.formatString("RevenueSharingAdsInfo3Subtitle", R.string.RevenueSharingAdsInfo3Subtitle, Integer.valueOf(MessagesController.getInstance(baseFragment.getCurrentAccount()).channelRestrictSponsoredLevelMin));
         int i3 = Theme.key_chat_messageLinkIn;
-        linearLayout.addView(new FeatureCell(this, context, R.drawable.menu_feature_noads, LocaleController.getString("RevenueSharingAdsInfo3Title", R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i3, 0, new Runnable() {
+        linearLayout.addView(new FeatureCell(context, R.drawable.menu_feature_noads, LocaleController.getString(R.string.RevenueSharingAdsInfo3Title), AndroidUtilities.replaceSingleTag(formatString, i3, 0, new Runnable() {
             @Override
             public final void run() {
                 RevenueSharingAdsInfoBottomSheet.this.lambda$new$0(baseFragment);
@@ -78,7 +78,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         layoutParams.setMargins(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f));
         linearLayout.addView(view, layoutParams);
         TextView textView3 = new TextView(context);
-        textView3.setText(LocaleController.getString("RevenueSharingAdsInfo4Title", R.string.RevenueSharingAdsInfo4Title));
+        textView3.setText(LocaleController.getString(R.string.RevenueSharingAdsInfo4Title));
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView3.setTextSize(1, 20.0f);
@@ -114,7 +114,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
         textView4.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         textView4.setTypeface(AndroidUtilities.bold());
         textView4.setTextSize(1, 14.0f);
-        textView4.setText(LocaleController.getString("RevenueSharingAdsAlertButton", R.string.RevenueSharingAdsAlertButton));
+        textView4.setText(LocaleController.getString(R.string.RevenueSharingAdsAlertButton));
         textView4.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i, resourcesProvider), 6.0f));
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +134,7 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
     }
 
     public void lambda$new$1() {
-        Browser.openUrl(getContext(), LocaleController.getString("PromoteUrl", R.string.PromoteUrl));
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.PromoteUrl));
     }
 
     public void lambda$new$2(View view) {
@@ -154,26 +154,26 @@ public class RevenueSharingAdsInfoBottomSheet extends BottomSheet {
     }
 
     private class FeatureCell extends FrameLayout {
-        public FeatureCell(RevenueSharingAdsInfoBottomSheet revenueSharingAdsInfoBottomSheet, Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
+        public FeatureCell(Context context, int i, CharSequence charSequence, CharSequence charSequence2) {
             super(context);
             boolean z = LocaleController.isRTL;
             ImageView imageView = new ImageView(getContext());
             Drawable mutate = getContext().getResources().getDrawable(i).mutate();
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider), PorterDuff.Mode.MULTIPLY));
             imageView.setImageDrawable(mutate);
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 27.0f, 6.0f, z ? 27.0f : 0.0f, 0.0f));
             TextView textView = new TextView(getContext());
             textView.setText(charSequence);
-            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
+            textView.setTextColor(Theme.getColor(i2, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(AndroidUtilities.bold());
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 0.0f, z ? 68.0f : 27.0f, 0.0f));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
             linksTextView.setText(charSequence2);
             linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) revenueSharingAdsInfoBottomSheet).resourcesProvider));
+            linksTextView.setTextColor(Theme.getColor(Theme.key_player_actionBarSubtitle, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, ((BottomSheet) RevenueSharingAdsInfoBottomSheet.this).resourcesProvider));
             linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             addView(linksTextView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 27.0f : 68.0f, 18.0f, z ? 68.0f : 27.0f, 0.0f));
         }

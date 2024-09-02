@@ -85,11 +85,7 @@ public class AnimatedNumberLayout {
                 i2 = i3;
             }
             if (z && !this.oldLetters.isEmpty()) {
-                Property<AnimatedNumberLayout, Float> property = PROGRESS;
-                float[] fArr = new float[2];
-                fArr[0] = z2 ? -1.0f : 1.0f;
-                fArr[1] = 0.0f;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, property, fArr);
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, PROGRESS, z2 ? -1.0f : 1.0f, 0.0f);
                 this.animator = ofFloat;
                 ofFloat.setDuration(150L);
                 this.animator.addListener(new AnimatorListenerAdapter() {

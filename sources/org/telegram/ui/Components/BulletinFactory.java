@@ -22,9 +22,11 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -112,6 +114,10 @@ public final class BulletinFactory {
         private final int localeRes;
         private final boolean plural;
 
+        private static FileType[] $values() {
+            return new FileType[]{PHOTO, PHOTOS, VIDEO, VIDEOS, MEDIA, PHOTO_TO_DOWNLOADS, VIDEO_TO_DOWNLOADS, GIF, GIF_TO_DOWNLOADS, AUDIO, AUDIOS, UNKNOWN, UNKNOWNS};
+        }
+
         public static FileType valueOf(String str) {
             return (FileType) Enum.valueOf(FileType.class, str);
         }
@@ -123,37 +129,24 @@ public final class BulletinFactory {
         static {
             int i = R.string.PhotoSavedHint;
             Icon icon = Icon.SAVED_TO_GALLERY;
-            FileType fileType = new FileType("PHOTO", 0, "PhotoSavedHint", i, icon);
-            PHOTO = fileType;
-            FileType fileType2 = new FileType("PHOTOS", 1, "PhotosSavedHint", icon);
-            PHOTOS = fileType2;
-            FileType fileType3 = new FileType("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, icon);
-            VIDEO = fileType3;
-            FileType fileType4 = new FileType("VIDEOS", 3, "VideosSavedHint", icon);
-            VIDEOS = fileType4;
-            FileType fileType5 = new FileType("MEDIA", 4, "MediaSavedHint", icon);
-            MEDIA = fileType5;
+            PHOTO = new FileType("PHOTO", 0, "PhotoSavedHint", i, icon);
+            PHOTOS = new FileType("PHOTOS", 1, "PhotosSavedHint", icon);
+            VIDEO = new FileType("VIDEO", 2, "VideoSavedHint", R.string.VideoSavedHint, icon);
+            VIDEOS = new FileType("VIDEOS", 3, "VideosSavedHint", icon);
+            MEDIA = new FileType("MEDIA", 4, "MediaSavedHint", icon);
             int i2 = R.string.PhotoSavedToDownloadsHintLinked;
             Icon icon2 = Icon.SAVED_TO_DOWNLOADS;
-            FileType fileType6 = new FileType("PHOTO_TO_DOWNLOADS", 5, "PhotoSavedToDownloadsHintLinked", i2, icon2);
-            PHOTO_TO_DOWNLOADS = fileType6;
-            FileType fileType7 = new FileType("VIDEO_TO_DOWNLOADS", 6, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, icon2);
-            VIDEO_TO_DOWNLOADS = fileType7;
-            FileType fileType8 = new FileType("GIF", 7, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
-            GIF = fileType8;
-            FileType fileType9 = new FileType("GIF_TO_DOWNLOADS", 8, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, icon2);
-            GIF_TO_DOWNLOADS = fileType9;
+            PHOTO_TO_DOWNLOADS = new FileType("PHOTO_TO_DOWNLOADS", 5, "PhotoSavedToDownloadsHintLinked", i2, icon2);
+            VIDEO_TO_DOWNLOADS = new FileType("VIDEO_TO_DOWNLOADS", 6, "VideoSavedToDownloadsHintLinked", R.string.VideoSavedToDownloadsHintLinked, icon2);
+            GIF = new FileType("GIF", 7, "GifSavedHint", R.string.GifSavedHint, Icon.SAVED_TO_GIFS);
+            GIF_TO_DOWNLOADS = new FileType("GIF_TO_DOWNLOADS", 8, "GifSavedToDownloadsHintLinked", R.string.GifSavedToDownloadsHintLinked, icon2);
             int i3 = R.string.AudioSavedHint;
             Icon icon3 = Icon.SAVED_TO_MUSIC;
-            FileType fileType10 = new FileType("AUDIO", 9, "AudioSavedHint", i3, icon3);
-            AUDIO = fileType10;
-            FileType fileType11 = new FileType("AUDIOS", 10, "AudiosSavedHint", icon3);
-            AUDIOS = fileType11;
-            FileType fileType12 = new FileType("UNKNOWN", 11, "FileSavedHintLinked", R.string.FileSavedHintLinked, icon2);
-            UNKNOWN = fileType12;
-            FileType fileType13 = new FileType("UNKNOWNS", 12, "FilesSavedHintLinked", icon2);
-            UNKNOWNS = fileType13;
-            $VALUES = new FileType[]{fileType, fileType2, fileType3, fileType4, fileType5, fileType6, fileType7, fileType8, fileType9, fileType10, fileType11, fileType12, fileType13};
+            AUDIO = new FileType("AUDIO", 9, "AudioSavedHint", i3, icon3);
+            AUDIOS = new FileType("AUDIOS", 10, "AudiosSavedHint", icon3);
+            UNKNOWN = new FileType("UNKNOWN", 11, "FileSavedHintLinked", R.string.FileSavedHintLinked, icon2);
+            UNKNOWNS = new FileType("UNKNOWNS", 12, "FilesSavedHintLinked", icon2);
+            $VALUES = $values();
         }
 
         private FileType(String str, int i, String str2, int i2, Icon icon) {
@@ -391,7 +384,7 @@ public final class BulletinFactory {
             lottieLayout = lottieLayout2;
         }
         lottieLayout.setTimer();
-        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
+        lottieLayout.setButton(new Bulletin.UndoButton(getContext(), true, z, this.resourcesProvider).setText(LocaleController.getString(R.string.Undo)).setUndoAction(runnable).setDelayedAction(runnable2));
         return create(lottieLayout, 5000);
     }
 
@@ -412,9 +405,10 @@ public final class BulletinFactory {
             for (int i3 = 3; i2 < list.size() && i < i3; i3 = 3) {
                 TLObject tLObject = list.get(i2);
                 if (tLObject != null) {
-                    i++;
-                    usersLayout.avatarsImageView.setCount(i);
-                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
+                    int i4 = i + 1;
+                    usersLayout.avatarsImageView.setCount(i4);
+                    usersLayout.avatarsImageView.setObject(i, UserConfig.selectedAccount, tLObject);
+                    i = i4;
                 }
                 i2++;
             }
@@ -466,7 +460,7 @@ public final class BulletinFactory {
             }
         }
         if (undoObject != null) {
-            usersLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(undoObject.onUndo).setDelayedAction(undoObject.onAction));
+            usersLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString(R.string.Undo)).setUndoAction(undoObject.onUndo).setDelayedAction(undoObject.onAction));
         }
         return create(usersLayout, 5000);
     }
@@ -479,9 +473,10 @@ public final class BulletinFactory {
             for (int i2 = 0; i2 < list.size() && i < 3; i2++) {
                 TLObject tLObject = list.get(i2);
                 if (tLObject != null) {
-                    i++;
-                    usersLayout.avatarsImageView.setCount(i);
-                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
+                    int i3 = i + 1;
+                    usersLayout.avatarsImageView.setCount(i3);
+                    usersLayout.avatarsImageView.setObject(i, UserConfig.selectedAccount, tLObject);
+                    i = i3;
                 }
             }
             if (list.size() == 1) {
@@ -636,7 +631,7 @@ public final class BulletinFactory {
                 loadingSpan = null;
             }
             final long currentTimeMillis = System.currentTimeMillis();
-            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString(R.string.ViewAction), new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(inputStickerSet);
@@ -653,7 +648,7 @@ public final class BulletinFactory {
             });
             return createEmojiLoadingBulletin;
         }
-        return createEmojiBulletin(tLRPC$Document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+        return createEmojiBulletin(tLRPC$Document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString(R.string.ViewAction), new Runnable() {
             @Override
             public final void run() {
                 Utilities.Callback.this.run(inputStickerSet);
@@ -665,7 +660,7 @@ public final class BulletinFactory {
         final CharSequence string;
         TLRPC$StickerSet tLRPC$StickerSet;
         if (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) {
-            string = LocaleController.getString("AddEmojiNotFound", R.string.AddEmojiNotFound);
+            string = LocaleController.getString(R.string.AddEmojiNotFound);
         } else {
             string = i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title));
         }
@@ -692,7 +687,7 @@ public final class BulletinFactory {
     public Bulletin createReportSent(Theme.ResourcesProvider resourcesProvider) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
         lottieLayout.setAnimation(R.raw.chats_infotip, new String[0]);
-        lottieLayout.textView.setText(LocaleController.getString("ReportChatSent", R.string.ReportChatSent));
+        lottieLayout.textView.setText(LocaleController.getString(R.string.ReportChatSent));
         return create(lottieLayout, 1500);
     }
 
@@ -765,7 +760,7 @@ public final class BulletinFactory {
         int i2 = indexOf + 1;
         int indexOf2 = formatPluralString.indexOf(42, i2);
         valueOf.replace(indexOf, indexOf2 + 1, (CharSequence) formatPluralString.substring(i2, indexOf2));
-        valueOf.setSpan(new ClickableSpan(this) {
+        valueOf.setSpan(new ClickableSpan() {
             @Override
             public void onClick(View view) {
                 runnable.run();
@@ -844,13 +839,13 @@ public final class BulletinFactory {
         if (z) {
             Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), resourcesProvider);
             twoLineLottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
-            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("LinkCopiedPrivateInfo", R.string.LinkCopiedPrivateInfo));
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString(R.string.LinkCopied));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString(R.string.LinkCopiedPrivateInfo));
             return create(twoLineLottieLayout, 2750);
         }
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), resourcesProvider);
         lottieLayout.setAnimation(R.raw.voip_invite, 36, 36, "Wibe", "Circle");
-        lottieLayout.textView.setText(LocaleController.getString("LinkCopied", R.string.LinkCopied));
+        lottieLayout.textView.setText(LocaleController.getString(R.string.LinkCopied));
         return create(lottieLayout, 1500);
     }
 
@@ -891,7 +886,7 @@ public final class BulletinFactory {
         return createMuteBulletin(baseFragment, i, 0, (Theme.ResourcesProvider) null);
     }
 
-    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r6, int r7, int r8, org.telegram.ui.ActionBar.Theme.ResourcesProvider r9) {
+    public static org.telegram.ui.Components.Bulletin createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment r5, int r6, int r7, org.telegram.ui.ActionBar.Theme.ResourcesProvider r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createMuteBulletin(org.telegram.ui.ActionBar.BaseFragment, int, int, org.telegram.ui.ActionBar.Theme$ResourcesProvider):org.telegram.ui.Components.Bulletin");
     }
 
@@ -929,8 +924,8 @@ public final class BulletinFactory {
         if (z) {
             Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(baseFragment.getParentActivity(), resourcesProvider);
             twoLineLottieLayout.setAnimation(R.raw.ic_unpin, 28, 28, "Pin", "Line");
-            twoLineLottieLayout.titleTextView.setText(LocaleController.getString("PinnedMessagesHidden", R.string.PinnedMessagesHidden));
-            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString("PinnedMessagesHiddenInfo", R.string.PinnedMessagesHiddenInfo));
+            twoLineLottieLayout.titleTextView.setText(LocaleController.getString(R.string.PinnedMessagesHidden));
+            twoLineLottieLayout.subtitleTextView.setText(LocaleController.getString(R.string.PinnedMessagesHiddenInfo));
             lottieLayout = twoLineLottieLayout;
         } else {
             Bulletin.LottieLayout lottieLayout2 = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
@@ -972,8 +967,35 @@ public final class BulletinFactory {
         return Bulletin.make(baseFragment, lottieLayout, 1500);
     }
 
-    public static org.telegram.ui.Components.Bulletin createInviteSentBulletin(android.content.Context r3, android.widget.FrameLayout r4, int r5, long r6, int r8, int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createInviteSentBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    public static Bulletin createInviteSentBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
+        SpannableStringBuilder replaceTags;
+        final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
+        int i5 = 300;
+        if (i > 1) {
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToChats", R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0])));
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.InvLinkToSavedMessages));
+            lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
+            i5 = -1;
+        } else {
+            if (DialogObject.isChatDialog(j)) {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToGroup", R.string.InvLinkToGroup, MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j)).title));
+            } else {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("InvLinkToUser", R.string.InvLinkToUser, UserObject.getFirstName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j)))));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        }
+        lottieLayout.textView.setText(replaceTags);
+        if (i5 > 0) {
+            lottieLayout.postDelayed(new Runnable() {
+                @Override
+                public final void run() {
+                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                }
+            }, i5);
+        }
+        return Bulletin.make(frameLayout, lottieLayout, 1500);
     }
 
     public Bulletin createAdReportedBulletin(CharSequence charSequence) {
@@ -998,9 +1020,9 @@ public final class BulletinFactory {
             return false;
         }
         if (i <= 1) {
-            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
         } else {
-            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, BulletinFactory$$ExternalSyntheticLambda5.INSTANCE);
+            replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), -1, 2, new BulletinFactory$$ExternalSyntheticLambda0());
         }
         lottieLayoutWithReactions.setAnimation(R.raw.saved_messages, 36, 36, new String[0]);
         lottieLayoutWithReactions.textView.setText(replaceSingleTag);
@@ -1013,8 +1035,47 @@ public final class BulletinFactory {
         return true;
     }
 
-    public static org.telegram.ui.Components.Bulletin createForwardedBulletin(android.content.Context r4, android.widget.FrameLayout r5, int r6, long r7, int r9, int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BulletinFactory.createForwardedBulletin(android.content.Context, android.widget.FrameLayout, int, long, int, int, int):org.telegram.ui.Components.Bulletin");
+    public static Bulletin createForwardedBulletin(Context context, FrameLayout frameLayout, int i, long j, int i2, int i3, int i4) {
+        SpannableStringBuilder replaceTags;
+        SpannableStringBuilder replaceSingleTag;
+        final Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(context, null, i3, i4);
+        int i5 = 300;
+        if (i > 1) {
+            if (i2 <= 1) {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessageToManyChats", i, new Object[0]));
+            } else {
+                replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("FwdMessagesToManyChats", i, new Object[0]));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        } else if (j == UserConfig.getInstance(UserConfig.selectedAccount).clientUserId) {
+            if (i2 <= 1) {
+                replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessageToSavedMessages), new BulletinFactory$$ExternalSyntheticLambda0());
+            } else {
+                replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FwdMessagesToSavedMessages), new BulletinFactory$$ExternalSyntheticLambda0());
+            }
+            lottieLayout.setAnimation(R.raw.saved_messages, 30, 30, new String[0]);
+            replaceTags = replaceSingleTag;
+            i5 = -1;
+        } else {
+            if (DialogObject.isChatDialog(j)) {
+                TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
+                replaceTags = i2 <= 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessageToGroup", R.string.FwdMessageToGroup, chat.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessagesToGroup", R.string.FwdMessagesToGroup, chat.title));
+            } else {
+                TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+                replaceTags = i2 <= 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessageToUser", R.string.FwdMessageToUser, UserObject.getFirstName(user))) : AndroidUtilities.replaceTags(LocaleController.formatString("FwdMessagesToUser", R.string.FwdMessagesToUser, UserObject.getFirstName(user)));
+            }
+            lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
+        }
+        lottieLayout.textView.setText(replaceTags);
+        if (i5 > 0) {
+            lottieLayout.postDelayed(new Runnable() {
+                @Override
+                public final void run() {
+                    Bulletin.LottieLayout.this.performHapticFeedback(3, 2);
+                }
+            }, i5);
+        }
+        return Bulletin.make(frameLayout, lottieLayout, 1500);
     }
 
     public static Bulletin createRemoveFromChatBulletin(BaseFragment baseFragment, TLRPC$User tLRPC$User, String str) {
@@ -1035,10 +1096,10 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
-            string = LocaleController.getString("UserBlocked", R.string.UserBlocked);
+            string = LocaleController.getString(R.string.UserBlocked);
         } else {
             lottieLayout.setAnimation(R.raw.ic_unban, "Main", "Finger 1", "Finger 2", "Finger 3", "Finger 4");
-            string = LocaleController.getString("UserUnblocked", R.string.UserUnblocked);
+            string = LocaleController.getString(R.string.UserUnblocked);
         }
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
@@ -1049,10 +1110,10 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         if (z) {
             lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
-            string = LocaleController.getString("UserBlocked", R.string.UserBlocked);
+            string = LocaleController.getString(R.string.UserBlocked);
         } else {
             lottieLayout.setAnimation(R.raw.ic_unban, "Main", "Finger 1", "Finger 2", "Finger 3", "Finger 4");
-            string = LocaleController.getString("UserUnblocked", R.string.UserUnblocked);
+            string = LocaleController.getString(R.string.UserUnblocked);
         }
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
         return create(lottieLayout, 1500);
@@ -1089,9 +1150,9 @@ public final class BulletinFactory {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), resourcesProvider);
         boolean z = true;
         if (i == 0) {
-            string = LocaleController.getString("SoundOnHint", R.string.SoundOnHint);
+            string = LocaleController.getString(R.string.SoundOnHint);
         } else if (i == 1) {
-            string = LocaleController.getString("SoundOffHint", R.string.SoundOffHint);
+            string = LocaleController.getString(R.string.SoundOffHint);
             z = false;
         } else {
             throw new IllegalArgumentException();

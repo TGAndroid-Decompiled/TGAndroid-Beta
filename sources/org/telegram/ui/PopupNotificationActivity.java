@@ -19,6 +19,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
@@ -26,7 +27,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -35,11 +39,15 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$GeoPoint;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
+import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonCallback;
@@ -462,7 +470,9 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         this.nameTextView.setLines(1);
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setSingleLine(true);
-        this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
+        TextView textView3 = this.nameTextView;
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView3.setEllipsize(truncateAt);
         this.nameTextView.setGravity(3);
         this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.avatarContainer.addView(this.nameTextView);
@@ -473,14 +483,14 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         layoutParams4.bottomMargin = AndroidUtilities.dp(22.0f);
         layoutParams4.gravity = 80;
         this.nameTextView.setLayoutParams(layoutParams4);
-        TextView textView3 = new TextView(this);
-        this.onlineTextView = textView3;
-        textView3.setTextColor(Theme.getColor(i2));
+        TextView textView4 = new TextView(this);
+        this.onlineTextView = textView4;
+        textView4.setTextColor(Theme.getColor(i2));
         this.onlineTextView.setTextSize(1, 14.0f);
         this.onlineTextView.setLines(1);
         this.onlineTextView.setMaxLines(1);
         this.onlineTextView.setSingleLine(true);
-        this.onlineTextView.setEllipsize(TextUtils.TruncateAt.END);
+        this.onlineTextView.setEllipsize(truncateAt);
         this.onlineTextView.setGravity(3);
         this.avatarContainer.addView(this.onlineTextView);
         FrameLayout.LayoutParams layoutParams5 = (FrameLayout.LayoutParams) this.onlineTextView.getLayoutParams();
@@ -529,15 +539,15 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
-        builder.setMessage(LocaleController.getString("PermissionNoAudioWithHint", R.string.PermissionNoAudioWithHint));
-        builder.setNegativeButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+        builder.setTitle(LocaleController.getString(R.string.AppName));
+        builder.setMessage(LocaleController.getString(R.string.PermissionNoAudioWithHint));
+        builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
                 PopupNotificationActivity.this.lambda$onRequestPermissionsResult$0(dialogInterface, i2);
             }
         });
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), null);
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         builder.show();
     }
 
@@ -763,8 +773,189 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
     }
 
-    private android.view.ViewGroup getViewForMessage(int r28, boolean r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PopupNotificationActivity.getViewForMessage(int, boolean):android.view.ViewGroup");
+    private ViewGroup getViewForMessage(int i, boolean z) {
+        ViewGroup frameLayout;
+        int i2;
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        PopupAudioView popupAudioView;
+        ViewGroup viewGroup3;
+        int i3 = i;
+        if (this.popupMessages.size() == 1 && (i3 < 0 || i3 >= this.popupMessages.size())) {
+            return null;
+        }
+        if (i3 == -1) {
+            i3 = this.popupMessages.size() - 1;
+        } else if (i3 == this.popupMessages.size()) {
+            i3 = 0;
+        }
+        MessageObject messageObject = this.popupMessages.get(i3);
+        int i4 = messageObject.type;
+        if ((i4 == 1 || i4 == 4) && !messageObject.isSecretMedia()) {
+            if (this.imageViews.size() > 0) {
+                frameLayout = this.imageViews.get(0);
+                this.imageViews.remove(0);
+            } else {
+                frameLayout = new FrameLayout(this);
+                FrameLayout frameLayout2 = new FrameLayout(this);
+                frameLayout2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                frameLayout2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
+                BackupImageView backupImageView = new BackupImageView(this);
+                backupImageView.setTag(311);
+                frameLayout2.addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
+                TextView textView = new TextView(this);
+                textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                textView.setTextSize(1, 16.0f);
+                textView.setGravity(17);
+                textView.setTag(312);
+                frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2, 17));
+                frameLayout.setTag(2);
+                frameLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        PopupNotificationActivity.this.lambda$getViewForMessage$6(view);
+                    }
+                });
+            }
+            ViewGroup viewGroup4 = frameLayout;
+            TextView textView2 = (TextView) viewGroup4.findViewWithTag(312);
+            BackupImageView backupImageView2 = (BackupImageView) viewGroup4.findViewWithTag(311);
+            backupImageView2.setAspectFit(true);
+            int i5 = messageObject.type;
+            if (i5 == 1) {
+                TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
+                TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 100);
+                if (closestPhotoSizeWithSize != null) {
+                    boolean z2 = messageObject.type != 1 || FileLoader.getInstance(UserConfig.selectedAccount).getPathToMessage(messageObject.messageOwner).exists();
+                    if (!messageObject.needDrawBluredPreview()) {
+                        if (z2 || DownloadController.getInstance(messageObject.currentAccount).canDownloadMedia(messageObject)) {
+                            i2 = 8;
+                            backupImageView2.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), "100_100", ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), "100_100_b", closestPhotoSizeWithSize.size, messageObject);
+                        } else if (closestPhotoSizeWithSize2 != null) {
+                            backupImageView2.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject), "100_100_b", (String) null, (Drawable) null, messageObject);
+                            i2 = 8;
+                        }
+                        backupImageView2.setVisibility(0);
+                        textView2.setVisibility(i2);
+                        viewGroup = viewGroup4;
+                    }
+                }
+                backupImageView2.setVisibility(8);
+                textView2.setVisibility(0);
+                textView2.setTextSize(2, SharedConfig.fontSize);
+                textView2.setText(messageObject.messageText);
+                viewGroup = viewGroup4;
+            } else {
+                viewGroup = viewGroup4;
+                if (i5 == 4) {
+                    textView2.setVisibility(8);
+                    textView2.setText(messageObject.messageText);
+                    backupImageView2.setVisibility(0);
+                    TLRPC$GeoPoint tLRPC$GeoPoint = messageObject.messageOwner.media.geo;
+                    double d = tLRPC$GeoPoint.lat;
+                    double d2 = tLRPC$GeoPoint._long;
+                    if (MessagesController.getInstance(messageObject.currentAccount).mapProvider == 2) {
+                        backupImageView2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tLRPC$GeoPoint, 100, 100, 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), (String) null, (String) null, (Drawable) null, messageObject);
+                        viewGroup = viewGroup4;
+                    } else {
+                        backupImageView2.setImage(AndroidUtilities.formapMapUrl(messageObject.currentAccount, d, d2, 100, 100, true, 15, -1), null, null);
+                        viewGroup = viewGroup4;
+                    }
+                }
+            }
+        } else if (messageObject.type == 2) {
+            if (this.audioViews.size() > 0) {
+                ViewGroup viewGroup5 = this.audioViews.get(0);
+                this.audioViews.remove(0);
+                popupAudioView = (PopupAudioView) viewGroup5.findViewWithTag(300);
+                viewGroup3 = viewGroup5;
+            } else {
+                FrameLayout frameLayout3 = new FrameLayout(this);
+                FrameLayout frameLayout4 = new FrameLayout(this);
+                frameLayout4.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                frameLayout4.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                frameLayout3.addView(frameLayout4, LayoutHelper.createFrame(-1, -1.0f));
+                FrameLayout frameLayout5 = new FrameLayout(this);
+                frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-1, -2.0f, 17, 20.0f, 0.0f, 20.0f, 0.0f));
+                PopupAudioView popupAudioView2 = new PopupAudioView(this);
+                popupAudioView2.setTag(300);
+                frameLayout5.addView(popupAudioView2);
+                frameLayout3.setTag(3);
+                frameLayout3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        PopupNotificationActivity.this.lambda$getViewForMessage$7(view);
+                    }
+                });
+                popupAudioView = popupAudioView2;
+                viewGroup3 = frameLayout3;
+            }
+            popupAudioView.setMessageObject(messageObject);
+            viewGroup = viewGroup3;
+            if (DownloadController.getInstance(messageObject.currentAccount).canDownloadMedia(messageObject)) {
+                popupAudioView.downloadAudioIfNeed();
+                viewGroup = viewGroup3;
+            }
+        } else {
+            if (this.textViews.size() > 0) {
+                ViewGroup viewGroup6 = this.textViews.get(0);
+                this.textViews.remove(0);
+                viewGroup2 = viewGroup6;
+            } else {
+                FrameLayout frameLayout6 = new FrameLayout(this);
+                ScrollView scrollView = new ScrollView(this);
+                scrollView.setFillViewport(true);
+                frameLayout6.addView(scrollView, LayoutHelper.createFrame(-1, -1.0f));
+                LinearLayout linearLayout = new LinearLayout(this);
+                linearLayout.setOrientation(0);
+                linearLayout.setBackgroundDrawable(Theme.getSelectorDrawable(false));
+                scrollView.addView(linearLayout, LayoutHelper.createScroll(-1, -2, 1));
+                linearLayout.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        PopupNotificationActivity.this.lambda$getViewForMessage$8(view);
+                    }
+                });
+                TextView textView3 = new TextView(this);
+                textView3.setTextSize(1, 16.0f);
+                textView3.setTag(301);
+                int i6 = Theme.key_windowBackgroundWhiteBlackText;
+                textView3.setTextColor(Theme.getColor(i6));
+                textView3.setLinkTextColor(Theme.getColor(i6));
+                textView3.setGravity(17);
+                linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 17));
+                frameLayout6.setTag(1);
+                viewGroup2 = frameLayout6;
+            }
+            TextView textView4 = (TextView) viewGroup2.findViewWithTag(301);
+            textView4.setTextSize(2, SharedConfig.fontSize);
+            textView4.setText(messageObject.messageText);
+            viewGroup = viewGroup2;
+        }
+        if (viewGroup.getParent() == null) {
+            this.messageContainer.addView(viewGroup);
+        }
+        viewGroup.setVisibility(0);
+        if (z) {
+            int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(24.0f);
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewGroup.getLayoutParams();
+            layoutParams.gravity = 51;
+            layoutParams.height = -1;
+            layoutParams.width = dp;
+            int i7 = this.currentMessageNum;
+            if (i3 == i7) {
+                viewGroup.setTranslationX(0.0f);
+            } else if (i3 == i7 - 1) {
+                viewGroup.setTranslationX(-dp);
+            } else if (i3 == i7 + 1) {
+                viewGroup.setTranslationX(dp);
+            }
+            viewGroup.setLayoutParams(layoutParams);
+            viewGroup.invalidate();
+        }
+        return viewGroup;
     }
 
     public void lambda$getViewForMessage$6(View view) {
@@ -981,7 +1172,6 @@ public class PopupNotificationActivity extends Activity implements NotificationC
     }
 
     public void getNewMessage() {
-        boolean z;
         if (this.popupMessages.isEmpty()) {
             onFinish();
             finish();
@@ -993,23 +1183,20 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                 MessageObject messageObject = this.popupMessages.get(i);
                 if (messageObject.currentAccount == this.currentMessageObject.currentAccount && messageObject.getDialogId() == this.currentMessageObject.getDialogId() && messageObject.getId() == this.currentMessageObject.getId()) {
                     this.currentMessageNum = i;
-                    z = true;
-                    break;
+                    if (this.startedMoving) {
+                        if (i == this.popupMessages.size() - 1) {
+                            prepareLayouts(3);
+                        } else if (this.currentMessageNum == 1) {
+                            prepareLayouts(4);
+                        }
+                    }
+                    this.countText.setText(String.format("%d/%d", Integer.valueOf(this.currentMessageNum + 1), Integer.valueOf(this.popupMessages.size())));
                 }
             }
         }
-        z = false;
-        if (!z) {
-            this.currentMessageNum = 0;
-            this.currentMessageObject = this.popupMessages.get(0);
-            updateInterfaceForCurrentMessage(0);
-        } else if (this.startedMoving) {
-            if (this.currentMessageNum == this.popupMessages.size() - 1) {
-                prepareLayouts(3);
-            } else if (this.currentMessageNum == 1) {
-                prepareLayouts(4);
-            }
-        }
+        this.currentMessageNum = 0;
+        this.currentMessageObject = this.popupMessages.get(0);
+        updateInterfaceForCurrentMessage(0);
         this.countText.setText(String.format("%d/%d", Integer.valueOf(this.currentMessageNum + 1), Integer.valueOf(this.popupMessages.size())));
     }
 
@@ -1097,8 +1284,8 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         if (this.actionBar == null || (messageObject = this.currentMessageObject) == null || this.currentChat != null || (tLRPC$User = this.currentUser) == null) {
             return;
         }
-        long j = tLRPC$User.id;
-        if (j / 1000 != 777 && j / 1000 != 333 && ContactsController.getInstance(messageObject.currentAccount).contactsDict.get(Long.valueOf(this.currentUser.id)) == null && (ContactsController.getInstance(this.currentMessageObject.currentAccount).contactsDict.size() != 0 || !ContactsController.getInstance(this.currentMessageObject.currentAccount).isLoadingContacts())) {
+        long j = tLRPC$User.id / 1000;
+        if (j != 777 && j != 333 && ContactsController.getInstance(messageObject.currentAccount).contactsDict.get(Long.valueOf(this.currentUser.id)) == null && (ContactsController.getInstance(this.currentMessageObject.currentAccount).contactsDict.size() != 0 || !ContactsController.getInstance(this.currentMessageObject.currentAccount).isLoadingContacts())) {
             String str = this.currentUser.phone;
             if (str != null && str.length() != 0) {
                 this.nameTextView.setText(PhoneFormat.getInstance().format("+" + this.currentUser.phone));
@@ -1110,7 +1297,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         }
         TLRPC$User tLRPC$User2 = this.currentUser;
         if (tLRPC$User2 != null && tLRPC$User2.id == 777000) {
-            this.onlineTextView.setText(LocaleController.getString("ServiceNotifications", R.string.ServiceNotifications));
+            this.onlineTextView.setText(LocaleController.getString(R.string.ServiceNotifications));
             return;
         }
         CharSequence printingString = MessagesController.getInstance(this.currentMessageObject.currentAccount).getPrintingString(this.currentMessageObject.getDialogId(), 0L, false);

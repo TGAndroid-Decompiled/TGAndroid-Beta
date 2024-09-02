@@ -63,9 +63,11 @@ public class ReactedUsersListView extends FrameLayout {
     private OnCustomEmojiSelectedListener onCustomEmojiSelectedListener;
     private OnHeightChangedListener onHeightChangedListener;
     private OnProfileSelectedListener onProfileSelectedListener;
+    private boolean onlySeenNow;
     private LongSparseArray<ArrayList<TLRPC$MessagePeerReaction>> peerReactionMap;
     private int predictiveCount;
     Theme.ResourcesProvider resourcesProvider;
+    private boolean showReactionPreview;
     private List<TLRPC$MessagePeerReaction> userReactions;
 
     public interface OnCustomEmojiSelectedListener {
@@ -92,6 +94,7 @@ public class ReactedUsersListView extends FrameLayout {
         this.message = messageObject;
         this.filter = tLRPC$ReactionCount == null ? null : tLRPC$ReactionCount.reaction;
         this.resourcesProvider = resourcesProvider;
+        this.showReactionPreview = z2;
         this.predictiveCount = tLRPC$ReactionCount == null ? 6 : tLRPC$ReactionCount.count;
         this.listView = new RecyclerListView(context, resourcesProvider) {
             @Override
@@ -260,7 +263,9 @@ public class ReactedUsersListView extends FrameLayout {
                 arrayList.add(tLRPC$TL_messagePeerReaction);
             }
         }
-        this.userReactions.isEmpty();
+        if (this.userReactions.isEmpty()) {
+            this.onlySeenNow = true;
+        }
         this.userReactions.addAll(arrayList);
         Collections.sort(this.userReactions, Comparator$CC.comparingInt(new ToIntFunction() {
             @Override

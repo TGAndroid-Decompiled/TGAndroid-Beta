@@ -283,10 +283,14 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
     public long getNativeAudioDeviceModulePointer() {
         long j;
         synchronized (this.nativeLock) {
-            if (this.nativeAudioDeviceModule == 0) {
-                this.nativeAudioDeviceModule = nativeCreateAudioDeviceModule(this.context, this.audioManager, this.audioInput, this.audioOutput, this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
+            try {
+                if (this.nativeAudioDeviceModule == 0) {
+                    this.nativeAudioDeviceModule = nativeCreateAudioDeviceModule(this.context, this.audioManager, this.audioInput, this.audioOutput, this.inputSampleRate, this.outputSampleRate, this.useStereoInput, this.useStereoOutput);
+                }
+                j = this.nativeAudioDeviceModule;
+            } catch (Throwable th) {
+                throw th;
             }
-            j = this.nativeAudioDeviceModule;
         }
         return j;
     }
@@ -294,10 +298,14 @@ public class JavaAudioDeviceModule implements AudioDeviceModule {
     @Override
     public void release() {
         synchronized (this.nativeLock) {
-            long j = this.nativeAudioDeviceModule;
-            if (j != 0) {
-                JniCommon.nativeReleaseRef(j);
-                this.nativeAudioDeviceModule = 0L;
+            try {
+                long j = this.nativeAudioDeviceModule;
+                if (j != 0) {
+                    JniCommon.nativeReleaseRef(j);
+                    this.nativeAudioDeviceModule = 0L;
+                }
+            } catch (Throwable th) {
+                throw th;
             }
         }
     }

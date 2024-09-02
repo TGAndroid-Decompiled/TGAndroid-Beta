@@ -273,7 +273,8 @@ public class FastDateParser implements DateParser, Serializable {
             return;
         }
         for (int i = 0; i < strArr.length; i++) {
-            if (strArr[i] != null && strArr[i].length() > 0) {
+            String str = strArr[i];
+            if (str != null && str.length() > 0) {
                 map.put(strArr[i], Integer.valueOf(i));
             }
         }
@@ -384,10 +385,14 @@ public class FastDateParser implements DateParser, Serializable {
         ConcurrentMap<Locale, Strategy> concurrentMap;
         ConcurrentMap<Locale, Strategy>[] concurrentMapArr = caches;
         synchronized (concurrentMapArr) {
-            if (concurrentMapArr[i] == null) {
-                concurrentMapArr[i] = new ConcurrentHashMap(3);
+            try {
+                if (concurrentMapArr[i] == null) {
+                    concurrentMapArr[i] = new ConcurrentHashMap(3);
+                }
+                concurrentMap = concurrentMapArr[i];
+            } catch (Throwable th) {
+                throw th;
             }
-            concurrentMap = concurrentMapArr[i];
         }
         return concurrentMap;
     }

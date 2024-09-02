@@ -175,10 +175,6 @@ public class NotificationsController extends BaseController {
     private static final DispatchQueue notificationsQueue = new DispatchQueue("notificationsQueue");
     public static long globalSecretChatId = DialogObject.makeEncryptedDialogId(1);
 
-    public static String getGlobalNotificationsKey(int i) {
-        return i == 0 ? "EnableGroup2" : i == 1 ? "EnableAll2" : "EnableChannel2";
-    }
-
     public static void lambda$updateServerNotificationsSettings$47(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
@@ -212,12 +208,15 @@ public class NotificationsController extends BaseController {
         NotificationsController notificationsController = Instance[i];
         if (notificationsController == null) {
             synchronized (lockObjects[i]) {
-                notificationsController = Instance[i];
-                if (notificationsController == null) {
-                    NotificationsController[] notificationsControllerArr = Instance;
-                    NotificationsController notificationsController2 = new NotificationsController(i);
-                    notificationsControllerArr[i] = notificationsController2;
-                    notificationsController = notificationsController2;
+                try {
+                    notificationsController = Instance[i];
+                    if (notificationsController == null) {
+                        NotificationsController[] notificationsControllerArr = Instance;
+                        NotificationsController notificationsController2 = new NotificationsController(i);
+                        notificationsControllerArr[i] = notificationsController2;
+                        notificationsController = notificationsController2;
+                    }
+                } finally {
                 }
             }
         }
@@ -314,6 +313,8 @@ public class NotificationsController extends BaseController {
 
     public static void checkOtherNotificationsChannel() {
         SharedPreferences sharedPreferences;
+        NotificationChannel notificationChannel;
+        int importance;
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
@@ -323,15 +324,18 @@ public class NotificationsController extends BaseController {
         } else {
             sharedPreferences = null;
         }
-        NotificationChannel notificationChannel = systemNotificationManager.getNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
-        if (notificationChannel != null && notificationChannel.getImportance() == 0) {
-            try {
-                systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
-            } catch (Exception e) {
-                FileLog.e(e);
+        notificationChannel = systemNotificationManager.getNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+        if (notificationChannel != null) {
+            importance = notificationChannel.getImportance();
+            if (importance == 0) {
+                try {
+                    systemNotificationManager.deleteNotificationChannel(OTHER_NOTIFICATIONS_CHANNEL);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                OTHER_NOTIFICATIONS_CHANNEL = null;
+                notificationChannel = null;
             }
-            OTHER_NOTIFICATIONS_CHANNEL = null;
-            notificationChannel = null;
         }
         if (OTHER_NOTIFICATIONS_CHANNEL == null) {
             if (sharedPreferences == null) {
@@ -424,6 +428,8 @@ public class NotificationsController extends BaseController {
     }
 
     public void lambda$cleanup$1() {
+        List notificationChannels;
+        String id;
         this.openedDialogId = 0L;
         this.openedTopicId = 0L;
         this.total_unread_count = 0;
@@ -458,10 +464,10 @@ public class NotificationsController extends BaseController {
                 systemNotificationManager.deleteNotificationChannelGroup("stories" + this.currentAccount);
                 systemNotificationManager.deleteNotificationChannelGroup("other" + this.currentAccount);
                 String str = this.currentAccount + "channel";
-                List<NotificationChannel> notificationChannels = systemNotificationManager.getNotificationChannels();
+                notificationChannels = systemNotificationManager.getNotificationChannels();
                 int size = notificationChannels.size();
                 for (int i = 0; i < size; i++) {
-                    String id = notificationChannels.get(i).getId();
+                    id = NotificationsController$$ExternalSyntheticApiModelOutline13.m(notificationChannels.get(i)).getId();
                     if (id.startsWith(str)) {
                         try {
                             systemNotificationManager.deleteNotificationChannel(id);
@@ -627,8 +633,9 @@ public class NotificationsController extends BaseController {
                         if (num2 == null) {
                             num2 = 0;
                         }
-                        Integer valueOf = Integer.valueOf(num2.intValue() - 1);
-                        if (valueOf.intValue() <= 0) {
+                        int intValue2 = num2.intValue() - 1;
+                        Integer valueOf = Integer.valueOf(intValue2);
+                        if (intValue2 <= 0) {
                             this.smartNotificationsDialogs.remove(dialogId);
                             num = 0;
                         } else {
@@ -640,9 +647,9 @@ public class NotificationsController extends BaseController {
                                 this.total_unread_count = i4;
                                 this.total_unread_count = i4 + (num.intValue() > 0 ? 1 : 0);
                             } else {
-                                int intValue2 = this.total_unread_count - num2.intValue();
-                                this.total_unread_count = intValue2;
-                                this.total_unread_count = intValue2 + num.intValue();
+                                int intValue3 = this.total_unread_count - num2.intValue();
+                                this.total_unread_count = intValue3;
+                                this.total_unread_count = intValue3 + num.intValue();
                             }
                             this.pushDialogs.put(dialogId, num);
                         }
@@ -881,8 +888,19 @@ public class NotificationsController extends BaseController {
         });
     }
 
-    public void lambda$processDeleteStory$14(long r4, int r6) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processDeleteStory$14(long, int):void");
+    public void lambda$processDeleteStory$14(long j, int i) {
+        StoryNotification storyNotification = this.storyPushMessagesDict.get(j);
+        if (storyNotification != null) {
+            storyNotification.dateByIds.remove(Integer.valueOf(i));
+            if (storyNotification.dateByIds.isEmpty()) {
+                this.storyPushMessagesDict.remove(j);
+                this.storyPushMessages.remove(storyNotification);
+                getMessagesStorage().deleteStoryPushMessage(j);
+                showOrUpdateNotification(false);
+                return;
+            }
+            getMessagesStorage().putStoryPushMessage(storyNotification);
+        }
     }
 
     public void processReadStories(final long j, int i) {
@@ -895,17 +913,11 @@ public class NotificationsController extends BaseController {
     }
 
     public void lambda$processReadStories$15(long j) {
-        boolean z;
         StoryNotification storyNotification = this.storyPushMessagesDict.get(j);
         if (storyNotification != null) {
             this.storyPushMessagesDict.remove(j);
             this.storyPushMessages.remove(storyNotification);
-            z = true;
             getMessagesStorage().deleteStoryPushMessage(j);
-        } else {
-            z = false;
-        }
-        if (z) {
             showOrUpdateNotification(false);
             updateStoryPushesRunnable();
         }
@@ -993,8 +1005,85 @@ public class NotificationsController extends BaseController {
         });
     }
 
-    public void lambda$processReadMessages$20(org.telegram.messenger.support.LongSparseIntArray r19, final java.util.ArrayList r20, long r21, int r23, int r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processReadMessages$20(org.telegram.messenger.support.LongSparseIntArray, java.util.ArrayList, long, int, int, boolean):void");
+    public void lambda$processReadMessages$20(LongSparseIntArray longSparseIntArray, final ArrayList arrayList, long j, int i, int i2, boolean z) {
+        long j2;
+        long j3;
+        long j4 = 0;
+        if (longSparseIntArray != null) {
+            int i3 = 0;
+            while (i3 < longSparseIntArray.size()) {
+                long keyAt = longSparseIntArray.keyAt(i3);
+                int i4 = longSparseIntArray.get(keyAt);
+                int i5 = 0;
+                while (i5 < this.pushMessages.size()) {
+                    MessageObject messageObject = this.pushMessages.get(i5);
+                    if (!messageObject.messageOwner.from_scheduled && messageObject.getDialogId() == keyAt && messageObject.getId() <= i4 && !messageObject.isStoryReactionPush) {
+                        if (isPersonalMessage(messageObject)) {
+                            this.personalCount--;
+                        }
+                        arrayList.add(messageObject);
+                        if (messageObject.isStoryReactionPush) {
+                            j3 = messageObject.getDialogId();
+                        } else {
+                            long j5 = messageObject.messageOwner.peer_id.channel_id;
+                            j3 = j5 != j4 ? -j5 : j4;
+                        }
+                        SparseArray<MessageObject> sparseArray = this.pushMessagesDict.get(j3);
+                        if (sparseArray != null) {
+                            sparseArray.remove(messageObject.getId());
+                            if (sparseArray.size() == 0) {
+                                this.pushMessagesDict.remove(j3);
+                            }
+                        }
+                        this.delayedPushMessages.remove(messageObject);
+                        this.pushMessages.remove(i5);
+                        i5--;
+                    }
+                    i5++;
+                    j4 = 0;
+                }
+                i3++;
+                j4 = 0;
+            }
+        }
+        if (j != j4 && (i != 0 || i2 != 0)) {
+            int i6 = 0;
+            while (i6 < this.pushMessages.size()) {
+                MessageObject messageObject2 = this.pushMessages.get(i6);
+                if (messageObject2.getDialogId() == j && !messageObject2.isStoryReactionPush && (i2 == 0 ? z ? messageObject2.getId() == i || i < 0 : messageObject2.getId() <= i || i < 0 : messageObject2.messageOwner.date <= i2)) {
+                    if (isPersonalMessage(messageObject2)) {
+                        this.personalCount--;
+                    }
+                    if (messageObject2.isStoryReactionPush) {
+                        j2 = messageObject2.getDialogId();
+                    } else {
+                        long j6 = messageObject2.messageOwner.peer_id.channel_id;
+                        j2 = j6 != 0 ? -j6 : 0L;
+                    }
+                    SparseArray<MessageObject> sparseArray2 = this.pushMessagesDict.get(j2);
+                    if (sparseArray2 != null) {
+                        sparseArray2.remove(messageObject2.getId());
+                        if (sparseArray2.size() == 0) {
+                            this.pushMessagesDict.remove(j2);
+                        }
+                    }
+                    this.pushMessages.remove(i6);
+                    this.delayedPushMessages.remove(messageObject2);
+                    arrayList.add(messageObject2);
+                    i6--;
+                }
+                i6++;
+            }
+        }
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                NotificationsController.this.lambda$processReadMessages$19(arrayList);
+            }
+        });
     }
 
     public void lambda$processReadMessages$19(ArrayList arrayList) {
@@ -1023,6 +1112,7 @@ public class NotificationsController extends BaseController {
     }
 
     public void lambda$processEditedMessages$21(LongSparseArray longSparseArray) {
+        long j;
         int size = longSparseArray.size();
         boolean z = false;
         for (int i = 0; i < size; i++) {
@@ -1031,14 +1121,11 @@ public class NotificationsController extends BaseController {
             int size2 = arrayList.size();
             for (int i2 = 0; i2 < size2; i2++) {
                 MessageObject messageObject = (MessageObject) arrayList.get(i2);
-                long j = 0;
                 if (messageObject.isStoryReactionPush) {
                     j = messageObject.getDialogId();
                 } else {
                     long j2 = messageObject.messageOwner.peer_id.channel_id;
-                    if (j2 != 0) {
-                        j = -j2;
-                    }
+                    j = j2 != 0 ? -j2 : 0L;
                 }
                 SparseArray<MessageObject> sparseArray = this.pushMessagesDict.get(j);
                 if (sparseArray == null) {
@@ -1081,7 +1168,7 @@ public class NotificationsController extends BaseController {
         }
     }
 
-    public void lambda$processNewMessages$25(java.util.ArrayList r38, final java.util.ArrayList r39, boolean r40, boolean r41, java.util.concurrent.CountDownLatch r42) {
+    public void lambda$processNewMessages$25(java.util.ArrayList r39, final java.util.ArrayList r40, boolean r41, boolean r42, java.util.concurrent.CountDownLatch r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processNewMessages$25(java.util.ArrayList, java.util.ArrayList, boolean, boolean, java.util.concurrent.CountDownLatch):void");
     }
 
@@ -1160,8 +1247,10 @@ public class NotificationsController extends BaseController {
         long j;
         long j2;
         boolean z;
+        LongSparseArray longSparseArray2;
         long j3;
         boolean z2;
+        boolean z3;
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         SharedPreferences sharedPreferences;
         MessageObject messageObject;
@@ -1170,7 +1259,6 @@ public class NotificationsController extends BaseController {
         long j5;
         int i;
         TLRPC$Message tLRPC$Message;
-        boolean z3;
         boolean z4;
         SparseArray<MessageObject> sparseArray2;
         ArrayList arrayList3 = arrayList;
@@ -1183,7 +1271,7 @@ public class NotificationsController extends BaseController {
         this.total_unread_count = 0;
         this.personalCount = 0;
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
-        LongSparseArray longSparseArray2 = new LongSparseArray();
+        LongSparseArray longSparseArray3 = new LongSparseArray();
         long j6 = 0;
         if (arrayList3 != null) {
             int i2 = 0;
@@ -1204,9 +1292,9 @@ public class NotificationsController extends BaseController {
                             long dialogId = messageObject2.getDialogId();
                             long topicId = MessageObject.getTopicId(this.currentAccount, messageObject2.messageOwner, getMessagesController().isForum(messageObject2));
                             long fromChatId = messageObject2.messageOwner.mentioned ? messageObject2.getFromChatId() : dialogId;
-                            int indexOfKey = longSparseArray2.indexOfKey(fromChatId);
+                            int indexOfKey = longSparseArray3.indexOfKey(fromChatId);
                             if (indexOfKey >= 0 && topicId == 0) {
-                                z4 = ((Boolean) longSparseArray2.valueAt(indexOfKey)).booleanValue();
+                                z4 = ((Boolean) longSparseArray3.valueAt(indexOfKey)).booleanValue();
                                 messageObject = messageObject2;
                                 sparseArray = sparseArray3;
                                 i = i2;
@@ -1222,12 +1310,11 @@ public class NotificationsController extends BaseController {
                                 tLRPC$Message = tLRPC$Message2;
                                 int notifyOverride = getNotifyOverride(sharedPreferences, fromChatId, topicId);
                                 if (notifyOverride == -1) {
-                                    z3 = isGlobalNotificationsEnabled(fromChatId, messageObject.isReactionPush, messageObject.isStoryReactionPush);
+                                    z4 = isGlobalNotificationsEnabled(fromChatId, messageObject.isReactionPush, messageObject.isStoryReactionPush);
                                 } else {
-                                    z3 = notifyOverride != 2;
+                                    z4 = notifyOverride != 2;
                                 }
-                                z4 = z3;
-                                longSparseArray2.put(fromChatId, Boolean.valueOf(z4));
+                                longSparseArray3.put(fromChatId, Boolean.valueOf(z4));
                             }
                             if (z4 && (fromChatId != this.openedDialogId || !ApplicationLoader.isScreenOn)) {
                                 if (sparseArray == null) {
@@ -1264,9 +1351,9 @@ public class NotificationsController extends BaseController {
         SharedPreferences sharedPreferences2 = notificationsSettings;
         for (int i3 = 0; i3 < longSparseArray.size(); i3++) {
             long keyAt = longSparseArray.keyAt(i3);
-            int indexOfKey2 = longSparseArray2.indexOfKey(keyAt);
+            int indexOfKey2 = longSparseArray3.indexOfKey(keyAt);
             if (indexOfKey2 >= 0) {
-                z2 = ((Boolean) longSparseArray2.valueAt(indexOfKey2)).booleanValue();
+                z3 = ((Boolean) longSparseArray3.valueAt(indexOfKey2)).booleanValue();
             } else {
                 int notifyOverride2 = getNotifyOverride(sharedPreferences2, keyAt, 0L);
                 if (notifyOverride2 == -1) {
@@ -1274,11 +1361,13 @@ public class NotificationsController extends BaseController {
                 } else {
                     z2 = notifyOverride2 != 2;
                 }
-                longSparseArray2.put(keyAt, Boolean.valueOf(z2));
+                longSparseArray3.put(keyAt, Boolean.valueOf(z2));
+                z3 = z2;
             }
-            if (z2) {
-                int intValue = ((Integer) longSparseArray.valueAt(i3)).intValue();
-                this.pushDialogs.put(keyAt, Integer.valueOf(intValue));
+            if (z3) {
+                Integer num2 = (Integer) longSparseArray.valueAt(i3);
+                int intValue = num2.intValue();
+                this.pushDialogs.put(keyAt, num2);
                 if (getMessagesController().isForum(keyAt)) {
                     this.total_unread_count += intValue > 0 ? 1 : 0;
                 } else {
@@ -1287,7 +1376,8 @@ public class NotificationsController extends BaseController {
             }
         }
         if (arrayList2 != null) {
-            for (int i4 = 0; i4 < arrayList2.size(); i4++) {
+            int i4 = 0;
+            while (i4 < arrayList2.size()) {
                 MessageObject messageObject3 = (MessageObject) arrayList2.get(i4);
                 int id = messageObject3.getId();
                 if (this.pushMessagesDict.indexOfKey(id) < 0) {
@@ -1299,32 +1389,31 @@ public class NotificationsController extends BaseController {
                     TLRPC$Message tLRPC$Message3 = messageObject3.messageOwner;
                     long j10 = tLRPC$Message3.random_id;
                     long fromChatId2 = tLRPC$Message3.mentioned ? messageObject3.getFromChatId() : dialogId2;
-                    int indexOfKey3 = longSparseArray2.indexOfKey(fromChatId2);
+                    int indexOfKey3 = longSparseArray3.indexOfKey(fromChatId2);
                     if (indexOfKey3 >= 0 && topicId2 == 0) {
                         j = j10;
-                        long j11 = fromChatId2;
-                        z = ((Boolean) longSparseArray2.valueAt(indexOfKey3)).booleanValue();
-                        j2 = j11;
+                        z = ((Boolean) longSparseArray3.valueAt(indexOfKey3)).booleanValue();
+                        j2 = fromChatId2;
                     } else {
-                        long j12 = fromChatId2;
+                        long j11 = fromChatId2;
                         j = j10;
-                        int notifyOverride3 = getNotifyOverride(sharedPreferences2, j12, topicId2);
+                        int notifyOverride3 = getNotifyOverride(sharedPreferences2, j11, topicId2);
                         if (notifyOverride3 == -1) {
-                            j2 = j12;
+                            j2 = j11;
                             z = isGlobalNotificationsEnabled(j2, messageObject3.isReactionPush, messageObject3.isStoryReactionPush);
                         } else {
-                            j2 = j12;
+                            j2 = j11;
                             z = notifyOverride3 != 2;
                         }
-                        longSparseArray2.put(j2, Boolean.valueOf(z));
+                        longSparseArray3.put(j2, Boolean.valueOf(z));
                     }
                     if (z && (j2 != this.openedDialogId || !ApplicationLoader.isScreenOn)) {
                         if (id != 0) {
                             if (messageObject3.isStoryReactionPush) {
                                 j3 = messageObject3.getDialogId();
                             } else {
-                                long j13 = messageObject3.messageOwner.peer_id.channel_id;
-                                j3 = j13 != 0 ? -j13 : 0L;
+                                long j12 = messageObject3.messageOwner.peer_id.channel_id;
+                                j3 = j12 != 0 ? -j12 : 0L;
                             }
                             SparseArray<MessageObject> sparseArray4 = this.pushMessagesDict.get(j3);
                             if (sparseArray4 == null) {
@@ -1332,54 +1421,61 @@ public class NotificationsController extends BaseController {
                                 this.pushMessagesDict.put(j3, sparseArray4);
                             }
                             sparseArray4.put(id, messageObject3);
+                            longSparseArray2 = longSparseArray3;
                         } else {
-                            long j14 = j;
-                            if (j14 != 0) {
-                                this.fcmRandomMessagesDict.put(j14, messageObject3);
+                            longSparseArray2 = longSparseArray3;
+                            long j13 = j;
+                            if (j13 != 0) {
+                                this.fcmRandomMessagesDict.put(j13, messageObject3);
                             }
                         }
                         appendMessage(messageObject3);
                         if (dialogId2 != j2) {
-                            Integer num2 = this.pushDialogsOverrideMention.get(dialogId2);
-                            this.pushDialogsOverrideMention.put(dialogId2, Integer.valueOf(num2 == null ? 1 : num2.intValue() + 1));
+                            Integer num3 = this.pushDialogsOverrideMention.get(dialogId2);
+                            this.pushDialogsOverrideMention.put(dialogId2, Integer.valueOf(num3 == null ? 1 : num3.intValue() + 1));
                         }
-                        Integer num3 = this.pushDialogs.get(j2);
-                        int intValue2 = num3 != null ? num3.intValue() + 1 : 1;
+                        Integer num4 = this.pushDialogs.get(j2);
+                        int intValue2 = num4 != null ? num4.intValue() + 1 : 1;
                         if (getMessagesController().isForum(j2)) {
-                            if (num3 != null) {
-                                this.total_unread_count -= num3.intValue() > 0 ? 1 : 0;
+                            if (num4 != null) {
+                                this.total_unread_count -= num4.intValue() > 0 ? 1 : 0;
                             }
                             this.total_unread_count += intValue2 > 0 ? 1 : 0;
                         } else {
-                            if (num3 != null) {
-                                this.total_unread_count -= num3.intValue();
+                            if (num4 != null) {
+                                this.total_unread_count -= num4.intValue();
                             }
                             this.total_unread_count += intValue2;
                         }
                         this.pushDialogs.put(j2, Integer.valueOf(intValue2));
+                        i4++;
+                        longSparseArray3 = longSparseArray2;
                     }
                 }
+                longSparseArray2 = longSparseArray3;
+                i4++;
+                longSparseArray3 = longSparseArray2;
             }
         }
         if (collection != null) {
             Iterator it = collection.iterator();
             while (it.hasNext()) {
                 StoryNotification storyNotification = (StoryNotification) it.next();
-                long j15 = storyNotification.dialogId;
-                StoryNotification storyNotification2 = this.storyPushMessagesDict.get(j15);
+                long j14 = storyNotification.dialogId;
+                StoryNotification storyNotification2 = this.storyPushMessagesDict.get(j14);
                 if (storyNotification2 != null) {
                     storyNotification2.dateByIds.putAll(storyNotification.dateByIds);
                 } else {
                     this.storyPushMessages.add(storyNotification);
-                    this.storyPushMessagesDict.put(j15, storyNotification);
+                    this.storyPushMessagesDict.put(j14, storyNotification);
                 }
             }
             Collections.sort(this.storyPushMessages, Comparator$CC.comparingLong(new ToLongFunction() {
                 @Override
                 public final long applyAsLong(Object obj) {
-                    long j16;
-                    j16 = ((NotificationsController.StoryNotification) obj).date;
-                    return j16;
+                    long j15;
+                    j15 = ((NotificationsController.StoryNotification) obj).date;
+                    return j15;
                 }
             }));
         }
@@ -1472,7 +1568,7 @@ public class NotificationsController extends BaseController {
         NotificationBadge.applyCount(i);
     }
 
-    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r26, java.lang.String[] r27, boolean[] r28) {
+    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r27, java.lang.String[] r28, boolean[] r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getShortStringForMessage(org.telegram.messenger.MessageObject, java.lang.String[], boolean[]):java.lang.String");
     }
 
@@ -1496,7 +1592,7 @@ public class NotificationsController extends BaseController {
         return sb.toString();
     }
 
-    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r30, boolean r31, boolean[] r32, boolean[] r33) {
+    private java.lang.String getStringForMessage(org.telegram.messenger.MessageObject r46, boolean r47, boolean[] r48, boolean[] r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getStringForMessage(org.telegram.messenger.MessageObject, boolean, boolean[], boolean[]):java.lang.String");
     }
 
@@ -1506,7 +1602,7 @@ public class NotificationsController extends BaseController {
             intent.putExtra("currentAccount", this.currentAccount);
             PendingIntent service = PendingIntent.getService(ApplicationLoader.applicationContext, 0, intent, 33554432);
             if (getAccountInstance().getNotificationsSettings().getInt("repeat_messages", 60) > 0 && this.personalCount > 0) {
-                this.alarmManager.set(2, SystemClock.elapsedRealtime() + (r1 * 60 * 1000), service);
+                this.alarmManager.set(2, SystemClock.elapsedRealtime() + (r1 * 60000), service);
             } else {
                 this.alarmManager.cancel(service);
             }
@@ -1908,6 +2004,11 @@ public class NotificationsController extends BaseController {
 
     @TargetApi(26)
     protected void ensureGroupsCreated() {
+        List notificationChannels;
+        String id;
+        int importance;
+        List notificationChannelGroups;
+        String id2;
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         if (this.groupsCreated == null) {
             this.groupsCreated = Boolean.valueOf(notificationsSettings.getBoolean("groupsCreated5", false));
@@ -1915,14 +2016,14 @@ public class NotificationsController extends BaseController {
         if (!this.groupsCreated.booleanValue()) {
             try {
                 String str = this.currentAccount + "channel";
-                List<NotificationChannel> notificationChannels = systemNotificationManager.getNotificationChannels();
+                notificationChannels = systemNotificationManager.getNotificationChannels();
                 int size = notificationChannels.size();
                 SharedPreferences.Editor editor = null;
                 for (int i = 0; i < size; i++) {
-                    NotificationChannel notificationChannel = notificationChannels.get(i);
-                    String id = notificationChannel.getId();
+                    NotificationChannel m = NotificationsController$$ExternalSyntheticApiModelOutline13.m(notificationChannels.get(i));
+                    id = m.getId();
                     if (id.startsWith(str)) {
-                        int importance = notificationChannel.getImportance();
+                        importance = m.getImportance();
                         if (importance != 4 && importance != 5 && !id.contains("_ia_")) {
                             if (id.contains("_channels_")) {
                                 if (editor == null) {
@@ -1970,7 +2071,7 @@ public class NotificationsController extends BaseController {
         if (this.channelGroupsCreated) {
             return;
         }
-        List<NotificationChannelGroup> notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
+        notificationChannelGroups = systemNotificationManager.getNotificationChannelGroups();
         String str2 = "channels" + this.currentAccount;
         String str3 = "groups" + this.currentAccount;
         String str4 = "private" + this.currentAccount;
@@ -1983,7 +2084,7 @@ public class NotificationsController extends BaseController {
         String str10 = str5;
         String str11 = str4;
         for (int i2 = 0; i2 < size2; i2++) {
-            String id2 = notificationChannelGroups.get(i2).getId();
+            id2 = NotificationsController$$ExternalSyntheticApiModelOutline16.m(notificationChannelGroups.get(i2)).getId();
             if (str2 != null && str2.equals(id2)) {
                 str2 = null;
             } else if (str3 != null && str3.equals(id2)) {
@@ -2009,10 +2110,10 @@ public class NotificationsController extends BaseController {
             String str12 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
             ArrayList arrayList = new ArrayList();
             if (str2 != null) {
-                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str12));
+                arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString(R.string.NotificationsChannels) + str12));
             }
             if (str3 != null) {
-                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString("NotificationsGroups", R.string.NotificationsGroups) + str12));
+                arrayList.add(new NotificationChannelGroup(str3, LocaleController.getString(R.string.NotificationsGroups) + str12));
             }
             if (str10 != null) {
                 arrayList.add(new NotificationChannelGroup(str10, LocaleController.getString(R.string.NotificationsStories) + str12));
@@ -2021,10 +2122,10 @@ public class NotificationsController extends BaseController {
                 arrayList.add(new NotificationChannelGroup(str9, LocaleController.getString(R.string.NotificationsReactions) + str12));
             }
             if (str11 != null) {
-                arrayList.add(new NotificationChannelGroup(str11, LocaleController.getString("NotificationsPrivateChats", R.string.NotificationsPrivateChats) + str12));
+                arrayList.add(new NotificationChannelGroup(str11, LocaleController.getString(R.string.NotificationsPrivateChats) + str12));
             }
             if (str8 != null) {
-                arrayList.add(new NotificationChannelGroup(str8, LocaleController.getString("NotificationsOther", R.string.NotificationsOther) + str12));
+                arrayList.add(new NotificationChannelGroup(str8, LocaleController.getString(R.string.NotificationsOther) + str12));
             }
             systemNotificationManager.createNotificationChannelGroups(arrayList);
         }
@@ -2036,7 +2137,7 @@ public class NotificationsController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.validateChannelId(long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):java.lang.String");
     }
 
-    private void showOrUpdateNotification(boolean r48) {
+    private void showOrUpdateNotification(boolean r56) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showOrUpdateNotification(boolean):void");
     }
 
@@ -2046,10 +2147,12 @@ public class NotificationsController extends BaseController {
 
     @SuppressLint({"NewApi"})
     private void setNotificationChannel(Notification notification, NotificationCompat.Builder builder, boolean z) {
+        String channelId;
         if (z) {
             builder.setChannelId(OTHER_NOTIFICATIONS_CHANNEL);
         } else {
-            builder.setChannelId(notification.getChannelId());
+            channelId = notification.getChannelId();
+            builder.setChannelId(channelId);
         }
     }
 
@@ -2060,7 +2163,7 @@ public class NotificationsController extends BaseController {
         }
         SharedPreferences.Editor edit = getAccountInstance().getNotificationsSettings().edit();
         String uri3 = uri2.toString();
-        String string = LocaleController.getString("DefaultRingtone", R.string.DefaultRingtone);
+        String string = LocaleController.getString(R.string.DefaultRingtone);
         if (z) {
             if (i3 == 2) {
                 edit.putString("ChannelSound", string);
@@ -2091,12 +2194,12 @@ public class NotificationsController extends BaseController {
             lambda$deleteNotificationChannel$39(j, j2, -1);
         }
         edit.commit();
-        builder.setChannelId(validateChannelId(j, j2, str, jArr, i, Settings.System.DEFAULT_RINGTONE_URI, i2, z, z2, z3, i3));
+        builder.setChannelId(validateChannelId(j, j2, str, jArr, i, uri2, i2, z, z2, z3, i3));
         notificationManager.notify(this.notificationId, builder.build());
     }
 
     @android.annotation.SuppressLint({"InlinedApi"})
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r82, java.lang.String r83, long r84, long r86, java.lang.String r88, long[] r89, int r90, android.net.Uri r91, int r92, boolean r93, boolean r94, boolean r95, int r96) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r80, java.lang.String r81, long r82, long r84, java.lang.String r86, long[] r87, int r88, android.net.Uri r89, int r90, boolean r91, boolean r92, boolean r93, int r94) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
@@ -2235,14 +2338,18 @@ public class NotificationsController extends BaseController {
     }
 
     public static Person.Builder loadRoundAvatar(File file, Person.Builder builder) {
+        ImageDecoder.Source createSource;
+        Bitmap decodeBitmap;
         if (file != null && Build.VERSION.SDK_INT >= 28) {
             try {
-                builder.setIcon(IconCompat.createWithBitmap(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), new ImageDecoder.OnHeaderDecodedListener() {
+                createSource = ImageDecoder.createSource(file);
+                decodeBitmap = ImageDecoder.decodeBitmap(createSource, new ImageDecoder.OnHeaderDecodedListener() {
                     @Override
                     public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
                         NotificationsController.lambda$loadRoundAvatar$44(imageDecoder, imageInfo, source);
                     }
-                })));
+                });
+                builder.setIcon(IconCompat.createWithBitmap(decodeBitmap));
             } catch (Throwable unused) {
             }
         }
@@ -2278,8 +2385,10 @@ public class NotificationsController extends BaseController {
         int i;
         Bitmap bitmap;
         Paint paint;
+        Rect rect;
         float f;
         int i2;
+        TextPaint textPaint;
         float size;
         float size2;
         float f2;
@@ -2287,7 +2396,6 @@ public class NotificationsController extends BaseController {
         float f4;
         float f5;
         Object obj;
-        TextPaint textPaint;
         ArrayList<Object> arrayList2 = arrayList;
         if (Build.VERSION.SDK_INT < 28 || arrayList2 == null || arrayList.size() == 0) {
             return null;
@@ -2298,7 +2406,7 @@ public class NotificationsController extends BaseController {
         Matrix matrix = new Matrix();
         Paint paint2 = new Paint(3);
         Paint paint3 = new Paint(1);
-        Rect rect = new Rect();
+        Rect rect2 = new Rect();
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         float f6 = 1.0f;
         float f7 = arrayList.size() == 1 ? 1.0f : arrayList.size() == 2 ? 0.65f : 0.5f;
@@ -2308,7 +2416,7 @@ public class NotificationsController extends BaseController {
             float f8 = dp;
             float f9 = (f6 - f7) * f8;
             try {
-                size = (f9 / arrayList.size()) * ((arrayList.size() - 1) - i3);
+                size = ((arrayList.size() - 1) - i3) * (f9 / arrayList.size());
                 size2 = i3 * (f9 / arrayList.size());
                 f2 = f8 * f7;
                 f3 = f2 / 2.0f;
@@ -2321,110 +2429,70 @@ public class NotificationsController extends BaseController {
                     canvas.drawCircle(f4, f5, AndroidUtilities.dp(2.0f) + f3, paint3);
                     obj = arrayList2.get(i3);
                     paint = paint3;
-                    try {
-                    } catch (Throwable unused) {
-                        i2 = i3;
-                        i3 = i2 + 1;
-                        arrayList2 = arrayList;
-                        dp = i;
-                        f7 = f;
-                        createBitmap = bitmap;
-                        paint3 = paint;
-                        f6 = 1.0f;
-                    }
-                } catch (Throwable unused2) {
+                } catch (Throwable unused) {
                     paint = paint3;
                 }
-            } catch (Throwable unused3) {
+            } catch (Throwable unused2) {
                 i = dp;
                 bitmap = createBitmap;
                 paint = paint3;
+                rect = rect2;
                 f = f7;
             }
-            if (obj instanceof File) {
-                try {
-                    String absolutePath = ((File) arrayList2.get(i3)).getAbsolutePath();
-                    BitmapFactory.Options options = new BitmapFactory.Options();
-                    try {
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFile(absolutePath, options);
-                        int i4 = (int) f2;
-                        options.inSampleSize = StoryEntry.calculateInSampleSize(options, i4, i4);
-                        options.inJustDecodeBounds = false;
-                        options.inDither = true;
-                        Bitmap decodeFile = BitmapFactory.decodeFile(absolutePath, options);
-                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                        BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
-                        matrix.reset();
-                        matrix.postScale(f2 / decodeFile.getWidth(), f2 / decodeFile.getHeight());
-                        matrix.postTranslate(size, size2);
-                        bitmapShader.setLocalMatrix(matrix);
-                        paint2.setShader(bitmapShader);
-                        canvas.drawCircle(f4, f5, f3, paint2);
-                        decodeFile.recycle();
-                    } catch (Throwable unused4) {
-                        i2 = i3;
-                        i3 = i2 + 1;
-                        arrayList2 = arrayList;
-                        dp = i;
-                        f7 = f;
-                        createBitmap = bitmap;
-                        paint3 = paint;
-                        f6 = 1.0f;
-                    }
-                } catch (Throwable unused5) {
-                    i2 = i3;
-                    i3 = i2 + 1;
-                    arrayList2 = arrayList;
-                    dp = i;
-                    f7 = f;
-                    createBitmap = bitmap;
-                    paint3 = paint;
-                    f6 = 1.0f;
-                }
-            } else if (obj instanceof TLRPC$User) {
-                TLRPC$User tLRPC$User = (TLRPC$User) obj;
-                int[] iArr = new int[2];
+            try {
+            } catch (Throwable unused3) {
+                rect = rect2;
                 i2 = i3;
                 textPaint = textPaint2;
+                textPaint2 = textPaint;
+                i3 = i2 + 1;
+                arrayList2 = arrayList;
+                rect2 = rect;
+                dp = i;
+                f7 = f;
+                createBitmap = bitmap;
+                paint3 = paint;
+                f6 = 1.0f;
+            }
+            if (obj instanceof File) {
+                String absolutePath = ((File) arrayList2.get(i3)).getAbsolutePath();
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(absolutePath, options);
+                int i4 = (int) f2;
+                options.inSampleSize = StoryEntry.calculateInSampleSize(options, i4, i4);
+                options.inJustDecodeBounds = false;
+                options.inDither = true;
+                Bitmap decodeFile = BitmapFactory.decodeFile(absolutePath, options);
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(decodeFile, tileMode, tileMode);
+                matrix.reset();
+                matrix.postScale(f2 / decodeFile.getWidth(), f2 / decodeFile.getHeight());
+                matrix.postTranslate(size, size2);
+                bitmapShader.setLocalMatrix(matrix);
+                paint2.setShader(bitmapShader);
+                canvas.drawCircle(f4, f5, f3, paint2);
+                decodeFile.recycle();
+            } else if (obj instanceof TLRPC$User) {
+                TLRPC$User tLRPC$User = (TLRPC$User) obj;
+                Rect rect3 = rect2;
                 try {
-                    iArr[0] = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(tLRPC$User.id)]);
-                    iArr[1] = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(tLRPC$User.id)]);
-                    float f10 = size2 + f2;
+                    i2 = i3;
+                    textPaint = textPaint2;
                     try {
-                        float[] fArr = new float[2];
-                        fArr[0] = 0.0f;
                         try {
-                            fArr[1] = 1.0f;
-                            paint2.setShader(new LinearGradient(size, size2, size, f10, iArr, fArr, Shader.TileMode.CLAMP));
+                            paint2.setShader(new LinearGradient(size, size2, size, size2 + f2, new int[]{Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(tLRPC$User.id)]), Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(tLRPC$User.id)])}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                             canvas.drawCircle(f4, f5, f3, paint2);
                             if (textPaint == null) {
+                                TextPaint textPaint3 = new TextPaint(1);
                                 try {
-                                    TextPaint textPaint3 = new TextPaint(1);
-                                    try {
-                                        textPaint3.setTypeface(AndroidUtilities.bold());
-                                        textPaint3.setTextSize(f8 * 0.25f);
-                                        textPaint3.setColor(-1);
-                                        textPaint2 = textPaint3;
-                                    } catch (Throwable unused6) {
-                                        textPaint2 = textPaint3;
-                                        i3 = i2 + 1;
-                                        arrayList2 = arrayList;
-                                        dp = i;
-                                        f7 = f;
-                                        createBitmap = bitmap;
-                                        paint3 = paint;
-                                        f6 = 1.0f;
-                                    }
-                                } catch (Throwable unused7) {
-                                    textPaint2 = textPaint;
-                                    i3 = i2 + 1;
-                                    arrayList2 = arrayList;
-                                    dp = i;
-                                    f7 = f;
-                                    createBitmap = bitmap;
-                                    paint3 = paint;
-                                    f6 = 1.0f;
+                                    textPaint3.setTypeface(AndroidUtilities.bold());
+                                    textPaint3.setTextSize(f8 * 0.25f);
+                                    textPaint3.setColor(-1);
+                                    textPaint2 = textPaint3;
+                                } catch (Throwable unused4) {
+                                    textPaint2 = textPaint3;
+                                    rect = rect3;
                                 }
                             } else {
                                 textPaint2 = textPaint;
@@ -2433,39 +2501,50 @@ public class NotificationsController extends BaseController {
                                 StringBuilder sb = new StringBuilder();
                                 AvatarDrawable.getAvatarSymbols(tLRPC$User.first_name, tLRPC$User.last_name, null, sb);
                                 String sb2 = sb.toString();
+                                rect = rect3;
                                 try {
                                     textPaint2.getTextBounds(sb2, 0, sb2.length(), rect);
                                     canvas.drawText(sb2, (f4 - (rect.width() / 2.0f)) - rect.left, (f5 - (rect.height() / 2.0f)) - rect.top, textPaint2);
-                                } catch (Throwable unused8) {
+                                } catch (Throwable unused5) {
                                 }
-                            } catch (Throwable unused9) {
-                                i3 = i2 + 1;
-                                arrayList2 = arrayList;
-                                dp = i;
-                                f7 = f;
-                                createBitmap = bitmap;
-                                paint3 = paint;
-                                f6 = 1.0f;
+                            } catch (Throwable unused6) {
+                                rect = rect3;
                             }
-                        } catch (Throwable unused10) {
+                        } catch (Throwable unused7) {
+                            rect = rect3;
                         }
-                    } catch (Throwable unused11) {
+                    } catch (Throwable unused8) {
+                        rect = rect3;
+                        textPaint2 = textPaint;
+                        i3 = i2 + 1;
+                        arrayList2 = arrayList;
+                        rect2 = rect;
+                        dp = i;
+                        f7 = f;
+                        createBitmap = bitmap;
+                        paint3 = paint;
+                        f6 = 1.0f;
                     }
-                } catch (Throwable unused12) {
+                } catch (Throwable unused9) {
+                    i2 = i3;
+                    textPaint = textPaint2;
                 }
                 i3 = i2 + 1;
                 arrayList2 = arrayList;
+                rect2 = rect;
                 dp = i;
                 f7 = f;
                 createBitmap = bitmap;
                 paint3 = paint;
                 f6 = 1.0f;
             }
+            rect = rect2;
             i2 = i3;
             textPaint = textPaint2;
             textPaint2 = textPaint;
             i3 = i2 + 1;
             arrayList2 = arrayList;
+            rect2 = rect;
             dp = i;
             f7 = f;
             createBitmap = bitmap;
@@ -2768,7 +2847,7 @@ public class NotificationsController extends BaseController {
         return isGlobalNotificationsEnabled(j, null, z, z2);
     }
 
-    public boolean isGlobalNotificationsEnabled(long r3, java.lang.Boolean r5, boolean r6, boolean r7) {
+    public boolean isGlobalNotificationsEnabled(long r1, java.lang.Boolean r3, boolean r4, boolean r5) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.isGlobalNotificationsEnabled(long, java.lang.Boolean, boolean, boolean):boolean");
     }
 
@@ -2790,6 +2869,16 @@ public class NotificationsController extends BaseController {
         updateServerNotificationsSettings(i);
         getMessagesStorage().updateMutedDialogsFiltersCounters();
         deleteNotificationChannelGlobal(i);
+    }
+
+    public static String getGlobalNotificationsKey(int i) {
+        if (i == 0) {
+            return "EnableGroup2";
+        }
+        if (i == 1) {
+            return "EnableAll2";
+        }
+        return "EnableChannel2";
     }
 
     public void muteDialog(long j, long j2, boolean z) {
@@ -2835,9 +2924,10 @@ public class NotificationsController extends BaseController {
         while (it.hasNext()) {
             String key = it.next().getKey();
             if (key.startsWith("notify2_" + j)) {
-                int intValue = Utilities.parseInt((CharSequence) key.replace("notify2_" + j, "")).intValue();
+                Integer parseInt = Utilities.parseInt((CharSequence) key.replace("notify2_" + j, ""));
+                int intValue = parseInt.intValue();
                 if (intValue != 0 && getMessagesController().isDialogMuted(j, intValue) != getMessagesController().isDialogMuted(j, 0L)) {
-                    hashSet.add(Integer.valueOf(intValue));
+                    hashSet.add(parseInt);
                 }
             }
         }
@@ -2851,7 +2941,7 @@ public class NotificationsController extends BaseController {
 
     public static void lambda$loadTopicsNotificationsExceptions$50(Consumer consumer, HashSet hashSet) {
         if (consumer != null) {
-            consumer.accept(hashSet);
+            consumer.r(hashSet);
         }
     }
 

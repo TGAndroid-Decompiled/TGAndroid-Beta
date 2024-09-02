@@ -120,7 +120,6 @@ public class MrzRecognizer {
                 result.number = driverLicense.licenseNumber;
                 String str2 = driverLicense.gender;
                 if (str2 != null) {
-                    str2.hashCode();
                     if (str2.equals("1")) {
                         result.gender = 1;
                     } else if (str2.equals("2")) {
@@ -178,7 +177,7 @@ public class MrzRecognizer {
         return null;
     }
 
-    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r25) {
+    private static org.telegram.messenger.MrzRecognizer.Result recognizeMRZ(android.graphics.Bitmap r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MrzRecognizer.recognizeMRZ(android.graphics.Bitmap):org.telegram.messenger.MrzRecognizer$Result");
     }
 
@@ -210,26 +209,21 @@ public class MrzRecognizer {
     }
 
     private static int checksum(String str) {
-        int i;
         char[] charArray = str.toCharArray();
         int[] iArr = {7, 3, 1};
-        int i2 = 0;
-        for (int i3 = 0; i3 < charArray.length; i3++) {
-            if (charArray[i3] >= '0' && charArray[i3] <= '9') {
-                i = charArray[i3] - '0';
-            } else {
-                i = (charArray[i3] < 'A' || charArray[i3] > 'Z') ? 0 : (charArray[i3] - 'A') + 10;
-            }
-            i2 += i * iArr[i3 % 3];
+        int i = 0;
+        for (int i2 = 0; i2 < charArray.length; i2++) {
+            char c = charArray[i2];
+            i += ((c < '0' || c > '9') ? (c < 'A' || c > 'Z') ? 0 : c - '7' : c - '0') * iArr[i2 % 3];
         }
-        return i2 % 10;
+        return i % 10;
     }
 
     private static void parseBirthDate(String str, Result result) {
         try {
             int parseInt = Integer.parseInt(str.substring(0, 2));
             result.birthYear = parseInt;
-            result.birthYear = parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? result.birthYear + 2000 : result.birthYear + 1900;
+            result.birthYear += parseInt < (Calendar.getInstance().get(1) % 100) + (-5) ? 2000 : 1900;
             result.birthMonth = Integer.parseInt(str.substring(2, 4));
             result.birthDay = Integer.parseInt(str.substring(4));
         } catch (NumberFormatException unused) {

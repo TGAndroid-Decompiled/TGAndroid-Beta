@@ -85,7 +85,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
         int i = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -152,10 +152,11 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             if (tLRPC$BusinessAwayMessageSchedule instanceof TLRPC$TL_businessAwayMessageScheduleCustom) {
                 this.currentValueScheduleType = 2;
                 this.schedule = 2;
-                int i = ((TLRPC$TL_businessAwayMessageScheduleCustom) tLRPC$BusinessAwayMessageSchedule).start_date;
+                TLRPC$TL_businessAwayMessageScheduleCustom tLRPC$TL_businessAwayMessageScheduleCustom = (TLRPC$TL_businessAwayMessageScheduleCustom) tLRPC$BusinessAwayMessageSchedule;
+                int i = tLRPC$TL_businessAwayMessageScheduleCustom.start_date;
                 this.currentScheduleCustomStart = i;
                 this.scheduleCustomStart = i;
-                int i2 = ((TLRPC$TL_businessAwayMessageScheduleCustom) tLRPC$BusinessAwayMessageSchedule).end_date;
+                int i2 = tLRPC$TL_businessAwayMessageScheduleCustom.end_date;
                 this.currentScheduleCustomEnd = i2;
                 this.scheduleCustomEnd = i2;
                 universalRecyclerView = this.listView;
@@ -327,13 +328,13 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString(R.string.BusinessAwayUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     AwayMessagesActivity.this.lambda$onBackPressed$3(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     AwayMessagesActivity.this.lambda$onBackPressed$4(dialogInterface, i);

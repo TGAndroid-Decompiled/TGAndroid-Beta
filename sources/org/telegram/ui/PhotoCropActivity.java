@@ -96,7 +96,7 @@ public class PhotoCropActivity extends BaseFragment {
             });
         }
 
-        public boolean lambda$init$0(android.view.View r13, android.view.MotionEvent r14) {
+        public boolean lambda$init$0(android.view.View r14, android.view.MotionEvent r15) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoCropActivity.PhotoCropView.lambda$init$0(android.view.View, android.view.MotionEvent):boolean");
         }
 
@@ -105,24 +105,24 @@ public class PhotoCropActivity extends BaseFragment {
                 return;
             }
             float f = this.rectX - this.bitmapX;
-            int i = this.bitmapWidth;
-            float f2 = f / i;
-            float f3 = this.rectY - this.bitmapY;
-            int i2 = this.bitmapHeight;
-            float f4 = f3 / i2;
-            float f5 = this.rectSizeX / i;
-            float f6 = this.rectSizeY / i2;
+            float f2 = this.bitmapWidth;
+            float f3 = f / f2;
+            float f4 = this.rectY - this.bitmapY;
+            float f5 = this.bitmapHeight;
+            float f6 = f4 / f5;
+            float f7 = this.rectSizeX / f2;
+            float f8 = this.rectSizeY / f5;
             float width = PhotoCropActivity.this.imageToCrop.getWidth();
             float height = PhotoCropActivity.this.imageToCrop.getHeight();
-            int i3 = this.viewWidth;
-            float f7 = i3 / width;
-            int i4 = this.viewHeight;
-            if (f7 > i4 / height) {
-                this.bitmapHeight = i4;
+            int i = this.viewWidth;
+            float f9 = i / width;
+            int i2 = this.viewHeight;
+            if (f9 > i2 / height) {
+                this.bitmapHeight = i2;
                 this.bitmapWidth = (int) Math.ceil(width * r9);
             } else {
-                this.bitmapWidth = i3;
-                this.bitmapHeight = (int) Math.ceil(height * f7);
+                this.bitmapWidth = i;
+                this.bitmapHeight = (int) Math.ceil(height * f9);
             }
             this.bitmapX = ((this.viewWidth - this.bitmapWidth) / 2) + AndroidUtilities.dp(14.0f);
             int dp = ((this.viewHeight - this.bitmapHeight) / 2) + AndroidUtilities.dp(14.0f);
@@ -137,24 +137,24 @@ public class PhotoCropActivity extends BaseFragment {
                     if (this.bitmapWidth > this.bitmapHeight) {
                         this.rectY = dp;
                         this.rectX = ((this.viewWidth - r1) / 2) + AndroidUtilities.dp(14.0f);
-                        int i5 = this.bitmapHeight;
-                        this.rectSizeX = i5;
-                        this.rectSizeY = i5;
+                        float f10 = this.bitmapHeight;
+                        this.rectSizeX = f10;
+                        this.rectSizeY = f10;
                     } else {
                         this.rectX = this.bitmapX;
                         this.rectY = ((this.viewHeight - r0) / 2) + AndroidUtilities.dp(14.0f);
-                        int i6 = this.bitmapWidth;
-                        this.rectSizeX = i6;
-                        this.rectSizeY = i6;
+                        float f11 = this.bitmapWidth;
+                        this.rectSizeX = f11;
+                        this.rectSizeY = f11;
                     }
                 }
             } else {
-                int i7 = this.bitmapWidth;
-                this.rectX = (f2 * i7) + this.bitmapX;
-                int i8 = this.bitmapHeight;
-                this.rectY = (f4 * i8) + dp;
-                this.rectSizeX = f5 * i7;
-                this.rectSizeY = f6 * i8;
+                float f12 = this.bitmapWidth;
+                this.rectX = (f3 * f12) + this.bitmapX;
+                float f13 = this.bitmapHeight;
+                this.rectY = (f6 * f13) + dp;
+                this.rectSizeX = f7 * f12;
+                this.rectSizeY = f8 * f13;
             }
             invalidate();
         }
@@ -169,14 +169,14 @@ public class PhotoCropActivity extends BaseFragment {
 
         public Bitmap getBitmap() {
             float f = this.rectX - this.bitmapX;
-            int i = this.bitmapWidth;
-            float f2 = (this.rectY - this.bitmapY) / this.bitmapHeight;
-            float f3 = this.rectSizeX / i;
-            float f4 = this.rectSizeY / i;
-            int width = (int) ((f / i) * PhotoCropActivity.this.imageToCrop.getWidth());
-            int height = (int) (f2 * PhotoCropActivity.this.imageToCrop.getHeight());
-            int width2 = (int) (f3 * PhotoCropActivity.this.imageToCrop.getWidth());
-            int width3 = (int) (f4 * PhotoCropActivity.this.imageToCrop.getWidth());
+            float f2 = this.bitmapWidth;
+            float f3 = (this.rectY - this.bitmapY) / this.bitmapHeight;
+            float f4 = this.rectSizeX / f2;
+            float f5 = this.rectSizeY / f2;
+            int width = (int) ((f / f2) * PhotoCropActivity.this.imageToCrop.getWidth());
+            int height = (int) (f3 * PhotoCropActivity.this.imageToCrop.getHeight());
+            int width2 = (int) (f4 * PhotoCropActivity.this.imageToCrop.getWidth());
+            int width3 = (int) (f5 * PhotoCropActivity.this.imageToCrop.getWidth());
             if (width < 0) {
                 width = 0;
             }
@@ -268,7 +268,7 @@ public class PhotoCropActivity extends BaseFragment {
         this.actionBar.setItemsColor(-1, false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString("CropImage", R.string.CropImage));
+        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int i) {
@@ -289,7 +289,7 @@ public class PhotoCropActivity extends BaseFragment {
                 }
             }
         });
-        this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.actionBar.createMenu().addItemWithWidth(1, R.drawable.ic_ab_done, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         PhotoCropView photoCropView = new PhotoCropView(context);
         this.view = photoCropView;
         this.fragmentView = photoCropView;

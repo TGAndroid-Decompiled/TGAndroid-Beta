@@ -73,6 +73,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private float newStoryBounceT;
     private Runnable onLongPressRunnable;
     Paint paint;
+    private TL_stories$PeerStories peerStories;
     private boolean progressIsDone;
     private float progressToInsets;
     private final AnimatedFloat progressToUploading;
@@ -200,7 +201,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         paint.setColor(1526726655);
         this.readPaintAlpha = paint.getAlpha();
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-        paint.setStyle(Paint.Style.STROKE);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint2.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
@@ -211,7 +213,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         animatedTextDrawable.setCallback(this);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         this.paint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-        this.paint.setStyle(Paint.Style.STROKE);
+        this.paint.setStyle(style);
         updateStories(false, false);
     }
 
@@ -221,6 +223,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public void setStories(TL_stories$PeerStories tL_stories$PeerStories) {
+        this.peerStories = tL_stories$PeerStories;
         updateStories(true, false);
     }
 

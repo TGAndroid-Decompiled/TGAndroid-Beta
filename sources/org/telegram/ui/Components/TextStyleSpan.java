@@ -67,10 +67,11 @@ public class TextStyleSpan extends MetricAffectingSpan {
             if ((i & 4) != 0 || (i & 2048) != 0) {
                 return Typeface.MONOSPACE;
             }
-            if ((i & 1) != 0 && (i & 2) != 0) {
+            int i2 = i & 1;
+            if (i2 != 0 && (i & 2) != 0) {
                 return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
             }
-            if ((i & 1) != 0) {
+            if (i2 != 0) {
                 return AndroidUtilities.bold();
             }
             if ((i & 2) != 0) {

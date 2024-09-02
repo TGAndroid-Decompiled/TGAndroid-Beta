@@ -48,6 +48,7 @@ import org.telegram.ui.ActionBar.Theme;
 public class ReactedHeaderView extends FrameLayout {
     private AvatarsImageView avatarsImageView;
     private int currentAccount;
+    private long dialogId;
     private int fixedWidth;
     private FlickerLoadingView flickerLoadingView;
     private ImageView iconView;
@@ -66,6 +67,7 @@ public class ReactedHeaderView extends FrameLayout {
         this.users = new ArrayList();
         this.currentAccount = i;
         this.message = messageObject;
+        this.dialogId = j;
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
         flickerLoadingView.setColors(Theme.key_actionBarDefaultSubmenuBackground, Theme.key_listSelector, -1);
@@ -109,7 +111,6 @@ public class ReactedHeaderView extends FrameLayout {
         public TLObject user;
 
         public UserSeen(TLObject tLObject, int i) {
-            this.date = 0;
             this.user = tLObject;
             this.date = i;
             if (tLObject instanceof TLRPC$User) {
@@ -129,7 +130,7 @@ public class ReactedHeaderView extends FrameLayout {
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         final TLRPC$Chat chat = messagesController.getChat(Long.valueOf(this.message.getChatId()));
         TLRPC$ChatFull chatFull = messagesController.getChatFull(this.message.getChatId());
-        if ((chat == null || !this.message.isOutOwner() || !this.message.isSent() || this.message.isEditing() || this.message.isSending() || this.message.isSendError() || this.message.isContentUnread() || this.message.isUnread() || ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - this.message.messageOwner.date >= 604800 || (!ChatObject.isMegagroup(chat) && ChatObject.isChannel(chat)) || chatFull == null || chatFull.participants_count > MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold || (this.message.messageOwner.action instanceof TLRPC$TL_messageActionChatJoinedByRequest)) ? false : true) {
+        if (chat != null && this.message.isOutOwner() && this.message.isSent() && !this.message.isEditing() && !this.message.isSending() && !this.message.isSendError() && !this.message.isContentUnread() && !this.message.isUnread() && ConnectionsManager.getInstance(this.currentAccount).getCurrentTime() - this.message.messageOwner.date < 604800 && ((ChatObject.isMegagroup(chat) || !ChatObject.isChannel(chat)) && chatFull != null && chatFull.participants_count <= MessagesController.getInstance(this.currentAccount).chatReadMarkSizeThreshold && !(this.message.messageOwner.action instanceof TLRPC$TL_messageActionChatJoinedByRequest))) {
             TLRPC$TL_messages_getMessageReadParticipants tLRPC$TL_messages_getMessageReadParticipants = new TLRPC$TL_messages_getMessageReadParticipants();
             tLRPC$TL_messages_getMessageReadParticipants.msg_id = this.message.getId();
             tLRPC$TL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.message.getDialogId());
@@ -154,9 +155,9 @@ public class ReactedHeaderView extends FrameLayout {
             while (it.hasNext()) {
                 Object next = it.next();
                 if (next instanceof Long) {
-                    long longValue = ((Long) next).longValue();
-                    if (j != longValue) {
-                        arrayList.add(Long.valueOf(longValue));
+                    Long l = (Long) next;
+                    if (j != l.longValue()) {
+                        arrayList.add(l);
                         arrayList2.add(0);
                     }
                 } else if (next instanceof TLRPC$TL_readParticipantDate) {
@@ -208,23 +209,16 @@ public class ReactedHeaderView extends FrameLayout {
         Iterator it = list.iterator();
         while (it.hasNext()) {
             UserSeen userSeen = (UserSeen) it.next();
-            boolean z = false;
             int i = 0;
             while (true) {
                 if (i >= this.users.size()) {
+                    this.users.add(userSeen);
                     break;
-                }
-                if (MessageObject.getObjectPeerId(this.users.get(i).user) == MessageObject.getObjectPeerId(userSeen.user)) {
-                    if (userSeen.date > 0) {
-                        this.users.get(i).date = userSeen.date;
-                    }
-                    z = true;
-                } else {
+                } else if (MessageObject.getObjectPeerId(this.users.get(i).user) != MessageObject.getObjectPeerId(userSeen.user)) {
                     i++;
+                } else if (userSeen.date > 0) {
+                    this.users.get(i).date = userSeen.date;
                 }
-            }
-            if (!z) {
-                this.users.add(userSeen);
             }
         }
         Consumer<List<UserSeen>> consumer = this.seenCallback;
@@ -314,9 +308,6 @@ public class ReactedHeaderView extends FrameLayout {
 
     public void lambda$loadReactions$6(int i, TLRPC$TL_messages_messageReactionsList tLRPC$TL_messages_messageReactionsList) {
         String formatPluralString;
-        boolean z;
-        boolean z2;
-        boolean z3;
         if (this.seenUsers.isEmpty() || this.seenUsers.size() < i) {
             formatPluralString = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
         } else {
@@ -335,17 +326,13 @@ public class ReactedHeaderView extends FrameLayout {
                     this.reactView.setAlpha(0.0f);
                     this.reactView.animate().alpha(1.0f).start();
                     this.iconView.setVisibility(8);
-                    z = false;
                     break;
                 }
             }
         }
-        z = true;
-        if (z) {
-            this.iconView.setVisibility(0);
-            this.iconView.setAlpha(0.0f);
-            this.iconView.animate().alpha(1.0f).start();
-        }
+        this.iconView.setVisibility(0);
+        this.iconView.setAlpha(0.0f);
+        this.iconView.animate().alpha(1.0f).start();
         Iterator<TLRPC$User> it = tLRPC$TL_messages_messageReactionsList.users.iterator();
         while (it.hasNext()) {
             TLRPC$User next = it.next();
@@ -354,18 +341,13 @@ public class ReactedHeaderView extends FrameLayout {
                 int i2 = 0;
                 while (true) {
                     if (i2 >= this.users.size()) {
-                        z3 = false;
+                        this.users.add(new UserSeen(next, 0));
+                        break;
+                    } else if (this.users.get(i2).dialogId == next.id) {
                         break;
                     } else {
-                        if (this.users.get(i2).dialogId == next.id) {
-                            z3 = true;
-                            break;
-                        }
                         i2++;
                     }
-                }
-                if (!z3) {
-                    this.users.add(new UserSeen(next, 0));
                 }
             }
         }
@@ -377,18 +359,13 @@ public class ReactedHeaderView extends FrameLayout {
                 int i3 = 0;
                 while (true) {
                     if (i3 >= this.users.size()) {
-                        z2 = false;
+                        this.users.add(new UserSeen(next2, 0));
+                        break;
+                    } else if (this.users.get(i3).dialogId == (-next2.id)) {
                         break;
                     } else {
-                        if (this.users.get(i3).dialogId == (-next2.id)) {
-                            z2 = true;
-                            break;
-                        }
                         i3++;
                     }
-                }
-                if (!z2) {
-                    this.users.add(new UserSeen(next2, 0));
                 }
             }
         }

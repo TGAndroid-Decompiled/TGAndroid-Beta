@@ -22,6 +22,7 @@ public class BackDrawable extends Drawable {
     private int color = -1;
     private int rotatedColor = -9079435;
     private float animationTime = 300.0f;
+    private boolean rotated = true;
 
     @Override
     public int getOpacity() {
@@ -95,9 +96,9 @@ public class BackDrawable extends Drawable {
                 if (f2 >= f3) {
                     this.currentRotation = this.finalRotation;
                 } else if (this.currentRotation < this.finalRotation) {
-                    this.currentRotation = this.interpolator.getInterpolation(currentTimeMillis / f3) * this.finalRotation;
+                    this.currentRotation = this.interpolator.getInterpolation(f2 / f3) * this.finalRotation;
                 } else {
-                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(currentTimeMillis / f3);
+                    this.currentRotation = 1.0f - this.interpolator.getInterpolation(f2 / f3);
                 }
             }
             this.lastFrameTime = System.currentTimeMillis();

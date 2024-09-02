@@ -102,12 +102,10 @@ public class FilterGLThread extends DispatchQueue {
         filterShaders.setScaleBitmap(z2);
         float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
         if (z) {
-            float f = fArr[2];
-            fArr[2] = fArr[0];
-            fArr[0] = f;
-            float f2 = fArr[6];
-            fArr[6] = fArr[4];
-            fArr[4] = f2;
+            fArr[2] = 0.0f;
+            fArr[0] = 1.0f;
+            fArr[6] = 0.0f;
+            fArr[4] = 1.0f;
         }
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
         allocateDirect.order(ByteOrder.nativeOrder());

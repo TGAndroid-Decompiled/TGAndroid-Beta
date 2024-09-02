@@ -170,10 +170,7 @@ public class PreviewButtons extends FrameLayout {
         }
         this.appearing = z;
         if (z2) {
-            float[] fArr = new float[2];
-            fArr[0] = this.appearT;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
             this.appearAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

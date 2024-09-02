@@ -123,9 +123,10 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         this.topicId = 0;
         this.vibrateLabels = new int[]{R.string.VibrationDefault, R.string.Short, R.string.VibrationDisabled, R.string.Long, R.string.OnlyIfSilent};
         this.popupOptions = new int[]{R.string.NoPopup, R.string.OnlyWhenScreenOn, R.string.OnlyWhenScreenOff, R.string.AlwaysShowPopup};
-        int i2 = R.string.NotificationsPriorityUrgent;
-        int i3 = R.string.NotificationsPriorityMedium;
-        this.priorityOptions = new int[]{R.string.NotificationsPriorityHigh, i2, i2, i3, R.string.NotificationsPriorityLow, i3};
+        int i2 = R.string.NotificationsPriorityHigh;
+        int i3 = R.string.NotificationsPriorityUrgent;
+        int i4 = R.string.NotificationsPriorityMedium;
+        this.priorityOptions = new int[]{i2, i3, i3, i4, R.string.NotificationsPriorityLow, i4};
         this.oldItems = new ArrayList<>();
         this.items = new ArrayList<>();
         this.currentType = i;
@@ -133,16 +134,16 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         this.exceptions = arrayList;
         if (arrayList != null) {
             int size = arrayList.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                NotificationsSettingsActivity.NotificationException notificationException = this.exceptions.get(i4);
+            for (int i5 = 0; i5 < size; i5++) {
+                NotificationsSettingsActivity.NotificationException notificationException = this.exceptions.get(i5);
                 this.exceptionsDict.put(Long.valueOf(notificationException.did), notificationException);
             }
         }
         ArrayList<NotificationsSettingsActivity.NotificationException> arrayList3 = this.autoExceptions;
         if (arrayList3 != null) {
             int size2 = arrayList3.size();
-            for (int i5 = 0; i5 < size2; i5++) {
-                NotificationsSettingsActivity.NotificationException notificationException2 = this.autoExceptions.get(i5);
+            for (int i6 = 0; i6 < size2; i6++) {
+                NotificationsSettingsActivity.NotificationException notificationException2 = this.autoExceptions.get(i6);
                 this.exceptionsDict.put(Long.valueOf(notificationException2.did), notificationException2);
             }
         }
@@ -223,6 +224,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     }
 
     private void updateMute(NotificationsSettingsActivity.NotificationException notificationException, View view, int i, boolean z, boolean z2) {
+        Boolean bool;
+        Boolean bool2;
         String sharedPrefKey = NotificationsController.getSharedPrefKey(notificationException.did, 0L);
         SharedPreferences.Editor edit = getNotificationsSettings().edit();
         boolean isTop5Peer = isTop5Peer(this.currentAccount, notificationException.did);
@@ -241,8 +244,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         } else if (isTop5Peer) {
             edit.putBoolean("stories_" + sharedPrefKey, !z2).commit();
         } else {
-            Boolean bool = this.storiesEnabled;
-            if (!z2 ? !(bool == null || !bool.booleanValue()) : !(bool != null && bool.booleanValue())) {
+            if (!z2 ? !((bool = this.storiesEnabled) == null || !bool.booleanValue()) : !((bool2 = this.storiesEnabled) != null && bool2.booleanValue())) {
                 lambda$createView$6(notificationException, view, i);
                 return;
             }
@@ -349,6 +351,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     @Override
     public View createView(final Context context) {
         this.searching = false;
+        this.searchWas = false;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         if (this.currentType == -1) {
@@ -410,14 +413,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         this.searchAdapter = new SearchAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.setTextSize(18);
         this.emptyView.setText(LocaleController.getString("NoExceptions", R.string.NoExceptions));
         this.emptyView.showTextView();
-        frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void dispatchDraw(Canvas canvas) {
@@ -436,7 +438,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         recyclerListView.setEmptyView(this.emptyView);
         this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
-        frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView2 = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
@@ -683,10 +685,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                 View childAt = this.listView.getChildAt(i2);
                 RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.getChildViewHolder(childAt);
                 int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
-                ItemInner itemInner = null;
-                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
-                    itemInner = this.items.get(childAdapterPosition);
-                }
+                ItemInner itemInner = (childAdapterPosition < 0 || childAdapterPosition >= this.items.size()) ? null : this.items.get(childAdapterPosition);
                 boolean z = (itemInner == null || !((i = itemInner.id) == 102 || i == 101 || i == 100)) ? isGlobalNotificationsEnabled : true;
                 int itemViewType = holder.getItemViewType();
                 if (itemViewType == 0) {
@@ -912,11 +911,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
 
     @Override
     public void onActivityResultFragment(int i, int i2, Intent intent) {
+        String str;
         Ringtone ringtone;
         if (i2 == -1) {
             Uri uri = (Uri) intent.getParcelableExtra("android.intent.extra.ringtone.PICKED_URI");
-            String str = null;
-            if (uri != null && (ringtone = RingtoneManager.getRingtone(getParentActivity(), uri)) != null) {
+            if (uri == null || (ringtone = RingtoneManager.getRingtone(getParentActivity(), uri)) == null) {
+                str = null;
+            } else {
                 if (uri.equals(Settings.System.DEFAULT_NOTIFICATION_URI)) {
                     str = LocaleController.getString("SoundDefault", R.string.SoundDefault);
                 } else {
@@ -1266,7 +1267,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ItemInner.class != obj.getClass()) {
+            if (obj == null || getClass() != obj.getClass()) {
                 return false;
             }
             ItemInner itemInner = (ItemInner) obj;
@@ -1278,7 +1279,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             if (this == item) {
                 return true;
             }
-            if (item == null || ItemInner.class != item.getClass()) {
+            if (item == null || getClass() != item.getClass()) {
                 return false;
             }
             ItemInner itemInner = (ItemInner) item;
@@ -1341,7 +1342,7 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
                 case 8:
-                    headerCell = new ExpandView(NotificationsCustomSettingsActivity.this, this.mContext);
+                    headerCell = new ExpandView(this.mContext);
                     headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     break;
             }
@@ -1452,12 +1453,12 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
     public class ExpandView extends TextCell {
         public ImageView imageView;
 
-        public ExpandView(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, Context context) {
+        public ExpandView(Context context) {
             super(context);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(notificationsCustomSettingsActivity.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(NotificationsCustomSettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN));
             this.imageView.setImageResource(R.drawable.msg_expand);
             addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
         }

@@ -82,6 +82,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     private boolean stickerRandom = true;
     private TLRPC$Document sticker = getMediaDataController().getGreetingsSticker();
     private boolean clearVisible = isEmpty();
+    private int shiftDp = -4;
 
     @Override
     public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
@@ -128,7 +129,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     @Override
     public View createView(Context context) {
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
-        this.greetingsView = new ChatGreetingsView(this, context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
+        this.greetingsView = new ChatGreetingsView(context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -165,7 +166,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         frameLayout.setWillNotDraw(false);
         this.greetingsViewBackground = Theme.createServiceDrawable(AndroidUtilities.dp(16.0f), this.greetingsView, this.previewContainer, getThemedPaint("paintChatActionBackground"));
         this.greetingsView.setBackground(new ColorDrawable(0));
-        ImageView imageView = new ImageView(this, context) {
+        ImageView imageView = new ImageView(context) {
             @Override
             protected void onMeasure(int i, int i2) {
                 float f;
@@ -255,7 +256,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         int i2 = Theme.key_actionBarDefaultIcon;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i2)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(1, this.doneButtonDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done));
         checkDone(false, true);
         this.listView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
@@ -565,13 +566,13 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
             builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
             builder.setMessage(LocaleController.getString(R.string.BusinessIntroUnsavedChanges));
-            builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     BusinessIntroActivity.this.lambda$onBackPressed$5(dialogInterface, i);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
                     BusinessIntroActivity.this.lambda$onBackPressed$6(dialogInterface, i);
@@ -620,7 +621,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         if (getParentActivity() == null || getContext() == null || this.chatAttachAlert != null) {
             return;
         }
-        ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getParentActivity(), this, false, false, true, this.resourceProvider) {
+        boolean z = false;
+        ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getParentActivity(), this, z, false, true, this.resourceProvider) {
             @Override
             public void dismissInternal() {
                 if (BusinessIntroActivity.this.chatAttachAlert != null && BusinessIntroActivity.this.chatAttachAlert.isShowing()) {
@@ -643,7 +645,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
         this.chatAttachAlert = chatAttachAlert;
         chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
-            public void didPressedButton(int i, boolean z, boolean z2, int i2, long j, boolean z3, boolean z4) {
+            public void didPressedButton(int i, boolean z2, boolean z3, int i2, long j, boolean z4, boolean z5) {
             }
 
             @Override
@@ -677,8 +679,8 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             }
 
             @Override
-            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, long j, boolean z2) {
-                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, j, z2);
+            public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z2, int i, long j, boolean z3) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z2, i, j, z3);
             }
 
             @Override

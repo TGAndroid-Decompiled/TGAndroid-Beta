@@ -332,35 +332,40 @@ public class CaptionContainerView extends FrameLayout {
                 }
                 CaptionContainerView.this.invalidate();
                 CaptionContainerView captionContainerView = CaptionContainerView.this;
-                if (captionContainerView.waitingForScrollYChange) {
-                    captionContainerView.waitingForScrollYChange = false;
-                    if (captionContainerView.beforeScrollY != i && (captionContainerView.scrollAnimator == null || !CaptionContainerView.this.scrollAnimator.isRunning() || i != CaptionContainerView.this.goingToScrollY)) {
-                        if (CaptionContainerView.this.scrollAnimator != null) {
-                            CaptionContainerView.this.scrollAnimator.cancel();
-                        }
-                        CaptionContainerView.this.editText.getEditText().setScrollY(CaptionContainerView.this.beforeScrollY);
-                        CaptionContainerView captionContainerView2 = CaptionContainerView.this;
-                        EditTextCaption editText = captionContainerView2.editText.getEditText();
-                        CaptionContainerView captionContainerView3 = CaptionContainerView.this;
-                        captionContainerView3.goingToScrollY = i;
-                        captionContainerView2.scrollAnimator = ObjectAnimator.ofInt(editText, "scrollY", captionContainerView3.beforeScrollY, i);
-                        CaptionContainerView.this.scrollAnimator.setDuration(240L);
-                        CaptionContainerView.this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                        CaptionContainerView.this.scrollAnimator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                if (CaptionContainerView.this.scrollAnimator != animator) {
-                                    return;
-                                }
-                                CaptionContainerView.this.scrollAnimator = null;
-                                CaptionContainerView.this.editText.getEditText().setScrollY(CaptionContainerView.this.goingToScrollY);
-                            }
-                        });
-                        CaptionContainerView.this.scrollAnimator.start();
-                        return false;
-                    }
+                if (!captionContainerView.waitingForScrollYChange) {
+                    return true;
                 }
-                return true;
+                captionContainerView.waitingForScrollYChange = false;
+                if (captionContainerView.beforeScrollY == i) {
+                    return true;
+                }
+                if (captionContainerView.scrollAnimator != null && CaptionContainerView.this.scrollAnimator.isRunning() && i == CaptionContainerView.this.goingToScrollY) {
+                    return true;
+                }
+                if (CaptionContainerView.this.scrollAnimator != null) {
+                    CaptionContainerView.this.scrollAnimator.cancel();
+                }
+                CaptionContainerView.this.editText.getEditText().setScrollY(CaptionContainerView.this.beforeScrollY);
+                CaptionContainerView captionContainerView2 = CaptionContainerView.this;
+                EditTextCaption editText = captionContainerView2.editText.getEditText();
+                CaptionContainerView captionContainerView3 = CaptionContainerView.this;
+                int i2 = captionContainerView3.beforeScrollY;
+                captionContainerView3.goingToScrollY = i;
+                captionContainerView2.scrollAnimator = ObjectAnimator.ofInt(editText, "scrollY", i2, i);
+                CaptionContainerView.this.scrollAnimator.setDuration(240L);
+                CaptionContainerView.this.scrollAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                CaptionContainerView.this.scrollAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        if (CaptionContainerView.this.scrollAnimator != animator) {
+                            return;
+                        }
+                        CaptionContainerView.this.scrollAnimator = null;
+                        CaptionContainerView.this.editText.getEditText().setScrollY(CaptionContainerView.this.goingToScrollY);
+                    }
+                });
+                CaptionContainerView.this.scrollAnimator.start();
+                return false;
             }
         };
         this.editText = editTextEmoji;
@@ -755,10 +760,7 @@ public class CaptionContainerView extends FrameLayout {
             } else {
                 this.editText.getEditText().scrollBy(0, -this.editText.getEditText().getScrollY());
             }
-            float[] fArr = new float[2];
-            fArr[0] = this.keyboardT;
-            fArr[1] = z ? 1.0f : 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.keyboardT, z ? 1.0f : 0.0f);
             this.keyboardAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
@@ -933,7 +935,8 @@ public class CaptionContainerView extends FrameLayout {
                 f3 = this.bounds.bottom;
                 min = Math.min(AndroidUtilities.dp(82.0f), this.editText.getHeight());
             }
-            f = (f3 - min) - AndroidUtilities.dp(50.0f);
+            float f4 = f3 - min;
+            f = f4 - AndroidUtilities.dp(50.0f);
             f2 = 1.0f - this.collapsedT.get();
         } else {
             f = this.bounds.top;
@@ -957,14 +960,17 @@ public class CaptionContainerView extends FrameLayout {
             path.rewind();
         }
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(21.0f), 0, this.keyboardT);
-        this.replyClipPath.addRoundRect(this.bounds, lerp, lerp, Path.Direction.CW);
+        Path path2 = this.replyClipPath;
+        RectF rectF3 = this.bounds;
+        Path.Direction direction = Path.Direction.CW;
+        path2.addRoundRect(rectF3, lerp, lerp, direction);
         canvas.clipPath(this.replyClipPath);
         Text text = this.replyTitle;
         if (text != null) {
             text.ellipsize((int) (this.bounds.width() - AndroidUtilities.dp(40.0f))).draw(canvas, AndroidUtilities.dp(20.0f) + this.bounds.left, f + AndroidUtilities.dp(22.0f), -1, 1.0f);
         }
-        Path path2 = this.replyLinePath;
-        if (path2 == null) {
+        Path path3 = this.replyLinePath;
+        if (path3 == null) {
             this.replyLinePath = new Path();
             float[] fArr = new float[8];
             this.replyLinePathRadii = fArr;
@@ -980,11 +986,11 @@ public class CaptionContainerView extends FrameLayout {
             fArr2[7] = dp2;
             fArr2[6] = dp2;
         } else {
-            path2.rewind();
+            path3.rewind();
         }
-        float f4 = rectF.left;
-        rectF.set(f4, rectF.top, AndroidUtilities.dp(3.0f) + f4, rectF.bottom);
-        this.replyLinePath.addRoundRect(rectF, this.replyLinePathRadii, Path.Direction.CW);
+        float f5 = rectF.left;
+        rectF.set(f5, rectF.top, AndroidUtilities.dp(3.0f) + f5, rectF.bottom);
+        this.replyLinePath.addRoundRect(rectF, this.replyLinePathRadii, direction);
         if (this.replyLinePaint == null) {
             Paint paint3 = new Paint();
             this.replyLinePaint = paint3;
@@ -1005,7 +1011,7 @@ public class CaptionContainerView extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r24) {
+    protected void dispatchDraw(android.graphics.Canvas r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.CaptionContainerView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -1363,12 +1369,11 @@ public class CaptionContainerView extends FrameLayout {
             float f5 = this.cy;
             rectF.set(f4 - dpf2, f5 - dpf2, f4 + dpf2, f5 + dpf2);
             canvas.drawArc(rectF, 90.0f, 180.0f, false, this.strokePaint);
-            int i = this.dashes;
-            float f6 = (i + 1) * 1.5f;
-            float f7 = (1.0f / ((i * 1.0f) + f6)) * 180.0f;
-            float f8 = (1.5f / ((i * 1.0f) + f6)) * 180.0f;
+            float f6 = (this.dashes * 1.0f) + ((r1 + 1) * 1.5f);
+            float f7 = (1.0f / f6) * 180.0f;
+            float f8 = (1.5f / f6) * 180.0f;
             float f9 = f8;
-            for (int i2 = 0; i2 < this.dashes; i2++) {
+            for (int i = 0; i < this.dashes; i++) {
                 canvas.drawArc(AndroidUtilities.rectTmp, f9 + 270.0f, f7, false, this.strokePaint);
                 f9 += f7 + f8;
             }
@@ -1377,15 +1382,15 @@ public class CaptionContainerView extends FrameLayout {
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((int) (this.cx - AndroidUtilities.dp(20.0f)), (int) (this.cy - AndroidUtilities.dp(20.0f)), (int) (this.cx + AndroidUtilities.dp(20.0f)), (int) (this.cy + AndroidUtilities.dp(20.0f)));
             this.textDrawable.setBounds(rect);
-            int i3 = (int) f3;
-            this.textDrawable.setAlpha(i3);
+            int i2 = (int) f3;
+            this.textDrawable.setAlpha(i2);
             this.textDrawable.draw(canvas);
             if (f2 > 0.0f) {
                 this.activePath.rewind();
                 this.activePath.addCircle(this.cx, this.cy + AndroidUtilities.dp(1.0f), AndroidUtilities.dpf2(11.33f) * f2, Path.Direction.CW);
                 canvas.clipPath(this.activePath);
                 this.activeTextDrawable.setBounds(rect);
-                this.activeTextDrawable.setAlpha(i3);
+                this.activeTextDrawable.setAlpha(i2);
                 this.activeTextDrawable.draw(canvas);
             }
             canvas.restore();

@@ -205,52 +205,41 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 this.listContainer.animate().alpha(1.0f).start();
             }
             int i = this.rowCount;
-            int i2 = i + 1;
-            this.rowCount = i2;
             this.overviewHeaderRow = i;
-            int i3 = i2 + 1;
-            this.rowCount = i3;
-            this.overviewRow = i2;
+            this.overviewRow = i + 1;
             ArraySet<Integer> arraySet = this.shadowDivideCells;
-            this.rowCount = i3 + 1;
-            arraySet.add(Integer.valueOf(i3));
+            this.rowCount = i + 3;
+            arraySet.add(Integer.valueOf(i + 2));
             if (this.interactionsViewData != null) {
+                int i2 = this.rowCount;
+                this.interactionsChartRow = i2;
+                ArraySet<Integer> arraySet2 = this.shadowDivideCells;
+                this.rowCount = i2 + 2;
+                arraySet2.add(Integer.valueOf(i2 + 1));
+            }
+            if (this.reactionsByEmotionData != null) {
+                int i3 = this.rowCount;
+                this.reactionsByEmotionChartRow = i3;
+                ArraySet<Integer> arraySet3 = this.shadowDivideCells;
+                this.rowCount = i3 + 2;
+                arraySet3.add(Integer.valueOf(i3 + 1));
+            }
+            if (!this.messages.isEmpty()) {
                 int i4 = this.rowCount;
                 int i5 = i4 + 1;
                 this.rowCount = i5;
-                this.interactionsChartRow = i4;
-                ArraySet<Integer> arraySet2 = this.shadowDivideCells;
-                this.rowCount = i5 + 1;
-                arraySet2.add(Integer.valueOf(i5));
-            }
-            if (this.reactionsByEmotionData != null) {
-                int i6 = this.rowCount;
-                int i7 = i6 + 1;
-                this.rowCount = i7;
-                this.reactionsByEmotionChartRow = i6;
-                ArraySet<Integer> arraySet3 = this.shadowDivideCells;
-                this.rowCount = i7 + 1;
-                arraySet3.add(Integer.valueOf(i7));
-            }
-            if (!this.messages.isEmpty()) {
-                int i8 = this.rowCount;
-                int i9 = i8 + 1;
-                this.rowCount = i9;
-                this.headerRow = i8;
-                this.startRow = i9;
-                int size = i9 + this.messages.size();
-                this.rowCount = size;
+                this.headerRow = i4;
+                this.startRow = i5;
+                int size = i5 + this.messages.size();
                 this.endRow = size;
-                int i10 = size + 1;
-                this.rowCount = i10;
                 this.emptyRow = size;
                 ArraySet<Integer> arraySet4 = this.shadowDivideCells;
-                this.rowCount = i10 + 1;
-                arraySet4.add(Integer.valueOf(i10));
+                this.rowCount = size + 2;
+                arraySet4.add(Integer.valueOf(size + 1));
                 if (!this.endReached) {
-                    int i11 = this.rowCount;
-                    this.rowCount = i11 + 1;
-                    this.loadingRow = i11;
+                    int i6 = this.rowCount;
+                    this.rowCount = i6 + 1;
+                    this.loadingRow = i6;
                 }
             }
         }
@@ -297,7 +286,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (messageObject == null || !messageObject.isStory() || !(messageObject.storyItem instanceof TL_stories$TL_storyItemDeleted)) {
             return false;
         }
-        BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString("StoryNotFound", R.string.StoryNotFound)).show();
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.story_bomb1, LocaleController.getString(R.string.StoryNotFound)).show();
         return true;
     }
 
@@ -311,7 +300,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
         EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context);
         this.emptyView = emptyTextProgressView;
-        emptyTextProgressView.setText(LocaleController.getString("NoResult", R.string.NoResult));
+        emptyTextProgressView.setText(LocaleController.getString(R.string.NoResult));
         this.emptyView.setVisibility(8);
         LinearLayout linearLayout = new LinearLayout(context);
         this.progressLayout = linearLayout;
@@ -327,14 +316,14 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         int i = Theme.key_player_actionBarTitle;
         textView.setTextColor(Theme.getColor(i, getResourceProvider()));
         textView.setTag(Integer.valueOf(i));
-        textView.setText(LocaleController.getString("LoadingStats", R.string.LoadingStats));
+        textView.setText(LocaleController.getString(R.string.LoadingStats));
         textView.setGravity(1);
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 15.0f);
         int i2 = Theme.key_player_actionBarSubtitle;
         textView2.setTextColor(Theme.getColor(i2, getResourceProvider()));
         textView2.setTag(Integer.valueOf(i2));
-        textView2.setText(LocaleController.getString("LoadingStatsDescription", R.string.LoadingStatsDescription));
+        textView2.setText(LocaleController.getString(R.string.LoadingStatsDescription));
         textView2.setGravity(1);
         this.progressLayout.addView(this.imageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 20));
         this.progressLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 10));
@@ -536,8 +525,6 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     public boolean lambda$createView$2(View view, int i) {
-        int i2;
-        String str;
         if (i >= this.startRow && i < this.endRow) {
             try {
                 view.performHapticFeedback(0, 2);
@@ -551,24 +538,17 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             ArrayList arrayList3 = new ArrayList();
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), getResourceProvider());
             if (messageObject.isStory()) {
-                if (isUserDialog) {
-                    i2 = R.string.OpenProfile;
-                    str = "OpenProfile";
-                } else {
-                    i2 = R.string.OpenChannel2;
-                    str = "OpenChannel2";
-                }
-                arrayList.add(LocaleController.getString(str, i2));
+                arrayList.add(LocaleController.getString(isUserDialog ? R.string.OpenProfile : R.string.OpenChannel2));
                 arrayList3.add(Integer.valueOf(isUserDialog ? R.drawable.msg_openprofile : R.drawable.msg_channel));
             } else {
-                arrayList.add(LocaleController.getString("ViewMessage", R.string.ViewMessage));
+                arrayList.add(LocaleController.getString(R.string.ViewMessage));
                 arrayList3.add(Integer.valueOf(R.drawable.msg_msgbubble3));
             }
             arrayList2.add(0);
             builder.setItems((CharSequence[]) arrayList.toArray(new CharSequence[arrayList2.size()]), AndroidUtilities.toIntArray(arrayList3), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i3) {
-                    MessageStatisticActivity.this.lambda$createView$1(messageObject, isUserDialog, dialogId, dialogInterface, i3);
+                public final void onClick(DialogInterface dialogInterface, int i2) {
+                    MessageStatisticActivity.this.lambda$createView$1(messageObject, isUserDialog, dialogId, dialogInterface, i2);
                 }
             });
             showDialog(builder.create());
@@ -614,7 +594,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
 
     private void setAvatarAndTitle() {
         if (this.messageObject.isStory()) {
-            this.avatarContainer.setTitle(LocaleController.getString("StoryStatistics", R.string.StoryStatistics));
+            this.avatarContainer.setTitle(LocaleController.getString(R.string.StoryStatistics));
             this.avatarContainer.hideSubtitle();
             ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
             chatAvatarContainer.allowDrawStories = true;
@@ -629,7 +609,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             }
             return;
         }
-        this.avatarContainer.setTitle(LocaleController.getString("PostStatistics", R.string.PostStatistics));
+        this.avatarContainer.setTitle(LocaleController.getString(R.string.PostStatistics));
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         if (chat == null || this.hasThumb) {
             return;
@@ -642,7 +622,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
         if (this.needActionbarMenu && (tLRPC$ChatFull = this.chat) != null && tLRPC$ChatFull.can_view_stats) {
             ActionBarMenu createMenu = this.actionBar.createMenu();
             createMenu.clearItems();
-            createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(1, R.drawable.msg_stats, LocaleController.getString("ViewChannelStats", R.string.ViewChannelStats));
+            createMenu.addItem(0, R.drawable.ic_ab_other).addSubItem(1, R.drawable.msg_stats, LocaleController.getString(R.string.ViewChannelStats));
         }
     }
 
@@ -848,8 +828,8 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             tL_stats$StatsGraph = tL_stats$TL_messageStats.views_graph;
             tL_stats$StatsGraph2 = tL_stats$TL_messageStats.reactions_by_emotion_graph;
         }
-        this.interactionsViewData = StatisticActivity.createViewData(tL_stats$StatsGraph, LocaleController.getString("ViewsAndSharesChartTitle", R.string.ViewsAndSharesChartTitle), 1, false);
-        this.reactionsByEmotionData = StatisticActivity.createViewData(tL_stats$StatsGraph2, LocaleController.getString("ReactionsByEmotionChartTitle", R.string.ReactionsByEmotionChartTitle), 2, false);
+        this.interactionsViewData = StatisticActivity.createViewData(tL_stats$StatsGraph, LocaleController.getString(R.string.ViewsAndSharesChartTitle), 1, false);
+        this.reactionsByEmotionData = StatisticActivity.createViewData(tL_stats$StatsGraph2, LocaleController.getString(R.string.ReactionsByEmotionChartTitle), 2, false);
         StatisticActivity.ChartViewData chartViewData = this.interactionsViewData;
         if (chartViewData != null && chartViewData.chartData.x.length <= 5) {
             this.statsLoaded = false;
@@ -872,14 +852,22 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
     }
 
     public void lambda$loadStat$10(final String str, final TL_stats$TL_loadAsyncGraph tL_stats$TL_loadAsyncGraph, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        ChartData chartData = null;
+        ChartData chartData;
         if (tLObject instanceof TL_stats$TL_statsGraph) {
             try {
                 chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats$TL_statsGraph) tLObject).json.data), 1, false);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if (tLObject instanceof TL_stats$TL_statsGraphError) {
+            final ChartData chartData2 = chartData;
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData2, str, tL_stats$TL_loadAsyncGraph);
+                }
+            });
+        }
+        if (tLObject instanceof TL_stats$TL_statsGraphError) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -887,11 +875,12 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 }
             });
         }
-        final ChartData chartData2 = chartData;
+        chartData = null;
+        final ChartData chartData22 = chartData;
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData2, str, tL_stats$TL_loadAsyncGraph);
+                MessageStatisticActivity.this.lambda$loadStat$9(tLRPC$TL_error, chartData22, str, tL_stats$TL_loadAsyncGraph);
             }
         });
     }
@@ -1001,16 +990,24 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
             }
 
             public void lambda$onZoomed$1(final String str, final StatisticActivity.ZoomCancelable zoomCancelable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                final ChartData chartData = null;
+                final ChartData chartData;
                 if (tLObject instanceof TL_stats$TL_statsGraph) {
                     try {
                         chartData = StatisticActivity.createChartData(new JSONObject(((TL_stats$TL_statsGraph) tLObject).json.data), this.data.graphType, false);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                } else if (tLObject instanceof TL_stats$TL_statsGraphError) {
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            MessageStatisticActivity.ListAdapter.AnonymousClass1.this.lambda$onZoomed$0(chartData, str, zoomCancelable);
+                        }
+                    });
+                }
+                if (tLObject instanceof TL_stats$TL_statsGraphError) {
                     Toast.makeText(getContext(), ((TL_stats$TL_statsGraphError) tLObject).error, 1).show();
                 }
+                chartData = null;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -1201,7 +1198,7 @@ public class MessageStatisticActivity extends BaseFragment implements Notificati
                 }
             }
             this.primary[0].setText(AndroidUtilities.formatWholeNumber(i, 0));
-            this.title[0].setText(LocaleController.getString("StatisticViews", R.string.StatisticViews));
+            this.title[0].setText(LocaleController.getString(R.string.StatisticViews));
             this.primary[1].setText(AndroidUtilities.formatWholeNumber(MessageStatisticActivity.this.publicChats, 0));
             this.title[1].setText(LocaleController.formatString("PublicShares", R.string.PublicShares, new Object[0]));
             this.primary[2].setText(AndroidUtilities.formatWholeNumber(i3, 0));

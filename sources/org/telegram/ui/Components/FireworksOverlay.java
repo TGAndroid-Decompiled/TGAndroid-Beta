@@ -7,7 +7,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.SystemClock;
 import android.view.View;
 import java.util.ArrayList;
@@ -50,11 +49,10 @@ public class FireworksOverlay extends View {
     static {
         particlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 50 : 60;
         fallParticlesCount = SharedConfig.getDevicePerformanceClass() == 0 ? 20 : 30;
-        int[] iArr = {-13845272, -6421296, -79102, -187561, -14185218, -10897300};
-        colors = iArr;
+        colors = new int[]{-13845272, -6421296, -79102, -187561, -14185218, -10897300};
         heartColors = new int[]{-1944197, -10498574, -9623, -2399389, -1870160};
         starsColors = new int[]{-14778113, -15677815, -42601, -26844, -13639175};
-        paint = new Paint[iArr.length];
+        paint = new Paint[6];
         int i = 0;
         while (true) {
             Paint[] paintArr = paint;
@@ -105,13 +103,13 @@ public class FireworksOverlay extends View {
                 if (drawable != null) {
                     int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
                     int intrinsicHeight = drawable.getIntrinsicHeight() / 2;
-                    float f = this.x;
-                    float f2 = this.y;
-                    drawable.setBounds(((int) f) - intrinsicWidth, ((int) f2) - intrinsicHeight, ((int) f) + intrinsicWidth, ((int) f2) + intrinsicHeight);
+                    int i = (int) this.x;
+                    int i2 = (int) this.y;
+                    drawable.setBounds(i - intrinsicWidth, i2 - intrinsicHeight, i + intrinsicWidth, i2 + intrinsicHeight);
                     canvas.save();
                     canvas.rotate(this.rotation, this.x, this.y);
-                    byte b2 = this.typeSize;
-                    canvas.scale(b2 / 6.0f, b2 / 6.0f, this.x, this.y);
+                    float f = this.typeSize / 6.0f;
+                    canvas.scale(f, f, this.x, this.y);
                     drawable.draw(canvas);
                     canvas.restore();
                 }
@@ -353,14 +351,12 @@ public class FireworksOverlay extends View {
             return;
         }
         this.started = false;
-        if (Build.VERSION.SDK_INT >= 18) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    FireworksOverlay.this.lambda$onDraw$0();
-                }
-            });
-        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                FireworksOverlay.this.lambda$onDraw$0();
+            }
+        });
         onStop();
     }
 

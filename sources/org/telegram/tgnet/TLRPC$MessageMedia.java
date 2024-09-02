@@ -54,7 +54,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public boolean voice;
     public TLRPC$WebPage webpage;
 
-    public static org.telegram.tgnet.TLRPC$MessageMedia TLdeserialize(org.telegram.tgnet.AbstractSerializedData r6, int r7, boolean r8) {
+    public static org.telegram.tgnet.TLRPC$MessageMedia TLdeserialize(org.telegram.tgnet.AbstractSerializedData r5, int r6, boolean r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.tgnet.TLRPC$MessageMedia.TLdeserialize(org.telegram.tgnet.AbstractSerializedData, int, boolean):org.telegram.tgnet.TLRPC$MessageMedia");
     }
 
