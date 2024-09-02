@@ -816,7 +816,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
 
         public void lambda$onClick$6(TLRPC$User tLRPC$User, boolean z) {
-            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$308();
+            SharedMediaLayout.this.profileActivity.lambda$onBackPressed$307();
             if (SharedMediaLayout.this.profileActivity instanceof NotificationCenter.NotificationCenterDelegate) {
                 SharedMediaLayout.this.profileActivity.getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) SharedMediaLayout.this.profileActivity, NotificationCenter.closeChats);
             }
@@ -5113,7 +5113,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                                     public void onTransitionAnimationStart(boolean z, boolean z2) {
                                         if (this.firstCreateView) {
                                             if (this.searchItem != null) {
-                                                lambda$openSearchWithText$311("");
+                                                lambda$openSearchWithText$310("");
                                                 this.searchItem.setSearchFieldText(SharedMediaLayout.this.savedMessagesSearchAdapter.lastQuery, false);
                                             }
                                             SearchTagsList searchTagsList = this.actionBarSearchTags;
@@ -5299,7 +5299,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                 }
                 this.profileActivity.getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$308();
+            dialogsActivity.lambda$onBackPressed$307();
             BaseFragment baseFragment = this.profileActivity;
             UndoView undoView = baseFragment instanceof ProfileActivity ? ((ProfileActivity) baseFragment).getUndoView() : null;
             if (undoView != null) {

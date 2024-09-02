@@ -41,6 +41,7 @@ import org.telegram.tgnet.TLRPC$TL_inputStorePaymentGiftPremium;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsGift;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsGiveaway;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsTopup;
 import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$Updates;
@@ -70,7 +71,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     }
 
     private void consumeGiftPurchase(Purchase purchase, TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
-        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
+        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsTopup) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGift) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentStarsGiveaway)) {
             this.billingClient.consumeAsync(ConsumeParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build(), new ConsumeResponseListener() {
                 @Override
                 public final void onConsumeResponse(BillingResult billingResult, String str) {

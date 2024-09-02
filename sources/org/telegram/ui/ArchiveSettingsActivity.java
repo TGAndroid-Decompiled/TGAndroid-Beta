@@ -246,7 +246,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ArchiveSettingsActivity.this.lambda$onBackPressed$308();
+                    ArchiveSettingsActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

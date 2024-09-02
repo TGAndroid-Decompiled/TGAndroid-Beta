@@ -61,6 +61,7 @@ import org.telegram.tgnet.TLRPC$TL_help_getCountriesList;
 import org.telegram.tgnet.TLRPC$TL_inputInvoicePremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentStarsGiveaway;
 import org.telegram.tgnet.TLRPC$TL_payments_applyGiftCode;
 import org.telegram.tgnet.TLRPC$TL_payments_canPurchasePremium;
 import org.telegram.tgnet.TLRPC$TL_payments_checkGiftCode;
@@ -75,9 +76,11 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.tgnet.TLRPC$payments_GiveawayInfo;
+import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_applyBoost;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_myBoosts;
 import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
+import org.telegram.tgnet.tl.TL_stories$TL_prepaidStarsGiveaway;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
@@ -757,42 +760,76 @@ public abstract class BoostRepository {
         }
     }
 
-    public static void launchPreparedGiveaway(TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway, List list, List list2, TLRPC$Chat tLRPC$Chat, int i, boolean z, boolean z2, boolean z3, String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+    public static void launchPreparedGiveaway(TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway, List list, List list2, TLRPC$Chat tLRPC$Chat, int i, boolean z, boolean z2, boolean z3, int i2, String str, final Utilities.Callback callback, final Utilities.Callback callback2) {
+        ?? tLRPC$TL_inputStorePaymentStarsGiveaway;
         final MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
-        TLRPC$TL_inputStorePaymentPremiumGiveaway tLRPC$TL_inputStorePaymentPremiumGiveaway = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.only_new_subscribers = z;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.winners_are_visible = z2;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.prize_description = str;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.until_date = i;
-        int i2 = tLRPC$TL_inputStorePaymentPremiumGiveaway.flags;
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 6;
-        if (z3) {
-            tLRPC$TL_inputStorePaymentPremiumGiveaway.flags = i2 | 22;
-        }
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList();
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
-        tLRPC$TL_inputStorePaymentPremiumGiveaway.currency = "";
-        Iterator it = list2.iterator();
-        while (it.hasNext()) {
-            tLRPC$TL_inputStorePaymentPremiumGiveaway.countries_iso2.add(((TLRPC$TL_help_country) ((TLObject) it.next())).iso2);
-        }
-        Iterator it2 = list.iterator();
-        while (it2.hasNext()) {
-            TLObject tLObject = (TLObject) it2.next();
-            if (tLObject instanceof TLRPC$Chat) {
-                tLRPC$TL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC$Chat) tLObject).id));
+        if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
+            tLRPC$TL_inputStorePaymentStarsGiveaway = new TLRPC$TL_inputStorePaymentPremiumGiveaway();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.only_new_subscribers = z;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.winners_are_visible = z2;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.prize_description = str;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.until_date = i;
+            int i3 = tLRPC$TL_inputStorePaymentStarsGiveaway.flags;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.flags = i3 | 6;
+            if (z3) {
+                tLRPC$TL_inputStorePaymentStarsGiveaway.flags = i3 | 22;
+            }
+            tLRPC$TL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+            tLRPC$TL_inputStorePaymentStarsGiveaway.currency = "";
+            Iterator it = list2.iterator();
+            while (it.hasNext()) {
+                tLRPC$TL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC$TL_help_country) ((TLObject) it.next())).iso2);
+            }
+            Iterator it2 = list.iterator();
+            while (it2.hasNext()) {
+                TLObject tLObject = (TLObject) it2.next();
+                if (tLObject instanceof TLRPC$Chat) {
+                    tLRPC$TL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC$Chat) tLObject).id));
+                }
+            }
+        } else {
+            if (!(tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway)) {
+                return;
+            }
+            tLRPC$TL_inputStorePaymentStarsGiveaway = new TLRPC$TL_inputStorePaymentStarsGiveaway();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.only_new_subscribers = z;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.winners_are_visible = z2;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.prize_description = str;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.until_date = i;
+            int i4 = tLRPC$TL_inputStorePaymentStarsGiveaway.flags;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.flags = i4 | 6;
+            if (z3) {
+                tLRPC$TL_inputStorePaymentStarsGiveaway.flags = i4 | 22;
+            }
+            tLRPC$TL_inputStorePaymentStarsGiveaway.random_id = System.currentTimeMillis();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.additional_peers = new ArrayList();
+            tLRPC$TL_inputStorePaymentStarsGiveaway.boost_peer = messagesController.getInputPeer(-tLRPC$Chat.id);
+            tLRPC$TL_inputStorePaymentStarsGiveaway.currency = "";
+            tLRPC$TL_inputStorePaymentStarsGiveaway.stars = ((TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway).stars;
+            tLRPC$TL_inputStorePaymentStarsGiveaway.users = tL_stories$PrepaidGiveaway.quantity;
+            Iterator it3 = list2.iterator();
+            while (it3.hasNext()) {
+                tLRPC$TL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC$TL_help_country) ((TLObject) it3.next())).iso2);
+            }
+            Iterator it4 = list.iterator();
+            while (it4.hasNext()) {
+                TLObject tLObject2 = (TLObject) it4.next();
+                if (tLObject2 instanceof TLRPC$Chat) {
+                    tLRPC$TL_inputStorePaymentStarsGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC$Chat) tLObject2).id));
+                }
             }
         }
         TLRPC$TL_payments_launchPrepaidGiveaway tLRPC$TL_payments_launchPrepaidGiveaway = new TLRPC$TL_payments_launchPrepaidGiveaway();
-        tLRPC$TL_payments_launchPrepaidGiveaway.giveaway_id = tL_stories$TL_prepaidGiveaway.id;
+        tLRPC$TL_payments_launchPrepaidGiveaway.giveaway_id = tL_stories$PrepaidGiveaway.id;
         tLRPC$TL_payments_launchPrepaidGiveaway.peer = messagesController.getInputPeer(-tLRPC$Chat.id);
-        tLRPC$TL_payments_launchPrepaidGiveaway.purpose = tLRPC$TL_inputStorePaymentPremiumGiveaway;
+        tLRPC$TL_payments_launchPrepaidGiveaway.purpose = tLRPC$TL_inputStorePaymentStarsGiveaway;
         connectionsManager.sendRequest(tLRPC$TL_payments_launchPrepaidGiveaway, new RequestDelegate() {
             @Override
-            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                BoostRepository.lambda$launchPreparedGiveaway$14(Utilities.Callback.this, messagesController, callback, tLObject2, tLRPC$TL_error);
+            public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error) {
+                BoostRepository.lambda$launchPreparedGiveaway$14(Utilities.Callback.this, messagesController, callback, tLObject3, tLRPC$TL_error);
             }
         });
     }

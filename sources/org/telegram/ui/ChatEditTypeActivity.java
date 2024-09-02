@@ -1151,7 +1151,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     public void processDone() {
         AndroidUtilities.runOnUIThread(this.enableDoneLoading, 200L);
         if (trySetUsername() && trySetRestrict() && tryUpdateJoinSettings()) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -1352,7 +1352,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i6) {
                 if (i6 == -1) {
-                    ChatEditTypeActivity.this.lambda$onBackPressed$308();
+                    ChatEditTypeActivity.this.lambda$onBackPressed$307();
                 } else if (i6 == 1) {
                     if (ChatEditTypeActivity.this.doneButtonDrawable == null || ChatEditTypeActivity.this.doneButtonDrawable.getProgress() <= 0.0f) {
                         ChatEditTypeActivity.this.processDone();

@@ -424,7 +424,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             this.currentPasswordHash = new byte[0];
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
             return;
         }
         if (tLRPC$TL_error != null) {
@@ -763,7 +763,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public void lambda$resetPassword$11(DialogInterface dialogInterface) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$resetPassword$12(TLObject tLObject) {
@@ -800,7 +800,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public void lambda$showSetForcePasswordAlert$37(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$updateRows$20() {
@@ -1117,9 +1117,9 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public void lambda$onBackPressed$308() {
+    public void lambda$onBackPressed$307() {
         if (this.otherwiseReloginDays < 0) {
-            super.lambda$onBackPressed$308();
+            super.lambda$onBackPressed$307();
             return;
         }
         Bundle bundle = new Bundle();

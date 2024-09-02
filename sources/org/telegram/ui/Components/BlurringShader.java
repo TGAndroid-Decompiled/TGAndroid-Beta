@@ -858,8 +858,8 @@ public class BlurringShader {
         this.uvBuffer = asFloatBuffer3;
         asFloatBuffer3.put(new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f});
         this.uvBuffer.position(0);
-        String readRes = RLottieDrawable.readRes(null, R.raw.blur_vrt);
-        String readRes2 = RLottieDrawable.readRes(null, R.raw.blur_frg);
+        String readRes = AndroidUtilities.readRes(R.raw.blur_vrt);
+        String readRes2 = AndroidUtilities.readRes(R.raw.blur_frg);
         if (readRes == null || readRes2 == null) {
             return false;
         }

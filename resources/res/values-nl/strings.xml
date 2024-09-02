@@ -684,7 +684,6 @@
     <string name="PermissionNoLocation">Telegram heeft toegang tot je locatie nodig om deze te kunnen delen met je vrienden.</string>
     <string name="PermissionNoLocationFriends">**Telegram** heeft toegang tot je locatie nodig zodat je het met vrienden kunt delen. Tik op Instellingen &gt; Machtigingen en schakel **Locatie** aan.</string>
     <string name="PermissionNoLocationNavigation">**Telegram** heeft toegang tot je locatie nodig zodat je aanwijzingen kunt krijgen. Tik op Instellingen &gt; Machtigingen en schakel **Locatie** aan.</string>
-    <string name="PermissionNoLocationPeopleNearby">**Telegram** heeft toegang tot je locatie nodig zodat je mensen in de buurt kunt vinden. Tik op Instellingen &gt; Machtigingen en schakel **Locatie** aan.</string>
     <string name="PermissionNoLocationStory">Telegram heeft toegang nodig tot je locatie zodat je het weerbericht in je verhalen kunt plaatsen.</string>
     <string name="PermissionNoStorageAvatar">**Telegram** heeft toegang tot je opslag nodig zodat je profielfoto\'s s kunt uploaden. Tik op Instellingen &gt; Machtigingen en schakel **Bestanden en media** in.</string>
     <string name="PermissionOpenSettings">Instellingen</string>

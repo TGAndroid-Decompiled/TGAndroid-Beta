@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +56,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         public CharSequence text;
         public int type;
         public TLRPC$User user;
+        public View view;
 
         private Item(int i, boolean z) {
             super(i, z);
@@ -73,6 +75,12 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             Item item = new Item(6, true);
             item.country = tLRPC$TL_help_country;
             item.checked = z;
+            return item;
+        }
+
+        public static Item asCustom(View view) {
+            Item item = new Item(10, false);
+            item.view = view;
             return item;
         }
 
@@ -164,8 +172,11 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (i2 == 7 && !TextUtils.equals(this.text, item.text)) {
                 return false;
             }
-            if (this.viewType != 8 || TextUtils.equals(this.text, item.text)) {
-                return this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId);
+            if (this.viewType == 8 && !TextUtils.equals(this.text, item.text)) {
+                return false;
+            }
+            if (this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId)) {
+                return this.viewType != 10 || this.view == item.view;
             }
             return false;
         }
@@ -283,7 +294,7 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             textCell.imageLeft = 19;
             view = textCell;
         } else {
-            view = new View(this.context);
+            view = i == 10 ? new FrameLayout(this.context) : new View(this.context);
         }
         return new RecyclerListView.Holder(view);
     }

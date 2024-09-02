@@ -91,8 +91,6 @@ public class BusinessChatbotController {
         if (System.currentTimeMillis() - this.lastTime > 60000 || !(z = this.loaded)) {
             this.loading = true;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                public static int constructor = 1319421967;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                     return TLRPC$TL_account_connectedBots.TLdeserialize(abstractSerializedData, i, z2);
@@ -100,7 +98,7 @@ public class BusinessChatbotController {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(1319421967);
                 }
             }, new RequestDelegate() {
                 @Override

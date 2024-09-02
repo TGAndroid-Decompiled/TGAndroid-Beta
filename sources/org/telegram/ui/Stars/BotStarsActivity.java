@@ -439,7 +439,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         int i2;
         if (tLRPC$TL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$308();
+            twoStepVerificationActivity.lambda$onBackPressed$307();
             if (tLObject instanceof TLRPC$TL_payments_starsRevenueWithdrawalUrl) {
                 this.balanceEditTextAll = true;
                 Browser.openUrl(getContext(), ((TLRPC$TL_payments_starsRevenueWithdrawalUrl) tLObject).url);
@@ -459,7 +459,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$308();
+                twoStepVerificationActivity.lambda$onBackPressed$307();
             }
             BulletinFactory.showError(tLRPC$TL_error);
             return;
@@ -725,7 +725,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    BotStarsActivity.this.lambda$onBackPressed$308();
+                    BotStarsActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

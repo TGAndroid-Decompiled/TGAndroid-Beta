@@ -457,7 +457,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3) {
+        public void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4) {
             AttachAlertLayout attachAlertLayout = ChatAttachAlert.this.currentAttachLayout;
             ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = this.val$webViewLayout;
             if (attachAlertLayout == chatAttachAlertBotWebViewLayout) {
@@ -483,8 +483,8 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         this.botButtonAnimator.addListener(new AnimatorListenerAdapter() {
                             final boolean val$isVisible;
 
-                            C00221(boolean z4) {
-                                r2 = z4;
+                            C00221(boolean z5) {
+                                r2 = z5;
                             }
 
                             @Override
@@ -546,6 +546,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     }
                 }
             }
+        }
+
+        @Override
+        public void onSetupSecondaryButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4, String str2) {
         }
 
         @Override
@@ -639,6 +643,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         @Override
         public void onWebAppSetBackgroundColor(int i) {
             this.val$webViewLayout.setCustomBackground(i);
+        }
+
+        @Override
+        public void onWebAppSetNavigationBarColor(int i) {
+            BotWebViewContainer.Delegate.CC.$default$onWebAppSetNavigationBarColor(this, i);
         }
 
         @Override

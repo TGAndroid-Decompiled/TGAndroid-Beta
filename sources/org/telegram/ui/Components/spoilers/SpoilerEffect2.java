@@ -25,7 +25,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.RLottieDrawable;
 
 public class SpoilerEffect2 {
     private static HashMap instance;
@@ -281,7 +280,7 @@ public class SpoilerEffect2 {
                 this.running = false;
                 return;
             }
-            GLES31.glShaderSource(glCreateShader, RLottieDrawable.readRes(null, R.raw.spoiler_vertex) + "\n// " + Math.random());
+            GLES31.glShaderSource(glCreateShader, AndroidUtilities.readRes(R.raw.spoiler_vertex) + "\n// " + Math.random());
             GLES31.glCompileShader(glCreateShader);
             int[] iArr = new int[1];
             GLES31.glGetShaderiv(glCreateShader, 35713, iArr, 0);
@@ -295,7 +294,7 @@ public class SpoilerEffect2 {
                 this.running = false;
                 return;
             }
-            GLES31.glShaderSource(glCreateShader2, RLottieDrawable.readRes(null, R.raw.spoiler_fragment) + "\n// " + Math.random());
+            GLES31.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.spoiler_fragment) + "\n// " + Math.random());
             GLES31.glCompileShader(glCreateShader2);
             GLES31.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
             if (iArr[0] == 0) {

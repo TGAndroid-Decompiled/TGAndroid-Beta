@@ -58,7 +58,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
             }
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                TL_stories$TL_prepaidGiveaway TLdeserialize = TL_stories$TL_prepaidGiveaway.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TL_stories$PrepaidGiveaway TLdeserialize = TL_stories$PrepaidGiveaway.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }
@@ -104,7 +104,7 @@ public class TL_stories$TL_premium_boostsStatus extends TLObject {
             int size = this.prepaid_giveaways.size();
             abstractSerializedData.writeInt32(size);
             for (int i2 = 0; i2 < size; i2++) {
-                ((TL_stories$TL_prepaidGiveaway) this.prepaid_giveaways.get(i2)).serializeToStream(abstractSerializedData);
+                ((TL_stories$PrepaidGiveaway) this.prepaid_giveaways.get(i2)).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {

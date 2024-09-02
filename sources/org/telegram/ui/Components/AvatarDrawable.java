@@ -274,7 +274,7 @@ public class AvatarDrawable extends Drawable {
             Theme.dialogs_archiveAvatarDrawable.draw(canvas);
             canvas.restore();
         } else if (i != 0) {
-            drawable2 = i == 1 ? Theme.avatarDrawables[0] : i == 4 ? Theme.avatarDrawables[2] : i == 5 ? Theme.avatarDrawables[3] : i == 6 ? Theme.avatarDrawables[4] : i == 7 ? Theme.avatarDrawables[5] : i == 8 ? Theme.avatarDrawables[6] : i == 9 ? Theme.avatarDrawables[7] : i == 10 ? Theme.avatarDrawables[8] : i == 3 ? Theme.avatarDrawables[10] : i == 12 ? Theme.avatarDrawables[11] : i == 14 ? Theme.avatarDrawables[12] : i == 15 ? Theme.avatarDrawables[13] : i == 16 ? Theme.avatarDrawables[14] : i == 19 ? Theme.avatarDrawables[15] : i == 18 ? Theme.avatarDrawables[16] : i == 20 ? Theme.avatarDrawables[17] : i == 21 ? Theme.avatarDrawables[18] : i == 22 ? Theme.avatarDrawables[19] : i == 23 ? Theme.avatarDrawables[21] : i == 24 ? Theme.avatarDrawables[20] : Theme.avatarDrawables[9];
+            drawable2 = i == 1 ? Theme.avatarDrawables[0] : i == 4 ? Theme.avatarDrawables[2] : i == 5 ? Theme.avatarDrawables[3] : i == 6 ? Theme.avatarDrawables[4] : i == 7 ? Theme.avatarDrawables[5] : i == 8 ? Theme.avatarDrawables[6] : i == 9 ? Theme.avatarDrawables[7] : i == 10 ? Theme.avatarDrawables[8] : i == 3 ? Theme.avatarDrawables[10] : i == 12 ? Theme.avatarDrawables[11] : i == 14 ? Theme.avatarDrawables[12] : i == 15 ? Theme.avatarDrawables[13] : i == 16 ? Theme.avatarDrawables[14] : i == 19 ? Theme.avatarDrawables[15] : i == 18 ? Theme.avatarDrawables[16] : i == 20 ? Theme.avatarDrawables[17] : i == 21 ? Theme.avatarDrawables[18] : i == 22 ? Theme.avatarDrawables[19] : i == 23 ? Theme.avatarDrawables[21] : i == 24 ? Theme.avatarDrawables[20] : i == 25 ? Theme.avatarDrawables[22] : i == 26 ? Theme.avatarDrawables[23] : Theme.avatarDrawables[9];
             if (drawable2 != null) {
                 int intrinsicWidth2 = (int) (drawable2.getIntrinsicWidth() * this.scaleSize);
                 int intrinsicHeight2 = (int) (drawable2.getIntrinsicHeight() * this.scaleSize);
@@ -373,7 +373,7 @@ public class AvatarDrawable extends Drawable {
         this.archivedAvatarProgress = f;
     }
 
-    public void setAvatarType(int r13) {
+    public void setAvatarType(int r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarDrawable.setAvatarType(int):void");
     }
 

@@ -818,7 +818,6 @@
     <string name="PermissionNoLocation">يحتاج تيليجرام إلى السماح له بتحديد موقعك لتتمكن من مشاركته مع أصدقائك.</string>
     <string name="PermissionNoLocationFriends">يحتاج **تيليجرام** الوصول إلى الموقع لتتمكنوا من مشاركته مع أصدقائكم. يرجى تمكين **الموقع** في إعدادات الهاتف &gt; الأذونات.</string>
     <string name="PermissionNoLocationNavigation">يحتاج **تيليجرام** الوصول إلى الموقع لتتمكنوا من معرفة الاتجاهات. يرجى تمكين **الموقع** في إعدادات الهاتف &gt; الأذونات.</string>
-    <string name="PermissionNoLocationPeopleNearby">يحتاج **تيليجرام** الوصول إلى الموقع لتتمكنوا من إيجاد الأشخاص القريبين. يرجى تشغيل **الموقع** في إعدادات الهاتف &gt; الأذونات.</string>
     <string name="PermissionNoLocationStory">يحتاج تيليجرام الوصول إلى موقعك الجغرافي للتمكن من إضافة أداة الطقس إلى قصصك.</string>
     <string name="PermissionNoStorageAvatar">يحتاج تيليجرام الوصول إلى التخزين لتمكينك من رفع صور للملف الشخصي. يرجى تمكين **الملفات والوسائط** في إعدادات الهاتف &gt; الأذونات.</string>
     <string name="PermissionOpenSettings">الإعدادات</string>

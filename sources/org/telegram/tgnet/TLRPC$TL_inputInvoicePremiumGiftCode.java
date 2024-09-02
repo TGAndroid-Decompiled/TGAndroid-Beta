@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_inputInvoicePremiumGiftCode extends TLRPC$InputInvoice {
-    public static int constructor = -1734841331;
     public TLRPC$TL_premiumGiftCodeOption option;
     public TLRPC$InputStorePaymentPurpose purpose;
 
@@ -13,7 +12,7 @@ public class TLRPC$TL_inputInvoicePremiumGiftCode extends TLRPC$InputInvoice {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1734841331);
         this.purpose.serializeToStream(abstractSerializedData);
         this.option.serializeToStream(abstractSerializedData);
     }

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_channels_updateEmojiStatus extends TLObject {
-    public static int constructor = -254548312;
     public TLRPC$InputChannel channel;
     public TLRPC$EmojiStatus emoji_status;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channels_updateEmojiStatus extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-254548312);
         this.channel.serializeToStream(abstractSerializedData);
         this.emoji_status.serializeToStream(abstractSerializedData);
     }

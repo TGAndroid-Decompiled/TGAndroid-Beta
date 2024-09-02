@@ -17,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -357,7 +358,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        this.countText.setText("" + i, z);
+        this.countText.setText(LocaleController.formatNumber(i, ' '), z);
         invalidate();
     }
 

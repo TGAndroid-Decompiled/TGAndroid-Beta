@@ -12,8 +12,6 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -116,8 +114,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     public Runnable whenCacheDone;
     protected final int width;
     protected static final Handler uiHandler = new Handler(Looper.getMainLooper());
-    private static ThreadLocal readBufferLocal = new ThreadLocal();
-    private static ThreadLocal bufferLocal = new ThreadLocal();
     private static final DispatchQueuePool loadFrameRunnableQueue = new DispatchQueuePool(4);
 
     public class AnonymousClass3 implements Runnable {
@@ -249,7 +245,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.width = i2;
         this.height = i3;
         this.autoRepeat = 0;
-        String readRes = readRes(null, i);
+        String readRes = AndroidUtilities.readRes(i);
         if (TextUtils.isEmpty(readRes)) {
             return;
         }
@@ -557,10 +553,10 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         this.height = i2;
         this.isDice = 1;
         if ("🎲".equals(str)) {
-            readRes = readRes(null, R.raw.diceloop);
+            readRes = AndroidUtilities.readRes(R.raw.diceloop);
             this.diceSwitchFramesCount = 60;
         } else {
-            readRes = "🎯".equals(str) ? readRes(null, R.raw.dartloop) : null;
+            readRes = "🎯".equals(str) ? AndroidUtilities.readRes(R.raw.dartloop) : null;
         }
         getPaint().setFlags(2);
         if (TextUtils.isEmpty(readRes)) {
@@ -678,59 +674,6 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     private void parseLottieMetadata(java.io.File r15, java.lang.String r16, int[] r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.RLottieDrawable.parseLottieMetadata(java.io.File, java.lang.String, int[]):void");
-    }
-
-    public static String readRes(File file, int i) {
-        InputStream inputStream;
-        byte[] bArr = (byte[]) readBufferLocal.get();
-        if (bArr == null) {
-            bArr = new byte[65536];
-            readBufferLocal.set(bArr);
-        }
-        try {
-            inputStream = file != null ? new FileInputStream(file) : ApplicationLoader.applicationContext.getResources().openRawResource(i);
-        } catch (Throwable unused) {
-            inputStream = null;
-        }
-        try {
-            byte[] bArr2 = (byte[]) bufferLocal.get();
-            if (bArr2 == null) {
-                bArr2 = new byte[4096];
-                bufferLocal.set(bArr2);
-            }
-            int i2 = 0;
-            while (true) {
-                int read = inputStream.read(bArr2, 0, bArr2.length);
-                if (read >= 0) {
-                    int i3 = i2 + read;
-                    if (bArr.length < i3) {
-                        byte[] bArr3 = new byte[bArr.length * 2];
-                        System.arraycopy(bArr, 0, bArr3, 0, i2);
-                        readBufferLocal.set(bArr3);
-                        bArr = bArr3;
-                    }
-                    if (read > 0) {
-                        System.arraycopy(bArr2, 0, bArr, i2, read);
-                        i2 = i3;
-                    }
-                } else {
-                    try {
-                        break;
-                    } catch (Throwable unused2) {
-                    }
-                }
-            }
-            inputStream.close();
-            return new String(bArr, 0, i2);
-        } catch (Throwable unused3) {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Throwable unused4) {
-                }
-            }
-            return null;
-        }
     }
 
     private void recycleNativePtr(boolean z) {
@@ -1289,7 +1232,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public boolean setBaseDice(File file) {
         if (this.nativePtr == 0 && !this.loadingInBackground) {
-            final String readRes = readRes(file, 0);
+            final String readRes = AndroidUtilities.readRes(file);
             if (TextUtils.isEmpty(readRes)) {
                 return false;
             }
@@ -1366,7 +1309,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
 
     public boolean setDiceNumber(File file, boolean z) {
         if (this.secondNativePtr == 0 && !this.secondLoadingInBackground) {
-            final String readRes = readRes(file, 0);
+            final String readRes = AndroidUtilities.readRes(file);
             if (TextUtils.isEmpty(readRes)) {
                 return false;
             }

@@ -31,6 +31,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
@@ -43,6 +44,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LineProgressView;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.web.WebActionBar;
+import org.telegram.ui.web.WebInstantView;
 
 public abstract class WebActionBar extends FrameLayout {
     private ValueAnimator addressAnimator;
@@ -71,8 +73,10 @@ public abstract class WebActionBar extends FrameLayout {
     public final Drawable forwardButtonSelector;
     private int fromBackgroundColor;
     public boolean hasForward;
+    public boolean hasLoaded;
     public int height;
     public int iconColor;
+    public boolean isMenuShown;
     public boolean isTonsite;
     public final LinearLayout leftmenu;
     public final LineProgressView lineProgressView;
@@ -272,6 +276,7 @@ public abstract class WebActionBar extends FrameLayout {
         this.scrimPaint = new Paint(1);
         this.addressBackgroundPaint = new Paint(1);
         this.addressRoundPaint = new Paint(1);
+        this.isMenuShown = false;
         this.height = AndroidUtilities.dp(56.0f);
         this.scale = 1.0f;
         this.searchingProgress = 0.0f;
@@ -281,7 +286,7 @@ public abstract class WebActionBar extends FrameLayout {
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
-                WebActionBar.this.lambda$new$9();
+                WebActionBar.this.lambda$new$11();
             }
         };
         this.longClicked = false;
@@ -351,7 +356,7 @@ public abstract class WebActionBar extends FrameLayout {
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebActionBar.this.lambda$new$2(view);
+                WebActionBar.this.lambda$new$4(view);
             }
         });
         Drawable createSelectorDrawable3 = Theme.createSelectorDrawable(1090519039);
@@ -387,9 +392,9 @@ public abstract class WebActionBar extends FrameLayout {
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                boolean lambda$new$3;
-                lambda$new$3 = WebActionBar.this.lambda$new$3(textView, i2, keyEvent);
-                return lambda$new$3;
+                boolean lambda$new$5;
+                lambda$new$5 = WebActionBar.this.lambda$new$5(textView, i2, keyEvent);
+                return lambda$new$5;
             }
         });
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -434,9 +439,9 @@ public abstract class WebActionBar extends FrameLayout {
         editTextBoldCursor2.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                boolean lambda$new$4;
-                lambda$new$4 = WebActionBar.this.lambda$new$4(textView, i2, keyEvent);
-                return lambda$new$4;
+                boolean lambda$new$6;
+                lambda$new$6 = WebActionBar.this.lambda$new$6(textView, i2, keyEvent);
+                return lambda$new$6;
             }
         });
         frameLayout2.addView(editTextBoldCursor2, LayoutHelper.createFrame(-1, -1.0f, 119, 48.0f, 0.0f, 12.0f, 0.0f));
@@ -452,7 +457,7 @@ public abstract class WebActionBar extends FrameLayout {
         imageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                WebActionBar.this.lambda$new$5(view);
+                WebActionBar.this.lambda$new$7(view);
             }
         });
         addView(imageView4, LayoutHelper.createFrame(54, 56, 85));
@@ -482,8 +487,27 @@ public abstract class WebActionBar extends FrameLayout {
         };
     }
 
-    public void lambda$new$2(View view) {
+    public void lambda$new$11() {
+        this.longClicked = true;
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        performHapticFeedback(0, 1);
+    }
+
+    public static void lambda$new$2(ActionBarMenuSubItem actionBarMenuSubItem, WebInstantView.Loader loader) {
+        actionBarMenuSubItem.setEnabled(loader.getWebPage() != null);
+        actionBarMenuSubItem.animate().alpha(actionBarMenuSubItem.isEnabled() ? 1.0f : 0.5f);
+    }
+
+    public void lambda$new$3() {
+        this.isMenuShown = false;
+    }
+
+    public void lambda$new$4(View view) {
         int i;
+        int i2;
+        String string;
         if (getParent() instanceof ViewGroup) {
             Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
                 @Override
@@ -507,15 +531,29 @@ public abstract class WebActionBar extends FrameLayout {
                 i = -15592942;
             }
             makeOptions.setGapBackgroundColor(i);
-            int i2 = this.menuType;
-            if (i2 != 0) {
-                if (i2 == 1) {
+            int i3 = this.menuType;
+            int i4 = 2;
+            if (i3 != 0) {
+                if (i3 == 1) {
                     if (!this.isTonsite) {
                         makeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
                         makeOptions.addGap();
                     }
                     if (this.hasForward) {
                         makeOptions.add(R.drawable.msg_arrow_forward, LocaleController.getString(R.string.WebForward), (Runnable) callbackReturn.run(9));
+                    }
+                    final WebInstantView.Loader instantViewLoader = getInstantViewLoader();
+                    if (instantViewLoader != null && (!instantViewLoader.isDone() || instantViewLoader.getWebPage() != null)) {
+                        makeOptions.add(R.drawable.menu_instant_view, LocaleController.getString(R.string.OpenInstantView), (Runnable) callbackReturn.run(10));
+                        final ActionBarMenuSubItem last = makeOptions.getLast();
+                        last.setEnabled(instantViewLoader.getWebPage() != null);
+                        last.setAlpha(last.isEnabled() ? 1.0f : 0.5f);
+                        makeOptions.setOnDismiss(instantViewLoader.listen(new Runnable() {
+                            @Override
+                            public final void run() {
+                                WebActionBar.lambda$new$2(ActionBarMenuSubItem.this, instantViewLoader);
+                            }
+                        }));
                     }
                     makeOptions.add(R.drawable.msg_reset, LocaleController.getString(R.string.Refresh), (Runnable) callbackReturn.run(5));
                     makeOptions.add(R.drawable.msg_search, LocaleController.getString(R.string.Search), (Runnable) callbackReturn.run(1));
@@ -525,19 +563,37 @@ public abstract class WebActionBar extends FrameLayout {
                     if (!BrowserHistory.getHistory().isEmpty()) {
                         makeOptions.add(R.drawable.menu_views_recent, LocaleController.getString(R.string.WebHistory), (Runnable) callbackReturn.run(8));
                     }
-                    makeOptions.add(R.drawable.menu_browser_bookmarks, LocaleController.getString(R.string.WebBookmarks), (Runnable) callbackReturn.run(7));
+                    i2 = R.drawable.menu_browser_bookmarks;
+                    string = LocaleController.getString(R.string.WebBookmarks);
+                    i4 = 7;
                 }
+                makeOptions.setOnDismiss(new Runnable() {
+                    @Override
+                    public final void run() {
+                        WebActionBar.this.lambda$new$3();
+                    }
+                });
                 makeOptions.show();
+                this.isMenuShown = true;
             }
             makeOptions.add(R.drawable.msg_openin, LocaleController.getString(R.string.OpenInExternalApp), (Runnable) callbackReturn.run(3));
             makeOptions.add(R.drawable.msg_search, LocaleController.getString(R.string.Search), (Runnable) callbackReturn.run(1));
-            makeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.ShareFile), (Runnable) callbackReturn.run(2));
+            i2 = R.drawable.msg_share;
+            string = LocaleController.getString(R.string.ShareFile);
+            makeOptions.add(i2, string, (Runnable) callbackReturn.run(Integer.valueOf(i4)));
             makeOptions.add(R.drawable.msg_settings_old, LocaleController.getString(R.string.Settings), (Runnable) callbackReturn.run(4));
+            makeOptions.setOnDismiss(new Runnable() {
+                @Override
+                public final void run() {
+                    WebActionBar.this.lambda$new$3();
+                }
+            });
             makeOptions.show();
+            this.isMenuShown = true;
         }
     }
 
-    public boolean lambda$new$3(TextView textView, int i, KeyEvent keyEvent) {
+    public boolean lambda$new$5(TextView textView, int i, KeyEvent keyEvent) {
         if (keyEvent == null) {
             return false;
         }
@@ -548,7 +604,7 @@ public abstract class WebActionBar extends FrameLayout {
         return false;
     }
 
-    public boolean lambda$new$4(TextView textView, int i, KeyEvent keyEvent) {
+    public boolean lambda$new$6(TextView textView, int i, KeyEvent keyEvent) {
         if (i == 2) {
             Utilities.Callback callback = this.urlCallback;
             if (callback != null) {
@@ -559,24 +615,16 @@ public abstract class WebActionBar extends FrameLayout {
         return false;
     }
 
-    public void lambda$new$5(View view) {
+    public void lambda$new$7(View view) {
         this.searchEditText.setText("");
     }
 
-    public void lambda$new$9() {
-        this.longClicked = true;
-        if (getParent() != null) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        performHapticFeedback(0, 1);
-    }
-
-    public void lambda$setColors$6(int i, float f, float f2, ValueAnimator valueAnimator) {
+    public void lambda$setColors$8(int i, float f, float f2, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         setColors(ColorUtils.blendARGB(this.fromBackgroundColor, i, floatValue), AndroidUtilities.lerp(f, f2, floatValue), false);
     }
 
-    public void lambda$showAddress$8(ValueAnimator valueAnimator) {
+    public void lambda$showAddress$10(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.addressingProgress = floatValue;
         onAddressingProgress(floatValue);
@@ -586,7 +634,7 @@ public abstract class WebActionBar extends FrameLayout {
         invalidate();
     }
 
-    public void lambda$showSearch$7(ValueAnimator valueAnimator) {
+    public void lambda$showSearch$9(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.searchingProgress = floatValue;
         this.searchEditText.setAlpha(floatValue);
@@ -730,6 +778,10 @@ public abstract class WebActionBar extends FrameLayout {
         return this.backgroundPaint[i].getColor();
     }
 
+    protected WebInstantView.Loader getInstantViewLoader() {
+        return null;
+    }
+
     public int getTextColor() {
         return this.textColor;
     }
@@ -823,7 +875,7 @@ public abstract class WebActionBar extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.this.lambda$setColors$6(i, f2, f3, valueAnimator2);
+                    WebActionBar.this.lambda$setColors$8(i, f2, f3, valueAnimator2);
                 }
             });
             this.colorAnimator.addListener(new AnimatorListenerAdapter() {
@@ -914,6 +966,10 @@ public abstract class WebActionBar extends FrameLayout {
         }
     }
 
+    public void setIsLoaded(boolean z) {
+        this.hasLoaded = z;
+    }
+
     public void setIsTonsite(boolean z) {
         this.isTonsite = z;
     }
@@ -998,7 +1054,7 @@ public abstract class WebActionBar extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.this.lambda$showAddress$8(valueAnimator2);
+                    WebActionBar.this.lambda$showAddress$10(valueAnimator2);
                 }
             });
             this.addressAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1070,7 +1126,7 @@ public abstract class WebActionBar extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    WebActionBar.this.lambda$showSearch$7(valueAnimator2);
+                    WebActionBar.this.lambda$showSearch$9(valueAnimator2);
                 }
             });
             this.searchAnimator.addListener(new AnimatorListenerAdapter() {

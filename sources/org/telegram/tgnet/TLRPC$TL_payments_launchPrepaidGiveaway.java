@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_payments_launchPrepaidGiveaway extends TLObject {
-    public static int constructor = 1609928480;
     public long giveaway_id;
     public TLRPC$InputPeer peer;
     public TLRPC$InputStorePaymentPurpose purpose;
@@ -13,7 +12,7 @@ public class TLRPC$TL_payments_launchPrepaidGiveaway extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1609928480);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.giveaway_id);
         this.purpose.serializeToStream(abstractSerializedData);

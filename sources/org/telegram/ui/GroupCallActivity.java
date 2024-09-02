@@ -1849,12 +1849,6 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         }
 
         @Override
-        public void notifyItemInserted(int i) {
-            updateRows();
-            super.notifyItemInserted(i);
-        }
-
-        @Override
         public void notifyItemMoved(int i, int i2) {
             updateRows();
             super.notifyItemMoved(i, i2);
@@ -1882,12 +1876,6 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
         public void notifyItemRangeRemoved(int i, int i2) {
             updateRows();
             super.notifyItemRangeRemoved(i, i2);
-        }
-
-        @Override
-        public void notifyItemRemoved(int i) {
-            updateRows();
-            super.notifyItemRemoved(i);
         }
 
         @Override

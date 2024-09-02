@@ -629,7 +629,7 @@ public class ThanosEffect extends TextureView {
                 killInternal();
                 return;
             }
-            GLES31.glShaderSource(glCreateShader, RLottieDrawable.readRes(null, R.raw.thanos_vertex) + "\n// " + Math.random());
+            GLES31.glShaderSource(glCreateShader, AndroidUtilities.readRes(R.raw.thanos_vertex) + "\n// " + Math.random());
             GLES31.glCompileShader(glCreateShader);
             int[] iArr = new int[1];
             GLES31.glGetShaderiv(glCreateShader, 35713, iArr, 0);
@@ -643,7 +643,7 @@ public class ThanosEffect extends TextureView {
                 killInternal();
                 return;
             }
-            GLES31.glShaderSource(glCreateShader2, RLottieDrawable.readRes(null, R.raw.thanos_fragment) + "\n// " + Math.random());
+            GLES31.glShaderSource(glCreateShader2, AndroidUtilities.readRes(R.raw.thanos_fragment) + "\n// " + Math.random());
             GLES31.glCompileShader(glCreateShader2);
             GLES31.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
             if (iArr[0] != 1) {

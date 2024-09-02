@@ -154,7 +154,7 @@ public class ReactionsDoubleTapManageActivity extends BaseFragment implements No
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ReactionsDoubleTapManageActivity.this.lambda$onBackPressed$308();
+                    ReactionsDoubleTapManageActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

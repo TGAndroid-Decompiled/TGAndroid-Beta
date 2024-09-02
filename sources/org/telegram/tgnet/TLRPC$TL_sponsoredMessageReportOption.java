@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_sponsoredMessageReportOption extends TLObject {
-    public static int constructor = 1124938064;
     public byte[] option;
     public String text;
 
     public static TLRPC$TL_sponsoredMessageReportOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1124938064 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_sponsoredMessageReportOption", Integer.valueOf(i)));
             }
@@ -25,7 +24,7 @@ public class TLRPC$TL_sponsoredMessageReportOption extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1124938064);
         abstractSerializedData.writeString(this.text);
         abstractSerializedData.writeByteArray(this.option);
     }

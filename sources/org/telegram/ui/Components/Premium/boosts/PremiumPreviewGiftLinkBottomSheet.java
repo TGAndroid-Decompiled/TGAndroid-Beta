@@ -195,7 +195,7 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
             j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
-        dialogsActivity.lambda$onBackPressed$308();
+        dialogsActivity.lambda$onBackPressed$307();
         BoostDialogs.showGiftLinkForwardedBulletin(j);
         return true;
     }

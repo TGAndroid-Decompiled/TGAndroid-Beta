@@ -1369,7 +1369,6 @@ public class StarsReactionsSheet extends BottomSheet {
             return;
         }
         Boolean isMyPaidReactionAnonymous = messageObject.isMyPaidReactionAnonymous();
-        StarsController.getInstance(this.currentAccount).saveAnonymous(this.messageObject, this.anonymous);
         if (isMyPaidReactionAnonymous == null || isMyPaidReactionAnonymous.booleanValue() != this.anonymous) {
             this.messageObject.setMyPaidReactionAnonymous(this.anonymous);
             StarsController.MessageId from = StarsController.MessageId.from(this.messageObject);
@@ -1489,9 +1488,9 @@ public class StarsReactionsSheet extends BottomSheet {
         }, 240L);
     }
 
-    public void lambda$new$4(MessageObject messageObject, int i, StarsController starsController, ChatActivity chatActivity, long j) {
-        if ((messageObject == null ? null : messageObject.isMyPaidReactionAnonymous()) == null && messageObject != null) {
-            StarsController.getInstance(i).saveAnonymous(messageObject, this.anonymous);
+    public void lambda$new$4(MessageObject messageObject, StarsController starsController, ChatActivity chatActivity, long j) {
+        if (messageObject != null) {
+            messageObject.isMyPaidReactionAnonymous();
         }
         final StarsController.PendingPaidReactions sendPaidReaction = starsController.sendPaidReaction(messageObject, chatActivity, j, false, true, Boolean.valueOf(!this.checkBox.isChecked()));
         if (sendPaidReaction == null) {
@@ -1505,7 +1504,7 @@ public class StarsReactionsSheet extends BottomSheet {
         });
     }
 
-    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, final int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$Chat tLRPC$Chat, View view) {
+    public void lambda$new$5(final MessageObject messageObject, final ChatActivity chatActivity, int i, Context context, Theme.ResourcesProvider resourcesProvider, TLRPC$Chat tLRPC$Chat, View view) {
         if (messageObject == null || chatActivity == null || this.iconAnimator != null) {
             return;
         }
@@ -1514,7 +1513,7 @@ public class StarsReactionsSheet extends BottomSheet {
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StarsReactionsSheet.this.lambda$new$4(messageObject, i, starsController, chatActivity, value);
+                StarsReactionsSheet.this.lambda$new$4(messageObject, starsController, chatActivity, value);
             }
         };
         if (!starsController.balanceAvailable() || starsController.getBalance() >= value) {

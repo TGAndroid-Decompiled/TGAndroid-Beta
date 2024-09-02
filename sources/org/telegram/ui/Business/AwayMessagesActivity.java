@@ -118,7 +118,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
     }
 
     public void lambda$onBackPressed$4(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$onClick$5(View view, boolean z, int i) {
@@ -138,7 +138,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (!(tLObject instanceof TLRPC$TL_boolFalse)) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         } else {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
@@ -303,7 +303,7 @@ public class AwayMessagesActivity extends BaseFragment implements NotificationCe
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (AwayMessagesActivity.this.onBackPressed()) {
-                        AwayMessagesActivity.this.lambda$onBackPressed$308();
+                        AwayMessagesActivity.this.lambda$onBackPressed$307();
                     }
                 } else if (i == 1) {
                     AwayMessagesActivity.this.processDone();

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_stickers_removeStickerFromSet extends TLObject {
-    public static int constructor = -143257775;
     public TLRPC$InputDocument sticker;
 
     @Override
@@ -11,7 +10,7 @@ public class TLRPC$TL_stickers_removeStickerFromSet extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-143257775);
         this.sticker.serializeToStream(abstractSerializedData);
     }
 }

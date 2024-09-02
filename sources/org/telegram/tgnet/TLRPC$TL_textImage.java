@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 public class TLRPC$TL_textImage extends TLRPC$RichText {
     public long document_id;
     public int h;
+    public long photo_id;
     public int w;
 
     @Override

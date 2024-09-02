@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_inputBusinessIntro extends TLObject {
-    public static int constructor = 163867085;
     public String description;
     public int flags;
     public TLRPC$InputDocument sticker;
@@ -19,7 +18,7 @@ public class TLRPC$TL_inputBusinessIntro extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(163867085);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeString(this.description);

@@ -5,12 +5,25 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.AvatarSpan;
+import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class TableView extends android.widget.TableLayout {
     private final Paint backgroundPaint;
@@ -173,11 +186,98 @@ public class TableView extends android.widget.TableLayout {
         addView(tableRow);
     }
 
+    public void addRowLink(CharSequence charSequence, CharSequence charSequence2, final Runnable runnable) {
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
+        linksTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+        int i = Theme.key_chat_messageLinkIn;
+        linksTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(i, this.resourcesProvider));
+        linksTextView.setTextSize(1, 14.0f);
+        linksTextView.setSingleLine(true);
+        linksTextView.setDisablePaddingsOffsetY(true);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence2);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setUnderlineText(false);
+            }
+        }, 0, spannableStringBuilder.length(), 33);
+        linksTextView.setText(spannableStringBuilder);
+        addRowUnpadded(charSequence, linksTextView);
+    }
+
     public void addRowUnpadded(CharSequence charSequence, View view) {
         TableRow tableRow = new TableRow(getContext());
         tableRow.addView(new TableRowTitle(this, charSequence), new TableRow.LayoutParams(-2, -1));
         tableRow.addView(new TableRowContent(this, view, true), new TableRow.LayoutParams(0, -1, 1.0f));
         addView(tableRow);
+    }
+
+    public void addRowUser(CharSequence charSequence, int i, long j, final Runnable runnable) {
+        boolean z;
+        String str;
+        String str2;
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
+        linksTextView.setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        linksTextView.setEllipsize(TextUtils.TruncateAt.END);
+        int i2 = Theme.key_chat_messageLinkIn;
+        linksTextView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(i2, this.resourcesProvider));
+        linksTextView.setTextSize(1, 14.0f);
+        linksTextView.setSingleLine(true);
+        linksTextView.setDisablePaddingsOffsetY(true);
+        AvatarSpan avatarSpan = new AvatarSpan(linksTextView, i, 24.0f);
+        if (UserObject.isService(j)) {
+            str2 = LocaleController.getString(R.string.StarsTransactionUnknown);
+            CombinedDrawable platformDrawable = StarsIntroActivity.StarsTransactionView.getPlatformDrawable("fragment");
+            platformDrawable.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+            avatarSpan.setImageDrawable(platformDrawable);
+            z = false;
+        } else {
+            MessagesController messagesController = MessagesController.getInstance(i);
+            if (j >= 0) {
+                TLRPC$User user = messagesController.getUser(Long.valueOf(j));
+                z = user == null;
+                str = UserObject.getUserName(user);
+                avatarSpan.setUser(user);
+            } else {
+                TLRPC$Chat chat = messagesController.getChat(Long.valueOf(-j));
+                z = chat == null;
+                str = chat == null ? "" : chat.title;
+                avatarSpan.setChat(chat);
+            }
+            str2 = str;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x  " + ((Object) str2));
+        spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
+        spannableStringBuilder.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+
+            @Override
+            public void updateDrawState(TextPaint textPaint) {
+                textPaint.setUnderlineText(false);
+            }
+        }, 3, spannableStringBuilder.length(), 33);
+        linksTextView.setText(spannableStringBuilder);
+        if (z) {
+            return;
+        }
+        addRowUnpadded(charSequence, linksTextView);
     }
 
     @Override

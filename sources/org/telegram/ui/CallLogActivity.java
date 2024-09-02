@@ -507,12 +507,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void notifyItemRemoved(int i) {
-            updateRows();
-            super.notifyItemRemoved(i);
-        }
-
-        @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             SpannableString spannableString;
             ImageSpan imageSpan;
@@ -1086,7 +1080,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                         CallLogActivity.this.hideActionMode(true);
                         return;
                     } else {
-                        CallLogActivity.this.lambda$onBackPressed$308();
+                        CallLogActivity.this.lambda$onBackPressed$307();
                         return;
                     }
                 }

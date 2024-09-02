@@ -178,6 +178,10 @@ public class CellFlickerDrawable {
         this.paintOutline.setAlpha(i);
     }
 
+    public void setColors(int i) {
+        setColors(i, 64, 204);
+    }
+
     public void setColors(int i, int i2, int i3) {
         float f = this.size;
         int[] iArr = {0, ColorUtils.setAlphaComponent(i, i2), 0};

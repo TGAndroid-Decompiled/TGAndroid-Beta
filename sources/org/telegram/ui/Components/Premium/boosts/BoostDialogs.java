@@ -428,6 +428,8 @@ public abstract class BoostDialogs {
             tLRPC$TL_messageMediaGiveaway2.quantity = tLRPC$TL_messageMediaGiveawayResults.winners_count + tLRPC$TL_messageMediaGiveawayResults.unclaimed_count;
             tLRPC$TL_messageMediaGiveaway2.only_new_subscribers = tLRPC$TL_messageMediaGiveawayResults.only_new_subscribers;
             tLRPC$TL_messageMediaGiveaway2.until_date = tLRPC$TL_messageMediaGiveawayResults.until_date;
+            tLRPC$TL_messageMediaGiveaway2.stars = tLRPC$TL_messageMediaGiveawayResults.stars;
+            tLRPC$TL_messageMediaGiveaway2.flags = tLRPC$TL_messageMediaGiveawayResults.flags;
             tLRPC$TL_messageMediaGiveaway = tLRPC$TL_messageMediaGiveaway2;
         } else {
             tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) tLRPC$MessageMedia;
@@ -480,17 +482,24 @@ public abstract class BoostDialogs {
     }
 
     public static void showAbout(boolean z, String str, long j, TLRPC$TL_payments_giveawayInfo tLRPC$TL_payments_giveawayInfo, TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
+        String formatPluralString;
         String formatString;
         int i = tLRPC$TL_messageMediaGiveaway.quantity;
-        String formatPluralString = LocaleController.formatPluralString("BoldMonths", tLRPC$TL_messageMediaGiveaway.months, new Object[0]);
+        String formatPluralString2 = LocaleController.formatPluralString("BoldMonths", tLRPC$TL_messageMediaGiveaway.months, new Object[0]);
         String format = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(tLRPC$TL_messageMediaGiveaway.until_date * 1000));
         String format2 = LocaleController.getInstance().getFormatterDay().format(new Date(tLRPC$TL_payments_giveawayInfo.start_date * 1000));
         String format3 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(tLRPC$TL_payments_giveawayInfo.start_date * 1000));
         boolean z2 = tLRPC$TL_messageMediaGiveaway.channels.size() > 1;
+        boolean z3 = (tLRPC$TL_messageMediaGiveaway.flags & 32) != 0;
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         builder.setTitle(LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "BoostingGiveawayHowItWorksText" : "BoostingGiveawayHowItWorksTextGroup", i, str, Integer.valueOf(i), formatPluralString)));
+        if (z3) {
+            formatPluralString = LocaleController.formatPluralString(z ? "BoostingStarsGiveawayHowItWorksText" : "BoostingStarsGiveawayHowItWorksTextGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str);
+        } else {
+            formatPluralString = LocaleController.formatPluralString(z ? "BoostingGiveawayHowItWorksText" : "BoostingGiveawayHowItWorksTextGroup", i, str, Integer.valueOf(i), formatPluralString2);
+        }
+        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(formatPluralString));
         spannableStringBuilder.append((CharSequence) "\n\n");
         String str2 = tLRPC$TL_messageMediaGiveaway.prize_description;
         if (str2 != null && !str2.isEmpty()) {
@@ -524,31 +533,41 @@ public abstract class BoostDialogs {
     }
 
     public static void showAboutEnd(boolean z, String str, long j, final TLRPC$TL_payments_giveawayInfoResults tLRPC$TL_payments_giveawayInfoResults, TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
+        int i;
         String string;
         if (tLRPC$TL_messageMediaGiveaway.until_date == 0) {
             tLRPC$TL_messageMediaGiveaway.until_date = tLRPC$TL_payments_giveawayInfoResults.finish_date;
         }
-        int i = tLRPC$TL_messageMediaGiveaway.quantity;
+        int i2 = tLRPC$TL_messageMediaGiveaway.quantity;
         String formatPluralString = LocaleController.formatPluralString("BoldMonths", tLRPC$TL_messageMediaGiveaway.months, new Object[0]);
         String format = LocaleController.getInstance().getFormatterGiveawayMonthDay().format(new Date(tLRPC$TL_messageMediaGiveaway.until_date * 1000));
         String format2 = LocaleController.getInstance().getFormatterDay().format(new Date(tLRPC$TL_payments_giveawayInfoResults.start_date * 1000));
         String format3 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(tLRPC$TL_payments_giveawayInfoResults.start_date * 1000));
         boolean z2 = tLRPC$TL_messageMediaGiveaway.channels.size() > 1;
+        boolean z3 = (tLRPC$TL_messageMediaGiveaway.flags & 32) != 0;
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         builder.setTitle(LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "BoostingGiveawayHowItWorksTextEnd" : "BoostingGiveawayHowItWorksTextEndGroup", i, str, Integer.valueOf(i), formatPluralString)));
+        if (z3) {
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "BoostingStarsGiveawayHowItWorksTextEnd" : "BoostingStarsGiveawayHowItWorksTextEndGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str)));
+            i = i2;
+        } else {
+            String str2 = z ? "BoostingGiveawayHowItWorksTextEnd" : "BoostingGiveawayHowItWorksTextEndGroup";
+            Object[] objArr = {str, Integer.valueOf(i2), formatPluralString};
+            i = i2;
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString(str2, i, objArr)));
+        }
         spannableStringBuilder.append((CharSequence) "\n\n");
-        String str2 = tLRPC$TL_messageMediaGiveaway.prize_description;
-        if (str2 != null && !str2.isEmpty()) {
+        String str3 = tLRPC$TL_messageMediaGiveaway.prize_description;
+        if (str3 != null && !str3.isEmpty()) {
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayHowItWorksIncludeText", i, str, tLRPC$TL_messageMediaGiveaway.prize_description)));
             spannableStringBuilder.append((CharSequence) "\n\n");
         }
         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(tLRPC$TL_messageMediaGiveaway.only_new_subscribers ? z2 ? LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextDateSeveralEnd1", i, format, Integer.valueOf(i), str, LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextDateSeveral2", tLRPC$TL_messageMediaGiveaway.channels.size() - 1, format2, format3)) : LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextDateEnd", i, format, Integer.valueOf(i), str, format2, format3) : z2 ? LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextSeveralEnd1", i, format, Integer.valueOf(i), str, LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextSeveral2", tLRPC$TL_messageMediaGiveaway.channels.size() - 1, new Object[0])) : LocaleController.formatPluralString("BoostingGiveawayHowItWorksSubTextEnd", i, format, Integer.valueOf(i), str)));
         spannableStringBuilder.append((CharSequence) " ");
-        int i2 = tLRPC$TL_payments_giveawayInfoResults.activated_count;
-        if (i2 > 0) {
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayUsedLinksPlural", i2, new Object[0])));
+        int i3 = tLRPC$TL_payments_giveawayInfoResults.activated_count;
+        if (i3 > 0) {
+            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayUsedLinksPlural", i3, new Object[0])));
         }
         if (tLRPC$TL_payments_giveawayInfoResults.refunded) {
             String string2 = LocaleController.getString("BoostingGiveawayCanceledByPayment", R.string.BoostingGiveawayCanceledByPayment);
@@ -557,16 +576,16 @@ public abstract class BoostDialogs {
             textView.setTypeface(AndroidUtilities.bold());
             textView.setGravity(17);
             textView.setText(string2);
-            int i3 = Theme.key_text_RedRegular;
-            textView.setTextColor(Theme.getColor(i3, resourcesProvider));
-            textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Theme.multAlpha(Theme.getColor(i3, resourcesProvider), 0.1f)));
+            int i4 = Theme.key_text_RedRegular;
+            textView.setTextColor(Theme.getColor(i4, resourcesProvider));
+            textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Theme.multAlpha(Theme.getColor(i4, resourcesProvider), 0.1f)));
             textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
             builder.addBottomView(textView);
             builder.setMessage(spannableStringBuilder);
             builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    BoostDialogs.lambda$showAboutEnd$15(dialogInterface, i4);
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    BoostDialogs.lambda$showAboutEnd$15(dialogInterface, i5);
                 }
             });
             applyDialogStyle(builder.show(), true);
@@ -574,25 +593,27 @@ public abstract class BoostDialogs {
         }
         builder.setMessage(spannableStringBuilder);
         if (tLRPC$TL_payments_giveawayInfoResults.winner) {
-            string = LocaleController.getString("BoostingGiveawayYouWon", R.string.BoostingGiveawayYouWon);
-            builder.setPositiveButton(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    BoostDialogs.lambda$showAboutEnd$16(TLRPC$TL_payments_giveawayInfoResults.this, dialogInterface, i4);
-                }
-            });
+            string = LocaleController.getString(R.string.BoostingGiveawayYouWon);
+            if ((tLRPC$TL_payments_giveawayInfoResults.flags & 16) == 0) {
+                builder.setPositiveButton(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i5) {
+                        BoostDialogs.lambda$showAboutEnd$16(TLRPC$TL_payments_giveawayInfoResults.this, dialogInterface, i5);
+                    }
+                });
+            }
             builder.setNegativeButton(LocaleController.getString("Close", R.string.Close), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    BoostDialogs.lambda$showAboutEnd$17(dialogInterface, i4);
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    BoostDialogs.lambda$showAboutEnd$17(dialogInterface, i5);
                 }
             });
         } else {
             string = LocaleController.getString("BoostingGiveawayYouNotWon", R.string.BoostingGiveawayYouNotWon);
             builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i4) {
-                    BoostDialogs.lambda$showAboutEnd$18(dialogInterface, i4);
+                public final void onClick(DialogInterface dialogInterface, int i5) {
+                    BoostDialogs.lambda$showAboutEnd$18(dialogInterface, i5);
                 }
             });
         }

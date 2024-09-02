@@ -5099,7 +5099,7 @@ public abstract class PeerStoriesView extends SizeNotifierFrameLayout implements
             }
 
             @Override
-            protected void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            public void onSend(LongSparseArray longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 Bulletin createSimpleBulletin;
                 super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                 PeerStoriesView peerStoriesView = PeerStoriesView.this;

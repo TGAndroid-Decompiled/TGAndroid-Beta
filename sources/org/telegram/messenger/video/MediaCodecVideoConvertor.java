@@ -8,6 +8,7 @@ import android.os.Build;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
@@ -16,7 +17,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.video.audio_input.AudioInput;
 import org.telegram.messenger.video.audio_input.GeneralAudioInput;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class MediaCodecVideoConvertor {
@@ -350,7 +350,7 @@ public class MediaCodecVideoConvertor {
         if (!z) {
             return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
         }
-        return RLottieDrawable.readRes(null, hDRInfo.getHDRType() == 1 ? R.raw.hdr2sdr_hlg : R.raw.hdr2sdr_pq).replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
+        return AndroidUtilities.readRes(hDRInfo.getHDRType() == 1 ? R.raw.hdr2sdr_hlg : R.raw.hdr2sdr_pq).replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
     }
 
     private boolean isMediatekAvcEncoder(MediaCodec mediaCodec) {

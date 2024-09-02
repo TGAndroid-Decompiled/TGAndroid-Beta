@@ -142,7 +142,7 @@ public class FilterCreateActivity extends BaseFragment {
         public void onItemClick(int i) {
             if (i == -1) {
                 if (FilterCreateActivity.this.checkDiscard()) {
-                    FilterCreateActivity.this.lambda$onBackPressed$308();
+                    FilterCreateActivity.this.lambda$onBackPressed$307();
                 }
             } else if (i == 1) {
                 FilterCreateActivity.this.processDone();
@@ -442,11 +442,6 @@ public class FilterCreateActivity extends BaseFragment {
             }
 
             @Override
-            public void notifyItemInserted(int i) {
-                realAdapter().notifyItemInserted(i + 1);
-            }
-
-            @Override
             public void notifyItemMoved(int i, int i2) {
                 realAdapter().notifyItemMoved(i + 1, i2);
             }
@@ -469,11 +464,6 @@ public class FilterCreateActivity extends BaseFragment {
             @Override
             public void notifyItemRangeRemoved(int i, int i2) {
                 realAdapter().notifyItemRangeRemoved(i + 1, i2);
-            }
-
-            @Override
-            public void notifyItemRemoved(int i) {
-                realAdapter().notifyItemRemoved(i + 1);
             }
 
             @Override
@@ -842,11 +832,6 @@ public class FilterCreateActivity extends BaseFragment {
                 }
 
                 @Override
-                public void notifyItemInserted(int i) {
-                    realAdapter().notifyItemInserted(i + 1);
-                }
-
-                @Override
                 public void notifyItemMoved(int i, int i2) {
                     realAdapter().notifyItemMoved(i + 1, i2);
                 }
@@ -869,11 +854,6 @@ public class FilterCreateActivity extends BaseFragment {
                 @Override
                 public void notifyItemRangeRemoved(int i, int i2) {
                     realAdapter().notifyItemRangeRemoved(i + 1, i2);
-                }
-
-                @Override
-                public void notifyItemRemoved(int i) {
-                    realAdapter().notifyItemRemoved(i + 1);
                 }
 
                 @Override
@@ -2118,7 +2098,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$checkDiscard$20(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$createView$6(ItemInner itemInner) {
@@ -2178,7 +2158,7 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public void lambda$deleteFolder$13(Boolean bool) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$deleteFolder$14(AlertDialog alertDialog) {
@@ -2191,7 +2171,7 @@ public class FilterCreateActivity extends BaseFragment {
         }
         getMessagesController().removeFilter(this.filter);
         getMessagesStorage().deleteDialogFilter(this.filter);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$deleteFolder$15(final AlertDialog alertDialog, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2328,7 +2308,7 @@ public class FilterCreateActivity extends BaseFragment {
 
     public void lambda$processDone$22() {
         if (!this.doNotCloseWhenSave) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
             return;
         }
         this.doNotCloseWhenSave = false;
@@ -3075,7 +3055,7 @@ public class FilterCreateActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (FilterCreateActivity.this.checkDiscard()) {
-                        FilterCreateActivity.this.lambda$onBackPressed$308();
+                        FilterCreateActivity.this.lambda$onBackPressed$307();
                     }
                 } else if (i == 1) {
                     FilterCreateActivity.this.processDone();

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_payments_getPremiumGiftCodeOptions extends TLObject {
-    public static int constructor = 660060756;
     public TLRPC$InputPeer boost_peer;
     public int flags;
 
@@ -21,7 +20,7 @@ public class TLRPC$TL_payments_getPremiumGiftCodeOptions extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(660060756);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             this.boost_peer.serializeToStream(abstractSerializedData);

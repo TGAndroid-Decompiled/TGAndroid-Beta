@@ -19,6 +19,10 @@ public class CircularProgressDrawable extends Drawable {
     private long start;
     public float thickness;
 
+    public CircularProgressDrawable() {
+        this(-1);
+    }
+
     public CircularProgressDrawable(float f, float f2, int i) {
         this.size = AndroidUtilities.dp(18.0f);
         this.thickness = AndroidUtilities.dp(2.25f);

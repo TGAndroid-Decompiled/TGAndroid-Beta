@@ -80,6 +80,7 @@ import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.web.WebInstantView;
 
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
@@ -2534,6 +2535,7 @@ public class ImageLoader {
         if (imageReceiver == null) {
             return;
         }
+        WebInstantView.cancelLoadPhoto(imageReceiver);
         ArrayList<Runnable> loadingOperations = imageReceiver.getLoadingOperations();
         if (!loadingOperations.isEmpty()) {
             for (int i = 0; i < loadingOperations.size(); i++) {

@@ -196,7 +196,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     }
 
     public void lambda$onBackPressed$6(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public Boolean lambda$onClick$2(View view, Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
@@ -221,7 +221,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             if (this.inputSticker != null) {
                 getMessagesController().loadFullUser(getUserConfig().getCurrentUser(), 0, true);
             }
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -411,7 +411,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
     @Override
     public View createView(Context context) {
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
-        this.greetingsView = new ChatGreetingsView(context, getUserConfig().getCurrentUser(), 1, this.currentAccount, this.sticker, getResourceProvider()) {
+        this.greetingsView = new ChatGreetingsView(context, getUserConfig().getCurrentUser(), this.currentAccount, this.sticker, getResourceProvider()) {
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -527,7 +527,7 @@ public class BusinessIntroActivity extends UniversalFragment implements Notifica
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (BusinessIntroActivity.this.onBackPressed()) {
-                        BusinessIntroActivity.this.lambda$onBackPressed$308();
+                        BusinessIntroActivity.this.lambda$onBackPressed$307();
                     }
                 } else if (i2 == 1) {
                     BusinessIntroActivity.this.processDone();

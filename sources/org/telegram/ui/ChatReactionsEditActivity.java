@@ -208,7 +208,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatReactionsEditActivity.this.lambda$onBackPressed$308();
+                    ChatReactionsEditActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

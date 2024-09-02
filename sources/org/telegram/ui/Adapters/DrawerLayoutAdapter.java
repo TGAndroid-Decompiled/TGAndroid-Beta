@@ -29,7 +29,6 @@ import org.telegram.ui.Components.SideMenultItemAnimator;
 
 public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     private boolean accountsShown;
-    private boolean hasGps;
     private SideMenultItemAnimator itemAnimator;
     private Context mContext;
     private DrawerLayoutContainer mDrawerLayoutContainer;
@@ -75,11 +74,6 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         this.accountsShown = UserConfig.getActivatedAccountsCount() > 1 && MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true);
         Theme.createCommonDialogResources(context);
         resetItems();
-        try {
-            this.hasGps = ApplicationLoader.applicationContext.getPackageManager().hasSystemFeature("android.hardware.location.gps");
-        } catch (Throwable unused) {
-            this.hasGps = false;
-        }
     }
 
     private int getAccountRowsCount() {
@@ -104,13 +98,12 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int i5;
         int i6;
         int i7;
-        int i8;
         ArrayList arrayList;
         Item item;
         this.accountNumbers.clear();
-        for (int i9 = 0; i9 < 4; i9++) {
-            if (UserConfig.getInstance(i9).isClientActivated()) {
-                this.accountNumbers.add(Integer.valueOf(i9));
+        for (int i8 = 0; i8 < 4; i8++) {
+            if (UserConfig.getInstance(i8).isClientActivated()) {
+                this.accountNumbers.add(Integer.valueOf(i8));
             }
         }
         Collections.sort(this.accountNumbers, new Comparator() {
@@ -132,34 +125,31 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 i5 = R.drawable.msg_settings_ny;
                 i6 = R.drawable.msg_invite_ny;
                 i7 = R.drawable.msg_help_ny;
-                i8 = R.drawable.msg_nearby_ny;
-            } else if (eventType == 1) {
-                i = R.drawable.msg_groups_14;
-                i2 = R.drawable.msg_contacts_14;
-                i3 = R.drawable.msg_calls_14;
-                i4 = R.drawable.msg_saved_14;
-                i5 = R.drawable.msg_settings_14;
-                i6 = R.drawable.msg_secret_ny;
-                i7 = R.drawable.msg_help;
-                i8 = R.drawable.msg_secret_14;
-            } else if (eventType == 2) {
-                i = R.drawable.msg_groups_hw;
-                i2 = R.drawable.msg_contacts_hw;
-                i3 = R.drawable.msg_calls_hw;
-                i4 = R.drawable.msg_saved_hw;
-                i5 = R.drawable.msg_settings_hw;
-                i6 = R.drawable.msg_invite_hw;
-                i7 = R.drawable.msg_help_hw;
-                i8 = R.drawable.msg_secret_hw;
             } else {
-                i = R.drawable.msg_groups;
-                i2 = R.drawable.msg_contacts;
-                i3 = R.drawable.msg_calls;
-                i4 = R.drawable.msg_saved;
-                i5 = R.drawable.msg_settings_old;
-                i6 = R.drawable.msg_invite;
+                if (eventType == 1) {
+                    i = R.drawable.msg_groups_14;
+                    i2 = R.drawable.msg_contacts_14;
+                    i3 = R.drawable.msg_calls_14;
+                    i4 = R.drawable.msg_saved_14;
+                    i5 = R.drawable.msg_settings_14;
+                    i6 = R.drawable.msg_secret_ny;
+                } else if (eventType == 2) {
+                    i = R.drawable.msg_groups_hw;
+                    i2 = R.drawable.msg_contacts_hw;
+                    i3 = R.drawable.msg_calls_hw;
+                    i4 = R.drawable.msg_saved_hw;
+                    i5 = R.drawable.msg_settings_hw;
+                    i6 = R.drawable.msg_invite_hw;
+                    i7 = R.drawable.msg_help_hw;
+                } else {
+                    i = R.drawable.msg_groups;
+                    i2 = R.drawable.msg_contacts;
+                    i3 = R.drawable.msg_calls;
+                    i4 = R.drawable.msg_saved;
+                    i5 = R.drawable.msg_settings_old;
+                    i6 = R.drawable.msg_invite;
+                }
                 i7 = R.drawable.msg_help;
-                i8 = R.drawable.msg_nearby;
             }
             UserConfig userConfig = UserConfig.getInstance(UserConfig.selectedAccount);
             this.items.add(new Item(16, LocaleController.getString(R.string.MyProfile), R.drawable.left_status_profile));
@@ -179,8 +169,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             }
             TLRPC$TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
             if (attachMenuBots != null && attachMenuBots.bots != null) {
-                for (int i10 = 0; i10 < attachMenuBots.bots.size(); i10++) {
-                    TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) attachMenuBots.bots.get(i10);
+                for (int i9 = 0; i9 < attachMenuBots.bots.size(); i9++) {
+                    TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = (TLRPC$TL_attachMenuBot) attachMenuBots.bots.get(i9);
                     if (tLRPC$TL_attachMenuBot.show_in_side_menu) {
                         this.items.add(new Item(tLRPC$TL_attachMenuBot));
                     }
@@ -190,9 +180,6 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             this.items.add(new Item(2, LocaleController.getString(R.string.NewGroup), i));
             this.items.add(new Item(6, LocaleController.getString(R.string.Contacts), i2));
             this.items.add(new Item(10, LocaleController.getString(R.string.Calls), i3));
-            if (this.hasGps) {
-                this.items.add(new Item(12, LocaleController.getString(R.string.PeopleNearby), i8));
-            }
             this.items.add(new Item(11, LocaleController.getString(R.string.SavedMessages), i4));
             this.items.add(new Item(8, LocaleController.getString(R.string.Settings), i5));
             this.items.add(null);

@@ -20,7 +20,6 @@ import java.nio.FloatBuffer;
 import java.nio.charset.StandardCharsets;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 
 public class Icon3D {
@@ -29,6 +28,7 @@ public class Icon3D {
     Bitmap backgroundBitmap;
     private int[] buffers;
     int diffuseHandle;
+    private int goldenHandle;
     public int gradientColor1;
     int gradientColor1Handle;
     public int gradientColor2;
@@ -97,7 +97,7 @@ public class Icon3D {
         generateTexture();
         int[] iArr = new int[1];
         int loadShader = GLIconRenderer.loadShader(35633, loadFromAsset(context, "shaders/vertex2.glsl"));
-        int loadShader2 = GLIconRenderer.loadShader(35632, loadFromAsset(context, i == 0 ? "shaders/fragment2.glsl" : i == 1 ? "shaders/fragment3.glsl" : "shaders/fragment4.glsl"));
+        int loadShader2 = GLIconRenderer.loadShader(35632, loadFromAsset(context, (i == 0 || i == 2) ? "shaders/fragment4.glsl" : "shaders/fragment3.glsl"));
         int glCreateProgram = GLES20.glCreateProgram();
         GLES20.glAttachShader(glCreateProgram, loadShader);
         GLES20.glAttachShader(glCreateProgram, loadShader2);
@@ -131,7 +131,6 @@ public class Icon3D {
     }
 
     private void init(Context context) {
-        Bitmap bitmap;
         int i;
         GLES20.glUseProgram(this.mProgramObject);
         this.mVerticesHandle = GLES20.glGetAttribLocation(this.mProgramObject, "vPosition");
@@ -145,6 +144,7 @@ public class Icon3D {
         this.mMVPMatrixHandle = GLES20.glGetUniformLocation(this.mProgramObject, "uMVPMatrix");
         this.mWorldMatrixHandle = GLES20.glGetUniformLocation(this.mProgramObject, "world");
         this.whiteHandle = GLES20.glGetUniformLocation(this.mProgramObject, "white");
+        this.goldenHandle = GLES20.glGetUniformLocation(this.mProgramObject, "golden");
         this.specHandleTop = GLES20.glGetUniformLocation(this.mProgramObject, "spec1");
         this.specHandleBottom = GLES20.glGetUniformLocation(this.mProgramObject, "spec2");
         this.diffuseHandle = GLES20.glGetUniformLocation(this.mProgramObject, "u_diffuse");
@@ -226,12 +226,7 @@ public class Icon3D {
             GLES20.glBindTexture(3553, iArr4[0]);
             GLES20.glUniform1i(this.mBackgroundTextureUniformHandle, 2);
         }
-        if (i7 == 2) {
-            bitmap = SvgHelper.getBitmap(R.raw.start_texture, 240, 240, -1);
-        } else {
-            bitmap = SvgHelper.getBitmap(R.raw.start_texture, 80, 80, -1);
-            Utilities.stackBlurBitmap(bitmap, 3);
-        }
+        Bitmap bitmap = SvgHelper.getBitmap(R.raw.start_texture, 240, 240, -1);
         int[] iArr6 = new int[1];
         GLES20.glGenTextures(1, iArr6, 0);
         GLES20.glBindTexture(3553, iArr6[0]);
@@ -255,7 +250,7 @@ public class Icon3D {
         GLES20.glDeleteProgram(this.mProgramObject);
     }
 
-    public void draw(float[] fArr, float[] fArr2, int i, int i2, float f, float f2, float f3, float f4, float f5, float f6) {
+    public void draw(float[] fArr, float[] fArr2, int i, int i2, float f, float f2, float f3, float f4, float f5, float f6, float f7) {
         if (this.backgroundBitmap != null) {
             GLES20.glBindTexture(3553, this.mBackgroundTextureHandle);
             GLUtils.texImage2D(3553, 0, this.backgroundBitmap, 0);
@@ -265,6 +260,7 @@ public class Icon3D {
         GLES20.glUniform1f(this.xOffsetHandle, this.xOffset);
         GLES20.glUniform1f(this.alphaHandle, this.enterAlpha);
         GLES20.glUniform1f(this.whiteHandle, f5);
+        GLES20.glUniform1f(this.goldenHandle, f6);
         GLES20.glUniformMatrix4fv(this.mMVPMatrixHandle, 1, false, fArr, 0);
         GLES20.glUniformMatrix4fv(this.mWorldMatrixHandle, 1, false, fArr2, 0);
         GLES20.glUniform1f(this.specHandleTop, this.spec1);
@@ -278,9 +274,9 @@ public class Icon3D {
         GLES20.glUniform2f(this.resolutionHandle, i, i2);
         GLES20.glUniform4f(this.gradientPositionHandle, f, f2, f3, f4);
         GLES20.glUniform1i(this.nightHandle, this.night ? 1 : 0);
-        float f7 = this.time + f6;
-        this.time = f7;
-        GLES20.glUniform1f(this.timeHandle, f7);
+        float f8 = this.time + f7;
+        this.time = f8;
+        GLES20.glUniform1f(this.timeHandle, f8);
         for (int i3 = 0; i3 < this.N; i3++) {
             int i4 = i3 * 3;
             GLES20.glBindBuffer(34962, this.buffers[i4]);
@@ -292,18 +288,18 @@ public class Icon3D {
             GLES20.glUniform1i(this.modelIndexHandle, i3);
             GLES20.glDrawArrays(4, 0, this.trianglesCount[i3] / 3);
         }
-        float f8 = this.enterAlpha;
-        if (f8 < 1.0f) {
-            float f9 = f8 + 0.07272727f;
-            this.enterAlpha = f9;
-            if (f9 > 1.0f) {
+        float f9 = this.enterAlpha;
+        if (f9 < 1.0f) {
+            float f10 = f9 + 0.07272727f;
+            this.enterAlpha = f10;
+            if (f10 > 1.0f) {
                 this.enterAlpha = 1.0f;
             }
         }
-        float f10 = this.xOffset + 5.0E-4f;
-        this.xOffset = f10;
-        if (f10 > 1.0f) {
-            this.xOffset = f10 - 1.0f;
+        float f11 = this.xOffset + 5.0E-4f;
+        this.xOffset = f11;
+        if (f11 > 1.0f) {
+            this.xOffset = f11 - 1.0f;
         }
     }
 

@@ -109,6 +109,7 @@ public class SharedConfig {
     public static boolean noSoundHintShowed = false;
     public static final boolean noStatusBar = true;
     public static boolean noiseSupression;
+    public static boolean onlyLocalInstantView;
     private static int overrideDevicePerformanceClass;
     public static String passcodeHash;
     public static long passcodeRetryInMs;
@@ -297,6 +298,7 @@ public class SharedConfig {
         customTabs = true;
         inappBrowser = true;
         adaptableColorInBrowser = true;
+        onlyLocalInstantView = false;
         directShare = true;
         inappCamera = true;
         roundCamera16to9 = true;
@@ -1332,6 +1334,13 @@ public class SharedConfig {
         inappCamera = !inappCamera;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("inappCamera", inappCamera);
+        edit.apply();
+    }
+
+    public static void toggleLocalInstantView() {
+        onlyLocalInstantView = !onlyLocalInstantView;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("onlyLocalInstantView", onlyLocalInstantView);
         edit.apply();
     }
 

@@ -10,6 +10,7 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
     public boolean only_new_subscribers;
     public String prize_description;
     public boolean refunded;
+    public long stars;
     public int unclaimed_count;
     public int until_date;
     public ArrayList winners = new ArrayList();
@@ -39,7 +40,12 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
         for (int i = 0; i < readInt323; i++) {
             this.winners.add(Long.valueOf(abstractSerializedData.readInt64(z)));
         }
-        this.months = abstractSerializedData.readInt32(z);
+        if ((this.flags & 16) != 0) {
+            this.months = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags & 32) != 0) {
+            this.stars = abstractSerializedData.readInt64(z);
+        }
         if ((this.flags & 2) != 0) {
             this.prize_description = abstractSerializedData.readString(z);
         }
@@ -48,7 +54,7 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-963047320);
+        abstractSerializedData.writeInt32(-827703647);
         int i = this.only_new_subscribers ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.refunded ? i | 4 : i & (-5);
@@ -67,7 +73,12 @@ public class TLRPC$TL_messageMediaGiveawayResults extends TLRPC$MessageMedia {
         for (int i3 = 0; i3 < size; i3++) {
             abstractSerializedData.writeInt64(((Long) this.winners.get(i3)).longValue());
         }
-        abstractSerializedData.writeInt32(this.months);
+        if ((this.flags & 16) != 0) {
+            abstractSerializedData.writeInt32(this.months);
+        }
+        if ((this.flags & 32) != 0) {
+            abstractSerializedData.writeInt64(this.stars);
+        }
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.prize_description);
         }

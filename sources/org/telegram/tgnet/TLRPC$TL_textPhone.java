@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 public class TLRPC$TL_textPhone extends TLRPC$RichText {
     public String phone;
-    public TLRPC$RichText text;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

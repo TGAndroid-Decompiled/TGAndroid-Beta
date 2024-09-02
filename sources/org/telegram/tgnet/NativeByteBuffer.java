@@ -5,6 +5,7 @@ import java.nio.ByteOrder;
 import java.util.LinkedList;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
 
 public class NativeByteBuffer extends AbstractSerializedData {
     private static final ThreadLocal<LinkedList<NativeByteBuffer>> addressWrappers = new ThreadLocal() {
@@ -97,6 +98,15 @@ public class NativeByteBuffer extends AbstractSerializedData {
 
     public boolean hasRemaining() {
         return this.buffer.hasRemaining();
+    }
+
+    public String hex() {
+        try {
+            return Utilities.bytesToHex(readData(Math.min(limit(), 1024), true));
+        } catch (Exception e) {
+            FileLog.e(e);
+            return "<err>";
+        }
     }
 
     public int length() {

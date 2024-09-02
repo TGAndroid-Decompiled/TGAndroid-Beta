@@ -13,7 +13,7 @@ import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public class ActionBtnCell extends FrameLayout {
     private final View backgroundView;
-    private final ButtonWithCounterView button;
+    public final ButtonWithCounterView button;
     private final Paint dividerPaint;
     private boolean drawDivider;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -47,7 +47,7 @@ public class ActionBtnCell extends FrameLayout {
     public void setActivateForFreeStyle() {
         this.drawDivider = true;
         this.button.setEnabled(true);
-        this.button.setText(LocaleController.formatString("GiftPremiumActivateForFree", R.string.GiftPremiumActivateForFree, new Object[0]), false);
+        this.button.setText(LocaleController.getString(R.string.GiftPremiumActivateForFree), false);
         this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
     }
 
@@ -69,7 +69,7 @@ public class ActionBtnCell extends FrameLayout {
         this.button.setShowZero(true);
         this.button.setEnabled(z2);
         this.button.setCount(i, z);
-        this.button.setText(LocaleController.formatString("GiftPremium", R.string.GiftPremium, new Object[0]), z);
+        this.button.setText(LocaleController.getString(R.string.GiftPremium), z);
         this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
     }
 
@@ -91,7 +91,7 @@ public class ActionBtnCell extends FrameLayout {
         this.button.setShowZero(true);
         this.button.setEnabled(true);
         this.button.setCount(i, z);
-        this.button.setText(LocaleController.formatString("BoostingStartGiveaway", R.string.BoostingStartGiveaway, new Object[0]), z);
+        this.button.setText(LocaleController.getString(R.string.BoostingStartGiveaway), z);
         this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
     }
 

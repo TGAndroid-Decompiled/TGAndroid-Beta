@@ -4187,8 +4187,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap();
             }
-            this.layer = 186;
-            this.params.put("legacy_layer", "186");
+            this.layer = 187;
+            this.params.put("legacy_layer", "187");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry entry2 : this.params.entrySet()) {

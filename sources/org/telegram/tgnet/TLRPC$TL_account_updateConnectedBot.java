@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 public class TLRPC$TL_account_updateConnectedBot extends TLObject {
-    public static int constructor = 1138250269;
     public TLRPC$InputUser bot;
     public boolean can_reply;
     public boolean deleted;
@@ -15,7 +14,7 @@ public class TLRPC$TL_account_updateConnectedBot extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1138250269);
         int i = this.can_reply ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.deleted ? i | 2 : i & (-3);

@@ -134,7 +134,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$onClick$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
@@ -144,7 +144,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
         } else {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -178,7 +178,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (!(tLObject instanceof TLRPC$TL_boolFalse)) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         } else {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
@@ -280,7 +280,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
         if (!z) {
             if (!hasChanges()) {
-                lambda$onBackPressed$308();
+                lambda$onBackPressed$307();
                 return;
             }
             String str = this.address;
@@ -432,7 +432,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (LocationActivity.this.onBackPressed()) {
-                        LocationActivity.this.lambda$onBackPressed$308();
+                        LocationActivity.this.lambda$onBackPressed$307();
                     }
                 } else if (i == 1) {
                     LocationActivity.this.processDone();

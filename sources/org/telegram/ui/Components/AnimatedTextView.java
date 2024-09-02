@@ -13,6 +13,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -630,6 +631,10 @@ public class AnimatedTextView extends View {
         public void setBounds(android.graphics.Rect rect) {
             super.setBounds(rect);
             this.bounds.set(rect);
+        }
+
+        public void setBounds(RectF rectF) {
+            setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         }
 
         @Override

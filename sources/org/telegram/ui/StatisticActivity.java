@@ -88,10 +88,8 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.EmptyCell;
-import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.LoadingCell;
 import org.telegram.ui.Cells.ManageChatTextCell;
-import org.telegram.ui.Cells.ManageChatUserCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.StatisticPostInfoCell;
 import org.telegram.ui.Charts.BaseChartView;
@@ -117,7 +115,6 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.PeopleNearbyActivity;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
@@ -3281,7 +3278,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 List fragmentStack2 = getParentLayout().getFragmentStack();
                 BaseFragment baseFragment2 = fragmentStack2.size() >= 2 ? (BaseFragment) fragmentStack2.get(fragmentStack2.size() - 2) : null;
                 if (!booleanValue) {
-                    lambda$onBackPressed$308();
+                    lambda$onBackPressed$307();
                     if (baseFragment2 instanceof ProfileActivity) {
                         BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
                         return;
@@ -3292,7 +3289,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 if (baseFragment2 instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
-                lambda$onBackPressed$308();
+                lambda$onBackPressed$307();
                 if (baseFragment3 instanceof ChatActivity) {
                     BoostDialogs.showBulletin(baseFragment3, tLRPC$Chat, true);
                     return;
@@ -3358,8 +3355,6 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
     @Override
     public ArrayList getThemeDescriptions() {
-        ChartViewData chartViewData;
-        ChartViewData chartViewData2;
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -3412,7 +3407,6 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueIcon));
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ManageChatUserCell.class, ManageChatTextCell.class, HeaderCell.class, TextView.class, PeopleNearbyActivity.HintInnerCell.class}, null, null, null, i2));
         if (this.isMegagroup) {
             int i6 = 0;
             while (i6 < 6) {
@@ -3422,23 +3416,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         } else {
             int i7 = 0;
             while (i7 < 12) {
-                if (i7 == 0) {
-                    chartViewData2 = this.growthData;
-                } else if (i7 == 1) {
-                    chartViewData2 = this.followersData;
-                } else if (i7 == 2) {
-                    chartViewData2 = this.interactionsData;
-                } else if (i7 == 3) {
-                    chartViewData = this.ivInteractionsData;
-                    putColorFromData(chartViewData, arrayList, themeDescriptionDelegate);
-                    i7++;
-                } else {
-                    chartViewData = i7 == 4 ? this.viewsBySourceData : i7 == 5 ? this.newFollowersBySourceData : i7 == 6 ? this.notificationsData : i7 == 7 ? this.topHoursData : i7 == 8 ? this.languagesData : i7 == 9 ? this.reactionsByEmotionData : i7 == 10 ? this.storyInteractionsData : this.storyReactionsByEmotionData;
-                    putColorFromData(chartViewData, arrayList, themeDescriptionDelegate);
-                    i7++;
-                }
-                chartViewData = chartViewData2;
-                putColorFromData(chartViewData, arrayList, themeDescriptionDelegate);
+                putColorFromData(i7 == 0 ? this.growthData : i7 == 1 ? this.followersData : i7 == 2 ? this.interactionsData : i7 == 3 ? this.ivInteractionsData : i7 == 4 ? this.viewsBySourceData : i7 == 5 ? this.newFollowersBySourceData : i7 == 6 ? this.notificationsData : i7 == 7 ? this.topHoursData : i7 == 8 ? this.languagesData : i7 == 9 ? this.reactionsByEmotionData : i7 == 10 ? this.storyInteractionsData : this.storyReactionsByEmotionData, arrayList, themeDescriptionDelegate);
                 i7++;
             }
         }

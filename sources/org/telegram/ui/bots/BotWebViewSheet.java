@@ -248,7 +248,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
             BotWebViewSheet botWebViewSheet2 = BotWebViewSheet.this;
             if (botWebViewSheet2.showExpanded || botWebViewSheet2.isFullSize()) {
-                BotWebViewSheet.this.swipeContainer.stickTo((-BotWebViewSheet.this.swipeContainer.getOffsetY()) + BotWebViewSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$11$$ExternalSyntheticLambda1(animationNotificationsLocker));
+                BotWebViewSheet.this.swipeContainer.stickTo((-BotWebViewSheet.this.swipeContainer.getOffsetY()) + BotWebViewSheet.this.swipeContainer.getTopActionBarOffsetY(), new BotWebViewAttachedSheet$9$$ExternalSyntheticLambda1(animationNotificationsLocker));
             } else {
                 ((SpringAnimation) new SpringAnimation(BotWebViewSheet.this.swipeContainer, ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.SWIPE_OFFSET_Y, 0.0f).setSpring(new SpringForce(0.0f).setDampingRatio(0.75f).setStiffness(500.0f)).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
@@ -380,8 +380,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
 
         @Override
-        public void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3) {
+        public void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4) {
             BotWebViewSheet.this.setMainButton(BotWebViewAttachedSheet.MainButtonSettings.of(z, z2, str, i, i2, z3));
+        }
+
+        @Override
+        public void onSetupSecondaryButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4, String str2) {
         }
 
         @Override
@@ -455,6 +459,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         @Override
         public void onWebAppSetBackgroundColor(int i) {
             BotWebViewSheet.this.setBackgroundColor(i, true);
+        }
+
+        @Override
+        public void onWebAppSetNavigationBarColor(int i) {
+            BotWebViewContainer.Delegate.CC.$default$onWebAppSetNavigationBarColor(this, i);
         }
 
         @Override
@@ -1361,7 +1370,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo982getWindowView() {
+    public WindowView mo981getWindowView() {
         return this.windowView;
     }
 

@@ -207,7 +207,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
     public void lambda$createView$2(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$createView$3(View view) {
@@ -221,7 +221,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             });
         } else {
             sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -234,7 +234,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
 
     public void lambda$createView$5(boolean z, int i) {
         sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, z, i);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$createView$6(int i, View view) {
@@ -251,7 +251,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             });
         } else {
             sendSelectedPhotos(this.selectedPhotos, this.selectedPhotosOrder, true, 0);
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -569,7 +569,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    PhotoAlbumPickerActivity.this.lambda$onBackPressed$308();
+                    PhotoAlbumPickerActivity.this.lambda$onBackPressed$307();
                     return;
                 }
                 if (i3 != 1) {

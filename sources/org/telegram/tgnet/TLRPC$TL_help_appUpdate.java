@@ -3,9 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 
 public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
+    public static final int constructor = -860107216;
     public boolean can_not_skip;
     public TLRPC$Document document;
-    public ArrayList entities = new ArrayList();
+    public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
     public int id;
     public TLRPC$Document sticker;
@@ -60,7 +61,7 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
         int size = this.entities.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            ((TLRPC$MessageEntity) this.entities.get(i2)).serializeToStream(abstractSerializedData);
+            this.entities.get(i2).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 2) != 0) {
             this.document.serializeToStream(abstractSerializedData);

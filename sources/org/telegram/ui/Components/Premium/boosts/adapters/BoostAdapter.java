@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -16,8 +18,9 @@ import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChannel;
 import org.telegram.tgnet.TLRPC$TL_inputPeerChat;
+import org.telegram.tgnet.TLRPC$TL_starsGiveawayOption;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
+import org.telegram.tgnet.tl.TL_stories$PrepaidGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
@@ -32,11 +35,13 @@ import org.telegram.ui.Components.Premium.boosts.cells.EnterPrizeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.HeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SliderCell;
+import org.telegram.ui.Components.Premium.boosts.cells.StarGiveawayOptionCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SubtitleWithCounterCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
+import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class BoostAdapter extends AdapterWithDiffUtils {
     private EnterPrizeCell.AfterTextChangedListener afterTextChangedListener;
@@ -123,8 +128,23 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
-        public static Item asHeader() {
-            return new Item(0, false);
+        public static Item asExpandOptions() {
+            return new Item(18, false);
+        }
+
+        public static Item asHeader(boolean z) {
+            Item item = new Item(0, false);
+            item.boolValue = z;
+            return item;
+        }
+
+        public static Item asOption(TLRPC$TL_starsGiveawayOption tLRPC$TL_starsGiveawayOption, int i, long j, boolean z, boolean z2) {
+            Item item = new Item(17, z);
+            item.intValue = i;
+            item.longValue = j;
+            item.object = tLRPC$TL_starsGiveawayOption;
+            item.boolValue = z2;
+            return item;
         }
 
         public static Item asParticipants(int i, int i2, boolean z, List list) {
@@ -178,13 +198,58 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
+        public static boolean eq(List list, List list2) {
+            if (list == null && list2 == null) {
+                return true;
+            }
+            if (list == null || list2 == null || list.size() != list2.size()) {
+                return false;
+            }
+            for (int i = 0; i < list.size(); i++) {
+                if (((Integer) list.get(i)).intValue() != ((Integer) list2.get(i)).intValue()) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        @Override
+        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+            Item item2;
+            int i;
+            int i2;
+            if (this == item) {
+                return true;
+            }
+            if (item != null && getClass() == item.getClass() && (i = (item2 = (Item) item).viewType) == (i2 = this.viewType)) {
+                return i2 == 0 ? this.boolValue == item2.boolValue : i == 17 ? this.intValue == item2.intValue && this.longValue == item2.longValue && this.object == item2.object && this.boolValue == item2.boolValue && this.selectable == item2.selectable : i2 == 5 ? this.intValue == item2.intValue && eq(this.values, item2.values) : i2 == 13 && this.intValue == item2.intValue && TextUtils.equals(this.text, item2.text);
+            }
+            return false;
+        }
+
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
             }
             if (obj != null && getClass() == obj.getClass()) {
                 Item item = (Item) obj;
-                if (this.viewType == item.viewType && this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.values == item.values && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
+                int i = this.viewType;
+                if (i != item.viewType) {
+                    return false;
+                }
+                if (i == 0) {
+                    return true;
+                }
+                if (i == 17) {
+                    return this.intValue == item.intValue && this.object == item.object;
+                }
+                if (i == 5) {
+                    return eq(this.values, item.values);
+                }
+                if (i == 13) {
+                    return TextUtils.equals(this.text, item.text);
+                }
+                if (this.chat == item.chat && this.user == item.user && this.peer == item.peer && this.object == item.object && this.boolValue == item.boolValue && this.intValue == item.intValue && this.intValue2 == item.intValue2 && this.intValue3 == item.intValue3 && this.longValue == item.longValue && this.subType == item.subType && this.floatValue == item.floatValue && TextUtils.equals(this.text, item.text)) {
                     return true;
                 }
             }
@@ -214,10 +279,6 @@ public class BoostAdapter extends AdapterWithDiffUtils {
         this.chatsParticipantsCount.putAll(hashMap);
     }
 
-    private RecyclerView.Adapter realAdapter() {
-        return this.recyclerListView.getAdapter();
-    }
-
     @Override
     public int getItemCount() {
         return this.items.size();
@@ -231,7 +292,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         int itemViewType = viewHolder.getItemViewType();
-        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12;
+        return itemViewType == 2 || itemViewType == 11 || itemViewType == 8 || itemViewType == 10 || itemViewType == 15 || itemViewType == 12 || itemViewType == 17 || itemViewType == 18;
     }
 
     public void notifyAdditionalPrizeItem(boolean z) {
@@ -259,51 +320,6 @@ public class BoostAdapter extends AdapterWithDiffUtils {
     }
 
     @Override
-    public void notifyDataSetChanged() {
-        realAdapter().notifyDataSetChanged();
-    }
-
-    @Override
-    public void notifyItemChanged(int i) {
-        realAdapter().notifyItemChanged(i + 1);
-    }
-
-    @Override
-    public void notifyItemInserted(int i) {
-        realAdapter().notifyItemInserted(i + 1);
-    }
-
-    @Override
-    public void notifyItemMoved(int i, int i2) {
-        realAdapter().notifyItemMoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2, Object obj) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2, obj);
-    }
-
-    @Override
-    public void notifyItemRangeInserted(int i, int i2) {
-        realAdapter().notifyItemRangeInserted(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeRemoved(int i, int i2) {
-        realAdapter().notifyItemRangeRemoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRemoved(int i) {
-        realAdapter().notifyItemRemoved(i + 1);
-    }
-
-    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC$Chat tLRPC$Chat;
         MessagesController messagesController;
@@ -314,6 +330,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
             this.headerCell = headerCell;
             headerCell.setBoostViaGifsText(this.currentChat);
+            this.headerCell.setStars(item.boolValue);
             return;
         }
         if (itemViewType == 2) {
@@ -370,10 +387,10 @@ public class BoostAdapter extends AdapterWithDiffUtils {
             case 13:
                 SubtitleWithCounterCell subtitleWithCounterCell = (SubtitleWithCounterCell) viewHolder.itemView;
                 subtitleWithCounterCell.setText(item.text);
-                subtitleWithCounterCell.updateCounter(false, item.intValue);
+                subtitleWithCounterCell.updateCounter(true, item.intValue);
                 return;
             case 14:
-                ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories$TL_prepaidGiveaway) item.user);
+                ((BoostTypeSingleCell) viewHolder.itemView).setGiveaway((TL_stories$PrepaidGiveaway) item.user);
                 return;
             case 15:
                 ((SwitcherCell) viewHolder.itemView).setData(item.text, item.selectable, item.boolValue, item.subType);
@@ -382,6 +399,11 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 EnterPrizeCell enterPrizeCell = (EnterPrizeCell) viewHolder.itemView;
                 enterPrizeCell.setCount(item.intValue);
                 enterPrizeCell.setAfterTextChangedListener(this.afterTextChangedListener);
+                return;
+            case 17:
+                StarGiveawayOptionCell starGiveawayOptionCell = (StarGiveawayOptionCell) viewHolder.itemView;
+                Object obj = item.object;
+                starGiveawayOptionCell.setOption(obj == null ? null : (TLRPC$TL_starsGiveawayOption) obj, item.intValue, item.longValue, item.selectable, item.boolValue);
                 return;
             default:
                 return;
@@ -444,6 +466,14 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 break;
             case 16:
                 view2 = new EnterPrizeCell(context, this.resourcesProvider);
+                break;
+            case 17:
+                view2 = new StarGiveawayOptionCell(context, this.resourcesProvider);
+                break;
+            case 18:
+                StarsIntroActivity.ExpandView expandView = new StarsIntroActivity.ExpandView(context, this.resourcesProvider);
+                expandView.set(LocaleController.getString(R.string.NotifyMoreOptions), true, true, false);
+                view2 = expandView;
                 break;
             default:
                 view2 = new HeaderCell(context, this.resourcesProvider);

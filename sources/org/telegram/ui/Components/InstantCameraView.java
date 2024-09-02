@@ -1980,8 +1980,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 }
                 GLES20.glBlendFunc(770, 771);
                 if (InstantCameraView.this.useCamera2) {
-                    str = RLottieDrawable.readRes(null, R.raw.instant_lanczos_vert);
-                    createFragmentShader = RLottieDrawable.readRes(null, R.raw.instant_lanczos_frag_oes);
+                    str = AndroidUtilities.readRes(R.raw.instant_lanczos_vert);
+                    createFragmentShader = AndroidUtilities.readRes(R.raw.instant_lanczos_frag_oes);
                 } else {
                     InstantCameraView instantCameraView = InstantCameraView.this;
                     createFragmentShader = instantCameraView.createFragmentShader(instantCameraView.previewSize[0]);

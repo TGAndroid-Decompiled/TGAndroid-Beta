@@ -663,7 +663,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     int dialogFolderId;
     private long dialog_id;
     private Long dialog_id_Long;
-    private int distanceToPeer;
     private ChatMessageCell drawLaterRoundProgressCell;
     public float drawingChatListViewYoffset;
     private ChatMessageCell dummyMessageCell;
@@ -1544,7 +1543,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             });
             if (i2 < 0) {
                 onHeightChangedListener.setPredictiveCount(this.val$finalCount);
-                this.val$reactedView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda163(onHeightChangedListener));
+                this.val$reactedView.setSeenCallback(new ChatActivity$$ExternalSyntheticLambda162(onHeightChangedListener));
             }
             viewGroup.addView(onHeightChangedListener);
             this.val$cachedViews.put(i, onHeightChangedListener);
@@ -1611,7 +1610,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void lambda$onItemClick$0() {
-            ChatActivity.this.lambda$onBackPressed$308();
+            ChatActivity.this.lambda$onBackPressed$307();
         }
 
         public void lambda$onItemClick$1(boolean z, int i) {
@@ -1638,7 +1637,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             int i2 = NotificationCenter.closeChats;
             notificationCenter.removeObserver(chatActivity, i2);
             ChatActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
-            ChatActivity.this.lambda$onBackPressed$308();
+            ChatActivity.this.lambda$onBackPressed$307();
             NotificationCenter notificationCenter2 = ChatActivity.this.getNotificationCenter();
             int i3 = NotificationCenter.needDeleteDialog;
             Long valueOf = Long.valueOf(ChatActivity.this.dialog_id);
@@ -1673,7 +1672,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public void lambda$onItemClick$6(DialogInterface dialogInterface, int i) {
-            ChatActivity.this.lambda$onBackPressed$308();
+            ChatActivity.this.lambda$onBackPressed$307();
             ChatActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteBusinessLink, ChatActivity.this.businessLink);
         }
 
@@ -1898,7 +1897,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 if (i != 31) {
                                     if (i == 40) {
                                         ChatActivity chatActivity10 = ChatActivity.this;
-                                        chatActivity10.lambda$openSearchWithText$311(chatActivity10.isSupportedTags() ? "" : null);
+                                        chatActivity10.lambda$openSearchWithText$310(chatActivity10.isSupportedTags() ? "" : null);
                                         return;
                                     }
                                     if (i == 62) {
@@ -2106,7 +2105,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (ChatActivity.this.checkRecordLocked(true)) {
                         return;
                     }
-                    ChatActivity.this.lambda$onBackPressed$308();
+                    ChatActivity.this.lambda$onBackPressed$307();
                     return;
                 }
             }
@@ -2239,7 +2238,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     final float f = this.val$x;
                     final float f2 = this.val$y;
                     final ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.val$visibleReaction;
-                    chatActivity.lambda$openDiscussionMessageChat$324(new Runnable() {
+                    chatActivity.lambda$openDiscussionMessageChat$323(new Runnable() {
                         @Override
                         public final void run() {
                             ChatActivity.AnonymousClass143.this.lambda$run$1(i, z, reactionsContainerLayout, f, f2, visibleReaction);
@@ -2247,7 +2246,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     });
                 } else {
                     final MessageObject messageObject = this.val$primaryMessage;
-                    chatActivity.lambda$openDiscussionMessageChat$324(new Runnable() {
+                    chatActivity.lambda$openDiscussionMessageChat$323(new Runnable() {
                         @Override
                         public final void run() {
                             ChatActivity.AnonymousClass143.this.lambda$run$2(messageObject);
@@ -4537,7 +4536,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         public void openHashtagSearch(String str) {
-            ChatActivity.this.lambda$openHashtagSearch$312(str);
+            ChatActivity.this.lambda$openHashtagSearch$311(str);
         }
 
         @Override
@@ -7187,7 +7186,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 if (i != 6) {
                     return;
                 }
-                ChatActivity.this.lambda$openSearchWithUser$313(tLRPC$User);
+                ChatActivity.this.lambda$openSearchWithUser$312(tLRPC$User);
             }
         }
 
@@ -7298,7 +7297,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         public void lambda$didPressReaction$10(TLRPC$ReactionCount tLRPC$ReactionCount, View view) {
             ChatActivity.this.closeMenu();
-            ChatActivity.this.lambda$openSearchWithText$311("");
+            ChatActivity.this.lambda$openSearchWithText$310("");
             SearchTagsList searchTagsList = ChatActivity.this.actionBarSearchTags;
             if (searchTagsList != null) {
                 searchTagsList.setChosen(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$ReactionCount.reaction), true);
@@ -7862,7 +7861,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             i = -1;
             i2 = 0;
-            ChatActivity.this.lambda$updateMessageAnimated$265(primaryMessageObject, false);
+            ChatActivity.this.lambda$updateMessageAnimated$264(primaryMessageObject, false);
             if (ChatActivity.this.factCheckHint != null) {
                 ChatActivity.this.factCheckHint.hide();
             }
@@ -8365,7 +8364,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (ChatActivity.this.chatMode == 2) {
                 ChatActivity.this.chatActivityDelegate.openReplyMessage(messageObject.getId());
-                ChatActivity.this.lambda$onBackPressed$308();
+                ChatActivity.this.lambda$onBackPressed$307();
                 return;
             }
             if (ChatActivity.this.chatMode == 3 || ((ChatActivity.this.chatMode == 7 && ChatActivity.this.searchType == 2) || !((!UserObject.isReplyUser(ChatActivity.this.currentUser) && !UserObject.isUserSelf(ChatActivity.this.currentUser)) || (tLRPC$MessageFwdHeader = messageObject.messageOwner.fwd_from) == null || tLRPC$MessageFwdHeader.saved_from_peer == null))) {
@@ -8659,7 +8658,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             i = -1;
             i2 = 0;
-            ChatActivity.this.lambda$updateMessageAnimated$265(primaryMessageObject, false);
+            ChatActivity.this.lambda$updateMessageAnimated$264(primaryMessageObject, false);
             if (z && i >= 0 && chatMessageCell.getCurrentMessagesGroup() == null) {
                 ChatActivity.this.chatLayoutManager.scrollToPositionWithOffset(i, i2);
             }
@@ -9396,7 +9395,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if ((ChatActivity.this.threadMessageId != 0 && ChatActivity.this.chatMode != 3) || UserObject.isReplyUser(ChatActivity.this.currentUser)) {
                 ChatActivity chatActivity = ChatActivity.this;
                 if (!chatActivity.preventReopenSearchWithText) {
-                    chatActivity.lambda$openSearchWithText$311(null);
+                    chatActivity.lambda$openSearchWithText$310(null);
                 }
             }
             if (ChatActivity.this.openSearchKeyboard) {
@@ -10591,7 +10590,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.checkTranslationRunnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$new$178();
+                ChatActivity.this.lambda$new$177();
             }
         };
         this.preventReopenSearchWithText = false;
@@ -11101,7 +11100,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$checkGroupEmojiPackHint$188();
+                ChatActivity.this.lambda$checkGroupEmojiPackHint$187();
             }
         }, 300L);
     }
@@ -11122,9 +11121,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         Collections.sort(arrayList, new Comparator() {
                             @Override
                             public final int compare(Object obj, Object obj2) {
-                                int lambda$checkGroupMessagesOrder$348;
-                                lambda$checkGroupMessagesOrder$348 = ChatActivity.lambda$checkGroupMessagesOrder$348((MessageObject) obj, (MessageObject) obj2);
-                                return lambda$checkGroupMessagesOrder$348;
+                                int lambda$checkGroupMessagesOrder$347;
+                                lambda$checkGroupMessagesOrder$347 = ChatActivity.lambda$checkGroupMessagesOrder$347((MessageObject) obj, (MessageObject) obj2);
+                                return lambda$checkGroupMessagesOrder$347;
                             }
                         });
                         this.messages.addAll(i2, arrayList);
@@ -11172,7 +11171,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (j != 0) {
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(j));
             if (user != null) {
-                lambda$openSearchWithText$311("");
+                lambda$openSearchWithText$310("");
                 ImageView imageView = this.searchUserButton;
                 if (imageView != null) {
                     imageView.callOnClick();
@@ -11186,7 +11185,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (j2 == 0 || (chat = getMessagesController().getChat(Long.valueOf(j2))) == null) {
             return;
         }
-        lambda$openSearchWithText$311("");
+        lambda$openSearchWithText$310("");
         ImageView imageView2 = this.searchUserButton;
         if (imageView2 != null) {
             imageView2.callOnClick();
@@ -11252,7 +11251,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$checkListViewPaddings$210();
+                    ChatActivity.this.lambda$checkListViewPaddings$209();
                 }
             };
             this.checkPaddingsRunnable = runnable;
@@ -11427,7 +11426,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$checkScrollForLoad$111(itemCount, i2, i3, i5);
+                    ChatActivity.this.lambda$checkScrollForLoad$110(itemCount, i2, i3, i5);
                 }
             });
             return;
@@ -11454,7 +11453,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AlertsCreator.showSecretLocationAlert(getParentActivity(), this.currentAccount, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$checkSecretMessageForLocation$179();
+                ChatActivity.this.lambda$checkSecretMessageForLocation$178();
             }
         }, true, this.themeDelegate);
     }
@@ -11514,7 +11513,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.blurredView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatActivity.this.lambda$checkShowBlur$101(view2);
+                ChatActivity.this.lambda$checkShowBlur$100(view2);
             }
         });
         this.blurredView.setAlpha(0.0f);
@@ -11537,7 +11536,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getNotificationCenter().doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$checkThemeEmoticonOrWallpaper$340();
+                ChatActivity.this.lambda$checkThemeEmoticonOrWallpaper$339();
             }
         });
     }
@@ -11836,7 +11835,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatActivity.this.lambda$closeMenu$263(valueAnimator2);
+                ChatActivity.this.lambda$closeMenu$262(valueAnimator2);
             }
         });
         this.scrimViewAlphaAnimator.setDuration(150L);
@@ -12156,7 +12155,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public void doOnIdle(Runnable runnable) {
-                ChatActivity.this.lambda$openDiscussionMessageChat$324(runnable);
+                ChatActivity.this.lambda$openDiscussionMessageChat$323(runnable);
             }
 
             @Override
@@ -12202,17 +12201,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AlertsCreator.createDeleteMessagesAlert(this, this.currentUser, this.currentChat, this.currentEncryptedChat, this.chatInfo, this.mergeDialogId, messageObject, this.selectedMessagesIds, groupedMessages, (int) getTopicId(), this.chatMode, null, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createDeleteMessagesAlert$215();
+                ChatActivity.this.lambda$createDeleteMessagesAlert$214();
             }
         }, z ? new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createDeleteMessagesAlert$216();
+                ChatActivity.this.lambda$createDeleteMessagesAlert$215();
             }
         } : null, this.themeDelegate);
     }
 
-    private void createEmptyView(boolean r26) {
+    private void createEmptyView(boolean r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createEmptyView(boolean):void");
     }
 
@@ -13052,7 +13051,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$forwardMessages$127();
+                    ChatActivity.this.lambda$forwardMessages$126();
                 }
             });
         }
@@ -13324,7 +13323,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     private void gotChatInfo() {
         TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
-        if (tLRPC$ChatFull == null || !tLRPC$ChatFull.paid_reactions_available || StarsController.getInstance(this.currentAccount).balanceAvailable()) {
+        if (tLRPC$ChatFull == null || !tLRPC$ChatFull.paid_reactions_available) {
+            return;
+        }
+        getMessagesController().arePaidReactionsAnonymous();
+        if (StarsController.getInstance(this.currentAccount).balanceAvailable()) {
             return;
         }
         StarsController.getInstance(this.currentAccount).getBalance();
@@ -13489,10 +13492,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void hideInfoView() {
-        if (this.distanceToPeer >= 0) {
-            this.distanceToPeer = -1;
-            MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("dialog_bar_distance" + this.dialog_id, -2).commit();
-        }
         Animator animator = this.infoTopViewAnimator;
         if (animator != null) {
             animator.cancel();
@@ -13507,7 +13506,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatActivity.this.lambda$hideInfoView$102(chatActionCell2, valueAnimator);
+                ChatActivity.this.lambda$hideInfoView$101(chatActionCell2, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -13560,7 +13559,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatActivity.this.lambda$hidePinnedMessageView$205(valueAnimator);
+                    ChatActivity.this.lambda$hidePinnedMessageView$204(valueAnimator);
                 }
             });
             this.pinnedMessageViewAnimator.playTogether(ofFloat);
@@ -13791,11 +13790,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return getUserConfig().getClientUserId() == getDialogId() && !getMessagesController().getSavedMessagesController().unsupported && getUserConfig().isPremium();
     }
 
-    public boolean lambda$applyChatLinkMessageMaybe$213(org.telegram.tgnet.TLRPC$MessageEntity r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$applyChatLinkMessageMaybe$213(org.telegram.tgnet.TLRPC$MessageEntity):boolean");
+    public boolean lambda$applyChatLinkMessageMaybe$212(org.telegram.tgnet.TLRPC$MessageEntity r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$applyChatLinkMessageMaybe$212(org.telegram.tgnet.TLRPC$MessageEntity):boolean");
     }
 
-    public void lambda$applyDraftMaybe$214() {
+    public void lambda$applyDraftMaybe$213() {
         ChatActivityEnterView chatActivityEnterView;
         if (BaseFragment.hasSheets(this) || (chatActivityEnterView = this.chatActivityEnterView) == null) {
             return;
@@ -13804,7 +13803,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.chatActivityEnterView.openKeyboard();
     }
 
-    public void lambda$checkGroupEmojiPackHint$188() {
+    public void lambda$checkGroupEmojiPackHint$187() {
         FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f);
         createFrame.bottomMargin = this.chatActivityEnterView.getMeasuredHeight();
         this.contentView.addView(this.groupEmojiPackHint, createFrame);
@@ -13812,28 +13811,28 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.groupEmojiPackHint.show();
     }
 
-    public static int lambda$checkGroupMessagesOrder$348(MessageObject messageObject, MessageObject messageObject2) {
+    public static int lambda$checkGroupMessagesOrder$347(MessageObject messageObject, MessageObject messageObject2) {
         return messageObject2.getId() - messageObject.getId();
     }
 
-    public void lambda$checkListViewPaddings$210() {
+    public void lambda$checkListViewPaddings$209() {
         this.checkPaddingsRunnable = null;
         invalidateChatListViewTopPadding();
         invalidateMessagesVisiblePart();
     }
 
-    public void lambda$checkRecordLocked$307(boolean z, DialogInterface dialogInterface, int i) {
+    public void lambda$checkRecordLocked$306(boolean z, DialogInterface dialogInterface, int i) {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             if (z) {
-                lambda$onBackPressed$308();
+                lambda$onBackPressed$307();
             } else {
                 chatActivityEnterView.cancelRecordingAudioVideo();
             }
         }
     }
 
-    public void lambda$checkScrollForLoad$111(int i, int i2, int i3, int i4) {
+    public void lambda$checkScrollForLoad$110(int i, int i2, int i3, int i4) {
         MessagesController messagesController;
         long j;
         long j2;
@@ -13956,7 +13955,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.loadingForward = true;
     }
 
-    public void lambda$checkSecretMessageForLocation$179() {
+    public void lambda$checkSecretMessageForLocation$178() {
         int childCount = this.chatListView.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = this.chatListView.getChildAt(i);
@@ -13969,16 +13968,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$checkShowBlur$101(View view) {
+    public void lambda$checkShowBlur$100(View view) {
         finishPreviewFragment();
     }
 
-    public void lambda$checkThemeEmoticonOrWallpaper$340() {
+    public void lambda$checkThemeEmoticonOrWallpaper$339() {
         TLRPC$UserFull tLRPC$UserFull = this.userInfo;
         setChatThemeEmoticon(tLRPC$UserFull != null ? tLRPC$UserFull.theme_emoticon : null);
     }
 
-    public void lambda$closeMenu$263(ValueAnimator valueAnimator) {
+    public void lambda$closeMenu$262(ValueAnimator valueAnimator) {
         this.scrimViewAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ChatActivityFragmentView chatActivityFragmentView = this.contentView;
         if (chatActivityFragmentView != null) {
@@ -14015,13 +14014,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForward(false);
     }
 
-    public void lambda$createDeleteMessagesAlert$215() {
+    public void lambda$createDeleteMessagesAlert$214() {
         hideActionMode();
         updatePinnedMessageView(true);
     }
 
-    public void lambda$createDeleteMessagesAlert$216() {
+    public void lambda$createDeleteMessagesAlert$215() {
         dimBehindView(false);
+    }
+
+    public void lambda$createEmptyView$260(TLRPC$Document tLRPC$Document) {
+        this.animatingDocuments.put(tLRPC$Document, 0);
+        SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tLRPC$Document, null, this.dialog_id, null, null, null, this.replyingQuote, null, true, 0, false, null, this.quickReplyShortcut, getQuickReplyId());
     }
 
     public void lambda$createEmptyView$261(TLRPC$Document tLRPC$Document) {
@@ -14029,16 +14033,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tLRPC$Document, null, this.dialog_id, null, null, null, this.replyingQuote, null, true, 0, false, null, this.quickReplyShortcut, getQuickReplyId());
     }
 
-    public void lambda$createEmptyView$262(TLRPC$Document tLRPC$Document) {
-        this.animatingDocuments.put(tLRPC$Document, 0);
-        SendMessagesHelper.getInstance(this.currentAccount).sendSticker(tLRPC$Document, null, this.dialog_id, null, null, null, this.replyingQuote, null, true, 0, false, null, this.quickReplyShortcut, getQuickReplyId());
-    }
-
-    public void lambda$createMenu$217(MessageObject messageObject) {
+    public void lambda$createMenu$216(MessageObject messageObject) {
         scrollToMessageId(messageObject.getReplyMsgId(), messageObject.messageOwner.id, true, messageObject.getDialogId() == this.mergeDialogId ? 1 : 0, false, 0);
     }
 
-    public void lambda$createMenu$218(TLObject tLObject) {
+    public void lambda$createMenu$217(TLObject tLObject) {
         if (tLObject instanceof TLRPC$TL_payments_paymentReceiptStars) {
             StarsIntroActivity.showTransactionSheet(getContext(), false, this.currentAccount, (TLRPC$TL_payments_paymentReceiptStars) tLObject, this.resourceProvider);
         } else if (tLObject instanceof TLRPC$PaymentReceipt) {
@@ -14046,27 +14045,27 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createMenu$219(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createMenu$218(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$218(tLObject);
+                ChatActivity.this.lambda$createMenu$217(tLObject);
             }
         });
     }
 
-    public static void lambda$createMenu$220(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view) {
+    public static void lambda$createMenu$219(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view) {
         actionBarPopupWindowLayout.getSwipeBack().closeForeground();
     }
 
-    public static void lambda$createMenu$221(HorizontalScrollView horizontalScrollView, float f, float f2, ReactionTabHolderView reactionTabHolderView, ReactionTabHolderView reactionTabHolderView2, ValueAnimator valueAnimator) {
+    public static void lambda$createMenu$220(HorizontalScrollView horizontalScrollView, float f, float f2, ReactionTabHolderView reactionTabHolderView, ReactionTabHolderView reactionTabHolderView2, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         horizontalScrollView.setScrollX((int) (f + ((f2 - f) * floatValue)));
         reactionTabHolderView.setOutlineProgress(1.0f - floatValue);
         reactionTabHolderView2.setOutlineProgress(floatValue);
     }
 
-    public static void lambda$createMenu$222(ViewPager viewPager, int i, LinearLayout linearLayout, AtomicBoolean atomicBoolean, final HorizontalScrollView horizontalScrollView, final ReactionTabHolderView reactionTabHolderView, View view) {
+    public static void lambda$createMenu$221(ViewPager viewPager, int i, LinearLayout linearLayout, AtomicBoolean atomicBoolean, final HorizontalScrollView horizontalScrollView, final ReactionTabHolderView reactionTabHolderView, View view) {
         int currentItem = viewPager.getCurrentItem();
         if (i == currentItem) {
             return;
@@ -14081,13 +14080,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatActivity.lambda$createMenu$221(horizontalScrollView, scrollX, x, reactionTabHolderView2, reactionTabHolderView, valueAnimator);
+                ChatActivity.lambda$createMenu$220(horizontalScrollView, scrollX, x, reactionTabHolderView2, reactionTabHolderView, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public void lambda$createMenu$223(ReactedUsersListView reactedUsersListView, ArrayList arrayList) {
+    public void lambda$createMenu$222(ReactedUsersListView reactedUsersListView, ArrayList arrayList) {
         EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(this, getParentActivity(), this.themeDelegate, arrayList) {
             @Override
             public void dismiss() {
@@ -14101,7 +14100,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(emojiPacksAlert);
     }
 
-    public void lambda$createMenu$224(MessageObject messageObject, ReactedUsersListView reactedUsersListView, long j, TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
+    public void lambda$createMenu$223(MessageObject messageObject, ReactedUsersListView reactedUsersListView, long j, TLRPC$MessagePeerReaction tLRPC$MessagePeerReaction) {
         String str;
         Bundle bundle = new Bundle();
         if (j > 0) {
@@ -14117,17 +14116,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         closeMenu();
     }
 
-    public static void lambda$createMenu$225(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, ReactedUsersListView reactedUsersListView, int i) {
+    public static void lambda$createMenu$224(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, ReactedUsersListView reactedUsersListView, int i) {
         actionBarPopupWindowLayout.getSwipeBack().setNewForegroundHeight(iArr[0], AndroidUtilities.dp(52.0f) + i, true);
     }
 
-    public static void lambda$createMenu$226(ReactedUsersListView reactedUsersListView, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, View view) {
+    public static void lambda$createMenu$225(ReactedUsersListView reactedUsersListView, ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int[] iArr, View view) {
         if (reactedUsersListView == null || reactedUsersListView.isLoaded) {
             actionBarPopupWindowLayout.getSwipeBack().openForeground(iArr[0]);
         }
     }
 
-    public void lambda$createMenu$227(MessageSeenView messageSeenView, View view, int i) {
+    public void lambda$createMenu$226(MessageSeenView messageSeenView, View view, int i) {
         long j;
         String str;
         TLObject tLObject = (TLObject) messageSeenView.users.get(i);
@@ -14149,11 +14148,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         presentFragment(new ProfileActivity(bundle));
     }
 
-    public void lambda$createMenu$228() {
+    public void lambda$createMenu$227() {
         closeMenu(true);
     }
 
-    public void lambda$createMenu$229(MessageObject messageObject, View view) {
+    public void lambda$createMenu$228(MessageObject messageObject, View view) {
         UndoView undoView;
         if (getMediaDataController().saveToRingtones(messageObject.getDocument()) && (undoView = getUndoView()) != null) {
             undoView.showWithAction(this.dialog_id, UndoView.ACTION_RINGTONE_ADDED, new Runnable() {
@@ -14172,15 +14171,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         closeMenu(true);
     }
 
-    public void lambda$createMenu$230(View view) {
+    public void lambda$createMenu$229(View view) {
         closeMenu();
     }
 
-    public static void lambda$createMenu$231(CrossfadeDrawable crossfadeDrawable, ValueAnimator valueAnimator) {
+    public static void lambda$createMenu$230(CrossfadeDrawable crossfadeDrawable, ValueAnimator valueAnimator) {
         crossfadeDrawable.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public static void lambda$createMenu$232(long[] jArr, boolean[] zArr, ImageView imageView, ImageView imageView2) {
+    public static void lambda$createMenu$231(long[] jArr, boolean[] zArr, ImageView imageView, ImageView imageView2) {
         jArr[0] = SystemClock.elapsedRealtime();
         if (!zArr[0]) {
             imageView = imageView2;
@@ -14190,7 +14189,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatActivity.lambda$createMenu$231(CrossfadeDrawable.this, valueAnimator);
+                ChatActivity.lambda$createMenu$230(CrossfadeDrawable.this, valueAnimator);
             }
         });
         ofFloat.setDuration(150L);
@@ -14198,24 +14197,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ofFloat.start();
     }
 
-    public void lambda$createMenu$233() {
+    public void lambda$createMenu$232() {
         closeMenu();
         BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.TranscriptionReportSent)).show();
     }
 
-    public void lambda$createMenu$234(Runnable runnable, long[] jArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$createMenu$233(Runnable runnable, long[] jArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.cancelRunOnUIThread(runnable);
         this.selectedObject.messageOwner.voiceTranscriptionRated = true;
         getMessagesStorage().updateMessageVoiceTranscriptionOpen(this.selectedObject.getDialogId(), this.selectedObject.getId(), this.selectedObject.messageOwner);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$233();
+                ChatActivity.this.lambda$createMenu$232();
             }
         }, jArr[0] > 0 ? Math.max(0L, 300 - (SystemClock.elapsedRealtime() - jArr[0])) : 0L);
     }
 
-    public void lambda$createMenu$235(boolean[] zArr, final boolean[] zArr2, final ImageView imageView, final ImageView imageView2) {
+    public void lambda$createMenu$234(boolean[] zArr, final boolean[] zArr2, final ImageView imageView, final ImageView imageView2) {
         if (zArr[0]) {
             return;
         }
@@ -14224,7 +14223,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.lambda$createMenu$232(jArr, zArr2, imageView, imageView2);
+                ChatActivity.lambda$createMenu$231(jArr, zArr2, imageView, imageView2);
             }
         };
         TLRPC$TL_messages_rateTranscribedAudio tLRPC$TL_messages_rateTranscribedAudio = new TLRPC$TL_messages_rateTranscribedAudio();
@@ -14235,27 +14234,27 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tLRPC$TL_messages_rateTranscribedAudio, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$createMenu$234(runnable, jArr, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$createMenu$233(runnable, jArr, tLObject, tLRPC$TL_error);
             }
         });
         AndroidUtilities.runOnUIThread(runnable, 150L);
     }
 
-    public static void lambda$createMenu$236(boolean[] zArr, Runnable runnable, View view) {
+    public static void lambda$createMenu$235(boolean[] zArr, Runnable runnable, View view) {
         zArr[0] = true;
         runnable.run();
     }
 
-    public static void lambda$createMenu$237(boolean[] zArr, Runnable runnable, View view) {
+    public static void lambda$createMenu$236(boolean[] zArr, Runnable runnable, View view) {
         zArr[0] = false;
         runnable.run();
     }
 
-    public static void lambda$createMenu$238(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view) {
+    public static void lambda$createMenu$237(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, View view) {
         actionBarPopupWindowLayout.getSwipeBack().closeForeground();
     }
 
-    public void lambda$createMenu$239(View view) {
+    public void lambda$createMenu$238(View view) {
         MessageObject messageObject = this.selectedObject;
         if (messageObject == null) {
             return;
@@ -14264,7 +14263,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Browser.openUrl(getContext(), Uri.parse(this.selectedObject.sponsoredUrl), true, false, false, null, null, false, getMessagesController().sponsoredLinksInappAllow);
     }
 
-    public boolean lambda$createMenu$240(View view) {
+    public boolean lambda$createMenu$239(View view) {
         MessageObject messageObject = this.selectedObject;
         if (messageObject == null) {
             return false;
@@ -14276,26 +14275,26 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return true;
     }
 
-    public void lambda$createMenu$241(View view) {
+    public void lambda$createMenu$240(View view) {
         if (AndroidUtilities.addToClipboard(this.selectedObject.sponsoredInfo)) {
             BulletinFactory.of(Bulletin.BulletinWindow.make(getParentActivity()), this.themeDelegate).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
         }
     }
 
-    public void lambda$createMenu$242(View view) {
+    public void lambda$createMenu$241(View view) {
         if (AndroidUtilities.addToClipboard(this.selectedObject.sponsoredAdditionalInfo)) {
             BulletinFactory.of(Bulletin.BulletinWindow.make(getParentActivity()), this.themeDelegate).createCopyBulletin(LocaleController.getString(R.string.TextCopied)).show();
         }
     }
 
-    public void lambda$createMenu$243(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, View view) {
+    public void lambda$createMenu$242(ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout, int i, View view) {
         if (this.contentView == null || getParentActivity() == null) {
             return;
         }
         actionBarPopupWindowLayout.getSwipeBack().openForeground(i);
     }
 
-    public void lambda$createMenu$244(View view) {
+    public void lambda$createMenu$243(View view) {
         if (this.contentView == null || getParentActivity() == null) {
             return;
         }
@@ -14304,23 +14303,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.show();
     }
 
-    public void lambda$createMenu$245(int i, ArrayList arrayList, View view) {
+    public void lambda$createMenu$244(int i, ArrayList arrayList, View view) {
         if (this.selectedObject == null || i >= arrayList.size()) {
             return;
         }
         processSelectedOption(((Integer) arrayList.get(i)).intValue());
     }
 
-    public Boolean lambda$createMenu$246(View view, URLSpan uRLSpan) {
+    public Boolean lambda$createMenu$245(View view, URLSpan uRLSpan) {
         didPressMessageUrl(uRLSpan, false, this.selectedObject, view instanceof ChatMessageCell ? (ChatMessageCell) view : null);
         return Boolean.TRUE;
     }
 
-    public void lambda$createMenu$247() {
+    public void lambda$createMenu$246() {
         dimBehindView(false);
     }
 
-    public void lambda$createMenu$248(int i, ArrayList arrayList, String str, String str2, String str3, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
+    public void lambda$createMenu$247(int i, ArrayList arrayList, String str, String str2, String str3, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
         TLRPC$Message tLRPC$Message;
         if (this.selectedObject == null || i >= arrayList.size() || getParentActivity() == null) {
             return;
@@ -14330,7 +14329,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         TranslateAlert2.showAlert(getParentActivity(), this, this.currentAccount, tLRPC$InputPeer, iArr[0], str, str4, charSequence, (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) ? null : tLRPC$Message.entities, z, callbackReturn, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$247();
+                ChatActivity.this.lambda$createMenu$246();
             }
         }).setDimBehind(false);
         closeMenu(false);
@@ -14341,7 +14340,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createMenu$249(String[] strArr, String str, String str2, boolean z, ActionBarMenuSubItem actionBarMenuSubItem, AtomicBoolean atomicBoolean, AtomicReference atomicReference, String str3) {
+    public void lambda$createMenu$248(String[] strArr, String str, String str2, boolean z, ActionBarMenuSubItem actionBarMenuSubItem, AtomicBoolean atomicBoolean, AtomicReference atomicReference, String str3) {
         TLRPC$Chat tLRPC$Chat;
         strArr[0] = str3;
         if (str3 != null && ((!str3.equals(str) || !strArr[0].equals(str2) || strArr[0].equals("und")) && ((z && !RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(strArr[0])) || ((((tLRPC$Chat = this.currentChat) != null && (tLRPC$Chat.has_link || ChatObject.isPublic(tLRPC$Chat))) || this.selectedObject.messageOwner.fwd_from != null) && ("uk".equals(strArr[0]) || "ru".equals(strArr[0])))))) {
@@ -14354,7 +14353,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static void lambda$createMenu$250(AtomicBoolean atomicBoolean, AtomicReference atomicReference, Exception exc) {
+    public static void lambda$createMenu$249(AtomicBoolean atomicBoolean, AtomicReference atomicReference, Exception exc) {
         FileLog.e("mlkit: failed to detect language in message");
         atomicBoolean.set(false);
         if (atomicReference.get() != null) {
@@ -14363,11 +14362,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createMenu$251() {
+    public void lambda$createMenu$250() {
         dimBehindView(false);
     }
 
-    public void lambda$createMenu$252(int i, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
+    public void lambda$createMenu$251(int i, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
         TLRPC$Message tLRPC$Message;
         if (this.selectedObject == null || i >= arrayList.size() || getParentActivity() == null) {
             return;
@@ -14378,7 +14377,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         TranslateAlert2.showAlert(getParentActivity(), this, this.currentAccount, tLRPC$InputPeer, iArr[0], strArr[0], str4, charSequence, (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) ? null : tLRPC$Message.entities, z, callbackReturn, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$251();
+                ChatActivity.this.lambda$createMenu$250();
             }
         }).setDimBehind(false);
         closeMenu(false);
@@ -14389,24 +14388,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static void lambda$createMenu$253(AtomicReference atomicReference) {
+    public static void lambda$createMenu$252(AtomicReference atomicReference) {
         if (atomicReference.get() != null) {
             ((Runnable) atomicReference.getAndSet(null)).run();
         }
     }
 
-    public void lambda$createMenu$254() {
+    public void lambda$createMenu$253() {
         dimBehindView(false);
     }
 
-    public void lambda$createMenu$255(int i, ArrayList arrayList, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, String str, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
+    public void lambda$createMenu$254(int i, ArrayList arrayList, TLRPC$InputPeer tLRPC$InputPeer, int[] iArr, String str, CharSequence charSequence, boolean z, Utilities.CallbackReturn callbackReturn, View view) {
         if (this.selectedObject == null || i >= arrayList.size() || getParentActivity() == null) {
             return;
         }
         TranslateAlert2.showAlert(getParentActivity(), this, this.currentAccount, tLRPC$InputPeer, iArr[0], "und", str, charSequence, null, z, callbackReturn, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$254();
+                ChatActivity.this.lambda$createMenu$253();
             }
         }).setDimBehind(false);
         closeMenu(false);
@@ -14417,24 +14416,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createMenu$256(DialogInterface dialogInterface) {
+    public void lambda$createMenu$255(DialogInterface dialogInterface) {
         dimBehindView(false);
     }
 
-    public void lambda$createMenu$257() {
+    public void lambda$createMenu$256() {
         closeMenu(false);
         PremiumFeatureBottomSheet premiumFeatureBottomSheet = new PremiumFeatureBottomSheet(this, 24, true);
         premiumFeatureBottomSheet.setDimBehind(false);
         premiumFeatureBottomSheet.setOnHideListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChatActivity.this.lambda$createMenu$256(dialogInterface);
+                ChatActivity.this.lambda$createMenu$255(dialogInterface);
             }
         });
         premiumFeatureBottomSheet.show();
     }
 
-    public void lambda$createMenu$258(ArrayList arrayList, View view) {
+    public void lambda$createMenu$257(ArrayList arrayList, View view) {
         EmojiPacksAlert emojiPacksAlert = new EmojiPacksAlert(this, getParentActivity(), this.themeDelegate, arrayList) {
             @Override
             public void dismiss() {
@@ -14448,7 +14447,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(emojiPacksAlert);
     }
 
-    public void lambda$createMenu$259() {
+    public void lambda$createMenu$258() {
         ActionBarMenuSubItem actionBarMenuSubItem;
         ActionBarMenuSubItem[] actionBarMenuSubItemArr = this.scrimPopupWindowItems;
         if (actionBarMenuSubItemArr == null || actionBarMenuSubItemArr.length <= 0 || (actionBarMenuSubItem = actionBarMenuSubItemArr[0]) == null) {
@@ -14459,7 +14458,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.scrimPopupWindowItems[0].sendAccessibilityEvent(8);
     }
 
-    public void lambda$createMenu$260(int i, int i2, boolean z, ReactionsContainerLayout reactionsContainerLayout) {
+    public void lambda$createMenu$259(int i, int i2, boolean z, ReactionsContainerLayout reactionsContainerLayout) {
         ActionBarPopupWindow actionBarPopupWindow = this.scrimPopupWindow;
         if (actionBarPopupWindow == null || this.fragmentView == null || actionBarPopupWindow.isShowing() || !AndroidUtilities.isActivityRunning(getParentActivity())) {
             return;
@@ -14471,12 +14470,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$createMenu$259();
+                ChatActivity.this.lambda$createMenu$258();
             }
         }, 420L);
     }
 
-    public void lambda$createPinnedMessageView$95(View view) {
+    public void lambda$createPinnedMessageView$94(View view) {
         int i;
         this.wasManualScroll = true;
         if (isThreadChat() && !this.isTopic) {
@@ -14503,11 +14502,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$createPinnedMessageView$96(View view) {
+    public void lambda$createPinnedMessageView$95(View view) {
         openPinnedMessagesList(false);
     }
 
-    public void lambda$createPinnedMessageView$97(DialogInterface dialogInterface, int i) {
+    public void lambda$createPinnedMessageView$96(DialogInterface dialogInterface, int i) {
         MessageObject messageObject = (MessageObject) this.pinnedMessageObjects.get(Integer.valueOf(this.currentPinnedMessageId));
         if (messageObject == null) {
             messageObject = (MessageObject) this.messagesDict[0].get(this.currentPinnedMessageId);
@@ -14515,7 +14514,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         unpinMessage(messageObject);
     }
 
-    public void lambda$createPinnedMessageView$98(View view) {
+    public void lambda$createPinnedMessageView$97(View view) {
         TLRPC$UserFull tLRPC$UserFull;
         if (getParentActivity() == null) {
             return;
@@ -14528,7 +14527,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             builder.setPositiveButton(LocaleController.getString(R.string.UnpinMessage), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatActivity.this.lambda$createPinnedMessageView$97(dialogInterface, i);
+                    ChatActivity.this.lambda$createPinnedMessageView$96(dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -14587,7 +14586,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (i == 0) {
             updateTopPanel(true);
         } else {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         }
     }
 
@@ -15418,7 +15417,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int i = NotificationCenter.closeChats;
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(this.dialog_id), this.currentUser, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -15454,13 +15453,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity chatActivity = ChatActivity.this;
                     TLRPC$User tLRPC$User = chatActivity.currentUser;
                     AlertsCreator.sendReport(tLRPC$User != null ? MessagesController.getInputPeer(tLRPC$User) : MessagesController.getInputPeer(chatActivity.currentChat), ChatActivity.this.reportType, str3, arrayList, 0);
-                    ChatActivity.this.lambda$onBackPressed$308();
+                    ChatActivity.this.lambda$onBackPressed$307();
                     ChatActivity.this.chatActivityDelegate.onReport();
                 }
             };
         } else {
             if (i == 2) {
-                lambda$onBackPressed$308();
+                lambda$onBackPressed$307();
                 this.chatActivityDelegate.onUnpin(true, this.bottomOverlayChatText.getTag() == null);
                 return;
             }
@@ -15602,17 +15601,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showProgressView(false);
     }
 
-    public void lambda$didLongPressCard$354(ScrimOptions scrimOptions, String str) {
+    public void lambda$didLongPressCard$353(ScrimOptions scrimOptions, String str) {
         scrimOptions.dismiss();
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.CardNumberCopied)).show();
     }
 
-    public void lambda$didLongPressCard$355(TLRPC$TL_bankCardOpenUrl tLRPC$TL_bankCardOpenUrl) {
+    public void lambda$didLongPressCard$354(TLRPC$TL_bankCardOpenUrl tLRPC$TL_bankCardOpenUrl) {
         Browser.openUrl(getContext(), tLRPC$TL_bankCardOpenUrl.url, this.inlineReturn == 0, false);
     }
 
-    public void lambda$didLongPressCard$356(Browser.Progress progress, ChatMessageCell chatMessageCell, final String str, TLObject tLObject, CharacterStyle characterStyle) {
+    public void lambda$didLongPressCard$355(Browser.Progress progress, ChatMessageCell chatMessageCell, final String str, TLObject tLObject, CharacterStyle characterStyle) {
         progress.end();
         ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
@@ -15620,7 +15619,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyCardNumber), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressCard$354(scrimOptions, str);
+                ChatActivity.this.lambda$didLongPressCard$353(scrimOptions, str);
             }
         });
         if (tLObject instanceof TLRPC$TL_payments_bankCardData) {
@@ -15631,7 +15630,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 makeOptions.add(R.drawable.msg_payment_card, tLRPC$TL_bankCardOpenUrl.name, new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didLongPressCard$355(tLRPC$TL_bankCardOpenUrl);
+                        ChatActivity.this.lambda$didLongPressCard$354(tLRPC$TL_bankCardOpenUrl);
                     }
                 });
             }
@@ -15645,20 +15644,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didLongPressCard$357(final Browser.Progress progress, final ChatMessageCell chatMessageCell, final String str, final CharacterStyle characterStyle, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didLongPressCard$356(final Browser.Progress progress, final ChatMessageCell chatMessageCell, final String str, final CharacterStyle characterStyle, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressCard$356(progress, chatMessageCell, str, tLObject, characterStyle);
+                ChatActivity.this.lambda$didLongPressCard$355(progress, chatMessageCell, str, tLObject, characterStyle);
             }
         });
     }
 
-    public void lambda$didLongPressCard$358(int i) {
+    public void lambda$didLongPressCard$357(int i) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$didLongPressLink$350(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) {
+    public void lambda$didLongPressLink$349(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, boolean z, boolean z2) {
         if (str.startsWith("video?")) {
             didPressMessageUrl(characterStyle, false, messageObject, chatMessageCell);
         } else if (z && !z2) {
@@ -15669,11 +15668,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didLongPressLink$351(String str) {
+    public void lambda$didLongPressLink$350(String str) {
         Browser.openInExternalBrowser(getParentActivity(), str, false);
     }
 
-    public void lambda$didLongPressLink$352(MessageObject messageObject) {
+    public void lambda$didLongPressLink$351(MessageObject messageObject) {
         TLRPC$WebPage tLRPC$WebPage;
         TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
         if (tLRPC$MessageMedia == null || (tLRPC$WebPage = tLRPC$MessageMedia.webpage) == null || tLRPC$WebPage.cached_page == null) {
@@ -15685,29 +15684,29 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didLongPressLink$353(java.lang.String r8, org.telegram.messenger.MessageObject r9, boolean r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$didLongPressLink$353(java.lang.String, org.telegram.messenger.MessageObject, boolean):void");
+    public void lambda$didLongPressLink$352(java.lang.String r8, org.telegram.messenger.MessageObject r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$didLongPressLink$352(java.lang.String, org.telegram.messenger.MessageObject, boolean):void");
     }
 
-    public void lambda$didLongPressUsername$359(long j) {
+    public void lambda$didLongPressUsername$358(long j) {
         presentFragment(of(j));
     }
 
-    public void lambda$didLongPressUsername$360(ScrimOptions scrimOptions, String str) {
+    public void lambda$didLongPressUsername$359(ScrimOptions scrimOptions, String str) {
         scrimOptions.dismiss();
         AndroidUtilities.addToClipboard("@" + str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.UsernameCopied)).show();
     }
 
-    public void lambda$didLongPressUsername$361(String str) {
+    public void lambda$didLongPressUsername$360(String str) {
         Browser.openUrl(getContext(), "https://fragment.com/username/" + str);
     }
 
-    public void lambda$didLongPressUsername$362(long j) {
+    public void lambda$didLongPressUsername$361(long j) {
         presentFragment(ProfileActivity.of(j));
     }
 
-    public void lambda$didLongPressUsername$363(Browser.Progress progress, ChatMessageCell chatMessageCell, final String str, CharacterStyle characterStyle, TLObject tLObject, Boolean bool) {
+    public void lambda$didLongPressUsername$362(Browser.Progress progress, ChatMessageCell chatMessageCell, final String str, CharacterStyle characterStyle, TLObject tLObject, Boolean bool) {
         final long j;
         boolean z;
         progress.end();
@@ -15732,21 +15731,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(z2 ? R.drawable.msg_channel : R.drawable.msg_discussion, LocaleController.getString(z2 ? R.string.ViewChannel : R.string.SendMessage), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressUsername$359(j);
+                    ChatActivity.this.lambda$didLongPressUsername$358(j);
                 }
             });
         }
         makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.ProfileCopyUsername), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressUsername$360(scrimOptions, str);
+                ChatActivity.this.lambda$didLongPressUsername$359(scrimOptions, str);
             }
         });
         if (bool.booleanValue()) {
             makeOptions.add(R.drawable.msg_ton, LocaleController.getString(R.string.BuyUsernameOnFragment), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressUsername$361(str);
+                    ChatActivity.this.lambda$didLongPressUsername$360(str);
                 }
             });
         }
@@ -15755,7 +15754,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.addProfile(tLObject, LocaleController.getString(z ? R.string.ViewProfile : z2 ? R.string.ViewChannelProfile : R.string.ViewGroupProfile), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressUsername$362(j);
+                    ChatActivity.this.lambda$didLongPressUsername$361(j);
                 }
             });
         } else {
@@ -15766,7 +15765,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didLongPressUsername$364(Browser.Progress progress, TLObject tLObject, Utilities.Callback2 callback2, boolean z) {
+    public void lambda$didLongPressUsername$363(Browser.Progress progress, TLObject tLObject, Utilities.Callback2 callback2, boolean z) {
         TLObject tLObject2;
         progress.end();
         if (tLObject instanceof TLRPC$TL_contacts_resolvedPeer) {
@@ -15785,20 +15784,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         callback2.run(tLObject2, Boolean.valueOf(z));
     }
 
-    public void lambda$didLongPressUsername$365(final Browser.Progress progress, final Utilities.Callback2 callback2, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didLongPressUsername$364(final Browser.Progress progress, final Utilities.Callback2 callback2, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressUsername$364(progress, tLObject, callback2, z);
+                ChatActivity.this.lambda$didLongPressUsername$363(progress, tLObject, callback2, z);
             }
         });
     }
 
-    public void lambda$didLongPressUsername$366(int i) {
+    public void lambda$didLongPressUsername$365(int i) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$didLongPressUsername$367(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLObject tLObject2, final Utilities.Callback2 callback2, String str, final Browser.Progress progress) {
+    public void lambda$didLongPressUsername$366(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLObject tLObject2, final Utilities.Callback2 callback2, String str, final Browser.Progress progress) {
         final boolean z = tLRPC$TL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tLRPC$TL_error.text);
         if (tLObject != null || (tLRPC$TL_error == null && (tLObject2 instanceof TLRPC$TL_boolTrue))) {
             callback2.run(tLObject, Boolean.valueOf(z));
@@ -15809,32 +15808,32 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject3, TLRPC$TL_error tLRPC$TL_error2) {
-                ChatActivity.this.lambda$didLongPressUsername$365(progress, callback2, z, tLObject3, tLRPC$TL_error2);
+                ChatActivity.this.lambda$didLongPressUsername$364(progress, callback2, z, tLObject3, tLRPC$TL_error2);
             }
         });
         progress.onCancel(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressUsername$366(sendRequest);
+                ChatActivity.this.lambda$didLongPressUsername$365(sendRequest);
             }
         });
         progress.init();
     }
 
-    public void lambda$didLongPressUsername$368(final TLObject tLObject, final Utilities.Callback2 callback2, final String str, final Browser.Progress progress, final TLObject tLObject2, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didLongPressUsername$367(final TLObject tLObject, final Utilities.Callback2 callback2, final String str, final Browser.Progress progress, final TLObject tLObject2, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressUsername$367(tLRPC$TL_error, tLObject, tLObject2, callback2, str, progress);
+                ChatActivity.this.lambda$didLongPressUsername$366(tLRPC$TL_error, tLObject, tLObject2, callback2, str, progress);
             }
         });
     }
 
-    public void lambda$didLongPressUsername$369(int i) {
+    public void lambda$didLongPressUsername$368(int i) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$didPressPhoneNumber$373(TLRPC$User tLRPC$User, String str, Boolean bool) {
+    public void lambda$didPressPhoneNumber$372(TLRPC$User tLRPC$User, String str, Boolean bool) {
         Intent intent;
         String str2;
         String country;
@@ -15925,16 +15924,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getParentActivity().startActivity(intent);
     }
 
-    public void lambda$didPressPhoneNumber$374(ItemOptions itemOptions, String str) {
+    public void lambda$didPressPhoneNumber$373(ItemOptions itemOptions, String str) {
         itemOptions.dismiss();
         new NewContactBottomSheet(this, getContext()).setInitialPhoneNumber(str, false).show();
     }
 
-    public static void lambda$didPressPhoneNumber$375(Utilities.Callback callback) {
+    public static void lambda$didPressPhoneNumber$374(Utilities.Callback callback) {
         callback.run(Boolean.FALSE);
     }
 
-    public void lambda$didPressPhoneNumber$377(String str) {
+    public void lambda$didPressPhoneNumber$376(String str) {
         if (getParentActivity() == null) {
             return;
         }
@@ -15947,42 +15946,42 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didPressPhoneNumber$378(String str) {
+    public void lambda$didPressPhoneNumber$377(String str) {
         Browser.openUrl(getContext(), "tel:" + str);
     }
 
-    public void lambda$didPressPhoneNumber$379(String str) {
+    public void lambda$didPressPhoneNumber$378(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
     }
 
-    public void lambda$didPressPhoneNumber$380(TLRPC$User tLRPC$User) {
+    public void lambda$didPressPhoneNumber$379(TLRPC$User tLRPC$User) {
         presentFragment(of(tLRPC$User.id));
     }
 
-    public void lambda$didPressPhoneNumber$381(TLRPC$User tLRPC$User, TLRPC$UserFull tLRPC$UserFull) {
+    public void lambda$didPressPhoneNumber$380(TLRPC$User tLRPC$User, TLRPC$UserFull tLRPC$UserFull) {
         VoIPHelper.startCall(tLRPC$User, false, tLRPC$UserFull != null && tLRPC$UserFull.video_calls_available, getParentActivity(), tLRPC$UserFull, getAccountInstance());
     }
 
-    public void lambda$didPressPhoneNumber$382(TLRPC$User tLRPC$User, TLRPC$UserFull tLRPC$UserFull) {
+    public void lambda$didPressPhoneNumber$381(TLRPC$User tLRPC$User, TLRPC$UserFull tLRPC$UserFull) {
         VoIPHelper.startCall(tLRPC$User, true, tLRPC$UserFull != null && tLRPC$UserFull.video_calls_available, getParentActivity(), tLRPC$UserFull, getAccountInstance());
     }
 
-    public void lambda$didPressPhoneNumber$383(String str) {
+    public void lambda$didPressPhoneNumber$382(String str) {
         Browser.openUrl(getContext(), "tel:" + str);
     }
 
-    public void lambda$didPressPhoneNumber$384(String str) {
+    public void lambda$didPressPhoneNumber$383(String str) {
         AndroidUtilities.addToClipboard(str);
         BulletinFactory.of(this).createCopyBulletin(LocaleController.getString(R.string.PhoneCopied)).show();
     }
 
-    public void lambda$didPressPhoneNumber$385(ScrimOptions scrimOptions, TLRPC$User tLRPC$User) {
+    public void lambda$didPressPhoneNumber$384(ScrimOptions scrimOptions, TLRPC$User tLRPC$User) {
         scrimOptions.dismiss();
         presentFragment(ProfileActivity.of(tLRPC$User.id));
     }
 
-    public void lambda$didPressPhoneNumber$386(ChatMessageCell chatMessageCell, final String str, TLRPC$TL_contact tLRPC$TL_contact, CharacterStyle characterStyle, final TLRPC$User tLRPC$User) {
+    public void lambda$didPressPhoneNumber$385(ChatMessageCell chatMessageCell, final String str, TLRPC$TL_contact tLRPC$TL_contact, CharacterStyle characterStyle, final TLRPC$User tLRPC$User) {
         final TLRPC$UserFull userFull = tLRPC$User != null ? getMessagesController().getUserFull(tLRPC$User.id) : null;
         final ItemOptions makeOptions = ItemOptions.makeOptions((BaseFragment) this, (View) chatMessageCell, true);
         final ScrimOptions scrimOptions = new ScrimOptions(getContext(), this.themeDelegate);
@@ -15995,7 +15994,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatActivity.this.lambda$didPressPhoneNumber$373(tLRPC$User, str, (Boolean) obj);
+                ChatActivity.this.lambda$didPressPhoneNumber$372(tLRPC$User, str, (Boolean) obj);
             }
         };
         final ItemOptions makeSwipeback = makeOptions.makeSwipeback();
@@ -16009,13 +16008,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         makeSwipeback.add(R.drawable.msg_addbot, LocaleController.getString(R.string.CreateNewContact), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$374(makeOptions, str);
+                ChatActivity.this.lambda$didPressPhoneNumber$373(makeOptions, str);
             }
         });
         makeSwipeback.add(R.drawable.menu_contact_existing, LocaleController.getString(R.string.AddToExistingContact), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.lambda$didPressPhoneNumber$375(Utilities.Callback.this);
+                ChatActivity.lambda$didPressPhoneNumber$374(Utilities.Callback.this);
             }
         });
         if (tLRPC$TL_contact == null && (tLRPC$User == null || !getContactsController().contactsDict.containsKey(Long.valueOf(tLRPC$User.id)))) {
@@ -16031,19 +16030,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.menu_invit_telegram, LocaleController.getString(R.string.InviteToTelegramShort), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$377(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$376(str);
                 }
             });
             makeOptions.add(R.drawable.msg_calls_regular, LocaleController.getString(R.string.VoiceCallViaCarrier), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$378(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$377(str);
                 }
             });
             makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyNumber), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$379(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$378(str);
                 }
             });
             makeOptions.addGap();
@@ -16052,40 +16051,40 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.msg_discussion, LocaleController.getString(R.string.SendMessage), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$380(tLRPC$User);
+                    ChatActivity.this.lambda$didPressPhoneNumber$379(tLRPC$User);
                 }
             });
             if (!UserObject.isUserSelf(tLRPC$User)) {
                 makeOptions.add(R.drawable.msg_calls, LocaleController.getString(R.string.VoiceCallViaTelegram), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$381(tLRPC$User, userFull);
+                        ChatActivity.this.lambda$didPressPhoneNumber$380(tLRPC$User, userFull);
                     }
                 });
                 makeOptions.add(R.drawable.msg_videocall, LocaleController.getString(R.string.VideoCallViaTelegram), new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$382(tLRPC$User, userFull);
+                        ChatActivity.this.lambda$didPressPhoneNumber$381(tLRPC$User, userFull);
                     }
                 });
             }
             makeOptions.add(R.drawable.msg_calls_regular, LocaleController.getString(R.string.VoiceCallViaCarrier), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$383(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$382(str);
                 }
             });
             makeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.CopyNumber), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$384(str);
+                    ChatActivity.this.lambda$didPressPhoneNumber$383(str);
                 }
             });
             makeOptions.addGap();
             makeOptions.addProfile(tLRPC$User, LocaleController.getString(R.string.ViewProfile), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didPressPhoneNumber$385(scrimOptions, tLRPC$User);
+                    ChatActivity.this.lambda$didPressPhoneNumber$384(scrimOptions, tLRPC$User);
                 }
             });
         }
@@ -16094,7 +16093,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(scrimOptions);
     }
 
-    public void lambda$didPressPhoneNumber$388(TLRPC$TL_contact tLRPC$TL_contact, final Utilities.Callback callback) {
+    public void lambda$didPressPhoneNumber$387(TLRPC$TL_contact tLRPC$TL_contact, final Utilities.Callback callback) {
         final TLRPC$User user = getMessagesStorage().getUser(tLRPC$TL_contact.user_id);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -16104,7 +16103,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public void lambda$didPressPhoneNumber$389(Browser.Progress progress, TLObject tLObject, Utilities.Callback callback) {
+    public void lambda$didPressPhoneNumber$388(Browser.Progress progress, TLObject tLObject, Utilities.Callback callback) {
         TLRPC$User tLRPC$User;
         progress.end();
         if (tLObject instanceof TLRPC$TL_contacts_resolvedPeer) {
@@ -16121,24 +16120,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         callback.run(tLRPC$User);
     }
 
-    public void lambda$didPressPhoneNumber$390(final Browser.Progress progress, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didPressPhoneNumber$389(final Browser.Progress progress, final Utilities.Callback callback, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$389(progress, tLObject, callback);
+                ChatActivity.this.lambda$didPressPhoneNumber$388(progress, tLObject, callback);
             }
         });
     }
 
-    public void lambda$didPressPhoneNumber$391(int i) {
+    public void lambda$didPressPhoneNumber$390(int i) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$didReceivedNotification$153() {
+    public void lambda$didReceivedNotification$152() {
         getNotificationCenter().onAnimationFinish(this.transitionAnimationIndex);
     }
 
-    public void lambda$didReceivedNotification$154() {
+    public void lambda$didReceivedNotification$153() {
         createEmptyView(false);
         if (this.fragmentBeginToShow) {
             this.chatListView.setEmptyView(this.emptyViewContainer);
@@ -16149,14 +16148,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.chatListView.setAnimateEmptyView(true, 1);
     }
 
-    public void lambda$didReceivedNotification$155() {
+    public void lambda$didReceivedNotification$154() {
         resumeDelayedFragmentAnimation();
         AndroidUtilities.cancelRunOnUIThread(this.fragmentTransitionRunnable);
         this.fragmentTransitionRunnable.run();
         getNotificationCenter().runDelayedNotifications();
     }
 
-    public void lambda$didReceivedNotification$156(Object[] objArr, StickersAlert stickersAlert, boolean z, TLRPC$StickerSet tLRPC$StickerSet, DialogInterface dialogInterface) {
+    public void lambda$didReceivedNotification$155(Object[] objArr, StickersAlert stickersAlert, boolean z, TLRPC$StickerSet tLRPC$StickerSet, DialogInterface dialogInterface) {
         if (objArr.length > 2) {
             Object obj = objArr[2];
             if (obj instanceof TLRPC$Document) {
@@ -16172,20 +16171,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didReceivedNotification$157(MessageObject messageObject, int i) {
+    public void lambda$didReceivedNotification$156(MessageObject messageObject, int i) {
         this.delayedReadRunnable = null;
         messageObject.messageOwner.replies.read_max_id = i;
     }
 
-    public void lambda$didReceivedNotification$158() {
+    public void lambda$didReceivedNotification$157() {
         BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessTitle), LocaleController.getString(R.string.BoostingRemoveRestrictionsSuccessSubTitle)).show();
     }
 
-    public void lambda$didReceivedNotification$159(ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$didReceivedNotification$158(ChannelBoostsController.CanApplyBoost canApplyBoost) {
         this.canApplyBoosts = canApplyBoost;
     }
 
-    public void lambda$didReceivedNotification$160(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$didReceivedNotification$159(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
         if (tL_stories$TL_premium_boostsStatus == null) {
             return;
         }
@@ -16193,12 +16192,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getMessagesController().getBoostsController().userCanBoostChannel(this.dialog_id, tL_stories$TL_premium_boostsStatus, new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatActivity.this.lambda$didReceivedNotification$159((ChannelBoostsController.CanApplyBoost) obj);
+                ChatActivity.this.lambda$didReceivedNotification$158((ChannelBoostsController.CanApplyBoost) obj);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$161(Object[] objArr, long j) {
+    public void lambda$didReceivedNotification$160(Object[] objArr, long j) {
         MessageObject messageObject = (MessageObject) this.messagesDict[j == this.dialog_id ? (char) 0 : (char) 1].get(((Integer) objArr[1]).intValue());
         if (messageObject != null) {
             messageObject.messageOwner.media.extended_media = (ArrayList) objArr[2];
@@ -16208,7 +16207,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didReceivedNotification$162(Object[] objArr, long j) {
+    public void lambda$didReceivedNotification$161(Object[] objArr, long j) {
         MessageObject messageObject;
         int intValue = ((Integer) objArr[1]).intValue();
         LongSparseArray longSparseArray = this.filteredMessagesDict;
@@ -16226,7 +16225,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static void lambda$didReceivedNotification$163(View view) {
+    public static void lambda$didReceivedNotification$162(View view) {
         MessageObject messageObject;
         if (!(view instanceof ChatMessageCell) || (messageObject = ((ChatMessageCell) view).getMessageObject()) == null) {
             return;
@@ -16235,17 +16234,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.reactionsChanged = true;
     }
 
-    public void lambda$didReceivedNotification$164() {
+    public void lambda$didReceivedNotification$163() {
         AndroidUtilities.forEachViews((RecyclerView) this.chatListView, new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatActivity.lambda$didReceivedNotification$163((View) obj);
+                ChatActivity.lambda$didReceivedNotification$162((View) obj);
             }
         });
         this.chatAdapter.notifyDataSetChanged(true);
     }
 
-    public static void lambda$didReceivedNotification$165(View view) {
+    public static void lambda$didReceivedNotification$164(View view) {
         MessageObject messageObject;
         if (!(view instanceof ChatMessageCell) || (messageObject = ((ChatMessageCell) view).getMessageObject()) == null) {
             return;
@@ -16253,33 +16252,33 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messageObject.forceUpdate = true;
     }
 
-    public void lambda$didReceivedNotification$166() {
+    public void lambda$didReceivedNotification$165() {
         AndroidUtilities.forEachViews((RecyclerView) this.chatListView, new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                ChatActivity.lambda$didReceivedNotification$165((View) obj);
+                ChatActivity.lambda$didReceivedNotification$164((View) obj);
             }
         });
         this.chatAdapter.notifyDataSetChanged(false);
     }
 
-    public void lambda$didReceivedNotification$167() {
+    public void lambda$didReceivedNotification$166() {
         updateMessagesVisiblePart(false);
     }
 
-    public void lambda$didReceivedNotification$168(ArrayList arrayList, int i) {
+    public void lambda$didReceivedNotification$167(ArrayList arrayList, int i) {
         replaceMessageObjects(arrayList, i, false);
     }
 
-    public static int lambda$didReceivedNotification$169(Integer num, Integer num2) {
+    public static int lambda$didReceivedNotification$168(Integer num, Integer num2) {
         return num2.compareTo(num);
     }
 
-    public void lambda$didReceivedNotification$170() {
+    public void lambda$didReceivedNotification$169() {
         checkScrollForLoad(false);
     }
 
-    public static void lambda$didReceivedNotification$171(Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, boolean z) {
+    public static void lambda$didReceivedNotification$170(Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo, boolean z) {
         if (themeAccent == null) {
             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, -1);
             return;
@@ -16291,15 +16290,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$didReceivedNotification$172(int i) {
+    public void lambda$didReceivedNotification$171(int i) {
         playReactionAnimation(Integer.valueOf(i));
     }
 
-    public static Boolean lambda$didReceivedNotification$173(MessageObject messageObject) {
+    public static Boolean lambda$didReceivedNotification$172(MessageObject messageObject) {
         return Boolean.valueOf((messageObject == null || messageObject.getFactCheck() == null) ? false : true);
     }
 
-    public static Boolean lambda$didReceivedNotification$174(MessageObject messageObject) {
+    public static Boolean lambda$didReceivedNotification$173(MessageObject messageObject) {
         return Boolean.valueOf((messageObject == null || messageObject.getEffect() == null) ? false : true);
     }
 
@@ -16329,12 +16328,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$forwardMessages$127() {
+    public void lambda$forwardMessages$126() {
         this.waitingForSendingMessageLoad = false;
         hideFieldPanel(true);
     }
 
-    public void lambda$getChatThanosEffect$347(ThanosEffect[] thanosEffectArr) {
+    public void lambda$getChatThanosEffect$346(ThanosEffect[] thanosEffectArr) {
         ThanosEffect thanosEffect;
         if (this.removingFromParent || (thanosEffect = thanosEffectArr[0]) == null) {
             return;
@@ -16346,7 +16345,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$getThemeDescriptions$336() {
+    public void lambda$getThemeDescriptions$335() {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.updateColors();
@@ -16452,7 +16451,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$hideInfoView$102(View view, ValueAnimator valueAnimator) {
+    public void lambda$hideInfoView$101(View view, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.topViewOffset = AndroidUtilities.dp(30.0f) * floatValue;
         invalidateChatListViewTopPadding();
@@ -16460,7 +16459,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         view.setAlpha(floatValue);
     }
 
-    public void lambda$hidePinnedMessageView$205(ValueAnimator valueAnimator) {
+    public void lambda$hidePinnedMessageView$204(ValueAnimator valueAnimator) {
         this.pinnedMessageEnterOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidateChatListViewTopPadding();
         invalidateMessagesVisiblePart();
@@ -16471,10 +16470,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.contentView.removeView(reactionsContainerLayout);
     }
 
-    public static void lambda$markSponsoredAsRead$334(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$markSponsoredAsRead$333(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public void lambda$migrateToNewChat$184(BaseFragment baseFragment, MessageObject messageObject, INavigationLayout iNavigationLayout) {
+    public void lambda$migrateToNewChat$183(BaseFragment baseFragment, MessageObject messageObject, INavigationLayout iNavigationLayout) {
         if (baseFragment instanceof NotificationCenter.NotificationCenterDelegate) {
             getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) baseFragment, NotificationCenter.closeChats);
         }
@@ -16482,10 +16481,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", messageObject.messageOwner.action.channel_id);
         iNavigationLayout.addFragmentToStack(new ChatActivity(bundle), iNavigationLayout.getFragmentStack().size() - 1);
-        baseFragment.lambda$onBackPressed$308();
+        baseFragment.lambda$onBackPressed$307();
     }
 
-    public void lambda$migrateToNewChat$185(long j) {
+    public void lambda$migrateToNewChat$184(long j) {
         getMessagesController().loadFullChat(j, 0, true);
     }
 
@@ -16498,7 +16497,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showPinnedProgress(false);
     }
 
-    public void lambda$new$178() {
+    public void lambda$new$177() {
         this.lastTranslationCheck = System.currentTimeMillis();
         if (this.chatListView != null && this.chatAdapter != null) {
             int i = Integer.MAX_VALUE;
@@ -16587,12 +16586,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.scheduledHintShown = true;
     }
 
-    public void lambda$onActivityResultFragment$152(Uri uri, boolean z, int i) {
+    public void lambda$onActivityResultFragment$151(Uri uri, boolean z, int i) {
         fillEditingMediaWithCaption(null, null);
         SendMessagesHelper.prepareSendingPhoto(getAccountInstance(), null, uri, this.dialog_id, this.replyingMessageObject, getThreadMessage(), this.replyingQuote, null, null, null, null, 0, this.editingMessageObject, z, i, this.chatMode, this.quickReplyShortcut, getQuickReplyId());
     }
 
-    public void lambda$onCustomTransitionAnimation$337(ChatActivity chatActivity, boolean z, ValueAnimator valueAnimator) {
+    public void lambda$onCustomTransitionAnimation$336(ChatActivity chatActivity, boolean z, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         chatActivity.setTransitionToChatProgress(floatValue);
         float f = 1.0f - floatValue;
@@ -16631,7 +16630,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onEditTextDialogClose$106() {
+    public void lambda$onEditTextDialogClose$105() {
         this.chatActivityEnterView.openKeyboard();
     }
 
@@ -16671,7 +16670,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$onFragmentCreate$16(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$onFragmentCreate$17() {
@@ -16721,7 +16720,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         setPagedownLoading(true, true);
     }
 
-    public void lambda$onRequestPermissionsResultFragment$150(DialogInterface dialogInterface, int i) {
+    public void lambda$onRequestPermissionsResultFragment$149(DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -16731,23 +16730,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$onResume$211(DialogInterface dialogInterface) {
+    public void lambda$onResume$210(DialogInterface dialogInterface) {
         FragmentContextView fragmentContextView = this.fragmentContextView;
         if (fragmentContextView != null) {
             fragmentContextView.checkImport(false);
         }
     }
 
-    public void lambda$onResume$212() {
+    public void lambda$onResume$211() {
         openVideoEditor(this.startVideoEdit, null);
         this.startVideoEdit = null;
     }
 
-    public void lambda$openAnotherForward$100(DialogInterface dialogInterface, int i) {
-        openForwardingPreview(1);
-    }
-
-    public void lambda$openAnotherForward$99(DialogInterface dialogInterface, int i) {
+    public void lambda$openAnotherForward$98(DialogInterface dialogInterface, int i) {
         this.forbidForwardingWithDismiss = false;
         MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
         if (messagePreviewParams != null) {
@@ -16756,7 +16751,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         fallbackFieldPanel();
     }
 
-    public void lambda$openAttachBotLayout$189(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$TL_error tLRPC$TL_error, TLRPC$User tLRPC$User) {
+    public void lambda$openAnotherForward$99(DialogInterface dialogInterface, int i) {
+        openForwardingPreview(1);
+    }
+
+    public void lambda$openAttachBotLayout$188(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$TL_error tLRPC$TL_error, TLRPC$User tLRPC$User) {
         tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed = false;
         tLRPC$TL_attachMenuBot.inactive = false;
         if (tLRPC$TL_error == null) {
@@ -16765,16 +16764,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openAttachBotLayout$190(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$189(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$189(tLRPC$TL_attachMenuBot, tLRPC$TL_error, tLRPC$User);
+                ChatActivity.this.lambda$openAttachBotLayout$188(tLRPC$TL_attachMenuBot, tLRPC$TL_error, tLRPC$User);
             }
         });
     }
 
-    public void lambda$openAttachBotLayout$191(final TLRPC$User tLRPC$User, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Boolean bool) {
+    public void lambda$openAttachBotLayout$190(final TLRPC$User tLRPC$User, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Boolean bool) {
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User.id);
         tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
@@ -16782,12 +16781,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openAttachBotLayout$190(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openAttachBotLayout$189(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
             }
         }, 66);
     }
 
-    public void lambda$openAttachBotLayout$192(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$User tLRPC$User) {
+    public void lambda$openAttachBotLayout$191(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$User tLRPC$User) {
         if (tLRPC$TL_error == null) {
             tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed = false;
             tLRPC$TL_attachMenuBot.inactive = false;
@@ -16796,16 +16795,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openAttachBotLayout$193(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$192(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$192(tLRPC$TL_error, tLRPC$TL_attachMenuBot, tLRPC$User);
+                ChatActivity.this.lambda$openAttachBotLayout$191(tLRPC$TL_error, tLRPC$TL_attachMenuBot, tLRPC$User);
             }
         });
     }
 
-    public void lambda$openAttachBotLayout$194(final TLRPC$User tLRPC$User, AtomicBoolean atomicBoolean, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, DialogInterface dialogInterface, int i) {
+    public void lambda$openAttachBotLayout$193(final TLRPC$User tLRPC$User, AtomicBoolean atomicBoolean, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, DialogInterface dialogInterface, int i) {
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User.id);
         tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
@@ -16813,18 +16812,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openAttachBotLayout$193(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openAttachBotLayout$192(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
             }
         }, 66);
     }
 
-    public static void lambda$openAttachBotLayout$195(CheckBoxCell checkBoxCell, AtomicBoolean atomicBoolean, View view) {
+    public static void lambda$openAttachBotLayout$194(CheckBoxCell checkBoxCell, AtomicBoolean atomicBoolean, View view) {
         boolean z = !checkBoxCell.isChecked();
         checkBoxCell.setChecked(z, true);
         atomicBoolean.set(z);
     }
 
-    public void lambda$openAttachBotLayout$196(TLObject tLObject, final TLRPC$User tLRPC$User) {
+    public void lambda$openAttachBotLayout$195(TLObject tLObject, final TLRPC$User tLRPC$User) {
         BulletinFactory of;
         int i;
         if (tLObject instanceof TLRPC$TL_attachMenuBotsBot) {
@@ -16840,7 +16839,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     WebAppDisclaimerAlert.show(getContext(), new com.google.android.exoplayer2.util.Consumer() {
                         @Override
                         public final void accept(Object obj) {
-                            ChatActivity.this.lambda$openAttachBotLayout$191(tLRPC$User, tLRPC$TL_attachMenuBot, (Boolean) obj);
+                            ChatActivity.this.lambda$openAttachBotLayout$190(tLRPC$User, tLRPC$TL_attachMenuBot, (Boolean) obj);
                         }
                     }, null, null);
                     return;
@@ -16853,7 +16852,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AlertDialog.Builder negativeButton = new AlertDialog.Builder(getParentActivity()).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString(R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
-                        ChatActivity.this.lambda$openAttachBotLayout$194(tLRPC$User, atomicBoolean, tLRPC$TL_attachMenuBot, dialogInterface, i2);
+                        ChatActivity.this.lambda$openAttachBotLayout$193(tLRPC$User, atomicBoolean, tLRPC$TL_attachMenuBot, dialogInterface, i2);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 if (tLRPC$TL_attachMenuBot.request_write_access) {
@@ -16867,7 +16866,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     checkBoxCell.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            ChatActivity.lambda$openAttachBotLayout$195(CheckBoxCell.this, atomicBoolean, view);
+                            ChatActivity.lambda$openAttachBotLayout$194(CheckBoxCell.this, atomicBoolean, view);
                         }
                     });
                     negativeButton.setCustomViewOffset(6);
@@ -16904,16 +16903,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openAttachBotLayout$197(final TLRPC$User tLRPC$User, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$196(final TLRPC$User tLRPC$User, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$196(tLObject, tLRPC$User);
+                ChatActivity.this.lambda$openAttachBotLayout$195(tLObject, tLRPC$User);
             }
         });
     }
 
-    public void lambda$openAttachBotLayout$198(TLObject tLObject) {
+    public void lambda$openAttachBotLayout$197(TLObject tLObject) {
         if (tLObject != null) {
             TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
             if (tLRPC$TL_contacts_resolvedPeer.users.isEmpty()) {
@@ -16926,23 +16925,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getAttachMenuBot, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                        ChatActivity.this.lambda$openAttachBotLayout$197(tLRPC$User, tLObject2, tLRPC$TL_error);
+                        ChatActivity.this.lambda$openAttachBotLayout$196(tLRPC$User, tLObject2, tLRPC$TL_error);
                     }
                 });
             }
         }
     }
 
-    public void lambda$openAttachBotLayout$199(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$198(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$198(tLObject);
+                ChatActivity.this.lambda$openAttachBotLayout$197(tLObject);
             }
         });
     }
 
-    public void lambda$openClickableLink$332(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, int i, DialogInterface dialogInterface, int i2) {
+    public void lambda$openClickableLink$331(String str, CharacterStyle characterStyle, MessageObject messageObject, ChatMessageCell chatMessageCell, int i, DialogInterface dialogInterface, int i2) {
         UndoView undoView;
         int i3;
         String publicUsername;
@@ -17035,13 +17034,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static void lambda$openClickableLink$333(ChatMessageCell chatMessageCell, DialogInterface dialogInterface) {
+    public static void lambda$openClickableLink$332(ChatMessageCell chatMessageCell, DialogInterface dialogInterface) {
         if (chatMessageCell != null) {
             chatMessageCell.resetPressedLink(-1);
         }
     }
 
-    public void lambda$openDiscussionMessageChat$320(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, int i2, MessageObject messageObject, TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, TLRPC$Chat tLRPC$Chat, int i3, MessageObject messageObject2) {
+    public void lambda$openDiscussionMessageChat$319(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, int i2, MessageObject messageObject, TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, TLRPC$Chat tLRPC$Chat, int i3, MessageObject messageObject2) {
         if (i != this.commentMessagesLoadingGuid) {
             return;
         }
@@ -17061,8 +17060,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         processLoadedDiscussionMessage(this.savedNoDiscussion, this.savedDiscussionMessage, this.savedNoHistory, this.savedHistory, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2);
     }
 
-    public void lambda$openDiscussionMessageChat$321(final int i, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error, final int i2, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final int i3, final MessageObject messageObject2) {
-        lambda$openDiscussionMessageChat$324(new Runnable() {
+    public void lambda$openDiscussionMessageChat$320(final int i, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error, final int i2, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final int i3, final MessageObject messageObject2) {
+        lambda$openDiscussionMessageChat$323(new Runnable() {
+            @Override
+            public final void run() {
+                ChatActivity.this.lambda$openDiscussionMessageChat$319(i, tLObject, tLRPC$TL_error, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2);
+            }
+        });
+    }
+
+    public void lambda$openDiscussionMessageChat$321(final int i, final int i2, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final int i3, final MessageObject messageObject2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 ChatActivity.this.lambda$openDiscussionMessageChat$320(i, tLObject, tLRPC$TL_error, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2);
@@ -17070,16 +17078,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         });
     }
 
-    public void lambda$openDiscussionMessageChat$322(final int i, final int i2, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final int i3, final MessageObject messageObject2, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatActivity.this.lambda$openDiscussionMessageChat$321(i, tLObject, tLRPC$TL_error, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2);
-            }
-        });
-    }
-
-    public void lambda$openDiscussionMessageChat$323(int i, final int i2, long j, TLObject tLObject, final int i3, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final MessageObject messageObject2) {
+    public void lambda$openDiscussionMessageChat$322(int i, final int i2, long j, TLObject tLObject, final int i3, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final MessageObject messageObject2) {
         int i4;
         if (i != this.commentLoadingGuid) {
             return;
@@ -17126,34 +17125,34 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.commentMessagesRequestId = getConnectionsManager().sendRequest(tLRPC$TL_messages_getReplies, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openDiscussionMessageChat$322(i6, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2, tLObject2, tLRPC$TL_error);
+                ChatActivity.this.lambda$openDiscussionMessageChat$321(i6, i2, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, i3, messageObject2, tLObject2, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$openDiscussionMessageChat$325(final int i, final int i2, final long j, final int i3, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final MessageObject messageObject2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openDiscussionMessageChat$324(final int i, final int i2, final long j, final int i3, final MessageObject messageObject, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final TLRPC$Chat tLRPC$Chat, final MessageObject messageObject2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openDiscussionMessageChat$323(i, i2, j, tLObject, i3, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, messageObject2);
+                ChatActivity.this.lambda$openDiscussionMessageChat$322(i, i2, j, tLObject, i3, messageObject, tLRPC$TL_messages_getDiscussionMessage, tLRPC$Chat, messageObject2);
             }
         };
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openDiscussionMessageChat$324(runnable);
+                ChatActivity.this.lambda$openDiscussionMessageChat$323(runnable);
             }
         });
     }
 
-    public void lambda$openLinkInternally$335(int i, int i2, CharacterStyle characterStyle, ChatMessageCell chatMessageCell) {
+    public void lambda$openLinkInternally$334(int i, int i2, CharacterStyle characterStyle, ChatMessageCell chatMessageCell) {
         this.progressDialogAtMessageId = i;
         this.progressDialogAtMessageType = i2;
         this.progressDialogLinkSpan = characterStyle;
         chatMessageCell.invalidate();
     }
 
-    public void lambda$openPollCreate$112(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
+    public void lambda$openPollCreate$111(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
         if (checkSlowModeAlert()) {
             SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tLRPC$TL_messageMediaPoll, this.dialog_id, this.replyingMessageObject, getThreadMessage(), (TLRPC$ReplyMarkup) null, (HashMap<String, String>) hashMap, z, i);
             of.quick_reply_shortcut = this.quickReplyShortcut;
@@ -17163,7 +17162,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$performHistoryClear$107(boolean z) {
+    public void lambda$performHistoryClear$106(boolean z) {
         if (!this.pinnedMessageIds.isEmpty()) {
             MessagesController.getNotificationsSettings(this.currentAccount).edit().putInt("pin_" + this.dialog_id, ((Integer) this.pinnedMessageIds.get(0)).intValue()).commit();
             this.pinnedMessageIds.clear();
@@ -17179,12 +17178,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.chatAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$performHistoryClear$108() {
+    public void lambda$performHistoryClear$107() {
         this.clearingHistory = false;
         this.chatAdapter.notifyDataSetChanged();
     }
 
-    public void lambda$processInlineBotWebView$104(TLRPC$TL_inlineBotWebView tLRPC$TL_inlineBotWebView) {
+    public void lambda$processInlineBotWebView$103(TLRPC$TL_inlineBotWebView tLRPC$TL_inlineBotWebView) {
         int i = this.currentAccount;
         TLRPC$User tLRPC$User = this.currentUser;
         WebViewRequestProps of = WebViewRequestProps.of(i, tLRPC$User != null ? tLRPC$User.id : this.currentChat.id, this.mentionContainer.getAdapter().getFoundContextBot().id, tLRPC$TL_inlineBotWebView.text, tLRPC$TL_inlineBotWebView.url, 1, 0, false, null, false, null, null, 1, false);
@@ -17208,18 +17207,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$processInlineBotWebView$105(Runnable runnable, Boolean bool) {
+    public void lambda$processInlineBotWebView$104(Runnable runnable, Boolean bool) {
         this.approved = true;
         runnable.run();
     }
 
-    public void lambda$processLoadedDiscussionMessage$316() {
+    public void lambda$processLoadedDiscussionMessage$315() {
         this.commentLoadingMessageId = 0;
         this.hideCommentLoading = false;
         this.chatListView.invalidateViews();
     }
 
-    public void lambda$processLoadedDiscussionMessage$317(boolean[] zArr, int i, ChatActivity chatActivity) {
+    public void lambda$processLoadedDiscussionMessage$316(boolean[] zArr, int i, ChatActivity chatActivity) {
         ChatActivityEnterView chatActivityEnterView;
         if (zArr[0] || i != this.commentLoadingMessageId || !this.isFullyVisible || isFinishing()) {
             return;
@@ -17228,7 +17227,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processLoadedDiscussionMessage$316();
+                ChatActivity.this.lambda$processLoadedDiscussionMessage$315();
             }
         }, 200L);
         presentFragment(chatActivity);
@@ -17238,11 +17237,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         chatActivity.chatActivityEnterView.getEditField().requestFocus();
     }
 
-    public void lambda$processLoadedDiscussionMessage$318(TLRPC$messages_Messages tLRPC$messages_Messages, long j, int i, int i2, int i3, int i4, ArrayList arrayList) {
+    public void lambda$processLoadedDiscussionMessage$317(TLRPC$messages_Messages tLRPC$messages_Messages, long j, int i, int i2, int i3, int i4, ArrayList arrayList) {
         getMessagesController().processLoadedMessages(tLRPC$messages_Messages, tLRPC$messages_Messages.messages.size(), j, 0L, 30, i > 0 ? i : i2, 0, false, i3, i4, 0, 0, 0, i > 0 ? 3 : 2, true, 0, ((MessageObject) arrayList.get(arrayList.size() - 1)).getId(), 1, false, 0, true, this.isTopic, null);
     }
 
-    public void lambda$processLoadedDiscussionMessage$319(final ArrayList arrayList, TLRPC$TL_messages_discussionMessage tLRPC$TL_messages_discussionMessage, final TLRPC$messages_Messages tLRPC$messages_Messages, TLRPC$Chat tLRPC$Chat, TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final int i, MessageObject messageObject, final int i2, final int i3, MessageObject messageObject2) {
+    public void lambda$processLoadedDiscussionMessage$318(final ArrayList arrayList, TLRPC$TL_messages_discussionMessage tLRPC$TL_messages_discussionMessage, final TLRPC$messages_Messages tLRPC$messages_Messages, TLRPC$Chat tLRPC$Chat, TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final int i, MessageObject messageObject, final int i2, final int i3, MessageObject messageObject2) {
         int i4;
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         TLRPC$MessageReplies tLRPC$MessageReplies;
@@ -17285,7 +17284,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processLoadedDiscussionMessage$317(zArr, i2, chatActivity);
+                ChatActivity.this.lambda$processLoadedDiscussionMessage$316(zArr, i2, chatActivity);
             }
         };
         if (tLRPC$messages_Messages == null) {
@@ -17309,62 +17308,62 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processLoadedDiscussionMessage$318(tLRPC$messages_Messages, dialogId, i, i3, classGuid, i6, arrayList);
+                ChatActivity.this.lambda$processLoadedDiscussionMessage$317(tLRPC$messages_Messages, dialogId, i, i3, classGuid, i6, arrayList);
             }
         });
     }
 
-    public void lambda$processNewMessages$183(int i) {
+    public void lambda$processNewMessages$182(int i) {
         scrollToMessageId(i, 0, false, 0, true, 0);
+    }
+
+    public void lambda$processSelectedOption$269(DialogInterface dialogInterface) {
+        dimBehindView(false);
     }
 
     public void lambda$processSelectedOption$270(DialogInterface dialogInterface) {
         dimBehindView(false);
     }
 
-    public void lambda$processSelectedOption$271(DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$271() {
         dimBehindView(false);
     }
 
-    public void lambda$processSelectedOption$272() {
-        dimBehindView(false);
-    }
-
-    public void lambda$processSelectedOption$273(boolean z, int i) {
+    public void lambda$processSelectedOption$272(boolean z, int i) {
         if (getParentActivity() == null || this.fragmentView == null || i <= 0) {
             return;
         }
         BulletinFactory.of(this).createDownloadBulletin(z ? BulletinFactory.FileType.AUDIOS : BulletinFactory.FileType.UNKNOWNS, i, this.themeDelegate).show();
     }
 
-    public void lambda$processSelectedOption$274(boolean z, boolean z2, boolean z3, Uri uri) {
+    public void lambda$processSelectedOption$273(boolean z, boolean z2, boolean z3, Uri uri) {
         if (getParentActivity() == null) {
             return;
         }
         BulletinFactory.of(this).createDownloadBulletin(z ? BulletinFactory.FileType.PHOTO_TO_DOWNLOADS : z2 ? BulletinFactory.FileType.VIDEO_TO_DOWNLOADS : z3 ? BulletinFactory.FileType.GIF_TO_DOWNLOADS : BulletinFactory.FileType.UNKNOWN, this.themeDelegate).show();
     }
 
-    public void lambda$processSelectedOption$275(MessageObject messageObject, Long l, Runnable runnable) {
+    public void lambda$processSelectedOption$274(MessageObject messageObject, Long l, Runnable runnable) {
         StarsController.getInstance(this.currentAccount).updateMediaPrice(messageObject, l.longValue(), runnable);
     }
 
-    public void lambda$processSelectedOption$276(DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$275(DialogInterface dialogInterface) {
         dimBehindView(false);
     }
 
-    public static void lambda$processSelectedOption$277(boolean[] zArr, View view) {
+    public static void lambda$processSelectedOption$276(boolean[] zArr, View view) {
         boolean z = !zArr[1];
         zArr[1] = z;
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public static void lambda$processSelectedOption$278(boolean[] zArr, View view) {
+    public static void lambda$processSelectedOption$277(boolean[] zArr, View view) {
         boolean z = !zArr[0];
         zArr[0] = z;
         ((CheckBoxCell) view).setChecked(z, true);
     }
 
-    public void lambda$processSelectedOption$280(int i, boolean[] zArr, DialogInterface dialogInterface, int i2) {
+    public void lambda$processSelectedOption$279(int i, boolean[] zArr, DialogInterface dialogInterface, int i2) {
         getMessagesController().pinMessage(this.currentChat, this.currentUser, i, false, !zArr[1], zArr[0]);
         Bulletin createPinMessageBulletin = BulletinFactory.createPinMessageBulletin(this, this.themeDelegate);
         createPinMessageBulletin.show();
@@ -17377,7 +17376,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }, 550L);
     }
 
-    public void lambda$processSelectedOption$281(TLObject tLObject) {
+    public void lambda$processSelectedOption$280(TLObject tLObject) {
         if (tLObject != null) {
             TLRPC$TL_exportedMessageLink tLRPC$TL_exportedMessageLink = (TLRPC$TL_exportedMessageLink) tLObject;
             try {
@@ -17391,24 +17390,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$processSelectedOption$282(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$281(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processSelectedOption$281(tLObject);
+                ChatActivity.this.lambda$processSelectedOption$280(tLObject);
             }
         });
+    }
+
+    public void lambda$processSelectedOption$282() {
+        dimBehindView(false);
     }
 
     public void lambda$processSelectedOption$283() {
         dimBehindView(false);
     }
 
-    public void lambda$processSelectedOption$284() {
-        dimBehindView(false);
-    }
-
-    public static void lambda$processSelectedOption$285(AlertDialog[] alertDialogArr) {
+    public static void lambda$processSelectedOption$284(AlertDialog[] alertDialogArr) {
         try {
             alertDialogArr[0].dismiss();
         } catch (Throwable unused) {
@@ -17416,11 +17415,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         alertDialogArr[0] = null;
     }
 
-    public void lambda$processSelectedOption$286(int i, DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$285(int i, DialogInterface dialogInterface) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$processSelectedOption$287(AlertDialog[] alertDialogArr, final int i) {
+    public void lambda$processSelectedOption$286(AlertDialog[] alertDialogArr, final int i) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
             return;
@@ -17428,17 +17427,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                ChatActivity.this.lambda$processSelectedOption$286(i, dialogInterface);
+                ChatActivity.this.lambda$processSelectedOption$285(i, dialogInterface);
             }
         });
         showDialog(alertDialogArr[0]);
     }
 
-    public void lambda$processSelectedOption$288(DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$287(DialogInterface dialogInterface) {
         dimBehindView(false);
     }
 
-    public static void lambda$processSelectedOption$289(AlertDialog[] alertDialogArr) {
+    public static void lambda$processSelectedOption$288(AlertDialog[] alertDialogArr) {
         try {
             alertDialogArr[0].dismiss();
         } catch (Throwable unused) {
@@ -17446,15 +17445,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         alertDialogArr[0] = null;
     }
 
-    public void lambda$processSelectedOption$290(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage) {
+    public void lambda$processSelectedOption$289(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage) {
         AlertsCreator.processError(this.currentAccount, tLRPC$TL_error, this, tLRPC$TL_messages_editMessage, new Object[0]);
     }
 
-    public void lambda$processSelectedOption$291(final AlertDialog[] alertDialogArr, final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$290(final AlertDialog[] alertDialogArr, final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.lambda$processSelectedOption$289(alertDialogArr);
+                ChatActivity.lambda$processSelectedOption$288(alertDialogArr);
             }
         });
         if (tLRPC$TL_error == null) {
@@ -17463,17 +17462,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$processSelectedOption$290(tLRPC$TL_error, tLRPC$TL_messages_editMessage);
+                    ChatActivity.this.lambda$processSelectedOption$289(tLRPC$TL_error, tLRPC$TL_messages_editMessage);
                 }
             });
         }
     }
 
-    public void lambda$processSelectedOption$292(int i, DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$291(int i, DialogInterface dialogInterface) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$processSelectedOption$293(AlertDialog[] alertDialogArr, final int i) {
+    public void lambda$processSelectedOption$292(AlertDialog[] alertDialogArr, final int i) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
             return;
@@ -17481,13 +17480,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                ChatActivity.this.lambda$processSelectedOption$292(i, dialogInterface);
+                ChatActivity.this.lambda$processSelectedOption$291(i, dialogInterface);
             }
         });
         showDialog(alertDialogArr[0]);
     }
 
-    public void lambda$processSelectedOption$294(MessageObject messageObject, DialogInterface dialogInterface, int i) {
+    public void lambda$processSelectedOption$293(MessageObject messageObject, DialogInterface dialogInterface, int i) {
         final AlertDialog[] alertDialogArr = {new AlertDialog(getParentActivity(), 3, this.themeDelegate)};
         final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
         TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) messageObject.messageOwner.media;
@@ -17506,18 +17505,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_messages_editMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$processSelectedOption$291(alertDialogArr, tLRPC$TL_messages_editMessage, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$processSelectedOption$290(alertDialogArr, tLRPC$TL_messages_editMessage, tLObject, tLRPC$TL_error);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processSelectedOption$293(alertDialogArr, sendRequest);
+                ChatActivity.this.lambda$processSelectedOption$292(alertDialogArr, sendRequest);
             }
         }, 500L);
     }
 
-    public void lambda$processSelectedOption$295(TLRPC$TL_messages_sendScheduledMessages tLRPC$TL_messages_sendScheduledMessages) {
+    public void lambda$processSelectedOption$294(TLRPC$TL_messages_sendScheduledMessages tLRPC$TL_messages_sendScheduledMessages) {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i = NotificationCenter.messagesDeleted;
         ArrayList arrayList = tLRPC$TL_messages_sendScheduledMessages.id;
@@ -17528,7 +17527,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         notificationCenter.lambda$postNotificationNameOnUIThread$1(i, arrayList, valueOf, bool, bool);
     }
 
-    public void lambda$processSelectedOption$296(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$295(TLRPC$TL_error tLRPC$TL_error) {
         String str;
         int i;
         if (tLRPC$TL_error.text.startsWith("SLOWMODE_WAIT_")) {
@@ -17544,26 +17543,26 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AlertsCreator.showSimpleToast(this, str);
     }
 
-    public void lambda$processSelectedOption$297(final TLRPC$TL_messages_sendScheduledMessages tLRPC$TL_messages_sendScheduledMessages, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$296(final TLRPC$TL_messages_sendScheduledMessages tLRPC$TL_messages_sendScheduledMessages, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$processSelectedOption$295(tLRPC$TL_messages_sendScheduledMessages);
+                    ChatActivity.this.lambda$processSelectedOption$294(tLRPC$TL_messages_sendScheduledMessages);
                 }
             });
         } else if (tLRPC$TL_error.text != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$processSelectedOption$296(tLRPC$TL_error);
+                    ChatActivity.this.lambda$processSelectedOption$295(tLRPC$TL_error);
                 }
             });
         }
     }
 
-    public void lambda$processSelectedOption$298(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, boolean z, int i) {
+    public void lambda$processSelectedOption$297(MessageObject.GroupedMessages groupedMessages, MessageObject messageObject, boolean z, int i) {
         SendMessagesHelper sendMessagesHelper;
         boolean z2;
         ArrayList<TLRPC$MessageEntity> arrayList;
@@ -17585,59 +17584,59 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         sendMessagesHelper.editMessage(messageObject2, str, z2, this, arrayList, i);
     }
 
-    public void lambda$processSelectedOption$299(DialogInterface dialogInterface) {
+    public void lambda$processSelectedOption$298(DialogInterface dialogInterface) {
         dimBehindView(false);
     }
 
-    public void lambda$processSelectedOption$300(TLObject tLObject, MessageObject messageObject) {
+    public void lambda$processSelectedOption$299(TLObject tLObject, MessageObject messageObject) {
         new ReportAdBottomSheet(this.contentView.getContext(), this.resourceProvider, messageObject, this.currentChat).setReportChooseOption((TLRPC$TL_channels_sponsoredMessageReportResultChooseOption) tLObject).setListener(new AnonymousClass145(messageObject)).show();
     }
 
-    public void lambda$processSelectedOption$301() {
+    public void lambda$processSelectedOption$300() {
         Browser.openUrl(getContext(), "https://promote.telegram.org/guidelines");
     }
 
-    public void lambda$processSelectedOption$302(MessageObject messageObject) {
+    public void lambda$processSelectedOption$301(MessageObject messageObject) {
         BulletinFactory.of(this).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processSelectedOption$301();
+                ChatActivity.this.lambda$processSelectedOption$300();
             }
         }, this.resourceProvider)).show();
         removeFromSponsored(messageObject);
         removeMessageWithThanos(messageObject);
     }
 
-    public void lambda$processSelectedOption$303(MessageObject messageObject) {
+    public void lambda$processSelectedOption$302(MessageObject messageObject) {
         BulletinFactory.of(this).createAdReportedBulletin(LocaleController.getString(R.string.AdHidden)).show();
         getMessagesController().disableAds(false);
         removeFromSponsored(messageObject);
         removeMessageWithThanos(messageObject);
     }
 
-    public void lambda$processSelectedOption$304() {
+    public void lambda$processSelectedOption$303() {
         Browser.openUrl(getContext(), "https://promote.telegram.org/guidelines");
     }
 
-    public void lambda$processSelectedOption$305(MessageObject messageObject) {
+    public void lambda$processSelectedOption$304(MessageObject messageObject) {
         BulletinFactory.of(this).createAdReportedBulletin(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AdReported), -1, 2, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processSelectedOption$304();
+                ChatActivity.this.lambda$processSelectedOption$303();
             }
         }, this.resourceProvider)).show();
         removeFromSponsored(messageObject);
         removeMessageWithThanos(messageObject);
     }
 
-    public void lambda$processSelectedOption$306(final MessageObject messageObject, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processSelectedOption$305(final MessageObject messageObject, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         Runnable runnable;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultChooseOption) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$processSelectedOption$300(tLObject, messageObject);
+                        ChatActivity.this.lambda$processSelectedOption$299(tLObject, messageObject);
                     }
                 });
                 return;
@@ -17645,7 +17644,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$processSelectedOption$302(messageObject);
+                        ChatActivity.this.lambda$processSelectedOption$301(messageObject);
                     }
                 };
             } else if (!(tLObject instanceof TLRPC$TL_channels_sponsoredMessageReportResultAdsHidden)) {
@@ -17654,7 +17653,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$processSelectedOption$303(messageObject);
+                        ChatActivity.this.lambda$processSelectedOption$302(messageObject);
                     }
                 };
             }
@@ -17664,14 +17663,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$processSelectedOption$305(messageObject);
+                    ChatActivity.this.lambda$processSelectedOption$304(messageObject);
                 }
             };
         }
         AndroidUtilities.runOnUIThread(runnable, 200L);
     }
 
-    public void lambda$removeKeyboardPositionBeforeTransition$187() {
+    public void lambda$removeKeyboardPositionBeforeTransition$186() {
         this.cancelFixedPositionRunnable = null;
         this.fixedKeyboardHeight = -1;
         View view = this.fragmentView;
@@ -17680,15 +17679,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public static void lambda$requestLinkPreview$121(Utilities.Callback2 callback2, TLRPC$WebPage tLRPC$WebPage) {
+    public static void lambda$requestLinkPreview$120(Utilities.Callback2 callback2, TLRPC$WebPage tLRPC$WebPage) {
         callback2.run(Boolean.TRUE, tLRPC$WebPage);
     }
 
-    public static void lambda$requestLinkPreview$122(Utilities.Callback2 callback2) {
+    public static void lambda$requestLinkPreview$121(Utilities.Callback2 callback2) {
         callback2.run(Boolean.FALSE, null);
     }
 
-    public static void lambda$requestLinkPreview$123(LongSparseArray longSparseArray, final Utilities.Callback2 callback2) {
+    public static void lambda$requestLinkPreview$122(LongSparseArray longSparseArray, final Utilities.Callback2 callback2) {
         TLRPC$Message tLRPC$Message;
         TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$WebPage tLRPC$WebPage;
@@ -17701,7 +17700,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            ChatActivity.lambda$requestLinkPreview$121(Utilities.Callback2.this, tLRPC$WebPage2);
+                            ChatActivity.lambda$requestLinkPreview$120(Utilities.Callback2.this, tLRPC$WebPage2);
                         }
                     });
                     return;
@@ -17711,12 +17710,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.lambda$requestLinkPreview$122(Utilities.Callback2.this);
+                ChatActivity.lambda$requestLinkPreview$121(Utilities.Callback2.this);
             }
         });
     }
 
-    public void lambda$requestLinkPreview$124(TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage, TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory, final Utilities.Callback2 callback2) {
+    public void lambda$requestLinkPreview$123(TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage, TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory, final Utilities.Callback2 callback2) {
         try {
             final LongSparseArray longSparseArray = new LongSparseArray();
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
@@ -17729,14 +17728,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             getMessagesController().getStoriesController().getStoriesStorage().fillMessagesWithStories(longSparseArray, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.lambda$requestLinkPreview$123(LongSparseArray.this, callback2);
+                    ChatActivity.lambda$requestLinkPreview$122(LongSparseArray.this, callback2);
                 }
             }, this.classGuid, false, null);
         } catch (Exception unused) {
         }
     }
 
-    public void lambda$requestLinkPreview$125(TLObject tLObject, final Utilities.Callback2 callback2) {
+    public void lambda$requestLinkPreview$124(TLObject tLObject, final Utilities.Callback2 callback2) {
         final TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory;
         this.linkSearchRequestId = 0;
         if (!(tLObject instanceof TLRPC$TL_messageMediaWebPage)) {
@@ -17766,22 +17765,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$requestLinkPreview$124(tLRPC$TL_messageMediaWebPage, tLRPC$TL_webPageAttributeStory, callback2);
+                    ChatActivity.this.lambda$requestLinkPreview$123(tLRPC$TL_messageMediaWebPage, tLRPC$TL_webPageAttributeStory, callback2);
                 }
             });
         }
     }
 
-    public void lambda$requestLinkPreview$126(final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestLinkPreview$125(final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$requestLinkPreview$125(tLObject, callback2);
+                ChatActivity.this.lambda$requestLinkPreview$124(tLObject, callback2);
             }
         });
     }
 
-    public void lambda$requestLinkPreviewCached$120(TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview, Utilities.Callback2 callback2, Boolean bool, TLRPC$WebPage tLRPC$WebPage) {
+    public void lambda$requestLinkPreviewCached$119(TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview, Utilities.Callback2 callback2, Boolean bool, TLRPC$WebPage tLRPC$WebPage) {
         if (bool.booleanValue() && !(tLRPC$WebPage instanceof TLRPC$TL_webPagePending)) {
             Iterator it = this.lastLinkPreviewResults.keySet().iterator();
             while (it.hasNext() && this.lastLinkPreviewResults.size() > 5) {
@@ -17793,11 +17792,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         callback2.run(bool, tLRPC$WebPage);
     }
 
-    public void lambda$scrollToLastMessage$132(int i, boolean z) {
+    public void lambda$scrollToLastMessage$131(int i, boolean z) {
         this.chatScrollHelper.scrollToPosition(this.chatScrollHelperCallback.position = i, this.chatScrollHelperCallback.offset = 0, this.chatScrollHelperCallback.bottom = !z, true);
     }
 
-    public void lambda$scrollToLastMessage$134() {
+    public void lambda$scrollToLastMessage$133() {
         MessagesController messagesController = getMessagesController();
         long j = this.dialog_id;
         long j2 = this.mergeDialogId;
@@ -17810,7 +17809,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         messagesController.loadMessages(j, j2, false, 30, 0, 0, true, 0, i, 0, 0, i2, j3, i3, i4, this.isTopic);
     }
 
-    public void lambda$scrollToMessageId$140() {
+    public void lambda$scrollToMessageId$139() {
         int i = this.nextScrollToMessageId;
         if (i != 0) {
             scrollToMessageId(i, this.nextScrollFromMessageId, this.nextScrollSelect, this.nextScrollLoadIndex, this.nextScrollForce, this.nextScrollForcePinnedMessageId);
@@ -17818,8 +17817,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$scrollToMessageId$141(DialogInterface dialogInterface) {
+    public void lambda$scrollToMessageId$140(DialogInterface dialogInterface) {
         showPinnedProgress(false);
+    }
+
+    public void lambda$searchLinks$112() {
+        this.foundWebPage = null;
+        fallbackFieldPanel();
     }
 
     public void lambda$searchLinks$113() {
@@ -17827,25 +17831,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         fallbackFieldPanel();
     }
 
-    public void lambda$searchLinks$114() {
-        this.foundWebPage = null;
-        fallbackFieldPanel();
-    }
-
-    public void lambda$searchLinks$115(MessagesController messagesController, CharSequence charSequence, boolean z, DialogInterface dialogInterface, int i) {
+    public void lambda$searchLinks$114(MessagesController messagesController, CharSequence charSequence, boolean z, DialogInterface dialogInterface, int i) {
         messagesController.secretWebpagePreview = 1;
         MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", getMessagesController().secretWebpagePreview).commit();
         this.foundUrls = null;
         searchLinks(charSequence, z);
     }
 
-    public void lambda$searchLinks$116(final MessagesController messagesController, final CharSequence charSequence, final boolean z) {
+    public void lambda$searchLinks$115(final MessagesController messagesController, final CharSequence charSequence, final boolean z) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.themeDelegate);
         builder.setTitle(LocaleController.getString(R.string.AppName));
         builder.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatActivity.this.lambda$searchLinks$115(messagesController, charSequence, z, dialogInterface, i);
+                ChatActivity.this.lambda$searchLinks$114(messagesController, charSequence, z, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -17855,7 +17854,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", messagesController.secretWebpagePreview).commit();
     }
 
-    public void lambda$searchLinks$117(int i, Boolean bool, TLRPC$WebPage tLRPC$WebPage, TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview) {
+    public void lambda$searchLinks$116(int i, Boolean bool, TLRPC$WebPage tLRPC$WebPage, TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview) {
         if (this.waitingForWebpageId != i) {
             return;
         }
@@ -17895,16 +17894,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         fallbackFieldPanel();
     }
 
-    public void lambda$searchLinks$118(final int i, final TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview, final Boolean bool, final TLRPC$WebPage tLRPC$WebPage) {
+    public void lambda$searchLinks$117(final int i, final TLRPC$TL_messages_getWebPagePreview tLRPC$TL_messages_getWebPagePreview, final Boolean bool, final TLRPC$WebPage tLRPC$WebPage) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$searchLinks$117(i, bool, tLRPC$WebPage, tLRPC$TL_messages_getWebPagePreview);
+                ChatActivity.this.lambda$searchLinks$116(i, bool, tLRPC$WebPage, tLRPC$TL_messages_getWebPagePreview);
             }
         });
     }
 
-    public void lambda$searchLinks$119(final CharSequence charSequence, final MessagesController messagesController, final boolean z) {
+    public void lambda$searchLinks$118(final CharSequence charSequence, final MessagesController messagesController, final boolean z) {
         boolean z2;
         CharSequence charSequence2;
         URLSpanReplacement[] uRLSpanReplacementArr;
@@ -17953,7 +17952,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$searchLinks$114();
+                        ChatActivity.this.lambda$searchLinks$113();
                     }
                 });
                 return;
@@ -17964,7 +17963,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$searchLinks$113();
+                    ChatActivity.this.lambda$searchLinks$112();
                 }
             });
             return;
@@ -17977,7 +17976,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$searchLinks$116(messagesController, charSequence, z);
+                    ChatActivity.this.lambda$searchLinks$115(messagesController, charSequence, z);
                 }
             });
             return;
@@ -17995,22 +17994,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             requestLinkPreviewCached(tLRPC$TL_messages_getWebPagePreview, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatActivity.this.lambda$searchLinks$118(i2, tLRPC$TL_messages_getWebPagePreview, (Boolean) obj, (TLRPC$WebPage) obj2);
+                    ChatActivity.this.lambda$searchLinks$117(i2, tLRPC$TL_messages_getWebPagePreview, (Boolean) obj, (TLRPC$WebPage) obj2);
                 }
             });
         }
     }
 
-    public void lambda$sendMedia$314() {
+    public void lambda$sendMedia$313() {
         this.closeInstantCameraAnimation = null;
         runCloseInstantCameraAnimation();
     }
 
-    public void lambda$sendSecretMediaDelete$131(long j, MessageObject messageObject) {
+    public void lambda$sendSecretMediaDelete$130(long j, MessageObject messageObject) {
         getMessagesController().lambda$checkDeletingTask$78(j, this.dialog_id, messageObject.getId());
     }
 
-    public void lambda$sendSecretMessageRead$130(MessageObject messageObject) {
+    public void lambda$sendSecretMessageRead$129(MessageObject messageObject) {
         TLRPC$Message tLRPC$Message = messageObject.messageOwner;
         int i = tLRPC$Message.ttl;
         boolean z = i != Integer.MAX_VALUE;
@@ -18026,12 +18025,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$setChatThemeEmoticon$341(EmojiThemes emojiThemes) {
+    public void lambda$setChatThemeEmoticon$340(EmojiThemes emojiThemes) {
         ThemeDelegate themeDelegate = this.themeDelegate;
         themeDelegate.setCurrentTheme(emojiThemes, themeDelegate.wallpaper, this.openAnimationStartTime != 0, null);
     }
 
-    public void lambda$setPagedownLoading$103(boolean[] zArr, boolean z, ValueAnimator valueAnimator) {
+    public void lambda$setPagedownLoading$102(boolean[] zArr, boolean z, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.pagedownLoadingT = floatValue;
         if (!zArr[0] && z && floatValue > 0.5f) {
@@ -18044,21 +18043,21 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.pagedownButtonArrow.setScaleY(1.0f - this.pagedownLoadingT);
     }
 
-    public void lambda$shareMyContact$109(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$shareMyContact$108(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null) {
             return;
         }
         getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
     }
 
-    public void lambda$shareMyContact$110(int i, MessageObject messageObject, DialogInterface dialogInterface, int i2) {
+    public void lambda$shareMyContact$109(int i, MessageObject messageObject, DialogInterface dialogInterface, int i2) {
         if (i == 1) {
             TLRPC$TL_contacts_acceptContact tLRPC$TL_contacts_acceptContact = new TLRPC$TL_contacts_acceptContact();
             tLRPC$TL_contacts_acceptContact.id = getMessagesController().getInputUser(this.currentUser);
             getConnectionsManager().sendRequest(tLRPC$TL_contacts_acceptContact, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatActivity.this.lambda$shareMyContact$109(tLObject, tLRPC$TL_error);
+                    ChatActivity.this.lambda$shareMyContact$108(tLObject, tLRPC$TL_error);
                 }
             });
             return;
@@ -18073,7 +18072,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         hideFieldPanel(false);
     }
 
-    public void lambda$showAlert$204(ValueAnimator valueAnimator) {
+    public void lambda$showAlert$203(ValueAnimator valueAnimator) {
         this.alertViewEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidateChatListViewTopPadding();
     }
@@ -18089,25 +18088,25 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.botMessageHint.show();
     }
 
-    public static boolean lambda$showChatThemeBottomSheet$338(MotionEvent motionEvent) {
+    public static boolean lambda$showChatThemeBottomSheet$337(MotionEvent motionEvent) {
         return true;
     }
 
-    public void lambda$showChatThemeBottomSheet$339(DialogInterface dialogInterface) {
+    public void lambda$showChatThemeBottomSheet$338(DialogInterface dialogInterface) {
         this.chatThemeBottomSheet = null;
         this.chatListView.setOnInterceptTouchListener(null);
         setChildrenEnabled(this.contentView, true);
         ChatThemeController.getInstance(this.currentAccount).clearWallpaperThumbImages();
     }
 
-    public void lambda$showFieldPanel$128() {
+    public void lambda$showFieldPanel$127() {
         ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
         if (chatActivityEnterView != null) {
             chatActivityEnterView.openKeyboard();
         }
     }
 
-    public void lambda$showFieldPanel$129() {
+    public void lambda$showFieldPanel$128() {
         ViewPropertyAnimator scaleY;
         this.showTapForForwardingOptionsHit = !this.showTapForForwardingOptionsHit;
         this.replyObjectTextView.setPivotX(0.0f);
@@ -18123,11 +18122,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(this.tapForForwardingOptionsHitRunnable, 6000L);
     }
 
-    public void lambda$showGigagroupConvertAlert$180(DialogInterface dialogInterface, int i) {
+    public void lambda$showGigagroupConvertAlert$179(DialogInterface dialogInterface, int i) {
         showDialog(new AnonymousClass107(getParentActivity(), this));
     }
 
-    public void lambda$showGigagroupConvertAlert$181(DialogInterface dialogInterface, int i) {
+    public void lambda$showGigagroupConvertAlert$180(DialogInterface dialogInterface, int i) {
         createUndoView();
         UndoView undoView = this.undoView;
         if (undoView == null) {
@@ -18136,7 +18135,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         undoView.showWithAction(0L, 75, (Runnable) null);
     }
 
-    public void lambda$showGigagroupConvertAlert$182() {
+    public void lambda$showGigagroupConvertAlert$181() {
         TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
         if (tLRPC$ChatFull == null || this.paused) {
             return;
@@ -18154,22 +18153,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             showDialog(AlertsCreator.createGigagroupConvertAlert(getParentActivity(), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    ChatActivity.this.lambda$showGigagroupConvertAlert$180(dialogInterface, i3);
+                    ChatActivity.this.lambda$showGigagroupConvertAlert$179(dialogInterface, i3);
                 }
             }, new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    ChatActivity.this.lambda$showGigagroupConvertAlert$181(dialogInterface, i3);
+                    ChatActivity.this.lambda$showGigagroupConvertAlert$180(dialogInterface, i3);
                 }
             }).create());
         }
     }
 
-    public void lambda$showGreetInfo$264(View view) {
+    public void lambda$showGreetInfo$263(View view) {
         showDialog(new PremiumFeatureBottomSheet(this, 28, true));
     }
 
-    public void lambda$showInfoHint$186(int i) {
+    public void lambda$showInfoHint$185(int i) {
         ChatMessageCell chatMessageCell;
         MessageObject messageObject;
         RecyclerListView recyclerListView = this.chatListView;
@@ -18185,35 +18184,35 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.hintMessageObject = null;
     }
 
+    public void lambda$showMentionDownButton$146(ValueAnimator valueAnimator) {
+        this.mentionsButtonEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.contentView.invalidate();
+    }
+
     public void lambda$showMentionDownButton$147(ValueAnimator valueAnimator) {
         this.mentionsButtonEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.contentView.invalidate();
     }
 
-    public void lambda$showMentionDownButton$148(ValueAnimator valueAnimator) {
-        this.mentionsButtonEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.contentView.invalidate();
-    }
-
-    public void lambda$showOpenGameAlert$315(TLRPC$TL_game tLRPC$TL_game, MessageObject messageObject, String str, long j, DialogInterface dialogInterface, int i) {
+    public void lambda$showOpenGameAlert$314(TLRPC$TL_game tLRPC$TL_game, MessageObject messageObject, String str, long j, DialogInterface dialogInterface, int i) {
         showOpenGameAlert(tLRPC$TL_game, messageObject, str, false, j);
         MessagesController.getNotificationsSettings(this.currentAccount).edit().putBoolean("askgame_" + j, false).commit();
     }
 
-    public void lambda$showPinnedProgress$142() {
+    public void lambda$showPinnedProgress$141() {
         this.pinnedProgressIsShowing = true;
         updatePinnedListButton(true);
     }
 
-    public void lambda$showPremiumFloodWaitBulletin$349(boolean z) {
+    public void lambda$showPremiumFloodWaitBulletin$348(boolean z) {
         presentFragment(new PremiumPreviewFragment(z ? "upload_speed" : "download_speed"));
     }
 
-    public void lambda$showQuickRepliesRemoveAlert$309(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+    public void lambda$showQuickRepliesRemoveAlert$308(DialogInterface dialogInterface, int i) {
+        lambda$onBackPressed$307();
     }
 
-    public void lambda$showQuoteMessageUpdate$175(DialogInterface dialogInterface, int i) {
+    public void lambda$showQuoteMessageUpdate$174(DialogInterface dialogInterface, int i) {
         MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
         if (messagePreviewParams == null || messagePreviewParams.quote == null) {
             return;
@@ -18221,15 +18220,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         openForwardingPreview(0);
     }
 
-    public void lambda$showQuoteMessageUpdate$176(DialogInterface dialogInterface, int i) {
+    public void lambda$showQuoteMessageUpdate$175(DialogInterface dialogInterface, int i) {
         hideFieldPanel(true);
     }
 
-    public void lambda$showQuoteMessageUpdate$177(DialogInterface dialogInterface) {
+    public void lambda$showQuoteMessageUpdate$176(DialogInterface dialogInterface) {
         this.quoteMessageUpdateAlert = null;
     }
 
-    public static void lambda$showRequestUrlAlert$326(CheckBoxCell[] checkBoxCellArr, View view) {
+    public static void lambda$showRequestUrlAlert$325(CheckBoxCell[] checkBoxCellArr, View view) {
         if (view.isEnabled()) {
             Integer num = (Integer) view.getTag();
             checkBoxCellArr[num.intValue()].setChecked(!checkBoxCellArr[num.intValue()].isChecked(), true);
@@ -18245,7 +18244,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$showRequestUrlAlert$327(TLObject tLObject, String str, TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, boolean z) {
+    public void lambda$showRequestUrlAlert$326(TLObject tLObject, String str, TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, boolean z) {
         if (tLObject instanceof TLRPC$TL_urlAuthResultAccepted) {
             Browser.openUrl((Context) getParentActivity(), ((TLRPC$TL_urlAuthResultAccepted) tLObject).url, false);
             return;
@@ -18260,20 +18259,20 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$showRequestUrlAlert$328(final String str, final TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$showRequestUrlAlert$327(final String str, final TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$showRequestUrlAlert$327(tLObject, str, tLRPC$TL_messages_requestUrlAuth, z);
+                ChatActivity.this.lambda$showRequestUrlAlert$326(tLObject, str, tLRPC$TL_messages_requestUrlAuth, z);
             }
         });
     }
 
-    public void lambda$showRequestUrlAlert$329(int i, DialogInterface dialogInterface) {
+    public void lambda$showRequestUrlAlert$328(int i, DialogInterface dialogInterface) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    public void lambda$showRequestUrlAlert$330(AlertDialog[] alertDialogArr, final int i) {
+    public void lambda$showRequestUrlAlert$329(AlertDialog[] alertDialogArr, final int i) {
         AlertDialog alertDialog = alertDialogArr[0];
         if (alertDialog == null) {
             return;
@@ -18281,13 +18280,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public final void onCancel(DialogInterface dialogInterface) {
-                ChatActivity.this.lambda$showRequestUrlAlert$329(i, dialogInterface);
+                ChatActivity.this.lambda$showRequestUrlAlert$328(i, dialogInterface);
             }
         });
         showDialog(alertDialogArr[0]);
     }
 
-    public void lambda$showRequestUrlAlert$331(CheckBoxCell[] checkBoxCellArr, final String str, final TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, TLRPC$TL_urlAuthResultRequest tLRPC$TL_urlAuthResultRequest, final boolean z, DialogInterface dialogInterface, int i) {
+    public void lambda$showRequestUrlAlert$330(CheckBoxCell[] checkBoxCellArr, final String str, final TLRPC$TL_messages_requestUrlAuth tLRPC$TL_messages_requestUrlAuth, TLRPC$TL_urlAuthResultRequest tLRPC$TL_urlAuthResultRequest, final boolean z, DialogInterface dialogInterface, int i) {
         int i2;
         if (!checkBoxCellArr[0].isChecked()) {
             Browser.openUrl((Context) getParentActivity(), str, false);
@@ -18317,18 +18316,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_messages_acceptUrlAuth, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$showRequestUrlAlert$328(str, tLRPC$TL_messages_requestUrlAuth, z, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$showRequestUrlAlert$327(str, tLRPC$TL_messages_requestUrlAuth, z, tLObject, tLRPC$TL_error);
             }
         });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$showRequestUrlAlert$330(alertDialogArr, sendRequest);
+                ChatActivity.this.lambda$showRequestUrlAlert$329(alertDialogArr, sendRequest);
             }
         }, 500L);
     }
 
-    public void lambda$startEditingMessageObject$266(TLObject tLObject) {
+    public void lambda$startEditingMessageObject$265(TLObject tLObject) {
         this.editingMessageObjectReqId = 0;
         if (tLObject != null || getParentActivity() == null) {
             return;
@@ -18345,16 +18344,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$startEditingMessageObject$267(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$startEditingMessageObject$266(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$startEditingMessageObject$266(tLObject);
+                ChatActivity.this.lambda$startEditingMessageObject$265(tLObject);
             }
         });
     }
 
-    public void lambda$startMessageUnselect$139() {
+    public void lambda$startMessageUnselect$138() {
         this.highlightMessageId = Integer.MAX_VALUE;
         this.highlightMessageQuoteFirst = false;
         this.highlightMessageQuoteFirstTime = 0L;
@@ -18365,17 +18364,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.unselectRunnable = null;
     }
 
-    public void lambda$unpinMessage$268(ArrayList arrayList, ArrayList arrayList2, int i) {
+    public void lambda$unpinMessage$267(ArrayList arrayList, ArrayList arrayList2, int i) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(this.dialog_id), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i), Boolean.valueOf(this.pinnedEndReached));
         this.pinBulletin = null;
     }
 
-    public void lambda$unpinMessage$269(MessageObject messageObject) {
+    public void lambda$unpinMessage$268(MessageObject messageObject) {
         getMessagesController().pinMessage(this.currentChat, this.currentUser, messageObject.getId(), true, false, false);
         this.pinBulletin = null;
     }
 
-    public void lambda$updateBotHelpCellClick$342(String str, String str2, CharSequence charSequence, Runnable[] runnableArr, View view) {
+    public void lambda$updateBotHelpCellClick$341(String str, String str2, CharSequence charSequence, Runnable[] runnableArr, View view) {
         TranslateAlert2.showAlert(getContext(), this, this.currentAccount, str, str2, charSequence, null, false, null, null);
         Runnable runnable = runnableArr[0];
         if (runnable != null) {
@@ -18383,7 +18382,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$updateBotHelpCellClick$344(final String str, final String str2, final CharSequence charSequence, BotHelpCell botHelpCell, View view) {
+    public void lambda$updateBotHelpCellClick$343(final String str, final String str2, final CharSequence charSequence, BotHelpCell botHelpCell, View view) {
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
         Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
@@ -18393,7 +18392,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ChatActivity.this.lambda$updateBotHelpCellClick$342(str, str2, charSequence, r5, view2);
+                ChatActivity.this.lambda$updateBotHelpCellClick$341(str, str2, charSequence, r5, view2);
             }
         });
         actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
@@ -18413,7 +18412,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         actionBarPopupWindow.showAsDropDown(botHelpCell, (botHelpCell.getWidth() / 2) - AndroidUtilities.dp(90.0f), AndroidUtilities.dp(-16.0f), 83);
     }
 
-    public void lambda$updateBotHelpCellClick$345(final BotHelpCell botHelpCell, final CharSequence charSequence, final String str) {
+    public void lambda$updateBotHelpCellClick$344(final BotHelpCell botHelpCell, final CharSequence charSequence, final String str) {
         final String language = LocaleController.getInstance().getCurrentLocale().getLanguage();
         if (str == null || ((str.equals(language) && !str.equals("und")) || RestrictedLanguagesSelectActivity.getRestrictedLanguages().contains(str))) {
             botHelpCell.setClickable(false);
@@ -18421,14 +18420,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             botHelpCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivity.this.lambda$updateBotHelpCellClick$344(str, language, charSequence, botHelpCell, view);
+                    ChatActivity.this.lambda$updateBotHelpCellClick$343(str, language, charSequence, botHelpCell, view);
                 }
             });
         }
     }
 
-    public void lambda$updateBottomOverlay$200() {
+    public void lambda$updateBottomOverlay$199() {
         ChatGreetingsView.showPremiumSheet(getContext(), this.currentAccount, this.dialog_id, this.themeDelegate);
+    }
+
+    public void lambda$updateBottomOverlay$200(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.searchExpandProgress = floatValue;
+        this.chatListView.setTranslationY(floatValue * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(51.0f)));
+        this.chatActivityEnterView.setChatSearchExpandOffset(this.searchExpandProgress * (r5.getMeasuredHeight() - AndroidUtilities.dp(51.0f)));
+        invalidateChatListViewTopPadding();
     }
 
     public void lambda$updateBottomOverlay$201(ValueAnimator valueAnimator) {
@@ -18439,15 +18446,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         invalidateChatListViewTopPadding();
     }
 
-    public void lambda$updateBottomOverlay$202(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.searchExpandProgress = floatValue;
-        this.chatListView.setTranslationY(floatValue * (this.chatActivityEnterView.getMeasuredHeight() - AndroidUtilities.dp(51.0f)));
-        this.chatActivityEnterView.setChatSearchExpandOffset(this.searchExpandProgress * (r5.getMeasuredHeight() - AndroidUtilities.dp(51.0f)));
-        invalidateChatListViewTopPadding();
-    }
-
-    public void lambda$updateBottomOverlay$203() {
+    public void lambda$updateBottomOverlay$202() {
         this.chatActivityEnterView.openKeyboard();
     }
 
@@ -18460,23 +18459,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void lambda$updateInfoTopView$92(View view) {
-        presentFragment(new PeopleNearbyActivity());
-    }
-
-    public void lambda$updateInfoTopView$93(View view) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", this.chatInviterId);
         presentFragment(new ProfileActivity(bundle));
     }
 
-    public void lambda$updateInfoTopView$94(View view, ValueAnimator valueAnimator) {
+    public void lambda$updateInfoTopView$93(View view, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.topViewOffset = AndroidUtilities.dp(30.0f) * floatValue;
         invalidateChatListViewTopPadding();
         view.setAlpha(floatValue);
     }
 
-    public void lambda$updateMessagesVisiblePart$135(MessageObject messageObject) {
+    public void lambda$updateMessagesVisiblePart$134(MessageObject messageObject) {
         if (messageObject.isVideo()) {
             openPhotoViewerForMessage(null, messageObject);
         } else {
@@ -18484,12 +18479,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$updateMessagesVisiblePart$136() {
+    public void lambda$updateMessagesVisiblePart$135() {
         updatePinnedMessageView(this.openAnimationStartTime != 0 && SystemClock.elapsedRealtime() >= this.openAnimationStartTime + 150);
     }
 
-    public void lambda$updateMessagesVisiblePart$138(boolean z) {
-        lambda$updateMessagesVisiblePart$137(z, 0);
+    public void lambda$updateMessagesVisiblePart$137(boolean z) {
+        lambda$updateMessagesVisiblePart$136(z, 0);
+    }
+
+    public void lambda$updatePagedownButtonVisibility$142(ValueAnimator valueAnimator) {
+        this.pagedownButtonEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.contentView.invalidate();
     }
 
     public void lambda$updatePagedownButtonVisibility$143(ValueAnimator valueAnimator) {
@@ -18497,12 +18497,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.contentView.invalidate();
     }
 
-    public void lambda$updatePagedownButtonVisibility$144(ValueAnimator valueAnimator) {
-        this.pagedownButtonEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.contentView.invalidate();
-    }
-
-    public void lambda$updatePinnedMessageView$206(TLRPC$KeyboardButton tLRPC$KeyboardButton, MessageObject messageObject, View view) {
+    public void lambda$updatePinnedMessageView$205(TLRPC$KeyboardButton tLRPC$KeyboardButton, MessageObject messageObject, View view) {
         if (getParentActivity() != null) {
             if (this.bottomOverlayChat.getVisibility() != 0 || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonSwitchInline) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonCallback) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonGame) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonBuy) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrlAuth) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUserProfile)) {
                 this.chatActivityEnterView.didPressedBotButton(tLRPC$KeyboardButton, messageObject, messageObject);
@@ -18510,7 +18505,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public boolean lambda$updatePinnedMessageView$207(TLRPC$KeyboardButton tLRPC$KeyboardButton, MessageObject messageObject, PinnedMessageButton pinnedMessageButton, View view) {
+    public boolean lambda$updatePinnedMessageView$206(TLRPC$KeyboardButton tLRPC$KeyboardButton, MessageObject messageObject, PinnedMessageButton pinnedMessageButton, View view) {
         if (getParentActivity() == null || !((this.bottomOverlayChat.getVisibility() != 0 || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonSwitchInline) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonCallback) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonGame) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonBuy) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrlAuth) || (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUserProfile)) && (tLRPC$KeyboardButton instanceof TLRPC$TL_keyboardButtonUrl))) {
             return false;
         }
@@ -18532,34 +18527,34 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.contentView.invalidate();
     }
 
+    public void lambda$updateSearchUpDownButtonVisibility$144(ValueAnimator valueAnimator) {
+        this.searchUpDownEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.contentView.invalidate();
+    }
+
     public void lambda$updateSearchUpDownButtonVisibility$145(ValueAnimator valueAnimator) {
         this.searchUpDownEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.contentView.invalidate();
     }
 
-    public void lambda$updateSearchUpDownButtonVisibility$146(ValueAnimator valueAnimator) {
-        this.searchUpDownEnterProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.contentView.invalidate();
-    }
-
-    public void lambda$updateSecretStatus$149(View view) {
+    public void lambda$updateSecretStatus$148(View view) {
         LimitReachedBottomSheet.openBoostsForRemoveRestrictions(this, this.boostsStatus, this.canApplyBoosts, this.dialog_id, false);
     }
 
-    public void lambda$updateSelectedMessageReactions$151() {
+    public void lambda$updateSelectedMessageReactions$150() {
         ReactionsContainerLayout reactionsContainerLayout = this.tagSelector;
         if (reactionsContainerLayout != null) {
             reactionsContainerLayout.requestLayout();
         }
     }
 
-    public void lambda$updateTopPanel$208(ValueAnimator valueAnimator) {
+    public void lambda$updateTopPanel$207(ValueAnimator valueAnimator) {
         this.topChatPanelViewOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidateChatListViewTopPadding();
         invalidateMessagesVisiblePart();
     }
 
-    public void lambda$updateTopPanel$209(ValueAnimator valueAnimator) {
+    public void lambda$updateTopPanel$208(ValueAnimator valueAnimator) {
         this.topChatPanelViewOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidateChatListViewTopPadding();
         invalidateMessagesVisiblePart();
@@ -18644,7 +18639,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tLRPC$TL_channels_viewSponsoredMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.lambda$markSponsoredAsRead$334(tLObject, tLRPC$TL_error);
+                ChatActivity.lambda$markSponsoredAsRead$333(tLObject, tLRPC$TL_error);
             }
         });
         getMessagesController().markSponsoredAsRead(this.dialog_id, messageObject);
@@ -18664,7 +18659,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$migrateToNewChat$184(baseFragment, messageObject, iNavigationLayout2);
+                    ChatActivity.this.lambda$migrateToNewChat$183(baseFragment, messageObject, iNavigationLayout2);
                 }
             });
         } else {
@@ -18702,7 +18697,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$migrateToNewChat$185(j);
+                ChatActivity.this.lambda$migrateToNewChat$184(j);
             }
         }, 1000L);
     }
@@ -18787,13 +18782,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.setPositiveButton(LocaleController.getString(R.string.CancelForwarding), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                ChatActivity.this.lambda$openAnotherForward$99(dialogInterface, i2);
+                ChatActivity.this.lambda$openAnotherForward$98(dialogInterface, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.ShowForwardingOptions), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                ChatActivity.this.lambda$openAnotherForward$100(dialogInterface, i2);
+                ChatActivity.this.lambda$openAnotherForward$99(dialogInterface, i2);
             }
         });
         AlertDialog create = builder.create();
@@ -18879,7 +18874,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.commentRequestId = getConnectionsManager().sendRequest(tLRPC$TL_messages_getDiscussionMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openDiscussionMessageChat$325(i5, i2, j2, i3, messageObject2, tLRPC$TL_messages_getDiscussionMessage, chat, messageObject, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openDiscussionMessageChat$324(i5, i2, j2, i3, messageObject2, tLRPC$TL_messages_getDiscussionMessage, chat, messageObject, tLObject, tLRPC$TL_error);
             }
         });
         getConnectionsManager().bindRequestToGuid(this.commentRequestId, this.classGuid);
@@ -19100,7 +19095,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             Runnable runnable = (chatMessageCell == null || (characterStyle == null && i2 == 1)) ? null : new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$openLinkInternally$335(i, i2, characterStyle, chatMessageCell);
+                    ChatActivity.this.lambda$openLinkInternally$334(i, i2, characterStyle, chatMessageCell);
                 }
             };
             if (str.startsWith("tg:privatepost") || str.startsWith("tg://privatepost")) {
@@ -19116,7 +19111,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         this.showScrollToMessageError = true;
                         if (this.chatMode == 2) {
                             this.chatActivityDelegate.openReplyMessage(intValue);
-                            lambda$onBackPressed$308();
+                            lambda$onBackPressed$307();
                         } else {
                             scrollToMessageId(intValue, i, true, 0, false, 0, runnable);
                         }
@@ -19150,7 +19145,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 this.showScrollToMessageError = true;
                                 if (this.chatMode == 2) {
                                     this.chatActivityDelegate.openReplyMessage(parseInt);
-                                    lambda$onBackPressed$308();
+                                    lambda$onBackPressed$307();
                                 } else {
                                     int timestampFromLink = LaunchActivity.getTimestampFromLink(parse2);
                                     this.startFromVideoTimestamp = timestampFromLink;
@@ -19186,7 +19181,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         if (ChatObject.hasPublicLink(this.currentChat, lowerCase) && intValue5 != 0 && intValue6 == 0 && intValue7 == 0) {
                             if (this.chatMode == 2) {
                                 this.chatActivityDelegate.openReplyMessage(intValue5);
-                                lambda$onBackPressed$308();
+                                lambda$onBackPressed$307();
                             } else {
                                 scrollToMessageId(intValue5, i, true, 0, false, 0, runnable);
                             }
@@ -19214,7 +19209,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 this.showScrollToMessageError = true;
                                 if (this.chatMode == 2) {
                                     this.chatActivityDelegate.openReplyMessage(parseInt2);
-                                    lambda$onBackPressed$308();
+                                    lambda$onBackPressed$307();
                                 } else {
                                     scrollToMessageId(parseInt2, i, true, 0, false, 0, runnable);
                                 }
@@ -19330,7 +19325,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public void openHashtagSearch(String str2) {
-                ChatActivity.this.lambda$openHashtagSearch$312(str2);
+                ChatActivity.this.lambda$openHashtagSearch$311(str2);
             }
 
             @Override
@@ -19341,7 +19336,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         presentFragment(chatActivity, false);
     }
 
-    public void lambda$openSearchWithUser$313(final TLRPC$User tLRPC$User) {
+    public void lambda$openSearchWithUser$312(final TLRPC$User tLRPC$User) {
         boolean z;
         HintView2 hintView2 = this.savedMessagesHint;
         if (hintView2 == null || !hintView2.shown()) {
@@ -19359,7 +19354,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$openSearchWithUser$313(tLRPC$User);
+                    ChatActivity.this.lambda$openSearchWithUser$312(tLRPC$User);
                 }
             }, 200L);
             return;
@@ -19924,7 +19919,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.linkSearchRequestId = getConnectionsManager().sendRequest(tLRPC$TL_messages_getWebPagePreview, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$requestLinkPreview$126(callback2, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$requestLinkPreview$125(callback2, tLObject, tLRPC$TL_error);
             }
         });
         getConnectionsManager().bindRequestToGuid(this.linkSearchRequestId, this.classGuid);
@@ -19941,7 +19936,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             requestLinkPreview(tLRPC$TL_messages_getWebPagePreview, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    ChatActivity.this.lambda$requestLinkPreviewCached$120(tLRPC$TL_messages_getWebPagePreview, callback2, (Boolean) obj, (TLRPC$WebPage) obj2);
+                    ChatActivity.this.lambda$requestLinkPreviewCached$119(tLRPC$TL_messages_getWebPagePreview, callback2, (Boolean) obj, (TLRPC$WebPage) obj2);
                 }
             });
         }
@@ -20134,7 +20129,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$sendSecretMediaDelete$131(createDeleteShowOnceTask, messageObject);
+                ChatActivity.this.lambda$sendSecretMediaDelete$130(createDeleteShowOnceTask, messageObject);
             }
         };
     }
@@ -20152,7 +20147,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$sendSecretMessageRead$130(messageObject);
+                    ChatActivity.this.lambda$sendSecretMessageRead$129(messageObject);
                 }
             };
         }
@@ -20202,7 +20197,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             chatThemeController.requestChatTheme(str, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
-                    ChatActivity.this.lambda$setChatThemeEmoticon$341((EmojiThemes) obj);
+                    ChatActivity.this.lambda$setChatThemeEmoticon$340((EmojiThemes) obj);
                 }
 
                 @Override
@@ -20299,7 +20294,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ChatActivity.this.lambda$setPagedownLoading$103(zArr, z, valueAnimator2);
+                ChatActivity.this.lambda$setPagedownLoading$102(zArr, z, valueAnimator2);
             }
         });
         this.pagedownAnimator.addListener(new AnimatorListenerAdapter() {
@@ -20464,16 +20459,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.chatListView.setOnInterceptTouchListener(new RecyclerListView.OnInterceptTouchListener() {
                 @Override
                 public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                    boolean lambda$showChatThemeBottomSheet$338;
-                    lambda$showChatThemeBottomSheet$338 = ChatActivity.lambda$showChatThemeBottomSheet$338(motionEvent);
-                    return lambda$showChatThemeBottomSheet$338;
+                    boolean lambda$showChatThemeBottomSheet$337;
+                    lambda$showChatThemeBottomSheet$337 = ChatActivity.lambda$showChatThemeBottomSheet$337(motionEvent);
+                    return lambda$showChatThemeBottomSheet$337;
                 }
             });
             setChildrenEnabled(this.contentView, false);
             showDialog(this.chatThemeBottomSheet, new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    ChatActivity.this.lambda$showChatThemeBottomSheet$339(dialogInterface);
+                    ChatActivity.this.lambda$showChatThemeBottomSheet$338(dialogInterface);
                 }
             });
             return;
@@ -20634,7 +20629,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$showGigagroupConvertAlert$182();
+                    ChatActivity.this.lambda$showGigagroupConvertAlert$181();
                 }
             }, 1000L);
         }
@@ -20659,7 +20654,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.greetingsInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivity.this.lambda$showGreetInfo$264(view);
+                    ChatActivity.this.lambda$showGreetInfo$263(view);
                 }
             });
         }
@@ -20707,7 +20702,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         BulletinFactory.of(this).createSimpleBulletin(R.raw.chats_infotip, charSequence, 9999).setDuration(Math.max(4000, Math.min(((charSequence == null ? 0 : charSequence.length()) / 50) * 1600, 10000))).setOnHideListener(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$showInfoHint$186(i);
+                ChatActivity.this.lambda$showInfoHint$185(i);
             }
         }).show(true);
         this.hintMessageObject = messageObject;
@@ -20747,7 +20742,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        ChatActivity.this.lambda$showMentionDownButton$148(valueAnimator3);
+                        ChatActivity.this.lambda$showMentionDownButton$147(valueAnimator3);
                     }
                 });
                 valueAnimator = this.mentiondownButtonAnimation;
@@ -20782,7 +20777,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                    ChatActivity.this.lambda$showMentionDownButton$147(valueAnimator4);
+                    ChatActivity.this.lambda$showMentionDownButton$146(valueAnimator4);
                 }
             });
             valueAnimator = this.mentiondownButtonAnimation;
@@ -20956,7 +20951,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 Runnable runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$showPinnedProgress$142();
+                        ChatActivity.this.lambda$showPinnedProgress$141();
                     }
                 };
                 this.updatePinnedProgressRunnable = runnable;
@@ -21031,7 +21026,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showDialog(new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessRepliesRemoveTitle)).setMessage(LocaleController.getString(R.string.BusinessRepliesRemoveMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatActivity.this.lambda$showQuickRepliesRemoveAlert$309(dialogInterface, i);
+                ChatActivity.this.lambda$showQuickRepliesRemoveAlert$308(dialogInterface, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create());
     }
@@ -21235,7 +21230,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.editingMessageObjectReqId = getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessageEditData, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$startEditingMessageObject$267(tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$startEditingMessageObject$266(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -21248,7 +21243,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$startMessageUnselect$139();
+                ChatActivity.this.lambda$startMessageUnselect$138();
             }
         };
         this.unselectRunnable = runnable2;
@@ -21393,12 +21388,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.pinBulletin = BulletinFactory.createUnpinMessageBulletin(this, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$unpinMessage$268(arrayList2, arrayList, i);
+                ChatActivity.this.lambda$unpinMessage$267(arrayList2, arrayList, i);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$unpinMessage$269(messageObject);
+                ChatActivity.this.lambda$unpinMessage$268(messageObject);
             }
         }, this.themeDelegate).show();
     }
@@ -21483,7 +21478,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             LanguageDetector.detectLanguage(text == null ? "" : text.toString(), new LanguageDetector.StringCallback() {
                 @Override
                 public final void run(String str) {
-                    ChatActivity.this.lambda$updateBotHelpCellClick$345(botHelpCell, text, str);
+                    ChatActivity.this.lambda$updateBotHelpCellClick$344(botHelpCell, text, str);
                 }
             }, new LanguageDetector.ExceptionCallback() {
                 @Override
@@ -21853,90 +21848,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showGreetInfo((getDialogId() == getUserConfig().getClientUserId() || (tLRPC$UserFull = this.userInfo) == null || tLRPC$UserFull.business_intro == null || (tLRPC$UserFull.contact_require_premium && !getUserConfig().isPremium())) ? false : true);
     }
 
-    private void updateInfoTopView(boolean z) {
-        CharSequence charSequence;
-        View.OnClickListener onClickListener;
-        TLRPC$User tLRPC$User;
-        if (this.contentView == null) {
-            return;
-        }
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-        int i = notificationsSettings.getInt("dialog_bar_distance" + this.dialog_id, -1);
-        this.distanceToPeer = i;
-        if (i < 0 || (tLRPC$User = this.currentUser) == null) {
-            if (this.currentChat != null && this.chatInviterId != 0) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("dialog_bar_vis3");
-                sb.append(this.dialog_id);
-                boolean z2 = notificationsSettings.getInt(sb.toString(), 0) == 2;
-                boolean z3 = notificationsSettings.getBoolean("dialog_bar_report" + this.dialog_id, false);
-                boolean z4 = notificationsSettings.getBoolean("dialog_bar_block" + this.dialog_id, false);
-                if (z2 && (z3 || z4)) {
-                    TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.chatInviterId));
-                    if (user != null) {
-                        charSequence = MessageObject.replaceWithLink(LocaleController.getString((!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup) ? R.string.ActionUserInvitedToGroup : R.string.ActionUserInvitedToChannel), "un1", user);
-                        onClickListener = new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view) {
-                                ChatActivity.this.lambda$updateInfoTopView$93(view);
-                            }
-                        };
-                    }
-                } else {
-                    hideInfoView();
-                }
-            }
-            charSequence = null;
-            onClickListener = null;
-        } else {
-            charSequence = LocaleController.formatString("ChatDistanceToPeer", R.string.ChatDistanceToPeer, tLRPC$User.first_name, LocaleController.formatDistance(i, 0));
-            onClickListener = new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    ChatActivity.this.lambda$updateInfoTopView$92(view);
-                }
-            };
-        }
-        if (charSequence != null) {
-            Animator animator = this.infoTopViewAnimator;
-            if (animator != null) {
-                animator.cancel();
-            }
-            if (this.infoTopView == null) {
-                ChatActionCell chatActionCell = new ChatActionCell(this.contentView.getContext(), false, this.themeDelegate);
-                this.infoTopView = chatActionCell;
-                chatActionCell.setCustomText(charSequence);
-                this.infoTopView.setInvalidateColors(true);
-                this.infoTopView.setOnClickListener(onClickListener);
-                this.contentView.addView(this.infoTopView, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
-            }
-            if (!z) {
-                this.infoTopView.setTag(1);
-                this.topViewOffset = AndroidUtilities.dp(30.0f);
-                invalidateChatListViewTopPadding();
-            } else if (this.infoTopView.getTag() == null) {
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                this.infoTopView.setTag(1);
-                this.infoTopView.setAlpha(0.0f);
-                final ChatActionCell chatActionCell2 = this.infoTopView;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ChatActivity.this.lambda$updateInfoTopView$94(chatActionCell2, valueAnimator);
-                    }
-                });
-                ofFloat.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator2) {
-                        ChatActivity.this.topViewOffset = AndroidUtilities.dp(30.0f);
-                        ChatActivity.this.invalidateChatListViewTopPadding();
-                    }
-                });
-                ofFloat.setDuration(150L);
-                this.infoTopViewAnimator = ofFloat;
-                ofFloat.start();
-            }
-        }
+    private void updateInfoTopView(boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.updateInfoTopView(boolean):void");
     }
 
     private void updateInformationForScreenshotDetector() {
@@ -21977,12 +21890,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getNotificationCenter().doOnIdle(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$updateMessageAnimated$265(messageObject, z);
+                ChatActivity.this.lambda$updateMessageAnimated$264(messageObject, z);
             }
         });
     }
 
-    public void lambda$updateMessageAnimated$265(MessageObject messageObject, boolean z) {
+    public void lambda$updateMessageAnimated$264(MessageObject messageObject, boolean z) {
         if (this.chatAdapter == null || this.fragmentView == null) {
             return;
         }
@@ -22096,7 +22009,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                    ChatActivity.this.lambda$updatePagedownButtonVisibility$144(valueAnimator3);
+                    ChatActivity.this.lambda$updatePagedownButtonVisibility$143(valueAnimator3);
                 }
             });
             valueAnimator = this.pagedownButtonAnimation;
@@ -22135,7 +22048,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                        ChatActivity.this.lambda$updatePagedownButtonVisibility$143(valueAnimator4);
+                        ChatActivity.this.lambda$updatePagedownButtonVisibility$142(valueAnimator4);
                     }
                 });
                 valueAnimator = this.pagedownButtonAnimation;
@@ -22186,11 +22099,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     public void updatePinnedMessageView(boolean z) {
-        lambda$updateMessagesVisiblePart$137(z, 0);
+        lambda$updateMessagesVisiblePart$136(z, 0);
     }
 
-    public void lambda$updateMessagesVisiblePart$137(boolean r32, int r33) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$updateMessagesVisiblePart$137(boolean, int):void");
+    public void lambda$updateMessagesVisiblePart$136(boolean r32, int r33) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.lambda$updateMessagesVisiblePart$136(boolean, int):void");
     }
 
     private void updatePinnedTopicStarterMessage() {
@@ -22408,7 +22321,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        ChatActivity.this.lambda$updateSearchUpDownButtonVisibility$146(valueAnimator3);
+                        ChatActivity.this.lambda$updateSearchUpDownButtonVisibility$145(valueAnimator3);
                     }
                 });
                 valueAnimator = this.searchUpButtonAnimation;
@@ -22445,7 +22358,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                    ChatActivity.this.lambda$updateSearchUpDownButtonVisibility$145(valueAnimator4);
+                    ChatActivity.this.lambda$updateSearchUpDownButtonVisibility$144(valueAnimator4);
                 }
             });
             valueAnimator = this.searchUpButtonAnimation;
@@ -22492,7 +22405,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$updateSelectedMessageReactions$151();
+                        ChatActivity.this.lambda$updateSelectedMessageReactions$150();
                     }
                 }, 120L);
             } else {
@@ -22826,9 +22739,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
             @Override
             public final boolean test(Object obj) {
-                boolean lambda$applyChatLinkMessageMaybe$213;
-                lambda$applyChatLinkMessageMaybe$213 = ChatActivity.this.lambda$applyChatLinkMessageMaybe$213((TLRPC$MessageEntity) obj);
-                return lambda$applyChatLinkMessageMaybe$213;
+                boolean lambda$applyChatLinkMessageMaybe$212;
+                lambda$applyChatLinkMessageMaybe$212 = ChatActivity.this.lambda$applyChatLinkMessageMaybe$212((TLRPC$MessageEntity) obj);
+                return lambda$applyChatLinkMessageMaybe$212;
             }
         }).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda283())), this.resolvedChatLink.message, this.chatActivityEnterView.getEditField().getPaint().getFontMetricsInt());
         if (applyMessageEntities != null && applyMessageEntities.length() > 0 && applyMessageEntities.charAt(0) == '@') {
@@ -22942,7 +22855,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
                                 public final void run() {
-                                    ChatActivity.this.lambda$applyDraftMaybe$214();
+                                    ChatActivity.this.lambda$applyDraftMaybe$213();
                                 }
                             }, 700L);
                         }
@@ -23105,7 +23018,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.setPositiveButton(LocaleController.getString(R.string.DiscardVoiceMessageAction), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                ChatActivity.this.lambda$checkRecordLocked$307(z, dialogInterface, i2);
+                ChatActivity.this.lambda$checkRecordLocked$306(z, dialogInterface, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Continue), null);
@@ -23210,13 +23123,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_payments_getBankCardData, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$didLongPressCard$357(makeProgressForLink, chatMessageCell, str, characterStyle, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$didLongPressCard$356(makeProgressForLink, chatMessageCell, str, characterStyle, tLObject, tLRPC$TL_error);
             }
         }, null, null, 0, getMessagesController().webFileDatacenterId, 1, true);
         makeProgressForLink.onCancel(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressCard$358(sendRequest);
+                ChatActivity.this.lambda$didLongPressCard$357(sendRequest);
             }
         });
         makeProgressForLink.init();
@@ -23250,7 +23163,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.msg_openin, LocaleController.getString((!z2 || z3) ? R.string.Open : R.string.OpenInTelegramBrowser), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressLink$350(str, characterStyle, messageObject, chatMessageCell, z4, z5);
+                    ChatActivity.this.lambda$didLongPressLink$349(str, characterStyle, messageObject, chatMessageCell, z4, z5);
                 }
             });
         }
@@ -23258,7 +23171,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.msg_language, LocaleController.getString(R.string.OpenInSystemBrowser), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressLink$351(str);
+                    ChatActivity.this.lambda$didLongPressLink$350(str);
                 }
             });
         }
@@ -23267,14 +23180,14 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             makeOptions.add(R.drawable.menu_instant_view, LocaleController.getString(R.string.OpenInstantView), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$didLongPressLink$352(messageObject);
+                    ChatActivity.this.lambda$didLongPressLink$351(messageObject);
                 }
             });
         }
         makeOptions.add(R.drawable.msg_copy, LocaleController.getString(z ? R.string.CopyMail : R.string.CopyLink), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressLink$353(str, messageObject, z);
+                ChatActivity.this.lambda$didLongPressLink$352(str, messageObject, z);
             }
         });
         ScrimOptions scrimOptions3 = scrimOptions;
@@ -23321,7 +23234,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Utilities.Callback2 callback2 = new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                ChatActivity.this.lambda$didLongPressUsername$363(makeProgressForLink, chatMessageCell, str, characterStyle, (TLObject) obj, (Boolean) obj2);
+                ChatActivity.this.lambda$didLongPressUsername$362(makeProgressForLink, chatMessageCell, str, characterStyle, (TLObject) obj, (Boolean) obj2);
             }
         };
         TLRPC$TL_account_checkUsername tLRPC$TL_account_checkUsername = new TLRPC$TL_account_checkUsername();
@@ -23329,13 +23242,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_account_checkUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$didLongPressUsername$368(userOrChat, callback2, str, makeProgressForLink, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$didLongPressUsername$367(userOrChat, callback2, str, makeProgressForLink, tLObject, tLRPC$TL_error);
             }
         });
         makeProgressForLink.onCancel(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didLongPressUsername$369(sendRequest);
+                ChatActivity.this.lambda$didLongPressUsername$368(sendRequest);
             }
         });
         makeProgressForLink.init();
@@ -23347,7 +23260,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Utilities.Callback callback = new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ChatActivity.this.lambda$didPressPhoneNumber$386(chatMessageCell, str, tLRPC$TL_contact, characterStyle, (TLRPC$User) obj);
+                ChatActivity.this.lambda$didPressPhoneNumber$385(chatMessageCell, str, tLRPC$TL_contact, characterStyle, (TLRPC$User) obj);
             }
         };
         if (tLRPC$TL_contact != null) {
@@ -23359,7 +23272,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$didPressPhoneNumber$388(tLRPC$TL_contact, callback);
+                        ChatActivity.this.lambda$didPressPhoneNumber$387(tLRPC$TL_contact, callback);
                     }
                 });
                 return;
@@ -23370,13 +23283,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final int sendRequest = getConnectionsManager().sendRequest(tLRPC$TL_contacts_resolvePhone, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$didPressPhoneNumber$390(makeProgressForLink, callback, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$didPressPhoneNumber$389(makeProgressForLink, callback, tLObject, tLRPC$TL_error);
             }
         });
         makeProgressForLink.onCancel(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$didPressPhoneNumber$391(sendRequest);
+                ChatActivity.this.lambda$didPressPhoneNumber$390(sendRequest);
             }
         });
         makeProgressForLink.init();
@@ -23456,7 +23369,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (indexOf > 0) {
                         while (indexOf < arrayList4.size()) {
                             if (indexOf == arrayList4.size() - 1) {
-                                ((BaseFragment) arrayList4.get(indexOf)).lambda$onBackPressed$308();
+                                ((BaseFragment) arrayList4.get(indexOf)).lambda$onBackPressed$307();
                             } else {
                                 dialogsActivity.removeSelfFromStack();
                             }
@@ -23464,7 +23377,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                     }
                 } else {
-                    dialogsActivity.lambda$onBackPressed$308();
+                    dialogsActivity.lambda$onBackPressed$307();
                 }
                 moveScrollToLastMessage(false);
                 if (!dialogsActivity.isQuote || (messageObject2 = this.replyingMessageObject) == null) {
@@ -23533,11 +23446,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         chatActivity.replyingTopMessage = messageObject;
                         chatActivity.showFieldPanelForReplyQuote(this.replyingMessageObject, this.replyingQuote);
                     }
-                    if (!AndroidUtilities.isTablet()) {
+                    if (chatActivity.getDialogId() == getDialogId() && !AndroidUtilities.isTablet()) {
                         removeSelfFromStack();
                     }
                 } else {
-                    dialogsActivity.lambda$onBackPressed$308();
+                    dialogsActivity.lambda$onBackPressed$307();
                 }
             }
         } else {
@@ -23553,7 +23466,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 getSendMessagesHelper().sendMessage(arrayList2, j2, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$308();
+            dialogsActivity.lambda$onBackPressed$307();
             createUndoView();
             if (this.undoView != null) {
                 if (arrayList.size() != 1) {
@@ -23689,7 +23602,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return (dialog == this.chatAttachAlert || dialog == this.chatThemeBottomSheet || (dialog instanceof BotWebViewSheet) || !super.dismissDialogOnPause(dialog)) ? false : true;
     }
 
-    public void lambda$openDiscussionMessageChat$324(Runnable runnable) {
+    public void lambda$openDiscussionMessageChat$323(Runnable runnable) {
         NotificationCenter.getInstance(this.currentAccount).doOnIdle(runnable);
     }
 
@@ -23749,8 +23662,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public void lambda$onBackPressed$308() {
-        super.lambda$onBackPressed$308();
+    public void lambda$onBackPressed$307() {
+        super.lambda$onBackPressed$307();
         ActionBarPopupWindow actionBarPopupWindow = this.scrimPopupWindow;
         if (actionBarPopupWindow != null) {
             actionBarPopupWindow.setPauseNotifications(false);
@@ -23802,7 +23715,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ThanosEffect thanosEffect = new ThanosEffect(getContext(), new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$getChatThanosEffect$347(r2);
+                    ChatActivity.this.lambda$getChatThanosEffect$346(r2);
                 }
             });
             this.chatListThanosEffect = thanosEffect;
@@ -24017,7 +23930,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatActivity.this.lambda$getThemeDescriptions$336();
+                ChatActivity.this.lambda$getThemeDescriptions$335();
             }
 
             @Override
@@ -25022,7 +24935,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     AlertsCreator.createScheduleDatePickerDialog(getParentActivity(), this.dialog_id, new AlertsCreator.ScheduleDatePickerDelegate() {
                         @Override
                         public final void didSelectDate(boolean z, int i3) {
-                            ChatActivity.this.lambda$onActivityResultFragment$152(data, z, i3);
+                            ChatActivity.this.lambda$onActivityResultFragment$151(data, z, i3);
                         }
                     }, this.themeDelegate);
                 } else {
@@ -25145,7 +25058,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showBusinessLinksDiscardAlert(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$onBackPressed$308();
+                ChatActivity.this.lambda$onBackPressed$307();
             }
         });
         return false;
@@ -25287,7 +25200,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ChatActivity.this.lambda$onCustomTransitionAnimation$337(chatActivity, z2, valueAnimator);
+                        ChatActivity.this.lambda$onCustomTransitionAnimation$336(chatActivity, z2, valueAnimator);
                     }
                 });
                 updateChatListViewTopPadding();
@@ -25357,12 +25270,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getMessagesController().deleteDialog(this.dialog_id, 0);
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout == null || iNavigationLayout.getFragmentStack().isEmpty() || this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 1) == this) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
             return;
         }
         BaseFragment baseFragment = (BaseFragment) this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 1);
         removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$308();
+        baseFragment.lambda$onBackPressed$307();
     }
 
     public void onEditTextDialogClose(boolean z, boolean z2) {
@@ -25370,7 +25283,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$onEditTextDialogClose$106();
+                    ChatActivity.this.lambda$onEditTextDialogClose$105();
                 }
             }, 50L);
             if (z2) {
@@ -25750,7 +25663,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     builder.setNegativeButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i2) {
-                            ChatActivity.this.lambda$onRequestPermissionsResultFragment$150(dialogInterface, i2);
+                            ChatActivity.this.lambda$onRequestPermissionsResultFragment$149(dialogInterface, i2);
                         }
                     });
                     builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
@@ -25815,7 +25728,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             importingAlert.setOnHideListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    ChatActivity.this.lambda$onResume$211(dialogInterface);
+                    ChatActivity.this.lambda$onResume$210(dialogInterface);
                 }
             });
             showDialog(importingAlert);
@@ -25951,7 +25864,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$onResume$212();
+                    ChatActivity.this.lambda$onResume$211();
                 }
             });
         }
@@ -26139,7 +26052,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openAttachBotLayout$199(tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openAttachBotLayout$198(tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -26168,7 +26081,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openHashtagSearch$312(final String str) {
+    public void lambda$openHashtagSearch$311(final String str) {
         boolean z;
         ActionBarMenuItem actionBarMenuItem;
         if (str.isEmpty()) {
@@ -26191,7 +26104,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.this.lambda$openHashtagSearch$312(str);
+                        ChatActivity.this.lambda$openHashtagSearch$311(str);
                     }
                 }, 200L);
                 return;
@@ -26429,7 +26342,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         pollCreateActivity.setDelegate(new PollCreateActivity.PollCreateActivityDelegate() {
             @Override
             public final void sendPoll(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i) {
-                ChatActivity.this.lambda$openPollCreate$112(tLRPC$TL_messageMediaPoll, hashMap, z, i);
+                ChatActivity.this.lambda$openPollCreate$111(tLRPC$TL_messageMediaPoll, hashMap, z, i);
             }
         });
         presentFragment(pollCreateActivity);
@@ -26477,7 +26390,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         };
     }
 
-    public void lambda$openSearchWithText$311(final String str) {
+    public void lambda$openSearchWithText$310(final String str) {
         boolean z;
         ActionBarMenuItem actionBarMenuItem;
         HintView2 hintView2 = this.savedMessagesHint;
@@ -26496,7 +26409,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$openSearchWithText$311(str);
+                    ChatActivity.this.lambda$openSearchWithText$310(str);
                 }
             }, 200L);
             return;
@@ -26645,12 +26558,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         undoView.showWithAction(this.dialog_id, 0, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$performHistoryClear$107(z);
+                ChatActivity.this.lambda$performHistoryClear$106(z);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$performHistoryClear$108();
+                ChatActivity.this.lambda$performHistoryClear$107();
             }
         });
         this.chatAdapter.notifyDataSetChanged();
@@ -26706,7 +26619,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$processInlineBotWebView$104(tLRPC$TL_inlineBotWebView);
+                ChatActivity.this.lambda$processInlineBotWebView$103(tLRPC$TL_inlineBotWebView);
             }
         };
         if (this.approved) {
@@ -26715,7 +26628,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             WebAppDisclaimerAlert.show(getContext(), new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ChatActivity.this.lambda$processInlineBotWebView$105(runnable, (Boolean) obj);
+                    ChatActivity.this.lambda$processInlineBotWebView$104(runnable, (Boolean) obj);
                 }
             }, null, null);
         }
@@ -26736,7 +26649,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             if (this.parentLayout.getFragmentStack().size() > 1) {
                 BaseFragment baseFragment = (BaseFragment) this.parentLayout.getFragmentStack().get(this.parentLayout.getFragmentStack().size() - 2);
                 if ((baseFragment instanceof ChatActivity) && ((ChatActivity) baseFragment).dialog_id == this.inlineReturn) {
-                    lambda$onBackPressed$308();
+                    lambda$onBackPressed$307();
                 } else {
                     Bundle bundle = new Bundle();
                     if (DialogObject.isEncryptedDialog(this.inlineReturn)) {
@@ -26771,7 +26684,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$removeKeyboardPositionBeforeTransition$187();
+                    ChatActivity.this.lambda$removeKeyboardPositionBeforeTransition$186();
                 }
             };
             this.cancelFixedPositionRunnable = runnable;
@@ -26870,7 +26783,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$scrollToLastMessage$134();
+                    ChatActivity.this.lambda$scrollToLastMessage$133();
                 }
             }, 0L);
             return;
@@ -26903,7 +26816,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$scrollToLastMessage$132(i2, z2);
+                ChatActivity.this.lambda$scrollToLastMessage$131(i2, z2);
             }
         }.run();
     }
@@ -27003,7 +26916,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.this.lambda$sendMedia$314();
+                    ChatActivity.this.lambda$sendMedia$313();
                 }
             };
             this.closeInstantCameraAnimation = runnable;
@@ -27289,7 +27202,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i4) {
-                        ChatActivity.this.lambda$shareMyContact$110(i, messageObject, dialogInterface, i4);
+                        ChatActivity.this.lambda$shareMyContact$109(i, messageObject, dialogInterface, i4);
                     }
                 });
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -27302,7 +27215,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         builder.setPositiveButton(LocaleController.getString(R.string.ShareContact), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i4) {
-                ChatActivity.this.lambda$shareMyContact$110(i, messageObject, dialogInterface, i4);
+                ChatActivity.this.lambda$shareMyContact$109(i, messageObject, dialogInterface, i4);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -27337,7 +27250,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatActivity.this.lambda$showAlert$204(valueAnimator);
+                    ChatActivity.this.lambda$showAlert$203(valueAnimator);
                 }
             });
             this.alertViewAnimator.playTogether(ofFloat);
@@ -27497,7 +27410,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             builder.setPositiveButton(LocaleController.getString(R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    ChatActivity.this.lambda$showOpenGameAlert$315(tLRPC$TL_game, messageObject, str, j, dialogInterface, i);
+                    ChatActivity.this.lambda$showOpenGameAlert$314(tLRPC$TL_game, messageObject, str, j, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
@@ -27539,7 +27452,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         BulletinFactory.of(this).createSimpleBulletin(R.raw.speed_limit, LocaleController.getString(z ? R.string.UploadSpeedLimited : R.string.DownloadSpeedLimited), AndroidUtilities.replaceCharSequence("%d", AndroidUtilities.premiumText(LocaleController.getString(z ? R.string.UploadSpeedLimitedMessage : R.string.DownloadSpeedLimitedMessage), new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$showPremiumFloodWaitBulletin$349(z);
+                ChatActivity.this.lambda$showPremiumFloodWaitBulletin$348(z);
             }
         }), spannableString)).setDuration(8000).show(true);
     }
@@ -27551,17 +27464,17 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         this.quoteMessageUpdateAlert = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.UpdatedQuoteTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.UpdatedQuoteMessage, this.replyingMessageObject != null ? getMessagesController().getFullName(this.replyingMessageObject.getSenderId()) : ""))).setPositiveButton(LocaleController.getString(R.string.Edit), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatActivity.this.lambda$showQuoteMessageUpdate$175(dialogInterface, i);
+                ChatActivity.this.lambda$showQuoteMessageUpdate$174(dialogInterface, i);
             }
         }).setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatActivity.this.lambda$showQuoteMessageUpdate$176(dialogInterface, i);
+                ChatActivity.this.lambda$showQuoteMessageUpdate$175(dialogInterface, i);
             }
         }).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                ChatActivity.this.lambda$showQuoteMessageUpdate$177(dialogInterface);
+                ChatActivity.this.lambda$showQuoteMessageUpdate$176(dialogInterface);
             }
         }).show();
     }
@@ -27593,7 +27506,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 builder.setPositiveButton(LocaleController.getString(R.string.Open), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i3) {
-                        ChatActivity.this.lambda$showRequestUrlAlert$331(checkBoxCellArr, str, tLRPC$TL_messages_requestUrlAuth, tLRPC$TL_urlAuthResultRequest, z, dialogInterface, i3);
+                        ChatActivity.this.lambda$showRequestUrlAlert$330(checkBoxCellArr, str, tLRPC$TL_messages_requestUrlAuth, tLRPC$TL_urlAuthResultRequest, z, dialogInterface, i3);
                     }
                 });
                 showDialog(builder.create());
@@ -27625,7 +27538,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             checkBoxCellArr[i2].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    ChatActivity.lambda$showRequestUrlAlert$326(checkBoxCellArr, view);
+                    ChatActivity.lambda$showRequestUrlAlert$325(checkBoxCellArr, view);
                 }
             });
             i2++;

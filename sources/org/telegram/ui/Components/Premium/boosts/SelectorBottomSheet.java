@@ -37,6 +37,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -153,8 +154,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 SelectorBottomSheet.this.onSearch((String) obj);
             }
         });
-        GraySectionCell graySectionCell = new GraySectionCell(getContext(), this.resourcesProvider);
-        this.sectionCell = graySectionCell;
+        this.sectionCell = new GraySectionCell(getContext(), this.resourcesProvider);
         updateSection();
         ViewGroup viewGroup2 = this.containerView;
         int i2 = this.backgroundPaddingLeft;
@@ -162,9 +162,6 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         ViewGroup viewGroup3 = this.containerView;
         int i3 = this.backgroundPaddingLeft;
         viewGroup3.addView(selectorSearchCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i3, 0, i3, 0));
-        ViewGroup viewGroup4 = this.containerView;
-        int i4 = this.backgroundPaddingLeft;
-        viewGroup4.addView(graySectionCell, LayoutHelper.createFrameMarginPx(-1, 32.0f, 55, i4, 0, i4, 0));
         SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
         this.buttonContainer = selectorBtnCell;
         selectorBtnCell.setClickable(true);
@@ -180,35 +177,35 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }
         });
         selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
-        ViewGroup viewGroup5 = this.containerView;
-        int i5 = this.backgroundPaddingLeft;
-        viewGroup5.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i5, 0, i5, 0));
+        ViewGroup viewGroup4 = this.containerView;
+        int i4 = this.backgroundPaddingLeft;
+        viewGroup4.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i4, 0, i4, 0));
         this.selectorAdapter.setData(arrayList, this.recyclerListView);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i6 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i6, 0, i6, AndroidUtilities.dp(60.0f));
+        int i5 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i5, 0, i5, AndroidUtilities.dp(60.0f));
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i7) {
-                if (i7 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i6) {
+                if (i6 == 1) {
                     AndroidUtilities.hideKeyboard(SelectorBottomSheet.this.searchField.getEditText());
                 }
             }
         });
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i7) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i7);
+            public boolean hasDoubleTap(View view, int i6) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i6);
             }
 
             @Override
-            public void onDoubleTap(View view, int i7, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i7, f, f2);
+            public void onDoubleTap(View view, int i6, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i6, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i7, float f, float f2) {
-                SelectorBottomSheet.this.lambda$new$5(view, i7, f, f2);
+            public final void onItemClick(View view, int i6, float f, float f2) {
+                SelectorBottomSheet.this.lambda$new$5(view, i6, f, f2);
             }
         });
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
@@ -342,7 +339,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public void lambda$new$5(View view, int i, float f, float f2) {
-        if (view instanceof SelectorUserCell) {
+        if (view instanceof TextCell) {
+            this.allSelectedObjects.clear();
+            save(true);
+        } else if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             TLRPC$User user = selectorUserCell.getUser();
             TLRPC$Chat chat = selectorUserCell.getChat();
@@ -698,8 +698,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.top = i;
         this.headerView.setTranslationY(Math.max(i, AndroidUtilities.statusBarHeight + (((this.headerView.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f)));
         this.searchField.setTranslationY(this.headerView.getTranslationY() + this.headerView.getMeasuredHeight());
-        this.sectionCell.setTranslationY(this.searchField.getTranslationY() + this.searchField.getMeasuredHeight());
-        this.recyclerListView.setTranslationY(((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) + this.sectionCell.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
+        this.recyclerListView.setTranslationY((this.headerView.getMeasuredHeight() + this.searchField.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
         drawFilledStatusBar(canvas, i);
     }
 
@@ -732,6 +731,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.oldItems.clear();
         this.oldItems.addAll(this.items);
         this.items.clear();
+        if (this.type == 1) {
+            this.items.add(SelectorAdapter.Item.asButton(1, R.drawable.menu_random, LocaleController.getString(R.string.GiveawayChooseUsersRandomly)));
+        }
+        this.items.add(SelectorAdapter.Item.asCustom(this.sectionCell));
         if (this.type == 3) {
             i = 0;
             for (String str : this.countriesLetters) {

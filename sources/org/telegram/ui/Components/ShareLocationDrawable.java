@@ -20,41 +20,29 @@ public class ShareLocationDrawable extends Drawable {
         int i2;
         Resources resources2;
         int i3;
-        Resources resources3;
-        int i4;
         this.currentType = i;
         if (i == 4) {
             resources2 = context.getResources();
             i3 = R.drawable.filled_extend_location;
-        } else {
-            if (i != 5) {
-                if (i == 3) {
-                    resources = context.getResources();
-                    i2 = R.drawable.nearby_l;
-                } else if (i == 2) {
-                    resources = context.getResources();
-                    i2 = R.drawable.nearby_m;
-                } else if (i == 1) {
-                    resources2 = context.getResources();
-                    i3 = R.drawable.smallanimationpin;
-                } else {
-                    resources = context.getResources();
-                    i2 = R.drawable.animationpin;
-                }
-                this.drawable = resources.getDrawable(i2).mutate();
-                this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
-                resources3 = context.getResources();
-                i4 = R.drawable.animationpinright;
-                this.drawableRight = resources3.getDrawable(i4).mutate();
-            }
+        } else if (i == 5) {
             resources2 = context.getResources();
             i3 = R.drawable.filled_stop_location;
+        } else {
+            if (i != 1) {
+                this.drawable = context.getResources().getDrawable(R.drawable.animationpin).mutate();
+                this.drawableLeft = context.getResources().getDrawable(R.drawable.animationpinleft).mutate();
+                resources = context.getResources();
+                i2 = R.drawable.animationpinright;
+                this.drawableRight = resources.getDrawable(i2).mutate();
+            }
+            resources2 = context.getResources();
+            i3 = R.drawable.smallanimationpin;
         }
         this.drawable = resources2.getDrawable(i3).mutate();
         this.drawableLeft = context.getResources().getDrawable(R.drawable.smallanimationpinleft).mutate();
-        resources3 = context.getResources();
-        i4 = R.drawable.smallanimationpinright;
-        this.drawableRight = resources3.getDrawable(i4).mutate();
+        resources = context.getResources();
+        i2 = R.drawable.smallanimationpinright;
+        this.drawableRight = resources.getDrawable(i2).mutate();
     }
 
     private void update() {

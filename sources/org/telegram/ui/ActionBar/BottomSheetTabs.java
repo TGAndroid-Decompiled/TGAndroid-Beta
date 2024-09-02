@@ -46,6 +46,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.bots.BotButtons;
 import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.BotWebViewSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
@@ -264,6 +265,7 @@ public class BottomSheetTabs extends FrameLayout {
         public ArticleViewer articleViewer;
         public boolean backButton;
         public int backgroundColor;
+        public BotButtons.ButtonsState buttons;
         public boolean confirmDismiss;
         public String currentUrl;
         public boolean expanded;
@@ -272,6 +274,7 @@ public class BottomSheetTabs extends FrameLayout {
         public boolean isWeb;
         public String lastUrl;
         public BotWebViewAttachedSheet.MainButtonSettings main;
+        public int navigationBarColor;
         public boolean needsContext;
         public boolean overrideActionBarColor;
         public Bitmap previewBitmap;

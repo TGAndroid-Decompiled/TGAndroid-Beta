@@ -688,6 +688,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public LongSparseLongArray loadedFullChats;
     private HashSet<Long> loadedFullParticipants;
     private LongSparseLongArray loadedFullUsers;
+    private boolean loadingArePaidReactionsAnonymous;
     private boolean loadingAvailableEffects;
     public boolean loadingBlockedPeers;
     private LongSparseIntArray loadingChannelAdmins;
@@ -740,6 +741,8 @@ public class MessagesController extends BaseController implements NotificationCe
     private boolean offlineSent;
     private Utilities.Callback<Boolean> onLoadedRemoteFilters;
     public ConcurrentHashMap<Long, Integer> onlinePrivacy;
+    public Boolean paidReactionsAnonymous;
+    public long paidReactionsAnonymousTime;
     private Runnable passwordCheckRunnable;
     public PeerColors peerColors;
     private final long peerDialogRequestTimeout;
@@ -2849,6 +2852,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.starsUsdSellRate1000 = this.mainPreferences.getFloat("starsUsdSellRate1000", 2000.0f);
         this.starsUsdWithdrawRate1000 = this.mainPreferences.getFloat("starsUsdWithdrawRate1000", 1200.0f);
         this.sponsoredLinksInappAllow = this.mainPreferences.getBoolean("sponsoredLinksInappAllow", false);
+        this.paidReactionsAnonymousTime = this.mainPreferences.getLong("paidReactionsAnonymousTime", 0L);
+        this.paidReactionsAnonymous = (!this.mainPreferences.contains("paidReactionsAnonymous") || System.currentTimeMillis() - this.paidReactionsAnonymousTime >= 7200000) ? null : Boolean.valueOf(this.mainPreferences.getBoolean("paidReactionsAnonymous", false));
         scheduleTranscriptionUpdate();
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         this.dcDomainName = this.mainPreferences.contains("dcDomainName2") ? this.mainPreferences.getString("dcDomainName2", "apv3.stel.com") : z ? "tapv3.stel.com" : "apv3.stel.com";
@@ -11310,6 +11315,24 @@ public class MessagesController extends BaseController implements NotificationCe
             });
             putUser(tLRPC$User, false);
         }
+    }
+
+    public Boolean arePaidReactionsAnonymous() {
+        if (this.paidReactionsAnonymous == null && !this.loadingArePaidReactionsAnonymous) {
+            this.loadingArePaidReactionsAnonymous = true;
+            getConnectionsManager().sendRequest(new TLObject() {
+                @Override
+                public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
+                    return TLRPC$Updates.TLdeserialize(abstractSerializedData, i, z);
+                }
+
+                @Override
+                public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+                    abstractSerializedData.writeInt32(1193563562);
+                }
+            }, null);
+        }
+        return this.paidReactionsAnonymous;
     }
 
     public void blockPeer(long j) {

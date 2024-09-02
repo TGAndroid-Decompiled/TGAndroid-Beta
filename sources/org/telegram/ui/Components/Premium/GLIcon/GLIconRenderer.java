@@ -17,6 +17,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     Context context;
     private float dt;
     public boolean forceNight;
+    public float golden;
     public float gradientScaleX;
     public float gradientScaleY;
     public float gradientStartX;
@@ -30,6 +31,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     private final int type;
     public float angleX = 0.0f;
     public float angleX2 = 0.0f;
+    public float angleX3 = 0.0f;
     public float angleY = 0.0f;
     public float white = 0.0f;
     private final float[] mMVPMatrix = new float[16];
@@ -38,11 +40,17 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     private final float[] mRotationMatrix = new float[16];
     public int colorKey1 = Theme.key_premiumStarGradient1;
     public int colorKey2 = Theme.key_premiumStarGradient2;
+    public int goldenColorKey1 = Theme.key_starsGradient1;
+    public int goldenColorKey2 = Theme.key_starsGradient2;
 
     public GLIconRenderer(Context context, int i, int i2) {
+        this.golden = 0.0f;
         this.context = context;
         this.style = i;
         this.type = i2;
+        if (i2 == 2) {
+            this.golden = 1.0f;
+        }
         updateColors();
     }
 
@@ -69,7 +77,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
         Matrix.setIdentityM(this.mRotationMatrix, 0);
         Matrix.translateM(this.mRotationMatrix, 0, 0.0f, this.angleX2, 0.0f);
         Matrix.rotateM(this.mRotationMatrix, 0, -this.angleY, 1.0f, 0.0f, 0.0f);
-        Matrix.rotateM(this.mRotationMatrix, 0, -this.angleX, 0.0f, 1.0f, 0.0f);
+        Matrix.rotateM(this.mRotationMatrix, 0, (-this.angleX) - this.angleX3, 0.0f, 1.0f, 0.0f);
         Matrix.multiplyMM(this.mMVPMatrix, 0, this.mViewMatrix, 0, this.mRotationMatrix, 0);
         float[] fArr = this.mMVPMatrix;
         Matrix.multiplyMM(fArr, 0, this.mProjectionMatrix, 0, fArr, 0);
@@ -78,7 +86,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
             icon3D.night = this.night;
             icon3D.gradientColor1 = this.color1;
             icon3D.gradientColor2 = this.color2;
-            icon3D.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY, this.white, this.dt);
+            icon3D.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY, this.white, this.golden, this.dt);
         }
     }
 
@@ -125,8 +133,8 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     public void updateColors() {
         boolean z = false;
         this.night = this.forceNight || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) < 0.5d;
-        this.color1 = Theme.getColor(this.colorKey1);
-        this.color2 = Theme.getColor(this.colorKey2);
+        this.color1 = ColorUtils.blendARGB(Theme.getColor(this.colorKey1), Theme.getColor(this.goldenColorKey1), this.golden);
+        this.color2 = ColorUtils.blendARGB(Theme.getColor(this.colorKey2), Theme.getColor(this.goldenColorKey2), this.golden);
         if (this.style == 1 && ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) < 0.5d) {
             z = true;
         }

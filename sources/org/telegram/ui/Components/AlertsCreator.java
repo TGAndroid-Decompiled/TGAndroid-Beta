@@ -666,8 +666,8 @@ public abstract class AlertsCreator {
             return null;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(activity, resourcesProvider);
-        String readRes = RLottieDrawable.readRes(null, Theme.getCurrentTheme().isDark() ? R.raw.permission_map_dark : R.raw.permission_map);
-        String readRes2 = RLottieDrawable.readRes(null, Theme.getCurrentTheme().isDark() ? R.raw.permission_pin_dark : R.raw.permission_pin);
+        String readRes = AndroidUtilities.readRes(Theme.getCurrentTheme().isDark() ? R.raw.permission_map_dark : R.raw.permission_map);
+        String readRes2 = AndroidUtilities.readRes(Theme.getCurrentTheme().isDark() ? R.raw.permission_pin_dark : R.raw.permission_pin);
         FrameLayout frameLayout = new FrameLayout(activity);
         frameLayout.setClipToOutline(true);
         frameLayout.setOutlineProvider(new ViewOutlineProvider() {
@@ -1668,7 +1668,7 @@ public abstract class AlertsCreator {
 
     public static AlertDialog.Builder createDrawOverlayGroupCallPermissionDialog(final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        String readRes = RLottieDrawable.readRes(null, R.raw.pip_voice_request);
+        String readRes = AndroidUtilities.readRes(R.raw.pip_voice_request);
         final GroupCallPipButton groupCallPipButton = new GroupCallPipButton(context, 0, true);
         groupCallPipButton.setImportantForAccessibility(2);
         FrameLayout frameLayout = new FrameLayout(context) {
@@ -1708,7 +1708,7 @@ public abstract class AlertsCreator {
 
     public static AlertDialog.Builder createDrawOverlayPermissionDialog(final Activity activity, DialogInterface.OnClickListener onClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        String readRes = RLottieDrawable.readRes(null, R.raw.pip_video_request);
+        String readRes = AndroidUtilities.readRes(R.raw.pip_video_request);
         FrameLayout frameLayout = new FrameLayout(activity);
         frameLayout.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{-14535089, -14527894}));
         frameLayout.setClipToOutline(true);
@@ -1756,7 +1756,7 @@ public abstract class AlertsCreator {
 
     public static AlertDialog.Builder createGigagroupConvertAlert(Activity activity, DialogInterface.OnClickListener onClickListener, DialogInterface.OnClickListener onClickListener2) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        String readRes = RLottieDrawable.readRes(null, R.raw.gigagroup);
+        String readRes = AndroidUtilities.readRes(R.raw.gigagroup);
         FrameLayout frameLayout = new FrameLayout(activity);
         if (Build.VERSION.SDK_INT >= 21) {
             frameLayout.setClipToOutline(true);
@@ -1918,7 +1918,7 @@ public abstract class AlertsCreator {
     }
 
     public static Dialog createLocationRequiredDialog(final Context context, boolean z) {
-        return new AlertDialog.Builder(context).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(z ? R.string.PermissionNoLocationFriends : R.string.PermissionNoLocationPeopleNearby))).setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
+        return new AlertDialog.Builder(context).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.PermissionNoLocationFriends))).setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setPositiveButton(LocaleController.getString(R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 AlertsCreator.lambda$createLocationRequiredDialog$0(context, dialogInterface, i);
@@ -4724,7 +4724,7 @@ public abstract class AlertsCreator {
         }
         if (baseFragment instanceof ThemePreviewActivity) {
             Theme.applyPreviousTheme();
-            baseFragment.lambda$onBackPressed$308();
+            baseFragment.lambda$onBackPressed$307();
         }
         if (themeAccent == null) {
             processCreate(editTextBoldCursor, alertDialog, baseFragment);

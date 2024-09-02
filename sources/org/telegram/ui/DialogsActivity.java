@@ -884,7 +884,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$308();
+            baseFragment.lambda$onBackPressed$307();
             if (dialogsActivityDelegate != null) {
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(MessagesStorage.TopicKey.of(-j, 0L));
@@ -901,7 +901,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 baseFragment = baseFragmentArr[0];
             }
-            baseFragment.lambda$onBackPressed$308();
+            baseFragment.lambda$onBackPressed$307();
         }
 
         public void lambda$didFinishChatCreation$3(long j, final BaseFragment[] baseFragmentArr, Runnable runnable) {
@@ -1134,7 +1134,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (DialogsActivity.this.searchString == null) {
                 return true;
             }
-            DialogsActivity.this.lambda$onBackPressed$308();
+            DialogsActivity.this.lambda$onBackPressed$307();
             return false;
         }
 
@@ -2561,7 +2561,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             DialogsActivity.this.setDialogsListFrozen(false);
         }
 
-        public void lambda$onSwiped$1(TLRPC$Dialog tLRPC$Dialog, int i) {
+        public void lambda$onSwiped$1() {
+            DialogsActivity.this.setDialogsListFrozen(false);
+        }
+
+        public void lambda$onSwiped$2(TLRPC$Dialog tLRPC$Dialog, int i) {
             DialogsActivity.this.dialogsListFrozen = true;
             DialogsActivity.this.getMessagesController().addDialogToFolder(tLRPC$Dialog.id, 0, i, 0L);
             DialogsActivity.this.dialogsListFrozen = false;
@@ -2594,82 +2598,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         }
 
-        public void lambda$onSwiped$2(final TLRPC$Dialog tLRPC$Dialog, int i, int i2) {
-            if (DialogsActivity.this.frozenDialogsList == null) {
-                return;
-            }
-            DialogsActivity.this.frozenDialogsList.remove(tLRPC$Dialog);
-            final int i3 = tLRPC$Dialog.pinnedNum;
-            DialogsActivity.this.slidingView = null;
-            this.parentPage.listView.invalidate();
-            int findLastVisibleItemPosition = this.parentPage.layoutManager.findLastVisibleItemPosition();
-            if (findLastVisibleItemPosition == i - 1) {
-                this.parentPage.layoutManager.findViewByPosition(findLastVisibleItemPosition).requestLayout();
-            }
-            if (DialogsActivity.this.getMessagesController().isPromoDialog(tLRPC$Dialog.id, false)) {
-                DialogsActivity.this.getMessagesController().hidePromoDialog();
-                this.parentPage.dialogsItemAnimator.prepareForRemove();
-                this.parentPage.updateList(true);
-                return;
-            }
-            int addDialogToFolder = DialogsActivity.this.getMessagesController().addDialogToFolder(tLRPC$Dialog.id, DialogsActivity.this.folderId == 0 ? 1 : 0, -1, 0L);
-            if (addDialogToFolder != 2 || i2 != 0) {
-                this.parentPage.dialogsItemAnimator.prepareForRemove();
-                this.parentPage.updateList(true);
-            }
-            if (DialogsActivity.this.folderId == 0) {
-                if (addDialogToFolder == 2) {
-                    this.parentPage.dialogsItemAnimator.prepareForRemove();
-                    if (i2 == 0) {
-                        DialogsActivity.this.setDialogsListFrozen(true);
-                        this.parentPage.updateList(true);
-                        DialogsActivity.this.checkAnimationFinished();
-                    } else {
-                        this.parentPage.updateList(true);
-                        if (!SharedConfig.archiveHidden && this.parentPage.layoutManager.findFirstVisibleItemPosition() == 0) {
-                            DialogsActivity.this.disableActionBarScrolling = true;
-                            this.parentPage.listView.smoothScrollBy(0, -AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f));
-                        }
-                    }
-                    DialogsActivity dialogsActivity = DialogsActivity.this;
-                    DialogsActivity.this.frozenDialogsList.add(0, (TLRPC$Dialog) dialogsActivity.getDialogsArray(((BaseFragment) dialogsActivity).currentAccount, this.parentPage.dialogsType, DialogsActivity.this.folderId, false).get(0));
-                } else if (addDialogToFolder == 1) {
-                    RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.parentPage.listView.findViewHolderForAdapterPosition(0);
-                    if (findViewHolderForAdapterPosition != null) {
-                        View view = findViewHolderForAdapterPosition.itemView;
-                        if (view instanceof DialogCell) {
-                            DialogCell dialogCell = (DialogCell) view;
-                            dialogCell.checkCurrentDialogIndex(true);
-                            dialogCell.animateArchiveAvatar();
-                        }
-                    }
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            DialogsActivity.SwipeController.this.lambda$onSwiped$0();
-                        }
-                    }, 300L);
-                }
-                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-                boolean z = globalMainSettings.getBoolean("archivehint_l", false) || SharedConfig.archiveHidden;
-                if (!z) {
-                    globalMainSettings.edit().putBoolean("archivehint_l", true).commit();
-                }
-                UndoView undoView = DialogsActivity.this.getUndoView();
-                if (undoView != null) {
-                    undoView.showWithAction(tLRPC$Dialog.id, z ? 2 : 3, null, new Runnable() {
-                        @Override
-                        public final void run() {
-                            DialogsActivity.SwipeController.this.lambda$onSwiped$1(tLRPC$Dialog, i3);
-                        }
-                    });
-                }
-            }
-            if (DialogsActivity.this.folderId == 0 || !DialogsActivity.this.frozenDialogsList.isEmpty()) {
-                return;
-            }
-            this.parentPage.listView.setEmptyView(null);
-            this.parentPage.progressView.setVisibility(4);
+        public void lambda$onSwiped$3(final org.telegram.tgnet.TLRPC$Dialog r12, int r13, int r14) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DialogsActivity.SwipeController.lambda$onSwiped$3(org.telegram.tgnet.TLRPC$Dialog, int, int):void");
         }
 
         @Override
@@ -2840,7 +2770,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    DialogsActivity.SwipeController.this.lambda$onSwiped$2(tLRPC$Dialog, itemCount, adapterPosition);
+                    DialogsActivity.SwipeController.this.lambda$onSwiped$3(tLRPC$Dialog, itemCount, adapterPosition);
                 }
             };
             DialogsActivity.this.setDialogsListFrozen(true);
@@ -3660,7 +3590,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public void lambda$createGroupForThis$52(ChannelCreateActivity channelCreateActivity, BaseFragment baseFragment) {
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$308();
+        baseFragment.lambda$onBackPressed$307();
     }
 
     public void lambda$createGroupForThis$53(Long l, final ChannelCreateActivity channelCreateActivity, final BaseFragment baseFragment, Runnable runnable) {
@@ -3746,7 +3676,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         DialogsActivityDelegate dialogsActivityDelegate = this.delegate;
         removeSelfFromStack();
         channelCreateActivity.removeSelfFromStack();
-        baseFragment.lambda$onBackPressed$308();
+        baseFragment.lambda$onBackPressed$307();
         if (dialogsActivityDelegate != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(MessagesStorage.TopicKey.of(-l.longValue(), 0L));
@@ -4160,7 +4090,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$didSelectResult$115(long j, int i, boolean z, TopicsFragment topicsFragment) {
         if (this.delegate == null) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
             return;
         }
         ArrayList arrayList = new ArrayList();
@@ -4414,7 +4344,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         this.viewPages[0].listView.setEmptyView(null);
         this.viewPages[0].progressView.setVisibility(4);
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$performSelectedDialogsAction$90(ArrayList arrayList, final int i, DialogInterface dialogInterface, int i2) {
@@ -7347,7 +7277,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                                         if (i9 != intValue || i9 == 0) {
                                             return;
                                         }
-                                        lambda$onBackPressed$308();
+                                        lambda$onBackPressed$307();
                                         return;
                                     }
                                     if (i == NotificationCenter.dialogFiltersUpdated) {
@@ -7567,8 +7497,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public void lambda$onBackPressed$308() {
-        super.lambda$onBackPressed$308();
+    public void lambda$onBackPressed$307() {
+        super.lambda$onBackPressed$307();
         ItemOptions itemOptions = this.filterOptions;
         if (itemOptions != null) {
             itemOptions.dismiss();

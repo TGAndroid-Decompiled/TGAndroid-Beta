@@ -35,7 +35,6 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.BotWebViewContainer;
 import org.telegram.ui.web.WebMetadataCache;
@@ -274,7 +273,7 @@ public class WebMetadataCache {
     }
 
     public static void lambda$retrieveFaviconAndSitename$6(WebView webView) {
-        webView.evaluateJavascript(RLottieDrawable.readRes(null, R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
+        webView.evaluateJavascript(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), new ValueCallback() {
             @Override
             public final void onReceiveValue(Object obj) {
                 WebMetadataCache.lambda$retrieveFaviconAndSitename$5((String) obj);

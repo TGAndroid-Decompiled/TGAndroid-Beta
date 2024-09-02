@@ -256,7 +256,39 @@ public abstract class TLRPC$Update extends TLObject {
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateEncryption();
                 break;
             case -1263546448:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updatePeerLocated();
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public ArrayList peers = new ArrayList();
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        if (readInt32 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
+                            }
+                            return;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt322; i2++) {
+                            TLRPC$PeerLocated TLdeserialize = TLRPC$PeerLocated.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize == null) {
+                                return;
+                            }
+                            this.peers.add(TLdeserialize);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-1263546448);
+                        abstractSerializedData2.writeInt32(481674261);
+                        int size = this.peers.size();
+                        abstractSerializedData2.writeInt32(size);
+                        for (int i2 = 0; i2 < size; i2++) {
+                            ((TLRPC$PeerLocated) this.peers.get(i2)).serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case -1218471511:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateReadChannelOutbox();
@@ -481,6 +513,28 @@ public abstract class TLRPC$Update extends TLObject {
             case 674706841:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateUserEmojiStatus();
                 break;
+            case 675009298:
+                tLRPC$TL_updateTheme = new TLRPC$Update() {
+                    public String payload;
+                    public int qts;
+                    public long user_id;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.user_id = abstractSerializedData2.readInt64(z2);
+                        this.payload = abstractSerializedData2.readString(z2);
+                        this.qts = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(675009298);
+                        abstractSerializedData2.writeInt64(this.user_id);
+                        abstractSerializedData2.writeString(this.payload);
+                        abstractSerializedData2.writeInt32(this.qts);
+                    }
+                };
+                break;
             case 738741697:
                 tLRPC$TL_updateTheme = new TL_stories$TL_updateStoriesStealthMode();
                 break;
@@ -559,6 +613,9 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 1318109142:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageID();
+                break;
+            case 1372224236:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updatePaidReactionPrivacy();
                 break;
             case 1407644140:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDeleteQuickReply();

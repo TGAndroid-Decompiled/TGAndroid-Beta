@@ -13,10 +13,10 @@ public class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
 
     public SubtitleWithCounterCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.counterTextView = animatedTextView;
         animatedTextView.setAnimationProperties(0.45f, 0L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        animatedTextView.setGravity(1);
+        animatedTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
         animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
@@ -25,6 +25,8 @@ public class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderCell {
     }
 
     public void updateCounter(boolean z, int i) {
-        this.counterTextView.setText(LocaleController.formatPluralString("BoostingBoostsCountTitle", i, Integer.valueOf(i)), z);
+        String formatPluralString = i <= 0 ? "" : LocaleController.formatPluralString("BoostingBoostsCountTitle", i, Integer.valueOf(i));
+        this.counterTextView.cancelAnimation();
+        this.counterTextView.setText(formatPluralString, z);
     }
 }

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -58,6 +59,8 @@ public class GiveawayResultsMessageCell {
     private Rect containerRect;
     private RectF countRect;
     private Paint counterBgPaint;
+    private Drawable counterIcon;
+    private TextPaint counterStarsTextPaint;
     private String counterStr;
     private Rect counterTextBounds;
     private TextPaint counterTextPaint;
@@ -67,6 +70,7 @@ public class GiveawayResultsMessageCell {
     private int diffTextWidth;
     private RLottieDrawable giftDrawable;
     private ImageReceiver giftReceiver;
+    private boolean isStars;
     private LinkSpanDrawable.LinkCollector links;
     private MessageObject messageObject;
     private boolean[] needNewRow;
@@ -167,6 +171,7 @@ public class GiveawayResultsMessageCell {
             return;
         }
         this.counterTextPaint = new TextPaint(1);
+        this.counterStarsTextPaint = new TextPaint(1);
         this.chatTextPaint = new TextPaint(1);
         this.textPaint = new TextPaint(1);
         this.textDividerPaint = new TextPaint(1);
@@ -197,6 +202,10 @@ public class GiveawayResultsMessageCell {
         TextPaint textPaint = this.counterTextPaint;
         Paint.Align align = Paint.Align.CENTER;
         textPaint.setTextAlign(align);
+        this.counterStarsTextPaint.setTypeface(AndroidUtilities.bold());
+        this.counterStarsTextPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        this.counterStarsTextPaint.setTextAlign(align);
+        this.counterStarsTextPaint.setColor(-1);
         this.chatTextPaint.setTypeface(AndroidUtilities.bold());
         this.chatTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.countriesTextPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -349,6 +358,9 @@ public class GiveawayResultsMessageCell {
             i3 = Theme.key_chat_inReplyLine;
         }
         paint.setColor(Theme.getColor(i3, resourcesProvider));
+        if (this.isStars) {
+            this.counterBgPaint.setColor(Theme.getColor(Theme.key_starsGradient1, resourcesProvider));
+        }
         canvas.save();
         int dp = i2 - AndroidUtilities.dp(4.0f);
         float f = dp;
@@ -367,7 +379,12 @@ public class GiveawayResultsMessageCell {
         float f4 = height / 2.0f;
         this.countRect.set(measuredWidth - f3, dp2 - f4, f3 + measuredWidth, dp2 + f4);
         canvas.drawRoundRect(this.countRect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.counterBgPaint);
-        canvas.drawText(this.counterStr, this.countRect.centerX(), this.countRect.centerY() + AndroidUtilities.dp(4.0f), this.counterTextPaint);
+        Drawable drawable = this.counterIcon;
+        if (drawable != null) {
+            drawable.setBounds(((int) this.countRect.left) + AndroidUtilities.dp(5.0f), ((int) this.countRect.centerY()) - AndroidUtilities.dp(6.96f), ((int) this.countRect.left) + AndroidUtilities.dp(21.24f), ((int) this.countRect.centerY()) + AndroidUtilities.dp(6.96f));
+            this.counterIcon.draw(canvas);
+        }
+        canvas.drawText(this.counterStr, this.countRect.centerX() + AndroidUtilities.dp(this.isStars ? 8.0f : 0.0f), this.countRect.centerY() + AndroidUtilities.dp(4.0f), this.isStars ? this.counterStarsTextPaint : this.counterTextPaint);
         canvas.restore();
         canvas.translate(0.0f, AndroidUtilities.dp(128.0f));
         int dp3 = AndroidUtilities.dp(128.0f) + i;
@@ -456,9 +473,9 @@ public class GiveawayResultsMessageCell {
         if (this.pressedPos >= 0) {
             int multAlpha = Theme.multAlpha(i8, Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
             if (this.selectorColor != multAlpha) {
-                Drawable drawable = this.selectorDrawable;
+                Drawable drawable2 = this.selectorDrawable;
                 this.selectorColor = multAlpha;
-                Theme.setSelectorDrawableColor(drawable, multAlpha, true);
+                Theme.setSelectorDrawableColor(drawable2, multAlpha, true);
             }
             this.selectorDrawable.setBounds(this.clickRect[this.pressedPos]);
             this.selectorDrawable.setCallback(this.parentView);
@@ -538,6 +555,7 @@ public class GiveawayResultsMessageCell {
     }
 
     public void setMessageContent(final MessageObject messageObject, int i, int i2) {
+        String str;
         this.messageObject = null;
         this.titleLayout = null;
         this.topLayout = null;
@@ -545,6 +563,7 @@ public class GiveawayResultsMessageCell {
         this.countriesLayout = null;
         this.measuredHeight = 0;
         this.measuredWidth = 0;
+        this.isStars = false;
         if (messageObject.isGiveawayResults()) {
             this.messageObject = messageObject;
             init();
@@ -576,7 +595,9 @@ public class GiveawayResultsMessageCell {
                 spannableStringBuilder2.setSpan(new RelativeSizeSpan(1.05f), 0, spannableStringBuilder2.length(), 33);
                 spannableStringBuilder2.append((CharSequence) "\n");
             }
-            spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.BoostingGiveawayResultsMsgAllWinnersReceivedLinks));
+            boolean z = (tLRPC$TL_messageMediaGiveawayResults.flags & 32) != 0;
+            this.isStars = z;
+            spannableStringBuilder2.append((CharSequence) (z ? LocaleController.formatPluralStringComma("BoostingStarsGiveawayResultsMsgAllWinnersReceivedLinks", (int) tLRPC$TL_messageMediaGiveawayResults.stars, ' ') : LocaleController.getString(R.string.BoostingGiveawayResultsMsgAllWinnersReceivedLinks)));
             TextPaint textPaint = this.textPaint;
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
             float dp3 = AndroidUtilities.dp(2.0f);
@@ -601,9 +622,22 @@ public class GiveawayResultsMessageCell {
             this.measuredHeight = i3;
             this.measuredHeight = i3 + AndroidUtilities.dp(128.0f);
             this.measuredWidth = max;
-            String str = "x" + tLRPC$TL_messageMediaGiveawayResults.winners_count;
+            if (this.isStars) {
+                if (this.counterIcon == null) {
+                    this.counterIcon = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.filled_giveaway_stars).mutate();
+                }
+                str = LocaleController.formatNumber((int) tLRPC$TL_messageMediaGiveawayResults.stars, ',');
+            } else {
+                this.counterIcon = null;
+                str = "x" + tLRPC$TL_messageMediaGiveawayResults.winners_count;
+            }
             this.counterStr = str;
-            this.counterTextPaint.getTextBounds(str, 0, str.length(), this.counterTextBounds);
+            TextPaint textPaint2 = this.counterTextPaint;
+            String str2 = this.counterStr;
+            textPaint2.getTextBounds(str2, 0, str2.length(), this.counterTextBounds);
+            if (this.isStars) {
+                this.counterTextBounds.right += AndroidUtilities.dp(20.0f);
+            }
             Arrays.fill(this.avatarVisible, false);
             this.measuredHeight += AndroidUtilities.dp(30.0f);
             ArrayList arrayList = new ArrayList(tLRPC$TL_messageMediaGiveawayResults.winners.size());
@@ -624,16 +658,16 @@ public class GiveawayResultsMessageCell {
                     this.users[i4] = user;
                     this.userTitles[i4] = TextUtils.ellipsize(Emoji.replaceEmoji(UserObject.getUserName(user), this.chatTextPaint.getFontMetricsInt(), false), this.chatTextPaint, 0.8f * f, TextUtils.TruncateAt.END);
                     float[] fArr = this.userTitleWidths;
-                    TextPaint textPaint2 = this.chatTextPaint;
+                    TextPaint textPaint3 = this.chatTextPaint;
                     CharSequence charSequence = this.userTitles[i4];
-                    fArr[i4] = textPaint2.measureText(charSequence, 0, charSequence.length());
+                    fArr[i4] = textPaint3.measureText(charSequence, 0, charSequence.length());
                     float dp4 = this.userTitleWidths[i4] + AndroidUtilities.dp(40.0f);
                     f4 += dp4;
                     if (i4 > 0) {
                         boolean[] zArr = this.needNewRow;
-                        boolean z = f4 > 0.9f * f;
-                        zArr[i4] = z;
-                        if (z) {
+                        boolean z2 = f4 > 0.9f * f;
+                        zArr[i4] = z2;
+                        if (z2) {
                             this.measuredHeight += AndroidUtilities.dp(30.0f);
                             f4 = dp4;
                         }

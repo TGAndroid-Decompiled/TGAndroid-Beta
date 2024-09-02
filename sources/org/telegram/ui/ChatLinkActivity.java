@@ -621,7 +621,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (this.isChannel) {
             return;
         }
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$createView$2(final AlertDialog[] alertDialogArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -808,10 +808,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             }
         }, 1000L);
         if (baseFragment == null) {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
         } else {
             removeSelfFromStack();
-            baseFragment.lambda$onBackPressed$308();
+            baseFragment.lambda$onBackPressed$307();
         }
     }
 
@@ -1086,7 +1086,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatLinkActivity.this.lambda$onBackPressed$308();
+                    ChatLinkActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

@@ -1237,7 +1237,7 @@ public abstract class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[4];
     private static int[] lastLoadingThemesTime = new int[4];
     private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[22];
+    public static Drawable[] avatarDrawables = new Drawable[24];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
     public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
@@ -5446,6 +5446,8 @@ public abstract class Theme {
             avatarDrawables[19] = resources.getDrawable(R.drawable.large_notes);
             avatarDrawables[20] = resources.getDrawable(R.drawable.filled_folder_new);
             avatarDrawables[21] = resources.getDrawable(R.drawable.filled_folder_existing);
+            avatarDrawables[22] = resources.getDrawable(R.drawable.filled_giveaway_premium);
+            avatarDrawables[23] = resources.getDrawable(R.drawable.filled_giveaway_stars);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
                 rLottieDrawable.setCallback(null);

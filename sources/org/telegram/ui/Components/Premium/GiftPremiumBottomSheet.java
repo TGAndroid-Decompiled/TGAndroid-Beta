@@ -610,7 +610,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                     }
                 } else if (baseFragment instanceof ProfileActivity) {
                     if (z && parentLayout.getLastFragment() == baseFragment) {
-                        baseFragment.lambda$onBackPressed$308();
+                        baseFragment.lambda$onBackPressed$307();
                     }
                     baseFragment.removeSelfFromStack();
                 }

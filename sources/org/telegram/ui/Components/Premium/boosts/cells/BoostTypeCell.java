@@ -9,11 +9,14 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class BoostTypeCell extends BaseCell {
     public static int TYPE_GIVEAWAY = 0;
+    public static int TYPE_PREMIUM = 2;
     public static int TYPE_SPECIFIC_USERS = 1;
+    public static int TYPE_STARS = 3;
     private int selectedType;
 
     public BoostTypeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -33,24 +36,44 @@ public class BoostTypeCell extends BaseCell {
     public void setType(int i, int i2, TLRPC$User tLRPC$User, boolean z) {
         Context context;
         int i3;
+        boolean z2 = this.selectedType == i;
         this.selectedType = i;
         if (i != TYPE_GIVEAWAY) {
             if (i == TYPE_SPECIFIC_USERS) {
-                this.titleTextView.setText(LocaleController.formatString("BoostingAwardSpecificUsers", R.string.BoostingAwardSpecificUsers, new Object[0]));
+                this.titleTextView.setText(LocaleController.getString(R.string.BoostingAwardSpecificUsers));
                 setSubtitle(withArrow((i2 != 1 || tLRPC$User == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingSelectRecipients) : Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
                 this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
                 this.avatarDrawable.setAvatarType(6);
                 this.avatarDrawable.setColor(-3905294, -6923014);
-                setDivider(false);
-                context = getContext();
-                i3 = R.drawable.greydivider_top;
+            } else {
+                if (i != TYPE_PREMIUM) {
+                    if (i == TYPE_STARS) {
+                        this.titleTextView.setText(TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingStars)));
+                        setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
+                        this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
+                        this.avatarDrawable.setAvatarType(26);
+                        this.avatarDrawable.setColor(-146917, -625593);
+                    }
+                    this.radioButton.setChecked(z, z2);
+                    this.imageView.setImageDrawable(this.avatarDrawable);
+                    this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
+                }
+                this.titleTextView.setText(LocaleController.getString(R.string.BoostingPremium));
+                setSubtitle(withArrow((i2 != 1 || tLRPC$User == null) ? i2 > 0 ? LocaleController.formatPluralString("Recipient", i2, new Object[0]) : LocaleController.getString(R.string.BoostingWinnersRandomly) : Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), this.subtitleTextView.getPaint().getFontMetricsInt(), false)));
+                this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2, this.resourcesProvider));
+                this.avatarDrawable.setAvatarType(25);
+                this.avatarDrawable.setColor(-3905294, -6923014);
             }
-            this.radioButton.setChecked(z, false);
+            setDivider(false);
+            context = getContext();
+            i3 = R.drawable.greydivider_top;
+            setBackground(Theme.getThemedDrawableByKey(context, i3, Theme.key_windowBackgroundGrayShadow));
+            this.radioButton.setChecked(z, z2);
             this.imageView.setImageDrawable(this.avatarDrawable);
             this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         }
-        this.titleTextView.setText(LocaleController.formatString("BoostingCreateGiveaway", R.string.BoostingCreateGiveaway, new Object[0]));
-        setSubtitle(LocaleController.formatString("BoostingWinnersRandomly", R.string.BoostingWinnersRandomly, new Object[0]));
+        this.titleTextView.setText(LocaleController.getString(R.string.BoostingCreateGiveaway));
+        setSubtitle(LocaleController.getString(R.string.BoostingWinnersRandomly));
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         this.avatarDrawable.setAvatarType(16);
         this.avatarDrawable.setColor(-15292942, -15630089);
@@ -58,7 +81,7 @@ public class BoostTypeCell extends BaseCell {
         context = getContext();
         i3 = R.drawable.greydivider_bottom;
         setBackground(Theme.getThemedDrawableByKey(context, i3, Theme.key_windowBackgroundGrayShadow));
-        this.radioButton.setChecked(z, false);
+        this.radioButton.setChecked(z, z2);
         this.imageView.setImageDrawable(this.avatarDrawable);
         this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
     }

@@ -935,6 +935,19 @@ public class SvgHelper {
         }
     }
 
+    public static Bitmap getBitmap(InputStream inputStream, int i, int i2, boolean z) {
+        try {
+            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
+            SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
+            xMLReader.setContentHandler(sVGHandler);
+            xMLReader.parse(new InputSource(inputStream));
+            return sVGHandler.getBitmap();
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
     public static Bitmap getBitmap(String str, int i, int i2, boolean z) {
         try {
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();

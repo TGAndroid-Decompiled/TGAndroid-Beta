@@ -131,7 +131,10 @@ public class SlideChooseView extends View {
         this.circleSize = AndroidUtilities.dp(6.0f);
         this.gapSize = AndroidUtilities.dp(2.0f);
         this.sideSide = AndroidUtilities.dp(22.0f);
-        this.lineSize = (((getMeasuredWidth() - (this.circleSize * this.optionsStr.length)) - ((this.gapSize * 2) * (r0.length - 1))) - (this.sideSide * 2)) / (r0.length - 1);
+        int measuredWidth = getMeasuredWidth();
+        int i3 = this.circleSize;
+        String[] strArr = this.optionsStr;
+        this.lineSize = (((measuredWidth - (i3 * strArr.length)) - ((this.gapSize * 2) * (strArr.length - 1))) - (this.sideSide * 2)) / Math.max(1, strArr.length - 1);
     }
 
     @Override

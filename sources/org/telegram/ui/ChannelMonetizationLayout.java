@@ -51,12 +51,12 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$BroadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$InputCheckPasswordSRP;
 import org.telegram.tgnet.TLRPC$StarsTransaction;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
-import org.telegram.tgnet.TLRPC$TL_broadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$TL_channels_restrictSponsoredMessages;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordEmpty;
@@ -1403,7 +1403,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         int i2;
         if (tLRPC$TL_error == null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$308();
+            twoStepVerificationActivity.lambda$onBackPressed$307();
             if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
                 Browser.openUrl(getContext(), ((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject).url);
                 return;
@@ -1428,7 +1428,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
             }
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$308();
+                twoStepVerificationActivity.lambda$onBackPressed$307();
             }
             BulletinFactory.showError(tLRPC$TL_error);
             return;
@@ -2323,7 +2323,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.actionBar = actionBar;
     }
 
-    public void setupBalances(TLRPC$TL_broadcastRevenueBalances tLRPC$TL_broadcastRevenueBalances) {
+    public void setupBalances(TLRPC$BroadcastRevenueBalances tLRPC$BroadcastRevenueBalances) {
         UniversalAdapter universalAdapter;
         double d = this.ton_rate;
         if (d == 0.0d) {
@@ -2331,7 +2331,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         }
         ProceedOverview proceedOverview = this.availableValue;
         proceedOverview.contains1 = true;
-        long j = tLRPC$TL_broadcastRevenueBalances.available_balance;
+        long j = tLRPC$BroadcastRevenueBalances.available_balance;
         proceedOverview.crypto_amount = j;
         double d2 = j;
         Double.isNaN(d2);
@@ -2341,7 +2341,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.availableValue.currency = "USD";
         ProceedOverview proceedOverview2 = this.lastWithdrawalValue;
         proceedOverview2.contains1 = true;
-        long j3 = tLRPC$TL_broadcastRevenueBalances.current_balance;
+        long j3 = tLRPC$BroadcastRevenueBalances.current_balance;
         proceedOverview2.crypto_amount = j3;
         double d3 = j3;
         Double.isNaN(d3);
@@ -2350,14 +2350,14 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         proceedOverview2.currency = "USD";
         ProceedOverview proceedOverview3 = this.lifetimeValue;
         proceedOverview3.contains1 = true;
-        long j4 = tLRPC$TL_broadcastRevenueBalances.overall_revenue;
+        long j4 = tLRPC$BroadcastRevenueBalances.overall_revenue;
         proceedOverview3.crypto_amount = j4;
         double d5 = j4;
         Double.isNaN(d5);
         proceedOverview3.amount = (long) ((d5 / 1.0E9d) * d4 * 100.0d);
         proceedOverview3.currency = "USD";
         this.proceedsAvailable = true;
-        this.balanceButton.setVisibility((tLRPC$TL_broadcastRevenueBalances.available_balance > 0 || BuildVars.DEBUG_PRIVATE_VERSION) ? 0 : 8);
+        this.balanceButton.setVisibility((tLRPC$BroadcastRevenueBalances.available_balance <= 0 || !tLRPC$BroadcastRevenueBalances.withdrawal_enabled) ? 8 : 0);
         UniversalRecyclerView universalRecyclerView = this.listView;
         if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
             return;

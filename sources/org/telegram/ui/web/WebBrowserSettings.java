@@ -395,11 +395,11 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
-        historyFragmentArr[0].lambda$onBackPressed$308();
+        historyFragmentArr[0].lambda$onBackPressed$307();
         if (this.whenHistoryClicked == null) {
             Browser.openUrl(getContext(), entry.url);
         } else {
-            lambda$onBackPressed$308();
+            lambda$onBackPressed$307();
             this.whenHistoryClicked.run(entry);
         }
     }
@@ -491,212 +491,222 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
         AlertDialog.Builder message;
         String string;
         DialogInterface.OnClickListener onClickListener;
+        TextCheckCell textCheckCell;
+        boolean z;
         int i2 = uItem.id;
         if (i2 == 12) {
             SharedConfig.toggleBrowserAdaptableColors();
-            ((TextCheckCell) view).setChecked(SharedConfig.adaptableColorInBrowser);
-            return;
-        }
-        if (i2 == 1) {
-            SharedConfig.toggleInappBrowser();
-            TextCheckCell textCheckCell = (TextCheckCell) view;
-            textCheckCell.setChecked(SharedConfig.inappBrowser);
-            boolean z = SharedConfig.inappBrowser;
-            textCheckCell.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-        } else if (i2 == 10) {
-            SharedConfig.toggleCustomTabs(true);
+            textCheckCell = (TextCheckCell) view;
+            z = SharedConfig.adaptableColorInBrowser;
         } else {
-            if (i2 != 11) {
-                String str = "";
-                if (i2 == 2) {
-                    AlertDialog.Builder title = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCacheClear));
-                    int i3 = R.string.BrowserSettingsCacheClearText;
-                    if (this.cacheSize != 0) {
-                        str = " (" + AndroidUtilities.formatFileSize(this.cacheSize) + ")";
-                    }
-                    message = title.setMessage(LocaleController.formatString(i3, str));
-                    string = LocaleController.getString(R.string.Clear);
-                    onClickListener = new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i4) {
-                            WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
-                        }
-                    };
-                } else if (i2 == 3) {
-                    AlertDialog.Builder title2 = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCookiesClear));
-                    int i4 = R.string.BrowserSettingsCookiesClearText;
-                    if (this.cookiesSize != 0) {
-                        str = " (" + AndroidUtilities.formatFileSize(this.cookiesSize) + ")";
-                    }
-                    message = title2.setMessage(LocaleController.formatString(i4, str));
-                    string = LocaleController.getString(R.string.Clear);
-                    onClickListener = new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i5) {
-                            WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
-                        }
-                    };
-                } else if (i2 == 7) {
-                    Iterator it = BrowserHistory.getHistory().iterator();
-                    long j = Long.MAX_VALUE;
-                    while (it.hasNext()) {
-                        j = Math.min(j, ((BrowserHistory.Entry) it.next()).time);
-                    }
-                    message = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000)));
-                    string = LocaleController.getString(R.string.Clear);
-                    onClickListener = new DialogInterface.OnClickListener() {
-                        @Override
-                        public final void onClick(DialogInterface dialogInterface, int i5) {
-                            WebBrowserSettings.this.lambda$onClick$5(dialogInterface, i5);
-                        }
-                    };
+            if (i2 != 13) {
+                if (i2 == 1) {
+                    SharedConfig.toggleInappBrowser();
+                    TextCheckCell textCheckCell2 = (TextCheckCell) view;
+                    textCheckCell2.setChecked(SharedConfig.inappBrowser);
+                    boolean z2 = SharedConfig.inappBrowser;
+                    textCheckCell2.setBackgroundColorAnimated(z2, Theme.getColor(z2 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+                } else if (i2 == 10) {
+                    SharedConfig.toggleCustomTabs(true);
                 } else {
-                    if (i2 == 9) {
-                        final HistoryFragment[] historyFragmentArr = {null};
-                        HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
-                            @Override
-                            public final void run(Object obj) {
-                                WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
+                    if (i2 != 11) {
+                        String str = "";
+                        if (i2 == 2) {
+                            AlertDialog.Builder title = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCacheClear));
+                            int i3 = R.string.BrowserSettingsCacheClearText;
+                            if (this.cacheSize != 0) {
+                                str = " (" + AndroidUtilities.formatFileSize(this.cacheSize) + ")";
                             }
-                        });
-                        historyFragmentArr[0] = historyFragment;
-                        presentFragment(historyFragment);
-                        return;
-                    }
-                    if (i2 != 5) {
-                        if (uItem.instanceOf(WebsiteView.Factory.class)) {
-                            WebsiteView websiteView = (WebsiteView) view;
-                            final ArrayList arrayList = websiteView.domains;
-                            ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
+                            message = title.setMessage(LocaleController.formatString(i3, str));
+                            string = LocaleController.getString(R.string.Clear);
+                            onClickListener = new DialogInterface.OnClickListener() {
                                 @Override
-                                public final void run() {
-                                    WebBrowserSettings.this.lambda$onClick$7(arrayList);
+                                public final void onClick(DialogInterface dialogInterface, int i4) {
+                                    WebBrowserSettings.this.lambda$onClick$3(dialogInterface, i4);
                                 }
-                            }).show();
-                            return;
-                        }
-                        int i5 = uItem.id;
-                        if (i5 == 6) {
-                            if (getParentActivity() == null) {
-                                return;
+                            };
+                        } else if (i2 == 3) {
+                            AlertDialog.Builder title2 = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsCookiesClear));
+                            int i4 = R.string.BrowserSettingsCookiesClearText;
+                            if (this.cookiesSize != 0) {
+                                str = " (" + AndroidUtilities.formatFileSize(this.cookiesSize) + ")";
                             }
-                            final AtomicReference atomicReference = new AtomicReference();
-                            LinearLayout linearLayout = new LinearLayout(getContext());
-                            linearLayout.setOrientation(1);
-                            ArrayList searchEngines = SearchEngine.getSearchEngines();
-                            int size = searchEngines.size();
-                            CharSequence[] charSequenceArr = new CharSequence[size];
-                            final int i6 = 0;
-                            while (i6 < size) {
-                                charSequenceArr[i6] = ((SearchEngine) searchEngines.get(i6)).name;
-                                RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
-                                radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-                                radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
-                                radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
-                                radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
-                                linearLayout.addView(radioColorCell);
-                                radioColorCell.setOnClickListener(new View.OnClickListener() {
+                            message = title2.setMessage(LocaleController.formatString(i4, str));
+                            string = LocaleController.getString(R.string.Clear);
+                            onClickListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public final void onClick(DialogInterface dialogInterface, int i5) {
+                                    WebBrowserSettings.this.lambda$onClick$4(dialogInterface, i5);
+                                }
+                            };
+                        } else if (i2 == 7) {
+                            Iterator it = BrowserHistory.getHistory().iterator();
+                            long j = Long.MAX_VALUE;
+                            while (it.hasNext()) {
+                                j = Math.min(j, ((BrowserHistory.Entry) it.next()).time);
+                            }
+                            message = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(R.string.BrowserSettingsHistoryClear)).setMessage(LocaleController.formatString(R.string.BrowserSettingsHistoryClearText, LocaleController.formatDateChat(j / 1000)));
+                            string = LocaleController.getString(R.string.Clear);
+                            onClickListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public final void onClick(DialogInterface dialogInterface, int i5) {
+                                    WebBrowserSettings.this.lambda$onClick$5(dialogInterface, i5);
+                                }
+                            };
+                        } else {
+                            if (i2 == 9) {
+                                final HistoryFragment[] historyFragmentArr = {null};
+                                HistoryFragment historyFragment = new HistoryFragment(null, new Utilities.Callback() {
                                     @Override
-                                    public final void onClick(View view2) {
-                                        WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
+                                    public final void run(Object obj) {
+                                        WebBrowserSettings.this.lambda$onClick$6(historyFragmentArr, (BrowserHistory.Entry) obj);
                                     }
                                 });
-                                i6++;
+                                historyFragmentArr[0] = historyFragment;
+                                presentFragment(historyFragment);
+                                return;
                             }
-                            AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
-                            atomicReference.set(create);
-                            showDialog(create);
-                            return;
-                        }
-                        if (i5 == 4) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
-                            builder.setTitle(LocaleController.getString(R.string.BrowserSettingsAddTitle));
-                            LinearLayout linearLayout2 = new LinearLayout(getContext());
-                            linearLayout2.setOrientation(1);
-                            TextView textView = new TextView(getContext());
-                            int i7 = Theme.key_dialogTextBlack;
-                            textView.setTextColor(Theme.getColor(i7, getResourceProvider()));
-                            textView.setTextSize(1, 16.0f);
-                            textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
-                            linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
-                            final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
-                                @Override
-                                public void onMeasure(int i8, int i9) {
-                                    super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+                            if (i2 != 5) {
+                                if (uItem.instanceOf(WebsiteView.Factory.class)) {
+                                    WebsiteView websiteView = (WebsiteView) view;
+                                    final ArrayList arrayList = websiteView.domains;
+                                    ItemOptions.makeOptions((ViewGroup) this.fragmentView, websiteView).add(R.drawable.menu_delete_old, LocaleController.getString(R.string.Remove), new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            WebBrowserSettings.this.lambda$onClick$7(arrayList);
+                                        }
+                                    }).show();
+                                    return;
                                 }
-                            };
-                            final Runnable runnable = new Runnable() {
-                                @Override
-                                public final void run() {
-                                    WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
-                                }
-                            };
-                            editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                                @Override
-                                public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
-                                    if (i8 != 6) {
-                                        return false;
+                                int i5 = uItem.id;
+                                if (i5 == 6) {
+                                    if (getParentActivity() == null) {
+                                        return;
                                     }
-                                    runnable.run();
-                                    return true;
+                                    final AtomicReference atomicReference = new AtomicReference();
+                                    LinearLayout linearLayout = new LinearLayout(getContext());
+                                    linearLayout.setOrientation(1);
+                                    ArrayList searchEngines = SearchEngine.getSearchEngines();
+                                    int size = searchEngines.size();
+                                    CharSequence[] charSequenceArr = new CharSequence[size];
+                                    final int i6 = 0;
+                                    while (i6 < size) {
+                                        charSequenceArr[i6] = ((SearchEngine) searchEngines.get(i6)).name;
+                                        RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
+                                        radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
+                                        radioColorCell.setCheckColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
+                                        radioColorCell.setTextAndValue(charSequenceArr[i6], i6 == SharedConfig.searchEngineType);
+                                        radioColorCell.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
+                                        linearLayout.addView(radioColorCell);
+                                        radioColorCell.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public final void onClick(View view2) {
+                                                WebBrowserSettings.lambda$onClick$8(i6, view, atomicReference, view2);
+                                            }
+                                        });
+                                        i6++;
+                                    }
+                                    AlertDialog create = new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString(R.string.SearchEngine)).setView(linearLayout).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create();
+                                    atomicReference.set(create);
+                                    showDialog(create);
+                                    return;
                                 }
-                            });
-                            editTextBoldCursor.setTextSize(1, 18.0f);
-                            editTextBoldCursor.setText("");
-                            editTextBoldCursor.setTextColor(Theme.getColor(i7, getResourceProvider()));
-                            editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, getResourceProvider()));
-                            editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
-                            editTextBoldCursor.setSingleLine(true);
-                            editTextBoldCursor.setFocusable(true);
-                            editTextBoldCursor.setInputType(16384);
-                            editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
-                            editTextBoldCursor.setImeOptions(6);
-                            editTextBoldCursor.setBackgroundDrawable(null);
-                            editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-                            linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
-                            builder.setView(linearLayout2);
-                            builder.setWidth(AndroidUtilities.dp(292.0f));
-                            builder.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
-                                @Override
-                                public final void onClick(DialogInterface dialogInterface, int i8) {
-                                    runnable.run();
+                                if (i5 == 4) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getResourceProvider());
+                                    builder.setTitle(LocaleController.getString(R.string.BrowserSettingsAddTitle));
+                                    LinearLayout linearLayout2 = new LinearLayout(getContext());
+                                    linearLayout2.setOrientation(1);
+                                    TextView textView = new TextView(getContext());
+                                    int i7 = Theme.key_dialogTextBlack;
+                                    textView.setTextColor(Theme.getColor(i7, getResourceProvider()));
+                                    textView.setTextSize(1, 16.0f);
+                                    textView.setText(LocaleController.getString(R.string.BrowserSettingsAddText));
+                                    linearLayout2.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
+                                    final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
+                                        @Override
+                                        public void onMeasure(int i8, int i9) {
+                                            super.onMeasure(i8, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+                                        }
+                                    };
+                                    final Runnable runnable = new Runnable() {
+                                        @Override
+                                        public final void run() {
+                                            WebBrowserSettings.this.lambda$onClick$11(editTextBoldCursor, r3);
+                                        }
+                                    };
+                                    editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                                        @Override
+                                        public boolean onEditorAction(TextView textView2, int i8, KeyEvent keyEvent) {
+                                            if (i8 != 6) {
+                                                return false;
+                                            }
+                                            runnable.run();
+                                            return true;
+                                        }
+                                    });
+                                    editTextBoldCursor.setTextSize(1, 18.0f);
+                                    editTextBoldCursor.setText("");
+                                    editTextBoldCursor.setTextColor(Theme.getColor(i7, getResourceProvider()));
+                                    editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, getResourceProvider()));
+                                    editTextBoldCursor.setHintText(LocaleController.getString(R.string.BrowserSettingsAddHint));
+                                    editTextBoldCursor.setSingleLine(true);
+                                    editTextBoldCursor.setFocusable(true);
+                                    editTextBoldCursor.setInputType(16384);
+                                    editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, getResourceProvider()), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, getResourceProvider()), Theme.getColor(Theme.key_text_RedRegular, getResourceProvider()));
+                                    editTextBoldCursor.setImeOptions(6);
+                                    editTextBoldCursor.setBackgroundDrawable(null);
+                                    editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
+                                    linearLayout2.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
+                                    builder.setView(linearLayout2);
+                                    builder.setWidth(AndroidUtilities.dp(292.0f));
+                                    builder.setPositiveButton(LocaleController.getString(R.string.Done), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public final void onClick(DialogInterface dialogInterface, int i8) {
+                                            runnable.run();
+                                        }
+                                    });
+                                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public final void onClick(DialogInterface dialogInterface, int i8) {
+                                            dialogInterface.dismiss();
+                                        }
+                                    });
+                                    AlertDialog create2 = builder.create();
+                                    final AlertDialog[] alertDialogArr = {create2};
+                                    create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public final void onDismiss(DialogInterface dialogInterface) {
+                                            AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
+                                        }
+                                    });
+                                    alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
+                                        @Override
+                                        public final void onShow(DialogInterface dialogInterface) {
+                                            WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
+                                        }
+                                    });
+                                    alertDialogArr[0].setDismissDialogByButtons(false);
+                                    alertDialogArr[0].show();
+                                    return;
                                 }
-                            });
-                            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new DialogInterface.OnClickListener() {
-                                @Override
-                                public final void onClick(DialogInterface dialogInterface, int i8) {
-                                    dialogInterface.dismiss();
-                                }
-                            });
-                            AlertDialog create2 = builder.create();
-                            final AlertDialog[] alertDialogArr = {create2};
-                            create2.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public final void onDismiss(DialogInterface dialogInterface) {
-                                    AndroidUtilities.hideKeyboard(EditTextBoldCursor.this);
-                                }
-                            });
-                            alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
-                                @Override
-                                public final void onShow(DialogInterface dialogInterface) {
-                                    WebBrowserSettings.lambda$onClick$15(EditTextBoldCursor.this, dialogInterface);
-                                }
-                            });
-                            alertDialogArr[0].setDismissDialogByButtons(false);
-                            alertDialogArr[0].show();
-                            return;
+                                return;
+                            }
+                            RestrictedDomainsList.getInstance().restrictedDomains.clear();
+                            RestrictedDomainsList.getInstance().scheduleSave();
                         }
+                        message.setPositiveButton(string, onClickListener).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
                         return;
                     }
-                    RestrictedDomainsList.getInstance().restrictedDomains.clear();
-                    RestrictedDomainsList.getInstance().scheduleSave();
+                    SharedConfig.toggleCustomTabs(false);
                 }
-                message.setPositiveButton(string, onClickListener).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
+                this.listView.adapter.update(true);
                 return;
             }
-            SharedConfig.toggleCustomTabs(false);
+            SharedConfig.toggleLocalInstantView();
+            textCheckCell = (TextCheckCell) view;
+            z = SharedConfig.onlyLocalInstantView;
         }
-        this.listView.adapter.update(true);
+        textCheckCell.setChecked(z);
     }
 
     @Override

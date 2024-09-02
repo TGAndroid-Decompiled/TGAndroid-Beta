@@ -361,7 +361,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$39(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$checkDiscard$40(DialogInterface dialogInterface, int i) {
@@ -369,7 +369,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$checkDiscard$41(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$createView$10(TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
@@ -640,7 +640,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
         } else {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         }
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-this.currentChat.id), null, this.currentChat, Boolean.valueOf(z));
     }
 
@@ -862,7 +862,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
     public void lambda$processDone$42() {
         this.progressDialog.dismiss();
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     public void lambda$processDone$43(TL_bots$setBotInfo tL_bots$setBotInfo, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1035,7 +1035,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
                 }
             }
         }
-        lambda$onBackPressed$308();
+        lambda$onBackPressed$307();
     }
 
     private void setAvatar() {

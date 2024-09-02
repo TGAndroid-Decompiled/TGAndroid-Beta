@@ -176,7 +176,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     NotificationsSoundActivity.this.hideActionMode();
                     return;
                 } else {
-                    NotificationsSoundActivity.this.lambda$onBackPressed$308();
+                    NotificationsSoundActivity.this.lambda$onBackPressed$307();
                     return;
                 }
             }

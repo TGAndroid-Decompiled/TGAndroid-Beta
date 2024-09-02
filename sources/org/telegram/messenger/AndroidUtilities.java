@@ -243,6 +243,8 @@ public class AndroidUtilities {
     private static Pattern uriParse;
     public static boolean usingHardwareInput;
     private static Vibrator vibrator;
+    public static ThreadLocal<byte[]> readBufferLocal = new ThreadLocal<>();
+    public static ThreadLocal<byte[]> bufferLocal = new ThreadLocal<>();
     private static final Hashtable<String, Typeface> typefaceCache = new Hashtable<>();
     private static int prevOrientation = -10;
     private static boolean waitingForSms = false;
@@ -3853,6 +3855,67 @@ public class AndroidUtilities {
         try {
             Thread.sleep(j);
         } catch (InterruptedException unused) {
+        }
+    }
+
+    public static String readRes(int i) {
+        return readRes(null, i);
+    }
+
+    public static String readRes(File file) {
+        return readRes(file, 0);
+    }
+
+    public static String readRes(File file, int i) {
+        InputStream inputStream;
+        byte[] bArr = readBufferLocal.get();
+        if (bArr == null) {
+            bArr = new byte[65536];
+            readBufferLocal.set(bArr);
+        }
+        try {
+            inputStream = file != null ? new FileInputStream(file) : ApplicationLoader.applicationContext.getResources().openRawResource(i);
+        } catch (Throwable unused) {
+            inputStream = null;
+        }
+        try {
+            byte[] bArr2 = bufferLocal.get();
+            if (bArr2 == null) {
+                bArr2 = new byte[4096];
+                bufferLocal.set(bArr2);
+            }
+            int i2 = 0;
+            while (true) {
+                int read = inputStream.read(bArr2, 0, bArr2.length);
+                if (read >= 0) {
+                    int i3 = i2 + read;
+                    if (bArr.length < i3) {
+                        byte[] bArr3 = new byte[bArr.length * 2];
+                        System.arraycopy(bArr, 0, bArr3, 0, i2);
+                        readBufferLocal.set(bArr3);
+                        bArr = bArr3;
+                    }
+                    if (read > 0) {
+                        System.arraycopy(bArr2, 0, bArr, i2, read);
+                        i2 = i3;
+                    }
+                } else {
+                    try {
+                        break;
+                    } catch (Throwable unused2) {
+                    }
+                }
+            }
+            inputStream.close();
+            return new String(bArr, 0, i2);
+        } catch (Throwable unused3) {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Throwable unused4) {
+                }
+            }
+            return null;
         }
     }
 

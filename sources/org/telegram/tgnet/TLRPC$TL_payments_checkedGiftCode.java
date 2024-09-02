@@ -1,10 +1,10 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_stories$TL_boost;
+import org.telegram.tgnet.tl.TL_stories$Boost;
 
 public class TLRPC$TL_payments_checkedGiftCode extends TLObject {
-    public TL_stories$TL_boost boost;
+    public TL_stories$Boost boost;
     public int date;
     public int flags;
     public TLRPC$Peer from_id;

@@ -9,8 +9,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$BroadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$TL_broadcastRevenueBalances;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_getStarsRevenueStats;
 import org.telegram.tgnet.TLRPC$TL_payments_getStarsTransactions;
@@ -172,12 +172,12 @@ public class BotStarsController {
     }
 
     public long getChannelBalance(long j) {
-        TLRPC$TL_broadcastRevenueBalances tLRPC$TL_broadcastRevenueBalances;
+        TLRPC$BroadcastRevenueBalances tLRPC$BroadcastRevenueBalances;
         TL_stats$TL_broadcastRevenueStats channelRevenueStats = getChannelRevenueStats(j, false);
-        if (channelRevenueStats == null || (tLRPC$TL_broadcastRevenueBalances = channelRevenueStats.balances) == null) {
+        if (channelRevenueStats == null || (tLRPC$BroadcastRevenueBalances = channelRevenueStats.balances) == null) {
             return 0L;
         }
-        return tLRPC$TL_broadcastRevenueBalances.current_balance;
+        return tLRPC$BroadcastRevenueBalances.current_balance;
     }
 
     public TL_stats$TL_broadcastRevenueStats getChannelRevenueStats(final long j, boolean z) {

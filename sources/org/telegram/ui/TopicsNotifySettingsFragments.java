@@ -342,7 +342,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TopicsNotifySettingsFragments.this.lambda$onBackPressed$308();
+                    TopicsNotifySettingsFragments.this.lambda$onBackPressed$307();
                 }
             }
         });

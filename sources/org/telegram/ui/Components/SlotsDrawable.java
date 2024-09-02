@@ -267,7 +267,7 @@ public class SlotsDrawable extends RLottieDrawable {
                         }
                     }
                     final TLRPC$Document tLRPC$Document = (TLRPC$Document) tLRPC$TL_messages_stickerSet.documents.get(i2);
-                    String readRes = RLottieDrawable.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), 0);
+                    String readRes = AndroidUtilities.readRes(FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true), 0);
                     if (TextUtils.isEmpty(readRes)) {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override

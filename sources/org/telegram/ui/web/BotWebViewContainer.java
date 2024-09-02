@@ -117,7 +117,6 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LinkPreview;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -168,7 +167,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private boolean lastExpanded;
     private long lastPostStoryMs;
     private String lastQrText;
-    private float lastViewportHeightReported;
+    private int lastSecondaryButtonColor;
+    private String lastSecondaryButtonPosition;
+    private String lastSecondaryButtonText;
+    private int lastSecondaryButtonTextColor;
+    private int lastViewportHeightReported;
     private boolean lastViewportIsExpanded;
     private boolean lastViewportStateStable;
     private ValueCallback mFilePathCallback;
@@ -179,6 +182,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     private Activity parentActivity;
     private boolean preserving;
     private Theme.ResourcesProvider resourcesProvider;
+    private String secondaryButtonData;
     private int shownDialogsCount;
     private final int tag;
     private boolean wasFocusable;
@@ -460,6 +464,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
             public static void $default$onWebAppReady(Delegate delegate) {
             }
+
+            public static void $default$onWebAppSetNavigationBarColor(Delegate delegate, int i) {
+            }
         }
 
         boolean isClipboardAvailable();
@@ -476,7 +483,9 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
 
         void onSetSettingsButtonVisible(boolean z);
 
-        void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3);
+        void onSetupMainButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4);
+
+        void onSetupSecondaryButton(boolean z, boolean z2, String str, int i, int i2, boolean z3, boolean z4, String str2);
 
         void onWebAppBackgroundChanged(boolean z, int i);
 
@@ -489,6 +498,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         void onWebAppSetActionBarColor(int i, int i2, boolean z);
 
         void onWebAppSetBackgroundColor(int i);
+
+        void onWebAppSetNavigationBarColor(int i);
 
         void onWebAppSetupClosingBehavior(boolean z);
 
@@ -786,13 +797,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (this.val$bot) {
                     myWebView = MyWebView.this;
                     myWebView.injectedJS = true;
-                    replace = RLottieDrawable.readRes(null, R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
+                    replace = AndroidUtilities.readRes(R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
                 } else {
                     MyWebView myWebView2 = MyWebView.this;
                     myWebView2.injectedJS = true;
-                    myWebView2.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                    myWebView2.evaluateJS(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     myWebView = MyWebView.this;
-                    replace = RLottieDrawable.readRes(null, R.raw.webview_share);
+                    replace = AndroidUtilities.readRes(R.raw.webview_share);
                 }
                 myWebView.evaluateJS(replace);
                 super.onPageCommitVisible(webView, str);
@@ -821,13 +832,13 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (this.val$bot) {
                     myWebView = MyWebView.this;
                     myWebView.injectedJS = true;
-                    replace = RLottieDrawable.readRes(null, R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
+                    replace = AndroidUtilities.readRes(R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
                 } else {
                     MyWebView myWebView2 = MyWebView.this;
                     myWebView2.injectedJS = true;
-                    myWebView2.evaluateJS(RLottieDrawable.readRes(null, R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
+                    myWebView2.evaluateJS(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     myWebView = MyWebView.this;
-                    replace = RLottieDrawable.readRes(null, R.raw.webview_share);
+                    replace = AndroidUtilities.readRes(R.raw.webview_share);
                 }
                 myWebView.evaluateJS(replace);
                 MyWebView.this.saveHistory();
@@ -2346,14 +2357,20 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         super(context);
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
         this.flickerDrawable = cellFlickerDrawable;
-        this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
-        this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
+        int i2 = Theme.key_featuredStickers_addButton;
+        this.lastButtonColor = getColor(i2);
+        int i3 = Theme.key_featuredStickers_buttonText;
+        this.lastButtonTextColor = getColor(i3);
         this.lastButtonText = "";
+        this.lastSecondaryButtonColor = getColor(i2);
+        this.lastSecondaryButtonTextColor = getColor(i3);
+        this.lastSecondaryButtonText = "";
+        this.lastSecondaryButtonPosition = "";
         this.lastDialogType = -1;
         this.shownDialogsCount = 0;
-        int i2 = tags;
-        tags = i2 + 1;
-        this.tag = i2;
+        int i4 = tags;
+        tags = i4 + 1;
+        this.tag = i4;
         this.bot = z;
         this.resourcesProvider = resourcesProvider;
         d("created new webview container");
@@ -3033,7 +3050,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         evaluateJs("window.Telegram.WebView.receiveEvent('" + str + "', " + jSONObject + ");", false);
     }
 
-    public void onEventReceived(java.lang.String r27, java.lang.String r28) {
+    public void onEventReceived(java.lang.String r34, java.lang.String r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.BotWebViewContainer.onEventReceived(java.lang.String, java.lang.String):void");
     }
 
@@ -3251,54 +3268,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (activity != null) {
             activity.requestPermissions(strArr, 4000);
         }
-    }
-
-    public void setPageLoaded(String str, boolean z) {
-        MyWebView myWebView = this.webView;
-        String str2 = (myWebView == null || !myWebView.dangerousUrl) ? str : myWebView.urlFallback;
-        boolean z2 = myWebView == null || !myWebView.canGoBack();
-        MyWebView myWebView2 = this.webView;
-        onURLChanged(str2, z2, myWebView2 == null || !myWebView2.canGoForward());
-        MyWebView myWebView3 = this.webView;
-        if (myWebView3 != null) {
-            myWebView3.isPageLoaded = true;
-            updateKeyboardFocusable();
-        }
-        if (this.isPageLoaded) {
-            d("setPageLoaded: already loaded");
-            return;
-        }
-        if (!z || this.webView == null || this.flickerView == null) {
-            MyWebView myWebView4 = this.webView;
-            if (myWebView4 != null) {
-                myWebView4.setAlpha(1.0f);
-            }
-            BackupImageView backupImageView = this.flickerView;
-            if (backupImageView != null) {
-                backupImageView.setAlpha(0.0f);
-                this.flickerView.setVisibility(8);
-            }
-        } else {
-            AnimatorSet animatorSet = new AnimatorSet();
-            MyWebView myWebView5 = this.webView;
-            Property property = View.ALPHA;
-            animatorSet.playTogether(ObjectAnimator.ofFloat(myWebView5, (Property<MyWebView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.flickerView, (Property<BackupImageView, Float>) property, 0.0f));
-            animatorSet.addListener(new AnimatorListenerAdapter() {
-                AnonymousClass2() {
-                }
-
-                @Override
-                public void onAnimationEnd(Animator animator) {
-                    BotWebViewContainer.this.flickerView.setVisibility(8);
-                }
-            });
-            animatorSet.start();
-        }
-        this.mUrl = str;
-        d("setPageLoaded: isPageLoaded = true!");
-        this.isPageLoaded = true;
-        updateKeyboardFocusable();
-        this.delegate.onWebAppReady();
     }
 
     private void setupFlickerParams(boolean z) {
@@ -3621,8 +3590,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             if (z) {
                 this.lastExpanded = webViewSwipeContainer.getSwipeOffsetY() == (-webViewSwipeContainer.getOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY();
             }
-            float measuredHeight = ((int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY())) / AndroidUtilities.density;
-            if (Math.abs(measuredHeight - this.lastViewportHeightReported) <= 0.1f && this.lastViewportStateStable == z && this.lastViewportIsExpanded == this.lastExpanded) {
+            int measuredHeight = (int) (((webViewSwipeContainer.getMeasuredHeight() - webViewSwipeContainer.getOffsetY()) - webViewSwipeContainer.getSwipeOffsetY()) + webViewSwipeContainer.getTopActionBarOffsetY());
+            if (!z2 && measuredHeight == this.lastViewportHeightReported && this.lastViewportStateStable == z && this.lastViewportIsExpanded == this.lastExpanded) {
                 return;
             }
             this.lastViewportHeightReported = measuredHeight;
@@ -3630,7 +3599,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             this.lastViewportIsExpanded = this.lastExpanded;
             try {
                 JSONObject jSONObject = new JSONObject();
-                jSONObject.put("height", measuredHeight);
+                jSONObject.put("height", measuredHeight / AndroidUtilities.density);
                 jSONObject.put("is_state_stable", z);
                 jSONObject.put("is_expanded", this.lastExpanded);
                 notifyEvent("viewport_changed", jSONObject);
@@ -3839,6 +3808,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.onPermissionsRequestResultCallback = null;
     }
 
+    public void onSecondaryButtonPressed() {
+        this.lastClickMs = System.currentTimeMillis();
+        notifyEvent("secondary_button_pressed", null);
+    }
+
     public void onSettingsButtonPressed() {
         this.lastClickMs = System.currentTimeMillis();
         notifyEvent("settings_button_pressed", null);
@@ -3889,6 +3863,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (str != null) {
             onEventReceived("web_app_setup_main_button", str);
         }
+        String str2 = this.secondaryButtonData;
+        if (str2 != null) {
+            onEventReceived("web_app_setup_secondary_button", str2);
+        }
     }
 
     public void setBotUser(TLRPC$User tLRPC$User) {
@@ -3923,6 +3901,54 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             return;
         }
         myWebView2.opener = myWebView;
+    }
+
+    public void setPageLoaded(String str, boolean z) {
+        MyWebView myWebView = this.webView;
+        String str2 = (myWebView == null || !myWebView.dangerousUrl) ? str : myWebView.urlFallback;
+        boolean z2 = myWebView == null || !myWebView.canGoBack();
+        MyWebView myWebView2 = this.webView;
+        onURLChanged(str2, z2, myWebView2 == null || !myWebView2.canGoForward());
+        MyWebView myWebView3 = this.webView;
+        if (myWebView3 != null) {
+            myWebView3.isPageLoaded = true;
+            updateKeyboardFocusable();
+        }
+        if (this.isPageLoaded) {
+            d("setPageLoaded: already loaded");
+            return;
+        }
+        if (!z || this.webView == null || this.flickerView == null) {
+            MyWebView myWebView4 = this.webView;
+            if (myWebView4 != null) {
+                myWebView4.setAlpha(1.0f);
+            }
+            BackupImageView backupImageView = this.flickerView;
+            if (backupImageView != null) {
+                backupImageView.setAlpha(0.0f);
+                this.flickerView.setVisibility(8);
+            }
+        } else {
+            AnimatorSet animatorSet = new AnimatorSet();
+            MyWebView myWebView5 = this.webView;
+            Property property = View.ALPHA;
+            animatorSet.playTogether(ObjectAnimator.ofFloat(myWebView5, (Property<MyWebView, Float>) property, 1.0f), ObjectAnimator.ofFloat(this.flickerView, (Property<BackupImageView, Float>) property, 0.0f));
+            animatorSet.addListener(new AnimatorListenerAdapter() {
+                AnonymousClass2() {
+                }
+
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    BotWebViewContainer.this.flickerView.setVisibility(8);
+                }
+            });
+            animatorSet.start();
+        }
+        this.mUrl = str;
+        d("setPageLoaded: isPageLoaded = true!");
+        this.isPageLoaded = true;
+        updateKeyboardFocusable();
+        this.delegate.onWebAppReady();
     }
 
     public void setParentActivity(Activity activity) {

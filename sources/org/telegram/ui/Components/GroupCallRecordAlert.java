@@ -79,7 +79,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
             imageView.setContentDescription(LocaleController.getString(i == 0 ? R.string.VoipRecordAudio : i == 1 ? R.string.VoipRecordPortrait : R.string.VoipRecordLandscape));
-            SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(RLottieDrawable.readRes(null, i == 0 ? R.raw.record_audio : i == 1 ? R.raw.record_video_p : R.raw.record_video_l));
+            SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i == 0 ? R.raw.record_audio : i == 1 ? R.raw.record_video_p : R.raw.record_video_l));
             drawable.setAspectFill(false);
             imageView.setImageDrawable(drawable);
             if (imageView.getParent() != null) {

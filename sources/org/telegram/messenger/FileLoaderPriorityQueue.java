@@ -30,49 +30,36 @@ public class FileLoaderPriorityQueue {
     }
 
     private void checkLoadingOperationInternal() {
-        int i = 1;
-        int i2 = this.type == 1 ? MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations : MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
+        int i = this.type == 1 ? MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations : MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
         this.tmpListOperations.clear();
-        int i3 = 0;
+        int i2 = 0;
         boolean z = false;
-        int i4 = 0;
-        while (i3 < this.allOperations.size()) {
-            FileLoadOperation fileLoadOperation = i3 > 0 ? this.allOperations.get(i3 - 1) : null;
-            FileLoadOperation fileLoadOperation2 = this.allOperations.get(i3);
-            if (i3 > 0 && !z) {
-                if (this.type == i && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
+        int i3 = 0;
+        while (i2 < this.allOperations.size()) {
+            FileLoadOperation fileLoadOperation = i2 > 0 ? this.allOperations.get(i2 - 1) : null;
+            FileLoadOperation fileLoadOperation2 = this.allOperations.get(i2);
+            if (i2 > 0 && !z) {
+                if (this.type == 1 && fileLoadOperation != null && fileLoadOperation.isStory && fileLoadOperation.getPriority() >= 1048576 && fileLoadOperation2.getPriority() <= 0) {
                     z = true;
                 }
-                if (i4 > 0 && fileLoadOperation2.getPriority() == 0) {
+                if (i3 > 0 && fileLoadOperation2.getPriority() == 0) {
                     z = true;
                 }
             }
             if (fileLoadOperation2.preFinished) {
-                i2++;
-                if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                    FileLog.d("{" + this.name + "}.checkLoadingOperationInternal: #" + i3 + " " + fileLoadOperation2.getFileName() + " priority=" + fileLoadOperation2.getPriority() + " isStory=" + fileLoadOperation2.isStory + " preFinished=" + fileLoadOperation2.preFinished + " pauseAllNextOperations=" + z + " max=" + i2 + " => skip");
-                }
+                i++;
             } else {
-                if (z || i3 >= i2) {
-                    if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        FileLog.d("{" + this.name + "}.checkLoadingOperationInternal: #" + i3 + " " + fileLoadOperation2.getFileName() + " priority=" + fileLoadOperation2.getPriority() + " isStory=" + fileLoadOperation2.isStory + " preFinished=" + fileLoadOperation2.preFinished + " pauseAllNextOperations=" + z + " max=" + i2 + " => pause");
-                    }
-                    if (fileLoadOperation2.wasStarted()) {
-                        fileLoadOperation2.pause();
-                    }
-                } else {
-                    if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                        FileLog.d("{" + this.name + "}.checkLoadingOperationInternal: #" + i3 + " " + fileLoadOperation2.getFileName() + " priority=" + fileLoadOperation2.getPriority() + " isStory=" + fileLoadOperation2.isStory + " preFinished=" + fileLoadOperation2.preFinished + " pauseAllNextOperations=" + z + " max=" + i2 + " => start");
-                    }
+                if (!z && i2 < i) {
                     this.tmpListOperations.add(fileLoadOperation2);
+                } else if (fileLoadOperation2.wasStarted()) {
+                    fileLoadOperation2.pause();
                 }
-                i4 = fileLoadOperation2.getPriority();
+                i3 = fileLoadOperation2.getPriority();
             }
-            i3++;
-            i = 1;
+            i2++;
         }
-        for (int i5 = 0; i5 < this.tmpListOperations.size(); i5++) {
-            this.tmpListOperations.get(i5).start();
+        for (int i4 = 0; i4 < this.tmpListOperations.size(); i4++) {
+            this.tmpListOperations.get(i4).start();
         }
     }
 

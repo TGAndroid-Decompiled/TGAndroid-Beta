@@ -591,7 +591,6 @@
     <string name="NoContacts">Ainda não há contatos.</string>
     <string name="NoContactsYet">Você ainda não tem contatos no Telegram</string>
     <string name="NoContactsYetLine1">Convide amigos para testar o Telegram</string>
-    <string name="NoContactsYetLine2">Encontre pessoas próximas</string>
     <string name="NoContactsYetLine3">Busque pessoas por nome de usuário</string>
     <string name="NoExceptions">Esta seção irá listar todos os chats que possuem configurações que não são padrão.\n\nVocê pode personalizar notificações para um chat abrindo o perfil do mesmo e escolhendo \'Notificações\'.</string>
     <string name="NoFolderFound">Nenhuma pasta encontrada.</string>
@@ -844,7 +843,6 @@
     <string name="PermissionNoLocation">Telegram precisa acessar sua localização para que você possa compartilhar com seus amigos.</string>
     <string name="PermissionNoLocationFriends">O **Telegram** precisa acessar a localização para você compartilhar com seus amigos. Toque em Configurações &gt; Permissões e ative **Localização**.</string>
     <string name="PermissionNoLocationNavigation">O **Telegram** precisa acessar a sua localização para você obter direções. Toque em Configurações &gt; Permissões e ative **Localização**.</string>
-    <string name="PermissionNoLocationPeopleNearby">O **Telegram** precisa acessar a localização para encontrar pessoas próximas. Toque em Configurações &gt; Permissões e ative **Localização**.</string>
     <string name="PermissionNoLocationStory">O Telegram precisa acessar sua localização para você poder adicionar o widget de tempo aos seus stories.</string>
     <string name="PermissionNoStorageAvatar">O **Telegram** precisa de acesso ao armazenamento para enviar a foto de perfil. Toque em Configurações &gt; Permissões e ative **Arquivos e mídia**.</string>
     <string name="PermissionOpenSettings">Configurações</string>

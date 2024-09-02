@@ -127,23 +127,21 @@ public abstract class ChatGreetingsView extends LinearLayout {
         void onGreetings(TLRPC$Document tLRPC$Document);
     }
 
-    public ChatGreetingsView(Context context, TLRPC$User tLRPC$User, int i, int i2, TLRPC$Document tLRPC$Document, Theme.ResourcesProvider resourcesProvider) {
+    public ChatGreetingsView(Context context, TLRPC$User tLRPC$User, int i, TLRPC$Document tLRPC$Document, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        TextView textView;
-        int i3;
         setOrientation(1);
-        this.currentAccount = i2;
+        this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
         setPadding(0, AndroidUtilities.dp(8.0f), 0, 0);
-        TextView textView2 = new TextView(context);
-        this.titleView = textView2;
-        textView2.setTextSize(1, 14.0f);
+        TextView textView = new TextView(context);
+        this.titleView = textView;
+        textView.setTextSize(1, 14.0f);
         this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setTextAlignment(4);
         this.titleView.setGravity(17);
-        TextView textView3 = new TextView(context);
-        this.descriptionView = textView3;
-        textView3.setTextAlignment(4);
+        TextView textView2 = new TextView(context);
+        this.descriptionView = textView2;
+        textView2.setTextAlignment(4);
         this.descriptionView.setGravity(17);
         this.descriptionView.setTextSize(1, 14.0f);
         this.descriptionView.setGravity(1);
@@ -162,23 +160,14 @@ public abstract class ChatGreetingsView extends LinearLayout {
         ScaleStateListAnimator.apply(this.nextStickerToSendView);
         updateLayout();
         updateColors();
-        TextView textView4 = this.titleView;
-        if (i <= 0) {
-            textView4.setText(LocaleController.getString(R.string.NoMessages));
-            textView = this.descriptionView;
-            i3 = R.string.NoMessagesGreetingsDescription;
-        } else {
-            textView4.setText(LocaleController.formatString("NearbyPeopleGreetingsMessage", R.string.NearbyPeopleGreetingsMessage, tLRPC$User.first_name, LocaleController.formatDistance(i, 1)));
-            textView = this.descriptionView;
-            i3 = R.string.NearbyPeopleGreetingsDescription;
-        }
-        textView.setText(LocaleController.getString(i3));
-        TextView textView5 = this.descriptionView;
-        textView5.setMaxWidth(HintView2.cutInFancyHalf(textView5.getText(), this.descriptionView.getPaint()));
+        this.titleView.setText(LocaleController.getString(R.string.NoMessages));
+        this.descriptionView.setText(LocaleController.getString(R.string.NoMessagesGreetingsDescription));
+        TextView textView3 = this.descriptionView;
+        textView3.setMaxWidth(HintView2.cutInFancyHalf(textView3.getText(), this.descriptionView.getPaint()));
         this.stickerToSendView.setContentDescription(this.descriptionView.getText());
         this.preloadedGreetingsSticker = tLRPC$Document;
         if (tLRPC$Document == null) {
-            this.preloadedGreetingsSticker = MediaDataController.getInstance(i2).getGreetingsSticker();
+            this.preloadedGreetingsSticker = MediaDataController.getInstance(i).getGreetingsSticker();
         }
     }
 

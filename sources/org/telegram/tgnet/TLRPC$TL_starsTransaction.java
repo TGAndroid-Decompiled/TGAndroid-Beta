@@ -54,11 +54,14 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         if ((this.flags & 4096) != 0) {
             this.subscription_period = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 8192) != 0) {
+            this.giveaway_post_id = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(1127934763);
+        abstractSerializedData.writeInt32(-294313259);
         int i = this.refund ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.pending ? i | 16 : i & (-17);
@@ -104,6 +107,9 @@ public class TLRPC$TL_starsTransaction extends TLRPC$StarsTransaction {
         }
         if ((this.flags & 4096) != 0) {
             abstractSerializedData.writeInt32(this.subscription_period);
+        }
+        if ((this.flags & 8192) != 0) {
+            abstractSerializedData.writeInt32(this.giveaway_post_id);
         }
     }
 }

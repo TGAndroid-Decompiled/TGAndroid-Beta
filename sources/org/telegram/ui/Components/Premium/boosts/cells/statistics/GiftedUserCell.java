@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.tl.TL_stories$TL_boost;
+import org.telegram.tgnet.tl.TL_stories$Boost;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -16,7 +16,7 @@ import org.telegram.ui.Components.LayoutHelper;
 public class GiftedUserCell extends UserCell {
     private FrameLayout badgeLayout;
     private TextView badgeTextView;
-    private TL_stories$TL_boost boost;
+    private TL_stories$Boost boost;
     private CounterDrawable counterDrawable;
     private Drawable giftDrawable;
     private Drawable giveawayDrawable;
@@ -62,7 +62,7 @@ public class GiftedUserCell extends UserCell {
         avatarDrawable.setColor(i2, i3);
     }
 
-    public TL_stories$TL_boost getBoost() {
+    public TL_stories$Boost getBoost() {
         return this.boost;
     }
 
@@ -73,7 +73,7 @@ public class GiftedUserCell extends UserCell {
         }
     }
 
-    public void setStatus(org.telegram.tgnet.tl.TL_stories$TL_boost r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.statistics.GiftedUserCell.setStatus(org.telegram.tgnet.tl.TL_stories$TL_boost):void");
+    public void setStatus(org.telegram.tgnet.tl.TL_stories$Boost r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.boosts.cells.statistics.GiftedUserCell.setStatus(org.telegram.tgnet.tl.TL_stories$Boost):void");
     }
 }

@@ -38,7 +38,7 @@ public class TL_stories$TL_premium_boostsList extends TLObject {
         }
         int readInt322 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt322; i++) {
-            TL_stories$TL_boost TLdeserialize = TL_stories$TL_boost.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TL_stories$Boost TLdeserialize = TL_stories$Boost.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }
@@ -73,7 +73,7 @@ public class TL_stories$TL_premium_boostsList extends TLObject {
         int size = this.boosts.size();
         abstractSerializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
-            ((TL_stories$TL_boost) this.boosts.get(i)).serializeToStream(abstractSerializedData);
+            ((TL_stories$Boost) this.boosts.get(i)).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.next_offset);

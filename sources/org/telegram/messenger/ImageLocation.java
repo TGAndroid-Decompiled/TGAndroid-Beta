@@ -28,6 +28,7 @@ import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.web.WebInstantView;
 
 public class ImageLocation {
     public static final int TYPE_BIG = 0;
@@ -42,6 +43,7 @@ public class ImageLocation {
     public long documentId;
     public byte[] file_reference;
     public int imageType;
+    public WebInstantView.WebPhoto instantFile;
     public byte[] iv;
     public byte[] key;
     public TLRPC$TL_fileLocationToBeDeprecated location;
@@ -131,6 +133,15 @@ public class ImageLocation {
         ImageLocation forPhoto = getForPhoto(tLRPC$VideoSize.location, tLRPC$VideoSize.size, null, tLRPC$Document, null, 1, tLRPC$Document.dc_id, null, tLRPC$VideoSize.type);
         forPhoto.imageType = "f".equals(tLRPC$VideoSize.type) ? 1 : 2;
         return forPhoto;
+    }
+
+    public static ImageLocation getForInstantFile(WebInstantView.WebPhoto webPhoto) {
+        if (webPhoto == null) {
+            return null;
+        }
+        ImageLocation imageLocation = new ImageLocation();
+        imageLocation.instantFile = webPhoto;
+        return imageLocation;
     }
 
     public static ImageLocation getForLocal(TLRPC$FileLocation tLRPC$FileLocation) {
@@ -433,6 +444,10 @@ public class ImageLocation {
         WebFile webFile = this.webFile;
         if (webFile != null) {
             return Utilities.MD5(webFile.url);
+        }
+        WebInstantView.WebPhoto webPhoto = this.instantFile;
+        if (webPhoto != null) {
+            return Utilities.MD5(webPhoto.url);
         }
         TLRPC$Document tLRPC$Document = this.document;
         if (tLRPC$Document == null) {

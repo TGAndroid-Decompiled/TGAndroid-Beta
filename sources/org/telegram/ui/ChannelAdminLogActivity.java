@@ -1181,16 +1181,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         }
 
         @Override
-        public void notifyItemInserted(int i) {
-            updateRows(false);
-            try {
-                super.notifyItemInserted(i);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-
-        @Override
         public void notifyItemMoved(int i, int i2) {
             updateRows(false);
             try {
@@ -1225,16 +1215,6 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             updateRows(false);
             try {
                 super.notifyItemRangeRemoved(i, i2);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-
-        @Override
-        public void notifyItemRemoved(int i) {
-            updateRows(false);
-            try {
-                super.notifyItemRemoved(i);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -2930,7 +2910,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$308();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$307();
                 }
             }
         });

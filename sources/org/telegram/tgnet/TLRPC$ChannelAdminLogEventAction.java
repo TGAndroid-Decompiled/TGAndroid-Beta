@@ -181,6 +181,25 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
             case 1621597305:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleSignatureProfiles();
                 break;
+            case 1684286899:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
+                    public TLRPC$ChannelParticipant new_participant;
+                    public TLRPC$ChannelParticipant prev_participant;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.prev_participant = TLRPC$ChannelParticipant.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.new_participant = TLRPC$ChannelParticipant.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1684286899);
+                        this.prev_participant.serializeToStream(abstractSerializedData2);
+                        this.new_participant.serializeToStream(abstractSerializedData2);
+                    }
+                };
+                break;
             case 1693675004:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleAntiSpam();
                 break;

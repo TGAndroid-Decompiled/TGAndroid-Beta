@@ -9,6 +9,7 @@ public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
     public boolean only_new_subscribers;
     public String prize_description;
     public int quantity;
+    public long stars;
     public int until_date;
     public boolean winners_are_visible;
 
@@ -47,13 +48,18 @@ public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
             this.prize_description = abstractSerializedData.readString(z);
         }
         this.quantity = abstractSerializedData.readInt32(z);
-        this.months = abstractSerializedData.readInt32(z);
+        if ((this.flags & 16) != 0) {
+            this.months = abstractSerializedData.readInt32(z);
+        }
+        if ((this.flags & 32) != 0) {
+            this.stars = abstractSerializedData.readInt64(z);
+        }
         this.until_date = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-626162256);
+        abstractSerializedData.writeInt32(-1442366485);
         int i = this.only_new_subscribers ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.winners_are_visible ? i | 4 : i & (-5);
@@ -77,7 +83,12 @@ public class TLRPC$TL_messageMediaGiveaway extends TLRPC$MessageMedia {
             abstractSerializedData.writeString(this.prize_description);
         }
         abstractSerializedData.writeInt32(this.quantity);
-        abstractSerializedData.writeInt32(this.months);
+        if ((this.flags & 16) != 0) {
+            abstractSerializedData.writeInt32(this.months);
+        }
+        if ((this.flags & 32) != 0) {
+            abstractSerializedData.writeInt64(this.stars);
+        }
         abstractSerializedData.writeInt32(this.until_date);
     }
 }

@@ -59,6 +59,7 @@ import org.telegram.tgnet.TLRPC$TL_documentEmpty;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionGiftCode;
 import org.telegram.tgnet.TLRPC$TL_messageActionGiftStars;
+import org.telegram.tgnet.TLRPC$TL_messageActionPrizeStars;
 import org.telegram.tgnet.TLRPC$TL_messageActionSuggestProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
@@ -346,9 +347,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         CharSequence charSequence;
         CharSequence replaceTags;
         String string;
-        int i;
         CharSequence charSequence2;
+        String str;
+        CharSequence charSequence3;
+        String str2;
         boolean z;
+        String str3;
+        int i;
+        CharSequence charSequence4;
+        int i2;
         String formatString;
         ArrayList arrayList;
         TLRPC$Photo tLRPC$Photo;
@@ -357,22 +364,23 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         String string3;
         CharSequence formatString2;
         TLRPC$MessageMedia tLRPC$MessageMedia;
-        int i2;
+        int i3;
         MessageObject messageObject = this.currentMessageObject;
+        boolean z2 = true;
         if (messageObject != null) {
             charSequence = messageObject.isExpiredStory() ? messageObject.messageOwner.media.user_id != UserConfig.getInstance(this.currentAccount).getClientUserId() ? StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMention", R.string.ExpiredStoryMention, new Object[0]) : StoriesUtilities.createExpiredStoryString(true, "ExpiredStoryMentioned", R.string.ExpiredStoryMentioned, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name) : (this.delegate.getTopicId() == 0 && MessageObject.isTopicActionMessage(messageObject)) ? ForumUtilities.createActionTextWithTopic(MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-messageObject.getDialogId(), MessageObject.getTopicId(this.currentAccount, messageObject.messageOwner, true)), messageObject) : null;
             if (charSequence == null) {
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
                 if (tLRPC$Message != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && tLRPC$MessageMedia.ttl_seconds != 0) {
                     if (tLRPC$MessageMedia.photo != null) {
-                        i2 = R.string.AttachPhotoExpired;
+                        i3 = R.string.AttachPhotoExpired;
                     } else {
                         TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
                         if ((tLRPC$Document instanceof TLRPC$TL_documentEmpty) || ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && tLRPC$Document == null)) {
-                            i2 = tLRPC$MessageMedia.voice ? R.string.AttachVoiceExpired : tLRPC$MessageMedia.round ? R.string.AttachRoundExpired : R.string.AttachVideoExpired;
+                            i3 = tLRPC$MessageMedia.voice ? R.string.AttachVoiceExpired : tLRPC$MessageMedia.round ? R.string.AttachRoundExpired : R.string.AttachVideoExpired;
                         }
                     }
-                    charSequence = LocaleController.getString(i2);
+                    charSequence = LocaleController.getString(i3);
                 }
                 charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
             }
@@ -381,82 +389,101 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         }
         createLayout(charSequence, this.previousWidth);
         if (messageObject != null) {
-            int i3 = messageObject.type;
-            if (i3 == 11) {
+            int i4 = messageObject.type;
+            if (i4 == 11) {
                 float dp = this.textHeight + AndroidUtilities.dp(19.0f);
                 float f = AndroidUtilities.roundMessageSize;
                 this.imageReceiver.setImageCoords((this.previousWidth - AndroidUtilities.roundMessageSize) / 2.0f, dp, f, f);
                 return;
             }
-            if (i3 == 25) {
+            if (i4 == 25) {
                 createGiftPremiumChannelLayouts();
                 return;
             }
-            if (i3 == 30) {
-                TLRPC$TL_messageActionGiftStars tLRPC$TL_messageActionGiftStars = (TLRPC$TL_messageActionGiftStars) messageObject.messageOwner.action;
+            if (i4 == 30) {
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.currentMessageObject.getDialogId()));
-                string3 = LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) tLRPC$TL_messageActionGiftStars.stars);
-                formatString2 = AndroidUtilities.replaceTags(this.currentMessageObject.isOutOwner() ? LocaleController.formatString(R.string.ActionGiftStarsSubtitle, UserObject.getForcedFirstName(user)) : LocaleController.getString(R.string.ActionGiftStarsSubtitleYou));
-                string2 = LocaleController.getString(R.string.ActionGiftStarsView);
-            } else {
-                if (i3 != 18) {
-                    if (i3 == 21) {
-                        TLRPC$TL_messageActionSuggestProfilePhoto tLRPC$TL_messageActionSuggestProfilePhoto = (TLRPC$TL_messageActionSuggestProfilePhoto) messageObject.messageOwner.action;
-                        TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
-                        boolean z2 = tLRPC$TL_messageActionSuggestProfilePhoto.video || !((tLRPC$Photo = tLRPC$TL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = tLRPC$Photo.video_sizes) == null || arrayList2.isEmpty());
-                        if (user2.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                            TLRPC$User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId()));
-                            formatString = z2 ? LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user3.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user3.first_name);
-                        } else {
-                            formatString = z2 ? LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user2.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user2.first_name);
-                        }
-                        createGiftPremiumLayouts(null, formatString, LocaleController.getString((tLRPC$TL_messageActionSuggestProfilePhoto.video || !((arrayList = tLRPC$TL_messageActionSuggestProfilePhoto.photo.video_sizes) == null || arrayList.isEmpty())) ? R.string.ViewVideoAction : R.string.ViewPhotoAction), this.giftRectSize, true);
-                    } else {
-                        if (i3 == 22) {
-                            TLRPC$User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
-                            if (messageObject.getDialogId() >= 0) {
-                                if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
-                                    replaceTags = messageObject.messageText;
-                                    string = LocaleController.getString(R.string.RemoveWallpaperAction);
-                                    z = false;
-                                    i = this.giftRectSize;
-                                    charSequence2 = null;
-                                } else if (user4 == null || user4.id != UserConfig.getInstance(this.currentAccount).clientUserId) {
-                                    replaceTags = messageObject.messageText;
-                                    string = LocaleController.getString(R.string.ViewWallpaperAction);
-                                    z = true;
-                                    i = this.giftRectSize;
-                                    charSequence2 = null;
-                                }
-                            }
-                            replaceTags = messageObject.messageText;
-                            string = null;
-                            z = true;
-                            i = this.giftRectSize;
-                            charSequence2 = null;
-                        } else {
-                            if (!messageObject.isStoryMention()) {
-                                return;
-                            }
-                            TLRPC$User user5 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
-                            replaceTags = AndroidUtilities.replaceTags(user5.self ? LocaleController.formatString("StoryYouMentionedTitle", R.string.StoryYouMentionedTitle, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name) : LocaleController.formatString("StoryMentionedTitle", R.string.StoryMentionedTitle, user5.first_name));
-                            string = LocaleController.getString(R.string.StoryMentionedAction);
-                            i = this.giftRectSize;
-                            charSequence2 = null;
-                            z = true;
-                        }
-                        createGiftPremiumLayouts(charSequence2, replaceTags, string, i, z);
-                    }
-                    this.textLayout = null;
-                    this.textHeight = 0;
-                    this.textY = 0;
+                TLRPC$MessageAction tLRPC$MessageAction = messageObject.messageOwner.action;
+                if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
+                    string3 = LocaleController.formatPluralStringComma("ActionGiftStarsTitle", (int) ((TLRPC$TL_messageActionGiftStars) tLRPC$MessageAction).stars);
+                    formatString2 = AndroidUtilities.replaceTags(this.currentMessageObject.isOutOwner() ? LocaleController.formatString(R.string.ActionGiftStarsSubtitle, UserObject.getForcedFirstName(user)) : LocaleController.getString(R.string.ActionGiftStarsSubtitleYou));
+                    string2 = LocaleController.getString(R.string.ActionGiftStarsView);
+                    createGiftPremiumLayouts(string3, formatString2, string2, this.giftRectSize, true);
                     return;
                 }
-                string2 = LocaleController.getString((!isGiftCode() || isSelfGiftCode()) ? R.string.ActionGiftPremiumView : R.string.GiftPremiumUseGiftBtn);
-                string3 = LocaleController.getString(R.string.ActionGiftPremiumTitle);
-                formatString2 = LocaleController.formatString(R.string.ActionGiftPremiumSubtitle, LocaleController.formatPluralString("Months", messageObject.messageOwner.action.months, new Object[0]));
+                long j = ((TLRPC$TL_messageActionPrizeStars) tLRPC$MessageAction).stars;
+                String string4 = LocaleController.getString(R.string.ActionStarGiveawayPrizeTitle);
+                CharSequence charSequence5 = this.currentMessageObject.messageText;
+                String string5 = LocaleController.getString(R.string.ActionGiftStarsView);
+                i2 = this.giftRectSize;
+                str3 = string4;
+                charSequence3 = charSequence5;
+                str2 = string5;
+                i = i2;
+                z = true;
+            } else {
+                if (i4 == 18) {
+                    string2 = LocaleController.getString((!isGiftCode() || isSelfGiftCode()) ? R.string.ActionGiftPremiumView : R.string.GiftPremiumUseGiftBtn);
+                    string3 = LocaleController.getString(R.string.ActionGiftPremiumTitle);
+                    formatString2 = LocaleController.formatString(R.string.ActionGiftPremiumSubtitle, LocaleController.formatPluralString("Months", messageObject.messageOwner.action.months, new Object[0]));
+                    createGiftPremiumLayouts(string3, formatString2, string2, this.giftRectSize, true);
+                    return;
+                }
+                if (i4 == 21) {
+                    TLRPC$TL_messageActionSuggestProfilePhoto tLRPC$TL_messageActionSuggestProfilePhoto = (TLRPC$TL_messageActionSuggestProfilePhoto) messageObject.messageOwner.action;
+                    TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
+                    boolean z3 = tLRPC$TL_messageActionSuggestProfilePhoto.video || !((tLRPC$Photo = tLRPC$TL_messageActionSuggestProfilePhoto.photo) == null || (arrayList2 = tLRPC$Photo.video_sizes) == null || arrayList2.isEmpty());
+                    if (user2.id == UserConfig.getInstance(this.currentAccount).clientUserId) {
+                        TLRPC$User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId()));
+                        formatString = z3 ? LocaleController.formatString(R.string.ActionSuggestVideoFromYouDescription, user3.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoFromYouDescription, user3.first_name);
+                    } else {
+                        formatString = z3 ? LocaleController.formatString(R.string.ActionSuggestVideoToYouDescription, user2.first_name) : LocaleController.formatString(R.string.ActionSuggestPhotoToYouDescription, user2.first_name);
+                    }
+                    replaceTags = formatString;
+                    string = LocaleController.getString((tLRPC$TL_messageActionSuggestProfilePhoto.video || !((arrayList = tLRPC$TL_messageActionSuggestProfilePhoto.photo.video_sizes) == null || arrayList.isEmpty())) ? R.string.ViewVideoAction : R.string.ViewPhotoAction);
+                } else if (i4 == 22) {
+                    TLRPC$User user4 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.isOutOwner() ? 0L : messageObject.getDialogId()));
+                    if (messageObject.getDialogId() >= 0) {
+                        if (!messageObject.isOutOwner() && messageObject.isWallpaperForBoth() && messageObject.isCurrentWallpaper()) {
+                            charSequence4 = messageObject.messageText;
+                            str = LocaleController.getString(R.string.RemoveWallpaperAction);
+                            z2 = false;
+                        } else if (user4 == null || user4.id != UserConfig.getInstance(this.currentAccount).clientUserId) {
+                            charSequence4 = messageObject.messageText;
+                            str = LocaleController.getString(R.string.ViewWallpaperAction);
+                        }
+                        charSequence2 = charSequence4;
+                        charSequence3 = charSequence2;
+                        str2 = str;
+                        z = z2;
+                        str3 = null;
+                        i = this.giftRectSize;
+                    }
+                    charSequence2 = messageObject.messageText;
+                    str = null;
+                    charSequence3 = charSequence2;
+                    str2 = str;
+                    z = z2;
+                    str3 = null;
+                    i = this.giftRectSize;
+                } else {
+                    if (!messageObject.isStoryMention()) {
+                        return;
+                    }
+                    TLRPC$User user5 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
+                    replaceTags = AndroidUtilities.replaceTags(user5.self ? LocaleController.formatString("StoryYouMentionedTitle", R.string.StoryYouMentionedTitle, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.getDialogId())).first_name) : LocaleController.formatString("StoryMentionedTitle", R.string.StoryMentionedTitle, user5.first_name));
+                    string = LocaleController.getString(R.string.StoryMentionedAction);
+                }
+                i2 = this.giftRectSize;
+                charSequence3 = replaceTags;
+                str2 = string;
+                str3 = null;
+                i = i2;
+                z = true;
             }
-            createGiftPremiumLayouts(string3, formatString2, string2, this.giftRectSize, true);
+            createGiftPremiumLayouts(str3, charSequence3, str2, i, z);
+            this.textLayout = null;
+            this.textHeight = 0;
+            this.textY = 0;
         }
     }
 
@@ -802,13 +829,23 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private void openStarsGiftTransaction() {
         TLRPC$Message tLRPC$Message;
         MessageObject messageObject = this.currentMessageObject;
-        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || !(tLRPC$Message.action instanceof TLRPC$TL_messageActionGiftStars)) {
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return;
         }
-        Context context = getContext();
-        int i = this.currentAccount;
-        TLRPC$Message tLRPC$Message2 = this.currentMessageObject.messageOwner;
-        StarsIntroActivity.showTransactionSheet(context, i, tLRPC$Message2.date, tLRPC$Message2.from_id, tLRPC$Message2.peer_id, (TLRPC$TL_messageActionGiftStars) tLRPC$Message2.action, this.avatarStoryParams.resourcesProvider);
+        TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
+        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionGiftStars) {
+            Context context = getContext();
+            int i = this.currentAccount;
+            TLRPC$Message tLRPC$Message2 = this.currentMessageObject.messageOwner;
+            StarsIntroActivity.showTransactionSheet(context, i, tLRPC$Message2.date, tLRPC$Message2.from_id, tLRPC$Message2.peer_id, (TLRPC$TL_messageActionGiftStars) tLRPC$Message2.action, this.avatarStoryParams.resourcesProvider);
+            return;
+        }
+        if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPrizeStars) {
+            Context context2 = getContext();
+            int i2 = this.currentAccount;
+            TLRPC$Message tLRPC$Message3 = this.currentMessageObject.messageOwner;
+            StarsIntroActivity.showTransactionSheet(context2, i2, tLRPC$Message3.date, tLRPC$Message3.from_id, tLRPC$Message3.peer_id, (TLRPC$TL_messageActionPrizeStars) tLRPC$Message3.action, this.avatarStoryParams.resourcesProvider);
+        }
     }
 
     private void setStarsPaused(boolean z) {
