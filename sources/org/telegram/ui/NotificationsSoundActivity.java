@@ -295,7 +295,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     NotificationsSoundActivity.this.hideActionMode();
                     return;
                 } else {
-                    NotificationsSoundActivity.this.lambda$onBackPressed$306();
+                    NotificationsSoundActivity.this.lambda$onBackPressed$308();
                     return;
                 }
             }
@@ -657,7 +657,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 toneCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 view = toneCell;
             } else if (i == 2) {
-                CreationTextCell creationTextCell = new CreationTextCell(context, NotificationsSoundActivity.this.resourcesProvider);
+                CreationTextCell creationTextCell = new CreationTextCell(context, 70, NotificationsSoundActivity.this.resourcesProvider);
                 creationTextCell.startPadding = 61;
                 creationTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 view = creationTextCell;

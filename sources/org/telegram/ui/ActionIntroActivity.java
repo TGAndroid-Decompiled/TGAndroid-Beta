@@ -95,7 +95,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 @Override
                 public void onItemClick(int i3) {
                     if (i3 == -1) {
-                        ActionIntroActivity.this.lambda$onBackPressed$306();
+                        ActionIntroActivity.this.lambda$onBackPressed$308();
                     }
                 }
             });

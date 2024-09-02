@@ -67,14 +67,8 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
     }
 
     public void searchStories(String str, boolean z) {
-        if (str.startsWith("$")) {
-            str = "";
-        }
-        if (str.startsWith("#")) {
-            str = str.substring(1);
-        }
         StoriesController.SearchStoriesList searchStoriesList = this.storiesList;
-        if (TextUtils.equals(searchStoriesList != null ? searchStoriesList.query : "", str)) {
+        if (TextUtils.equals(searchStoriesList == null ? "" : searchStoriesList.query, str)) {
             return;
         }
         boolean z2 = this.containsStories;

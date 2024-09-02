@@ -987,7 +987,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChannelAdminLogActivity.this.lambda$onBackPressed$306();
+                    ChannelAdminLogActivity.this.lambda$onBackPressed$308();
                 }
             }
         });
@@ -2607,8 +2607,13 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
             }
 
             @Override
-            public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
-                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, tLRPC$ReactionCount, z);
+            public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, float f, float f2) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell, tLRPC$ReactionCount, z, f, f2);
+            }
+
+            @Override
+            public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell) {
+                ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell);
             }
 
             @Override
@@ -2926,14 +2931,14 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
                     if (longValue > 0) {
                         TLRPC$User user = MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getUser(Long.valueOf(longValue));
                         if (user != null) {
-                            MessagesController.openChatOrProfileWith(user, null, ChannelAdminLogActivity.this, 0, false);
+                            MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).openChatOrProfileWith(user, null, ChannelAdminLogActivity.this, 0, false);
                             return;
                         }
                         return;
                     }
                     TLRPC$Chat chat = MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).getChat(Long.valueOf(-longValue));
                     if (chat != null) {
-                        MessagesController.openChatOrProfileWith(null, chat, ChannelAdminLogActivity.this, 0, false);
+                        MessagesController.getInstance(((BaseFragment) ChannelAdminLogActivity.this).currentAccount).openChatOrProfileWith(null, chat, ChannelAdminLogActivity.this, 0, false);
                         return;
                     }
                     return;

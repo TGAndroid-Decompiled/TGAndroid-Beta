@@ -47,7 +47,7 @@ public class UpdateLayout extends IUpdateLayout {
         }
         float longValue = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
         this.updateLayoutIcon.setProgress(longValue, true);
-        this.updateTextView.setText(LocaleController.formatString("AppUpdateDownloading", 2131690062, Integer.valueOf((int) (longValue * 100.0f))));
+        this.updateTextView.setText(LocaleController.formatString("AppUpdateDownloading", 2131690064, Integer.valueOf((int) (longValue * 100.0f))));
     }
 
     public void createUpdateUI(final int i) {
@@ -107,7 +107,7 @@ public class UpdateLayout extends IUpdateLayout {
         this.updateTextView = simpleTextView;
         simpleTextView.setTextSize(15);
         this.updateTextView.setTypeface(AndroidUtilities.bold());
-        this.updateTextView.setText(LocaleController.getString("AppUpdate", 2131690059));
+        this.updateTextView.setText(LocaleController.getString("AppUpdate", 2131690061));
         this.updateTextView.setTextColor(-1);
         this.updateTextView.setGravity(3);
         this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));

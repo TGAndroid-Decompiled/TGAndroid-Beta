@@ -104,7 +104,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 header = new HeaderCell(SMSStatsActivity.this.getContext());
             } else {
                 header = new TextInfoPrivacyCell(SMSStatsActivity.this.getContext());
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(SMSStatsActivity.this.getContext(), 2131231086, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ((BaseFragment) SMSStatsActivity.this).resourceProvider)), 0, 0);
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(SMSStatsActivity.this.getContext(), 2131231090, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ((BaseFragment) SMSStatsActivity.this).resourceProvider)), 0, 0);
                 combinedDrawable.setFullsize(true);
                 header.setBackground(combinedDrawable);
             }
@@ -323,19 +323,19 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
         this.items.add(new Item(0));
         this.items.add(new Item(1));
         this.items.add(Item.asShadow(null));
-        this.items.add(Item.asButton(1, 2131231338, LocaleController.getString(2131696945)));
-        this.items.add(Item.asButton(2, 2131231349, LocaleController.getString(2131696918)));
+        this.items.add(Item.asButton(1, 2131231343, LocaleController.getString(2131696966)));
+        this.items.add(Item.asButton(2, 2131231354, LocaleController.getString(2131696939)));
         if (state == 3 && !SMSJobController.getInstance(this.currentAccount).journal.isEmpty()) {
-            this.items.add(Item.asButton(5, 2131231367, LocaleController.getString(2131696891)).setError(SMSJobController.getInstance(this.currentAccount).hasError()));
+            this.items.add(Item.asButton(5, 2131231372, LocaleController.getString(2131696912)).setError(SMSJobController.getInstance(this.currentAccount).hasError()));
         }
         if (state == 3 && ((simsCount = SMSJobController.getInstance(this.currentAccount).simsCount()) > 1 || (simsCount == 1 && Build.VERSION.SDK_INT < 22))) {
-            this.items.add(Item.asButton(4, 2131231371, LocaleController.getString(2131696879)));
+            this.items.add(Item.asButton(4, 2131231376, LocaleController.getString(2131696900)));
         }
         this.items.add(Item.asShadow(null));
-        this.items.add(Item.asSwitch(3, LocaleController.getString(2131696881)));
-        this.items.add(Item.asShadow(LocaleController.getString(2131696884)));
+        this.items.add(Item.asSwitch(3, LocaleController.getString(2131696902)));
+        this.items.add(Item.asShadow(LocaleController.getString(2131696905)));
         if (state != 0) {
-            this.items.add(Item.asButton(6, 0, LocaleController.getString(2131696885)).makeRed());
+            this.items.add(Item.asButton(6, 0, LocaleController.getString(2131696906)).makeRed());
         }
         this.items.add(Item.asShadow(null));
         AdapterWithDiffUtils adapterWithDiffUtils = this.adapter;
@@ -417,12 +417,12 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             return;
         }
         if (i2 == 6) {
-            AlertDialog create = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696887)).setMessage(LocaleController.getString(2131696886)).setPositiveButton(LocaleController.getString(2131698425), new DialogInterface.OnClickListener() {
+            AlertDialog create = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696908)).setMessage(LocaleController.getString(2131696907)).setPositiveButton(LocaleController.getString(2131698522), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
                     SMSStatsActivity.this.lambda$createView$4(dialogInterface, i3);
                 }
-            }).setNegativeButton(LocaleController.getString(2131690423), null).setDimAlpha(0.5f).create();
+            }).setNegativeButton(LocaleController.getString(2131690426), null).setDimAlpha(0.5f).create();
             showDialog(create);
             ((TextView) create.getButton(-1)).setTextColor(getThemedColor(Theme.key_text_RedBold));
             return;
@@ -441,7 +441,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 return;
             }
             final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString(2131696920));
+            builder.setTitle(LocaleController.getString(2131696941));
             LinearLayout linearLayout = new LinearLayout(getParentActivity());
             linearLayout.setOrientation(1);
             builder.setView(linearLayout);
@@ -470,7 +470,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                     });
                 }
             }
-            builder.setNegativeButton(LocaleController.getString("Cancel", 2131691365), null);
+            builder.setNegativeButton(LocaleController.getString("Cancel", 2131691370), null);
             showDialog(builder.create());
         } catch (Exception e) {
             FileLog.e(e);
@@ -481,7 +481,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
         SMSJobController.getInstance(this.currentAccount).checkSelectedSIMCard();
         if (SMSJobController.getInstance(this.currentAccount).getSelectedSIM() == null) {
             SMSJobController.getInstance(this.currentAccount).setState(2);
-            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696906)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696905))).setPositiveButton(LocaleController.getString(2131694845), null).show();
+            new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696927)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696926))).setPositiveButton(LocaleController.getString(2131694867), null).show();
         } else {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
                 @Override
@@ -507,7 +507,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
             return;
         }
         SMSJobController.getInstance(this.currentAccount).setState(3);
@@ -517,7 +517,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
     }
 
     public void lambda$createView$4(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
         if (SMSJobController.getInstance(this.currentAccount).getState() == 3) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -541,7 +541,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
     }
 
     private void updateHeader() {
-        LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), 2131231615, 0, 0, this.resourceProvider);
+        LimitPreviewView limitPreviewView = new LimitPreviewView(getContext(), 2131231620, 0, 0, this.resourceProvider);
         this.limitPreviewView = limitPreviewView;
         limitPreviewView.isStatistic = true;
         limitPreviewView.setDarkGradientProvider(new LimitPreviewView.DarkGradientProvider() {
@@ -561,10 +561,10 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
         textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(30.0f), Theme.multAlpha(-1, 0.2f)));
         this.errorChipTextView.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f));
         this.errorChipTextView.setTextColor(-1);
-        this.errorChipTextView.setText(LocaleController.getString(2131696880));
+        this.errorChipTextView.setText(LocaleController.getString(2131696901));
         this.errorChipTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         this.errorChipTextView.setGravity(17);
-        Drawable mutate = getContext().getResources().getDrawable(2131231244).mutate();
+        Drawable mutate = getContext().getResources().getDrawable(2131231249).mutate();
         mutate.setBounds(0, 0, mutate.getIntrinsicWidth(), mutate.getIntrinsicHeight());
         mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         this.errorChipTextView.setCompoundDrawables(mutate, null, null, null);
@@ -642,18 +642,18 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
         }
         if (state == 2) {
             SMSJobController.getInstance(this.currentAccount).checkSelectedSIMCard();
-            configureHeader(LocaleController.getString(2131696929), LocaleController.getString(2131696930), this.aboveTitleView, this.underTitleView);
+            configureHeader(LocaleController.getString(2131696950), LocaleController.getString(2131696951), this.aboveTitleView, this.underTitleView);
             return;
         }
         if (state != 1) {
             if (tL_smsjobs$TL_smsjobs_status != null && i2 >= i2 + i) {
-                configureHeader(LocaleController.formatString(2131696923, Integer.valueOf(i2)), AndroidUtilities.replaceTags(LocaleController.getString(2131696924)), this.aboveTitleView, this.underTitleView);
+                configureHeader(LocaleController.formatString(2131696944, Integer.valueOf(i2)), AndroidUtilities.replaceTags(LocaleController.getString(2131696945)), this.aboveTitleView, this.underTitleView);
                 return;
             } else if (i2 == 0) {
-                configureHeader(LocaleController.getString(2131696925), AndroidUtilities.replaceTags(LocaleController.getString(2131696926)), this.aboveTitleView, this.underTitleView);
+                configureHeader(LocaleController.getString(2131696946), AndroidUtilities.replaceTags(LocaleController.getString(2131696947)), this.aboveTitleView, this.underTitleView);
                 return;
             } else {
-                configureHeader(LocaleController.formatString(2131696931, Integer.valueOf(i2), Integer.valueOf(i2 + i)), AndroidUtilities.replaceTags(LocaleController.formatPluralString("SmsStatusSendingSubtitle", i, new Object[0])), this.aboveTitleView, this.underTitleView);
+                configureHeader(LocaleController.formatString(2131696952, Integer.valueOf(i2), Integer.valueOf(i2 + i)), AndroidUtilities.replaceTags(LocaleController.formatPluralString("SmsStatusSendingSubtitle", i, new Object[0])), this.aboveTitleView, this.underTitleView);
                 return;
             }
         }
@@ -662,7 +662,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             if (SMSJobController.getInstance(this.currentAccount).getSelectedSIM() == null) {
                 SMSJobController.getInstance(this.currentAccount).setState(2);
                 update(true);
-                new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696906)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696905))).setPositiveButton(LocaleController.getString(2131694845), null).show();
+                new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(2131696927)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696926))).setPositiveButton(LocaleController.getString(2131694867), null).show();
                 return;
             }
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
@@ -672,7 +672,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 }
             });
         }
-        configureHeader(LocaleController.getString(2131696927), LocaleController.getString(2131696928), this.aboveTitleView, this.underTitleView);
+        configureHeader(LocaleController.getString(2131696948), LocaleController.getString(2131696949), this.aboveTitleView, this.underTitleView);
     }
 
     public void lambda$update$9(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -690,7 +690,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
             return;
         }
         SMSJobController.getInstance(this.currentAccount).setState(3);
@@ -747,7 +747,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             int i2 = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i2));
             textView.setTypeface(AndroidUtilities.bold());
-            textView.setText(LocaleController.getString(2131696909));
+            textView.setText(LocaleController.getString(2131696930));
             addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
@@ -768,7 +768,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             textView2.setTextSize(1, 13.0f);
             int i3 = Theme.key_windowBackgroundWhiteGrayText4;
             textView2.setTextColor(Theme.getColor(i3));
-            textView2.setText(LocaleController.getString(2131696946));
+            textView2.setText(LocaleController.getString(2131696967));
             linearLayout2.addView(textView2, LayoutHelper.createLinear(-1, -2, 4.0f, 0.0f, 4.0f, 0.0f));
             AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true);
             this.sentSinceDateTextView = animatedTextView2;
@@ -780,7 +780,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             this.sentSinceTitleView = textView3;
             textView3.setTextSize(1, 13.0f);
             textView3.setTextColor(Theme.getColor(i3));
-            textView3.setText(LocaleController.getString(2131696921));
+            textView3.setText(LocaleController.getString(2131696942));
             linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2, 4.0f, 0.0f, 4.0f, 0.0f));
             LinearLayout linearLayout4 = new LinearLayout(context);
             linearLayout4.setOrientation(0);
@@ -801,7 +801,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             TextView textView4 = new TextView(context);
             textView4.setTextSize(1, 13.0f);
             textView4.setTextColor(Theme.getColor(i3));
-            textView4.setText(LocaleController.getString(2131696919));
+            textView4.setText(LocaleController.getString(2131696940));
             linearLayout5.addView(textView4, LayoutHelper.createLinear(-1, -2, 4.0f, 0.0f, 4.0f, 0.0f));
             AnimatedTextView animatedTextView4 = new AnimatedTextView(context, false, true, true);
             this.giftSinceDateTextView = animatedTextView4;
@@ -815,7 +815,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, ((BaseFragment) SMSStatsActivity.this).resourceProvider));
             linksTextView.setTextSize(1, 13.0f);
             linksTextView.setTextColor(Theme.getColor(i3));
-            linksTextView.setText(LocaleController.getString(2131696904));
+            linksTextView.setText(LocaleController.getString(2131696925));
             linearLayout6.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 0.0f));
             update(false);
         }
@@ -844,7 +844,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
             animatedTextView.setText(sb.toString(), z);
             this.smsRemainingTextView.setText("" + i, z);
             if (tL_smsjobs$TL_smsjobs_status == null) {
-                this.sentSinceDateTextView.setText(LocaleController.getString(2131694577), z);
+                this.sentSinceDateTextView.setText(LocaleController.getString(2131694599), z);
             } else {
                 String formatDateAudio = LocaleController.formatDateAudio(tL_smsjobs$TL_smsjobs_status.total_since, false);
                 if (formatDateAudio.length() > 0) {
@@ -852,7 +852,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 }
                 this.sentSinceDateTextView.setText(formatDateAudio, z);
             }
-            this.sentSinceTitleView.setText(LocaleController.getString(2131696922));
+            this.sentSinceTitleView.setText(LocaleController.getString(2131696943));
             if (tL_smsjobs$TL_smsjobs_status != null && tL_smsjobs$TL_smsjobs_status.last_gift_slug != null) {
                 String formatDateAudio2 = LocaleController.formatDateAudio(tL_smsjobs$TL_smsjobs_status.recent_since, false);
                 if (formatDateAudio2.length() > 0) {
@@ -860,9 +860,9 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 }
                 this.giftSinceDateTextView.setText(formatDateAudio2, z);
             } else {
-                this.giftSinceDateTextView.setText(LocaleController.getString(2131694577), z);
+                this.giftSinceDateTextView.setText(LocaleController.getString(2131694599), z);
             }
-            SpannableString spannableString = new SpannableString(LocaleController.getString(2131696904));
+            SpannableString spannableString = new SpannableString(LocaleController.getString(2131696925));
             if (tL_smsjobs$TL_smsjobs_status != null && tL_smsjobs$TL_smsjobs_status.last_gift_slug != null) {
                 spannableString.setSpan(new URLSpan(str) {
                     @Override
@@ -890,7 +890,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 setOrientation(1);
                 ImageView imageView = new ImageView(context);
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setImageResource(2131231229);
+                imageView.setImageResource(2131231234);
                 imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton)));
                 addView(imageView, LayoutHelper.createLinear(80, 80, 1, 0, 24, 0, 12));
@@ -901,14 +901,14 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 int i = Theme.key_dialogTextBlack;
                 textView.setTextColor(Theme.getColor(i));
                 textView.setTypeface(AndroidUtilities.bold());
-                textView.setText(LocaleController.getString(2131696898));
+                textView.setText(LocaleController.getString(2131696919));
                 addView(textView, LayoutHelper.createLinear(-1, -2, 1, 50, 0, 50, 6));
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 14.0f);
                 textView2.setGravity(17);
                 textView2.setTextAlignment(4);
                 textView2.setTextColor(Theme.getColor(i));
-                textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131696897)));
+                textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(2131696918)));
                 textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
                 addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 50, 0, 50, 20));
             }
@@ -935,7 +935,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 TextView textView = new TextView(context);
                 textView.setGravity(16);
                 textView.setTypeface(AndroidUtilities.bold());
-                textView.setText(LocaleController.getString(2131696892));
+                textView.setText(LocaleController.getString(2131696913));
                 int i = Theme.key_dialogTextBlack;
                 textView.setTextColor(Theme.getColor(i));
                 textView.setTextSize(1, 14.0f);
@@ -944,7 +944,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 TextView textView2 = new TextView(context);
                 textView2.setGravity(16);
                 textView2.setTypeface(AndroidUtilities.bold());
-                textView2.setText(LocaleController.getString(2131696893));
+                textView2.setText(LocaleController.getString(2131696914));
                 textView2.setTextColor(Theme.getColor(i));
                 textView2.setTextSize(1, 14.0f);
                 textView2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(13.0f), 0);
@@ -1058,17 +1058,17 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                 }
                 if (jobEntry.state == 1) {
                     this.statusTextView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageOrange));
-                    this.statusTextView.setText(LocaleController.getString(2131696895));
+                    this.statusTextView.setText(LocaleController.getString(2131696916));
                     this.errorTextView.setVisibility(8);
                     this.errorDescriptionTextView.setVisibility(8);
                 } else if (TextUtils.isEmpty(jobEntry.error)) {
                     this.statusTextView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageGreen));
-                    this.statusTextView.setText(LocaleController.getString(2131696896));
+                    this.statusTextView.setText(LocaleController.getString(2131696917));
                     this.errorTextView.setVisibility(8);
                     this.errorDescriptionTextView.setVisibility(8);
                 } else {
                     this.statusTextView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
-                    this.statusTextView.setText(LocaleController.getString(2131696894));
+                    this.statusTextView.setText(LocaleController.getString(2131696915));
                     this.errorTextView.setVisibility(0);
                     this.errorTextView.setText(jobEntry.error);
                     String string = LocaleController.getString("SmsDescr" + jobEntry.error);
@@ -1125,7 +1125,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
                     SMSStatsActivity.SMSHistorySheet.this.lambda$new$0(view);
                 }
             });
-            buttonWithCounterView.setText(LocaleController.getString(2131691875), false);
+            buttonWithCounterView.setText(LocaleController.getString(2131691888), false);
             frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
             View view = new View(getContext());
             view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
@@ -1145,7 +1145,7 @@ public class SMSStatsActivity extends GradientHeaderActivity implements Notifica
 
         @Override
         protected CharSequence getTitle() {
-            return LocaleController.getString(2131696898);
+            return LocaleController.getString(2131696919);
         }
 
         @Override

@@ -816,7 +816,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             }
         }
         if (this.needFinishFragment) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
         }
     }
 

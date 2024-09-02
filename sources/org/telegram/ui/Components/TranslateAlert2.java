@@ -93,7 +93,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     private String toLanguage;
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

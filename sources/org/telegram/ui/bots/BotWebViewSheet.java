@@ -10,9 +10,12 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -82,6 +85,7 @@ import org.telegram.tgnet.TLRPC$TL_simpleWebViewResultUrl;
 import org.telegram.tgnet.TLRPC$TL_updates;
 import org.telegram.tgnet.TLRPC$TL_webViewResultUrl;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -174,6 +178,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     private boolean silent;
     private SpringAnimation springAnimation;
     private ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer swipeContainer;
+    Drawable verifiedDrawable;
     private Boolean wasLightStatusBar;
     private BotWebViewContainer webViewContainer;
     private WindowView windowView;
@@ -406,7 +411,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.fullsize = null;
         this.resourcesProvider = resourcesProvider;
         this.lineColor = Theme.getColor(Theme.key_sheet_scrollUp);
-        this.swipeContainer = new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer(context) {
+        ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer(context) {
             @Override
             protected void onMeasure(int r5, int r6) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bots.BotWebViewSheet.AnonymousClass1.onMeasure(int, int):void");
@@ -420,6 +425,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 super.requestLayout();
             }
         };
+        this.swipeContainer = webViewSwipeContainer;
+        webViewSwipeContainer.setAllowFullSizeSwipe(true);
+        this.swipeContainer.setShouldWaitWebViewScroll(true);
         int i = Theme.key_windowBackgroundWhite;
         BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, resourcesProvider, getColor(i), true) {
             @Override
@@ -1064,6 +1072,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public void requestWebView(BaseFragment baseFragment, WebViewRequestProps webViewRequestProps) {
+        TLRPC$User tLRPC$User;
         TLRPC$InputPeer inputPeer;
         TLRPC$InputPeer inputPeer2;
         this.requestProps = webViewRequestProps;
@@ -1074,7 +1083,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.replyToMsgId = webViewRequestProps.replyToMsgId;
         this.silent = webViewRequestProps.silent;
         this.buttonText = webViewRequestProps.buttonText;
-        CharSequence userName = UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(this.botId)));
+        TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(this.botId));
+        CharSequence userName = UserObject.getUserName(user);
         try {
             TextPaint textPaint = new TextPaint();
             textPaint.setTextSize(AndroidUtilities.dp(20.0f));
@@ -1082,6 +1092,48 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         } catch (Exception unused) {
         }
         this.actionBar.setTitle(userName);
+        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.botId);
+        if ((user != null && user.verified) || (userFull != null && (tLRPC$User = userFull.user) != null && tLRPC$User.verified)) {
+            Drawable mutate = getContext().getResources().getDrawable(R.drawable.verified_profile).mutate();
+            this.verifiedDrawable = mutate;
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.SRC_IN));
+            this.actionBar.getTitleTextView().setDrawablePadding(AndroidUtilities.dp(2.0f));
+            this.actionBar.getTitleTextView().setRightDrawable(new Drawable() {
+                @Override
+                public int getOpacity() {
+                    return -2;
+                }
+
+                @Override
+                public void draw(Canvas canvas) {
+                    canvas.save();
+                    canvas.translate(0.0f, AndroidUtilities.dp(1.0f));
+                    BotWebViewSheet.this.verifiedDrawable.setBounds(getBounds());
+                    BotWebViewSheet.this.verifiedDrawable.draw(canvas);
+                    canvas.restore();
+                }
+
+                @Override
+                public void setAlpha(int i2) {
+                    BotWebViewSheet.this.verifiedDrawable.setAlpha(i2);
+                }
+
+                @Override
+                public void setColorFilter(ColorFilter colorFilter) {
+                    BotWebViewSheet.this.verifiedDrawable.setColorFilter(colorFilter);
+                }
+
+                @Override
+                public int getIntrinsicHeight() {
+                    return AndroidUtilities.dp(20.0f);
+                }
+
+                @Override
+                public int getIntrinsicWidth() {
+                    return AndroidUtilities.dp(20.0f);
+                }
+            });
+        }
         ActionBarMenu createMenu = this.actionBar.createMenu();
         createMenu.removeAllViews();
         TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = null;
@@ -1110,7 +1162,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu)) {
             addItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass10());
+        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass11());
         JSONObject makeThemeParams = makeThemeParams(this.resourcesProvider);
         this.webViewContainer.setBotUser(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
         this.webViewContainer.loadFlickerAndSettingsItem(this.currentAccount, this.botId, this.settingsItem);
@@ -1269,8 +1321,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }, 66);
     }
 
-    public class AnonymousClass10 extends ActionBar.ActionBarMenuOnItemClick {
-        AnonymousClass10() {
+    public class AnonymousClass11 extends ActionBar.ActionBarMenuOnItemClick {
+        AnonymousClass11() {
         }
 
         @Override
@@ -1286,7 +1338,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", BotWebViewSheet.this.botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$88(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$91(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
                 return;
@@ -1316,7 +1368,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 BotWebViewSheet.deleteBot(BotWebViewSheet.this.currentAccount, BotWebViewSheet.this.botId, new Runnable() {
                     @Override
                     public final void run() {
-                        BotWebViewSheet.AnonymousClass10.this.lambda$onItemClick$0();
+                        BotWebViewSheet.AnonymousClass11.this.lambda$onItemClick$0();
                     }
                 });
                 return;
@@ -1527,13 +1579,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public void show() {
         if (AndroidUtilities.isSafeToShow(getContext())) {
             this.windowView.setAlpha(0.0f);
-            this.windowView.addOnLayoutChangeListener(new AnonymousClass11());
+            this.windowView.addOnLayoutChangeListener(new AnonymousClass12());
             super.show();
         }
     }
 
-    public class AnonymousClass11 implements View.OnLayoutChangeListener {
-        AnonymousClass11() {
+    public class AnonymousClass12 implements View.OnLayoutChangeListener {
+        AnonymousClass12() {
         }
 
         @Override
@@ -1777,7 +1829,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo958getWindowView() {
+    public WindowView mo948getWindowView() {
         return this.windowView;
     }
 

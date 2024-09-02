@@ -320,10 +320,6 @@ public class AdjustPanLayoutHelper {
         return this.animationInProgress;
     }
 
-    public void setCheckHierarchyHeight(boolean z) {
-        this.checkHierarchyHeight = z;
-    }
-
     public void delayAnimation() {
         this.needDelay = true;
     }

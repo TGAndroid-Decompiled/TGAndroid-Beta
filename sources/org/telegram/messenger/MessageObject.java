@@ -70,6 +70,8 @@ import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$MessagePeerReaction;
+import org.telegram.tgnet.TLRPC$MessageReactions;
+import org.telegram.tgnet.TLRPC$MessageReactor;
 import org.telegram.tgnet.TLRPC$MessageReplies;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$Page;
@@ -82,6 +84,7 @@ import org.telegram.tgnet.TLRPC$PollResults;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
+import org.telegram.tgnet.TLRPC$RestrictionReason;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.tgnet.TLRPC$TL_availableEffect;
@@ -168,6 +171,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.TLRPC$TL_messageMediaWebPage;
 import org.telegram.tgnet.TLRPC$TL_messagePeerReaction;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
+import org.telegram.tgnet.TLRPC$TL_messageReactor;
 import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_message_secret;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
@@ -191,6 +195,7 @@ import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
 import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
+import org.telegram.tgnet.TLRPC$TL_reactionPaid;
 import org.telegram.tgnet.TLRPC$TL_replyInlineMarkup;
 import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
@@ -356,6 +361,7 @@ public class MessageObject {
     private int isRoundVideoCached;
     public boolean isSaved;
     public boolean isSavedFiltered;
+    public Boolean isSensitiveCached;
     public boolean isSpoilersRevealed;
     public boolean isStoryMentionPush;
     public boolean isStoryPush;
@@ -435,6 +441,7 @@ public class MessageObject {
     public TLRPC$TL_peerColor sponsoredColor;
     public byte[] sponsoredId;
     public String sponsoredInfo;
+    public TLRPC$MessageMedia sponsoredMedia;
     public TLRPC$Photo sponsoredPhoto;
     public boolean sponsoredRecommended;
     public String sponsoredTitle;
@@ -656,7 +663,47 @@ public class MessageObject {
 
     public boolean hasMediaSpoilers() {
         TLRPC$MessageMedia tLRPC$MessageMedia;
-        return !this.isRepostPreview && (((tLRPC$MessageMedia = this.messageOwner.media) != null && tLRPC$MessageMedia.spoiler) || needDrawBluredPreview());
+        return (!this.isRepostPreview && (((tLRPC$MessageMedia = this.messageOwner.media) != null && tLRPC$MessageMedia.spoiler) || needDrawBluredPreview())) || isHiddenSensitive();
+    }
+
+    public boolean isSensitive() {
+        TLRPC$Chat chat;
+        Boolean bool = this.isSensitiveCached;
+        if (bool != null) {
+            return bool.booleanValue();
+        }
+        if (this.messageOwner == null || !canBeSensitive()) {
+            return false;
+        }
+        if (!this.messageOwner.restriction_reason.isEmpty()) {
+            for (int i = 0; i < this.messageOwner.restriction_reason.size(); i++) {
+                TLRPC$RestrictionReason tLRPC$RestrictionReason = this.messageOwner.restriction_reason.get(i);
+                if ("sensitive".equals(tLRPC$RestrictionReason.reason) && ("all".equals(tLRPC$RestrictionReason.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason.platform)))) {
+                    this.isSensitiveCached = Boolean.TRUE;
+                    return true;
+                }
+            }
+        }
+        if (getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.restriction_reason != null) {
+            for (int i2 = 0; i2 < chat.restriction_reason.size(); i2++) {
+                TLRPC$RestrictionReason tLRPC$RestrictionReason2 = chat.restriction_reason.get(i2);
+                if ("sensitive".equals(tLRPC$RestrictionReason2.reason) && ("all".equals(tLRPC$RestrictionReason2.platform) || (!ApplicationLoader.isStandaloneBuild() && !BuildVars.isBetaApp() && "android".equals(tLRPC$RestrictionReason2.platform)))) {
+                    this.isSensitiveCached = Boolean.TRUE;
+                    return true;
+                }
+            }
+        }
+        this.isSensitiveCached = Boolean.FALSE;
+        return false;
+    }
+
+    public boolean isHiddenSensitive() {
+        return isSensitive() && !MessagesController.getInstance(this.currentAccount).showSensitiveContent();
+    }
+
+    public boolean canBeSensitive() {
+        int i;
+        return (this.messageOwner == null || ((i = this.type) != 1 && i != 3 && i != 9 && i != 8 && i != 5) || this.sendPreview || this.isRepostPreview || isOutOwner() || this.messageOwner.send_state != 0) ? false : true;
     }
 
     public boolean shouldDrawReactions() {
@@ -2061,7 +2108,7 @@ public class MessageObject {
         return Theme.chat_msgTextPaint;
     }
 
-    public MessageObject(int r31, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r32, java.util.ArrayList<org.telegram.messenger.MessageObject> r33, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r34, org.telegram.tgnet.TLRPC$Chat r35, int[] r36, boolean r37) {
+    public MessageObject(int r32, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent r33, java.util.ArrayList<org.telegram.messenger.MessageObject> r34, java.util.HashMap<java.lang.String, java.util.ArrayList<org.telegram.messenger.MessageObject>> r35, org.telegram.tgnet.TLRPC$Chat r36, int[] r37, boolean r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.<init>(int, org.telegram.tgnet.TLRPC$TL_channelAdminLogEvent, java.util.ArrayList, java.util.HashMap, org.telegram.tgnet.TLRPC$Chat, int[], boolean):void");
     }
 
@@ -2539,6 +2586,7 @@ public class MessageObject {
         }
         tLRPC$Message.reactions = tLRPC$TL_messageReactions;
         tLRPC$Message.flags |= 1048576;
+        FileLog.d("msg#" + tLRPC$Message.id + " updateReactions out=" + tLRPC$Message.out);
     }
 
     public boolean hasReactions() {
@@ -3005,7 +3053,8 @@ public class MessageObject {
         if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
             return null;
         }
-        return getMedia(tLRPC$Message);
+        TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.sponsoredMedia;
+        return tLRPC$MessageMedia != null ? tLRPC$MessageMedia : getMedia(tLRPC$Message);
     }
 
     public static TLRPC$MessageMedia getMedia(TLRPC$Message tLRPC$Message) {
@@ -3053,7 +3102,9 @@ public class MessageObject {
         int i2 = this.type;
         this.type = 1000;
         this.isRoundVideoCached = 0;
-        if (this.channelJoined) {
+        if (isSponsored()) {
+            this.type = 0;
+        } else if (this.channelJoined) {
             this.type = 27;
             this.channelJoinedExpanded = MessagesController.getInstance(this.currentAccount).getMainSettings().getBoolean("c" + getDialogId() + "_rec", true);
         } else {
@@ -3420,6 +3471,7 @@ public class MessageObject {
         ArrayList<TLRPC$PhotoSize> arrayList6;
         ArrayList<TLRPC$PhotoSize> arrayList7;
         ArrayList<TLRPC$PhotoSize> arrayList8;
+        ArrayList<TLRPC$PhotoSize> arrayList9;
         if (hasExtendedMediaPreview()) {
             TLRPC$TL_messageExtendedMediaPreview tLRPC$TL_messageExtendedMediaPreview = (TLRPC$TL_messageExtendedMediaPreview) this.messageOwner.media.extended_media.get(0);
             if (!z) {
@@ -3442,8 +3494,8 @@ public class MessageObject {
                 if (!z) {
                     this.photoThumbs = new ArrayList<>(tLRPC$Photo.sizes);
                 } else {
-                    ArrayList<TLRPC$PhotoSize> arrayList9 = this.photoThumbs;
-                    if (arrayList9 != null && !arrayList9.isEmpty()) {
+                    ArrayList<TLRPC$PhotoSize> arrayList10 = this.photoThumbs;
+                    if (arrayList10 != null && !arrayList10.isEmpty()) {
                         for (int i = 0; i < this.photoThumbs.size(); i++) {
                             TLRPC$PhotoSize tLRPC$PhotoSize = this.photoThumbs.get(i);
                             int i2 = 0;
@@ -3460,8 +3512,8 @@ public class MessageObject {
                         }
                     }
                 }
-                if (tLRPC$Photo.dc_id != 0 && (arrayList8 = this.photoThumbs) != null) {
-                    int size = arrayList8.size();
+                if (tLRPC$Photo.dc_id != 0 && (arrayList9 = this.photoThumbs) != null) {
+                    int size = arrayList9.size();
                     for (int i3 = 0; i3 < size; i3++) {
                         TLRPC$FileLocation tLRPC$FileLocation = this.photoThumbs.get(i3).location;
                         if (tLRPC$FileLocation != null) {
@@ -3478,9 +3530,9 @@ public class MessageObject {
         if (this.emojiAnimatedSticker != null || this.emojiAnimatedStickerId != null) {
             if (TextUtils.isEmpty(this.emojiAnimatedStickerColor) && isDocumentHasThumb(this.emojiAnimatedSticker)) {
                 if (!z || (arrayList = this.photoThumbs) == null) {
-                    ArrayList<TLRPC$PhotoSize> arrayList10 = new ArrayList<>();
-                    this.photoThumbs = arrayList10;
-                    arrayList10.addAll(this.emojiAnimatedSticker.thumbs);
+                    ArrayList<TLRPC$PhotoSize> arrayList11 = new ArrayList<>();
+                    this.photoThumbs = arrayList11;
+                    arrayList11.addAll(this.emojiAnimatedSticker.thumbs);
                 } else if (!arrayList.isEmpty()) {
                     updatePhotoSizeLocations(this.photoThumbs, this.emojiAnimatedSticker.thumbs);
                 }
@@ -3492,11 +3544,11 @@ public class MessageObject {
         if (getMedia(tLRPC$Message) != null && !(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaEmpty)) {
             if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto) {
                 TLRPC$Photo tLRPC$Photo2 = getMedia(this.messageOwner).photo;
-                if (!z || ((arrayList7 = this.photoThumbs) != null && arrayList7.size() != tLRPC$Photo2.sizes.size())) {
+                if (!z || ((arrayList8 = this.photoThumbs) != null && arrayList8.size() != tLRPC$Photo2.sizes.size())) {
                     this.photoThumbs = new ArrayList<>(tLRPC$Photo2.sizes);
                 } else {
-                    ArrayList<TLRPC$PhotoSize> arrayList11 = this.photoThumbs;
-                    if (arrayList11 != null && !arrayList11.isEmpty()) {
+                    ArrayList<TLRPC$PhotoSize> arrayList12 = this.photoThumbs;
+                    if (arrayList12 != null && !arrayList12.isEmpty()) {
                         for (int i4 = 0; i4 < this.photoThumbs.size(); i4++) {
                             TLRPC$PhotoSize tLRPC$PhotoSize3 = this.photoThumbs.get(i4);
                             if (tLRPC$PhotoSize3 != null) {
@@ -3527,11 +3579,11 @@ public class MessageObject {
             if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDocument) {
                 TLRPC$Document document = getDocument();
                 if (isDocumentHasThumb(document)) {
-                    if (!z || (arrayList6 = this.photoThumbs) == null) {
-                        ArrayList<TLRPC$PhotoSize> arrayList12 = new ArrayList<>();
-                        this.photoThumbs = arrayList12;
-                        arrayList12.addAll(document.thumbs);
-                    } else if (!arrayList6.isEmpty()) {
+                    if (!z || (arrayList7 = this.photoThumbs) == null) {
+                        ArrayList<TLRPC$PhotoSize> arrayList13 = new ArrayList<>();
+                        this.photoThumbs = arrayList13;
+                        arrayList13.addAll(document.thumbs);
+                    } else if (!arrayList7.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, document.thumbs);
                     }
                     this.photoThumbsObject = document;
@@ -3543,12 +3595,12 @@ public class MessageObject {
                 TLRPC$Document tLRPC$Document = getMedia(this.messageOwner).game.document;
                 if (tLRPC$Document != null && isDocumentHasThumb(tLRPC$Document)) {
                     if (!z) {
-                        ArrayList<TLRPC$PhotoSize> arrayList13 = new ArrayList<>();
-                        this.photoThumbs = arrayList13;
-                        arrayList13.addAll(tLRPC$Document.thumbs);
+                        ArrayList<TLRPC$PhotoSize> arrayList14 = new ArrayList<>();
+                        this.photoThumbs = arrayList14;
+                        arrayList14.addAll(tLRPC$Document.thumbs);
                     } else {
-                        ArrayList<TLRPC$PhotoSize> arrayList14 = this.photoThumbs;
-                        if (arrayList14 != null && !arrayList14.isEmpty()) {
+                        ArrayList<TLRPC$PhotoSize> arrayList15 = this.photoThumbs;
+                        if (arrayList15 != null && !arrayList15.isEmpty()) {
                             updatePhotoSizeLocations(this.photoThumbs, tLRPC$Document.thumbs);
                         }
                     }
@@ -3556,17 +3608,17 @@ public class MessageObject {
                 }
                 TLRPC$Photo tLRPC$Photo3 = getMedia(this.messageOwner).game.photo;
                 if (tLRPC$Photo3 != null) {
-                    if (!z || (arrayList5 = this.photoThumbs2) == null) {
+                    if (!z || (arrayList6 = this.photoThumbs2) == null) {
                         this.photoThumbs2 = new ArrayList<>(tLRPC$Photo3.sizes);
-                    } else if (!arrayList5.isEmpty()) {
+                    } else if (!arrayList6.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs2, tLRPC$Photo3.sizes);
                     }
                     this.photoThumbsObject2 = tLRPC$Photo3;
                 }
-                if (this.photoThumbs != null || (arrayList4 = this.photoThumbs2) == null) {
+                if (this.photoThumbs != null || (arrayList5 = this.photoThumbs2) == null) {
                     return;
                 }
-                this.photoThumbs = arrayList4;
+                this.photoThumbs = arrayList5;
                 this.photoThumbs2 = null;
                 this.photoThumbsObject = this.photoThumbsObject2;
                 this.photoThumbsObject2 = null;
@@ -3576,9 +3628,9 @@ public class MessageObject {
                 TLRPC$Photo tLRPC$Photo4 = getMedia(this.messageOwner).webpage.photo;
                 TLRPC$Document tLRPC$Document2 = getMedia(this.messageOwner).webpage.document;
                 if (tLRPC$Photo4 != null) {
-                    if (!z || (arrayList3 = this.photoThumbs) == null) {
+                    if (!z || (arrayList4 = this.photoThumbs) == null) {
                         this.photoThumbs = new ArrayList<>(tLRPC$Photo4.sizes);
-                    } else if (!arrayList3.isEmpty()) {
+                    } else if (!arrayList4.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, tLRPC$Photo4.sizes);
                     }
                     this.photoThumbsObject = tLRPC$Photo4;
@@ -3588,18 +3640,47 @@ public class MessageObject {
                     return;
                 }
                 if (!z) {
-                    ArrayList<TLRPC$PhotoSize> arrayList15 = new ArrayList<>();
-                    this.photoThumbs = arrayList15;
-                    arrayList15.addAll(tLRPC$Document2.thumbs);
+                    ArrayList<TLRPC$PhotoSize> arrayList16 = new ArrayList<>();
+                    this.photoThumbs = arrayList16;
+                    arrayList16.addAll(tLRPC$Document2.thumbs);
                 } else {
-                    ArrayList<TLRPC$PhotoSize> arrayList16 = this.photoThumbs;
-                    if (arrayList16 != null && !arrayList16.isEmpty()) {
+                    ArrayList<TLRPC$PhotoSize> arrayList17 = this.photoThumbs;
+                    if (arrayList17 != null && !arrayList17.isEmpty()) {
                         updatePhotoSizeLocations(this.photoThumbs, tLRPC$Document2.thumbs);
                     }
                 }
                 this.photoThumbsObject = tLRPC$Document2;
                 return;
             }
+            return;
+        }
+        TLRPC$MessageMedia tLRPC$MessageMedia = this.sponsoredMedia;
+        if (tLRPC$MessageMedia != null) {
+            TLRPC$Photo tLRPC$Photo5 = tLRPC$MessageMedia.photo;
+            TLRPC$Document tLRPC$Document3 = tLRPC$MessageMedia.document;
+            if (tLRPC$Photo5 != null) {
+                if (!z || (arrayList3 = this.photoThumbs) == null) {
+                    this.photoThumbs = new ArrayList<>(tLRPC$Photo5.sizes);
+                } else if (!arrayList3.isEmpty()) {
+                    updatePhotoSizeLocations(this.photoThumbs, tLRPC$Photo5.sizes);
+                }
+                this.photoThumbsObject = tLRPC$Photo5;
+                return;
+            }
+            if (tLRPC$Document3 == null || !isDocumentHasThumb(tLRPC$Document3)) {
+                return;
+            }
+            if (!z) {
+                ArrayList<TLRPC$PhotoSize> arrayList18 = new ArrayList<>();
+                this.photoThumbs = arrayList18;
+                arrayList18.addAll(tLRPC$Document3.thumbs);
+            } else {
+                ArrayList<TLRPC$PhotoSize> arrayList19 = this.photoThumbs;
+                if (arrayList19 != null && !arrayList19.isEmpty()) {
+                    updatePhotoSizeLocations(this.photoThumbs, tLRPC$Document3.thumbs);
+                }
+            }
+            this.photoThumbsObject = tLRPC$Document3;
             return;
         }
         if (this.sponsoredPhoto != null) {
@@ -4411,7 +4492,7 @@ public class MessageObject {
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message.out) {
             TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.from_id;
-            if ((tLRPC$Peer5 instanceof TLRPC$TL_peerUser) || ((tLRPC$Peer5 instanceof TLRPC$TL_peerChannel) && (!ChatObject.isChannel(tLRPC$Chat) || tLRPC$Chat.megagroup))) {
+            if ((tLRPC$Peer5 instanceof TLRPC$TL_peerUser) || ((tLRPC$Peer5 instanceof TLRPC$TL_peerChannel) && !ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat))) {
                 TLRPC$Message tLRPC$Message2 = this.messageOwner;
                 if (!tLRPC$Message2.post) {
                     if (tLRPC$Message2.fwd_from == null) {
@@ -4443,19 +4524,19 @@ public class MessageObject {
     }
 
     public boolean needDrawAvatar() {
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
+        TLRPC$Chat chat;
+        if (this.type == 27) {
+            return false;
+        }
         if (this.isRepostPreview || this.isSaved || this.forceAvatar || this.customAvatarDrawable != null || this.searchType != 0) {
             return true;
         }
-        if (!isSponsored()) {
-            if (isFromUser() || isFromGroup() || this.eventId != 0) {
-                return true;
-            }
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.messageOwner.fwd_from;
-            if (tLRPC$MessageFwdHeader != null && tLRPC$MessageFwdHeader.saved_from_peer != null) {
-                return true;
-            }
+        boolean z = getDialogId() < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-getDialogId()))) != null && chat.signature_profiles;
+        if (isSponsored()) {
+            return false;
         }
-        return false;
+        return isFromUser() || isFromGroup() || z || this.eventId != 0 || !((tLRPC$MessageFwdHeader = this.messageOwner.fwd_from) == null || tLRPC$MessageFwdHeader.saved_from_peer == null);
     }
 
     public boolean needDrawAvatarInternal() {
@@ -6753,7 +6834,176 @@ public class MessageObject {
         return (isEditing() || isSponsored() || !isSent() || this.messageOwner.action != null || isExpiredStory()) ? false : true;
     }
 
+    public boolean isPaidReactionChosen() {
+        if (this.messageOwner.reactions == null) {
+            return false;
+        }
+        for (int i = 0; i < this.messageOwner.reactions.results.size(); i++) {
+            if (this.messageOwner.reactions.results.get(i).reaction instanceof TLRPC$TL_reactionPaid) {
+                return this.messageOwner.reactions.results.get(i).chosen;
+            }
+        }
+        return false;
+    }
+
+    public void addPaidReactions(int i, boolean z, boolean z2) {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message.reactions == null) {
+            tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
+            TLRPC$Message tLRPC$Message2 = this.messageOwner;
+            TLRPC$TL_messageReactions tLRPC$TL_messageReactions = tLRPC$Message2.reactions;
+            long dialogId = getDialogId(tLRPC$Message2);
+            boolean z3 = true;
+            tLRPC$TL_messageReactions.reactions_as_tags = dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
+            TLRPC$TL_messageReactions tLRPC$TL_messageReactions2 = this.messageOwner.reactions;
+            if (!isFromGroup() && !isFromUser()) {
+                z3 = false;
+            }
+            tLRPC$TL_messageReactions2.can_see_list = z3;
+        }
+        addPaidReactions(this.currentAccount, this.messageOwner.reactions, i, z2, z);
+    }
+
+    public Boolean isMyPaidReactionAnonymous() {
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
+        ArrayList<TLRPC$MessageReactor> arrayList;
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null || (arrayList = tLRPC$TL_messageReactions.top_reactors) == null) {
+            return null;
+        }
+        Iterator<TLRPC$MessageReactor> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC$MessageReactor next = it.next();
+            if (next != null && next.my) {
+                return Boolean.valueOf(next.anonymous);
+            }
+        }
+        return null;
+    }
+
+    public static Boolean isMyPaidReactionAnonymous(TLRPC$MessageReactions tLRPC$MessageReactions) {
+        ArrayList<TLRPC$MessageReactor> arrayList;
+        if (tLRPC$MessageReactions == null || (arrayList = tLRPC$MessageReactions.top_reactors) == null) {
+            return null;
+        }
+        Iterator<TLRPC$MessageReactor> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC$MessageReactor next = it.next();
+            if (next != null && next.my) {
+                return Boolean.valueOf(next.anonymous);
+            }
+        }
+        return null;
+    }
+
+    public void setMyPaidReactionAnonymous(boolean z) {
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
+        ArrayList<TLRPC$MessageReactor> arrayList;
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message == null || (tLRPC$TL_messageReactions = tLRPC$Message.reactions) == null || (arrayList = tLRPC$TL_messageReactions.top_reactors) == null) {
+            return;
+        }
+        Iterator<TLRPC$MessageReactor> it = arrayList.iterator();
+        while (it.hasNext()) {
+            TLRPC$MessageReactor next = it.next();
+            if (next != null && next.my) {
+                next.anonymous = z;
+            }
+        }
+    }
+
+    public boolean doesPaidReactionExist() {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message.reactions == null) {
+            tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
+            TLRPC$Message tLRPC$Message2 = this.messageOwner;
+            tLRPC$Message2.reactions.reactions_as_tags = getDialogId(tLRPC$Message2) == UserConfig.getInstance(this.currentAccount).getClientUserId();
+            this.messageOwner.reactions.can_see_list = isFromGroup() || isFromUser();
+        }
+        for (int i = 0; i < this.messageOwner.reactions.results.size(); i++) {
+            if (this.messageOwner.reactions.results.get(i).reaction instanceof TLRPC$TL_reactionPaid) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean ensurePaidReactionsExist(boolean z) {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message.reactions == null) {
+            tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
+            TLRPC$Message tLRPC$Message2 = this.messageOwner;
+            tLRPC$Message2.reactions.reactions_as_tags = getDialogId(tLRPC$Message2) == UserConfig.getInstance(this.currentAccount).getClientUserId();
+            this.messageOwner.reactions.can_see_list = isFromGroup() || isFromUser();
+        }
+        TLRPC$ReactionCount tLRPC$ReactionCount = null;
+        for (int i = 0; i < this.messageOwner.reactions.results.size(); i++) {
+            if (this.messageOwner.reactions.results.get(i).reaction instanceof TLRPC$TL_reactionPaid) {
+                tLRPC$ReactionCount = this.messageOwner.reactions.results.get(i);
+            }
+        }
+        if (tLRPC$ReactionCount != null) {
+            return false;
+        }
+        TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
+        tLRPC$TL_reactionCount.reaction = new TLRPC$TL_reactionPaid();
+        tLRPC$TL_reactionCount.count = 1;
+        tLRPC$TL_reactionCount.chosen = z;
+        this.messageOwner.reactions.results.add(0, tLRPC$TL_reactionCount);
+        return true;
+    }
+
+    public static void addPaidReactions(int i, TLRPC$MessageReactions tLRPC$MessageReactions, int i2, boolean z, boolean z2) {
+        TLRPC$MessageReactor tLRPC$MessageReactor = null;
+        TLRPC$ReactionCount tLRPC$ReactionCount = null;
+        for (int i3 = 0; i3 < tLRPC$MessageReactions.results.size(); i3++) {
+            if (tLRPC$MessageReactions.results.get(i3).reaction instanceof TLRPC$TL_reactionPaid) {
+                tLRPC$ReactionCount = tLRPC$MessageReactions.results.get(i3);
+            }
+        }
+        int i4 = 0;
+        while (true) {
+            if (i4 >= tLRPC$MessageReactions.top_reactors.size()) {
+                break;
+            }
+            if (tLRPC$MessageReactions.top_reactors.get(i4).my) {
+                tLRPC$MessageReactor = tLRPC$MessageReactions.top_reactors.get(i4);
+                break;
+            }
+            i4++;
+        }
+        if (tLRPC$ReactionCount == null && i2 > 0) {
+            tLRPC$ReactionCount = new TLRPC$TL_reactionCount();
+            tLRPC$ReactionCount.reaction = new TLRPC$TL_reactionPaid();
+            tLRPC$MessageReactions.results.add(0, tLRPC$ReactionCount);
+        }
+        if (tLRPC$ReactionCount != null) {
+            tLRPC$ReactionCount.chosen = z2;
+            int max = Math.max(0, tLRPC$ReactionCount.count + i2);
+            tLRPC$ReactionCount.count = max;
+            if (max <= 0) {
+                tLRPC$MessageReactions.results.remove(tLRPC$ReactionCount);
+            }
+        }
+        if (tLRPC$MessageReactor == null && i2 > 0) {
+            tLRPC$MessageReactor = new TLRPC$TL_messageReactor();
+            tLRPC$MessageReactor.my = true;
+            tLRPC$MessageReactor.peer_id = MessagesController.getInstance(i).getPeer(UserConfig.getInstance(i).getClientUserId());
+            tLRPC$MessageReactions.top_reactors.add(tLRPC$MessageReactor);
+        }
+        if (tLRPC$MessageReactor != null) {
+            int max2 = Math.max(0, tLRPC$MessageReactor.count + i2);
+            tLRPC$MessageReactor.count = max2;
+            tLRPC$MessageReactor.anonymous = z;
+            if (max2 <= 0) {
+                tLRPC$MessageReactions.top_reactors.remove(tLRPC$MessageReactor);
+            }
+        }
+    }
+
     public boolean selectReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+        int i;
+        TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message.reactions == null) {
             tLRPC$Message.reactions = new TLRPC$TL_messageReactions();
@@ -6763,29 +7013,29 @@ public class MessageObject {
         }
         ArrayList arrayList = new ArrayList();
         TLRPC$ReactionCount tLRPC$ReactionCount = null;
-        int i = 0;
-        for (int i2 = 0; i2 < this.messageOwner.reactions.results.size(); i2++) {
-            if (this.messageOwner.reactions.results.get(i2).chosen) {
-                TLRPC$ReactionCount tLRPC$ReactionCount2 = this.messageOwner.reactions.results.get(i2);
+        int i2 = 0;
+        for (int i3 = 0; i3 < this.messageOwner.reactions.results.size(); i3++) {
+            TLRPC$ReactionCount tLRPC$ReactionCount2 = this.messageOwner.reactions.results.get(i3);
+            if (tLRPC$ReactionCount2.chosen && !(tLRPC$ReactionCount2.reaction instanceof TLRPC$TL_reactionPaid)) {
                 arrayList.add(tLRPC$ReactionCount2);
-                int i3 = tLRPC$ReactionCount2.chosen_order;
-                if (i3 > i) {
-                    i = i3;
+                int i4 = tLRPC$ReactionCount2.chosen_order;
+                if (i4 > i2) {
+                    i2 = i4;
                 }
             }
-            TLRPC$Reaction tLRPC$Reaction = this.messageOwner.reactions.results.get(i2).reaction;
+            TLRPC$Reaction tLRPC$Reaction = this.messageOwner.reactions.results.get(i3).reaction;
             if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
                 String str = visibleReaction.emojicon;
                 if (str != null) {
                     if (((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon.equals(str)) {
-                        tLRPC$ReactionCount = this.messageOwner.reactions.results.get(i2);
+                        tLRPC$ReactionCount = this.messageOwner.reactions.results.get(i3);
                     }
                 }
             }
             if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
                 long j = visibleReaction.documentId;
                 if (j != 0 && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == j) {
-                    tLRPC$ReactionCount = this.messageOwner.reactions.results.get(i2);
+                    tLRPC$ReactionCount = this.messageOwner.reactions.results.get(i3);
                 }
             }
         }
@@ -6796,53 +7046,66 @@ public class MessageObject {
         if (!arrayList.isEmpty() && arrayList.contains(tLRPC$ReactionCount)) {
             if (tLRPC$ReactionCount != null) {
                 tLRPC$ReactionCount.chosen = false;
-                int i4 = tLRPC$ReactionCount.count - 1;
-                tLRPC$ReactionCount.count = i4;
-                if (i4 <= 0) {
+                int i5 = tLRPC$ReactionCount.count - 1;
+                tLRPC$ReactionCount.count = i5;
+                if (i5 <= 0) {
                     this.messageOwner.reactions.results.remove(tLRPC$ReactionCount);
                 }
             }
             if (this.messageOwner.reactions.can_see_list) {
-                int i5 = 0;
-                while (i5 < this.messageOwner.reactions.recent_reactions.size()) {
-                    if (getPeerId(this.messageOwner.reactions.recent_reactions.get(i5).peer_id) == UserConfig.getInstance(this.currentAccount).getClientUserId() && ReactionsUtils.compare(this.messageOwner.reactions.recent_reactions.get(i5).reaction, visibleReaction)) {
-                        this.messageOwner.reactions.recent_reactions.remove(i5);
-                        i5--;
+                int i6 = 0;
+                while (i6 < this.messageOwner.reactions.recent_reactions.size()) {
+                    if (getPeerId(this.messageOwner.reactions.recent_reactions.get(i6).peer_id) == UserConfig.getInstance(this.currentAccount).getClientUserId() && ReactionsUtils.compare(this.messageOwner.reactions.recent_reactions.get(i6).reaction, visibleReaction)) {
+                        this.messageOwner.reactions.recent_reactions.remove(i6);
+                        i6--;
                     }
-                    i5++;
+                    i6++;
                 }
             }
             this.reactionsChanged = true;
             return false;
         }
         while (!arrayList.isEmpty() && arrayList.size() >= maxUserReactionsCount) {
-            int i6 = 0;
-            for (int i7 = 1; i7 < arrayList.size(); i7++) {
-                if (((TLRPC$ReactionCount) arrayList.get(i7)).chosen_order < ((TLRPC$ReactionCount) arrayList.get(i6)).chosen_order) {
-                    i6 = i7;
+            int i7 = 0;
+            for (int i8 = 1; i8 < arrayList.size(); i8++) {
+                if (!(((TLRPC$ReactionCount) arrayList.get(i8)).reaction instanceof TLRPC$TL_reactionPaid) && ((TLRPC$ReactionCount) arrayList.get(i8)).chosen_order < ((TLRPC$ReactionCount) arrayList.get(i7)).chosen_order) {
+                    i7 = i8;
                 }
             }
-            TLRPC$ReactionCount tLRPC$ReactionCount3 = (TLRPC$ReactionCount) arrayList.get(i6);
+            TLRPC$ReactionCount tLRPC$ReactionCount3 = (TLRPC$ReactionCount) arrayList.get(i7);
             tLRPC$ReactionCount3.chosen = false;
-            int i8 = tLRPC$ReactionCount3.count - 1;
-            tLRPC$ReactionCount3.count = i8;
-            if (i8 <= 0) {
+            int i9 = tLRPC$ReactionCount3.count - 1;
+            tLRPC$ReactionCount3.count = i9;
+            if (i9 <= 0) {
                 this.messageOwner.reactions.results.remove(tLRPC$ReactionCount3);
             }
             arrayList.remove(tLRPC$ReactionCount3);
             if (this.messageOwner.reactions.can_see_list) {
-                int i9 = 0;
-                while (i9 < this.messageOwner.reactions.recent_reactions.size()) {
-                    if (getPeerId(this.messageOwner.reactions.recent_reactions.get(i9).peer_id) == UserConfig.getInstance(this.currentAccount).getClientUserId() && ReactionsUtils.compare(this.messageOwner.reactions.recent_reactions.get(i9).reaction, visibleReaction)) {
-                        this.messageOwner.reactions.recent_reactions.remove(i9);
-                        i9--;
+                int i10 = 0;
+                while (i10 < this.messageOwner.reactions.recent_reactions.size()) {
+                    if (getPeerId(this.messageOwner.reactions.recent_reactions.get(i10).peer_id) == UserConfig.getInstance(this.currentAccount).getClientUserId() && ReactionsUtils.compare(this.messageOwner.reactions.recent_reactions.get(i10).reaction, visibleReaction)) {
+                        this.messageOwner.reactions.recent_reactions.remove(i10);
+                        i10--;
                     }
-                    i9++;
+                    i10++;
                 }
             }
         }
         if (tLRPC$ReactionCount == null) {
-            if (this.messageOwner.reactions.results.size() + 1 > MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(getDialogId())) {
+            int chatMaxUniqReactions = MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(getDialogId());
+            TLRPC$Message tLRPC$Message3 = this.messageOwner;
+            if (tLRPC$Message3 == null || (tLRPC$TL_messageReactions = tLRPC$Message3.reactions) == null) {
+                i = 0;
+            } else {
+                Iterator<TLRPC$ReactionCount> it = tLRPC$TL_messageReactions.results.iterator();
+                i = 0;
+                while (it.hasNext()) {
+                    if (!(it.next().reaction instanceof TLRPC$TL_reactionPaid)) {
+                        i++;
+                    }
+                }
+            }
+            if (i + 1 > chatMaxUniqReactions) {
                 return false;
             }
             tLRPC$ReactionCount = new TLRPC$TL_reactionCount();
@@ -6851,12 +7114,12 @@ public class MessageObject {
         }
         tLRPC$ReactionCount.chosen = true;
         tLRPC$ReactionCount.count++;
-        tLRPC$ReactionCount.chosen_order = i + 1;
-        TLRPC$Message tLRPC$Message3 = this.messageOwner;
-        if (tLRPC$Message3.reactions.can_see_list || (tLRPC$Message3.dialog_id > 0 && maxUserReactionsCount > 1)) {
+        tLRPC$ReactionCount.chosen_order = i2 + 1;
+        TLRPC$Message tLRPC$Message4 = this.messageOwner;
+        if (tLRPC$Message4.reactions.can_see_list || (tLRPC$Message4.dialog_id > 0 && maxUserReactionsCount > 1)) {
             TLRPC$TL_messagePeerReaction tLRPC$TL_messagePeerReaction = new TLRPC$TL_messagePeerReaction();
-            TLRPC$Message tLRPC$Message4 = this.messageOwner;
-            if (tLRPC$Message4.isThreadMessage && tLRPC$Message4.fwd_from != null) {
+            TLRPC$Message tLRPC$Message5 = this.messageOwner;
+            if (tLRPC$Message5.isThreadMessage && tLRPC$Message5.fwd_from != null) {
                 tLRPC$TL_messagePeerReaction.peer_id = MessagesController.getInstance(this.currentAccount).getSendAsSelectedPeer(getFromChatId());
             } else {
                 tLRPC$TL_messagePeerReaction.peer_id = MessagesController.getInstance(this.currentAccount).getSendAsSelectedPeer(getDialogId());

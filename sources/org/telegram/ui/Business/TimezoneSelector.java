@@ -47,7 +47,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TimezoneSelector.this.lambda$onBackPressed$306();
+                    TimezoneSelector.this.lambda$onBackPressed$308();
                 }
             }
         });

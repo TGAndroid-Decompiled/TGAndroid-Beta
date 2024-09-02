@@ -266,7 +266,7 @@ public class NewContactBottomSheet extends BottomSheet implements AdapterView.On
         if (tLRPC$TL_contacts_importedContacts != null) {
             if (!tLRPC$TL_contacts_importedContacts.users.isEmpty()) {
                 MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_contacts_importedContacts.users, false);
-                MessagesController.openChatOrProfileWith(tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
+                MessagesController.getInstance(this.currentAccount).openChatOrProfileWith(tLRPC$TL_contacts_importedContacts.users.get(0), null, this.parentFragment, 1, false);
                 dismiss();
                 return;
             } else {

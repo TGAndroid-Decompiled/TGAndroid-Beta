@@ -21,8 +21,16 @@ import org.telegram.ui.Components.EditTextCaption;
 @SuppressLint({"ViewConstructor"})
 public class CustomReactionEditText extends EditTextCaption {
     private final GestureDetectorCompat gestureDetector;
+    private int maxLength;
     private Runnable onFocused;
     private final Theme.ResourcesProvider resourcesProvider;
+
+    public void setMaxLength(int i) {
+        if (this.maxLength != i) {
+            this.maxLength = i;
+            setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
+        }
+    }
 
     public CustomReactionEditText(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context, resourcesProvider);
@@ -41,6 +49,7 @@ public class CustomReactionEditText extends EditTextCaption {
         }
         setSingleLine(false);
         setMaxLines(50);
+        this.maxLength = i;
         setFilters(new InputFilter[]{new InputFilter.LengthFilter(i)});
         setTextSize(1, 22.0f);
         setGravity(80);

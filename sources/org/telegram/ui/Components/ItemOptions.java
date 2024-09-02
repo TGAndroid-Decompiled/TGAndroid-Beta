@@ -93,6 +93,10 @@ public class ItemOptions {
         return new ItemOptions(viewGroup, resourcesProvider, view, false);
     }
 
+    public static ItemOptions makeOptions(ViewGroup viewGroup, Theme.ResourcesProvider resourcesProvider, View view, boolean z) {
+        return new ItemOptions(viewGroup, resourcesProvider, view, z);
+    }
+
     private ItemOptions(BaseFragment baseFragment, View view, boolean z) {
         this.gravity = 5;
         this.point = new float[2];
@@ -675,7 +679,7 @@ public class ItemOptions {
                 width = (viewGroup.getWidth() - this.layout.getMeasuredWidth()) / 2;
             }
             if (this.scrimView != null) {
-                if (this.forceTop || this.layout.getMeasuredHeight() + f2 + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y) {
+                if (this.forceTop || this.layout.getMeasuredHeight() + f2 + AndroidUtilities.dp(16.0f) > AndroidUtilities.displaySize.y - AndroidUtilities.navigationBarHeight) {
                     f2 = (f2 - this.scrimView.getMeasuredHeight()) - this.layout.getMeasuredHeight();
                 }
                 height = (int) (f2 + this.scrimView.getMeasuredHeight() + viewGroup.getY());

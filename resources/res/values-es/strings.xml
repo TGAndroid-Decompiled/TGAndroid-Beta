@@ -1181,12 +1181,8 @@
     <string name="DeleteAndExit">Eliminar y salir del grupo</string>
     <string name="DeleteAndExitButton">Eliminar y salir del grupo</string>
     <string name="DeleteAndStop">Eliminar y detener</string>
-    <string name="DeleteBackground_few">Eliminar %1$d fondos</string>
-    <string name="DeleteBackground_many">Eliminar %1$d fondos</string>
     <string name="DeleteBackground_one">Eliminar fondo</string>
     <string name="DeleteBackground_other">Eliminar %1$d fondos</string>
-    <string name="DeleteBackground_two">Eliminar %1$d fondos</string>
-    <string name="DeleteBackground_zero">Eliminar %1$d fondos</string>
     <string name="DeleteCalls">Eliminar llamadas</string>
     <string name="DeleteCallsForEveryone">Eliminar para todos</string>
     <string name="DeleteChannelForAll">Eliminar para todos los suscriptores</string>
@@ -2171,12 +2167,8 @@
     <string name="MegaPublic">Grupo público</string>
     <string name="MegaPublicInfo">Cualquiera puede unirse a grupos públicos tras encontrarlos en la búsqueda. Su historial está disponible para todos.</string>
     <string name="MegaUsernameHelp">Si estableces un enlace público, otras personas podrán encontrar tu grupo y unirse a él.\n\nPuedes usar a-z, 0-9 y guiones bajos.\nLa longitud mínima es de 5 caracteres.</string>
-    <string name="MembersAreSpeakingToast_few">un1 están hablando</string>
-    <string name="MembersAreSpeakingToast_many">un1 están hablando</string>
     <string name="MembersAreSpeakingToast_one">un1 está hablando</string>
     <string name="MembersAreSpeakingToast_other">un1 están hablando</string>
-    <string name="MembersAreSpeakingToast_two">un1 están hablando</string>
-    <string name="MembersAreSpeakingToast_zero">un1 están hablando</string>
     <string name="MembersCountSelected_few">%1$d de %2$d seleccionados</string>
     <string name="MembersCountSelected_many">%1$d de %2$d seleccionados</string>
     <string name="MembersCountSelected_one">%1$d de %2$d seleccionado</string>

@@ -29,15 +29,15 @@ public final class HandlerDispatcherKt {
     }
 
     static {
-        Object m158constructorimpl;
+        Object m150constructorimpl;
         Object[] objArr = 0;
         Object[] objArr2 = 0;
         try {
             Result.Companion companion = Result.Companion;
-            m158constructorimpl = Result.m158constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), objArr2 == true ? 1 : 0, 2, objArr == true ? 1 : 0));
+            m150constructorimpl = Result.m150constructorimpl(new HandlerContext(asHandler(Looper.getMainLooper(), true), objArr2 == true ? 1 : 0, 2, objArr == true ? 1 : 0));
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            m158constructorimpl = Result.m158constructorimpl(ResultKt.createFailure(th));
+            m150constructorimpl = Result.m150constructorimpl(ResultKt.createFailure(th));
         }
     }
 }

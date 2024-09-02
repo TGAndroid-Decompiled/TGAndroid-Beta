@@ -51,7 +51,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private int minWidth;
     private final Paint paint;
     private Theme.ResourcesProvider resourcesProvider;
-    private final View rippleView;
+    public final View rippleView;
     private boolean showZero;
     public final AnimatedTextView.AnimatedTextDrawable subText;
     private float subTextT;
@@ -143,12 +143,12 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     public void updateColors() {
+        this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         if (this.filled) {
             this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
         } else {
-            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.1f), 8, 8));
+            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(this.text.getTextColor(), 0.1f), 8, 8));
         }
-        this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
     }
@@ -160,6 +160,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public void setTextColor(int i) {
         this.text.setTextColor(i);
+        if (this.filled) {
+            return;
+        }
+        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(this.text.getTextColor(), 0.1f), 8, 8));
     }
 
     public void setCountFilled(boolean z) {

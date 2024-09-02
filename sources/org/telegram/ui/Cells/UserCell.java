@@ -289,11 +289,30 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.adminTextView.setText(str);
         if (str != null) {
             CharSequence text = this.adminTextView.getText();
-            int ceil = (int) Math.ceil(this.adminTextView.getPaint().measureText(text, 0, text.length()));
-            this.nameTextView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(6.0f) + ceil : 0, 0, !LocaleController.isRTL ? ceil + AndroidUtilities.dp(6.0f) : 0, 0);
-            return;
+            setRightPadding((int) Math.ceil(this.adminTextView.getPaint().measureText(text, 0, text.length())), true, false);
+        } else {
+            setRightPadding(0, true, false);
         }
-        this.nameTextView.setPadding(0, 0, 0, 0);
+    }
+
+    public void setRightPadding(int i, boolean z, boolean z2) {
+        if (i > 0) {
+            i += AndroidUtilities.dp(6.0f);
+        }
+        if (z) {
+            SimpleTextView simpleTextView = this.nameTextView;
+            boolean z3 = LocaleController.isRTL;
+            simpleTextView.setPadding(z3 ? i : 0, 0, !z3 ? i : 0, 0);
+        }
+        if (z2) {
+            SimpleTextView simpleTextView2 = this.statusTextView;
+            boolean z4 = LocaleController.isRTL;
+            int i2 = z4 ? i : 0;
+            if (z4) {
+                i = 0;
+            }
+            simpleTextView2.setPadding(i2, 0, i, 0);
+        }
     }
 
     public CharSequence getName() {

@@ -61,6 +61,7 @@ public class Icon3D {
     int timeHandle;
     int[] trianglesCount;
     public final int type;
+    private int whiteHandle;
     float xOffset;
     private int xOffsetHandle;
     private static final String[] starModel = {"models/star.binobj"};
@@ -124,6 +125,7 @@ public class Icon3D {
         this.alphaHandle = GLES20.glGetUniformLocation(this.mProgramObject, "f_alpha");
         this.mMVPMatrixHandle = GLES20.glGetUniformLocation(this.mProgramObject, "uMVPMatrix");
         this.mWorldMatrixHandle = GLES20.glGetUniformLocation(this.mProgramObject, "world");
+        this.whiteHandle = GLES20.glGetUniformLocation(this.mProgramObject, "white");
         this.specHandleTop = GLES20.glGetUniformLocation(this.mProgramObject, "spec1");
         this.specHandleBottom = GLES20.glGetUniformLocation(this.mProgramObject, "spec2");
         this.diffuseHandle = GLES20.glGetUniformLocation(this.mProgramObject, "u_diffuse");
@@ -239,7 +241,7 @@ public class Icon3D {
         this.mTextureDataHandle = iArr[0];
     }
 
-    public void draw(float[] fArr, float[] fArr2, int i, int i2, float f, float f2, float f3, float f4, float f5) {
+    public void draw(float[] fArr, float[] fArr2, int i, int i2, float f, float f2, float f3, float f4, float f5, float f6) {
         if (this.backgroundBitmap != null) {
             GLES20.glBindTexture(3553, this.mBackgroundTextureHandle);
             GLUtils.texImage2D(3553, 0, this.backgroundBitmap, 0);
@@ -248,6 +250,7 @@ public class Icon3D {
         GLES20.glUniform1i(this.mTextureUniformHandle, 0);
         GLES20.glUniform1f(this.xOffsetHandle, this.xOffset);
         GLES20.glUniform1f(this.alphaHandle, this.enterAlpha);
+        GLES20.glUniform1f(this.whiteHandle, f5);
         GLES20.glUniformMatrix4fv(this.mMVPMatrixHandle, 1, false, fArr, 0);
         GLES20.glUniformMatrix4fv(this.mWorldMatrixHandle, 1, false, fArr2, 0);
         GLES20.glUniform1f(this.specHandleTop, this.spec1);
@@ -261,9 +264,9 @@ public class Icon3D {
         GLES20.glUniform2f(this.resolutionHandle, i, i2);
         GLES20.glUniform4f(this.gradientPositionHandle, f, f2, f3, f4);
         GLES20.glUniform1i(this.nightHandle, this.night ? 1 : 0);
-        float f6 = this.time + f5;
-        this.time = f6;
-        GLES20.glUniform1f(this.timeHandle, f6);
+        float f7 = this.time + f6;
+        this.time = f7;
+        GLES20.glUniform1f(this.timeHandle, f7);
         for (int i3 = 0; i3 < this.N; i3++) {
             int i4 = i3 * 3;
             GLES20.glBindBuffer(34962, this.buffers[i4 + 0]);
@@ -275,18 +278,18 @@ public class Icon3D {
             GLES20.glUniform1i(this.modelIndexHandle, i3);
             GLES20.glDrawArrays(4, 0, this.trianglesCount[i3] / 3);
         }
-        float f7 = this.enterAlpha;
-        if (f7 < 1.0f) {
-            float f8 = f7 + 0.07272727f;
-            this.enterAlpha = f8;
-            if (f8 > 1.0f) {
+        float f8 = this.enterAlpha;
+        if (f8 < 1.0f) {
+            float f9 = f8 + 0.07272727f;
+            this.enterAlpha = f9;
+            if (f9 > 1.0f) {
                 this.enterAlpha = 1.0f;
             }
         }
-        float f9 = this.xOffset + 5.0E-4f;
-        this.xOffset = f9;
-        if (f9 > 1.0f) {
-            this.xOffset = f9 - 1.0f;
+        float f10 = this.xOffset + 5.0E-4f;
+        this.xOffset = f10;
+        if (f10 > 1.0f) {
+            this.xOffset = f10 - 1.0f;
         }
     }
 

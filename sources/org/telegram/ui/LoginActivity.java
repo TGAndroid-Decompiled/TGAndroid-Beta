@@ -421,7 +421,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
     public void lambda$createView$3(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -1408,7 +1408,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
                 this.pendingSwitchingAccount = false;
-                lambda$onBackPressed$306();
+                lambda$onBackPressed$308();
                 return;
             }
             if (z && z2) {
@@ -2910,7 +2910,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (UserConfig.selectedAccount != i) {
                 ((LaunchActivity) LoginActivity.this.getParentActivity()).switchToAccount(i, false);
             }
-            LoginActivity.this.lambda$onBackPressed$306();
+            LoginActivity.this.lambda$onBackPressed$308();
         }
 
         public void lambda$onNextPressed$20(final Bundle bundle, final String str, final PhoneInputData phoneInputData, final TLObject tLObject, final TLObject tLObject2, final TLRPC$TL_error tLRPC$TL_error) {
@@ -3956,7 +3956,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$22(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$306();
+            LoginActivity.this.lambda$onBackPressed$308();
         }
 
         public void lambda$onNextPressed$29(final TLRPC$TL_account_confirmPhone tLRPC$TL_account_confirmPhone, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -4024,7 +4024,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$onNextPressed$26(DialogInterface dialogInterface) {
-            LoginActivity.this.lambda$onBackPressed$306();
+            LoginActivity.this.lambda$onBackPressed$308();
         }
 
         public void lambda$onNextPressed$37(final TLRPC$TL_auth_signIn tLRPC$TL_auth_signIn, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -4198,7 +4198,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         @Override
         public boolean onBackPressed(boolean z) {
             if (LoginActivity.this.activityMode != 0) {
-                LoginActivity.this.lambda$onBackPressed$306();
+                LoginActivity.this.lambda$onBackPressed$308();
                 return false;
             }
             int i = this.prevType;
@@ -4755,7 +4755,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             if (tLObject instanceof TL_stats$TL_broadcastRevenueWithdrawalUrl) {
                 LoginActivity.this.passwordFinishCallback.run((TL_stats$TL_broadcastRevenueWithdrawalUrl) tLObject, null);
-                LoginActivity.this.lambda$onBackPressed$306();
+                LoginActivity.this.lambda$onBackPressed$308();
                 return;
             }
             if (tLObject instanceof TLRPC$TL_auth_authorization) {
@@ -5307,7 +5307,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$5(TLObject tLObject, Bundle bundle, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_verifyEmail tLRPC$TL_account_verifyEmail) {
             if ((tLObject instanceof TLRPC$TL_account_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$306();
+                LoginActivity.this.lambda$onBackPressed$308();
                 LoginActivity.this.emailChangeFinishCallback.run();
                 return;
             }
@@ -6038,7 +6038,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
         public void lambda$onNextPressed$18(TLObject tLObject, Bundle bundle) {
             if ((tLObject instanceof TLRPC$TL_account_emailVerified) && LoginActivity.this.activityMode == 3) {
-                LoginActivity.this.lambda$onBackPressed$306();
+                LoginActivity.this.lambda$onBackPressed$308();
                 LoginActivity.this.emailChangeFinishCallback.run();
             } else if (tLObject instanceof TLRPC$TL_account_emailVerifiedLogin) {
                 LoginActivity.this.lambda$resendCodeFromSafetyNet$19(bundle, ((TLRPC$TL_account_emailVerifiedLogin) tLObject).sent_code);

@@ -460,7 +460,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
-                    UsersSelectActivity.this.lambda$onBackPressed$306();
+                    UsersSelectActivity.this.lambda$onBackPressed$308();
                 } else if (i3 == 1) {
                     UsersSelectActivity.this.onDonePressed(true);
                 }
@@ -910,7 +910,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
         if (filterUsersActivityDelegate != null) {
             filterUsersActivityDelegate.didSelectChats(arrayList, this.filterFlags);
         }
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
         return true;
     }
 
@@ -954,9 +954,9 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             int i4 = this.selectedCount;
             title.setText(LocaleController.formatPluralString("Chats", i4, Integer.valueOf(i4)));
             if (this.ttlPeriod > 0) {
-                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getPluralString("SelectChatsForAutoDelete2", this.selectedCount));
+                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForAutoDelete2));
             } else {
-                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getPluralString("SelectChatsForDisableAutoDelete2", this.selectedCount));
+                this.animatedAvatarContainer.getSubtitleTextView().setText(LocaleController.getString(R.string.SelectChatsForDisableAutoDelete2));
             }
         }
     }

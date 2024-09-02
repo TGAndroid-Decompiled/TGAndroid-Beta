@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$ChatInvite extends TLObject {
     public String about;
     public boolean broadcast;
+    public boolean can_refulfill_subscription;
     public boolean channel;
     public TLRPC$Chat chat;
     public int color;
@@ -18,6 +19,8 @@ public abstract class TLRPC$ChatInvite extends TLObject {
     public TLRPC$Photo photo;
     public boolean request_needed;
     public boolean scam;
+    public long subscription_form_id;
+    public TLRPC$TL_starsSubscriptionPricing subscription_pricing;
     public String title;
     public boolean verified;
 
@@ -25,7 +28,7 @@ public abstract class TLRPC$ChatInvite extends TLObject {
         TLRPC$ChatInvite tLRPC$ChatInvite;
         switch (i) {
             case -840897472:
-                tLRPC$ChatInvite = new TLRPC$ChatInvite() {
+                tLRPC$ChatInvite = new TLRPC$TL_chatInvite() {
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -104,6 +107,9 @@ public abstract class TLRPC$ChatInvite extends TLObject {
                         abstractSerializedData2.writeInt32(this.color);
                     }
                 };
+                break;
+            case -26920803:
+                tLRPC$ChatInvite = new TLRPC$TL_chatInvite();
                 break;
             case 806110401:
                 tLRPC$ChatInvite = new TLRPC$ChatInvite() {

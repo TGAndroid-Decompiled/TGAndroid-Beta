@@ -47,7 +47,6 @@ import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.ChatListItemAnimator;
 import com.google.android.exoplayer2.util.Consumer;
 import java.io.File;
-import java.net.IDN;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -986,17 +985,17 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (characterStyle instanceof URLSpanUserMention) {
                 TLRPC$User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Utilities.parseLong(((URLSpanUserMention) characterStyle).getURL()));
                 if (user != null) {
-                    MessagesController.openChatOrProfileWith(user, null, this.val$storyViewer.fragment, 0, false);
+                    MessagesController.getInstance(PeerStoriesView.this.currentAccount).openChatOrProfileWith(user, null, this.val$storyViewer.fragment, 0, false);
                     return;
                 }
                 return;
             }
             if (characterStyle instanceof URLSpanNoUnderline) {
                 String url = ((URLSpanNoUnderline) characterStyle).getURL();
-                if (url != null && url.startsWith("#")) {
+                if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("type", 3);
-                    bundle.putString("hashtag", url.substring(1));
+                    bundle.putString("hashtag", url);
                     StoryViewer storyViewer = this.val$storyViewer;
                     if (storyViewer != null) {
                         storyViewer.presentFragment(new MediaActivity(bundle, null));
@@ -1072,7 +1071,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             try {
                 try {
                     Uri parse = Uri.parse(url2);
-                    url2 = Browser.replaceHostname(parse, IDN.toUnicode(parse.getHost(), 1), null);
+                    url2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
                 } catch (Exception e) {
                     FileLog.e((Throwable) e, false);
                 }
@@ -3509,7 +3508,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);

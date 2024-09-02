@@ -180,7 +180,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             TLRPC$PhotoSize tLRPC$PhotoSize;
             this.currentMessageObject = messageObject;
             this.imageView.getImageReceiver().setVisible(!PhotoViewer.isShowingImage(messageObject), false);
-            if (!TextUtils.isEmpty(MessagesController.getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
+            if (!TextUtils.isEmpty(MessagesController.getInstance(SharedPhotoVideoCell.this.currentAccount).getRestrictionReason(messageObject.messageOwner.restriction_reason))) {
                 this.videoInfoContainer.setVisibility(4);
                 this.imageView.setImageResource(R.drawable.photo_placeholder_in);
                 return;

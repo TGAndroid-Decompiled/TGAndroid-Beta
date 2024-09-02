@@ -46,7 +46,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CollapseTextCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda331;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda333;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -423,7 +423,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 public Function compose(Function function) {
                     return Function.CC.$default$compose(this, function);
                 }
-            }).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda331.INSTANCE));
+            }).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
             Action action = new Action(2, arrayList2);
             this.banOrRestrict = action;
             action.setFilter(this.banFilter);
@@ -973,7 +973,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$10 = DeleteMessagesBottomSheet.this.lambda$performDelete$10((MessageObject) obj);
                 return lambda$performDelete$10;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda331.INSTANCE));
+        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
         ArrayList<Integer> arrayList2 = (ArrayList) Collection$EL.stream(this.messages).filter(new Predicate() {
             @Override
             public Predicate and(Predicate predicate) {
@@ -996,7 +996,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$11 = DeleteMessagesBottomSheet.this.lambda$performDelete$11((MessageObject) obj);
                 return lambda$performDelete$11;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda331.INSTANCE));
+        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
         if (!arrayList.isEmpty()) {
             MessagesController.getInstance(this.currentAccount).deleteMessages(arrayList, null, null, -this.inChat.id, this.topicId, false, this.mode);
         }
@@ -1113,7 +1113,7 @@ public class DeleteMessagesBottomSheet extends BottomSheetWithRecyclerListView {
                 lambda$performDelete$14 = DeleteMessagesBottomSheet.lambda$performDelete$14(TLObject.this, (MessageObject) obj);
                 return lambda$performDelete$14;
             }
-        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda331.INSTANCE));
+        }).map(DeleteMessagesBottomSheet$$ExternalSyntheticLambda4.INSTANCE).collect(Collectors.toCollection(ChatActivity$$ExternalSyntheticLambda333.INSTANCE));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_reportSpam, null);
     }
 

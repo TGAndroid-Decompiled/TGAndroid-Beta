@@ -13,7 +13,7 @@ import org.telegram.ui.Components.Bulletin;
 
 @SuppressLint({"ViewConstructor"})
 public class SelectSendAsPremiumHintBulletinLayout extends Bulletin.MultiLineLayout {
-    public SelectSendAsPremiumHintBulletinLayout(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
+    public SelectSendAsPremiumHintBulletinLayout(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, Runnable runnable) {
         super(context, resourcesProvider);
         this.imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.msg_premium_prolfilestar));
         this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));

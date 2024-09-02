@@ -386,7 +386,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -4287,7 +4287,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             if (groupCallInvitedCell.hasAvatarSet()) {
                 bundle.putBoolean("expandPhoto", true);
             }
-            this.parentActivity.lambda$runLinkRequest$88(new ProfileActivity(bundle));
+            this.parentActivity.lambda$runLinkRequest$91(new ProfileActivity(bundle));
             dismiss();
             return;
         }
@@ -6745,7 +6745,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$88(new ChatActivity(bundle));
+            this.parentActivity.lambda$runLinkRequest$91(new ChatActivity(bundle));
             dismiss();
             return;
         }
@@ -6762,7 +6762,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
             } else {
                 bundle2.putLong("chat_id", -j);
             }
-            this.parentActivity.lambda$runLinkRequest$88(new ChatActivity(bundle2));
+            this.parentActivity.lambda$runLinkRequest$91(new ChatActivity(bundle2));
             dismiss();
             return;
         }

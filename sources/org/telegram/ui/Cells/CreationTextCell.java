@@ -17,21 +17,17 @@ public class CreationTextCell extends FrameLayout {
     public int startPadding;
     private SimpleTextView textView;
 
-    public CreationTextCell(Context context) {
-        this(context, null);
-    }
-
-    public CreationTextCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public CreationTextCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.startPadding = 70;
+        this.startPadding = i;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
         simpleTextView.setTextSize(16);
         this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
         SimpleTextView simpleTextView2 = this.textView;
-        int i = Theme.key_windowBackgroundWhiteBlueText2;
-        simpleTextView2.setTextColor(Theme.getColor(i, resourcesProvider));
-        this.textView.setTag(Integer.valueOf(i));
+        int i2 = Theme.key_windowBackgroundWhiteBlueText2;
+        simpleTextView2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        this.textView.setTag(Integer.valueOf(i2));
         addView(this.textView);
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;

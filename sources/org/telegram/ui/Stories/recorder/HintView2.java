@@ -46,6 +46,7 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.ButtonBounce;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -292,7 +293,7 @@ public class HintView2 extends View {
         return this;
     }
 
-    private static float measureCorrectly(CharSequence charSequence, TextPaint textPaint) {
+    public static float measureCorrectly(CharSequence charSequence, TextPaint textPaint) {
         float f = 0.0f;
         if (charSequence == null) {
             return 0.0f;
@@ -303,37 +304,43 @@ public class HintView2 extends View {
         Spanned spanned = (Spanned) charSequence;
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
         AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
+        Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(0, charSequence.length(), Emoji.EmojiSpan.class);
+        ColoredImageSpan[] coloredImageSpanArr = (ColoredImageSpan[]) spanned.getSpans(0, charSequence.length(), ColoredImageSpan.class);
         int i = 0;
-        for (Emoji.EmojiSpan emojiSpan : (Emoji.EmojiSpan[]) spanned.getSpans(0, charSequence.length(), Emoji.EmojiSpan.class)) {
+        for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
             i += emojiSpan.size;
         }
+        int i2 = i;
+        for (int i3 = 0; i3 < coloredImageSpanArr.length; i3++) {
+            i2 += coloredImageSpanArr[i3].getSize(textPaint, charSequence, spanned.getSpanStart(coloredImageSpanArr[i3]), spanned.getSpanEnd(coloredImageSpanArr[i3]), textPaint.getFontMetricsInt());
+        }
         for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
-            i = (int) (i + animatedEmojiSpan.size);
+            i2 = (int) (i2 + animatedEmojiSpan.size);
         }
         if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
-            return textPaint.measureText(charSequence.toString()) + i;
+            return textPaint.measureText(charSequence.toString()) + i2;
         }
-        int i2 = 0;
-        for (int i3 = 0; i3 < typefaceSpanArr.length; i3++) {
-            int spanStart = spanned.getSpanStart(typefaceSpanArr[i3]);
-            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i3]);
-            int max = Math.max(i2, spanStart);
-            if (max - i2 > 0) {
-                f += textPaint.measureText(spanned, i2, max);
+        int i4 = 0;
+        for (int i5 = 0; i5 < typefaceSpanArr.length; i5++) {
+            int spanStart = spanned.getSpanStart(typefaceSpanArr[i5]);
+            int spanEnd = spanned.getSpanEnd(typefaceSpanArr[i5]);
+            int max = Math.max(i4, spanStart);
+            if (max - i4 > 0) {
+                f += textPaint.measureText(spanned, i4, max);
             }
-            i2 = Math.max(max, spanEnd);
-            if (i2 - max > 0) {
+            i4 = Math.max(max, spanEnd);
+            if (i4 - max > 0) {
                 Typeface typeface = textPaint.getTypeface();
-                textPaint.setTypeface(typefaceSpanArr[i3].getTypeface());
-                f += textPaint.measureText(spanned, max, i2);
+                textPaint.setTypeface(typefaceSpanArr[i5].getTypeface());
+                f += textPaint.measureText(spanned, max, i4);
                 textPaint.setTypeface(typeface);
             }
         }
-        int max2 = Math.max(i2, charSequence.length());
-        if (max2 - i2 > 0) {
-            f += textPaint.measureText(spanned, i2, max2);
+        int max2 = Math.max(i4, charSequence.length());
+        if (max2 - i4 > 0) {
+            f += textPaint.measureText(spanned, i4, max2);
         }
-        return f + i;
+        return f + i2;
     }
 
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {

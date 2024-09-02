@@ -921,7 +921,7 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return (this.videoView.getVisibility() == 0 && this.videoView.isInFullscreen()) ? false : true;
     }
 

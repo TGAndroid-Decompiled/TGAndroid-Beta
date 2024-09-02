@@ -1,22 +1,14 @@
 package org.telegram.ui;
 
-import android.animation.LayoutTransition;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
-import android.text.InputFilter;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.text.method.DigitsKeyListener;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -24,28 +16,27 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_exportedChatInvite;
-import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Cells.EditTextCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SlideChooseView;
 
 public class LinkEditActivity extends BaseFragment {
     private TextCheckCell approveCell;
+    private TextInfoPrivacyCell approveHintCell;
+    private FrameLayout buttonLayout;
     private TextView buttonTextView;
     private Callback callback;
     private final long chatId;
@@ -54,7 +45,7 @@ public class LinkEditActivity extends BaseFragment {
     private TextInfoPrivacyCell divider;
     private TextInfoPrivacyCell dividerName;
     private TextInfoPrivacyCell dividerUses;
-    private boolean finished;
+    private boolean firstLayout;
     private boolean ignoreSet;
     TLRPC$TL_chatInviteExported inviteToEdit;
     boolean loading;
@@ -64,6 +55,10 @@ public class LinkEditActivity extends BaseFragment {
     boolean scrollToEnd;
     boolean scrollToStart;
     private ScrollView scrollView;
+    private TextCheckCell subCell;
+    private EditTextCell subEditPriceCell;
+    private TextInfoPrivacyCell subInfoCell;
+    private TextView subPriceView;
     private SlideChooseView timeChooseView;
     private TextView timeEditText;
     private HeaderCell timeHeaderCell;
@@ -71,7 +66,7 @@ public class LinkEditActivity extends BaseFragment {
     private SlideChooseView usesChooseView;
     private EditText usesEditText;
     private HeaderCell usesHeaderCell;
-    private boolean firstLayout = true;
+    private int shakeDp = -3;
     private ArrayList<Integer> dispalyedDates = new ArrayList<>();
     private final int[] defaultDates = {3600, 86400, 604800};
     private ArrayList<Integer> dispalyedUses = new ArrayList<>();
@@ -87,468 +82,113 @@ public class LinkEditActivity extends BaseFragment {
         void revokeLink(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported);
     }
 
+    public static void lambda$createView$11(Integer num) {
+    }
+
     public LinkEditActivity(int i, long j) {
         this.type = i;
         this.chatId = j;
     }
 
     @Override
-    public View createView(final Context context) {
-        boolean z;
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        int i = this.type;
-        if (i == 0) {
-            this.actionBar.setTitle(LocaleController.getString("NewLink", R.string.NewLink));
-        } else if (i == 1) {
-            this.actionBar.setTitle(LocaleController.getString("EditLink", R.string.EditLink));
-        }
-        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
-            @Override
-            public void onItemClick(int i2) {
-                if (i2 == -1) {
-                    LinkEditActivity.this.lambda$onBackPressed$306();
-                    AndroidUtilities.hideKeyboard(LinkEditActivity.this.usesEditText);
-                }
-            }
-        });
-        TextView textView = new TextView(context);
-        this.createTextView = textView;
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        this.createTextView.setGravity(16);
-        this.createTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                LinkEditActivity.this.onCreateClicked(view);
-            }
-        });
-        this.createTextView.setSingleLine();
-        int i2 = this.type;
-        if (i2 == 0) {
-            this.createTextView.setText(LocaleController.getString("CreateLinkHeader", R.string.CreateLinkHeader));
-        } else if (i2 == 1) {
-            this.createTextView.setText(LocaleController.getString("SaveLinkHeader", R.string.SaveLinkHeader));
-        }
-        this.createTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle));
-        this.createTextView.setTextSize(1, 14.0f);
-        this.createTextView.setTypeface(AndroidUtilities.bold());
-        this.createTextView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.0f));
-        this.actionBar.addView(this.createTextView, LayoutHelper.createFrame(-2, -2.0f, 8388629, 0.0f, this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight / AndroidUtilities.dp(2.0f) : 0, 0.0f, 0.0f));
-        this.scrollView = new ScrollView(context);
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
-            int oldKeyboardHeight;
-
-            @Override
-            protected AdjustPanLayoutHelper createAdjustPanLayoutHelper() {
-                AdjustPanLayoutHelper adjustPanLayoutHelper = new AdjustPanLayoutHelper(this) {
-                    @Override
-                    public void onTransitionStart(boolean z2, int i3) {
-                        super.onTransitionStart(z2, i3);
-                        LinkEditActivity.this.scrollView.getLayoutParams().height = i3;
-                    }
-
-                    @Override
-                    public void onTransitionEnd() {
-                        super.onTransitionEnd();
-                        LinkEditActivity.this.scrollView.getLayoutParams().height = -1;
-                        LinkEditActivity.this.scrollView.requestLayout();
-                    }
-
-                    @Override
-                    public void onPanTranslationUpdate(float f, float f2, boolean z2) {
-                        super.onPanTranslationUpdate(f, f2, z2);
-                        setTranslationY(0.0f);
-                    }
-
-                    @Override
-                    protected boolean heightAnimationEnabled() {
-                        return !LinkEditActivity.this.finished;
-                    }
-                };
-                adjustPanLayoutHelper.setCheckHierarchyHeight(true);
-                return adjustPanLayoutHelper;
-            }
-
-            @Override
-            public void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                this.adjustPanLayoutHelper.onAttach();
-            }
-
-            @Override
-            public void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                this.adjustPanLayoutHelper.onDetach();
-            }
-
-            @Override
-            protected void onMeasure(int i3, int i4) {
-                super.onMeasure(i3, i4);
-                measureKeyboardHeight();
-                boolean z2 = LinkEditActivity.this.usesEditText.isCursorVisible() || LinkEditActivity.this.nameEditText.isCursorVisible();
-                int i5 = this.oldKeyboardHeight;
-                int i6 = this.keyboardHeight;
-                if (i5 == i6 || i6 <= AndroidUtilities.dp(20.0f) || !z2) {
-                    if (LinkEditActivity.this.scrollView.getScrollY() == 0 && !z2) {
-                        LinkEditActivity.this.scrollToStart = true;
-                        invalidate();
-                    }
-                } else {
-                    LinkEditActivity.this.scrollToEnd = true;
-                    invalidate();
-                }
-                int i7 = this.keyboardHeight;
-                if (i7 != 0 && i7 < AndroidUtilities.dp(20.0f)) {
-                    LinkEditActivity.this.usesEditText.clearFocus();
-                    LinkEditActivity.this.nameEditText.clearFocus();
-                }
-                this.oldKeyboardHeight = this.keyboardHeight;
-            }
-
-            @Override
-            public void onLayout(boolean z2, int i3, int i4, int i5, int i6) {
-                int scrollY = LinkEditActivity.this.scrollView.getScrollY();
-                super.onLayout(z2, i3, i4, i5, i6);
-                if (scrollY != LinkEditActivity.this.scrollView.getScrollY()) {
-                    LinkEditActivity linkEditActivity = LinkEditActivity.this;
-                    if (linkEditActivity.scrollToEnd) {
-                        return;
-                    }
-                    linkEditActivity.scrollView.setTranslationY(LinkEditActivity.this.scrollView.getScrollY() - scrollY);
-                    LinkEditActivity.this.scrollView.animate().cancel();
-                    LinkEditActivity.this.scrollView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
-                }
-            }
-
-            @Override
-            public void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                LinkEditActivity linkEditActivity = LinkEditActivity.this;
-                if (linkEditActivity.scrollToEnd) {
-                    linkEditActivity.scrollToEnd = false;
-                    linkEditActivity.scrollView.smoothScrollTo(0, Math.max(0, LinkEditActivity.this.scrollView.getChildAt(0).getMeasuredHeight() - LinkEditActivity.this.scrollView.getMeasuredHeight()));
-                } else if (linkEditActivity.scrollToStart) {
-                    linkEditActivity.scrollToStart = false;
-                    linkEditActivity.scrollView.smoothScrollTo(0, 0);
-                }
-            }
-        };
-        this.fragmentView = sizeNotifierFrameLayout;
-        LinearLayout linearLayout = new LinearLayout(context) {
-            @Override
-            protected void onMeasure(int i3, int i4) {
-                int dp;
-                super.onMeasure(i3, i4);
-                int size = View.MeasureSpec.getSize(i4);
-                int i5 = 0;
-                for (int i6 = 0; i6 < getChildCount(); i6++) {
-                    View childAt = getChildAt(i6);
-                    if (childAt != LinkEditActivity.this.buttonTextView && childAt.getVisibility() != 8) {
-                        i5 += childAt.getMeasuredHeight();
-                    }
-                }
-                int dp2 = size - ((AndroidUtilities.dp(48.0f) + AndroidUtilities.dp(24.0f)) + AndroidUtilities.dp(16.0f));
-                if (i5 >= dp2) {
-                    dp = AndroidUtilities.dp(24.0f);
-                } else {
-                    dp = (AndroidUtilities.dp(24.0f) + dp2) - i5;
-                }
-                if (((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin != dp) {
-                    int i7 = ((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin;
-                    ((LinearLayout.LayoutParams) LinkEditActivity.this.buttonTextView.getLayoutParams()).topMargin = dp;
-                    if (!LinkEditActivity.this.firstLayout) {
-                        LinkEditActivity.this.buttonTextView.setTranslationY(i7 - dp);
-                        LinkEditActivity.this.buttonTextView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
-                    }
-                    super.onMeasure(i3, i4);
-                }
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                LinkEditActivity.this.firstLayout = false;
-            }
-        };
-        LayoutTransition layoutTransition = new LayoutTransition();
-        layoutTransition.setDuration(100L);
-        linearLayout.setLayoutTransition(layoutTransition);
-        linearLayout.setOrientation(1);
-        this.scrollView.addView(linearLayout);
-        TextView textView2 = new TextView(context);
-        this.buttonTextView = textView2;
-        textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextSize(1, 14.0f);
-        this.buttonTextView.setTypeface(AndroidUtilities.bold());
-        int i3 = this.type;
-        if (i3 == 0) {
-            this.buttonTextView.setText(LocaleController.getString("CreateLink", R.string.CreateLink));
-        } else if (i3 == 1) {
-            this.buttonTextView.setText(LocaleController.getString("SaveLink", R.string.SaveLink));
-        }
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
-        if (chat == null || chat.username == null) {
-            TextCheckCell textCheckCell = new TextCheckCell(this, context) {
-                @Override
-                public void onDraw(Canvas canvas) {
-                    canvas.save();
-                    canvas.clipRect(0, 0, getWidth(), getHeight());
-                    super.onDraw(canvas);
-                    canvas.restore();
-                }
-            };
-            this.approveCell = textCheckCell;
-            int i4 = Theme.key_windowBackgroundUnchecked;
-            textCheckCell.setBackgroundColor(Theme.getColor(i4));
-            this.approveCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
-            this.approveCell.setDrawCheckRipple(true);
-            this.approveCell.setHeight(56);
-            this.approveCell.setTag(Integer.valueOf(i4));
-            this.approveCell.setTextAndCheck(LocaleController.getString("ApproveNewMembers", R.string.ApproveNewMembers), false, false);
-            this.approveCell.setTypeface(AndroidUtilities.bold());
-            this.approveCell.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    LinkEditActivity.this.lambda$createView$0(view);
-                }
-            });
-            linearLayout.addView(this.approveCell, LayoutHelper.createLinear(-1, 56));
-            z = true;
-        } else {
-            z = false;
-        }
-        TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
-        int i5 = R.drawable.greydivider;
-        int i6 = Theme.key_windowBackgroundGrayShadow;
-        textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(context, i5, i6));
-        if (z) {
-            textInfoPrivacyCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription));
-            linearLayout.addView(textInfoPrivacyCell);
-        }
-        HeaderCell headerCell = new HeaderCell(context);
-        this.timeHeaderCell = headerCell;
-        headerCell.setText(LocaleController.getString("LimitByPeriod", R.string.LimitByPeriod));
-        linearLayout.addView(this.timeHeaderCell);
-        SlideChooseView slideChooseView = new SlideChooseView(context);
-        this.timeChooseView = slideChooseView;
-        linearLayout.addView(slideChooseView);
-        TextView textView3 = new TextView(context);
-        this.timeEditText = textView3;
-        textView3.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        this.timeEditText.setGravity(16);
-        this.timeEditText.setTextSize(1, 16.0f);
-        this.timeEditText.setHint(LocaleController.getString("TimeLimitHint", R.string.TimeLimitHint));
-        this.timeEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                LinkEditActivity.this.lambda$createView$2(context, view);
-            }
-        });
-        this.timeChooseView.setCallback(new SlideChooseView.Callback() {
-            @Override
-            public final void onOptionSelected(int i7) {
-                LinkEditActivity.this.lambda$createView$3(i7);
-            }
-
-            @Override
-            public void onTouchEnd() {
-                SlideChooseView.Callback.CC.$default$onTouchEnd(this);
-            }
-        });
-        resetDates();
-        linearLayout.addView(this.timeEditText, LayoutHelper.createLinear(-1, 50));
-        TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
-        this.divider = textInfoPrivacyCell2;
-        textInfoPrivacyCell2.setText(LocaleController.getString("TimeLimitHelp", R.string.TimeLimitHelp));
-        linearLayout.addView(this.divider);
-        HeaderCell headerCell2 = new HeaderCell(context);
-        this.usesHeaderCell = headerCell2;
-        headerCell2.setText(LocaleController.getString("LimitNumberOfUses", R.string.LimitNumberOfUses));
-        linearLayout.addView(this.usesHeaderCell);
-        SlideChooseView slideChooseView2 = new SlideChooseView(context);
-        this.usesChooseView = slideChooseView2;
-        slideChooseView2.setCallback(new SlideChooseView.Callback() {
-            @Override
-            public final void onOptionSelected(int i7) {
-                LinkEditActivity.this.lambda$createView$4(i7);
-            }
-
-            @Override
-            public void onTouchEnd() {
-                SlideChooseView.Callback.CC.$default$onTouchEnd(this);
-            }
-        });
-        resetUses();
-        linearLayout.addView(this.usesChooseView);
-        EditText editText = new EditText(this, context) {
-            @Override
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            }
-        };
-        this.usesEditText = editText;
-        editText.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        this.usesEditText.setGravity(16);
-        this.usesEditText.setTextSize(1, 16.0f);
-        this.usesEditText.setHint(LocaleController.getString("UsesLimitHint", R.string.UsesLimitHint));
-        this.usesEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        this.usesEditText.setInputType(2);
-        this.usesEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (LinkEditActivity.this.ignoreSet) {
-                    return;
-                }
-                if (editable.toString().equals("0")) {
-                    LinkEditActivity.this.usesEditText.setText("");
-                    return;
-                }
-                try {
-                    int parseInt = Integer.parseInt(editable.toString());
-                    if (parseInt > 100000) {
-                        LinkEditActivity.this.resetUses();
-                    } else {
-                        LinkEditActivity.this.chooseUses(parseInt);
-                    }
-                } catch (NumberFormatException unused) {
-                    LinkEditActivity.this.resetUses();
-                }
-            }
-        });
-        linearLayout.addView(this.usesEditText, LayoutHelper.createLinear(-1, 50));
-        TextInfoPrivacyCell textInfoPrivacyCell3 = new TextInfoPrivacyCell(context);
-        this.dividerUses = textInfoPrivacyCell3;
-        textInfoPrivacyCell3.setText(LocaleController.getString("UsesLimitHelp", R.string.UsesLimitHelp));
-        linearLayout.addView(this.dividerUses);
-        EditText editText2 = new EditText(this, context) {
-            @Override
-            @SuppressLint({"ClickableViewAccessibility"})
-            public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            }
-        };
-        this.nameEditText = editText2;
-        editText2.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                Emoji.replaceEmoji((CharSequence) editable, LinkEditActivity.this.nameEditText.getPaint().getFontMetricsInt(), (int) LinkEditActivity.this.nameEditText.getPaint().getTextSize(), false);
-            }
-        });
-        this.nameEditText.setCursorVisible(false);
-        this.nameEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(32)});
-        this.nameEditText.setGravity(16);
-        this.nameEditText.setHint(LocaleController.getString("LinkNameHint", R.string.LinkNameHint));
-        EditText editText3 = this.nameEditText;
-        int i7 = Theme.key_windowBackgroundWhiteGrayText;
-        editText3.setHintTextColor(Theme.getColor(i7));
-        this.nameEditText.setLines(1);
-        this.nameEditText.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        this.nameEditText.setSingleLine();
-        EditText editText4 = this.nameEditText;
-        int i8 = Theme.key_windowBackgroundWhiteBlackText;
-        editText4.setTextColor(Theme.getColor(i8));
-        this.nameEditText.setTextSize(1, 16.0f);
-        linearLayout.addView(this.nameEditText, LayoutHelper.createLinear(-1, 50));
-        TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context);
-        this.dividerName = textInfoPrivacyCell4;
-        int i9 = R.drawable.greydivider_bottom;
-        textInfoPrivacyCell4.setBackground(Theme.getThemedDrawableByKey(context, i9, i6));
-        this.dividerName.setText(LocaleController.getString("LinkNameHelp", R.string.LinkNameHelp));
-        linearLayout.addView(this.dividerName);
-        if (this.type == 1) {
-            TextSettingsCell textSettingsCell = new TextSettingsCell(context);
-            this.revokeLink = textSettingsCell;
-            textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            this.revokeLink.setText(LocaleController.getString("RevokeLink", R.string.RevokeLink), false);
-            this.revokeLink.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-            this.revokeLink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    LinkEditActivity.this.lambda$createView$6(view);
-                }
-            });
-            linearLayout.addView(this.revokeLink);
-        }
-        sizeNotifierFrameLayout.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
-        linearLayout.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 15.0f, 16.0f, 16.0f));
-        HeaderCell headerCell3 = this.timeHeaderCell;
-        int i10 = Theme.key_windowBackgroundWhite;
-        headerCell3.setBackgroundColor(Theme.getColor(i10));
-        this.timeChooseView.setBackgroundColor(Theme.getColor(i10));
-        this.timeEditText.setBackgroundColor(Theme.getColor(i10));
-        this.usesHeaderCell.setBackgroundColor(Theme.getColor(i10));
-        this.usesChooseView.setBackgroundColor(Theme.getColor(i10));
-        this.usesEditText.setBackgroundColor(Theme.getColor(i10));
-        this.nameEditText.setBackgroundColor(Theme.getColor(i10));
-        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        this.buttonTextView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                LinkEditActivity.this.onCreateClicked(view);
-            }
-        });
-        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.dividerUses.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i9, i6));
-        this.divider.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i5, i6));
-        this.buttonTextView.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
-        this.usesEditText.setTextColor(Theme.getColor(i8));
-        this.usesEditText.setHintTextColor(Theme.getColor(i7));
-        this.timeEditText.setTextColor(Theme.getColor(i8));
-        this.timeEditText.setHintTextColor(Theme.getColor(i7));
-        this.usesEditText.setCursorVisible(false);
-        setInviteToEdit(this.inviteToEdit);
-        sizeNotifierFrameLayout.setClipChildren(false);
-        this.scrollView.setClipChildren(false);
-        linearLayout.setClipChildren(false);
-        return sizeNotifierFrameLayout;
+    public android.view.View createView(final android.content.Context r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkEditActivity.createView(android.content.Context):android.view.View");
     }
 
     public void lambda$createView$0(View view) {
-        TextCheckCell textCheckCell = (TextCheckCell) view;
-        boolean z = !textCheckCell.isChecked();
-        textCheckCell.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-        textCheckCell.setChecked(z);
+        TextCheckCell textCheckCell = this.subCell;
+        if (textCheckCell != null && textCheckCell.isChecked()) {
+            TextCheckCell textCheckCell2 = this.subCell;
+            int i = -this.shakeDp;
+            this.shakeDp = i;
+            AndroidUtilities.shakeViewSpring(textCheckCell2, i);
+            return;
+        }
+        TextCheckCell textCheckCell3 = (TextCheckCell) view;
+        boolean z = !textCheckCell3.isChecked();
+        textCheckCell3.setBackgroundColorAnimated(z, Theme.getColor(z ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
+        textCheckCell3.setChecked(z);
         setUsesVisible(!z);
-        this.firstLayout = true;
+        if (this.subCell != null) {
+            if (textCheckCell3.isChecked()) {
+                this.subCell.setChecked(false);
+                this.subCell.setCheckBoxIcon(R.drawable.permission_locked);
+                this.subEditPriceCell.setVisibility(8);
+            } else if (this.inviteToEdit == null) {
+                this.subCell.setCheckBoxIcon(0);
+            }
+        }
     }
 
-    public void lambda$createView$1(boolean z, int i) {
+    public void lambda$createView$3(Runnable[] runnableArr, View view) {
+        if (this.inviteToEdit != null) {
+            return;
+        }
+        if (this.approveCell.isChecked()) {
+            TextCheckCell textCheckCell = this.approveCell;
+            int i = -this.shakeDp;
+            this.shakeDp = i;
+            AndroidUtilities.shakeViewSpring(textCheckCell, i);
+            return;
+        }
+        TextCheckCell textCheckCell2 = (TextCheckCell) view;
+        textCheckCell2.setChecked(!textCheckCell2.isChecked());
+        this.subEditPriceCell.setVisibility(textCheckCell2.isChecked() ? 0 : 8);
+        AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
+        if (textCheckCell2.isChecked()) {
+            this.approveCell.setChecked(false);
+            this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
+            this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    LinkEditActivity.this.lambda$createView$1();
+                }
+            };
+            runnableArr[0] = runnable;
+            AndroidUtilities.runOnUIThread(runnable, 60L);
+            return;
+        }
+        this.approveCell.setCheckBoxIcon(0);
+        this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription));
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                LinkEditActivity.this.lambda$createView$2();
+            }
+        };
+        runnableArr[0] = runnable2;
+        AndroidUtilities.runOnUIThread(runnable2);
+    }
+
+    public void lambda$createView$1() {
+        this.subEditPriceCell.editText.requestFocus();
+        AndroidUtilities.showKeyboard(this.subEditPriceCell.editText);
+    }
+
+    public void lambda$createView$2() {
+        this.subEditPriceCell.editText.clearFocus();
+        AndroidUtilities.hideKeyboard(this.subEditPriceCell.editText);
+    }
+
+    public void lambda$createView$4() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+    }
+
+    public void lambda$createView$5(boolean z, int i) {
         chooseDate(i);
     }
 
-    public void lambda$createView$2(Context context, View view) {
+    public void lambda$createView$6(Context context, View view) {
         AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new AlertsCreator.ScheduleDatePickerDelegate() {
             @Override
             public final void didSelectDate(boolean z, int i) {
-                LinkEditActivity.this.lambda$createView$1(z, i);
+                LinkEditActivity.this.lambda$createView$5(z, i);
             }
         });
     }
 
-    public void lambda$createView$3(int i) {
+    public void lambda$createView$7(int i) {
         if (i < this.dispalyedDates.size()) {
             this.timeEditText.setText(LocaleController.formatDateAudio(this.dispalyedDates.get(i).intValue() + getConnectionsManager().getCurrentTime(), false));
         } else {
@@ -556,7 +196,7 @@ public class LinkEditActivity extends BaseFragment {
         }
     }
 
-    public void lambda$createView$4(int i) {
+    public void lambda$createView$8(int i) {
         this.usesEditText.clearFocus();
         this.ignoreSet = true;
         if (i < this.dispalyedUses.size()) {
@@ -567,39 +207,39 @@ public class LinkEditActivity extends BaseFragment {
         this.ignoreSet = false;
     }
 
-    public void lambda$createView$6(View view) {
+    public void lambda$createView$10(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
         builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
         builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                LinkEditActivity.this.lambda$createView$5(dialogInterface, i);
+                LinkEditActivity.this.lambda$createView$9(dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$createView$5(DialogInterface dialogInterface, int i) {
+    public void lambda$createView$9(DialogInterface dialogInterface, int i) {
         this.callback.revokeLink(this.inviteToEdit);
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
     }
 
-    public void onCreateClicked(android.view.View r9) {
+    public void onCreateClicked(android.view.View r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LinkEditActivity.onCreateClicked(android.view.View):void");
     }
 
-    public void lambda$onCreateClicked$8(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onCreateClicked$13(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$7(tLRPC$TL_error, tLObject);
+                LinkEditActivity.this.lambda$onCreateClicked$12(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$onCreateClicked$7(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$onCreateClicked$12(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         this.loading = false;
         AlertDialog alertDialog = this.progressDialog;
         if (alertDialog != null) {
@@ -610,22 +250,22 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkCreated(tLObject);
             }
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
     }
 
-    public void lambda$onCreateClicked$10(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onCreateClicked$15(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkEditActivity.this.lambda$onCreateClicked$9(tLRPC$TL_error, tLObject);
+                LinkEditActivity.this.lambda$onCreateClicked$14(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$onCreateClicked$9(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$onCreateClicked$14(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         this.loading = false;
         AlertDialog alertDialog = this.progressDialog;
         if (alertDialog != null) {
@@ -639,7 +279,7 @@ public class LinkEditActivity extends BaseFragment {
             if (callback != null) {
                 callback.onLinkEdited(this.inviteToEdit, tLObject);
             }
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
             return;
         }
         AlertsCreator.showSimpleAlert(this, tLRPC$TL_error.text);
@@ -788,12 +428,35 @@ public class LinkEditActivity extends BaseFragment {
             this.approveCell.setChecked(tLRPC$TL_chatInviteExported.request_needed);
         }
         setUsesVisible(!tLRPC$TL_chatInviteExported.request_needed);
-        if (TextUtils.isEmpty(tLRPC$TL_chatInviteExported.title)) {
-            return;
+        if (!TextUtils.isEmpty(tLRPC$TL_chatInviteExported.title)) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_chatInviteExported.title);
+            Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.nameEditText.getPaint().getFontMetricsInt(), (int) this.nameEditText.getPaint().getTextSize(), false);
+            this.nameEditText.setText(spannableStringBuilder);
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_chatInviteExported.title);
-        Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.nameEditText.getPaint().getFontMetricsInt(), (int) this.nameEditText.getPaint().getTextSize(), false);
-        this.nameEditText.setText(spannableStringBuilder);
+        TextCheckCell textCheckCell2 = this.subCell;
+        if (textCheckCell2 != null) {
+            textCheckCell2.setChecked(tLRPC$TL_chatInviteExported.subscription_pricing != null);
+        }
+        if (tLRPC$TL_chatInviteExported.subscription_pricing != null) {
+            TextCheckCell textCheckCell3 = this.approveCell;
+            if (textCheckCell3 != null) {
+                textCheckCell3.setChecked(false);
+                this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
+            }
+            TextInfoPrivacyCell textInfoPrivacyCell = this.approveHintCell;
+            if (textInfoPrivacyCell != null) {
+                textInfoPrivacyCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
+            }
+        }
+        EditTextCell editTextCell = this.subEditPriceCell;
+        if (editTextCell != null) {
+            editTextCell.setVisibility(tLRPC$TL_chatInviteExported.subscription_pricing != null ? 0 : 8);
+            this.subEditPriceCell.setText(Long.toString(tLRPC$TL_chatInviteExported.subscription_pricing.amount));
+            this.subEditPriceCell.editText.setClickable(false);
+            this.subEditPriceCell.editText.setFocusable(false);
+            this.subEditPriceCell.editText.setFocusableInTouchMode(false);
+            this.subEditPriceCell.editText.setLongClickable(false);
+        }
     }
 
     private void setUsesVisible(boolean z) {
@@ -805,10 +468,9 @@ public class LinkEditActivity extends BaseFragment {
     }
 
     @Override
-    public void lambda$onBackPressed$306() {
+    public void lambda$onBackPressed$308() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
-        this.finished = true;
-        super.lambda$onBackPressed$306();
+        super.lambda$onBackPressed$308();
     }
 
     @Override
@@ -816,7 +478,7 @@ public class LinkEditActivity extends BaseFragment {
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                LinkEditActivity.this.lambda$getThemeDescriptions$11();
+                LinkEditActivity.this.lambda$getThemeDescriptions$16();
             }
 
             @Override
@@ -857,7 +519,7 @@ public class LinkEditActivity extends BaseFragment {
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$11() {
+    public void lambda$getThemeDescriptions$16() {
         TextInfoPrivacyCell textInfoPrivacyCell = this.dividerUses;
         if (textInfoPrivacyCell != null) {
             Context context = textInfoPrivacyCell.getContext();

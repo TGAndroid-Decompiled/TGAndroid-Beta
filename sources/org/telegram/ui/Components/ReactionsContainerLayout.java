@@ -43,7 +43,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -75,6 +74,7 @@ import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_messages_savedReactionsTags;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
+import org.telegram.tgnet.TLRPC$TL_reactionPaid;
 import org.telegram.tgnet.TLRPC$messages_AvailableEffects;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -89,6 +89,7 @@ import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public class ReactionsContainerLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -1046,11 +1047,23 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     public void setMessage(MessageObject messageObject, TLRPC$ChatFull tLRPC$ChatFull, boolean z) {
+        int i;
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         TLRPC$Message tLRPC$Message;
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions2;
         this.messageObject = messageObject;
-        this.hitLimit = (this.type != 0 || messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$TL_messageReactions2 = tLRPC$Message.reactions) == null || tLRPC$TL_messageReactions2.results.size() < MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(this.messageObject.getDialogId())) ? false : true;
+        if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$TL_messageReactions2 = tLRPC$Message.reactions) == null) {
+            i = 0;
+        } else {
+            Iterator<TLRPC$ReactionCount> it = tLRPC$TL_messageReactions2.results.iterator();
+            i = 0;
+            while (it.hasNext()) {
+                if (!(it.next().reaction instanceof TLRPC$TL_reactionPaid)) {
+                    i++;
+                }
+            }
+        }
+        this.hitLimit = this.type == 0 && this.messageObject != null && i >= MessagesController.getInstance(this.currentAccount).getChatMaxUniqReactions(this.messageObject.getDialogId());
         ArrayList arrayList = new ArrayList();
         if (messageObject != null && messageObject.isForwardedChannelPost() && (tLRPC$ChatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-messageObject.getFromChatId())) == null) {
             this.waitingLoadingChatId = -messageObject.getFromChatId();
@@ -1058,20 +1071,26 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             setVisibility(4);
             return;
         }
-        int i = this.type;
-        if (i == 3) {
+        int i2 = this.type;
+        if (i2 == 3) {
             this.allReactionsAvailable = UserConfig.getInstance(this.currentAccount).isPremium();
             fillRecentReactionsList(arrayList);
-        } else if (i == 5) {
+        } else if (i2 == 5) {
             this.allReactionsAvailable = true;
             fillRecentReactionsList(arrayList);
         } else if (this.hitLimit) {
             this.allReactionsAvailable = false;
-            Iterator<TLRPC$ReactionCount> it = this.messageObject.messageOwner.reactions.results.iterator();
-            while (it.hasNext()) {
-                arrayList.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(it.next().reaction));
+            if (tLRPC$ChatFull != null && tLRPC$ChatFull.paid_reactions_available) {
+                arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
+            }
+            Iterator<TLRPC$ReactionCount> it2 = this.messageObject.messageOwner.reactions.results.iterator();
+            while (it2.hasNext()) {
+                arrayList.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(it2.next().reaction));
             }
         } else if (tLRPC$ChatFull != null) {
+            if (tLRPC$ChatFull.paid_reactions_available) {
+                arrayList.add(ReactionsLayoutInBubble.VisibleReaction.asStar());
+            }
             TLRPC$ChatReactions tLRPC$ChatReactions = tLRPC$ChatFull.available_reactions;
             if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsAll) {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.id));
@@ -1082,13 +1101,13 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
                 fillRecentReactionsList(arrayList);
             } else if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
-                Iterator<TLRPC$Reaction> it2 = ((TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions).reactions.iterator();
-                while (it2.hasNext()) {
-                    TLRPC$Reaction next = it2.next();
-                    Iterator<TLRPC$TL_availableReaction> it3 = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList().iterator();
+                Iterator<TLRPC$Reaction> it3 = ((TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions).reactions.iterator();
+                while (it3.hasNext()) {
+                    TLRPC$Reaction next = it3.next();
+                    Iterator<TLRPC$TL_availableReaction> it4 = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList().iterator();
                     while (true) {
-                        if (it3.hasNext()) {
-                            TLRPC$TL_availableReaction next2 = it3.next();
+                        if (it4.hasNext()) {
+                            TLRPC$TL_availableReaction next2 = it4.next();
                             if ((next instanceof TLRPC$TL_reactionEmoji) && next2.reaction.equals(((TLRPC$TL_reactionEmoji) next).emoticon)) {
                                 arrayList.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(next));
                                 break;
@@ -1099,8 +1118,6 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                         }
                     }
                 }
-            } else if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                throw new RuntimeException("Unknown chat reactions type: " + tLRPC$ChatFull.available_reactions);
             }
         } else {
             this.allReactionsAvailable = true;
@@ -1118,9 +1135,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         if (messageObject == null || (tLRPC$TL_messageReactions = messageObject.messageOwner.reactions) == null || tLRPC$TL_messageReactions.results == null) {
             return;
         }
-        for (int i2 = 0; i2 < messageObject.messageOwner.reactions.results.size(); i2++) {
-            if (messageObject.messageOwner.reactions.results.get(i2).chosen) {
-                this.selectedReactions.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(messageObject.messageOwner.reactions.results.get(i2).reaction));
+        for (int i3 = 0; i3 < messageObject.messageOwner.reactions.results.size(); i3++) {
+            if (messageObject.messageOwner.reactions.results.get(i3).chosen) {
+                this.selectedReactions.add(ReactionsLayoutInBubble.VisibleReaction.fromTL(messageObject.messageOwner.reactions.results.get(i3).reaction));
             }
         }
     }
@@ -1811,6 +1828,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         public PremiumLockIconView lockIconView;
         Runnable longPressRunnable;
         public BackupImageView loopImageView;
+        public StarsReactionsSheet.Particles particles;
         Runnable playRunnable;
         public int position;
         private ImageReceiver preloadImageReceiver;
@@ -2212,11 +2230,12 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 }
                 resetAnimation();
                 this.currentReaction = visibleReaction;
-                this.hasEnterAnimation = visibleReaction.emojicon != null && (ReactionsContainerLayout.this.showCustomEmojiReaction() || ReactionsContainerLayout.this.allReactionsIsDefault) && LiteMode.isEnabled(8200);
+                this.hasEnterAnimation = visibleReaction.isStar || (visibleReaction.emojicon != null && ((ReactionsContainerLayout.this.showCustomEmojiReaction() || ReactionsContainerLayout.this.allReactionsIsDefault) && LiteMode.isEnabled(8200)));
                 if (ReactionsContainerLayout.this.type == 4 || this.currentReaction.isEffect) {
                     this.hasEnterAnimation = false;
                 }
-                if (this.currentReaction.emojicon != null) {
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction3 = this.currentReaction;
+                if (visibleReaction3.isStar || visibleReaction3.emojicon != null) {
                     updateImage(visibleReaction);
                     this.pressedBackupImageView.setAnimatedEmojiDrawable(null);
                     if (this.enterImageView.getImageReceiver().getLottieAnimation() != null) {
@@ -2275,43 +2294,53 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
 
         private void updateImage(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
-            if (ReactionsContainerLayout.this.type == 4 && visibleReaction != null && visibleReaction.emojicon != null) {
-                this.enterImageView.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(visibleReaction.emojicon));
-                this.loopImageView.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(visibleReaction.emojicon));
-                return;
-            }
-            ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
-            if (visibleReaction2.isEffect) {
-                TLRPC$Document effectDocument = MessagesController.getInstance(ReactionsContainerLayout.this.currentAccount).getEffectDocument(this.currentReaction.documentId);
-                this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(effectDocument), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : DocumentObject.getSvgThumb(effectDocument, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", this.currentReaction, 0);
-                return;
-            }
-            if (visibleReaction2.emojicon != null) {
-                TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(ReactionsContainerLayout.this.currentAccount).getReactionsMap().get(this.currentReaction.emojicon);
-                if (tLRPC$TL_availableReaction != null) {
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.activate_animation, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
-                    if (!LiteMode.isEnabled(8200) || ReactionsContainerLayout.this.type == 4) {
-                        if (SharedConfig.getDevicePerformanceClass() <= 0 || ReactionsContainerLayout.this.type == 4) {
-                            this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
+            if (visibleReaction == null || !visibleReaction.isStar) {
+                if (ReactionsContainerLayout.this.type == 4 && visibleReaction != null && visibleReaction.emojicon != null) {
+                    this.enterImageView.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(visibleReaction.emojicon));
+                    this.loopImageView.getImageReceiver().setImageBitmap(Emoji.getEmojiDrawable(visibleReaction.emojicon));
+                    return;
+                }
+                ReactionsLayoutInBubble.VisibleReaction visibleReaction2 = this.currentReaction;
+                if (visibleReaction2.isEffect) {
+                    TLRPC$Document effectDocument = MessagesController.getInstance(ReactionsContainerLayout.this.currentAccount).getEffectDocument(this.currentReaction.documentId);
+                    this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(effectDocument), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : DocumentObject.getSvgThumb(effectDocument, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f), 0L, "tgs", this.currentReaction, 0);
+                    return;
+                }
+                if (visibleReaction2.emojicon != null) {
+                    TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(ReactionsContainerLayout.this.currentAccount).getReactionsMap().get(this.currentReaction.emojicon);
+                    if (tLRPC$TL_availableReaction != null) {
+                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.activate_animation, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
+                        if (!LiteMode.isEnabled(8200) || ReactionsContainerLayout.this.type == 4) {
+                            if (SharedConfig.getDevicePerformanceClass() <= 0 || ReactionsContainerLayout.this.type == 4) {
+                                this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
+                            } else {
+                                this.enterImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation), "30_30_nolimit", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
+                                this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
+                            }
                         } else {
                             this.enterImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation), "30_30_nolimit", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
-                            this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_firstframe", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
+                            this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_pcache", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
                         }
-                    } else {
-                        this.enterImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation), "30_30_nolimit", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
-                        this.loopImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_pcache", null, null, this.hasEnterAnimation ? null : svgThumb, 0L, "tgs", this.currentReaction, 0);
+                        if (this.enterImageView.getImageReceiver().getLottieAnimation() != null) {
+                            this.enterImageView.getImageReceiver().getLottieAnimation().setCurrentFrame(0, false, true);
+                        }
+                        this.pressedBackupImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_pcache", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
+                        this.preloadImageReceiver.setAllowStartLottieAnimation(false);
+                        MediaDataController.getInstance(ReactionsContainerLayout.this.currentAccount).preloadImage(this.preloadImageReceiver, ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation());
                     }
-                    if (this.enterImageView.getImageReceiver().getLottieAnimation() != null) {
-                        this.enterImageView.getImageReceiver().getLottieAnimation().setCurrentFrame(0, false, true);
+                    PremiumLockIconView premiumLockIconView = this.lockIconView;
+                    if (premiumLockIconView != null) {
+                        premiumLockIconView.setImageReceiver(this.loopImageView.getImageReceiver());
+                        return;
                     }
-                    this.pressedBackupImageView.getImageReceiver().setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.select_animation), "60_60_pcache", null, null, svgThumb, 0L, "tgs", visibleReaction, 0);
-                    this.preloadImageReceiver.setAllowStartLottieAnimation(false);
-                    MediaDataController.getInstance(ReactionsContainerLayout.this.currentAccount).preloadImage(this.preloadImageReceiver, ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation), ReactionsEffectOverlay.getFilterForAroundAnimation());
+                    return;
                 }
-                PremiumLockIconView premiumLockIconView = this.lockIconView;
-                if (premiumLockIconView != null) {
-                    premiumLockIconView.setImageReceiver(this.loopImageView.getImageReceiver());
-                }
+                return;
+            }
+            this.enterImageView.getImageReceiver().setImageBitmap(new RLottieDrawable(R.raw.star_reaction, "star_reaction", AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f)));
+            this.loopImageView.getImageReceiver().setImageBitmap(getContext().getResources().getDrawable(R.drawable.star_reaction));
+            if (this.particles == null) {
+                this.particles = new StarsReactionsSheet.Particles(1, 45);
             }
         }
 
@@ -2478,6 +2507,18 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 } else {
                     this.loopImageView.animatedEmojiDrawable.getImageReceiver().setRoundRadius(this.selected ? AndroidUtilities.dp(6.0f) : 0);
                 }
+            }
+            ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.currentReaction;
+            if (visibleReaction != null && visibleReaction.isStar && this.particles != null) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                float height = ((int) (getHeight() * 0.7f)) / 2.0f;
+                rectF.set((getWidth() / 2.0f) - height, (getHeight() / 2.0f) - height, (getWidth() / 2.0f) + height, (getHeight() / 2.0f) + height);
+                RLottieDrawable lottieAnimation = this.enterImageView.getImageReceiver().getLottieAnimation();
+                this.particles.setVisible((lottieAnimation == null || lottieAnimation.getCurrentFrame() <= 30) ? 0.0f : Utilities.clamp01((lottieAnimation.getCurrentFrame() - 30) / 30.0f));
+                this.particles.setBounds(rectF);
+                this.particles.process();
+                this.particles.draw(canvas, -673522);
+                invalidate();
             }
             super.dispatchDraw(canvas);
         }

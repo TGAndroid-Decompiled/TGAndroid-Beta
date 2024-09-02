@@ -124,9 +124,6 @@ public class SecretVoicePlayer extends Dialog {
     private float ty;
     private FrameLayout windowView;
 
-    public static void lambda$dismiss$7() {
-    }
-
     public SecretVoicePlayer(Context context) {
         super(context, R.style.TransparentDialog);
         this.insets = new Rect();
@@ -708,13 +705,18 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressReaction(ChatMessageCell chatMessageCell6, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell6, tLRPC$ReactionCount, z);
+                public void didPressReaction(ChatMessageCell chatMessageCell6, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell6, tLRPC$ReactionCount, z, f, f2);
                 }
 
                 @Override
                 public void didPressReplyMessage(ChatMessageCell chatMessageCell6, int i3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell6, i3);
+                }
+
+                @Override
+                public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell6);
                 }
 
                 @Override
@@ -1265,19 +1267,13 @@ public class SecretVoicePlayer extends Dialog {
             }
             AndroidUtilities.runOnUIThread(runnable);
             this.closeAction = null;
-            this.myCell.setInvalidateCallback(new Runnable() {
-                @Override
-                public final void run() {
-                    SecretVoicePlayer.lambda$dismiss$7();
-                }
-            });
             ThanosEffect thanosEffect = new ThanosEffect(this.context, null);
             this.thanosEffect = thanosEffect;
             this.windowView.addView(thanosEffect, LayoutHelper.createFrame(-1, -1, 119));
             this.thanosEffect.animate(this.myCell, 1.5f, new Runnable() {
                 @Override
                 public final void run() {
-                    SecretVoicePlayer.this.lambda$dismiss$8();
+                    SecretVoicePlayer.this.lambda$dismiss$7();
                 }
             });
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
@@ -1311,7 +1307,7 @@ public class SecretVoicePlayer extends Dialog {
         super.dismiss();
     }
 
-    public void lambda$dismiss$8() {
+    public void lambda$dismiss$7() {
         super.dismiss();
     }
 
@@ -1333,7 +1329,7 @@ public class SecretVoicePlayer extends Dialog {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                SecretVoicePlayer.this.lambda$animateOpenTo$9(z, valueAnimator3);
+                SecretVoicePlayer.this.lambda$animateOpenTo$8(z, valueAnimator3);
             }
         });
         this.openAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1372,7 +1368,7 @@ public class SecretVoicePlayer extends Dialog {
         ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
-                SecretVoicePlayer.this.lambda$animateOpenTo$10(valueAnimator4);
+                SecretVoicePlayer.this.lambda$animateOpenTo$9(valueAnimator4);
             }
         });
         this.open2Animator.addListener(new AnimatorListenerAdapter() {
@@ -1389,7 +1385,7 @@ public class SecretVoicePlayer extends Dialog {
         this.open2Animator.start();
     }
 
-    public void lambda$animateOpenTo$9(boolean z, ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$8(boolean z, ValueAnimator valueAnimator) {
         ChatMessageCell chatMessageCell;
         this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.windowView.invalidate();
@@ -1408,7 +1404,7 @@ public class SecretVoicePlayer extends Dialog {
         this.myCell.getSeekBarWaveform().setExplosionRate((z ? CubicBezierInterpolator.EASE_OUT : CubicBezierInterpolator.EASE_IN).getInterpolation(Utilities.clamp(this.openProgress * 1.25f, 1.0f, 0.0f)));
     }
 
-    public void lambda$animateOpenTo$10(ValueAnimator valueAnimator) {
+    public void lambda$animateOpenTo$9(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         if (this.isRound) {
             this.myCell.invalidate();

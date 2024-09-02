@@ -40,7 +40,7 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     public String documentAbsolutePath;
     public long documentId;
     public String emoji;
-    private float extraScale;
+    public float extraScale;
     private Paint.FontMetricsInt fontMetrics;
     public boolean fromEmojiKeyboard;
     public boolean full;
@@ -68,7 +68,6 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
     public void setAdded() {
         this.isAdded = true;
         this.extraScale = 0.0f;
-        lockPositionChanging = true;
     }
 
     public void setAnimateChanges() {
@@ -83,20 +82,27 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
 
     public float getExtraScale() {
         if (this.isAdded) {
+            lockPositionChanging = true;
             this.isAdded = false;
             this.extraScale = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ValueAnimator valueAnimator = this.scaleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.scaleAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.extraScale, 1.0f);
             this.scaleAnimator = ofFloat;
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    AnimatedEmojiSpan.this.lambda$getExtraScale$0(valueAnimator);
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    AnimatedEmojiSpan.this.lambda$getExtraScale$0(valueAnimator2);
                 }
             });
             this.scaleAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     AnimatedEmojiSpan.this.scaleAnimator = null;
+                    boolean unused = AnimatedEmojiSpan.lockPositionChanging = false;
                 }
             });
             this.scaleAnimator.setDuration(130L);
@@ -105,17 +111,17 @@ public class AnimatedEmojiSpan extends ReplacementSpan {
         } else if (this.isRemoved) {
             this.isRemoved = false;
             this.extraScale = 1.0f;
-            ValueAnimator valueAnimator = this.scaleAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.removeAllListeners();
+            ValueAnimator valueAnimator2 = this.scaleAnimator;
+            if (valueAnimator2 != null) {
+                valueAnimator2.removeAllListeners();
                 this.scaleAnimator.cancel();
             }
             ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.extraScale, 0.0f);
             this.scaleAnimator = ofFloat2;
             ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AnimatedEmojiSpan.this.lambda$getExtraScale$1(valueAnimator2);
+                public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                    AnimatedEmojiSpan.this.lambda$getExtraScale$1(valueAnimator3);
                 }
             });
             this.scaleAnimator.addListener(new AnimatorListenerAdapter() {

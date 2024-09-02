@@ -40,7 +40,7 @@ public class SharingLocationsAlert extends BottomSheet implements NotificationCe
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 

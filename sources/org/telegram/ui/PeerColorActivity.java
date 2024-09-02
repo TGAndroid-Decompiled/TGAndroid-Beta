@@ -1136,7 +1136,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         if (onBackPressed()) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -1185,7 +1185,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$showUnsavedAlert$3(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
     }
 
     public void lambda$showUnsavedAlert$4(DialogInterface dialogInterface, int i) {
@@ -1197,13 +1197,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return;
         }
         if (this.isChannel) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
         } else if (!getUserConfig().isPremium()) {
             showDialog(new PremiumFeatureBottomSheet(this, 23, true));
             return;
         }
         apply();
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
         showBulletin();
     }
 
@@ -1213,7 +1213,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
         if (this.isChannel || getUserConfig().isPremium()) {
             if (this.isChannel) {
-                lambda$onBackPressed$306();
+                lambda$onBackPressed$308();
             } else {
                 TLRPC$User currentUser = getUserConfig().getCurrentUser();
                 if (currentUser.color == null) {
@@ -1279,7 +1279,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 getMessagesController().putUser(currentUser, false);
                 getUserConfig().saveConfig(true);
-                lambda$onBackPressed$306();
+                lambda$onBackPressed$308();
                 showBulletin();
             }
             this.applying = true;

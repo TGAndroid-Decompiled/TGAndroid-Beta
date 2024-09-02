@@ -461,11 +461,11 @@ public class ContentPreviewViewer {
             actionBarPopupWindowLayout.getSwipeBack().closeForeground();
         }
 
-        class ViewOnClickListenerC00381 implements View.OnClickListener {
+        class ViewOnClickListenerC00371 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            ViewOnClickListenerC00381(ArrayList arrayList, boolean z) {
+            ViewOnClickListenerC00371(ArrayList arrayList, boolean z) {
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
             }
@@ -799,7 +799,7 @@ public class ContentPreviewViewer {
             if (launchActivity.getActionBarLayout() != null && launchActivity.getActionBarLayout().getLastFragment() != null) {
                 launchActivity.getActionBarLayout().getLastFragment().dismissCurrentDialog();
             }
-            launchActivity.lambda$runLinkRequest$88(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
+            launchActivity.lambda$runLinkRequest$91(new PremiumPreviewFragment(PremiumPreviewFragment.featureTypeToServerString(5)));
         }
         this.menuVisible = false;
         this.containerView.invalidate();

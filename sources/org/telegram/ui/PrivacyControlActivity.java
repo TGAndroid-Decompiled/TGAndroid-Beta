@@ -536,13 +536,18 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 }
 
                 @Override
-                public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, tLRPC$ReactionCount, z);
+                public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, tLRPC$ReactionCount, z, f, f2);
                 }
 
                 @Override
                 public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i);
+                }
+
+                @Override
+                public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressRevealSensitiveContent(this, chatMessageCell2);
                 }
 
                 @Override
@@ -898,7 +903,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (PrivacyControlActivity.this.checkDiscard()) {
-                        PrivacyControlActivity.this.lambda$onBackPressed$306();
+                        PrivacyControlActivity.this.lambda$onBackPressed$308();
                     }
                 } else if (i2 == 1) {
                     PrivacyControlActivity.this.processDone();
@@ -1324,7 +1329,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         if (tLRPC$TL_globalPrivacySettings != null) {
             tLRPC$TL_globalPrivacySettings.new_noncontact_peers_require_premium = tLRPC$TL_account_setGlobalPrivacySettings.settings.new_noncontact_peers_require_premium;
         }
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.privacyRulesUpdated, new Object[0]);
     }
 
@@ -1365,7 +1370,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_account_privacyRules.users, false);
             MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_account_privacyRules.chats, false);
             ContactsController.getInstance(this.currentAccount).setPrivacyRules(tLRPC$TL_account_privacyRules.rules, this.rulesType);
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
             return;
         }
         showErrorAlert();
@@ -1831,7 +1836,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
     }
 
     public void lambda$checkDiscard$20(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
     }
 
     @Override
@@ -2323,6 +2328,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 userFull.birthday = tLRPC$TL_birthday;
                 PrivacyControlActivity.this.getMessagesStorage().updateUserInfo(userFull, false);
             }
+            PrivacyControlActivity.this.getMessagesController().invalidateContentSettings();
             PrivacyControlActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_account_updateBirthday, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

@@ -309,7 +309,7 @@ public class Weather {
         }
         latestPermissionCallback = callback;
         if (Build.VERSION.SDK_INT >= 23) {
-            if (ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0) {
+            if (ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") == 0 || ApplicationLoader.applicationContext.checkSelfPermission("android.permission.ACCESS_FINE_LOCATION") == 0) {
                 callback.run(Boolean.TRUE);
                 return;
             } else if (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION")) {

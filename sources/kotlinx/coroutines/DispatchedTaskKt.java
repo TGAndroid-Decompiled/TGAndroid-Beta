@@ -29,7 +29,7 @@ public final class DispatchedTaskKt {
             CoroutineDispatcher coroutineDispatcher = ((DispatchedContinuation) delegate$kotlinx_coroutines_core).dispatcher;
             CoroutineContext context = delegate$kotlinx_coroutines_core.getContext();
             if (coroutineDispatcher.isDispatchNeeded(context)) {
-                coroutineDispatcher.mo162dispatch(context, dispatchedTask);
+                coroutineDispatcher.mo154dispatch(context, dispatchedTask);
                 return;
             } else {
                 resumeUnconfined(dispatchedTask);
@@ -51,7 +51,7 @@ public final class DispatchedTaskKt {
             Result.Companion companion2 = Result.Companion;
             successfulResult$kotlinx_coroutines_core = dispatchedTask.getSuccessfulResult$kotlinx_coroutines_core(takeState$kotlinx_coroutines_core);
         }
-        Object m158constructorimpl = Result.m158constructorimpl(successfulResult$kotlinx_coroutines_core);
+        Object m150constructorimpl = Result.m150constructorimpl(successfulResult$kotlinx_coroutines_core);
         if (z) {
             DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
             Continuation<T> continuation2 = dispatchedContinuation.continuation;
@@ -60,7 +60,7 @@ public final class DispatchedTaskKt {
             Object updateThreadContext = ThreadContextKt.updateThreadContext(context, obj);
             UndispatchedCoroutine<?> updateUndispatchedCompletion = updateThreadContext != ThreadContextKt.NO_THREAD_ELEMENTS ? CoroutineContextKt.updateUndispatchedCompletion(continuation2, context, updateThreadContext) : null;
             try {
-                dispatchedContinuation.continuation.resumeWith(m158constructorimpl);
+                dispatchedContinuation.continuation.resumeWith(m150constructorimpl);
                 Unit unit = Unit.INSTANCE;
                 if (updateUndispatchedCompletion != null) {
                     if (!clearThreadContext) {
@@ -74,7 +74,7 @@ public final class DispatchedTaskKt {
                 }
             }
         }
-        continuation.resumeWith(m158constructorimpl);
+        continuation.resumeWith(m150constructorimpl);
     }
 
     private static final void resumeUnconfined(DispatchedTask<?> dispatchedTask) {

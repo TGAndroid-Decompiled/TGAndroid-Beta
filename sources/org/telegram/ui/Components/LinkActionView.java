@@ -6,7 +6,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.text.SpannableStringBuilder;
@@ -21,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
@@ -34,8 +34,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$TL_chatInviteExported;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
 import org.telegram.tgnet.TLRPC$TL_messages_chatInviteImporters;
 import org.telegram.tgnet.TLRPC$TL_messages_getChatInviteImporters;
@@ -235,10 +237,24 @@ public class LinkActionView extends LinearLayout {
             if (this.link == null) {
                 return;
             }
-            Intent intent = new Intent("android.intent.action.SEND");
-            intent.setType("text/plain");
-            intent.putExtra("android.intent.extra.TEXT", this.link);
-            baseFragment.startActivityForResult(Intent.createChooser(intent, LocaleController.getString("InviteToGroupByLink", R.string.InviteToGroupByLink)), 500);
+            String str = this.link;
+            baseFragment.showDialog(new ShareAlert(getContext(), null, str, false, str, false, baseFragment.getResourceProvider()) {
+                @Override
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                    String formatString;
+                    if (longSparseArray != null && longSparseArray.size() == 1) {
+                        long j = longSparseArray.valueAt(0).id;
+                        if (j == 0 || j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                            formatString = LocaleController.getString(R.string.InvLinkToSavedMessages);
+                        } else {
+                            formatString = LocaleController.formatString(R.string.InvLinkToUser, MessagesController.getInstance(this.currentAccount).getPeerName(j, true));
+                        }
+                    } else {
+                        formatString = LocaleController.formatString(R.string.InvLinkToChats, LocaleController.formatPluralString("Chats", i, new Object[0]));
+                    }
+                    LinkActionView.this.showBulletin(R.raw.forward, AndroidUtilities.replaceTags(formatString));
+                }
+            });
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -352,7 +368,7 @@ public class LinkActionView extends LinearLayout {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
-                                AnonymousClass3 anonymousClass3 = AnonymousClass3.this;
+                                AnonymousClass4 anonymousClass4 = AnonymousClass4.this;
                                 container.removeView(view2);
                             }
                             container.getViewTreeObserver().removeOnPreDrawListener(onPreDrawListener);
@@ -404,6 +420,12 @@ public class LinkActionView extends LinearLayout {
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && this.actionBarPopupWindow.isShowing()) {
             this.actionBarPopupWindow.dismiss(true);
         }
+    }
+
+    public void showBulletin(int i, CharSequence charSequence) {
+        Bulletin createSimpleBulletin = BulletinFactory.of(this.fragment).createSimpleBulletin(i, charSequence);
+        createSimpleBulletin.hideAfterBottomSheet = false;
+        createSimpleBulletin.show(true);
     }
 
     public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {

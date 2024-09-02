@@ -169,7 +169,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -1532,7 +1532,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 }
                 SendMessagesHelper.getInstance(this.currentAccount).sendMessage(arrayList, j, false, false, true, 0);
             }
-            dialogsActivity.lambda$onBackPressed$306();
+            dialogsActivity.lambda$onBackPressed$308();
         } else {
             MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) arrayList2.get(0);
             long j3 = topicKey.dialogId;
@@ -1555,7 +1555,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     dialogsActivity.removeSelfFromStack();
                 }
             } else {
-                dialogsActivity.lambda$onBackPressed$306();
+                dialogsActivity.lambda$onBackPressed$308();
             }
         }
         return true;

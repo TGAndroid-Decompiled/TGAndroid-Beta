@@ -19,6 +19,7 @@ import org.telegram.ui.Components.Rect;
 public class LinkView extends EntityView {
     private int currentColor;
     private int currentType;
+    private boolean hasColor;
     public LinkPreview.WebPagePreview link;
     public final LinkPreview marker;
 
@@ -47,15 +48,14 @@ public class LinkView extends EntityView {
         return this.marker.pady;
     }
 
-    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3, int i4) {
+    public LinkView(Context context, Point point, int i, LinkPreview.WebPagePreview webPagePreview, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3) {
         super(context, point);
         LinkPreview linkPreview = new LinkPreview(context, f);
         this.marker = linkPreview;
         linkPreview.setMaxWidth(i2);
         setLink(i, webPagePreview, tL_stories$MediaArea);
         this.currentType = i3;
-        this.currentColor = i4;
-        linkPreview.setType(i3, i4);
+        linkPreview.setType(i3, this.currentColor);
         addView(linkPreview, LayoutHelper.createFrame(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -90,15 +90,13 @@ public class LinkView extends EntityView {
         linkPreview.setType(i, this.currentColor);
     }
 
-    public void setType(int i, int i2) {
-        LinkPreview linkPreview = this.marker;
-        this.currentType = i;
-        this.currentColor = i2;
-        linkPreview.setType(i, i2);
+    public void setColor(int i) {
+        this.hasColor = true;
+        this.currentColor = i;
     }
 
-    public void setColor(int i) {
-        setType(this.currentType, i);
+    public boolean hasColor() {
+        return this.hasColor;
     }
 
     public int getColor() {
@@ -107,6 +105,11 @@ public class LinkView extends EntityView {
 
     public int getType() {
         return this.currentType;
+    }
+
+    public int getNextType() {
+        int i = this.currentType + 1;
+        return i == 4 ? !this.hasColor ? 1 : 0 : i;
     }
 
     @Override

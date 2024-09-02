@@ -93,6 +93,7 @@ import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$PollAnswer;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
+import org.telegram.tgnet.TLRPC$RestrictionReason;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaAuto;
 import org.telegram.tgnet.TLRPC$TL_botInlineMessageMediaContact;
@@ -202,7 +203,6 @@ import org.telegram.tgnet.TLRPC$TL_photoSize_layer127;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
-import org.telegram.tgnet.TLRPC$TL_restrictionReason;
 import org.telegram.tgnet.TLRPC$TL_stickers_createStickerSet;
 import org.telegram.tgnet.TLRPC$TL_updateEditChannelMessage;
 import org.telegram.tgnet.TLRPC$TL_updateEditMessage;
@@ -2804,7 +2804,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if (tLObject != null) {
             if (twoStepVerificationActivity != null) {
                 twoStepVerificationActivity.needHideProgress();
-                twoStepVerificationActivity.lambda$onBackPressed$306();
+                twoStepVerificationActivity.lambda$onBackPressed$308();
             }
             long fromChatId = messageObject.getFromChatId();
             long j = messageObject.messageOwner.via_bot_id;
@@ -3027,7 +3027,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }, 8);
         } else if (twoStepVerificationActivity != null) {
             twoStepVerificationActivity.needHideProgress();
-            twoStepVerificationActivity.lambda$onBackPressed$306();
+            twoStepVerificationActivity.lambda$onBackPressed$308();
         }
     }
 
@@ -3149,7 +3149,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r87) {
+    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r89) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(org.telegram.messenger.SendMessagesHelper$SendMessageParams):void");
     }
 
@@ -5148,11 +5148,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_user.phone = tLRPC$BotInlineMessage6.phone_number;
             tLRPC$TL_user.first_name = tLRPC$BotInlineMessage6.first_name;
             tLRPC$TL_user.last_name = tLRPC$BotInlineMessage6.last_name;
-            TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
-            tLRPC$TL_restrictionReason.text = tLRPC$BotInlineResult.send_message.vcard;
-            tLRPC$TL_restrictionReason.platform = "";
-            tLRPC$TL_restrictionReason.reason = "";
-            tLRPC$TL_user.restriction_reason.add(tLRPC$TL_restrictionReason);
+            TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
+            tLRPC$RestrictionReason.text = tLRPC$BotInlineResult.send_message.vcard;
+            tLRPC$RestrictionReason.platform = "";
+            tLRPC$RestrictionReason.reason = "";
+            tLRPC$TL_user.restriction_reason.add(tLRPC$RestrictionReason);
             SendMessageParams of4 = SendMessageParams.of(tLRPC$TL_user, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
             of4.quick_reply_shortcut = str;
             of4.quick_reply_shortcut_id = i2;

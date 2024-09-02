@@ -1006,32 +1006,36 @@ public class FilterTabsView extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
+        String str;
         if (!this.tabs.isEmpty()) {
             int size = (View.MeasureSpec.getSize(i) - AndroidUtilities.dp(7.0f)) - AndroidUtilities.dp(7.0f);
             Tab findDefaultTab = findDefaultTab();
-            int i3 = R.string.FilterAllChats;
-            String str = "FilterAllChats";
-            findDefaultTab.setTitle(LocaleController.getString("FilterAllChats", i3));
-            int width = findDefaultTab.getWidth(false);
-            if (this.allTabsWidth > size) {
-                i3 = R.string.FilterAllChatsShort;
-                str = "FilterAllChatsShort";
+            if (findDefaultTab != null) {
+                int i3 = R.string.FilterAllChats;
+                findDefaultTab.setTitle(LocaleController.getString(i3));
+                int width = findDefaultTab.getWidth(false);
+                if (this.allTabsWidth > size) {
+                    i3 = R.string.FilterAllChatsShort;
+                    str = "FilterAllChatsShort";
+                } else {
+                    str = "FilterAllChats";
+                }
+                findDefaultTab.setTitle(LocaleController.getString(str, i3));
+                int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
+                int i4 = this.additionalTabWidth;
+                int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
+                this.additionalTabWidth = size2;
+                if (i4 != size2) {
+                    this.ignoreLayout = true;
+                    RecyclerView.ItemAnimator itemAnimator = this.listView.getItemAnimator();
+                    this.listView.setItemAnimator(null);
+                    this.adapter.notifyDataSetChanged();
+                    this.listView.setItemAnimator(itemAnimator);
+                    this.ignoreLayout = false;
+                }
+                updateTabsWidths();
+                this.invalidated = false;
             }
-            findDefaultTab.setTitle(LocaleController.getString(str, i3));
-            int width2 = (this.allTabsWidth - width) + findDefaultTab.getWidth(false);
-            int i4 = this.additionalTabWidth;
-            int size2 = width2 < size ? (size - width2) / this.tabs.size() : 0;
-            this.additionalTabWidth = size2;
-            if (i4 != size2) {
-                this.ignoreLayout = true;
-                RecyclerView.ItemAnimator itemAnimator = this.listView.getItemAnimator();
-                this.listView.setItemAnimator(null);
-                this.adapter.notifyDataSetChanged();
-                this.listView.setItemAnimator(itemAnimator);
-                this.ignoreLayout = false;
-            }
-            updateTabsWidths();
-            this.invalidated = false;
         }
         super.onMeasure(i, i2);
     }

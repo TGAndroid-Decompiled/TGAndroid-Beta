@@ -55,6 +55,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
     private List<Bulletin> bulletins;
     private TLRPC$ChatFull chatFull;
     private boolean clicked;
+    private final int currentAccount;
     public View dimView;
     private boolean dismissed;
     private View headerShadow;
@@ -82,6 +83,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.bulletins = new ArrayList();
         this.chatFull = tLRPC$ChatFull;
         this.sendAsPeers = tLRPC$TL_channels_sendAsPeers;
+        this.currentAccount = chatActivity == null ? UserConfig.selectedAccount : chatActivity.getCurrentAccount();
         BackButtonFrameLayout backButtonFrameLayout = new BackButtonFrameLayout(context);
         this.scrimPopupContainerLayout = backButtonFrameLayout;
         backButtonFrameLayout.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f));
@@ -213,7 +215,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.recyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view2, int i) {
-                SenderSelectPopup.this.lambda$new$2(arrayList, context, chatActivity, onSelectCallback, view2, i);
+                SenderSelectPopup.this.lambda$new$2(arrayList, context, tLRPC$ChatFull, chatActivity, onSelectCallback, view2, i);
             }
         });
         this.recyclerView.setOverScrollMode(2);
@@ -228,7 +230,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         this.scrimPopupContainerLayout.addView(this.recyclerContainer);
     }
 
-    public void lambda$new$2(List list, Context context, final ChatActivity chatActivity, OnSelectCallback onSelectCallback, View view, int i) {
+    public void lambda$new$2(List list, Context context, TLRPC$ChatFull tLRPC$ChatFull, final ChatActivity chatActivity, OnSelectCallback onSelectCallback, View view, int i) {
         TLRPC$TL_sendAsPeer tLRPC$TL_sendAsPeer = (TLRPC$TL_sendAsPeer) list.get(i);
         if (this.clicked) {
             return;
@@ -279,7 +281,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                 }
                 windowManager.addView(this.bulletinContainer, layoutParams);
             }
-            final Bulletin make = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, new Runnable() {
+            final Bulletin make = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, ChatObject.isChannelAndNotMegaGroup(tLRPC$ChatFull == null ? null : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.id))), new Runnable() {
                 @Override
                 public final void run() {
                     SenderSelectPopup.this.lambda$new$0(chatActivity);

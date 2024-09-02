@@ -45,6 +45,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
     public TLRPC$PeerNotifySettings notify_settings;
     public int online_count;
     public boolean paid_media_allowed;
+    public boolean paid_reactions_available;
     public TLRPC$ChatParticipants participants;
     public int participants_count;
     public boolean participants_hidden;

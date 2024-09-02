@@ -87,7 +87,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
-import java.net.IDN;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12157,13 +12156,33 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void updateTitle(boolean z) {
         this.actionBar.setTitle(0, this.pages[0].getTitle(), z);
         this.actionBar.setSubtitle(0, this.pages[0].getSubtitle(), false);
+        this.actionBar.setIsDangerous(0, this.pages[0].isWeb() && this.pages[0].getWebView() != null && this.pages[0].getWebView().isUrlDangerous(), false);
         this.actionBar.setTitle(1, this.pages[1].getTitle(), z);
         this.actionBar.setSubtitle(1, this.pages[1].getSubtitle(), false);
+        this.actionBar.setIsDangerous(1, this.pages[1].isWeb() && this.pages[1].getWebView() != null && this.pages[1].getWebView().isUrlDangerous(), false);
+    }
+
+    public void setOpener(BotWebViewContainer.MyWebView myWebView) {
+        if (this.pages == null) {
+            return;
+        }
+        int i = 0;
+        while (true) {
+            PageLayout[] pageLayoutArr = this.pages;
+            if (i >= pageLayoutArr.length) {
+                return;
+            }
+            if (pageLayoutArr[i] != null) {
+                pageLayoutArr[i].webViewContainer.setOpener(myWebView);
+            }
+            i++;
+        }
     }
 
     public class PageLayout extends FrameLayout {
         public final WebpageAdapter adapter;
         public boolean backButton;
+        private boolean dangerousShown;
         public ErrorContainer errorContainer;
         private boolean errorShown;
         private int errorShownCode;
@@ -12613,6 +12632,9 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public int getBackgroundColor() {
+            if (isWeb() && this.dangerousShown) {
+                return -5036514;
+            }
             if (isWeb() && SharedConfig.adaptableColorInBrowser) {
                 if (this.errorShown) {
                     return ArticleViewer.this.getThemedColor(Theme.key_iv_background);
@@ -12643,16 +12665,18 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 Uri parse = Uri.parse(BotWebViewContainer.magic2tonsite(url));
                 String uri = (parse.getScheme() == null || !(parse.getScheme().equalsIgnoreCase("http") || parse.getScheme().equalsIgnoreCase("https"))) ? parse.toString() : parse.getSchemeSpecificPart();
                 try {
-                    try {
-                        Uri parse2 = Uri.parse(uri);
-                        uri = Browser.replaceHostname(parse2, IDN.toUnicode(parse2.getHost(), 1), null);
-                    } catch (Exception e) {
-                        FileLog.e(e);
+                    if (!isTonsite()) {
+                        try {
+                            Uri parse2 = Uri.parse(uri);
+                            uri = Browser.replaceHostname(parse2, Browser.IDN_toUnicode(parse2.getHost()), null);
+                        } catch (Exception e) {
+                            FileLog.e((Throwable) e, false);
+                        }
+                        uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
                     }
                 } catch (Exception e2) {
-                    FileLog.e((Throwable) e2, false);
+                    FileLog.e(e2);
                 }
-                uri = URLDecoder.decode(uri.replaceAll("\\+", "%2b"), "UTF-8");
                 if (uri.startsWith("//")) {
                     uri = uri.substring(2);
                 }
@@ -13108,7 +13132,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo958getWindowView() {
+        public WindowView mo948getWindowView() {
             return this.windowView;
         }
 
@@ -13498,7 +13522,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo958getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo948getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 

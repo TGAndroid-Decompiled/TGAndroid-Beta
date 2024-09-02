@@ -873,7 +873,8 @@ public class FileLoader extends BaseController {
             if (fileLoadOperation != null && (arrayList = fileLoadOperation.requestInfos) != null) {
                 Iterator<FileLoadOperation.RequestInfo> it = arrayList.iterator();
                 while (it.hasNext()) {
-                    if (it.next().requestToken == i) {
+                    FileLoadOperation.RequestInfo next = it.next();
+                    if (next != null && next.requestToken == i) {
                         return fileLoadOperation;
                     }
                 }

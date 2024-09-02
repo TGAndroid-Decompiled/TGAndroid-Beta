@@ -31,6 +31,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     public float angleX = 0.0f;
     public float angleX2 = 0.0f;
     public float angleY = 0.0f;
+    public float white = 0.0f;
     private final float[] mMVPMatrix = new float[16];
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
@@ -101,7 +102,7 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
             icon3D.night = this.night;
             icon3D.gradientColor1 = this.color1;
             icon3D.gradientColor2 = this.color2;
-            icon3D.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY, this.dt);
+            icon3D.draw(this.mMVPMatrix, this.mRotationMatrix, this.mWidth, this.mHeight, this.gradientStartX, this.gradientScaleX, this.gradientStartY, this.gradientScaleY, this.white, this.dt);
         }
     }
 

@@ -456,9 +456,9 @@ public class WebBrowserSettings extends UniversalFragment implements Notificatio
     }
 
     public void lambda$onClick$6(HistoryFragment[] historyFragmentArr, BrowserHistory.Entry entry) {
-        historyFragmentArr[0].lambda$onBackPressed$306();
+        historyFragmentArr[0].lambda$onBackPressed$308();
         if (this.whenHistoryClicked != null) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
             this.whenHistoryClicked.run(entry);
         } else {
             Browser.openUrl(getContext(), entry.url);

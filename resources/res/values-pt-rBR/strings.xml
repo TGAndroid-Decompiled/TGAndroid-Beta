@@ -1181,12 +1181,8 @@
     <string name="DeleteAndExit">Apagar e sair do grupo</string>
     <string name="DeleteAndExitButton">Apagar e Sair do Grupo</string>
     <string name="DeleteAndStop">Apagar e parar</string>
-    <string name="DeleteBackground_few">Apagar %1$d papéis de parede</string>
-    <string name="DeleteBackground_many">Apagar %1$d papéis de parede</string>
     <string name="DeleteBackground_one">Apagar papel de parede</string>
     <string name="DeleteBackground_other">Apagar %1$d papéis de parede</string>
-    <string name="DeleteBackground_two">Apagar %1$d papéis de parede</string>
-    <string name="DeleteBackground_zero">Apagar %1$d papéis de parede</string>
     <string name="DeleteCalls">Apagar chamadas</string>
     <string name="DeleteCallsForEveryone">Apagar para todos</string>
     <string name="DeleteChannelForAll">Apagar para todos inscritos</string>
@@ -2171,12 +2167,8 @@
     <string name="MegaPublic">Grupo Público</string>
     <string name="MegaPublicInfo">Grupos públicos podem ser encontrados na busca, o histórico é disponível para todos e qualquer um pode entrar.</string>
     <string name="MegaUsernameHelp">Se você definir um link público, outras pessoas poderão encontrar e participar do seu grupo.\n\nVocê pode usar a-z, 0-9 e underline.\nO tamanho mínimo é de 5 caracteres.</string>
-    <string name="MembersAreSpeakingToast_few">un1 estão falando</string>
-    <string name="MembersAreSpeakingToast_many">un1 estão falando</string>
     <string name="MembersAreSpeakingToast_one">un1 está falando</string>
     <string name="MembersAreSpeakingToast_other">un1 estão falando</string>
-    <string name="MembersAreSpeakingToast_two">un1 estão falando</string>
-    <string name="MembersAreSpeakingToast_zero">un1 estão falando</string>
     <string name="MembersCountSelected_few">%1$d de %2$d selecionados</string>
     <string name="MembersCountSelected_many">%1$d de %2$d selecionados</string>
     <string name="MembersCountSelected_one">%1$d de %2$d selecionado</string>

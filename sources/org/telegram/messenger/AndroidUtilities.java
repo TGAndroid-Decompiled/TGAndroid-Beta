@@ -160,8 +160,8 @@ import org.telegram.messenger.utils.CustomHtml;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestTimeDelegate;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$RestrictionReason;
 import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
-import org.telegram.tgnet.TLRPC$TL_restrictionReason;
 import org.telegram.tgnet.TLRPC$TL_userContact_old2;
 import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$User;
@@ -213,6 +213,7 @@ public class AndroidUtilities {
     public static final int REPLACING_TAG_TYPE_LINK = 0;
     public static final int REPLACING_TAG_TYPE_LINKBOLD = 2;
     public static final int REPLACING_TAG_TYPE_LINK_NBSP = 3;
+    public static final int REPLACING_TAG_TYPE_UNDERLINE = 4;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
     public static final String STICKERS_PLACEHOLDER_PACK_NAME_2 = "tg_superplaceholders_android_2";
     public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
@@ -556,12 +557,12 @@ public class AndroidUtilities {
                 int i5 = indexOf + i3;
                 spannableStringBuilder.replace(indexOf, i5, replaceMultipleCharSequence(" ", spannableStringBuilder.subSequence(indexOf, i5), " "));
             }
-            if (i2 == 0 || i2 == 3 || i2 == 2) {
+            if (i2 == 0 || i2 == 3 || i2 == 2 || i2 == 4) {
                 spannableStringBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
                         super.updateDrawState(textPaint);
-                        textPaint.setUnderlineText(false);
+                        textPaint.setUnderlineText(i2 == 4);
                         int i6 = i;
                         if (i6 >= 0) {
                             textPaint.setColor(Theme.getColor(i6, resourcesProvider));
@@ -2108,11 +2109,11 @@ public class AndroidUtilities {
                 tLRPC$TL_userContact_old2.first_name = vcardData2.name;
                 tLRPC$TL_userContact_old2.last_name = "";
                 tLRPC$TL_userContact_old2.id = 0L;
-                TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
-                tLRPC$TL_restrictionReason.text = vcardData2.vcard.toString();
-                tLRPC$TL_restrictionReason.platform = "";
-                tLRPC$TL_restrictionReason.reason = "";
-                tLRPC$TL_userContact_old2.restriction_reason.add(tLRPC$TL_restrictionReason);
+                TLRPC$RestrictionReason tLRPC$RestrictionReason = new TLRPC$RestrictionReason();
+                tLRPC$RestrictionReason.text = vcardData2.vcard.toString();
+                tLRPC$RestrictionReason.platform = "";
+                tLRPC$RestrictionReason.reason = "";
+                tLRPC$TL_userContact_old2.restriction_reason.add(tLRPC$RestrictionReason);
                 arrayList3.add(tLRPC$TL_userContact_old2);
             }
         }
@@ -4306,6 +4307,16 @@ public class AndroidUtilities {
         }
     }
 
+    public static void scaleRect(RectF rectF, float f) {
+        scaleRect(rectF, f, rectF.centerX(), rectF.centerY());
+    }
+
+    public static void scaleRect(RectF rectF, float f, float f2, float f3) {
+        float f4 = f2 - rectF.left;
+        float f5 = rectF.right - f2;
+        rectF.set(f2 - (f4 * f), f3 - ((f3 - rectF.top) * f), f2 + (f5 * f), f3 + ((rectF.bottom - f3) * f));
+    }
+
     public static float cascade(float f, float f2, float f3, float f4) {
         if (f3 <= 0.0f) {
             return f;
@@ -4340,6 +4351,14 @@ public class AndroidUtilities {
     public static String getCertificateSHA256Fingerprint() {
         try {
             return Utilities.bytesToHex(Utilities.computeSHA256(((X509Certificate) CertificateFactory.getInstance("X509").generateCertificate(new ByteArrayInputStream(ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 64).signatures[0].toByteArray()))).getEncoded()));
+        } catch (Throwable unused) {
+            return "";
+        }
+    }
+
+    public static String getCertificateSHA1Fingerprint() {
+        try {
+            return Utilities.bytesToHex(Utilities.computeSHA1(((X509Certificate) CertificateFactory.getInstance("X509").generateCertificate(new ByteArrayInputStream(ApplicationLoader.applicationContext.getPackageManager().getPackageInfo(ApplicationLoader.applicationContext.getPackageName(), 64).signatures[0].toByteArray()))).getEncoded()));
         } catch (Throwable unused) {
             return "";
         }
@@ -5054,7 +5073,7 @@ public class AndroidUtilities {
         return false;
     }
 
-    private static Pattern getURIParsePattern() {
+    public static Pattern getURIParsePattern() {
         if (uriParse == null) {
             uriParse = Pattern.compile("^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?");
         }

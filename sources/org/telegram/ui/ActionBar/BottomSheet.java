@@ -1184,7 +1184,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     super.setTranslationY(f);
                     FrameLayout frameLayout2 = BottomSheet.this.topBulletinContainer;
                     if (frameLayout2 != null) {
-                        frameLayout2.setTranslationY(((((-getHeight()) + f) - getPaddingTop()) - AndroidUtilities.statusBarHeight) + BottomSheet.this.backgroundPaddingTop);
+                        frameLayout2.setTranslationY((-(r0.container.getHeight() - BottomSheet.this.containerView.getY())) + BottomSheet.this.backgroundPaddingTop);
                     }
                     BottomSheet.this.onContainerTranslationYChanged(f);
                 }
@@ -1449,7 +1449,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return this.canDismissWithSwipe;
     }
 
@@ -1810,7 +1810,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View mo958getWindowView() {
+    public View mo948getWindowView() {
         return this.container;
     }
 
@@ -2094,7 +2094,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-            AndroidUtilities.setLightNavigationBar(mo958getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo948getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(getWindow(), this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(getWindow(), ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2150,6 +2150,9 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void makeAttached(BaseFragment baseFragment) {
+        if (AndroidUtilities.isTablet()) {
+            return;
+        }
         this.attachedFragment = baseFragment;
     }
 

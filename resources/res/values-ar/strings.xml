@@ -1181,12 +1181,8 @@
     <string name="DeleteAndExit">مغادرة المجموعة وحذفها</string>
     <string name="DeleteAndExitButton">حذف ومغادرة المجموعة</string>
     <string name="DeleteAndStop">حذف وإيقاف</string>
-    <string name="DeleteBackground_few">حذف %1$d خلفيات</string>
-    <string name="DeleteBackground_many">حذف %1$d خلفيةً</string>
     <string name="DeleteBackground_one">حذف الخلفية</string>
     <string name="DeleteBackground_other">حذف %1$d خلفية</string>
-    <string name="DeleteBackground_two">حذف الخلفيتين</string>
-    <string name="DeleteBackground_zero">حذف %1$d خلفية</string>
     <string name="DeleteCalls">حذف المكالمات</string>
     <string name="DeleteCallsForEveryone">الحذف عند الجميع</string>
     <string name="DeleteChannelForAll">الحذف لجميع المشتركين</string>
@@ -2172,12 +2168,8 @@
     <string name="MegaPublic">مجموعة عامة</string>
     <string name="MegaPublicInfo">يمكن العثور على المجموعات العامة عبر البحث، سيكون محتوى المجموعة متاحًا للجميع، ويمكن لأي شخص الانضمام إليها.</string>
     <string name="MegaUsernameHelp">إذا عيّنت رابطًا عامًا فسيتمكن الآخرون من العثور والانضمامِ إلى مجموعتك.\n\nيمكنك استخدام الأحرف والأرقام الإنجليزية والشَّرطات السفليّة.\n\nالطول الأدنى هو خمسُ خانات.</string>
-    <string name="MembersAreSpeakingToast_few">un1 يتحدثون</string>
-    <string name="MembersAreSpeakingToast_many">un1 يتحدث</string>
     <string name="MembersAreSpeakingToast_one">un1 يتحدث</string>
     <string name="MembersAreSpeakingToast_other">un1 يتحدث</string>
-    <string name="MembersAreSpeakingToast_two">un1 يتحدثان</string>
-    <string name="MembersAreSpeakingToast_zero">un1 يتحدث</string>
     <string name="MembersCountSelected_few">تم تحديد %1$d من %2$d</string>
     <string name="MembersCountSelected_many">تم تحديد %1$d من %2$d</string>
     <string name="MembersCountSelected_one">تم تحديد %1$d من %2$d</string>

@@ -331,7 +331,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             return;
         }
         if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
             return;
         }
         setState(3);
@@ -1203,7 +1203,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131698006)).show();
         } else {
             getInstance(this.currentAccount).loadStatus(true);
             getInstance(this.currentAccount).checkIsEligible(true, null);

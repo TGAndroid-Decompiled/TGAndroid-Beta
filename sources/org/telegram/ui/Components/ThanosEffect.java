@@ -912,7 +912,7 @@ public class ThanosEffect extends TextureView {
                 } else if (i == 2) {
                     chatMessageCell.drawCaptionLayout(canvas, chatMessageCell.getCurrentPosition() != null && (chatMessageCell.getCurrentPosition().flags & 1) == 0, alpha);
                 } else if (chatMessageCell.getCurrentPosition() == null || (1 & chatMessageCell.getCurrentPosition().flags) != 0) {
-                    chatMessageCell.drawReactionsLayout(canvas, alpha);
+                    chatMessageCell.drawReactionsLayout(canvas, alpha, null);
                 }
                 chatMessageCell.setInvalidatesParent(false);
                 canvas.restore();

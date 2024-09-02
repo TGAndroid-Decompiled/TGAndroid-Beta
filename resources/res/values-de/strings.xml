@@ -1180,12 +1180,8 @@
     <string name="DeleteAndExit">Löschen und Gruppe verlassen</string>
     <string name="DeleteAndExitButton">Löschen und Gruppe verlassen</string>
     <string name="DeleteAndStop">Löschen und anhalten</string>
-    <string name="DeleteBackground_few">%1$d Hintergründe löschen</string>
-    <string name="DeleteBackground_many">%1$d Hintergründe löschen</string>
     <string name="DeleteBackground_one">Hintergrund löschen</string>
     <string name="DeleteBackground_other">%1$d Hintergründe löschen</string>
-    <string name="DeleteBackground_two">%1$d Hintergründe löschen</string>
-    <string name="DeleteBackground_zero">%1$d Hintergründe löschen</string>
     <string name="DeleteCalls">Anrufe löschen</string>
     <string name="DeleteCallsForEveryone">Bei allen löschen</string>
     <string name="DeleteChannelForAll">Bei allen Abonnenten löschen</string>
@@ -2170,12 +2166,8 @@
     <string name="MegaPublic">Öffentliche Gruppe</string>
     <string name="MegaPublicInfo">Öffentliche Gruppen kann jeder über die Suche finden, gesamter Chatverlauf ist für alle einsehbar und jeder kann der Gruppe beitreten.</string>
     <string name="MegaUsernameHelp">Mit einem öffentlichen Link können andere deine Gruppe finden und beitreten.\n\nErlaubt sind a-z, 0-9 und Unterstriche.\nDie Mindestlänge beträgt 5 Zeichen.</string>
-    <string name="MembersAreSpeakingToast_few">un1 sprechen</string>
-    <string name="MembersAreSpeakingToast_many">un1 sprechen</string>
     <string name="MembersAreSpeakingToast_one">un1 spricht</string>
     <string name="MembersAreSpeakingToast_other">un1 sprechen</string>
-    <string name="MembersAreSpeakingToast_two">un1 sprechen</string>
-    <string name="MembersAreSpeakingToast_zero">un1 sprechen</string>
     <string name="MembersCountSelected_few">%1$d von %2$d ausgewählt</string>
     <string name="MembersCountSelected_many">%1$d von %2$d ausgewählt</string>
     <string name="MembersCountSelected_one">%1$d von %2$d ausgewählt</string>

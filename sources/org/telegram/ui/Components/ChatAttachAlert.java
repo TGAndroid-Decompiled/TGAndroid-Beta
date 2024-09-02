@@ -292,7 +292,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         return false;
     }
 
@@ -329,12 +329,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public void onCloseToTabs() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onCloseToTabs(this);
         }
 
         @Override
         public void onInstantClose() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onInstantClose(this);
         }
 
         @Override
@@ -3497,7 +3497,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         public final void accept(Object obj) {
                             ChatAttachAlert.this.lambda$new$11(attachBotButton, (Boolean) obj);
                         }
-                    }, null);
+                    }, null, null);
                 }
             } else {
                 this.delegate.didSelectBot(attachBotButton.currentUser);

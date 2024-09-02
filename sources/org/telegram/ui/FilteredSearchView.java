@@ -491,6 +491,15 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             QuickRepliesController.QuickReply findReply = QuickRepliesController.getInstance(messageObject.currentAccount).findReply(messageObject.getQuickReplyId());
             return findReply == null ? "" : findReply.name;
         }
+        if (messageObject.isSponsored()) {
+            if (messageObject.sponsoredCanReport) {
+                return LocaleController.getString(R.string.SponsoredMessageAd);
+            }
+            if (messageObject.sponsoredRecommended) {
+                return LocaleController.getString(R.string.SponsoredMessage2Recommended);
+            }
+            return LocaleController.getString(R.string.SponsoredMessage2);
+        }
         SpannableStringBuilder[] spannableStringBuilderArr = arrowSpan;
         if (spannableStringBuilderArr[i] == null) {
             spannableStringBuilderArr[i] = new SpannableStringBuilder(">");

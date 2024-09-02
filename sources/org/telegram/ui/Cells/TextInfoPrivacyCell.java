@@ -107,7 +107,10 @@ public class TextInfoPrivacyCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        if (this.fixedSize != 0) {
+        int i3 = this.fixedSize;
+        if (i3 == -1) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 1073741824));
+        } else if (i3 != 0) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.fixedSize), 1073741824));
         } else {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));

@@ -191,14 +191,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                     MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit().putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
                     ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
                     ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
-                    ContactAddActivity.this.lambda$onBackPressed$306();
+                    ContactAddActivity.this.lambda$onBackPressed$308();
                     if (ContactAddActivity.this.delegate != null) {
                         ContactAddActivity.this.delegate.didAddToContacts();
                         return;
                     }
                     return;
                 }
-                ContactAddActivity.this.lambda$onBackPressed$306();
+                ContactAddActivity.this.lambda$onBackPressed$308();
             }
         });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString("Done", R.string.Done).toUpperCase());

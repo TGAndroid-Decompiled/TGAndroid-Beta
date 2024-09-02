@@ -227,7 +227,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatEditTypeActivity.this.lambda$onBackPressed$306();
+                    ChatEditTypeActivity.this.lambda$onBackPressed$308();
                 } else if (i == 1) {
                     if (ChatEditTypeActivity.this.doneButtonDrawable == null || ChatEditTypeActivity.this.doneButtonDrawable.getProgress() <= 0.0f) {
                         ChatEditTypeActivity.this.processDone();
@@ -729,7 +729,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     public void processDone() {
         AndroidUtilities.runOnUIThread(this.enableDoneLoading, 200L);
         if (trySetUsername() && trySetRestrict() && tryUpdateJoinSettings()) {
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
         }
     }
 
@@ -1562,7 +1562,8 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             this.permanentLinkView.loadUsers(this.invite, this.chatId);
             TextInfoPrivacyCell textInfoPrivacyCell7 = this.checkTextView;
             textInfoPrivacyCell7.setVisibility((this.isPrivate || textInfoPrivacyCell7.length() == 0) ? 8 : 0);
-            this.manageLinksInfoCell.setText(LocaleController.getString("ManageLinksInfoHelp", R.string.ManageLinksInfoHelp));
+            TLRPC$ChatFull chatFull = getMessagesController().getChatFull(this.chatId);
+            this.manageLinksInfoCell.setText(LocaleController.getString((chatFull != null && chatFull.paid_media_allowed && ChatObject.isChannelAndNotMegaGroup(getMessagesController().getChat(Long.valueOf(this.chatId)))) ? R.string.ManageLinksInfoHelpPaid : R.string.ManageLinksInfoHelp));
             if (this.isPrivate) {
                 TextInfoPrivacyCell textInfoPrivacyCell8 = this.typeInfoCell;
                 textInfoPrivacyCell8.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell8.getContext(), R.drawable.greydivider, i9));

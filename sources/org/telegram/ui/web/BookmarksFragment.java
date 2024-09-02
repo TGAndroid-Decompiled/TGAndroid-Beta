@@ -150,7 +150,7 @@ public class BookmarksFragment extends UniversalFragment {
         }
         final long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         final int intValue = this.selected.iterator().next().intValue();
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
         Runnable runnable = this.closeToTabs;
         if (runnable != null) {
             runnable.run();
@@ -264,7 +264,7 @@ public class BookmarksFragment extends UniversalFragment {
                     });
                     return;
                 }
-                BookmarksFragment.this.lambda$onBackPressed$306();
+                BookmarksFragment.this.lambda$onBackPressed$308();
                 return;
             }
             if (i == R.id.menu_delete) {
@@ -462,7 +462,7 @@ public class BookmarksFragment extends UniversalFragment {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
             } else {
-                lambda$onBackPressed$306();
+                lambda$onBackPressed$308();
                 this.whenClicked.run(AddressBarList.getLink((MessageObject) uItem.object2));
             }
         }

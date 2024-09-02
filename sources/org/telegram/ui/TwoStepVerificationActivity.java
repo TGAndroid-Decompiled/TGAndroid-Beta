@@ -405,7 +405,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public void lambda$resetPassword$11(DialogInterface dialogInterface) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
     }
 
     public void updateBottomButton() {
@@ -898,7 +898,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             this.currentPasswordHash = new byte[0];
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
-            lambda$onBackPressed$306();
+            lambda$onBackPressed$308();
             return;
         }
         if (tLRPC$TL_error != null) {
@@ -1324,7 +1324,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public void lambda$showSetForcePasswordAlert$37(DialogInterface dialogInterface, int i) {
-        lambda$onBackPressed$306();
+        lambda$onBackPressed$308();
     }
 
     public void setBlockingAlert(int i) {
@@ -1332,14 +1332,14 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     @Override
-    public void lambda$onBackPressed$306() {
+    public void lambda$onBackPressed$308() {
         if (this.otherwiseReloginDays >= 0) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("afterSignup", true);
             presentFragment(new DialogsActivity(bundle), true);
             return;
         }
-        super.lambda$onBackPressed$306();
+        super.lambda$onBackPressed$308();
     }
 
     @Override

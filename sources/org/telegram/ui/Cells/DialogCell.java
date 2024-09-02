@@ -313,6 +313,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private List<SpoilerEffect> spoilers2;
     private Stack<SpoilerEffect> spoilersPool;
     private Stack<SpoilerEffect> spoilersPool2;
+    private Drawable starBg;
+    private int starBgColor;
+    private Drawable starFg;
     private boolean statusDrawableAnimationInProgress;
     private ValueAnimator statusDrawableAnimator;
     private int statusDrawableLeft;
@@ -1317,7 +1320,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     @Override
-    public boolean drawAvatarOverlays(android.graphics.Canvas r24) {
+    public boolean drawAvatarOverlays(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.drawAvatarOverlays(android.graphics.Canvas):boolean");
     }
 
@@ -1781,7 +1784,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (messageObject == null) {
             return;
         }
-        String restrictionReason = MessagesController.getRestrictionReason(messageObject.messageOwner.restriction_reason);
+        String restrictionReason = MessagesController.getInstance(messageObject.currentAccount).getRestrictionReason(this.message.messageOwner.restriction_reason);
         MessageObject messageObject2 = this.message;
         int i2 = 0;
         if (messageObject2 != null && (tLRPC$Message = messageObject2.messageOwner) != null) {

@@ -146,7 +146,7 @@ public class ReportAdBottomSheet extends BottomSheet {
     }
 
     @Override
-    protected boolean canDismissWithSwipe() {
+    public boolean canDismissWithSwipe() {
         View currentView = this.viewPager.getCurrentView();
         if (currentView instanceof Page) {
             return ((Page) currentView).atTop();

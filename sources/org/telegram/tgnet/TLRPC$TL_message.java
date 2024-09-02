@@ -107,7 +107,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
             }
             int readInt326 = abstractSerializedData.readInt32(z);
             for (int i2 = 0; i2 < readInt326; i2++) {
-                TLRPC$TL_restrictionReason TLdeserialize3 = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$RestrictionReason TLdeserialize3 = TLRPC$RestrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize3 == null) {
                     return;
                 }

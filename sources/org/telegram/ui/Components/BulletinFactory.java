@@ -226,6 +226,16 @@ public final class BulletinFactory {
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
     }
 
+    public Bulletin createSimpleBulletinDetail(int i, CharSequence charSequence) {
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        lottieLayout.textView.setText(charSequence);
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setTextSize(1, 14.0f);
+        lottieLayout.textView.setMaxLines(4);
+        return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
+    }
+
     public Bulletin createImageBulletin(int i, CharSequence charSequence) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setBackground(Theme.getColor(Theme.key_undo_background, this.resourcesProvider), 12);
@@ -389,18 +399,24 @@ public final class BulletinFactory {
         return createUsersBulletin(list, charSequence, null, null);
     }
 
+    public Bulletin createUsersBulletin(List<? extends TLObject> list, CharSequence charSequence, CharSequence charSequence2) {
+        return createUsersBulletin(list, charSequence, charSequence2, null);
+    }
+
     public Bulletin createUsersBulletin(List<? extends TLObject> list, CharSequence charSequence, CharSequence charSequence2, UndoObject undoObject) {
         int i;
         Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(getContext(), charSequence2 != null, this.resourcesProvider);
         if (list != null) {
+            int i2 = 0;
             i = 0;
-            for (int i2 = 0; i2 < list.size() && i < 3; i2++) {
+            for (int i3 = 3; i2 < list.size() && i < i3; i3 = 3) {
                 TLObject tLObject = list.get(i2);
                 if (tLObject != null) {
                     i++;
                     usersLayout.avatarsImageView.setCount(i);
                     usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
                 }
+                i2++;
             }
             if (list.size() == 1) {
                 usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.dp(4.0f));
@@ -419,8 +435,8 @@ public final class BulletinFactory {
             usersLayout.textView.setMaxLines(1);
             usersLayout.textView.setText(charSequence);
             usersLayout.subtitleView.setText(charSequence2);
-            usersLayout.subtitleView.setSingleLine(true);
-            usersLayout.subtitleView.setMaxLines(1);
+            usersLayout.subtitleView.setSingleLine(false);
+            usersLayout.subtitleView.setMaxLines(3);
             if (usersLayout.linearLayout.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 int dp = AndroidUtilities.dp(70 - ((3 - i) * 12));
                 if (i == 1) {
@@ -848,7 +864,7 @@ public final class BulletinFactory {
         return create(lottieLayout, 1500);
     }
 
-    private Bulletin create(Bulletin.Layout layout, int i) {
+    public Bulletin create(Bulletin.Layout layout, int i) {
         BaseFragment baseFragment = this.fragment;
         if (baseFragment != null) {
             return Bulletin.make(baseFragment, layout, i);

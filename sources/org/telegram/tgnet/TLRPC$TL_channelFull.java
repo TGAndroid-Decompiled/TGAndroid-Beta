@@ -12,7 +12,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.can_set_username = (readInt32 & 64) != 0;
         this.can_set_stickers = (readInt32 & 128) != 0;
         this.hidden_prehistory = (readInt32 & 1024) != 0;
-        this.can_set_location = (65536 & readInt32) != 0;
+        this.can_set_location = (readInt32 & 65536) != 0;
         this.has_scheduled = (524288 & readInt32) != 0;
         this.can_view_stats = (1048576 & readInt32) != 0;
         this.blocked = (readInt32 & 4194304) != 0;
@@ -28,6 +28,7 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.can_view_revenue = (readInt322 & 4096) != 0;
         this.can_view_stars_revenue = (readInt322 & 32768) != 0;
         this.paid_media_allowed = (readInt322 & 16384) != 0;
+        this.paid_reactions_available = (readInt322 & 65536) != 0;
         this.id = abstractSerializedData.readInt64(z);
         this.about = abstractSerializedData.readString(z);
         if ((this.flags & 1) != 0) {
@@ -211,7 +212,9 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.flags2 = i17;
         int i18 = this.can_view_stars_revenue ? i17 | 32768 : i17 & (-32769);
         this.flags2 = i18;
-        abstractSerializedData.writeInt32(i18);
+        int i19 = this.paid_reactions_available ? i18 | 65536 : i18 & (-65537);
+        this.flags2 = i19;
+        abstractSerializedData.writeInt32(i19);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.about);
         if ((this.flags & 1) != 0) {
@@ -240,8 +243,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         abstractSerializedData.writeInt32(481674261);
         int size = this.bot_info.size();
         abstractSerializedData.writeInt32(size);
-        for (int i19 = 0; i19 < size; i19++) {
-            this.bot_info.get(i19).serializeToStream(abstractSerializedData);
+        for (int i20 = 0; i20 < size; i20++) {
+            this.bot_info.get(i20).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt64(this.migrated_from_chat_id);
@@ -287,8 +290,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.pending_suggestions.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i20 = 0; i20 < size2; i20++) {
-                abstractSerializedData.writeString(this.pending_suggestions.get(i20));
+            for (int i21 = 0; i21 < size2; i21++) {
+                abstractSerializedData.writeString(this.pending_suggestions.get(i21));
             }
         }
         if ((this.flags & 67108864) != 0) {
@@ -304,8 +307,8 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
             abstractSerializedData.writeInt32(481674261);
             int size3 = this.recent_requesters.size();
             abstractSerializedData.writeInt32(size3);
-            for (int i21 = 0; i21 < size3; i21++) {
-                abstractSerializedData.writeInt64(this.recent_requesters.get(i21).longValue());
+            for (int i22 = 0; i22 < size3; i22++) {
+                abstractSerializedData.writeInt64(this.recent_requesters.get(i22).longValue());
             }
         }
         if ((this.flags & 536870912) != 0) {

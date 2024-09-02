@@ -258,7 +258,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             public void onItemClick(int i2) {
                 if (i2 == -1) {
                     if (StickersActivity.this.onBackPressed()) {
-                        StickersActivity.this.lambda$onBackPressed$306();
+                        StickersActivity.this.lambda$onBackPressed$308();
                     }
                 } else if (i2 == 0 || i2 == 1 || i2 == 2) {
                     if (!StickersActivity.this.needReorder) {

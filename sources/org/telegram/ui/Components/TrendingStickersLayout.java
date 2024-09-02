@@ -466,7 +466,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
     private void showStickerSet(final TLRPC$InputStickerSet tLRPC$InputStickerSet) {
         StickersAlert stickersAlert = new StickersAlert(getContext(), this.parentFragment, tLRPC$InputStickerSet, null, this.delegate.canSendSticker() ? new StickersAlert.StickersAlertDelegate() {
             @Override
-            public void lambda$onStickerSelected$66(TLRPC$Document tLRPC$Document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i) {
+            public void lambda$onStickerSelected$67(TLRPC$Document tLRPC$Document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, boolean z2, int i) {
                 TrendingStickersLayout.this.delegate.onStickerSelected(tLRPC$Document, obj, z, z2, i);
             }
 
