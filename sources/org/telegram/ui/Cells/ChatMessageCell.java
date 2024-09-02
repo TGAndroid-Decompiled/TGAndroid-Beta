@@ -6383,6 +6383,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return;
         }
         MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
+        boolean z = true;
         if (groupedMessagePosition != null) {
             int i = groupedMessagePosition.flags;
             if ((i & 8) == 0 || (i & 1) == 0) {
@@ -6400,6 +6401,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.saveLayerAlpha(rectF, (int) (getAlpha() * 255.0f), 31);
+        } else {
+            z = false;
         }
         ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
         if (reactionsLayoutInBubble2.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
@@ -6413,7 +6416,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             reactionsLayoutInBubble3.draw(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f, num);
             canvas.restore();
         }
-        if (getAlpha() != 1.0f) {
+        if (z) {
             canvas.restore();
         }
     }
@@ -6427,6 +6430,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return;
         }
         MessageObject.GroupedMessagePosition groupedMessagePosition = this.currentPosition;
+        boolean z = true;
         if (groupedMessagePosition != null) {
             int i = groupedMessagePosition.flags;
             if ((i & 8) == 0 || (i & 1) == 0) {
@@ -6444,6 +6448,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(0.0f, 0.0f, getWidth(), getHeight());
             canvas.saveLayerAlpha(rectF, (int) (getAlpha() * 255.0f), 31);
+        } else {
+            z = false;
         }
         ReactionsLayoutInBubble reactionsLayoutInBubble2 = this.reactionsLayoutInBubble;
         if (reactionsLayoutInBubble2.drawServiceShaderBackground > 0.0f || !this.transitionParams.animateBackgroundBoundsInner || this.currentPosition != null || this.isRoundVideo) {
@@ -6457,7 +6463,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             reactionsLayoutInBubble3.drawOverlay(canvas, transitionParams2.animateChange ? transitionParams2.animateChangeProgress : 1.0f);
             canvas.restore();
         }
-        if (getAlpha() != 1.0f) {
+        if (z) {
             canvas.restore();
         }
     }
