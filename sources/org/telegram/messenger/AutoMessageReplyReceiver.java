@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.core.app.RemoteInput;
 import org.telegram.messenger.SendMessagesHelper;
+
 public class AutoMessageReplyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -15,7 +16,7 @@ public class AutoMessageReplyReceiver extends BroadcastReceiver {
         if (resultsFromIntent == null) {
             return;
         }
-        CharSequence charSequence = resultsFromIntent.getCharSequence(NotificationsController.EXTRA_VOICE_REPLY);
+        CharSequence charSequence = resultsFromIntent.getCharSequence("extra_voice_reply");
         if (TextUtils.isEmpty(charSequence)) {
             return;
         }

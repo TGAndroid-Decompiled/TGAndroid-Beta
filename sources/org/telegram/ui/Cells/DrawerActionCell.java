@@ -25,6 +25,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.FilterCreateActivity;
+
 public class DrawerActionCell extends FrameLayout {
     private boolean currentError;
     private int currentId;
@@ -42,7 +43,7 @@ public class DrawerActionCell extends FrameLayout {
         this.textView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         this.textView.setTextSize(1, 15.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setGravity(19);
         addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, 51, 19.0f, 12.0f, 0.0f, 0.0f));
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 72.0f, 0.0f, 16.0f, 0.0f));
@@ -52,8 +53,6 @@ public class DrawerActionCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         boolean z;
-        int dp;
-        int measuredWidth;
         super.onDraw(canvas);
         boolean z2 = this.currentError;
         if (z2 || this.currentId != 8) {
@@ -63,8 +62,8 @@ public class DrawerActionCell extends FrameLayout {
             z = set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD");
         }
         if (z) {
-            int dp2 = AndroidUtilities.dp(12.5f);
-            this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, measuredWidth + dp + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
+            int dp = AndroidUtilities.dp(12.5f);
+            this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp, r3 + r2 + AndroidUtilities.dp(14.0f), dp + AndroidUtilities.dp(23.0f));
             Theme.chat_docBackPaint.setColor(Theme.getColor(z2 ? Theme.key_text_RedBold : Theme.key_chats_archiveBackground));
             RectF rectF = this.rect;
             float f = AndroidUtilities.density;

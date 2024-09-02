@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -51,12 +50,14 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private TextView addButton;
     private TextView adminTextView;
     protected AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
     private CheckBox2 checkBox;
+    private ImageView checkBox3;
     private CheckBoxSquare checkBoxBig;
     private ImageView closeView;
     private int currentAccount;
@@ -126,7 +127,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             textView.setGravity(17);
             this.addButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.addButton.setTextSize(1, 14.0f);
-            this.addButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.addButton.setTypeface(AndroidUtilities.bold());
             this.addButton.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             this.addButton.setText(LocaleController.getString("Add", R.string.Add));
             this.addButton.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
@@ -169,7 +170,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view3 = this.nameTextView;
@@ -217,15 +218,25 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             View view6 = this.checkBox;
             boolean z9 = LocaleController.isRTL;
             addView(view6, LayoutHelper.createFrame(24, 24.0f, (z9 ? 5 : 3) | 48, z9 ? 0.0f : i + 37, 36.0f, z9 ? i + 37 : 0.0f, 0.0f));
+        } else if (i2 == 3) {
+            ImageView imageView2 = new ImageView(context);
+            this.checkBox3 = imageView2;
+            imageView2.setScaleType(ImageView.ScaleType.CENTER);
+            this.checkBox3.setImageResource(R.drawable.account_check);
+            this.checkBox3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.checkBox3.setVisibility(8);
+            View view7 = this.checkBox3;
+            boolean z10 = LocaleController.isRTL;
+            addView(view7, LayoutHelper.createFrame(24, 24.0f, (z10 ? 3 : 5) | 16, z10 ? i + 10 : 0.0f, 0.0f, z10 ? 0.0f : i + 10, 0.0f));
         }
         if (z) {
             TextView textView2 = new TextView(context);
             this.adminTextView = textView2;
             textView2.setTextSize(1, 14.0f);
             this.adminTextView.setTextColor(Theme.getColor(Theme.key_profile_creatorIcon, resourcesProvider));
-            View view7 = this.adminTextView;
-            boolean z10 = LocaleController.isRTL;
-            addView(view7, LayoutHelper.createFrame(-2, -2.0f, (z10 ? 3 : 5) | 48, z10 ? 23.0f : 0.0f, 10.0f, z10 ? 0.0f : 23.0f, 0.0f));
+            View view8 = this.adminTextView;
+            boolean z11 = LocaleController.isRTL;
+            addView(view8, LayoutHelper.createFrame(-2, -2.0f, (z11 ? 3 : 5) | 48, z11 ? 23.0f : 0.0f, 10.0f, z11 ? 0.0f : 23.0f, 0.0f));
         }
         setFocusable(true);
     }
@@ -303,8 +314,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.currentName = null;
             this.storiable = false;
             this.currentObject = null;
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.statusTextView.setText("");
             this.avatarImageView.setImageDrawable(null);
             return;
         }
@@ -387,16 +398,19 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 return;
             }
             setData(user, encryptedChat, charSequence, str, 0, false);
-        } else if (DialogObject.isUserDialog(notificationException.did)) {
+            return;
+        }
+        if (DialogObject.isUserDialog(notificationException.did)) {
             TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(notificationException.did));
             if (user2 != null) {
                 setData(user2, null, charSequence, str, 0, z);
+                return;
             }
-        } else {
-            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-notificationException.did));
-            if (chat != null) {
-                setData(chat, null, charSequence, str, 0, z);
-            }
+            return;
+        }
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-notificationException.did));
+        if (chat != null) {
+            setData(chat, null, charSequence, str, 0, z);
         }
     }
 
@@ -423,6 +437,11 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 this.checkBoxBig.setVisibility(0);
             }
             this.checkBoxBig.setChecked(z, z2);
+        } else {
+            ImageView imageView = this.checkBox3;
+            if (imageView != null) {
+                imageView.setVisibility(z ? 0 : 8);
+            }
         }
     }
 
@@ -452,7 +471,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         TLRPC$Chat tLRPC$Chat;
         TLRPC$FileLocation tLRPC$FileLocation;
         String str;
-        int i2;
         TLRPC$UserStatus tLRPC$UserStatus;
         TextView textView;
         char c;
@@ -491,9 +509,9 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 str = null;
             } else {
                 if (tLRPC$User != null) {
-                    str = UserObject.getUserName(tLRPC$User);
+                    str = AndroidUtilities.removeDiacritics(UserObject.getUserName(tLRPC$User));
                 } else {
-                    str = tLRPC$Chat.title;
+                    str = AndroidUtilities.removeDiacritics(tLRPC$Chat == null ? "" : tLRPC$Chat.title);
                 }
                 if (!str.equals(this.lastName)) {
                     z = true;
@@ -617,7 +635,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                     break;
             }
             this.avatarImageView.setImage(null, "50_50", this.avatarDrawable);
-            this.currentStatus = BuildConfig.APP_CENTER_HASH;
+            this.currentStatus = "";
         } else {
             ((FrameLayout.LayoutParams) this.nameTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(10.0f);
             if (tLRPC$User != null) {
@@ -656,14 +674,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 if (str == null) {
                     str = UserObject.getUserName(tLRPC$User);
                 }
-                this.lastName = str;
+                this.lastName = AndroidUtilities.removeDiacritics(str);
             } else if (tLRPC$Chat != null) {
                 if (str == null) {
                     str = tLRPC$Chat.title;
                 }
-                this.lastName = str;
+                this.lastName = AndroidUtilities.removeDiacritics(str);
             } else {
-                this.lastName = BuildConfig.APP_CENTER_HASH;
+                this.lastName = "";
             }
             CharSequence charSequence3 = this.lastName;
             if (charSequence3 != null) {
@@ -705,10 +723,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 }
             }
             this.nameTextView.setRightDrawableTopPadding(-AndroidUtilities.dp(0.5f));
-            i2 = 0;
         } else {
             this.nameTextView.setRightDrawable((Drawable) null);
-            i2 = 0;
             this.nameTextView.setRightDrawableTopPadding(0);
         }
         if (this.currentStatus != null) {
@@ -731,11 +747,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             }
         }
         if ((this.imageView.getVisibility() == 0 && this.currentDrawable == 0) || (this.imageView.getVisibility() == 8 && this.currentDrawable != 0)) {
-            ImageView imageView = this.imageView;
-            if (this.currentDrawable == 0) {
-                i2 = 8;
-            }
-            imageView.setVisibility(i2);
+            this.imageView.setVisibility(this.currentDrawable == 0 ? 8 : 0);
             this.imageView.setImageResource(this.currentDrawable);
         }
         this.lastAvatar = tLRPC$FileLocation;
@@ -857,8 +869,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         }
     }
 
-    public void setCloseIcon(final Runnable runnable) {
-        if (runnable == null) {
+    public void setCloseIcon(View.OnClickListener onClickListener) {
+        if (onClickListener == null) {
             ImageView imageView = this.closeView;
             if (imageView != null) {
                 removeView(imageView);
@@ -879,11 +891,6 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             boolean z = LocaleController.isRTL;
             addView(imageView3, LayoutHelper.createFrame(30, 30.0f, (z ? 3 : 5) | 16, z ? 14.0f : 0.0f, 0.0f, z ? 0.0f : 14.0f, 0.0f));
         }
-        this.closeView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                runnable.run();
-            }
-        });
+        this.closeView.setOnClickListener(onClickListener);
     }
 }

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_smsjobs_finishJob extends TLObject {
     public String error;
     public int flags;

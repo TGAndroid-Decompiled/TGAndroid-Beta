@@ -17,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CounterView;
+
 public class CounterView extends View {
     public CounterDrawable counterDrawable;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -106,7 +107,7 @@ public class CounterView extends View {
                 this.circlePaint = paint;
                 paint.setColor(-16777216);
             }
-            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textPaint.setTypeface(AndroidUtilities.bold());
             this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         }
 

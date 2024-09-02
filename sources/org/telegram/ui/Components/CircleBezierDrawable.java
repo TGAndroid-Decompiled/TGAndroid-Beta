@@ -5,6 +5,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
+
 public class CircleBezierDrawable {
     private final float L;
     private final int N;
@@ -72,12 +73,13 @@ public class CircleBezierDrawable {
             float f12 = i3 % 2 == 0 ? f6 : f7;
             float f13 = this.randomK;
             float[] fArr3 = this.randomAdditionals;
+            float f14 = f12 + (fArr3[i3] * f13);
             float[] fArr4 = this.pointEnd;
             fArr4[0] = f;
-            float f14 = f2 - (f12 + (fArr3[i3] * f13));
-            fArr4[1] = f14;
+            float f15 = f2 - f14;
+            fArr4[1] = f15;
             fArr4[2] = (f - max) + (f13 * fArr3[i3] * this.L);
-            fArr4[3] = f14;
+            fArr4[3] = f15;
             this.m.reset();
             this.m.setRotate((360.0f / this.N) * i3, f, f2);
             this.m.mapPoints(this.pointEnd);
@@ -88,10 +90,10 @@ public class CircleBezierDrawable {
             }
             Path path2 = this.path;
             float[] fArr6 = this.pointStart;
-            float f15 = fArr6[2];
-            float f16 = fArr6[3];
+            float f16 = fArr6[2];
+            float f17 = fArr6[3];
             float[] fArr7 = this.pointEnd;
-            path2.cubicTo(f15, f16, fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
+            path2.cubicTo(f16, f17, fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
             i = i2;
         }
         canvas.save();

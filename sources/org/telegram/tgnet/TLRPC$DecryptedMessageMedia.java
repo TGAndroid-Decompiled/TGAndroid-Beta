@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
     public double _long;
     public long access_hash;

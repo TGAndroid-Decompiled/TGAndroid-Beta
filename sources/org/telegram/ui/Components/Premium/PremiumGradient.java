@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,8 +22,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PremiumGradient {
     private static PremiumGradient instance;
+    private final PremiumGradientTools goldGradient;
+    public InternalDrawable goldenStarMenuDrawable;
     private int lastStarColor;
     Paint lockedPremiumPaint;
     private final PremiumGradientTools mainGradient;
@@ -42,11 +46,16 @@ public class PremiumGradient {
     private PremiumGradient() {
         PremiumGradientTools premiumGradientTools = new PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
         this.mainGradient = premiumGradientTools;
+        PremiumGradientTools premiumGradientTools2 = new PremiumGradientTools(Theme.key_starsGradient1, Theme.key_starsGradient2, -1);
+        this.goldGradient = premiumGradientTools2;
         this.mainGradientPaint = premiumGradientTools.paint;
         Context context = ApplicationLoader.applicationContext;
         int i = R.drawable.msg_premium_liststar;
         this.premiumStarDrawableMini = ContextCompat.getDrawable(context, i).mutate();
-        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_settings_premium));
+        Context context2 = ApplicationLoader.applicationContext;
+        int i2 = R.drawable.msg_settings_premium;
+        this.premiumStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(context2, i2));
+        this.goldenStarMenuDrawable = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, i2), premiumGradientTools2);
         this.premiumStarMenuDrawable2 = createGradientDrawable(ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.msg_premium_normal));
         this.premiumStarColoredDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
         premiumGradientTools.chekColors();
@@ -155,6 +164,10 @@ public class PremiumGradient {
         public float y1;
         public float y2;
 
+        public PremiumGradientTools(int i, int i2, int i3) {
+            this(i, i2, i3, -1, -1);
+        }
+
         public PremiumGradientTools(int i, int i2, int i3, int i4) {
             this(i, i2, i3, i4, -1);
         }
@@ -181,6 +194,10 @@ public class PremiumGradient {
             this.colorKey5 = i5;
         }
 
+        public void gradientMatrix(Rect rect) {
+            gradientMatrix(rect.left, rect.top, rect.right, rect.bottom, 0.0f, 0.0f);
+        }
+
         public void gradientMatrix(RectF rectF) {
             gradientMatrix((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom, 0.0f, 0.0f);
         }
@@ -195,11 +212,10 @@ public class PremiumGradient {
                 return;
             }
             int i5 = i4 - i2;
-            int i6 = i5 + i5;
             chekColors();
             this.matrix.reset();
-            this.matrix.postScale((i3 - i) / 100.0f, i6 / 100.0f, 75.0f, 50.0f);
-            this.matrix.postTranslate(f, (-i6) + f2);
+            this.matrix.postScale((i3 - i) / 100.0f, (i5 + i5) / 100.0f, 75.0f, 50.0f);
+            this.matrix.postTranslate(f, (-r6) + f2);
             this.shader.setLocalMatrix(this.matrix);
         }
 
@@ -209,7 +225,10 @@ public class PremiumGradient {
 
         private int getColor(int i) {
             int themeColorByKey = getThemeColorByKey(i);
-            return this.darkColors ? Color.argb(Color.alpha(themeColorByKey), Color.red(themeColorByKey) - 15, Color.green(themeColorByKey) - 15, Color.blue(themeColorByKey) - 15) : themeColorByKey;
+            if (!this.darkColors) {
+                return themeColorByKey;
+            }
+            return Color.argb(Color.alpha(themeColorByKey), Color.red(themeColorByKey) - 15, Color.green(themeColorByKey) - 15, Color.blue(themeColorByKey) - 15);
         }
 
         public void chekColors() {

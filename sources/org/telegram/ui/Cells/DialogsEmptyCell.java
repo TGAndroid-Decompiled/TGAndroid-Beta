@@ -26,6 +26,7 @@ import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.TextViewSwitcher;
+
 public class DialogsEmptyCell extends LinearLayout {
     private int currentAccount;
     private int currentType;
@@ -71,7 +72,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.titleView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_chats_nameMessage_threeLines));
         this.titleView.setTextSize(1, 20.0f);
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         this.titleView.setGravity(17);
         addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 10.0f, 52.0f, 0.0f));
         TextViewSwitcher textViewSwitcher = new TextViewSwitcher(context);
@@ -311,7 +312,9 @@ public class DialogsEmptyCell extends LinearLayout {
         int i3 = this.currentType;
         if (i3 == 0 || i3 == 1) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(measureUtyanHeight(i2), 1073741824));
-        } else if (i3 == 2 || i3 == 3) {
+            return;
+        }
+        if (i3 == 2 || i3 == 3) {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 size = view.getMeasuredHeight();
@@ -332,8 +335,8 @@ public class DialogsEmptyCell extends LinearLayout {
                 size -= (((AndroidUtilities.dp(72.0f) * arrayList.size()) + arrayList.size()) - 1) + AndroidUtilities.dp(50.0f);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        } else {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
+            return;
         }
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(166.0f), 1073741824));
     }
 }

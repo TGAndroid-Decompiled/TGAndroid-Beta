@@ -1,7 +1,7 @@
 package org.aspectj.runtime.reflect;
 
 import java.lang.reflect.Modifier;
-import org.telegram.messenger.BuildConfig;
+
 class StringMaker {
     static StringMaker longStringMaker;
     static StringMaker middleStringMaker;
@@ -49,17 +49,17 @@ class StringMaker {
     }
 
     public String makeModifiersString(int i) {
-        if (this.includeModifiers) {
-            String modifier = Modifier.toString(i);
-            if (modifier.length() == 0) {
-                return BuildConfig.APP_CENTER_HASH;
-            }
-            StringBuffer stringBuffer = new StringBuffer();
-            stringBuffer.append(modifier);
-            stringBuffer.append(" ");
-            return stringBuffer.toString();
+        if (!this.includeModifiers) {
+            return "";
         }
-        return BuildConfig.APP_CENTER_HASH;
+        String modifier = Modifier.toString(i);
+        if (modifier.length() == 0) {
+            return "";
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(modifier);
+        stringBuffer.append(" ");
+        return stringBuffer.toString();
     }
 
     String stripPackageName(String str) {

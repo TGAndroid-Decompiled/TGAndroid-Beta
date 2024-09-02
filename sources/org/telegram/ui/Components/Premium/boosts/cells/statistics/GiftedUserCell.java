@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class GiftedUserCell extends UserCell {
     private FrameLayout badgeLayout;
@@ -48,7 +49,7 @@ public class GiftedUserCell extends UserCell {
         TextView textView = new TextView(getContext());
         this.badgeTextView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
-        this.badgeTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.badgeTextView.setTypeface(AndroidUtilities.bold());
         this.badgeTextView.setTextSize(12.0f);
         this.badgeTextView.setGravity(17);
         this.badgeLayout.addView(this.badgeTextView, LayoutHelper.createFrame(-2, 22.0f));
@@ -86,10 +87,9 @@ public class GiftedUserCell extends UserCell {
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
-            String format = LocaleController.getInstance().formatterScheduleDay.format(new Date(tL_stories$TL_boost.expires * 1000));
-            String format2 = LocaleController.getInstance().formatterDay.format(new Date(tL_stories$TL_boost.expires * 1000));
-            SimpleTextView simpleTextView = this.statusTextView;
-            simpleTextView.setText(LocaleController.formatString("BoostingShortMonths", R.string.BoostingShortMonths, Integer.valueOf(i)) + " • " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
+            String format = LocaleController.getInstance().getFormatterScheduleDay().format(new Date(tL_stories$TL_boost.expires * 1000));
+            String format2 = LocaleController.getInstance().getFormatterDay().format(new Date(tL_stories$TL_boost.expires * 1000));
+            this.statusTextView.setText(LocaleController.formatString("BoostingShortMonths", R.string.BoostingShortMonths, Integer.valueOf(i)) + " • " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
             if (tL_stories$TL_boost.gift) {
                 if (this.giftDrawable == null) {
                     Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
@@ -126,11 +126,11 @@ public class GiftedUserCell extends UserCell {
         }
         if (this.badgeLayout.getVisibility() == 0) {
             int measureText = ((int) this.badgeTextView.getPaint().measureText(this.badgeTextView.getText().toString())) + AndroidUtilities.dp(22.0f);
+            SimpleTextView simpleTextView = this.nameTextView;
+            simpleTextView.setPadding(LocaleController.isRTL ? measureText : 0, simpleTextView.getPaddingTop(), LocaleController.isRTL ? 0 : measureText, this.nameTextView.getPaddingBottom());
+        } else {
             SimpleTextView simpleTextView2 = this.nameTextView;
-            simpleTextView2.setPadding(LocaleController.isRTL ? measureText : 0, simpleTextView2.getPaddingTop(), LocaleController.isRTL ? 0 : measureText, this.nameTextView.getPaddingBottom());
-            return;
+            simpleTextView2.setPadding(0, simpleTextView2.getPaddingTop(), 0, this.nameTextView.getPaddingBottom());
         }
-        SimpleTextView simpleTextView3 = this.nameTextView;
-        simpleTextView3.setPadding(0, simpleTextView3.getPaddingTop(), 0, this.nameTextView.getPaddingBottom());
     }
 }

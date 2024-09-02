@@ -8,7 +8,6 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.util.SparseIntArray;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -18,6 +17,7 @@ import java.util.List;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackButtonMenu;
+
 public interface INavigationLayout {
 
     public enum BackButtonState {
@@ -32,6 +32,8 @@ public interface INavigationLayout {
     boolean addFragmentToStack(BaseFragment baseFragment);
 
     boolean addFragmentToStack(BaseFragment baseFragment, int i);
+
+    boolean allowSwipe();
 
     void animateThemedValues(ThemeAnimationSettings themeAnimationSettings, Runnable runnable);
 
@@ -55,11 +57,11 @@ public interface INavigationLayout {
 
     void expandPreviewFragment();
 
-    boolean extendActionMode(Menu menu);
-
     void finishPreviewFragment();
 
     BottomSheet getBottomSheet();
+
+    int getBottomTabsHeight(boolean z);
 
     float getCurrentPreviewFragmentAlpha();
 
@@ -78,6 +80,8 @@ public interface INavigationLayout {
     Activity getParentActivity();
 
     List<BackButtonMenu.PulledDialog> getPulledDialogs();
+
+    BaseFragment getSafeLastFragment();
 
     float getThemeAnimationValue();
 
@@ -103,10 +107,6 @@ public interface INavigationLayout {
 
     void movePreviewFragment(float f);
 
-    void onActionModeFinished(Object obj);
-
-    void onActionModeStarted(Object obj);
-
     void onBackPressed();
 
     void onLowMemory();
@@ -114,8 +114,6 @@ public interface INavigationLayout {
     void onPause();
 
     void onResume();
-
-    void onUserLeaveHint();
 
     boolean presentFragment(BaseFragment baseFragment);
 
@@ -138,9 +136,6 @@ public interface INavigationLayout {
 
     void rebuildFragments(int i);
 
-    @Deprecated
-    void rebuildLogout();
-
     void removeAllFragments();
 
     void removeFragmentFromStack(int i);
@@ -161,19 +156,17 @@ public interface INavigationLayout {
 
     void setFragmentStack(List<BaseFragment> list);
 
-    void setFragmentStackChangedListener(Runnable runnable);
-
     void setHighlightActionButtons(boolean z);
 
     void setInBubbleMode(boolean z);
 
     void setIsSheet(boolean z);
 
+    void setNavigationBarColor(int i);
+
     void setPulledDialogs(List<BackButtonMenu.PulledDialog> list);
 
     void setRemoveActionBarExtraHeight(boolean z);
-
-    void setTitleOverlayText(String str, int i, Runnable runnable);
 
     void setUseAlphaAnimations(boolean z);
 
@@ -183,8 +176,6 @@ public interface INavigationLayout {
     void showLastFragment();
 
     void startActivityForResult(Intent intent, int i);
-
-    void updateTitleOverlay();
 
     public final class CC {
         public static BottomSheet $default$getBottomSheet(INavigationLayout iNavigationLayout) {
@@ -199,15 +190,22 @@ public interface INavigationLayout {
             return false;
         }
 
-        public static INavigationLayout newLayout(Context context) {
-            return new ActionBarLayout(context);
+        public static INavigationLayout newLayout(Context context, boolean z) {
+            return new ActionBarLayout(context, z);
         }
 
-        public static INavigationLayout newLayout(Context context, final Supplier<BottomSheet> supplier) {
-            return new ActionBarLayout(context) {
+        public static INavigationLayout newLayout(Context context, boolean z, Supplier<BottomSheet> supplier) {
+            return new ActionBarLayout(context, z) {
+                final Supplier val$supplier;
+
+                AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
+                    super(context2, z2);
+                    r3 = supplier2;
+                }
+
                 @Override
                 public BottomSheet getBottomSheet() {
-                    return (BottomSheet) supplier.get();
+                    return (BottomSheet) r3.get();
                 }
             };
         }
@@ -215,10 +213,10 @@ public interface INavigationLayout {
         public static void $default$rebuildFragments(INavigationLayout _this, int i) {
             if ((i & 2) != 0) {
                 _this.showLastFragment();
-                return;
+            } else {
+                boolean z = (i & 1) != 0;
+                _this.rebuildAllFragmentViews(z, z);
             }
-            boolean z = (i & 1) != 0;
-            _this.rebuildAllFragmentViews(z, z);
         }
 
         public static BaseFragment $default$getBackgroundFragment(INavigationLayout _this) {
@@ -226,6 +224,19 @@ public interface INavigationLayout {
                 return null;
             }
             return _this.getFragmentStack().get(_this.getFragmentStack().size() - 2);
+        }
+
+        public static BaseFragment $default$getSafeLastFragment(INavigationLayout _this) {
+            if (_this.getFragmentStack().isEmpty()) {
+                return null;
+            }
+            for (int size = _this.getFragmentStack().size() - 1; size >= 0; size--) {
+                BaseFragment baseFragment = _this.getFragmentStack().get(size);
+                if (baseFragment != null && !baseFragment.isFinishing() && !baseFragment.isRemovingFromStack()) {
+                    return baseFragment;
+                }
+            }
+            return null;
         }
 
         public static Activity $default$getParentActivity(INavigationLayout _this) {
@@ -236,9 +247,9 @@ public interface INavigationLayout {
             throw new IllegalArgumentException("NavigationLayout added in non-activity context!");
         }
 
-        public static ViewGroup $default$getView(INavigationLayout _this) {
-            if (_this instanceof ViewGroup) {
-                return (ViewGroup) _this;
+        public static ViewGroup $default$getView(INavigationLayout iNavigationLayout) {
+            if (iNavigationLayout instanceof ViewGroup) {
+                return (ViewGroup) iNavigationLayout;
             }
             throw new IllegalArgumentException("You should override getView() if you're not inheriting from it.");
         }
@@ -256,6 +267,20 @@ public interface INavigationLayout {
                 return;
             }
             fragmentStack.get(fragmentStack.size() - 1).dismissCurrentDialog();
+        }
+    }
+
+    public class AnonymousClass1 extends ActionBarLayout {
+        final Supplier val$supplier;
+
+        AnonymousClass1(Context context2, boolean z2, Supplier supplier2) {
+            super(context2, z2);
+            r3 = supplier2;
+        }
+
+        @Override
+        public BottomSheet getBottomSheet() {
+            return (BottomSheet) r3.get();
         }
     }
 
@@ -432,7 +457,6 @@ public interface INavigationLayout {
         }
 
         public void saveColors(Theme.ResourcesProvider resourcesProvider) {
-            int[] iArr;
             this.colors.clear();
             for (int i : this.keysToSave) {
                 this.colors.put(i, resourcesProvider.getCurrentColor(i));

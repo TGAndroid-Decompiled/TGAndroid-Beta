@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_pageBlockEmbedPost extends TLRPC$PageBlock {
     public String author;
     public long author_photo_id;

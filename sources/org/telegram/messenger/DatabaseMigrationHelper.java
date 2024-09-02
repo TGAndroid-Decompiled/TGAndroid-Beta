@@ -15,6 +15,7 @@ import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_chatFull;
 import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
+
 public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) throws Exception {
         SQLiteDatabase sQLiteDatabase;
@@ -805,7 +806,7 @@ public class DatabaseMigrationHelper {
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
-                                    sb.append(BuildConfig.APP_CENTER_HASH);
+                                    sb.append("");
                                     sb.append(intValue23);
                                     hashMap.put("fwd_peer", sb.toString());
                                 } else {
@@ -1095,7 +1096,7 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("ALTER TABLE dialogs ADD COLUMN last_mid_group INTEGER default NULL").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS uid_mid_groupid_messages_v2 ON messages_v2(uid, mid, group_id);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 102").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+            i7 = 102;
         }
         if (i7 == 102) {
             sQLiteDatabase.executeFast("CREATE TABLE messages_holes_topics(uid INTEGER, topic_id INTEGER, start INTEGER, end INTEGER, PRIMARY KEY(uid, topic_id, start));").stepThis().dispose();
@@ -1118,24 +1119,24 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE TABLE topics(did INTEGER, topic_id INTEGER, data BLOB, top_message INTEGER, topic_message BLOB, unread_count INTEGER, max_read_id INTEGER, unread_mentions INTEGER, unread_reactions INTEGER, PRIMARY KEY(did, topic_id));").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS did_top_message_topics ON topics(did, top_message);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 103").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceListItem;
+            i7 = 103;
         }
         if (i7 == 103) {
             sQLiteDatabase.executeFast("CREATE TABLE IF NOT EXISTS media_counts_topics(uid INTEGER, topic_id INTEGER, type INTEGER, count INTEGER, old INTEGER, PRIMARY KEY(uid, topic_id, type))").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE TABLE IF NOT EXISTS reaction_mentions_topics(message_id INTEGER, state INTEGER, dialog_id INTEGER, topic_id INTEGER, PRIMARY KEY(message_id, dialog_id, topic_id))").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reaction_mentions_topics_did ON reaction_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 104").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceListItemSecondary;
+            i7 = 104;
         }
         if (i7 == 104) {
             sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN read_outbox INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 105").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceListItemSmall;
+            i7 = 105;
         }
         if (i7 == 105) {
             sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN pinned INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 106").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+            i7 = 106;
         }
         if (i7 == 106) {
             sQLiteDatabase.executeFast("DROP INDEX IF EXISTS uid_mid_read_out_idx_messages_topics").stepThis().dispose();
@@ -1147,48 +1148,48 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS uid_topic_id_mid_messages_topics ON messages_topics(uid, topic_id, mid);").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS did_topics ON topics(did);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 107").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+            i7 = 107;
         }
         if (i7 == 107) {
             sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN total_messages_count INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 108").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+            i7 = 108;
         }
         if (i7 == 108) {
             sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN hidden INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 109").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+            i7 = 109;
         }
         if (i7 == 109) {
             sQLiteDatabase.executeFast("ALTER TABLE dialogs ADD COLUMN ttl_period INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 110").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textColorAlertDialogListItem;
+            i7 = 110;
         }
         if (i7 == 110) {
             sQLiteDatabase.executeFast("CREATE TABLE stickersets(id INTEGER PRIMATE KEY, data BLOB, hash INTEGER);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 111").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_textColorSearchUrl;
+            i7 = 111;
         }
         if (i7 == 111) {
             sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 112").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+            i7 = 112;
         }
         if (i7 == 112) {
             sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 113").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_toolbarStyle;
+            i7 = 113;
         }
         if (i7 == 113) {
             messagesStorage.reset();
             sQLiteDatabase.executeFast("PRAGMA user_version = 114").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_tooltipForegroundColor;
+            i7 = 114;
         }
         if (i7 == 114) {
             sQLiteDatabase.executeFast("CREATE TABLE bot_keyboard_topics(uid INTEGER, tid INTEGER, mid INTEGER, info BLOB, PRIMARY KEY(uid, tid))").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS bot_keyboard_topics_idx_mid_v2 ON bot_keyboard_topics(mid, uid, tid);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 115").stepThis().dispose();
-            i7 = R.styleable.AppCompatTheme_tooltipFrameBackground;
+            i7 = 115;
         }
         if (i7 == 115) {
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_messages_v2 ON messages_v2(reply_to_message_id, mid);").stepThis().dispose();
@@ -1360,9 +1361,40 @@ public class DatabaseMigrationHelper {
         if (i7 == 148) {
             sQLiteDatabase.executeFast("ALTER TABLE topics ADD COLUMN edit_date INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 149").stepThis().dispose();
-            return MessagesStorage.LAST_DB_VERSION;
+            i7 = 149;
         }
-        return i7;
+        if (i7 == 149) {
+            sQLiteDatabase.executeFast("ALTER TABLE stickersets2 ADD COLUMN short_name TEXT;").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS stickersets2_id_short_name ON stickersets2(id, short_name);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 150").stepThis().dispose();
+            i7 = 150;
+        }
+        if (i7 == 150) {
+            sQLiteDatabase.executeFast("CREATE TABLE business_links(data BLOB, order_value INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 151").stepThis().dispose();
+            i7 = 151;
+        }
+        if (i7 == 151) {
+            sQLiteDatabase.executeFast("ALTER TABLE profile_stories ADD COLUMN seen INTEGER default 0;").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 152").stepThis().dispose();
+            i7 = 152;
+        }
+        if (i7 == 152) {
+            sQLiteDatabase.executeFast("ALTER TABLE profile_stories ADD COLUMN pin INTEGER default 0;").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 153").stepThis().dispose();
+            i7 = 153;
+        }
+        if (i7 == 153) {
+            sQLiteDatabase.executeFast("CREATE TABLE effects(data BLOB)").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 154").stepThis().dispose();
+            i7 = 154;
+        }
+        if (i7 != 154) {
+            return i7;
+        }
+        sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
+        return 155;
     }
 
     public static boolean recoverDatabase(File file, File file2, File file3, int i) {
@@ -1372,8 +1404,7 @@ public class DatabaseMigrationHelper {
         SQLiteDatabase sQLiteDatabase2;
         SQLiteCursor sQLiteCursor;
         int i2;
-        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-        File file4 = new File(filesDirFixed, "recover_database_" + i + "/");
+        File file4 = new File(ApplicationLoader.getFilesDirFixed(), "recover_database_" + i + "/");
         file4.mkdirs();
         File file5 = new File(file4, "cache4.db");
         File file6 = new File(file4, "cache4.db-wal");
@@ -1405,7 +1436,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 149) {
+        if (intValue != 155) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }
@@ -1488,24 +1519,24 @@ public class DatabaseMigrationHelper {
         sQLiteDatabase4.executeFast("DETACH DATABASE old;").stepThis().dispose();
         sQLiteDatabase4.close();
         z = true;
-        if (z) {
-            try {
-                file.delete();
-                file2.delete();
-                file3.delete();
-                AndroidUtilities.copyFile(file5, file);
-                AndroidUtilities.copyFile(file6, file2);
-                AndroidUtilities.copyFile(file7, file3);
-                file5.delete();
-                file6.delete();
-                file7.delete();
-                FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
-                return true;
-            } catch (IOException e3) {
-                e3.printStackTrace();
-                return false;
-            }
+        if (!z) {
+            return false;
         }
-        return false;
+        try {
+            file.delete();
+            file2.delete();
+            file3.delete();
+            AndroidUtilities.copyFile(file5, file);
+            AndroidUtilities.copyFile(file6, file2);
+            AndroidUtilities.copyFile(file7, file3);
+            file5.delete();
+            file6.delete();
+            file7.delete();
+            FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
+            return true;
+        } catch (IOException e3) {
+            e3.printStackTrace();
+            return false;
+        }
     }
 }

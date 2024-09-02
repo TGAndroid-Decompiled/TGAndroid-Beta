@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$UserStatus extends TLObject {
     public boolean by_me;
     public int expires;

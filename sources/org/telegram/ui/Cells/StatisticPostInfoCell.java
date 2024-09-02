@@ -17,7 +17,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -38,6 +37,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 @SuppressLint({"ViewConstructor"})
 public class StatisticPostInfoCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
@@ -64,10 +64,9 @@ public class StatisticPostInfoCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void onDraw(Canvas canvas) {
-                int dp;
                 if (StatisticPostInfoCell.this.postInfo != null && StatisticPostInfoCell.this.postInfo.isStory()) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+                    float dp = AndroidUtilities.dp(1.0f);
+                    StatisticPostInfoCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
                     StatisticPostInfoCell.this.storyAvatarParams.drawSegments = false;
                     StatisticPostInfoCell.this.storyAvatarParams.animate = false;
                     StatisticPostInfoCell.this.storyAvatarParams.drawInside = true;
@@ -96,7 +95,7 @@ public class StatisticPostInfoCell extends FrameLayout {
         };
         this.message = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setTextSize(16);
         simpleTextView.setMaxLines(1);
         simpleTextView.setTextColor(-16777216);
@@ -219,7 +218,7 @@ public class StatisticPostInfoCell extends FrameLayout {
             charSequence = charSequence2 != null ? charSequence2 : messageObject.messageText;
         }
         if (charSequence == null) {
-            charSequence = BuildConfig.APP_CENTER_HASH;
+            charSequence = "";
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
@@ -228,7 +227,7 @@ public class StatisticPostInfoCell extends FrameLayout {
         this.message.setText(AndroidUtilities.trim(AndroidUtilities.replaceNewLines(spannableStringBuilder), null));
         this.views.setText(String.format(LocaleController.getPluralString("Views", recentPostInfo.getViews()), AndroidUtilities.formatWholeNumber(recentPostInfo.getViews(), 0)));
         Date date = new Date(recentPostInfo.getDate() * 1000);
-        this.date.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date)));
+        this.date.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
         this.shares.setText(AndroidUtilities.formatWholeNumber(recentPostInfo.getForwards(), 0));
         this.likes.setText(AndroidUtilities.formatWholeNumber(recentPostInfo.getReactions(), 0));
         this.shares.setVisibility(recentPostInfo.getForwards() != 0 ? 0 : 8);

@@ -1,12 +1,16 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
@@ -27,9 +31,11 @@ import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.RecyclerListViewWithOverlayDraw;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
+
 public class StickerEmojiCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate, RecyclerListViewWithOverlayDraw.OverlayView {
     private static AccelerateInterpolator interpolator = new AccelerateInterpolator(0.5f);
     private float alpha;
@@ -37,6 +43,8 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     private int currentAccount;
     private String currentEmoji;
     private boolean drawInParentView;
+    public ImageView editModeIcon;
+    private int editModeIconColor;
     private TextView emojiTextView;
     private boolean fromEmojiPanel;
     private ImageReceiver imageView;
@@ -46,7 +54,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     private float premiumAlpha;
     private PremiumLockIconView premiumIconView;
     private boolean recent;
-    private Theme.ResourcesProvider resourceProvider;
+    private final Theme.ResourcesProvider resourceProvider;
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
@@ -54,14 +62,28 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     private SendMessagesHelper.ImportingSticker stickerPath;
     private long time;
 
-    public StickerEmojiCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public StickerEmojiCell(Context context, boolean z, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.alpha = 1.0f;
         this.currentAccount = UserConfig.selectedAccount;
         this.premiumAlpha = 1.0f;
         this.resourceProvider = resourcesProvider;
         this.fromEmojiPanel = z;
-        ImageReceiver imageReceiver = new ImageReceiver();
+        ImageReceiver imageReceiver = new ImageReceiver() {
+            @Override
+            public boolean setImageBitmapByKey(Drawable drawable, String str, int i, boolean z2, int i2) {
+                if ((drawable instanceof BitmapDrawable) && StickerEmojiCell.this.editModeIconColor == 0) {
+                    Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+                    StickerEmojiCell.this.editModeIconColor = AndroidUtilities.getDominantColor(bitmap);
+                    if (StickerEmojiCell.this.editModeIconColor == -1 || StickerEmojiCell.this.editModeIconColor == 0) {
+                        StickerEmojiCell.this.editModeIconColor = Theme.getColor(Theme.key_dialogTextGray2, resourcesProvider);
+                    }
+                    StickerEmojiCell.this.editModeIcon.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), StickerEmojiCell.this.editModeIconColor));
+                    invalidate();
+                }
+                return super.setImageBitmapByKey(drawable, str, i, z2, i2);
+            }
+        };
         this.imageView = imageReceiver;
         imageReceiver.setAspectFit(true);
         this.imageView.setAllowLoadingOnAttachedOnly(true);
@@ -76,6 +98,13 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         this.premiumIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         this.premiumIconView.setImageReceiver(this.imageView);
         addView(this.premiumIconView, LayoutHelper.createFrame(24, 24.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.editModeIcon = imageView;
+        imageView.setImageResource(R.drawable.mini_more_dots);
+        this.editModeIcon.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
+        this.editModeIcon.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), Theme.getColor(Theme.key_dialogTextGray2, resourcesProvider)));
+        this.editModeIcon.setAlpha(0.0f);
+        addView(this.editModeIcon, LayoutHelper.createFrame(-2, -2, 5));
         setFocusable(true);
     }
 
@@ -108,37 +137,68 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     }
 
     public void setSticker(TLRPC$Document tLRPC$Document, Object obj, boolean z) {
-        setSticker(tLRPC$Document, null, obj, null, z);
+        setSticker(tLRPC$Document, null, obj, null, z, false);
     }
 
     public void setSticker(SendMessagesHelper.ImportingSticker importingSticker) {
         String str = importingSticker.emoji;
-        setSticker(null, importingSticker, null, str, str != null);
+        setSticker(null, importingSticker, null, str, str != null, false);
     }
 
     public MessageObject.SendAnimationData getSendAnimationData() {
         ImageReceiver imageReceiver = this.imageView;
-        if (imageReceiver.hasNotThumb()) {
-            MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
-            int[] iArr = new int[2];
-            getLocationInWindow(iArr);
-            sendAnimationData.x = imageReceiver.getCenterX() + iArr[0];
-            sendAnimationData.y = imageReceiver.getCenterY() + iArr[1];
-            sendAnimationData.width = imageReceiver.getImageWidth();
-            sendAnimationData.height = imageReceiver.getImageHeight();
-            return sendAnimationData;
+        if (!imageReceiver.hasNotThumb()) {
+            return null;
         }
-        return null;
+        MessageObject.SendAnimationData sendAnimationData = new MessageObject.SendAnimationData();
+        getLocationInWindow(new int[2]);
+        sendAnimationData.x = imageReceiver.getCenterX() + r2[0];
+        sendAnimationData.y = imageReceiver.getCenterY() + r2[1];
+        sendAnimationData.width = imageReceiver.getImageWidth();
+        sendAnimationData.height = imageReceiver.getImageHeight();
+        return sendAnimationData;
     }
 
     public void setSticker(TLRPC$Document tLRPC$Document, SendMessagesHelper.ImportingSticker importingSticker, Object obj, String str, boolean z) {
-        boolean z2;
+        setSticker(tLRPC$Document, importingSticker, obj, str, z, false);
+    }
+
+    public void disableEditMode(boolean z) {
+        if (z) {
+            this.editModeIcon.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        } else {
+            this.editModeIcon.setAlpha(0.0f);
+        }
+    }
+
+    public void enableEditMode(boolean z) {
+        if (z) {
+            this.editModeIcon.setAlpha(0.0f);
+            this.editModeIcon.setScaleX(0.4f);
+            this.editModeIcon.setScaleY(0.4f);
+            this.editModeIcon.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+            return;
+        }
+        this.editModeIcon.setAlpha(1.0f);
+        this.editModeIcon.setScaleX(1.0f);
+        this.editModeIcon.setScaleY(1.0f);
+    }
+
+    public void setSticker(TLRPC$Document tLRPC$Document, SendMessagesHelper.ImportingSticker importingSticker, Object obj, String str, boolean z, boolean z2) {
         boolean z3;
+        boolean z4;
         int i;
         this.currentEmoji = str;
         this.isPremiumSticker = MessageObject.isPremiumSticker(tLRPC$Document);
         this.drawInParentView = false;
         this.imageView.setColorFilter(null);
+        this.editModeIconColor = 0;
+        this.editModeIcon.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), Theme.getColor(Theme.key_dialogTextGray2)));
+        if (z2) {
+            enableEditMode(false);
+        } else {
+            disableEditMode(false);
+        }
         if (this.isPremiumSticker) {
             this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.premiumIconView.setWaitingImage();
@@ -164,15 +224,15 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
             } else {
                 this.emojiTextView.setVisibility(i);
             }
-            z2 = true;
+            z3 = true;
         } else {
-            z2 = true;
+            z3 = true;
             if (tLRPC$Document != null) {
                 this.sticker = tLRPC$Document;
                 this.parentObject = obj;
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-                boolean z4 = this.fromEmojiPanel;
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z4 ? Theme.key_emptyListPlaceholder : Theme.key_windowBackgroundGray, z4 ? 0.2f : 1.0f, 1.0f, this.resourceProvider);
+                boolean z5 = this.fromEmojiPanel;
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z5 ? Theme.key_emptyListPlaceholder : Theme.key_windowBackgroundGray, z5 ? 0.2f : 1.0f, 1.0f, this.resourceProvider);
                 String str2 = this.fromEmojiPanel ? "66_66_pcache_compress" : "66_66";
                 if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
                     this.imageView.setColorFilter(Theme.getAnimatedEmojiColorFilter(this.resourceProvider));
@@ -215,14 +275,14 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                             if (str3 != null && str3.length() > 0) {
                                 TextView textView3 = this.emojiTextView;
                                 textView3.setText(Emoji.replaceEmoji((CharSequence) tLRPC$DocumentAttribute.alt, textView3.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
-                                z3 = true;
+                                z4 = true;
                             }
                         } else {
                             i2++;
                         }
                     }
-                    z3 = false;
-                    if (!z3) {
+                    z4 = false;
+                    if (!z4) {
                         this.emojiTextView.setText(Emoji.replaceEmoji((CharSequence) MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.sticker.id), this.emojiTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                     }
                     this.emojiTextView.setVisibility(0);
@@ -234,11 +294,11 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         updatePremiumStatus(false);
         this.imageView.setAlpha(this.alpha * this.premiumAlpha);
         if (this.drawInParentView) {
-            this.imageView.setInvalidateAll(z2);
+            this.imageView.setInvalidateAll(z3);
             this.imageView.setParentView((View) getParent());
-            return;
+        } else {
+            this.imageView.setParentView(this);
         }
-        this.imageView.setParentView(this);
     }
 
     private void updatePremiumStatus(boolean z) {

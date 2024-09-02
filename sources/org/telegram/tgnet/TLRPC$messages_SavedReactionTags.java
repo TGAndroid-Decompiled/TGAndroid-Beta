@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$messages_SavedReactionTags extends TLObject {
     public long hash;
     public ArrayList<TLRPC$TL_savedReactionTag> tags = new ArrayList<>();

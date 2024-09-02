@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -9,11 +8,10 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.archived = (readInt32 & 2) != 0;
         this.official = (readInt32 & 4) != 0;
         this.masks = (readInt32 & 8) != 0;
-        this.animated = (readInt32 & 32) != 0;
-        this.videos = (readInt32 & 64) != 0;
         this.emojis = (readInt32 & 128) != 0;
-        this.text_color = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.text_color = (readInt32 & 512) != 0;
         this.channel_emoji_status = (readInt32 & 1024) != 0;
+        this.creator = (readInt32 & 2048) != 0;
         if ((readInt32 & 1) != 0) {
             this.installed_date = abstractSerializedData.readInt32(z);
         }
@@ -44,7 +42,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((this.flags & 16) != 0) {
             this.thumb_version = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.thumb_document_id = abstractSerializedData.readInt64(z);
         }
         this.count = abstractSerializedData.readInt32(z);
@@ -60,17 +58,15 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.flags = i2;
         int i3 = this.masks ? i2 | 8 : i2 & (-9);
         this.flags = i3;
-        int i4 = this.animated ? i3 | 32 : i3 & (-33);
+        int i4 = this.emojis ? i3 | 128 : i3 & (-129);
         this.flags = i4;
-        int i5 = this.videos ? i4 | 64 : i4 & (-65);
+        int i5 = this.text_color ? i4 | 512 : i4 & (-513);
         this.flags = i5;
-        int i6 = this.emojis ? i5 | 128 : i5 & (-129);
+        int i6 = this.channel_emoji_status ? i5 | 1024 : i5 & (-1025);
         this.flags = i6;
-        int i7 = this.text_color ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
+        int i7 = this.creator ? i6 | 2048 : i6 & (-2049);
         this.flags = i7;
-        int i8 = this.channel_emoji_status ? i7 | 1024 : i7 & (-1025);
-        this.flags = i8;
-        abstractSerializedData.writeInt32(i8);
+        abstractSerializedData.writeInt32(i7);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.installed_date);
         }
@@ -82,8 +78,8 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
             abstractSerializedData.writeInt32(481674261);
             int size = this.thumbs.size();
             abstractSerializedData.writeInt32(size);
-            for (int i9 = 0; i9 < size; i9++) {
-                this.thumbs.get(i9).serializeToStream(abstractSerializedData);
+            for (int i8 = 0; i8 < size; i8++) {
+                this.thumbs.get(i8).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {
@@ -92,7 +88,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.thumb_version);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeInt64(this.thumb_document_id);
         }
         abstractSerializedData.writeInt32(this.count);

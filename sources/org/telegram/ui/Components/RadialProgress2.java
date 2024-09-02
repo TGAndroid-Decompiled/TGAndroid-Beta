@@ -16,6 +16,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.MediaActionDrawable;
+
 public class RadialProgress2 {
     private int backgroundStroke;
     private float circleCheckProgress;
@@ -310,7 +311,6 @@ public class RadialProgress2 {
         Canvas canvas2;
         Canvas canvas3;
         Canvas canvas4;
-        int alpha;
         int argb;
         if ((this.mediaActionDrawable.getCurrentIcon() != 4 || this.mediaActionDrawable.getTransitionProgress() < 1.0f) && !this.progressRect.isEmpty()) {
             int currentIcon = this.mediaActionDrawable.getCurrentIcon();
@@ -429,7 +429,7 @@ public class RadialProgress2 {
                     int red = Color.red(i);
                     int green = Color.green(i);
                     int blue = Color.blue(i);
-                    argb = Color.argb(Color.alpha(i) + ((int) ((255 - alpha) * currentAlpha)), red + ((int) ((255 - red) * currentAlpha)), green + ((int) ((255 - green) * currentAlpha)), blue + ((int) ((255 - blue) * currentAlpha)));
+                    argb = Color.argb(Color.alpha(i) + ((int) ((255 - r6) * currentAlpha)), red + ((int) ((255 - red) * currentAlpha)), green + ((int) ((255 - green) * currentAlpha)), blue + ((int) ((255 - blue) * currentAlpha)));
                     z = true;
                 }
                 this.mediaActionDrawable.setColor(argb);

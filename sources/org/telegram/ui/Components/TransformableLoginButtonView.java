@@ -10,6 +10,7 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TransformableLoginButtonView extends View {
     private Paint backgroundPaint;
     private String buttonText;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_exportedContactToken extends TLObject {
     public int expires;
     public String url;

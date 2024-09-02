@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channels_setDiscussionGroup extends TLObject {
     public TLRPC$InputChannel broadcast;
     public TLRPC$InputChannel group;

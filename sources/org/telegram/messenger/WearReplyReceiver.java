@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
 import org.telegram.tgnet.TLRPC$User;
+
 public class WearReplyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -19,7 +20,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (resultsFromIntent == null) {
             return;
         }
-        final CharSequence charSequence = resultsFromIntent.getCharSequence(NotificationsController.EXTRA_VOICE_REPLY);
+        final CharSequence charSequence = resultsFromIntent.getCharSequence("extra_voice_reply");
         if (TextUtils.isEmpty(charSequence)) {
             return;
         }
@@ -88,7 +89,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         MessageObject messageObject2;
         if (i != 0) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_message.message = "";
             tLRPC$TL_message.id = i;
             tLRPC$TL_message.peer_id = accountInstance.getMessagesController().getPeer(j);
             messageObject = new MessageObject(accountInstance.getCurrentAccount(), tLRPC$TL_message, false, false);
@@ -97,12 +98,12 @@ public class WearReplyReceiver extends BroadcastReceiver {
         }
         if (j2 != 0) {
             TLRPC$TL_message tLRPC$TL_message2 = new TLRPC$TL_message();
-            tLRPC$TL_message2.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_message2.message = "";
             tLRPC$TL_message2.id = (int) j2;
             tLRPC$TL_message2.peer_id = accountInstance.getMessagesController().getPeer(j);
             TLRPC$TL_messageActionTopicCreate tLRPC$TL_messageActionTopicCreate = new TLRPC$TL_messageActionTopicCreate();
             tLRPC$TL_message2.action = tLRPC$TL_messageActionTopicCreate;
-            tLRPC$TL_messageActionTopicCreate.title = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_messageActionTopicCreate.title = "";
             messageObject2 = new MessageObject(accountInstance.getCurrentAccount(), tLRPC$TL_message2, false, false);
         } else {
             messageObject2 = null;

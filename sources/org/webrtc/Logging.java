@@ -5,8 +5,7 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.LiteMode;
+
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
     private static Loggable loggable;
@@ -60,14 +59,14 @@ public class Logging {
         TRACE_APICALL(16),
         TRACE_DEFAULT(255),
         TRACE_MODULECALL(32),
-        TRACE_MEMORY(LiteMode.FLAG_CHAT_BLUR),
-        TRACE_TIMER(LiteMode.FLAG_CALLS_ANIMATIONS),
+        TRACE_MEMORY(256),
+        TRACE_TIMER(512),
         TRACE_STREAM(1024),
         TRACE_DEBUG(2048),
-        TRACE_INFO(LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM),
-        TRACE_TERSEINFO(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM),
+        TRACE_INFO(4096),
+        TRACE_TERSEINFO(8192),
         TRACE_ALL(65535);
-        
+
         public final int level;
 
         TraceLevel(int i) {
@@ -103,22 +102,23 @@ public class Logging {
                 return;
             }
             loggable.onLogMessage(str2, severity, str);
-        } else if (loggingEnabled) {
-            nativeLog(severity.ordinal(), str, str2);
-        } else {
-            int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
-            if (i == 1) {
-                level = Level.SEVERE;
-            } else if (i == 2) {
-                level = Level.WARNING;
-            } else if (i == 3) {
-                level = Level.INFO;
-            } else {
-                level = Level.FINE;
-            }
-            Logger logger = fallbackLogger;
-            logger.log(level, str + ": " + str2);
+            return;
         }
+        if (loggingEnabled) {
+            nativeLog(severity.ordinal(), str, str2);
+            return;
+        }
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+        if (i == 1) {
+            level = Level.SEVERE;
+        } else if (i == 2) {
+            level = Level.WARNING;
+        } else if (i == 3) {
+            level = Level.INFO;
+        } else {
+            level = Level.FINE;
+        }
+        fallbackLogger.log(level, str + ": " + str2);
     }
 
     public static class AnonymousClass1 {
@@ -174,7 +174,7 @@ public class Logging {
 
     private static String getStackTraceString(Throwable th) {
         if (th == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         StringWriter stringWriter = new StringWriter();
         th.printStackTrace(new PrintWriter(stringWriter));

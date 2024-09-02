@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_document extends TLRPC$Document {
     public static final int constructor = -1881881384;
 
@@ -68,7 +69,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1881881384);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);

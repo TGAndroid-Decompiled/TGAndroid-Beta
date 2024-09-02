@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageMediaPoll extends TLRPC$MessageMedia {
     public static final int constructor = 1272375192;
     public TLRPC$Poll poll;
@@ -12,7 +13,7 @@ public class TLRPC$TL_messageMediaPoll extends TLRPC$MessageMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1272375192);
         this.poll.serializeToStream(abstractSerializedData);
         this.results.serializeToStream(abstractSerializedData);
     }

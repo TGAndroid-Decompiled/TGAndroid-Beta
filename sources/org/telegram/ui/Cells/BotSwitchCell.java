@@ -9,6 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class BotSwitchCell extends FrameLayout {
     private TextView textView;
 
@@ -18,7 +19,7 @@ public class BotSwitchCell extends FrameLayout {
         this.textView = textView;
         textView.setTextSize(1, 15.0f);
         this.textView.setTextColor(Theme.getColor(Theme.key_chat_botSwitchToInlineText));
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setMaxLines(1);

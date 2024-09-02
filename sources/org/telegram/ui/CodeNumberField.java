@@ -25,10 +25,10 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
+
 public class CodeNumberField extends EditTextBoldCursor {
     float enterAnimation;
     ValueAnimator enterAnimator;
@@ -228,8 +228,7 @@ public class CodeNumberField extends EditTextBoldCursor {
             this.exitCanvas = new Canvas(this.exitBitmap);
         }
         this.exitBitmap.eraseColor(0);
-        CharSequence transformation = getTransformationMethod().getTransformation(getText(), this);
-        StaticLayout staticLayout = new StaticLayout(transformation, getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(transformation, 0, transformation.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
+        StaticLayout staticLayout = new StaticLayout(getTransformationMethod().getTransformation(getText(), this), getLayout().getPaint(), (int) Math.ceil(getLayout().getPaint().measureText(r4, 0, r4.length())), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(), getLineSpacingExtra(), getIncludeFontPadding());
         this.exitCanvas.save();
         this.exitCanvas.translate((getMeasuredWidth() - staticLayout.getWidth()) / 2.0f, (getMeasuredHeight() - staticLayout.getHeight()) / 2.0f);
         staticLayout.draw(this.exitCanvas);
@@ -309,7 +308,7 @@ public class CodeNumberField extends EditTextBoldCursor {
                     ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
                     int i = -1;
                     try {
-                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? BuildConfig.APP_CENTER_HASH : itemAt.getText().toString());
+                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
                     } catch (Exception unused) {
                     }
                     if (i > 0) {

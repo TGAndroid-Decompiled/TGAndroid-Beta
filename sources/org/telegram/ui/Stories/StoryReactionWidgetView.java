@@ -20,6 +20,7 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
 import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.Stories.StoryMediaAreasView;
+
 public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable;
     boolean hasCounter;
@@ -37,15 +38,15 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         this.preloadSmallReaction = new ImageReceiver(this);
         this.progressToCount = new AnimatedFloat(this);
         this.animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tL_stories$TL_mediaAreaSuggestedReaction.reaction);
-        this.visibleReaction = fromTLReaction;
+        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_stories$TL_mediaAreaSuggestedReaction.reaction);
+        this.visibleReaction = fromTL;
         if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
             this.storyReactionWidgetBackground.setMirror(true, false);
         }
         this.storyReactionWidgetBackground.updateShadowLayer(getScaleX());
-        this.holder.setVisibleReaction(fromTLReaction);
-        emojiAnimationsOverlay.preload(fromTLReaction);
-        if (fromTLReaction.emojicon != null && (tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(fromTLReaction.emojicon)) != null) {
+        this.holder.setVisibleReaction(fromTL);
+        emojiAnimationsOverlay.preload(fromTL);
+        if (fromTL.emojicon != null && (tLRPC$TL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(fromTL.emojicon)) != null) {
             this.preloadSmallReaction.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tLRPC$TL_availableReaction, 1);
         }
         this.animatedTextDrawable.setGravity(17);
@@ -96,7 +97,7 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void customDraw(Canvas canvas) {
         this.storyReactionWidgetBackground.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         this.storyReactionWidgetBackground.draw(canvas);
         float measuredWidth = ((int) (getMeasuredWidth() * 0.61f)) / 2.0f;
@@ -119,6 +120,14 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
         canvas.scale(f3, f3, this.storyReactionWidgetBackground.getBounds().centerX(), height2);
         this.animatedTextDrawable.draw(canvas);
         canvas.restore();
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        if (getParent() instanceof View) {
+            ((View) getParent()).invalidate();
+        }
     }
 
     @Override

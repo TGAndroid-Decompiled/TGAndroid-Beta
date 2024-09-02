@@ -7,6 +7,7 @@ import androidx.core.view.NestedScrollingParentHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.ActionBar.BottomSheet;
+
 public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements NestedScrollingParent3, View.OnLayoutChangeListener {
     boolean attached;
     BottomSheet.ContainerView bottomSheetContainerView;
@@ -97,12 +98,12 @@ public class NestedSizeNotifierLayout extends SizeNotifierFrameLayout implements
                         return;
                     }
                     return;
-                } else if (this.bottomSheetContainerView == null || this.targetListView.canScrollVertically(i2)) {
-                    return;
-                } else {
-                    this.bottomSheetContainerView.onNestedScroll(view, 0, 0, i, i2);
+                }
+                if (this.bottomSheetContainerView == null || this.targetListView.canScrollVertically(i2)) {
                     return;
                 }
+                this.bottomSheetContainerView.onNestedScroll(view, 0, 0, i, i2);
+                return;
             }
             BottomSheet.ContainerView containerView = this.bottomSheetContainerView;
             if (containerView != null) {

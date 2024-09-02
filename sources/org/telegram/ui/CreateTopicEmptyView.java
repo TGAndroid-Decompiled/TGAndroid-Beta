@@ -8,7 +8,6 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -18,6 +17,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class CreateTopicEmptyView extends LinearLayout {
     BackupImageView backupImageView;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -30,7 +30,7 @@ public class CreateTopicEmptyView extends LinearLayout {
         setOrientation(1);
         this.backupImageView = new BackupImageView(context);
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 15.0f);
         int i = Theme.key_chat_serviceText;
         textView.setTextColor(getThemedColor(i));
@@ -64,7 +64,7 @@ public class CreateTopicEmptyView extends LinearLayout {
         if (emojiAnimatedSticker != null) {
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(emojiAnimatedSticker.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
             if (svgThumb != null) {
-                svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                svgThumb.overrideWidthAndHeight(512, 512);
             }
             this.backupImageView.setImage(ImageLocation.getForDocument(emojiAnimatedSticker), (String) null, "tgs", svgThumb, (Object) null);
         }

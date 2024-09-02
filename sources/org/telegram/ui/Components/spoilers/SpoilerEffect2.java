@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
@@ -21,13 +22,13 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.RLottieDrawable;
+
 public class SpoilerEffect2 {
-    private static SpoilerEffect2 instance;
+    private static HashMap<Integer, SpoilerEffect2> instance;
     private final double MAX_DELTA;
     public final int MAX_FPS;
     private final double MIN_DELTA;
@@ -36,6 +37,7 @@ public class SpoilerEffect2 {
     private final TextureView textureView;
     private final ViewGroup textureViewContainer;
     private SpoilerThread thread;
+    public final int type;
     private int width;
     private final ArrayList<View> holders = new ArrayList<>();
     private final HashMap<View, Integer> holdersToIndex = new HashMap<>();
@@ -52,19 +54,34 @@ public class SpoilerEffect2 {
     }
 
     public static SpoilerEffect2 getInstance(View view) {
+        return getInstance(0, view);
+    }
+
+    public static SpoilerEffect2 getInstance(int i, View view) {
+        return getInstance(i, view, getRootView(view));
+    }
+
+    public static SpoilerEffect2 getInstance(int i, View view, ViewGroup viewGroup) {
         if (view == null || !supports()) {
             return null;
         }
         if (instance == null) {
+            instance = new HashMap<>();
+        }
+        SpoilerEffect2 spoilerEffect2 = instance.get(Integer.valueOf(i));
+        if (spoilerEffect2 == null) {
             int size = getSize();
-            ViewGroup rootView = getRootView(view);
-            if (rootView == null) {
+            if (viewGroup == null) {
                 return null;
             }
-            instance = new SpoilerEffect2(makeTextureViewContainer(rootView), size, size);
+            HashMap<Integer, SpoilerEffect2> hashMap = instance;
+            Integer valueOf = Integer.valueOf(i);
+            SpoilerEffect2 spoilerEffect22 = new SpoilerEffect2(i, makeTextureViewContainer(viewGroup), size, size);
+            hashMap.put(valueOf, spoilerEffect22);
+            spoilerEffect2 = spoilerEffect22;
         }
-        instance.attach(view);
-        return instance;
+        spoilerEffect2.attach(view);
+        return spoilerEffect2;
     }
 
     private static ViewGroup getRootView(View view) {
@@ -80,12 +97,30 @@ public class SpoilerEffect2 {
     }
 
     public static void pause(boolean z) {
-        SpoilerThread spoilerThread;
-        SpoilerEffect2 spoilerEffect2 = instance;
-        if (spoilerEffect2 == null || (spoilerThread = spoilerEffect2.thread) == null) {
+        HashMap<Integer, SpoilerEffect2> hashMap = instance;
+        if (hashMap == null) {
             return;
         }
-        spoilerThread.pause(z);
+        Iterator<SpoilerEffect2> it = hashMap.values().iterator();
+        while (it.hasNext()) {
+            SpoilerThread spoilerThread = it.next().thread;
+            if (spoilerThread != null) {
+                spoilerThread.pause(z);
+            }
+        }
+    }
+
+    public static void pause(int i, boolean z) {
+        SpoilerThread spoilerThread;
+        HashMap<Integer, SpoilerEffect2> hashMap = instance;
+        if (hashMap == null) {
+            return;
+        }
+        for (SpoilerEffect2 spoilerEffect2 : hashMap.values()) {
+            if (spoilerEffect2.type == i && (spoilerThread = spoilerEffect2.thread) != null) {
+                spoilerThread.pause(z);
+            }
+        }
     }
 
     private static int getSize() {
@@ -93,13 +128,13 @@ public class SpoilerEffect2 {
         if (devicePerformanceClass == 1) {
             Point point = AndroidUtilities.displaySize;
             return Math.min(900, (int) (((point.x + point.y) / 2.0f) * 0.8f));
-        } else if (devicePerformanceClass == 2) {
+        }
+        if (devicePerformanceClass == 2) {
             Point point2 = AndroidUtilities.displaySize;
             return Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
-        } else {
-            Point point3 = AndroidUtilities.displaySize;
-            return Math.min(720, (int) (((point3.x + point3.y) / 2.0f) * 0.7f));
         }
+        Point point3 = AndroidUtilities.displaySize;
+        return Math.min(720, (int) (((point3.x + point3.y) / 2.0f) * 0.7f));
     }
 
     private static FrameLayout makeTextureViewContainer(ViewGroup viewGroup) {
@@ -223,20 +258,21 @@ public class SpoilerEffect2 {
         }
     }
 
-    private SpoilerEffect2(ViewGroup viewGroup, int i, int i2) {
-        int i3 = (int) AndroidUtilities.screenRefreshRate;
-        this.MAX_FPS = i3;
-        double d = i3;
+    private SpoilerEffect2(int i, ViewGroup viewGroup, int i2, int i3) {
+        int i4 = (int) AndroidUtilities.screenRefreshRate;
+        this.MAX_FPS = i4;
+        double d = i4;
         Double.isNaN(d);
         double d2 = 1.0d / d;
         this.MIN_DELTA = d2;
         this.MAX_DELTA = d2 * 4.0d;
-        this.width = i;
-        this.height = i2;
+        this.type = i;
+        this.width = i2;
+        this.height = i3;
         this.textureViewContainer = viewGroup;
         TextureView textureView = new TextureView(viewGroup.getContext()) {
             @Override
-            protected void onMeasure(int i4, int i5) {
+            protected void onMeasure(int i5, int i6) {
                 setMeasuredDimension(SpoilerEffect2.this.width, SpoilerEffect2.this.height);
             }
         };
@@ -247,11 +283,11 @@ public class SpoilerEffect2 {
             }
 
             @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i4, int i5) {
+            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i5, int i6) {
                 if (SpoilerEffect2.this.thread == null) {
                     SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
                     final SpoilerEffect2 spoilerEffect22 = SpoilerEffect2.this;
-                    spoilerEffect2.thread = new SpoilerThread(surfaceTexture, i4, i5, new Runnable() {
+                    spoilerEffect2.thread = new SpoilerThread(surfaceTexture, i5, i6, new Runnable() {
                         @Override
                         public final void run() {
                             SpoilerEffect2.this.invalidate();
@@ -262,19 +298,19 @@ public class SpoilerEffect2 {
             }
 
             @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i4, int i5) {
+            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i5, int i6) {
                 if (SpoilerEffect2.this.thread != null) {
-                    SpoilerEffect2.this.thread.updateSize(i4, i5);
+                    SpoilerEffect2.this.thread.updateSize(i5, i6);
                 }
             }
 
             @Override
             public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                if (SpoilerEffect2.this.thread != null) {
-                    SpoilerEffect2.this.thread.halt();
-                    SpoilerEffect2.this.thread = null;
+                if (SpoilerEffect2.this.thread == null) {
                     return true;
                 }
+                SpoilerEffect2.this.thread.halt();
+                SpoilerEffect2.this.thread = null;
                 return true;
             }
         });
@@ -382,88 +418,92 @@ public class SpoilerEffect2 {
             EGL10 egl102 = this.egl;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 this.running = false;
-            } else if (!egl102.eglInitialize(eglGetDisplay, new int[2])) {
-                this.running = false;
-            } else {
-                EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                if (!this.egl.eglChooseConfig(this.eglDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
-                    this.running = false;
-                    return;
-                }
-                EGLConfig eGLConfig = eGLConfigArr[0];
-                this.eglConfig = eGLConfig;
-                EGLContext eglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
-                this.eglContext = eglCreateContext;
-                if (eglCreateContext == null) {
-                    this.running = false;
-                    return;
-                }
-                EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
-                this.eglSurface = eglCreateWindowSurface;
-                if (eglCreateWindowSurface == null) {
-                    this.running = false;
-                } else if (!this.egl.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
-                    this.running = false;
-                } else {
-                    genParticlesData();
-                    int glCreateShader = GLES31.glCreateShader(35633);
-                    int glCreateShader2 = GLES31.glCreateShader(35632);
-                    if (glCreateShader == 0 || glCreateShader2 == 0) {
-                        this.running = false;
-                        return;
-                    }
-                    GLES31.glShaderSource(glCreateShader, RLottieDrawable.readRes(null, R.raw.spoiler_vertex) + "\n// " + Math.random());
-                    GLES31.glCompileShader(glCreateShader);
-                    int[] iArr = new int[1];
-                    GLES31.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-                    if (iArr[0] == 0) {
-                        FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES31.glGetShaderInfoLog(glCreateShader));
-                        GLES31.glDeleteShader(glCreateShader);
-                        this.running = false;
-                        return;
-                    }
-                    GLES31.glShaderSource(glCreateShader2, RLottieDrawable.readRes(null, R.raw.spoiler_fragment) + "\n// " + Math.random());
-                    GLES31.glCompileShader(glCreateShader2);
-                    GLES31.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
-                    if (iArr[0] == 0) {
-                        FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES31.glGetShaderInfoLog(glCreateShader2));
-                        GLES31.glDeleteShader(glCreateShader2);
-                        this.running = false;
-                        return;
-                    }
-                    int glCreateProgram = GLES31.glCreateProgram();
-                    this.drawProgram = glCreateProgram;
-                    if (glCreateProgram == 0) {
-                        this.running = false;
-                        return;
-                    }
-                    GLES31.glAttachShader(glCreateProgram, glCreateShader);
-                    GLES31.glAttachShader(this.drawProgram, glCreateShader2);
-                    GLES31.glTransformFeedbackVaryings(this.drawProgram, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
-                    GLES31.glLinkProgram(this.drawProgram);
-                    GLES31.glGetProgramiv(this.drawProgram, 35714, iArr, 0);
-                    if (iArr[0] == 0) {
-                        FileLog.e("SpoilerEffect2, link draw program error: " + GLES31.glGetProgramInfoLog(this.drawProgram));
-                        this.running = false;
-                        return;
-                    }
-                    this.resetHandle = GLES31.glGetUniformLocation(this.drawProgram, "reset");
-                    this.timeHandle = GLES31.glGetUniformLocation(this.drawProgram, "time");
-                    this.deltaTimeHandle = GLES31.glGetUniformLocation(this.drawProgram, "deltaTime");
-                    this.sizeHandle = GLES31.glGetUniformLocation(this.drawProgram, "size");
-                    this.radiusHandle = GLES31.glGetUniformLocation(this.drawProgram, "r");
-                    this.seedHandle = GLES31.glGetUniformLocation(this.drawProgram, "seed");
-                    GLES31.glViewport(0, 0, this.width, this.height);
-                    GLES31.glEnable(3042);
-                    GLES31.glBlendFunc(770, 771);
-                    GLES31.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                    GLES31.glUseProgram(this.drawProgram);
-                    GLES31.glUniform2f(this.sizeHandle, this.width, this.height);
-                    GLES31.glUniform1f(this.resetHandle, this.reset ? 1.0f : 0.0f);
-                    GLES31.glUniform1f(this.radiusHandle, this.radius);
-                    GLES31.glUniform1f(this.seedHandle, Utilities.fastRandom.nextInt(LiteMode.FLAG_CHAT_BLUR) / 256.0f);
-                }
+                return;
             }
+            if (!egl102.eglInitialize(eglGetDisplay, new int[2])) {
+                this.running = false;
+                return;
+            }
+            EGLConfig[] eGLConfigArr = new EGLConfig[1];
+            if (!this.egl.eglChooseConfig(this.eglDisplay, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+                this.running = false;
+                return;
+            }
+            EGLConfig eGLConfig = eGLConfigArr[0];
+            this.eglConfig = eGLConfig;
+            EGLContext eglCreateContext = this.egl.eglCreateContext(this.eglDisplay, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+            this.eglContext = eglCreateContext;
+            if (eglCreateContext == null) {
+                this.running = false;
+                return;
+            }
+            EGLSurface eglCreateWindowSurface = this.egl.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, this.surfaceTexture, null);
+            this.eglSurface = eglCreateWindowSurface;
+            if (eglCreateWindowSurface == null) {
+                this.running = false;
+                return;
+            }
+            if (!this.egl.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
+                this.running = false;
+                return;
+            }
+            genParticlesData();
+            int glCreateShader = GLES31.glCreateShader(35633);
+            int glCreateShader2 = GLES31.glCreateShader(35632);
+            if (glCreateShader == 0 || glCreateShader2 == 0) {
+                this.running = false;
+                return;
+            }
+            GLES31.glShaderSource(glCreateShader, RLottieDrawable.readRes(null, R.raw.spoiler_vertex) + "\n// " + Math.random());
+            GLES31.glCompileShader(glCreateShader);
+            int[] iArr = new int[1];
+            GLES31.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+            if (iArr[0] == 0) {
+                FileLog.e("SpoilerEffect2, compile vertex shader error: " + GLES31.glGetShaderInfoLog(glCreateShader));
+                GLES31.glDeleteShader(glCreateShader);
+                this.running = false;
+                return;
+            }
+            GLES31.glShaderSource(glCreateShader2, RLottieDrawable.readRes(null, R.raw.spoiler_fragment) + "\n// " + Math.random());
+            GLES31.glCompileShader(glCreateShader2);
+            GLES31.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
+            if (iArr[0] == 0) {
+                FileLog.e("SpoilerEffect2, compile fragment shader error: " + GLES31.glGetShaderInfoLog(glCreateShader2));
+                GLES31.glDeleteShader(glCreateShader2);
+                this.running = false;
+                return;
+            }
+            int glCreateProgram = GLES31.glCreateProgram();
+            this.drawProgram = glCreateProgram;
+            if (glCreateProgram == 0) {
+                this.running = false;
+                return;
+            }
+            GLES31.glAttachShader(glCreateProgram, glCreateShader);
+            GLES31.glAttachShader(this.drawProgram, glCreateShader2);
+            GLES31.glTransformFeedbackVaryings(this.drawProgram, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
+            GLES31.glLinkProgram(this.drawProgram);
+            GLES31.glGetProgramiv(this.drawProgram, 35714, iArr, 0);
+            if (iArr[0] == 0) {
+                FileLog.e("SpoilerEffect2, link draw program error: " + GLES31.glGetProgramInfoLog(this.drawProgram));
+                this.running = false;
+                return;
+            }
+            this.resetHandle = GLES31.glGetUniformLocation(this.drawProgram, "reset");
+            this.timeHandle = GLES31.glGetUniformLocation(this.drawProgram, "time");
+            this.deltaTimeHandle = GLES31.glGetUniformLocation(this.drawProgram, "deltaTime");
+            this.sizeHandle = GLES31.glGetUniformLocation(this.drawProgram, "size");
+            this.radiusHandle = GLES31.glGetUniformLocation(this.drawProgram, "r");
+            this.seedHandle = GLES31.glGetUniformLocation(this.drawProgram, "seed");
+            GLES31.glViewport(0, 0, this.width, this.height);
+            GLES31.glEnable(3042);
+            GLES31.glBlendFunc(770, 771);
+            GLES31.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            GLES31.glUseProgram(this.drawProgram);
+            GLES31.glUniform2f(this.sizeHandle, this.width, this.height);
+            GLES31.glUniform1f(this.resetHandle, this.reset ? 1.0f : 0.0f);
+            GLES31.glUniform1f(this.radiusHandle, this.radius);
+            GLES31.glUniform1f(this.seedHandle, Utilities.fastRandom.nextInt(256) / 256.0f);
         }
 
         private void drawFrame(float f) {
@@ -480,7 +520,7 @@ public class SpoilerEffect2 {
             if (f3 > 1000.0f) {
                 this.t = 0.0f;
             }
-            GLES31.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+            GLES31.glClear(16384);
             GLES31.glBindBuffer(34962, this.particlesData[this.currentBuffer]);
             GLES31.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
             GLES31.glEnableVertexAttribArray(0);

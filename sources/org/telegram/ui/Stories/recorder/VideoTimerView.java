@@ -13,6 +13,7 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Stories.recorder.FlashViews;
+
 public class VideoTimerView extends View implements FlashViews.Invertable {
     private Paint backgroundPaint;
     private Paint recordPaint;
@@ -33,7 +34,7 @@ public class VideoTimerView extends View implements FlashViews.Invertable {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         this.textDrawable.setTextSize(AndroidUtilities.dp(13.0f));
         this.textDrawable.setTextColor(-1);
-        this.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textDrawable.setTypeface(AndroidUtilities.bold());
         this.textDrawable.setCallback(this);
         this.textDrawable.setGravity(1);
         setDuration(0L, false);
@@ -83,10 +84,11 @@ public class VideoTimerView extends View implements FlashViews.Invertable {
         rectF.set(((getWidth() - currentWidth) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + currentWidth) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.backgroundPaint);
         if (f > 0.0f) {
+            long currentTimeMillis = System.currentTimeMillis() % 2000;
             Paint paint = this.recordPaint;
-            double currentTimeMillis = ((float) (System.currentTimeMillis() % 2000)) / 1000.0f;
-            Double.isNaN(currentTimeMillis);
-            paint.setAlpha((int) (Utilities.clamp((((float) Math.sin(currentTimeMillis * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
+            double d = ((float) currentTimeMillis) / 1000.0f;
+            Double.isNaN(d);
+            paint.setAlpha((int) (Utilities.clamp((((float) Math.sin(d * 3.141592653589793d)) / 4.0f) + 0.75f, 1.0f, 0.0f) * 255.0f));
             invalidate();
             canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * f, this.recordPaint);
         }

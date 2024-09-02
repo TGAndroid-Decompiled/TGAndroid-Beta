@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionChangeUsername extends TLRPC$ChannelAdminLogEventAction {
     public String new_value;
     public String prev_value;

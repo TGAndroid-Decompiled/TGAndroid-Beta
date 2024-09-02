@@ -5,6 +5,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$Peer;
+
 public class TL_stories$StoryReaction extends TLObject {
     public TLRPC$Message message;
     public TLRPC$Peer peer_id;

@@ -14,11 +14,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.IUpdateLayout;
+
 public class UpdateLayout extends IUpdateLayout {
     private Activity activity;
     private ViewGroup sideMenu;
@@ -47,7 +47,7 @@ public class UpdateLayout extends IUpdateLayout {
         }
         float longValue = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
         this.updateLayoutIcon.setProgress(longValue, true);
-        this.updateTextView.setText(LocaleController.formatString("AppUpdateDownloading", R.string.AppUpdateDownloading, Integer.valueOf((int) (longValue * 100.0f))));
+        this.updateTextView.setText(LocaleController.formatString("AppUpdateDownloading", 2131690062, Integer.valueOf((int) (longValue * 100.0f))));
     }
 
     public void createUpdateUI(final int i) {
@@ -106,15 +106,15 @@ public class UpdateLayout extends IUpdateLayout {
         SimpleTextView simpleTextView = new SimpleTextView(this.activity);
         this.updateTextView = simpleTextView;
         simpleTextView.setTextSize(15);
-        this.updateTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.updateTextView.setText(LocaleController.getString("AppUpdate", R.string.AppUpdate));
+        this.updateTextView.setTypeface(AndroidUtilities.bold());
+        this.updateTextView.setText(LocaleController.getString("AppUpdate", 2131690059));
         this.updateTextView.setTextColor(-1);
         this.updateTextView.setGravity(3);
         this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrame(-2, -2.0f, 16, 74.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(this.activity);
         this.updateSizeTextView = textView;
         textView.setTextSize(1, 15.0f);
-        this.updateSizeTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.updateSizeTextView.setTypeface(AndroidUtilities.bold());
         this.updateSizeTextView.setGravity(5);
         this.updateSizeTextView.setTextColor(-1);
         this.updateLayout.addView(this.updateSizeTextView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 17.0f, 0.0f));
@@ -140,8 +140,10 @@ public class UpdateLayout extends IUpdateLayout {
     }
 
     public static void lambda$updateAppUpdateViews$1(View view) {
-        if (view != null) {
-            ((ViewGroup) view.getParent()).removeView(view);
+        ViewGroup viewGroup;
+        if (view == null || (viewGroup = (ViewGroup) view.getParent()) == null) {
+            return;
         }
+        viewGroup.removeView(view);
     }
 }

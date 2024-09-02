@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_help_getCountriesList extends TLObject {
     public int hash;
     public String lang_code;

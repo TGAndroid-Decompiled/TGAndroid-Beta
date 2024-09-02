@@ -10,7 +10,7 @@
     <style name="Base.V28.Theme.AppCompat.Light" parent="@style/Base.V26.Theme.AppCompat.Light">
         <item name="dialogCornerRadius">?android:attr/dialogCornerRadius</item>
     </style>
-    <style name="Theme.TMessages" parent="@android:style/Theme.Material.Light">
+    <style name="Theme.TMessages" parent="@style/Theme.AppCompat.Light">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowNoTitle">true</item>
@@ -36,7 +36,7 @@
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>
-    <style name="Theme.TMessages.Dark" parent="@android:style/Theme.Material">
+    <style name="Theme.TMessages.Dark" parent="@style/Theme.AppCompat.DayNight">
         <item name="android:colorBackground">@android:color/black</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>

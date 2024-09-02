@@ -17,8 +17,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class PremiumLockIconView extends ImageView {
     public static int TYPE_REACTIONS = 0;
+    public static int TYPE_REACTIONS_LOCK = 2;
     public static int TYPE_STICKERS_PREMIUM_LOCKED = 1;
     boolean attachedToWindow;
     CellFlickerDrawable cellFlickerDrawable;
@@ -26,12 +28,13 @@ public class PremiumLockIconView extends ImageView {
     int color2;
     private float[] colorFloat;
     boolean colorRetrieved;
-    int currentColor;
+    public int currentColor;
     AnimatedEmojiDrawable emojiDrawable;
+    private float iconScale;
     ImageReceiver imageReceiver;
     private boolean locked;
     Paint oldShaderPaint;
-    Paint paint;
+    public Paint paint;
     Path path;
     private Theme.ResourcesProvider resourcesProvider;
     Shader shader;
@@ -48,6 +51,7 @@ public class PremiumLockIconView extends ImageView {
     public PremiumLockIconView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.colorFloat = new float[3];
+        this.iconScale = 1.0f;
         this.colorRetrieved = false;
         this.currentColor = -1;
         this.shader = null;
@@ -68,6 +72,11 @@ public class PremiumLockIconView extends ImageView {
             drawable2.size1 = 2;
             drawable2.speedScale = 0.1f;
             drawable2.init();
+            return;
+        }
+        if (i == TYPE_REACTIONS_LOCK) {
+            this.iconScale = 0.8f;
+            this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
         }
     }
 
@@ -93,13 +102,27 @@ public class PremiumLockIconView extends ImageView {
         this.colorRetrieved = true;
         if (this.currentColor != i) {
             this.currentColor = i;
-            if (this.type == TYPE_REACTIONS) {
-                this.paint.setColor(i);
+            int i2 = this.type;
+            if (i2 == TYPE_REACTIONS || i2 == TYPE_REACTIONS_LOCK) {
+                Paint paint = this.paint;
+                if (paint != null) {
+                    paint.setColor(i);
+                }
             } else {
                 updateGradient();
             }
             invalidate();
         }
+    }
+
+    public void resetColor() {
+        Paint paint;
+        this.colorRetrieved = false;
+        this.currentColor = -1;
+        if (this.type != TYPE_REACTIONS_LOCK || (paint = this.paint) == null) {
+            return;
+        }
+        paint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
     }
 
     @Override
@@ -126,7 +149,11 @@ public class PremiumLockIconView extends ImageView {
         }
         Paint paint = this.paint;
         if (paint != null) {
-            if (this.type == TYPE_REACTIONS) {
+            int i = this.type;
+            if (i == TYPE_REACTIONS_LOCK) {
+                float measuredWidth = getMeasuredWidth() / 2.0f;
+                canvas.drawCircle(measuredWidth, getMeasuredHeight() / 2.0f, measuredWidth, this.paint);
+            } else if (i == TYPE_REACTIONS) {
                 if (this.currentColor != 0) {
                     canvas.drawPath(this.path, paint);
                 } else {
@@ -146,7 +173,7 @@ public class PremiumLockIconView extends ImageView {
                 canvas.restore();
                 invalidate();
             } else {
-                float measuredWidth = getMeasuredWidth() / 2.0f;
+                float measuredWidth2 = getMeasuredWidth() / 2.0f;
                 float measuredHeight = getMeasuredHeight() / 2.0f;
                 if (this.oldShaderPaint == null) {
                     this.shaderCrossfadeProgress = 1.0f;
@@ -154,8 +181,8 @@ public class PremiumLockIconView extends ImageView {
                 float f = this.shaderCrossfadeProgress;
                 if (f != 1.0f) {
                     this.paint.setAlpha((int) (f * 255.0f));
-                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.oldShaderPaint);
-                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.oldShaderPaint);
+                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.paint);
                     float f2 = this.shaderCrossfadeProgress + 0.10666667f;
                     this.shaderCrossfadeProgress = f2;
                     if (f2 > 1.0f) {
@@ -165,11 +192,20 @@ public class PremiumLockIconView extends ImageView {
                     invalidate();
                     this.paint.setAlpha(255);
                 } else {
-                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                    canvas.drawCircle(measuredWidth2, measuredHeight, measuredWidth2, this.paint);
                 }
             }
         }
+        boolean z = this.iconScale != 1.0f;
+        if (z) {
+            canvas.save();
+            float f3 = this.iconScale;
+            canvas.scale(f3, f3, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        }
         super.onDraw(canvas);
+        if (z) {
+            canvas.restore();
+        }
         this.wasDrawn = true;
     }
 
@@ -217,9 +253,10 @@ public class PremiumLockIconView extends ImageView {
             this.shaderCrossfadeProgress = 0.0f;
         }
         this.paint = new Paint(1);
+        float measuredHeight = getMeasuredHeight();
         this.color1 = blendARGB2;
         this.color2 = blendARGB;
-        LinearGradient linearGradient = new LinearGradient(0.0f, getMeasuredHeight(), 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
+        LinearGradient linearGradient = new LinearGradient(0.0f, measuredHeight, 0.0f, 0.0f, new int[]{blendARGB2, blendARGB}, (float[]) null, Shader.TileMode.CLAMP);
         this.shader = linearGradient;
         this.paint.setShader(linearGradient);
         invalidate();
@@ -239,7 +276,7 @@ public class PremiumLockIconView extends ImageView {
         super.onDetachedFromWindow();
         this.attachedToWindow = false;
         Paint paint = this.paint;
-        if (paint != null) {
+        if (paint != null && this.type != TYPE_REACTIONS_LOCK) {
             paint.setShader(null);
             this.paint = null;
         }
@@ -253,7 +290,7 @@ public class PremiumLockIconView extends ImageView {
         invalidate();
     }
 
-    public boolean ready() {
+    public boolean done() {
         return this.colorRetrieved;
     }
 

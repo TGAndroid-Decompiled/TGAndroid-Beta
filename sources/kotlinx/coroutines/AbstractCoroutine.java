@@ -2,6 +2,7 @@ package kotlinx.coroutines;
 
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
+
 public abstract class AbstractCoroutine<T> extends JobSupport implements Job {
     private final CoroutineContext context;
 
@@ -30,9 +31,9 @@ public abstract class AbstractCoroutine<T> extends JobSupport implements Job {
         if (obj instanceof CompletedExceptionally) {
             CompletedExceptionally completedExceptionally = (CompletedExceptionally) obj;
             onCancelled(completedExceptionally.cause, completedExceptionally.getHandled());
-            return;
+        } else {
+            onCompleted(obj);
         }
-        onCompleted(obj);
     }
 
     public final void resumeWith(Object obj) {

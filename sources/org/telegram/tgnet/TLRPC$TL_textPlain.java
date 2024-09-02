@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_textPlain extends TLRPC$RichText {
     public String text;
 

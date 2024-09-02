@@ -26,6 +26,7 @@ import org.telegram.ui.Cells.DrawerUserCell;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SideMenultItemAnimator;
+
 public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     private boolean accountsShown;
     private boolean hasGps;
@@ -41,8 +42,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         this.mContext = context;
         this.mDrawerLayoutContainer = drawerLayoutContainer;
         this.itemAnimator = sideMenultItemAnimator;
-        boolean z = true;
-        this.accountsShown = (UserConfig.getActivatedAccountsCount() <= 1 || !MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true)) ? false : false;
+        this.accountsShown = UserConfig.getActivatedAccountsCount() > 1 && MessagesController.getGlobalMainSettings().getBoolean("accountsShown", true);
         Theme.createCommonDialogResources(context);
         resetItems();
         try {
@@ -140,7 +140,9 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 0) {
             ((DrawerProfileCell) viewHolder.itemView).setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId())), this.accountsShown);
-        } else if (itemViewType != 3) {
+            return;
+        }
+        if (itemViewType != 3) {
             if (itemViewType != 4) {
                 return;
             }
@@ -210,7 +212,6 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int i6;
         int i7;
         int i8;
-        boolean z;
         this.accountNumbers.clear();
         for (int i9 = 0; i9 < 4; i9++) {
             if (UserConfig.getInstance(i9).isClientActivated()) {
@@ -266,39 +267,28 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 i8 = R.drawable.msg_nearby;
             }
             UserConfig userConfig = UserConfig.getInstance(UserConfig.selectedAccount);
-            if (userConfig == null || !userConfig.isPremium()) {
-                z = false;
-            } else {
+            this.items.add(new Item(16, LocaleController.getString(R.string.MyProfile), R.drawable.left_status_profile));
+            if (userConfig != null && userConfig.isPremium()) {
                 if (userConfig.getEmojiStatus() != null) {
                     this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus), R.drawable.msg_status_edit));
                 } else {
                     this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), R.drawable.msg_status_set));
                 }
-                z = true;
-            }
-            if (MessagesController.getInstance(UserConfig.selectedAccount).storiesEnabled()) {
-                this.items.add(new Item(16, LocaleController.getString("ProfileMyStories", R.string.ProfileMyStories), R.drawable.msg_menu_stories));
-                z = true;
             }
             ApplicationLoader applicationLoader = ApplicationLoader.applicationLoaderInstance;
-            if (applicationLoader != null && applicationLoader.extendDrawer(this.items)) {
-                z = true;
+            if (applicationLoader != null) {
+                applicationLoader.extendDrawer(this.items);
             }
             TLRPC$TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
             if (attachMenuBots != null && attachMenuBots.bots != null) {
-                boolean z2 = z;
                 for (int i10 = 0; i10 < attachMenuBots.bots.size(); i10++) {
                     TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = attachMenuBots.bots.get(i10);
                     if (tLRPC$TL_attachMenuBot.show_in_side_menu) {
                         this.items.add(new Item(tLRPC$TL_attachMenuBot));
-                        z2 = true;
                     }
                 }
-                z = z2;
             }
-            if (z) {
-                this.items.add(null);
-            }
+            this.items.add(null);
             this.items.add(new Item(2, LocaleController.getString("NewGroup", R.string.NewGroup), i));
             this.items.add(new Item(6, LocaleController.getString("Contacts", R.string.Contacts), i2));
             this.items.add(new Item(10, LocaleController.getString("Calls", R.string.Calls), i3));

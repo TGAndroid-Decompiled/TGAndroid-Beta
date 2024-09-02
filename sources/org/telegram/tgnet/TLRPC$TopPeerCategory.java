@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$TopPeerCategory extends TLObject {
     public static TLRPC$TopPeerCategory TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$TopPeerCategory tLRPC$TopPeerCategory;
@@ -34,6 +35,9 @@ public abstract class TLRPC$TopPeerCategory extends TLObject {
                         abstractSerializedData2.writeInt32(-68239120);
                     }
                 };
+                break;
+            case -39945236:
+                tLRPC$TopPeerCategory = new TLRPC$TL_topPeerCategoryBotsApp();
                 break;
             case 104314861:
                 tLRPC$TopPeerCategory = new TLRPC$TL_topPeerCategoryCorrespondents();

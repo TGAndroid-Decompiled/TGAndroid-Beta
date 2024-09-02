@@ -21,11 +21,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
+
 public class VideoPlayerSeekBar {
     private static Paint paint;
     private static Paint strokePaint;
@@ -358,17 +358,13 @@ public class VideoPlayerSeekBar {
     }
 
     public void draw(Canvas canvas, View view) {
-        int i;
-        int i2;
-        int i3;
-        int i4;
         this.rect.left = this.horizontalPadding + AndroidUtilities.lerp(thumbWidth / 2.0f, 0.0f, this.transitionProgress);
         RectF rectF = this.rect;
-        int i5 = this.height;
-        rectF.top = AndroidUtilities.lerp((i5 - this.lineHeight) / 2.0f, (i5 - AndroidUtilities.dp(3.0f)) - this.smallLineHeight, this.transitionProgress);
+        int i = this.height;
+        rectF.top = AndroidUtilities.lerp((i - this.lineHeight) / 2.0f, (i - AndroidUtilities.dp(3.0f)) - this.smallLineHeight, this.transitionProgress);
         RectF rectF2 = this.rect;
-        int i6 = this.height;
-        rectF2.bottom = AndroidUtilities.lerp((this.lineHeight + i6) / 2.0f, i6 - AndroidUtilities.dp(3.0f), this.transitionProgress);
+        int i2 = this.height;
+        rectF2.bottom = AndroidUtilities.lerp((this.lineHeight + i2) / 2.0f, i2 - AndroidUtilities.dp(3.0f), this.transitionProgress);
         float f = this.thumbX;
         float min = Math.min(this.animatedThumbX, f);
         this.animatedThumbX = min;
@@ -410,13 +406,13 @@ public class VideoPlayerSeekBar {
         if (this.animateResetBuffering) {
             float f8 = this.animateFromBufferedProgress;
             if (f8 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f8 * (this.width - i4)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f8 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, (1.0f - this.transitionProgress) * (1.0f - this.bufferedAnimationValue));
                 drawProgressBar(canvas, this.rect, paint);
             }
             float f9 = this.bufferedProgress;
             if (f9 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f9 * (this.width - i3)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f9 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, 1.0f - this.transitionProgress);
                 drawProgressBar(canvas, this.rect, paint);
             }
@@ -425,7 +421,7 @@ public class VideoPlayerSeekBar {
             float f11 = this.bufferedAnimationValue;
             float f12 = (f10 * (1.0f - f11)) + (this.bufferedProgress * f11);
             if (f12 > 0.0f) {
-                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f12 * (this.width - i)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+                this.rect.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (f12 * (this.width - r10)), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
                 setPaintColor(this.selected ? this.backgroundSelectedColor : this.cacheColor, 1.0f - this.transitionProgress);
                 drawProgressBar(canvas, this.rect, paint);
             }
@@ -461,7 +457,7 @@ public class VideoPlayerSeekBar {
         if (f5 > 0.0f) {
             RectF rectF3 = this.rect;
             float f14 = rectF3.left;
-            rectF3.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (this.width - i2), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
+            rectF3.right = this.horizontalPadding + AndroidUtilities.lerp((thumbWidth / 2.0f) + (this.width - r14), this.parentView.getWidth() - (this.horizontalPadding * 2.0f), this.transitionProgress);
             RectF rectF4 = this.rect;
             rectF4.left = AndroidUtilities.lerp(f14, rectF4.right, 1.0f - f5);
             if (this.transitionProgress > 0.0f && this.rect.width() > 0.0f) {
@@ -532,12 +528,12 @@ public class VideoPlayerSeekBar {
         while (true) {
             if (size < 0) {
                 break;
-            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp3) {
+            }
+            if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp3) {
                 i = size + 1;
                 break;
-            } else {
-                size--;
             }
+            size--;
         }
         if (i < 0) {
             i = this.timestamps.size();
@@ -662,10 +658,7 @@ public class VideoPlayerSeekBar {
             StaticLayout[] staticLayoutArr3 = this.timestampLabel;
             staticLayoutArr3[1] = staticLayoutArr3[0];
             if (this.pressed) {
-                try {
-                    this.parentView.performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this.parentView);
             }
             if (size >= 0 && size < this.timestamps.size()) {
                 CharSequence charSequence = (CharSequence) this.timestamps.get(size).second;
@@ -742,7 +735,7 @@ public class VideoPlayerSeekBar {
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.timestampLabelPaint.setColor(-1);
         }
-        CharSequence charSequence2 = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence;
+        CharSequence charSequence2 = charSequence == null ? "" : charSequence;
         if (Build.VERSION.SDK_INT >= 23) {
             return StaticLayout.Builder.obtain(charSequence2, 0, charSequence2.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i)).build();
         }

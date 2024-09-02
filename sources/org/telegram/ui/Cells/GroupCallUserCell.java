@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageLocation;
@@ -43,6 +42,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
+
 public class GroupCallUserCell extends FrameLayout {
     private AccountInstance accountInstance;
     private AnimatorSet animatorSet;
@@ -141,7 +141,6 @@ public class GroupCallUserCell extends FrameLayout {
     public void setProgressToAvatarPreview(float f) {
         this.progressToAvatarPreview = f;
         this.nameTextView.setTranslationX((LocaleController.isRTL ? AndroidUtilities.dp(53.0f) : -AndroidUtilities.dp(53.0f)) * f);
-        boolean z = true;
         if (isSelfUser() && f > 0.0f) {
             float f2 = 1.0f - f;
             this.fullAboutTextView.setTranslationX((LocaleController.isRTL ? -AndroidUtilities.dp(53.0f) : AndroidUtilities.dp(53.0f)) * f2);
@@ -149,9 +148,9 @@ public class GroupCallUserCell extends FrameLayout {
             this.fullAboutTextView.setAlpha(f);
             this.statusTextView[4].setAlpha(f2);
             SimpleTextView simpleTextView = this.statusTextView[4];
-            boolean z2 = LocaleController.isRTL;
+            boolean z = LocaleController.isRTL;
             int dp = AndroidUtilities.dp(53.0f);
-            if (!z2) {
+            if (!z) {
                 dp = -dp;
             }
             simpleTextView.setTranslationX(dp * f);
@@ -176,7 +175,7 @@ public class GroupCallUserCell extends FrameLayout {
             }
         }
         this.avatarImageView.setAlpha(f == 0.0f ? 1.0f : 0.0f);
-        this.avatarWavesDrawable.setShowWaves((this.isSpeaking && f == 0.0f) ? false : false, this);
+        this.avatarWavesDrawable.setShowWaves(this.isSpeaking && f == 0.0f, this);
         float f3 = 1.0f - f;
         this.muteButton.setAlpha(f3);
         float f4 = (f3 * 0.4f) + 0.6f;
@@ -337,7 +336,7 @@ public class GroupCallUserCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setTextSize(16);
         this.nameTextView.setDrawablePadding(AndroidUtilities.dp(6.0f));
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -434,9 +433,9 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
         int i2 = R.raw.voice_outlined2;
-        this.muteDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         int i3 = R.raw.hand_1;
-        this.shakeHandDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -640,11 +639,11 @@ public class GroupCallUserCell extends FrameLayout {
     }
 
     public boolean clickMuteButton() {
-        if (this.muteButton.isEnabled()) {
-            this.muteButton.callOnClick();
-            return true;
+        if (!this.muteButton.isEnabled()) {
+            return false;
         }
-        return false;
+        this.muteButton.callOnClick();
+        return true;
     }
 
     @Override
@@ -830,8 +829,9 @@ public class GroupCallUserCell extends FrameLayout {
         }
 
         public float getAvatarScale() {
+            float f = (this.amplitude * 0.2f) + 0.9f;
             float interpolation = CubicBezierInterpolator.EASE_OUT.getInterpolation(this.wavesEnter);
-            return (((this.amplitude * 0.2f) + 0.9f) * interpolation) + ((1.0f - interpolation) * 1.0f);
+            return (f * interpolation) + ((1.0f - interpolation) * 1.0f);
         }
 
         public void setShowWaves(boolean z, View view) {

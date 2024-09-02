@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -30,6 +29,7 @@ import org.telegram.ui.Components.Paint.Swatch;
 import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.Rect;
+
 public class TextPaintView extends EntityView {
     private int align;
     private int baseFontSize;
@@ -91,7 +91,7 @@ public class TextPaintView extends EntityView {
             this.editText.setImeOptions(268435456);
         }
         this.editText.setFocusableInTouchMode(true);
-        this.editText.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        this.editText.setInputType(16384);
         this.editText.setSingleLine(false);
         addView(this.editText, LayoutHelper.createFrame(-2, -2, 51));
         if (i3 >= 29) {
@@ -172,9 +172,9 @@ public class TextPaintView extends EntityView {
         if (this.editText.getText().length() <= 0) {
             this.editText.setHint(LocaleController.getString(R.string.TextPlaceholder));
             this.editText.setHintTextColor(1627389951);
-            return;
+        } else {
+            this.editText.setHint((CharSequence) null);
         }
-        this.editText.setHint((CharSequence) null);
     }
 
     public TextPaintView(Context context, TextPaintView textPaintView, Point point) {
@@ -354,7 +354,7 @@ public class TextPaintView extends EntityView {
     }
 
     public void setSwatch(Swatch swatch) {
-        this.swatch = swatch;
+        this.swatch = swatch.clone();
         updateColor();
     }
 
@@ -419,16 +419,17 @@ public class TextPaintView extends EntityView {
 
         @Override
         protected int pointInsideHandle(float f, float f2) {
-            float dp = AndroidUtilities.dp(19.5f);
-            float dp2 = AndroidUtilities.dp(1.0f) + dp;
-            float f3 = dp2 * 2.0f;
-            float measuredWidth = getMeasuredWidth() - f3;
-            float measuredHeight = ((getMeasuredHeight() - f3) / 2.0f) + dp2;
-            if (f <= dp2 - dp || f2 <= measuredHeight - dp || f >= dp2 + dp || f2 >= measuredHeight + dp) {
-                float f4 = dp2 + measuredWidth;
-                return (f <= f4 - dp || f2 <= measuredHeight - dp || f >= f4 + dp || f2 >= measuredHeight + dp) ? 0 : 2;
+            float dp = AndroidUtilities.dp(1.0f);
+            float dp2 = AndroidUtilities.dp(19.5f);
+            float f3 = dp + dp2;
+            float f4 = f3 * 2.0f;
+            float measuredWidth = getMeasuredWidth() - f4;
+            float measuredHeight = ((getMeasuredHeight() - f4) / 2.0f) + f3;
+            if (f > f3 - dp2 && f2 > measuredHeight - dp2 && f < f3 + dp2 && f2 < measuredHeight + dp2) {
+                return 1;
             }
-            return 1;
+            float f5 = f3 + measuredWidth;
+            return (f <= f5 - dp2 || f2 <= measuredHeight - dp2 || f >= f5 + dp2 || f2 >= measuredHeight + dp2) ? 0 : 2;
         }
 
         @Override
@@ -442,49 +443,50 @@ public class TextPaintView extends EntityView {
             if (showAlpha < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
             }
+            float dp = AndroidUtilities.dp(2.0f);
             float dpf2 = AndroidUtilities.dpf2(5.66f);
-            float dp = AndroidUtilities.dp(2.0f) + dpf2 + AndroidUtilities.dp(15.0f);
-            float f = dp * 2.0f;
+            float dp2 = dp + dpf2 + AndroidUtilities.dp(15.0f);
+            float f = dp2 * 2.0f;
             float measuredWidth = getMeasuredWidth() - f;
             float measuredHeight = getMeasuredHeight() - f;
             RectF rectF = AndroidUtilities.rectTmp;
-            float f2 = dp + measuredWidth;
-            float f3 = dp + measuredHeight;
-            rectF.set(dp, dp, f2, f3);
-            float dp2 = AndroidUtilities.dp(12.0f);
-            float min = Math.min(dp2, measuredWidth / 2.0f);
+            float f2 = dp2 + measuredWidth;
+            float f3 = dp2 + measuredHeight;
+            rectF.set(dp2, dp2, f2, f3);
+            float dp3 = AndroidUtilities.dp(12.0f);
+            float min = Math.min(dp3, measuredWidth / 2.0f);
             float f4 = measuredHeight / 2.0f;
-            float min2 = Math.min(dp2, f4);
+            float min2 = Math.min(dp3, f4);
             this.path.rewind();
             float f5 = min * 2.0f;
-            float f6 = dp + f5;
+            float f6 = dp2 + f5;
             float f7 = 2.0f * min2;
-            float f8 = dp + f7;
-            rectF.set(dp, dp, f6, f8);
+            float f8 = dp2 + f7;
+            rectF.set(dp2, dp2, f6, f8);
             this.path.arcTo(rectF, 180.0f, 90.0f);
             float f9 = f2 - f5;
-            rectF.set(f9, dp, f2, f8);
+            rectF.set(f9, dp2, f2, f8);
             this.path.arcTo(rectF, 270.0f, 90.0f);
             canvas.drawPath(this.path, this.paint);
             this.path.rewind();
             float f10 = f3 - f7;
-            rectF.set(dp, f10, f6, f3);
+            rectF.set(dp2, f10, f6, f3);
             this.path.arcTo(rectF, 180.0f, -90.0f);
             rectF.set(f9, f10, f2, f3);
             this.path.arcTo(rectF, 90.0f, -90.0f);
             canvas.drawPath(this.path, this.paint);
-            float f11 = dp + f4;
-            canvas.drawCircle(dp, f11, dpf2, this.dotStrokePaint);
-            canvas.drawCircle(dp, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
+            float f11 = dp2 + f4;
+            canvas.drawCircle(dp2, f11, dpf2, this.dotStrokePaint);
+            canvas.drawCircle(dp2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.drawCircle(f2, f11, dpf2, this.dotStrokePaint);
             canvas.drawCircle(f2, f11, (dpf2 - AndroidUtilities.dp(1.0f)) + 1.0f, this.dotPaint);
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
-            float f12 = dp + min2;
+            float f12 = dp2 + min2;
             float f13 = f3 - min2;
-            canvas.drawLine(dp, f12, dp, f13, this.paint);
+            canvas.drawLine(dp2, f12, dp2, f13, this.paint);
             canvas.drawLine(f2, f12, f2, f13, this.paint);
             canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
-            canvas.drawCircle(dp, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
+            canvas.drawCircle(dp2, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
             canvas.restoreToCount(saveCount);
         }
     }

@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public class TL_stories$TL_storiesStealthMode extends TLObject {
     public int active_until_date;
     public int cooldown_until_date;

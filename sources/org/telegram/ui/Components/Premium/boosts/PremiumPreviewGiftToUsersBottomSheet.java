@@ -18,6 +18,7 @@ import j$.util.Comparator$CC;
 import j$.util.function.ToLongFunction;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
@@ -44,6 +45,8 @@ import org.telegram.ui.Components.Premium.boosts.cells.DurationWithDiscountCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+
 public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSheet {
     private GradientButtonWithCounterView actionBtn;
     private SelectorBtnCell buttonContainer;
@@ -66,7 +69,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         if (lastFragment == null) {
             return;
         }
-        new PremiumPreviewGiftToUsersBottomSheet(lastFragment, UserConfig.selectedAccount, list, list2, lastFragment.getResourceProvider()).show();
+        lastFragment.showDialog(new PremiumPreviewGiftToUsersBottomSheet(lastFragment, UserConfig.selectedAccount, list, list2, lastFragment.getResourceProvider()));
     }
 
     public PremiumPreviewGiftToUsersBottomSheet(BaseFragment baseFragment, int i, List<TLRPC$User> list, List<TLRPC$TL_premiumGiftCodeOption> list2, Theme.ResourcesProvider resourcesProvider) {
@@ -112,11 +115,11 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     public void setTitle(boolean z) {
         String formatString;
         ((PremiumPreviewBottomSheet) this).titleView[0].setTextSize(1, 20.0f);
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
+        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         this.subtitleView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
         this.subtitleView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         ((PremiumPreviewBottomSheet) this).titleView[0].setText(LocaleController.getString("GiftTelegramPremiumTitle", R.string.GiftTelegramPremiumTitle));
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
-        ((ViewGroup.MarginLayoutParams) this.subtitleView.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = this.selectedUsers.size();
         if (size == 1) {
             formatString = LocaleController.formatString("GiftPremiumUsersGiveAccessManyZero", R.string.GiftPremiumUsersGiveAccessManyZero, LocaleController.formatString("GiftPremiumUsersOne", R.string.GiftPremiumUsersOne, UserObject.getFirstName(this.selectedUsers.get(0))));
@@ -148,13 +151,13 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     @Override
     protected View onCreateAdditionCell(int i, Context context) {
         if (i != 6) {
-            if (i != 7) {
-                if (i != 8) {
-                    return null;
-                }
-                return new DurationWithDiscountCell(context, this.resourcesProvider);
+            if (i == 7) {
+                return new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
             }
-            return new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
+            if (i != 8) {
+                return null;
+            }
+            return new DurationWithDiscountCell(context, this.resourcesProvider);
         }
         HeaderCell headerCell = new HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 12, false, this.resourcesProvider);
         headerCell.setTextSize(15.0f);
@@ -208,15 +211,16 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         TLRPC$TL_premiumGiftCodeOption selectedOption = getSelectedOption();
         String formatCurrency = BillingController.getInstance().formatCurrency(selectedOption.amount, selectedOption.currency);
         if (this.selectedUsers.size() == 1) {
-            this.actionBtn.setText(LocaleController.formatString("GiftSubscriptionFor", R.string.GiftSubscriptionFor, formatCurrency), z);
+            this.actionBtn.setText(LocaleController.formatString(R.string.GiftSubscriptionFor, formatCurrency), z);
         } else {
             this.actionBtn.setText(LocaleController.formatPluralString("GiftSubscriptionCountFor", this.selectedUsers.size(), formatCurrency), z);
         }
     }
 
     private void chooseMaxSelectedMonths() {
-        for (TLRPC$TL_premiumGiftCodeOption tLRPC$TL_premiumGiftCodeOption : this.giftCodeOptions) {
-            this.selectedMonths = Math.max(tLRPC$TL_premiumGiftCodeOption.months, this.selectedMonths);
+        Iterator<TLRPC$TL_premiumGiftCodeOption> it = this.giftCodeOptions.iterator();
+        while (it.hasNext()) {
+            this.selectedMonths = Math.max(it.next().months, this.selectedMonths);
         }
     }
 
@@ -248,7 +252,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
         SelectorBtnCell selectorBtnCell2 = this.buttonContainer;
         int i2 = this.backgroundPaddingLeft;
         viewGroup.addView(selectorBtnCell2, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i2, 0, i2, 0));
-        this.overrideTitleIcon = AvatarHolderView.createAvatarsContainer(getContext(), this.selectedUsers);
+        if (!isSelf()) {
+            this.overrideTitleIcon = AvatarHolderView.createAvatarsContainer(getContext(), this.selectedUsers);
+        }
         updateActionButton(false);
         fixNavigationBar();
     }
@@ -258,17 +264,21 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
             return;
         }
         this.actionBtn.setLoading(true);
-        BoostRepository.payGiftCode(new ArrayList(this.selectedUsers), getSelectedOption(), null, getBaseFragment(), new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$2((Void) obj);
-            }
-        }, new Utilities.Callback() {
-            @Override
-            public final void run(Object obj) {
-                PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$3((TLRPC$TL_error) obj);
-            }
-        });
+        if (isSelf()) {
+            PremiumPreviewFragment.buyPremium(getBaseFragment(), "grace_period");
+        } else {
+            BoostRepository.payGiftCode(new ArrayList(this.selectedUsers), getSelectedOption(), null, getBaseFragment(), new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$2((Void) obj);
+                }
+            }, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    PremiumPreviewGiftToUsersBottomSheet.this.lambda$init$3((TLRPC$TL_error) obj);
+                }
+            });
+        }
     }
 
     public void lambda$init$2(Void r3) {
@@ -289,6 +299,10 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
     public void lambda$init$3(TLRPC$TL_error tLRPC$TL_error) {
         this.actionBtn.setLoading(false);
         BoostDialogs.showToastError(getContext(), tLRPC$TL_error);
+    }
+
+    public boolean isSelf() {
+        return this.selectedUsers.size() == 1 && this.selectedUsers.get(0) != null && this.selectedUsers.get(0).id == UserConfig.getInstance(getCurrentAccount()).getClientUserId();
     }
 
     @Override
@@ -337,8 +351,9 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
                 frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
                 int i = 0;
                 for (int i2 = 0; i2 < list.size(); i2++) {
+                    TLRPC$User tLRPC$User = list.get(i2);
                     AvatarHolderView avatarHolderView2 = new AvatarHolderView(context, 41.5f);
-                    avatarHolderView2.setUser(list.get(i2));
+                    avatarHolderView2.setUser(tLRPC$User);
                     frameLayout2.addView(avatarHolderView2, 0, LayoutHelper.createFrame(83, 83, 17));
                     avatarHolderView2.setTranslationX((-i2) * AndroidUtilities.dp(29.0f));
                     if (i2 == 0 && list.size() > 3) {
@@ -405,7 +420,7 @@ public class PremiumPreviewGiftToUsersBottomSheet extends PremiumPreviewBottomSh
                 this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
             }
             this.paint.setTextSize(AndroidUtilities.dp(11.5f));
-            this.paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.paint.setTypeface(AndroidUtilities.bold());
         }
 
         @Override

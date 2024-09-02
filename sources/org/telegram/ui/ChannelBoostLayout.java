@@ -22,7 +22,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
@@ -36,8 +35,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
-import org.telegram.tgnet.TLRPC$TL_statsPercentValue;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stats$TL_statsPercentValue;
 import org.telegram.tgnet.tl.TL_stories$TL_boost;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsList;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
@@ -65,6 +64,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.StatisticActivity;
+
 public class ChannelBoostLayout extends FrameLayout {
     AdapterWithDiffUtils adapter;
     private final ArrayList<TL_stories$TL_boost> boosters;
@@ -111,26 +111,30 @@ public class ChannelBoostLayout extends FrameLayout {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 View shadowSectionCell;
-                FrameLayout frameLayout;
+                View view;
                 switch (i) {
                     case 0:
-                        frameLayout = new StatisticActivity.OverviewCell(ChannelBoostLayout.this.getContext());
-                        break;
+                        view = new StatisticActivity.OverviewCell(ChannelBoostLayout.this.getContext());
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 1:
                         View chartHeaderView = new ChartHeaderView(ChannelBoostLayout.this.getContext());
                         chartHeaderView.setPadding(chartHeaderView.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView.getRight(), AndroidUtilities.dp(16.0f));
-                        frameLayout = chartHeaderView;
-                        break;
+                        view = chartHeaderView;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 2:
                         shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor(Theme.key_windowBackgroundGray));
-                        frameLayout = shadowSectionCell;
-                        break;
+                        view = shadowSectionCell;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 3:
                         LinkActionView linkActionView = new LinkActionView(ChannelBoostLayout.this.getContext(), ChannelBoostLayout.this.fragment, null, 0L, false, false);
                         linkActionView.hideOptions();
                         linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
-                        frameLayout = linkActionView;
-                        break;
+                        view = linkActionView;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 4:
                         LimitPreviewView limitPreviewView = new LimitPreviewView(ChannelBoostLayout.this.getContext(), R.drawable.filled_limit_boost, 0, 0, ChannelBoostLayout.this.resourcesProvider);
                         limitPreviewView.isStatistic = true;
@@ -139,23 +143,27 @@ public class ChannelBoostLayout extends FrameLayout {
                         limitPreviewView.setPadding(0, AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f));
                         limitPreviewView.setBackground(combinedDrawable);
                         limitPreviewView.setBoosts(ChannelBoostLayout.this.boostsStatus, false);
-                        frameLayout = limitPreviewView;
-                        break;
+                        view = limitPreviewView;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 5:
-                        frameLayout = new GiftedUserCell(ChannelBoostLayout.this.getContext(), 0, 0, false);
-                        break;
+                        view = new GiftedUserCell(ChannelBoostLayout.this.getContext(), 0, 0, false);
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 6:
                         shadowSectionCell = new TextInfoPrivacyCell(viewGroup.getContext(), 20, ChannelBoostLayout.this.resourcesProvider);
                         CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(ChannelBoostLayout.this.getContext(), R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, ChannelBoostLayout.this.resourcesProvider)), 0, 0);
                         combinedDrawable2.setFullsize(true);
                         shadowSectionCell.setBackground(combinedDrawable2);
-                        frameLayout = shadowSectionCell;
-                        break;
+                        view = shadowSectionCell;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 7:
-                        frameLayout = new FixedHeightEmptyCell(ChannelBoostLayout.this.getContext(), 8);
-                        break;
+                        view = new FixedHeightEmptyCell(ChannelBoostLayout.this.getContext(), 8);
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 8:
-                        FrameLayout frameLayout2 = new FrameLayout(this, ChannelBoostLayout.this.getContext()) {
+                        FrameLayout frameLayout = new FrameLayout(this, ChannelBoostLayout.this.getContext()) {
                             @Override
                             protected void onMeasure(int i2, int i3) {
                                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
@@ -166,9 +174,10 @@ public class ChannelBoostLayout extends FrameLayout {
                         textView.setTextSize(1, 14.0f);
                         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
                         textView.setGravity(17);
-                        frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
-                        frameLayout = frameLayout2;
-                        break;
+                        frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 16.0f, 0.0f, 0.0f));
+                        view = frameLayout;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 9:
                         ManageChatTextCell manageChatTextCell = new ManageChatTextCell(this, ChannelBoostLayout.this.getContext()) {
                             @Override
@@ -177,28 +186,32 @@ public class ChannelBoostLayout extends FrameLayout {
                             }
                         };
                         manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                        frameLayout = manageChatTextCell;
-                        break;
+                        view = manageChatTextCell;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 10:
                         TextCell textCell = new TextCell(ChannelBoostLayout.this.getContext());
                         textCell.setTextAndIcon((CharSequence) LocaleController.formatString("BoostingGetBoostsViaGifts", R.string.BoostingGetBoostsViaGifts, new Object[0]), R.drawable.msg_gift_premium, false);
                         textCell.offsetFromImage = 64;
                         int i2 = Theme.key_windowBackgroundWhiteBlueText4;
                         textCell.setColors(i2, i2);
-                        frameLayout = textCell;
-                        break;
+                        view = textCell;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 11:
-                        frameLayout = new GiveawayCell(ChannelBoostLayout.this.getContext(), 0, 0, false);
-                        break;
+                        view = new GiveawayCell(ChannelBoostLayout.this.getContext(), 0, 0, false);
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 12:
                         View chartHeaderView2 = new ChartHeaderView(ChannelBoostLayout.this.getContext());
                         chartHeaderView2.setPadding(chartHeaderView2.getPaddingLeft(), AndroidUtilities.dp(16.0f), chartHeaderView2.getRight(), AndroidUtilities.dp(8.0f));
-                        frameLayout = chartHeaderView2;
-                        break;
+                        view = chartHeaderView2;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     case 13:
                         ChannelBoostLayout.this.boostsTabs = new ScrollSlidingTextTabStrip(ChannelBoostLayout.this.fragment.getContext(), ChannelBoostLayout.this.resourcesProvider);
                         ChannelBoostLayout.this.boostsTabs.setColors(Theme.key_profile_tabSelectedLine, Theme.key_profile_tabSelectedText, Theme.key_profile_tabText, Theme.key_profile_tabSelector);
-                        FrameLayout frameLayout3 = new FrameLayout(ChannelBoostLayout.this.fragment.getContext()) {
+                        FrameLayout frameLayout2 = new FrameLayout(ChannelBoostLayout.this.fragment.getContext()) {
                             private final Paint dividerPaint = new Paint(1);
 
                             @Override
@@ -223,21 +236,18 @@ public class ChannelBoostLayout extends FrameLayout {
                                 ChannelBoostLayout.this.updateRows(true);
                             }
                         });
-                        frameLayout3.addView(ChannelBoostLayout.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
-                        frameLayout = frameLayout3;
-                        break;
+                        frameLayout2.addView(ChannelBoostLayout.this.boostsTabs, LayoutHelper.createFrame(-2, 48.0f));
+                        view = frameLayout2;
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                        return new RecyclerListView.Holder(view);
                     default:
                         throw new UnsupportedOperationException();
                 }
-                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(frameLayout);
             }
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                ItemInternal itemInternal;
                 String formatString;
-                double d;
                 if (viewHolder.getItemViewType() == 4) {
                     return;
                 }
@@ -247,25 +257,33 @@ public class ChannelBoostLayout extends FrameLayout {
                     chartHeaderView.showDate(false);
                     if (viewHolder.getItemViewType() == 12) {
                         chartHeaderView.setPadding(AndroidUtilities.dp(3.0f), chartHeaderView.getPaddingTop(), chartHeaderView.getPaddingRight(), chartHeaderView.getPaddingBottom());
+                        return;
                     }
-                } else if (viewHolder.getItemViewType() == 0) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 0) {
                     StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
                     overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
                     ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
-                    TLRPC$TL_statsPercentValue tLRPC$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
-                    if (tLRPC$TL_statsPercentValue != null) {
-                        if (tLRPC$TL_statsPercentValue.total != 0.0d) {
-                            overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tLRPC$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                    TL_stats$TL_statsPercentValue tL_stats$TL_statsPercentValue = channelBoostLayout.boostsStatus.premium_audience;
+                    if (tL_stats$TL_statsPercentValue != null) {
+                        double d = tL_stats$TL_statsPercentValue.total;
+                        if (d != 0.0d) {
+                            float f = (((float) tL_stats$TL_statsPercentValue.part) / ((float) d)) * 100.0f;
+                            overviewCell.setData(1, "≈" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf(f)) + "%", LocaleController.getString(ChannelBoostLayout.this.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                             overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                             TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
                             overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                            return;
                         }
                     }
-                    overviewCell.setData(1, "~0", "0%", LocaleController.getString(channelBoostLayout.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
+                    overviewCell.setData(1, "≈0", "0%", LocaleController.getString(channelBoostLayout.isChannel() ? R.string.PremiumSubscribers : R.string.PremiumMembers));
                     overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                     TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus2 = ChannelBoostLayout.this.boostsStatus;
                     overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus2.next_level_boosts - tL_stories$TL_premium_boostsStatus2.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
-                } else if (viewHolder.getItemViewType() == 5) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 5) {
                     TL_stories$TL_boost tL_stories$TL_boost = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).booster;
                     TLRPC$User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(tL_stories$TL_boost.user_id));
                     GiftedUserCell giftedUserCell = (GiftedUserCell) viewHolder.itemView;
@@ -277,24 +295,35 @@ public class ChannelBoostLayout extends FrameLayout {
                     giftedUserCell.setData(user, ContactsController.formatName(user), formatString, 0, !((ItemInternal) ChannelBoostLayout.this.items.get(i)).isLast);
                     giftedUserCell.setStatus(tL_stories$TL_boost);
                     giftedUserCell.setAvatarPadding(5);
-                } else if (viewHolder.getItemViewType() == 6) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 6) {
                     ((TextInfoPrivacyCell) viewHolder.itemView).setText(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
-                } else if (viewHolder.getItemViewType() == 9) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 9) {
                     ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                     if (ChannelBoostLayout.this.selectedTab == 0) {
                         manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreBoosts", ChannelBoostLayout.this.nextBoostRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                        return;
                     } else {
                         manageChatTextCell.setText(LocaleController.formatPluralString("BoostingShowMoreGifts", ChannelBoostLayout.this.nextGiftsRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                        return;
                     }
-                } else if (viewHolder.getItemViewType() == 3) {
+                }
+                if (viewHolder.getItemViewType() == 3) {
                     ((LinkActionView) viewHolder.itemView).setLink(((ItemInternal) ChannelBoostLayout.this.items.get(i)).title);
-                } else if (viewHolder.getItemViewType() == 11) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 11) {
                     TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).prepaidGiveaway;
                     GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
-                    giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !itemInternal.isLast);
+                    giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !r14.isLast);
                     giveawayCell.setImage(tL_stories$TL_prepaidGiveaway);
                     giveawayCell.setAvatarPadding(5);
-                } else if (viewHolder.getItemViewType() == 13) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 13) {
                     if (this.remTotalBoosts == ChannelBoostLayout.this.totalBoosts && this.remTotalGifts == ChannelBoostLayout.this.totalGifts) {
                         return;
                     }
@@ -320,8 +349,8 @@ public class ChannelBoostLayout extends FrameLayout {
                 return ((ItemInternal) ChannelBoostLayout.this.items.get(i)).viewType;
             }
         };
-        this.lastBoostsOffset = BuildConfig.APP_CENTER_HASH;
-        this.lastGiftsOffset = BuildConfig.APP_CENTER_HASH;
+        this.lastBoostsOffset = "";
+        this.lastGiftsOffset = "";
         this.limitGifts = 5;
         this.limitBoosts = 5;
         this.fragment = baseFragment;
@@ -739,7 +768,7 @@ public class ChannelBoostLayout extends FrameLayout {
         rLottieImageView.playAnimation();
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_player_actionBarTitle;
         textView.setTextColor(Theme.getColor(i));
         textView.setTag(Integer.valueOf(i));

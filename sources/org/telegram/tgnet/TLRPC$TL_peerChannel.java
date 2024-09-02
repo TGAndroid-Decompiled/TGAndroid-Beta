@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_peerChannel extends TLRPC$Peer {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

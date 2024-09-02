@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import org.webrtc.EncodedImage;
+
 public interface VideoEncoder {
 
     public interface Callback {
@@ -109,10 +110,9 @@ public interface VideoEncoder {
         }
 
         public int getSum() {
-            int[][] iArr;
             int i = 0;
-            for (int[] iArr2 : this.bitratesBbs) {
-                for (int i2 : iArr2) {
+            for (int[] iArr : this.bitratesBbs) {
+                for (int i2 : iArr) {
                     i += i2;
                 }
             }
@@ -153,10 +153,10 @@ public interface VideoEncoder {
         }
 
         public String toString() {
-            if (this.on) {
-                return "[ " + this.low + ", " + this.high + " ]";
+            if (!this.on) {
+                return "OFF";
             }
-            return "OFF";
+            return "[ " + this.low + ", " + this.high + " ]";
         }
     }
 
@@ -239,11 +239,6 @@ public interface VideoEncoder {
         @CalledByNative
         public static boolean $default$isHardwareEncoder(VideoEncoder videoEncoder) {
             return true;
-        }
-
-        @CalledByNative
-        public static VideoCodecStatus $default$setRates(VideoEncoder _this, RateControlParameters rateControlParameters) {
-            return _this.setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
         }
 
         @CalledByNative

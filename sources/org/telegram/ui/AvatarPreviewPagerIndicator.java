@@ -18,6 +18,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ProfileGalleryView;
+
 public class AvatarPreviewPagerIndicator extends View implements ProfileGalleryView.Callback {
     private float alpha;
     private float[] alphas;

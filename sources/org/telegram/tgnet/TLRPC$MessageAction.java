@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$MessageAction extends TLObject {
     public String address;
     public long amount;
@@ -20,6 +21,8 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public String message;
     public int months;
     public TLRPC$UserProfilePhoto newUserPhoto;
+    public byte[] payload;
+    public TLRPC$Peer peer;
     public TLRPC$Photo photo;
     public TLRPC$PhoneCallDiscardReason reason;
     public boolean recurring_init;
@@ -70,6 +73,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1892568281:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
+                    public TLRPC$TL_paymentCharge charge;
                     public int flags;
                     public TLRPC$TL_paymentRequestedInfo info;
                     public byte[] payload;
@@ -90,6 +94,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         if ((this.flags & 2) != 0) {
                             this.shipping_option_id = abstractSerializedData2.readString(z2);
                         }
+                        this.charge = TLRPC$TL_paymentCharge.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
 
                     @Override
@@ -109,6 +114,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         if ((this.flags & 2) != 0) {
                             abstractSerializedData2.writeString(this.shipping_option_id);
                         }
+                        this.charge.serializeToStream(abstractSerializedData2);
                     }
                 };
                 break;
@@ -170,11 +176,11 @@ public abstract class TLRPC$MessageAction extends TLObject {
                             if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            return;
-                        }
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        } else {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                            }
                         }
                     }
 
@@ -544,6 +550,12 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     }
                 };
                 break;
+            case 1102307842:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentRefunded();
+                break;
+            case 1171632161:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftStars();
+                break;
             case 1200788123:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionScreenshotTaken();
                 break;
@@ -575,11 +587,11 @@ public abstract class TLRPC$MessageAction extends TLObject {
                             if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            return;
-                        }
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        } else {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                            }
                         }
                     }
 
@@ -708,11 +720,11 @@ public abstract class TLRPC$MessageAction extends TLObject {
                             if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            return;
-                        }
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                        } else {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                this.users.add(Long.valueOf(abstractSerializedData2.readInt32(z2)));
+                            }
                         }
                     }
 

@@ -2,6 +2,7 @@ package org.telegram.messenger.time;
 
 import java.util.Calendar;
 import java.util.TimeZone;
+
 public class SunDate {
     private static final double DEGRAD = 0.017453292519943295d;
     private static final double INV360 = 0.002777777777777778d;
@@ -12,11 +13,11 @@ public class SunDate {
     }
 
     private static double revolution(double d) {
-        return d - (Math.floor(INV360 * d) * 360.0d);
+        return d - (Math.floor(0.002777777777777778d * d) * 360.0d);
     }
 
     private static double rev180(double d) {
-        return d - (Math.floor((INV360 * d) + 0.5d) * 360.0d);
+        return d - (Math.floor((0.002777777777777778d * d) + 0.5d) * 360.0d);
     }
 
     private static double GMST0(double d) {
@@ -24,33 +25,34 @@ public class SunDate {
     }
 
     private static double sind(double d) {
-        return Math.sin(d * DEGRAD);
+        return Math.sin(d * 0.017453292519943295d);
     }
 
     private static double cosd(double d) {
-        return Math.cos(d * DEGRAD);
+        return Math.cos(d * 0.017453292519943295d);
     }
 
     private static double tand(double d) {
-        return Math.tan(d * DEGRAD);
+        return Math.tan(d * 0.017453292519943295d);
     }
 
     private static double acosd(double d) {
-        return Math.acos(d) * RADEG;
+        return Math.acos(d) * 57.29577951308232d;
     }
 
     private static double atan2d(double d, double d2) {
-        return Math.atan2(d, d2) * RADEG;
+        return Math.atan2(d, d2) * 57.29577951308232d;
     }
 
     private static void sunposAtDay(double d, double[] dArr, double[] dArr2) {
         double revolution = revolution((0.9856002585d * d) + 356.047d);
-        double d2 = 0.016709d - (d * 1.151E-9d);
-        double sind = (RADEG * d2 * sind(revolution) * ((cosd(revolution) * d2) + 1.0d)) + revolution;
-        double cosd = cosd(sind) - d2;
-        double sqrt = Math.sqrt(1.0d - (d2 * d2)) * sind(sind);
+        double d2 = (4.70935E-5d * d) + 282.9404d;
+        double d3 = 0.016709d - (d * 1.151E-9d);
+        double sind = (57.29577951308232d * d3 * sind(revolution) * ((cosd(revolution) * d3) + 1.0d)) + revolution;
+        double cosd = cosd(sind) - d3;
+        double sqrt = Math.sqrt(1.0d - (d3 * d3)) * sind(sind);
         dArr2[0] = Math.sqrt((cosd * cosd) + (sqrt * sqrt));
-        dArr[0] = atan2d(sqrt, cosd) + (4.70935E-5d * d) + 282.9404d;
+        dArr[0] = atan2d(sqrt, cosd) + d2;
         if (dArr[0] >= 360.0d) {
             dArr[0] = dArr[0] - 360.0d;
         }

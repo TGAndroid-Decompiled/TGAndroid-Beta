@@ -4,6 +4,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Reaction;
+
 public class TL_stories$TL_getStoryReactionsList extends TLObject {
     public int flags;
     public boolean forwards_first;

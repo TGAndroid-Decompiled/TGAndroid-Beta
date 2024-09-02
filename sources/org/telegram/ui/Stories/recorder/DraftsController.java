@@ -10,7 +10,6 @@ import java.util.List;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -26,6 +25,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputDocument;
+import org.telegram.tgnet.TLRPC$InputMedia;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageEntity;
@@ -35,6 +35,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DraftsController {
     public final int currentAccount;
     public final ArrayList<StoryEntry> drafts = new ArrayList<>();
@@ -263,7 +264,7 @@ public class DraftsController {
             sb3.append(storyDraft.editExpireDate);
             str = sb3.toString();
         } else {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         sb2.append(str);
         sb2.append(", now=");
@@ -425,7 +426,7 @@ public class DraftsController {
                     sb3.append(storyEntry.editExpireDate);
                     str = sb3.toString();
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb2.append(str);
                 sb2.append(", now=");
@@ -477,6 +478,9 @@ public class DraftsController {
         public String audioTitle;
         public float audioVolume;
         public long averageDuration;
+        public TLRPC$InputMedia botEdit;
+        public long botId;
+        public String botLang;
         public String caption;
         public ArrayList<TLRPC$MessageEntity> captionEntities;
         public long date;
@@ -537,13 +541,12 @@ public class DraftsController {
             this.id = storyEntry.draftId;
             this.date = storyEntry.draftDate;
             File file = storyEntry.draftThumbFile;
-            String str = BuildConfig.APP_CENTER_HASH;
-            this.thumb = file == null ? BuildConfig.APP_CENTER_HASH : file.toString();
+            this.thumb = file == null ? "" : file.toString();
             File file2 = storyEntry.uploadThumbFile;
-            this.fullThumb = file2 == null ? BuildConfig.APP_CENTER_HASH : file2.toString();
+            this.fullThumb = file2 == null ? "" : file2.toString();
             this.isVideo = storyEntry.isVideo;
             File file3 = storyEntry.file;
-            this.file = file3 == null ? BuildConfig.APP_CENTER_HASH : file3.toString();
+            this.file = file3 == null ? "" : file3.toString();
             this.fileDeletable = storyEntry.fileDeletable;
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
@@ -562,17 +565,17 @@ public class DraftsController {
             this.gradientBottomColor = storyEntry.gradientBottomColor;
             CharSequence charSequence = storyEntry.caption;
             this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true) : null;
-            this.caption = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
+            this.caption = charSequence == null ? "" : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
             File file4 = storyEntry.paintFile;
-            this.paintFilePath = file4 == null ? BuildConfig.APP_CENTER_HASH : file4.toString();
+            this.paintFilePath = file4 == null ? "" : file4.toString();
             File file5 = storyEntry.paintEntitiesFile;
-            this.paintEntitiesFilePath = file5 == null ? BuildConfig.APP_CENTER_HASH : file5.toString();
+            this.paintEntitiesFilePath = file5 == null ? "" : file5.toString();
             this.averageDuration = storyEntry.averageDuration;
             this.mediaEntities = storyEntry.mediaEntities;
             this.stickers = storyEntry.stickers;
             File file6 = storyEntry.filterFile;
-            this.filterFilePath = file6 != null ? file6.toString() : str;
+            this.filterFilePath = file6 != null ? file6.toString() : "";
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
             this.isError = storyEntry.isError;
@@ -595,6 +598,9 @@ public class DraftsController {
             this.roundVolume = storyEntry.roundVolume;
             this.videoVolume = storyEntry.videoVolume;
             this.peer = storyEntry.peer;
+            this.botId = storyEntry.botId;
+            this.botLang = storyEntry.botLang;
+            this.botEdit = storyEntry.editingBotPreview;
         }
 
         public StoryEntry toEntry() {
@@ -641,7 +647,7 @@ public class DraftsController {
                 MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
                 storyEntry.caption = replaceEmoji;
             } else {
-                storyEntry.caption = BuildConfig.APP_CENTER_HASH;
+                storyEntry.caption = "";
             }
             storyEntry.privacyRules.clear();
             storyEntry.privacyRules.addAll(this.privacyRules);
@@ -686,6 +692,9 @@ public class DraftsController {
             storyEntry.roundVolume = this.roundVolume;
             storyEntry.videoVolume = this.videoVolume;
             storyEntry.peer = this.peer;
+            storyEntry.botId = this.botId;
+            storyEntry.botLang = this.botLang;
+            storyEntry.editingBotPreview = this.botEdit;
             return storyEntry;
         }
 
@@ -755,7 +764,7 @@ public class DraftsController {
             }
             String str = this.filterFilePath;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             abstractSerializedData.writeString(str);
             if (this.filterState == null) {
@@ -814,7 +823,7 @@ public class DraftsController {
             if (TextUtils.isEmpty(this.roundPath)) {
                 abstractSerializedData.writeInt32(1450380236);
             } else {
-                abstractSerializedData.writeInt32(-745541182);
+                abstractSerializedData.writeInt32(389652397);
                 abstractSerializedData.writeString(this.roundPath);
                 abstractSerializedData.writeInt64(this.roundDuration);
                 abstractSerializedData.writeInt64(this.roundOffset);
@@ -823,6 +832,15 @@ public class DraftsController {
                 abstractSerializedData.writeFloat(this.roundVolume);
             }
             abstractSerializedData.writeFloat(this.videoVolume);
+            abstractSerializedData.writeInt64(this.botId);
+            String str2 = this.botLang;
+            abstractSerializedData.writeString(str2 != null ? str2 : "");
+            TLRPC$InputMedia tLRPC$InputMedia = this.botEdit;
+            if (tLRPC$InputMedia == null) {
+                abstractSerializedData.writeInt32(1450380236);
+            } else {
+                tLRPC$InputMedia.serializeToStream(abstractSerializedData);
+            }
         }
 
         public int getObjectSize() {
@@ -1007,7 +1025,7 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
-            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -745541182) {
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == 389652397) {
                 this.roundPath = abstractSerializedData.readString(z);
                 this.roundDuration = abstractSerializedData.readInt64(z);
                 this.roundOffset = abstractSerializedData.readInt64(z);
@@ -1017,6 +1035,14 @@ public class DraftsController {
             }
             if (abstractSerializedData.remaining() > 0) {
                 this.videoVolume = abstractSerializedData.readFloat(z);
+            }
+            if (abstractSerializedData.remaining() > 0) {
+                this.botId = abstractSerializedData.readInt64(z);
+                this.botLang = abstractSerializedData.readString(z);
+                int readInt327 = abstractSerializedData.readInt32(z);
+                if (readInt327 != 1450380236) {
+                    this.botEdit = TLRPC$InputMedia.TLdeserialize(abstractSerializedData, readInt327, z);
+                }
             }
         }
     }

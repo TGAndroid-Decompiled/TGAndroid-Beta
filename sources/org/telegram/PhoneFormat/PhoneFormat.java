@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+
 public class PhoneFormat {
     private static volatile PhoneFormat Instance;
     public ByteBuffer buffer;
@@ -95,8 +96,9 @@ public class PhoneFormat {
                 int read = inputStream.read(bArr, 0, 1024);
                 if (read == -1) {
                     break;
+                } else {
+                    byteArrayOutputStream.write(bArr, 0, read);
                 }
-                byteArrayOutputStream.write(bArr, 0, read);
             }
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             this.data = byteArray;
@@ -152,14 +154,16 @@ public class PhoneFormat {
                     FileLog.e(e8);
                 }
             }
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (Exception e9) {
-                    FileLog.e(e9);
-                }
+            if (inputStream == null) {
+                throw th;
             }
-            throw th;
+            try {
+                inputStream.close();
+                throw th;
+            } catch (Exception e9) {
+                FileLog.e(e9);
+                throw th;
+            }
         }
     }
 
@@ -177,54 +181,53 @@ public class PhoneFormat {
     }
 
     public String format(String str) {
-        if (this.initialzed) {
-            try {
-                String strip = strip(str);
-                if (strip.startsWith("+")) {
-                    String substring = strip.substring(1);
-                    CallingCodeInfo findCallingCodeInfo = findCallingCodeInfo(substring);
-                    if (findCallingCodeInfo != null) {
-                        String format = findCallingCodeInfo.format(substring);
-                        return "+" + format;
-                    }
+        if (!this.initialzed) {
+            return str;
+        }
+        try {
+            String strip = strip(str);
+            if (strip.startsWith("+")) {
+                String substring = strip.substring(1);
+                CallingCodeInfo findCallingCodeInfo = findCallingCodeInfo(substring);
+                if (findCallingCodeInfo == null) {
                     return str;
                 }
-                CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
-                if (callingCodeInfo == null) {
-                    return str;
-                }
-                String matchingAccessCode = callingCodeInfo.matchingAccessCode(strip);
-                if (matchingAccessCode != null) {
-                    String substring2 = strip.substring(matchingAccessCode.length());
-                    CallingCodeInfo findCallingCodeInfo2 = findCallingCodeInfo(substring2);
-                    if (findCallingCodeInfo2 != null) {
-                        substring2 = findCallingCodeInfo2.format(substring2);
-                    }
-                    return substring2.length() == 0 ? matchingAccessCode : String.format("%s %s", matchingAccessCode, substring2);
-                }
-                return callingCodeInfo.format(strip);
-            } catch (Exception e) {
-                FileLog.e(e);
+                return "+" + findCallingCodeInfo.format(substring);
+            }
+            CallingCodeInfo callingCodeInfo = callingCodeInfo(this.defaultCallingCode);
+            if (callingCodeInfo == null) {
                 return str;
             }
+            String matchingAccessCode = callingCodeInfo.matchingAccessCode(strip);
+            if (matchingAccessCode != null) {
+                String substring2 = strip.substring(matchingAccessCode.length());
+                CallingCodeInfo findCallingCodeInfo2 = findCallingCodeInfo(substring2);
+                if (findCallingCodeInfo2 != null) {
+                    substring2 = findCallingCodeInfo2.format(substring2);
+                }
+                return substring2.length() == 0 ? matchingAccessCode : String.format("%s %s", matchingAccessCode, substring2);
+            }
+            return callingCodeInfo.format(strip);
+        } catch (Exception e) {
+            FileLog.e(e);
+            return str;
         }
-        return str;
     }
 
     int value32(int i) {
-        if (i + 4 <= this.data.length) {
-            this.buffer.position(i);
-            return this.buffer.getInt();
+        if (i + 4 > this.data.length) {
+            return 0;
         }
-        return 0;
+        this.buffer.position(i);
+        return this.buffer.getInt();
     }
 
     short value16(int i) {
-        if (i + 2 <= this.data.length) {
-            this.buffer.position(i);
-            return this.buffer.getShort();
+        if (i + 2 > this.data.length) {
+            return (short) 0;
         }
-        return (short) 0;
+        this.buffer.position(i);
+        return this.buffer.getShort();
     }
 
     public java.lang.String valueString(int r5) {

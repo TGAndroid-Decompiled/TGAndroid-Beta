@@ -16,6 +16,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.RadioButton;
+
 @SuppressLint({"ViewConstructor"})
 public class SelectorCountryCell extends BaseCell {
     private final CheckBox2 checkBox;
@@ -38,7 +39,7 @@ public class SelectorCountryCell extends BaseCell {
 
     public SelectorCountryCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
         this.imageView.setVisibility(8);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);

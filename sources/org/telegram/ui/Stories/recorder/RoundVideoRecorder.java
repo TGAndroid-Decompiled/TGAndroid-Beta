@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraController;
@@ -21,6 +20,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.RoundView;
+
 public class RoundVideoRecorder extends FrameLayout {
     private float alpha;
     public final CameraView cameraView;
@@ -225,7 +225,7 @@ public class RoundVideoRecorder extends FrameLayout {
         StringBuilder sb = new StringBuilder();
         sb.append(i3);
         sb.append(":");
-        sb.append(i4 < 10 ? "0" : BuildConfig.APP_CENTER_HASH);
+        sb.append(i4 < 10 ? "0" : "");
         sb.append(i4);
         sb.append(".");
         sb.append(i2);

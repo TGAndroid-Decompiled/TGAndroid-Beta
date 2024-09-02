@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre;
+
 public class M4AInfo extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(M4AInfo.class.getName());
     private final Level debugLevel;
@@ -101,8 +102,7 @@ public class M4AInfo extends AudioInfo {
         } else if (logger.isLoggable(this.debugLevel)) {
             long j = (readLong * 1000) / readInt;
             if (Math.abs(this.duration - j) > 2) {
-                Level level = this.debugLevel;
-                logger.log(level, "mvhd: duration " + this.duration + " -> " + j);
+                logger.log(this.debugLevel, "mvhd: duration " + this.duration + " -> " + j);
             }
         }
         mP4Atom.readIntegerFixedPoint();
@@ -137,11 +137,12 @@ public class M4AInfo extends AudioInfo {
         long readLong = readByte == 1 ? mP4Atom.readLong() : mP4Atom.readInt();
         if (this.duration == 0) {
             this.duration = (readLong * 1000) / readInt;
-        } else if (logger.isLoggable(this.debugLevel)) {
+            return;
+        }
+        if (logger.isLoggable(this.debugLevel)) {
             long j = (readLong * 1000) / readInt;
             if (Math.abs(this.duration - j) > 2) {
-                Level level = this.debugLevel;
-                logger.log(level, "mdhd: duration " + this.duration + " -> " + j);
+                logger.log(this.debugLevel, "mdhd: duration " + this.duration + " -> " + j);
             }
         }
     }
@@ -188,8 +189,7 @@ public class M4AInfo extends AudioInfo {
             }
             if (nextChild.getRemaining() == 0) {
                 if (logger2.isLoggable(this.debugLevel)) {
-                    Level level = this.debugLevel;
-                    logger2.log(level, nextChild.getPath() + ": contains no value");
+                    logger2.log(this.debugLevel, nextChild.getPath() + ": contains no value");
                 }
             } else {
                 data(nextChild.nextChildUpTo("data"));
@@ -198,7 +198,6 @@ public class M4AInfo extends AudioInfo {
     }
 
     void data(MP4Atom mP4Atom) throws IOException {
-        Bitmap bitmap;
         Logger logger = LOGGER;
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4Atom.toString());
@@ -353,7 +352,7 @@ public class M4AInfo extends AudioInfo {
                     if (decodeByteArray != null) {
                         float max2 = Math.max(decodeByteArray.getWidth(), this.cover.getHeight()) / 120.0f;
                         if (max2 > 0.0f) {
-                            this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (bitmap.getWidth() / max2), (int) (this.cover.getHeight() / max2), true);
+                            this.smallCover = Bitmap.createScaledBitmap(this.cover, (int) (r0.getWidth() / max2), (int) (this.cover.getHeight() / max2), true);
                         } else {
                             this.smallCover = this.cover;
                         }

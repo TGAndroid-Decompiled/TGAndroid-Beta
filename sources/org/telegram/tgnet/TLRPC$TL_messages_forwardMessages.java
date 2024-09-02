@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_messages_forwardMessages extends TLObject {
     public boolean background;
     public boolean drop_author;
@@ -31,13 +31,13 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
         this.flags = i2;
-        int i3 = this.with_my_score ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
+        int i3 = this.with_my_score ? i2 | 256 : i2 & (-257);
         this.flags = i3;
         int i4 = this.drop_author ? i3 | 2048 : i3 & (-2049);
         this.flags = i4;
-        int i5 = this.drop_media_captions ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i4 & (-4097);
+        int i5 = this.drop_media_captions ? i4 | 4096 : i4 & (-4097);
         this.flags = i5;
-        int i6 = this.noforwards ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i5 & (-16385);
+        int i6 = this.noforwards ? i5 | 16384 : i5 & (-16385);
         this.flags = i6;
         abstractSerializedData.writeInt32(i6);
         this.from_peer.serializeToStream(abstractSerializedData);
@@ -54,13 +54,13 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
             abstractSerializedData.writeInt64(this.random_id.get(i8).longValue());
         }
         this.to_peer.serializeToStream(abstractSerializedData);
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);
         }
         if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+        if ((this.flags & 8192) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 131072) != 0) {

@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -26,6 +25,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
+
 public class TextSettingsCell extends FrameLayout {
     private boolean canDisable;
     private int changeProgressStartDelay;
@@ -247,13 +247,12 @@ public class TextSettingsCell extends FrameLayout {
     @Override
     public void setEnabled(boolean z) {
         super.setEnabled(z);
-        float f = 0.5f;
         this.textView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
         if (this.valueTextView.getVisibility() == 0) {
             this.valueTextView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
         }
         if (this.valueImageView.getVisibility() == 0) {
-            this.valueImageView.setAlpha((z || !this.canDisable) ? 1.0f : 1.0f);
+            this.valueImageView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
         }
     }
 
@@ -320,8 +319,7 @@ public class TextSettingsCell extends FrameLayout {
         this.valueTextView.setAlpha(1.0f - this.drawLoadingProgress);
         super.dispatchDraw(canvas);
         if (this.needDivider) {
-            int dp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f);
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : dp, getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? dp : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 71.0f : 20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? r0 : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }
     }
 
@@ -333,7 +331,7 @@ public class TextSettingsCell extends FrameLayout {
         sb.append((Object) this.textView.getText());
         AnimatedTextView animatedTextView = this.valueTextView;
         if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             str = "\n" + ((Object) this.valueTextView.getText());
         }

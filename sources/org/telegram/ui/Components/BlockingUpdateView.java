@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
+import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -20,7 +21,6 @@ import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LocaleController;
@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.tgnet.TLRPC$TL_help_getAppUpdate;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class BlockingUpdateView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private FrameLayout acceptButton;
     private TextView acceptTextView;
@@ -66,7 +67,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         FrameLayout frameLayout = new FrameLayout(context);
         addView(frameLayout, new FrameLayout.LayoutParams(-1, AndroidUtilities.dp(176.0f) + (i2 >= 21 ? AndroidUtilities.statusBarHeight : 0)));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
-        rLottieImageView.setAnimation(R.raw.qr_code_logo, R.styleable.AppCompatTheme_textAppearanceSearchResultTitle, R.styleable.AppCompatTheme_textAppearanceSearchResultTitle);
+        rLottieImageView.setAnimation(R.raw.qr_code_logo, 108, 108);
         rLottieImageView.playAnimation();
         rLottieImageView.getAnimatedDrawable().setAutoRepeat(1);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -91,7 +92,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         textView.setTextColor(Theme.getColor(i4));
         textView.setTextSize(1, 20.0f);
         textView.setGravity(49);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString("UpdateTelegram", R.string.UpdateTelegram));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 49));
         TextView textView2 = new TextView(context);
@@ -145,7 +146,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         TextView textView3 = new TextView(context);
         this.acceptTextView = textView3;
         textView3.setGravity(17);
-        this.acceptTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.acceptTextView.setTypeface(AndroidUtilities.bold());
         this.acceptTextView.setTextColor(-1);
         this.acceptTextView.setTextSize(1, 14.0f);
         this.acceptButton.addView(this.acceptTextView, LayoutHelper.createFrame(-2, -2, 17));
@@ -197,11 +198,17 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
                     }
                     FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
                     showProgress(true);
-                } else if (tLRPC$TL_help_appUpdate.url != null) {
-                    Browser.openUrl(getContext(), this.appUpdate.url);
+                    return;
                 }
+                if (tLRPC$TL_help_appUpdate.url != null) {
+                    Browser.openUrl(getContext(), this.appUpdate.url);
+                    return;
+                }
+                return;
             }
-        } else if (BuildVars.isHuaweiStoreApp()) {
+            return;
+        }
+        if (BuildVars.isHuaweiStoreApp()) {
             Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
         } else {
             Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
@@ -228,14 +235,18 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             }
             showProgress(false);
             ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
-        } else if (i == NotificationCenter.fileLoadFailed) {
+            return;
+        }
+        if (i == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
             String str4 = this.fileName;
             if (str4 == null || !str4.equals(str3)) {
                 return;
             }
             showProgress(false);
-        } else if (i == NotificationCenter.fileLoadProgressChanged) {
+            return;
+        }
+        if (i == NotificationCenter.fileLoadProgressChanged) {
             String str5 = (String) objArr[0];
             String str6 = this.fileName;
             if (str6 == null || !str6.equals(str5)) {
@@ -254,11 +265,11 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         if (z) {
             this.radialProgressView.setVisibility(0);
             this.acceptButton.setEnabled(false);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 1.0f));
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.ALPHA, 1.0f));
         } else {
             this.acceptTextView.setVisibility(0);
             this.acceptButton.setEnabled(true);
-            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, View.ALPHA, 1.0f));
+            this.progressAnimation.playTogether(ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.SCALE_Y, 0.1f), ObjectAnimator.ofFloat(this.radialProgressView, (Property<FrameLayout, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.acceptTextView, (Property<TextView, Float>) View.ALPHA, 1.0f));
         }
         this.progressAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -300,8 +311,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         MessageObject.addEntitiesToText(spannableStringBuilder, tLRPC$TL_help_appUpdate.entities, false, false, false, false);
         this.textView.setText(spannableStringBuilder);
         if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-            TextView textView = this.acceptTextView;
-            textView.setText(LocaleController.getString("Update", R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
+            this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update) + String.format(Locale.US, " (%1$s)", AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate.document.size)));
         } else {
             this.acceptTextView.setText(LocaleController.getString("Update", R.string.Update));
         }
@@ -315,7 +325,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             } catch (Exception unused) {
             }
             if (tLRPC$TL_help_getAppUpdate.source == null) {
-                tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_help_getAppUpdate.source = "";
             }
             ConnectionsManager.getInstance(this.accountNum).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
                 @Override

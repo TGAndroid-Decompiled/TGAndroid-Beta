@@ -1,11 +1,15 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.text.Layout;
@@ -25,7 +29,9 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public class LinkSpanDrawable<S extends CharacterStyle> {
     private static final ArrayList<LinkPath> pathCache = new ArrayList<>();
     private final Path circlePath;
@@ -55,20 +61,20 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     }
 
     public LinkSpanDrawable(S s, Theme.ResourcesProvider resourcesProvider, float f, float f2, boolean z) {
-        long j;
         this.mPathes = new ArrayList<>();
         this.mPathesCount = 0;
         this.circlePath = new Path();
         this.mStart = -1L;
         this.mReleaseStart = -1L;
-        this.isLite = !LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
+        this.isLite = !LiteMode.isEnabled(98784);
         this.mSpan = s;
         this.mResourcesProvider = resourcesProvider;
         setColor(Theme.getColor(Theme.key_chat_linkSelectBackground, resourcesProvider));
         this.mTouchX = f;
         this.mTouchY = f2;
+        long tapTimeout = ViewConfiguration.getTapTimeout();
         this.mLongPressDuration = ViewConfiguration.getLongPressTimeout();
-        this.mDuration = Math.min(ViewConfiguration.getTapTimeout() * 1.8f, ((float) j) * 0.8f);
+        this.mDuration = Math.min(((float) tapTimeout) * 1.8f, ((float) r5) * 0.8f);
         this.mSupportsLongPress = false;
     }
 
@@ -147,12 +153,14 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             }
         }
         if (this.mBounds == null && this.mPathesCount > 0) {
+            LinkPath linkPath = this.mPathes.get(0);
             RectF rectF = AndroidUtilities.rectTmp;
-            this.mPathes.get(0).computeBounds(rectF, false);
+            linkPath.computeBounds(rectF, false);
             this.mBounds = new android.graphics.Rect((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             for (int i = 1; i < this.mPathesCount; i++) {
+                LinkPath linkPath2 = this.mPathes.get(i);
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                this.mPathes.get(i).computeBounds(rectF2, false);
+                linkPath2.computeBounds(rectF2, false);
                 android.graphics.Rect rect = this.mBounds;
                 rect.left = Math.min(rect.left, (int) rectF2.left);
                 android.graphics.Rect rect2 = this.mBounds;
@@ -178,8 +186,9 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         long j = this.mReleaseStart;
         float min = j < 0 ? 0.0f : Math.min(1.0f, Math.max(0.0f, ((float) ((elapsedRealtime - 75) - j)) / 100.0f));
         if (this.mSupportsLongPress) {
-            long j2 = this.mDuration;
-            float max = Math.max(0.0f, ((float) ((elapsedRealtime - this.mStart) - (j2 * 2))) / ((float) (this.mLongPressDuration - (j2 * 2))));
+            long j2 = elapsedRealtime - this.mStart;
+            long j3 = this.mDuration;
+            float max = Math.max(0.0f, ((float) (j2 - (j3 * 2))) / ((float) (this.mLongPressDuration - (j3 * 2))));
             f = (max > 1.0f ? 1.0f - (((float) ((elapsedRealtime - this.mStart) - this.mLongPressDuration)) / ((float) this.mDuration)) : max * 0.5f) * (1.0f - min);
         } else {
             f = 1.0f;
@@ -195,9 +204,10 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         this.mRipplePaint.setAlpha((int) (this.mRippleAlpha * 0.8f * f2));
         this.mRipplePaint.setStrokeWidth(Math.min(1.0f, f3) * AndroidUtilities.dp(5.0f));
         if (interpolation < 1.0f) {
+            float f4 = this.mMaxRadius * interpolation;
             canvas.save();
             this.circlePath.reset();
-            this.circlePath.addCircle(this.mTouchX, this.mTouchY, this.mMaxRadius * interpolation, Path.Direction.CW);
+            this.circlePath.addCircle(this.mTouchX, this.mTouchY, f4, Path.Direction.CW);
             canvas.clipPath(this.circlePath);
             for (int i4 = 0; i4 < this.mPathesCount; i4++) {
                 canvas.drawPath(this.mPathes.get(i4), this.mRipplePaint);
@@ -212,6 +222,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
     }
 
     public static class LinkCollector {
+        private Runnable additionalInvalidate;
         private ArrayList<Pair<LinkSpanDrawable, Object>> mLinks = new ArrayList<>();
         private int mLinksCount = 0;
         private ArrayList<Pair<LoadingDrawable, Object>> mLoading = new ArrayList<>();
@@ -223,6 +234,10 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinkCollector(View view) {
             this.mParent = view;
+        }
+
+        public void setAdditionalInvalidate(Runnable runnable) {
+            this.additionalInvalidate = runnable;
         }
 
         public void addLink(LinkSpanDrawable linkSpanDrawable) {
@@ -276,34 +291,33 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             while (true) {
                 if (i >= this.mLinksCount) {
                     break;
-                } else if (this.mLinks.get(i).first == linkSpanDrawable) {
+                }
+                if (this.mLinks.get(i).first == linkSpanDrawable) {
                     pair = this.mLinks.get(i);
                     break;
-                } else {
-                    i++;
                 }
+                i++;
             }
             if (pair == null) {
                 return;
             }
-            if (z) {
-                if (linkSpanDrawable.mReleaseStart < 0) {
-                    linkSpanDrawable.release();
-                    invalidate(pair.second);
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            LinkSpanDrawable.LinkCollector.this.lambda$removeLink$0(linkSpanDrawable);
-                        }
-                    }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 75 + 100));
-                    return;
-                }
+            if (!z) {
+                this.mLinks.remove(pair);
+                linkSpanDrawable.reset();
+                this.mLinksCount = this.mLinks.size();
+                invalidate(pair.second);
                 return;
             }
-            this.mLinks.remove(pair);
-            linkSpanDrawable.reset();
-            this.mLinksCount = this.mLinks.size();
-            invalidate(pair.second);
+            if (linkSpanDrawable.mReleaseStart < 0) {
+                linkSpanDrawable.release();
+                invalidate(pair.second);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        LinkSpanDrawable.LinkCollector.this.lambda$removeLink$0(linkSpanDrawable);
+                    }
+                }, Math.max(0L, (linkSpanDrawable.mReleaseStart - SystemClock.elapsedRealtime()) + 75 + 100));
+            }
         }
 
         public void lambda$removeLink$0(LinkSpanDrawable linkSpanDrawable) {
@@ -405,6 +419,22 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             }
         }
 
+        public void clearLoading(boolean z) {
+            if (z) {
+                for (int i = 0; i < this.mLoadingCount; i++) {
+                    removeLoadingAt(i, true);
+                }
+            } else if (this.mLoadingCount > 0) {
+                for (int i2 = 0; i2 < this.mLoadingCount; i2++) {
+                    ((LoadingDrawable) this.mLoading.get(i2).first).reset();
+                    invalidate(this.mLoading.get(i2).second, false);
+                }
+                this.mLoading.clear();
+                this.mLoadingCount = 0;
+                invalidate();
+            }
+        }
+
         public void removeLinks(Object obj) {
             removeLinks(obj, true);
         }
@@ -466,26 +496,55 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                 ((View) obj).invalidate();
             } else if (obj instanceof ArticleViewer.DrawingText) {
                 ((ArticleViewer.DrawingText) obj).invalidateParent();
-            } else if (!z || (view = this.mParent) == null) {
-            } else {
+            } else if (z && (view = this.mParent) != null) {
                 view.invalidate();
+            }
+            Runnable runnable = this.additionalInvalidate;
+            if (runnable != null) {
+                runnable.run();
             }
         }
     }
 
     public static class LinksTextView extends TextView {
+        private CharacterStyle currentLinkLoading;
         private boolean disablePaddingsOffset;
         private boolean disablePaddingsOffsetX;
         private boolean disablePaddingsOffsetY;
+        private ColorFilter emojiColorFilter;
         private boolean isCustomLinkCollector;
-        private LinkCollector links;
+        private final LinkCollector links;
+        private boolean loggedError;
         private OnLinkPress onLongPressListener;
         private OnLinkPress onPressListener;
         private LinkSpanDrawable<ClickableSpan> pressedLink;
         private Theme.ResourcesProvider resourcesProvider;
+        AnimatedEmojiSpan.EmojiGroupedSpans stack;
 
         public interface OnLinkPress {
             void run(ClickableSpan clickableSpan);
+        }
+
+        protected int emojiCacheType() {
+            return 0;
+        }
+
+        protected int processColor(int i) {
+            return i;
+        }
+
+        public void setLoading(CharacterStyle characterStyle) {
+            if (this.currentLinkLoading != characterStyle) {
+                this.links.clearLoading(true);
+                this.currentLinkLoading = characterStyle;
+                LoadingDrawable makeLoading = LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
+                if (makeLoading != null) {
+                    int processColor = processColor(Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider));
+                    makeLoading.setColors(Theme.multAlpha(processColor, 0.8f), Theme.multAlpha(processColor, 1.3f), Theme.multAlpha(processColor, 1.0f), Theme.multAlpha(processColor, 4.0f));
+                    makeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    this.links.addLoading(makeLoading);
+                }
+            }
         }
 
         public LinksTextView(Context context) {
@@ -494,6 +553,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinksTextView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.loggedError = false;
             this.isCustomLinkCollector = false;
             this.links = new LinkCollector(this);
             this.resourcesProvider = resourcesProvider;
@@ -501,6 +561,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
 
         public LinksTextView(Context context, LinkCollector linkCollector, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.loggedError = false;
             this.isCustomLinkCollector = true;
             this.links = linkCollector;
             this.resourcesProvider = resourcesProvider;
@@ -608,18 +669,44 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
-            if (!this.isCustomLinkCollector) {
-                canvas.save();
-                if (!this.disablePaddingsOffset) {
-                    canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
-                }
-                if (this.links.draw(canvas)) {
-                    invalidate();
-                }
-                canvas.restore();
-            }
-            super.onDraw(canvas);
+        public void onDraw(android.graphics.Canvas r15) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LinkSpanDrawable.LinksTextView.onDraw(android.graphics.Canvas):void");
+        }
+
+        @Override
+        public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+            super.setText(charSequence, bufferType);
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.stack = AnimatedEmojiSpan.update(emojiCacheType(), this, this.stack, getLayout());
+        }
+
+        @Override
+        public void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            AnimatedEmojiSpan.release(this, this.stack);
+        }
+
+        @Override
+        public void setTextColor(int i) {
+            super.setTextColor(i);
+            this.emojiColorFilter = new PorterDuffColorFilter(getPaint().linkColor, PorterDuff.Mode.SRC_IN);
+        }
+
+        @Override
+        public void setTextColor(ColorStateList colorStateList) {
+            super.setTextColor(colorStateList);
+            this.emojiColorFilter = new PorterDuffColorFilter(getPaint().linkColor, PorterDuff.Mode.SRC_IN);
         }
     }
 
@@ -679,14 +766,16 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
                         }
                     }, ViewConfiguration.getLongPressTimeout());
                     return true;
-                } else if (motionEvent.getAction() == 1) {
+                }
+                if (motionEvent.getAction() == 1) {
                     this.links.clear();
                     if (this.pressedLink != null) {
                         performClick();
                     }
                     this.pressedLink = null;
                     return true;
-                } else if (motionEvent.getAction() == 3) {
+                }
+                if (motionEvent.getAction() == 3) {
                     this.links.clear();
                     this.pressedLink = null;
                     return true;

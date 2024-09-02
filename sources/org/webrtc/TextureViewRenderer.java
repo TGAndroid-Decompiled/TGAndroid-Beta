@@ -9,7 +9,6 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
@@ -18,6 +17,7 @@ import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
+
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
     private TextureView backgroundRenderer;
@@ -45,34 +45,34 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     private int videoWidth;
 
     public void setBackgroundRenderer(TextureView textureView) {
-        if (LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+        if (LiteMode.isEnabled(512)) {
             this.backgroundRenderer = textureView;
             if (textureView == null) {
                 ThreadUtils.checkIsOnMainThread();
                 this.eglRenderer.releaseEglSurface(null, true);
-                return;
+            } else {
+                textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+                    @Override
+                    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+                    }
+
+                    @Override
+                    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                    }
+
+                    @Override
+                    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+                        TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
+                    }
+
+                    @Override
+                    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+                        ThreadUtils.checkIsOnMainThread();
+                        TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
+                        return false;
+                    }
+                });
             }
-            textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-                @Override
-                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-                }
-
-                @Override
-                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-                }
-
-                @Override
-                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-                    TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
-                }
-
-                @Override
-                public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-                    ThreadUtils.checkIsOnMainThread();
-                    TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
-                    return false;
-                }
-            });
         }
     }
 
@@ -188,7 +188,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         private void logD(String str) {
-            Logging.d(TAG, this.name + ": " + str);
+            Logging.d("TextureEglRenderer", this.name + ": " + str);
         }
 
         @Override
@@ -436,7 +436,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         try {
             return getResources().getResourceEntryName(getId());
         } catch (Resources.NotFoundException unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
@@ -597,7 +597,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void logD(String str) {
-        Logging.d(TAG, this.resourceName + ": " + str);
+        Logging.d("TextureViewRenderer", this.resourceName + ": " + str);
     }
 
     public void createBackgroundSurface(SurfaceTexture surfaceTexture) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_block extends TLObject {
     public int flags;
     public TLRPC$InputPeer id;

@@ -12,10 +12,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
 public class EmuDetector {
     private static final String IP = "10.0.2.15";
     private static final int MIN_PROPERTIES_THRESHOLD = 5;
+
     @SuppressLint({"StaticFieldLeak"})
     private static EmuDetector mEmulatorDetector;
     private boolean detectResult;
@@ -142,8 +145,9 @@ public class EmuDetector {
     private boolean checkPackageName() {
         if (this.isCheckPackage && !this.mListPackageName.isEmpty()) {
             PackageManager packageManager = this.mContext.getPackageManager();
-            for (String str : this.mListPackageName) {
-                Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(str);
+            Iterator<String> it = this.mListPackageName.iterator();
+            while (it.hasNext()) {
+                Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(it.next());
                 if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, 65536).isEmpty()) {
                     return true;
                 }
@@ -209,7 +213,6 @@ public class EmuDetector {
                         return true;
                     }
                 }
-                continue;
             }
         }
         return false;
@@ -235,7 +238,6 @@ public class EmuDetector {
     }
 
     private boolean checkQEmuProps() {
-        Property[] propertyArr;
         int i = 0;
         for (Property property : PROPERTIES) {
             String prop = getProp(this.mContext, property.name);
@@ -251,32 +253,31 @@ public class EmuDetector {
     }
 
     private boolean checkIp() {
-        String[] split;
-        if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") == 0) {
-            String[] strArr = {"/system/bin/netcfg"};
-            StringBuilder sb = new StringBuilder();
-            try {
-                ProcessBuilder processBuilder = new ProcessBuilder(strArr);
-                processBuilder.directory(new File("/system/bin/"));
-                processBuilder.redirectErrorStream(true);
-                InputStream inputStream = processBuilder.start().getInputStream();
-                byte[] bArr = new byte[1024];
-                while (inputStream.read(bArr) != -1) {
-                    sb.append(new String(bArr));
-                }
-                inputStream.close();
-            } catch (Exception unused) {
-            }
-            String sb2 = sb.toString();
-            if (TextUtils.isEmpty(sb2)) {
-                return false;
-            }
-            for (String str : sb2.split("\n")) {
-                if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains(IP)) {
-                    return true;
-                }
-            }
+        if (ContextCompat.checkSelfPermission(this.mContext, "android.permission.INTERNET") != 0) {
             return false;
+        }
+        String[] strArr = {"/system/bin/netcfg"};
+        StringBuilder sb = new StringBuilder();
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder(strArr);
+            processBuilder.directory(new File("/system/bin/"));
+            processBuilder.redirectErrorStream(true);
+            InputStream inputStream = processBuilder.start().getInputStream();
+            byte[] bArr = new byte[1024];
+            while (inputStream.read(bArr) != -1) {
+                sb.append(new String(bArr));
+            }
+            inputStream.close();
+        } catch (Exception unused) {
+        }
+        String sb2 = sb.toString();
+        if (TextUtils.isEmpty(sb2)) {
+            return false;
+        }
+        for (String str : sb2.split("\n")) {
+            if ((str.contains("wlan0") || str.contains("tunl0") || str.contains("eth0")) && str.contains("10.0.2.15")) {
+                return true;
+            }
         }
         return false;
     }

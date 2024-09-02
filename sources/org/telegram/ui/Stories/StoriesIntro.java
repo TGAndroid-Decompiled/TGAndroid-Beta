@@ -24,11 +24,11 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
+
 @SuppressLint({"ViewConstructor"})
 public class StoriesIntro extends FrameLayout {
     private int current;
@@ -63,7 +63,7 @@ public class StoriesIntro extends FrameLayout {
         linearLayout.setGravity(1);
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString("StoriesIntroHeader", R.string.StoriesIntroHeader));
         textView.setTextSize(1, 20.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
@@ -95,7 +95,7 @@ public class StoriesIntro extends FrameLayout {
         }
         final TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("StoriesIntroDismiss", R.string.StoriesIntroDismiss));
         textView3.setTextSize(1, 14.0f);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f, 73.0f, 0.0f, 0.0f));
@@ -202,7 +202,7 @@ public class StoriesIntro extends FrameLayout {
             this.textBounds = new Rect();
             this.header = str;
             this.subHeader = str2;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
             this.lottieDrawable = rLottieDrawable;
             rLottieDrawable.setAutoRepeat(1);
             rLottieDrawable.setMasterParent(this);
@@ -213,7 +213,7 @@ public class StoriesIntro extends FrameLayout {
             this.headerTextPaint = textPaint;
             textPaint.setColor(-1);
             textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
-            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textPaint.setTypeface(AndroidUtilities.bold());
             TextPaint textPaint2 = new TextPaint(1);
             this.subHeaderTextPaint = textPaint2;
             textPaint2.setColor(-1761607681);
@@ -257,22 +257,24 @@ public class StoriesIntro extends FrameLayout {
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = AndroidUtilities.dp(36.0f);
             int i3 = dp2 / 2;
             int i4 = dp - i3;
-            int measuredHeight = (getMeasuredHeight() / 2) - i3;
-            this.lottieDrawable.setBounds(i4, measuredHeight, i4 + dp2, dp2 + measuredHeight);
+            int i5 = measuredHeight - i3;
+            this.lottieDrawable.setBounds(i4, i5, i4 + dp2, dp2 + i5);
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
             int dp = AndroidUtilities.dp(40.0f);
+            int measuredHeight = getMeasuredHeight() / 2;
             int dp2 = (int) (AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(8.0f) * this.progress));
             int i = dp2 / 2;
             int i2 = dp - i;
-            int measuredHeight = (getMeasuredHeight() / 2) - i;
-            this.lottieDrawable.setBounds(i2, measuredHeight, i2 + dp2, dp2 + measuredHeight);
+            int i3 = measuredHeight - i;
+            this.lottieDrawable.setBounds(i2, i3, i2 + dp2, dp2 + i3);
             this.lottieDrawable.draw(canvas);
             if (this.progress > 0.0f) {
                 float dpf2 = AndroidUtilities.dpf2(4.0f) * (1.0f - this.progress);

@@ -3,6 +3,7 @@ package org.telegram.ui.Components.Premium.boosts.cells;
 import android.content.Context;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCheckCell;
+
 public class SwitcherCell extends TextCheckCell {
     public static int TYPE_ADDITION_PRIZE = 1;
     public static int TYPE_WINNERS;

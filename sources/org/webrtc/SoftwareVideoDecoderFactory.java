@@ -2,6 +2,7 @@ package org.webrtc;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class SoftwareVideoDecoderFactory implements VideoDecoderFactory {
     @Override
     @Deprecated

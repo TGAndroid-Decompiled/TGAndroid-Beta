@@ -19,7 +19,6 @@ import android.view.VelocityTracker;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -40,6 +39,7 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.Scroller;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.Text;
+
 public class ChannelRecommendationsCell {
     private ChatMessageCell cell;
     private float channelsScrollWidth;
@@ -83,7 +83,6 @@ public class ChannelRecommendationsCell {
     }
 
     public void setMessageObject(MessageObject messageObject) {
-        StaticLayout staticLayout;
         int i;
         int i2;
         this.currentAccount = messageObject.currentAccount;
@@ -91,11 +90,11 @@ public class ChannelRecommendationsCell {
         this.dialogId = messageObject.getDialogId();
         MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
         this.chatId = -this.dialogId;
-        this.serviceTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.serviceTextPaint.setTypeface(AndroidUtilities.bold());
         this.serviceTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.serviceTextPaint.setColor(this.cell.getThemedColor(Theme.key_chat_serviceText));
         this.serviceText = new StaticLayout(LocaleController.getString(R.string.ChannelJoined), this.serviceTextPaint, this.msg.getMaxMessageTextWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-        this.serviceTextLeft = staticLayout.getWidth();
+        this.serviceTextLeft = r12.getWidth();
         this.serviceTextRight = 0.0f;
         for (int i3 = 0; i3 < this.serviceText.getLineCount(); i3++) {
             this.serviceTextLeft = Math.min(this.serviceTextLeft, this.serviceText.getLineLeft(i3));
@@ -108,7 +107,7 @@ public class ChannelRecommendationsCell {
         this.closePaint.setColor(this.cell.getThemedColor(Theme.key_dialogEmptyImage));
         this.cell.totalHeight = AndroidUtilities.dp(14.66f) + this.serviceTextHeight;
         if (this.headerText == null) {
-            this.headerText = new Text(LocaleController.getString(R.string.SimilarChannels), 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)).hackClipBounds();
+            this.headerText = new Text(LocaleController.getString(R.string.SimilarChannels), 14.0f, AndroidUtilities.bold()).hackClipBounds();
         }
         for (int i4 = 0; i4 < this.channels.size(); i4++) {
             this.channels.get(i4).detach();
@@ -184,7 +183,6 @@ public class ChannelRecommendationsCell {
     public void draw(Canvas canvas) {
         float f;
         float f2;
-        int dp;
         if (this.msg == null || this.cell == null) {
             return;
         }
@@ -215,7 +213,7 @@ public class ChannelRecommendationsCell {
         if (clamp > 0.0f) {
             int width2 = this.cell.getWidth() - AndroidUtilities.dp(18.0f);
             this.blockWidth = (int) (width2 > AndroidUtilities.dp(441.0f) ? AndroidUtilities.dp(66.0f) : Math.max((width2 / 4.5f) - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(66.0f)));
-            this.channelsScrollWidth = (dp * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
+            this.channelsScrollWidth = (r4 * this.channels.size()) + (AndroidUtilities.dp(9.0f) * (this.channels.size() - 1));
             int min = (int) Math.min(width2, this.blockWidth * 6.5f);
             this.backgroundBounds.set((this.cell.getWidth() - min) / 2.0f, AndroidUtilities.dp(10.0f) + f, (this.cell.getWidth() + min) / 2.0f, f + AndroidUtilities.dp(138.0f));
             this.scrollX = Utilities.clamp(this.scrollX, this.channelsScrollWidth - (this.backgroundBounds.width() - AndroidUtilities.dp(14.0f)), 0.0f);
@@ -232,15 +230,15 @@ public class ChannelRecommendationsCell {
                 text.draw(canvas, AndroidUtilities.dp(17.0f) + this.backgroundBounds.left, AndroidUtilities.dp(20.0f) + this.backgroundBounds.top, this.cell.getThemedColor(Theme.key_windowBackgroundWhiteBlackText), clamp);
             }
             float f4 = this.loadingAlpha.set(this.loading);
-            float dp2 = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
-            float dp3 = this.blockWidth + AndroidUtilities.dp(9.0f);
-            int floor = (int) Math.floor(((this.backgroundBounds.left - min) - dp2) / dp3);
-            int ceil = (int) Math.ceil((this.backgroundBounds.right - dp2) / dp3);
+            float dp = (this.backgroundBounds.left + AndroidUtilities.dp(7.0f)) - this.scrollX;
+            float dp2 = this.blockWidth + AndroidUtilities.dp(9.0f);
+            int floor = (int) Math.floor(((this.backgroundBounds.left - min) - dp) / dp2);
+            int ceil = (int) Math.ceil((this.backgroundBounds.right - dp) / dp2);
             if (f4 < 1.0f) {
                 for (int max = Math.max(0, floor); max < Math.min(ceil + 1, this.channels.size()); max++) {
                     ChannelBlock channelBlock = this.channels.get(max);
                     canvas.save();
-                    canvas.translate((max * dp3) + dp2, this.backgroundBounds.bottom - ChannelBlock.height());
+                    canvas.translate((max * dp2) + dp, this.backgroundBounds.bottom - ChannelBlock.height());
                     float f5 = (1.0f - f4) * clamp;
                     channelBlock.draw(canvas, this.blockWidth, f5);
                     channelBlock.drawText(canvas, this.blockWidth, f5);
@@ -250,7 +248,7 @@ public class ChannelRecommendationsCell {
             if (f4 > 0.0f) {
                 this.loadingPath.rewind();
                 for (int max2 = Math.max(0, floor); max2 < ceil; max2++) {
-                    ChannelBlock.fillPath(this.loadingPath, this.blockWidth, (max2 * dp3) + dp2);
+                    ChannelBlock.fillPath(this.loadingPath, this.blockWidth, (max2 * dp2) + dp);
                 }
                 if (this.loadingDrawable == null) {
                     LoadingDrawable loadingDrawable = new LoadingDrawable();
@@ -268,14 +266,14 @@ public class ChannelRecommendationsCell {
                 canvas.restore();
             }
             float scale = this.closeBounce.getScale(0.02f);
-            float dp4 = this.backgroundBounds.right - AndroidUtilities.dp(20.0f);
-            float dp5 = this.backgroundBounds.top + AndroidUtilities.dp(20.0f);
+            float dp3 = this.backgroundBounds.right - AndroidUtilities.dp(20.0f);
+            float dp4 = this.backgroundBounds.top + AndroidUtilities.dp(20.0f);
             canvas.save();
-            canvas.scale(scale, scale, dp4, dp5);
+            canvas.scale(scale, scale, dp3, dp4);
             this.closePaint.setStrokeWidth(AndroidUtilities.dp(1.33f));
-            canvas.drawLine(dp4 - AndroidUtilities.dp(4.0f), dp5 - AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp5 + AndroidUtilities.dp(4.0f), this.closePaint);
-            canvas.drawLine(dp4 - AndroidUtilities.dp(4.0f), dp5 + AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp5 - AndroidUtilities.dp(4.0f), this.closePaint);
-            this.closeBounds.set(dp4 - AndroidUtilities.dp(12.0f), dp5 - AndroidUtilities.dp(12.0f), dp4 + AndroidUtilities.dp(12.0f), dp5 + AndroidUtilities.dp(12.0f));
+            canvas.drawLine(dp3 - AndroidUtilities.dp(4.0f), dp4 - AndroidUtilities.dp(4.0f), dp3 + AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), this.closePaint);
+            canvas.drawLine(dp3 - AndroidUtilities.dp(4.0f), dp4 + AndroidUtilities.dp(4.0f), dp3 + AndroidUtilities.dp(4.0f), dp4 - AndroidUtilities.dp(4.0f), this.closePaint);
+            this.closeBounds.set(dp3 - AndroidUtilities.dp(12.0f), dp4 - AndroidUtilities.dp(12.0f), dp3 + AndroidUtilities.dp(12.0f), dp4 + AndroidUtilities.dp(12.0f));
             canvas.restore();
             canvas.restore();
         }
@@ -406,7 +404,7 @@ public class ChannelRecommendationsCell {
                 this.subscribersText = null;
                 return;
             }
-            this.subscribersText = new Text("+" + i2, 9.33f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.subscribersText = new Text("+" + i2, 9.33f, AndroidUtilities.bold());
         }
 
         private void checkNameText(int i) {
@@ -415,9 +413,9 @@ public class ChannelRecommendationsCell {
                 if (Build.VERSION.SDK_INT >= 23) {
                     CharSequence charSequence = this.name;
                     this.nameText = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), this.nameTextPaint, i).setMaxLines(2).setEllipsize(TextUtils.TruncateAt.END).setBreakStrategy(0).setAlignment(Layout.Alignment.ALIGN_CENTER).build();
-                    return;
+                } else {
+                    this.nameText = StaticLayoutEx.createStaticLayout(this.name, this.nameTextPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i - AndroidUtilities.dp(16.0f), 2, false);
                 }
-                this.nameText = StaticLayoutEx.createStaticLayout(this.name, this.nameTextPaint, i, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i - AndroidUtilities.dp(16.0f), 2, false);
             }
         }
 
@@ -448,24 +446,23 @@ public class ChannelRecommendationsCell {
             avatarDrawableArr[0].setInfo(i, tLRPC$Chat);
             imageReceiverArr[0].setForUserOrChat(tLRPC$Chat, avatarDrawableArr[0]);
             textPaint.setTextSize(AndroidUtilities.dp(11.0f));
-            CharSequence charSequence = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
+            String str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
             try {
-                charSequence = Emoji.replaceEmoji(charSequence, textPaint.getFontMetricsInt(), false);
+                str = Emoji.replaceEmoji(str, textPaint.getFontMetricsInt(), false);
             } catch (Exception unused) {
             }
-            this.name = charSequence;
+            this.name = str;
             this.subscribersStrokePaint.setStyle(Paint.Style.STROKE);
             this.isLock = false;
             this.subscribersDrawable = chatMessageCell.getContext().getResources().getDrawable(R.drawable.mini_reply_user).mutate();
             if (tLRPC$Chat == null || (i2 = tLRPC$Chat.participants_count) <= 1) {
                 this.subscribersText = null;
             } else {
-                this.subscribersText = new Text(LocaleController.formatShortNumber(i2, null), 9.33f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.subscribersText = new Text(LocaleController.formatShortNumber(i2, null), 9.33f, AndroidUtilities.bold());
             }
         }
 
         public void drawText(Canvas canvas, int i, float f) {
-            TextPaint textPaint;
             canvas.save();
             float scale = this.bounce.getScale(0.075f);
             float f2 = i;
@@ -479,7 +476,7 @@ public class ChannelRecommendationsCell {
                 } else {
                     this.nameTextPaint.setColor(this.cell.getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
                 }
-                this.nameTextPaint.setAlpha((int) (textPaint.getAlpha() * f));
+                this.nameTextPaint.setAlpha((int) (r0.getAlpha() * f));
                 this.nameText.draw(canvas);
                 canvas.restore();
             }

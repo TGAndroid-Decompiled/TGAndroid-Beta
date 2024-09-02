@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$ChatParticipant extends TLObject {
     public int date;
     public long inviter_id;

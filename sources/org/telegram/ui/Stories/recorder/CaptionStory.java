@@ -17,14 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -39,6 +37,7 @@ import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
+
 public class CaptionStory extends CaptionContainerView {
     public static final int[] periods = {21600, 43200, 86400, 172800};
     private float amplitude;
@@ -121,16 +120,16 @@ public class CaptionStory extends CaptionContainerView {
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
         animatedTextDrawable.setAnimationProperties(0.16f, 0L, 50L, cubicBezierInterpolator);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setText("0:00.0");
         animatedTextDrawable.setTextColor(-1);
         Paint paint = new Paint(1);
         this.whitePaint = paint;
         Paint paint2 = new Paint(1);
         this.roundPaint = paint2;
-        BlobDrawable blobDrawable = new BlobDrawable(11, LiteMode.FLAGS_CHAT);
+        BlobDrawable blobDrawable = new BlobDrawable(11, 98784);
         this.tinyWaveDrawable = blobDrawable;
-        BlobDrawable blobDrawable2 = new BlobDrawable(12, LiteMode.FLAGS_CHAT);
+        BlobDrawable blobDrawable2 = new BlobDrawable(12, 98784);
         this.bigWaveDrawable = blobDrawable2;
         paint.setColor(-1);
         paint2.setColor(-15033089);
@@ -242,7 +241,7 @@ public class CaptionStory extends CaptionContainerView {
         };
         ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, resourcesProvider, this.periodButton);
         this.periodPopup = makeOptions;
-        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13);
+        makeOptions.addText(LocaleController.getString("StoryPeriodHint"), 13, AndroidUtilities.dp(200.0f));
         this.periodPopup.addGap();
         int i = 0;
         while (true) {
@@ -387,7 +386,7 @@ public class CaptionStory extends CaptionContainerView {
             }
             if (f5 > f2) {
                 if (this.cancelText == null) {
-                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f3, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f3, AndroidUtilities.bold());
                 }
                 this.cancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - this.timerTextDrawable.getCurrentWidth()));
                 float centerX2 = (rectF.centerX() - (this.cancelText.getWidth() / 2.0f)) + ((rectF.width() / 4.0f) * f6);
@@ -409,7 +408,6 @@ public class CaptionStory extends CaptionContainerView {
 
     @Override
     public void drawOver2(Canvas canvas, RectF rectF, float f) {
-        Drawable drawable;
         if (f <= 0.0f) {
             return;
         }
@@ -420,7 +418,7 @@ public class CaptionStory extends CaptionContainerView {
         float dp = (AndroidUtilities.dp(41.0f) + (AndroidUtilities.dp(30.0f) * f4 * (1.0f - this.slideProgress))) * f5 * f;
         float lerp = AndroidUtilities.lerp((rectF.right - AndroidUtilities.dp(20.0f)) - (((getWidth() * 0.35f) * this.slideProgress) * (1.0f - f3)), rectF.left + AndroidUtilities.dp(20.0f), f2);
         float dp2 = rectF.bottom - AndroidUtilities.dp(20.0f);
-        if (LiteMode.isEnabled(LiteMode.FLAGS_CHAT)) {
+        if (LiteMode.isEnabled(98784)) {
             this.tinyWaveDrawable.minRadius = AndroidUtilities.dp(47.0f);
             this.tinyWaveDrawable.maxRadius = AndroidUtilities.dp(47.0f) + (AndroidUtilities.dp(15.0f) * BlobDrawable.FORM_SMALL_MAX);
             this.bigWaveDrawable.minRadius = AndroidUtilities.dp(50.0f);
@@ -450,7 +448,7 @@ public class CaptionStory extends CaptionContainerView {
         this.circlePath.rewind();
         this.circlePath.addCircle(lerp, dp2, min, Path.Direction.CW);
         canvas.clipPath(this.circlePath);
-        this.roundDrawable.setBounds((int) (lerp - (((drawable.getIntrinsicWidth() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (dp2 - (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (((this.roundDrawable.getIntrinsicWidth() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + lerp), (int) (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + dp2));
+        this.roundDrawable.setBounds((int) (lerp - (((r6.getIntrinsicWidth() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (dp2 - (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5) * (this.stopping ? f : 1.0f))), (int) (((this.roundDrawable.getIntrinsicWidth() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + lerp), (int) (((this.roundDrawable.getIntrinsicHeight() / 2.0f) * f5 * (this.stopping ? f : 1.0f)) + dp2));
         this.roundDrawable.setAlpha((int) (f5 * 255.0f * (this.stopping ? f : 1.0f)));
         this.roundDrawable.draw(canvas);
         if (f3 > 0.0f) {
@@ -515,29 +513,31 @@ public class CaptionStory extends CaptionContainerView {
         canvas.scale(lerp, lerp, dp, lerp3);
         this.lockPaint.setColor(Theme.multAlpha(-1, lerp));
         this.lockHandlePaint.setColor(Theme.multAlpha(-1, lerp * f4));
+        float lerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f3);
+        float lerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f3);
         float dp3 = lerp3 + (AndroidUtilities.dp(4.0f) * f4);
         canvas.rotate(this.lockProgress * 12.0f * f4, dp, dp3);
-        float lerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f3) / 2.0f;
-        float lerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f3) / 2.0f;
-        float f5 = dp3 - lerp6;
-        this.lockRect.set(dp - lerp5, f5, lerp5 + dp, dp3 + lerp6);
+        float f5 = lerp5 / 2.0f;
+        float f6 = lerp6 / 2.0f;
+        float f7 = dp3 - f6;
+        this.lockRect.set(dp - f5, f7, f5 + dp, dp3 + f6);
         canvas.drawRoundRect(this.lockRect, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), this.lockPaint);
         if (f3 < 1.0f) {
             canvas.save();
-            canvas.rotate(this.lockProgress * 12.0f * f4, dp, f5);
-            canvas.translate(0.0f, lerp6 * f3);
-            canvas.scale(f4, f4, dp, f5);
+            canvas.rotate(this.lockProgress * 12.0f * f4, dp, f7);
+            canvas.translate(0.0f, f6 * f3);
+            canvas.scale(f4, f4, dp, f7);
             this.lockHandle.rewind();
             float dp4 = AndroidUtilities.dp(4.33f);
-            float dp5 = f5 - AndroidUtilities.dp(3.66f);
-            float f6 = dp + dp4;
-            this.lockHandle.moveTo(f6, AndroidUtilities.dp(3.66f) + dp5);
-            this.lockHandle.lineTo(f6, dp5);
+            float dp5 = f7 - AndroidUtilities.dp(3.66f);
+            float f8 = dp + dp4;
+            this.lockHandle.moveTo(f8, AndroidUtilities.dp(3.66f) + dp5);
+            this.lockHandle.lineTo(f8, dp5);
             RectF rectF2 = AndroidUtilities.rectTmp;
-            float f7 = dp - dp4;
-            rectF2.set(f7, dp5 - dp4, f6, dp4 + dp5);
+            float f9 = dp - dp4;
+            rectF2.set(f9, dp5 - dp4, f8, dp4 + dp5);
             this.lockHandle.arcTo(rectF2, 0.0f, -180.0f, false);
-            this.lockHandle.lineTo(f7, dp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
+            this.lockHandle.lineTo(f9, dp5 + (AndroidUtilities.dp(3.66f) * AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f3)));
             this.lockHandlePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             canvas.drawPath(this.lockHandle, this.lockHandlePaint);
             canvas.restore();
@@ -637,7 +637,8 @@ public class CaptionStory extends CaptionContainerView {
             while (true) {
                 if (i >= motionEvent.getPointerCount()) {
                     break;
-                } else if (AndroidUtilities.rectTmp.contains(motionEvent.getX(i), motionEvent.getY(i))) {
+                }
+                if (AndroidUtilities.rectTmp.contains(motionEvent.getX(i), motionEvent.getY(i))) {
                     if (motionEvent.getAction() == 0 || motionEvent.getActionMasked() == 5) {
                         this.currentRecorder.cameraView.switchCamera();
                         if (Build.VERSION.SDK_INT >= 21) {
@@ -664,13 +665,13 @@ public class CaptionStory extends CaptionContainerView {
             releaseRecord(false, true);
             this.recordTouch = false;
             return true;
-        } else if (this.recording && (this.lockBounds.contains(motionEvent.getX(), motionEvent.getY()) || getBounds().contains(motionEvent.getX(), motionEvent.getY()))) {
+        }
+        if (this.recording && (this.lockBounds.contains(motionEvent.getX(), motionEvent.getY()) || getBounds().contains(motionEvent.getX(), motionEvent.getY()))) {
             releaseRecord(false, false);
             this.recordTouch = false;
             return true;
-        } else {
-            return super.dispatchTouchEvent(motionEvent);
         }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     public void lambda$new$6() {
@@ -688,40 +689,40 @@ public class CaptionStory extends CaptionContainerView {
             if (getParent() != null) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            if (canRecord()) {
-                AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
-                this.fromX = motionEvent.getX();
-                this.fromY = motionEvent.getY();
-                this.amplitude = 0.0f;
-                this.slideProgress = 0.0f;
-                this.cancelT.set(0.0f, true);
-                this.cancel2T.set(0.0f, true);
-                this.cancelling = false;
-                this.stopping = false;
-                this.locked = false;
-                this.recordPaint.reset();
-                this.recording = true;
-                this.startTime = System.currentTimeMillis();
-                setCollapsed(true, ConnectionsManager.DEFAULT_DATACENTER_ID);
-                invalidateDrawOver2();
-                RoundVideoRecorder roundVideoRecorder = new RoundVideoRecorder(getContext()) {
-                    @Override
-                    protected void receivedAmplitude(double d) {
-                        CaptionStory.this.setAmplitude(d);
-                    }
-
-                    @Override
-                    public void stop() {
-                        super.stop();
-                        if (CaptionStory.this.recording) {
-                            CaptionStory.this.releaseRecord(true, false);
-                        }
-                    }
-                };
-                this.currentRecorder = roundVideoRecorder;
-                putRecorder(roundVideoRecorder);
+            if (!canRecord()) {
                 return true;
             }
+            AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
+            this.fromX = motionEvent.getX();
+            this.fromY = motionEvent.getY();
+            this.amplitude = 0.0f;
+            this.slideProgress = 0.0f;
+            this.cancelT.set(0.0f, true);
+            this.cancel2T.set(0.0f, true);
+            this.cancelling = false;
+            this.stopping = false;
+            this.locked = false;
+            this.recordPaint.reset();
+            this.recording = true;
+            this.startTime = System.currentTimeMillis();
+            setCollapsed(true, Integer.MAX_VALUE);
+            invalidateDrawOver2();
+            RoundVideoRecorder roundVideoRecorder = new RoundVideoRecorder(getContext()) {
+                @Override
+                protected void receivedAmplitude(double d) {
+                    CaptionStory.this.setAmplitude(d);
+                }
+
+                @Override
+                public void stop() {
+                    super.stop();
+                    if (CaptionStory.this.recording) {
+                        CaptionStory.this.releaseRecord(true, false);
+                    }
+                }
+            };
+            this.currentRecorder = roundVideoRecorder;
+            putRecorder(roundVideoRecorder);
             return true;
         }
         if (motionEvent.getAction() == 2) {
@@ -784,12 +785,12 @@ public class CaptionStory extends CaptionContainerView {
     }
 
     public boolean stopRecording() {
-        if (this.recording) {
-            this.recordTouch = false;
-            releaseRecord(false, false);
-            return true;
+        if (!this.recording) {
+            return false;
         }
-        return false;
+        this.recordTouch = false;
+        releaseRecord(false, false);
+        return true;
     }
 
     public void showRemoveRoundAlert() {
@@ -858,7 +859,7 @@ public class CaptionStory extends CaptionContainerView {
         public RecordDot(View view) {
             this.parent = view;
             int i = R.raw.chat_audio_record_delete_3;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             this.drawable = rLottieDrawable;
             rLottieDrawable.setCurrentParentView(view);
             this.drawable.setInvalidateOnProgressSet(true);

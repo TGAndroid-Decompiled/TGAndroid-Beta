@@ -16,6 +16,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
+
 @SuppressLint({"ViewConstructor"})
 public class VoIpGradientLayout extends FrameLayout {
     private boolean allowAnimations;
@@ -71,7 +72,7 @@ public class VoIpGradientLayout extends FrameLayout {
         this.isPaused = false;
         this.lockDrawing = false;
         this.backgroundProvider = voIPBackgroundProvider;
-        this.allowAnimations = LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS);
+        this.allowAnimations = LiteMode.isEnabled(512);
         this.bgBlueViolet = new MotionBackgroundDrawable(-4958504, -8304404, -14637865, -12612630, 0, false, true);
         this.bgBlueGreen = new MotionBackgroundDrawable(-12224791, -12879119, -16207709, -15226140, 0, false, true);
         this.bgGreen = new MotionBackgroundDrawable(-16275028, -16270749, -5649306, -10833593, 0, false, true);

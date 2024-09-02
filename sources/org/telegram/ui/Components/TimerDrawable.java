@@ -13,11 +13,11 @@ import android.text.TextPaint;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TimerDrawable extends Drawable {
     Context context;
     ColorFilter currentColorFilter;
@@ -66,39 +66,39 @@ public class TimerDrawable extends Drawable {
             invalidateSelf();
             int i2 = this.time;
             if (i2 >= 1 && i2 < 60) {
-                str = BuildConfig.APP_CENTER_HASH + i;
+                str = "" + i;
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerSeconds", R.string.SecretChatTimerSeconds);
                 }
             } else if (i2 >= 60 && i2 < 3600) {
-                str = BuildConfig.APP_CENTER_HASH + (i / 60);
+                str = "" + (i / 60);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerMinutes", R.string.SecretChatTimerMinutes);
                 }
             } else if (i2 >= 3600 && i2 < 86400) {
-                str = BuildConfig.APP_CENTER_HASH + ((i / 60) / 60);
+                str = "" + ((i / 60) / 60);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerHours", R.string.SecretChatTimerHours);
                 }
             } else if (i2 >= 86400 && i2 < 604800) {
-                str = BuildConfig.APP_CENTER_HASH + (((i / 60) / 60) / 24);
+                str = "" + (((i / 60) / 60) / 24);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerDays", R.string.SecretChatTimerDays);
                 }
             } else if (i2 < 2678400) {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 7);
+                str = "" + ((((i / 60) / 60) / 24) / 7);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerWeeks", R.string.SecretChatTimerWeeks);
                 } else if (str.length() > 2) {
                     str = "c";
                 }
             } else if (i2 < 31449600) {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 30);
+                str = "" + ((((i / 60) / 60) / 24) / 30);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerMonths", R.string.SecretChatTimerMonths);
                 }
             } else {
-                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 364);
+                str = "" + ((((i / 60) / 60) / 24) / 364);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerYears", R.string.SecretChatTimerYears);
                 }
@@ -143,7 +143,6 @@ public class TimerDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        double d;
         int intrinsicWidth = getIntrinsicWidth();
         int intrinsicHeight = getIntrinsicHeight();
         if (this.isDialog) {
@@ -183,15 +182,15 @@ public class TimerDrawable extends Drawable {
             double width = getBounds().width() / 2;
             double ceil = Math.ceil(this.timeWidth / 2.0f);
             Double.isNaN(width);
-            double d2 = i;
-            Double.isNaN(d2);
-            canvas.translate((float) ((width - ceil) + d2), (getBounds().height() - this.timeHeight) / 2.0f);
+            double d = i;
+            Double.isNaN(d);
+            canvas.translate((float) ((width - ceil) + d), (getBounds().height() - this.timeHeight) / 2.0f);
             this.timeLayout.draw(canvas);
             return;
         }
         double ceil2 = Math.ceil(this.timeWidth / 2.0f);
         Double.isNaN(intrinsicWidth / 2);
-        canvas.translate(((int) (d - ceil2)) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
+        canvas.translate(((int) (r5 - ceil2)) + i, (intrinsicHeight - this.timeHeight) / 2.0f);
         this.timeLayout.draw(canvas);
     }
 

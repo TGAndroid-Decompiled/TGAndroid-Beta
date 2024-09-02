@@ -4,15 +4,16 @@ import android.content.Context;
 import android.os.Process;
 import java.util.List;
 import java.util.Objects;
-import org.telegram.messenger.BuildConfig;
 import org.webrtc.Logging;
 import org.webrtc.PeerConnection;
 import org.webrtc.audio.AudioDeviceModule;
 import org.webrtc.audio.JavaAudioDeviceModule;
+
 public class PeerConnectionFactory {
     private static final String TAG = "PeerConnectionFactory";
     public static final String TRIAL_ENABLED = "Enabled";
     private static final String VIDEO_CAPTURER_THREAD_NAME = "VideoCapturerThread";
+
     @Deprecated
     public static final String VIDEO_FRAME_EMIT_TRIAL = "VideoFrameEmit";
     private static volatile boolean internalTracerInitialized;
@@ -108,7 +109,7 @@ public class PeerConnectionFactory {
             private boolean enableInternalTracer;
             private Loggable loggable;
             private Logging.Severity loggableSeverity;
-            private String fieldTrials = BuildConfig.APP_CENTER_HASH;
+            private String fieldTrials = "";
             private String nativeLibraryName = "jingle_peerconnection_so";
 
             Builder(Context context) {
@@ -290,11 +291,11 @@ public class PeerConnectionFactory {
         if (loggable != null) {
             Logging.injectLoggable(loggable, initializationOptions.loggableSeverity);
             nativeInjectLoggable(new JNILogging(initializationOptions.loggable), initializationOptions.loggableSeverity.ordinal());
-            return;
+        } else {
+            Logging.d("PeerConnectionFactory", "PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.");
+            Logging.deleteInjectedLoggable();
+            nativeDeleteLoggable();
         }
-        Logging.d(TAG, "PeerConnectionFactory was initialized without an injected Loggable. Any existing Loggable will be deleted.");
-        Logging.deleteInjectedLoggable();
-        nativeDeleteLoggable();
     }
 
     public static void checkInitializeHasBeenCalled() {
@@ -445,14 +446,14 @@ public class PeerConnectionFactory {
         String name = threadInfo.thread.getName();
         StackTraceElement[] stackTrace = threadInfo.thread.getStackTrace();
         if (stackTrace.length > 0) {
-            Logging.w(TAG, name + " stacktrace:");
+            Logging.w("PeerConnectionFactory", name + " stacktrace:");
             for (StackTraceElement stackTraceElement : stackTrace) {
-                Logging.w(TAG, stackTraceElement.toString());
+                Logging.w("PeerConnectionFactory", stackTraceElement.toString());
             }
         }
         if (z) {
-            Logging.w(TAG, "*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***");
-            Logging.w(TAG, "pid: " + Process.myPid() + ", tid: " + threadInfo.tid + ", name: " + name + "  >>> WebRTC <<<");
+            Logging.w("PeerConnectionFactory", "*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***");
+            Logging.w("PeerConnectionFactory", "pid: " + Process.myPid() + ", tid: " + threadInfo.tid + ", name: " + name + "  >>> WebRTC <<<");
             nativePrintStackTrace(threadInfo.tid);
         }
     }
@@ -477,20 +478,20 @@ public class PeerConnectionFactory {
     private void onNetworkThreadReady() {
         this.networkThread = ThreadInfo.getCurrent();
         staticNetworkThread = this.networkThread;
-        Logging.d(TAG, "onNetworkThreadReady");
+        Logging.d("PeerConnectionFactory", "onNetworkThreadReady");
     }
 
     @CalledByNative
     private void onWorkerThreadReady() {
         this.workerThread = ThreadInfo.getCurrent();
         staticWorkerThread = this.workerThread;
-        Logging.d(TAG, "onWorkerThreadReady");
+        Logging.d("PeerConnectionFactory", "onWorkerThreadReady");
     }
 
     @CalledByNative
     private void onSignalingThreadReady() {
         this.signalingThread = ThreadInfo.getCurrent();
         staticSignalingThread = this.signalingThread;
-        Logging.d(TAG, "onSignalingThreadReady");
+        Logging.d("PeerConnectionFactory", "onSignalingThreadReady");
     }
 }

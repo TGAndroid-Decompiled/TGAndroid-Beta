@@ -3,6 +3,7 @@ package org.webrtc;
 import java.util.List;
 import java.util.Map;
 import org.webrtc.MediaStreamTrack;
+
 public class RtpParameters {
     public final List<Codec> codecs;
     public DegradationPreference degradationPreference;

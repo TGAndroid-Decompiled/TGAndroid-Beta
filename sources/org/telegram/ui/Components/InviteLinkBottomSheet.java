@@ -66,6 +66,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LinkEditActivity;
 import org.telegram.ui.ManageLinksActivity;
 import org.telegram.ui.ProfileActivity;
+
 public class InviteLinkBottomSheet extends BottomSheet {
     Adapter adapter;
     private boolean canEdit;
@@ -197,7 +198,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 Boolean bool = this.statusBarOpen;
                 if (bool == null || bool.booleanValue() != z3) {
                     boolean z4 = AndroidUtilities.computePerceivedBrightness(InviteLinkBottomSheet.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
-                    boolean z5 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(InviteLinkBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                    boolean z5 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(InviteLinkBottomSheet.this.getThemedColor(Theme.key_actionBarDefault), 855638016)) > 0.721f;
                     Boolean valueOf = Boolean.valueOf(z3);
                     this.statusBarOpen = valueOf;
                     if (!valueOf.booleanValue()) {
@@ -290,7 +291,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         this.titleTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.titleTextView.setPadding(AndroidUtilities.dp(23.0f), 0, AndroidUtilities.dp(23.0f), 0);
         this.titleTextView.setGravity(16);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         if (!z) {
             if (tLRPC$TL_chatInviteExported.expired) {
                 this.titleTextView.setText(LocaleController.getString("ExpiredLink", R.string.ExpiredLink));
@@ -326,15 +327,14 @@ public class InviteLinkBottomSheet extends BottomSheet {
             return;
         }
         int i2 = this.joinedStartRow;
-        boolean z = true;
-        boolean z2 = i >= i2 && i < this.joinedEndRow;
+        boolean z = i >= i2 && i < this.joinedEndRow;
         int i3 = this.requestedStartRow;
-        z = (i < i3 || i >= this.requestedEndRow) ? false : false;
-        if ((i == this.creatorRow || z2 || z) && hashMap != null) {
+        boolean z2 = i >= i3 && i < this.requestedEndRow;
+        if ((i == this.creatorRow || z || z2) && hashMap != null) {
             long j = tLRPC$TL_chatInviteExported.admin_id;
-            if (z2) {
+            if (z) {
                 j = this.joinedUsers.get(i - i2).user_id;
-            } else if (z) {
+            } else if (z2) {
                 j = this.requestedUsers.get(i - i3).user_id;
             }
             final TLRPC$User tLRPC$User = (TLRPC$User) hashMap.get(Long.valueOf(j));
@@ -414,7 +414,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(view.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
                 combinedDrawable2.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable2);
-            } else if (childViewHolder.getItemViewType() == 2) {
+                return;
+            }
+            if (childViewHolder.getItemViewType() == 2) {
                 CombinedDrawable combinedDrawable3 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(view.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow), 0, 0);
                 combinedDrawable3.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable3);
@@ -438,8 +440,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
             @Override
             public void run() {
                 if (tLRPC$TL_error == null) {
+                    TLRPC$User tLRPC$User = (TLRPC$User) ((TLRPC$Vector) tLObject).objects.get(0);
                     InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
-                    inviteLinkBottomSheet.users.put(Long.valueOf(inviteLinkBottomSheet.invite.admin_id), (TLRPC$User) ((TLRPC$Vector) tLObject).objects.get(0));
+                    inviteLinkBottomSheet.users.put(Long.valueOf(inviteLinkBottomSheet.invite.admin_id), tLRPC$User);
                     InviteLinkBottomSheet.this.adapter.notifyDataSetChanged();
                 }
             }
@@ -460,60 +463,60 @@ public class InviteLinkBottomSheet extends BottomSheet {
             if (i == inviteLinkBottomSheet.creatorHeaderRow || i == inviteLinkBottomSheet.requestedHeaderRow || i == inviteLinkBottomSheet.joinedHeaderRow) {
                 return 0;
             }
-            if (i != inviteLinkBottomSheet.creatorRow) {
-                if (i < inviteLinkBottomSheet.requestedStartRow || i >= inviteLinkBottomSheet.requestedEndRow) {
-                    if (i < inviteLinkBottomSheet.joinedStartRow || i >= inviteLinkBottomSheet.joinedEndRow) {
-                        if (i == inviteLinkBottomSheet.dividerRow || i == inviteLinkBottomSheet.divider2Row) {
-                            return 2;
-                        }
-                        if (i == inviteLinkBottomSheet.linkActionRow) {
-                            return 3;
-                        }
-                        if (i == inviteLinkBottomSheet.linkInfoRow) {
-                            return 4;
-                        }
-                        if (i == inviteLinkBottomSheet.loadingRow) {
-                            return 5;
-                        }
-                        if (i == inviteLinkBottomSheet.emptyView || i == inviteLinkBottomSheet.emptyView2 || i == inviteLinkBottomSheet.emptyView3) {
-                            return 6;
-                        }
-                        if (i == inviteLinkBottomSheet.divider3Row) {
-                            return 7;
-                        }
-                        return i == inviteLinkBottomSheet.emptyHintRow ? 8 : 0;
-                    }
-                    return 1;
-                }
+            if (i == inviteLinkBottomSheet.creatorRow) {
                 return 1;
             }
-            return 1;
+            if (i >= inviteLinkBottomSheet.requestedStartRow && i < inviteLinkBottomSheet.requestedEndRow) {
+                return 1;
+            }
+            if (i >= inviteLinkBottomSheet.joinedStartRow && i < inviteLinkBottomSheet.joinedEndRow) {
+                return 1;
+            }
+            if (i == inviteLinkBottomSheet.dividerRow || i == inviteLinkBottomSheet.divider2Row) {
+                return 2;
+            }
+            if (i == inviteLinkBottomSheet.linkActionRow) {
+                return 3;
+            }
+            if (i == inviteLinkBottomSheet.linkInfoRow) {
+                return 4;
+            }
+            if (i == inviteLinkBottomSheet.loadingRow) {
+                return 5;
+            }
+            if (i == inviteLinkBottomSheet.emptyView || i == inviteLinkBottomSheet.emptyView2 || i == inviteLinkBottomSheet.emptyView3) {
+                return 6;
+            }
+            if (i == inviteLinkBottomSheet.divider3Row) {
+                return 7;
+            }
+            return i == inviteLinkBottomSheet.emptyHintRow ? 8 : 0;
         }
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            HeaderCell headerCell;
+            View view;
             Context context = viewGroup.getContext();
             switch (i) {
                 case 1:
-                    headerCell = new UserCell(context, 12, 0, true);
+                    view = new UserCell(context, 12, 0, true);
                     break;
                 case 2:
-                    headerCell = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
+                    view = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray));
                     break;
                 case 3:
                     InviteLinkBottomSheet inviteLinkBottomSheet = InviteLinkBottomSheet.this;
                     LinkActionView linkActionView = new LinkActionView(context, inviteLinkBottomSheet.fragment, inviteLinkBottomSheet, inviteLinkBottomSheet.chatId, false, InviteLinkBottomSheet.this.isChannel);
                     linkActionView.setDelegate(new AnonymousClass1());
                     linkActionView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    headerCell = linkActionView;
+                    view = linkActionView;
                     break;
                 case 4:
                     View timerPrivacyCell = new TimerPrivacyCell(context);
                     CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable.setFullsize(true);
                     timerPrivacyCell.setBackground(combinedDrawable);
-                    headerCell = timerPrivacyCell;
+                    view = timerPrivacyCell;
                     break;
                 case 5:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
@@ -521,10 +524,10 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     flickerLoadingView.setViewType(10);
                     flickerLoadingView.showDate(false);
                     flickerLoadingView.setPaddingLeft(AndroidUtilities.dp(10.0f));
-                    headerCell = flickerLoadingView;
+                    view = flickerLoadingView;
                     break;
                 case 6:
-                    headerCell = new View(this, context) {
+                    view = new View(this, context) {
                         @Override
                         protected void onMeasure(int i2, int i3) {
                             super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(5.0f), 1073741824));
@@ -536,21 +539,21 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
                     combinedDrawable2.setFullsize(true);
                     shadowSectionCell.setBackgroundDrawable(combinedDrawable2);
-                    headerCell = shadowSectionCell;
+                    view = shadowSectionCell;
                     break;
                 case 8:
-                    headerCell = new EmptyHintRow(InviteLinkBottomSheet.this, context);
+                    view = new EmptyHintRow(InviteLinkBottomSheet.this, context);
                     break;
                 default:
-                    HeaderCell headerCell2 = new HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, true);
-                    headerCell2.getTextView2().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-                    headerCell2.getTextView2().setTextSize(15);
-                    headerCell2.getTextView2().setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                    headerCell = headerCell2;
+                    HeaderCell headerCell = new HeaderCell(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, true);
+                    headerCell.getTextView2().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
+                    headerCell.getTextView2().setTextSize(15);
+                    headerCell.getTextView2().setTypeface(AndroidUtilities.bold());
+                    view = headerCell;
                     break;
             }
-            headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(headerCell);
+            view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view);
         }
 
         public class AnonymousClass1 implements LinkActionView.Delegate {
@@ -718,7 +721,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 if (i == inviteLinkBottomSheet.creatorHeaderRow) {
                     headerCell.setText(LocaleController.getString("LinkCreatedeBy", R.string.LinkCreatedeBy));
                     headerCell.setText2(null);
-                } else if (i == inviteLinkBottomSheet.joinedHeaderRow) {
+                    return;
+                }
+                if (i == inviteLinkBottomSheet.joinedHeaderRow) {
                     int i5 = inviteLinkBottomSheet.invite.usage;
                     if (i5 > 0) {
                         headerCell.setText(LocaleController.formatPluralString("PeopleJoined", i5, new Object[0]));
@@ -728,13 +733,19 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported = InviteLinkBottomSheet.this.invite;
                     if (!tLRPC$TL_chatInviteExported.expired && !tLRPC$TL_chatInviteExported.revoked && (i2 = tLRPC$TL_chatInviteExported.usage_limit) > 0 && (i3 = tLRPC$TL_chatInviteExported.usage) > 0) {
                         headerCell.setText2(LocaleController.formatPluralString("PeopleJoinedRemaining", i2 - i3, new Object[0]));
+                        return;
                     } else {
                         headerCell.setText2(null);
+                        return;
                     }
-                } else if (i == inviteLinkBottomSheet.requestedHeaderRow) {
-                    headerCell.setText(LocaleController.formatPluralString("JoinRequests", inviteLinkBottomSheet.invite.requested, new Object[0]));
                 }
-            } else if (itemViewType == 1) {
+                if (i == inviteLinkBottomSheet.requestedHeaderRow) {
+                    headerCell.setText(LocaleController.formatPluralString("JoinRequests", inviteLinkBottomSheet.invite.requested, new Object[0]));
+                    return;
+                }
+                return;
+            }
+            if (itemViewType == 1) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
                 InviteLinkBottomSheet inviteLinkBottomSheet2 = InviteLinkBottomSheet.this;
                 if (i == inviteLinkBottomSheet2.creatorRow) {
@@ -748,7 +759,8 @@ public class InviteLinkBottomSheet extends BottomSheet {
                         while (true) {
                             if (i4 >= InviteLinkBottomSheet.this.info.participants.participants.size()) {
                                 break;
-                            } else if (InviteLinkBottomSheet.this.info.participants.participants.get(i4).user_id == tLRPC$User2.id) {
+                            }
+                            if (InviteLinkBottomSheet.this.info.participants.participants.get(i4).user_id == tLRPC$User2.id) {
                                 TLRPC$ChatParticipant tLRPC$ChatParticipant = InviteLinkBottomSheet.this.info.participants.participants.get(i4);
                                 if (tLRPC$ChatParticipant instanceof TLRPC$TL_chatChannelParticipant) {
                                     TLRPC$ChannelParticipant tLRPC$ChannelParticipant = ((TLRPC$TL_chatChannelParticipant) tLRPC$ChatParticipant).channelParticipant;
@@ -787,7 +799,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 }
                 userCell.setAdminRole(str2);
                 userCell.setData(tLRPC$User, null, str, 0, false);
-            } else if (itemViewType == 3) {
+                return;
+            }
+            if (itemViewType == 3) {
                 LinkActionView linkActionView = (LinkActionView) viewHolder.itemView;
                 linkActionView.setUsers(0, null);
                 linkActionView.setLink(InviteLinkBottomSheet.this.invite.link);
@@ -795,7 +809,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
                 linkActionView.setPermanent(InviteLinkBottomSheet.this.invite.permanent);
                 linkActionView.setCanEdit(InviteLinkBottomSheet.this.canEdit);
                 linkActionView.hideRevokeOption(!InviteLinkBottomSheet.this.canEdit);
-            } else if (itemViewType != 4) {
+                return;
+            }
+            if (itemViewType != 4) {
                 if (itemViewType != 8) {
                     return;
                 }
@@ -805,54 +821,61 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     emptyHintRow.textView.setText(LocaleController.formatPluralString("PeopleCanJoinViaLinkCount", i8, new Object[0]));
                     emptyHintRow.textView.setVisibility(0);
                     return;
-                }
-                emptyHintRow.textView.setVisibility(8);
-            } else {
-                TimerPrivacyCell timerPrivacyCell = (TimerPrivacyCell) viewHolder.itemView;
-                timerPrivacyCell.cancelTimer();
-                timerPrivacyCell.timer = false;
-                timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
-                timerPrivacyCell.setFixedSize(0);
-                TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = InviteLinkBottomSheet.this.invite;
-                if (tLRPC$TL_chatInviteExported2.revoked) {
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
-                } else if (tLRPC$TL_chatInviteExported2.expired) {
-                    int i9 = tLRPC$TL_chatInviteExported2.usage_limit;
-                    if (i9 > 0 && i9 == tLRPC$TL_chatInviteExported2.usage) {
-                        timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
-                        return;
-                    }
-                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
-                    timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
-                } else if (tLRPC$TL_chatInviteExported2.expire_date > 0) {
-                    long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
-                    int i10 = InviteLinkBottomSheet.this.invite.expire_date;
-                    long j = (i10 * 1000) - currentTimeMillis;
-                    if (j < 0) {
-                        j = 0;
-                    }
-                    if (j > 86400000) {
-                        timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(i10, false)));
-                        return;
-                    }
-                    long j2 = j / 1000;
-                    int i11 = (int) (j2 % 60);
-                    long j3 = j2 / 60;
-                    int i12 = (int) (j3 / 60);
-                    StringBuilder sb = new StringBuilder();
-                    Locale locale = Locale.ENGLISH;
-                    sb.append(String.format(locale, "%02d", Integer.valueOf(i12)));
-                    sb.append(String.format(locale, ":%02d", Integer.valueOf((int) (j3 % 60))));
-                    sb.append(String.format(locale, ":%02d", Integer.valueOf(i11)));
-                    String sb2 = sb.toString();
-                    timerPrivacyCell.timer = true;
-                    timerPrivacyCell.runTimer();
-                    timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresInTime", R.string.LinkExpiresInTime, sb2));
                 } else {
-                    timerPrivacyCell.setFixedSize(12);
-                    timerPrivacyCell.setText(null);
+                    emptyHintRow.textView.setVisibility(8);
+                    return;
                 }
             }
+            TimerPrivacyCell timerPrivacyCell = (TimerPrivacyCell) viewHolder.itemView;
+            timerPrivacyCell.cancelTimer();
+            timerPrivacyCell.timer = false;
+            timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
+            timerPrivacyCell.setFixedSize(0);
+            TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported2 = InviteLinkBottomSheet.this.invite;
+            if (tLRPC$TL_chatInviteExported2.revoked) {
+                timerPrivacyCell.setText(LocaleController.getString("LinkIsNoActive", R.string.LinkIsNoActive));
+                return;
+            }
+            if (tLRPC$TL_chatInviteExported2.expired) {
+                int i9 = tLRPC$TL_chatInviteExported2.usage_limit;
+                if (i9 > 0 && i9 == tLRPC$TL_chatInviteExported2.usage) {
+                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpiredLimitReached", R.string.LinkIsExpiredLimitReached));
+                    return;
+                } else {
+                    timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
+                    timerPrivacyCell.setTextColor(Theme.getColor(Theme.key_text_RedRegular));
+                    return;
+                }
+            }
+            if (tLRPC$TL_chatInviteExported2.expire_date > 0) {
+                long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
+                int i10 = InviteLinkBottomSheet.this.invite.expire_date;
+                long j = (i10 * 1000) - currentTimeMillis;
+                if (j < 0) {
+                    j = 0;
+                }
+                if (j > 86400000) {
+                    timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresIn", R.string.LinkExpiresIn, LocaleController.formatDateAudio(i10, false)));
+                    return;
+                }
+                long j2 = j / 1000;
+                int i11 = (int) (j2 % 60);
+                long j3 = j2 / 60;
+                int i12 = (int) (j3 % 60);
+                int i13 = (int) (j3 / 60);
+                StringBuilder sb = new StringBuilder();
+                Locale locale = Locale.ENGLISH;
+                sb.append(String.format(locale, "%02d", Integer.valueOf(i13)));
+                sb.append(String.format(locale, ":%02d", Integer.valueOf(i12)));
+                sb.append(String.format(locale, ":%02d", Integer.valueOf(i11)));
+                String sb2 = sb.toString();
+                timerPrivacyCell.timer = true;
+                timerPrivacyCell.runTimer();
+                timerPrivacyCell.setText(LocaleController.formatString("LinkExpiresInTime", R.string.LinkExpiresInTime, sb2));
+                return;
+            }
+            timerPrivacyCell.setFixedSize(12);
+            timerPrivacyCell.setText(null);
         }
 
         @Override
@@ -922,7 +945,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
         animatorSet2.playTogether(animatorArr);
         if (!this.titleVisible) {
             AnimatorSet animatorSet3 = this.shadowAnimation;
@@ -931,7 +954,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.0f;
-            animatorArr2[0] = ObjectAnimator.ofFloat(textView, property2, fArr2);
+            animatorArr2[0] = ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property2, fArr2);
             animatorSet3.playTogether(animatorArr2);
         }
         this.shadowAnimation.setDuration(150L);
@@ -969,8 +992,9 @@ public class InviteLinkBottomSheet extends BottomSheet {
         if (!z2) {
             if (!z3) {
                 return;
+            } else {
+                z = true;
             }
-            z = true;
         }
         final ArrayList<TLRPC$TL_chatInviteImporter> arrayList = z ? this.requestedUsers : this.joinedUsers;
         TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();

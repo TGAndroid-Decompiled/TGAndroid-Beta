@@ -5,7 +5,6 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftCodeOption;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -13,6 +12,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.DiscountSpan;
+
 @SuppressLint({"ViewConstructor"})
 public class DurationWithDiscountCell extends DurationCell {
     protected final CheckBox2 checkBox;
@@ -31,7 +31,7 @@ public class DurationWithDiscountCell extends DurationCell {
         checkBox2.setDrawUnchecked(true);
         checkBox2.setDrawBackgroundAsArc(10);
         addView(checkBox2);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
         updateLayouts();
     }
@@ -75,7 +75,7 @@ public class DurationWithDiscountCell extends DurationCell {
         Double.isNaN(d5);
         int i2 = (int) ((1.0d - (d3 / (d4 / d5))) * 100.0d);
         if (i2 > 0) {
-            this.titleTextView.setText(spannableStringBuilder.append(DiscountSpan.applySpan(BuildConfig.APP_CENTER_HASH, i2)));
+            this.titleTextView.setText(spannableStringBuilder.append(DiscountSpan.applySpan("", i2)));
         } else {
             this.titleTextView.setText(spannableStringBuilder);
         }

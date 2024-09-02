@@ -6,8 +6,10 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class LoadingSpan extends ReplacementSpan {
     private LoadingDrawable drawable;
+    private float scaleY;
     private int size;
     private View view;
     public int yOffset;
@@ -21,6 +23,7 @@ public class LoadingSpan extends ReplacementSpan {
     }
 
     public LoadingSpan(View view, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        this.scaleY = 1.0f;
         this.view = view;
         this.size = i;
         this.yOffset = i2;
@@ -32,6 +35,10 @@ public class LoadingSpan extends ReplacementSpan {
     public void setColors(int i, int i2) {
         this.drawable.color1 = Integer.valueOf(i);
         this.drawable.color2 = Integer.valueOf(i2);
+    }
+
+    public void setScaleY(float f) {
+        this.scaleY = f;
     }
 
     public void setView(View view) {
@@ -46,16 +53,16 @@ public class LoadingSpan extends ReplacementSpan {
                 loadingDrawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
             }
         }
-        if (paint != null) {
-            this.drawable.setAlpha(paint.getAlpha());
-        }
         return this.size;
     }
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
         int i6 = (int) f;
-        this.drawable.setBounds(i6, i3 + this.yOffset, this.size + i6, (i5 - AndroidUtilities.dp(2.0f)) + this.yOffset);
+        this.drawable.setBounds(i6, (int) (i3 + ((((i5 - AndroidUtilities.dp(2.0f)) - i3) / 2.0f) * (1.0f - this.scaleY)) + this.yOffset), this.size + i6, (int) (((i5 - AndroidUtilities.dp(2.0f)) - ((((i5 - AndroidUtilities.dp(2.0f)) - i3) / 2.0f) * (1.0f - this.scaleY))) + this.yOffset));
+        if (paint != null) {
+            this.drawable.setAlpha(paint.getAlpha());
+        }
         this.drawable.draw(canvas);
         View view = this.view;
         if (view != null) {

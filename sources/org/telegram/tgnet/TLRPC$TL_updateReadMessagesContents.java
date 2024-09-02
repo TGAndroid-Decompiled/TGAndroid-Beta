@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
     public int date;
     public int flags;

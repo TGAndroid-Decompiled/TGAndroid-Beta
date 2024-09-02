@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_secureValueErrorTranslationFile extends TLRPC$SecureValueError {
     public byte[] file_hash;
     public String text;

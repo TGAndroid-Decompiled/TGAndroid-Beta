@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getSavedHistory extends TLObject {
     public int add_offset;
     public long hash;

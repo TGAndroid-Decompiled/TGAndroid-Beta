@@ -4,10 +4,19 @@ import java.util.Collections;
 import java.util.Map;
 import kotlin.Pair;
 import kotlin.jvm.internal.Intrinsics;
-import org.telegram.tgnet.ConnectionsManager;
+
 public class MapsKt__MapsJVMKt extends MapsKt__MapWithDefaultKt {
     public static int mapCapacity(int i) {
-        return i < 0 ? i : i < 3 ? i + 1 : i < 1073741824 ? (int) ((i / 0.75f) + 1.0f) : ConnectionsManager.DEFAULT_DATACENTER_ID;
+        if (i < 0) {
+            return i;
+        }
+        if (i < 3) {
+            return i + 1;
+        }
+        if (i < 1073741824) {
+            return (int) ((i / 0.75f) + 1.0f);
+        }
+        return Integer.MAX_VALUE;
     }
 
     public static final <K, V> Map<K, V> mapOf(Pair<? extends K, ? extends V> pair) {

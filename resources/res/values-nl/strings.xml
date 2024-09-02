@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Kies thema</string>
     <string name="ChooseYourLanguage">Kies je taal</string>
     <string name="ChooseYourLanguageOther">Overige</string>
-    <string name="ChromeCustomTabs">In-app browser</string>
-    <string name="ChromeCustomTabsInfo">Externe links in de app openen</string>
     <string name="ClearButton">Wissen</string>
     <string name="ClearCache">Cache Wissen</string>
     <string name="ClearCacheFewChatsTitle">Lege cache voor %1$s</string>
@@ -1189,7 +1187,6 @@
     <string name="DeleteBackground_other">%1$d Achtergronden verwijderen</string>
     <string name="DeleteBackground_two">%1$d Achtergronden verwijderen</string>
     <string name="DeleteBackground_zero">%1$d Achtergronden verwijderen</string>
-    <string name="DeleteBanUser">Blokkeer gebruiker</string>
     <string name="DeleteCalls">Oproepen verwijderen</string>
     <string name="DeleteCallsForEveryone">Verwijder voor iedereen</string>
     <string name="DeleteChannelForAll">Verwijder voor alle abonnees</string>
@@ -1434,8 +1431,6 @@
     <string name="EventLogEditedMedia">un1 wijzigde media:</string>
     <string name="EventLogEditedMediaCaption">un1 wijzigde media en onderschrift:</string>
     <string name="EventLogEditedMessages">bericht door un1 bewerkt:</string>
-    <string name="EventLogEmpty">**Nog geen gebeurtenissen**\n\nBeheerders en leden\nhebben geen acties uitgevoerd\nin de afgelopen 48 uur.</string>
-    <string name="EventLogEmptyChannel">**Nog geen gebeurtenissen**\n\nBeheerders\nhebben geen acties uitgevoerd\nin de afgelopen 48 uur.</string>
     <string name="EventLogEmptySearch">**Geen gebeurtenissen**\n\nGeen recente gebeurtenissen gevonden\nvoor je zoekopdracht.</string>
     <string name="EventLogEmptyTextSearch">Geen recente gebeurtenissen met inhoud \'**%1$s**\' gevonden</string>
     <string name="EventLogEndedVoiceChat">un1 beëindigde de spraakchat</string>
@@ -1534,15 +1529,8 @@
     <string name="FeaturedStickers">Populaire stickers</string>
     <string name="FeaturedStickersInfo">Deze stickers zijn momenteel populair op Telegram. Je kunt persoonlijke stickers toevoegen via de @stickers bot.</string>
     <string name="February">februari</string>
-    <string name="FileSavedHint">Bestand opgeslagen in downloads</string>
     <string name="FileUploadLimit">Bestanden mogen maximaal %1$s zijn</string>
     <string name="FilesDataUsage">Bestanden</string>
-    <string name="FilesSavedHint_few">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_many">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_one">%1$d bestand opgeslagen in downloads</string>
-    <string name="FilesSavedHint_other">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_two">%1$d bestanden opgeslagen in downloads</string>
-    <string name="FilesSavedHint_zero">%1$d bestanden opgeslagen in downloads</string>
     <string name="Files_few">%1$d bestanden</string>
     <string name="Files_many">%1$d bestanden</string>
     <string name="Files_one">%1$d bestand</string>
@@ -1751,7 +1739,6 @@
     <string name="GetQRCode">Get QR code</string>
     <string name="GettingLinkInfo">Link-preview ophalen...</string>
     <string name="GifCaption">GIF-Onderschrift</string>
-    <string name="GifSavedToDownloadsHint">GIF opgeslagen in downloads</string>
     <string name="GifsTab2">GIF\'s</string>
     <string name="GigagroupAlertLearnMore">LEARN MORE</string>
     <string name="GigagroupAlertText">Your group has reached the limit of **200,000** members.\n\nYou can increase this limit by converting the group to a **broadcast group** where only admins can post.\nInterested?</string>
@@ -1804,7 +1791,6 @@
     <string name="GroupUserCantAdmin">Maximaal aantal beheerders bereikt.</string>
     <string name="GroupUserCantBot">Maximaal aantal bots bereikt.</string>
     <string name="GroupUserLeftError">Deze gebruiker heeft de groep verlaten. Opnieuw toevoegen kan alleen door wederzijdse contactpersonen.\n\nZolang deze gebruiker niet in de lijst met verwijderde gebruikers staat kan hij/zij altijd nog lid worden via de uitnodigingslink van de groep.</string>
-    <string name="GroupsAndChannels">Groepen</string>
     <string name="GroupsAndChannelsHelp">Wijzig wie je aan groepen en kanalen kan toevoegen.</string>
     <string name="GroupsInCommon">Gedeelde groepen</string>
     <string name="GroupsInCommonTitle">Gedeelde groepen</string>
@@ -3003,7 +2989,6 @@
     <string name="PhotoCaption">Foto-onderschrift</string>
     <string name="PhotoEditorDiscardAlert">Alle wijzigingen echt weggooien?</string>
     <string name="PhotoSavedHint">Foto opgeslagen in galerij</string>
-    <string name="PhotoSavedToDownloadsHint">Foto opgeslagen in downloads</string>
     <string name="PhotosSavedHint_few">%1$d foto\'s opgeslagen in galerij</string>
     <string name="PhotosSavedHint_many">%1$d foto\'s opgeslagen in galerij</string>
     <string name="PhotosSavedHint_one">%1$d foto opgeslagen in galerij</string>
@@ -4046,7 +4031,6 @@
     <string name="VideoPreview">Video Preview</string>
     <string name="VideoQualityIsTooLow">Videokwaliteit is te laag om de compressie-instellingen te wijzigen.</string>
     <string name="VideoSavedHint">Video opgeslagen in galerij</string>
-    <string name="VideoSavedToDownloadsHint">Video opgeslagen in downloads</string>
     <string name="VideosSavedHint_few">%1$d video\'s opgeslagen in galerij</string>
     <string name="VideosSavedHint_many">%1$d video\'s opgeslagen in galerij</string>
     <string name="VideosSavedHint_one">%1$d video opgeslagen in galerij</string>
@@ -4429,7 +4413,16 @@
     <string name="common_open_on_phone">Openen op telefoon</string>
     <string name="common_signin_button_text">Inloggen</string>
     <string name="common_signin_button_text_long">Inloggen met Google</string>
+    <string name="confirm_device_credential_password">Wachtwoord gebruiken</string>
+    <string name="default_error_msg">Onbekende fout</string>
     <string name="fcm_fallback_notification_channel_label">Overige</string>
+    <string name="fingerprint_dialog_touch_sensor">Raak de vingerafdruksensor aan</string>
+    <string name="fingerprint_error_hw_not_available">Hardware voor vingerafdruk niet beschikbaar.</string>
+    <string name="fingerprint_error_hw_not_present">Dit apparaat heeft geen vingerafdruksensor</string>
+    <string name="fingerprint_error_lockout">Te veel pogingen. Probeer het later opnieuw.</string>
+    <string name="fingerprint_error_no_fingerprints">Geen vingerafdrukken geregistreerd.</string>
+    <string name="fingerprint_error_user_canceled">Vingerafdrukverificatie geannuleerd door gebruiker.</string>
+    <string name="fingerprint_not_recognized">Niet herkend</string>
     <string name="formatDateAtTime">%1$s om %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">d MMM yyyy</string>
@@ -4449,6 +4442,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd-MM-yy</string>
     <string name="formatterYearMax">dd-MM-yyyy</string>
+    <string name="generic_error_no_device_credential">Geen pincode, patroon of wachtwoord ingesteld.</string>
+    <string name="generic_error_no_keyguard">Dit apparaat ondersteunt geen pincode, patroon of wachtwoord.</string>
+    <string name="generic_error_user_canceled">Verificatie geannuleerd door gebruiker.</string>
     <string name="google_assistant_verification_channel_name">Assistent-verificatie</string>
     <string name="google_assistant_verification_notification_title">Google Assistent verzendt bericht</string>
     <string name="items_few">%1$d items</string>

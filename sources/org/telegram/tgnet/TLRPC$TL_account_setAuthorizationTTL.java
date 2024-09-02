@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_setAuthorizationTTL extends TLObject {
     public int authorization_ttl_days;
 

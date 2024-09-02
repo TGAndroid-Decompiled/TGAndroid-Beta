@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 public class RuleSet {
     public static Pattern pattern = Pattern.compile("[0-9]+");
     public int matchLen;

@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -21,6 +20,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatNotificationsPopupWrapper;
+
 public class ChatNotificationsPopupWrapper {
     View backItem;
     Callback callback;
@@ -64,8 +64,13 @@ public class ChatNotificationsPopupWrapper {
     public ChatNotificationsPopupWrapper(final Context context, final int i, final PopupSwipeBackLayout popupSwipeBackLayout, boolean z, boolean z2, final Callback callback, final Theme.ResourcesProvider resourcesProvider) {
         this.currentAccount = i;
         this.callback = callback;
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider) {
+        AnonymousClass1 anonymousClass1 = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, context, z ? R.drawable.popup_fixed_alert : 0, resourcesProvider) {
             Path path = new Path();
+
+            AnonymousClass1(ChatNotificationsPopupWrapper this, final Context context2, int i2, final Theme.ResourcesProvider resourcesProvider2) {
+                super(context2, i2, resourcesProvider2);
+                this.path = new Path();
+            }
 
             @Override
             protected boolean drawChild(Canvas canvas, View view, long j) {
@@ -80,10 +85,10 @@ public class ChatNotificationsPopupWrapper {
                 return drawChild;
             }
         };
-        this.windowLayout = actionBarPopupWindowLayout;
-        actionBarPopupWindowLayout.setFitItems(true);
+        this.windowLayout = anonymousClass1;
+        anonymousClass1.setFitItems(true);
         if (popupSwipeBackLayout != null) {
-            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_arrow_back, LocaleController.getString("Back", R.string.Back), false, resourcesProvider);
+            ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_arrow_back, LocaleController.getString("Back", R.string.Back), false, resourcesProvider2);
             this.backItem = addItem;
             addItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -92,7 +97,7 @@ public class ChatNotificationsPopupWrapper {
                 }
             });
         }
-        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_tone_on, LocaleController.getString("SoundOn", R.string.SoundOn), false, resourcesProvider);
+        ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_tone_on, LocaleController.getString("SoundOn", R.string.SoundOn), false, resourcesProvider2);
         this.soundToggle = addItem2;
         addItem2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,10 +105,10 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$1(callback, view);
             }
         });
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.windowLayout;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.windowLayout;
         int i2 = R.drawable.msg_mute_1h;
         int i3 = R.string.MuteFor1h;
-        ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout2, i2, LocaleController.getString("MuteFor1h", i3), false, resourcesProvider);
+        ActionBarMenuSubItem addItem3 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i2, LocaleController.getString("MuteFor1h", i3), false, resourcesProvider2);
         this.muteForLastSelected = addItem3;
         addItem3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,7 +116,7 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$2(callback, view);
             }
         });
-        ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this.windowLayout, i2, LocaleController.getString("MuteFor1h", i3), false, resourcesProvider);
+        ActionBarMenuSubItem addItem4 = ActionBarMenuItem.addItem(this.windowLayout, i2, LocaleController.getString("MuteFor1h", i3), false, resourcesProvider2);
         this.muteForLastSelected2 = addItem4;
         addItem4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,19 +124,19 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$3(callback, view);
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_mute_period, LocaleController.getString("MuteForPopup", R.string.MuteForPopup), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_mute_period, LocaleController.getString("MuteForPopup", R.string.MuteForPopup), false, resourcesProvider2).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ChatNotificationsPopupWrapper.this.lambda$new$6(context, resourcesProvider, i, callback, view);
+                ChatNotificationsPopupWrapper.this.lambda$new$6(context2, resourcesProvider2, i, callback, view);
             }
         });
-        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize), false, resourcesProvider).setOnClickListener(new View.OnClickListener() {
+        ActionBarMenuItem.addItem(this.windowLayout, R.drawable.msg_customize, LocaleController.getString("NotificationsCustomize", R.string.NotificationsCustomize), false, resourcesProvider2).setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 ChatNotificationsPopupWrapper.this.lambda$new$7(callback, view);
             }
         });
-        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, BuildConfig.APP_CENTER_HASH, false, resourcesProvider);
+        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, "", false, resourcesProvider2);
         this.muteUnmuteButton = addItem5;
         addItem5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,26 +144,48 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$9(callback, view);
             }
         });
-        FrameLayout frameLayout = new FrameLayout(context);
+        FrameLayout frameLayout = new FrameLayout(context2);
         this.gap = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider2));
         this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
-        TextView textView = new TextView(context);
+        TextView textView = new TextView(context2);
         this.topicsExceptionsTextView = textView;
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider2));
         int i4 = R.id.fit_width_tag;
         frameLayout.setTag(i4, 1);
         textView.setTag(i4, 1);
         this.windowLayout.addView((View) textView, LayoutHelper.createLinear(-2, -2));
-        textView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
+        textView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider2), 0, 6));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 ChatNotificationsPopupWrapper.this.lambda$new$10(callback, view);
             }
         });
+    }
+
+    public class AnonymousClass1 extends ActionBarPopupWindow.ActionBarPopupWindowLayout {
+        Path path = new Path();
+
+        AnonymousClass1(ChatNotificationsPopupWrapper this, final Context context2, int i2, final Theme.ResourcesProvider resourcesProvider2) {
+            super(context2, i2, resourcesProvider2);
+            this.path = new Path();
+        }
+
+        @Override
+        protected boolean drawChild(Canvas canvas, View view, long j) {
+            canvas.save();
+            this.path.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+            canvas.clipPath(this.path);
+            boolean drawChild = super.drawChild(canvas, view, j);
+            canvas.restore();
+            return drawChild;
+        }
     }
 
     public void lambda$new$1(Callback callback, View view) {
@@ -296,11 +323,11 @@ public class ChatNotificationsPopupWrapper {
         if (hashSet == null || hashSet.isEmpty()) {
             this.gap.setVisibility(8);
             this.topicsExceptionsTextView.setVisibility(8);
-            return;
+        } else {
+            this.gap.setVisibility(0);
+            this.topicsExceptionsTextView.setVisibility(0);
+            this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
         }
-        this.gap.setVisibility(0);
-        this.topicsExceptionsTextView.setVisibility(0);
-        this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
     }
 
     private String formatMuteForTime(int i) {

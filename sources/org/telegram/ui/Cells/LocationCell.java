@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -27,6 +26,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class LocationCell extends FrameLayout {
     private static FlickerLoadingView globalGradientView;
     private AnimatedTextView addressTextView;
@@ -60,11 +60,12 @@ public class LocationCell extends FrameLayout {
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.nameTextView = animatedTextView;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextView.setAnimationProperties(0.4f, 0L, 240L, cubicBezierInterpolator);
+        animatedTextView.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
+        this.nameTextView.setScaleProperty(0.6f);
         this.nameTextView.setTextSize(AndroidUtilities.dp(16.0f));
         this.nameTextView.setEllipsizeByGradient(true);
         this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.nameTextView.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
         NotificationCenter.listenEmojiLoading(this.nameTextView);
@@ -73,7 +74,8 @@ public class LocationCell extends FrameLayout {
         addView(animatedTextView2, LayoutHelper.createFrame(-1, 22.0f, (z3 ? 5 : 3) | 48, z3 ? 16 : 73, 10.0f, z3 ? 73 : 16, 0.0f));
         AnimatedTextView animatedTextView3 = new AnimatedTextView(context, true, true, true);
         this.addressTextView = animatedTextView3;
-        animatedTextView3.setAnimationProperties(0.4f, 0L, 240L, cubicBezierInterpolator);
+        animatedTextView3.setScaleProperty(0.6f);
+        this.addressTextView.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
         this.addressTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.addressTextView.setEllipsizeByGradient(true);
         this.addressTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
@@ -109,27 +111,27 @@ public class LocationCell extends FrameLayout {
 
     public static int getColorForIndex(int i) {
         int i2 = i % 7;
-        if (i2 != 0) {
-            if (i2 != 1) {
-                if (i2 != 2) {
-                    if (i2 != 3) {
-                        if (i2 != 4) {
-                            return i2 != 5 ? -1285237 : -12338729;
-                        }
-                        return -7900675;
-                    }
-                    return -13187226;
-                }
-                return -12214795;
-            }
+        if (i2 == 0) {
+            return -1351584;
+        }
+        if (i2 == 1) {
             return -868277;
         }
-        return -1351584;
+        if (i2 == 2) {
+            return -12214795;
+        }
+        if (i2 == 3) {
+            return -13187226;
+        }
+        if (i2 != 4) {
+            return i2 != 5 ? -1285237 : -12338729;
+        }
+        return -7900675;
     }
 
     private CharSequence getTitle(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue) {
         if (tLRPC$TL_messageMediaVenue == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (TextUtils.equals(this.lastEmoji, tLRPC$TL_messageMediaVenue.emoji) && TextUtils.equals(this.lastTitle, tLRPC$TL_messageMediaVenue.title)) {
             return this.lastCompleteTitle;

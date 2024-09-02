@@ -8,6 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Charts.data.ChartData;
+
 public class LineViewData {
     public float alpha;
     public ValueAnimator animatorIn;
@@ -26,11 +27,11 @@ public class LineViewData {
     private Theme.ResourcesProvider resourcesProvider;
     public final Paint selectionPaint;
 
-    public LineViewData(ChartData.Line line) {
-        this(line, null);
+    public LineViewData(ChartData.Line line, boolean z) {
+        this(line, z, null);
     }
 
-    public LineViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
+    public LineViewData(ChartData.Line line, boolean z, Theme.ResourcesProvider resourcesProvider) {
         Paint paint = new Paint(1);
         this.bottomLinePaint = paint;
         Paint paint2 = new Paint(1);
@@ -57,9 +58,10 @@ public class LineViewData {
         paint3.setStyle(Paint.Style.STROKE);
         paint3.setStrokeCap(Paint.Cap.ROUND);
         paint3.setColor(line.color);
-        int[] iArr = line.y;
-        this.linesPath = new float[iArr.length << 2];
-        this.linesPathBottom = new float[iArr.length << 2];
+        long[] jArr = line.y;
+        this.linesPath = new float[z ? jArr.length * 8 : jArr.length << 2];
+        long[] jArr2 = line.y;
+        this.linesPathBottom = new float[z ? jArr2.length * 8 : jArr2.length << 2];
     }
 
     public void updateColors() {

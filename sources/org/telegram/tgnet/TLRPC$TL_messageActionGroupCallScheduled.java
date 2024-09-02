@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionGroupCallScheduled extends TLRPC$MessageAction {
     public int schedule_date;
 

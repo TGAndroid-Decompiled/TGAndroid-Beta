@@ -13,22 +13,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.ThemeColors;
+
 public class ChartData {
     public String[] daysLookup;
-    public ArrayList<Line> lines = new ArrayList<>();
-    public int maxValue = 0;
-    public int minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
-    public float oneDayPercentage = 0.0f;
+    public ArrayList<Line> lines;
+    public long maxValue;
+    public long minValue;
+    public float oneDayPercentage;
     protected long timeStep;
     public long[] x;
     public float[] xPercentage;
+    public float yRate;
+    public int yTickFormatter;
+    public int yTooltipFormatter;
 
     public ChartData() {
+        this.lines = new ArrayList<>();
+        this.maxValue = 0L;
+        this.minValue = Long.MAX_VALUE;
+        this.oneDayPercentage = 0.0f;
+        this.yRate = 0.0f;
+        this.yTickFormatter = 0;
+        this.yTooltipFormatter = 0;
     }
 
     public ChartData(JSONObject jSONObject) throws JSONException {
+        this.lines = new ArrayList<>();
+        this.maxValue = 0L;
+        this.minValue = Long.MAX_VALUE;
+        this.oneDayPercentage = 0.0f;
+        this.yRate = 0.0f;
+        this.yTickFormatter = 0;
+        this.yTooltipFormatter = 0;
         JSONArray jSONArray = jSONObject.getJSONArray("columns");
         jSONArray.length();
         for (int i = 0; i < jSONArray.length(); i++) {
@@ -47,24 +64,24 @@ public class ChartData {
                 this.lines.add(line);
                 int length2 = jSONArray2.length() - 1;
                 line.id = jSONArray2.getString(0);
-                line.y = new int[length2];
+                line.y = new long[length2];
                 int i4 = 0;
                 while (i4 < length2) {
                     int i5 = i4 + 1;
-                    line.y[i4] = jSONArray2.getInt(i5);
-                    int[] iArr = line.y;
-                    if (iArr[i4] > line.maxValue) {
-                        line.maxValue = iArr[i4];
+                    line.y[i4] = jSONArray2.getLong(i5);
+                    long[] jArr = line.y;
+                    if (jArr[i4] > line.maxValue) {
+                        line.maxValue = jArr[i4];
                     }
-                    if (iArr[i4] < line.minValue) {
-                        line.minValue = iArr[i4];
+                    if (jArr[i4] < line.minValue) {
+                        line.minValue = jArr[i4];
                     }
                     i4 = i5;
                 }
             }
-            long[] jArr = this.x;
-            if (jArr.length > 1) {
-                this.timeStep = jArr[1] - jArr[0];
+            long[] jArr2 = this.x;
+            if (jArr2.length > 1) {
+                this.timeStep = jArr2[1] - jArr2[0];
             } else {
                 this.timeStep = 86400000L;
             }
@@ -72,6 +89,13 @@ public class ChartData {
         }
         JSONObject optJSONObject = jSONObject.optJSONObject("colors");
         JSONObject optJSONObject2 = jSONObject.optJSONObject("names");
+        try {
+            getFormatter(jSONObject.getString("xTickFormatter"));
+            this.yTickFormatter = getFormatter(jSONObject.getString("yTickFormatter"));
+            getFormatter(jSONObject.getString("xTooltipFormatter"));
+            this.yTooltipFormatter = getFormatter(jSONObject.getString("yTooltipFormatter"));
+        } catch (Exception unused) {
+        }
         Pattern compile = Pattern.compile("(.*)(#.*)");
         for (int i6 = 0; i6 < this.lines.size(); i6++) {
             Line line2 = this.lines.get(i6);
@@ -90,6 +114,16 @@ public class ChartData {
                 line2.name = optJSONObject2.getString(line2.id);
             }
         }
+    }
+
+    public int getFormatter(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return 0;
+        }
+        if (str.contains("TON")) {
+            return 1;
+        }
+        return str.contains("XTR") ? 2 : 0;
     }
 
     public void measure() {
@@ -131,17 +165,18 @@ public class ChartData {
         int i3 = 0;
         while (true) {
             String[] strArr = this.daysLookup;
-            if (i3 < strArr.length) {
+            if (i3 >= strArr.length) {
+                float f = (float) this.timeStep;
+                long[] jArr2 = this.x;
+                this.oneDayPercentage = f / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
+                return;
+            } else {
                 if (this.timeStep == 1) {
                     strArr[i3] = String.format(Locale.ENGLISH, "%02d:00", Integer.valueOf(i3));
                 } else {
                     strArr[i3] = simpleDateFormat.format(new Date((i3 * this.timeStep) + j));
                 }
                 i3++;
-            } else {
-                long[] jArr2 = this.x;
-                this.oneDayPercentage = ((float) this.timeStep) / ((float) (jArr2[jArr2.length - 1] - jArr2[0]));
-                return;
             }
         }
     }
@@ -155,23 +190,23 @@ public class ChartData {
     public int findStartIndex(float f) {
         int length;
         int i = 0;
-        if (f != 0.0f && (length = this.xPercentage.length) >= 2) {
-            int i2 = length - 1;
-            while (i <= i2) {
-                int i3 = (i2 + i) >> 1;
-                float[] fArr = this.xPercentage;
-                if ((f < fArr[i3] && (i3 == 0 || f > fArr[i3 - 1])) || f == fArr[i3]) {
-                    return i3;
-                }
-                if (f < fArr[i3]) {
-                    i2 = i3 - 1;
-                } else if (f > fArr[i3]) {
-                    i = i3 + 1;
-                }
-            }
-            return i;
+        if (f == 0.0f || (length = this.xPercentage.length) < 2) {
+            return 0;
         }
-        return 0;
+        int i2 = length - 1;
+        while (i <= i2) {
+            int i3 = (i2 + i) >> 1;
+            float[] fArr = this.xPercentage;
+            if ((f < fArr[i3] && (i3 == 0 || f > fArr[i3 - 1])) || f == fArr[i3]) {
+                return i3;
+            }
+            if (f < fArr[i3]) {
+                i2 = i3 - 1;
+            } else if (f > fArr[i3]) {
+                i = i3 + 1;
+            }
+        }
+        return i;
     }
 
     public int findEndIndex(int i, float f) {
@@ -225,9 +260,9 @@ public class ChartData {
         public String id;
         public String name;
         public SegmentTree segmentTree;
-        public int[] y;
-        public int maxValue = 0;
-        public int minValue = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        public long[] y;
+        public long maxValue = 0;
+        public long minValue = Long.MAX_VALUE;
         public int color = -16777216;
         public int colorDark = -1;
 

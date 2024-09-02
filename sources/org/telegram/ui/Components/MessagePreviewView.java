@@ -16,7 +16,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
@@ -33,13 +32,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagePreviewParams;
@@ -52,6 +50,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
 import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$ReactionCount;
@@ -70,6 +69,7 @@ import org.telegram.ui.Components.MessagePreviewView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.PinchToZoomHelper;
+
 public class MessagePreviewView extends FrameLayout {
     Runnable changeBoundsRunnable;
     final ChatActivity chatActivity;
@@ -197,7 +197,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property = View.ALPHA;
                     float[] fArr = new float[1];
                     fArr[0] = !z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem2, property, fArr));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem2, (Property<ActionBarMenuSubItem, Float>) property, fArr));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem3 = this.clearQuoteButton;
                 if (actionBarMenuSubItem3 != null) {
@@ -206,7 +206,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property2 = View.ALPHA;
                     float[] fArr2 = new float[1];
                     fArr2[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem4, property2, fArr2));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem4, (Property<ActionBarMenuSubItem, Float>) property2, fArr2));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem5 = this.replyAnotherChatButton;
                 if (actionBarMenuSubItem5 != null) {
@@ -215,7 +215,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property3 = View.ALPHA;
                     float[] fArr3 = new float[1];
                     fArr3[0] = !z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem6, property3, fArr3));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem6, (Property<ActionBarMenuSubItem, Float>) property3, fArr3));
                 }
                 ActionBarMenuSubItem actionBarMenuSubItem7 = this.quoteAnotherChatButton;
                 if (actionBarMenuSubItem7 != null) {
@@ -224,7 +224,7 @@ public class MessagePreviewView extends FrameLayout {
                     Property property4 = View.ALPHA;
                     float[] fArr4 = new float[1];
                     fArr4[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem8, property4, fArr4));
+                    arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem8, (Property<ActionBarMenuSubItem, Float>) property4, fArr4));
                 }
                 this.quoteSwitcher.playTogether(arrayList);
                 this.quoteSwitcher.setDuration(360L);
@@ -290,23 +290,23 @@ public class MessagePreviewView extends FrameLayout {
         public MessageObject getReplyMessage(MessageObject messageObject) {
             MessageObject.GroupedMessages valueAt;
             MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
-            if (messages != null) {
-                LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
-                if (longSparseArray != null && longSparseArray.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
-                    if (valueAt.isDocuments) {
-                        if (messageObject != null) {
-                            return messageObject;
-                        }
-                        ChatActivity.ReplyQuote replyQuote = MessagePreviewView.this.messagePreviewParams.quote;
-                        if (replyQuote != null) {
-                            return replyQuote.message;
-                        }
-                    }
-                    return valueAt.captionMessage;
-                }
-                return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
+            if (messages == null) {
+                return null;
             }
-            return null;
+            LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
+            if (longSparseArray != null && longSparseArray.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
+                if (valueAt.isDocuments) {
+                    if (messageObject != null) {
+                        return messageObject;
+                    }
+                    ChatActivity.ReplyQuote replyQuote = MessagePreviewView.this.messagePreviewParams.quote;
+                    if (replyQuote != null) {
+                        return replyQuote.message;
+                    }
+                }
+                return valueAt.captionMessage;
+            }
+            return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
         }
 
         public Page(android.content.Context r26, int r27) {
@@ -345,7 +345,7 @@ public class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public void onAllAnimationsDone() {
+            protected void onAllAnimationsDone() {
                 super.onAllAnimationsDone();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -683,10 +683,10 @@ public class MessagePreviewView extends FrameLayout {
             if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
                 RecyclerListView recyclerListView = this.chatListView;
                 recyclerListView.smoothScrollBy(0, -recyclerListView.computeVerticalScrollOffset(), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
-                return;
+            } else {
+                RecyclerListView recyclerListView2 = this.chatListView;
+                recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollOffset() + this.chatListView.computeVerticalScrollExtent()), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
             }
-            RecyclerListView recyclerListView2 = this.chatListView;
-            recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollOffset() + this.chatListView.computeVerticalScrollExtent()), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
         }
 
         public void showQuoteLengthError() {
@@ -716,10 +716,11 @@ public class MessagePreviewView extends FrameLayout {
                     this.actionBar.setTitle(LocaleController.getString(R.string.PreviewQuoteUpdate), z);
                     this.actionBar.setSubtitle(LocaleController.getString(R.string.PreviewQuoteUpdateSubtitle), z);
                     return;
+                } else {
+                    this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
+                    this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
+                    return;
                 }
-                this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
-                this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : BuildConfig.APP_CENTER_HASH, z);
-                return;
             }
             ActionBar actionBar = this.actionBar;
             MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.forwardMessages;
@@ -791,7 +792,7 @@ public class MessagePreviewView extends FrameLayout {
                 if (this.currentTab == 2) {
                     TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
                     if (tLRPC$WebPage != null && ((tLRPC$MessageMedia = (tLRPC$Message = messageObject.messageOwner).media) == null || tLRPC$MessageMedia.webpage != tLRPC$WebPage)) {
-                        tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message.flags |= 512;
                         tLRPC$Message.media = new TLRPC$TL_messageMediaWebPage();
                         TLRPC$MessageMedia tLRPC$MessageMedia2 = messageObject.messageOwner.media;
                         MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
@@ -1025,11 +1026,11 @@ public class MessagePreviewView extends FrameLayout {
                 this.chatPreviewContainer.setTranslationY(0.0f);
                 this.menu.setTranslationY(0.0f);
             } else {
-                this.actionBar.setTranslationY(i);
+                this.actionBar.setTranslationY(Math.max(0, i));
                 if (Build.VERSION.SDK_INT >= 21) {
                     this.chatPreviewContainer.invalidateOutline();
                 }
-                this.chatPreviewContainer.setTranslationY(f);
+                this.chatPreviewContainer.setTranslationY(Math.max(0.0f, f));
                 this.menu.setTranslationY((f + this.chatPreviewContainer.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
             }
             this.textSelectionOverlay.setTranslationX(this.chatPreviewContainer.getX());
@@ -1056,8 +1057,9 @@ public class MessagePreviewView extends FrameLayout {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 Context context = viewGroup.getContext();
+                int i2 = MessagePreviewView.this.currentAccount;
                 Page page = Page.this;
-                ChatMessageCell chatMessageCell = new ChatMessageCell(context, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, i2, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
                     @Override
                     public void invalidate() {
                         super.invalidate();
@@ -1065,8 +1067,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void invalidate(int i2, int i3, int i4, int i5) {
-                        super.invalidate(i2, i3, i4, i5);
+                    public void invalidate(int i3, int i4, int i5, int i6) {
+                        super.invalidate(i3, i4, i5, i6);
                         Page.this.chatListView.invalidate();
                     }
 
@@ -1077,8 +1079,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                        super.onLayout(z, i2, i3, i4, i5);
+                    public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                        super.onLayout(z, i3, i4, i5, i6);
                         Page.this.updateLinkHighlight(this);
                     }
                 };
@@ -1101,13 +1103,18 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i3, f, f2);
                     }
 
                     @Override
                     public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2);
+                    }
+
+                    @Override
+                    public void didPressAboutRevenueSharingAds() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
                     }
 
                     @Override
@@ -1131,8 +1138,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i3, f, f2, z);
                     }
 
                     @Override
@@ -1156,13 +1163,38 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
+                    public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
+                    }
+
+                    @Override
                     public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
                     }
 
                     @Override
-                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i2);
+                    public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i3, int i4) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell2, i3, i4);
+                    }
+
+                    @Override
+                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i3);
+                    }
+
+                    @Override
+                    public void didPressGroupImage(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell2, imageReceiver, tLRPC$MessageExtendedMedia, f, f2);
                     }
 
                     @Override
@@ -1171,8 +1203,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressHint(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell2, i2);
+                    public void didPressHint(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1181,8 +1213,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell2, i2);
+                    public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1201,8 +1233,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i2);
+                    public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i3);
                     }
 
                     @Override
@@ -1211,8 +1243,13 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressSponsoredClose() {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                    public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell2, f, f2);
                     }
 
                     @Override
@@ -1226,8 +1263,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2);
+                    public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2, z);
                     }
 
                     @Override
@@ -1246,8 +1283,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i2, i3, i4);
+                    public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i3, int i4, int i5) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i3, i4, i5);
                     }
 
                     @Override
@@ -1263,6 +1300,11 @@ public class MessagePreviewView extends FrameLayout {
                     @Override
                     public boolean doNotShowLoadingReply(MessageObject messageObject) {
                         return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                    }
+
+                    @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
                     }
 
                     @Override
@@ -1306,8 +1348,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
+                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i3, int i4) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i3, i4);
                     }
 
                     @Override
@@ -1321,13 +1363,13 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public void needShowPremiumBulletin(int i2) {
-                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i2);
+                    public void needShowPremiumBulletin(int i3) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i3);
                     }
 
                     @Override
-                    public boolean onAccessibilityAction(int i2, Bundle bundle) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
+                    public boolean onAccessibilityAction(int i3, Bundle bundle) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i3, bundle);
                     }
 
                     @Override
@@ -1341,8 +1383,8 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z);
                     }
 
                     @Override
@@ -1351,8 +1393,13 @@ public class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public boolean shouldShowTopicButton() {
-                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
+                    }
+
+                    @Override
+                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                        return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                     }
 
                     @Override
@@ -1398,28 +1445,28 @@ public class MessagePreviewView extends FrameLayout {
                     @Override
                     public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
                         Page page2 = Page.this;
-                        if (page2.currentTab == 2) {
-                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
-                            if (messagePreviewParams.singleLink) {
-                                return null;
-                            }
-                            return messagePreviewParams.currentLink;
+                        if (page2.currentTab != 2) {
+                            return null;
                         }
-                        return null;
+                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                        if (messagePreviewParams.singleLink) {
+                            return null;
+                        }
+                        return messagePreviewParams.currentLink;
                     }
 
                     @Override
-                    public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
+                    public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i3) {
                         Page page2 = Page.this;
-                        if (page2.currentTab == 2 && i2 == 1) {
-                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
-                            if (messagePreviewParams.singleLink) {
-                                return false;
-                            }
-                            TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
-                            return tLRPC$WebPage == null || (tLRPC$WebPage instanceof TLRPC$TL_webPagePending);
+                        if (page2.currentTab != 2 || i3 != 1) {
+                            return false;
                         }
-                        return false;
+                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                        if (messagePreviewParams.singleLink) {
+                            return false;
+                        }
+                        TLRPC$WebPage tLRPC$WebPage = messagePreviewParams.webpage;
+                        return tLRPC$WebPage == null || (tLRPC$WebPage instanceof TLRPC$TL_webPagePending);
                     }
                 });
                 return new RecyclerListView.Holder(chatMessageCell);
@@ -1439,8 +1486,9 @@ public class MessagePreviewView extends FrameLayout {
                 if (page.currentTab == 2) {
                     MessagePreviewView.this.messagePreviewParams.checkCurrentLink(page.messages.previewMessages.get(i));
                 }
+                MessageObject messageObject = Page.this.messages.previewMessages.get(i);
                 MessagePreviewParams.Messages messages2 = Page.this.messages;
-                chatMessageCell.setMessageObject(Page.this.messages.previewMessages.get(i), messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
+                chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
                 if (Page.this.currentTab == 1) {
                     chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this) {
                         @Override
@@ -1474,6 +1522,11 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public void didPressAboutRevenueSharingAds() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                        }
+
+                        @Override
                         public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                             return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
                         }
@@ -1494,8 +1547,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                        public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2, z);
                         }
 
                         @Override
@@ -1519,13 +1572,38 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
+                        public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell2);
+                        }
+
+                        @Override
                         public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
                         }
 
                         @Override
+                        public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i2, int i3) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell2, i2, i3);
+                        }
+
+                        @Override
                         public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
                             ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public void didPressGroupImage(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell2, imageReceiver, tLRPC$MessageExtendedMedia, f, f2);
                         }
 
                         @Override
@@ -1574,8 +1652,13 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didPressSponsoredClose() {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                        public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell2, f, f2);
                         }
 
                         @Override
@@ -1594,8 +1677,8 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2);
+                        public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2, z);
                         }
 
                         @Override
@@ -1624,13 +1707,18 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void didStartVideoStream(MessageObject messageObject) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject);
+                        public void didStartVideoStream(MessageObject messageObject2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject2);
                         }
 
                         @Override
-                        public boolean doNotShowLoadingReply(MessageObject messageObject) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject);
+                        public boolean doNotShowLoadingReply(MessageObject messageObject2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                        }
+
+                        @Override
+                        public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell2, z);
                         }
 
                         @Override
@@ -1689,13 +1777,13 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
+                        public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i2, int i3) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject2, str, str2, str3, str4, i2, i3);
                         }
 
                         @Override
-                        public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject, boolean z) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject, z);
+                        public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject2, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, chatMessageCell2, messageObject2, z);
                         }
 
                         @Override
@@ -1719,23 +1807,28 @@ public class MessagePreviewView extends FrameLayout {
                         }
 
                         @Override
-                        public void setShouldNotRepeatSticker(MessageObject messageObject) {
-                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
+                        public void setShouldNotRepeatSticker(MessageObject messageObject2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject2);
                         }
 
                         @Override
-                        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2, z);
                         }
 
                         @Override
-                        public boolean shouldRepeatSticker(MessageObject messageObject) {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                        public boolean shouldRepeatSticker(MessageObject messageObject2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject2);
                         }
 
                         @Override
-                        public boolean shouldShowTopicButton() {
-                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                        public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell2);
                         }
 
                         @Override
@@ -1787,25 +1880,26 @@ public class MessagePreviewView extends FrameLayout {
 
             private int offset(ChatMessageCell chatMessageCell, int i) {
                 MessageObject messageObject;
-                int dp;
+                int i2;
                 ArrayList<MessageObject.TextLayoutBlock> arrayList;
                 CharSequence charSequence;
-                StaticLayout staticLayout;
                 float lineTop;
                 MessageObject.TextLayoutBlocks textLayoutBlocks;
                 if (chatMessageCell == null || (messageObject = chatMessageCell.getMessageObject()) == null || messageObject.getGroupId() != 0) {
                     return 0;
                 }
                 if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = chatMessageCell.captionLayout) != null) {
-                    dp = (int) chatMessageCell.captionY;
+                    i2 = (int) chatMessageCell.captionY;
                     charSequence = messageObject.caption;
                     arrayList = textLayoutBlocks.textLayoutBlocks;
                 } else {
                     chatMessageCell.layoutTextXY(true);
-                    int i2 = chatMessageCell.textY;
+                    i2 = chatMessageCell.textY;
                     CharSequence charSequence2 = messageObject.messageText;
                     ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                    dp = chatMessageCell.linkPreviewAbove ? chatMessageCell.linkPreviewHeight + AndroidUtilities.dp(10.0f) + i2 : i2;
+                    if (chatMessageCell.linkPreviewAbove) {
+                        i2 += chatMessageCell.linkPreviewHeight + AndroidUtilities.dp(10.0f);
+                    }
                     arrayList = arrayList2;
                     charSequence = charSequence2;
                 }
@@ -1816,9 +1910,9 @@ public class MessagePreviewView extends FrameLayout {
                         int i4 = textLayoutBlock.charactersOffset;
                         if (i > i4) {
                             if (i - i4 > charSequence3.length() - 1) {
-                                lineTop = dp + ((int) (textLayoutBlock.textYOffset + textLayoutBlock.padTop + textLayoutBlock.height));
+                                lineTop = i2 + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
                             } else {
-                                lineTop = dp + textLayoutBlock.textYOffset + textLayoutBlock.padTop + staticLayout.getLineTop(staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset));
+                                lineTop = r6.getLineTop(r6.getLineForOffset(i - textLayoutBlock.charactersOffset)) + i2 + textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop;
                             }
                             return (int) lineTop;
                         }
@@ -1838,12 +1932,12 @@ public class MessagePreviewView extends FrameLayout {
         }
 
         public MessageObject.GroupedMessages getValidGroupedMessage(MessageObject messageObject) {
-            if (messageObject.getGroupId() != 0) {
-                MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
-                if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
-                    return groupedMessages;
-                }
+            if (messageObject.getGroupId() == 0) {
                 return null;
+            }
+            MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
+            if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
+                return groupedMessages;
             }
             return null;
         }
@@ -1872,7 +1966,7 @@ public class MessagePreviewView extends FrameLayout {
         this.resourcesProvider = resourcesDelegate;
         this.viewPager = new ViewPagerFixed(context, resourcesDelegate) {
             @Override
-            protected void onTabAnimationUpdate(boolean z2) {
+            public void onTabAnimationUpdate(boolean z2) {
                 MessagePreviewView messagePreviewView = MessagePreviewView.this;
                 messagePreviewView.tabsView.setSelectedTab(messagePreviewView.viewPager.getPositionAnimated());
                 View[] viewArr = this.viewPages;
@@ -1971,12 +2065,12 @@ public class MessagePreviewView extends FrameLayout {
         while (true) {
             if (i2 >= this.tabsView.tabs.size()) {
                 break;
-            } else if (this.tabsView.tabs.get(i2).id == num.intValue()) {
+            }
+            if (this.tabsView.tabs.get(i2).id == num.intValue()) {
                 i = i2;
                 break;
-            } else {
-                i2++;
             }
+            i2++;
         }
         if (this.viewPager.getCurrentPosition() == i) {
             return;
@@ -2046,7 +2140,7 @@ public class MessagePreviewView extends FrameLayout {
 
             public Tab(int i, String str) {
                 this.id = i;
-                this.text = new Text(str, 14.0f, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.text = new Text(str, 14.0f, AndroidUtilities.bold());
             }
         }
 
@@ -2115,24 +2209,23 @@ public class MessagePreviewView extends FrameLayout {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            boolean z = true;
             if (this.tabs.size() <= 1) {
                 return;
             }
             float f = this.selectedTab;
             double d = f;
             int floor = (int) Math.floor(d);
-            boolean z2 = floor >= 0 && floor < this.tabs.size();
+            boolean z = floor >= 0 && floor < this.tabs.size();
             int ceil = (int) Math.ceil(d);
-            z = (ceil < 0 || ceil >= this.tabs.size()) ? false : false;
-            if (z2 && z) {
+            boolean z2 = ceil >= 0 && ceil < this.tabs.size();
+            if (z && z2) {
                 AndroidUtilities.lerp(this.tabs.get(floor).bounds, this.tabs.get(ceil).bounds, f - floor, this.selectRect);
-            } else if (z2) {
-                this.selectRect.set(this.tabs.get(floor).bounds);
             } else if (z) {
+                this.selectRect.set(this.tabs.get(floor).bounds);
+            } else if (z2) {
                 this.selectRect.set(this.tabs.get(ceil).bounds);
             }
-            if (z2 || z) {
+            if (z || z2) {
                 canvas.drawRoundRect(this.selectRect, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.bgPaint);
             }
             for (int i = 0; i < this.tabs.size(); i++) {
@@ -2187,7 +2280,7 @@ public class MessagePreviewView extends FrameLayout {
             this.title = animatedTextDrawable;
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             animatedTextDrawable.setAnimationProperties(0.3f, 0L, 430L, cubicBezierInterpolator);
-            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle, resourcesProvider));
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
             animatedTextDrawable.setEllipsizeByGradient(!LocaleController.isRTL);
@@ -2322,7 +2415,7 @@ public class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public class ToggleButton extends View {
+    public static class ToggleButton extends View {
         private boolean first;
         RLottieToggleDrawable iconDrawable;
         private boolean isState1;
@@ -2331,17 +2424,17 @@ public class MessagePreviewView extends FrameLayout {
         final String text2;
         AnimatedTextView.AnimatedTextDrawable textDrawable;
 
-        public ToggleButton(MessagePreviewView messagePreviewView, Context context, int i, String str, int i2, String str2) {
+        public ToggleButton(Context context, int i, String str, int i2, String str2, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.first = true;
             this.text1 = str;
             this.text2 = str2;
-            setBackground(Theme.createSelectorDrawable(messagePreviewView.getThemedColor(Theme.key_listSelector), 2));
+            setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.textDrawable = animatedTextDrawable;
             animatedTextDrawable.setAnimationProperties(0.35f, 0L, 300L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.textDrawable.setTextSize(AndroidUtilities.dp(16.0f));
-            this.textDrawable.setTextColor(messagePreviewView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
+            this.textDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
             this.textDrawable.setCallback(this);
             this.textDrawable.setEllipsizeByGradient(true ^ LocaleController.isRTL);
             if (LocaleController.isRTL) {
@@ -2350,9 +2443,9 @@ public class MessagePreviewView extends FrameLayout {
             int dp = (int) (AndroidUtilities.dp(77.0f) + Math.max(this.textDrawable.getPaint().measureText(str), this.textDrawable.getPaint().measureText(str2)));
             this.minWidth = dp;
             this.textDrawable.setOverrideFullWidth(dp);
-            RLottieToggleDrawable rLottieToggleDrawable = new RLottieToggleDrawable(messagePreviewView, this, i, i2);
+            RLottieToggleDrawable rLottieToggleDrawable = new RLottieToggleDrawable(this, i, i2);
             this.iconDrawable = rLottieToggleDrawable;
-            rLottieToggleDrawable.setColorFilter(new PorterDuffColorFilter(messagePreviewView.getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.SRC_IN));
+            rLottieToggleDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
         }
 
         public void setState(boolean z, boolean z2) {
@@ -2362,6 +2455,10 @@ public class MessagePreviewView extends FrameLayout {
                 this.iconDrawable.setState(z, z2);
                 this.first = false;
             }
+        }
+
+        public boolean getState() {
+            return this.isState1;
         }
 
         @Override
@@ -2403,7 +2500,7 @@ public class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public class RLottieToggleDrawable extends Drawable {
+    public static class RLottieToggleDrawable extends Drawable {
         private RLottieDrawable currentState;
         private boolean detached;
         private boolean isState1;
@@ -2415,14 +2512,14 @@ public class MessagePreviewView extends FrameLayout {
             return -2;
         }
 
-        public RLottieToggleDrawable(MessagePreviewView messagePreviewView, View view, int i, int i2) {
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        public RLottieToggleDrawable(View view, int i, int i2) {
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.state1 = rLottieDrawable;
             rLottieDrawable.setMasterParent(view);
             this.state1.setAllowDecodeSingleFrame(true);
             this.state1.setPlayInDirectionOfCustomEndFrame(true);
             this.state1.setAutoRepeat(0);
-            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             this.state2 = rLottieDrawable2;
             rLottieDrawable2.setMasterParent(view);
             this.state2.setAllowDecodeSingleFrame(true);

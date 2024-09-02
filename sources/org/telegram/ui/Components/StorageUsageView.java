@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class StorageUsageView extends FrameLayout {
     private Paint bgPaint;
     private boolean calculating;
@@ -205,15 +206,16 @@ public class StorageUsageView extends FrameLayout {
             }
             this.freeSizeTextView.setVisibility(0);
             this.totlaSizeTextView.setVisibility(0);
-            float f = (float) j4;
-            float f2 = ((float) (j2 + j)) / f;
-            float f3 = ((float) j5) / f;
-            if (this.progress != f2) {
+            float f = (float) (j2 + j);
+            float f2 = (float) j4;
+            float f3 = f / f2;
+            float f4 = ((float) j5) / f2;
+            if (this.progress != f3) {
                 ValueAnimator valueAnimator = this.valueAnimator;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f2);
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progress, f3);
                 this.valueAnimator = ofFloat;
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -223,12 +225,12 @@ public class StorageUsageView extends FrameLayout {
                 });
                 this.valueAnimator.start();
             }
-            if (this.progress2 != f3) {
+            if (this.progress2 != f4) {
                 ValueAnimator valueAnimator2 = this.valueAnimator2;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.progress2, f3);
+                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.progress2, f4);
                 this.valueAnimator2 = ofFloat2;
                 ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -330,20 +332,19 @@ public class StorageUsageView extends FrameLayout {
             }
             int dp = AndroidUtilities.dp(24.0f);
             if (!StorageUsageView.this.calculating) {
-                int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2);
-                int dp2 = AndroidUtilities.dp(24.0f) + measuredWidth;
-                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
+                int dp2 = AndroidUtilities.dp(24.0f) + ((int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress2));
+                canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + r5, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress2);
                 canvas.drawRect(dp2, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp2 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
             }
             if (StorageUsageView.this.calculating) {
                 return;
             }
-            int measuredWidth2 = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
-            if (measuredWidth2 < AndroidUtilities.dp(1.0f)) {
-                measuredWidth2 = AndroidUtilities.dp(1.0f);
+            int measuredWidth = (int) ((getMeasuredWidth() - (AndroidUtilities.dp(24.0f) * 2)) * StorageUsageView.this.progress);
+            if (measuredWidth < AndroidUtilities.dp(1.0f)) {
+                measuredWidth = AndroidUtilities.dp(1.0f);
             }
-            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth2;
-            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth2, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
+            int dp3 = AndroidUtilities.dp(24.0f) + measuredWidth;
+            canvas.drawLine(dp, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(24.0f) + measuredWidth, AndroidUtilities.dp(20.0f), StorageUsageView.this.paintProgress);
             canvas.drawRect(dp3, AndroidUtilities.dp(20.0f) - AndroidUtilities.dp(3.0f), dp3 + AndroidUtilities.dp(3.0f), AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(3.0f), StorageUsageView.this.bgPaint);
         }
     }

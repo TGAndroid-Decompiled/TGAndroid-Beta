@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.LinearLayout;
-import org.telegram.messenger.BuildConfig;
+
 public class SlideView extends LinearLayout {
     public String getHeaderName() {
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public boolean hasCustomKeyboard() {
@@ -31,6 +31,9 @@ public class SlideView extends LinearLayout {
     }
 
     public void onNextPressed(String str) {
+    }
+
+    public void onResume() {
     }
 
     public void onShow() {

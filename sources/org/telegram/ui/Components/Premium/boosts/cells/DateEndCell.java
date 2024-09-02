@@ -11,6 +11,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class DateEndCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
@@ -44,7 +45,7 @@ public class DateEndCell extends FrameLayout {
     public void setDate(long j) {
         this.selectedTime = j;
         Date date = new Date(j);
-        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterDayMonth.format(date), LocaleController.getInstance().formatterDay.format(date)));
+        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
     }
 
     public long getSelectedTime() {

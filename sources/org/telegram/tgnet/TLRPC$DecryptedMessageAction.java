@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$DecryptedMessageAction extends TLObject {
     public TLRPC$SendMessageAction action;
     public int end_seq_no;

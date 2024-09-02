@@ -12,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
@@ -26,14 +27,13 @@ import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Paint.Shader;
+
 public class BlurringShader {
     private Bitmap bitmap;
     private boolean bitmapAvailable;
@@ -115,8 +115,6 @@ public class BlurringShader {
     }
 
     public boolean setup(float f, boolean z, int i) {
-        int i2;
-        int i3;
         this.width = (int) Math.round(Math.sqrt(f * 324.0f));
         this.height = (int) Math.round(Math.sqrt(324.0f / f));
         this.padding = i;
@@ -130,11 +128,11 @@ public class BlurringShader {
         this.posBuffer = asFloatBuffer;
         asFloatBuffer.put(fArr);
         this.posBuffer.position(0);
-        for (int i4 = 0; i4 < 4; i4++) {
-            int i5 = i4 * 2;
-            fArr[i5] = fArr[i5] * ((i2 - i) / this.width);
-            int i6 = i5 + 1;
-            fArr[i6] = fArr[i6] * ((i3 - i) / this.height);
+        for (int i2 = 0; i2 < 4; i2++) {
+            int i3 = i2 * 2;
+            fArr[i3] = fArr[i3] * ((r10 - i) / this.width);
+            int i4 = i3 + 1;
+            fArr[i4] = fArr[i4] * ((r10 - i) / this.height);
         }
         ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
         allocateDirect2.order(ByteOrder.nativeOrder());
@@ -153,8 +151,8 @@ public class BlurringShader {
         if (readRes == null || readRes2 == null) {
             return false;
         }
-        for (int i7 = 0; i7 < 2; i7++) {
-            if (i7 == 1) {
+        for (int i5 = 0; i5 < 2; i5++) {
+            if (i5 == 1) {
                 readRes2 = "#extension GL_OES_EGL_image_external : require\n" + readRes2.replace("sampler2D tex", "samplerExternalOES tex");
             }
             int loadShader = FilterShaders.loadShader(35633, readRes);
@@ -174,30 +172,30 @@ public class BlurringShader {
                 GLES20.glDeleteProgram(glCreateProgram);
                 return false;
             }
-            this.program[i7] = new Program(glCreateProgram);
+            this.program[i5] = new Program(glCreateProgram);
         }
         GLES20.glGenFramebuffers(3, this.framebuffer, 0);
         GLES20.glGenTextures(3, this.texture, 0);
-        int i8 = 0;
-        while (i8 < 3) {
-            GLES20.glBindTexture(3553, this.texture[i8]);
-            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i8 == 2 ? i * 2 : 0), this.height + (i8 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
+        int i6 = 0;
+        while (i6 < 3) {
+            GLES20.glBindTexture(3553, this.texture[i6]);
+            GLES20.glTexImage2D(3553, 0, 6408, this.width + (i6 == 2 ? i * 2 : 0), this.height + (i6 == 2 ? i * 2 : 0), 0, 6408, 5121, null);
             GLES20.glTexParameteri(3553, 10242, 33071);
             GLES20.glTexParameteri(3553, 10243, 33071);
             GLES20.glTexParameteri(3553, 10241, 9729);
             GLES20.glTexParameteri(3553, 10240, 9729);
-            GLES20.glBindFramebuffer(36160, this.framebuffer[i8]);
-            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i8], 0);
+            GLES20.glBindFramebuffer(36160, this.framebuffer[i6]);
+            GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.texture[i6], 0);
             if (GLES20.glCheckFramebufferStatus(36160) != 36053) {
                 return false;
             }
-            i8++;
+            i6++;
         }
         GLES20.glBindFramebuffer(36160, 0);
         if (z) {
-            int i9 = i * 2;
-            this.bitmap = Bitmap.createBitmap(this.width + i9, this.height + i9, Bitmap.Config.ARGB_8888);
-            this.buffer = ByteBuffer.allocateDirect((this.width + i9) * (i9 + this.height) * 4);
+            int i7 = i * 2;
+            this.bitmap = Bitmap.createBitmap(this.width + i7, this.height + i7, Bitmap.Config.ARGB_8888);
+            this.buffer = ByteBuffer.allocateDirect((this.width + i7) * (i7 + this.height) * 4);
         }
         return true;
     }
@@ -210,7 +208,7 @@ public class BlurringShader {
         }
         GLES20.glBindFramebuffer(36160, this.framebuffer[0]);
         GLES20.glViewport(0, 0, this.width, this.height);
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         GLES20.glUseProgram(program.gl);
         GLES20.glUniform1i(program.texHandle, 0);
         GLES20.glActiveTexture(33984);
@@ -269,7 +267,7 @@ public class BlurringShader {
         int i4 = this.width;
         int i5 = this.padding;
         GLES20.glViewport(0, 0, i4 + (i5 * 2), this.height + (i5 * 2));
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         GLES20.glEnableVertexAttribArray(program.posHandle);
         GLES20.glVertexAttribPointer(program.posHandle, 2, 5126, false, 8, (Buffer) this.padPosBuffer);
         GLES20.glUniform1i(program.stepHandle, 2);
@@ -307,10 +305,10 @@ public class BlurringShader {
 
     public Bitmap getBitmap() {
         synchronized (this.bitmapLock) {
-            if (this.bitmapAvailable) {
-                return this.bitmap;
+            if (!this.bitmapAvailable) {
+                return null;
             }
-            return null;
+            return this.bitmap;
         }
     }
 
@@ -526,7 +524,7 @@ public class BlurringShader {
         public void setFallbackBlur(Bitmap bitmap, int i, boolean z) {
             ThumbBlurer thumbBlurer = this.thumbBlurer;
             StringBuilder sb = new StringBuilder();
-            sb.append(BuildConfig.APP_CENTER_HASH);
+            sb.append("");
             int i2 = this.i;
             this.i = i2 + 1;
             sb.append(i2);
@@ -570,7 +568,7 @@ public class BlurringShader {
         }
 
         public Bitmap getBitmap(final Bitmap bitmap, final String str, final int i, final int i2, final boolean z) {
-            if (bitmap == null) {
+            if (bitmap == null || bitmap.isRecycled()) {
                 return null;
             }
             if (TextUtils.equals(this.thumbKey, str)) {
@@ -601,6 +599,9 @@ public class BlurringShader {
         public void lambda$getBitmap$1(final Bitmap bitmap, int i, int i2, final String str, final boolean z) {
             int i3;
             int i4;
+            if (bitmap == null || bitmap.isRecycled()) {
+                return;
+            }
             float width = bitmap.getWidth() / bitmap.getHeight();
             int round = (int) Math.round(Math.sqrt(width * 324.0f));
             int round2 = (int) Math.round(Math.sqrt(324.0f / width));
@@ -634,10 +635,9 @@ public class BlurringShader {
                 canvas.drawRect(0.0f, 0.0f, round + i9, i9, this.clearPaint);
                 int i10 = this.padding;
                 canvas.drawRect(0.0f, i10, i10, i10 + round2, this.clearPaint);
+                canvas.drawRect(r0 + round, this.padding, r0 + round + r0, r0 + round2, this.clearPaint);
                 int i11 = this.padding;
-                canvas.drawRect(i11 + round, i11, i11 + round + i11, i11 + round2, this.clearPaint);
-                int i12 = this.padding;
-                canvas.drawRect(0.0f, i12 + round2, round + i12 + i12, round2 + i12 + i12, this.clearPaint);
+                canvas.drawRect(0.0f, i11 + round2, round + i11 + i11, round2 + i11 + i11, this.clearPaint);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -686,6 +686,7 @@ public class BlurringShader {
         private boolean animateBitmapChange;
         private BitmapShader bitmapShader;
         RectF bounds;
+        public final ColorMatrix colorMatrix;
         private ValueAnimator crossfadeAnimator;
         private boolean customOffset;
         private float customOffsetX;
@@ -697,6 +698,7 @@ public class BlurringShader {
         private float oldPaintAlpha;
         private boolean oldPaintSet;
         public Paint paint;
+        public RenderNode renderNode;
         private Paint[] tempPaints;
         private final View view;
         private boolean wasDark;
@@ -715,6 +717,7 @@ public class BlurringShader {
             this.view = view;
             this.animateBitmapChange = z;
             ColorMatrix colorMatrix = new ColorMatrix();
+            this.colorMatrix = colorMatrix;
             if (i == 0) {
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
             } else if (i == 5) {
@@ -843,13 +846,13 @@ public class BlurringShader {
                 this.bitmapShader = bitmapShader2;
                 this.paint.setShader(bitmapShader2);
             }
-            if (setupMatrix(bitmap.getWidth(), bitmap.getHeight())) {
-                this.matrix.postTranslate(-f2, -f3);
-                this.bitmapShader.setLocalMatrix(this.matrix);
-                this.paint.setAlpha((int) (f * 255.0f));
-                return this.paint;
+            if (!setupMatrix(bitmap.getWidth(), bitmap.getHeight())) {
+                return null;
             }
-            return null;
+            this.matrix.postTranslate(-f2, -f3);
+            this.bitmapShader.setLocalMatrix(this.matrix);
+            this.paint.setAlpha((int) (f * 255.0f));
+            return this.paint;
         }
 
         public Paint[] getPaints(float f, float f2, float f3) {
@@ -941,6 +944,7 @@ public class BlurringShader {
             return new Drawable() {
                 float alpha = 1.0f;
                 private final Paint dimPaint = new Paint(1);
+                private final android.graphics.Rect rect = new android.graphics.Rect();
 
                 @Override
                 public int getOpacity() {
@@ -985,10 +989,11 @@ public class BlurringShader {
                             drawable.draw(canvas);
                             canvas.drawRect(bounds, paint);
                             canvas.restore();
-                            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-                            getPadding(rect);
+                            getPadding(this.rect);
                             RectF rectF = AndroidUtilities.rectTmp;
-                            rectF.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+                            int i = bounds.left;
+                            android.graphics.Rect rect = this.rect;
+                            rectF.set(i + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
                             this.dimPaint.setColor(1711276032);
                             float f4 = f3;
                             canvas.drawRoundRect(rectF, f4, f4, this.dimPaint);

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_smsjobs_eligibleToJoin extends TLObject {
     public int monthly_sent_sms;
     public String terms_of_use;

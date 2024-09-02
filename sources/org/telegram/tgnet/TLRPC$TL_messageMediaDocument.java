@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messageMediaDocument extends TLRPC$MessageMedia {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -10,7 +9,7 @@ public class TLRPC$TL_messageMediaDocument extends TLRPC$MessageMedia {
         this.spoiler = (readInt32 & 16) != 0;
         this.video = (readInt32 & 64) != 0;
         this.round = (readInt32 & 128) != 0;
-        this.voice = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+        this.voice = (readInt32 & 256) != 0;
         if ((readInt32 & 1) != 0) {
             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -33,7 +32,7 @@ public class TLRPC$TL_messageMediaDocument extends TLRPC$MessageMedia {
         this.flags = i3;
         int i4 = this.round ? i3 | 128 : i3 & (-129);
         this.flags = i4;
-        int i5 = this.voice ? i4 | LiteMode.FLAG_CHAT_BLUR : i4 & (-257);
+        int i5 = this.voice ? i4 | 256 : i4 & (-257);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
         if ((this.flags & 1) != 0) {

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_help_countryCode extends TLObject {
     public String country_code;
     public int flags;
@@ -30,10 +31,11 @@ public class TLRPC$TL_help_countryCode extends TLObject {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                 }
                 return;
-            }
-            int readInt322 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt322; i++) {
-                this.prefixes.add(abstractSerializedData.readString(z));
+            } else {
+                int readInt322 = abstractSerializedData.readInt32(z);
+                for (int i = 0; i < readInt322; i++) {
+                    this.prefixes.add(abstractSerializedData.readString(z));
+                }
             }
         }
         if ((this.flags & 2) != 0) {
@@ -42,11 +44,11 @@ public class TLRPC$TL_help_countryCode extends TLObject {
                 if (z) {
                     throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
-                return;
-            }
-            int readInt324 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt324; i2++) {
-                this.patterns.add(abstractSerializedData.readString(z));
+            } else {
+                int readInt324 = abstractSerializedData.readInt32(z);
+                for (int i2 = 0; i2 < readInt324; i2++) {
+                    this.patterns.add(abstractSerializedData.readString(z));
+                }
             }
         }
     }

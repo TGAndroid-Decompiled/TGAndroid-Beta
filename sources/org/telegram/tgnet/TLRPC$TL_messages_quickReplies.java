@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_quickReplies extends TLRPC$messages_quickReplies {
     public ArrayList<TLRPC$TL_quickReply> quick_replies = new ArrayList<>();
     public ArrayList<TLRPC$Message> messages = new ArrayList<>();
@@ -47,11 +48,11 @@ public class TLRPC$TL_messages_quickReplies extends TLRPC$messages_quickReplies 
             if (z) {
                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt327)));
             }
-            return;
-        }
-        int readInt328 = abstractSerializedData.readInt32(z);
-        for (int i4 = 0; i4 < readInt328; i4++) {
-            this.users.add(TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+        } else {
+            int readInt328 = abstractSerializedData.readInt32(z);
+            for (int i4 = 0; i4 < readInt328; i4++) {
+                this.users.add(TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z));
+            }
         }
     }
 

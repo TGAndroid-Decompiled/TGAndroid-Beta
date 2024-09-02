@@ -3,6 +3,7 @@ package org.telegram.tgnet.tl;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
+
 public class TL_stories$TL_stats_getStoryStats extends TLObject {
     public boolean dark;
     public int flags;

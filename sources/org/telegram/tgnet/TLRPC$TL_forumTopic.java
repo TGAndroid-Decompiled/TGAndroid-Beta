@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
+
 public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public boolean closed;
     public int date;

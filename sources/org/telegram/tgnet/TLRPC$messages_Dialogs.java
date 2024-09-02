@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$messages_Dialogs extends TLObject {
     public int count;
     public ArrayList<TLRPC$Dialog> dialogs = new ArrayList<>();

@@ -22,6 +22,8 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
+
 public class Switch extends View {
     private boolean attachedToWindow;
     private boolean bitmapsCreated;
@@ -148,7 +150,7 @@ public class Switch extends View {
             Paint paint = new Paint(1);
             this.ripplePaint = paint;
             paint.setColor(-1);
-            RippleDrawable rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{0}), null, i >= 23 ? null : new Drawable() {
+            BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{0}), null, i >= 23 ? null : new Drawable() {
                 @Override
                 public int getOpacity() {
                     return 0;
@@ -168,9 +170,9 @@ public class Switch extends View {
                     canvas.drawCircle(bounds.centerX(), bounds.centerY(), AndroidUtilities.dp(18.0f), Switch.this.ripplePaint);
                 }
             });
-            this.rippleDrawable = rippleDrawable;
+            this.rippleDrawable = rippleDrawableSafe;
             if (i >= 23) {
-                rippleDrawable.setRadius(AndroidUtilities.dp(18.0f));
+                rippleDrawableSafe.setRadius(AndroidUtilities.dp(18.0f));
             }
             this.rippleDrawable.setCallback(this);
         }
@@ -286,10 +288,10 @@ public class Switch extends View {
             this.drawIconType = i;
             if (this.attachedToWindow && z) {
                 animateIcon(i == 0);
-                return;
+            } else {
+                cancelIconAnimator();
+                setIconProgress(i == 0 ? 1.0f : 0.0f);
             }
-            cancelIconAnimator();
-            setIconProgress(i == 0 ? 1.0f : 0.0f);
         }
     }
 

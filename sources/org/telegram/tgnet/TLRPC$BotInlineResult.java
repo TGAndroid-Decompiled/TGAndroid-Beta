@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$BotInlineResult extends TLObject {
     public TLRPC$WebDocument content;
     public String description;

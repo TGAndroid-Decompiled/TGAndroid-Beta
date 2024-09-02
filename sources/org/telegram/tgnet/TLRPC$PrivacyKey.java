@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public abstract class TLRPC$PrivacyKey extends TLObject {
     public static TLRPC$PrivacyKey TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PrivacyKey tLRPC$PrivacyKey;
@@ -40,6 +41,14 @@ public abstract class TLRPC$PrivacyKey extends TLObject {
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(110621716);
+                    }
+                };
+                break;
+            case 536913176:
+                tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(536913176);
                     }
                 };
                 break;

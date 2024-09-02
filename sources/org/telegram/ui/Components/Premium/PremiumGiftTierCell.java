@@ -24,6 +24,7 @@ import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet;
+
 public class PremiumGiftTierCell extends ViewGroup {
     private CheckBox2 checkBox;
     private int color0;
@@ -71,7 +72,7 @@ public class PremiumGiftTierCell extends ViewGroup {
         textView2.setTextSize(1, 14.0f);
         this.discountView.setTextColor(-1);
         this.discountView.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-        this.discountView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.discountView.setTypeface(AndroidUtilities.bold());
         addView(this.discountView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 0.0f, 0.0f, 0.0f, 8.0f));
         TextView textView3 = new TextView(context);
         this.pricePerMonthView = textView3;

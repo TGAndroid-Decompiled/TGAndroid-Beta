@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
+import android.net.Uri;
 import com.carrotsearch.randomizedtesting.Xoroshiro128PlusRandom;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +20,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.telegram.tgnet.ConnectionsManager;
+
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static volatile DispatchQueue videoPlayerQueue;
@@ -80,6 +83,10 @@ public class Utilities {
 
     public interface CallbackVoidReturn<ReturnType> {
         ReturnType run();
+    }
+
+    public interface IndexedConsumer<T> {
+        void accept(T t, int i);
     }
 
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
@@ -164,7 +171,7 @@ public class Utilities {
         }
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / 150));
         return createBitmap;
     }
 
@@ -177,7 +184,7 @@ public class Utilities {
         canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(max, max2) / 150));
         return createBitmap;
     }
 
@@ -191,8 +198,7 @@ public class Utilities {
         } else {
             createBitmap = Bitmap.createBitmap(450, Math.round((bitmap.getHeight() * 450.0f) / bitmap.getWidth()), Bitmap.Config.ARGB_8888);
         }
-        Paint paint = new Paint(2);
-        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), paint);
+        new Canvas(createBitmap).drawBitmap(bitmap, (Rect) null, new Rect(0, 0, createBitmap.getWidth(), createBitmap.getHeight()), new Paint(2));
         stackBlurBitmap(createBitmap, 12);
         return createBitmap;
     }
@@ -299,7 +305,7 @@ public class Utilities {
 
     public static String bytesToHex(byte[] bArr) {
         if (bArr == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         char[] cArr = new char[bArr.length * 2];
         for (int i = 0; i < bArr.length; i++) {
@@ -325,36 +331,7 @@ public class Utilities {
     }
 
     public static boolean isGoodPrime(byte[] bArr, int i) {
-        int intValue;
-        if (i < 2 || i > 7 || bArr.length != 256 || bArr[0] >= 0) {
-            return false;
-        }
-        BigInteger bigInteger = new BigInteger(1, bArr);
-        if (i == 2) {
-            if (bigInteger.mod(BigInteger.valueOf(8L)).intValue() != 7) {
-                return false;
-            }
-        } else if (i == 3) {
-            if (bigInteger.mod(BigInteger.valueOf(3L)).intValue() != 2) {
-                return false;
-            }
-        } else if (i == 5) {
-            int intValue2 = bigInteger.mod(BigInteger.valueOf(5L)).intValue();
-            if (intValue2 != 1 && intValue2 != 4) {
-                return false;
-            }
-        } else if (i == 6) {
-            int intValue3 = bigInteger.mod(BigInteger.valueOf(24L)).intValue();
-            if (intValue3 != 19 && intValue3 != 23) {
-                return false;
-            }
-        } else if (i == 7 && (intValue = bigInteger.mod(BigInteger.valueOf(7L)).intValue()) != 3 && intValue != 5 && intValue != 6) {
-            return false;
-        }
-        if (bytesToHex(bArr).equals("C71CAEB9C6B1C9048E6C522F70F13F73980D40238E3E21C14934D037563D930F48198A0AA7C14058229493D22530F4DBFA336F6E0AC925139543AED44CCE7C3720FD51F69458705AC68CD4FE6B6B13ABDC9746512969328454F18FAF8C595F642477FE96BB2A941D5BCD1D4AC8CC49880708FA9B378E3C4F3A9060BEE67CF9A4A4A695811051907E162753B56B0F6B410DBA74D8A84B2A14B3144E0EF1284754FD17ED950D5965B4B9DD46582DB1178D169C6BC465B0D6FF9CA3928FEF5B9AE4E418FC15E83EBEA0F87FA9FF5EED70050DED2849F47BF959D956850CE929851F0D8115F635B105EE2E4E15D04B2454BF6F4FADF034B10403119CD8E3B92FCC5B")) {
-            return true;
-        }
-        return bigInteger.isProbablePrime(30) && bigInteger.subtract(BigInteger.valueOf(1L)).divide(BigInteger.valueOf(2L)).isProbablePrime(30);
+        return ConnectionsManager.native_isGoodPrime(bArr, i);
     }
 
     public static boolean isGoodGaAndGb(BigInteger bigInteger, BigInteger bigInteger2) {
@@ -524,7 +501,24 @@ public class Utilities {
             byte[] digest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
-                sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));
+                sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
+            }
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public static String SHA256(String str) {
+        if (str == null) {
+            return null;
+        }
+        try {
+            byte[] digest = MessageDigest.getInstance("SHA-256").digest(AndroidUtilities.getStringBytes(str));
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
@@ -545,6 +539,10 @@ public class Utilities {
         return Float.isNaN(f) ? f3 : Float.isInfinite(f) ? f2 : Math.max(Math.min(f, f2), f3);
     }
 
+    public static float clamp01(float f) {
+        return clamp(f, 1.0f, 0.0f);
+    }
+
     public static double clamp(double d, double d2, double d3) {
         return Double.isNaN(d) ? d3 : Double.isInfinite(d) ? d2 : Math.max(Math.min(d, d2), d3);
     }
@@ -556,7 +554,7 @@ public class Utilities {
     public static String generateRandomString(int i) {
         StringBuilder sb = new StringBuilder();
         for (int i2 = 0; i2 < i; i2++) {
-            sb.append(RANDOM_STRING_CHARS.charAt(fastRandom.nextInt(62)));
+            sb.append("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".charAt(fastRandom.nextInt(62)));
         }
         return sb.toString();
     }
@@ -599,19 +597,18 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length == 0) {
             if (runnable != null) {
                 runnable.run();
-                return;
             }
-            return;
-        }
-        final int[] iArr = {0};
-        Runnable runnable2 = new Runnable() {
-            @Override
-            public final void run() {
-                Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+        } else {
+            final int[] iArr = {0};
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+                }
+            };
+            for (Callback<Runnable> callback : callbackArr) {
+                callback.run(runnable2);
             }
-        };
-        for (Callback<Runnable> callback : callbackArr) {
-            callback.run(runnable2);
         }
     }
 
@@ -632,5 +629,13 @@ public class Utilities {
 
     public static boolean isNullOrEmpty(Collection<?> collection) {
         return collection == null || collection.isEmpty();
+    }
+
+    public static Uri uriParseSafe(String str) {
+        try {
+            return Uri.parse(str);
+        } catch (Exception unused) {
+            return null;
+        }
     }
 }

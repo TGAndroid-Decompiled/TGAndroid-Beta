@@ -11,6 +11,7 @@ import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt__StringsJVMKt;
 import kotlinx.coroutines.CopyableThrowable;
+
 public final class StackTraceRecoveryKt {
     private static final String baseContinuationImplClassName;
 
@@ -20,26 +21,25 @@ public final class StackTraceRecoveryKt {
 
     static {
         Object obj;
-        Object m147constructorimpl;
+        Object m158constructorimpl;
         try {
             Result.Companion companion = Result.Companion;
-            obj = Result.m147constructorimpl(Class.forName("kotlin.coroutines.jvm.internal.BaseContinuationImpl").getCanonicalName());
+            obj = Result.m158constructorimpl(Class.forName("kotlin.coroutines.jvm.internal.BaseContinuationImpl").getCanonicalName());
         } catch (Throwable th) {
             Result.Companion companion2 = Result.Companion;
-            obj = Result.m147constructorimpl(ResultKt.createFailure(th));
+            obj = Result.m158constructorimpl(ResultKt.createFailure(th));
         }
-        baseContinuationImplClassName = (String) (Result.m148exceptionOrNullimpl(obj) == null ? obj : "kotlin.coroutines.jvm.internal.BaseContinuationImpl");
+        baseContinuationImplClassName = (String) (Result.m159exceptionOrNullimpl(obj) == null ? obj : "kotlin.coroutines.jvm.internal.BaseContinuationImpl");
         try {
             Result.Companion companion3 = Result.Companion;
-            m147constructorimpl = Result.m147constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
+            m158constructorimpl = Result.m158constructorimpl(StackTraceRecoveryKt.class.getCanonicalName());
         } catch (Throwable th2) {
             Result.Companion companion4 = Result.Companion;
-            m147constructorimpl = Result.m147constructorimpl(ResultKt.createFailure(th2));
+            m158constructorimpl = Result.m158constructorimpl(ResultKt.createFailure(th2));
         }
-        if (Result.m148exceptionOrNullimpl(m147constructorimpl) != null) {
-            m147constructorimpl = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
+        if (Result.m159exceptionOrNullimpl(m158constructorimpl) != null) {
+            m158constructorimpl = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
         }
-        String str = (String) m147constructorimpl;
     }
 
     public static final <E extends Throwable> E recoverFromStackFrame(E e, CoroutineStackFrame coroutineStackFrame) {
@@ -204,8 +204,9 @@ public final class StackTraceRecoveryKt {
             int i2 = i + 1;
             if (isArtificial(stackTraceElementArr[i])) {
                 break;
+            } else {
+                i = i2;
             }
-            i = i2;
         }
         int i3 = i + 1;
         int length2 = stackTraceElementArr.length - 1;
@@ -220,8 +221,9 @@ public final class StackTraceRecoveryKt {
             arrayDeque.addFirst(stackTraceElementArr[length2]);
             if (length2 == i3) {
                 return;
+            } else {
+                length2 = i4;
             }
-            length2 = i4;
         }
     }
 }

@@ -2,6 +2,7 @@ package org.webrtc;
 
 import android.view.OrientationEventListener;
 import org.telegram.messenger.ApplicationLoader;
+
 public class OrientationHelper {
     private static final int ORIENTATION_HYSTERESIS = 5;
     public static volatile int cameraOrientation;
@@ -40,10 +41,10 @@ public class OrientationHelper {
     public void start() {
         if (this.orientationEventListener.canDetectOrientation()) {
             this.orientationEventListener.enable();
-            return;
+        } else {
+            this.orientationEventListener.disable();
+            this.orientationEventListener = null;
         }
-        this.orientationEventListener.disable();
-        this.orientationEventListener = null;
     }
 
     public void stop() {

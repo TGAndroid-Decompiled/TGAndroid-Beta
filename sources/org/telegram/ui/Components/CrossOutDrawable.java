@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CrossOutDrawable extends Drawable {
     int color;
     int colorKey;

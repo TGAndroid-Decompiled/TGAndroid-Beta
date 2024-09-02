@@ -6,15 +6,16 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Property;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PhotoEditorSeekBar;
+
 public class PhotoEditToolCell extends FrameLayout {
     private Runnable hideValueRunnable;
     private TextView nameTextView;
@@ -30,7 +31,7 @@ public class PhotoEditToolCell extends FrameLayout {
             public void run() {
                 PhotoEditToolCell.this.valueTextView.setTag(null);
                 PhotoEditToolCell.this.valueAnimation = new AnimatorSet();
-                PhotoEditToolCell.this.valueAnimation.playTogether(ObjectAnimator.ofFloat(PhotoEditToolCell.this.valueTextView, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(PhotoEditToolCell.this.nameTextView, View.ALPHA, 1.0f));
+                PhotoEditToolCell.this.valueAnimation.playTogether(ObjectAnimator.ofFloat(PhotoEditToolCell.this.valueTextView, (Property<TextView, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(PhotoEditToolCell.this.nameTextView, (Property<TextView, Float>) View.ALPHA, 1.0f));
                 PhotoEditToolCell.this.valueAnimation.setDuration(250L);
                 PhotoEditToolCell.this.valueAnimation.setInterpolator(new DecelerateInterpolator());
                 PhotoEditToolCell.this.valueAnimation.addListener(new AnimatorListenerAdapter() {
@@ -78,11 +79,9 @@ public class PhotoEditToolCell extends FrameLayout {
     public void lambda$setSeekBarDelegate$0(PhotoEditorSeekBar.PhotoEditorSeekBarDelegate photoEditorSeekBarDelegate, int i, int i2) {
         photoEditorSeekBarDelegate.onProgressChanged(i, i2);
         if (i2 > 0) {
-            TextView textView = this.valueTextView;
-            textView.setText("+" + i2);
+            this.valueTextView.setText("+" + i2);
         } else {
-            TextView textView2 = this.valueTextView;
-            textView2.setText(BuildConfig.APP_CENTER_HASH + i2);
+            this.valueTextView.setText("" + i2);
         }
         if (this.valueTextView.getTag() == null) {
             AnimatorSet animatorSet = this.valueAnimation;
@@ -92,7 +91,7 @@ public class PhotoEditToolCell extends FrameLayout {
             this.valueTextView.setTag(1);
             AnimatorSet animatorSet2 = new AnimatorSet();
             this.valueAnimation = animatorSet2;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.valueTextView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, View.ALPHA, 0.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.valueTextView, (Property<TextView, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.nameTextView, (Property<TextView, Float>) View.ALPHA, 0.0f));
             this.valueAnimation.setDuration(250L);
             this.valueAnimation.setInterpolator(new DecelerateInterpolator());
             this.valueAnimation.addListener(new AnimatorListenerAdapter() {
@@ -127,14 +126,11 @@ public class PhotoEditToolCell extends FrameLayout {
         }
         AndroidUtilities.cancelRunOnUIThread(this.hideValueRunnable);
         this.valueTextView.setTag(null);
-        TextView textView = this.nameTextView;
-        textView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        this.nameTextView.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
         if (f > 0.0f) {
-            TextView textView2 = this.valueTextView;
-            textView2.setText("+" + ((int) f));
+            this.valueTextView.setText("+" + ((int) f));
         } else {
-            TextView textView3 = this.valueTextView;
-            textView3.setText(BuildConfig.APP_CENTER_HASH + ((int) f));
+            this.valueTextView.setText("" + ((int) f));
         }
         this.valueTextView.setAlpha(0.0f);
         this.nameTextView.setAlpha(1.0f);

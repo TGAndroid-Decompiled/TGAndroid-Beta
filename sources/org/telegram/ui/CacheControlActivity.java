@@ -40,7 +40,6 @@ import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.Emoji;
@@ -48,7 +47,6 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FilesMigrationService;
 import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -57,7 +55,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -69,7 +66,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda9;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.CacheControlActivity;
@@ -103,6 +100,7 @@ import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.DilogCacheBottomSheet;
 import org.telegram.ui.KeepMediaPopupView;
 import org.telegram.ui.Storage.CacheModel;
+
 public class CacheControlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private static int LISTDIR_DOCTYPE2_EMOJI = 3;
     private static int LISTDIR_DOCTYPE2_OTHER = 5;
@@ -141,7 +139,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     AlertDialog progressDialog;
     private ActionBarMenuSubItem resetDatabaseItem;
     private float[] tempSizes;
-    private boolean[] selected = {true, true, true, true, true, true, true, true, true, true};
+    private boolean[] selected = {true, true, true, true, true, true, true, true, true, true, true};
     private long databaseSize = -1;
     private long cacheSize = -1;
     private long cacheEmojiSize = -1;
@@ -152,6 +150,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     private long musicSize = -1;
     private long photoSize = -1;
     private long videoSize = -1;
+    private long logsSize = -1;
     private long stickersCacheSize = -1;
     private long totalSize = -1;
     private long totalDeviceSize = -1;
@@ -223,7 +222,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         long directorySize4 = getDirectorySize(FileLoader.checkDirectory(2), 0) + getDirectorySize(FileLoader.checkDirectory(101), 0);
         long directorySize5 = getDirectorySize(FileLoader.checkDirectory(3), 1) + getDirectorySize(FileLoader.checkDirectory(5), 1);
         long directorySize6 = getDirectorySize(FileLoader.checkDirectory(3), 2) + getDirectorySize(FileLoader.checkDirectory(5), 2);
-        Long valueOf = Long.valueOf(directorySize + directorySize2 + directorySize4 + getDirectorySize(FileLoader.checkDirectory(1), 0) + directorySize3 + directorySize5 + directorySize6 + getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0) + getDirectorySize(FileLoader.checkDirectory(4), 3) + getDirectorySize(FileLoader.checkDirectory(6), 0));
+        long directorySize7 = getDirectorySize(new File(FileLoader.checkDirectory(4), "acache"), 0) + getDirectorySize(FileLoader.checkDirectory(4), 3);
+        long directorySize8 = getDirectorySize(FileLoader.checkDirectory(1), 0);
+        long directorySize9 = getDirectorySize(FileLoader.checkDirectory(6), 0);
+        long directorySize10 = getDirectorySize(AndroidUtilities.getLogsDir(), 1);
+        if (!BuildVars.DEBUG_VERSION && directorySize10 < 268435456) {
+            directorySize10 = 0;
+        }
+        Long valueOf = Long.valueOf(directorySize + directorySize2 + directorySize4 + directorySize8 + directorySize3 + directorySize5 + directorySize6 + directorySize7 + directorySize9 + directorySize10);
         lastTotalSizeCalculated = valueOf;
         final long longValue = valueOf.longValue();
         lastTotalSizeCalculatedTime = System.currentTimeMillis();
@@ -367,15 +373,23 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (canceled) {
             return;
         }
-        long directorySize3 = getDirectorySize(FileLoader.checkDirectory(3), 1);
-        this.documentsSize = directorySize3;
-        this.documentsSize = directorySize3 + getDirectorySize(FileLoader.checkDirectory(5), 1);
+        long directorySize3 = getDirectorySize(AndroidUtilities.getLogsDir(), 1);
+        this.logsSize = directorySize3;
+        if (!BuildVars.DEBUG_VERSION && directorySize3 < 268435456) {
+            this.logsSize = 0L;
+        }
         if (canceled) {
             return;
         }
-        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(3), 2);
-        this.musicSize = directorySize4;
-        this.musicSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(5), 2);
+        long directorySize4 = getDirectorySize(FileLoader.checkDirectory(3), 1);
+        this.documentsSize = directorySize4;
+        this.documentsSize = directorySize4 + getDirectorySize(FileLoader.checkDirectory(5), 1);
+        if (canceled) {
+            return;
+        }
+        long directorySize5 = getDirectorySize(FileLoader.checkDirectory(3), 2);
+        this.musicSize = directorySize5;
+        this.musicSize = directorySize5 + getDirectorySize(FileLoader.checkDirectory(5), 2);
         if (canceled) {
             return;
         }
@@ -393,7 +407,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (canceled) {
             return;
         }
-        Long valueOf = Long.valueOf(this.cacheSize + this.cacheTempSize + this.videoSize + this.audioSize + this.photoSize + this.documentsSize + this.musicSize + this.storiesSize + this.stickersCacheSize);
+        Long valueOf = Long.valueOf(this.cacheSize + this.cacheTempSize + this.videoSize + this.logsSize + this.audioSize + this.photoSize + this.documentsSize + this.musicSize + this.storiesSize + this.stickersCacheSize);
         lastTotalSizeCalculated = valueOf;
         this.totalSize = valueOf.longValue();
         lastTotalSizeCalculatedTime = System.currentTimeMillis();
@@ -458,14 +472,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         if (cacheChart != null) {
             boolean z = this.calculating;
             if (!z && this.totalSize > 0) {
-                CacheChart.SegmentSize[] segmentSizeArr = new CacheChart.SegmentSize[10];
+                CacheChart.SegmentSize[] segmentSizeArr = new CacheChart.SegmentSize[11];
                 for (int i = 0; i < this.itemInners.size(); i++) {
                     ItemInner itemInner = this.itemInners.get(i);
                     if (itemInner.viewType == 11) {
                         int i2 = itemInner.index;
                         if (i2 < 0) {
                             if (this.collapsed) {
-                                segmentSizeArr[9] = CacheChart.SegmentSize.of(itemInner.size, this.selected[9]);
+                                segmentSizeArr[10] = CacheChart.SegmentSize.of(itemInner.size, this.selected[10]);
                             }
                         } else {
                             segmentSizeArr[i2] = CacheChart.SegmentSize.of(itemInner.size, this.selected[i2]);
@@ -540,7 +554,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         final ArrayList<TLRPC$Chat> arrayList5 = new ArrayList<>();
         if (!arrayList.isEmpty()) {
             try {
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList), arrayList4);
+                getMessagesStorage().getUsersInternal((ArrayList<Long>) arrayList, arrayList4);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -654,17 +668,17 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     private String formatPercent(float f, boolean z) {
-        if (!z || f >= 0.001f) {
-            float round = Math.round(f * 100.0f);
-            return (!z || round > 0.0f) ? String.format("%d%%", Integer.valueOf((int) round)) : String.format("<%d%%", 1);
+        if (z && f < 0.001f) {
+            return String.format("<%.1f%%", Float.valueOf(0.1f));
         }
-        return String.format("<%.1f%%", Float.valueOf(0.1f));
+        float round = Math.round(f * 100.0f);
+        return (!z || round > 0.0f) ? String.format("%d%%", Integer.valueOf((int) round)) : String.format("<%d%%", 1);
     }
 
     public CharSequence getCheckBoxTitle(CharSequence charSequence, int i, boolean z) {
         SpannableString spannableString = new SpannableString(i <= 0 ? String.format("<%.1f%%", Float.valueOf(1.0f)) : String.format("%d%%", Integer.valueOf(i)));
         spannableString.setSpan(new RelativeSizeSpan(0.834f), 0, spannableString.length(), 33);
-        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, spannableString.length(), 33);
+        spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  ");
         spannableStringBuilder.append((CharSequence) spannableString);
@@ -841,7 +855,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         }
     }
 
-    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2<java.lang.Float, java.lang.Boolean> r21, final java.lang.Runnable r22) {
+    public void lambda$cleanupFolders$11(final org.telegram.messenger.Utilities.Callback2<java.lang.Float, java.lang.Boolean> r23, final java.lang.Runnable r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.CacheControlActivity.lambda$cleanupFolders$11(org.telegram.messenger.Utilities$Callback2, java.lang.Runnable):void");
     }
 
@@ -923,6 +937,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 return this.cacheSize;
             case 8:
                 return this.cacheTempSize;
+            case 9:
+                return this.logsSize;
             default:
                 return 0L;
         }
@@ -930,7 +946,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     private int sectionsSelected() {
         int i = 0;
-        for (int i2 = 0; i2 < 9; i2++) {
+        for (int i2 = 0; i2 < 10; i2++) {
             if (this.selected[i2] && size(i2) > 0) {
                 i++;
             }
@@ -958,12 +974,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 if (i2 != -1) {
                     if (i2 == 1) {
                         CacheControlActivity.this.clearSelectedFiles();
+                        return;
                     } else if (i2 == 3) {
                         CacheControlActivity.this.clearDatabase(false);
-                    } else if (i2 == 4) {
-                        CacheControlActivity.this.clearDatabase(true);
+                        return;
+                    } else {
+                        if (i2 == 4) {
+                            CacheControlActivity.this.clearDatabase(true);
+                            return;
+                        }
+                        return;
                     }
-                } else if (((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed()) {
+                }
+                if (((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed()) {
                     CacheModel cacheModel = CacheControlActivity.this.cacheModel;
                     if (cacheModel != null) {
                         cacheModel.clearSelection();
@@ -971,10 +994,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     if (CacheControlActivity.this.cachedMediaLayout != null) {
                         CacheControlActivity.this.cachedMediaLayout.showActionMode(false);
                         CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                        return;
                     }
-                } else {
-                    CacheControlActivity.this.finishFragment();
+                    return;
                 }
+                CacheControlActivity.this.lambda$onBackPressed$306();
             }
         });
         this.actionMode = this.actionBar.createActionMode();
@@ -985,7 +1009,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
         this.actionModeTitle.setTextSize(AndroidUtilities.dp(18.0f));
-        this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeTitle.setTypeface(AndroidUtilities.bold());
         this.actionModeTitle.setTextColor(Theme.getColor(i));
         frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 18.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
@@ -1000,7 +1024,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionModeClearButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         this.actionModeClearButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));
-        this.actionModeClearButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.actionModeClearButton.setTypeface(AndroidUtilities.bold());
         this.actionModeClearButton.setGravity(17);
         this.actionModeClearButton.setText(LocaleController.getString("CacheClear", R.string.CacheClear));
         this.actionModeClearButton.setOnClickListener(new View.OnClickListener() {
@@ -1038,13 +1062,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 boolean z = !isPinnedToTop();
-                if (z || CacheControlActivity.this.actionBarShadowAlpha == 0.0f) {
-                    if (z && CacheControlActivity.this.actionBarShadowAlpha != 1.0f) {
-                        CacheControlActivity.access$516(CacheControlActivity.this, 0.16f);
-                        invalidate();
-                    }
-                } else {
+                if (!z && CacheControlActivity.this.actionBarShadowAlpha != 0.0f) {
                     CacheControlActivity.access$524(CacheControlActivity.this, 0.16f);
+                    invalidate();
+                } else if (z && CacheControlActivity.this.actionBarShadowAlpha != 1.0f) {
+                    CacheControlActivity.access$516(CacheControlActivity.this, 0.16f);
                     invalidate();
                 }
                 CacheControlActivity cacheControlActivity = CacheControlActivity.this;
@@ -1150,7 +1172,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             DialogFileEntities dialogFileEntities = itemInner.entities;
             if (dialogFileEntities != null) {
                 showClearCacheDialog(dialogFileEntities);
-            } else if (itemInner.keepMediaType >= 0) {
+                return;
+            }
+            if (itemInner.keepMediaType >= 0) {
                 KeepMediaPopupView keepMediaPopupView = new KeepMediaPopupView(this, view.getContext());
                 ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, keepMediaPopupView, view, f, f2);
                 keepMediaPopupView.update(this.itemInners.get(i).keepMediaType);
@@ -1495,7 +1519,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.title = animatedTextView;
             animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
-            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTypeface(AndroidUtilities.bold());
             this.title.setTextSize(AndroidUtilities.dp(20.0f));
             this.title.setText(LocaleController.getString("StorageUsage", R.string.StorageUsage));
             this.title.setGravity(17);
@@ -1593,7 +1617,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 view.setAlpha(z ? 1.0f : 0.0f);
                 view.setTranslationY(z ? 0.0f : AndroidUtilities.dp(8.0f));
                 invalidate();
-            } else if (z) {
+                return;
+            }
+            if (z) {
                 if (view.getVisibility() != 0) {
                     view.setVisibility(0);
                     view.setAlpha(0.0f);
@@ -1605,14 +1631,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         CacheControlActivity.CacheChartHeader.this.lambda$updateViewVisible$0(valueAnimator);
                     }
                 }).start();
-            } else {
-                view.animate().alpha(0.0f).translationY(AndroidUtilities.dp(8.0f)).setListener(new HideViewAfterAnimation(view)).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(340L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        CacheControlActivity.CacheChartHeader.this.lambda$updateViewVisible$1(valueAnimator);
-                    }
-                }).start();
+                return;
             }
+            view.animate().alpha(0.0f).translationY(AndroidUtilities.dp(8.0f)).setListener(new HideViewAfterAnimation(view)).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(340L).setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    CacheControlActivity.CacheChartHeader.this.lambda$updateViewVisible$1(valueAnimator);
+                }
+            }).start();
         }
 
         public void lambda$updateViewVisible$0(ValueAnimator valueAnimator) {
@@ -1625,24 +1651,24 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         protected void onMeasure(int i, int i2) {
-            int i3;
             int size = View.MeasureSpec.getSize(i);
+            double dp = AndroidUtilities.dp(174.0f);
             double d = size;
             Double.isNaN(d);
-            int min = (int) Math.min(AndroidUtilities.dp(174.0f), d * 0.8d);
+            int min = (int) Math.min(dp, d * 0.8d);
             super.measureChildren(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
-            int dp = AndroidUtilities.dp(72.0f);
+            int dp2 = AndroidUtilities.dp(72.0f);
+            int i3 = 0;
             int i4 = 0;
-            int i5 = 0;
             while (true) {
                 TextView[] textViewArr = this.subtitle;
-                if (i4 >= textViewArr.length) {
-                    setMeasuredDimension(size, dp + i5);
-                    this.progressRect.set((size - min) / 2.0f, i3 - AndroidUtilities.dp(30.0f), (size + min) / 2.0f, i3 - AndroidUtilities.dp(26.0f));
+                if (i3 >= textViewArr.length) {
+                    setMeasuredDimension(size, dp2 + i4);
+                    this.progressRect.set((size - min) / 2.0f, r8 - AndroidUtilities.dp(30.0f), (size + min) / 2.0f, r8 - AndroidUtilities.dp(26.0f));
                     return;
                 }
-                i5 = Math.max(i5, textViewArr[i4].getMeasuredHeight() - (i4 == 2 ? AndroidUtilities.dp(16.0f) : 0));
-                i4++;
+                i4 = Math.max(i4, textViewArr[i3].getMeasuredHeight() - (i3 == 2 ? AndroidUtilities.dp(16.0f) : 0));
+                i3++;
             }
         }
 
@@ -1659,8 +1685,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             Paint paint = this.loadingBackgroundPaint;
             int i = Theme.key_actionBarActionModeDefaultSelector;
             paint.setColor(Theme.getColor(i));
-            Paint paint2 = this.loadingBackgroundPaint;
-            paint2.setAlpha((int) (paint2.getAlpha() * alpha));
+            this.loadingBackgroundPaint.setAlpha((int) (r0.getAlpha() * alpha));
             RectF rectF = AndroidUtilities.rectTmp;
             float f6 = 1.0f - f;
             float max = Math.max(this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3) * f6)) + AndroidUtilities.dp(1.0f);
@@ -1672,11 +1697,10 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.loadingDrawable.setBounds(this.progressRect);
             this.loadingDrawable.setAlpha((int) (255.0f * alpha * f));
             this.loadingDrawable.draw(canvas);
-            Paint paint3 = this.usedPercentPaint;
+            Paint paint2 = this.usedPercentPaint;
             int i2 = Theme.key_radioBackgroundChecked;
-            paint3.setColor(ColorUtils.blendARGB(Theme.getColor(i2), Theme.getColor(i), 0.75f));
-            Paint paint4 = this.usedPercentPaint;
-            paint4.setAlpha((int) (paint4.getAlpha() * alpha));
+            paint2.setColor(ColorUtils.blendARGB(Theme.getColor(i2), Theme.getColor(i), 0.75f));
+            this.usedPercentPaint.setAlpha((int) (r0.getAlpha() * alpha));
             float max2 = this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3) * f6) + AndroidUtilities.dp(1.0f);
             RectF rectF3 = this.progressRect;
             rectF.set(max2, rectF3.top, rectF3.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.bottom);
@@ -1684,8 +1708,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 drawRoundRect(canvas, rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(f5 > 0.97f ? 2.0f : 1.0f), this.usedPercentPaint);
             }
             this.percentPaint.setColor(Theme.getColor(i2));
-            Paint paint5 = this.percentPaint;
-            paint5.setAlpha((int) (paint5.getAlpha() * alpha));
+            this.percentPaint.setAlpha((int) (r0.getAlpha() * alpha));
             RectF rectF4 = this.progressRect;
             float f7 = rectF4.left;
             rectF.set(f7, rectF4.top, (f6 * Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3)) + f7, this.progressRect.bottom);
@@ -1732,8 +1755,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
             rLottieImageView.setAutoRepeat(true);
-            this.imageView.setAnimation(R.raw.utyan_cache, ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
-            addView(this.imageView, LayoutHelper.createFrame(ImageReceiver.DEFAULT_CROSSFADE_DURATION, 150.0f, 49, 0.0f, 16.0f, 0.0f, 0.0f));
+            this.imageView.setAnimation(R.raw.utyan_cache, 150, 150);
+            addView(this.imageView, LayoutHelper.createFrame(150, 150.0f, 49, 0.0f, 16.0f, 0.0f, 0.0f));
             this.imageView.playAnimation();
             AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
             this.percentsTextView = animatedTextView;
@@ -1743,7 +1766,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             int i = Theme.key_dialogTextBlack;
             animatedTextView2.setTextColor(Theme.getColor(i));
             this.percentsTextView.setTextSize(AndroidUtilities.dp(24.0f));
-            this.percentsTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.percentsTextView.setTypeface(AndroidUtilities.bold());
             addView(this.percentsTextView, LayoutHelper.createFrame(-1, 32.0f, 49, 0.0f, 176.0f, 0.0f, 0.0f));
             ProgressView progressView = new ProgressView(this, context);
             this.progressView = progressView;
@@ -1753,7 +1776,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             textView.setGravity(1);
             this.title.setTextColor(Theme.getColor(i));
             this.title.setTextSize(1, 16.0f);
-            this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.title.setTypeface(AndroidUtilities.bold());
             this.title.setText(LocaleController.getString("ClearingCache", R.string.ClearingCache));
             addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 49, 0.0f, 261.0f, 0.0f, 0.0f));
             TextView textView2 = new TextView(context);
@@ -1829,7 +1852,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             StringBuilder sb = new StringBuilder();
             sb.append(LocaleController.getString("ClearCache", R.string.ClearCache));
             if (TextUtils.isEmpty(this.valueTextView.getText())) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = " (" + ((Object) this.valueTextView.getText()) + ")";
             }
@@ -1930,14 +1953,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             clearingCacheView.setProgress(1.0f);
             if (jArr[0] > 0) {
                 Objects.requireNonNull(bottomSheet);
-                AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda8(bottomSheet), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
-                return;
+                AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda9(bottomSheet), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
+            } else {
+                bottomSheet.dismiss();
             }
-            bottomSheet.dismiss();
         }
 
         public void updateSize() {
-            setSize(CacheControlActivity.this.isAllSectionsSelected(), (CacheControlActivity.this.selected[0] ? CacheControlActivity.this.photoSize : 0L) + (CacheControlActivity.this.selected[1] ? CacheControlActivity.this.videoSize : 0L) + (CacheControlActivity.this.selected[2] ? CacheControlActivity.this.documentsSize : 0L) + (CacheControlActivity.this.selected[3] ? CacheControlActivity.this.musicSize : 0L) + (CacheControlActivity.this.selected[4] ? CacheControlActivity.this.audioSize : 0L) + (CacheControlActivity.this.selected[5] ? CacheControlActivity.this.storiesSize : 0L) + (CacheControlActivity.this.selected[6] ? CacheControlActivity.this.stickersCacheSize : 0L) + (CacheControlActivity.this.selected[7] ? CacheControlActivity.this.cacheSize : 0L) + (CacheControlActivity.this.selected[8] ? CacheControlActivity.this.cacheTempSize : 0L));
+            setSize(CacheControlActivity.this.isAllSectionsSelected(), (CacheControlActivity.this.selected[0] ? CacheControlActivity.this.photoSize : 0L) + (CacheControlActivity.this.selected[1] ? CacheControlActivity.this.videoSize : 0L) + (CacheControlActivity.this.selected[2] ? CacheControlActivity.this.documentsSize : 0L) + (CacheControlActivity.this.selected[3] ? CacheControlActivity.this.musicSize : 0L) + (CacheControlActivity.this.selected[4] ? CacheControlActivity.this.audioSize : 0L) + (CacheControlActivity.this.selected[5] ? CacheControlActivity.this.storiesSize : 0L) + (CacheControlActivity.this.selected[6] ? CacheControlActivity.this.stickersCacheSize : 0L) + (CacheControlActivity.this.selected[7] ? CacheControlActivity.this.cacheSize : 0L) + (CacheControlActivity.this.selected[8] ? CacheControlActivity.this.cacheTempSize : 0L) + (CacheControlActivity.this.selected[9] ? CacheControlActivity.this.logsSize : 0L));
         }
     }
 
@@ -2007,7 +2030,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
                 this.rtlTextView.setGravity(17);
                 this.rtlTextView.setTextSize(1, 14.0f);
-                this.rtlTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                this.rtlTextView.setTypeface(AndroidUtilities.bold());
                 this.rtlTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
                 this.button.addView(this.rtlTextView, LayoutHelper.createFrame(-2, -1, 17));
             }
@@ -2019,7 +2042,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.textView.setTextSize(AndroidUtilities.dp(14.0f));
             this.textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
             this.textView.setGravity(5);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.textView;
             int i2 = Theme.key_featuredStickers_buttonText;
             animatedTextDrawable2.setTextColor(Theme.getColor(i2));
@@ -2028,9 +2051,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             animatedTextDrawable3.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.valueTextView.setCallback(this.button);
             this.valueTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.valueTextView.setTypeface(AndroidUtilities.bold());
             this.valueTextView.setTextColor(Theme.blendOver(Theme.getColor(i), Theme.multAlpha(Theme.getColor(i2), 0.7f)));
-            this.valueTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.valueTextView.setText("");
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
             setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
@@ -2050,7 +2073,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 string = LocaleController.getString("ClearSelectedCache", R.string.ClearSelectedCache);
             }
             animatedTextDrawable.setText(string);
-            this.valueTextView.setText(j <= 0 ? BuildConfig.APP_CENTER_HASH : AndroidUtilities.formatFileSize(j));
+            this.valueTextView.setText(j <= 0 ? "" : AndroidUtilities.formatFileSize(j));
             setDisabled(j <= 0);
             this.button.invalidate();
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
@@ -2082,52 +2105,53 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     private void toggleSection(ItemInner itemInner, View view) {
-        boolean[] zArr;
-        int i;
         int childAdapterPosition;
-        int i2 = itemInner.index;
-        if (i2 < 0) {
+        int i = itemInner.index;
+        if (i < 0) {
             toggleOtherSelected(view);
-        } else if (this.selected[i2] && sectionsSelected() <= 1) {
+            return;
+        }
+        if (this.selected[i] && sectionsSelected() <= 1) {
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
             if (view != null) {
                 AndroidUtilities.shakeViewSpring(view, -3.0f);
+                return;
             }
-        } else {
-            int i3 = 0;
-            if (view instanceof CheckBoxCell) {
-                boolean[] zArr2 = this.selected;
-                int i4 = itemInner.index;
-                boolean z = !zArr2[i4];
-                zArr2[i4] = z;
-                ((CheckBoxCell) view).setChecked(z, true);
-            } else {
-                this.selected[itemInner.index] = !zArr[i];
-                int indexOf = this.itemInners.indexOf(itemInner);
-                if (indexOf >= 0) {
-                    for (int i5 = 0; i5 < this.listView.getChildCount(); i5++) {
-                        View childAt = this.listView.getChildAt(i5);
-                        if ((childAt instanceof CheckBoxCell) && indexOf == this.listView.getChildAdapterPosition(childAt)) {
-                            ((CheckBoxCell) childAt).setChecked(this.selected[itemInner.index], true);
-                        }
-                    }
-                }
-            }
-            if (itemInner.pad) {
-                while (true) {
-                    if (i3 >= this.listView.getChildCount()) {
-                        break;
-                    }
-                    View childAt2 = this.listView.getChildAt(i3);
-                    if ((childAt2 instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt2)) >= 0 && childAdapterPosition < this.itemInners.size() && this.itemInners.get(childAdapterPosition).index < 0) {
-                        ((CheckBoxCell) childAt2).setChecked(isOtherSelected(), true);
-                        break;
-                    }
-                    i3++;
-                }
-            }
-            updateChart();
+            return;
         }
+        int i2 = 0;
+        if (view instanceof CheckBoxCell) {
+            boolean[] zArr = this.selected;
+            int i3 = itemInner.index;
+            boolean z = !zArr[i3];
+            zArr[i3] = z;
+            ((CheckBoxCell) view).setChecked(z, true);
+        } else {
+            this.selected[itemInner.index] = !r8[r0];
+            int indexOf = this.itemInners.indexOf(itemInner);
+            if (indexOf >= 0) {
+                for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
+                    View childAt = this.listView.getChildAt(i4);
+                    if ((childAt instanceof CheckBoxCell) && indexOf == this.listView.getChildAdapterPosition(childAt)) {
+                        ((CheckBoxCell) childAt).setChecked(this.selected[itemInner.index], true);
+                    }
+                }
+            }
+        }
+        if (itemInner.pad) {
+            while (true) {
+                if (i2 >= this.listView.getChildCount()) {
+                    break;
+                }
+                View childAt2 = this.listView.getChildAt(i2);
+                if ((childAt2 instanceof CheckBoxCell) && (childAdapterPosition = this.listView.getChildAdapterPosition(childAt2)) >= 0 && childAdapterPosition < this.itemInners.size() && this.itemInners.get(childAdapterPosition).index < 0) {
+                    ((CheckBoxCell) childAt2).setChecked(isOtherSelected(), true);
+                    break;
+                }
+                i2++;
+            }
+        }
+        updateChart();
     }
 
     public void toggleOtherSelected(View view) {
@@ -2219,7 +2243,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         public static void lambda$onCreateViewHolder$0(int i) {
             if (i == 0) {
                 SharedConfig.setKeepMedia(3);
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 SharedConfig.setKeepMedia(0);
             } else if (i == 2) {
                 SharedConfig.setKeepMedia(1);
@@ -2281,23 +2307,23 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FlickerLoadingView flickerLoadingView;
+            View view;
             SlideChooseView slideChooseView;
             if (i == 0) {
                 View textSettingsCell = new TextSettingsCell(this.mContext);
                 textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                flickerLoadingView = textSettingsCell;
+                view = textSettingsCell;
             } else {
                 switch (i) {
                     case 2:
                         View storageUsageView = new StorageUsageView(this.mContext);
                         storageUsageView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = storageUsageView;
+                        view = storageUsageView;
                         break;
                     case 3:
                         View headerCell = new HeaderCell(this.mContext);
                         headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = headerCell;
+                        view = headerCell;
                         break;
                     case 4:
                         slideChooseView = new SlideChooseView(this.mContext);
@@ -2315,29 +2341,29 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         });
                         int i2 = SharedConfig.keepMedia;
                         slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString("KeepMediaForever", R.string.KeepMediaForever));
-                        flickerLoadingView = slideChooseView;
+                        view = slideChooseView;
                         break;
                     case 5:
                         FrameLayout userCell = new UserCell(CacheControlActivity.this.getContext(), CacheControlActivity.this.getResourceProvider());
                         userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = userCell;
+                        view = userCell;
                         break;
                     case 6:
-                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(CacheControlActivity.this.getContext());
-                        flickerLoadingView2.setIsSingleCell(true);
-                        flickerLoadingView2.setItemsCount(3);
-                        flickerLoadingView2.setIgnoreHeightCheck(true);
-                        flickerLoadingView2.setViewType(25);
-                        flickerLoadingView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = flickerLoadingView2;
+                        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView.setIsSingleCell(true);
+                        flickerLoadingView.setItemsCount(3);
+                        flickerLoadingView.setIgnoreHeightCheck(true);
+                        flickerLoadingView.setViewType(25);
+                        flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        view = flickerLoadingView;
                         break;
                     case 7:
                         View textCell = new TextCell(this.mContext);
                         textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = textCell;
+                        view = textCell;
                         break;
                     case 8:
-                        View view = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
+                        View view2 = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
                             @Override
                             protected void onMeasure(int i3, int i4) {
                                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4) - (ActionBar.getCurrentActionBarHeight() / 2), 1073741824));
@@ -2348,9 +2374,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                                 if (z) {
                                     CacheControlActivity.this.updateActionBar(true);
                                     ((BaseFragment) CacheControlActivity.this).actionBar.showActionMode();
-                                    return;
+                                } else {
+                                    ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
                                 }
-                                ((BaseFragment) CacheControlActivity.this).actionBar.hideActionMode();
                             }
                         };
                         CacheControlActivity.this.cachedMediaLayout.setDelegate(new CachedMediaLayout.Delegate() {
@@ -2366,14 +2392,17 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                                         CacheControlActivity.this.cacheModel.toggleSelect(fileInfo);
                                         CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
                                         CacheControlActivity.this.updateActionMode();
+                                        return;
                                     }
-                                } else if (CacheControlActivity.this.cacheModel.getSelectedFiles() <= 0 && !z) {
-                                    CacheControlActivity.this.showClearCacheDialog(dialogFileEntities);
-                                } else {
-                                    CacheControlActivity.this.cacheModel.toggleSelect(dialogFileEntities);
-                                    CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
-                                    CacheControlActivity.this.updateActionMode();
+                                    return;
                                 }
+                                if (CacheControlActivity.this.cacheModel.getSelectedFiles() <= 0 && !z) {
+                                    CacheControlActivity.this.showClearCacheDialog(dialogFileEntities);
+                                    return;
+                                }
+                                CacheControlActivity.this.cacheModel.toggleSelect(dialogFileEntities);
+                                CacheControlActivity.this.cachedMediaLayout.updateVisibleRows();
+                                CacheControlActivity.this.updateActionMode();
                             }
 
                             @Override
@@ -2396,32 +2425,32 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         });
                         CacheControlActivity.this.cachedMediaLayout.setCacheModel(CacheControlActivity.this.cacheModel);
                         CacheControlActivity.this.nestedSizeNotifierLayout.setChildLayout(CacheControlActivity.this.cachedMediaLayout);
-                        view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                        flickerLoadingView = view;
+                        view2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                        view = view2;
                         break;
                     case 9:
-                        flickerLoadingView = CacheControlActivity.this.cacheChart = new AnonymousClass1(this.mContext);
+                        view = CacheControlActivity.this.cacheChart = new AnonymousClass1(this.mContext);
                         break;
                     case 10:
-                        flickerLoadingView = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
+                        view = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
                         break;
                     case 11:
                         View checkBoxCell = new CheckBoxCell(this.mContext, 4, 21, CacheControlActivity.this.getResourceProvider());
                         checkBoxCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = checkBoxCell;
+                        view = checkBoxCell;
                         break;
                     case 12:
-                        FlickerLoadingView flickerLoadingView3 = new FlickerLoadingView(CacheControlActivity.this.getContext());
-                        flickerLoadingView3.setIsSingleCell(true);
-                        flickerLoadingView3.setItemsCount(1);
-                        flickerLoadingView3.setIgnoreHeightCheck(true);
-                        flickerLoadingView3.setViewType(26);
-                        flickerLoadingView3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                        flickerLoadingView = flickerLoadingView3;
+                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView2.setIsSingleCell(true);
+                        flickerLoadingView2.setItemsCount(1);
+                        flickerLoadingView2.setIgnoreHeightCheck(true);
+                        flickerLoadingView2.setViewType(26);
+                        flickerLoadingView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        view = flickerLoadingView2;
                         break;
                     case 13:
-                        flickerLoadingView = CacheControlActivity.this.clearCacheButton = new ClearCacheButtonInternal(this.mContext);
+                        view = CacheControlActivity.this.clearCacheButton = new ClearCacheButtonInternal(this.mContext);
                         break;
                     case 14:
                         slideChooseView = new SlideChooseView(this.mContext);
@@ -2440,7 +2469,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         if (f > 32.0f) {
                             arrayList.add(32);
                         }
-                        arrayList.add(Integer.valueOf((int) ConnectionsManager.DEFAULT_DATACENTER_ID));
+                        arrayList.add(Integer.MAX_VALUE);
                         String[] strArr = new String[arrayList.size()];
                         for (int i3 = 0; i3 < arrayList.size(); i3++) {
                             if (((Integer) arrayList.get(i3)).intValue() == 1) {
@@ -2462,19 +2491,19 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                                 SlideChooseView.Callback.CC.$default$onTouchEnd(this);
                             }
                         });
-                        int indexOf = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", ConnectionsManager.DEFAULT_DATACENTER_ID)));
+                        int indexOf = arrayList.indexOf(Integer.valueOf(SharedConfig.getPreferences().getInt("cache_limit", Integer.MAX_VALUE)));
                         if (indexOf < 0) {
                             indexOf = arrayList.size() - 1;
                         }
                         slideChooseView.setOptions(indexOf, strArr);
-                        flickerLoadingView = slideChooseView;
+                        view = slideChooseView;
                         break;
                     default:
-                        flickerLoadingView = new TextInfoPrivacyCell(this.mContext);
+                        view = new TextInfoPrivacyCell(this.mContext);
                         break;
                 }
             }
-            return new RecyclerListView.Holder(flickerLoadingView);
+            return new RecyclerListView.Holder(view);
         }
 
         public static void lambda$onCreateViewHolder$1(ArrayList arrayList, int i) {
@@ -2489,91 +2518,107 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                 if (i == CacheControlActivity.this.migrateOldFolderRow) {
                     textSettingsCell.setTextAndValue(LocaleController.getString("MigrateOldFolder", R.string.MigrateOldFolder), null, false);
+                    return;
                 }
-            } else if (itemViewType == 1) {
+                return;
+            }
+            if (itemViewType == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setText(AndroidUtilities.replaceTags(itemInner.text));
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-            } else if (itemViewType == 2) {
+                return;
+            }
+            if (itemViewType == 2) {
                 ((StorageUsageView) viewHolder.itemView).setStorageUsage(CacheControlActivity.this.calculating, CacheControlActivity.this.databaseSize, CacheControlActivity.this.totalSize, CacheControlActivity.this.totalDeviceFreeSize, CacheControlActivity.this.totalDeviceSize);
-            } else if (itemViewType == 3) {
+                return;
+            }
+            if (itemViewType == 3) {
                 HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                 headerCell.setText(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerName);
                 headerCell.setTopMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerTopMargin);
                 headerCell.setBottomMargin(((ItemInner) CacheControlActivity.this.itemInners.get(i)).headerBottomMargin);
-            } else if (itemViewType == 7) {
-                TextCell textCell = (TextCell) viewHolder.itemView;
-                CacheByChatsController cacheByChatsController = CacheControlActivity.this.getMessagesController().getCacheByChatsController();
-                int i2 = itemInner.keepMediaType;
-                int size = cacheByChatsController.getKeepMediaExceptions(((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType).size();
-                String formatPluralString = size > 0 ? LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size)) : null;
-                String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i2));
-                if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
-                    if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
-                        if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 2) {
-                            if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 3) {
-                                textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheStories", R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_red), false);
-                            }
+                return;
+            }
+            if (itemViewType != 7) {
+                switch (itemViewType) {
+                    case 9:
+                        CacheControlActivity.this.updateChart();
+                        return;
+                    case 10:
+                        if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
+                            return;
+                        }
+                        CacheChartHeader cacheChartHeader = CacheControlActivity.this.cacheChartHeader;
+                        r6 = CacheControlActivity.this.totalSize > 0;
+                        float f = 0.0f;
+                        float f2 = CacheControlActivity.this.totalDeviceSize <= 0 ? 0.0f : ((float) CacheControlActivity.this.totalSize) / ((float) CacheControlActivity.this.totalDeviceSize);
+                        if (CacheControlActivity.this.totalDeviceFreeSize > 0 && CacheControlActivity.this.totalDeviceSize > 0) {
+                            f = ((float) (CacheControlActivity.this.totalDeviceSize - CacheControlActivity.this.totalDeviceFreeSize)) / ((float) CacheControlActivity.this.totalDeviceSize);
+                        }
+                        cacheChartHeader.setData(r6, f2, f);
+                        return;
+                    case 11:
+                        final CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
+                        boolean isOtherSelected = itemInner.index < 0 ? CacheControlActivity.this.isOtherSelected() : CacheControlActivity.this.selected[itemInner.index];
+                        CacheControlActivity cacheControlActivity = CacheControlActivity.this;
+                        CharSequence charSequence = itemInner.headerName;
+                        int[] iArr = cacheControlActivity.percents;
+                        int i2 = itemInner.index;
+                        CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i2 < 0 ? 9 : i2], i2 < 0);
+                        String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
+                        if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
+                            r6 = true;
+                        }
+                        checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r6);
+                        checkBoxCell.setCheckBoxColor(itemInner.colorKey, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
+                        checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
+                        if (itemInner.index == -1) {
+                            checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$2(view);
+                                }
+                            }, new View.OnClickListener() {
+                                @Override
+                                public final void onClick(View view) {
+                                    CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$3(checkBoxCell, view);
+                                }
+                            });
                         } else {
-                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_golden), true);
+                            checkBoxCell.setOnSectionsClickListener(null, null);
+                        }
+                        checkBoxCell.setPad(itemInner.pad ? 1 : 0);
+                        return;
+                    default:
+                        return;
+                }
+            }
+            TextCell textCell = (TextCell) viewHolder.itemView;
+            CacheByChatsController cacheByChatsController = CacheControlActivity.this.getMessagesController().getCacheByChatsController();
+            int i3 = itemInner.keepMediaType;
+            int size = cacheByChatsController.getKeepMediaExceptions(((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType).size();
+            String formatPluralString = size > 0 ? LocaleController.formatPluralString("ExceptionShort", size, Integer.valueOf(size)) : null;
+            String keepMediaString = CacheByChatsController.getKeepMediaString(cacheByChatsController.getKeepMedia(i3));
+            if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
+                if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
+                    if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 2) {
+                        if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 3) {
+                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheStories", R.string.CacheStories), keepMediaString, false, R.drawable.msg_filled_stories, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_red), false);
                         }
                     } else {
-                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_green), true);
+                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_golden), true);
                     }
                 } else {
-                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
+                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_green), true);
                 }
-                textCell.setSubtitle(formatPluralString);
-            } else if (itemViewType == 10) {
-                if (CacheControlActivity.this.cacheChartHeader == null || CacheControlActivity.this.calculating) {
-                    return;
-                }
-                CacheChartHeader cacheChartHeader = CacheControlActivity.this.cacheChartHeader;
-                r6 = CacheControlActivity.this.totalSize > 0;
-                float f = 0.0f;
-                float f2 = CacheControlActivity.this.totalDeviceSize <= 0 ? 0.0f : ((float) CacheControlActivity.this.totalSize) / ((float) CacheControlActivity.this.totalDeviceSize);
-                if (CacheControlActivity.this.totalDeviceFreeSize > 0 && CacheControlActivity.this.totalDeviceSize > 0) {
-                    f = ((float) (CacheControlActivity.this.totalDeviceSize - CacheControlActivity.this.totalDeviceFreeSize)) / ((float) CacheControlActivity.this.totalDeviceSize);
-                }
-                cacheChartHeader.setData(r6, f2, f);
-            } else if (itemViewType != 11) {
             } else {
-                final CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
-                boolean isOtherSelected = itemInner.index < 0 ? CacheControlActivity.this.isOtherSelected() : CacheControlActivity.this.selected[itemInner.index];
-                CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-                CharSequence charSequence = itemInner.headerName;
-                int[] iArr = cacheControlActivity.percents;
-                int i3 = itemInner.index;
-                CharSequence checkBoxTitle = cacheControlActivity.getCheckBoxTitle(charSequence, iArr[i3 < 0 ? 9 : i3], i3 < 0);
-                String formatFileSize = AndroidUtilities.formatFileSize(itemInner.size);
-                if (itemInner.index >= 0 ? !itemInner.last : !CacheControlActivity.this.collapsed) {
-                    r6 = true;
-                }
-                checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r6);
-                checkBoxCell.setCheckBoxColor(itemInner.colorKey, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
-                checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
-                if (itemInner.index == -1) {
-                    checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$2(view);
-                        }
-                    }, new View.OnClickListener() {
-                        @Override
-                        public final void onClick(View view) {
-                            CacheControlActivity.ListAdapter.this.lambda$onBindViewHolder$3(checkBoxCell, view);
-                        }
-                    });
-                } else {
-                    checkBoxCell.setOnSectionsClickListener(null, null);
-                }
-                checkBoxCell.setPad(itemInner.pad ? 1 : 0);
+                textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
             }
+            textCell.setSubtitle(formatPluralString);
         }
 
         public void lambda$onBindViewHolder$2(View view) {
-            CacheControlActivity cacheControlActivity = CacheControlActivity.this;
-            cacheControlActivity.collapsed = !cacheControlActivity.collapsed;
+            CacheControlActivity.this.collapsed = !r2.collapsed;
             CacheControlActivity.this.updateRows();
             CacheControlActivity.this.updateChart();
         }
@@ -2799,10 +2844,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         @Override
         public void setEnabled(boolean z) {
             super.setEnabled(z);
-            float f = 0.5f;
             this.textView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
             if (this.valueTextView.getVisibility() == 0) {
-                this.valueTextView.setAlpha((z || !this.canDisable) ? 1.0f : 1.0f);
+                this.valueTextView.setAlpha((z || !this.canDisable) ? 1.0f : 0.5f);
             }
         }
 
@@ -2822,7 +2866,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             sb.append((Object) this.textView.getText());
             AnimatedTextView animatedTextView = this.valueTextView;
             if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = "\n" + ((Object) this.valueTextView.getText());
             }
@@ -3041,7 +3085,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     if (i != 9 && i != 10) {
                         if (i == 5 && (dialogFileEntities = this.entities) != null && (dialogFileEntities2 = itemInner.entities) != null) {
                             return dialogFileEntities.dialogId == dialogFileEntities2.dialogId;
-                        } else if (i != 8 && i != 4 && i != 2 && i != 0 && i != 13) {
+                        }
+                        if (i != 8 && i != 4 && i != 2 && i != 0 && i != 13) {
                             if (i == 3) {
                                 return Objects.equals(this.headerName, itemInner.headerName);
                             }

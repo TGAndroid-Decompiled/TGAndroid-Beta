@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class LocationPoweredCell extends FrameLayout {
     private ImageView imageView;
     private final Theme.ResourcesProvider resourcesProvider;

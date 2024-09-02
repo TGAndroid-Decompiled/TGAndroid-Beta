@@ -12,12 +12,14 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesViewPager;
 import org.telegram.ui.Stories.StoryViewer;
+
 public class StoriesViewPager extends ViewPager {
     int currentAccount;
     public int currentState;
@@ -102,8 +104,15 @@ public class StoriesViewPager extends ViewPager {
                     if (storyViewer.reversed) {
                         i = (arrayList.size() - 1) - i;
                     }
-                    pageLayout.day = arrayList.get(i);
-                    pageLayout.dialogId = StoriesViewPager.this.daysDialogId;
+                    ArrayList<Integer> arrayList2 = arrayList.get(i);
+                    pageLayout.day = arrayList2;
+                    StoriesController.StoriesList storiesList = storyViewer.storiesList;
+                    if (storiesList instanceof StoriesController.SearchStoriesList) {
+                        MessageObject findMessageObject = storiesList.findMessageObject(arrayList2.get(0).intValue());
+                        pageLayout.dialogId = findMessageObject == null ? StoriesViewPager.this.daysDialogId : findMessageObject.getDialogId();
+                    } else {
+                        pageLayout.dialogId = StoriesViewPager.this.daysDialogId;
+                    }
                 } else {
                     pageLayout.day = null;
                     pageLayout.dialogId = storiesViewPager.dialogs.get(i).longValue();
@@ -225,8 +234,9 @@ public class StoriesViewPager extends ViewPager {
             PageLayout pageLayout = (PageLayout) getChildAt(i);
             if (pageLayout.isVisible && !pageLayout.peerStoryView.currentStory.allowScreenshots()) {
                 break;
+            } else {
+                i++;
             }
-            i++;
         }
         this.storyViewer.allowScreenshots(z);
     }
@@ -258,6 +268,9 @@ public class StoriesViewPager extends ViewPager {
     }
 
     public void setDays(long j, ArrayList<ArrayList<Integer>> arrayList, int i) {
+        if (this.daysDialogId == j && eqA(this.days, arrayList) && this.currentAccount == i) {
+            return;
+        }
         this.daysDialogId = j;
         this.days = arrayList;
         this.currentAccount = i;
@@ -272,6 +285,36 @@ public class StoriesViewPager extends ViewPager {
         }
         setCurrentItem(i2);
         this.updateDelegate = true;
+    }
+
+    private static boolean eqA(ArrayList<ArrayList<Integer>> arrayList, ArrayList<ArrayList<Integer>> arrayList2) {
+        if (arrayList == null && arrayList2 == null) {
+            return true;
+        }
+        if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
+            return false;
+        }
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (!eq(arrayList.get(i), arrayList2.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean eq(ArrayList<Integer> arrayList, ArrayList<Integer> arrayList2) {
+        if (arrayList == null && arrayList2 == null) {
+            return true;
+        }
+        if (arrayList == null || arrayList2 == null || arrayList.size() != arrayList2.size()) {
+            return false;
+        }
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i) != arrayList2.get(i)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

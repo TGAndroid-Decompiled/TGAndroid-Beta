@@ -10,6 +10,7 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+
 public class ScamDrawable extends Drawable {
     int alpha;
     int colorAlpha;
@@ -36,7 +37,7 @@ public class ScamDrawable extends Drawable {
         this.alpha = 255;
         this.currentType = i2;
         textPaint.setTextSize(AndroidUtilities.dp(i));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         if (i2 == 0) {

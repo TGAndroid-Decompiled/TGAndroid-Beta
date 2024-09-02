@@ -44,6 +44,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FeaturedStickerSetCell2 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private final ProgressButton addButton;
     private boolean bindedObserver;
@@ -108,7 +109,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         textView3.setGravity(17);
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText));
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
         PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);
@@ -232,12 +233,12 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                 while (true) {
                     if (i >= stickerSet.documents.size()) {
                         break;
-                    } else if (stickerSet.documents.get(i).id == tLRPC$StickerSetCovered.set.thumb_document_id) {
+                    }
+                    if (stickerSet.documents.get(i).id == tLRPC$StickerSetCovered.set.thumb_document_id) {
                         tLRPC$Document = stickerSet.documents.get(i);
                         break;
-                    } else {
-                        i++;
                     }
+                    i++;
                 }
             }
         } else {
@@ -283,7 +284,7 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                     forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$StickerSetCovered.set.thumb_version);
                 }
                 ImageLocation imageLocation = forSticker;
-                if (z6 && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) {
+                if (z6 && (MessageObject.isAnimatedStickerDocument(tLRPC$Document, true) || MessageObject.isVideoSticker(tLRPC$Document))) {
                     if (svgThumb != null) {
                         this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "50_50", svgThumb, 0, tLRPC$StickerSetCovered);
                     } else {
@@ -372,42 +373,42 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(textView3, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, fArr);
         TextView textView4 = this.delButton;
         Property property2 = View.SCALE_X;
         float[] fArr2 = new float[1];
         fArr2[0] = (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f;
-        animatorArr[1] = ObjectAnimator.ofFloat(textView4, property2, fArr2);
+        animatorArr[1] = ObjectAnimator.ofFloat(textView4, (Property<TextView, Float>) property2, fArr2);
         TextView textView5 = this.delButton;
         Property property3 = View.SCALE_Y;
         float[] fArr3 = new float[1];
         fArr3[0] = (!this.isInstalled || this.isLocked) ? 0.0f : 1.0f;
-        animatorArr[2] = ObjectAnimator.ofFloat(textView5, property3, fArr3);
+        animatorArr[2] = ObjectAnimator.ofFloat(textView5, (Property<TextView, Float>) property3, fArr3);
         ProgressButton progressButton = this.addButton;
         Property property4 = View.ALPHA;
         float[] fArr4 = new float[1];
         fArr4[0] = (this.isInstalled || this.isLocked) ? 0.0f : 1.0f;
-        animatorArr[3] = ObjectAnimator.ofFloat(progressButton, property4, fArr4);
+        animatorArr[3] = ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property4, fArr4);
         ProgressButton progressButton2 = this.addButton;
         Property property5 = View.SCALE_X;
         float[] fArr5 = new float[1];
         fArr5[0] = (this.isInstalled || this.isLocked) ? 0.0f : 1.0f;
-        animatorArr[4] = ObjectAnimator.ofFloat(progressButton2, property5, fArr5);
+        animatorArr[4] = ObjectAnimator.ofFloat(progressButton2, (Property<ProgressButton, Float>) property5, fArr5);
         PremiumButtonView premiumButtonView = this.unlockButton;
         Property property6 = View.SCALE_Y;
         float[] fArr6 = new float[1];
         fArr6[0] = !this.isLocked ? 0.0f : 1.0f;
-        animatorArr[5] = ObjectAnimator.ofFloat(premiumButtonView, property6, fArr6);
+        animatorArr[5] = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property6, fArr6);
         PremiumButtonView premiumButtonView2 = this.unlockButton;
         Property property7 = View.SCALE_X;
         float[] fArr7 = new float[1];
         fArr7[0] = !this.isLocked ? 0.0f : 1.0f;
-        animatorArr[6] = ObjectAnimator.ofFloat(premiumButtonView2, property7, fArr7);
+        animatorArr[6] = ObjectAnimator.ofFloat(premiumButtonView2, (Property<PremiumButtonView, Float>) property7, fArr7);
         PremiumButtonView premiumButtonView3 = this.unlockButton;
         Property property8 = View.SCALE_Y;
         float[] fArr8 = new float[1];
         fArr8[0] = this.isLocked ? 1.0f : 0.0f;
-        animatorArr[7] = ObjectAnimator.ofFloat(premiumButtonView3, property8, fArr8);
+        animatorArr[7] = ObjectAnimator.ofFloat(premiumButtonView3, (Property<PremiumButtonView, Float>) property8, fArr8);
         animatorSet3.playTogether(animatorArr);
         this.currentAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
@@ -416,14 +417,14 @@ public class FeaturedStickerSetCell2 extends FrameLayout implements Notification
                     FeaturedStickerSetCell2.this.addButton.setVisibility(4);
                     FeaturedStickerSetCell2.this.delButton.setVisibility(4);
                     FeaturedStickerSetCell2.this.unlockButton.setVisibility(0);
-                    return;
-                }
-                if (FeaturedStickerSetCell2.this.isInstalled) {
-                    FeaturedStickerSetCell2.this.addButton.setVisibility(4);
                 } else {
-                    FeaturedStickerSetCell2.this.delButton.setVisibility(4);
+                    if (FeaturedStickerSetCell2.this.isInstalled) {
+                        FeaturedStickerSetCell2.this.addButton.setVisibility(4);
+                    } else {
+                        FeaturedStickerSetCell2.this.delButton.setVisibility(4);
+                    }
+                    FeaturedStickerSetCell2.this.unlockButton.setVisibility(8);
                 }
-                FeaturedStickerSetCell2.this.unlockButton.setVisibility(8);
             }
         });
         this.currentAnimation.setInterpolator(new OvershootInterpolator(1.02f));

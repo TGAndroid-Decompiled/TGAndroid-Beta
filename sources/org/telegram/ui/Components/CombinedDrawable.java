@@ -3,11 +3,13 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
+
 public class CombinedDrawable extends Drawable implements Drawable.Callback {
     private int backHeight;
     private int backWidth;
     private Drawable background;
     private boolean both;
+    private boolean center;
     private boolean fullSize;
     private Drawable icon;
     private int iconHeight;
@@ -16,6 +18,8 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     private int offsetX;
     private int offsetY;
     private int top;
+    public float translateX;
+    public float translateY;
 
     @Override
     protected boolean onStateChange(int[] iArr) {
@@ -53,6 +57,10 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     public void setCustomSize(int i, int i2) {
         this.backWidth = i;
         this.backHeight = i2;
+    }
+
+    public void setCenter(boolean z) {
+        this.center = z;
     }
 
     public void setIconOffset(int i, int i2) {
@@ -108,6 +116,12 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
 
     @Override
     public void draw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(this.translateX, this.translateY);
+        if (this.center) {
+            android.graphics.Rect bounds = getBounds();
+            setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), bounds.centerX() + (getIntrinsicWidth() / 2), bounds.centerY() + (getIntrinsicHeight() / 2));
+        }
         Drawable drawable = this.background;
         if (drawable != null) {
             drawable.setBounds(getBounds());
@@ -115,29 +129,32 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         }
         if (this.icon != null) {
             if (this.fullSize) {
-                android.graphics.Rect bounds = getBounds();
+                android.graphics.Rect bounds2 = getBounds();
                 int i = this.left;
                 if (i != 0) {
-                    int i2 = bounds.top;
-                    int i3 = this.top;
-                    this.icon.setBounds(bounds.left + i, i2 + i3, bounds.right - i, bounds.bottom - i3);
+                    Drawable drawable2 = this.icon;
+                    int i2 = bounds2.left + i;
+                    int i3 = bounds2.top;
+                    int i4 = this.top;
+                    drawable2.setBounds(i2, i3 + i4, bounds2.right - i, bounds2.bottom - i4);
                 } else {
-                    this.icon.setBounds(bounds);
+                    this.icon.setBounds(bounds2);
                 }
             } else if (this.iconWidth != 0) {
                 int centerX = (getBounds().centerX() - (this.iconWidth / 2)) + this.left + this.offsetX;
                 int centerY = getBounds().centerY();
-                int i4 = this.iconHeight;
-                int i5 = (centerY - (i4 / 2)) + this.top + this.offsetY;
-                this.icon.setBounds(centerX, i5, this.iconWidth + centerX, i4 + i5);
+                int i5 = this.iconHeight;
+                int i6 = (centerY - (i5 / 2)) + this.top + this.offsetY;
+                this.icon.setBounds(centerX, i6, this.iconWidth + centerX, i5 + i6);
             } else {
                 int centerX2 = (getBounds().centerX() - (this.icon.getIntrinsicWidth() / 2)) + this.left;
                 int centerY2 = (getBounds().centerY() - (this.icon.getIntrinsicHeight() / 2)) + this.top;
-                Drawable drawable2 = this.icon;
-                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, this.icon.getIntrinsicHeight() + centerY2);
+                Drawable drawable3 = this.icon;
+                drawable3.setBounds(centerX2, centerY2, drawable3.getIntrinsicWidth() + centerX2, this.icon.getIntrinsicHeight() + centerY2);
             }
             this.icon.draw(canvas);
         }
+        canvas.restore();
     }
 
     @Override

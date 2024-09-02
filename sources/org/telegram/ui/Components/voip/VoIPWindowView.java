@@ -14,6 +14,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.VoIPFragment;
 import org.webrtc.OrientationHelper;
+
 public class VoIPWindowView extends FrameLayout {
     Activity activity;
     boolean finished;
@@ -87,7 +88,8 @@ public class VoIPWindowView extends FrameLayout {
                     setTranslationY(f);
                 }
                 return this.startDragging;
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            }
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
                 float translationY = getTranslationY();
                 if (this.velocityTracker == null) {
                     this.velocityTracker = VelocityTracker.obtain();
@@ -122,30 +124,29 @@ public class VoIPWindowView extends FrameLayout {
         if (this.lockOnScreen) {
             try {
                 ((WindowManager) this.activity.getSystemService("window")).removeView(this);
-                return;
             } catch (Exception unused) {
-                return;
             }
-        }
-        int i = UserConfig.selectedAccount;
-        this.notificationsLocker.lock();
-        animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                VoIPWindowView.this.notificationsLocker.unlock();
-                if (VoIPWindowView.this.getParent() != null) {
-                    VoIPWindowView voIPWindowView = VoIPWindowView.this;
-                    voIPWindowView.activity.setRequestedOrientation(voIPWindowView.orientationBefore);
-                    WindowManager windowManager = (WindowManager) VoIPWindowView.this.activity.getSystemService("window");
-                    VoIPWindowView.this.setVisibility(8);
-                    try {
-                        windowManager.removeView(VoIPWindowView.this);
-                    } catch (Exception unused2) {
+        } else {
+            int i = UserConfig.selectedAccount;
+            this.notificationsLocker.lock();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    VoIPWindowView.this.notificationsLocker.unlock();
+                    if (VoIPWindowView.this.getParent() != null) {
+                        VoIPWindowView voIPWindowView = VoIPWindowView.this;
+                        voIPWindowView.activity.setRequestedOrientation(voIPWindowView.orientationBefore);
+                        WindowManager windowManager = (WindowManager) VoIPWindowView.this.activity.getSystemService("window");
+                        VoIPWindowView.this.setVisibility(8);
+                        try {
+                            windowManager.removeView(VoIPWindowView.this);
+                        } catch (Exception unused2) {
+                        }
+                        OrientationHelper.cameraRotationDisabled = false;
                     }
-                    OrientationHelper.cameraRotationDisabled = false;
                 }
-            }
-        }).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+            }).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        }
     }
 
     public void startEnterTransition() {
@@ -197,8 +198,9 @@ public class VoIPWindowView extends FrameLayout {
     public void finishImmediate() {
         if (getParent() != null) {
             this.activity.setRequestedOrientation(this.orientationBefore);
+            WindowManager windowManager = (WindowManager) this.activity.getSystemService("window");
             setVisibility(8);
-            ((WindowManager) this.activity.getSystemService("window")).removeView(this);
+            windowManager.removeView(this);
             OrientationHelper.cameraRotationDisabled = false;
         }
     }

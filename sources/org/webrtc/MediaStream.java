@@ -3,6 +3,7 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 public class MediaStream {
     private static final String TAG = "MediaStream";
     private long nativeStream;
@@ -27,29 +28,29 @@ public class MediaStream {
 
     public boolean addTrack(AudioTrack audioTrack) {
         checkMediaStreamExists();
-        if (nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
-            this.audioTracks.add(audioTrack);
-            return true;
+        if (!nativeAddAudioTrackToNativeStream(this.nativeStream, audioTrack.getNativeAudioTrack())) {
+            return false;
         }
-        return false;
+        this.audioTracks.add(audioTrack);
+        return true;
     }
 
     public boolean addTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            this.videoTracks.add(videoTrack);
-            return true;
+        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            return false;
         }
-        return false;
+        this.videoTracks.add(videoTrack);
+        return true;
     }
 
     public boolean addPreservedTrack(VideoTrack videoTrack) {
         checkMediaStreamExists();
-        if (nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
-            this.preservedVideoTracks.add(videoTrack);
-            return true;
+        if (!nativeAddVideoTrackToNativeStream(this.nativeStream, videoTrack.getNativeVideoTrack())) {
+            return false;
         }
-        return false;
+        this.preservedVideoTracks.add(videoTrack);
+        return true;
     }
 
     public boolean removeTrack(AudioTrack audioTrack) {
@@ -135,6 +136,6 @@ public class MediaStream {
                 return;
             }
         }
-        Logging.e(TAG, "Couldn't not find track");
+        Logging.e("MediaStream", "Couldn't not find track");
     }
 }

@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
@@ -28,8 +27,9 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_BotResults;
-import org.telegram.ui.Components.RecyclerListView;
-public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdapter {
+import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
+
+public abstract class BaseLocationAdapter extends AdapterWithDiffUtils {
     public final boolean biz;
     private int currentRequestNum;
     private BaseLocationAdapterDelegate delegate;
@@ -74,7 +74,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
             this.places.clear();
             this.locations.clear();
             this.searchInProgress = false;
-            notifyDataSetChanged();
+            update(true);
             return;
         }
         if (this.searchRunnable != null) {
@@ -164,9 +164,11 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
 
     public void searchPlacesWithQuery(final String str, final Location location, boolean z, boolean z2) {
         String str2;
+        final Locale locale;
         if (location != null || this.stories) {
             Location location2 = this.lastSearchLocation;
             if (location2 == null || location == null || location.distanceTo(location2) >= 200.0f) {
+                Locale locale2 = null;
                 this.lastSearchLocation = location == null ? null : new Location(location);
                 this.lastSearchQuery = str;
                 if (this.searching) {
@@ -195,9 +197,9 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 }
                 TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
                 TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-                tLRPC$TL_messages_getInlineBotResults.query = str == null ? BuildConfig.APP_CENTER_HASH : str;
+                tLRPC$TL_messages_getInlineBotResults.query = str == null ? "" : str;
                 tLRPC$TL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
-                tLRPC$TL_messages_getInlineBotResults.offset = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_messages_getInlineBotResults.offset = "";
                 if (location != null) {
                     TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
                     tLRPC$TL_messages_getInlineBotResults.geo_point = tLRPC$TL_inputGeoPoint;
@@ -213,10 +215,24 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 if (!TextUtils.isEmpty(str) && (this.stories || this.biz)) {
                     this.searchingLocations = true;
                     final Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
+                    if (this.stories) {
+                        if (currentLocale.getLanguage().contains("en")) {
+                            locale = currentLocale;
+                            Utilities.globalQueue.postRunnable(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
+                                }
+                            });
+                        } else {
+                            locale2 = Locale.US;
+                        }
+                    }
+                    locale = locale2;
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, location, str);
+                            BaseLocationAdapter.this.lambda$searchPlacesWithQuery$5(currentLocale, str, locale, location, str);
                         }
                     });
                 } else {
@@ -231,13 +247,13 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                         BaseLocationAdapter.this.lambda$searchPlacesWithQuery$7(str, tLObject, tLRPC$TL_error);
                     }
                 });
-                notifyDataSetChanged();
+                update(true);
             }
         }
     }
 
-    public void lambda$searchPlacesWithQuery$5(java.util.Locale r26, java.lang.String r27, final android.location.Location r28, final java.lang.String r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, android.location.Location, java.lang.String):void");
+    public void lambda$searchPlacesWithQuery$5(java.util.Locale r30, java.lang.String r31, java.util.Locale r32, final android.location.Location r33, final java.lang.String r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.BaseLocationAdapter.lambda$searchPlacesWithQuery$5(java.util.Locale, java.lang.String, java.util.Locale, android.location.Location, java.lang.String):void");
     }
 
     public void lambda$searchPlacesWithQuery$4(Location location, String str, ArrayList arrayList) {
@@ -251,7 +267,7 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         }
         this.locations.clear();
         this.locations.addAll(arrayList);
-        notifyDataSetChanged();
+        update(true);
     }
 
     public void lambda$searchPlacesWithQuery$7(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -297,6 +313,10 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
         if (baseLocationAdapterDelegate != null) {
             baseLocationAdapterDelegate.didLoadSearchResult(this.places);
         }
+        update(true);
+    }
+
+    protected void update(boolean z) {
         notifyDataSetChanged();
     }
 }

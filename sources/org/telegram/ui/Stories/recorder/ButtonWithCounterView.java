@@ -17,7 +17,6 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -28,6 +27,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Loadable;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+
 public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
@@ -48,6 +48,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private ValueAnimator loadingAnimator;
     private CircularProgressDrawable loadingDrawable;
     private float loadingT;
+    private int minWidth;
     private final Paint paint;
     private Theme.ResourcesProvider resourcesProvider;
     private final View rippleView;
@@ -60,6 +61,8 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     private Runnable tick;
     private int timerSeconds;
     private boolean withCounterIcon;
+    public boolean wrapContentDynamic;
+    private boolean wrapWidth;
 
     protected float calculateCounterWidth(float f, float f2) {
         return f * f2;
@@ -68,6 +71,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         return false;
+    }
+
+    protected boolean subTextSplitToWords() {
+        return true;
     }
 
     public ButtonWithCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -91,42 +98,42 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
         View view = new View(context);
         this.rippleView = view;
-        view.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 8, 8));
         addView(view, LayoutHelper.createFrame(-1, -1.0f));
         if (z) {
             setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
         }
         Paint paint = new Paint(1);
         this.paint = paint;
-        int i = Theme.key_featuredStickers_buttonText;
-        paint.setColor(Theme.getColor(i, resourcesProvider));
+        paint.setColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.text = animatedTextDrawable;
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
         if (z) {
-            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         }
-        animatedTextDrawable.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable.setGravity(1);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(subTextSplitToWords(), true, false);
         this.subText = animatedTextDrawable2;
         animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable2.setCallback(this);
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
-        animatedTextDrawable2.setTextColor(Theme.getColor(z ? i : Theme.key_featuredStickers_addButton, resourcesProvider));
         animatedTextDrawable2.setGravity(1);
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable3;
         animatedTextDrawable3.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable3.setCallback(this);
         animatedTextDrawable3.setTextSize(AndroidUtilities.dp(12.0f));
-        animatedTextDrawable3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextDrawable3.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
-        animatedTextDrawable3.setText(BuildConfig.APP_CENTER_HASH);
+        animatedTextDrawable3.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable3.setText("");
         animatedTextDrawable3.setGravity(1);
         setWillNotDraw(false);
+        updateColors();
+    }
+
+    public void disableRippleView() {
+        removeView(this.rippleView);
     }
 
     public void setColor(int i) {
@@ -136,7 +143,11 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     }
 
     public void updateColors() {
-        this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
+        if (this.filled) {
+            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 8, 8));
+        } else {
+            this.rippleView.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), 0.1f), 8, 8));
+        }
         this.text.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.subText.setTextColor(Theme.getColor(this.filled ? Theme.key_featuredStickers_buttonText : Theme.key_featuredStickers_addButton, this.resourcesProvider));
         this.countText.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider));
@@ -145,6 +156,10 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
     public void setCounterColor(int i) {
         this.countText.setTextColor(i);
         this.counterDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+    }
+
+    public void setTextColor(int i) {
+        this.text.setTextColor(i);
     }
 
     public void setCountFilled(boolean z) {
@@ -377,8 +392,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
         }
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
+        this.countText.setText("" + i, z);
         invalidate();
     }
 
@@ -404,6 +418,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
             });
             this.enabledAnimator.start();
         }
+        super.setEnabled(z);
     }
 
     public void lambda$setEnabled$5(ValueAnimator valueAnimator) {
@@ -539,5 +554,23 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable {
 
     public void setGlobalAlpha(float f) {
         this.globalAlpha = (int) (f * 255.0f);
+    }
+
+    public void wrapContentDynamic() {
+        this.wrapContentDynamic = true;
+    }
+
+    public void setMinWidth(int i) {
+        this.wrapWidth = true;
+        this.minWidth = i;
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
+        if (this.wrapWidth) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) Math.min(Math.max(getPaddingLeft() + this.text.getCurrentWidth() + getPaddingRight(), this.minWidth), View.MeasureSpec.getSize(i)), 1073741824), i2);
+        } else {
+            super.onMeasure(i, i2);
+        }
     }
 }

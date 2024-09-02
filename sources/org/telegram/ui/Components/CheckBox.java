@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
+
 public class CheckBox extends View {
     private static Paint backgroundPaint;
     private static Paint eraser;
@@ -65,7 +65,7 @@ public class CheckBox extends View {
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(18.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.checkDrawable = context.getResources().getDrawable(i).mutate();
     }
 
@@ -192,7 +192,7 @@ public class CheckBox extends View {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -201,7 +201,7 @@ public class CheckBox extends View {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {
@@ -210,10 +210,10 @@ public class CheckBox extends View {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public boolean isChecked() {

@@ -25,7 +25,6 @@ import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -34,7 +33,6 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -44,6 +42,7 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertContactsLayout;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private PhonebookShareAlertDelegate delegate;
     private EmptyTextProgressView emptyView;
@@ -64,13 +63,13 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     public interface PhonebookShareAlertDelegate {
 
         public final class CC {
-            public static void $default$didSelectContacts(PhonebookShareAlertDelegate phonebookShareAlertDelegate, ArrayList arrayList, String str, boolean z, int i) {
+            public static void $default$didSelectContacts(PhonebookShareAlertDelegate phonebookShareAlertDelegate, ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
             }
         }
 
-        void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i);
+        void didSelectContact(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2);
 
-        void didSelectContacts(ArrayList<TLRPC$User> arrayList, String str, boolean z, int i);
+        void didSelectContacts(ArrayList<TLRPC$User> arrayList, String str, boolean z, int i, long j, boolean z2);
     }
 
     public static class UserCell extends FrameLayout {
@@ -121,7 +120,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             this.nameTextView = simpleTextView;
             NotificationCenter.listenEmojiLoading(simpleTextView);
             this.nameTextView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
-            this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.nameTextView.setTypeface(AndroidUtilities.bold());
             this.nameTextView.setTextSize(16);
             this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             SimpleTextView simpleTextView2 = this.nameTextView;
@@ -153,8 +152,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             if (tLRPC$User == null && charSequence == null && charSequence2 == null) {
                 this.currentStatus = null;
                 this.currentName = null;
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-                this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
+                this.statusTextView.setText("");
                 this.avatarImageView.setImageDrawable(null);
                 return;
             }
@@ -207,7 +206,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
-                    this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+                    this.statusTextView.setText("");
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
@@ -220,8 +219,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
 
         public void lambda$setStatus$3() {
             if (this.currentUser != null) {
-                PhoneFormat phoneFormat = PhoneFormat.getInstance();
-                this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
+                this.formattedPhoneNumber = PhoneFormat.getInstance().format("+" + this.currentUser.phone);
                 this.formattedPhoneNumberUser = this.currentUser;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -446,8 +444,9 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             int positionInSectionForPosition = this.listAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
+            } else {
+                item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
-            item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item != null) {
             if (!this.selectedContacts.isEmpty()) {
@@ -483,22 +482,22 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             PhonebookShareAlert phonebookShareAlert = new PhonebookShareAlert(this.parentAlert.baseFragment, contact, (TLRPC$User) null, (Uri) null, (File) null, str, str2, resourcesProvider);
             phonebookShareAlert.setDelegate(new PhonebookShareAlertDelegate() {
                 @Override
-                public final void didSelectContact(TLRPC$User tLRPC$User3, boolean z, int i2) {
-                    ChatAttachAlertContactsLayout.this.lambda$new$0(tLRPC$User3, z, i2);
+                public final void didSelectContact(TLRPC$User tLRPC$User3, boolean z, int i2, long j, boolean z2) {
+                    ChatAttachAlertContactsLayout.this.lambda$new$0(tLRPC$User3, z, i2, j, z2);
                 }
 
                 @Override
-                public void didSelectContacts(ArrayList arrayList, String str7, boolean z, int i2) {
-                    ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate.CC.$default$didSelectContacts(this, arrayList, str7, z, i2);
+                public void didSelectContacts(ArrayList arrayList, String str7, boolean z, int i2, long j, boolean z2) {
+                    ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate.CC.$default$didSelectContacts(this, arrayList, str7, z, i2, j, z2);
                 }
             });
             phonebookShareAlert.show();
         }
     }
 
-    public void lambda$new$0(TLRPC$User tLRPC$User, boolean z, int i) {
+    public void lambda$new$0(TLRPC$User tLRPC$User, boolean z, int i, long j, boolean z2) {
         this.parentAlert.dismiss(true);
-        this.delegate.didSelectContact(tLRPC$User, z, i);
+        this.delegate.didSelectContact(tLRPC$User, z, i, j, z2);
     }
 
     public boolean lambda$new$2(View view, int i) {
@@ -510,11 +509,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         } else {
             item = this.listAdapter.getItem(i);
         }
-        if (item != null) {
-            addOrRemoveSelectedContact((UserCell) view, item);
-            return true;
+        if (item == null) {
+            return false;
         }
-        return false;
+        addOrRemoveSelectedContact((UserCell) view, item);
+        return true;
     }
 
     public void addOrRemoveSelectedContact(UserCell userCell, Object obj) {
@@ -554,7 +553,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
         if ((this.selectedContacts.size() == 0 && this.delegate == null) || this.sendPressed) {
             return;
         }
@@ -564,7 +563,16 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         while (it.hasNext()) {
             arrayList.add(prepareContact(this.selectedContacts.get(it.next())));
         }
-        this.delegate.didSelectContacts(arrayList, this.parentAlert.commentTextView.getText().toString(), z, i);
+        this.delegate.didSelectContacts(arrayList, this.parentAlert.commentTextView.getText().toString(), z, i, j, z2);
+    }
+
+    public ArrayList<TLRPC$User> getSelected() {
+        ArrayList<TLRPC$User> arrayList = new ArrayList<>(this.selectedContacts.size());
+        Iterator<ListItemID> it = this.selectedContactsOrder.iterator();
+        while (it.hasNext()) {
+            arrayList.add(prepareContact(this.selectedContacts.get(it.next())));
+        }
+        return arrayList;
     }
 
     @Override
@@ -575,7 +583,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     @Override
     public int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return Integer.MAX_VALUE;
         }
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
@@ -658,7 +666,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
         animatorSet2.playTogether(animatorArr);
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -685,20 +693,20 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     public int getCurrentTop() {
-        if (this.listView.getChildCount() != 0) {
-            int i = 0;
-            View childAt = this.listView.getChildAt(0);
-            RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-            if (holder != null) {
-                int paddingTop = this.listView.getPaddingTop();
-                if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-                    i = childAt.getTop();
-                }
-                return paddingTop - i;
-            }
+        if (this.listView.getChildCount() == 0) {
             return -1000;
         }
-        return -1000;
+        int i = 0;
+        View childAt = this.listView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+        if (holder == null) {
+            return -1000;
+        }
+        int paddingTop = this.listView.getPaddingTop();
+        if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
+            i = childAt.getTop();
+        }
+        return paddingTop - i;
     }
 
     public void setDelegate(PhonebookShareAlertDelegate phonebookShareAlertDelegate) {
@@ -733,8 +741,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            EmptyTextProgressView emptyTextProgressView = this.emptyView;
-            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 
@@ -862,12 +869,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$0(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
-            PhoneFormat phoneFormat = PhoneFormat.getInstance();
-            return phoneFormat.format("+" + tLRPC$User.phone);
+            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
         }
 
         @Override
@@ -911,19 +917,19 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 this.searchResult.clear();
                 this.searchResultNames.clear();
                 notifyDataSetChanged();
-                return;
+            } else {
+                final int i = this.lastSearchId + 1;
+                this.lastSearchId = i;
+                DispatchQueue dispatchQueue = Utilities.searchQueue;
+                Runnable runnable = new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatAttachAlertContactsLayout.ShareSearchAdapter.this.lambda$search$0(str, i);
+                    }
+                };
+                this.searchRunnable = runnable;
+                dispatchQueue.postRunnable(runnable, 300L);
             }
-            final int i = this.lastSearchId + 1;
-            this.lastSearchId = i;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    ChatAttachAlertContactsLayout.ShareSearchAdapter.this.lambda$search$0(str, i);
-                }
-            };
-            this.searchRunnable = runnable;
-            dispatchQueue.postRunnable(runnable, 300L);
         }
 
         public void lambda$search$0(final String str, final int i) {
@@ -1039,12 +1045,11 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$4(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {
-            PhoneFormat phoneFormat = PhoneFormat.getInstance();
-            return phoneFormat.format("+" + tLRPC$User.phone);
+            return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
         }
 
         @Override

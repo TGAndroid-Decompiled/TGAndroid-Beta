@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public interface VideoDecoderFactory {
     @Deprecated
     VideoDecoder createDecoder(String str);

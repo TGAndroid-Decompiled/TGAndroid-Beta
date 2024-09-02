@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.SystemClock;
-import android.text.Layout;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import android.view.View;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private int activeTextColorKey;
     private int allTextWidth;
@@ -183,10 +183,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int alpha2 = Color.alpha(processColor2);
         textView2.setTextColor(Color.argb((int) (alpha + ((alpha2 - alpha) * f)), (int) (red + ((red2 - red) * f)), (int) (green + ((green2 - green) * f)), (int) (blue + ((blue2 - blue) * f))));
         textView.setTextColor(Color.argb((int) (alpha2 + ((alpha - alpha2) * f)), (int) (red2 + ((red - red2) * f)), (int) (green2 + ((green - green2) * f)), (int) (blue2 + ((blue - blue2) * f))));
-        int i = this.animateIndicatorStartX;
-        this.indicatorX = (int) (i + ((this.animateIndicatorToX - i) * f));
-        int i2 = this.animateIndicatorStartWidth;
-        this.indicatorWidth = (int) (i2 + ((this.animateIndicatorToWidth - i2) * f));
+        this.indicatorX = (int) (this.animateIndicatorStartX + ((this.animateIndicatorToX - r1) * f));
+        this.indicatorWidth = (int) (this.animateIndicatorStartWidth + ((this.animateIndicatorToWidth - r1) * f));
         invalidate();
     }
 
@@ -232,8 +230,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
 
     public SparseArray<View> removeTabs() {
         SparseArray<View> sparseArray = new SparseArray<>();
-        for (int i = 0; i < getChildCount(); i++) {
-            sparseArray.get(this.positionToId.get(i), getChildAt(i));
+        for (int i = 0; i < this.tabsContainer.getChildCount(); i++) {
+            sparseArray.put(this.positionToId.get(i), this.tabsContainer.getChildAt(i));
         }
         this.positionToId.clear();
         this.idToPosition.clear();
@@ -282,12 +280,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
                     accessibilityNodeInfo.setSelected(ScrollSlidingTextTabStrip.this.selectedTabId == i);
                 }
             };
-            textView.setWillNotDraw(false);
             textView.setGravity(17);
+            textView.setTextAlignment(4);
             textView.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(processColor(Theme.getColor(this.activeTextColorKey, this.resourcesProvider)), 0.15f), 3));
             textView.setTextSize(1, 15.0f);
             textView.setSingleLine(true);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -358,7 +356,11 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             textView.setTag(Integer.valueOf(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey));
             textView.setTextColor(processColor(Theme.getColor(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey, this.resourcesProvider)));
             if (i == 0) {
+                int i2 = textView.getLayoutParams().width;
                 textView.getLayoutParams().width = childCount == 1 ? -2 : 0;
+                if (i2 != textView.getLayoutParams().width) {
+                    textView.requestLayout();
+                }
             }
             i++;
         }
@@ -426,9 +428,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int size = View.MeasureSpec.getSize(i) - AndroidUtilities.dp(22.0f);
         int childCount = this.tabsContainer.getChildCount();
         for (int i3 = 0; i3 < childCount; i3++) {
-            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) this.tabsContainer.getChildAt(i3).getLayoutParams();
-            int i4 = this.allTextWidth;
-            if (i4 > size) {
+            View childAt = this.tabsContainer.getChildAt(i3);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
+            float f = layoutParams.weight;
+            int i4 = layoutParams.width;
+            int i5 = this.allTextWidth;
+            if (i5 > size) {
                 layoutParams.weight = 0.0f;
                 layoutParams.width = -2;
             } else if (this.useSameWidth) {
@@ -438,14 +443,22 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
                 layoutParams.weight = 0.0f;
                 layoutParams.width = -2;
             } else {
-                layoutParams.weight = (1.0f / i4) * this.positionToWidth.get(i3);
-                layoutParams.width = 0;
+                layoutParams.weight = AndroidUtilities.lerp(1.0f / childCount, (1.0f / i5) * this.positionToWidth.get(i3), 0.5f);
+                layoutParams.width = -2;
+            }
+            if (Math.abs(f - layoutParams.weight) > 0.001f || i4 != layoutParams.width) {
+                childAt.setLayoutParams(layoutParams);
+                childAt.requestLayout();
             }
         }
+        float weightSum = this.tabsContainer.getWeightSum();
         if (childCount == 1 || this.allTextWidth > size) {
             this.tabsContainer.setWeightSum(0.0f);
         } else {
             this.tabsContainer.setWeightSum(1.0f);
+        }
+        if (Math.abs(weightSum - this.tabsContainer.getWeightSum()) > 0.1f) {
+            this.tabsContainer.requestLayout();
         }
         super.onMeasure(i, i2);
     }
@@ -582,9 +595,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     }
 
     private int getChildWidth(TextView textView) {
-        Layout layout = textView.getLayout();
-        if (layout != null) {
-            return ((int) Math.ceil(layout.getLineWidth(0))) + AndroidUtilities.dp(2.0f);
+        if (textView.getLayout() != null) {
+            return ((int) Math.ceil(r0.getLineWidth(0))) + AndroidUtilities.dp(2.0f);
         }
         return textView.getMeasuredWidth();
     }

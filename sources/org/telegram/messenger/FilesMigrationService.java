@@ -29,6 +29,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StickerImageView;
+
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -44,7 +45,7 @@ public class FilesMigrationService extends Service {
     }
 
     public static void start() {
-        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, FilesMigrationService.class));
+        ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, (Class<?>) FilesMigrationService.class));
     }
 
     @Override
@@ -110,14 +111,14 @@ public class FilesMigrationService extends Service {
 
     private int getFilesCount(File file) {
         File[] listFiles;
-        if (file.exists() && (listFiles = file.listFiles()) != null) {
-            int i = 0;
-            for (int i2 = 0; i2 < listFiles.length; i2++) {
-                i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
-            }
-            return i;
+        if (!file.exists() || (listFiles = file.listFiles()) == null) {
+            return 0;
         }
-        return 0;
+        int i = 0;
+        for (int i2 = 0; i2 < listFiles.length; i2++) {
+            i = listFiles[i2].isDirectory() ? i + getFilesCount(listFiles[i2]) : i + 1;
+        }
+        return i;
     }
 
     private void moveDirectory(File file, final File file2) {
@@ -125,18 +126,21 @@ public class FilesMigrationService extends Service {
             if (file2.exists() || file2.mkdir()) {
                 try {
                     Stream convert = C$r8$wrapper$java$util$stream$Stream$VWRP.convert(Files.list(file.toPath()));
-                    convert.forEach(new Consumer() {
-                        @Override
-                        public final void accept(Object obj) {
-                            FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
-                        }
+                    try {
+                        convert.forEach(new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                FilesMigrationService.this.lambda$moveDirectory$0(file2, (Path) obj);
+                            }
 
-                        @Override
-                        public Consumer andThen(Consumer consumer) {
-                            return Consumer.CC.$default$andThen(this, consumer);
-                        }
-                    });
-                    convert.close();
+                            @Override
+                            public Consumer andThen(Consumer consumer) {
+                                return Consumer.CC.$default$andThen(this, consumer);
+                            }
+                        });
+                        convert.close();
+                    } finally {
+                    }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -234,6 +238,11 @@ public class FilesMigrationService extends Service {
             return false;
         }
 
+        @Override
+        public void setLastVisible(boolean z) {
+            BaseFragment.AttachedSheet.CC.$default$setLastVisible(this, z);
+        }
+
         public FilesMigrationBottomSheet(BaseFragment baseFragment) {
             super(baseFragment.getParentActivity(), false);
             this.fragment = baseFragment;
@@ -250,7 +259,7 @@ public class FilesMigrationService extends Service {
             int i = Theme.key_dialogTextBlack;
             textView.setTextColor(Theme.getColor(i));
             textView.setTextSize(1, 20.0f);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setText(LocaleController.getString("MigrateOldFolderTitle", R.string.MigrateOldFolderTitle));
             linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(parentActivity);
@@ -263,7 +272,7 @@ public class FilesMigrationService extends Service {
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView3.setTypeface(AndroidUtilities.bold());
             textView3.setText(LocaleController.getString("MigrateOldFolderButton", R.string.MigrateOldFolderButton));
             textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));

@@ -11,6 +11,7 @@ import android.text.TextPaint;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+
 public class CounterDrawable extends Drawable {
     private final Paint bgPaint;
     private final RectF bgRoundRect;
@@ -39,7 +40,7 @@ public class CounterDrawable extends Drawable {
         this.bgPaint = textPaint2;
         this.bgRoundRect = new RectF();
         textPaint.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint2.setColor(-6915073);
         this.icon = ContextCompat.getDrawable(context, R.drawable.mini_boost_badge);

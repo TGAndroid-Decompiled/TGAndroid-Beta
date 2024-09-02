@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageActionTopicEdit extends TLRPC$MessageAction {
     public boolean closed;
     public boolean hidden;

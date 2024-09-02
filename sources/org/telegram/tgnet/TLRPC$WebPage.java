@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
+
 public abstract class TLRPC$WebPage extends TLObject {
     public ArrayList<TLRPC$WebPageAttribute> attributes = new ArrayList<>();
     public String author;
@@ -74,7 +74,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             this.duration = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.author = abstractSerializedData2.readString(z2);
                         }
                     }
@@ -116,7 +116,7 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             abstractSerializedData2.writeInt32(this.duration);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeString(this.author);
                         }
                     }
@@ -179,10 +179,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             this.duration = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.author = abstractSerializedData2.readString(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                     }
@@ -224,10 +224,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             abstractSerializedData2.writeInt32(this.duration);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeString(this.author);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
                     }
@@ -292,10 +292,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             this.duration = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.author = abstractSerializedData2.readString(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 2048) != 0) {
@@ -360,10 +360,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             abstractSerializedData2.writeInt32(this.duration);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeString(this.author);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 2048) != 0) {
@@ -418,10 +418,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             this.duration = abstractSerializedData2.readInt32(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.author = abstractSerializedData2.readString(z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 1024) != 0) {
@@ -467,10 +467,10 @@ public abstract class TLRPC$WebPage extends TLObject {
                         if ((this.flags & 128) != 0) {
                             abstractSerializedData2.writeInt32(this.duration);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             abstractSerializedData2.writeString(this.author);
                         }
-                        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                        if ((this.flags & 512) != 0) {
                             this.document.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 1024) != 0) {

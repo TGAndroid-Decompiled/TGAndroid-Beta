@@ -2,6 +2,7 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
+
 public abstract class TLRPC$Document extends TLObject {
     public long access_hash;
     public int date;
@@ -14,6 +15,7 @@ public abstract class TLRPC$Document extends TLObject {
     public byte[] iv;
     public byte[] key;
     public String localPath;
+    public String localThumbPath;
     public String mime_type;
     public long size;
     public long user_id;
@@ -28,7 +30,7 @@ public abstract class TLRPC$Document extends TLObject {
             case -2027738169:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document_layer82();
                 break;
-            case TLRPC$TL_document.constructor:
+            case -1881881384:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document();
                 break;
             case -1683841855:

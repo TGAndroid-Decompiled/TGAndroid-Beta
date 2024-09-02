@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_chatParticipantsForbidden extends TLRPC$ChatParticipants {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

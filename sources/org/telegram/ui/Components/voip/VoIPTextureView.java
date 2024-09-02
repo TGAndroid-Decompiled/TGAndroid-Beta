@@ -22,7 +22,6 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -31,6 +30,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
+
 public class VoIPTextureView extends FrameLayout {
     public static int SCALE_TYPE_ADAPTIVE = 2;
     public static int SCALE_TYPE_FILL = 0;
@@ -155,7 +155,7 @@ public class VoIPTextureView extends FrameLayout {
         this.screencastText.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         this.screencastText.setTextColor(-1);
         this.screencastText.setTextSize(1, 15.0f);
-        this.screencastText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.screencastText.setTypeface(AndroidUtilities.bold());
         this.screencastView.addView(this.screencastText, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         if (z3 && Build.VERSION.SDK_INT >= 21) {
             setOutlineProvider(new ViewOutlineProvider() {
@@ -170,8 +170,9 @@ public class VoIPTextureView extends FrameLayout {
                     int i = (int) voIPTextureView.currentClipHorizontal;
                     int i2 = (int) voIPTextureView.currentClipVertical;
                     int measuredWidth = (int) (view2.getMeasuredWidth() - VoIPTextureView.this.currentClipHorizontal);
+                    float measuredHeight = view2.getMeasuredHeight();
                     VoIPTextureView voIPTextureView2 = VoIPTextureView.this;
-                    outline.setRoundRect(i, i2, measuredWidth, (int) (view2.getMeasuredHeight() - voIPTextureView2.currentClipVertical), voIPTextureView2.roundRadius);
+                    outline.setRoundRect(i, i2, measuredWidth, (int) (measuredHeight - voIPTextureView2.currentClipVertical), voIPTextureView2.roundRadius);
                 }
             });
             setClipToOutline(true);
@@ -253,10 +254,10 @@ public class VoIPTextureView extends FrameLayout {
             if (f <= 0.0f) {
                 this.stubVisibleProgress = 0.0f;
                 this.imageView.setVisibility(8);
-                return;
+            } else {
+                invalidate();
+                this.imageView.setAlpha(this.stubVisibleProgress);
             }
-            invalidate();
-            this.imageView.setAlpha(this.stubVisibleProgress);
         }
     }
 
@@ -272,7 +273,7 @@ public class VoIPTextureView extends FrameLayout {
     }
 
     public void saveCameraLastBitmap() {
-        Bitmap bitmap = this.renderer.getBitmap(ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        Bitmap bitmap = this.renderer.getBitmap(150, 150);
         if (bitmap == null || bitmap.getPixel(0, 0) == 0) {
             return;
         }
@@ -500,7 +501,9 @@ public class VoIPTextureView extends FrameLayout {
             }
             this.animateOnNextLayoutAnimations.clear();
             this.animateNextDuration = 0L;
-        } else if (this.currentAnimation == null) {
+            return;
+        }
+        if (this.currentAnimation == null) {
             this.renderer.setScaleX(this.scaleTextureToFill);
             this.renderer.setScaleY(this.scaleTextureToFill);
             TextureView textureView3 = this.blurRenderer;

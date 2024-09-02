@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
+
 public class LineProgressView extends View {
     private static DecelerateInterpolator decelerateInterpolator;
     private static Paint progressPaint;
@@ -126,6 +127,7 @@ public class LineProgressView extends View {
             }
             this.cellFlickerDrawable.setParentWidth(getMeasuredWidth());
             this.cellFlickerDrawable.draw(canvas, this.rect, getHeight() / 2.0f, null);
+            invalidate();
         }
         updateAnimation();
     }

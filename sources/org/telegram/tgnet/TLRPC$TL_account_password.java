@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_password extends TLRPC$account_Password {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

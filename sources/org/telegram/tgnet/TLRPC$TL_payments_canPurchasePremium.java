@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_canPurchasePremium extends TLObject {
     public TLRPC$InputStorePaymentPurpose purpose;
 

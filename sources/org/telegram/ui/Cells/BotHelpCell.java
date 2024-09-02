@@ -15,7 +15,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -28,15 +27,16 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$BotInfo;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
+import org.telegram.tgnet.tl.TL_bots$BotInfo;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
+
 public class BotHelpCell extends View {
     private boolean animating;
     private String currentPhotoKey;
@@ -96,7 +96,7 @@ public class BotHelpCell extends View {
         setText(z, str, null, null);
     }
 
-    public void setText(boolean z, String str, TLObject tLObject, TLRPC$BotInfo tLRPC$BotInfo) {
+    public void setText(boolean z, String str, TLObject tLObject, TL_bots$BotInfo tL_bots$BotInfo) {
         int min;
         boolean z2 = tLObject != null;
         boolean z3 = !TextUtils.isEmpty(str);
@@ -104,19 +104,19 @@ public class BotHelpCell extends View {
             setVisibility(8);
             return;
         }
-        String str2 = str == null ? BuildConfig.APP_CENTER_HASH : str;
+        String str2 = str == null ? "" : str;
         if (str2.equals(this.oldText) && this.isPhotoVisible == z2) {
             return;
         }
         this.isPhotoVisible = z2;
         this.isTextVisible = z3;
         if (z2) {
-            String keyForParentObject = FileRefController.getKeyForParentObject(tLRPC$BotInfo);
+            String keyForParentObject = FileRefController.getKeyForParentObject(tL_bots$BotInfo);
             if (!Objects.equals(this.currentPhotoKey, keyForParentObject)) {
                 this.currentPhotoKey = keyForParentObject;
                 if (tLObject instanceof TLRPC$TL_photo) {
                     TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
-                    this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 400), tLRPC$Photo), "400_400", null, "jpg", tLRPC$BotInfo, 0);
+                    this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 400), tLRPC$Photo), "400_400", null, "jpg", tL_bots$BotInfo, 0);
                 } else if (tLObject instanceof TLRPC$Document) {
                     TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
                     TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 400);
@@ -130,7 +130,7 @@ public class BotHelpCell extends View {
                             }
                         }
                     }
-                    this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ImageLoader.AUTOPLAY_FILTER, ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(tLRPC$Document), tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "86_86_b", bitmapDrawable, tLRPC$Document.size, "mp4", tLRPC$BotInfo, 0);
+                    this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(tLRPC$Document), tLRPC$Document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "86_86_b", bitmapDrawable, tLRPC$Document.size, "mp4", tL_bots$BotInfo, 0);
                 }
                 int dp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
                 int dp2 = AndroidUtilities.dp(4.0f);
@@ -165,7 +165,7 @@ public class BotHelpCell extends View {
             }
             MessageObject.addLinks(false, spannableStringBuilder);
             if (z) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), 0, string.length(), 33);
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, string.length(), 33);
             }
             Emoji.replaceEmoji((CharSequence) spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
             try {
@@ -218,7 +218,6 @@ public class BotHelpCell extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int i;
         int width = (getWidth() - this.width) / 2;
         int dp = this.photoHeight + AndroidUtilities.dp(2.0f);
         Drawable shadowDrawable = Theme.chat_msgInMediaDrawable.getShadowDrawable();
@@ -227,30 +226,30 @@ public class BotHelpCell extends View {
             shadowDrawable.draw(canvas);
         }
         Point point = AndroidUtilities.displaySize;
-        int i2 = point.x;
-        int i3 = point.y;
+        int i = point.x;
+        int i2 = point.y;
         if (getParent() instanceof View) {
             View view = (View) getParent();
-            i2 = view.getMeasuredWidth();
-            i3 = view.getMeasuredHeight();
+            i = view.getMeasuredWidth();
+            i2 = view.getMeasuredHeight();
         }
-        int i4 = i3;
+        int i3 = i2;
         Theme.MessageDrawable messageDrawable = (Theme.MessageDrawable) getThemedDrawable("drawableMsgInMedia");
-        messageDrawable.setTop((int) getY(), i2, i4, false, false);
+        messageDrawable.setTop((int) getY(), i, i3, false, false);
         messageDrawable.setBounds(width, 0, this.width + width, this.height);
         messageDrawable.draw(canvas);
         Drawable drawable = this.selectorDrawable;
         if (drawable != null) {
-            int i5 = this.selectorDrawableRadius;
-            int i6 = SharedConfig.bubbleRadius;
-            if (i5 != i6) {
-                this.selectorDrawableRadius = i6;
-                Theme.setMaskDrawableRad(drawable, i6, i6);
+            int i4 = this.selectorDrawableRadius;
+            int i5 = SharedConfig.bubbleRadius;
+            if (i4 != i5) {
+                this.selectorDrawableRadius = i5;
+                Theme.setMaskDrawableRad(drawable, i5, i5);
             }
             this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
             this.selectorDrawable.draw(canvas);
         }
-        this.imageReceiver.setImageCoords(width + i, this.imagePadding, this.width - (i * 2), this.photoHeight - i);
+        this.imageReceiver.setImageCoords(width + r3, this.imagePadding, this.width - (r3 * 2), this.photoHeight - r3);
         this.imageReceiver.draw(canvas);
         Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
         Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);

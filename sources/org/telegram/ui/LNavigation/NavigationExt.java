@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
+
 public class NavigationExt {
 
     public interface FragmentConsumer {
@@ -24,23 +25,23 @@ public class NavigationExt {
             if (size < 0) {
                 z = false;
                 break;
-            } else if (fragmentConsumer.consume(fragmentStack.get(size))) {
+            }
+            if (fragmentConsumer.consume(fragmentStack.get(size))) {
                 z = true;
                 break;
-            } else {
-                arrayList.add(fragmentStack.get(size));
-                size--;
+            }
+            arrayList.add(fragmentStack.get(size));
+            size--;
+        }
+        if (!z) {
+            return false;
+        }
+        for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
+            if (arrayList.get(size2) != lastFragment) {
+                ((BaseFragment) arrayList.get(size2)).removeSelfFromStack();
             }
         }
-        if (z) {
-            for (int size2 = arrayList.size() - 1; size2 >= 0; size2--) {
-                if (arrayList.get(size2) != lastFragment) {
-                    ((BaseFragment) arrayList.get(size2)).removeSelfFromStack();
-                }
-            }
-            lastFragment.finishFragment();
-            return true;
-        }
-        return false;
+        lastFragment.finishFragment();
+        return true;
     }
 }

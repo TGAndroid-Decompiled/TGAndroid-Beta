@@ -19,12 +19,14 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
+
 public class TextCheckCell2 extends FrameLayout {
     private AnimatedTextView animatedTextView;
     private Switch checkBox;
     private View checkBoxClickArea;
     private LinearLayout collapseViewContainer;
     private View collapsedArrow;
+    public int id;
     private boolean isMultiline;
     private boolean needDivider;
     private TextView textView;
@@ -42,7 +44,7 @@ public class TextCheckCell2 extends FrameLayout {
             AnimatedTextView animatedTextView2 = this.animatedTextView;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             animatedTextView2.setTextColor(Theme.getColor(i));
-            this.animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.animatedTextView.setTypeface(AndroidUtilities.bold());
             this.animatedTextView.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.collapseViewContainer.addView(this.animatedTextView, LayoutHelper.createFrame(-2, 20.0f));
             this.collapsedArrow = new View(getContext());
@@ -194,7 +196,9 @@ public class TextCheckCell2 extends FrameLayout {
             this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.valueTextView.animate().alpha(z ? 1.0f : 0.5f).start();
             this.checkBox.animate().alpha(z ? 1.0f : 0.5f).start();
-        } else if (z) {
+            return;
+        }
+        if (z) {
             this.textView.setAlpha(1.0f);
             this.valueTextView.setAlpha(1.0f);
             this.checkBox.setAlpha(1.0f);

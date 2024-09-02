@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputAppEvent extends TLObject {
     public TLRPC$JSONValue data;
     public long peer;

@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.util.LongSparseArray;
 import org.telegram.messenger.FilePathDatabase;
-import org.telegram.messenger.NotificationBadge;
+
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";
     public static final long DEFAULT_VIDEO_LIMIT = 104857600;
@@ -23,7 +23,7 @@ public class SaveToGallerySettingsHelper {
             boolean z = (i & 1) != 0;
             sharedSettings.saveVideo = z;
             sharedSettings.savePhoto = z;
-            sharedSettings.limitVideo = DEFAULT_VIDEO_LIMIT;
+            sharedSettings.limitVideo = 104857600L;
             sharedSettings.save("user", sharedPreferences);
             SharedSettings sharedSettings2 = new SharedSettings();
             groups = sharedSettings2;
@@ -31,14 +31,14 @@ public class SaveToGallerySettingsHelper {
             boolean z2 = (i & 2) != 0;
             sharedSettings3.saveVideo = z2;
             sharedSettings2.savePhoto = z2;
-            sharedSettings2.limitVideo = DEFAULT_VIDEO_LIMIT;
+            sharedSettings2.limitVideo = 104857600L;
             sharedSettings2.save("groups", sharedPreferences);
             SharedSettings sharedSettings4 = new SharedSettings();
             channels = sharedSettings4;
             boolean z3 = (i & 4) != 0;
             sharedSettings4.saveVideo = z3;
             sharedSettings4.savePhoto = z3;
-            sharedSettings4.limitVideo = DEFAULT_VIDEO_LIMIT;
+            sharedSettings4.limitVideo = 104857600L;
             sharedSettings4.save("channels", sharedPreferences);
         } else {
             user = SharedSettings.read("user", sharedPreferences);
@@ -56,9 +56,10 @@ public class SaveToGallerySettingsHelper {
             sharedSettings = user;
         } else if (i == 4) {
             sharedSettings = channels;
-        } else if (i != 2) {
-            return false;
         } else {
+            if (i != 2) {
+                return false;
+            }
             sharedSettings = groups;
         }
         return sharedSettings.needSave(fileMeta, messageObject, i2);
@@ -66,13 +67,13 @@ public class SaveToGallerySettingsHelper {
 
     public static LongSparseArray<DialogException> loadExceptions(SharedPreferences sharedPreferences) {
         LongSparseArray<DialogException> longSparseArray = new LongSparseArray<>();
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         for (int i2 = 0; i2 < i; i2++) {
             DialogException dialogException = new DialogException();
             dialogException.dialogId = sharedPreferences.getLong(i2 + "_dialog_id", 0L);
             dialogException.savePhoto = sharedPreferences.getBoolean(i2 + "_photo", false);
             dialogException.saveVideo = sharedPreferences.getBoolean(i2 + "_video", false);
-            dialogException.limitVideo = sharedPreferences.getLong(i2 + "_limitVideo", DEFAULT_VIDEO_LIMIT);
+            dialogException.limitVideo = sharedPreferences.getLong(i2 + "_limitVideo", 104857600L);
             long j = dialogException.dialogId;
             if (j != 0) {
                 longSparseArray.put(j, dialogException);
@@ -84,7 +85,7 @@ public class SaveToGallerySettingsHelper {
     public static void saveExceptions(SharedPreferences sharedPreferences, LongSparseArray<DialogException> longSparseArray) {
         sharedPreferences.edit().clear().apply();
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, longSparseArray.size());
+        edit.putInt("count", longSparseArray.size());
         for (int i = 0; i < longSparseArray.size(); i++) {
             DialogException valueAt = longSparseArray.valueAt(i);
             edit.putLong(i + "_dialog_id", valueAt.dialogId);
@@ -120,7 +121,7 @@ public class SaveToGallerySettingsHelper {
     }
 
     public static abstract class Settings {
-        public long limitVideo = SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT;
+        public long limitVideo = 104857600;
         public boolean savePhoto;
         public boolean saveVideo;
 
@@ -134,10 +135,10 @@ public class SaveToGallerySettingsHelper {
             if (enabled()) {
                 this.saveVideo = false;
                 this.savePhoto = false;
-                return;
+            } else {
+                this.savePhoto = true;
+                this.saveVideo = true;
             }
-            this.savePhoto = true;
-            this.saveVideo = true;
         }
     }
 
@@ -145,41 +146,38 @@ public class SaveToGallerySettingsHelper {
         private int type;
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            SharedPreferences.Editor putBoolean = edit.putBoolean(str + "_save_gallery_photo", this.savePhoto);
-            SharedPreferences.Editor putBoolean2 = putBoolean.putBoolean(str + "_save_gallery_video", this.saveVideo);
-            putBoolean2.putLong(str + "_save_gallery_limitVideo", this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(str + "_save_gallery_photo", this.savePhoto).putBoolean(str + "_save_gallery_video", this.saveVideo).putLong(str + "_save_gallery_limitVideo", this.limitVideo).apply();
         }
 
         public static SharedSettings read(String str, SharedPreferences sharedPreferences) {
             SharedSettings sharedSettings = new SharedSettings();
             sharedSettings.savePhoto = sharedPreferences.getBoolean(str + "_save_gallery_photo", false);
             sharedSettings.saveVideo = sharedPreferences.getBoolean(str + "_save_gallery_video", false);
-            sharedSettings.limitVideo = sharedPreferences.getLong(str + "_save_gallery_limitVideo", SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT);
+            sharedSettings.limitVideo = sharedPreferences.getLong(str + "_save_gallery_limitVideo", 104857600L);
             return sharedSettings;
         }
 
         public boolean needSave(FilePathDatabase.FileMeta fileMeta, MessageObject messageObject, int i) {
             DialogException dialogException = UserConfig.getInstance(i).getSaveGalleryExceptions(this.type).get(fileMeta.dialogId);
-            if (messageObject == null || !(messageObject.isOutOwner() || messageObject.isSecretMedia())) {
-                boolean z = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
-                long size = messageObject != null ? messageObject.getSize() : fileMeta.messageSize;
-                boolean z2 = this.saveVideo;
-                boolean z3 = this.savePhoto;
-                long j = this.limitVideo;
-                if (dialogException != null) {
-                    z2 = dialogException.saveVideo;
-                    z3 = dialogException.savePhoto;
-                    j = dialogException.limitVideo;
-                }
-                if (z) {
-                    if (z2 && (j == -1 || size < j)) {
-                        return true;
-                    }
-                } else if (z3) {
+            if (messageObject != null && (messageObject.isOutOwner() || messageObject.isSecretMedia())) {
+                return false;
+            }
+            boolean z = (messageObject != null && messageObject.isVideo()) || fileMeta.messageType == 3;
+            long size = messageObject != null ? messageObject.getSize() : fileMeta.messageSize;
+            boolean z2 = this.saveVideo;
+            boolean z3 = this.savePhoto;
+            long j = this.limitVideo;
+            if (dialogException != null) {
+                z2 = dialogException.saveVideo;
+                z3 = dialogException.savePhoto;
+                j = dialogException.limitVideo;
+            }
+            if (z) {
+                if (z2 && (j == -1 || size < j)) {
                     return true;
                 }
-                return false;
+            } else if (z3) {
+                return true;
             }
             return false;
         }

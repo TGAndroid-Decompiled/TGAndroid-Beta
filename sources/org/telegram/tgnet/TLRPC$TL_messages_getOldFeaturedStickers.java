@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getOldFeaturedStickers extends TLObject {
     public long hash;
     public int limit;

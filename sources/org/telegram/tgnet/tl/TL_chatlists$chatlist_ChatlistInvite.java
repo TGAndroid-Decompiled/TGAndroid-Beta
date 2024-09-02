@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
+
 public abstract class TL_chatlists$chatlist_ChatlistInvite extends TLObject {
     public static TL_chatlists$chatlist_ChatlistInvite TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TL_chatlists$chatlist_ChatlistInvite tL_chatlists$TL_chatlists_chatlistInviteAlready;

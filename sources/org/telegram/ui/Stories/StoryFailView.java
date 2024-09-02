@@ -14,6 +14,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class StoryFailView extends FrameLayout {
     private final TextView button;
     private final Paint redPaint;
@@ -47,7 +48,7 @@ public class StoryFailView extends FrameLayout {
         this.button = textView3;
         textView3.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), 0);
         textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 536870911, 956301311));
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString(R.string.TryAgain));
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(-1);
@@ -59,11 +60,11 @@ public class StoryFailView extends FrameLayout {
         if (tLRPC$TL_error == null || TextUtils.isEmpty(tLRPC$TL_error.text)) {
             this.titleTextView.setTranslationY(0.0f);
             this.subtitleTextView.setVisibility(8);
-            return;
+        } else {
+            this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
+            this.subtitleTextView.setText(tLRPC$TL_error.text);
+            this.subtitleTextView.setVisibility(0);
         }
-        this.titleTextView.setTranslationY(-AndroidUtilities.dpf2(5.33f));
-        this.subtitleTextView.setText(tLRPC$TL_error.text);
-        this.subtitleTextView.setVisibility(0);
     }
 
     @Override

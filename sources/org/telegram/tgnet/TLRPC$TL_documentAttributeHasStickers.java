@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_documentAttributeHasStickers extends TLRPC$DocumentAttribute {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

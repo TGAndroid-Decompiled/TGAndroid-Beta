@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateSavedDialogPinned extends TLRPC$Update {
     public int flags;
     public TLRPC$DialogPeer peer;

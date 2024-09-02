@@ -35,7 +35,9 @@ import org.telegram.ui.Adapters.DrawerLayoutAdapter;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.LauncherIconController;
+
 public class ApplicationLoader extends Application {
+
     @SuppressLint({"StaticFieldLeak"})
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
@@ -277,7 +279,7 @@ public class ApplicationLoader extends Application {
             ContactsController.getInstance(i2).checkAppAccount();
             DownloadController.getInstance(i2);
         }
-        BillingController.getInstance().lambda$onBillingServiceDisconnected$5();
+        BillingController.getInstance().lambda$onBillingServiceDisconnected$6();
     }
 
     @Override
@@ -344,13 +346,12 @@ public class ApplicationLoader extends Application {
         }
         if (z) {
             try {
-                applicationContext.startService(new Intent(applicationContext, NotificationsService.class));
-                return;
+                applicationContext.startService(new Intent(applicationContext, (Class<?>) NotificationsService.class));
             } catch (Throwable unused) {
-                return;
             }
+        } else {
+            applicationContext.stopService(new Intent(applicationContext, (Class<?>) NotificationsService.class));
         }
-        applicationContext.stopService(new Intent(applicationContext, NotificationsService.class));
     }
 
     @Override
@@ -524,16 +525,16 @@ public class ApplicationLoader extends Application {
             ensureCurrentNetworkGet(false);
             if (currentNetworkInfo != null && !currentNetworkInfo.isConnectedOrConnecting() && !currentNetworkInfo.isAvailable()) {
                 NetworkInfo networkInfo = connectivityManager.getNetworkInfo(0);
-                if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
-                    NetworkInfo networkInfo2 = connectivityManager.getNetworkInfo(1);
-                    if (networkInfo2 != null) {
-                        if (networkInfo2.isConnectedOrConnecting()) {
-                            return true;
-                        }
-                    }
-                    return false;
+                if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+                    return true;
                 }
-                return true;
+                NetworkInfo networkInfo2 = connectivityManager.getNetworkInfo(1);
+                if (networkInfo2 != null) {
+                    if (networkInfo2.isConnectedOrConnecting()) {
+                        return true;
+                    }
+                }
+                return false;
             }
             return true;
         } catch (Exception e) {
@@ -546,20 +547,20 @@ public class ApplicationLoader extends Application {
         try {
             ConnectivityManager connectivityManager2 = (ConnectivityManager) applicationContext.getSystemService("connectivity");
             NetworkInfo activeNetworkInfo = connectivityManager2.getActiveNetworkInfo();
-            if (activeNetworkInfo == null || !(activeNetworkInfo.isConnectedOrConnecting() || activeNetworkInfo.isAvailable())) {
-                NetworkInfo networkInfo = connectivityManager2.getNetworkInfo(0);
-                if (networkInfo == null || !networkInfo.isConnectedOrConnecting()) {
-                    NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
-                    if (networkInfo2 != null) {
-                        if (networkInfo2.isConnectedOrConnecting()) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
+            if (activeNetworkInfo != null && (activeNetworkInfo.isConnectedOrConnecting() || activeNetworkInfo.isAvailable())) {
                 return true;
             }
-            return true;
+            NetworkInfo networkInfo = connectivityManager2.getNetworkInfo(0);
+            if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+                return true;
+            }
+            NetworkInfo networkInfo2 = connectivityManager2.getNetworkInfo(1);
+            if (networkInfo2 != null) {
+                if (networkInfo2.isConnectedOrConnecting()) {
+                    return true;
+                }
+            }
+            return false;
         } catch (Exception e) {
             FileLog.e(e);
             return true;

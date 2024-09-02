@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
+
 public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public int flags;
     public boolean forum_topic;
@@ -166,7 +166,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                         this.flags = readInt32;
                         this.reply_to_scheduled = (readInt32 & 4) != 0;
                         this.forum_topic = (readInt32 & 8) != 0;
-                        this.quote = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+                        this.quote = (readInt32 & 512) != 0;
                         if ((readInt32 & 16) != 0) {
                             this.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
@@ -176,7 +176,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                         if ((this.flags & 32) != 0) {
                             this.reply_from = TLRPC$MessageFwdHeader.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.reply_media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
                         if ((this.flags & 2) != 0) {
@@ -211,7 +211,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                         this.flags = i2;
                         int i3 = this.forum_topic ? i2 | 8 : i2 & (-9);
                         this.flags = i3;
-                        int i4 = this.quote ? i3 | LiteMode.FLAG_CALLS_ANIMATIONS : i3 & (-513);
+                        int i4 = this.quote ? i3 | 512 : i3 & (-513);
                         this.flags = i4;
                         abstractSerializedData2.writeInt32(i4);
                         if ((this.flags & 16) != 0) {
@@ -223,7 +223,7 @@ public abstract class TLRPC$MessageReplyHeader extends TLObject {
                         if ((this.flags & 32) != 0) {
                             this.reply_from.serializeToStream(abstractSerializedData2);
                         }
-                        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                        if ((this.flags & 256) != 0) {
                             this.reply_media.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 2) != 0) {

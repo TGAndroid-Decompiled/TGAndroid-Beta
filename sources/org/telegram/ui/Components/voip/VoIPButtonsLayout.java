@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+
 public class VoIPButtonsLayout extends FrameLayout {
     int childPadding;
     private int childSize;

@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+
 public class MenuDrawable extends Drawable {
     public static int TYPE_DEFAULT = 0;
     public static int TYPE_UDPATE_AVAILABLE = 1;

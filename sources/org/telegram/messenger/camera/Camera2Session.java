@@ -14,6 +14,7 @@ import android.media.ImageReader;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.util.Range;
 import android.view.Surface;
 import java.io.File;
 import java.util.ArrayList;
@@ -23,9 +24,9 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.Camera2Session;
+
 @TargetApi(21)
 public class Camera2Session {
     private CameraCharacteristics cameraCharacteristics;
@@ -37,6 +38,7 @@ public class Camera2Session {
     private CameraCaptureSession captureSession;
     private final CameraCaptureSession.StateCallback captureStateCallback;
     private Runnable doneCallback;
+    private boolean flashing;
     private Handler handler;
     private ImageReader imageReader;
     private boolean isClosed;
@@ -79,8 +81,7 @@ public class Camera2Session {
                     CameraCharacteristics cameraCharacteristics = cameraManager2.getCameraCharacteristics(str2);
                     if (cameraCharacteristics != null && ((Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == (!z)) {
                         StreamConfigurationMap streamConfigurationMap = (StreamConfigurationMap) cameraCharacteristics.get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP);
-                        android.util.Size size2 = (android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE);
-                        float width = size2 == null ? 0.0f : size2.getWidth() / size2.getHeight();
+                        float width = ((android.util.Size) cameraCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PIXEL_ARRAY_SIZE)) == null ? 0.0f : r14.getWidth() / r14.getHeight();
                         float f2 = i / i2;
                         cameraManager = cameraManager2;
                         if ((f2 >= 1.0f) != (width >= 1.0f)) {
@@ -132,7 +133,7 @@ public class Camera2Session {
         this.cameraId = str;
         this.previewSize = size;
         this.lastTime = System.currentTimeMillis();
-        this.imageReader = ImageReader.newInstance(size.getWidth(), size.getHeight(), LiteMode.FLAG_CHAT_BLUR, 1);
+        this.imageReader = ImageReader.newInstance(size.getWidth(), size.getHeight(), 256, 1);
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         this.cameraManager = cameraManager;
         try {
@@ -252,9 +253,9 @@ public class Camera2Session {
         if (isInitiated()) {
             runnable.run();
             this.doneCallback = null;
-            return;
+        } else {
+            this.doneCallback = runnable;
         }
-        this.doneCallback = runnable;
     }
 
     public void open(final SurfaceTexture surfaceTexture) {
@@ -332,6 +333,17 @@ public class Camera2Session {
         } catch (Exception e) {
             FileLog.e(e);
         }
+    }
+
+    public void setFlash(boolean z) {
+        if (this.flashing != z) {
+            this.flashing = z;
+            updateCaptureRequest();
+        }
+    }
+
+    public boolean getFlash() {
+        return this.flashing;
     }
 
     public float getZoom() {
@@ -455,6 +467,7 @@ public class Camera2Session {
             return;
         }
         try {
+            int i2 = 1;
             if (this.recordingVideo) {
                 i = 3;
             } else {
@@ -466,6 +479,18 @@ public class Camera2Session {
                 createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, 16);
             } else if (this.nightMode) {
                 createCaptureRequest.set(CaptureRequest.CONTROL_SCENE_MODE, Integer.valueOf(this.isFront ? 6 : 5));
+            }
+            CaptureRequest.Builder builder = this.captureRequestBuilder;
+            CaptureRequest.Key key = CaptureRequest.FLASH_MODE;
+            if (!this.flashing) {
+                i2 = 0;
+            } else if (this.recordingVideo) {
+                i2 = 2;
+            }
+            builder.set(key, Integer.valueOf(i2));
+            if (this.recordingVideo) {
+                this.captureRequestBuilder.set(CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE, new Range(30, 60));
+                this.captureRequestBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, 3);
             }
             if (this.sensorSize != null && Math.abs(this.currentZoom - 1.0f) >= 0.01f) {
                 int width = this.sensorSize.width() / 2;

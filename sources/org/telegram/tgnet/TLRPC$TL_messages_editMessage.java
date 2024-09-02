@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_messages_editMessage extends TLObject {
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
@@ -33,7 +33,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
         if ((this.flags & 2048) != 0) {
             abstractSerializedData.writeString(this.message);
         }
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+        if ((this.flags & 16384) != 0) {
             this.media.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 4) != 0) {
@@ -47,7 +47,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
                 this.entities.get(i3).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+        if ((this.flags & 32768) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
         if ((this.flags & 131072) != 0) {

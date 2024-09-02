@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class SpeedLineParticles$Drawable {
     public final int count;
     private int lastColor;
@@ -107,8 +108,9 @@ public class SpeedLineParticles$Drawable {
             SpeedLineParticles$Drawable speedLineParticles$Drawable = SpeedLineParticles$Drawable.this;
             RectF rectF = z ? speedLineParticles$Drawable.screenRect : speedLineParticles$Drawable.rect;
             float abs = rectF.left + Math.abs(Utilities.fastRandom.nextInt() % rectF.width());
+            float abs2 = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());
             this.x = abs;
-            this.y = rectF.top + Math.abs(Utilities.fastRandom.nextInt() % rectF.height());
+            this.y = abs2;
             double atan2 = Math.atan2(abs - SpeedLineParticles$Drawable.this.rect.centerX(), this.y - SpeedLineParticles$Drawable.this.rect.centerY());
             this.vecX = (float) Math.sin(atan2);
             this.vecY = (float) Math.cos(atan2);

@@ -30,6 +30,7 @@ import org.telegram.ui.Components.Premium.boosts.GiftInfoBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.GiftInfoAdapter;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
+
 public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private GiftInfoAdapter adapter;
     private final TLRPC$TL_payments_checkedGiftCode giftCode;
@@ -103,26 +104,26 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
         if (scheme.equals("http") || scheme.equals("https")) {
             String lowerCase = data.getHost().toLowerCase();
-            if ((lowerCase.equals("telegram.me") || lowerCase.equals("t.me") || lowerCase.equals("telegram.dog")) && (path = data.getPath()) != null) {
-                String lastPathSegment = data.getLastPathSegment();
-                if (!path.startsWith("/giftcode") || lastPathSegment == null) {
-                    return false;
-                }
-                show(LaunchActivity.getLastFragment(), lastPathSegment, progress);
-                return true;
+            if ((!lowerCase.equals("telegram.me") && !lowerCase.equals("t.me") && !lowerCase.equals("telegram.dog")) || (path = data.getPath()) == null) {
+                return false;
             }
-            return false;
-        } else if (scheme.equals("tg")) {
-            String uri = data.toString();
-            String lastPathSegment2 = data.getLastPathSegment();
-            if ((uri.startsWith("tg:giftcode") || uri.startsWith("tg://giftcode")) && lastPathSegment2 != null) {
-                show(LaunchActivity.getLastFragment(), lastPathSegment2, progress);
-                return true;
+            String lastPathSegment = data.getLastPathSegment();
+            if (!path.startsWith("/giftcode") || lastPathSegment == null) {
+                return false;
             }
-            return false;
-        } else {
+            show(LaunchActivity.getLastFragment(), lastPathSegment, progress);
+            return true;
+        }
+        if (!scheme.equals("tg")) {
             return false;
         }
+        String uri = data.toString();
+        String lastPathSegment2 = data.getLastPathSegment();
+        if ((!uri.startsWith("tg:giftcode") && !uri.startsWith("tg://giftcode")) || lastPathSegment2 == null) {
+            return false;
+        }
+        show(LaunchActivity.getLastFragment(), lastPathSegment2, progress);
+        return true;
     }
 
     public GiftInfoBottomSheet(BaseFragment baseFragment, boolean z, boolean z2, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, String str) {
@@ -144,6 +145,11 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override
@@ -212,14 +218,16 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             dismiss();
             if (tLObject instanceof TLRPC$Chat) {
                 GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC$Chat) tLObject).id));
-            } else if (tLObject instanceof TLRPC$User) {
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(((TLRPC$User) tLObject).id));
-            } else {
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", -DialogObject.getPeerDialogId(GiftInfoBottomSheet.this.giftCode.from_id));
-                bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
-                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
+                return;
             }
+            if (tLObject instanceof TLRPC$User) {
+                GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(((TLRPC$User) tLObject).id));
+                return;
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -DialogObject.getPeerDialogId(GiftInfoBottomSheet.this.giftCode.from_id));
+            bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
+            GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
         }
 
         @Override
@@ -230,12 +238,13 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
             } else {
                 string = LocaleController.getString("BoostingOnlyRecipientCode", R.string.BoostingOnlyRecipientCode);
             }
-            BulletinFactory.of(((BottomSheet) GiftInfoBottomSheet.this).container, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
+            GiftInfoBottomSheet giftInfoBottomSheet = GiftInfoBottomSheet.this;
+            BulletinFactory.of(giftInfoBottomSheet.container, ((BottomSheet) giftInfoBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
         }
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(this.resourcesProvider);
         this.adapter = anonymousClass2;
         return anonymousClass2;

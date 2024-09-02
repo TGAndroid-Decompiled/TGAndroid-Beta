@@ -34,6 +34,7 @@ import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.WallpapersListActivity;
+
 public class WallpaperCell extends FrameLayout {
     private Paint backgroundPaint;
     private Drawable checkDrawable;
@@ -169,7 +170,9 @@ public class WallpaperCell extends FrameLayout {
                     this.imageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$TL_wallPaper.document), str, null, null, "jpg", j, 1, tLRPC$TL_wallPaper);
                 }
                 this.imageView.getImageReceiver().setAlpha(Math.abs(tLRPC$TL_wallPaper.settings.intensity) / 100.0f);
-            } else if (obj instanceof WallpapersListActivity.ColorWallpaper) {
+                return;
+            }
+            if (obj instanceof WallpapersListActivity.ColorWallpaper) {
                 WallpapersListActivity.ColorWallpaper colorWallpaper = (WallpapersListActivity.ColorWallpaper) obj;
                 if (colorWallpaper.path != null || colorWallpaper.pattern != null || "d".equals(colorWallpaper.slug)) {
                     if (colorWallpaper.gradientColor2 != 0) {
@@ -211,12 +214,16 @@ public class WallpaperCell extends FrameLayout {
                 this.imageView.setImageBitmap(null);
                 if (colorWallpaper.isGradient) {
                     this.imageView.setBackground(new MotionBackgroundDrawable(colorWallpaper.color, colorWallpaper.gradientColor1, colorWallpaper.gradientColor2, colorWallpaper.gradientColor3, true));
+                    return;
                 } else if (colorWallpaper.gradientColor1 != 0) {
                     this.imageView.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{colorWallpaper.color | (-16777216), colorWallpaper.gradientColor1 | (-16777216)}));
+                    return;
                 } else {
                     this.imageView.setBackgroundColor(colorWallpaper.color | (-16777216));
+                    return;
                 }
-            } else if (obj instanceof WallpapersListActivity.FileWallpaper) {
+            }
+            if (obj instanceof WallpapersListActivity.FileWallpaper) {
                 WallpapersListActivity.FileWallpaper fileWallpaper = (WallpapersListActivity.FileWallpaper) obj;
                 File file2 = fileWallpaper.originalPath;
                 if (file2 != null) {
@@ -226,13 +233,17 @@ public class WallpaperCell extends FrameLayout {
                 File file3 = fileWallpaper.path;
                 if (file3 != null) {
                     this.imageView.setImage(file3.getAbsolutePath(), str, null);
+                    return;
                 } else if ("t".equals(fileWallpaper.slug)) {
                     BackupImageView backupImageView = this.imageView;
                     backupImageView.setImageDrawable(Theme.getThemedWallpaper(true, backupImageView));
+                    return;
                 } else {
                     this.imageView.setImageResource(fileWallpaper.thumbResId);
+                    return;
                 }
-            } else if (obj instanceof MediaController.SearchImage) {
+            }
+            if (obj instanceof MediaController.SearchImage) {
                 MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
                 TLRPC$Photo tLRPC$Photo = searchImage.photo;
                 if (tLRPC$Photo != null) {
@@ -243,9 +254,9 @@ public class WallpaperCell extends FrameLayout {
                     return;
                 }
                 this.imageView.setImage(searchImage.thumbUrl, str, null);
-            } else {
-                this.isSelected = false;
+                return;
             }
+            this.isSelected = false;
         }
 
         public void setChecked(final boolean z, boolean z2) {
@@ -360,7 +371,7 @@ public class WallpaperCell extends FrameLayout {
             } else {
                 Paint paint = new Paint();
                 this.framePaint = paint;
-                paint.setColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                paint.setColor(855638016);
                 this.circlePaint = new Paint(1);
                 this.checkDrawable = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
@@ -441,10 +452,10 @@ public class WallpaperCell extends FrameLayout {
         if (obj == null) {
             this.wallpaperViews[i2].setVisibility(8);
             this.wallpaperViews[i2].clearAnimation();
-            return;
+        } else {
+            this.wallpaperViews[i2].setVisibility(0);
+            this.wallpaperViews[i2].setWallpaper(obj, obj2, drawable, z);
         }
-        this.wallpaperViews[i2].setVisibility(0);
-        this.wallpaperViews[i2].setWallpaper(obj, obj2, drawable, z);
     }
 
     public void setChecked(int i, boolean z, boolean z2) {

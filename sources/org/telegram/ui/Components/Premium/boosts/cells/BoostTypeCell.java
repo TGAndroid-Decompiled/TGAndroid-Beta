@@ -11,6 +11,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class BoostTypeCell extends BaseCell {
     public static int TYPE_GIVEAWAY = 0;
@@ -24,7 +25,7 @@ public class BoostTypeCell extends BaseCell {
 
     public BoostTypeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
     }
 
     @Override

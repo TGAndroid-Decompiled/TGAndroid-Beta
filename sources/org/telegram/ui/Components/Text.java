@@ -12,7 +12,8 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
+import org.telegram.ui.ActionBar.Theme;
+
 public class Text {
     private boolean doNotSave;
     private LinearGradient ellipsizeGradient;
@@ -22,7 +23,9 @@ public class Text {
     private boolean hackClipBounds;
     private StaticLayout layout;
     private float left;
+    private float maxWidth;
     private final TextPaint paint;
+    private int vertPad;
     private float width;
 
     public Text(CharSequence charSequence, float f) {
@@ -32,17 +35,36 @@ public class Text {
     public Text(CharSequence charSequence, float f, Typeface typeface) {
         TextPaint textPaint = new TextPaint(1);
         this.paint = textPaint;
+        this.maxWidth = 999999.0f;
         this.ellipsizeWidth = -1;
         textPaint.setTextSize(AndroidUtilities.dp(f));
         textPaint.setTypeface(typeface);
         setText(charSequence);
     }
 
+    public Text setTextSizePx(float f) {
+        this.paint.setTextSize(f);
+        return this;
+    }
+
     public void setText(CharSequence charSequence) {
-        StaticLayout staticLayout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.layout = staticLayout;
-        this.width = staticLayout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;
-        this.left = this.layout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
+        this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.width = 0.0f;
+        this.left = 0.0f;
+        for (int i = 0; i < this.layout.getLineCount(); i++) {
+            this.width = Math.max(this.width, this.layout.getLineWidth(i));
+            this.left = Math.max(this.left, this.layout.getLineLeft(i));
+        }
+    }
+
+    public Text setMaxWidth(float f) {
+        this.maxWidth = f;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public int getLineCount() {
+        return this.layout.getLineCount();
     }
 
     public Text hackClipBounds() {
@@ -98,15 +120,24 @@ public class Text {
         canvas.restore();
     }
 
+    public Text setVerticalClipPadding(int i) {
+        this.vertPad = i;
+        return this;
+    }
+
+    public Text setShadow(float f) {
+        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(-16777216, f));
+        return this;
+    }
+
     public void draw(Canvas canvas) {
         int i;
         int i2;
-        StaticLayout staticLayout = this.layout;
-        if (staticLayout == null) {
+        if (this.layout == null) {
             return;
         }
         if (!this.doNotSave && (i2 = this.ellipsizeWidth) >= 0 && this.width > i2) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, i2, staticLayout.getHeight(), 255, 31);
+            canvas.saveLayerAlpha(0.0f, -this.vertPad, i2 - 1, r0.getHeight() + this.vertPad, 255, 31);
         }
         if (this.hackClipBounds) {
             canvas.drawText(this.layout.getText().toString(), 0.0f, -this.paint.getFontMetricsInt().ascent, this.paint);
@@ -146,8 +177,12 @@ public class Text {
         return this.width;
     }
 
+    public float getHeight() {
+        return this.layout.getHeight();
+    }
+
     public CharSequence getText() {
         StaticLayout staticLayout = this.layout;
-        return (staticLayout == null || staticLayout.getText() == null) ? BuildConfig.APP_CENTER_HASH : this.layout.getText();
+        return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
     }
 }

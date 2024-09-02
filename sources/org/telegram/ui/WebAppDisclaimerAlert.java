@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.google.android.exoplayer2.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
@@ -17,6 +16,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class WebAppDisclaimerAlert {
     private AlertDialog alert;
     private CheckBoxCell cell;
@@ -46,7 +46,7 @@ public class WebAppDisclaimerAlert {
             public final void run() {
                 WebAppDisclaimerAlert.lambda$show$0(context);
             }
-        }), BuildConfig.APP_CENTER_HASH, false, false);
+        }), "", false, false);
         builder.setView(linearLayout);
         builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
@@ -86,8 +86,7 @@ public class WebAppDisclaimerAlert {
     }
 
     public static void lambda$show$3(WebAppDisclaimerAlert webAppDisclaimerAlert, View view) {
-        CheckBoxCell checkBoxCell = webAppDisclaimerAlert.cell;
-        checkBoxCell.setChecked(!checkBoxCell.isChecked(), true);
+        webAppDisclaimerAlert.cell.setChecked(!r3.isChecked(), true);
         webAppDisclaimerAlert.positiveButton.setEnabled(webAppDisclaimerAlert.cell.isChecked());
         webAppDisclaimerAlert.positiveButton.animate().alpha(webAppDisclaimerAlert.cell.isChecked() ? 1.0f : 0.5f).start();
     }

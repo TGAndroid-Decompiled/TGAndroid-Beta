@@ -19,6 +19,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AttachBotIntroTopView extends View {
     private Drawable attachDrawable;
     private Paint backgroundPaint;
@@ -36,6 +37,11 @@ public class AttachBotIntroTopView extends View {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
                 AttachBotIntroTopView.this.lambda$new$1(imageReceiver2, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
             }
 
             @Override

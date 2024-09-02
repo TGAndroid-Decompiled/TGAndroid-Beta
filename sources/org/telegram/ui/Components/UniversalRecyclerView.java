@@ -11,43 +11,66 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class UniversalRecyclerView extends RecyclerListView {
     public final UniversalAdapter adapter;
+    private boolean doNotDetachViews;
     private ItemTouchHelper itemTouchHelper;
+    public final LinearLayoutManager layoutManager;
     private boolean reorderingAllowed;
 
-    public UniversalRecyclerView(Context context, int i, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, final Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, final Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return, Theme.ResourcesProvider resourcesProvider) {
+    public void doNotDetachViews() {
+        this.doNotDetachViews = true;
+    }
+
+    public UniversalRecyclerView(BaseFragment baseFragment, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return) {
+        this(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), callback2, callback5, callback5Return, baseFragment.getResourceProvider());
+    }
+
+    public UniversalRecyclerView(Context context, int i, int i2, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return, Theme.ResourcesProvider resourcesProvider) {
+        this(context, i, i2, false, callback2, callback5, callback5Return, resourcesProvider);
+    }
+
+    public UniversalRecyclerView(Context context, int i, int i2, boolean z, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, final Utilities.Callback5<UItem, View, Integer, Float, Float> callback5, final Utilities.Callback5Return<UItem, View, Integer, Float, Float, Boolean> callback5Return, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
-        setLayoutManager(new LinearLayoutManager(context, 1, false));
-        UniversalAdapter universalAdapter = new UniversalAdapter(context, i, callback2, resourcesProvider);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
+            @Override
+            public int getExtraLayoutSpace(RecyclerView.State state) {
+                return UniversalRecyclerView.this.doNotDetachViews ? AndroidUtilities.displaySize.y : super.getExtraLayoutSpace(state);
+            }
+        };
+        this.layoutManager = linearLayoutManager;
+        setLayoutManager(linearLayoutManager);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this, context, i, i2, z, callback2, resourcesProvider);
         this.adapter = universalAdapter;
         setAdapter(universalAdapter);
         if (callback5 != null) {
             setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
                 @Override
-                public boolean hasDoubleTap(View view, int i2) {
-                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i2);
+                public boolean hasDoubleTap(View view, int i3) {
+                    return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i3);
                 }
 
                 @Override
-                public void onDoubleTap(View view, int i2, float f, float f2) {
-                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i2, f, f2);
+                public void onDoubleTap(View view, int i3, float f, float f2) {
+                    RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i3, f, f2);
                 }
 
                 @Override
-                public final void onItemClick(View view, int i2, float f, float f2) {
-                    UniversalRecyclerView.this.lambda$new$0(callback5, view, i2, f, f2);
+                public final void onItemClick(View view, int i3, float f, float f2) {
+                    UniversalRecyclerView.this.lambda$new$0(callback5, view, i3, f, f2);
                 }
             });
         }
         if (callback5Return != null) {
             setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
                 @Override
-                public final boolean onItemClick(View view, int i2, float f, float f2) {
+                public final boolean onItemClick(View view, int i3, float f, float f2) {
                     boolean lambda$new$1;
-                    lambda$new$1 = UniversalRecyclerView.this.lambda$new$1(callback5Return, view, i2, f, f2);
+                    lambda$new$1 = UniversalRecyclerView.this.lambda$new$1(callback5Return, view, i3, f, f2);
                     return lambda$new$1;
                 }
 
@@ -74,7 +97,6 @@ public class UniversalRecyclerView extends RecyclerListView {
         defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
         setItemAnimator(defaultItemAnimator);
-        setTranslateSelector(true);
     }
 
     public void lambda$new$0(Utilities.Callback5 callback5, View view, int i, float f, float f2) {
@@ -165,7 +187,7 @@ public class UniversalRecyclerView extends RecyclerListView {
         return null;
     }
 
-    public class TouchHelperCallback extends ItemTouchHelper.Callback {
+    private class TouchHelperCallback extends ItemTouchHelper.Callback {
         @Override
         public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         }
@@ -188,11 +210,11 @@ public class UniversalRecyclerView extends RecyclerListView {
 
         @Override
         public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            if (UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) && UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) == UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
-                UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
-                return true;
+            if (!UniversalRecyclerView.this.adapter.isReorderItem(viewHolder.getAdapterPosition()) || UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder.getAdapterPosition()) != UniversalRecyclerView.this.adapter.getReorderSectionId(viewHolder2.getAdapterPosition())) {
+                return false;
             }
-            return false;
+            UniversalRecyclerView.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
+            return true;
         }
 
         @Override

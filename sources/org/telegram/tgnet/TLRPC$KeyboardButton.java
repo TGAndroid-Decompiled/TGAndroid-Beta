@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$KeyboardButton extends TLObject {
     public TLRPC$InputUser bot;
     public int button_id;
@@ -85,18 +86,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 };
                 break;
             case -1560655744:
-                tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.text = abstractSerializedData2.readString(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(-1560655744);
-                        abstractSerializedData2.writeString(this.text);
-                    }
-                };
+                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButton();
                 break;
             case -1344716869:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {

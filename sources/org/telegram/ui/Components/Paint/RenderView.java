@@ -23,12 +23,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Size;
+
 public class RenderView extends TextureView {
     private Bitmap bitmap;
     private Bitmap blurBitmap;
@@ -47,6 +47,12 @@ public class RenderView extends TextureView {
     private float weight;
 
     public interface RenderViewDelegate {
+
+        public final class CC {
+            public static void $default$invalidateInputView(RenderViewDelegate renderViewDelegate) {
+            }
+        }
+
         void invalidateInputView();
 
         void onBeganDrawing();
@@ -424,7 +430,8 @@ public class RenderView extends TextureView {
                 }
                 finish();
                 return false;
-            } else if (iArr[0] > 0) {
+            }
+            if (iArr[0] > 0) {
                 EGLConfig eGLConfig = eGLConfigArr[0];
                 int[] iArr2 = {12440, 2, 12344};
                 BlurringShader.BlurManager blurManager = this.blurManager;
@@ -452,33 +459,32 @@ public class RenderView extends TextureView {
                         }
                         finish();
                         return false;
-                    } else if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
+                    }
+                    if (!this.egl10.eglMakeCurrent(this.eglDisplay, eglCreateWindowSurface, eglCreateWindowSurface, this.eglContext)) {
                         if (BuildVars.LOGS_ENABLED) {
                             FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
                         }
                         finish();
                         return false;
-                    } else {
-                        GLES20.glEnable(3042);
-                        GLES20.glDisable(3024);
-                        GLES20.glDisable(2960);
-                        GLES20.glDisable(2929);
-                        RenderView.this.painting.setupShaders();
-                        checkBitmap();
-                        RenderView.this.painting.setBitmap(RenderView.this.bitmap, RenderView.this.blurBitmap);
-                        Utils.HasGLError();
-                        return true;
                     }
-                }
-                finish();
-                return false;
-            } else {
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.e("eglConfig not initialized");
+                    GLES20.glEnable(3042);
+                    GLES20.glDisable(3024);
+                    GLES20.glDisable(2960);
+                    GLES20.glDisable(2929);
+                    RenderView.this.painting.setupShaders();
+                    checkBitmap();
+                    RenderView.this.painting.setBitmap(RenderView.this.bitmap, RenderView.this.blurBitmap);
+                    Utils.HasGLError();
+                    return true;
                 }
                 finish();
                 return false;
             }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("eglConfig not initialized");
+            }
+            finish();
+            return false;
         }
 
         private void checkBitmap() {
@@ -493,7 +499,7 @@ public class RenderView extends TextureView {
                 if (RenderView.this.blurBitmap.getWidth() == size.width && RenderView.this.blurBitmap.getHeight() == size.height) {
                     return;
                 }
-                Bitmap createBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ALPHA_8);
+                Bitmap createBitmap2 = Bitmap.createBitmap((int) size.width, (int) size.height, Bitmap.Config.ARGB_8888);
                 new Canvas(createBitmap2).drawBitmap(RenderView.this.blurBitmap, (Rect) null, new RectF(0.0f, 0.0f, size.width, size.height), (Paint) null);
                 RenderView.this.blurBitmap = createBitmap2;
                 RenderView.this.transformedBitmap = true;
@@ -501,16 +507,16 @@ public class RenderView extends TextureView {
         }
 
         public boolean setCurrentContext() {
-            if (this.initialized) {
-                if (this.eglContext.equals(this.egl10.eglGetCurrentContext()) && this.eglSurface.equals(this.egl10.eglGetCurrentSurface(12377))) {
-                    return true;
-                }
-                EGL10 egl10 = this.egl10;
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = this.eglSurface;
-                return egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext);
+            if (!this.initialized) {
+                return false;
             }
-            return false;
+            if (this.eglContext.equals(this.egl10.eglGetCurrentContext()) && this.eglSurface.equals(this.egl10.eglGetCurrentSurface(12377))) {
+                return true;
+            }
+            EGL10 egl10 = this.egl10;
+            EGLDisplay eGLDisplay = this.eglDisplay;
+            EGLSurface eGLSurface = this.eglSurface;
+            return egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext);
         }
 
         public class AnonymousClass1 implements Runnable {
@@ -526,7 +532,7 @@ public class RenderView extends TextureView {
                 GLES20.glBindFramebuffer(36160, 0);
                 GLES20.glViewport(0, 0, CanvasInternal.this.bufferWidth, CanvasInternal.this.bufferHeight);
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                GLES20.glClear(16384);
                 RenderView.this.painting.render();
                 GLES20.glBlendFunc(1, 771);
                 CanvasInternal.this.egl10.eglSwapBuffers(CanvasInternal.this.eglDisplay, CanvasInternal.this.eglSurface);
@@ -637,23 +643,23 @@ public class RenderView extends TextureView {
         }
 
         public Bitmap getTexture(final boolean z, final boolean z2) {
-            if (this.initialized) {
-                final CountDownLatch countDownLatch = new CountDownLatch(1);
-                final Bitmap[] bitmapArr = new Bitmap[1];
-                try {
-                    postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            RenderView.CanvasInternal.this.lambda$getTexture$3(z, z2, bitmapArr, countDownLatch);
-                        }
-                    });
-                    countDownLatch.await();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                return bitmapArr[0];
+            if (!this.initialized) {
+                return null;
             }
-            return null;
+            final CountDownLatch countDownLatch = new CountDownLatch(1);
+            final Bitmap[] bitmapArr = new Bitmap[1];
+            try {
+                postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        RenderView.CanvasInternal.this.lambda$getTexture$3(z, z2, bitmapArr, countDownLatch);
+                    }
+                });
+                countDownLatch.await();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            return bitmapArr[0];
         }
 
         public void lambda$getTexture$3(boolean z, boolean z2, Bitmap[] bitmapArr, CountDownLatch countDownLatch) {

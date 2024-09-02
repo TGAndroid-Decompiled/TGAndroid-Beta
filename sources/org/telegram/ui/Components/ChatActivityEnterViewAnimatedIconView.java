@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Cells.ShareDialogCell$RepostStoryDrawable$$ExternalSyntheticLambda0;
+
 public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     private TransitState animatingState;
     private State currentState;
@@ -27,11 +28,11 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
             @Override
             public RLottieDrawable get(Object obj) {
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);
-                if (rLottieDrawable == null) {
-                    int i = ((TransitState) obj).resource;
-                    return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
+                if (rLottieDrawable != null) {
+                    return rLottieDrawable;
                 }
-                return rLottieDrawable;
+                int i = ((TransitState) obj).resource;
+                return new RLottieDrawable(i, String.valueOf(i), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
             }
         };
     }
@@ -69,8 +70,10 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
         int i = AnonymousClass2.$SwitchMap$org$telegram$ui$Components$ChatActivityEnterViewAnimatedIconView$State[state.ordinal()];
         if (i == 1) {
             setContentDescription(LocaleController.getString("AccDescrVoiceMessage", R.string.AccDescrVoiceMessage));
-        } else if (i != 2) {
         } else {
+            if (i != 2) {
+                return;
+            }
             setContentDescription(LocaleController.getString("AccDescrVideoMessage", R.string.AccDescrVideoMessage));
         }
     }
@@ -97,7 +100,6 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     }
 
     private TransitState getAnyState(State state) {
-        TransitState[] values;
         for (TransitState transitState : TransitState.values()) {
             if (transitState.firstState == state) {
                 return transitState;
@@ -107,7 +109,6 @@ public class ChatActivityEnterViewAnimatedIconView extends RLottieImageView {
     }
 
     private TransitState getState(State state, State state2) {
-        TransitState[] values;
         for (TransitState transitState : TransitState.values()) {
             if (transitState.firstState == state && transitState.secondState == state2) {
                 return transitState;

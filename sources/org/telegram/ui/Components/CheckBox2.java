@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBoxBase;
+
 public class CheckBox2 extends View {
     private CheckBoxBase checkBoxBase;
     int currentIcon;

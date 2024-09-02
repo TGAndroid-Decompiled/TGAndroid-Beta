@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$User;
+
 public class TL_stories$TL_stories_allStories extends TL_stories$stories_AllStories {
     public int count;
     public int flags;

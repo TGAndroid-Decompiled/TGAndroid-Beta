@@ -18,6 +18,7 @@ import org.telegram.tgnet.TLRPC$TL_username;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
+
 public class UserObject {
     public static final long ANONYMOUS = 2666000;
     public static final long REPLY_BOT = 1271266957;
@@ -27,7 +28,7 @@ public class UserObject {
     }
 
     public static boolean isReplyUser(long j) {
-        return j == 708513 || j == REPLY_BOT;
+        return j == 708513 || j == 1271266957;
     }
 
     public static boolean isService(long j) {
@@ -49,7 +50,7 @@ public class UserObject {
     public static boolean isReplyUser(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
             long j = tLRPC$User.id;
-            if (j == 708513 || j == REPLY_BOT) {
+            if (j == 708513 || j == 1271266957) {
                 return true;
             }
         }
@@ -57,7 +58,7 @@ public class UserObject {
     }
 
     public static boolean isAnonymous(TLRPC$User tLRPC$User) {
-        return tLRPC$User != null && tLRPC$User.id == ANONYMOUS;
+        return tLRPC$User != null && tLRPC$User.id == 2666000;
     }
 
     public static String getUserName(TLRPC$User tLRPC$User) {
@@ -68,8 +69,7 @@ public class UserObject {
         if (formatName.length() != 0 || TextUtils.isEmpty(tLRPC$User.phone)) {
             return formatName;
         }
-        PhoneFormat phoneFormat = PhoneFormat.getInstance();
-        return phoneFormat.format("+" + tLRPC$User.phone);
+        return PhoneFormat.getInstance().format("+" + tLRPC$User.phone);
     }
 
     public static String getPublicUsername(TLRPC$User tLRPC$User, boolean z) {
@@ -125,7 +125,22 @@ public class UserObject {
         } else if (!z && str.length() <= 2) {
             return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name);
         }
-        return !TextUtils.isEmpty(str) ? str : LocaleController.getString("HiddenName", R.string.HiddenName);
+        return !TextUtils.isEmpty(str) ? str : LocaleController.getString(R.string.HiddenName);
+    }
+
+    public static String getForcedFirstName(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null || isDeleted(tLRPC$User)) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        String str = tLRPC$User.first_name;
+        if (TextUtils.isEmpty(str)) {
+            str = tLRPC$User.last_name;
+        }
+        if (str == null) {
+            return LocaleController.getString(R.string.HiddenName);
+        }
+        int indexOf = str.indexOf(" ", 2);
+        return indexOf >= 0 ? str.substring(0, indexOf) : str;
     }
 
     public static boolean hasPhoto(TLRPC$User tLRPC$User) {

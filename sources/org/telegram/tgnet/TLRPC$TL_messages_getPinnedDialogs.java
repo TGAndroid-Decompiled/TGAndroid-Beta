@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getPinnedDialogs extends TLObject {
     public int folder_id;
 

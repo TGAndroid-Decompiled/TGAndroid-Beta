@@ -15,9 +15,10 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-import org.telegram.messenger.BuildConfig;
+
 public class AnimatedPhoneNumberEditText extends HintEditText {
     private ObjectAnimator animator;
     private Runnable hintAnimationCallback;
@@ -37,7 +38,7 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         this.letters = new ArrayList<>();
         this.oldLetters = new ArrayList<>();
         this.textPaint = new TextPaint(1);
-        this.oldText = BuildConfig.APP_CENTER_HASH;
+        this.oldText = "";
         this.hintFadeProperty = new HintFadeProperty();
         this.hintAnimationValues = new ArrayList();
         this.hintAnimations = new ArrayList();
@@ -50,8 +51,9 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         Boolean bool = this.wasHintVisible;
         if (bool == null || bool.booleanValue() != z) {
             this.hintAnimationValues.clear();
-            for (SpringAnimation springAnimation : this.hintAnimations) {
-                springAnimation.cancel();
+            Iterator<SpringAnimation> it = this.hintAnimations.iterator();
+            while (it.hasNext()) {
+                it.next().cancel();
             }
             this.hintAnimations.clear();
             this.wasHintVisible = Boolean.valueOf(z);
@@ -59,7 +61,7 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
         }
         String str2 = z ? str : this.wasHint;
         if (str2 == null) {
-            str2 = BuildConfig.APP_CENTER_HASH;
+            str2 = "";
         }
         this.wasHint = str;
         if (z || !z2) {
@@ -77,8 +79,9 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
 
     public void lambda$setHintText$0(boolean z, String str) {
         this.hintAnimationValues.clear();
-        for (SpringAnimation springAnimation : this.hintAnimations) {
-            springAnimation.cancel();
+        Iterator<SpringAnimation> it = this.hintAnimations.iterator();
+        while (it.hasNext()) {
+            it.next().cancel();
         }
         if (z) {
             return;
@@ -164,10 +167,9 @@ public class AnimatedPhoneNumberEditText extends HintEditText {
                 this.oldLetters.set(i, null);
             } else {
                 if (z && substring2 == null) {
-                    this.oldLetters.add(new StaticLayout(BuildConfig.APP_CENTER_HASH, this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                    this.oldLetters.add(new StaticLayout("", this.textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
-                TextPaint textPaint = this.textPaint;
-                this.letters.add(new StaticLayout(substring, textPaint, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                this.letters.add(new StaticLayout(substring, this.textPaint, (int) Math.ceil(r6.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
             }
             i = i2;
         }

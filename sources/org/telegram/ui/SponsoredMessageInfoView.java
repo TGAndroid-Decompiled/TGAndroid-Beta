@@ -16,6 +16,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public class SponsoredMessageInfoView extends FrameLayout {
     public SponsoredMessageInfoView(final Activity activity, Theme.ResourcesProvider resourcesProvider) {
         super(activity);
@@ -23,7 +24,7 @@ public class SponsoredMessageInfoView extends FrameLayout {
         linearLayout.setOrientation(1);
         TextView textView = new TextView(activity);
         textView.setText(LocaleController.getString("SponsoredMessageInfo", R.string.SponsoredMessageInfo));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
         textView.setTextSize(1, 20.0f);

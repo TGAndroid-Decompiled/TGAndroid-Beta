@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_messages extends TLRPC$messages_Messages {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

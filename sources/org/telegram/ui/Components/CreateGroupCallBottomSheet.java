@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -31,6 +30,7 @@ import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.JoinCallAlert;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TLRPC$Peer> chats;
     private final boolean isChannelOrGiga;
@@ -79,7 +79,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setSingleLine(true);
         textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         if (isChannelOrGiga) {
             formatString = LocaleController.formatString("VoipChannelStartVoiceChat", R.string.VoipChannelStartVoiceChat, new Object[0]);
         } else {
@@ -96,7 +96,7 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
         textView2.setEllipsize(TextUtils.TruncateAt.END);
         textView2.setSingleLine(true);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         if (isChannelOrGiga) {
             formatString2 = LocaleController.formatString("VoipChannelScheduleVoiceChat", R.string.VoipChannelScheduleVoiceChat, new Object[0]);
         } else {
@@ -179,21 +179,21 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
     }
 
     @Override
-    public RecyclerListView.SelectionAdapter createAdapter() {
+    public RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {
-                if (i != 0) {
-                    int i2 = 1;
-                    if (i != 1) {
-                        i2 = 2;
-                        if (i != 2) {
-                            return 3;
-                        }
-                    }
-                    return i2;
+                if (i == 0) {
+                    return 0;
                 }
-                return 0;
+                int i2 = 1;
+                if (i != 1) {
+                    i2 = 2;
+                    if (i != 2) {
+                        return 3;
+                    }
+                }
+                return i2;
             }
 
             @Override
@@ -235,11 +235,13 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
                     groupCreateUserCell.setObject(chat, null, str, i != getItemCount() - 1);
                     groupCreateUserCell.setChecked(tLRPC$Peer == CreateGroupCallBottomSheet.this.selectedPeer, false);
-                } else if (viewHolder.getItemViewType() == 2) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 2) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
-                    headerCell.setText(LocaleController.getString("VoipChatDisplayedAs", R.string.VoipChatDisplayedAs).replace(":", BuildConfig.APP_CENTER_HASH));
+                    headerCell.setText(LocaleController.getString("VoipChatDisplayedAs", R.string.VoipChatDisplayedAs).replace(":", ""));
                 }
             }
 
@@ -261,11 +263,11 @@ public class CreateGroupCallBottomSheet extends BottomSheetWithRecyclerListView 
             setOrientation(1);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             rLottieImageView.setAutoRepeat(true);
-            rLottieImageView.setAnimation(R.raw.utyan_schedule, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, R.styleable.AppCompatTheme_toolbarNavigationButtonStyle);
+            rLottieImageView.setAnimation(R.raw.utyan_schedule, 112, 112);
             rLottieImageView.playAnimation();
-            addView(rLottieImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, (int) R.styleable.AppCompatTheme_toolbarNavigationButtonStyle, 49, 0, 24, 0, 0));
+            addView(rLottieImageView, LayoutHelper.createLinear(112, 112, 49, 0, 24, 0, 0));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             if (z) {
                 formatString = LocaleController.formatString("StartVoipChannelTitle", R.string.StartVoipChannelTitle, new Object[0]);
             } else {

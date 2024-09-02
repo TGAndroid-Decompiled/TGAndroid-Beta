@@ -19,6 +19,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CacheControlActivity;
+
 public class DownloadsInfoBottomSheet extends BottomSheet {
     public static void show(Activity activity, BaseFragment baseFragment) {
         if (baseFragment == null || activity == null) {
@@ -53,7 +54,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         StickerImageView stickerImageView = new StickerImageView(context, this.currentAccount);
         stickerImageView.setStickerNum(9);
         stickerImageView.getImageReceiver().setAutoRepeat(1);
-        linearLayout.addView(stickerImageView, LayoutHelper.createLinear((int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, (int) R.styleable.AppCompatTheme_textColorAlertDialogListItem, 1, 0, 26, 0, 0));
+        linearLayout.addView(stickerImageView, LayoutHelper.createLinear(110, 110, 1, 0, 26, 0, 0));
         TextView textView = new TextView(context);
         textView.setGravity(1);
         int i2 = Theme.key_dialogTextBlack;
@@ -73,7 +74,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView3.setEllipsize(TextUtils.TruncateAt.END);
         textView3.setSingleLine(true);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setText(LocaleController.getString("ManageDeviceStorage", R.string.ManageDeviceStorage));
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         int dp2 = AndroidUtilities.dp(8.0f);
@@ -85,7 +86,7 @@ public class DownloadsInfoBottomSheet extends BottomSheet {
         textView4.setEllipsize(TextUtils.TruncateAt.END);
         textView4.setSingleLine(true);
         textView4.setTextSize(1, 14.0f);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setText(LocaleController.getString("ClearDownloadsList", R.string.ClearDownloadsList));
         textView4.setTextColor(Theme.getColor(i3));
         textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i3), 120)));

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
@@ -23,6 +22,7 @@ import org.telegram.tgnet.TLRPC$TL_requestPeerTypeBroadcast;
 import org.telegram.tgnet.TLRPC$TL_requestPeerTypeUser;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class RequestPeerRequirementsCell extends LinearLayout {
     private TLRPC$RequestPeerType requestPeerType;
     private ArrayList<Requirement> requirements;
@@ -167,7 +167,7 @@ public class RequestPeerRequirementsCell extends LinearLayout {
             return ((Requirement) arrayList.get(0)).text.toString().toLowerCase();
         }
         if (arrayList.isEmpty()) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -234,18 +234,21 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         }
         if (arrayList.size() == 1) {
             this.requirements.add(Requirement.make(TextUtils.concat(charSequence2, " ", ((Requirement) arrayList.get(0)).text)));
-        } else if (!arrayList.isEmpty()) {
-            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
-            valueOf.append((CharSequence) " ");
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                if (i2 > 0) {
-                    valueOf.append((CharSequence) ", ");
-                }
-                valueOf.append((CharSequence) ((Requirement) arrayList.get(i2)).text.toString().toLowerCase());
-            }
-            valueOf.append((CharSequence) ".");
-            this.requirements.add(Requirement.make(valueOf));
+            return;
         }
+        if (arrayList.isEmpty()) {
+            return;
+        }
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(charSequence);
+        valueOf.append((CharSequence) " ");
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            if (i2 > 0) {
+                valueOf.append((CharSequence) ", ");
+            }
+            valueOf.append((CharSequence) ((Requirement) arrayList.get(i2)).text.toString().toLowerCase());
+        }
+        valueOf.append((CharSequence) ".");
+        this.requirements.add(Requirement.make(valueOf));
     }
 
     private void checkAdminRights(TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, boolean z, int i, int i2) {

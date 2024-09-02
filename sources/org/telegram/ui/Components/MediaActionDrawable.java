@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class MediaActionDrawable extends Drawable {
     private float animatedDownloadProgress;
     private boolean animatingTransition;
@@ -72,7 +73,7 @@ public class MediaActionDrawable extends Drawable {
         this.paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint3.setColor(-1);
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.textPaint.setColor(-1);
         this.paint2.setColor(-1);
@@ -142,9 +143,10 @@ public class MediaActionDrawable extends Drawable {
             this.nextIcon = i;
             this.savedTransitionProgress = this.transitionProgress;
             this.transitionProgress = 0.0f;
-        } else if (this.currentIcon == i) {
-            return false;
         } else {
+            if (this.currentIcon == i) {
+                return false;
+            }
             this.animatingTransition = false;
             this.nextIcon = i;
             this.currentIcon = i;

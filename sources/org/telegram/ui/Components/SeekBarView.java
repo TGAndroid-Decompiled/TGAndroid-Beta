@@ -26,12 +26,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class SeekBarView extends FrameLayout {
     private static Path tmpPath;
     private static float[] tmpRadii;
@@ -85,6 +85,9 @@ public class SeekBarView extends FrameLayout {
             public static int $default$getStepsCount(SeekBarViewDelegate seekBarViewDelegate) {
                 return 0;
             }
+
+            public static void $default$onSeekBarPressed(SeekBarViewDelegate seekBarViewDelegate, boolean z) {
+            }
         }
 
         CharSequence getContentDescription();
@@ -136,9 +139,9 @@ public class SeekBarView extends FrameLayout {
             this.hoverDrawable.setVisible(true, false);
         }
         setImportantForAccessibility(1);
-        FloatSeekBarAccessibilityDelegate floatSeekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate(z) {
-            {
-                SeekBarView.this = this;
+        AnonymousClass1 anonymousClass1 = new FloatSeekBarAccessibilityDelegate(z) {
+            AnonymousClass1(boolean z2) {
+                super(z2);
             }
 
             @Override
@@ -169,8 +172,42 @@ public class SeekBarView extends FrameLayout {
                 return null;
             }
         };
-        this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;
-        setAccessibilityDelegate(floatSeekBarAccessibilityDelegate);
+        this.seekBarAccessibilityDelegate = anonymousClass1;
+        setAccessibilityDelegate(anonymousClass1);
+    }
+
+    public class AnonymousClass1 extends FloatSeekBarAccessibilityDelegate {
+        AnonymousClass1(boolean z2) {
+            super(z2);
+        }
+
+        @Override
+        public float getProgress() {
+            return SeekBarView.this.getProgress();
+        }
+
+        @Override
+        public void setProgress(float f) {
+            SeekBarView.this.pressed = true;
+            SeekBarView.this.setProgress(f);
+            SeekBarView.this.setSeekBarDrag(true, f);
+            SeekBarView.this.pressed = false;
+        }
+
+        @Override
+        public float getDelta() {
+            int stepsCount = SeekBarView.this.delegate.getStepsCount();
+            return stepsCount > 0 ? 1.0f / stepsCount : super.getDelta();
+        }
+
+        @Override
+        public CharSequence getContentDescription(View view) {
+            SeekBarViewDelegate seekBarViewDelegate = SeekBarView.this.delegate;
+            if (seekBarViewDelegate != null) {
+                return seekBarViewDelegate.getContentDescription();
+            }
+            return null;
+        }
     }
 
     public void setSeparatorsCount(int i) {
@@ -338,14 +375,10 @@ public class SeekBarView extends FrameLayout {
         if (seekBarViewDelegate != null) {
             seekBarViewDelegate.onSeekBarDrag(z, f);
         }
-        int i = this.separatorsCount;
-        if (i > 1) {
-            int round = Math.round((i - 1) * f);
+        if (this.separatorsCount > 1) {
+            int round = Math.round((r0 - 1) * f);
             if (!z && round != this.lastValue) {
-                try {
-                    performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this);
             }
             this.lastValue = round;
         }
@@ -564,12 +597,12 @@ public class SeekBarView extends FrameLayout {
         while (true) {
             if (size < 0) {
                 break;
-            } else if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp3) {
+            }
+            if (1.0f - ((Float) this.timestamps.get(size).first).floatValue() >= dp3) {
                 i = size + 1;
                 break;
-            } else {
-                size--;
             }
+            size--;
         }
         if (i < 0) {
             i = this.timestamps.size();
@@ -694,10 +727,7 @@ public class SeekBarView extends FrameLayout {
             StaticLayout[] staticLayoutArr3 = this.timestampLabel;
             staticLayoutArr3[1] = staticLayoutArr3[0];
             if (this.pressed) {
-                try {
-                    performHapticFeedback(9, 1);
-                } catch (Exception unused) {
-                }
+                AndroidUtilities.vibrateCursor(this);
             }
             if (size >= 0 && size < this.timestamps.size()) {
                 CharSequence charSequence = (CharSequence) this.timestamps.get(size).second;
@@ -768,7 +798,7 @@ public class SeekBarView extends FrameLayout {
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         }
         this.timestampLabelPaint.setColor(getThemedColor(Theme.key_player_time));
-        CharSequence charSequence2 = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence;
+        CharSequence charSequence2 = charSequence == null ? "" : charSequence;
         if (Build.VERSION.SDK_INT >= 23) {
             return StaticLayout.Builder.obtain(charSequence2, 0, charSequence2.length(), this.timestampLabelPaint, i).setMaxLines(1).setAlignment(Layout.Alignment.ALIGN_CENTER).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i)).build();
         }

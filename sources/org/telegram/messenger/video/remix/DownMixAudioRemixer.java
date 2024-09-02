@@ -1,7 +1,7 @@
 package org.telegram.messenger.video.remix;
 
 import java.nio.ShortBuffer;
-import org.telegram.messenger.LiteMode;
+
 public class DownMixAudioRemixer implements AudioRemixer {
     @Override
     public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
@@ -18,13 +18,13 @@ public class DownMixAudioRemixer implements AudioRemixer {
 
     private short mix(short s, short s2) {
         int i;
-        int i2 = s + LiteMode.FLAG_CHAT_SCALE;
-        int i3 = s2 + LiteMode.FLAG_CHAT_SCALE;
+        int i2 = s + 32768;
+        int i3 = s2 + 32768;
         if (i2 < 32768 || i3 < 32768) {
-            i = (i2 * i3) / LiteMode.FLAG_CHAT_SCALE;
+            i = (i2 * i3) / 32768;
         } else {
-            i = (((i2 + i3) * 2) - ((i2 * i3) / LiteMode.FLAG_CHAT_SCALE)) - 65535;
+            i = (((i2 + i3) * 2) - ((i2 * i3) / 32768)) - 65535;
         }
-        return (short) ((i != 65536 ? i : 65535) - LiteMode.FLAG_CHAT_SCALE);
+        return (short) ((i != 65536 ? i : 65535) - 32768);
     }
 }

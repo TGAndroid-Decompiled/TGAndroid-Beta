@@ -5,6 +5,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Charts.data.ChartData;
+
 public class StackBarViewData extends LineViewData {
     public int blendColor;
     private Theme.ResourcesProvider resourcesProvider;
@@ -17,7 +18,7 @@ public class StackBarViewData extends LineViewData {
     }
 
     public StackBarViewData(ChartData.Line line, Theme.ResourcesProvider resourcesProvider) {
-        super(line);
+        super(line, false);
         Paint paint = new Paint();
         this.unselectedPaint = paint;
         this.blendColor = 0;

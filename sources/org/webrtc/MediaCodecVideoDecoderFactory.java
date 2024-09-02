@@ -5,6 +5,7 @@ import android.os.Build;
 import java.util.ArrayList;
 import org.webrtc.EglBase;
 import org.webrtc.VideoDecoderFactory;
+
 class MediaCodecVideoDecoderFactory implements VideoDecoderFactory {
     private static final String TAG = "MediaCodecVideoDecoderFactory";
     private final Predicate<MediaCodecInfo> codecAllowedPredicate;

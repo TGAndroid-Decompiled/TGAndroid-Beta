@@ -42,10 +42,9 @@ import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -59,6 +58,7 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
+import org.telegram.tgnet.TLRPC$MessageExtendedMedia;
 import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebPage;
@@ -79,6 +79,7 @@ import org.telegram.ui.Components.TimerParticles;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.SecretVoicePlayer;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class SecretVoicePlayer extends Dialog {
     private AudioVisualizerDrawable audioVisualizerDrawable;
     private AlertDialog backDialog;
@@ -219,7 +220,7 @@ public class SecretVoicePlayer extends Dialog {
                 public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                     int i = Build.VERSION.SDK_INT;
                     if (i < 30) {
-                        SecretVoicePlayer.this.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
+                        SecretVoicePlayer.this.insets.set(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
                     } else {
                         Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.systemBars());
                         SecretVoicePlayer.this.insets.set(insets.left, insets.top, insets.right, insets.bottom);
@@ -296,7 +297,7 @@ public class SecretVoicePlayer extends Dialog {
             attributes.flags = i2 | (-2013200128);
         }
         if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+            attributes.flags |= 8192;
         }
         int i4 = attributes.flags | 1024;
         attributes.flags = i4;
@@ -317,12 +318,14 @@ public class SecretVoicePlayer extends Dialog {
         if (chatMessageCell != null) {
             int[] iArr = new int[2];
             chatMessageCell.getLocationOnScreen(iArr);
+            float f = iArr[0] - this.insets.left;
             int width = this.windowView.getWidth();
             Rect rect = this.insets;
-            this.tx = (iArr[0] - this.insets.left) - ((((width - rect.left) - rect.right) - this.cell.getWidth()) / 2.0f);
+            this.tx = f - ((((width - rect.left) - rect.right) - this.cell.getWidth()) / 2.0f);
+            float f2 = iArr[1] - this.insets.top;
             int height = this.windowView.getHeight();
             Rect rect2 = this.insets;
-            this.ty = (iArr[1] - this.insets.top) - (((((height - rect2.top) - rect2.bottom) - this.cell.getHeight()) - this.heightdiff) / 2.0f);
+            this.ty = f2 - (((((height - rect2.top) - rect2.bottom) - this.cell.getHeight()) - this.heightdiff) / 2.0f);
             if (!this.hasDestTranslation) {
                 this.hasDestTranslation = true;
                 this.dtx = 0.0f;
@@ -387,7 +390,7 @@ public class SecretVoicePlayer extends Dialog {
             final int i2 = height;
             this.heightdiff = i2 - this.cell.getHeight();
             int ceil = (int) Math.ceil((Math.min(width, i2) * 0.92f) / AndroidUtilities.density);
-            ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), false, null, this.cell.getResourcesProvider()) {
+            ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
                 private Paint clipPaint;
                 private RadialGradient radialGradient;
                 private Matrix radialMatrix;
@@ -590,6 +593,11 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
+                public void didPressAboutRevenueSharingAds() {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAboutRevenueSharingAds(this);
+                }
+
+                @Override
                 public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell6, AnimatedEmojiSpan animatedEmojiSpan) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell6, animatedEmojiSpan);
                 }
@@ -610,8 +618,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, tLRPC$Chat, i3, f, f2);
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC$Chat tLRPC$Chat, int i3, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell6, tLRPC$Chat, i3, f, f2, z);
                 }
 
                 @Override
@@ -635,13 +643,38 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
+                public void didPressDialogButton(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressDialogButton(this, chatMessageCell6);
+                }
+
+                @Override
+                public void didPressEffect(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressEffect(this, chatMessageCell6);
+                }
+
+                @Override
                 public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell6, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell6, tLRPC$KeyboardButton);
                 }
 
                 @Override
+                public void didPressFactCheck(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheck(this, chatMessageCell6);
+                }
+
+                @Override
+                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell6, int i3, int i4) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressFactCheckWhat(this, chatMessageCell6, i3, i4);
+                }
+
+                @Override
                 public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell6, int i3) {
                     ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell6, i3);
+                }
+
+                @Override
+                public void didPressGroupImage(ChatMessageCell chatMessageCell6, ImageReceiver imageReceiver, TLRPC$MessageExtendedMedia tLRPC$MessageExtendedMedia, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGroupImage(this, chatMessageCell6, imageReceiver, tLRPC$MessageExtendedMedia, f, f2);
                 }
 
                 @Override
@@ -690,8 +723,13 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressSponsoredClose() {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                public void didPressSponsoredClose(ChatMessageCell chatMessageCell6) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this, chatMessageCell6);
+                }
+
+                @Override
+                public void didPressSponsoredInfo(ChatMessageCell chatMessageCell6, float f, float f2) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredInfo(this, chatMessageCell6, f, f2);
                 }
 
                 @Override
@@ -710,8 +748,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public void didPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC$User tLRPC$User, float f, float f2) {
-                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell6, tLRPC$User, f, f2);
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC$User tLRPC$User, float f, float f2, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell6, tLRPC$User, f, f2, z);
                 }
 
                 @Override
@@ -747,6 +785,11 @@ public class SecretVoicePlayer extends Dialog {
                 @Override
                 public boolean doNotShowLoadingReply(MessageObject messageObject2) {
                     return ChatMessageCell.ChatMessageCellDelegate.CC.$default$doNotShowLoadingReply(this, messageObject2);
+                }
+
+                @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell6, boolean z) {
+                    ChatMessageCell.ChatMessageCellDelegate.CC.$default$forceUpdate(this, chatMessageCell6, z);
                 }
 
                 @Override
@@ -840,8 +883,8 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell6) {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell6);
+                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell6, boolean z) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell6, z);
                 }
 
                 @Override
@@ -850,8 +893,13 @@ public class SecretVoicePlayer extends Dialog {
                 }
 
                 @Override
-                public boolean shouldShowTopicButton() {
-                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowDialogButton(this, chatMessageCell6);
+                }
+
+                @Override
+                public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell6) {
+                    return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this, chatMessageCell6);
                 }
 
                 @Override
@@ -949,7 +997,7 @@ public class SecretVoicePlayer extends Dialog {
             this.hintView = hintView22;
             hintView22.setMultilineText(true);
             if (z) {
-                String str = BuildConfig.APP_CENTER_HASH;
+                String str = "";
                 long dialogId = this.messageObject.getDialogId();
                 if (dialogId > 0) {
                     TLRPC$User user = MessagesController.getInstance(this.messageObject.currentAccount).getUser(Long.valueOf(dialogId));
@@ -993,7 +1041,7 @@ public class SecretVoicePlayer extends Dialog {
         TextView textView2 = new TextView(this.context);
         this.closeButton = textView2;
         textView2.setTextColor(-1);
-        this.closeButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.closeButton.setTypeface(AndroidUtilities.bold());
         if (Theme.isCurrentThemeDark()) {
             this.closeButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(64, 553648127, 872415231));
         } else {
@@ -1057,9 +1105,9 @@ public class SecretVoicePlayer extends Dialog {
             if (i != 4) {
                 AndroidUtilities.cancelRunOnUIThread(SecretVoicePlayer.this.checkTimeRunnable);
                 AndroidUtilities.runOnUIThread(SecretVoicePlayer.this.checkTimeRunnable, 16L);
-                return;
+            } else {
+                SecretVoicePlayer.this.dismiss();
             }
-            SecretVoicePlayer.this.dismiss();
         }
 
         @Override
@@ -1084,18 +1132,20 @@ public class SecretVoicePlayer extends Dialog {
 
     @Override
     public void show() {
-        super.show();
-        prepareBlur(this.cell);
-        this.setCellInvisible = true;
-        animateOpenTo(true, null);
-        Runnable runnable = this.openAction;
-        if (runnable != null) {
-            AndroidUtilities.runOnUIThread(runnable);
-            this.openAction = null;
-        }
-        EarListener earListener = this.earListener;
-        if (earListener != null) {
-            earListener.attach();
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            prepareBlur(this.cell);
+            this.setCellInvisible = true;
+            animateOpenTo(true, null);
+            Runnable runnable = this.openAction;
+            if (runnable != null) {
+                AndroidUtilities.runOnUIThread(runnable);
+                this.openAction = null;
+            }
+            EarListener earListener = this.earListener;
+            if (earListener != null) {
+                earListener.attach();
+            }
         }
     }
 
@@ -1131,7 +1181,9 @@ public class SecretVoicePlayer extends Dialog {
         if (alertDialog != null) {
             alertDialog.dismiss();
             this.backDialog = null;
-        } else if (!this.dismissing && (messageObject = this.messageObject) != null && !messageObject.isOutOwner()) {
+            return;
+        }
+        if (!this.dismissing && (messageObject = this.messageObject) != null && !messageObject.isOutOwner()) {
             AlertDialog create = new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
@@ -1148,10 +1200,11 @@ public class SecretVoicePlayer extends Dialog {
             TextView textView = (TextView) this.backDialog.getButton(-2);
             if (textView != null) {
                 textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+                return;
             }
-        } else {
-            super.onBackPressed();
+            return;
         }
+        super.onBackPressed();
     }
 
     public void lambda$onBackPressed$3(DialogInterface dialogInterface, int i) {

@@ -18,6 +18,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ArchivedStickerSetCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.StickersActivity;
+
 public class StickersArchiveAlert extends AlertDialog.Builder {
     private int currentType;
     private BaseFragment parentFragment;

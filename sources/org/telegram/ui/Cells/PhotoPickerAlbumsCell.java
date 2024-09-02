@@ -16,6 +16,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PhotoPickerAlbumsCell extends FrameLayout {
     private MediaController.AlbumEntry[] albumEntries;
     private AlbumView[] albumViews;
@@ -141,11 +142,9 @@ public class PhotoPickerAlbumsCell extends FrameLayout {
                 MediaController.PhotoEntry photoEntry2 = albumEntry.coverPhoto;
                 backupImageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
                 if (albumEntry.coverPhoto.isVideo) {
-                    BackupImageView backupImageView2 = albumView.imageView;
-                    backupImageView2.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
+                    albumView.imageView.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
                 } else {
-                    BackupImageView backupImageView3 = albumView.imageView;
-                    backupImageView3.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
+                    albumView.imageView.setImage("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
                 }
             }
             albumView.nameTextView.setText(albumEntry.bucketName);

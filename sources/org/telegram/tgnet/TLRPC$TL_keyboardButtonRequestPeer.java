@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_keyboardButtonRequestPeer extends TLRPC$KeyboardButton {
     public int max_quantity;
     public TLRPC$RequestPeerType peer_type;

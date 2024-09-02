@@ -2,6 +2,7 @@ package org.telegram.messenger;
 
 import android.view.Window;
 import java.util.HashMap;
+
 public class FlagSecureReason {
     private static HashMap<Window, Integer> currentSecureReasons;
     private final FlagSecureCondition condition;
@@ -61,9 +62,9 @@ public class FlagSecureReason {
             return;
         }
         if (isSecuredNow(window)) {
-            window.addFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            window.addFlags(8192);
         } else {
-            window.clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+            window.clearFlags(8192);
         }
     }
 

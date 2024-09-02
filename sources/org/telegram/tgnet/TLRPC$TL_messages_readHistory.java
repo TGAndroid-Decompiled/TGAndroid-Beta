@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_readHistory extends TLObject {
     public int max_id;
     public TLRPC$InputPeer peer;

@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.util.StateSet;
 import android.view.MotionEvent;
@@ -17,6 +16,8 @@ import android.view.ViewConfiguration;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BaseCell;
+
 public class CanvasButton {
     private static final int[] pressedState = {16842910, 16842919};
     boolean buttonPressed;
@@ -61,7 +62,7 @@ public class CanvasButton {
             final Paint paint3 = new Paint(1);
             paint3.setFilterBitmap(true);
             paint3.setColor(-1);
-            this.selectorDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.getColor(Theme.key_listSelector) & 436207615}), null, new Drawable() {
+            BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{Theme.getColor(Theme.key_listSelector) & 436207615}), null, new Drawable() {
                 @Override
                 public int getOpacity() {
                     return -2;
@@ -85,6 +86,8 @@ public class CanvasButton {
                     }
                 }
             });
+            this.selectorDrawable = rippleDrawableSafe;
+            rippleDrawableSafe.setCallback(view);
         }
     }
 
@@ -110,10 +113,11 @@ public class CanvasButton {
                     float min = Math.min(this.drawingRects.get(0).width(), this.drawingRects.get(0).height()) / 2.0f;
                     canvas.drawRoundRect(this.drawingRects.get(0), min, min, paint);
                     return;
+                } else {
+                    paint.setPathEffect(this.pathEffect);
+                    canvas.drawRoundRect(this.drawingRects.get(0), 0.0f, 0.0f, paint);
+                    return;
                 }
-                paint.setPathEffect(this.pathEffect);
-                canvas.drawRoundRect(this.drawingRects.get(0), 0.0f, 0.0f, paint);
-                return;
             }
             return;
         }
@@ -138,9 +142,11 @@ public class CanvasButton {
                     float f = this.drawingRects.get(i2).right;
                     float f2 = this.drawingRects.get(i8).right;
                     if (Math.abs(f - f2) < AndroidUtilities.dp(4.0f)) {
+                        RectF rectF = this.drawingRects.get(i8);
+                        RectF rectF2 = this.drawingRects.get(i2);
                         float max = Math.max(f, f2);
-                        this.drawingRects.get(i2).right = max;
-                        this.drawingRects.get(i8).right = max;
+                        rectF2.right = max;
+                        rectF.right = max;
                     }
                 }
                 if (i2 == 0 || this.drawingRects.get(i2).bottom > i3) {

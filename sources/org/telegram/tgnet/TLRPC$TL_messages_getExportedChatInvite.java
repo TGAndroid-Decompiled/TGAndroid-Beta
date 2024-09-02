@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getExportedChatInvite extends TLObject {
     public String link;
     public TLRPC$InputPeer peer;

@@ -10,8 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.Components.AnimatedTextView;
+
 public class VideoCompressButton extends View {
     private final Paint clearPaint;
     private boolean disabled;
@@ -61,7 +61,7 @@ public class VideoCompressButton extends View {
         this.disabled = !z || z2;
         if (z2) {
             this.textDrawable.setText("GIF");
-            this.sizeTextDrawable.setText(BuildConfig.APP_CENTER_HASH, true);
+            this.sizeTextDrawable.setText("", true);
         } else {
             this.textDrawable.setText(i >= 720 ? "HD" : "SD");
             int length = this.sizes.length - 1;
@@ -76,7 +76,7 @@ public class VideoCompressButton extends View {
                 }
             }
             if (length < 0) {
-                this.sizeTextDrawable.setText(BuildConfig.APP_CENTER_HASH, true);
+                this.sizeTextDrawable.setText("", true);
             } else if (length == 6) {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.sizeTextDrawable;
                 animatedTextDrawable.setText("2K", TextUtils.isEmpty(animatedTextDrawable.getText()));
@@ -84,7 +84,7 @@ public class VideoCompressButton extends View {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.sizeTextDrawable;
                 animatedTextDrawable2.setText("4K", TextUtils.isEmpty(animatedTextDrawable2.getText()));
             } else {
-                this.sizeTextDrawable.setText(BuildConfig.APP_CENTER_HASH + this.sizes[length], TextUtils.isEmpty(this.sizeTextDrawable.getText()));
+                this.sizeTextDrawable.setText("" + this.sizes[length], TextUtils.isEmpty(this.sizeTextDrawable.getText()));
             }
         }
         setClickable(!this.disabled);

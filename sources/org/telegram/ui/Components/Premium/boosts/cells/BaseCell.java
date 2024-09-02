@@ -22,6 +22,7 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
+
 @SuppressLint({"ViewConstructor"})
 public abstract class BaseCell extends FrameLayout {
     protected final AvatarDrawable avatarDrawable;
@@ -100,35 +101,31 @@ public abstract class BaseCell extends FrameLayout {
         SimpleTextView simpleTextView = this.titleTextView;
         boolean z = LocaleController.isRTL;
         int i = (z ? 5 : 3) | 16;
-        int i2 = R.styleable.AppCompatTheme_textAppearanceListItemSmall;
         if (z) {
             f = 20.0f;
         } else {
-            f = needCheck() ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 70;
+            f = needCheck() ? 105 : 70;
         }
         if (LocaleController.isRTL) {
-            f2 = needCheck() ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 70;
+            f2 = needCheck() ? 105 : 70;
         } else {
             f2 = 20.0f;
         }
         simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i, f, 0.0f, f2, 0.0f));
         SimpleTextView simpleTextView2 = this.subtitleTextView;
         boolean z2 = LocaleController.isRTL;
-        int i3 = (z2 ? 5 : 3) | 16;
+        int i2 = (z2 ? 5 : 3) | 16;
         if (z2) {
             f3 = 20.0f;
         } else {
-            f3 = needCheck() ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 70;
+            f3 = needCheck() ? 105 : 70;
         }
         if (LocaleController.isRTL) {
-            if (!needCheck()) {
-                i2 = 70;
-            }
-            f4 = i2;
+            f4 = needCheck() ? 105 : 70;
         } else {
             f4 = 20.0f;
         }
-        simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i3, f3, 0.0f, f4, 0.0f));
+        simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i2, f3, 0.0f, f4, 0.0f));
         RadioButton radioButton = this.radioButton;
         boolean z3 = LocaleController.isRTL;
         radioButton.setLayoutParams(LayoutHelper.createFrame(22, 22.0f, (z3 ? 5 : 3) | 16, z3 ? 15.0f : 20.0f, 0.0f, z3 ? 20.0f : 15.0f, 0.0f));
@@ -176,10 +173,10 @@ public abstract class BaseCell extends FrameLayout {
             if (LocaleController.isRTL) {
                 this.titleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
                 this.subtitleTextView.setTranslationX(AndroidUtilities.dp(40.0f));
-                return;
+            } else {
+                this.titleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
+                this.subtitleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
             }
-            this.titleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
-            this.subtitleTextView.setTranslationX(AndroidUtilities.dp(-40.0f));
         }
     }
 
@@ -198,7 +195,7 @@ public abstract class BaseCell extends FrameLayout {
         super.dispatchDraw(canvas);
         if (this.needDivider) {
             this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-            int i = needCheck() ? R.styleable.AppCompatTheme_textAppearanceListItemSmall : 70;
+            int i = needCheck() ? 105 : 70;
             if (this.imageView.getVisibility() == 8) {
                 i -= 40;
             }

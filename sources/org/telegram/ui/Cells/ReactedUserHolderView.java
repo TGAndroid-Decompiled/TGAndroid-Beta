@@ -29,6 +29,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
 import org.telegram.ui.Components.StatusBadgeComponent;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class ReactedUserHolderView extends FrameLayout {
     public static int STYLE_DEFAULT = 0;
     public static int STYLE_STORY = 1;
@@ -68,11 +69,7 @@ public class ReactedUserHolderView extends FrameLayout {
         forwardDrawable = new MessageSeenCheckDrawable(R.drawable.mini_forward_story, i4);
     }
 
-    public ReactedUserHolderView(int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(i, i2, context, resourcesProvider, true);
-    }
-
-    public ReactedUserHolderView(final int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public ReactedUserHolderView(final int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
         this.alphaInternal = 1.0f;
@@ -93,9 +90,9 @@ public class ReactedUserHolderView extends FrameLayout {
                 if (i == ReactedUserHolderView.STYLE_STORY) {
                     ReactedUserHolderView.this.params.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     StoriesUtilities.drawAvatarWithStory(ReactedUserHolderView.this.dialogId, canvas, getImageReceiver(), ReactedUserHolderView.this.params);
-                    return;
+                } else {
+                    super.onDraw(canvas);
                 }
-                super.onDraw(canvas);
             }
 
             @Override
@@ -140,12 +137,14 @@ public class ReactedUserHolderView extends FrameLayout {
         this.subtitleView.setImportantForAccessibility(2);
         this.subtitleView.setTranslationX(LocaleController.isRTL ? AndroidUtilities.dp(30.0f) : 0.0f);
         addView(this.subtitleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 55, f3, i == STYLE_STORY ? 24.0f : 19.0f, 20.0f, 0.0f));
-        BackupImageView backupImageView2 = new BackupImageView(context);
-        this.reactView = backupImageView2;
-        addView(backupImageView2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
-        BackupImageView backupImageView3 = new BackupImageView(context);
-        this.storyPreviewView = backupImageView3;
-        addView(backupImageView3, LayoutHelper.createFrameRelatively(22.0f, 35.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
+        if (z2) {
+            BackupImageView backupImageView2 = new BackupImageView(context);
+            this.reactView = backupImageView2;
+            addView(backupImageView2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
+            BackupImageView backupImageView3 = new BackupImageView(context);
+            this.storyPreviewView = backupImageView3;
+            addView(backupImageView3, LayoutHelper.createFrameRelatively(22.0f, 35.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
+        }
         if (z) {
             View view = new View(context);
             this.overlaySelectorView = view;

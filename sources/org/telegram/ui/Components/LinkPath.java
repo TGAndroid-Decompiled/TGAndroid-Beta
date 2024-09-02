@@ -6,7 +6,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
+
 public class LinkPath extends CornerPath {
     private static CornerPathEffect roundedEffect;
     private static int roundedEffectRadius;
@@ -120,12 +120,10 @@ public class LinkPath extends CornerPath {
                     float f9 = this.xOffset;
                     float f10 = lineLeft + f9;
                     float f11 = f9 + lineRight;
-                    if (Build.VERSION.SDK_INT >= 28) {
-                        if (f7 - f6 > this.lineHeight) {
-                            f7 = this.yOffset + (f7 != ((float) this.currentLayout.getHeight()) ? this.currentLayout.getLineBottom(this.currentLine) - this.currentLayout.getSpacingAdd() : 0.0f);
-                        }
-                    } else {
+                    if (Build.VERSION.SDK_INT < 28) {
                         f7 -= f7 != ((float) this.currentLayout.getHeight()) ? this.currentLayout.getSpacingAdd() : 0.0f;
+                    } else if (f7 - f6 > this.lineHeight) {
+                        f7 = this.yOffset + (f7 != ((float) this.currentLayout.getHeight()) ? this.currentLayout.getLineBottom(this.currentLine) - this.currentLayout.getSpacingAdd() : 0.0f);
                     }
                     int i = this.baselineShift;
                     if (i < 0) {
@@ -136,7 +134,7 @@ public class LinkPath extends CornerPath {
                     float f12 = f7;
                     this.centerX = (f11 + f10) / 2.0f;
                     this.centerY = (f12 + f6) / 2.0f;
-                    if (this.useRoundRect && LiteMode.isEnabled(LiteMode.FLAGS_CHAT)) {
+                    if (this.useRoundRect) {
                         superAddRect(f10 - (getRadius() / 2.0f), f6, f11 + (getRadius() / 2.0f), f12, direction);
                     } else {
                         superAddRect(f10, f6, f11, f12, direction);

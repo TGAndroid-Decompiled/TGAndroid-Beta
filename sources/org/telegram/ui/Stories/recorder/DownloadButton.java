@@ -21,7 +21,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -41,6 +40,7 @@ import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.DownloadButton;
+
 public class DownloadButton extends ImageView {
     private BuildingVideo buildingVideo;
     private FrameLayout container;
@@ -108,48 +108,51 @@ public class DownloadButton extends ImageView {
         if (i >= 23 && ((i <= 28 || BuildVars.NO_SCOPED_STORAGE) && getContext().checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0)) {
             Activity findActivity = AndroidUtilities.findActivity(getContext());
             if (findActivity != null) {
-                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, R.styleable.AppCompatTheme_toolbarStyle);
+                findActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 113);
+                return;
             }
-        } else if (this.downloading || this.currentEntry == null) {
-        } else {
-            if (this.savedToGalleryUri != null) {
-                if (i >= 30) {
-                    getContext().getContentResolver().delete(this.savedToGalleryUri, null);
-                    this.savedToGalleryUri = null;
-                } else if (i < 29) {
-                    try {
-                        new File(this.savedToGalleryUri.toString()).delete();
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                    }
-                    this.savedToGalleryUri = null;
+            return;
+        }
+        if (this.downloading || this.currentEntry == null) {
+            return;
+        }
+        if (this.savedToGalleryUri != null) {
+            if (i >= 30) {
+                getContext().getContentResolver().delete(this.savedToGalleryUri, null);
+                this.savedToGalleryUri = null;
+            } else if (i < 29) {
+                try {
+                    new File(this.savedToGalleryUri.toString()).delete();
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
+                this.savedToGalleryUri = null;
             }
-            this.downloading = true;
-            PreparingVideoToast preparingVideoToast = this.toast;
-            if (preparingVideoToast != null) {
-                preparingVideoToast.hide();
-                this.toast = null;
-            }
-            BuildingVideo buildingVideo = this.buildingVideo;
-            if (buildingVideo != null) {
-                buildingVideo.stop(true);
-                this.buildingVideo = null;
-            }
-            Utilities.Callback<Runnable> callback = this.prepare;
-            if (callback != null) {
-                this.preparing = true;
-                callback.run(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.onClickInternal();
-                    }
-                });
-            }
-            updateImage();
-            if (this.prepare == null) {
-                onClickInternal();
-            }
+        }
+        this.downloading = true;
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+            this.toast = null;
+        }
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        Utilities.Callback<Runnable> callback = this.prepare;
+        if (callback != null) {
+            this.preparing = true;
+            callback.run(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.onClickInternal();
+                }
+            });
+        }
+        updateImage();
+        if (this.prepare == null) {
+            onClickInternal();
         }
     }
 
@@ -299,11 +302,10 @@ public class DownloadButton extends ImageView {
     private void updateImage() {
         boolean z = this.wasImageDownloading;
         boolean z2 = this.downloading;
-        boolean z3 = true;
         if (z != (z2 && !this.downloadingVideo)) {
-            boolean z4 = z2 && !this.downloadingVideo;
-            this.wasImageDownloading = z4;
-            if (z4) {
+            boolean z3 = z2 && !this.downloadingVideo;
+            this.wasImageDownloading = z3;
+            if (z3) {
                 AndroidUtilities.updateImageViewImageAnimated(this, this.progressDrawable);
             } else {
                 AndroidUtilities.updateImageViewImageAnimated(this, R.drawable.media_download);
@@ -312,9 +314,9 @@ public class DownloadButton extends ImageView {
         if (this.wasVideoDownloading != (this.downloading && this.downloadingVideo)) {
             clearAnimation();
             ViewPropertyAnimator animate = animate();
-            z3 = (this.downloading && this.downloadingVideo) ? false : false;
-            this.wasVideoDownloading = z3;
-            animate.alpha(z3 ? 0.4f : 1.0f).start();
+            boolean z4 = this.downloading && this.downloadingVideo;
+            this.wasVideoDownloading = z4;
+            animate.alpha(z4 ? 0.4f : 1.0f).start();
         }
     }
 
@@ -397,10 +399,10 @@ public class DownloadButton extends ImageView {
         @Override
         public void didReceivedNotification(int i, int i2, Object... objArr) {
             if (i == NotificationCenter.filePreparingStarted) {
-                MessageObject messageObject = (MessageObject) objArr[0];
-            } else if (i == NotificationCenter.fileNewChunkAvailable) {
+                return;
+            }
+            if (i == NotificationCenter.fileNewChunkAvailable) {
                 if (((MessageObject) objArr[0]) == this.messageObject) {
-                    String str = (String) objArr[1];
                     ((Long) objArr[2]).longValue();
                     long longValue = ((Long) objArr[3]).longValue();
                     float floatValue = ((Float) objArr[4]).floatValue();
@@ -412,9 +414,13 @@ public class DownloadButton extends ImageView {
                         this.onDone.run();
                         VideoEncodingService.stop();
                         stop(false);
+                        return;
                     }
+                    return;
                 }
-            } else if (i == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.messageObject) {
+                return;
+            }
+            if (i == NotificationCenter.filePreparingFailed && ((MessageObject) objArr[0]) == this.messageObject) {
                 stop(false);
                 try {
                     File file = this.file;
@@ -458,6 +464,10 @@ public class DownloadButton extends ImageView {
         private final Paint whitePaint;
 
         public PreparingVideoToast(Context context) {
+            this(context, LocaleController.getString(R.string.PreparingVideo));
+        }
+
+        public PreparingVideoToast(Context context, String str) {
             super(context);
             int i;
             float f;
@@ -498,7 +508,7 @@ public class DownloadButton extends ImageView {
             paint4.setStrokeWidth(AndroidUtilities.dp(4.0f));
             textPaint.setTextSize(AndroidUtilities.dp(14.0f));
             textPaint2.setTextSize(AndroidUtilities.dpf2(14.66f));
-            StaticLayout staticLayout = new StaticLayout(LocaleController.getString("PreparingVideo"), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(str, textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.preparingLayout = staticLayout;
             if (staticLayout.getLineCount() > 0) {
                 i = 0;
@@ -624,7 +634,7 @@ public class DownloadButton extends ImageView {
                 rLottieDrawable.setCallback(null);
                 this.lottieDrawable.recycle(true);
             }
-            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             this.lottieDrawable = rLottieDrawable2;
             rLottieDrawable2.setCallback(this);
             this.lottieDrawable.start();

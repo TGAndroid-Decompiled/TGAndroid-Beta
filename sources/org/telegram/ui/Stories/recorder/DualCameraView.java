@@ -13,7 +13,6 @@ import com.google.common.primitives.Floats;
 import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -32,6 +31,7 @@ import org.telegram.tgnet.TLRPC$TL_jsonObject;
 import org.telegram.tgnet.TLRPC$TL_jsonObjectValue;
 import org.telegram.tgnet.TLRPC$TL_jsonString;
 import org.telegram.ui.ActionBar.AlertDialog;
+
 public class DualCameraView extends CameraView {
     private static final int[] dualWhitelistByDevice = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
     private static final int[] dualWhitelistByModel = new int[0];
@@ -152,7 +152,7 @@ public class DualCameraView extends CameraView {
                 TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = new TLRPC$TL_jsonObjectValue();
                 tLRPC$TL_jsonObjectValue.key = "device";
                 TLRPC$TL_jsonString tLRPC$TL_jsonString = new TLRPC$TL_jsonString();
-                tLRPC$TL_jsonString.value = BuildConfig.APP_CENTER_HASH + Build.MANUFACTURER + Build.MODEL;
+                tLRPC$TL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
                 tLRPC$TL_jsonObjectValue.value = tLRPC$TL_jsonString;
                 tLRPC$TL_jsonObject.value.add(tLRPC$TL_jsonObjectValue);
                 tLRPC$TL_inputAppEvent.data = tLRPC$TL_jsonObject;
@@ -209,19 +209,19 @@ public class DualCameraView extends CameraView {
     }
 
     public boolean isAtDual(float f, float f2) {
-        if (isDual()) {
-            float[] fArr = this.vertex;
-            fArr[0] = f;
-            fArr[1] = f2;
-            this.toGL.mapPoints(fArr);
-            getDualPosition().invert(this.invMatrix);
-            this.invMatrix.mapPoints(this.vertex);
-            int dualShape = getDualShape() % 3;
-            float f3 = dualShape == 0 || dualShape == 1 || dualShape == 3 ? 0.5625f : 1.0f;
-            float[] fArr2 = this.vertex;
-            return fArr2[0] >= -1.0f && fArr2[0] <= 1.0f && fArr2[1] >= (-f3) && fArr2[1] <= f3;
+        if (!isDual()) {
+            return false;
         }
-        return false;
+        float[] fArr = this.vertex;
+        fArr[0] = f;
+        fArr[1] = f2;
+        this.toGL.mapPoints(fArr);
+        getDualPosition().invert(this.invMatrix);
+        this.invMatrix.mapPoints(this.vertex);
+        int dualShape = getDualShape() % 3;
+        float f3 = dualShape == 0 || dualShape == 1 || dualShape == 3 ? 0.5625f : 1.0f;
+        float[] fArr2 = this.vertex;
+        return fArr2[0] >= -1.0f && fArr2[0] <= 1.0f && fArr2[1] >= (-f3) && fArr2[1] <= f3;
     }
 
     private boolean checkTap(MotionEvent motionEvent) {
@@ -246,7 +246,8 @@ public class DualCameraView extends CameraView {
                 AndroidUtilities.runOnUIThread(runnable2, ViewConfiguration.getLongPressTimeout());
             }
             return true;
-        } else if (motionEvent.getAction() == 1) {
+        }
+        if (motionEvent.getAction() == 1) {
             if (System.currentTimeMillis() - this.tapTime <= ViewConfiguration.getTapTimeout() && MathUtils.distance(this.tapX, this.tapY, motionEvent.getX(), motionEvent.getY()) < AndroidUtilities.dp(10.0f)) {
                 if (isAtDual(this.tapX, this.tapY)) {
                     switchCamera();
@@ -262,25 +263,25 @@ public class DualCameraView extends CameraView {
             }
             this.tapTime = -1L;
             Runnable runnable3 = this.longpressRunnable;
-            if (runnable3 != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable3);
-                this.longpressRunnable = null;
+            if (runnable3 == null) {
                 return false;
             }
-            return false;
-        } else if (motionEvent.getAction() == 3) {
-            this.tapTime = -1L;
-            this.lastFocusToPoint = null;
-            Runnable runnable4 = this.longpressRunnable;
-            if (runnable4 != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable4);
-                this.longpressRunnable = null;
-                return false;
-            }
-            return false;
-        } else {
+            AndroidUtilities.cancelRunOnUIThread(runnable3);
+            this.longpressRunnable = null;
             return false;
         }
+        if (motionEvent.getAction() != 3) {
+            return false;
+        }
+        this.tapTime = -1L;
+        this.lastFocusToPoint = null;
+        Runnable runnable4 = this.longpressRunnable;
+        if (runnable4 == null) {
+            return false;
+        }
+        AndroidUtilities.cancelRunOnUIThread(runnable4);
+        this.longpressRunnable = null;
+        return false;
     }
 
     public void lambda$checkTap$1() {
@@ -311,145 +312,157 @@ public class DualCameraView extends CameraView {
         double d;
         float f;
         boolean z;
+        Matrix matrix;
         float width;
         float f2;
         Runnable runnable;
         boolean z2 = checkTap(motionEvent);
-        if (isDual()) {
-            Matrix dualPosition = getDualPosition();
-            boolean z3 = motionEvent.getPointerCount() > 1;
-            if (z3) {
-                this.touch.x = (motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f;
-                this.touch.y = (motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f;
-                f = MathUtils.distance(motionEvent.getX(0), motionEvent.getY(0), motionEvent.getX(1), motionEvent.getY(1));
-                d = Math.atan2(motionEvent.getY(1) - motionEvent.getY(0), motionEvent.getX(1) - motionEvent.getX(0));
-            } else {
-                this.touch.x = motionEvent.getX(0);
-                this.touch.y = motionEvent.getY(0);
-                d = 0.0d;
-                f = 0.0f;
+        if (!isDual()) {
+            return z2;
+        }
+        Matrix dualPosition = getDualPosition();
+        boolean z3 = motionEvent.getPointerCount() > 1;
+        if (z3) {
+            this.touch.x = (motionEvent.getX(0) + motionEvent.getX(1)) / 2.0f;
+            this.touch.y = (motionEvent.getY(0) + motionEvent.getY(1)) / 2.0f;
+            f = MathUtils.distance(motionEvent.getX(0), motionEvent.getY(0), motionEvent.getX(1), motionEvent.getY(1));
+            d = Math.atan2(motionEvent.getY(1) - motionEvent.getY(0), motionEvent.getX(1) - motionEvent.getX(0));
+        } else {
+            this.touch.x = motionEvent.getX(0);
+            this.touch.y = motionEvent.getY(0);
+            d = 0.0d;
+            f = 0.0f;
+        }
+        if (this.multitouch != z3) {
+            PointF pointF = this.lastTouch;
+            PointF pointF2 = this.touch;
+            pointF.x = pointF2.x;
+            pointF.y = pointF2.y;
+            this.lastTouchDistance = f;
+            this.lastTouchRotation = d;
+            this.multitouch = z3;
+        }
+        PointF pointF3 = this.touch;
+        float f3 = pointF3.x;
+        float f4 = pointF3.y;
+        PointF pointF4 = this.lastTouch;
+        float f5 = pointF4.x;
+        float f6 = pointF4.y;
+        if (motionEvent.getAction() == 0) {
+            this.touchMatrix.set(dualPosition);
+            this.touchMatrix.postConcat(this.toScreen);
+            this.rotationDiff = 0.0f;
+            this.snappedRotation = false;
+            this.doNotSpanRotation = false;
+            Matrix matrix2 = this.touchMatrix;
+            PointF pointF5 = this.touch;
+            this.down = isPointInsideDual(matrix2, pointF5.x, pointF5.y);
+        }
+        if (motionEvent.getAction() == 2 && this.down) {
+            if (MathUtils.distance(f3, f4, f5, f6) > AndroidUtilities.dp(2.0f) && (runnable = this.longpressRunnable) != null) {
+                AndroidUtilities.cancelRunOnUIThread(runnable);
+                this.longpressRunnable = null;
             }
-            if (this.multitouch != z3) {
-                PointF pointF = this.lastTouch;
-                PointF pointF2 = this.touch;
-                pointF.x = pointF2.x;
-                pointF.y = pointF2.y;
-                this.lastTouchDistance = f;
-                this.lastTouchRotation = d;
-                this.multitouch = z3;
-            }
-            PointF pointF3 = this.touch;
-            float f3 = pointF3.x;
-            float f4 = pointF3.y;
-            PointF pointF4 = this.lastTouch;
-            float f5 = pointF4.x;
-            float f6 = pointF4.y;
-            if (motionEvent.getAction() == 0) {
-                this.touchMatrix.set(dualPosition);
-                this.touchMatrix.postConcat(this.toScreen);
-                this.rotationDiff = 0.0f;
-                this.snappedRotation = false;
-                this.doNotSpanRotation = false;
-                Matrix matrix = this.touchMatrix;
-                PointF pointF5 = this.touch;
-                this.down = isPointInsideDual(matrix, pointF5.x, pointF5.y);
-            }
-            if (motionEvent.getAction() == 2 && this.down) {
-                if (MathUtils.distance(f3, f4, f5, f6) > AndroidUtilities.dp(2.0f) && (runnable = this.longpressRunnable) != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                    this.longpressRunnable = null;
-                }
-                if (motionEvent.getPointerCount() > 1) {
-                    if (this.lastTouchDistance != 0.0f) {
-                        extractPointsData(this.touchMatrix);
-                        float f7 = f / this.lastTouchDistance;
-                        if (this.w * f7 > getWidth() * 0.7f) {
-                            width = getWidth() * 0.7f;
+            if (motionEvent.getPointerCount() > 1) {
+                if (this.lastTouchDistance != 0.0f) {
+                    extractPointsData(this.touchMatrix);
+                    float f7 = f / this.lastTouchDistance;
+                    if (this.w * f7 > getWidth() * 0.7f) {
+                        width = getWidth() * 0.7f;
+                        f2 = this.w;
+                    } else {
+                        if (this.w * f7 < getWidth() * 0.2f) {
+                            width = getWidth() * 0.2f;
                             f2 = this.w;
-                        } else {
-                            if (this.w * f7 < getWidth() * 0.2f) {
-                                width = getWidth() * 0.2f;
-                                f2 = this.w;
-                            }
-                            this.touchMatrix.postScale(f7, f7, f3, f4);
                         }
-                        f7 = width / f2;
                         this.touchMatrix.postScale(f7, f7, f3, f4);
                     }
-                    float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
-                    float f8 = this.rotationDiff + degrees;
-                    this.rotationDiff = f8;
-                    if (!this.allowRotation) {
-                        boolean z4 = Math.abs(f8) > 20.0f;
-                        this.allowRotation = z4;
-                        if (!z4) {
-                            extractPointsData(this.touchMatrix);
-                            this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
-                        }
-                        if (!this.snappedRotation) {
-                            try {
-                                performHapticFeedback(9, 1);
-                            } catch (Exception unused) {
-                            }
-                            this.snappedRotation = true;
-                        }
+                    f7 = width / f2;
+                    this.touchMatrix.postScale(f7, f7, f3, f4);
+                }
+                matrix = dualPosition;
+                float degrees = (float) Math.toDegrees(d - this.lastTouchRotation);
+                float f8 = this.rotationDiff + degrees;
+                this.rotationDiff = f8;
+                if (!this.allowRotation) {
+                    boolean z4 = Math.abs(f8) > 20.0f;
+                    this.allowRotation = z4;
+                    if (!z4) {
+                        extractPointsData(this.touchMatrix);
+                        this.allowRotation = (((float) Math.round(this.angle / 90.0f)) * 90.0f) - this.angle > 20.0f;
                     }
-                    if (this.allowRotation) {
-                        this.touchMatrix.postRotate(degrees, f3, f4);
+                    if (!this.snappedRotation) {
+                        AndroidUtilities.vibrateCursor(this);
+                        this.snappedRotation = true;
                     }
                 }
-                this.touchMatrix.postTranslate(f3 - f5, f4 - f6);
-                this.finalMatrix.set(this.touchMatrix);
-                extractPointsData(this.finalMatrix);
-                float round = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
-                if (this.allowRotation && !this.doNotSpanRotation) {
-                    if (Math.abs(round) < 5.0f) {
-                        this.finalMatrix.postRotate(round, this.cx, this.cy);
-                        if (!this.snappedRotation) {
-                            try {
-                                performHapticFeedback(9, 1);
-                            } catch (Exception unused2) {
-                            }
-                            this.snappedRotation = true;
-                        }
-                    } else {
-                        this.snappedRotation = false;
+                if (this.allowRotation) {
+                    this.touchMatrix.postRotate(degrees, f3, f4);
+                }
+            } else {
+                matrix = dualPosition;
+            }
+            this.touchMatrix.postTranslate(f3 - f5, f4 - f6);
+            this.finalMatrix.set(this.touchMatrix);
+            extractPointsData(this.finalMatrix);
+            float round = (Math.round(this.angle / 90.0f) * 90.0f) - this.angle;
+            if (this.allowRotation && !this.doNotSpanRotation) {
+                if (Math.abs(round) < 5.0f) {
+                    this.finalMatrix.postRotate(round, this.cx, this.cy);
+                    if (!this.snappedRotation) {
+                        AndroidUtilities.vibrateCursor(this);
+                        this.snappedRotation = true;
                     }
-                }
-                float f9 = this.cx;
-                if (f9 < 0.0f) {
-                    this.finalMatrix.postTranslate(-f9, 0.0f);
-                } else if (f9 > getWidth()) {
-                    this.finalMatrix.postTranslate(getWidth() - this.cx, 0.0f);
-                }
-                float f10 = this.cy;
-                if (f10 < 0.0f) {
-                    this.finalMatrix.postTranslate(0.0f, -f10);
-                } else if (f10 > getHeight() - AndroidUtilities.dp(150.0f)) {
-                    this.finalMatrix.postTranslate(0.0f, (getHeight() - AndroidUtilities.dp(150.0f)) - this.cy);
-                }
-                this.finalMatrix.postConcat(this.toGL);
-                dualPosition.set(this.finalMatrix);
-                updateDualPosition();
-                float f11 = this.cy;
-                boolean z5 = Math.min(f11, f11 - (this.h / 2.0f)) < ((float) AndroidUtilities.dp(66.0f));
-                float f12 = this.cy;
-                boolean z6 = Math.max(f12, (this.h / 2.0f) + f12) > ((float) (getHeight() - AndroidUtilities.dp(66.0f)));
-                if (this.atTop != z5) {
-                    this.atTop = z5;
-                    onEntityDraggedTop(z5);
-                }
-                if (this.atBottom != z6) {
-                    this.atBottom = z6;
-                    onEntityDraggedBottom(z6);
+                } else {
+                    this.snappedRotation = false;
                 }
             }
-            if (motionEvent.getAction() == 1) {
-                z = false;
-                this.allowRotation = false;
-                this.rotationDiff = 0.0f;
-                this.snappedRotation = false;
-                invalidate();
+            float f9 = this.cx;
+            if (f9 < 0.0f) {
+                this.finalMatrix.postTranslate(-f9, 0.0f);
+            } else if (f9 > getWidth()) {
+                this.finalMatrix.postTranslate(getWidth() - this.cx, 0.0f);
+            }
+            float f10 = this.cy;
+            if (f10 < 0.0f) {
+                this.finalMatrix.postTranslate(0.0f, -f10);
+            } else if (f10 > getHeight() - AndroidUtilities.dp(150.0f)) {
+                this.finalMatrix.postTranslate(0.0f, (getHeight() - AndroidUtilities.dp(150.0f)) - this.cy);
+            }
+            this.finalMatrix.postConcat(this.toGL);
+            matrix.set(this.finalMatrix);
+            updateDualPosition();
+            float f11 = this.cy;
+            boolean z5 = Math.min(f11, f11 - (this.h / 2.0f)) < ((float) AndroidUtilities.dp(66.0f));
+            float f12 = this.cy;
+            boolean z6 = Math.max(f12, (this.h / 2.0f) + f12) > ((float) (getHeight() - AndroidUtilities.dp(66.0f)));
+            if (this.atTop != z5) {
+                this.atTop = z5;
+                onEntityDraggedTop(z5);
+            }
+            if (this.atBottom != z6) {
+                this.atBottom = z6;
+                onEntityDraggedBottom(z6);
+            }
+        }
+        if (motionEvent.getAction() == 1) {
+            z = false;
+            this.allowRotation = false;
+            this.rotationDiff = 0.0f;
+            this.snappedRotation = false;
+            invalidate();
+            this.down = false;
+            if (this.atTop) {
+                this.atTop = false;
+                onEntityDraggedTop(false);
+            }
+            if (this.atBottom) {
+                this.atBottom = false;
+                onEntityDraggedBottom(false);
+            }
+        } else {
+            z = false;
+            if (motionEvent.getAction() == 3) {
                 this.down = false;
                 if (this.atTop) {
                     this.atTop = false;
@@ -459,29 +472,18 @@ public class DualCameraView extends CameraView {
                     this.atBottom = false;
                     onEntityDraggedBottom(false);
                 }
-            } else {
-                z = false;
-                if (motionEvent.getAction() == 3) {
-                    this.down = false;
-                    if (this.atTop) {
-                        this.atTop = false;
-                        onEntityDraggedTop(false);
-                    }
-                    if (this.atBottom) {
-                        this.atBottom = false;
-                        onEntityDraggedBottom(false);
-                    }
-                }
             }
-            PointF pointF6 = this.lastTouch;
-            PointF pointF7 = this.touch;
-            pointF6.x = pointF7.x;
-            pointF6.y = pointF7.y;
-            this.lastTouchDistance = f;
-            this.lastTouchRotation = d;
-            return (this.down || z2) ? true : true;
         }
-        return z2;
+        PointF pointF6 = this.lastTouch;
+        PointF pointF7 = this.touch;
+        pointF6.x = pointF7.x;
+        pointF6.y = pointF7.y;
+        this.lastTouchDistance = f;
+        this.lastTouchRotation = d;
+        if (this.down || z2) {
+            z = true;
+        }
+        return z;
     }
 
     public boolean isDualTouch() {
@@ -587,43 +589,51 @@ public class DualCameraView extends CameraView {
     public static boolean dualAvailableDefault(Context context, boolean z) {
         int i = 0;
         boolean z2 = SharedConfig.getDevicePerformanceClass() >= 1 && Camera.getNumberOfCameras() > 1 && SharedConfig.allowPreparingHevcPlayers();
-        if (z2) {
-            boolean z3 = context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
-            if (!z3 && z) {
-                int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
-                int i2 = 0;
-                while (true) {
-                    int[] iArr = dualWhitelistByDevice;
-                    if (i2 >= iArr.length) {
-                        break;
-                    } else if (iArr[i2] == hashCode) {
-                        z3 = true;
-                        break;
-                    } else {
-                        i2++;
-                    }
+        if (!z2) {
+            return z2;
+        }
+        boolean z3 = context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
+        if (!z3 && z) {
+            int hashCode = (Build.MANUFACTURER + " " + Build.DEVICE).toUpperCase().hashCode();
+            int i2 = 0;
+            while (true) {
+                int[] iArr = dualWhitelistByDevice;
+                if (i2 >= iArr.length) {
+                    break;
                 }
-                if (!z3) {
-                    int hashCode2 = (Build.MANUFACTURER + Build.MODEL).toUpperCase().hashCode();
-                    while (true) {
-                        int[] iArr2 = dualWhitelistByModel;
-                        if (i >= iArr2.length) {
-                            break;
-                        } else if (iArr2[i] == hashCode2) {
-                            return true;
-                        } else {
-                            i++;
-                        }
+                if (iArr[i2] == hashCode) {
+                    z3 = true;
+                    break;
+                }
+                i2++;
+            }
+            if (!z3) {
+                int hashCode2 = (Build.MANUFACTURER + Build.MODEL).toUpperCase().hashCode();
+                while (true) {
+                    int[] iArr2 = dualWhitelistByModel;
+                    if (i >= iArr2.length) {
+                        break;
                     }
+                    if (iArr2[i] == hashCode2) {
+                        return true;
+                    }
+                    i++;
                 }
             }
-            return z3;
         }
-        return z2;
+        return z3;
     }
 
     public static boolean dualAvailableStatic(Context context) {
         return MessagesController.getGlobalMainSettings().getBoolean("dual_available", dualAvailableDefault(context, true));
+    }
+
+    public static boolean roundDualAvailableStatic(Context context) {
+        return MessagesController.getGlobalMainSettings().getBoolean("rounddual_available", roundDualAvailableDefault(context));
+    }
+
+    public static boolean roundDualAvailableDefault(Context context) {
+        return SharedConfig.getDevicePerformanceClass() >= 2 && Camera.getNumberOfCameras() > 1 && SharedConfig.allowPreparingHevcPlayers() && context != null && context.getPackageManager().hasSystemFeature("android.hardware.camera.concurrent");
     }
 
     private Matrix getSavedDualMatrix() {

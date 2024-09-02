@@ -12,13 +12,13 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
+
 public class AlbumButton extends View {
     private StaticLayout countLayout;
     private float countLayoutLeft;
@@ -49,10 +49,10 @@ public class AlbumButton extends View {
         textPaint.setColor(Theme.getColor(i2, resourcesProvider));
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         textPaint2.setColor(Theme.getColor(i2, resourcesProvider));
-        textPaint2.setAlpha(R.styleable.AppCompatTheme_textAppearanceLargePopupMenu);
+        textPaint2.setAlpha(102);
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
-        this.title = BuildConfig.APP_CENTER_HASH + ((Object) charSequence);
-        this.subtitle = BuildConfig.APP_CENTER_HASH + i;
+        this.title = "" + ((Object) charSequence);
+        this.subtitle = "" + i;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
@@ -61,15 +61,17 @@ public class AlbumButton extends View {
         combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
         if (photoEntry != null && (str = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-        } else if (photoEntry != null && photoEntry.path != null) {
+            return;
+        }
+        if (photoEntry != null && photoEntry.path != null) {
             if (photoEntry.isVideo) {
                 imageReceiver.setImage(ImageLocation.getForPath("vthumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
                 return;
             }
             imageReceiver.setImage(ImageLocation.getForPath("thumb://" + photoEntry.imageId + ":" + photoEntry.path), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
-        } else {
-            imageReceiver.setImageBitmap(combinedDrawable);
+            return;
         }
+        imageReceiver.setImageBitmap(combinedDrawable);
     }
 
     @Override

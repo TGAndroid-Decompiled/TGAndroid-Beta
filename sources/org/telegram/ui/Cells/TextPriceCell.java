@@ -10,6 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class TextPriceCell extends FrameLayout {
     private TextView textView;
     private TextView valueTextView;
@@ -29,7 +30,7 @@ public class TextPriceCell extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
         textView2.setTextSize(1, 16.0f);
-        this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.valueTextView.setTypeface(AndroidUtilities.bold());
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
         this.valueTextView.setSingleLine(true);
@@ -67,8 +68,8 @@ public class TextPriceCell extends FrameLayout {
             setTag(Integer.valueOf(i));
             this.textView.setTextColor(Theme.getColor(i));
             this.valueTextView.setTextColor(Theme.getColor(i));
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
+            this.valueTextView.setTypeface(AndroidUtilities.bold());
         } else {
             int i2 = Theme.key_windowBackgroundWhiteGrayText2;
             setTag(Integer.valueOf(i2));

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChannel extends TLRPC$Update {
     public long channel_id;
 

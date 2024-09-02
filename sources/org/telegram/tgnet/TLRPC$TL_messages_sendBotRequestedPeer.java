@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_sendBotRequestedPeer extends TLObject {
     public int button_id;
     public int msg_id;

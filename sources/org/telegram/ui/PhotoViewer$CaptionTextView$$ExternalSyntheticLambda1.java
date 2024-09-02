@@ -1,6 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.ui.Components.LinkSpanDrawable;
+
 public final class PhotoViewer$CaptionTextView$$ExternalSyntheticLambda1 implements Runnable {
     public final LinkSpanDrawable.LinkCollector f$0;
 

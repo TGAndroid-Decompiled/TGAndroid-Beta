@@ -8,6 +8,7 @@ import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$Updates;
+
 public class TL_stories$TL_stories_sendStory extends TLObject {
     public String caption;
     public int flags;

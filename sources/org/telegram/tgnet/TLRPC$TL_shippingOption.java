@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_shippingOption extends TLObject {
     public String id;
     public ArrayList<TLRPC$TL_labeledPrice> prices = new ArrayList<>();

@@ -11,6 +11,7 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +24,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -57,6 +57,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
     private final List<TL_stories$TL_myBoost> allUsedBoosts;
@@ -122,6 +123,11 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override
@@ -286,21 +292,21 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         return new RecyclerListView.SelectionAdapter() {
             @Override
             public int getItemViewType(int i) {
-                if (i != 0) {
-                    int i2 = 1;
-                    if (i != 1) {
-                        i2 = 2;
-                        if (i != 2) {
-                            return 3;
-                        }
-                    }
-                    return i2;
+                if (i == 0) {
+                    return 0;
                 }
-                return 0;
+                int i2 = 1;
+                if (i != 1) {
+                    i2 = 2;
+                    if (i != 2) {
+                        return 3;
+                    }
+                }
+                return i2;
             }
 
             @Override
@@ -321,7 +327,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 } else if (i == 2) {
                     view = new HeaderCell(context, 22);
                 } else if (i == 3) {
-                    view = new SelectorUserCell(context, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
+                    view = new SelectorUserCell(context, true, ((BottomSheet) ReassignBoostBottomSheet.this).resourcesProvider, true);
                 } else {
                     view = new View(context);
                 }
@@ -336,12 +342,16 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
                     selectorUserCell.setBoost(tL_stories$TL_myBoost);
                     selectorUserCell.setChecked(ReassignBoostBottomSheet.this.selectedBoosts.contains(tL_stories$TL_myBoost), false);
-                } else if (viewHolder.getItemViewType() == 2) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 2) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
                     headerCell.setText(LocaleController.getString("BoostingRemoveBoostFrom", R.string.BoostingRemoveBoostFrom));
-                } else if (viewHolder.getItemViewType() == 0) {
+                    return;
+                }
+                if (viewHolder.getItemViewType() == 0) {
                     ReassignBoostBottomSheet.this.topCell = (TopCell) viewHolder.itemView;
                     ReassignBoostBottomSheet.this.topCell.setData(ReassignBoostBottomSheet.this.currentChat, ReassignBoostBottomSheet.this);
                 }
@@ -383,7 +393,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(70, 70, 17));
             addView(frameLayout, LayoutHelper.createLinear(-1, 70, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             textView.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost));
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -401,7 +411,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             try {
                 int boostsPerSentGift = BoostRepository.boostsPerSentGift();
                 Object[] objArr = new Object[2];
-                objArr[0] = tLRPC$Chat == null ? BuildConfig.APP_CENTER_HASH : tLRPC$Chat.title;
+                objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
                 objArr[1] = "%3$s";
                 SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", boostsPerSentGift, objArr));
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new Runnable() {
@@ -447,8 +457,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void showBoosts(List<TL_stories$TL_myBoost> list, TLRPC$Chat tLRPC$Chat) {
             ArrayList arrayList = new ArrayList(list.size());
-            for (TL_stories$TL_myBoost tL_stories$TL_myBoost : list) {
-                arrayList.add(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer))));
+            Iterator<TL_stories$TL_myBoost> it = list.iterator();
+            while (it.hasNext()) {
+                arrayList.add(MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(it.next().peer))));
             }
             showChats(arrayList, tLRPC$Chat);
         }
@@ -484,9 +495,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 if (!it.hasNext()) {
                     break;
                 }
+                TLRPC$Chat tLRPC$Chat4 = (TLRPC$Chat) it.next();
                 AvatarHolderView avatarHolderView3 = new AvatarHolderView(getContext());
                 avatarHolderView3.setLayerType(2, null);
-                avatarHolderView3.setChat((TLRPC$Chat) it.next());
+                avatarHolderView3.setChat(tLRPC$Chat4);
                 int size = arrayList3.size();
                 this.avatarsWrapper.addView(avatarHolderView3, 0, LayoutHelper.createFrame(70, 70, 17));
                 avatarHolderView3.setTranslationX((-size) * AndroidUtilities.dp(23.0f));
@@ -500,22 +512,24 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     avatarHolderView3.boostIconView.setAlpha(1.0f);
                 }
             }
-            for (TLRPC$Chat tLRPC$Chat4 : arrayList) {
+            for (TLRPC$Chat tLRPC$Chat5 : arrayList) {
                 Iterator it2 = arrayList3.iterator();
                 while (true) {
-                    if (!it2.hasNext()) {
+                    if (it2.hasNext()) {
+                        avatarHolderView = (AvatarHolderView) it2.next();
+                        if (avatarHolderView.chat == tLRPC$Chat5) {
+                            break;
+                        }
+                    } else {
                         avatarHolderView = null;
-                        break;
-                    }
-                    avatarHolderView = (AvatarHolderView) it2.next();
-                    if (avatarHolderView.chat == tLRPC$Chat4) {
                         break;
                     }
                 }
                 if (avatarHolderView != null) {
                     avatarHolderView.setTag("REMOVED");
+                    ViewPropertyAnimator interpolator = avatarHolderView.animate().alpha(f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(f2).scaleY(f2).setInterpolator(cubicBezierInterpolator);
                     long j = 200;
-                    avatarHolderView.animate().alpha(f).translationXBy(AndroidUtilities.dp(23.0f)).scaleX(f2).scaleY(f2).setInterpolator(cubicBezierInterpolator).setDuration(j).setListener(new AnimatorListenerAdapter() {
+                    interpolator.setDuration(j).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             avatarHolderView.setLayerType(0, null);
@@ -559,11 +573,11 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 long j2 = 200;
                 this.avatarsWrapper.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(j2).start();
                 this.toAvatar.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(j2).start();
-                return;
+            } else {
+                long j3 = 200;
+                this.avatarsWrapper.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j3).start();
+                this.toAvatar.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(48.0f)).setDuration(j3).start();
             }
-            long j3 = 200;
-            this.avatarsWrapper.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j3).start();
-            this.toAvatar.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(48.0f)).setDuration(j3).start();
         }
     }
 

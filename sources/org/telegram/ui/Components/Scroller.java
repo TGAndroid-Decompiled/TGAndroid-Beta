@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+
 public class Scroller {
     private static float sViscousFluidNormalize;
     private static float sViscousFluidScale;
@@ -142,14 +143,12 @@ public class Scroller {
                 float[] fArr = SPLINE;
                 float f4 = fArr[i3];
                 float f5 = f4 + (((f2 - f3) / ((i4 / 100.0f) - f3)) * (fArr[i4] - f4));
-                int i5 = this.mStartX;
-                int round = i5 + Math.round((this.mFinalX - i5) * f5);
+                int round = this.mStartX + Math.round((this.mFinalX - r0) * f5);
                 this.mCurrX = round;
                 int min = Math.min(round, this.mMaxX);
                 this.mCurrX = min;
                 this.mCurrX = Math.max(min, this.mMinX);
-                int i6 = this.mStartY;
-                int round2 = i6 + Math.round(f5 * (this.mFinalY - i6));
+                int round2 = this.mStartY + Math.round(f5 * (this.mFinalY - r0));
                 this.mCurrY = round2;
                 int min2 = Math.min(round2, this.mMaxY);
                 this.mCurrY = min2;

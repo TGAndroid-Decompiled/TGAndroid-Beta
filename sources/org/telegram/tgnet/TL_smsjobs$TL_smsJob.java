@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_smsJob extends TLObject {
     public String job_id;
     public String phone_number;

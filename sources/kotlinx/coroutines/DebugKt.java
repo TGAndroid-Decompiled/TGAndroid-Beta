@@ -1,4 +1,5 @@
 package kotlinx.coroutines;
+
 public final class DebugKt {
     private static final boolean ASSERTIONS_ENABLED = false;
     private static final boolean DEBUG;

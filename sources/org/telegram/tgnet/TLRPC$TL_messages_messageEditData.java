@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_messageEditData extends TLObject {
     public boolean caption;
     public int flags;

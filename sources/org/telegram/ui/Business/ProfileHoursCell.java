@@ -18,6 +18,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ClickableAnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class ProfileHoursCell extends LinearLayout {
     private ImageView arrowView;
     private boolean expanded;
@@ -35,6 +36,10 @@ public class ProfileHoursCell extends LinearLayout {
     private FrameLayout todayTimeContainer;
     private FrameLayout todayTimeTextContainer;
     private LinearLayout todayTimeTextContainer2;
+
+    protected int processColor(int i) {
+        return i;
+    }
 
     public ProfileHoursCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -100,12 +105,13 @@ public class ProfileHoursCell extends LinearLayout {
                 this.switchText = clickableAnimatedTextView;
                 clickableAnimatedTextView.getDrawable().updateAll = true;
                 this.switchText.setTextSize(AndroidUtilities.dp(13.0f));
-                ClickableAnimatedTextView clickableAnimatedTextView2 = this.switchText;
-                int i5 = Theme.key_windowBackgroundWhiteBlueText2;
-                clickableAnimatedTextView2.setTextColor(Theme.getColor(i5, resourcesProvider));
                 this.switchText.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
                 this.switchText.setGravity(LocaleController.isRTL ? 3 : 5);
-                this.switchText.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.multAlpha(Theme.getColor(i5, resourcesProvider), 0.1f), Theme.multAlpha(Theme.getColor(i5, resourcesProvider), 0.22f)));
+                ClickableAnimatedTextView clickableAnimatedTextView2 = this.switchText;
+                int dp = AndroidUtilities.dp(8.0f);
+                int i5 = Theme.key_windowBackgroundWhiteBlueText2;
+                clickableAnimatedTextView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i5, resourcesProvider)), 0.22f)));
+                this.switchText.setTextColor(processColor(Theme.getColor(i5, resourcesProvider)));
                 this.switchText.getDrawable().setScaleProperty(0.6f);
                 this.switchText.setVisibility(8);
                 this.todayTimeTextContainer2.addView(this.switchText, LayoutHelper.createLinearRelatively(-1.0f, 17.0f, 8388613, 0.0f, 4.0f, 18.0f, 0.0f));
@@ -146,6 +152,14 @@ public class ProfileHoursCell extends LinearLayout {
         setWillNotDraw(false);
     }
 
+    public void updateColors() {
+        ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
+        int dp = AndroidUtilities.dp(8.0f);
+        int i = Theme.key_windowBackgroundWhiteBlueText2;
+        clickableAnimatedTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.1f), Theme.multAlpha(processColor(Theme.getColor(i, this.resourcesProvider)), 0.22f)));
+        this.switchText.setTextColor(processColor(Theme.getColor(i, this.resourcesProvider)));
+    }
+
     public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
         ClickableAnimatedTextView clickableAnimatedTextView = this.switchText;
         if (clickableAnimatedTextView != null) {
@@ -153,7 +167,7 @@ public class ProfileHoursCell extends LinearLayout {
         }
     }
 
-    public void set(org.telegram.tgnet.TLRPC$TL_businessWorkHours r19, boolean r20, boolean r21, boolean r22) {
+    public void set(org.telegram.tgnet.TLRPC$TL_businessWorkHours r22, boolean r23, boolean r24, boolean r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Business.ProfileHoursCell.set(org.telegram.tgnet.TLRPC$TL_businessWorkHours, boolean, boolean, boolean):void");
     }
 

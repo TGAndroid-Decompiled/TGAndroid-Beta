@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
+
 public class ClippingImageView extends View {
     private static float[] radii = new float[8];
     private float additionalTranslationX;
@@ -177,14 +178,13 @@ public class ClippingImageView extends View {
             canvas.clipRect(this.clipLeft / scaleY, this.clipTop / scaleY, getWidth() - (this.clipRight / scaleY), getHeight() - (this.clipBottom / scaleY));
             int i = 0;
             while (true) {
-                int[] iArr = this.radius;
-                if (i >= iArr.length) {
+                if (i >= this.radius.length) {
                     break;
                 }
                 float[] fArr = radii;
                 int i2 = i * 2;
-                fArr[i2] = iArr[i];
-                fArr[i2 + 1] = iArr[i];
+                fArr[i2] = r1[i];
+                fArr[i2 + 1] = r1[i];
                 i++;
             }
             this.roundPath.reset();

@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DiscountSpan extends ReplacementSpan {
     private int color;
     int discount;
@@ -31,7 +32,7 @@ public class DiscountSpan extends ReplacementSpan {
     }
 
     public DiscountSpan(float f, int i) {
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.bgPaint.setStyle(Paint.Style.FILL);
         this.textPaint.setTextSize(AndroidUtilities.dp(f));
         this.discount = i;

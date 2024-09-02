@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_username extends TLObject {
     public boolean active;
     public boolean editable;

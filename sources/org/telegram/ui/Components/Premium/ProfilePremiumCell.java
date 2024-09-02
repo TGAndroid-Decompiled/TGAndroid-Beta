@@ -6,10 +6,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+
 public class ProfilePremiumCell extends TextCell {
     StarParticlesView.Drawable drawable;
 
-    public ProfilePremiumCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public ProfilePremiumCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
         StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(6);
         this.drawable = drawable;
@@ -21,7 +22,12 @@ public class ProfilePremiumCell extends TextCell {
         drawable.minLifeTime = 600L;
         drawable.randLifeTime = 500;
         drawable.startFromCenter = true;
+        drawable.useRotate = true;
         drawable.type = 101;
+        if (i == 1) {
+            drawable.useGradient = false;
+            drawable.colorKey = Theme.key_starsGradient1;
+        }
         drawable.init();
     }
 

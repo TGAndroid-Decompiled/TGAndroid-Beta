@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public interface SdpObserver {
     @CalledByNative
     void onCreateFailure(String str);

@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.LiteMode;
+
 public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
     public long admin_id;
     public int date;
@@ -44,7 +44,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
         if ((this.flags & 128) != 0) {
             this.requested = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.title = abstractSerializedData.readString(z);
         }
     }
@@ -77,7 +77,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
         if ((this.flags & 128) != 0) {
             abstractSerializedData.writeInt32(this.requested);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             abstractSerializedData.writeString(this.title);
         }
     }

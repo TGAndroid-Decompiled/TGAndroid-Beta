@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_payments_getPaymentForm extends TLObject {
     public int flags;
     public TLRPC$InputInvoice invoice;
@@ -6,7 +7,7 @@ public class TLRPC$TL_payments_getPaymentForm extends TLObject {
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$TL_payments_paymentForm.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$PaymentForm.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override

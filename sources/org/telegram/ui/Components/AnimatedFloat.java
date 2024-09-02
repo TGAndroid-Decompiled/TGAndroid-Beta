@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import android.view.View;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
+
 public class AnimatedFloat {
     private boolean firstSet;
     private Runnable invalidate;
@@ -183,6 +184,10 @@ public class AnimatedFloat {
 
     public void setDuration(long j) {
         this.transitionDuration = j;
+    }
+
+    public void setDelay(long j) {
+        this.transitionDelay = j;
     }
 
     public long getDuration() {

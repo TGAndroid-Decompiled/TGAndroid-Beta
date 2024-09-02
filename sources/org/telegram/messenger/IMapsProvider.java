@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.core.util.Consumer;
 import java.util.List;
+
 public interface IMapsProvider {
     public static final int MAP_TYPE_HYBRID = 2;
     public static final int MAP_TYPE_NORMAL = 0;

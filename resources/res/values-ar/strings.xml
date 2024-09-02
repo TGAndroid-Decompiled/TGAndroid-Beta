@@ -964,8 +964,6 @@
     <string name="ChooseTheme">اختر نمطًا</string>
     <string name="ChooseYourLanguage">اختر لغتك</string>
     <string name="ChooseYourLanguageOther">أخرى</string>
-    <string name="ChromeCustomTabs">المتصفح الداخلي</string>
-    <string name="ChromeCustomTabsInfo">فتح الروابط الخارجية داخل التطبيق</string>
     <string name="ClearButton">مسح</string>
     <string name="ClearCache">مسح الذاكرة المؤقتة</string>
     <string name="ClearCacheFewChatsTitle">مسح %1$s من الذاكرة المؤقتة</string>
@@ -1189,7 +1187,6 @@
     <string name="DeleteBackground_other">حذف %1$d خلفية</string>
     <string name="DeleteBackground_two">حذف الخلفيتين</string>
     <string name="DeleteBackground_zero">حذف %1$d خلفية</string>
-    <string name="DeleteBanUser">حظر المستخدم</string>
     <string name="DeleteCalls">حذف المكالمات</string>
     <string name="DeleteCallsForEveryone">الحذف عند الجميع</string>
     <string name="DeleteChannelForAll">الحذف لجميع المشتركين</string>
@@ -1434,8 +1431,6 @@
     <string name="EventLogEditedMedia">عدّل un1 ملف الوسائط:</string>
     <string name="EventLogEditedMediaCaption">عدّل un1 ملف الوسائط والوصف:</string>
     <string name="EventLogEditedMessages">عدّل un1 هذه الرسالة:</string>
-    <string name="EventLogEmpty">**لا توجد أحداث هنا بعد**\n\nلم يَقم أعضاءُ المجموعة أو\nمشرفوها باتخاذ أيِّ إجراءات\nخلال الـ 48 ساعة الماضية.</string>
-    <string name="EventLogEmptyChannel">**ما من أحداث هنا بعد**\n\nلم يقم مشرفو القناة\nباتخاذ أي إجراءات خلال\nالـ 48 ساعة الماضية.</string>
     <string name="EventLogEmptySearch">**لم يتم العثور على أحداث**\n\nلا توجد نتائج تطابق ما بحثت عنه\nضمن الأحداث الأخيرة.</string>
     <string name="EventLogEmptyTextSearch">لم يتم العثور على أحداث أخيرة تحوي «**%1$s**».</string>
     <string name="EventLogEndedVoiceChat">أنهى un1 المحادثة الصوتية</string>
@@ -1534,15 +1529,8 @@
     <string name="FeaturedStickers">الملصقات الشائعة</string>
     <string name="FeaturedStickersInfo">هذه الملصقات شائعة حاليًا على تيليجرام، يمكنك إضافة ملصقات مخصصة عبر البوت @stickers.</string>
     <string name="February">فبراير</string>
-    <string name="FileSavedHint">تم حفظ الملف في التنزيلات</string>
     <string name="FileUploadLimit">لا يمكن أن يتجاوز حجم الملف %1$s</string>
     <string name="FilesDataUsage">الملفات</string>
-    <string name="FilesSavedHint_few">تم حفظ %1$d ملفات في التنزيلات</string>
-    <string name="FilesSavedHint_many">تم حفظ ١١ ملفًا في التنزيلات</string>
-    <string name="FilesSavedHint_one">تم حفظ ملف في التنزيلات</string>
-    <string name="FilesSavedHint_other">تم حفظ %1$d ملف في التنزيلات</string>
-    <string name="FilesSavedHint_two">تم حفظ ملفين في التنزيلات</string>
-    <string name="FilesSavedHint_zero">تم حفظ %1$d ملفات في التنزيلات</string>
     <string name="Files_few">%1$d ملفات</string>
     <string name="Files_many">%1$d ملفًا</string>
     <string name="Files_one">ملف واحد</string>
@@ -1668,6 +1656,7 @@
     <string name="ForwardedFile_other">%1$d ملف محوَّل</string>
     <string name="ForwardedFile_two">ملفان محوَّلان</string>
     <string name="ForwardedFile_zero">%1$d ملف محوَّل</string>
+    <string name="ForwardedFrom">ارسلت من</string>
     <string name="ForwardedLocation_few">%1$d مواقع محوَّلة</string>
     <string name="ForwardedLocation_many">%1$d موقعًا محوَّلا</string>
     <string name="ForwardedLocation_one">موقع واحد محوَّل</string>
@@ -1751,7 +1740,6 @@
     <string name="GetQRCode">رمز QR</string>
     <string name="GettingLinkInfo">يتم جلب معلومات الرابط...</string>
     <string name="GifCaption">وصف الصورة المتحركة</string>
-    <string name="GifSavedToDownloadsHint">تم حفظ الصورة المتحركة في التنزيلات</string>
     <string name="GifsTab2">الصور المتحركة</string>
     <string name="GigagroupAlertLearnMore">معرفة المزيد</string>
     <string name="GigagroupAlertText">وصلت مجموعتك إلى الحد المسموح لعدد الأعضاء **200,000**.\n\nيمكنك زيادة هذا الحد بتحويل المجموعة إلى **مجموعة نشر** حيث يمكن للمشرفين فقط النشر.\nمتابعة؟</string>
@@ -1804,7 +1792,6 @@
     <string name="GroupUserCantAdmin">المعذرة، يوجد الكثير من المشرفين في هذه المجموعة.</string>
     <string name="GroupUserCantBot">المعذرة، يوجد الكثير من حسابات البوت في هذه المجموعة.</string>
     <string name="GroupUserLeftError">عذرًا، إذا لم يعد شخص جزءًا من مجموعة؛ يجب أن تكون في جهات اتصاله في تيليجرام لإضافته مرة أخرى.\n\nلاحظ أنه لا يزال بإمكان هذا الشخص الانضمام عبر رابط دعوة المجموعة طالما أنه ليس في قائمة «مستخدمون تمت إزالتهم».</string>
-    <string name="GroupsAndChannels">المجموعات</string>
     <string name="GroupsAndChannelsHelp">غيّر الذين بإمكانهم إضافتك للمجموعات والقنوات.</string>
     <string name="GroupsInCommon">المجموعات المشتركة</string>
     <string name="GroupsInCommonTitle">المجموعات المشتركة</string>
@@ -3003,7 +2990,6 @@
     <string name="PhotoCaption">وصف الصورة</string>
     <string name="PhotoEditorDiscardAlert">هل ترغب حقًا في تجاهل جميع التغييرات؟</string>
     <string name="PhotoSavedHint">تم حفظ الصورة في المعرض</string>
-    <string name="PhotoSavedToDownloadsHint">تم حفظ الصورة في التنزيلات</string>
     <string name="PhotosSavedHint_few">تم حفظ %1$d صور في المعرض</string>
     <string name="PhotosSavedHint_many">تم حفظ %1$d صورة في المعرض</string>
     <string name="PhotosSavedHint_one">تم حفظ الصورة في المعرض</string>
@@ -4046,7 +4032,6 @@
     <string name="VideoPreview">معاينة الفيديو</string>
     <string name="VideoQualityIsTooLow">جودة المقطع المرئي أقل مما ينبغي لتغيير إعدادات الضغط.</string>
     <string name="VideoSavedHint">تم حفظ المقطع المرئي في المعرض</string>
-    <string name="VideoSavedToDownloadsHint">تم حفظ المقطع في التنزيلات</string>
     <string name="VideosSavedHint_few">تم حفظ %1$dمقاطع مرئية في المعرض</string>
     <string name="VideosSavedHint_many">تم حفظ %1$d مقطعًا مرئيًا في المعرض</string>
     <string name="VideosSavedHint_one">تم حفظ المقطع المرئي في المعرض</string>
@@ -4429,7 +4414,16 @@
     <string name="common_open_on_phone">فتح على الهاتف</string>
     <string name="common_signin_button_text">تسجل الدخول</string>
     <string name="common_signin_button_text_long">‏تسجيل الدخول عبر Google</string>
+    <string name="confirm_device_credential_password">استخدام كلمة المرور</string>
+    <string name="default_error_msg">خطأ غير معروف</string>
     <string name="fcm_fallback_notification_channel_label">متنوعة</string>
+    <string name="fingerprint_dialog_touch_sensor">المس زر استشعار بصمة الإصبع</string>
+    <string name="fingerprint_error_hw_not_available">جهاز بصمة الإصبع غير متاح.</string>
+    <string name="fingerprint_error_hw_not_present">لا يحتوي هذا الجهاز على جهاز استشعار بصمات الأصابع.</string>
+    <string name="fingerprint_error_lockout">تم إجراء محاولات كثيرة جدًا. يُرجى المحاولة مرة أخرى لاحقًا.</string>
+    <string name="fingerprint_error_no_fingerprints">ليست هناك بصمات إصبع مسجَّلة.</string>
+    <string name="fingerprint_error_user_canceled">تم إلغاء تشغيل بصمة الإصبع بواسطة المستخدم.</string>
+    <string name="fingerprint_not_recognized">لم يتم التعرف عليها.</string>
     <string name="formatDateAtTime">%1$s الساعة %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">yyyy MMM d</string>
@@ -4449,6 +4443,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">yy.MM.dd</string>
     <string name="formatterYearMax">yyyy.MM.dd</string>
+    <string name="generic_error_no_device_credential">لم يتم ضبط رقم تعريف شخصي أو نقش أو كلمة مرور.</string>
+    <string name="generic_error_no_keyguard">هذا الجهاز لا يتيح استخدام رقم تعريف شخصي أو نقش أو كلمة مرور.</string>
+    <string name="generic_error_user_canceled">ألغى المستخدم المصادقة.</string>
     <string name="google_assistant_verification_channel_name">‏أداة التحقق في خدمة \"مساعد Google\"</string>
     <string name="google_assistant_verification_notification_title">‏\"مساعد Google\" يرسل رسالة</string>
     <string name="items_few">%1$d عناصر</string>

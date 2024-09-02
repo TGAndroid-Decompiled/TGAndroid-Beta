@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_documentAttributeCustomEmoji extends TLRPC$DocumentAttribute {
     public boolean free;
     public boolean text_color;

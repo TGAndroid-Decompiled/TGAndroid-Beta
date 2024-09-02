@@ -8,6 +8,7 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Dispatchers;
 import kotlinx.coroutines.JobKt;
+
 public final class HandlerContext extends HandlerDispatcher {
     private volatile HandlerContext _immediate;
     private final Handler handler;
@@ -48,7 +49,7 @@ public final class HandlerContext extends HandlerDispatcher {
     }
 
     @Override
-    public void mo151dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public void mo162dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         if (this.handler.post(runnable)) {
             return;
         }
@@ -57,20 +58,20 @@ public final class HandlerContext extends HandlerDispatcher {
 
     private final void cancelOnRejection(CoroutineContext coroutineContext, Runnable runnable) {
         JobKt.cancel(coroutineContext, new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed"));
-        Dispatchers.getIO().mo151dispatch(coroutineContext, runnable);
+        Dispatchers.getIO().mo162dispatch(coroutineContext, runnable);
     }
 
     @Override
     public String toString() {
         String stringInternalImpl = toStringInternalImpl();
-        if (stringInternalImpl == null) {
-            String str = this.name;
-            if (str == null) {
-                str = this.handler.toString();
-            }
-            return this.invokeImmediately ? Intrinsics.stringPlus(str, ".immediate") : str;
+        if (stringInternalImpl != null) {
+            return stringInternalImpl;
         }
-        return stringInternalImpl;
+        String str = this.name;
+        if (str == null) {
+            str = this.handler.toString();
+        }
+        return this.invokeImmediately ? Intrinsics.stringPlus(str, ".immediate") : str;
     }
 
     public boolean equals(Object obj) {

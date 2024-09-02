@@ -37,6 +37,7 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SimpleThemeDescription;
+
 public class ChatReactionsEditActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private RadioCell allReactions;
     private ArrayList<TLRPC$TL_availableReaction> availableReactions;
@@ -80,7 +81,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    ChatReactionsEditActivity.this.finishFragment();
+                    ChatReactionsEditActivity.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -94,7 +95,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             this.enableReactionsCell.setTextAndCheck(LocaleController.getString("EnableReactions", R.string.EnableReactions), !this.chatReactions.isEmpty(), false);
             TextCheckCell textCheckCell2 = this.enableReactionsCell;
             textCheckCell2.setBackgroundColor(Theme.getColor(textCheckCell2.isChecked() ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked));
-            this.enableReactionsCell.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.enableReactionsCell.setTypeface(AndroidUtilities.bold());
             this.enableReactionsCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -159,22 +160,22 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i3) {
-                if (i3 != 0) {
-                    if (i3 != 1) {
-                        if (i3 != 3) {
-                            return new RecyclerListView.Holder(new AvailableReactionCell(context, false, false));
-                        }
-                        FrameLayout frameLayout = new FrameLayout(context);
-                        if (ChatReactionsEditActivity.this.contorlsLayout.getParent() != null) {
-                            ((ViewGroup) ChatReactionsEditActivity.this.contorlsLayout.getParent()).removeView(ChatReactionsEditActivity.this.contorlsLayout);
-                        }
-                        frameLayout.addView(ChatReactionsEditActivity.this.contorlsLayout);
-                        frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                        return new RecyclerListView.Holder(frameLayout);
-                    }
+                if (i3 == 0) {
+                    return new RecyclerListView.Holder(new TextInfoPrivacyCell(context));
+                }
+                if (i3 == 1) {
                     return new RecyclerListView.Holder(new HeaderCell(context, 23));
                 }
-                return new RecyclerListView.Holder(new TextInfoPrivacyCell(context));
+                if (i3 != 3) {
+                    return new RecyclerListView.Holder(new AvailableReactionCell(context, false, false));
+                }
+                FrameLayout frameLayout = new FrameLayout(context);
+                if (ChatReactionsEditActivity.this.contorlsLayout.getParent() != null) {
+                    ((ViewGroup) ChatReactionsEditActivity.this.contorlsLayout.getParent()).removeView(ChatReactionsEditActivity.this.contorlsLayout);
+                }
+                frameLayout.addView(ChatReactionsEditActivity.this.contorlsLayout);
+                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(frameLayout);
             }
 
             @Override
@@ -186,9 +187,10 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                         headerCell2.setText(LocaleController.getString("OnlyAllowThisReactions", R.string.OnlyAllowThisReactions));
                         headerCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         return;
-                    } else if (itemViewType != 2) {
-                        return;
                     } else {
+                        if (itemViewType != 2) {
+                            return;
+                        }
                         AvailableReactionCell availableReactionCell = (AvailableReactionCell) viewHolder.itemView;
                         TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) ChatReactionsEditActivity.this.availableReactions.get(i3 - (ChatReactionsEditActivity.this.isChannel ? 2 : 3));
                         availableReactionCell.bind(tLRPC$TL_availableReaction, ChatReactionsEditActivity.this.chatReactions.contains(tLRPC$TL_availableReaction.reaction), ((BaseFragment) ChatReactionsEditActivity.this).currentAccount);
@@ -229,14 +231,14 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
                         return 0;
                     }
                     return i3 == 1 ? 1 : 2;
-                } else if (i3 == 0) {
-                    return 3;
-                } else {
-                    if (i3 == 1) {
-                        return 0;
-                    }
-                    return i3 == 2 ? 1 : 2;
                 }
+                if (i3 == 0) {
+                    return 3;
+                }
+                if (i3 == 1) {
+                    return 0;
+                }
+                return i3 == 2 ? 1 : 2;
             }
         };
         this.listAdapter = adapter;
@@ -395,9 +397,13 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
             TLRPC$ChatReactions tLRPC$ChatReactions = tLRPC$ChatFull.available_reactions;
             if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsAll) {
                 this.startFromType = 0;
-            } else if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsNone) {
+                return;
+            }
+            if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsNone) {
                 this.startFromType = 2;
-            } else if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
+                return;
+            }
+            if (tLRPC$ChatReactions instanceof TLRPC$TL_chatReactionsSome) {
                 TLRPC$TL_chatReactionsSome tLRPC$TL_chatReactionsSome = (TLRPC$TL_chatReactionsSome) tLRPC$ChatReactions;
                 for (int i = 0; i < tLRPC$TL_chatReactionsSome.reactions.size(); i++) {
                     if (tLRPC$TL_chatReactionsSome.reactions.get(i) instanceof TLRPC$TL_reactionEmoji) {

@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
@@ -23,13 +24,16 @@ import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
+
 public class EditTextEffects extends EditText {
+    private static final int SPOILER_TIMEOUT = 10000;
     private static Boolean allowHackingTextCanvasCache;
     private ColorFilter animatedEmojiColorFilter;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiDrawables;
     private SpoilersClickDetector clickDetector;
     private boolean clipToPadding;
     public boolean drawAnimatedEmojiDrawables;
+    private boolean editedWhileQuoteUpdating;
     private boolean isSpoilersRevealed;
     private Layout lastLayout;
     private float lastRippleX;
@@ -40,6 +44,7 @@ public class EditTextEffects extends EditText {
     private Path path;
     private boolean postedSpoilerTimeout;
     private ArrayList<QuoteSpan.Block> quoteBlocks;
+    private boolean quoteBlocksUpdating;
     public int quoteColor;
     private boolean[] quoteUpdateLayout;
     private int quoteUpdatesTries;
@@ -68,8 +73,9 @@ public class EditTextEffects extends EditText {
             }
         });
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        for (SpoilerEffect spoilerEffect : this.spoilers) {
-            spoilerEffect.startRipple(this.lastRippleX, this.lastRippleY, sqrt, true);
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(this.lastRippleX, this.lastRippleY, sqrt, true);
         }
     }
 
@@ -129,8 +135,9 @@ public class EditTextEffects extends EditText {
             }
         });
         float sqrt = (float) Math.sqrt(Math.pow(getWidth(), 2.0d) + Math.pow(getHeight(), 2.0d));
-        for (SpoilerEffect spoilerEffect2 : this.spoilers) {
-            spoilerEffect2.startRipple(f, f2, sqrt);
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(f, f2, sqrt);
         }
     }
 
@@ -160,7 +167,6 @@ public class EditTextEffects extends EditText {
     }
 
     private void checkSpoilerTimeout() {
-        TextStyleSpan[] textStyleSpanArr;
         int i;
         int i2;
         CharSequence text = getLayout() != null ? getLayout().getText() : null;
@@ -242,10 +248,22 @@ public class EditTextEffects extends EditText {
         this.shouldRevealSpoilersByTouch = z;
     }
 
+    public void lambda$dispatchTouchEvent$5() {
+        invalidateQuotes(true);
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z;
         SpoilersClickDetector spoilersClickDetector;
+        if (QuoteSpan.onTouch(motionEvent, getPaddingTop() - getScrollY(), this.quoteBlocks, new Runnable() {
+            @Override
+            public final void run() {
+                EditTextEffects.this.lambda$dispatchTouchEvent$5();
+            }
+        })) {
+            return true;
+        }
         if (this.shouldRevealSpoilersByTouch && (spoilersClickDetector = this.clickDetector) != null && spoilersClickDetector.onTouchEvent(motionEvent)) {
             if (motionEvent.getActionMasked() == 1) {
                 MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
@@ -260,7 +278,6 @@ public class EditTextEffects extends EditText {
     }
 
     public void setSpoilersRevealed(boolean z, boolean z2) {
-        TextStyleSpan[] textStyleSpanArr;
         this.isSpoilersRevealed = z;
         Editable text = getText();
         if (text != null) {
@@ -304,14 +321,15 @@ public class EditTextEffects extends EditText {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY);
         }
         this.path.rewind();
-        for (SpoilerEffect spoilerEffect : this.spoilers) {
-            android.graphics.Rect bounds = spoilerEffect.getBounds();
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            android.graphics.Rect bounds = it.next().getBounds();
             this.path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
         canvas.clipPath(this.path, Region.Op.DIFFERENCE);
         invalidateQuotes(false);
         for (int i = 0; i < this.quoteBlocks.size(); i++) {
-            this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f);
+            this.quoteBlocks.get(i).draw(canvas, 0.0f, getWidth(), this.quoteColor, 1.0f, getPaint());
         }
         updateAnimatedEmoji(false);
         if (this.wrapCanvasToFixClipping) {
@@ -353,14 +371,14 @@ public class EditTextEffects extends EditText {
         this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getMeasuredHeight() + getScrollY()) + super.getExtendedPaddingBottom()) - this.offsetY));
         canvas.save();
         canvas.clipRect(this.rect);
-        for (SpoilerEffect spoilerEffect2 : this.spoilers) {
-            android.graphics.Rect bounds2 = spoilerEffect2.getBounds();
+        for (SpoilerEffect spoilerEffect : this.spoilers) {
+            android.graphics.Rect bounds2 = spoilerEffect.getBounds();
             android.graphics.Rect rect = this.rect;
             int i2 = rect.top;
             int i3 = bounds2.bottom;
             if ((i2 <= i3 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i3 >= i2)) {
-                spoilerEffect2.setColor(spoilerEffect2.insideQuote ? this.quoteColor : getPaint().getColor());
-                spoilerEffect2.draw(canvas);
+                spoilerEffect.setColor(spoilerEffect.insideQuote ? this.quoteColor : getPaint().getColor());
+                spoilerEffect.draw(canvas);
             }
         }
         canvas.restore();
@@ -372,13 +390,22 @@ public class EditTextEffects extends EditText {
             if (!z && this.lastLayout == getLayout() && this.lastTextLength == length) {
                 return;
             }
-            this.animatedEmojiDrawables = AnimatedEmojiSpan.update(AnimatedEmojiDrawable.getCacheTypeForEnterView(), this, this.animatedEmojiDrawables, getLayout());
+            this.animatedEmojiDrawables = AnimatedEmojiSpan.update(emojiCacheType(), this, this.animatedEmojiDrawables, getLayout());
             this.lastLayout = getLayout();
             this.lastTextLength = length;
         }
     }
 
+    protected int emojiCacheType() {
+        return AnimatedEmojiDrawable.getCacheTypeForEnterView();
+    }
+
     public void invalidateQuotes(boolean z) {
+        if (this.quoteBlocksUpdating) {
+            this.editedWhileQuoteUpdating = true;
+            return;
+        }
+        int i = 0;
         int length = (getLayout() == null || getLayout().getText() == null) ? 0 : getLayout().getText().length();
         if (z || this.lastText2Length != length) {
             this.quoteUpdatesTries = 2;
@@ -389,11 +416,22 @@ public class EditTextEffects extends EditText {
                 this.quoteUpdateLayout = new boolean[1];
             }
             this.quoteUpdateLayout[0] = false;
-            this.quoteBlocks = QuoteSpan.updateQuoteBlocks(getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            this.editedWhileQuoteUpdating = false;
+            this.quoteBlocksUpdating = true;
+            this.quoteBlocks = QuoteSpan.updateQuoteBlocks(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            if (this.editedWhileQuoteUpdating) {
+                this.quoteBlocks = QuoteSpan.updateQuoteBlocks(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            }
+            this.quoteBlocksUpdating = false;
+            this.editedWhileQuoteUpdating = false;
             if (this.quoteUpdateLayout[0]) {
                 resetFontMetricsCache();
             }
             this.quoteUpdatesTries--;
+            if (getLayout() != null && getLayout().getText() != null) {
+                i = getLayout().getText().length();
+            }
+            this.lastText2Length = i;
         }
     }
 
@@ -404,7 +442,6 @@ public class EditTextEffects extends EditText {
     }
 
     public void invalidateEffects() {
-        TextStyleSpan[] textStyleSpanArr;
         Editable text = getText();
         if (text != null) {
             for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) text.getSpans(0, text.length(), TextStyleSpan.class)) {
@@ -444,5 +481,9 @@ public class EditTextEffects extends EditText {
 
     public void setClipToPadding(boolean z) {
         this.clipToPadding = z;
+    }
+
+    public CharSequence getTextToUse() {
+        return QuoteSpan.stripNewlineHacks(getText());
     }
 }

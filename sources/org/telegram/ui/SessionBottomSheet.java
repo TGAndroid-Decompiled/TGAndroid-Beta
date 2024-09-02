@@ -37,6 +37,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.SessionBottomSheet;
+
 public class SessionBottomSheet extends BottomSheet {
     RLottieImageView imageView;
     BaseFragment parentFragment;
@@ -75,7 +76,7 @@ public class SessionBottomSheet extends BottomSheet {
         linearLayout.addView(this.imageView, LayoutHelper.createLinear(70, 70, 1, 0, 16, 0, 0));
         TextView textView = new TextView(parentActivity);
         textView.setTextSize(2, 20.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         textView.setGravity(17);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 21, 12, 21, 0));
@@ -180,8 +181,7 @@ public class SessionBottomSheet extends BottomSheet {
             itemView4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Switch r3 = itemView4.switchView;
-                    r3.setChecked(!r3.isChecked(), true);
+                    itemView4.switchView.setChecked(!r3.isChecked(), true);
                     tLRPC$TL_authorization.encrypted_requests_disabled = !itemView4.switchView.isChecked();
                     SessionBottomSheet.this.uploadSessionSettings();
                 }
@@ -201,8 +201,7 @@ public class SessionBottomSheet extends BottomSheet {
         itemView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Switch r3 = itemView5.switchView;
-                r3.setChecked(!r3.isChecked(), true);
+                itemView5.switchView.setChecked(!r3.isChecked(), true);
                 tLRPC$TL_authorization.call_requests_disabled = !itemView5.switchView.isChecked();
                 SessionBottomSheet.this.uploadSessionSettings();
             }
@@ -215,7 +214,7 @@ public class SessionBottomSheet extends BottomSheet {
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
             textView3.setTextSize(1, 14.0f);
-            textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView3.setTypeface(AndroidUtilities.bold());
             textView3.setText(LocaleController.getString("TerminateSession", R.string.TerminateSession));
             textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));

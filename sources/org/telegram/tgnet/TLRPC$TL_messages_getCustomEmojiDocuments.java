@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_getCustomEmojiDocuments extends TLObject {
     public ArrayList<Long> document_id = new ArrayList<>();
 

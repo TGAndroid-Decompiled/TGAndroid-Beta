@@ -36,6 +36,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.SMSStatsActivity;
 import org.telegram.ui.SMSSubscribeSheet;
+
 public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     protected void appCenterLogInternal(Throwable th) {
@@ -133,11 +134,11 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean extendDrawer(ArrayList<DrawerLayoutAdapter.Item> arrayList) {
         if (SMSJobController.getInstance(UserConfig.selectedAccount).isAvailable()) {
-            CharSequence string = LocaleController.getString((int) R.string.SmsJobsMenu);
+            CharSequence string = LocaleController.getString(2131696901);
             if (MessagesController.getGlobalMainSettings().getBoolean("newppsms", true)) {
                 string = PremiumPreviewFragment.applyNewSpan(string.toString());
             }
-            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, R.drawable.left_sms).onClick(new View.OnClickListener() {
+            DrawerLayoutAdapter.Item onClick = new DrawerLayoutAdapter.Item(93, string, 2131231233).onClick(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
                     ApplicationLoaderImpl.lambda$extendDrawer$3(view);
@@ -162,7 +163,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (i == 2) {
             sMSJobController.checkSelectedSIMCard();
             if (sMSJobController.getSelectedSIM() == null) {
-                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString((int) R.string.SmsNoSimTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString((int) R.string.SmsNoSimMessage))).setPositiveButton(LocaleController.getString((int) R.string.OK), null).show();
+                new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131696906)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696905))).setPositiveButton(LocaleController.getString(2131694845), null).show();
                 return;
             }
         } else if (i == 1) {
@@ -184,15 +185,15 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         sMSJobController.checkSelectedSIMCard();
         if (sMSJobController.getSelectedSIM() == null) {
             sMSJobController.setState(2);
-            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString((int) R.string.SmsNoSimTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString((int) R.string.SmsNoSimMessage))).setPositiveButton(LocaleController.getString((int) R.string.OK), null).show();
-            return;
+            new AlertDialog.Builder(LaunchActivity.instance).setTitle(LocaleController.getString(2131696906)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(2131696905))).setPositiveButton(LocaleController.getString(2131694845), null).show();
+        } else {
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ApplicationLoaderImpl.lambda$extendDrawer$1(SMSJobController.this, tLObject, tLRPC$TL_error);
+                }
+            });
         }
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_smsjobs$TL_smsjobs_join(), new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ApplicationLoaderImpl.lambda$extendDrawer$1(SMSJobController.this, tLObject, tLRPC$TL_error);
-            }
-        });
     }
 
     public static void lambda$extendDrawer$1(final SMSJobController sMSJobController, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
@@ -207,16 +208,18 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     public static void lambda$extendDrawer$0(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, SMSJobController sMSJobController) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString((int) R.string.UnknownError)).show();
-        } else {
-            sMSJobController.setState(3);
-            sMSJobController.loadStatus(true);
-            SMSSubscribeSheet.showSubscribed(LaunchActivity.instance, null);
-            BaseFragment lastFragment = LaunchActivity.getLastFragment();
-            if (lastFragment != null) {
-                lastFragment.presentFragment(new SMSStatsActivity());
-            }
+            return;
+        }
+        if (tLObject instanceof TLRPC$TL_boolFalse) {
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            return;
+        }
+        sMSJobController.setState(3);
+        sMSJobController.loadStatus(true);
+        SMSSubscribeSheet.showSubscribed(LaunchActivity.instance, null);
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.presentFragment(new SMSStatsActivity());
         }
     }
 
@@ -231,18 +234,18 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean onSuggestionFill(String str, CharSequence[] charSequenceArr, boolean[] zArr) {
         if (str == null && SMSJobController.getInstance(UserConfig.selectedAccount).hasError()) {
-            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString((int) R.string.SmsJobsErrorHintTitle));
-            charSequenceArr[1] = LocaleController.getString((int) R.string.SmsJobsErrorHintMessage);
+            charSequenceArr[0] = new SpannableStringBuilder().append(SMSStatsActivity.error(17)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(2131696900));
+            charSequenceArr[1] = LocaleController.getString(2131696899);
             zArr[0] = false;
             return true;
-        } else if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
-            charSequenceArr[0] = LocaleController.getString((int) R.string.SmsJobsPremiumHintTitle);
-            charSequenceArr[1] = LocaleController.getString((int) R.string.SmsJobsPremiumHintMessage);
+        }
+        if ("PREMIUM_SMSJOBS".equals(str) && SMSJobController.getInstance(UserConfig.selectedAccount).currentState != 3) {
+            charSequenceArr[0] = LocaleController.getString(2131696903);
+            charSequenceArr[1] = LocaleController.getString(2131696902);
             zArr[0] = true;
             return true;
-        } else {
-            return super.onSuggestionFill(str, charSequenceArr, zArr);
         }
+        return super.onSuggestionFill(str, charSequenceArr, zArr);
     }
 
     @Override
@@ -261,23 +264,23 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 }, 800L);
             }
             return true;
-        } else if ("PREMIUM_SMSJOBS".equals(str)) {
-            SMSJobController sMSJobController = SMSJobController.getInstance(UserConfig.selectedAccount);
-            TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = sMSJobController.isEligible;
-            if (tL_smsjobs$TL_smsjobs_eligibleToJoin != null) {
-                SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
-            } else {
-                sMSJobController.checkIsEligible(true, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        ApplicationLoaderImpl.lambda$onSuggestionClick$5((TL_smsjobs$TL_smsjobs_eligibleToJoin) obj);
-                    }
-                });
-            }
-            return true;
-        } else {
+        }
+        if (!"PREMIUM_SMSJOBS".equals(str)) {
             return false;
         }
+        SMSJobController sMSJobController = SMSJobController.getInstance(UserConfig.selectedAccount);
+        TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = sMSJobController.isEligible;
+        if (tL_smsjobs$TL_smsjobs_eligibleToJoin != null) {
+            SMSSubscribeSheet.show(LaunchActivity.instance, tL_smsjobs$TL_smsjobs_eligibleToJoin, null, null);
+        } else {
+            sMSJobController.checkIsEligible(true, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    ApplicationLoaderImpl.lambda$onSuggestionClick$5((TL_smsjobs$TL_smsjobs_eligibleToJoin) obj);
+                }
+            });
+        }
+        return true;
     }
 
     public static void lambda$onSuggestionClick$4(SMSStatsActivity sMSStatsActivity) {
@@ -294,19 +297,19 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
 
     @Override
     public boolean consumePush(int i, JSONObject jSONObject) {
-        if (jSONObject != null) {
-            try {
-                if ("SMSJOB".equals(jSONObject.getString("loc_key"))) {
-                    SMSJobController.getInstance(UserConfig.selectedAccount).processJobUpdate(jSONObject.getJSONObject("custom").getString("job_id"));
-                    return true;
-                }
-                return false;
-            } catch (Exception e) {
-                FileLog.e(e);
+        if (jSONObject == null) {
+            return false;
+        }
+        try {
+            if (!"SMSJOB".equals(jSONObject.getString("loc_key"))) {
                 return false;
             }
+            SMSJobController.getInstance(UserConfig.selectedAccount).processJobUpdate(jSONObject.getJSONObject("custom").getString("job_id"));
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
         }
-        return false;
     }
 
     @Override

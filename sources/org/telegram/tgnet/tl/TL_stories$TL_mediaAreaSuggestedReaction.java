@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$Reaction;
+
 public class TL_stories$TL_mediaAreaSuggestedReaction extends TL_stories$MediaArea {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -9,7 +10,7 @@ public class TL_stories$TL_mediaAreaSuggestedReaction extends TL_stories$MediaAr
         this.flags = readInt32;
         this.dark = (readInt32 & 1) != 0;
         this.flipped = (readInt32 & 2) != 0;
-        this.coordinates = TL_stories$TL_mediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.coordinates = TL_stories$MediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.reaction = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 

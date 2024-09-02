@@ -2,6 +2,7 @@ package kotlinx.coroutines;
 
 import java.util.concurrent.CancellationException;
 import kotlin.jvm.internal.Intrinsics;
+
 public final class JobCancellationException extends CancellationException implements CopyableThrowable<JobCancellationException> {
     public final Job job;
 
@@ -24,12 +25,12 @@ public final class JobCancellationException extends CancellationException implem
 
     @Override
     public JobCancellationException createCopy() {
-        if (DebugKt.getDEBUG()) {
-            String message = getMessage();
-            Intrinsics.checkNotNull(message);
-            return new JobCancellationException(message, this, this.job);
+        if (!DebugKt.getDEBUG()) {
+            return null;
         }
-        return null;
+        String message = getMessage();
+        Intrinsics.checkNotNull(message);
+        return new JobCancellationException(message, this, this.job);
     }
 
     @Override

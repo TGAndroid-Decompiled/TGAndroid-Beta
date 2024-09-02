@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputPeerPhotoFileLocation extends TLRPC$InputFileLocation {
     public boolean big;
     public TLRPC$InputPeer peer;

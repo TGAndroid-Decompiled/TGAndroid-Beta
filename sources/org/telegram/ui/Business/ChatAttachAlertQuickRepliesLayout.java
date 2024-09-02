@@ -23,19 +23,13 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$FileLocation;
-import org.telegram.tgnet.TLRPC$InputPeer;
-import org.telegram.tgnet.TLRPC$TL_messages_sendQuickReplyMessages;
 import org.telegram.tgnet.TLRPC$User;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -52,6 +46,7 @@ import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchField;
+
 public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private EmptyTextProgressView emptyView;
     private FrameLayout frameLayout;
@@ -79,7 +74,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public void sendSelectedItems(boolean z, int i) {
+    public void sendSelectedItems(boolean z, int i, long j, boolean z2) {
     }
 
     public static class UserCell extends FrameLayout {
@@ -122,7 +117,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
-                    this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+                    this.statusTextView.setText("");
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
@@ -135,8 +130,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
 
         public void lambda$setStatus$3() {
             if (this.currentUser != null) {
-                PhoneFormat phoneFormat = PhoneFormat.getInstance();
-                this.formattedPhoneNumber = phoneFormat.format("+" + this.currentUser.phone);
+                this.formattedPhoneNumber = PhoneFormat.getInstance().format("+" + this.currentUser.phone);
                 this.formattedPhoneNumberUser = this.currentUser;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -233,7 +227,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
                 super.onScrolled(i, i2);
             }
         };
-        NotificationCenter.getInstance(UserConfig.selectedAccount).listen(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
+        NotificationCenter.getInstance(UserConfig.selectedAccount).listenGlobal(this.listView, NotificationCenter.emojiLoaded, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 ChatAttachAlertQuickRepliesLayout.this.lambda$new$1((Object[]) obj);
@@ -323,21 +317,14 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
             int positionInSectionForPosition = this.listAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
+            } else {
+                item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
-            item = this.listAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (item instanceof QuickRepliesController.QuickReply) {
-            int i2 = UserConfig.selectedAccount;
-            TLRPC$TL_messages_sendQuickReplyMessages tLRPC$TL_messages_sendQuickReplyMessages = new TLRPC$TL_messages_sendQuickReplyMessages();
-            BaseFragment baseFragment = this.parentAlert.baseFragment;
-            if (baseFragment instanceof ChatActivityInterface) {
-                TLRPC$InputPeer inputPeer = MessagesController.getInstance(i2).getInputPeer(((ChatActivityInterface) baseFragment).getDialogId());
-                tLRPC$TL_messages_sendQuickReplyMessages.peer = inputPeer;
-                if (inputPeer == null) {
-                    return;
-                }
-                tLRPC$TL_messages_sendQuickReplyMessages.shortcut_id = ((QuickRepliesController.QuickReply) item).id;
-                ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_messages_sendQuickReplyMessages, null);
+            Object obj = this.parentAlert.baseFragment;
+            if (obj instanceof ChatActivityInterface) {
+                QuickRepliesController.getInstance(UserConfig.selectedAccount).sendQuickReplyTo(((ChatActivityInterface) obj).getDialogId(), (QuickRepliesController.QuickReply) item);
                 this.parentAlert.dismiss();
             }
         }
@@ -351,7 +338,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     @Override
     public int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
-            return ConnectionsManager.DEFAULT_DATACENTER_ID;
+            return Integer.MAX_VALUE;
         }
         View childAt = this.listView.getChildAt(0);
         RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
@@ -434,7 +421,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
         Property property = View.ALPHA;
         float[] fArr = new float[1];
         fArr[0] = z ? 1.0f : 0.0f;
-        animatorArr[0] = ObjectAnimator.ofFloat(view, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(view, (Property<View, Float>) property, fArr);
         animatorSet2.playTogether(animatorArr);
         this.shadowAnimation.setDuration(150L);
         this.shadowAnimation.addListener(new AnimatorListenerAdapter() {
@@ -461,20 +448,20 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     }
 
     public int getCurrentTop() {
-        if (this.listView.getChildCount() != 0) {
-            int i = 0;
-            View childAt = this.listView.getChildAt(0);
-            RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
-            if (holder != null) {
-                int paddingTop = this.listView.getPaddingTop();
-                if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
-                    i = childAt.getTop();
-                }
-                return paddingTop - i;
-            }
+        if (this.listView.getChildCount() == 0) {
             return -1000;
         }
-        return -1000;
+        int i = 0;
+        View childAt = this.listView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.listView.findContainingViewHolder(childAt);
+        if (holder == null) {
+            return -1000;
+        }
+        int paddingTop = this.listView.getPaddingTop();
+        if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
+            i = childAt.getTop();
+        }
+        return paddingTop - i;
     }
 
     @Override
@@ -491,8 +478,7 @@ public class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAle
     public void updateEmptyViewPosition() {
         View childAt;
         if (this.emptyView.getVisibility() == 0 && (childAt = this.listView.getChildAt(0)) != null) {
-            EmptyTextProgressView emptyTextProgressView = this.emptyView;
-            emptyTextProgressView.setTranslationY(((emptyTextProgressView.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
+            this.emptyView.setTranslationY(((r1.getMeasuredHeight() - getMeasuredHeight()) + childAt.getTop()) / 2);
         }
     }
 

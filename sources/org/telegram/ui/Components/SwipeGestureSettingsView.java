@@ -13,13 +13,13 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.NumberPicker;
+
 public class SwipeGestureSettingsView extends FrameLayout {
     int[] backgroundKeys;
     float colorProgress;
@@ -201,7 +201,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
                 i2 = R.raw.swipe_disabled;
             }
             int i3 = i2;
-            rLottieDrawableArr[i] = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             updateIconColor(i);
         }
         return this.icons[i];
@@ -250,7 +250,10 @@ public class SwipeGestureSettingsView extends FrameLayout {
         super.onInitializeAccessibilityEvent(accessibilityEvent);
         if (accessibilityEvent.getEventType() == 1) {
             int value = this.picker.getValue() + 1;
-            setContentDescription(this.strings[(value > this.picker.getMaxValue() || value < 0) ? 0 : 0]);
+            if (value > this.picker.getMaxValue() || value < 0) {
+                value = 0;
+            }
+            setContentDescription(this.strings[value]);
             this.picker.changeValueByOne(true);
         }
     }

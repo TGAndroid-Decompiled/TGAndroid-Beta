@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Scegli tema</string>
     <string name="ChooseYourLanguage">Scegli la tua lingua</string>
     <string name="ChooseYourLanguageOther">Altro</string>
-    <string name="ChromeCustomTabs">Browser in-app</string>
-    <string name="ChromeCustomTabsInfo">Apri i link esterni all\'interno dell\'app</string>
     <string name="ClearButton">Cancella</string>
     <string name="ClearCache">Svuota cache</string>
     <string name="ClearCacheFewChatsTitle">Svuota cache per %1$s</string>
@@ -1189,7 +1187,6 @@
     <string name="DeleteBackground_other">Elimina %1$d sfondi</string>
     <string name="DeleteBackground_two">Elimina %1$d sfondi</string>
     <string name="DeleteBackground_zero">Elimina %1$d sfondi</string>
-    <string name="DeleteBanUser">Rimuovi utente</string>
     <string name="DeleteCalls">Elimina chiamate</string>
     <string name="DeleteCallsForEveryone">Elimina per tutti</string>
     <string name="DeleteChannelForAll">Elimina per tutti gli iscritti</string>
@@ -1434,8 +1431,6 @@
     <string name="EventLogEditedMedia">un1 ha modificato un media:</string>
     <string name="EventLogEditedMediaCaption">un1 ha modificato un media e la didascalia:</string>
     <string name="EventLogEditedMessages">un1 ha modificato questo messaggio:</string>
-    <string name="EventLogEmpty">**Ancora nessuna azione**\n\nI membri e gli amministratori del\ngruppo non hanno eseguito azioni\ndi servizio nelle ultime 48 ore.</string>
-    <string name="EventLogEmptyChannel">**Ancora nessuna azione**\n\nGli amministratori del canale non\nhanno eseguito azioni di servizio\nnelle ultime 48 ore.</string>
     <string name="EventLogEmptySearch">**Nessuna azione trovata**\n\nNon sono state trovate azioni recenti\nche rispondono alla tua richiesta.</string>
     <string name="EventLogEmptyTextSearch">Non sono state trovate azioni recenti contenenti \'**%1$s**\' .</string>
     <string name="EventLogEndedVoiceChat">un1 ha terminato la chat vocale</string>
@@ -1534,15 +1529,8 @@
     <string name="FeaturedStickers">Sticker in primo piano</string>
     <string name="FeaturedStickersInfo">Questi sticker sono al momento in primo piano su Telegram. Puoi aggiungere sticker personalizzati tramite il bot @stickers.</string>
     <string name="February">Febbraio</string>
-    <string name="FileSavedHint">File salvato nei download</string>
     <string name="FileUploadLimit">La dimensione del file non dovrebbe superare i %1$s</string>
     <string name="FilesDataUsage">File</string>
-    <string name="FilesSavedHint_few">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_many">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_one">File salvato nei download</string>
-    <string name="FilesSavedHint_other">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_two">%1$d file salvati nei download</string>
-    <string name="FilesSavedHint_zero">%1$d file salvati nei download</string>
     <string name="Files_few">%1$d file</string>
     <string name="Files_many">%1$d file</string>
     <string name="Files_one">%1$d file</string>
@@ -1751,7 +1739,6 @@
     <string name="GetQRCode">Ottieni QR</string>
     <string name="GettingLinkInfo">Recupero le info del link...</string>
     <string name="GifCaption">Didascalia GIF</string>
-    <string name="GifSavedToDownloadsHint">GIF salvata nei download</string>
     <string name="GifsTab2">GIF</string>
     <string name="GigagroupAlertLearnMore">SCOPRI DI PIÙ</string>
     <string name="GigagroupAlertText">Il tuo gruppo ha raggiunto il limite di **200.000** membri.\n\nPuoi aumentare questo limite convertendo il gruppo in un **gruppo broadcast** dove solo gli amministratori possono scrivere.\nTi interessa?</string>
@@ -1804,7 +1791,6 @@
     <string name="GroupUserCantAdmin">Spiacenti, troppi amministratori in questo gruppo.</string>
     <string name="GroupUserCantBot">Spiacenti, troppi bot in questo gruppo.</string>
     <string name="GroupUserLeftError">Spiacenti, se una persona non fa più parte di un gruppo, devi essere nei suoi contatti di Telegram per poterla riaggiungere.\n\nTieni presente che può comunque unirsi con il link d\'invito del gruppo purché non sia nell\'elenco Utenti rimossi.</string>
-    <string name="GroupsAndChannels">Gruppi</string>
     <string name="GroupsAndChannelsHelp">Scegli chi può aggiungerti a gruppi e canali.</string>
     <string name="GroupsInCommon">Gruppi in comune</string>
     <string name="GroupsInCommonTitle">Gruppi in comune</string>
@@ -3003,7 +2989,6 @@
     <string name="PhotoCaption">Didascalia foto</string>
     <string name="PhotoEditorDiscardAlert">Sei sicuro di voler scartare tutte le modifiche?</string>
     <string name="PhotoSavedHint">Foto salvata nella galleria</string>
-    <string name="PhotoSavedToDownloadsHint">Foto salvata nei download</string>
     <string name="PhotosSavedHint_few">%1$d foto salvate nella galleria</string>
     <string name="PhotosSavedHint_many">%1$d foto salvate nella galleria</string>
     <string name="PhotosSavedHint_one">Foto salvata nella galleria</string>
@@ -4046,7 +4031,6 @@
     <string name="VideoPreview">Anteprima video</string>
     <string name="VideoQualityIsTooLow">Qualità video troppo bassa per cambiare le impostazioni di compressione.</string>
     <string name="VideoSavedHint">Video salvato nella galleria</string>
-    <string name="VideoSavedToDownloadsHint">Video salvato nei download</string>
     <string name="VideosSavedHint_few">%1$d video salvati nella galleria</string>
     <string name="VideosSavedHint_many">%1$d video salvati nella galleria</string>
     <string name="VideosSavedHint_one">Video salvato nella galleria</string>
@@ -4429,7 +4413,16 @@
     <string name="common_open_on_phone">Apri sul telefono</string>
     <string name="common_signin_button_text">Accedi</string>
     <string name="common_signin_button_text_long">Accedi con Google</string>
+    <string name="confirm_device_credential_password">Utilizza password</string>
+    <string name="default_error_msg">Errore sconosciuto</string>
     <string name="fcm_fallback_notification_channel_label">Varie</string>
+    <string name="fingerprint_dialog_touch_sensor">Tocca sensore impronte</string>
+    <string name="fingerprint_error_hw_not_available">Hardware per l\'impronta non disponibile.</string>
+    <string name="fingerprint_error_hw_not_present">Questo dispositivo non è dotato di sensore di impronte</string>
+    <string name="fingerprint_error_lockout">È stato effettuato un numero eccessivo di tentativi. Riprova più tardi.</string>
+    <string name="fingerprint_error_no_fingerprints">Nessuna impronta digitale registrata.</string>
+    <string name="fingerprint_error_user_canceled">Operazione di autenticazione dell\'impronta annullata dall\'utente.</string>
+    <string name="fingerprint_not_recognized">Non riconosciuta</string>
     <string name="formatDateAtTime">%1$s alle %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">d MMM yyyy</string>
@@ -4449,6 +4442,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd.MM.yy</string>
     <string name="formatterYearMax">dd.MM.yyyy</string>
+    <string name="generic_error_no_device_credential">Non hai impostato PIN, sequenza o password.</string>
+    <string name="generic_error_no_keyguard">Questo dispositivo non supporta il PIN, la sequenza o la password.</string>
+    <string name="generic_error_user_canceled">Autenticazione annullata dall\'utente.</string>
     <string name="google_assistant_verification_channel_name">Assistant verifier</string>
     <string name="google_assistant_verification_notification_title">L\'Assistente Google sta inviando il messaggio</string>
     <string name="items_few">%1$d oggetti</string>

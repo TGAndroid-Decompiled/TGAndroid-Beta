@@ -1,6 +1,7 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ChatObject;
+
 public final class ChatObject$Call$$ExternalSyntheticLambda0 implements Runnable {
     public final ChatObject.Call f$0;
 
@@ -10,6 +11,6 @@ public final class ChatObject$Call$$ExternalSyntheticLambda0 implements Runnable
 
     @Override
     public final void run() {
-        ChatObject.Call.m166$r8$lambda$A9Iyjy8qm5XwdmVhsjek1P93bY(this.f$0);
+        ChatObject.Call.m182$r8$lambda$A9Iyjy8qm5XwdmVhsjek1P93bY(this.f$0);
     }
 }

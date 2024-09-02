@@ -11,6 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.CheckBoxCell;
+
 public class ClearHistoryAlert extends BottomSheet {
     private boolean autoDeleteOnly;
     private CheckBoxCell cell;
@@ -62,7 +63,7 @@ public class ClearHistoryAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
@@ -137,10 +138,13 @@ public class ClearHistoryAlert extends BottomSheet {
             this.setTimerButton.setVisibility(0);
             if (z) {
                 this.setTimerButton.animate().alpha(1.0f).setDuration(180L).start();
+                return;
             } else {
                 this.setTimerButton.setAlpha(1.0f);
+                return;
             }
-        } else if (z) {
+        }
+        if (z) {
             this.setTimerButton.animate().alpha(0.0f).setDuration(180L).start();
         } else {
             this.setTimerButton.setVisibility(4);

@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import java.util.Map;
+
 public class RTCStats {
     private final String id;
     private final Map<String, Object> members;
@@ -59,13 +60,15 @@ public class RTCStats {
                 appendValue(sb, objArr[i]);
             }
             sb.append(']');
-        } else if (obj instanceof String) {
-            sb.append('\"');
-            sb.append(obj);
-            sb.append('\"');
-        } else {
-            sb.append(obj);
+            return;
         }
+        if (obj instanceof String) {
+            sb.append('\"');
+            sb.append(obj);
+            sb.append('\"');
+            return;
+        }
+        sb.append(obj);
     }
 
     @CalledByNative

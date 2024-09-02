@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputMediaEmpty extends TLRPC$InputMedia {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

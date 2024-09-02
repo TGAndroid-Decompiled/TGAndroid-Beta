@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_resetAuthorization extends TLObject {
     public long hash;
 

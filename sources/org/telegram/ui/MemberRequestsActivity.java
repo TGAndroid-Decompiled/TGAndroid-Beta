@@ -4,13 +4,13 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
+
 public class MemberRequestsActivity extends BaseFragment {
     private final MemberRequestsDelegate delegate;
 
@@ -19,7 +19,7 @@ public class MemberRequestsActivity extends BaseFragment {
             @Override
             public void onImportersChanged(String str, boolean z, boolean z2) {
                 if (z2) {
-                    ((BaseFragment) MemberRequestsActivity.this).actionBar.setSearchFieldText(BuildConfig.APP_CENTER_HASH);
+                    ((BaseFragment) MemberRequestsActivity.this).actionBar.setSearchFieldText("");
                 } else {
                     super.onImportersChanged(str, z, z2);
                 }
@@ -36,7 +36,7 @@ public class MemberRequestsActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    MemberRequestsActivity.this.finishFragment();
+                    MemberRequestsActivity.this.lambda$onBackPressed$306();
                 }
             }
         });

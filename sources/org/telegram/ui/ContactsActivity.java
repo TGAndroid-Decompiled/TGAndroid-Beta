@@ -40,7 +40,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -50,7 +49,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SharedConfig;
@@ -86,6 +84,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
+
 public class ContactsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private boolean allowBots;
     private boolean allowSelf;
@@ -245,7 +244,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 }
                 showOrUpdateActionMode(profileSearchCell);
                 return;
-            } else if (item instanceof TLRPC$User) {
+            }
+            if (item instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) item;
                 if (this.searchListViewAdapter.isGlobalSearch(i2)) {
                     ArrayList<TLRPC$User> arrayList = new ArrayList<>();
@@ -260,23 +260,24 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         return;
                     }
                     return;
-                } else if (this.createSecretChat) {
+                }
+                if (this.createSecretChat) {
                     if (tLRPC$User.id == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
                         return;
                     }
                     this.creatingChat = true;
                     SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), tLRPC$User);
                     return;
-                } else {
-                    Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", tLRPC$User.id);
-                    if (getMessagesController().checkCanOpenChat(bundle, this)) {
-                        presentFragment(new ChatActivity(bundle), this.needFinishFragment);
-                        return;
-                    }
+                }
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", tLRPC$User.id);
+                if (getMessagesController().checkCanOpenChat(bundle, this)) {
+                    presentFragment(new ChatActivity(bundle), this.needFinishFragment);
                     return;
                 }
-            } else if (item instanceof String) {
+                return;
+            }
+            if (item instanceof String) {
                 String str = (String) item;
                 if (str.equals("section")) {
                     return;
@@ -285,13 +286,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 newContactBottomSheet.setInitialPhoneNumber(str, true);
                 newContactBottomSheet.show();
                 return;
-            } else if (item instanceof ContactsController.Contact) {
+            }
+            if (item instanceof ContactsController.Contact) {
                 ContactsController.Contact contact = (ContactsController.Contact) item;
                 AlertsCreator.createContactInviteDialog(this, contact.first_name, contact.last_name, contact.phones.get(0));
                 return;
-            } else {
-                return;
             }
+            return;
         }
         int sectionForPosition = this.listViewAdapter.getSectionForPosition(i2);
         int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i2);
@@ -319,7 +320,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 if (positionInSectionForPosition == 0) {
                     presentFragment(new InviteContactsActivity());
                     return;
-                } else if (positionInSectionForPosition == 1 && this.hasGps) {
+                }
+                if (positionInSectionForPosition == 1 && this.hasGps) {
                     int i3 = Build.VERSION.SDK_INT;
                     if (i3 >= 23 && (parentActivity = getParentActivity()) != null && parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
                         presentFragment(new ActionIntroActivity(1));
@@ -341,10 +343,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         presentFragment(new PeopleNearbyActivity());
                         return;
                     }
-                } else {
-                    return;
                 }
-            } else if (i != 0) {
+                return;
+            }
+            if (i != 0) {
                 if (positionInSectionForPosition == 0) {
                     long j = this.chatId;
                     if (j == 0) {
@@ -354,10 +356,12 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     return;
                 }
                 return;
-            } else if (positionInSectionForPosition == 0) {
+            }
+            if (positionInSectionForPosition == 0) {
                 presentFragment(new GroupCreateActivity(new Bundle()), false);
                 return;
-            } else if (positionInSectionForPosition == 1) {
+            }
+            if (positionInSectionForPosition == 1) {
                 Bundle bundle2 = new Bundle();
                 bundle2.putBoolean("onlyUsers", true);
                 bundle2.putBoolean("destroyAfterSelect", true);
@@ -366,20 +370,21 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 bundle2.putBoolean("allowSelf", false);
                 presentFragment(new ContactsActivity(bundle2), false);
                 return;
-            } else if (positionInSectionForPosition == 2) {
+            }
+            if (positionInSectionForPosition == 2) {
                 SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                 if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
                     Bundle bundle3 = new Bundle();
                     bundle3.putInt("step", 0);
                     presentFragment(new ChannelCreateActivity(bundle3));
                     return;
+                } else {
+                    presentFragment(new ActionIntroActivity(0));
+                    globalMainSettings.edit().putBoolean("channel_intro", true).commit();
+                    return;
                 }
-                presentFragment(new ActionIntroActivity(0));
-                globalMainSettings.edit().putBoolean("channel_intro", true).commit();
-                return;
-            } else {
-                return;
             }
+            return;
         }
         Object item2 = this.listViewAdapter.getItem(contactsAdapter.getSectionForPosition(i2), this.listViewAdapter.getPositionInSectionForPosition(i2));
         if (item2 instanceof TLRPC$User) {
@@ -388,18 +393,24 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 LongSparseArray<TLRPC$User> longSparseArray2 = this.ignoreUsers;
                 if (longSparseArray2 == null || longSparseArray2.indexOfKey(tLRPC$User2.id) < 0) {
                     didSelectResult(tLRPC$User2, true, null);
+                    return;
                 }
-            } else if (this.createSecretChat) {
+                return;
+            }
+            if (this.createSecretChat) {
                 this.creatingChat = true;
                 SecretChatHelper.getInstance(this.currentAccount).startSecretChat(getParentActivity(), tLRPC$User2);
-            } else {
-                Bundle bundle4 = new Bundle();
-                bundle4.putLong("user_id", tLRPC$User2.id);
-                if (getMessagesController().checkCanOpenChat(bundle4, this)) {
-                    presentFragment(new ChatActivity(bundle4), this.needFinishFragment);
-                }
+                return;
             }
-        } else if (item2 instanceof ContactsController.Contact) {
+            Bundle bundle4 = new Bundle();
+            bundle4.putLong("user_id", tLRPC$User2.id);
+            if (getMessagesController().checkCanOpenChat(bundle4, this)) {
+                presentFragment(new ChatActivity(bundle4), this.needFinishFragment);
+                return;
+            }
+            return;
+        }
+        if (item2 instanceof ContactsController.Contact) {
             ContactsController.Contact contact2 = (ContactsController.Contact) item2;
             final String str2 = !contact2.phones.isEmpty() ? contact2.phones.get(0) : null;
             if (str2 == null || getParentActivity() == null) {
@@ -504,10 +515,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$onItemClick$2(String str, long j, TLRPC$User tLRPC$User) {
-            SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
+            MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit().putBoolean("stories_" + str, false).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -516,10 +526,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         }
 
         public void lambda$onItemClick$3(String str, long j, TLRPC$User tLRPC$User) {
-            SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
-            edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
+            MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit().putBoolean("stories_" + str, true).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0L);
-            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -579,13 +588,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             this.selectedContacts.remove(dialogId);
             userCell.setChecked(false, true);
             return false;
-        } else if (userCell.getCurrentObject() instanceof TLRPC$User) {
-            this.selectedContacts.put(dialogId, (TLRPC$User) userCell.getCurrentObject());
-            userCell.setChecked(true, true);
-            return true;
-        } else {
+        }
+        if (!(userCell.getCurrentObject() instanceof TLRPC$User)) {
             return false;
         }
+        this.selectedContacts.put(dialogId, (TLRPC$User) userCell.getCurrentObject());
+        userCell.setChecked(true, true);
+        return true;
     }
 
     public boolean addOrRemoveSelectedContact(ProfileSearchCell profileSearchCell) {
@@ -594,13 +603,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             this.selectedContacts.remove(dialogId);
             profileSearchCell.setChecked(false, true);
             return false;
-        } else if (profileSearchCell.getUser() != null) {
-            this.selectedContacts.put(dialogId, profileSearchCell.getUser());
-            profileSearchCell.setChecked(true, true);
-            return true;
-        } else {
+        }
+        if (profileSearchCell.getUser() == null) {
             return false;
         }
+        this.selectedContacts.put(dialogId, profileSearchCell.getUser());
+        profileSearchCell.setChecked(true, true);
+        return true;
     }
 
     public void showOrUpdateActionMode(Object obj) {
@@ -698,7 +707,8 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                         FileLog.e(e);
                         return;
                     }
-                } else if (this.channelId != 0) {
+                }
+                if (this.channelId != 0) {
                     TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.channelId));
                     AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                     if (ChatObject.canAddAdmins(chat)) {
@@ -758,11 +768,10 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                                     EditText editText2 = editTextBoldCursor;
                                     editText2.setSelection(editText2.length());
                                 } else {
-                                    if (!obj.equals(BuildConfig.APP_CENTER_HASH + intValue)) {
+                                    if (!obj.equals("" + intValue)) {
+                                        editTextBoldCursor.setText("" + intValue);
                                         EditText editText3 = editTextBoldCursor;
-                                        editText3.setText(BuildConfig.APP_CENTER_HASH + intValue);
-                                        EditText editText4 = editTextBoldCursor;
-                                        editText4.setSelection(editText4.length());
+                                        editText3.setSelection(editText3.length());
                                     }
                                 }
                             }
@@ -807,7 +816,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             }
         }
         if (this.needFinishFragment) {
-            finishFragment();
+            lambda$onBackPressed$306();
         }
     }
 
@@ -982,7 +991,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 contactsAdapter.setStories(getMessagesController().getStoriesController().getHiddenList(), true);
             }
             MessagesController.getInstance(this.currentAccount).getStoriesController().loadHiddenStories();
-        } else if (i == NotificationCenter.contactsDidLoad) {
+            return;
+        }
+        if (i == NotificationCenter.contactsDidLoad) {
             ContactsAdapter contactsAdapter2 = this.listViewAdapter;
             if (contactsAdapter2 != null) {
                 if (!this.sortByName) {
@@ -995,9 +1006,13 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 SearchAdapter searchAdapter = this.searchListViewAdapter;
                 if (adapter == searchAdapter) {
                     searchAdapter.searchDialogs(this.searchQuery);
+                    return;
                 }
+                return;
             }
-        } else if (i == NotificationCenter.updateInterfaces) {
+            return;
+        }
+        if (i == NotificationCenter.updateInterfaces) {
             int intValue = ((Integer) objArr[0]).intValue();
             if ((MessagesController.UPDATE_MASK_AVATAR & intValue) != 0 || (MessagesController.UPDATE_MASK_NAME & intValue) != 0 || (MessagesController.UPDATE_MASK_STATUS & intValue) != 0) {
                 updateVisibleRows(intValue);
@@ -1006,17 +1021,23 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 return;
             }
             scheduleSort();
-        } else if (i == NotificationCenter.encryptedChatCreated) {
+            return;
+        }
+        if (i == NotificationCenter.encryptedChatCreated) {
             if (this.createSecretChat && this.creatingChat) {
+                TLRPC$EncryptedChat tLRPC$EncryptedChat = (TLRPC$EncryptedChat) objArr[0];
                 Bundle bundle = new Bundle();
-                bundle.putInt("enc_id", ((TLRPC$EncryptedChat) objArr[0]).id);
+                bundle.putInt("enc_id", tLRPC$EncryptedChat.id);
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                 presentFragment(new ChatActivity(bundle), false);
+                return;
             }
-        } else if (i != NotificationCenter.closeChats || this.creatingChat) {
-        } else {
-            removeSelfFromStack(true);
+            return;
         }
+        if (i != NotificationCenter.closeChats || this.creatingChat) {
+            return;
+        }
+        removeSelfFromStack(true);
     }
 
     private void scheduleSort() {
@@ -1052,7 +1073,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         Property property = View.TRANSLATION_Y;
         float[] fArr = new float[1];
         fArr[0] = this.floatingHidden ? AndroidUtilities.dp(100.0f) : 0;
-        animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
+        animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
         animatorSet.playTogether(animatorArr);
         animatorSet.setDuration(300L);
         animatorSet.setInterpolator(this.floatingInterpolator);
@@ -1082,8 +1103,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     View childAt = ContactsActivity.this.listView.getChildAt(i);
                     if (ContactsActivity.this.listView.getChildAdapterPosition(childAt) > findLastVisibleItemPosition) {
                         childAt.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(ContactsActivity.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ContactsActivity.this.listView.getMeasuredHeight()) * 100.0f));
+                        int min = (int) ((Math.min(ContactsActivity.this.listView.getMeasuredHeight(), Math.max(0, childAt.getTop())) / ContactsActivity.this.listView.getMeasuredHeight()) * 100.0f);
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, (Property<View, Float>) View.ALPHA, 0.0f, 1.0f);
+                        ofFloat.setStartDelay(min);
                         ofFloat.setDuration(200L);
                         animatorSet.playTogether(ofFloat);
                     }
@@ -1207,27 +1229,27 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             for (int i2 = 0; i2 < 6; i2++) {
                 AnimatorSet animatorSet3 = new AnimatorSet();
                 if (i2 == 0) {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.0f, 0.9f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.0f, 0.9f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.0f, 0.9f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.9f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.0f, 0.9f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.0f, 0.9f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.0f, 0.9f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.0f, 0.9f));
                     animatorSet3.setDuration(0.12765957f * duration);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_OUT);
                 } else if (i2 == 1) {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.9f, 1.06f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.9f, 1.06f));
                     animatorSet3.setDuration(0.3617021f * duration);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else if (i2 == 2) {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.06f, 0.9f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.06f, 0.9f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.06f, 0.9f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.06f, 0.9f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.06f, 0.9f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.06f, 0.9f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.06f, 0.9f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.06f, 0.9f));
                     animatorSet3.setDuration(0.21276596f * duration);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else if (i2 == 3) {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 0.9f, 1.03f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 0.9f, 1.03f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.9f, 1.03f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.9f, 1.03f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 0.9f, 1.03f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.9f, 1.03f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.9f, 1.03f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.9f, 1.03f));
                     animatorSet3.setDuration(duration * 0.10638298f);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else if (i2 == 4) {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.03f, 0.98f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.03f, 0.98f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.03f, 0.98f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.03f, 0.98f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.03f, 0.98f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.03f, 0.98f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.03f, 0.98f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.03f, 0.98f));
                     animatorSet3.setDuration(duration * 0.10638298f);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else {
-                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 0.98f, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 0.98f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.98f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.98f, 1.0f));
+                    animatorSet3.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 0.98f, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.98f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.98f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.98f, 1.0f));
                     animatorSet3.setDuration(0.08510638f * duration);
                     animatorSet3.setInterpolator(CubicBezierInterpolator.EASE_IN);
                 }
@@ -1240,28 +1262,28 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 AnimatorSet animatorSet4 = new AnimatorSet();
                 if (i3 == 0) {
                     Animator[] animatorArr = new Animator[i];
-                    animatorArr[0] = ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.0f, 0.9f);
-                    animatorArr[1] = ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.0f, 0.9f);
-                    animatorArr[2] = ObjectAnimator.ofFloat(view, View.SCALE_X, 1.0f, 0.9f);
-                    animatorArr[3] = ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.0f, 0.9f);
+                    animatorArr[0] = ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.0f, 0.9f);
+                    animatorArr[1] = ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.0f, 0.9f);
+                    animatorArr[2] = ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.0f, 0.9f);
+                    animatorArr[3] = ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.0f, 0.9f);
                     animatorSet4.playTogether(animatorArr);
                     animatorSet4.setDuration(0.19444445f * duration);
                     animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_OUT);
                 } else if (i3 == 1) {
-                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.9f, 1.06f));
+                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.9f, 1.06f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.9f, 1.06f));
                     animatorSet4.setDuration(0.22222222f * duration);
                     animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else if (i3 == 2) {
-                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.06f, 0.92f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.06f, 0.92f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.06f, 0.92f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.06f, 0.92f));
+                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.06f, 0.92f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.06f, 0.92f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.06f, 0.92f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.06f, 0.92f));
                     animatorSet4.setDuration(0.19444445f * duration);
                     animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else if (i3 == 3) {
-                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 0.92f, 1.02f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 0.92f, 1.02f), ObjectAnimator.ofFloat(view, View.SCALE_X, 0.92f, 1.02f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 0.92f, 1.02f));
+                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 0.92f, 1.02f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 0.92f, 1.02f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 0.92f, 1.02f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 0.92f, 1.02f));
                     animatorSet4.setDuration(0.25f * duration);
                     animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
                 } else {
                     i = 4;
-                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_X, 1.02f, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, View.SCALE_Y, 1.02f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_X, 1.02f, 1.0f), ObjectAnimator.ofFloat(view, View.SCALE_Y, 1.02f, 1.0f));
+                    animatorSet4.playTogether(ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_X, 1.02f, 1.0f), ObjectAnimator.ofFloat(this.floatingButton, (Property<RLottieImageView, Float>) View.SCALE_Y, 1.02f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_X, 1.02f, 1.0f), ObjectAnimator.ofFloat(view, (Property<View, Float>) View.SCALE_Y, 1.02f, 1.0f));
                     animatorSet4.setDuration(duration * 0.10638298f);
                     animatorSet4.setInterpolator(CubicBezierInterpolator.EASE_IN);
                     animatorSet4.setStartDelay(j);

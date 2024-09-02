@@ -3,6 +3,7 @@ package org.telegram.messenger.video;
 import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
+import android.media.MediaMuxer;
 import android.os.Build;
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import org.telegram.messenger.video.audio_input.AudioInput;
 import org.telegram.messenger.video.audio_input.GeneralAudioInput;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class MediaCodecVideoConvertor {
     private static final int MEDIACODEC_TIMEOUT_DEFAULT = 2500;
     private static final int MEDIACODEC_TIMEOUT_INCREASED = 22000;
@@ -30,10 +32,13 @@ public class MediaCodecVideoConvertor {
     private MediaController.VideoConvertorListener callback;
     private long endPresentationTime;
     private MediaExtractor extractor;
-    private MP4Builder mediaMuxer;
+    private Muxer muxer;
     private String outputMimeType;
 
     public boolean convertVideo(ConvertVideoParams convertVideoParams) {
+        if (convertVideoParams.isSticker) {
+            return WebmEncoder.convert(convertVideoParams, 0);
+        }
         this.callback = convertVideoParams.callback;
         return convertVideoInternal(convertVideoParams, false, 0);
     }
@@ -43,7 +48,7 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r89, boolean r90, int r91) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r87, boolean r88, int r89) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 
@@ -76,14 +81,16 @@ public class MediaCodecVideoConvertor {
             String findGoodHevcEncoder = SharedConfig.findGoodHevcEncoder();
             createEncoderByType = findGoodHevcEncoder != null ? MediaCodec.createByCodecName(findGoodHevcEncoder) : null;
         } else {
-            this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-            createEncoderByType = MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+            if (this.outputMimeType.equals("video/hevc")) {
+                this.outputMimeType = "video/avc";
+            }
+            createEncoderByType = MediaCodec.createEncoderByType(this.outputMimeType);
         }
-        if (createEncoderByType == null && this.outputMimeType.equals("video/hevc")) {
-            this.outputMimeType = MediaController.VIDEO_MIME_TYPE;
-            return MediaCodec.createEncoderByType(MediaController.VIDEO_MIME_TYPE);
+        if (createEncoderByType != null || !this.outputMimeType.equals("video/hevc")) {
+            return createEncoderByType;
         }
-        return createEncoderByType;
+        this.outputMimeType = "video/avc";
+        return MediaCodec.createEncoderByType("video/avc");
     }
 
     public static void cutOfNalData(String str, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
@@ -107,8 +114,86 @@ public class MediaCodecVideoConvertor {
         return mediaCodec.getName().equals("c2.mtk.avc.encoder");
     }
 
-    private long readAndWriteTracks(android.media.MediaExtractor r29, org.telegram.messenger.video.MP4Builder r30, android.media.MediaCodec.BufferInfo r31, long r32, long r34, long r36, java.io.File r38, boolean r39) throws java.lang.Exception {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.readAndWriteTracks(android.media.MediaExtractor, org.telegram.messenger.video.MP4Builder, android.media.MediaCodec$BufferInfo, long, long, long, java.io.File, boolean):long");
+    public static class Muxer {
+        public final MediaMuxer mediaMuxer;
+        public final MP4Builder mp4Builder;
+        private boolean started;
+
+        public Muxer(MP4Builder mP4Builder) {
+            this.started = false;
+            this.mp4Builder = mP4Builder;
+            this.mediaMuxer = null;
+        }
+
+        public Muxer(MediaMuxer mediaMuxer) {
+            this.started = false;
+            this.mp4Builder = null;
+            this.mediaMuxer = mediaMuxer;
+        }
+
+        public int addTrack(MediaFormat mediaFormat, boolean z) {
+            MediaMuxer mediaMuxer = this.mediaMuxer;
+            if (mediaMuxer != null) {
+                return mediaMuxer.addTrack(mediaFormat);
+            }
+            MP4Builder mP4Builder = this.mp4Builder;
+            if (mP4Builder != null) {
+                return mP4Builder.addTrack(mediaFormat, z);
+            }
+            return 0;
+        }
+
+        public long writeSampleData(int i, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, boolean z) throws Exception {
+            MediaMuxer mediaMuxer = this.mediaMuxer;
+            if (mediaMuxer != null) {
+                if (!this.started) {
+                    mediaMuxer.start();
+                    this.started = true;
+                }
+                this.mediaMuxer.writeSampleData(i, byteBuffer, bufferInfo);
+                return 0L;
+            }
+            MP4Builder mP4Builder = this.mp4Builder;
+            if (mP4Builder != null) {
+                return mP4Builder.writeSampleData(i, byteBuffer, bufferInfo, z);
+            }
+            return 0L;
+        }
+
+        public long getLastFrameTimestamp(int i, MediaCodec.BufferInfo bufferInfo) {
+            if (this.mediaMuxer != null) {
+                return bufferInfo.presentationTimeUs;
+            }
+            MP4Builder mP4Builder = this.mp4Builder;
+            if (mP4Builder != null) {
+                return mP4Builder.getLastFrameTimestamp(i);
+            }
+            return 0L;
+        }
+
+        public void start() {
+            MediaMuxer mediaMuxer = this.mediaMuxer;
+            if (mediaMuxer != null) {
+                mediaMuxer.start();
+            }
+        }
+
+        public void finishMovie() throws Exception {
+            MediaMuxer mediaMuxer = this.mediaMuxer;
+            if (mediaMuxer != null) {
+                mediaMuxer.stop();
+                this.mediaMuxer.release();
+            } else {
+                MP4Builder mP4Builder = this.mp4Builder;
+                if (mP4Builder != null) {
+                    mP4Builder.finishMovie();
+                }
+            }
+        }
+    }
+
+    private long readAndWriteTracks(android.media.MediaExtractor r29, org.telegram.messenger.video.MediaCodecVideoConvertor.Muxer r30, android.media.MediaCodec.BufferInfo r31, long r32, long r34, long r36, java.io.File r38, boolean r39) throws java.lang.Exception {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.readAndWriteTracks(android.media.MediaExtractor, org.telegram.messenger.video.MediaCodecVideoConvertor$Muxer, android.media.MediaCodec$BufferInfo, long, long, long, java.io.File, boolean):long");
     }
 
     private void checkConversionCanceled() {
@@ -120,17 +205,15 @@ public class MediaCodecVideoConvertor {
 
     private static String hdrFragmentShader(int i, int i2, int i3, int i4, boolean z, StoryEntry.HDRInfo hDRInfo) {
         String readRes;
-        if (z) {
-            if (hDRInfo.getHDRType() == 1) {
-                readRes = RLottieDrawable.readRes(null, R.raw.yuv_hlg2rgb);
-            } else {
-                readRes = RLottieDrawable.readRes(null, R.raw.yuv_pq2rgb);
-            }
-            String replace = readRes.replace("$dstWidth", i3 + ".0");
-            String replace2 = replace.replace("$dstHeight", i4 + ".0");
-            return replace2 + "\nin vec2 vTextureCoord;\nout vec4 fragColor;\nvoid main() {\n    fragColor = TEX(vTextureCoord);\n}";
+        if (!z) {
+            return "precision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n    gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
         }
-        return "#version 320 es\nprecision mediump float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nout vec4 fragColor;\nvoid main() {\nfragColor = texture(sTexture, vTextureCoord);\n}\n";
+        if (hDRInfo.getHDRType() == 1) {
+            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_hlg);
+        } else {
+            readRes = RLottieDrawable.readRes(null, R.raw.hdr2sdr_pq);
+        }
+        return readRes.replace("$dstWidth", i3 + ".0").replace("$dstHeight", i4 + ".0") + "\nvarying vec2 vTextureCoord;\nvoid main() {\n    gl_FragColor = TEX(vTextureCoord);\n}";
     }
 
     private static String createFragmentShader(int i, int i2, int i3, int i4, boolean z, int i5) {
@@ -161,7 +244,7 @@ public class MediaCodecVideoConvertor {
         arrayList.add(string);
         if ("video/dolby-vision".equals(string)) {
             arrayList.add("video/hevc");
-            arrayList.add(MediaController.VIDEO_MIME_TYPE);
+            arrayList.add("video/avc");
         }
         Exception exc = null;
         while (!arrayList.isEmpty()) {
@@ -197,6 +280,7 @@ public class MediaCodecVideoConvertor {
         boolean isPhoto;
         boolean isRound;
         boolean isSecret;
+        boolean isSticker;
         boolean isStory;
         ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
         String messagePath;
@@ -214,6 +298,7 @@ public class MediaCodecVideoConvertor {
         public ArrayList<MixedSoundInfo> soundInfos = new ArrayList<>();
         long startTime;
         String videoPath;
+        float volume;
         long wallpaperPeerId;
 
         private ConvertVideoParams() {
@@ -248,6 +333,7 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.gradientTopColor = videoEditedInfo.gradientTopColor;
             convertVideoParams.gradientBottomColor = videoEditedInfo.gradientBottomColor;
             convertVideoParams.muted = videoEditedInfo.muted;
+            convertVideoParams.volume = videoEditedInfo.volume;
             convertVideoParams.isStory = videoEditedInfo.isStory;
             convertVideoParams.hdrInfo = videoEditedInfo.hdrInfo;
             convertVideoParams.isDark = videoEditedInfo.isDark;
@@ -256,6 +342,7 @@ public class MediaCodecVideoConvertor {
             convertVideoParams.messagePath = videoEditedInfo.messagePath;
             convertVideoParams.messageVideoMaskPath = videoEditedInfo.messageVideoMaskPath;
             convertVideoParams.backgroundPath = videoEditedInfo.backgroundPath;
+            convertVideoParams.isSticker = videoEditedInfo.isSticker;
             return convertVideoParams;
         }
     }

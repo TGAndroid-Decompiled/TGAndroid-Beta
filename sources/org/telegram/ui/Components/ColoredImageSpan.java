@@ -5,18 +5,24 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ColoredImageSpan extends ReplacementSpan {
     private float alpha;
     private Runnable checkColorDelegate;
     int colorKey;
-    Drawable drawable;
+    public Drawable drawable;
     int drawableColor;
+    private Paint.FontMetricsInt fontMetrics;
+    private boolean isRelativeSize;
     private int overrideColor;
+    public boolean recolorDrawable;
+    private float rotate;
     private float scaleX;
     private float scaleY;
     private int size;
@@ -25,6 +31,7 @@ public class ColoredImageSpan extends ReplacementSpan {
     private int topOffset;
     private float translateX;
     private float translateY;
+    public boolean useLinkPaintColor;
     boolean usePaintColor;
     private final int verticalAlignment;
 
@@ -41,7 +48,9 @@ public class ColoredImageSpan extends ReplacementSpan {
     }
 
     public ColoredImageSpan(Drawable drawable, int i) {
+        this.recolorDrawable = true;
         this.usePaintColor = true;
+        this.useLinkPaintColor = false;
         this.topOffset = 0;
         this.alpha = 1.0f;
         this.spaceScaleX = 1.0f;
@@ -52,6 +61,17 @@ public class ColoredImageSpan extends ReplacementSpan {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }
         this.verticalAlignment = i;
+    }
+
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(fontMetricsInt.descent) + Math.abs(this.fontMetrics.ascent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
     }
 
     public void setSize(int i) {
@@ -72,6 +92,10 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.translateY = f2;
     }
 
+    public void rotate(float f) {
+        this.rotate = f;
+    }
+
     public void setWidth(int i) {
         this.sizeWidth = i;
     }
@@ -80,7 +104,18 @@ public class ColoredImageSpan extends ReplacementSpan {
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         float abs;
         int i3;
-        if (this.sizeWidth != 0) {
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            abs = Math.abs(this.scaleX) * Math.abs(this.spaceScaleX);
+            i3 = this.size;
+        } else if (this.sizeWidth != 0) {
             abs = Math.abs(this.scaleX);
             i3 = this.sizeWidth;
         } else {
@@ -98,10 +133,12 @@ public class ColoredImageSpan extends ReplacementSpan {
         Runnable runnable = this.checkColorDelegate;
         if (runnable != null) {
             runnable.run();
-        } else {
+        } else if (this.recolorDrawable) {
             int i6 = this.overrideColor;
             if (i6 == 0) {
-                if (this.usePaintColor) {
+                if (this.useLinkPaintColor && (paint instanceof TextPaint)) {
+                    i6 = ((TextPaint) paint).linkColor;
+                } else if (this.usePaintColor) {
                     i6 = paint.getColor();
                 } else {
                     i6 = Theme.getColor(this.colorKey);
@@ -131,15 +168,17 @@ public class ColoredImageSpan extends ReplacementSpan {
             }
         }
         canvas.translate(f + this.translateX, i7 + this.translateY);
-        Drawable drawable3 = this.drawable;
-        if (drawable3 != null) {
+        if (this.drawable != null) {
             float f2 = this.scaleX;
             if (f2 != 1.0f || this.scaleY != 1.0f) {
-                canvas.scale(f2, this.scaleY, 0.0f, drawable3.getBounds().centerY());
+                canvas.scale(f2, this.scaleY, 0.0f, r2.getBounds().centerY());
             }
-            float f3 = this.alpha;
+            float f3 = this.rotate;
             if (f3 != 1.0f) {
-                this.drawable.setAlpha((int) (f3 * 255.0f));
+                canvas.rotate(f3, this.drawable.getBounds().centerX(), this.drawable.getBounds().centerY());
+            }
+            if (this.alpha != 1.0f || paint.getAlpha() != 255) {
+                this.drawable.setAlpha((int) (this.alpha * paint.getAlpha()));
             }
             this.drawable.draw(canvas);
         }

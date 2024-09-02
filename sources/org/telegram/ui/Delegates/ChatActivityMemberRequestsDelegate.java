@@ -23,8 +23,11 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.AvatarsImageView;
+import org.telegram.ui.Components.BlurredFrameLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MemberRequestsBottomSheet;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
+
 public class ChatActivityMemberRequestsDelegate {
     private AvatarsImageView avatarsView;
     private MemberRequestsBottomSheet bottomSheet;
@@ -40,13 +43,15 @@ public class ChatActivityMemberRequestsDelegate {
     private float pendingRequestsEnterOffset;
     private TextView requestsCountTextView;
     private FrameLayout root;
+    private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public interface Callback {
         void onEnterOffsetChanged();
     }
 
-    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, TLRPC$Chat tLRPC$Chat, Callback callback) {
+    public ChatActivityMemberRequestsDelegate(BaseFragment baseFragment, SizeNotifierFrameLayout sizeNotifierFrameLayout, TLRPC$Chat tLRPC$Chat, Callback callback) {
         this.fragment = baseFragment;
+        this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
         this.currentChat = tLRPC$Chat;
         this.currentAccount = baseFragment.getCurrentAccount();
         this.callback = callback;
@@ -54,10 +59,9 @@ public class ChatActivityMemberRequestsDelegate {
 
     public View getView() {
         if (this.root == null) {
-            FrameLayout frameLayout = new FrameLayout(this.fragment.getParentActivity());
-            this.root = frameLayout;
-            frameLayout.setBackgroundResource(R.drawable.blockpanel);
-            this.root.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground), PorterDuff.Mode.MULTIPLY));
+            BlurredFrameLayout blurredFrameLayout = new BlurredFrameLayout(this.fragment.getParentActivity(), this.sizeNotifierFrameLayout);
+            this.root = blurredFrameLayout;
+            blurredFrameLayout.setBackgroundColor(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground));
             this.root.setVisibility(8);
             this.pendingRequestsEnterOffset = -getViewHeight();
             View view = new View(this.fragment.getParentActivity());
@@ -75,8 +79,7 @@ public class ChatActivityMemberRequestsDelegate {
             AvatarsImageView avatarsImageView = new AvatarsImageView(this, this.fragment.getParentActivity(), false) {
                 @Override
                 public void onMeasure(int i, int i2) {
-                    int i3 = this.avatarsDrawable.count;
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i3 == 0 ? 0 : ((i3 - 1) * 20) + 24), 1073741824), i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.avatarsDrawable.count == 0 ? 0 : ((r2 - 1) * 20) + 24), 1073741824), i2);
                 }
             };
             this.avatarsView = avatarsImageView;
@@ -90,7 +93,7 @@ public class ChatActivityMemberRequestsDelegate {
             this.requestsCountTextView.setSingleLine();
             this.requestsCountTextView.setText((CharSequence) null);
             this.requestsCountTextView.setTextColor(this.fragment.getThemedColor(Theme.key_chat_topPanelTitle));
-            this.requestsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.requestsCountTextView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(this.requestsCountTextView, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView = new ImageView(this.fragment.getParentActivity());
             this.closeView = imageView;
@@ -175,7 +178,9 @@ public class ChatActivityMemberRequestsDelegate {
             }
             animatePendingRequests(false, z);
             this.pendingRequestsCount = 0;
-        } else if (this.pendingRequestsCount != i) {
+            return;
+        }
+        if (this.pendingRequestsCount != i) {
             this.pendingRequestsCount = i;
             this.requestsCountTextView.setText(LocaleController.formatPluralString("JoinUsersRequests", i, new Object[0]));
             animatePendingRequests(true, z);
@@ -266,7 +271,6 @@ public class ChatActivityMemberRequestsDelegate {
     }
 
     public void fillThemeDescriptions(List<ThemeDescription> list) {
-        list.add(new ThemeDescription(this.root, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_chat_topPanelBackground));
         list.add(new ThemeDescription(this.requestsCountTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
         list.add(new ThemeDescription(this.closeView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chat_topPanelClose));
     }

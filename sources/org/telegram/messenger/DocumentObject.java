@@ -16,6 +16,7 @@ import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$ThemeSettings;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DocumentObject {
 
     public static class ThemeDocument extends TLRPC$TL_document {
@@ -54,28 +55,45 @@ public class DocumentObject {
         }
     }
 
-    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f) {
+    public static boolean containsPhotoSizeType(ArrayList<TLRPC$PhotoSize> arrayList, String str) {
+        if (str == null) {
+            return false;
+        }
         int size = arrayList.size();
+        for (int i = 0; i < size; i++) {
+            if (str.equalsIgnoreCase(arrayList.get(i).type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f) {
+        return getSvgThumb(arrayList, i, f, false);
+    }
+
+    public static SvgHelper.SvgDrawable getSvgThumb(ArrayList<TLRPC$PhotoSize> arrayList, int i, float f, boolean z) {
+        int size = arrayList.size();
+        int i2 = 512;
         TLRPC$TL_photoPathSize tLRPC$TL_photoPathSize = null;
-        int i2 = 0;
-        int i3 = 0;
+        int i3 = 512;
         for (int i4 = 0; i4 < size; i4++) {
             TLRPC$PhotoSize tLRPC$PhotoSize = arrayList.get(i4);
             if (tLRPC$PhotoSize instanceof TLRPC$TL_photoPathSize) {
                 tLRPC$TL_photoPathSize = (TLRPC$TL_photoPathSize) tLRPC$PhotoSize;
-            } else if (tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) {
+            } else if ((tLRPC$PhotoSize instanceof TLRPC$TL_photoSize) && z) {
                 i2 = tLRPC$PhotoSize.w;
                 i3 = tLRPC$PhotoSize.h;
             }
-            if (tLRPC$TL_photoPathSize != null && i2 != 0 && i3 != 0) {
-                SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tLRPC$TL_photoPathSize.svgPath, i2, i3);
-                if (drawableByPath != null) {
-                    drawableByPath.setupGradient(i, f, false);
-                }
-                return drawableByPath;
-            }
         }
-        return null;
+        if (tLRPC$TL_photoPathSize == null || i2 == 0 || i3 == 0) {
+            return null;
+        }
+        SvgHelper.SvgDrawable drawableByPath = SvgHelper.getDrawableByPath(tLRPC$TL_photoPathSize.svgPath, i2, i3);
+        if (drawableByPath != null) {
+            drawableByPath.setupGradient(i, f, false);
+        }
+        return drawableByPath;
     }
 
     public static SvgHelper.SvgDrawable getCircleThumb(float f, int i, float f2) {
@@ -88,8 +106,8 @@ public class DocumentObject {
             SvgHelper.Circle circle = new SvgHelper.Circle(256.0f, 256.0f, f * 512.0f);
             svgDrawable.commands.add(circle);
             svgDrawable.paints.put(circle, new Paint(1));
-            svgDrawable.width = LiteMode.FLAG_CALLS_ANIMATIONS;
-            svgDrawable.height = LiteMode.FLAG_CALLS_ANIMATIONS;
+            svgDrawable.width = 512;
+            svgDrawable.height = 512;
             svgDrawable.setupGradient(i, f2, false);
             return svgDrawable;
         } catch (Exception e) {
@@ -109,8 +127,8 @@ public class DocumentObject {
         SvgHelper.SvgDrawable svgDrawable = new SvgHelper.SvgDrawable();
         svgDrawable.commands.add(path);
         svgDrawable.paints.put(path, new Paint(1));
-        svgDrawable.width = LiteMode.FLAG_CALLS_ANIMATIONS;
-        svgDrawable.height = LiteMode.FLAG_CALLS_ANIMATIONS;
+        svgDrawable.width = 512;
+        svgDrawable.height = 512;
         svgDrawable.setupGradient(i, f, false);
         return svgDrawable;
     }
@@ -134,9 +152,9 @@ public class DocumentObject {
                 int size2 = tLRPC$Document.attributes.size();
                 int i5 = 0;
                 while (true) {
-                    i2 = LiteMode.FLAG_CALLS_ANIMATIONS;
+                    i2 = 512;
                     if (i5 >= size2) {
-                        i3 = LiteMode.FLAG_CALLS_ANIMATIONS;
+                        i3 = 512;
                         break;
                     }
                     tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i5);

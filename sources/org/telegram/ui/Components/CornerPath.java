@@ -5,9 +5,12 @@ import android.graphics.RectF;
 import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
+
 public class CornerPath extends Path {
     private static ArrayList<RectF> recycled;
     private boolean isPathCreated;
+    private int paddingX;
+    private int paddingY;
     private final ArrayList<RectF> rects;
     private float rectsUnionDiffDelta;
     protected boolean useCornerPathImplementation;
@@ -34,26 +37,20 @@ public class CornerPath extends Path {
             return;
         }
         if (this.rects.size() > 0) {
-            ArrayList<RectF> arrayList = this.rects;
-            if (arrayList.get(arrayList.size() - 1).contains(rectF)) {
+            if (this.rects.get(r9.size() - 1).contains(rectF)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
-            float f = rectF.top;
-            ArrayList<RectF> arrayList2 = this.rects;
-            if (Math.abs(f - arrayList2.get(arrayList2.size() - 1).top) <= this.rectsUnionDiffDelta) {
-                float f2 = rectF.bottom;
-                ArrayList<RectF> arrayList3 = this.rects;
-                if (Math.abs(f2 - arrayList3.get(arrayList3.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
-                    ArrayList<RectF> arrayList4 = this.rects;
-                    arrayList4.get(arrayList4.size() - 1).union(rectF);
+            if (Math.abs(rectF.top - this.rects.get(r1.size() - 1).top) <= this.rectsUnionDiffDelta) {
+                if (Math.abs(rectF.bottom - this.rects.get(r1.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
+                    this.rects.get(r9.size() - 1).union(rectF);
                     this.isPathCreated = false;
                 }
             }
         }
-        ArrayList<RectF> arrayList5 = recycled;
-        if (arrayList5 != null && arrayList5.size() > 0) {
+        ArrayList<RectF> arrayList = recycled;
+        if (arrayList != null && arrayList.size() > 0) {
             rectF2 = recycled.remove(0);
         } else {
             rectF2 = new RectF();
@@ -71,24 +68,20 @@ public class CornerPath extends Path {
             return;
         }
         if (this.rects.size() > 0) {
-            ArrayList<RectF> arrayList = this.rects;
-            if (arrayList.get(arrayList.size() - 1).contains(f, f2, f3, f4)) {
+            if (this.rects.get(r7.size() - 1).contains(f, f2, f3, f4)) {
                 return;
             }
         }
         if (this.rects.size() > 0) {
-            ArrayList<RectF> arrayList2 = this.rects;
-            if (Math.abs(f2 - arrayList2.get(arrayList2.size() - 1).top) <= this.rectsUnionDiffDelta) {
-                ArrayList<RectF> arrayList3 = this.rects;
-                if (Math.abs(f4 - arrayList3.get(arrayList3.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
-                    ArrayList<RectF> arrayList4 = this.rects;
-                    arrayList4.get(arrayList4.size() - 1).union(f, f2, f3, f4);
+            if (Math.abs(f2 - this.rects.get(r7.size() - 1).top) <= this.rectsUnionDiffDelta) {
+                if (Math.abs(f4 - this.rects.get(r7.size() - 1).bottom) <= this.rectsUnionDiffDelta) {
+                    this.rects.get(r7.size() - 1).union(f, f2, f3, f4);
                     this.isPathCreated = false;
                 }
             }
         }
-        ArrayList<RectF> arrayList5 = recycled;
-        if (arrayList5 != null && arrayList5.size() > 0) {
+        ArrayList<RectF> arrayList = recycled;
+        if (arrayList != null && arrayList.size() > 0) {
             rectF = recycled.remove(0);
         } else {
             rectF = new RectF();
@@ -147,12 +140,12 @@ public class CornerPath extends Path {
         }
         boolean z = false;
         if (list.size() == 1) {
-            super.addRect(list.get(0).left, list.get(0).top, list.get(0).right, list.get(0).bottom, Path.Direction.CW);
+            super.addRect(list.get(0).left - this.paddingX, list.get(0).top - this.paddingY, list.get(0).right + this.paddingX, list.get(0).bottom + this.paddingY, Path.Direction.CW);
             return;
         }
         RectF rectF = list.get(0);
         int size = list.size() - 1;
-        super.moveTo(rectF.left, rectF.top);
+        super.moveTo(rectF.left - this.paddingX, rectF.top - this.paddingY);
         for (int i = 1; i < list.size(); i++) {
             RectF rectF2 = list.get(i);
             if (rectF2.width() != 0.0f) {
@@ -165,8 +158,8 @@ public class CornerPath extends Path {
                         float f5 = rectF2.left;
                         if (f4 >= f5) {
                             if (f3 != f5) {
-                                super.lineTo(f3, f2);
-                                super.lineTo(rectF2.left, rectF2.top);
+                                super.lineTo(f3 - this.paddingX, f2);
+                                super.lineTo(rectF2.left - this.paddingX, rectF2.top);
                             }
                             rectF = rectF2;
                         }
@@ -177,20 +170,20 @@ public class CornerPath extends Path {
                 break;
             }
         }
-        super.lineTo(rectF.left, rectF.bottom);
-        super.lineTo(rectF.right, rectF.bottom);
+        super.lineTo(rectF.left - this.paddingX, rectF.bottom + this.paddingY);
+        super.lineTo(rectF.right + this.paddingX, rectF.bottom + this.paddingY);
         for (int i2 = size - 1; i2 >= 0; i2--) {
             RectF rectF3 = list.get(i2);
             if (rectF3.width() != 0.0f) {
                 float f6 = rectF.right;
                 if (f6 != rectF3.right) {
-                    super.lineTo(f6, rectF.top);
-                    super.lineTo(rectF3.right, rectF.top);
+                    super.lineTo(f6 + this.paddingX, rectF.top);
+                    super.lineTo(rectF3.right + this.paddingX, rectF.top);
                 }
                 rectF = rectF3;
             }
         }
-        super.lineTo(rectF.right, rectF.top);
+        super.lineTo(rectF.right + this.paddingX, rectF.top - this.paddingY);
         super.close();
         if (z) {
             createClosedPathsFromRects(list.subList(size, list.size()));

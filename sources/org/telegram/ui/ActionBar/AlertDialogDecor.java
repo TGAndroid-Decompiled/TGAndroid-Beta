@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AlertDialogDecor extends AlertDialog {
     private static final int[] ATTRS = {16842932, 16842933};
     private View contentView;
@@ -135,7 +136,7 @@ public class AlertDialogDecor extends AlertDialog {
         } else {
             rect.set(windowInsetsCompat.getStableInsetLeft(), windowInsetsCompat.getStableInsetTop(), windowInsetsCompat.getStableInsetRight(), windowInsetsCompat.getStableInsetBottom());
         }
-        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
         frameLayout.requestLayout();
         return windowInsetsCompat;
     }

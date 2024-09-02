@@ -1,4 +1,5 @@
 package kotlinx.coroutines;
+
 public final class InactiveNodeList implements Incomplete {
     private final NodeList list;
 

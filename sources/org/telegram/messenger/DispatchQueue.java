@@ -6,6 +6,7 @@ import android.os.Message;
 import android.os.Process;
 import android.os.SystemClock;
 import java.util.concurrent.CountDownLatch;
+
 public class DispatchQueue extends Thread {
     private static final int THREAD_PRIORITY_DEFAULT = -1000;
     private static int indexPointer;
@@ -28,7 +29,7 @@ public class DispatchQueue extends Thread {
         int i = indexPointer;
         indexPointer = i + 1;
         this.index = i;
-        this.threadPriority = THREAD_PRIORITY_DEFAULT;
+        this.threadPriority = -1000;
         setName(str);
         if (z) {
             start();
@@ -41,7 +42,7 @@ public class DispatchQueue extends Thread {
         int i2 = indexPointer;
         indexPointer = i2 + 1;
         this.index = i2;
-        this.threadPriority = THREAD_PRIORITY_DEFAULT;
+        this.threadPriority = -1000;
         this.threadPriority = i;
         setName(str);
         if (z) {
@@ -137,7 +138,7 @@ public class DispatchQueue extends Thread {
         });
         this.syncLatch.countDown();
         int i = this.threadPriority;
-        if (i != THREAD_PRIORITY_DEFAULT) {
+        if (i != -1000) {
             Process.setThreadPriority(i);
         }
         Looper.loop();

@@ -28,11 +28,10 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_account_connectedBots;
 import org.telegram.tgnet.TLRPC$TL_account_updateConnectedBot;
+import org.telegram.tgnet.TLRPC$TL_boolFalse;
 import org.telegram.tgnet.TLRPC$TL_connectedBot;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_inputBusinessRecipients;
-import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
-import org.telegram.tgnet.TLRPC$Updates;
+import org.telegram.tgnet.TLRPC$TL_inputBusinessBotRecipients;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -52,6 +51,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class ChatbotsActivity extends BaseFragment {
     public TLRPC$TL_connectedBot currentBot;
     public TLRPC$TL_account_connectedBots currentValue;
@@ -94,7 +94,7 @@ public class ChatbotsActivity extends BaseFragment {
             public void onItemClick(int i) {
                 if (i == -1) {
                     if (ChatbotsActivity.this.onBackPressed()) {
-                        ChatbotsActivity.this.finishFragment();
+                        ChatbotsActivity.this.lambda$onBackPressed$306();
                     }
                 } else if (i == 1) {
                     ChatbotsActivity.this.processDone();
@@ -220,8 +220,8 @@ public class ChatbotsActivity extends BaseFragment {
         });
         this.recipientsHelper = businessRecipientsHelper;
         TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-        businessRecipientsHelper.setValue(tLRPC$TL_connectedBot != null ? tLRPC$TL_connectedBot.recipients : null);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, new Utilities.Callback2() {
+        businessRecipientsHelper.setValue(tLRPC$TL_connectedBot == null ? null : tLRPC$TL_connectedBot.recipients);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 ChatbotsActivity.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -231,7 +231,7 @@ public class ChatbotsActivity extends BaseFragment {
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 ChatbotsActivity.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
-        }, null, getResourceProvider());
+        }, null);
         this.listView = universalRecyclerView;
         frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
         this.fragmentView = frameLayout;
@@ -239,20 +239,20 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public boolean lambda$createView$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            this.scheduledLoading = false;
-            AndroidUtilities.cancelRunOnUIThread(this.search);
-            if (TextUtils.isEmpty(this.editText.getText())) {
-                this.lastQuery = null;
-                this.searchHelper.clear();
-                this.listView.adapter.update(true);
-            } else {
-                AndroidUtilities.runOnUIThread(this.search);
-            }
-            updateSearchLoading();
-            return true;
+        if (i != 6) {
+            return false;
         }
-        return false;
+        this.scheduledLoading = false;
+        AndroidUtilities.cancelRunOnUIThread(this.search);
+        if (TextUtils.isEmpty(this.editText.getText())) {
+            this.lastQuery = null;
+            this.searchHelper.clear();
+            this.listView.adapter.update(true);
+        } else {
+            AndroidUtilities.runOnUIThread(this.search);
+        }
+        updateSearchLoading();
+        return true;
     }
 
     public void lambda$createView$1() {
@@ -305,9 +305,8 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void updateSearchLoading() {
-        boolean z = false;
         if (this.wasLoading != (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0)) {
-            z = (this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0) ? true : true;
+            boolean z = this.searchHelper.isSearchInProgress() || this.scheduledLoading || this.foundBots.size() > 0;
             this.wasLoading = z;
             ViewPropertyAnimator duration = this.emptyViewText.animate().alpha(z ? 0.0f : 1.0f).translationY(z ? -AndroidUtilities.dp(8.0f) : 0.0f).setDuration(320L);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -339,13 +338,13 @@ public class ChatbotsActivity extends BaseFragment {
                 this.lastQuery = null;
                 this.searchHelper.clear();
                 this.listView.adapter.update(true);
-                return;
+            } else {
+                SearchAdapterHelper searchAdapterHelper = this.searchHelper;
+                this.lastQuery = obj;
+                int i = this.searchId;
+                this.searchId = i + 1;
+                searchAdapterHelper.queryServerSearch(obj, true, false, true, false, false, 0L, false, 0, i, 0L);
             }
-            SearchAdapterHelper searchAdapterHelper = this.searchHelper;
-            this.lastQuery = obj;
-            int i = this.searchId;
-            this.searchId = i + 1;
-            searchAdapterHelper.queryServerSearch(obj, true, false, true, false, false, 0L, false, 0, i, 0L);
         }
     }
 
@@ -353,10 +352,10 @@ public class ChatbotsActivity extends BaseFragment {
         arrayList.add(UItem.asTopView(this.introText, "RestrictedEmoji", "🤖"));
         TLRPC$User tLRPC$User = this.selectedBot;
         if (tLRPC$User != null) {
-            arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User.id)).setChecked(true).setCloseIcon(new Runnable() {
+            arrayList.add(UItem.asAddChat(Long.valueOf(tLRPC$User.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
                 @Override
-                public final void run() {
-                    ChatbotsActivity.this.clear();
+                public final void onClick(View view) {
+                    ChatbotsActivity.this.clear(view);
                 }
             }));
         } else {
@@ -407,6 +406,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        TLRPC$User tLRPC$User;
         if (this.recipientsHelper.onClick(uItem)) {
             return;
         }
@@ -417,87 +417,123 @@ public class ChatbotsActivity extends BaseFragment {
             businessRecipientsHelper.setExclude(true);
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (i2 == -2) {
+            return;
+        }
+        if (i2 == -2) {
             BusinessRecipientsHelper businessRecipientsHelper2 = this.recipientsHelper;
             this.exclude = false;
             businessRecipientsHelper2.setExclude(false);
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (i2 == -5) {
+            return;
+        }
+        if (i2 == -5) {
             boolean z = !this.allowReply;
             this.allowReply = z;
             ((TextCheckCell) view).setChecked(z);
             checkDone(true);
-        } else if (i2 == -6) {
+            return;
+        }
+        if (i2 == -6) {
             this.selectedBot = null;
             this.listView.adapter.update(true);
             checkDone(true);
-        } else if (uItem.viewType == 10) {
-            this.selectedBot = this.foundBots.get(uItem.dialogId);
+        } else {
+            if (uItem.viewType != 13 || (tLRPC$User = this.foundBots.get(uItem.dialogId)) == null) {
+                return;
+            }
+            if (!tLRPC$User.bot_business) {
+                showDialog(new AlertDialog.Builder(getContext(), this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
+                return;
+            }
+            this.selectedBot = tLRPC$User;
             AndroidUtilities.hideKeyboard(this.editText);
             this.listView.adapter.update(true);
             checkDone(true);
         }
     }
 
-    public void clear() {
+    public void clear(View view) {
         this.selectedBot = null;
         this.listView.adapter.update(true);
         checkDone(true);
     }
 
     public void processDone() {
+        TLRPC$User tLRPC$User;
         if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         if (!hasChanges()) {
-            finishFragment();
-        } else if (this.recipientsHelper.validate(this.listView)) {
-            TLRPC$TL_account_updateConnectedBot tLRPC$TL_account_updateConnectedBot = new TLRPC$TL_account_updateConnectedBot();
-            if (this.selectedBot == null) {
+            lambda$onBackPressed$306();
+            return;
+        }
+        if (this.recipientsHelper.validate(this.listView)) {
+            final ArrayList arrayList = new ArrayList();
+            TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
+            if (tLRPC$TL_connectedBot != null && ((tLRPC$User = this.selectedBot) == null || tLRPC$TL_connectedBot.bot_id != tLRPC$User.id)) {
+                TLRPC$TL_account_updateConnectedBot tLRPC$TL_account_updateConnectedBot = new TLRPC$TL_account_updateConnectedBot();
                 tLRPC$TL_account_updateConnectedBot.deleted = true;
-                tLRPC$TL_account_updateConnectedBot.bot = new TLRPC$TL_inputUserEmpty();
-                tLRPC$TL_account_updateConnectedBot.recipients = new TLRPC$TL_inputBusinessRecipients();
-            } else {
-                tLRPC$TL_account_updateConnectedBot.can_reply = this.allowReply;
-                tLRPC$TL_account_updateConnectedBot.bot = getMessagesController().getInputUser(this.selectedBot);
-                tLRPC$TL_account_updateConnectedBot.recipients = this.recipientsHelper.getInputValue();
-                TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-                if (tLRPC$TL_connectedBot != null) {
-                    tLRPC$TL_connectedBot.can_reply = this.allowReply;
-                    tLRPC$TL_connectedBot.bot_id = this.selectedBot.id;
-                    tLRPC$TL_connectedBot.recipients = this.recipientsHelper.getValue();
+                tLRPC$TL_account_updateConnectedBot.bot = getMessagesController().getInputUser(this.currentBot.bot_id);
+                tLRPC$TL_account_updateConnectedBot.recipients = new TLRPC$TL_inputBusinessBotRecipients();
+                arrayList.add(tLRPC$TL_account_updateConnectedBot);
+            }
+            if (this.selectedBot != null) {
+                TLRPC$TL_account_updateConnectedBot tLRPC$TL_account_updateConnectedBot2 = new TLRPC$TL_account_updateConnectedBot();
+                tLRPC$TL_account_updateConnectedBot2.deleted = false;
+                tLRPC$TL_account_updateConnectedBot2.can_reply = this.allowReply;
+                tLRPC$TL_account_updateConnectedBot2.bot = getMessagesController().getInputUser(this.selectedBot);
+                tLRPC$TL_account_updateConnectedBot2.recipients = this.recipientsHelper.getBotInputValue();
+                arrayList.add(tLRPC$TL_account_updateConnectedBot2);
+                TLRPC$TL_connectedBot tLRPC$TL_connectedBot2 = this.currentBot;
+                if (tLRPC$TL_connectedBot2 != null) {
+                    tLRPC$TL_connectedBot2.bot_id = this.selectedBot.id;
+                    tLRPC$TL_connectedBot2.recipients = this.recipientsHelper.getBotValue();
+                    this.currentBot.can_reply = this.allowReply;
                 }
             }
-            getConnectionsManager().sendRequest(tLRPC$TL_account_updateConnectedBot, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatbotsActivity.this.lambda$processDone$5(tLObject, tLRPC$TL_error);
-                }
-            });
+            if (arrayList.isEmpty()) {
+                lambda$onBackPressed$306();
+                return;
+            }
+            final int[] iArr = {0};
+            for (int i = 0; i < arrayList.size(); i++) {
+                getConnectionsManager().sendRequest((TLObject) arrayList.get(i), new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        ChatbotsActivity.this.lambda$processDone$5(iArr, arrayList, tLObject, tLRPC$TL_error);
+                    }
+                });
+            }
         }
     }
 
-    public void lambda$processDone$5(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processDone$5(final int[] iArr, final ArrayList arrayList, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatbotsActivity.this.lambda$processDone$4(tLObject, tLRPC$TL_error);
+                ChatbotsActivity.this.lambda$processDone$4(tLRPC$TL_error, tLObject, iArr, arrayList);
             }
         });
     }
 
-    public void lambda$processDone$4(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        if (tLObject instanceof TLRPC$Updates) {
-            getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
-        }
+    public void lambda$processDone$4(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int[] iArr, ArrayList arrayList) {
         if (tLRPC$TL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tLRPC$TL_error);
-            return;
+        } else {
+            if (tLObject instanceof TLRPC$TL_boolFalse) {
+                this.doneButtonDrawable.animateToProgress(0.0f);
+                BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+                return;
+            }
+            iArr[0] = iArr[0] + 1;
+            if (iArr[0] == arrayList.size()) {
+                BusinessChatbotController.getInstance(this.currentAccount).invalidate(true);
+                getMessagesController().clearFullUsers();
+                lambda$onBackPressed$306();
+            }
         }
-        BusinessChatbotController.getInstance(this.currentAccount).invalidate();
-        finishFragment();
     }
 
     private void setValue() {
@@ -535,23 +571,26 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public boolean hasChanges() {
-        if (this.valueSet) {
-            TLRPC$User tLRPC$User = this.selectedBot;
-            boolean z = tLRPC$User != null;
-            TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
-            if (z != (tLRPC$TL_connectedBot != null)) {
+        if (!this.valueSet) {
+            return false;
+        }
+        TLRPC$User tLRPC$User = this.selectedBot;
+        boolean z = tLRPC$User != null;
+        TLRPC$TL_connectedBot tLRPC$TL_connectedBot = this.currentBot;
+        if (z != (tLRPC$TL_connectedBot != null)) {
+            return true;
+        }
+        if ((tLRPC$User == null ? 0L : tLRPC$User.id) != (tLRPC$TL_connectedBot != null ? tLRPC$TL_connectedBot.bot_id : 0L)) {
+            return true;
+        }
+        if (tLRPC$User != null) {
+            if (this.allowReply != tLRPC$TL_connectedBot.can_reply) {
                 return true;
             }
-            if (tLRPC$User != null) {
-                if (this.allowReply != tLRPC$TL_connectedBot.can_reply) {
-                    return true;
-                }
-                BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
-                if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
-                    return true;
-                }
+            BusinessRecipientsHelper businessRecipientsHelper = this.recipientsHelper;
+            if (businessRecipientsHelper != null && businessRecipientsHelper.hasChanges()) {
+                return true;
             }
-            return false;
         }
         return false;
     }
@@ -585,7 +624,7 @@ public class ChatbotsActivity extends BaseFragment {
     }
 
     public void lambda$onBackPressed$8(DialogInterface dialogInterface, int i) {
-        finishFragment();
+        lambda$onBackPressed$306();
     }
 
     private void checkDone(boolean z) {

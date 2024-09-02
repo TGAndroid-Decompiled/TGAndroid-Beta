@@ -11,8 +11,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -26,6 +26,7 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.GroupColorActivity;
+
 public class GroupColorActivity extends ChannelColorActivity {
     private boolean isLoading;
     private ChannelColorActivity.ProfilePreview profilePreview;
@@ -115,20 +116,32 @@ public class GroupColorActivity extends ChannelColorActivity {
         int i9 = i8 + 1;
         this.rowsCount = i9;
         this.statusEmojiRow = i8;
-        int i10 = i9 + 1;
-        this.rowsCount = i10;
+        this.rowsCount = i9 + 1;
         this.statusHintRow = i9;
-        int i11 = i10 + 1;
-        this.rowsCount = i11;
-        this.messagesPreviewRow = i10;
-        int i12 = i11 + 1;
-        this.rowsCount = i12;
-        this.wallpaperThemesRow = i11;
+        TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-this.dialogId);
+        if (chatFull != null && chatFull.can_set_stickers) {
+            int i10 = this.rowsCount;
+            int i11 = i10 + 1;
+            this.rowsCount = i11;
+            this.packStickerRow = i10;
+            this.rowsCount = i11 + 1;
+            this.packStickerHintRow = i11;
+        } else {
+            this.packStickerRow = -1;
+            this.packStickerHintRow = -1;
+        }
+        int i12 = this.rowsCount;
         int i13 = i12 + 1;
         this.rowsCount = i13;
-        this.wallpaperRow = i12;
-        this.rowsCount = i13 + 1;
-        this.wallpaperHintRow = i13;
+        this.messagesPreviewRow = i12;
+        int i14 = i13 + 1;
+        this.rowsCount = i14;
+        this.wallpaperThemesRow = i13;
+        int i15 = i14 + 1;
+        this.rowsCount = i15;
+        this.wallpaperRow = i14;
+        this.rowsCount = i15 + 1;
+        this.wallpaperHintRow = i15;
     }
 
     @Override
@@ -150,6 +163,16 @@ public class GroupColorActivity extends ChannelColorActivity {
     @Override
     protected int getEmojiPackInfoStrRes() {
         return R.string.GroupEmojiPackInfo;
+    }
+
+    @Override
+    protected int getStickerPackStrRes() {
+        return R.string.GroupStickerPack;
+    }
+
+    @Override
+    protected int getStickerPackInfoStrRes() {
+        return R.string.GroupStickerPackInfo;
     }
 
     @Override
@@ -182,7 +205,7 @@ public class GroupColorActivity extends ChannelColorActivity {
         View createView = super.createView(context);
         updateColors();
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setTitle(BuildConfig.APP_CENTER_HASH);
+        this.actionBar.setTitle("");
         ((ViewGroup) createView).addView(this.actionBar);
         createView.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1(createView));
         return createView;
@@ -259,23 +282,22 @@ public class GroupColorActivity extends ChannelColorActivity {
                 View findViewByPosition;
                 super.onScrollStateChanged(recyclerView, i);
                 if (i == 0) {
-                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f || GroupColorActivity.this.profilePreviewPercent >= 1.0f) {
-                        if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
-                            View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
-                            if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
-                                return;
-                            }
-                            GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
+                    if (GroupColorActivity.this.profilePreviewPercent >= 0.5f && GroupColorActivity.this.profilePreviewPercent < 1.0f) {
+                        int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
+                        RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
+                        if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
                             return;
                         }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                         return;
                     }
-                    int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
-                    RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
-                    if (layoutManager == null || (findViewByPosition = layoutManager.findViewByPosition(0)) == null) {
-                        return;
+                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
+                        View findViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                        if (findViewByPosition2 == null || findViewByPosition2.getTop() >= 0) {
+                            return;
+                        }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition2.getTop());
                     }
-                    GroupColorActivity.this.listView.smoothScrollBy(0, findViewByPosition.getBottom() - bottom);
                 }
             }
         });
@@ -359,5 +381,10 @@ public class GroupColorActivity extends ChannelColorActivity {
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+    }
+
+    @Override
+    protected boolean isForum() {
+        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.dialogId)));
     }
 }

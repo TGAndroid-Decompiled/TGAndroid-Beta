@@ -13,6 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class GroupCreateSectionCell extends FrameLayout {
     private Drawable drawable;
     private TextView textView;
@@ -26,7 +27,7 @@ public class GroupCreateSectionCell extends FrameLayout {
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 14.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textView.setTypeface(AndroidUtilities.bold());
         this.textView.setTextColor(Theme.getColor(Theme.key_groupcreate_sectionText));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));

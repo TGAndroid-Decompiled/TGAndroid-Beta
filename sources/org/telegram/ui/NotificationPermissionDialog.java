@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -34,6 +33,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.NotificationPermissionDialog;
+
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
     private boolean mayBeAccidentalDismiss;
@@ -67,11 +67,11 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 NotificationPermissionDialog.this.lambda$new$0(view);
             }
         });
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, R.styleable.AppCompatTheme_textColorAlertDialogListItem));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 110));
         TextView textView = new TextView(context);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
         textView.setText(LocaleController.getString("NotificationsPermissionAlertTitle"));
@@ -92,7 +92,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         TextView textView3 = new TextView(context);
         textView3.setText(LocaleController.getString("NotificationsPermissionContinue"));
         textView3.setGravity(17);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
         textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView3.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(i), 8.0f));
@@ -222,9 +222,9 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
                 r1 = i2 < i;
                 this.lastCount = i;
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-                String str = BuildConfig.APP_CENTER_HASH;
+                String str = "";
                 if (i > 0) {
-                    str = BuildConfig.APP_CENTER_HASH + this.lastCount;
+                    str = "" + this.lastCount;
                 }
                 animatedTextDrawable.setText(str, true);
                 if (r1) {

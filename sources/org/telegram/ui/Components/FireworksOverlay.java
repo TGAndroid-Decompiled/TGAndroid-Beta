@@ -18,6 +18,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+
 public class FireworksOverlay extends View {
     private static int[] colors;
     private static final int fallParticlesCount;
@@ -86,13 +87,17 @@ public class FireworksOverlay extends View {
             byte b = this.type;
             if (b == 0) {
                 canvas.drawCircle(this.x, this.y, AndroidUtilities.dp(this.typeSize), FireworksOverlay.paint[this.colorType]);
-            } else if (b == 1) {
+                return;
+            }
+            if (b == 1) {
                 FireworksOverlay.this.rect.set(this.x - AndroidUtilities.dp(this.typeSize), this.y - AndroidUtilities.dp(2.0f), this.x + AndroidUtilities.dp(this.typeSize), this.y + AndroidUtilities.dp(2.0f));
                 canvas.save();
                 canvas.rotate(this.rotation, FireworksOverlay.this.rect.centerX(), FireworksOverlay.this.rect.centerY());
                 canvas.drawRoundRect(FireworksOverlay.this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), FireworksOverlay.paint[this.colorType]);
                 canvas.restore();
-            } else if (b == 2) {
+                return;
+            }
+            if (b == 2) {
                 Drawable drawable = FireworksOverlay.starsDrawable != null ? FireworksOverlay.starsDrawable[this.colorType] : null;
                 if (FireworksOverlay.heartDrawable != null) {
                     drawable = FireworksOverlay.heartDrawable[this.colorType];
@@ -275,7 +280,6 @@ public class FireworksOverlay extends View {
 
     public void start(boolean z) {
         this.withStars = z;
-        this.particles.clear();
         setLayerType(2, null);
         boolean z2 = true;
         this.started = true;
@@ -294,7 +298,9 @@ public class FireworksOverlay extends View {
         } else if (z) {
             loadStarsDrawables();
         }
-        for (int i2 = 0; i2 < particlesCount; i2++) {
+        int i2 = particlesCount;
+        int clamp = Utilities.clamp(i2 - this.particles.size(), i2, i2 / 3);
+        for (int i3 = 0; i3 < clamp; i3++) {
             this.particles.add(createParticle(false));
         }
         invalidate();

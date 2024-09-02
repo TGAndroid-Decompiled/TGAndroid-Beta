@@ -19,6 +19,7 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.SeekBar;
+
 public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate, DownloadController.FileDownloadProgressListener {
     private int TAG;
     private int buttonPressed;
@@ -202,13 +203,19 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
             if (playMessage) {
                 this.buttonState = 1;
                 invalidate();
+                return;
             }
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                 this.buttonState = 0;
                 invalidate();
+                return;
             }
-        } else if (i == 2) {
+            return;
+        }
+        if (i == 2) {
             FileLoader.getInstance(this.currentAccount).loadFile(this.currentMessageObject.getDocument(), this.currentMessageObject, 1, 0);
             this.buttonState = 4;
             invalidate();

@@ -8,8 +8,10 @@ import kotlinx.coroutines.CoroutineDispatcher;
 import kotlinx.coroutines.ExecutorCoroutineDispatcher;
 import kotlinx.coroutines.internal.SystemPropsKt;
 import kotlinx.coroutines.internal.SystemPropsKt__SystemProps_commonKt;
+
 public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implements Executor {
     public static final DefaultIoScheduler INSTANCE = new DefaultIoScheduler();
+
     private static final CoroutineDispatcher f0default;
 
     @Override
@@ -31,12 +33,12 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
 
     @Override
     public void execute(Runnable runnable) {
-        mo151dispatch(EmptyCoroutineContext.INSTANCE, runnable);
+        mo162dispatch(EmptyCoroutineContext.INSTANCE, runnable);
     }
 
     @Override
-    public void mo151dispatch(CoroutineContext coroutineContext, Runnable runnable) {
-        f0default.mo151dispatch(coroutineContext, runnable);
+    public void mo162dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+        f0default.mo162dispatch(coroutineContext, runnable);
     }
 
     @Override

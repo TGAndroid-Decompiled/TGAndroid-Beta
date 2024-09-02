@@ -15,13 +15,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class SliderView extends View {
     private final Path clipPath;
     private final int currentType;
@@ -53,7 +53,6 @@ public class SliderView extends View {
 
     public SliderView(Context context, int i) {
         super(context);
-        int i2;
         this.minVolume = 0.0f;
         this.maxVolume = 1.0f;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -79,7 +78,7 @@ public class SliderView extends View {
         this.wave2Alpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.textPaint = new TextPaint(1);
         this.currentType = i;
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextColor(-1);
@@ -93,7 +92,6 @@ public class SliderView extends View {
             paint5.setColor(-1);
             paint5.setStyle(Paint.Style.STROKE);
             paint5.setStrokeCap(Paint.Cap.ROUND);
-            i2 = -1;
         } else {
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
             animatedTextDrawable.setGravity(5);
@@ -101,8 +99,7 @@ public class SliderView extends View {
             this.text2 = animatedTextDrawable2;
             animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             animatedTextDrawable2.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            i2 = -1;
+            animatedTextDrawable2.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
             animatedTextDrawable2.setCallback(this);
             animatedTextDrawable2.setTextColor(-1);
@@ -114,8 +111,8 @@ public class SliderView extends View {
                 animatedTextDrawable2.setText(LocaleController.getString(R.string.WallpaperDimming));
             }
         }
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
-        paint.setColor(i2);
+        animatedTextDrawable.setText("");
+        paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }
 
@@ -221,13 +218,13 @@ public class SliderView extends View {
             float f5 = this.minVolume;
             float f6 = f4 - f5 != 0.0f ? f5 + (this.value * (f4 - f5)) : 0.0f;
             if (z) {
-                try {
-                    if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                    try {
                         performHapticFeedback(3, 1);
-                    } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
-                        performHapticFeedback(9, 1);
+                    } catch (Exception unused) {
                     }
-                } catch (Exception unused) {
+                } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
+                    AndroidUtilities.vibrateCursor(this);
                 }
             }
             updateText(f6);

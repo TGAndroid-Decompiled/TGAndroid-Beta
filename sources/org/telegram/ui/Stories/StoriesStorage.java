@@ -17,6 +17,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Timer;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
@@ -44,6 +45,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemSkipped;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
+
 public class StoriesStorage {
     int currentAccount;
     MessagesStorage storage;
@@ -67,8 +69,7 @@ public class StoriesStorage {
     }
 
     public static int lambda$getAllStories$1(TL_stories$PeerStories tL_stories$PeerStories) {
-        ArrayList<TL_stories$StoryItem> arrayList = tL_stories$PeerStories.stories;
-        return -arrayList.get(arrayList.size() - 1).date;
+        return -tL_stories$PeerStories.stories.get(r1.size() - 1).date;
     }
 
     private void checkExpiredStories(long j, ArrayList<TL_stories$StoryItem> arrayList) {
@@ -409,23 +410,26 @@ public class StoriesStorage {
         }
     }
 
-    public void fillMessagesWithStories(LongSparseArray<ArrayList<MessageObject>> longSparseArray, Runnable runnable, int i) {
-        fillMessagesWithStories(longSparseArray, runnable, i, true);
+    public void fillMessagesWithStories(LongSparseArray<ArrayList<MessageObject>> longSparseArray, Runnable runnable, int i, Timer timer) {
+        fillMessagesWithStories(longSparseArray, runnable, i, true, timer);
     }
 
-    public void fillMessagesWithStories(LongSparseArray<ArrayList<MessageObject>> longSparseArray, final Runnable runnable, int i, final boolean z) {
+    public void fillMessagesWithStories(LongSparseArray<ArrayList<MessageObject>> longSparseArray, final Runnable runnable, int i, final boolean z, final Timer timer) {
+        LongSparseArray<ArrayList<MessageObject>> longSparseArray2 = longSparseArray;
+        Timer timer2 = timer;
         if (runnable == null) {
             return;
         }
-        if (longSparseArray == null) {
+        if (longSparseArray2 == null) {
             runnable.run();
             return;
         }
         ArrayList arrayList = new ArrayList();
+        Timer.Task start = Timer.start(timer2, "fillMessagesWithStories: applying stories for existing array");
         int i2 = 0;
         while (i2 < longSparseArray.size()) {
-            long keyAt = longSparseArray.keyAt(i2);
-            ArrayList<MessageObject> valueAt = longSparseArray.valueAt(i2);
+            long keyAt = longSparseArray2.keyAt(i2);
+            ArrayList<MessageObject> valueAt = longSparseArray2.valueAt(i2);
             int i3 = 0;
             while (i3 < valueAt.size()) {
                 MessageObject messageObject = valueAt.get(i3);
@@ -436,7 +440,7 @@ public class StoriesStorage {
                     valueAt.remove(i3);
                     i3--;
                     if (valueAt.isEmpty()) {
-                        longSparseArray.removeAt(i2);
+                        longSparseArray2.removeAt(i2);
                         i2--;
                     }
                 }
@@ -444,36 +448,44 @@ public class StoriesStorage {
             }
             i2++;
         }
+        Timer.done(start);
         if (z) {
             lambda$fillMessagesWithStories$13(arrayList);
         }
         if (!longSparseArray.isEmpty()) {
             final int[] iArr = {longSparseArray.size()};
-            for (int i4 = 0; i4 < longSparseArray.size(); i4++) {
-                final long keyAt2 = longSparseArray.keyAt(i4);
-                final ArrayList<MessageObject> valueAt2 = longSparseArray.valueAt(i4);
+            int i4 = 0;
+            while (i4 < longSparseArray.size()) {
+                final long keyAt2 = longSparseArray2.keyAt(i4);
+                final ArrayList<MessageObject> valueAt2 = longSparseArray2.valueAt(i4);
                 TL_stories$TL_stories_getStoriesByID tL_stories$TL_stories_getStoriesByID = new TL_stories$TL_stories_getStoriesByID();
                 tL_stories$TL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(keyAt2);
                 for (int i5 = 0; i5 < valueAt2.size(); i5++) {
                     tL_stories$TL_stories_getStoriesByID.id.add(Integer.valueOf(getStoryId(valueAt2.get(i5))));
                 }
+                final Timer.Task start2 = Timer.start(timer2, "fillMessagesWithStories: getStoriesByID did=" + keyAt2 + " ids=" + TextUtils.join(",", tL_stories$TL_stories_getStoriesByID.id));
+                int i6 = i4;
                 int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getStoriesByID, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        StoriesStorage.this.lambda$fillMessagesWithStories$14(valueAt2, keyAt2, z, iArr, runnable, tLObject, tLRPC$TL_error);
+                        StoriesStorage.this.lambda$fillMessagesWithStories$14(start2, valueAt2, keyAt2, z, timer, iArr, runnable, tLObject, tLRPC$TL_error);
                     }
                 });
                 if (i != 0) {
                     ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(sendRequest, i);
                 }
+                i4 = i6 + 1;
+                longSparseArray2 = longSparseArray;
+                timer2 = timer;
             }
             return;
         }
         runnable.run();
     }
 
-    public void lambda$fillMessagesWithStories$14(final ArrayList arrayList, long j, boolean z, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fillMessagesWithStories$14(Timer.Task task, final ArrayList arrayList, long j, boolean z, Timer timer, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         boolean z2;
+        Timer.done(task);
         if (tLObject != null) {
             TL_stories$TL_stories_stories tL_stories$TL_stories_stories = (TL_stories$TL_stories_stories) tLObject;
             for (int i = 0; i < arrayList.size(); i++) {
@@ -483,11 +495,12 @@ public class StoriesStorage {
                     if (i2 >= tL_stories$TL_stories_stories.stories.size()) {
                         z2 = false;
                         break;
-                    } else if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
-                        applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
-                        z2 = true;
-                        break;
                     } else {
+                        if (tL_stories$TL_stories_stories.stories.get(i2).id == getStoryId(messageObject)) {
+                            applyStory(this.currentAccount, j, messageObject, tL_stories$TL_stories_stories.stories.get(i2));
+                            z2 = true;
+                            break;
+                        }
                         i2++;
                     }
                 }
@@ -505,6 +518,8 @@ public class StoriesStorage {
                     });
                 }
             }
+        } else if (tLRPC$TL_error != null) {
+            Timer.log(timer, "fillMessagesWithStories: getStoriesByID error " + tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
         }
         iArr[0] = iArr[0] - 1;
         if (iArr[0] == 0) {

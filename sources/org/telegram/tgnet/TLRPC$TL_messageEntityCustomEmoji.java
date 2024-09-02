@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageEntityCustomEmoji extends TLRPC$MessageEntity {
     public static final int constructor = -925956616;
     public TLRPC$Document document;
@@ -13,7 +14,7 @@ public class TLRPC$TL_messageEntityCustomEmoji extends TLRPC$MessageEntity {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-925956616);
         abstractSerializedData.writeInt32(this.offset);
         abstractSerializedData.writeInt32(this.length);
         abstractSerializedData.writeInt64(this.document_id);

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$InputMedia extends TLObject {
     public String address;
     public TLRPC$InputFile file;
@@ -35,6 +36,9 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 break;
             case -1759532989:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGeoLive();
+                break;
+            case -1436147773:
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPaidMedia();
                 break;
             case -1279654347:
                 tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPhoto();

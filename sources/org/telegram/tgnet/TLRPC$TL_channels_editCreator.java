@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channels_editCreator extends TLObject {
     public TLRPC$InputChannel channel;
     public TLRPC$InputCheckPasswordSRP password;

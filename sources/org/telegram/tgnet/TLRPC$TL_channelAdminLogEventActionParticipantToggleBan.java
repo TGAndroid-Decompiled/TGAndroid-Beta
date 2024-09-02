@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionParticipantToggleBan extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$ChannelParticipant new_participant;
     public TLRPC$ChannelParticipant prev_participant;

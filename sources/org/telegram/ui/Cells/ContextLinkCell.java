@@ -16,7 +16,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -54,7 +53,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.PhotoViewer;
-import org.webrtc.MediaStreamTrack;
+
 public class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     public final Property<ContextLinkCell, Float> IMAGE_SCALE;
     private int TAG;
@@ -191,7 +190,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             if (tLRPC$BotInlineResult != null) {
                 if (tLRPC$BotInlineResult.photo != null) {
                     this.documentAttachType = 7;
-                } else if (tLRPC$BotInlineResult.type.equals(MediaStreamTrack.AUDIO_TRACK_KIND)) {
+                } else if (tLRPC$BotInlineResult.type.equals("audio")) {
                     this.documentAttachType = 5;
                 } else if (this.inlineResult.type.equals("voice")) {
                     this.documentAttachType = 3;
@@ -211,8 +210,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             tLRPC$TL_peerUser.user_id = clientUserId;
             tLRPC$Peer.user_id = clientUserId;
             tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-            String str = BuildConfig.APP_CENTER_HASH;
-            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_message.message = "";
             TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
             tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
             tLRPC$TL_messageMediaDocument.flags |= 3;
@@ -223,7 +221,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             TLRPC$Document tLRPC$Document2 = this.documentAttach;
             if (tLRPC$Document2 != null) {
                 tLRPC$MessageMedia.document = tLRPC$Document2;
-                tLRPC$TL_message.attachPath = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_message.attachPath = "";
             } else {
                 String httpUrlExtension = ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? "mp3" : "ogg");
                 TLRPC$Document tLRPC$Document3 = tLRPC$TL_message.media.document;
@@ -237,16 +235,13 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
                 tLRPC$TL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(this.inlineResult);
                 TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;
-                String str2 = tLRPC$BotInlineResult2.title;
-                if (str2 == null) {
-                    str2 = BuildConfig.APP_CENTER_HASH;
+                String str = tLRPC$BotInlineResult2.title;
+                if (str == null) {
+                    str = "";
                 }
-                tLRPC$TL_documentAttributeAudio.title = str2;
-                String str3 = tLRPC$BotInlineResult2.description;
-                if (str3 != null) {
-                    str = str3;
-                }
-                tLRPC$TL_documentAttributeAudio.performer = str;
+                tLRPC$TL_documentAttributeAudio.title = str;
+                String str2 = tLRPC$BotInlineResult2.description;
+                tLRPC$TL_documentAttributeAudio.performer = str2 != null ? str2 : "";
                 tLRPC$TL_documentAttributeAudio.flags |= 3;
                 if (this.documentAttachType == 3) {
                     tLRPC$TL_documentAttributeAudio.voice = true;
@@ -460,14 +455,20 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                     this.buttonState = 1;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                     invalidate();
+                    return;
                 }
-            } else if (i2 == 1) {
+                return;
+            }
+            if (i2 == 1) {
                 if (MediaController.getInstance().lambda$startAudioAgain$7(this.currentMessageObject)) {
                     this.buttonState = 0;
                     this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                     invalidate();
+                    return;
                 }
-            } else if (i2 == 2) {
+                return;
+            }
+            if (i2 == 2) {
                 this.radialProgress.setProgress(0.0f, false);
                 if (this.documentAttach != null) {
                     FileLoader.getInstance(this.currentAccount).loadFile(this.documentAttach, this.inlineResult, 1, 0);
@@ -477,7 +478,9 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 this.buttonState = 4;
                 this.radialProgress.setIcon(getIconForCurrentState(), false, true);
                 invalidate();
-            } else if (i2 == 4) {
+                return;
+            }
+            if (i2 == 4) {
                 if (this.documentAttach != null) {
                     FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.documentAttach);
                 } else if (this.inlineResult.content instanceof TLRPC$TL_webDocument) {
@@ -539,7 +542,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                     Theme.chat_inlineResultFile.draw(canvas);
                 } else {
                     TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;
-                    if (tLRPC$BotInlineResult2 != null && (tLRPC$BotInlineResult2.type.equals(MediaStreamTrack.AUDIO_TRACK_KIND) || this.inlineResult.type.equals("voice"))) {
+                    if (tLRPC$BotInlineResult2 != null && (tLRPC$BotInlineResult2.type.equals("audio") || this.inlineResult.type.equals("voice"))) {
                         int intrinsicWidth2 = Theme.chat_inlineResultAudio.getIntrinsicWidth();
                         int intrinsicHeight2 = Theme.chat_inlineResultAudio.getIntrinsicHeight();
                         int imageX2 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth2) / 2));
@@ -579,9 +582,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
         }
         if (this.drawLinkImageView) {
-            TLRPC$BotInlineResult tLRPC$BotInlineResult5 = this.inlineResult;
-            if (tLRPC$BotInlineResult5 != null) {
-                this.linkImageView.setVisible(!PhotoViewer.isShowingImage(tLRPC$BotInlineResult5), false);
+            if (this.inlineResult != null) {
+                this.linkImageView.setVisible(!PhotoViewer.isShowingImage(r0), false);
             }
             canvas.save();
             float f = this.imageScale;
@@ -636,51 +638,53 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             this.resolveFileNameId = i;
             Utilities.searchQueue.postRunnable(new AnonymousClass1(i, z));
             this.radialProgress.setIcon(4, z, false);
-        } else if (TextUtils.isEmpty(str)) {
+            return;
+        }
+        if (TextUtils.isEmpty(str)) {
             this.buttonState = -1;
             this.radialProgress.setIcon(4, z, false);
-        } else {
-            if (this.documentAttach != null) {
-                isLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
-            } else {
-                isLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
-            }
-            if (isLoadingHttpFile || !this.fileExist) {
-                DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
-                int i2 = this.documentAttachType;
-                if (i2 != 5 && i2 != 3) {
-                    this.buttonState = 1;
-                    Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
-                    this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, false);
-                } else if (!isLoadingHttpFile) {
-                    this.buttonState = 2;
-                } else {
-                    this.buttonState = 4;
-                    Float fileProgress2 = ImageLoader.getInstance().getFileProgress(this.fileName);
-                    if (fileProgress2 != null) {
-                        this.radialProgress.setProgress(fileProgress2.floatValue(), z2);
-                    } else {
-                        this.radialProgress.setProgress(0.0f, z2);
-                    }
-                }
-            } else {
-                DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
-                int i3 = this.documentAttachType;
-                if (i3 == 5 || i3 == 3) {
-                    boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
-                    if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
-                        this.buttonState = 0;
-                    } else {
-                        this.buttonState = 1;
-                    }
-                    this.radialProgress.setProgress(1.0f, z2);
-                } else {
-                    this.buttonState = -1;
-                }
-            }
-            this.radialProgress.setIcon(getIconForCurrentState(), z, z2);
-            invalidate();
+            return;
         }
+        if (this.documentAttach != null) {
+            isLoadingHttpFile = FileLoader.getInstance(this.currentAccount).isLoadingFile(this.fileName);
+        } else {
+            isLoadingHttpFile = ImageLoader.getInstance().isLoadingHttpFile(this.fileName);
+        }
+        if (isLoadingHttpFile || !this.fileExist) {
+            DownloadController.getInstance(this.currentAccount).addLoadingFileObserver(this.fileName, this);
+            int i2 = this.documentAttachType;
+            if (i2 != 5 && i2 != 3) {
+                this.buttonState = 1;
+                Float fileProgress = ImageLoader.getInstance().getFileProgress(this.fileName);
+                this.radialProgress.setProgress(fileProgress != null ? fileProgress.floatValue() : 0.0f, false);
+            } else if (!isLoadingHttpFile) {
+                this.buttonState = 2;
+            } else {
+                this.buttonState = 4;
+                Float fileProgress2 = ImageLoader.getInstance().getFileProgress(this.fileName);
+                if (fileProgress2 != null) {
+                    this.radialProgress.setProgress(fileProgress2.floatValue(), z2);
+                } else {
+                    this.radialProgress.setProgress(0.0f, z2);
+                }
+            }
+        } else {
+            DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
+            int i3 = this.documentAttachType;
+            if (i3 == 5 || i3 == 3) {
+                boolean isPlayingMessage = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
+                if (!isPlayingMessage || (isPlayingMessage && MediaController.getInstance().isMessagePaused())) {
+                    this.buttonState = 0;
+                } else {
+                    this.buttonState = 1;
+                }
+                this.radialProgress.setProgress(1.0f, z2);
+            } else {
+                this.buttonState = -1;
+            }
+        }
+        this.radialProgress.setIcon(getIconForCurrentState(), z, z2);
+        invalidate();
     }
 
     public class AnonymousClass1 implements Runnable {
@@ -703,7 +707,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             if (contextLinkCell.resolveFileNameId == i) {
                 contextLinkCell.fileName = str;
                 if (str == null) {
-                    contextLinkCell.fileName = BuildConfig.APP_CENTER_HASH;
+                    contextLinkCell.fileName = "";
                 }
                 contextLinkCell.cacheFile = file;
                 contextLinkCell.fileExist = z;

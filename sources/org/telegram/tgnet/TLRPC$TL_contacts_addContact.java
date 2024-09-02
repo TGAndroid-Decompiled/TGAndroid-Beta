@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_addContact extends TLObject {
     public boolean add_phone_privacy_exception;
     public String first_name;

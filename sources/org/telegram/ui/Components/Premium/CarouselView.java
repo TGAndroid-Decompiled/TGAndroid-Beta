@@ -14,6 +14,7 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.Premium.CarouselView;
+
 public class CarouselView extends View implements PagerHeaderView {
     boolean autoPlayEnabled;
     ValueAnimator autoScrollAnimation;

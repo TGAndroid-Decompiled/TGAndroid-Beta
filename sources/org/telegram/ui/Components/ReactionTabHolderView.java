@@ -25,6 +25,7 @@ import org.telegram.tgnet.TLRPC$ReactionCount;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+
 public class ReactionTabHolderView extends FrameLayout {
     private Paint bgPaint;
     private int count;
@@ -61,7 +62,7 @@ public class ReactionTabHolderView extends FrameLayout {
         this.counterView = textView;
         textView.setImportantForAccessibility(2);
         this.counterView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageBlue));
-        this.counterView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.counterView.setTypeface(AndroidUtilities.bold());
         addView(this.counterView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 40.0f, 0.0f, 8.0f, 0.0f));
         this.outlinePaint.setStyle(Paint.Style.STROKE);
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
@@ -98,9 +99,9 @@ public class ReactionTabHolderView extends FrameLayout {
         int i2 = tLRPC$ReactionCount.count;
         this.count = i2;
         this.counterView.setText(String.format("%s", LocaleController.formatShortNumber(i2, null)));
-        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$ReactionCount.reaction);
-        this.reaction = fromTLReaction;
-        if (fromTLReaction.emojicon != null) {
+        ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$ReactionCount.reaction);
+        this.reaction = fromTL;
+        if (fromTL.emojicon != null) {
             for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
                 if (tLRPC$TL_availableReaction.reaction.equals(this.reaction.emojicon)) {
                     this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);

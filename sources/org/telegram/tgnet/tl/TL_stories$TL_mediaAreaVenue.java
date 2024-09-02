@@ -2,6 +2,7 @@ package org.telegram.tgnet.tl;
 
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$GeoPoint;
+
 public class TL_stories$TL_mediaAreaVenue extends TL_stories$MediaArea {
     public String address;
     public TLRPC$GeoPoint geo;
@@ -12,7 +13,7 @@ public class TL_stories$TL_mediaAreaVenue extends TL_stories$MediaArea {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.coordinates = TL_stories$TL_mediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.coordinates = TL_stories$MediaAreaCoordinates.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.geo = TLRPC$GeoPoint.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.title = abstractSerializedData.readString(z);
         this.address = abstractSerializedData.readString(z);

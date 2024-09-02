@@ -38,6 +38,7 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.PhotoViewer;
+
 public class SharedPhotoVideoCell extends FrameLayout {
     private Paint backgroundPaint;
     private int currentAccount;
@@ -100,7 +101,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             TextView textView = new TextView(context);
             this.videoTextView = textView;
             textView.setTextColor(-1);
-            this.videoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.videoTextView.setTypeface(AndroidUtilities.bold());
             this.videoTextView.setTextSize(1, 12.0f);
             this.videoTextView.setImportantForAccessibility(2);
             this.videoInfoContainer.addView(this.videoTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 13.0f, -0.7f, 0.0f, 0.0f));
@@ -143,12 +144,12 @@ public class SharedPhotoVideoCell extends FrameLayout {
                 Property property = View.SCALE_X;
                 float[] fArr = new float[1];
                 fArr[0] = z ? 0.81f : 1.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
                 FrameLayout frameLayout2 = this.container;
                 Property property2 = View.SCALE_Y;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z ? 0.81f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
                 animatorSet2.playTogether(animatorArr);
                 this.animator.setDuration(200L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -303,11 +304,11 @@ public class SharedPhotoVideoCell extends FrameLayout {
     }
 
     public boolean lambda$new$1(View view) {
-        if (this.delegate != null) {
-            int intValue = ((Integer) view.getTag()).intValue();
-            return this.delegate.didLongClickItem(this, this.indeces[intValue], this.messageObjects[intValue], intValue);
+        if (this.delegate == null) {
+            return false;
         }
-        return false;
+        int intValue = ((Integer) view.getTag()).intValue();
+        return this.delegate.didLongClickItem(this, this.indeces[intValue], this.messageObjects[intValue], intValue);
     }
 
     public void updateCheckboxColor() {
@@ -381,11 +382,11 @@ public class SharedPhotoVideoCell extends FrameLayout {
         if (messageObject != null) {
             this.photoVideoViews[i].setVisibility(0);
             this.photoVideoViews[i].setMessageObject(messageObject);
-            return;
+        } else {
+            this.photoVideoViews[i].clearAnimation();
+            this.photoVideoViews[i].setVisibility(4);
+            this.messageObjects[i] = null;
         }
-        this.photoVideoViews[i].clearAnimation();
-        this.photoVideoViews[i].setVisibility(4);
-        this.messageObjects[i] = null;
     }
 
     @Override

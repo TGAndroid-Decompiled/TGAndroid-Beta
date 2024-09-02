@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+
 public class PhotoEditorSeekBar extends View {
     private PhotoEditorSeekBarDelegate delegate;
     private Paint innerPaint;
@@ -103,8 +104,7 @@ public class PhotoEditorSeekBar extends View {
     }
 
     public int getProgress() {
-        int i = this.minValue;
-        return (int) (i + (this.progress * (this.maxValue - i)));
+        return (int) (this.minValue + (this.progress * (this.maxValue - r0)));
     }
 
     public void setMinMax(int i, int i2) {

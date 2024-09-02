@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_getPeerDialogs extends TLObject {
     public ArrayList<TLRPC$InputDialogPeer> peers = new ArrayList<>();
 

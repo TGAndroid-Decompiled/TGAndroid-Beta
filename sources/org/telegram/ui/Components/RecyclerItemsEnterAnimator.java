@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.util.Property;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
+
 public class RecyclerItemsEnterAnimator {
     boolean alwaysCheckItemsAlpha;
     boolean invalidateAlpha;
@@ -54,7 +56,7 @@ public class RecyclerItemsEnterAnimator {
             this.ignoreView.add(progressView);
             this.listView.addView(progressView);
             layoutManager.ignoreView(progressView);
-            Animator ofFloat = this.animateAlphaProgressView ? ObjectAnimator.ofFloat(progressView, View.ALPHA, progressView.getAlpha(), 0.0f) : ValueAnimator.ofFloat(0.0f, 1.0f);
+            Animator ofFloat = this.animateAlphaProgressView ? ObjectAnimator.ofFloat(progressView, (Property<View, Float>) View.ALPHA, progressView.getAlpha(), 0.0f) : ValueAnimator.ofFloat(0.0f, 1.0f);
             ofFloat.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

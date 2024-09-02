@@ -1,4 +1,5 @@
 package org.telegram.ui.Components.Paint;
+
 public class Swatch {
     public float brushWeight;
     public int color;
@@ -8,5 +9,9 @@ public class Swatch {
         this.color = i;
         this.colorLocation = f;
         this.brushWeight = f2;
+    }
+
+    public Swatch clone() {
+        return new Swatch(this.color, this.colorLocation, this.brushWeight);
     }
 }

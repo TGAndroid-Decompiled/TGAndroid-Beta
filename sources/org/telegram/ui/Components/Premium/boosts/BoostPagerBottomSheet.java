@@ -27,6 +27,7 @@ import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
+
 public class BoostPagerBottomSheet extends BottomSheet {
     private static BoostPagerBottomSheet instance;
     private boolean isLandscapeOrientation;
@@ -87,7 +88,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
 
             @Override
-            protected void onTabAnimationUpdate(boolean z3) {
+            public void onTabAnimationUpdate(boolean z3) {
                 float positionAnimated = BoostPagerBottomSheet.this.viewPager.getPositionAnimated();
                 if (positionAnimated > 0.0f && positionAnimated < 1.0f) {
                     if (!this.isScrolling) {
@@ -164,7 +165,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             }
 
             @Override
-            protected boolean canScroll(MotionEvent motionEvent) {
+            public boolean canScroll(MotionEvent motionEvent) {
                 return BoostPagerBottomSheet.this.viewPager.getCurrentPosition() == 1;
             }
         };
@@ -242,7 +243,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
 
             @Override
             public void onShowToast(String str) {
-                BulletinFactory.of(((BottomSheet) BoostPagerBottomSheet.this).container, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, str).show(true);
+                BulletinFactory.of(BoostPagerBottomSheet.this.container, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, str).show(true);
             }
         });
         selectorBottomSheet.setOnCloseClick(new Runnable() {
@@ -256,6 +257,11 @@ public class BoostPagerBottomSheet extends BottomSheet {
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override

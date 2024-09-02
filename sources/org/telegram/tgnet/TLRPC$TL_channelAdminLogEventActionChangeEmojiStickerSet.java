@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_channelAdminLogEventActionChangeEmojiStickerSet extends TLRPC$ChannelAdminLogEventAction {
     public TLRPC$InputStickerSet new_stickerset;
     public TLRPC$InputStickerSet prev_stickerset;

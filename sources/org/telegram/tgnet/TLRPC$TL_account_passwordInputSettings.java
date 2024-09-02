@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_passwordInputSettings extends TLObject {
     public String email;
     public int flags;

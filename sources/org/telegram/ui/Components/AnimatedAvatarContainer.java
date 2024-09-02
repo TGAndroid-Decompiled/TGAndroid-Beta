@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
+
 public class AnimatedAvatarContainer extends FrameLayout {
     private int leftPadding;
     boolean occupyStatusBar;
@@ -23,7 +24,7 @@ public class AnimatedAvatarContainer extends FrameLayout {
         animatedTextView.setTextColor(Theme.getColor(i));
         this.titleTextView.setTextSize(AndroidUtilities.dp(18.0f));
         this.titleTextView.setGravity(3);
-        this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.titleTextView.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(12.0f));
         addView(this.titleTextView);
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);

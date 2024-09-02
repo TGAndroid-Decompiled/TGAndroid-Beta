@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_smsjobs_join extends TLObject {
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {

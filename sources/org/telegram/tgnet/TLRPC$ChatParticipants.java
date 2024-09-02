@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public abstract class TLRPC$ChatParticipants extends TLObject {
     public long admin_id;
     public long chat_id;

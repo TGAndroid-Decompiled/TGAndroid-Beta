@@ -4,15 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
@@ -27,13 +30,22 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.Forum.ForumUtilities;
+import org.telegram.ui.Components.LetterDrawable;
+import org.telegram.ui.Components.StaticLayoutEx;
+
 public class ChatPullingDownDrawable implements NotificationCenter.NotificationCenterDelegate {
     boolean animateCheck;
     public boolean animateSwipeToRelease;
+    private AnimatedEmojiDrawable animatedEmojiDrawable;
     float bounceProgress;
     StaticLayout chatNameLayout;
     int chatNameWidth;
@@ -48,6 +60,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     private final int filterId;
     private final int folderId;
     private final View fragmentView;
+    private final ImageReceiver imageReceiver;
+    private final boolean isTopic;
     long lastHapticTime;
     float lastProgress;
     public long lastShowingReleaseTime;
@@ -58,29 +72,36 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     int layout2Width;
     TLRPC$Chat nextChat;
     public long nextDialogId;
+    TLRPC$TL_forumTopic nextTopic;
     Runnable onAnimationFinishRunnable;
     View parentView;
     float progressToBottomPanel;
+    boolean recommendedChannel;
     private final Theme.ResourcesProvider resourcesProvider;
     boolean showBottomPanel;
     AnimatorSet showReleaseAnimator;
     float swipeToReleaseProgress;
+    private final long topicId;
     Paint arrowPaint = new Paint(1);
     TextPaint textPaint = new TextPaint(1);
     TextPaint textPaint2 = new TextPaint(1);
     private Paint xRefPaint = new Paint(1);
     Path path = new Path();
-    ImageReceiver imageReceiver = new ImageReceiver();
+    private long lastWidthTopicId = 0;
+    private boolean visibleCounterDrawable = true;
     CounterView.CounterDrawable counterDrawable = new CounterView.CounterDrawable(null, true, null);
     int[] params = new int[3];
 
-    public ChatPullingDownDrawable(int i, View view, long j, int i2, int i3, Theme.ResourcesProvider resourcesProvider) {
+    public ChatPullingDownDrawable(int i, View view, long j, int i2, int i3, long j2, Theme.ResourcesProvider resourcesProvider) {
         this.fragmentView = view;
         this.currentAccount = i;
         this.currentDialog = j;
         this.folderId = i2;
         this.filterId = i3;
+        this.topicId = j2;
+        this.isTopic = MessagesController.getInstance(i).isForum(j);
         this.resourcesProvider = resourcesProvider;
+        this.imageReceiver = new ImageReceiver(view);
         this.arrowPaint.setStrokeWidth(AndroidUtilities.dpf2(2.8f));
         this.arrowPaint.setStrokeCap(Paint.Cap.ROUND);
         CounterView.CounterDrawable counterDrawable = this.counterDrawable;
@@ -93,14 +114,39 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         TextPaint textPaint = this.textPaint;
         counterDrawable3.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         this.textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
         this.xRefPaint.setColor(-16777216);
         this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        updateDialog();
+    }
+
+    public void updateDialog(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            updateDialog();
+            return;
+        }
+        this.nextDialogId = -tLRPC$Chat.id;
+        int[] iArr = this.params;
+        this.drawFolderBackground = iArr[0] == 1;
+        this.dialogFolderId = iArr[1];
+        this.dialogFilterId = iArr[2];
+        this.emptyStub = false;
+        this.nextChat = tLRPC$Chat;
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(this.currentAccount, this.nextChat);
+        this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
+        MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(-tLRPC$Chat.id, 0, null);
+        TLRPC$Dialog dialog = MessagesController.getInstance(this.currentAccount).getDialog(-tLRPC$Chat.id);
+        int i = dialog == null ? 0 : dialog.unread_count;
+        this.counterDrawable.setCount(i, false);
+        this.visibleCounterDrawable = i > 0;
+        this.recommendedChannel = true;
+        this.nextTopic = null;
     }
 
     public void updateDialog() {
+        this.recommendedChannel = false;
+        this.nextTopic = null;
         TLRPC$Dialog nextUnreadDialog = getNextUnreadDialog(this.currentDialog, this.folderId, this.filterId, true, this.params);
         if (nextUnreadDialog != null) {
             this.nextDialogId = nextUnreadDialog.id;
@@ -112,13 +158,15 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-nextUnreadDialog.id));
             this.nextChat = chat;
             if (chat == null) {
-                MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.id));
+                this.nextChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(nextUnreadDialog.id));
             }
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setInfo(this.currentAccount, this.nextChat);
             this.imageReceiver.setImage(ImageLocation.getForChat(this.nextChat, 1), "50_50", avatarDrawable, null, UserConfig.getInstance(0).getCurrentUser(), 0);
             MessagesController.getInstance(this.currentAccount).ensureMessagesLoaded(nextUnreadDialog.id, 0, null);
-            this.counterDrawable.setCount(nextUnreadDialog.unread_count, false);
+            int i = nextUnreadDialog.unread_count;
+            this.counterDrawable.setCount(i, false);
+            this.visibleCounterDrawable = i > 0;
             return;
         }
         this.nextChat = null;
@@ -126,43 +174,123 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.emptyStub = true;
     }
 
+    public void updateTopic() {
+        AnimatedEmojiDrawable animatedEmojiDrawable;
+        View view;
+        View view2;
+        AnimatedEmojiDrawable animatedEmojiDrawable2;
+        this.recommendedChannel = false;
+        this.drawFolderBackground = false;
+        this.nextChat = null;
+        this.nextDialogId = 0L;
+        this.imageReceiver.clearImage();
+        TLRPC$TL_forumTopic nextUnreadTopic = getNextUnreadTopic(-this.currentDialog);
+        if (nextUnreadTopic != null) {
+            this.emptyStub = false;
+            this.nextTopic = nextUnreadTopic;
+            if (nextUnreadTopic.id == 1) {
+                View view3 = this.parentView;
+                if (view3 != null && (animatedEmojiDrawable2 = this.animatedEmojiDrawable) != null) {
+                    animatedEmojiDrawable2.removeView(view3);
+                }
+                this.animatedEmojiDrawable = null;
+                this.imageReceiver.setImageBitmap(ForumUtilities.createGeneralTopicDrawable(this.fragmentView.getContext(), 1.0f, getThemedColor(Theme.key_chat_inMenu), false, true));
+            } else if (nextUnreadTopic.icon_emoji_id != 0) {
+                AnimatedEmojiDrawable animatedEmojiDrawable3 = this.animatedEmojiDrawable;
+                if (animatedEmojiDrawable3 == null || animatedEmojiDrawable3.getDocumentId() != nextUnreadTopic.icon_emoji_id) {
+                    AnimatedEmojiDrawable animatedEmojiDrawable4 = this.animatedEmojiDrawable;
+                    if (animatedEmojiDrawable4 != null && (view = this.parentView) != null) {
+                        animatedEmojiDrawable4.removeView(view);
+                    }
+                    AnimatedEmojiDrawable animatedEmojiDrawable5 = new AnimatedEmojiDrawable(22, this.currentAccount, nextUnreadTopic.icon_emoji_id);
+                    this.animatedEmojiDrawable = animatedEmojiDrawable5;
+                    animatedEmojiDrawable5.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_serviceText), PorterDuff.Mode.SRC_IN));
+                }
+                AnimatedEmojiDrawable animatedEmojiDrawable6 = this.animatedEmojiDrawable;
+                if (animatedEmojiDrawable6 != null && (view2 = this.parentView) != null) {
+                    animatedEmojiDrawable6.addView(view2);
+                }
+                this.imageReceiver.setImageBitmap((Bitmap) null);
+            } else {
+                View view4 = this.parentView;
+                if (view4 != null && (animatedEmojiDrawable = this.animatedEmojiDrawable) != null) {
+                    animatedEmojiDrawable.removeView(view4);
+                }
+                this.animatedEmojiDrawable = null;
+                this.imageReceiver.setImageBitmap(ForumUtilities.createTopicDrawable(nextUnreadTopic, false));
+            }
+            int i = nextUnreadTopic.unread_count;
+            this.counterDrawable.setCount(i, false);
+            this.visibleCounterDrawable = i > 0;
+            return;
+        }
+        this.nextTopic = null;
+        this.emptyStub = true;
+    }
+
     public void setWidth(int i) {
         String string;
         String string2;
+        String string3;
         int i2;
-        if (i != this.lastWidth) {
-            this.circleRadius = AndroidUtilities.dp(56.0f) / 2.0f;
-            this.lastWidth = i;
-            TLRPC$Chat tLRPC$Chat = this.nextChat;
-            String string3 = tLRPC$Chat != null ? tLRPC$Chat.title : LocaleController.getString("SwipeToGoNextChannelEnd", R.string.SwipeToGoNextChannelEnd);
-            int measureText = (int) this.textPaint.measureText(string3);
-            this.chatNameWidth = measureText;
-            this.chatNameWidth = Math.min(measureText, this.lastWidth - AndroidUtilities.dp(60.0f));
-            this.chatNameLayout = new StaticLayout(string3, this.textPaint, this.chatNameWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
+        if (i == this.lastWidth && (!this.isTopic || (tLRPC$TL_forumTopic = this.nextTopic) == null || this.lastWidthTopicId == tLRPC$TL_forumTopic.id)) {
+            return;
+        }
+        this.circleRadius = AndroidUtilities.dp(56.0f) / 2.0f;
+        this.lastWidth = i;
+        TLRPC$Chat tLRPC$Chat = this.nextChat;
+        if (tLRPC$Chat != null) {
+            string = tLRPC$Chat.title;
+        } else {
+            TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = this.nextTopic;
+            if (tLRPC$TL_forumTopic2 != null) {
+                string = tLRPC$TL_forumTopic2.title;
+            } else if (this.isTopic) {
+                string = LocaleController.formatString(R.string.SwipeToGoNextTopicEnd, MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.currentDialog)).title);
+            } else {
+                string = LocaleController.getString(R.string.SwipeToGoNextChannelEnd);
+            }
+        }
+        String str = string;
+        int measureText = (int) this.textPaint.measureText((CharSequence) str, 0, str.length());
+        this.chatNameWidth = measureText;
+        int min = Math.min(measureText, this.lastWidth - AndroidUtilities.dp(60.0f));
+        this.chatNameWidth = min;
+        this.chatNameLayout = StaticLayoutEx.createStaticLayout(str, this.textPaint, min, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, min, 1);
+        if (this.recommendedChannel) {
+            string2 = LocaleController.getString(R.string.SwipeToGoNextRecommendedChannel);
+            string3 = LocaleController.getString(R.string.ReleaseToGoNextRecommendedChannel);
+        } else if (this.isTopic) {
+            string2 = LocaleController.getString(R.string.SwipeToGoNextUnreadTopic);
+            string3 = LocaleController.getString(R.string.ReleaseToGoNextUnreadTopic);
+        } else {
             boolean z = this.drawFolderBackground;
             if (z && (i2 = this.dialogFolderId) != this.folderId && i2 != 0) {
-                string = LocaleController.getString("SwipeToGoNextArchive", R.string.SwipeToGoNextArchive);
-                string2 = LocaleController.getString("ReleaseToGoNextArchive", R.string.ReleaseToGoNextArchive);
+                string2 = LocaleController.getString(R.string.SwipeToGoNextArchive);
+                string3 = LocaleController.getString(R.string.ReleaseToGoNextArchive);
             } else if (z) {
-                string = LocaleController.getString("SwipeToGoNextFolder", R.string.SwipeToGoNextFolder);
-                string2 = LocaleController.getString("ReleaseToGoNextFolder", R.string.ReleaseToGoNextFolder);
+                string2 = LocaleController.getString(R.string.SwipeToGoNextFolder);
+                string3 = LocaleController.getString(R.string.ReleaseToGoNextFolder);
             } else {
-                string = LocaleController.getString("SwipeToGoNextChannel", R.string.SwipeToGoNextChannel);
-                string2 = LocaleController.getString("ReleaseToGoNextChannel", R.string.ReleaseToGoNextChannel);
+                string2 = LocaleController.getString(R.string.SwipeToGoNextChannel);
+                string3 = LocaleController.getString(R.string.ReleaseToGoNextChannel);
             }
-            String str = string;
-            String str2 = string2;
-            int measureText2 = (int) this.textPaint2.measureText(str);
-            this.layout1Width = measureText2;
-            this.layout1Width = Math.min(measureText2, this.lastWidth - AndroidUtilities.dp(60.0f));
-            this.layout1 = new StaticLayout(str, this.textPaint2, this.layout1Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            int measureText3 = (int) this.textPaint2.measureText(str2);
-            this.layout2Width = measureText3;
-            this.layout2Width = Math.min(measureText3, this.lastWidth - AndroidUtilities.dp(60.0f));
-            this.layout2 = new StaticLayout(str2, this.textPaint2, this.layout2Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            this.imageReceiver.setImageCoords((this.lastWidth / 2.0f) - (AndroidUtilities.dp(40.0f) / 2.0f), (AndroidUtilities.dp(12.0f) + this.circleRadius) - (AndroidUtilities.dp(40.0f) / 2.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
-            this.imageReceiver.setRoundRadius((int) (AndroidUtilities.dp(40.0f) / 2.0f));
-            this.counterDrawable.setSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(100.0f));
+        }
+        String str2 = string2;
+        int measureText2 = (int) this.textPaint2.measureText(str2);
+        this.layout1Width = measureText2;
+        this.layout1Width = Math.min(measureText2, this.lastWidth - AndroidUtilities.dp(60.0f));
+        this.layout1 = new StaticLayout(str2, this.textPaint2, this.layout1Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        int measureText3 = (int) this.textPaint2.measureText(string3);
+        this.layout2Width = measureText3;
+        this.layout2Width = Math.min(measureText3, this.lastWidth - AndroidUtilities.dp(60.0f));
+        this.layout2 = new StaticLayout(string3, this.textPaint2, this.layout2Width, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+        this.imageReceiver.setImageCoords((this.lastWidth / 2.0f) - (AndroidUtilities.dp(40.0f) / 2.0f), (AndroidUtilities.dp(12.0f) + this.circleRadius) - (AndroidUtilities.dp(40.0f) / 2.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
+        this.imageReceiver.setRoundRadius((int) (AndroidUtilities.dp(40.0f) / 2.0f));
+        this.counterDrawable.setSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(100.0f));
+        if (this.isTopic) {
+            this.lastWidthTopicId = this.nextTopic == null ? 0L : r14.id;
         }
     }
 
@@ -172,13 +300,22 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         int i3;
         float f3;
         float f4;
-        this.parentView = view;
+        float f5;
+        ImageReceiver imageReceiver;
+        float f6;
+        if (this.parentView != view) {
+            this.parentView = view;
+            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+            if (animatedEmojiDrawable != null) {
+                animatedEmojiDrawable.addView(view);
+            }
+        }
         this.counterDrawable.setParent(view);
         float dp = AndroidUtilities.dp(110.0f) * f;
         if (dp < AndroidUtilities.dp(8.0f)) {
             return;
         }
-        float f5 = f < 0.2f ? 5.0f * f * f2 : f2;
+        float f7 = f < 0.2f ? 5.0f * f * f2 : f2;
         Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - dp);
         TextPaint textPaint = this.textPaint;
         int i4 = Theme.key_chat_serviceText;
@@ -189,24 +326,27 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         int alpha2 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
         int alpha3 = this.textPaint.getAlpha();
         int alpha4 = this.arrowPaint.getAlpha();
-        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f5));
-        int i5 = (int) (alpha * f5);
+        Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f7));
+        int i5 = (int) (alpha * f7);
         getThemedPaint("paintChatActionBackground").setAlpha(i5);
-        int i6 = (int) (alpha3 * f5);
+        int i6 = (int) (alpha3 * f7);
         this.textPaint.setAlpha(i6);
-        this.imageReceiver.setAlpha(f5);
+        float f8 = 1.0f;
         if ((f < 1.0f || this.lastProgress >= 1.0f) && (f >= 1.0f || this.lastProgress != 1.0f)) {
-            i = alpha;
+            i = i5;
+            i2 = alpha;
         } else {
+            i2 = alpha;
             long currentTimeMillis = System.currentTimeMillis();
-            i = alpha;
+            i = i5;
             if (currentTimeMillis - this.lastHapticTime > 100) {
                 view.performHapticFeedback(3, 2);
                 this.lastHapticTime = currentTimeMillis;
             }
             this.lastProgress = f;
+            f8 = 1.0f;
         }
-        if (f == 1.0f && !this.animateSwipeToRelease) {
+        if (f == f8 && !this.animateSwipeToRelease) {
             this.animateSwipeToRelease = true;
             this.animateCheck = true;
             showReleaseState(true, view);
@@ -215,56 +355,60 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.animateSwipeToRelease = false;
             showReleaseState(false, view);
         }
-        float f6 = this.lastWidth / 2.0f;
-        float f7 = this.bounceProgress * (-AndroidUtilities.dp(4.0f));
+        float f9 = this.lastWidth / 2.0f;
+        float f10 = this.bounceProgress * (-AndroidUtilities.dp(4.0f));
         if (this.emptyStub) {
-            dp -= f7;
+            dp -= f10;
         }
-        float f8 = dp / 2.0f;
-        float max = Math.max(0.0f, Math.min(this.circleRadius, (f8 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
-        float max2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f8 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
-        float f9 = this.swipeToReleaseProgress;
-        float dp2 = max2 + (AndroidUtilities.dp(56.0f) * f9);
-        if (f9 < 1.0f || this.emptyStub) {
-            float f10 = -dp;
-            i2 = alpha3;
+        float f11 = dp / 2.0f;
+        float max = Math.max(0.0f, Math.min(this.circleRadius, (f11 - (AndroidUtilities.dp(16.0f) * f)) - AndroidUtilities.dp(4.0f)));
+        float max2 = ((Math.max(0.0f, Math.min(this.circleRadius * f, f11 - (AndroidUtilities.dp(8.0f) * f))) * 2.0f) - AndroidUtilities.dp2(16.0f)) * (1.0f - this.swipeToReleaseProgress);
+        float dp2 = AndroidUtilities.dp(56.0f);
+        float f12 = this.swipeToReleaseProgress;
+        float f13 = max2 + (dp2 * f12);
+        if (f12 < 1.0f || this.emptyStub) {
+            float f14 = -dp;
             i3 = alpha2;
-            float dp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f10) * this.swipeToReleaseProgress);
+            f3 = f7;
+            float dp3 = ((-AndroidUtilities.dp(8.0f)) * (1.0f - this.swipeToReleaseProgress)) + ((AndroidUtilities.dp(56.0f) + f14) * this.swipeToReleaseProgress);
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(f6 - max, f10, max + f6, dp3);
-            if (this.swipeToReleaseProgress > 0.0f && !this.emptyStub) {
+            rectF.set(f9 - max, f14, max + f9, dp3);
+            if (this.swipeToReleaseProgress <= 0.0f || this.emptyStub) {
+                f4 = 1.0f;
+            } else {
                 float dp4 = AndroidUtilities.dp(16.0f) * this.swipeToReleaseProgress;
                 rectF.inset(dp4, dp4);
+                f4 = 1.0f - this.swipeToReleaseProgress;
             }
-            drawBackground(canvas, rectF);
-            float dp5 = ((AndroidUtilities.dp(24.0f) + f10) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
+            drawBackground(canvas, rectF, f4);
+            float dp5 = ((AndroidUtilities.dp(24.0f) + f14) + (AndroidUtilities.dp(8.0f) * (1.0f - f))) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress);
             canvas.save();
-            f3 = dp;
+            f5 = dp;
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             canvas.clipRect(rectF);
-            float f11 = this.swipeToReleaseProgress;
-            if (f11 > 0.0f) {
-                this.arrowPaint.setAlpha((int) ((1.0f - f11) * 255.0f));
+            float f15 = this.swipeToReleaseProgress;
+            if (f15 > 0.0f) {
+                this.arrowPaint.setAlpha((int) ((1.0f - f15) * 255.0f));
             }
-            drawArrow(canvas, f6, dp5, AndroidUtilities.dp(24.0f) * f);
+            drawArrow(canvas, f9, dp5, AndroidUtilities.dp(24.0f) * f);
             if (this.emptyStub) {
-                float dp22 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - dp2) * (1.0f - this.swipeToReleaseProgress)) + ((f10 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f7;
+                float dp22 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f13) * (1.0f - this.swipeToReleaseProgress)) + ((f14 - AndroidUtilities.dp(2.0f)) * this.swipeToReleaseProgress) + f10;
                 this.arrowPaint.setAlpha(alpha4);
                 canvas.save();
-                canvas.scale(f, f, f6, AndroidUtilities.dp(28.0f) + dp22);
-                drawCheck(canvas, f6, dp22 + AndroidUtilities.dp(28.0f));
+                canvas.scale(f, f, f9, AndroidUtilities.dp(28.0f) + dp22);
+                drawCheck(canvas, f9, dp22 + AndroidUtilities.dp(28.0f));
                 canvas.restore();
             }
             canvas.restore();
         } else {
-            f3 = dp;
+            f5 = dp;
+            f3 = f7;
             i3 = alpha2;
-            i2 = alpha3;
         }
         if (this.chatNameLayout != null && this.swipeToReleaseProgress > 0.0f) {
-            getThemedPaint("paintChatActionBackground").setAlpha(i5);
+            getThemedPaint("paintChatActionBackground").setAlpha(i);
             this.textPaint.setAlpha(i6);
-            float dp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f7;
+            float dp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f10;
             RectF rectF2 = AndroidUtilities.rectTmp;
             int i7 = this.lastWidth;
             int i8 = this.chatNameWidth;
@@ -279,41 +423,50 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             this.chatNameLayout.draw(canvas);
             canvas.restore();
         }
-        if (this.emptyStub || dp2 <= 0.0f) {
-            f4 = 1.0f;
-        } else {
-            float dp23 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - dp2) * (1.0f - this.swipeToReleaseProgress)) + (((-f3) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f7;
-            float f12 = dp2 / 2.0f;
-            this.imageReceiver.setRoundRadius((int) f12);
-            this.imageReceiver.setImageCoords(f6 - f12, dp23, dp2, dp2);
-            if (this.swipeToReleaseProgress > 0.0f) {
-                f4 = 1.0f;
-                canvas.saveLayerAlpha(this.imageReceiver.getImageX(), this.imageReceiver.getImageY(), this.imageReceiver.getImageWidth() + this.imageReceiver.getImageX(), this.imageReceiver.getImageHeight() + this.imageReceiver.getImageY(), 255, 31);
-                this.imageReceiver.draw(canvas);
-                float f13 = this.swipeToReleaseProgress;
-                canvas.scale(f13, f13, AndroidUtilities.dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(AndroidUtilities.dp(12.0f) + f6, dp23 - AndroidUtilities.dp(6.0f));
+        if (!this.emptyStub && f13 > 0.0f) {
+            float dp23 = ((((-AndroidUtilities.dp(8.0f)) - (AndroidUtilities.dp2(8.0f) * f)) - f13) * (1.0f - this.swipeToReleaseProgress)) + (((-f5) + AndroidUtilities.dp(4.0f)) * this.swipeToReleaseProgress) + f10;
+            AnimatedEmojiDrawable animatedEmojiDrawable2 = this.animatedEmojiDrawable;
+            if (animatedEmojiDrawable2 != null && animatedEmojiDrawable2.getImageReceiver() != null) {
+                imageReceiver = this.animatedEmojiDrawable.getImageReceiver();
+            } else {
+                imageReceiver = this.imageReceiver;
+            }
+            ImageReceiver imageReceiver2 = imageReceiver;
+            imageReceiver2.setAlpha(f3);
+            float f16 = f13 / 2.0f;
+            imageReceiver2.setRoundRadius((int) f16);
+            imageReceiver2.setImageCoords(f9 - f16, dp23, f13, f13);
+            if (this.isTopic && imageReceiver2.getDrawable() != null && (imageReceiver2.getDrawable() instanceof CombinedDrawable) && (((CombinedDrawable) imageReceiver2.getDrawable()).getIcon() instanceof LetterDrawable)) {
+                ((LetterDrawable) ((CombinedDrawable) imageReceiver2.getDrawable()).getIcon()).scale = f;
+            }
+            if (this.swipeToReleaseProgress > 0.0f && this.visibleCounterDrawable) {
+                f6 = 1.0f;
+                canvas.saveLayerAlpha(imageReceiver2.getImageX(), imageReceiver2.getImageY(), imageReceiver2.getImageWidth() + imageReceiver2.getImageX(), imageReceiver2.getImageHeight() + imageReceiver2.getImageY(), 255, 31);
+                imageReceiver2.draw(canvas);
+                float f17 = this.swipeToReleaseProgress;
+                canvas.scale(f17, f17, AndroidUtilities.dp(12.0f) + f9 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(AndroidUtilities.dp(12.0f) + f9, dp23 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.updateBackgroundRect();
                 this.counterDrawable.rectF.inset(-AndroidUtilities.dp(2.0f), -AndroidUtilities.dp(2.0f));
                 RectF rectF3 = this.counterDrawable.rectF;
                 canvas.drawRoundRect(rectF3, rectF3.height() / 2.0f, this.counterDrawable.rectF.height() / 2.0f, this.xRefPaint);
                 canvas.restore();
                 canvas.save();
-                float f14 = this.swipeToReleaseProgress;
-                canvas.scale(f14, f14, AndroidUtilities.dp(12.0f) + f6 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
-                canvas.translate(f6 + AndroidUtilities.dp(12.0f), dp23 - AndroidUtilities.dp(6.0f));
+                float f18 = this.swipeToReleaseProgress;
+                canvas.scale(f18, f18, AndroidUtilities.dp(12.0f) + f9 + this.counterDrawable.getCenterX(), (dp23 - AndroidUtilities.dp(6.0f)) + AndroidUtilities.dp(14.0f));
+                canvas.translate(f9 + AndroidUtilities.dp(12.0f), dp23 - AndroidUtilities.dp(6.0f));
                 this.counterDrawable.draw(canvas);
                 canvas.restore();
             } else {
-                f4 = 1.0f;
-                this.imageReceiver.draw(canvas);
+                f6 = 1.0f;
+                imageReceiver2.draw(canvas);
             }
+            imageReceiver2.setAlpha(f6);
         }
-        getThemedPaint("paintChatActionBackground").setAlpha(i);
+        getThemedPaint("paintChatActionBackground").setAlpha(i2);
         Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(i3);
-        this.textPaint.setAlpha(i2);
+        this.textPaint.setAlpha(alpha3);
         this.arrowPaint.setAlpha(alpha4);
-        this.imageReceiver.setAlpha(f4);
     }
 
     private void drawCheck(Canvas canvas, float f, float f2) {
@@ -348,33 +501,33 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         }
     }
 
-    private void drawBackground(Canvas canvas, RectF rectF) {
+    private void drawBackground(Canvas canvas, RectF rectF, float f) {
         if (this.drawFolderBackground) {
             this.path.reset();
             float width = rectF.width() * 0.2f;
             float width2 = rectF.width() * 0.1f;
             float width3 = rectF.width() * 0.03f;
-            float f = width2 / 2.0f;
+            float f2 = width2 / 2.0f;
             float height = rectF.height() - width2;
             this.path.moveTo(rectF.right, rectF.top + width + width2);
-            float f2 = -width;
-            this.path.rQuadTo(0.0f, f2, f2, f2);
-            float f3 = width * 2.0f;
-            float f4 = f * 2.0f;
-            this.path.rLineTo((((-(rectF.width() - f3)) / 2.0f) + f4) - width3, 0.0f);
-            float f5 = -f;
-            float f6 = f5 / 2.0f;
-            float f7 = f5 * 2.0f;
-            float f8 = (-width2) / 2.0f;
-            this.path.rQuadTo(f6, 0.0f, f7, f8);
-            this.path.rQuadTo(f6, f8, f7, f8);
-            this.path.rLineTo(((-(rectF.width() - f3)) / 2.0f) + f4 + width3, 0.0f);
-            this.path.rQuadTo(f2, 0.0f, f2, width);
-            this.path.rLineTo(0.0f, (width2 + height) - f3);
+            float f3 = -width;
+            this.path.rQuadTo(0.0f, f3, f3, f3);
+            float f4 = width * 2.0f;
+            float f5 = f2 * 2.0f;
+            this.path.rLineTo((((-(rectF.width() - f4)) / 2.0f) + f5) - width3, 0.0f);
+            float f6 = -f2;
+            float f7 = f6 / 2.0f;
+            float f8 = f6 * 2.0f;
+            float f9 = (-width2) / 2.0f;
+            this.path.rQuadTo(f7, 0.0f, f8, f9);
+            this.path.rQuadTo(f7, f9, f8, f9);
+            this.path.rLineTo(((-(rectF.width() - f4)) / 2.0f) + f5 + width3, 0.0f);
+            this.path.rQuadTo(f3, 0.0f, f3, width);
+            this.path.rLineTo(0.0f, (width2 + height) - f4);
             this.path.rQuadTo(0.0f, width, width, width);
-            this.path.rLineTo(rectF.width() - f3, 0.0f);
-            this.path.rQuadTo(width, 0.0f, width, f2);
-            this.path.rLineTo(0.0f, -(height - f3));
+            this.path.rLineTo(rectF.width() - f4, 0.0f);
+            this.path.rQuadTo(width, 0.0f, width, f3);
+            this.path.rLineTo(0.0f, -(height - f4));
             this.path.close();
             canvas.drawPath(this.path, getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
@@ -383,12 +536,18 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             }
             return;
         }
+        int alpha = getThemedPaint("paintChatActionBackground").getAlpha();
+        getThemedPaint("paintChatActionBackground").setAlpha((int) (alpha * f));
         RectF rectF2 = AndroidUtilities.rectTmp;
-        float f9 = this.circleRadius;
-        canvas.drawRoundRect(rectF2, f9, f9, getThemedPaint("paintChatActionBackground"));
+        float f10 = this.circleRadius;
+        canvas.drawRoundRect(rectF2, f10, f10, getThemedPaint("paintChatActionBackground"));
+        getThemedPaint("paintChatActionBackground").setAlpha(alpha);
         if (hasGradientService()) {
-            float f10 = this.circleRadius;
-            canvas.drawRoundRect(rectF2, f10, f10, Theme.chat_actionBackgroundGradientDarkenPaint);
+            int alpha2 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
+            Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f));
+            float f11 = this.circleRadius;
+            canvas.drawRoundRect(rectF2, f11, f11, Theme.chat_actionBackgroundGradientDarkenPaint);
+            Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha(alpha2);
         }
     }
 
@@ -514,13 +673,23 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     public void onAttach() {
+        View view;
         this.imageReceiver.onAttachedToWindow();
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null && (view = this.parentView) != null) {
+            animatedEmojiDrawable.addView(view);
+        }
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
     }
 
     public void onDetach() {
+        View view;
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
         this.imageReceiver.onDetachedFromWindow();
+        AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+        if (animatedEmojiDrawable != null && (view = this.parentView) != null) {
+            animatedEmojiDrawable.removeView(view);
+        }
         this.lastProgress = 0.0f;
         this.lastHapticTime = 0L;
     }
@@ -531,7 +700,9 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         if (this.nextDialogId == 0 || (tLRPC$Dialog = MessagesController.getInstance(this.currentAccount).dialogs_dict.get(this.nextDialogId)) == null) {
             return;
         }
-        this.counterDrawable.setCount(tLRPC$Dialog.unread_count, true);
+        int i3 = tLRPC$Dialog.unread_count;
+        this.counterDrawable.setCount(i3, true);
+        this.visibleCounterDrawable = i3 > 0;
         View view = this.parentView;
         if (view != null) {
             view.invalidate();
@@ -592,8 +763,28 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         return null;
     }
 
+    private TLRPC$TL_forumTopic getNextUnreadTopic(long j) {
+        TLRPC$Message tLRPC$Message;
+        TLRPC$Message tLRPC$Message2;
+        ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(j);
+        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = null;
+        if (topics != null && topics.size() > 1) {
+            for (int i = 0; i < topics.size(); i++) {
+                TLRPC$TL_forumTopic tLRPC$TL_forumTopic2 = topics.get(i);
+                if (tLRPC$TL_forumTopic2.id != this.topicId && !tLRPC$TL_forumTopic2.hidden && tLRPC$TL_forumTopic2.unread_count > 0 && (tLRPC$TL_forumTopic == null || ((tLRPC$Message = tLRPC$TL_forumTopic2.topMessage) != null && (tLRPC$Message2 = tLRPC$TL_forumTopic.topMessage) != null && tLRPC$Message.date > tLRPC$Message2.date))) {
+                    tLRPC$TL_forumTopic = tLRPC$TL_forumTopic2;
+                }
+            }
+        }
+        return tLRPC$TL_forumTopic;
+    }
+
     public long getChatId() {
         return this.nextChat.id;
+    }
+
+    public TLRPC$TL_forumTopic getTopic() {
+        return this.nextTopic;
     }
 
     public void drawBottomPanel(android.graphics.Canvas r17, int r18, int r19, int r20) {

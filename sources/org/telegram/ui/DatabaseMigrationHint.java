@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
+
 public class DatabaseMigrationHint extends FrameLayout {
     LinearLayout container;
     TextView description1;
@@ -27,10 +27,10 @@ public class DatabaseMigrationHint extends FrameLayout {
         linearLayout.setOrientation(1);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.stickerView = rLottieImageView;
-        rLottieImageView.setAnimation(R.raw.db_migration_placeholder, ImageReceiver.DEFAULT_CROSSFADE_DURATION, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+        rLottieImageView.setAnimation(R.raw.db_migration_placeholder, 150, 150);
         this.stickerView.getAnimatedDrawable().setAutoRepeat(1);
         this.stickerView.playAnimation();
-        this.container.addView(this.stickerView, LayoutHelper.createLinear((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, (int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, 1));
+        this.container.addView(this.stickerView, LayoutHelper.createLinear(150, 150, 1));
         TextView textView = new TextView(context);
         this.title = textView;
         textView.setTextSize(1, 24.0f);

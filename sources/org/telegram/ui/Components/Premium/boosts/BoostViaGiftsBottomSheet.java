@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -49,6 +48,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SlideChooseView;
+
 public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView implements SelectorBottomSheet.SelectedObjectsListener {
     private ActionBtnCell actionBtn;
     private ActionListener actionListener;
@@ -109,7 +109,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
         this.selectedMonths = 12;
         this.selectedEndDate = BoostDialogs.getThreeDaysAfterToday();
         this.selectedSliderIndex = 2;
-        this.additionalPrize = BuildConfig.APP_CENTER_HASH;
+        this.additionalPrize = "";
         this.isShowWinnersSelected = true;
         this.hideKeyboardRunnable = new Runnable() {
             @Override
@@ -236,7 +236,9 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
             }
             this.selectedParticipantsType = selectedType2;
             updateRows(false, false);
-        } else if (view instanceof DurationCell) {
+            return;
+        }
+        if (view instanceof DurationCell) {
             this.selectedMonths = ((TLRPC$TL_premiumGiftCodeOption) ((DurationCell) view).getGifCode()).months;
             updateRows(false, false);
             this.adapter.notifyAllVisibleTextDividers();
@@ -247,8 +249,10 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                     BoostViaGiftsBottomSheet.this.lambda$new$1(z2, i2);
                 }
             }, this.resourcesProvider);
-        } else if (!(view instanceof AddChannelCell) || (actionListener = this.actionListener) == null) {
         } else {
+            if (!(view instanceof AddChannelCell) || (actionListener = this.actionListener) == null) {
+                return;
+            }
             actionListener.onAddChat(this.selectedChats);
         }
     }
@@ -657,7 +661,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     }
 
     @Override
-    protected RecyclerListView.SelectionAdapter createAdapter() {
+    protected RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         BoostAdapter boostAdapter = new BoostAdapter(this.resourcesProvider);
         this.adapter = boostAdapter;
         return boostAdapter;

@@ -1,4 +1,5 @@
 package org.webrtc;
+
 public class TurnCustomizer {
     private long nativeTurnCustomizer;
 

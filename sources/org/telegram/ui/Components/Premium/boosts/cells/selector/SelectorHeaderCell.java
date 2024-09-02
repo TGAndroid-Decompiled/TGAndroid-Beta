@@ -13,6 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 @SuppressLint({"ViewConstructor"})
 public class SelectorHeaderCell extends FrameLayout {
     public BackDrawable backDrawable;
@@ -28,7 +29,7 @@ public class SelectorHeaderCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         int i = Theme.key_dialogTextBlack;

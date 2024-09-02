@@ -26,6 +26,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+
 public class TimezoneSelector extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private String currentTimezone;
     private LinearLayout emptyView;
@@ -46,7 +47,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    TimezoneSelector.this.finishFragment();
+                    TimezoneSelector.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -77,7 +78,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, new Utilities.Callback2() {
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 TimezoneSelector.this.fillItems((ArrayList) obj, (UniversalAdapter) obj2);
@@ -87,7 +88,7 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             public final void run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
                 TimezoneSelector.this.onClick((UItem) obj, (View) obj2, ((Integer) obj3).intValue(), ((Float) obj4).floatValue(), ((Float) obj5).floatValue());
             }
-        }, null, getResourceProvider());
+        }, null);
         this.listView = universalRecyclerView;
         frameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -178,14 +179,17 @@ public class TimezoneSelector extends BaseFragment implements NotificationCenter
             }
             ((TextCheckCell) view).setChecked(this.useSystem);
             this.listView.adapter.update(true);
-        } else if (view.isEnabled()) {
+            return;
+        }
+        if (view.isEnabled()) {
             TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
             int i2 = uItem.id;
             if (i2 < 0 || i2 >= timezonesController.getTimezones().size()) {
                 return;
             }
+            TLRPC$TL_timezone tLRPC$TL_timezone = timezonesController.getTimezones().get(uItem.id);
             this.useSystem = false;
-            String str2 = timezonesController.getTimezones().get(uItem.id).id;
+            String str2 = tLRPC$TL_timezone.id;
             this.currentTimezone = str2;
             Utilities.Callback<String> callback2 = this.whenTimezoneSelected;
             if (callback2 != null) {

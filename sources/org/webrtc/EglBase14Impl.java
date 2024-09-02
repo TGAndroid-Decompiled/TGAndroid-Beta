@@ -12,6 +12,7 @@ import android.os.Build;
 import android.view.Surface;
 import org.webrtc.EglBase;
 import org.webrtc.EglBase14;
+
 @TargetApi(18)
 public class EglBase14Impl implements EglBase14 {
     private static final int CURRENT_SDK_VERSION = Build.VERSION.SDK_INT;
@@ -30,7 +31,7 @@ public class EglBase14Impl implements EglBase14 {
         sb.append(i);
         sb.append(". isEGL14Supported: ");
         sb.append(i >= 18);
-        Logging.d(TAG, sb.toString());
+        Logging.d("EglBase14Impl", sb.toString());
         return i >= 18;
     }
 
@@ -61,7 +62,7 @@ public class EglBase14Impl implements EglBase14 {
         this.eglDisplay = eglDisplay;
         this.eglConfig = getEglConfig(eglDisplay, iArr);
         int openGlesVersionFromConfig = EglBase.CC.getOpenGlesVersionFromConfig(iArr);
-        Logging.d(TAG, "Using OpenGL ES version " + openGlesVersionFromConfig);
+        Logging.d("EglBase14Impl", "Using OpenGL ES version " + openGlesVersionFromConfig);
         this.eglContext = createEglContext(eGLContext, this.eglDisplay, this.eglConfig, openGlesVersionFromConfig);
     }
 
@@ -95,16 +96,16 @@ public class EglBase14Impl implements EglBase14 {
                 return;
             }
             throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
-        } else if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
-            throw new RuntimeException("Already has an EGLSurface");
-        } else {
-            EGLSurface eglCreateWindowSurface2 = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
-            this.eglSurface = eglCreateWindowSurface2;
-            if (eglCreateWindowSurface2 != EGL14.EGL_NO_SURFACE) {
-                return;
-            }
-            throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
         }
+        if (this.eglSurface != EGL14.EGL_NO_SURFACE) {
+            throw new RuntimeException("Already has an EGLSurface");
+        }
+        EGLSurface eglCreateWindowSurface2 = EGL14.eglCreateWindowSurface(this.eglDisplay, this.eglConfig, obj, new int[]{12344}, 0);
+        this.eglSurface = eglCreateWindowSurface2;
+        if (eglCreateWindowSurface2 != EGL14.EGL_NO_SURFACE) {
+            return;
+        }
+        throw new RuntimeException("Failed to create window surface: 0x" + Integer.toHexString(EGL14.eglGetError()));
     }
 
     @Override
@@ -278,15 +279,15 @@ public class EglBase14Impl implements EglBase14 {
         int[] iArr2 = new int[1];
         if (!EGL14.eglChooseConfig(eGLDisplay, iArr, 0, eGLConfigArr, 0, 1, iArr2, 0)) {
             throw new RuntimeException("eglChooseConfig failed: 0x" + Integer.toHexString(EGL14.eglGetError()));
-        } else if (iArr2[0] <= 0) {
-            throw new RuntimeException("Unable to find any matching EGL config");
-        } else {
-            EGLConfig eGLConfig = eGLConfigArr[0];
-            if (eGLConfig != null) {
-                return eGLConfig;
-            }
-            throw new RuntimeException("eglChooseConfig returned null");
         }
+        if (iArr2[0] <= 0) {
+            throw new RuntimeException("Unable to find any matching EGL config");
+        }
+        EGLConfig eGLConfig = eGLConfigArr[0];
+        if (eGLConfig != null) {
+            return eGLConfig;
+        }
+        throw new RuntimeException("eglChooseConfig returned null");
     }
 
     private static EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i) {

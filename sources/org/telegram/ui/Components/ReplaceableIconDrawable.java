@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
+
 public class ReplaceableIconDrawable extends Drawable implements Animator.AnimatorListener {
     private ValueAnimator animation;
     private ColorFilter colorFilter;
@@ -64,7 +65,9 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
             invalidateSelf();
             return;
         }
-        z = (getBounds() == null || getBounds().isEmpty()) ? false : false;
+        if (getBounds() == null || getBounds().isEmpty()) {
+            z = false;
+        }
         Drawable drawable2 = this.currentDrawable;
         if (drawable == drawable2) {
             drawable2.setColorFilter(this.colorFilter);

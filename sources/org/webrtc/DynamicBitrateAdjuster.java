@@ -1,4 +1,5 @@
 package org.webrtc;
+
 class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     private static final double BITRATE_ADJUSTMENT_MAX_SCALE = 4.0d;
     private static final double BITRATE_ADJUSTMENT_SEC = 3.0d;
@@ -32,42 +33,41 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
         int i3 = this.targetBitrateBps;
         double d = i3;
         Double.isNaN(d);
-        double d2 = d / BITS_PER_BYTE;
-        double d3 = i2;
-        Double.isNaN(d3);
-        double d4 = d2 / d3;
-        double d5 = this.deviationBytes;
-        double d6 = i;
-        Double.isNaN(d6);
-        double d7 = d5 + (d6 - d4);
-        this.deviationBytes = d7;
-        double d8 = this.timeSinceLastAdjustmentMs;
-        double d9 = i2;
+        double d2 = i2;
+        Double.isNaN(d2);
+        double d3 = (d / 8.0d) / d2;
+        double d4 = this.deviationBytes;
+        double d5 = i;
+        Double.isNaN(d5);
+        double d6 = d4 + (d5 - d3);
+        this.deviationBytes = d6;
+        double d7 = this.timeSinceLastAdjustmentMs;
+        double d8 = i2;
+        Double.isNaN(d8);
+        this.timeSinceLastAdjustmentMs = d7 + (1000.0d / d8);
+        double d9 = i3;
         Double.isNaN(d9);
-        this.timeSinceLastAdjustmentMs = d8 + (1000.0d / d9);
-        double d10 = i3;
-        Double.isNaN(d10);
-        double d11 = d10 / BITS_PER_BYTE;
-        double d12 = BITRATE_ADJUSTMENT_SEC * d11;
-        double min = Math.min(d7, d12);
+        double d10 = d9 / 8.0d;
+        double d11 = 3.0d * d10;
+        double min = Math.min(d6, d11);
         this.deviationBytes = min;
-        double max = Math.max(min, -d12);
+        double max = Math.max(min, -d11);
         this.deviationBytes = max;
         if (this.timeSinceLastAdjustmentMs <= 3000.0d) {
             return;
         }
-        if (max > d11) {
-            int i4 = this.bitrateAdjustmentScaleExp - ((int) ((max / d11) + 0.5d));
+        if (max > d10) {
+            int i4 = this.bitrateAdjustmentScaleExp - ((int) ((max / d10) + 0.5d));
             this.bitrateAdjustmentScaleExp = i4;
             this.bitrateAdjustmentScaleExp = Math.max(i4, -20);
-            this.deviationBytes = d11;
+            this.deviationBytes = d10;
         } else {
-            double d13 = -d11;
-            if (max < d13) {
-                int i5 = this.bitrateAdjustmentScaleExp + ((int) (((-max) / d11) + 0.5d));
+            double d12 = -d10;
+            if (max < d12) {
+                int i5 = this.bitrateAdjustmentScaleExp + ((int) (((-max) / d10) + 0.5d));
                 this.bitrateAdjustmentScaleExp = i5;
                 this.bitrateAdjustmentScaleExp = Math.min(i5, 20);
-                this.deviationBytes = d13;
+                this.deviationBytes = d12;
             }
         }
         this.timeSinceLastAdjustmentMs = 0.0d;
@@ -76,7 +76,7 @@ class DynamicBitrateAdjuster extends BaseBitrateAdjuster {
     private double getBitrateAdjustmentScale() {
         double d = this.bitrateAdjustmentScaleExp;
         Double.isNaN(d);
-        return Math.pow(BITRATE_ADJUSTMENT_MAX_SCALE, d / 20.0d);
+        return Math.pow(4.0d, d / 20.0d);
     }
 
     @Override

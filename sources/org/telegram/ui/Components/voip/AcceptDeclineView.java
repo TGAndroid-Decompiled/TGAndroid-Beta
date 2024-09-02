@@ -28,13 +28,12 @@ import android.widget.Button;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.voip.ImageWithWavesView;
+
 public class AcceptDeclineView extends View {
     private Paint acceptCirclePaint;
     private FabBackgroundDrawable acceptDrawable;
@@ -123,7 +122,7 @@ public class AcceptDeclineView extends View {
         this.cancelDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         int i3 = R.raw.call_accept;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.callAcceptDrawable = rLottieDrawable;
         rLottieDrawable.setAutoRepeat(1);
         this.callAcceptDrawable.setCustomEndFrame(90);
@@ -358,11 +357,11 @@ public class AcceptDeclineView extends View {
                             return AcceptDeclineView.this.retryLayout.getText();
                         }
                         return null;
-                    } else if (acceptDeclineView.acceptLayout != null) {
-                        return AcceptDeclineView.this.acceptLayout.getText();
-                    } else {
-                        return null;
                     }
+                    if (acceptDeclineView.acceptLayout != null) {
+                        return AcceptDeclineView.this.acceptLayout.getText();
+                    }
+                    return null;
                 }
 
                 @Override
@@ -457,14 +456,14 @@ public class AcceptDeclineView extends View {
                 return this.hostView.performAccessibilityAction(i2, bundle);
             }
             if (i2 == 64) {
-                sendAccessibilityEventForVirtualView(i, LiteMode.FLAG_CHAT_SCALE);
-                return false;
-            } else if (i2 == 16) {
-                onVirtualViewClick(i);
-                return true;
-            } else {
+                sendAccessibilityEventForVirtualView(i, 32768);
                 return false;
             }
+            if (i2 != 16) {
+                return false;
+            }
+            onVirtualViewClick(i);
+            return true;
         }
 
         public boolean onHoverEvent(MotionEvent motionEvent) {
@@ -476,7 +475,7 @@ public class AcceptDeclineView extends View {
                     if (this.rect.contains(x, y)) {
                         if (i != this.currentFocusedVirtualViewId) {
                             this.currentFocusedVirtualViewId = i;
-                            sendAccessibilityEventForVirtualView(i, LiteMode.FLAG_CHAT_SCALE);
+                            sendAccessibilityEventForVirtualView(i, 32768);
                         }
                         return true;
                     }

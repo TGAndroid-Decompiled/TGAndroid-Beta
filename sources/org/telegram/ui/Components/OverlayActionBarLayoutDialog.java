@@ -19,6 +19,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.LaunchActivity;
+
 public class OverlayActionBarLayoutDialog extends Dialog implements INavigationLayout.INavigationLayoutDelegate {
     private INavigationLayout actionBarLayout;
     private FrameLayout frameLayout;
@@ -59,7 +60,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
     public OverlayActionBarLayoutDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
         this.resourcesProvider = resourcesProvider;
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(context);
+        INavigationLayout newLayout = INavigationLayout.CC.newLayout(context, false);
         this.actionBarLayout = newLayout;
         newLayout.setFragmentStack(new ArrayList());
         this.actionBarLayout.presentFragment(new INavigationLayout.NavigationParams(new EmptyFragment()).setNoAnimation(true));
@@ -177,13 +178,12 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
         if (this.passcodeView.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
-                return;
             }
-            return;
-        }
-        this.actionBarLayout.onBackPressed();
-        if (this.actionBarLayout.getFragmentStack().size() <= 1) {
-            dismiss();
+        } else {
+            this.actionBarLayout.onBackPressed();
+            if (this.actionBarLayout.getFragmentStack().size() <= 1) {
+                dismiss();
+            }
         }
     }
 

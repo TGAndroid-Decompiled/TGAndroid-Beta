@@ -4,9 +4,9 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TextStyleSpan extends MetricAffectingSpan {
     private int color;
     private TextStyleRun style;
@@ -57,26 +57,26 @@ public class TextStyleSpan extends MetricAffectingSpan {
             } else {
                 textPaint.setFlags(textPaint.getFlags() & (-17));
             }
-            if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            if ((this.flags & 512) != 0) {
                 textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
             }
         }
 
         public Typeface getTypeface() {
             int i = this.flags;
-            if ((i & 4) == 0 && (i & 2048) == 0) {
-                if ((i & 1) == 0 || (i & 2) == 0) {
-                    if ((i & 1) != 0) {
-                        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM);
-                    }
-                    if ((i & 2) != 0) {
-                        return AndroidUtilities.getTypeface("fonts/ritalic.ttf");
-                    }
-                    return null;
-                }
-                return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC);
+            if ((i & 4) != 0 || (i & 2048) != 0) {
+                return Typeface.MONOSPACE;
             }
-            return Typeface.MONOSPACE;
+            if ((i & 1) != 0 && (i & 2) != 0) {
+                return AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf");
+            }
+            if ((i & 1) != 0) {
+                return AndroidUtilities.bold();
+            }
+            if ((i & 2) != 0) {
+                return AndroidUtilities.getTypeface("fonts/ritalic.ttf");
+            }
+            return null;
         }
     }
 
@@ -101,15 +101,15 @@ public class TextStyleSpan extends MetricAffectingSpan {
     }
 
     public boolean isSpoiler() {
-        return (this.style.flags & LiteMode.FLAG_CHAT_BLUR) > 0;
+        return (this.style.flags & 256) > 0;
     }
 
     public void setSpoilerRevealed(boolean z) {
         if (z) {
-            this.style.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
-            return;
+            this.style.flags |= 512;
+        } else {
+            this.style.flags &= -513;
         }
-        this.style.flags &= -513;
     }
 
     @Override

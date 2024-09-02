@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.SharedConfig;
+
 public class HwFrameLayout extends FrameLayout {
     private final boolean isFastDevice;
     static final Set<View> hwViews = new HashSet();
@@ -21,8 +23,9 @@ public class HwFrameLayout extends FrameLayout {
         if (z) {
             setLayerType(0, null);
         }
-        for (View view : hwViews) {
-            view.invalidate();
+        Iterator<View> it = hwViews.iterator();
+        while (it.hasNext()) {
+            it.next().invalidate();
         }
         hwViews.clear();
     }

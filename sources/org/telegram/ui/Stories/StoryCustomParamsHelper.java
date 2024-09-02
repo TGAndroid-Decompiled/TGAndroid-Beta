@@ -5,6 +5,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.tgnet.tl.TL_stories$StoryItem;
+
 public class StoryCustomParamsHelper {
     public static boolean isEmpty(TL_stories$StoryItem tL_stories$StoryItem) {
         return tL_stories$StoryItem.detectedLng == null && tL_stories$StoryItem.translatedLng == null && !tL_stories$StoryItem.translated && tL_stories$StoryItem.translatedText == null;

@@ -9,7 +9,7 @@
     <style name="TMessages.AppWidget.Badge" parent="@style/Base.TMessages.AppWidget.Badge">
         <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
     </style>
-    <style name="Theme.TMessages.Dark" parent="@android:style/Theme.Material">
+    <style name="Theme.TMessages.Dark" parent="@style/Theme.AppCompat.DayNight">
         <item name="android:colorBackground">@android:color/black</item>
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:windowNoTitle">true</item>
@@ -34,7 +34,7 @@
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>
-    <style name="Theme.TMessages.Start" parent="@android:style/Theme.Material">
+    <style name="Theme.TMessages.Start" parent="@style/Theme.AppCompat.Light">
         <item name="android:colorBackground">@android:color/white</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:windowNoTitle">true</item>

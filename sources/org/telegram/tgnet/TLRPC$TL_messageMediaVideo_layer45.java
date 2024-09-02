@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageMediaVideo_layer45 extends TLRPC$MessageMedia {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

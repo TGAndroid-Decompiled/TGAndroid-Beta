@@ -2,18 +2,40 @@ package org.telegram.messenger.utils;
 
 import android.text.Spanned;
 import android.text.TextUtils;
-import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
+
 public class CustomHtml {
     public static String toHtml(Spanned spanned) {
         StringBuilder sb = new StringBuilder();
-        toHTML_1_wrapTextStyle(sb, spanned, 0, spanned.length());
+        toHTML_0_wrapQuote(sb, spanned, 0, spanned.length());
         return sb.toString();
+    }
+
+    private static void toHTML_0_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
+        while (i < i2) {
+            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
+            if (nextSpanTransition < 0) {
+                nextSpanTransition = i2;
+            }
+            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
+            if (quoteSpanArr != null) {
+                for (QuoteSpan quoteSpan : quoteSpanArr) {
+                    sb.append(quoteSpan.isCollapsing ? "<details>" : "<blockquote>");
+                }
+            }
+            toHTML_1_wrapTextStyle(sb, spanned, i, nextSpanTransition);
+            if (quoteSpanArr != null) {
+                for (int length = quoteSpanArr.length - 1; length >= 0; length--) {
+                    sb.append(quoteSpanArr[length].isCollapsing ? "</details>" : "</blockquote>");
+                }
+            }
+            i = nextSpanTransition;
+        }
     }
 
     private static void toHTML_1_wrapTextStyle(StringBuilder sb, Spanned spanned, int i, int i2) {
@@ -152,34 +174,12 @@ public class CustomHtml {
                     }
                 }
             }
-            toHTML_5_wrapQuote(sb, spanned, i, nextSpanTransition);
+            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
             if (spanArr != null) {
                 for (CodeHighlighting.Span span2 : spanArr) {
                     if (span2 != null) {
                         sb.append("</pre>");
                     }
-                }
-            }
-            i = nextSpanTransition;
-        }
-    }
-
-    private static void toHTML_5_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
-        while (i < i2) {
-            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
-            if (nextSpanTransition < 0) {
-                nextSpanTransition = i2;
-            }
-            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
-            if (quoteSpanArr != null) {
-                for (int i3 = 0; i3 < quoteSpanArr.length; i3++) {
-                    sb.append("<blockquote>");
-                }
-            }
-            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
-            if (quoteSpanArr != null) {
-                for (int i4 = 0; i4 < quoteSpanArr.length; i4++) {
-                    sb.append("</blockquote>");
                 }
             }
             i = nextSpanTransition;
@@ -245,7 +245,7 @@ public class CustomHtml {
                 }
             } else if (charAt2 < 56320 && (i3 = i + 1) < i2 && (charAt = charSequence.charAt(i3)) >= 56320 && charAt <= 57343) {
                 sb.append("&#");
-                sb.append(65536 | ((charAt2 - CharacterCompat.MIN_HIGH_SURROGATE) << 10) | (charAt - CharacterCompat.MIN_LOW_SURROGATE));
+                sb.append(65536 | ((charAt2 - 55296) << 10) | (charAt - 56320));
                 sb.append(";");
                 i = i3;
             }

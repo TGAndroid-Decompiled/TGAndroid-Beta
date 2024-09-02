@@ -8,6 +8,7 @@ import kotlinx.coroutines.internal.LockFreeTaskQueueCore;
 import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.internal.ThreadSafeHeap;
 import kotlinx.coroutines.internal.ThreadSafeHeapNode;
+
 public abstract class EventLoopImplBase extends EventLoopImplPlatform implements Delay {
     private static final AtomicReferenceFieldUpdater _queue$FU = AtomicReferenceFieldUpdater.newUpdater(EventLoopImplBase.class, Object.class, "_queue");
     private static final AtomicReferenceFieldUpdater _delayed$FU = AtomicReferenceFieldUpdater.newUpdater(EventLoopImplBase.class, Object.class, "_delayed");
@@ -25,24 +26,24 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
 
     public boolean isEmpty() {
         Symbol symbol;
-        if (isUnconfinedQueueEmpty()) {
-            DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) this._delayed;
-            if (delayedTaskQueue == null || delayedTaskQueue.isEmpty()) {
-                Object obj = this._queue;
-                if (obj != null) {
-                    if (obj instanceof LockFreeTaskQueueCore) {
-                        return ((LockFreeTaskQueueCore) obj).isEmpty();
-                    }
-                    symbol = EventLoop_commonKt.CLOSED_EMPTY;
-                    if (obj != symbol) {
-                        return false;
-                    }
-                }
-                return true;
-            }
+        if (!isUnconfinedQueueEmpty()) {
             return false;
         }
-        return false;
+        DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) this._delayed;
+        if (delayedTaskQueue != null && !delayedTaskQueue.isEmpty()) {
+            return false;
+        }
+        Object obj = this._queue;
+        if (obj != null) {
+            if (obj instanceof LockFreeTaskQueueCore) {
+                return ((LockFreeTaskQueueCore) obj).isEmpty();
+            }
+            symbol = EventLoop_commonKt.CLOSED_EMPTY;
+            if (obj != symbol) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -57,7 +58,8 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             if (!(obj instanceof LockFreeTaskQueueCore)) {
                 symbol = EventLoop_commonKt.CLOSED_EMPTY;
                 return obj == symbol ? Long.MAX_VALUE : 0L;
-            } else if (!((LockFreeTaskQueueCore) obj).isEmpty()) {
+            }
+            if (!((LockFreeTaskQueueCore) obj).isEmpty()) {
                 return 0L;
             }
         }
@@ -83,11 +85,34 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
     }
 
     public long processNextEvent() {
-        throw new UnsupportedOperationException("Method not decompiled: kotlinx.coroutines.EventLoopImplBase.processNextEvent():long");
+        DelayedTask delayedTask;
+        if (processUnconfinedEvent()) {
+            return 0L;
+        }
+        DelayedTaskQueue delayedTaskQueue = (DelayedTaskQueue) this._delayed;
+        if (delayedTaskQueue != null && !delayedTaskQueue.isEmpty()) {
+            AbstractTimeSourceKt.getTimeSource();
+            long nanoTime = System.nanoTime();
+            do {
+                synchronized (delayedTaskQueue) {
+                    DelayedTask firstImpl = delayedTaskQueue.firstImpl();
+                    if (firstImpl != null) {
+                        DelayedTask delayedTask2 = firstImpl;
+                        delayedTask = delayedTask2.timeToExecute(nanoTime) ? enqueueImpl(delayedTask2) : false ? delayedTaskQueue.removeAtImpl(0) : null;
+                    }
+                }
+            } while (delayedTask != null);
+        }
+        Runnable dequeue = dequeue();
+        if (dequeue != null) {
+            dequeue.run();
+            return 0L;
+        }
+        return getNextTime();
     }
 
     @Override
-    public final void mo151dispatch(CoroutineContext coroutineContext, Runnable runnable) {
+    public final void mo162dispatch(CoroutineContext coroutineContext, Runnable runnable) {
         enqueue(runnable);
     }
 
@@ -175,8 +200,9 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             DelayedTask removeFirstOrNull = delayedTaskQueue == null ? null : delayedTaskQueue.removeFirstOrNull();
             if (removeFirstOrNull == null) {
                 return;
+            } else {
+                reschedule(nanoTime, removeFirstOrNull);
             }
-            reschedule(nanoTime, removeFirstOrNull);
         }
     }
 

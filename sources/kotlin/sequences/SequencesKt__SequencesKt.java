@@ -2,6 +2,7 @@ package kotlin.sequences;
 
 import java.util.Iterator;
 import kotlin.jvm.internal.Intrinsics;
+
 public class SequencesKt__SequencesKt extends SequencesKt__SequencesJVMKt {
     public static <T> Sequence<T> asSequence(final Iterator<? extends T> it) {
         Intrinsics.checkNotNullParameter(it, "<this>");

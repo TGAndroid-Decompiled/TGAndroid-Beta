@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputInvoicePremiumGiftCode extends TLRPC$InputInvoice {
     public static int constructor = -1734841331;
     public TLRPC$TL_premiumGiftCodeOption option;

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
@@ -35,16 +34,17 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.StatisticActivity;
+
 public class ReactionsUtils {
     public static boolean compare(TLRPC$Reaction tLRPC$Reaction, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         if ((tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) && visibleReaction.documentId == 0 && TextUtils.equals(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon, visibleReaction.emojicon)) {
             return true;
         }
-        if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-            long j = visibleReaction.documentId;
-            return j != 0 && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == j;
+        if (!(tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji)) {
+            return false;
         }
-        return false;
+        long j = visibleReaction.documentId;
+        return j != 0 && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == j;
     }
 
     public static boolean compare(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2) {
@@ -69,12 +69,12 @@ public class ReactionsUtils {
         if (tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) {
             return ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon;
         }
-        if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
-            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
-            return spannableStringBuilder;
+        if (!(tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji)) {
+            return "";
         }
-        return BuildConfig.APP_CENTER_HASH;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d");
+        spannableStringBuilder.setSpan(new AnimatedEmojiSpan(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id, (Paint.FontMetricsInt) null), 0, 1, 0);
+        return spannableStringBuilder;
     }
 
     public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TL_stories$StoryViews tL_stories$StoryViews) {
@@ -206,8 +206,9 @@ public class ReactionsUtils {
     }
 
     public static void stopPreloadReactions(List<AnimatedEmojiDrawable> list) {
-        for (AnimatedEmojiDrawable animatedEmojiDrawable : list) {
-            animatedEmojiDrawable.removeView((AnimatedEmojiSpan.InvalidateHolder) null);
+        Iterator<AnimatedEmojiDrawable> it = list.iterator();
+        while (it.hasNext()) {
+            it.next().removeView((AnimatedEmojiSpan.InvalidateHolder) null);
         }
     }
 }

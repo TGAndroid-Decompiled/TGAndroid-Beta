@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -42,6 +41,7 @@ import org.telegram.ui.Components.CodepointsLengthInputFilter;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
+
 public class ChangeBioActivity extends BaseFragment {
     private NumberTextView checkTextView;
     private View doneButton;
@@ -64,7 +64,7 @@ public class ChangeBioActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    ChangeBioActivity.this.finishFragment();
+                    ChangeBioActivity.this.lambda$onBackPressed$306();
                 } else if (i2 == 1) {
                     ChangeBioActivity.this.saveName();
                 }
@@ -92,8 +92,7 @@ public class ChangeBioActivity extends BaseFragment {
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 Editable editableText = getEditableText();
-                int aboutLimit = ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editableText, 0, editableText.length());
-                accessibilityNodeInfo.setText(((Object) getText()) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", aboutLimit, new Object[0]));
+                accessibilityNodeInfo.setText(((Object) getText()) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", ChangeBioActivity.this.getMessagesController().getAboutLimit() - Character.codePointCount(editableText, 0, editableText.length()), new Object[0]));
             }
         };
         this.firstNameField = editTextBoldCursor;
@@ -115,7 +114,7 @@ public class ChangeBioActivity extends BaseFragment {
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
                 if (charSequence != null && charSequence.length() > 0 && TextUtils.indexOf(charSequence, '\n') == charSequence.length() - 1) {
                     ChangeBioActivity.this.doneButton.performClick();
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 CharSequence filter = super.filter(charSequence, i3, i4, spanned, i5, i6);
                 if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
@@ -207,11 +206,11 @@ public class ChangeBioActivity extends BaseFragment {
         }
         String str = userFull.about;
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
-        final String replace = this.firstNameField.getText().toString().replace("\n", BuildConfig.APP_CENTER_HASH);
+        final String replace = this.firstNameField.getText().toString().replace("\n", "");
         if (str.equals(replace)) {
-            finishFragment();
+            lambda$onBackPressed$306();
             return;
         }
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
@@ -243,14 +242,14 @@ public class ChangeBioActivity extends BaseFragment {
                     ChangeBioActivity.this.lambda$saveName$2(alertDialog, tLRPC$UserFull, str, tLRPC$User);
                 }
             });
-            return;
+        } else {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ChangeBioActivity.this.lambda$saveName$3(alertDialog, tLRPC$TL_error, tLRPC$TL_account_updateProfile);
+                }
+            });
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChangeBioActivity.this.lambda$saveName$3(alertDialog, tLRPC$TL_error, tLRPC$TL_account_updateProfile);
-            }
-        });
     }
 
     public void lambda$saveName$2(AlertDialog alertDialog, TLRPC$UserFull tLRPC$UserFull, String str, TLRPC$User tLRPC$User) {
@@ -261,7 +260,7 @@ public class ChangeBioActivity extends BaseFragment {
         }
         tLRPC$UserFull.about = str;
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.id), tLRPC$UserFull);
-        finishFragment();
+        lambda$onBackPressed$306();
     }
 
     public void lambda$saveName$3(AlertDialog alertDialog, TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_account_updateProfile tLRPC$TL_account_updateProfile) {

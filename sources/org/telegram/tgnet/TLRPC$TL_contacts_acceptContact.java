@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_contacts_acceptContact extends TLObject {
     public TLRPC$InputUser id;
 

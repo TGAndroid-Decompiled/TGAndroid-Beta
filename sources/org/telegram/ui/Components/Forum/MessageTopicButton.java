@@ -16,13 +16,29 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$TL_forumTopic;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.AvatarDrawable;
+
 public class MessageTopicButton {
+    private AvatarDrawable avatarDrawable;
+    private int avatarSize;
     private Context context;
+    private ImageReceiver imageReceiver;
     private boolean isGeneralTopic;
     private MessageObject lastMessageObject;
     private Theme.ResourcesProvider resourcesProvider;
@@ -66,8 +82,117 @@ public class MessageTopicButton {
         this.resourcesProvider = resourcesProvider;
     }
 
-    public int set(org.telegram.ui.Cells.ChatMessageCell r28, org.telegram.messenger.MessageObject r29, org.telegram.tgnet.TLRPC$TL_forumTopic r30, int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Forum.MessageTopicButton.set(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$TL_forumTopic, int):int");
+    public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLObject tLObject, int i) {
+        String formatName;
+        int colorId;
+        if (chatMessageCell == null || messageObject == null) {
+            return 0;
+        }
+        this.isGeneralTopic = false;
+        this.topicClosed = false;
+        boolean z = tLObject instanceof TLRPC$User;
+        if (z) {
+            formatName = UserObject.getForcedFirstName((TLRPC$User) tLObject);
+        } else {
+            formatName = ContactsController.formatName(tLObject);
+        }
+        this.topicIconDrawable = null;
+        int dp = AndroidUtilities.dp(11.0f) + ((int) Theme.chat_topicTextPaint.getTextSize());
+        this.avatarSize = dp;
+        float dp2 = dp / AndroidUtilities.dp(56.0f);
+        this.avatarDrawable = new AvatarDrawable();
+        ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
+        this.imageReceiver = imageReceiver;
+        imageReceiver.setRoundRadius(this.avatarSize / 2);
+        if (z && UserObject.isReplyUser((TLRPC$User) tLObject)) {
+            this.avatarDrawable.setAvatarType(12);
+            this.avatarDrawable.setScaleSize(dp2);
+            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
+            formatName = LocaleController.getString(R.string.RepliesTitle);
+        } else if (z && UserObject.isUserSelf((TLRPC$User) tLObject)) {
+            this.avatarDrawable.setAvatarType(22);
+            this.avatarDrawable.setScaleSize(dp2);
+            this.imageReceiver.setImage(null, null, this.avatarDrawable, null, tLObject, 0);
+            formatName = LocaleController.getString(R.string.MyNotes);
+        } else {
+            this.avatarDrawable.setInfo(messageObject.currentAccount, tLObject);
+            this.imageReceiver.setForUserOrChat(tLObject, this.avatarDrawable);
+        }
+        if (messageObject.isOutOwner()) {
+            this.topicNameColor = getThemedColor(Theme.key_chat_outReplyNameText);
+        } else {
+            if (z) {
+                colorId = UserObject.getColorId((TLRPC$User) tLObject);
+            } else {
+                colorId = tLObject instanceof TLRPC$Chat ? ChatObject.getColorId((TLRPC$Chat) tLObject) : 0;
+            }
+            if (colorId < 7) {
+                this.topicNameColor = getThemedColor(Theme.keys_avatar_nameInMessage[colorId]);
+            } else {
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(messageObject.currentAccount).peerColors;
+                MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(colorId) : null;
+                if (color != null) {
+                    this.topicNameColor = color.getColor(0, this.resourcesProvider);
+                } else {
+                    this.topicNameColor = getThemedColor(Theme.key_chat_inReplyNameText);
+                }
+            }
+        }
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        this.topicBackgroundColor = Theme.multAlpha(this.topicNameColor, resourcesProvider != null ? resourcesProvider.isDark() : Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
+        return setInternal(chatMessageCell, messageObject, i, formatName, 1);
+    }
+
+    public int set(ChatMessageCell chatMessageCell, MessageObject messageObject, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
+        int i2;
+        if (chatMessageCell == null || messageObject == null) {
+            return 0;
+        }
+        boolean z = tLRPC$TL_forumTopic.id == 1;
+        this.isGeneralTopic = z;
+        this.topicClosed = tLRPC$TL_forumTopic.closed;
+        String str = tLRPC$TL_forumTopic.title;
+        if (str == null) {
+            str = "";
+        }
+        String str2 = str;
+        if (z) {
+            i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
+            this.topicIconDrawable = ForumUtilities.createGeneralTopicDrawable(this.context, 0.65f, i2, false);
+        } else {
+            long j = tLRPC$TL_forumTopic.icon_emoji_id;
+            if (j != 0) {
+                Drawable drawable = this.topicIconDrawable;
+                if (!(drawable instanceof AnimatedEmojiDrawable) || j != ((AnimatedEmojiDrawable) drawable).getDocumentId()) {
+                    Drawable drawable2 = this.topicIconDrawable;
+                    if (drawable2 instanceof AnimatedEmojiDrawable) {
+                        ((AnimatedEmojiDrawable) drawable2).removeView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+                        this.topicIconDrawable = null;
+                    }
+                    AnimatedEmojiDrawable make = AnimatedEmojiDrawable.make(messageObject.currentAccount, 0, tLRPC$TL_forumTopic.icon_emoji_id);
+                    this.topicIconDrawable = make;
+                    make.addView(new MessageTopicButton$$ExternalSyntheticLambda0(chatMessageCell));
+                }
+                this.topicIconWaiting = false;
+                Drawable drawable3 = this.topicIconDrawable;
+                int dominantColor = drawable3 instanceof AnimatedEmojiDrawable ? AnimatedEmojiDrawable.getDominantColor((AnimatedEmojiDrawable) drawable3) : 0;
+                if (dominantColor == 0) {
+                    this.topicIconWaiting = true;
+                    i2 = getThemedColor(messageObject.isOutOwner() ? Theme.key_chat_outReactionButtonText : Theme.key_chat_inReactionButtonText);
+                } else {
+                    i2 = dominantColor;
+                }
+            } else {
+                i2 = tLRPC$TL_forumTopic.icon_color;
+                this.topicIconDrawable = ForumUtilities.createSmallTopicDrawable(str2, i2);
+            }
+        }
+        setupColors(i2);
+        return setInternal(chatMessageCell, messageObject, i, str2, 2);
+    }
+
+    private int setInternal(org.telegram.ui.Cells.ChatMessageCell r27, org.telegram.messenger.MessageObject r28, int r29, java.lang.String r30, int r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Forum.MessageTopicButton.setInternal(org.telegram.ui.Cells.ChatMessageCell, org.telegram.messenger.MessageObject, int, java.lang.String, int):int");
     }
 
     public void onAttached(ChatMessageCell chatMessageCell) {
@@ -118,15 +243,15 @@ public class MessageTopicButton {
         while (true) {
             if (i2 >= fArr2.length) {
                 break;
-            } else if (f <= fArr2[i2]) {
+            }
+            if (f <= fArr2[i2]) {
                 int i3 = i2 - 1;
                 float f2 = (f - fArr2[i3]) / (fArr2[i2] - fArr2[i3]);
                 this.topicHSV[1] = AndroidUtilities.lerp(fArr3[i3], fArr3[i2], f2);
                 this.topicHSV[2] = AndroidUtilities.lerp(fArr4[i3], fArr4[i2], f2);
                 break;
-            } else {
-                i2++;
             }
+            i2++;
         }
         this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor(Theme.key_chat_inReactionButtonText)), this.topicHSV);
         this.topicBackgroundColor = Color.HSVToColor(38, this.topicHSV);
@@ -154,7 +279,8 @@ public class MessageTopicButton {
                 this.topicPressed = false;
             }
             return this.topicPressed;
-        } else if (motionEvent.getAction() == 2) {
+        }
+        if (motionEvent.getAction() == 2) {
             boolean z = this.topicPressed;
             if (z != contains) {
                 if (z && (drawable = this.topicSelectorDrawable) != null) {
@@ -163,20 +289,19 @@ public class MessageTopicButton {
                 this.topicPressed = contains;
             }
             return this.topicPressed;
-        } else {
-            if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
-                this.topicPressed = false;
-                Drawable drawable3 = this.topicSelectorDrawable;
-                if (drawable3 != null) {
-                    drawable3.setState(idleState);
-                }
-                if (motionEvent.getAction() == 1) {
-                    onClick();
-                    return true;
-                }
-            }
-            return false;
         }
+        if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && this.topicPressed) {
+            this.topicPressed = false;
+            Drawable drawable3 = this.topicSelectorDrawable;
+            if (drawable3 != null) {
+                drawable3.setState(idleState);
+            }
+            if (motionEvent.getAction() == 1) {
+                onClick();
+                return true;
+            }
+        }
+        return false;
     }
 
     public int width() {
@@ -268,8 +393,7 @@ public class MessageTopicButton {
                 textPaint2.setColor(i4);
                 i3 = i4;
             }
-            TextPaint textPaint3 = Theme.chat_topicTextPaint;
-            textPaint3.setAlpha((int) (textPaint3.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
+            Theme.chat_topicTextPaint.setAlpha((int) (r10.getAlpha() * f3 * (this.topicClosed ? 0.7f : 1.0f)));
             this.topicNameLayout.draw(canvas);
             canvas.restore();
         }
@@ -299,9 +423,19 @@ public class MessageTopicButton {
             canvas.save();
             RectF rectF = this.topicHitRect;
             canvas.translate(rectF.left, rectF.top);
-            this.topicIconDrawable.setAlpha((int) (f * 255.0f));
-            this.topicIconDrawable.setBounds(this.topicIconDrawableBounds);
-            this.topicIconDrawable.draw(canvas);
+            Drawable drawable = this.topicIconDrawable;
+            if (drawable != null) {
+                drawable.setAlpha((int) (f * 255.0f));
+                this.topicIconDrawable.setBounds(this.topicIconDrawableBounds);
+                this.topicIconDrawable.draw(canvas);
+            } else {
+                ImageReceiver imageReceiver = this.imageReceiver;
+                if (imageReceiver != null) {
+                    int i = this.avatarSize;
+                    imageReceiver.setImageCoords(0.0f, 0.0f, i, i);
+                    this.imageReceiver.draw(canvas);
+                }
+            }
             canvas.restore();
         }
     }

@@ -14,9 +14,9 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
+
 public class LoadingStickerDrawable extends Drawable {
     private Bitmap bitmap;
     int currentColor0;
@@ -43,7 +43,7 @@ public class LoadingStickerDrawable extends Drawable {
     }
 
     public LoadingStickerDrawable(View view, String str, int i, int i2) {
-        this.bitmap = SvgHelper.getBitmapByPathOnly(str, LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, i, i2);
+        this.bitmap = SvgHelper.getBitmapByPathOnly(str, 512, 512, i, i2);
         this.parentView = view;
     }
 

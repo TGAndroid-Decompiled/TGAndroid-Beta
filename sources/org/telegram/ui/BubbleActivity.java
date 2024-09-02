@@ -12,7 +12,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -24,6 +23,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.Components.ThemeEditorView;
+
 public class BubbleActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate {
     private INavigationLayout actionBarLayout;
     private long dialogId;
@@ -76,14 +76,14 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
         getWindow().setBackgroundDrawableResource(R.drawable.transparent);
         if (SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture) {
             try {
-                getWindow().setFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM, LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                getWindow().setFlags(8192, 8192);
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -95,7 +95,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this, false);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
-        INavigationLayout newLayout = INavigationLayout.CC.newLayout(this);
+        INavigationLayout newLayout = INavigationLayout.CC.newLayout(this, false);
         this.actionBarLayout = newLayout;
         newLayout.setInBubbleMode(true);
         this.actionBarLayout.setRemoveActionBarExtraHeight(true);
@@ -200,7 +200,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onNewIntent(Intent intent) {
+    public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }
@@ -218,7 +218,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         this.actionBarLayout.onPause();
         ApplicationLoader.externalInterfacePaused = true;
@@ -230,7 +230,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         int i = this.currentAccount;
         if (i != -1) {
@@ -241,7 +241,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onActivityResult(int i, int i2, Intent intent) {
+    public void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
         ThemeEditorView themeEditorView = ThemeEditorView.getInstance();
         if (themeEditorView != null) {
@@ -264,17 +264,17 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         this.actionBarLayout.onResume();
         ApplicationLoader.externalInterfacePaused = false;
         onPasscodeResume();
         if (this.passcodeView.getVisibility() != 0) {
             this.actionBarLayout.onResume();
-            return;
+        } else {
+            this.actionBarLayout.dismissDialogs();
+            this.passcodeView.onResume();
         }
-        this.actionBarLayout.dismissDialogs();
-        this.passcodeView.onResume();
     }
 
     private void onPasscodePause() {
@@ -341,9 +341,13 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
     public void onBackPressed() {
         if (this.mainFragmentsStack.size() == 1) {
             super.onBackPressed();
-        } else if (this.passcodeView.getVisibility() == 0) {
+            return;
+        }
+        if (this.passcodeView.getVisibility() == 0) {
             finish();
-        } else if (PhotoViewer.getInstance().isVisible()) {
+            return;
+        }
+        if (PhotoViewer.getInstance().isVisible()) {
             PhotoViewer.getInstance().closePhoto(true, false);
         } else if (this.drawerLayoutContainer.isDrawerOpened()) {
             this.drawerLayoutContainer.closeDrawer(false);
@@ -360,11 +364,11 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
 
     @Override
     public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
-        if (iNavigationLayout.getFragmentStack().size() <= 1) {
-            onFinish();
-            finish();
-            return false;
+        if (iNavigationLayout.getFragmentStack().size() > 1) {
+            return true;
         }
-        return true;
+        onFinish();
+        finish();
+        return false;
     }
 }

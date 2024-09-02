@@ -4,6 +4,7 @@ import android.os.Looper;
 import java.util.List;
 import kotlinx.coroutines.MainCoroutineDispatcher;
 import kotlinx.coroutines.internal.MainDispatcherFactory;
+
 public final class AndroidDispatcherFactory implements MainDispatcherFactory {
     @Override
     public int getLoadPriority() {
@@ -21,6 +22,6 @@ public final class AndroidDispatcherFactory implements MainDispatcherFactory {
         if (mainLooper == null) {
             throw new IllegalStateException("The main looper is not available");
         }
-        return new HandlerContext(HandlerDispatcherKt.asHandler(mainLooper, true), null, 2, null);
+        return new HandlerContext(HandlerDispatcherKt.asHandler(mainLooper, true), null, 2, 0 == true ? 1 : 0);
     }
 }

@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -22,10 +23,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -43,6 +42,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.DialogsActivity;
+
 public class DialogOrContactPickerActivity extends BaseFragment {
     private static final Interpolator interpolator = new Interpolator() {
         @Override
@@ -124,10 +124,10 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             return true;
         }
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
-        if (DialogObject.isUserDialog(j)) {
-            showBlockAlert(getMessagesController().getUser(Long.valueOf(j)));
+        if (!DialogObject.isUserDialog(j)) {
             return true;
         }
+        showBlockAlert(getMessagesController().getUser(Long.valueOf(j)));
         return true;
     }
 
@@ -150,7 +150,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    DialogOrContactPickerActivity.this.finishFragment();
+                    DialogOrContactPickerActivity.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -158,8 +158,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
-                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField("", false);
                 DialogOrContactPickerActivity.this.searchItem.getSearchField().requestFocus();
             }
 
@@ -300,31 +300,31 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             }
 
             public boolean checkTabsAnimationInProgress() {
-                if (DialogOrContactPickerActivity.this.tabsAnimationInProgress) {
-                    boolean z = true;
-                    if (DialogOrContactPickerActivity.this.backAnimation) {
-                        if (Math.abs(DialogOrContactPickerActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
-                            DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(0.0f);
-                            DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? 1 : -1));
-                        }
-                        z = false;
-                    } else {
-                        if (Math.abs(DialogOrContactPickerActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
-                            DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? -1 : 1));
-                            DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(0.0f);
-                        }
-                        z = false;
-                    }
-                    if (z) {
-                        if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
-                            DialogOrContactPickerActivity.this.tabsAnimation.cancel();
-                            DialogOrContactPickerActivity.this.tabsAnimation = null;
-                        }
-                        DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
-                    }
-                    return DialogOrContactPickerActivity.this.tabsAnimationInProgress;
+                if (!DialogOrContactPickerActivity.this.tabsAnimationInProgress) {
+                    return false;
                 }
-                return false;
+                boolean z = true;
+                if (DialogOrContactPickerActivity.this.backAnimation) {
+                    if (Math.abs(DialogOrContactPickerActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(0.0f);
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? 1 : -1));
+                    }
+                    z = false;
+                } else {
+                    if (Math.abs(DialogOrContactPickerActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? -1 : 1));
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(0.0f);
+                    }
+                    z = false;
+                }
+                if (z) {
+                    if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
+                        DialogOrContactPickerActivity.this.tabsAnimation.cancel();
+                        DialogOrContactPickerActivity.this.tabsAnimation = null;
+                    }
+                    DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                }
+                return DialogOrContactPickerActivity.this.tabsAnimationInProgress;
             }
 
             @Override
@@ -371,18 +371,18 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                             DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, 0.0f);
                         }
                     }
-                    if (this.maybeStartTracking && !this.startedTracking) {
-                        if (Math.abs(x) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x) > abs) {
-                            prepareForMoving(motionEvent, x < 0);
+                    if (!this.maybeStartTracking || this.startedTracking) {
+                        if (this.startedTracking) {
+                            DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(x);
+                            if (DialogOrContactPickerActivity.this.animatingForward) {
+                                DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() + x);
+                            } else {
+                                DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(x - DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                            }
+                            DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, Math.abs(x) / DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
                         }
-                    } else if (this.startedTracking) {
-                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(x);
-                        if (DialogOrContactPickerActivity.this.animatingForward) {
-                            DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() + x);
-                        } else {
-                            DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(x - DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
-                        }
-                        DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, Math.abs(x) / DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                    } else if (Math.abs(x) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x) > abs) {
+                        prepareForMoving(motionEvent, x < 0);
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
                     this.velocityTracker.computeCurrentVelocity(1000, DialogOrContactPickerActivity.this.maximumVelocity);
@@ -403,16 +403,16 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                         if (!DialogOrContactPickerActivity.this.backAnimation) {
                             measuredWidth = DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() - Math.abs(x2);
                             if (DialogOrContactPickerActivity.this.animatingForward) {
-                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], View.TRANSLATION_X, -DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], View.TRANSLATION_X, 0.0f));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, -DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f));
                             } else {
-                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], View.TRANSLATION_X, DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], View.TRANSLATION_X, 0.0f));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f));
                             }
                         } else {
                             measuredWidth = Math.abs(x2);
                             if (DialogOrContactPickerActivity.this.animatingForward) {
-                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], View.TRANSLATION_X, DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
                             } else {
-                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], View.TRANSLATION_X, -DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) View.TRANSLATION_X, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) View.TRANSLATION_X, -DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
                             }
                         }
                         DialogOrContactPickerActivity.this.tabsAnimation.setInterpolator(DialogOrContactPickerActivity.interpolator);
@@ -425,7 +425,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
                         } else {
                             measuredWidth2 = (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f);
                         }
-                        DialogOrContactPickerActivity.this.tabsAnimation.setDuration(Math.max((int) ImageReceiver.DEFAULT_CROSSFADE_DURATION, Math.min(measuredWidth2, 600)));
+                        DialogOrContactPickerActivity.this.tabsAnimation.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                         DialogOrContactPickerActivity.this.tabsAnimation.addListener(new AnimatorListenerAdapter() {
                             @Override
                             public void onAnimationEnd(Animator animator) {
@@ -660,7 +660,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             MessagesController.getInstance(this.currentAccount).blockPeer(tLRPC$User.id);
             AlertsCreator.showSimpleToast(this, LocaleController.getString("UserBlocked", R.string.UserBlocked));
         }
-        finishFragment();
+        lambda$onBackPressed$306();
     }
 
     private void updateTabs() {

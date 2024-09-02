@@ -32,6 +32,7 @@ import org.telegram.ui.Stories.SelfStoryViewsPage;
 import org.telegram.ui.Stories.SelfStoryViewsView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoryViewer;
+
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
     private int currentState;

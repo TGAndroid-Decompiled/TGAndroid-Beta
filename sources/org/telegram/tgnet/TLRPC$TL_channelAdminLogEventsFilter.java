@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
     public boolean ban;
     public boolean delete;
@@ -32,14 +31,14 @@ public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
         this.kick = (readInt32 & 32) != 0;
         this.unkick = (readInt32 & 64) != 0;
         this.promote = (readInt32 & 128) != 0;
-        this.demote = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-        this.info = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.demote = (readInt32 & 256) != 0;
+        this.info = (readInt32 & 512) != 0;
         this.settings = (readInt32 & 1024) != 0;
         this.pinned = (readInt32 & 2048) != 0;
-        this.edit = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-        this.delete = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
-        this.group_call = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
-        this.invites = (readInt32 & LiteMode.FLAG_CHAT_SCALE) != 0;
+        this.edit = (readInt32 & 4096) != 0;
+        this.delete = (readInt32 & 8192) != 0;
+        this.group_call = (readInt32 & 16384) != 0;
+        this.invites = (readInt32 & 32768) != 0;
     }
 
     @Override
@@ -61,21 +60,21 @@ public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
         this.flags = i7;
         int i8 = this.promote ? i7 | 128 : i7 & (-129);
         this.flags = i8;
-        int i9 = this.demote ? i8 | LiteMode.FLAG_CHAT_BLUR : i8 & (-257);
+        int i9 = this.demote ? i8 | 256 : i8 & (-257);
         this.flags = i9;
-        int i10 = this.info ? i9 | LiteMode.FLAG_CALLS_ANIMATIONS : i9 & (-513);
+        int i10 = this.info ? i9 | 512 : i9 & (-513);
         this.flags = i10;
         int i11 = this.settings ? i10 | 1024 : i10 & (-1025);
         this.flags = i11;
         int i12 = this.pinned ? i11 | 2048 : i11 & (-2049);
         this.flags = i12;
-        int i13 = this.edit ? i12 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i12 & (-4097);
+        int i13 = this.edit ? i12 | 4096 : i12 & (-4097);
         this.flags = i13;
-        int i14 = this.delete ? i13 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i13 & (-8193);
+        int i14 = this.delete ? i13 | 8192 : i13 & (-8193);
         this.flags = i14;
-        int i15 = this.group_call ? i14 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i14 & (-16385);
+        int i15 = this.group_call ? i14 | 16384 : i14 & (-16385);
         this.flags = i15;
-        int i16 = this.invites ? i15 | LiteMode.FLAG_CHAT_SCALE : i15 & (-32769);
+        int i16 = this.invites ? i15 | 32768 : i15 & (-32769);
         this.flags = i16;
         abstractSerializedData.writeInt32(i16);
     }

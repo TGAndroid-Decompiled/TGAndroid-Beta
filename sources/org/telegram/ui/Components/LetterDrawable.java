@@ -12,6 +12,7 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.Theme;
+
 public class LetterDrawable extends Drawable {
     private static TextPaint namePaint;
     private static TextPaint namePaintSmallTopic;
@@ -63,7 +64,9 @@ public class LetterDrawable extends Drawable {
             paint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholder, resourcesProvider));
             namePaint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholderText, resourcesProvider));
             this.textPaint = namePaint;
-        } else if (i == 1) {
+            return;
+        }
+        if (i == 1) {
             if (namePaintTopic == null) {
                 namePaintTopic = new TextPaint(1);
             }
@@ -71,15 +74,15 @@ public class LetterDrawable extends Drawable {
             namePaintTopic.setTextSize(AndroidUtilities.dp(13.0f));
             namePaintTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
             this.textPaint = namePaintTopic;
-        } else {
-            if (namePaintSmallTopic == null) {
-                namePaintSmallTopic = new TextPaint(1);
-            }
-            namePaintSmallTopic.setColor(-1);
-            namePaintSmallTopic.setTextSize(Theme.chat_topicTextPaint.getTextSize() * 0.75f);
-            namePaintSmallTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
-            this.textPaint = namePaintSmallTopic;
+            return;
         }
+        if (namePaintSmallTopic == null) {
+            namePaintSmallTopic = new TextPaint(1);
+        }
+        namePaintSmallTopic.setColor(-1);
+        namePaintSmallTopic.setTextSize(Theme.chat_topicTextPaint.getTextSize() * 0.75f);
+        namePaintSmallTopic.setTypeface(Typeface.create(Typeface.DEFAULT, 1));
+        this.textPaint = namePaintSmallTopic;
     }
 
     public void setBackgroundColor(int i) {

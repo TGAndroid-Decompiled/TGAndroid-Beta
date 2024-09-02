@@ -5,13 +5,13 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
 import org.telegram.ui.LaunchActivity;
+
 public class MemberRequestsBottomSheet extends UsersAlertBase {
     private final FlickerLoadingView currentLoadingView;
     private final MemberRequestsDelegate delegate;
@@ -34,7 +34,7 @@ public class MemberRequestsBottomSheet extends UsersAlertBase {
                         MemberRequestsBottomSheet.this.membersEmptyView.setVisibility(4);
                     }
                 } else if (z2) {
-                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+                    MemberRequestsBottomSheet.this.searchView.searchEditText.setText("");
                 } else {
                     super.onImportersChanged(str, z, z2);
                 }

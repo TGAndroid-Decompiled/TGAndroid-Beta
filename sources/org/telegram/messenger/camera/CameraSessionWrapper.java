@@ -3,6 +3,7 @@ package org.telegram.messenger.camera;
 import android.graphics.Rect;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
+
 public class CameraSessionWrapper {
     public CameraSession camera1Session;
     public Camera2Session camera2Session;
@@ -208,16 +209,17 @@ public class CameraSessionWrapper {
     public boolean equals(Object obj) {
         if (obj instanceof CameraSession) {
             return obj == this.camera1Session;
-        } else if (obj instanceof Camera2Session) {
+        }
+        if (obj instanceof Camera2Session) {
             return obj == this.camera2Session;
-        } else if (obj instanceof CameraSessionWrapper) {
-            CameraSessionWrapper cameraSessionWrapper = (CameraSessionWrapper) obj;
-            if (cameraSessionWrapper != this) {
-                return cameraSessionWrapper.camera1Session == this.camera1Session && cameraSessionWrapper.camera2Session == this.camera2Session;
-            }
-            return true;
-        } else {
+        }
+        if (!(obj instanceof CameraSessionWrapper)) {
             return false;
         }
+        CameraSessionWrapper cameraSessionWrapper = (CameraSessionWrapper) obj;
+        if (cameraSessionWrapper != this) {
+            return cameraSessionWrapper.camera1Session == this.camera1Session && cameraSessionWrapper.camera2Session == this.camera2Session;
+        }
+        return true;
     }
 }

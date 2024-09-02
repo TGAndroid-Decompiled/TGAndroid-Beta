@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+
 public class GigagroupConvertAlert extends BottomSheet {
     protected void onCancel() {
         throw null;
@@ -45,7 +46,7 @@ public class GigagroupConvertAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
@@ -72,7 +73,7 @@ public class GigagroupConvertAlert extends BottomSheet {
         rLottieImageView.playAnimation();
         linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(160, 160, 49, 17, 30, 17, 0));
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setText(LocaleController.getString("GigagroupConvertTitle", R.string.GigagroupConvertTitle));

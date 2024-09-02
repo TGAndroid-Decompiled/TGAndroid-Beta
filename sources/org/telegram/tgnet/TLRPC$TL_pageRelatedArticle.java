@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_pageRelatedArticle extends TLObject {
     public String author;
     public String description;

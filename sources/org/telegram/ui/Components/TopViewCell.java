@@ -4,12 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class TopViewCell extends LinearLayout {
     public final BackupImageView imageView;
     private int lastIconResId;
@@ -32,7 +32,7 @@ public class TopViewCell extends LinearLayout {
         addView(backupImageView, LayoutHelper.createLinear(90, 90, 17, 0, 9, 0, 9));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context) {
             @Override
-            protected void onMeasure(int i, int i2) {
+            public void onMeasure(int i, int i2) {
                 int size = View.MeasureSpec.getSize(i);
                 if (TopViewCell.this.maxWidth > 0 && TopViewCell.this.maxWidth < size) {
                     size = TopViewCell.this.maxWidth;
@@ -50,13 +50,6 @@ public class TopViewCell extends LinearLayout {
     }
 
     public void lambda$new$0(View view) {
-        RLottieDrawable lottieAnimation = this.imageView.getImageReceiver().getLottieAnimation();
-        if (lottieAnimation != null) {
-            if (lottieAnimation.getCurrentFrame() < lottieAnimation.getFramesCount() - 20) {
-                return;
-            }
-            lottieAnimation.setProgress(0.0f);
-        }
         this.imageView.getImageReceiver().startAnimation();
     }
 
@@ -68,7 +61,8 @@ public class TopViewCell extends LinearLayout {
         if (this.lastIconResId != i) {
             BackupImageView backupImageView = this.imageView;
             this.lastIconResId = i;
-            backupImageView.setImageDrawable(new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f)));
+            backupImageView.setImageDrawable(new RLottieDrawable(i, "" + i, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f)));
+            this.imageView.getImageReceiver().setAutoRepeat(2);
         }
     }
 

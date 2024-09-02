@@ -6,20 +6,30 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.SecureDocument;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
+
 public class BackupImageView extends View {
     public AnimatedEmojiDrawable animatedEmojiDrawable;
     boolean attached;
     private AvatarDrawable avatarDrawable;
     protected boolean blurAllowed;
     protected ImageReceiver blurImageReceiver;
+    public Text blurText;
+    private ColorFilter blurTextBgColorFilter;
+    private Path blurTextClipPath;
     public boolean drawFromStart;
     protected boolean hasBlur;
     protected int height;
@@ -39,6 +49,11 @@ public class BackupImageView extends View {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
                 BackupImageView.this.lambda$new$0(imageReceiver, z, z2, z3);
+            }
+
+            @Override
+            public void didSetImageBitmap(int i, String str, Drawable drawable) {
+                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
             }
 
             @Override
@@ -173,15 +188,15 @@ public class BackupImageView extends View {
 
     public void setImage(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Bitmap bitmap, String str3, int i, Object obj) {
         BackupImageView backupImageView;
-        BitmapDrawable bitmapDrawable;
+        Drawable drawable2;
         if (bitmap != null) {
             backupImageView = this;
-            bitmapDrawable = new BitmapDrawable((Resources) null, bitmap);
+            drawable2 = new BitmapDrawable((Resources) null, bitmap);
         } else {
             backupImageView = this;
-            bitmapDrawable = drawable;
+            drawable2 = drawable;
         }
-        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, bitmapDrawable, i, str3, obj, 0);
+        backupImageView.imageReceiver.setImage(imageLocation, str, imageLocation2, str2, drawable2, i, str3, obj, 0);
         onNewImageSet();
     }
 
@@ -309,13 +324,14 @@ public class BackupImageView extends View {
                     this.blurImageReceiver.setImageCoords(0.0f, 0.0f, this.width, this.height);
                 }
             } else {
+                float width = (getWidth() - this.width) / 2;
                 int height = getHeight();
-                int i3 = this.height;
-                imageReceiver.setImageCoords((getWidth() - this.width) / 2, (height - i3) / 2, this.width, i3);
+                imageReceiver.setImageCoords(width, (height - r3) / 2, this.width, this.height);
                 if (this.blurAllowed) {
+                    ImageReceiver imageReceiver2 = this.blurImageReceiver;
+                    float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    int i4 = this.height;
-                    this.blurImageReceiver.setImageCoords((getWidth() - this.width) / 2, (height2 - i4) / 2, this.width, i4);
+                    imageReceiver2.setImageCoords(width2, (height2 - r4) / 2, this.width, this.height);
                 }
             }
         } else {
@@ -370,5 +386,63 @@ public class BackupImageView extends View {
             this.roundRadiusAnimator.setDuration(200L);
             this.roundRadiusAnimator.start();
         }
+    }
+
+    public void setBlurredText(CharSequence charSequence) {
+        if (TextUtils.isEmpty(charSequence)) {
+            this.blurText = null;
+            return;
+        }
+        this.blurText = new Text(charSequence, 16.5f, AndroidUtilities.bold());
+        if (this.blurTextBgColorFilter == null) {
+            ColorMatrix colorMatrix = new ColorMatrix();
+            colorMatrix.setSaturation(1.2f);
+            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.2f);
+            this.blurTextBgColorFilter = new ColorMatrixColorFilter(colorMatrix);
+        }
+    }
+
+    public void drawBlurredText(Canvas canvas, float f) {
+        float measuredWidth;
+        float measuredHeight;
+        int i;
+        if (this.blurText == null) {
+            return;
+        }
+        Path path = this.blurTextClipPath;
+        if (path == null) {
+            this.blurTextClipPath = new Path();
+        } else {
+            path.rewind();
+        }
+        int i2 = this.width;
+        if (i2 == -1 || (i = this.height) == -1) {
+            measuredWidth = getMeasuredWidth();
+            measuredHeight = getMeasuredHeight();
+        } else {
+            measuredWidth = i2;
+            measuredHeight = i;
+        }
+        float currentWidth = this.blurText.getCurrentWidth() + AndroidUtilities.dp(18.0f);
+        float dp = AndroidUtilities.dp(28.0f);
+        float f2 = (measuredWidth - currentWidth) / 2.0f;
+        float f3 = measuredHeight / 2.0f;
+        RectF rectF = AndroidUtilities.rectTmp;
+        float f4 = dp / 2.0f;
+        rectF.set(f2, f3 - f4, currentWidth + f2, f3 + f4);
+        this.blurTextClipPath.addRoundRect(rectF, f4, f4, Path.Direction.CW);
+        canvas.save();
+        canvas.clipPath(this.blurTextClipPath);
+        ImageReceiver imageReceiver = this.blurImageReceiver;
+        if (imageReceiver != null && this.blurAllowed) {
+            imageReceiver.setColorFilter(this.blurTextBgColorFilter);
+            float alpha = this.blurImageReceiver.getAlpha();
+            this.blurImageReceiver.setAlpha(f);
+            this.blurImageReceiver.draw(canvas);
+            this.blurImageReceiver.setAlpha(alpha);
+            this.blurImageReceiver.setColorFilter(null);
+        }
+        this.blurText.draw(canvas, f2 + AndroidUtilities.dp(9.0f), f3, -1, f);
+        canvas.restore();
     }
 }

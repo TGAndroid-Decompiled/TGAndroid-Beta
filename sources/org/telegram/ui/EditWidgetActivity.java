@@ -54,6 +54,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.EditWidgetActivity;
+
 public class EditWidgetActivity extends BaseFragment {
     private int chatsEndRow;
     private int chatsStartRow;
@@ -374,30 +375,34 @@ public class EditWidgetActivity extends BaseFragment {
                 if (i == -1) {
                     if (EditWidgetActivity.this.delegate == null) {
                         EditWidgetActivity.this.finishActivity();
+                        return;
                     } else {
-                        EditWidgetActivity.this.finishFragment();
+                        EditWidgetActivity.this.lambda$onBackPressed$306();
+                        return;
                     }
-                } else if (i == 1 && EditWidgetActivity.this.getParentActivity() != null) {
-                    ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
-                    for (int i2 = 0; i2 < EditWidgetActivity.this.selectedDialogs.size(); i2++) {
-                        arrayList.add(MessagesStorage.TopicKey.of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
-                    }
-                    EditWidgetActivity.this.getMessagesStorage().putWidgetDialogs(EditWidgetActivity.this.currentWidgetId, arrayList);
-                    SharedPreferences.Editor edit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
-                    edit.putInt("account" + EditWidgetActivity.this.currentWidgetId, ((BaseFragment) EditWidgetActivity.this).currentAccount);
-                    edit.putInt("type" + EditWidgetActivity.this.currentWidgetId, EditWidgetActivity.this.widgetType);
-                    edit.commit();
-                    AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(EditWidgetActivity.this.getParentActivity());
-                    if (EditWidgetActivity.this.widgetType == 0) {
-                        ChatsWidgetProvider.updateWidget(EditWidgetActivity.this.getParentActivity(), appWidgetManager, EditWidgetActivity.this.currentWidgetId);
-                    } else {
-                        ContactsWidgetProvider.updateWidget(EditWidgetActivity.this.getParentActivity(), appWidgetManager, EditWidgetActivity.this.currentWidgetId);
-                    }
-                    if (EditWidgetActivity.this.delegate != null) {
-                        EditWidgetActivity.this.delegate.didSelectDialogs(EditWidgetActivity.this.selectedDialogs);
-                    } else {
-                        EditWidgetActivity.this.finishActivity();
-                    }
+                }
+                if (i != 1 || EditWidgetActivity.this.getParentActivity() == null) {
+                    return;
+                }
+                ArrayList<MessagesStorage.TopicKey> arrayList = new ArrayList<>();
+                for (int i2 = 0; i2 < EditWidgetActivity.this.selectedDialogs.size(); i2++) {
+                    arrayList.add(MessagesStorage.TopicKey.of(((Long) EditWidgetActivity.this.selectedDialogs.get(i2)).longValue(), 0L));
+                }
+                EditWidgetActivity.this.getMessagesStorage().putWidgetDialogs(EditWidgetActivity.this.currentWidgetId, arrayList);
+                SharedPreferences.Editor edit = EditWidgetActivity.this.getParentActivity().getSharedPreferences("shortcut_widget", 0).edit();
+                edit.putInt("account" + EditWidgetActivity.this.currentWidgetId, ((BaseFragment) EditWidgetActivity.this).currentAccount);
+                edit.putInt("type" + EditWidgetActivity.this.currentWidgetId, EditWidgetActivity.this.widgetType);
+                edit.commit();
+                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(EditWidgetActivity.this.getParentActivity());
+                if (EditWidgetActivity.this.widgetType == 0) {
+                    ChatsWidgetProvider.updateWidget(EditWidgetActivity.this.getParentActivity(), appWidgetManager, EditWidgetActivity.this.currentWidgetId);
+                } else {
+                    ContactsWidgetProvider.updateWidget(EditWidgetActivity.this.getParentActivity(), appWidgetManager, EditWidgetActivity.this.currentWidgetId);
+                }
+                if (EditWidgetActivity.this.delegate != null) {
+                    EditWidgetActivity.this.delegate.didSelectDialogs(EditWidgetActivity.this.selectedDialogs);
+                } else {
+                    EditWidgetActivity.this.finishActivity();
                 }
             }
         });
@@ -526,43 +531,43 @@ public class EditWidgetActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            GroupCreateUserCell groupCreateUserCell;
+            FrameLayout frameLayout;
             if (i == 0) {
                 FrameLayout textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                groupCreateUserCell = textInfoPrivacyCell;
+                frameLayout = textInfoPrivacyCell;
             } else if (i == 1) {
                 FrameLayout textCell = new TextCell(this.mContext);
                 textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-                groupCreateUserCell = textCell;
+                frameLayout = textCell;
             } else if (i == 2) {
-                groupCreateUserCell = EditWidgetActivity.this.widgetPreviewCell = new WidgetPreviewCell(this.mContext);
+                frameLayout = EditWidgetActivity.this.widgetPreviewCell = new WidgetPreviewCell(this.mContext);
             } else {
-                final GroupCreateUserCell groupCreateUserCell2 = new GroupCreateUserCell(this.mContext, 0, 0, false);
+                final GroupCreateUserCell groupCreateUserCell = new GroupCreateUserCell(this.mContext, 0, 0, false);
                 ImageView imageView = new ImageView(this.mContext);
                 imageView.setImageResource(R.drawable.list_reorder);
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
-                groupCreateUserCell2.setTag(R.id.object_tag, imageView);
-                groupCreateUserCell2.addView(imageView, LayoutHelper.createFrame(40, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 10.0f, 0.0f, 10.0f, 0.0f));
+                groupCreateUserCell.setTag(R.id.object_tag, imageView);
+                groupCreateUserCell.addView(imageView, LayoutHelper.createFrame(40, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 10.0f, 0.0f, 10.0f, 0.0f));
                 imageView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view, MotionEvent motionEvent) {
                         boolean lambda$onCreateViewHolder$0;
-                        lambda$onCreateViewHolder$0 = EditWidgetActivity.ListAdapter.this.lambda$onCreateViewHolder$0(groupCreateUserCell2, view, motionEvent);
+                        lambda$onCreateViewHolder$0 = EditWidgetActivity.ListAdapter.this.lambda$onCreateViewHolder$0(groupCreateUserCell, view, motionEvent);
                         return lambda$onCreateViewHolder$0;
                     }
                 });
                 imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_pinnedIcon), PorterDuff.Mode.MULTIPLY));
-                groupCreateUserCell = groupCreateUserCell2;
+                frameLayout = groupCreateUserCell;
             }
-            return new RecyclerListView.Holder(groupCreateUserCell);
+            return new RecyclerListView.Holder(frameLayout);
         }
 
         public boolean lambda$onCreateViewHolder$0(GroupCreateUserCell groupCreateUserCell, View view, MotionEvent motionEvent) {
-            if (motionEvent.getAction() == 0) {
-                EditWidgetActivity.this.itemTouchHelper.startDrag(EditWidgetActivity.this.listView.getChildViewHolder(groupCreateUserCell));
+            if (motionEvent.getAction() != 0) {
                 return false;
             }
+            EditWidgetActivity.this.itemTouchHelper.startDrag(EditWidgetActivity.this.listView.getChildViewHolder(groupCreateUserCell));
             return false;
         }
 
@@ -584,8 +589,11 @@ public class EditWidgetActivity extends BaseFragment {
                         spannableStringBuilder.append((CharSequence) "\n\n").append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString("WidgetPasscode2", R.string.WidgetPasscode2)));
                     }
                     textInfoPrivacyCell.setText(spannableStringBuilder);
+                    return;
                 }
-            } else if (itemViewType != 1) {
+                return;
+            }
+            if (itemViewType != 1) {
                 if (itemViewType != 3) {
                     return;
                 }
@@ -593,19 +601,20 @@ public class EditWidgetActivity extends BaseFragment {
                 long longValue = ((Long) EditWidgetActivity.this.selectedDialogs.get(i - EditWidgetActivity.this.chatsStartRow)).longValue();
                 if (DialogObject.isUserDialog(longValue)) {
                     groupCreateUserCell.setObject(EditWidgetActivity.this.getMessagesController().getUser(Long.valueOf(longValue)), null, null, i != EditWidgetActivity.this.chatsEndRow - 1);
+                    return;
                 } else {
                     groupCreateUserCell.setObject(EditWidgetActivity.this.getMessagesController().getChat(Long.valueOf(-longValue)), null, null, i != EditWidgetActivity.this.chatsEndRow - 1);
+                    return;
                 }
-            } else {
-                TextCell textCell = (TextCell) viewHolder.itemView;
-                textCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText4);
-                Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.poll_add_circle);
-                Drawable drawable2 = this.mContext.getResources().getDrawable(R.drawable.poll_add_plus);
-                drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
-                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
-                textCell.setTextAndIcon(LocaleController.getString("SelectChats", R.string.SelectChats), new CombinedDrawable(drawable, drawable2), EditWidgetActivity.this.chatsStartRow != -1);
-                textCell.getImageView().setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
             }
+            TextCell textCell = (TextCell) viewHolder.itemView;
+            textCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText4);
+            Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.poll_add_circle);
+            Drawable drawable2 = this.mContext.getResources().getDrawable(R.drawable.poll_add_plus);
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
+            drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
+            textCell.setTextAndIcon(LocaleController.getString("SelectChats", R.string.SelectChats), new CombinedDrawable(drawable, drawable2), EditWidgetActivity.this.chatsStartRow != -1);
+            textCell.getImageView().setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
         }
 
         @Override
@@ -634,8 +643,9 @@ public class EditWidgetActivity extends BaseFragment {
             if (i3 < 0 || i4 < 0 || i3 >= i5 || i4 >= i5) {
                 return false;
             }
+            Long l = (Long) EditWidgetActivity.this.selectedDialogs.get(i3);
             EditWidgetActivity.this.selectedDialogs.set(i3, (Long) EditWidgetActivity.this.selectedDialogs.get(i4));
-            EditWidgetActivity.this.selectedDialogs.set(i4, (Long) EditWidgetActivity.this.selectedDialogs.get(i3));
+            EditWidgetActivity.this.selectedDialogs.set(i4, l);
             notifyItemMoved(i, i2);
             return true;
         }

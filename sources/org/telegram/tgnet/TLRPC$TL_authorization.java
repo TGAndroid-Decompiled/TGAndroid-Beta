@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_authorization extends TLObject {
     public int api_id;
     public String app_name;

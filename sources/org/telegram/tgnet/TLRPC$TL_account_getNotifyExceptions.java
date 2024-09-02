@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_getNotifyExceptions extends TLObject {
     public boolean compare_sound;
     public int flags;

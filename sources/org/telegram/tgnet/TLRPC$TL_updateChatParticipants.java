@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChatParticipants extends TLRPC$Update {
     public TLRPC$ChatParticipants participants;
 

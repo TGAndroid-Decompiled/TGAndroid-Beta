@@ -18,6 +18,7 @@ import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.tgnet.tl.TL_stories$TL_storyItemDeleted;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Stories.StoriesStorage;
+
 public class ChatMessagesMetadataController {
     final ChatActivity chatActivity;
     private ArrayList<MessageObject> reactionsToCheck = new ArrayList<>(10);
@@ -53,7 +54,7 @@ public class ChatMessagesMetadataController {
                 messageObject.reactionsLastCheckTime = j;
                 this.reactionsToCheck.add(messageObject);
             }
-            if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && messageObject.hasExtendedMediaPreview() && j - messageObject.extendedMediaLastCheckTime > 30000) {
+            if (this.chatActivity.getThreadMessage() != messageObject && messageObject.getId() > 0 && ((messageObject.hasExtendedMediaPreview() || messageObject.hasPaidMediaPreview()) && j - messageObject.extendedMediaLastCheckTime > 30000)) {
                 messageObject.extendedMediaLastCheckTime = j;
                 this.extendedMediaToCheck.add(messageObject);
             }

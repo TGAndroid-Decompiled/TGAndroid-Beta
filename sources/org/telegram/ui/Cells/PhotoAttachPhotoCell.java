@@ -17,6 +17,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -42,11 +44,13 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
 import org.telegram.ui.PhotoViewer;
+
 public class PhotoAttachPhotoCell extends FrameLayout {
     private static Rect rect = new Rect();
     private AnimatorSet animator;
@@ -65,6 +69,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private boolean isVertical;
     private int itemSize;
     private boolean itemSizeChanged;
+    private SpannableString lock;
     private Path path;
     private MediaController.PhotoEntry photoEntry;
     private boolean pressed;
@@ -76,6 +81,9 @@ public class PhotoAttachPhotoCell extends FrameLayout {
     private float spoilerRevealProgress;
     private float spoilerRevealX;
     private float spoilerRevealY;
+    private SpannableString star;
+    private long stars;
+    private boolean starsSelectedMultiple;
     private FrameLayout videoInfoContainer;
     private TextView videoTextView;
     private boolean zoomOnSelect;
@@ -105,9 +113,10 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                             PhotoAttachPhotoCell.this.path.addCircle(PhotoAttachPhotoCell.this.spoilerRevealX, PhotoAttachPhotoCell.this.spoilerRevealY, PhotoAttachPhotoCell.this.spoilerMaxRadius * PhotoAttachPhotoCell.this.spoilerRevealProgress, Path.Direction.CW);
                             canvas.clipPath(PhotoAttachPhotoCell.this.path, Region.Op.DIFFERENCE);
                         }
-                        CubicBezierInterpolator.DEFAULT.getInterpolation(1.0f - PhotoAttachPhotoCell.this.imageViewCrossfadeProgress);
-                        boolean unused = PhotoAttachPhotoCell.this.hasSpoiler;
                         PhotoAttachPhotoCell.this.spoilerEffect2.draw(canvas, PhotoAttachPhotoCell.this.container, PhotoAttachPhotoCell.this.imageView.getMeasuredWidth(), PhotoAttachPhotoCell.this.imageView.getMeasuredHeight());
+                        if (PhotoAttachPhotoCell.this.photoEntry != null && PhotoAttachPhotoCell.this.photoEntry.starsAmount > 0) {
+                            PhotoAttachPhotoCell.this.imageView.drawBlurredText(canvas, 1.0f);
+                        }
                         if (PhotoAttachPhotoCell.this.spoilerRevealProgress != 0.0f) {
                             canvas.restore();
                         }
@@ -132,12 +141,13 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                     return;
                 }
                 if (this.width != -1 && this.height != -1) {
+                    float width = (getWidth() - this.width) / 2;
                     int height = getHeight();
-                    int i = this.height;
-                    imageReceiver.setImageCoords((getWidth() - this.width) / 2, (height - i) / 2, this.width, i);
+                    imageReceiver.setImageCoords(width, (height - r4) / 2, this.width, this.height);
+                    ImageReceiver imageReceiver2 = this.blurImageReceiver;
+                    float width2 = (getWidth() - this.width) / 2;
                     int height2 = getHeight();
-                    int i2 = this.height;
-                    this.blurImageReceiver.setImageCoords((getWidth() - this.width) / 2, (height2 - i2) / 2, this.width, i2);
+                    imageReceiver2.setImageCoords(width2, (height2 - r5) / 2, this.width, this.height);
                 } else {
                     imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
                     this.blurImageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
@@ -212,7 +222,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.videoTextView = textView;
         textView.setTextColor(-1);
-        this.videoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.videoTextView.setTypeface(AndroidUtilities.bold());
         this.videoTextView.setTextSize(1, 12.0f);
         this.videoTextView.setImportantForAccessibility(2);
         this.videoInfoContainer.addView(this.videoTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 13.0f, -0.7f, 0.0f, 0.0f));
@@ -261,6 +271,41 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         }
     }
 
+    public void setStarsPrice(long j, boolean z) {
+        if (z == this.starsSelectedMultiple && j == this.stars) {
+            return;
+        }
+        this.stars = j;
+        this.starsSelectedMultiple = z;
+        SpannableStringBuilder spannableStringBuilder = null;
+        if (j > 0) {
+            spannableStringBuilder = new SpannableStringBuilder();
+            if (this.star == null) {
+                this.star = new SpannableString("⭐");
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.star_small_inner);
+                coloredImageSpan.setScale(0.7f, 0.7f);
+                SpannableString spannableString = this.star;
+                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+            }
+            spannableStringBuilder.append((CharSequence) this.star);
+            spannableStringBuilder.append((CharSequence) "\u2009");
+            if (z) {
+                if (this.lock == null) {
+                    this.lock = new SpannableString("l");
+                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.msg_mini_lock2);
+                    SpannableString spannableString2 = this.lock;
+                    spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+                }
+                spannableStringBuilder.append((CharSequence) this.lock);
+            } else {
+                spannableStringBuilder.append((CharSequence) Long.toString(j));
+            }
+        }
+        this.imageView.setBlurredText(spannableStringBuilder);
+        this.imageView.invalidate();
+        this.container.invalidate();
+    }
+
     public void updateSpoilers2(boolean z) {
         BackupImageView backupImageView;
         if (this.container == null || (backupImageView = this.imageView) == null || backupImageView.getMeasuredHeight() <= 0 || this.imageView.getMeasuredWidth() <= 0) {
@@ -269,14 +314,13 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         if (z && SpoilerEffect2.supports()) {
             if (this.spoilerEffect2 == null) {
                 this.spoilerEffect2 = SpoilerEffect2.getInstance(this.container);
-                return;
             }
-            return;
-        }
-        SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
-        if (spoilerEffect2 != null) {
-            spoilerEffect2.detach(this);
-            this.spoilerEffect2 = null;
+        } else {
+            SpoilerEffect2 spoilerEffect2 = this.spoilerEffect2;
+            if (spoilerEffect2 != null) {
+                spoilerEffect2.detach(this);
+                this.spoilerEffect2 = null;
+            }
         }
     }
 
@@ -362,11 +406,11 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         return this.videoInfoContainer;
     }
 
-    public void setPhotoEntry(MediaController.PhotoEntry photoEntry, boolean z, boolean z2) {
-        boolean z3 = false;
+    public void setPhotoEntry(MediaController.PhotoEntry photoEntry, boolean z, boolean z2, boolean z3) {
+        boolean z4 = false;
         this.pressed = false;
         this.photoEntry = photoEntry;
-        this.isLast = z2;
+        this.isLast = z3;
         if (photoEntry.isVideo) {
             this.imageView.setOrientation(0, true);
             this.videoInfoContainer.setVisibility(0);
@@ -380,24 +424,23 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             this.imageView.setImage(str, null, Theme.chat_attachEmptyDrawable);
         } else if (photoEntry2.path != null) {
             if (photoEntry2.isVideo) {
-                BackupImageView backupImageView = this.imageView;
-                backupImageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                this.imageView.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
                 this.imageView.setOrientation(photoEntry2.orientation, photoEntry2.invert, true);
-                BackupImageView backupImageView2 = this.imageView;
-                backupImageView2.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
+                this.imageView.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             }
         } else {
             this.imageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
         }
-        if (z && PhotoViewer.isShowingImage(this.photoEntry.path)) {
-            z3 = true;
+        if (z2 && PhotoViewer.isShowingImage(this.photoEntry.path)) {
+            z4 = true;
         }
-        this.imageView.getImageReceiver().setVisible(!z3, true);
-        this.checkBox.setAlpha(z3 ? 0.0f : 1.0f);
-        this.videoInfoContainer.setAlpha(z3 ? 0.0f : 1.0f);
+        this.imageView.getImageReceiver().setVisible(!z4, true);
+        this.checkBox.setAlpha(z4 ? 0.0f : 1.0f);
+        this.videoInfoContainer.setAlpha(z4 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(photoEntry.hasSpoiler);
+        setStarsPrice(photoEntry.starsAmount, z);
     }
 
     public void setPhotoEntry(MediaController.SearchImage searchImage, boolean z, boolean z2) {
@@ -444,6 +487,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.videoInfoContainer.setAlpha(z3 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(false);
+        setStarsPrice(0L, false);
     }
 
     public boolean isChecked() {
@@ -466,12 +510,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
                 Property property = View.SCALE_X;
                 float[] fArr = new float[1];
                 fArr[0] = z ? 0.787f : 1.0f;
-                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
+                animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
                 FrameLayout frameLayout2 = this.container;
                 Property property2 = View.SCALE_Y;
                 float[] fArr2 = new float[1];
                 fArr2[0] = z ? 0.787f : 1.0f;
-                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, property2, fArr2);
+                animatorArr[1] = ObjectAnimator.ofFloat(frameLayout2, (Property<FrameLayout, Float>) property2, fArr2);
                 animatorSet2.playTogether(animatorArr);
                 this.animator.setDuration(200L);
                 this.animator.addListener(new AnimatorListenerAdapter() {
@@ -507,7 +551,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         this.checkBox.setNum(i);
     }
 
-    public void setOnCheckClickLisnener(View.OnClickListener onClickListener) {
+    public void setOnCheckClickListener(View.OnClickListener onClickListener) {
         this.checkFrame.setOnClickListener(onClickListener);
     }
 
@@ -543,12 +587,12 @@ public class PhotoAttachPhotoCell extends FrameLayout {
             Property property = View.ALPHA;
             float[] fArr = new float[1];
             fArr[0] = z ? 1.0f : 0.0f;
-            animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, property, fArr);
+            animatorArr[0] = ObjectAnimator.ofFloat(frameLayout, (Property<FrameLayout, Float>) property, fArr);
             CheckBox2 checkBox2 = this.checkBox;
             Property property2 = View.ALPHA;
             float[] fArr2 = new float[1];
             fArr2[0] = z ? 1.0f : 0.0f;
-            animatorArr[1] = ObjectAnimator.ofFloat(checkBox2, property2, fArr2);
+            animatorArr[1] = ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property2, fArr2);
             animatorSet3.playTogether(animatorArr);
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -603,7 +647,7 @@ public class PhotoAttachPhotoCell extends FrameLayout {
         }
         if (this.photoEntry != null) {
             sb.append(". ");
-            sb.append(LocaleController.getInstance().formatterStats.format(this.photoEntry.dateTaken * 1000));
+            sb.append(LocaleController.getInstance().getFormatterStats().format(this.photoEntry.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb);
         if (this.checkBox.isChecked()) {

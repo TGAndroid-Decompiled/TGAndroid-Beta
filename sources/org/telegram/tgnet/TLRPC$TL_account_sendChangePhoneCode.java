@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_sendChangePhoneCode extends TLObject {
     public String phone_number;
     public TLRPC$TL_codeSettings settings;

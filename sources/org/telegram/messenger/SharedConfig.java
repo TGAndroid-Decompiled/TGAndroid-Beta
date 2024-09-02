@@ -33,6 +33,7 @@ import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
+
 public class SharedConfig {
     private static final int[] LOW_SOC;
     public static final int PASSCODE_TYPE_PASSWORD = 1;
@@ -45,6 +46,7 @@ public class SharedConfig {
     public static final int SAVE_TO_GALLERY_FLAG_CHANNELS = 4;
     public static final int SAVE_TO_GALLERY_FLAG_GROUP = 2;
     public static final int SAVE_TO_GALLERY_FLAG_PEER = 1;
+    public static boolean adaptableColorInBrowser = false;
     public static boolean allowBigEmoji = false;
     static Boolean allowPreparingHevcPlayers = null;
     public static boolean allowScreenCapture = false;
@@ -54,6 +56,7 @@ public class SharedConfig {
     public static int autoLockIn = 0;
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
+    public static boolean botTabs3DEffect = false;
     public static int bubbleRadius = 0;
     public static int callEncryptionHintDisplayedCount = 0;
     public static boolean chatBubbles = false;
@@ -82,6 +85,7 @@ public class SharedConfig {
     public static boolean hasCameraCache = false;
     public static boolean hasEmailLogin = false;
     private static HashSet<String> hevcEncoderWhitelist = null;
+    public static boolean inappBrowser = false;
     public static boolean inappCamera = false;
     public static boolean isFloatingDebugActive = false;
     public static boolean isWaitingForPasscodeEnter = false;
@@ -145,6 +149,9 @@ public class SharedConfig {
     public static int scheduledHintShows;
     public static long scheduledOrNoSoundHintSeenAt;
     public static int scheduledOrNoSoundHintShows;
+    public static String searchEngineCustomURLAutocomplete;
+    public static String searchEngineCustomURLQuery;
+    public static int searchEngineType;
     public static boolean searchMessagesAsListUsed;
     public static boolean showNotificationsForAllAccounts;
     public static boolean shuffleMusic;
@@ -165,8 +172,10 @@ public class SharedConfig {
     public static int textSelectionHintShows;
     public static boolean translateChats;
     public static boolean updateStickersOrderOnSend;
-    public static boolean useCamera2;
-    public static boolean useFingerprint;
+    public static Boolean useCamera2Force;
+    public static boolean useFaceLock;
+    public static boolean useFingerprintLock;
+    public static boolean useNewBlur;
     public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
@@ -254,11 +263,11 @@ public class SharedConfig {
                         if (i3 >= codecInfoAt.getSupportedTypes().length) {
                             z = false;
                             break;
-                        } else if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
-                            break;
-                        } else {
-                            i3++;
                         }
+                        if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
+                            break;
+                        }
+                        i3++;
                     }
                     if (z && (maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances()) > i2) {
                         i2 = maxSupportedInstances;
@@ -292,27 +301,31 @@ public class SharedConfig {
         hashSet.add("c2.exynos.hevc.encoder");
         hevcEncoderWhitelist.add("OMX.Exynos.HEVC.Encoder".toLowerCase());
         pushType = 2;
-        pushString = BuildConfig.APP_CENTER_HASH;
-        pushStringStatus = BuildConfig.APP_CENTER_HASH;
-        passcodeHash = BuildConfig.APP_CENTER_HASH;
+        pushString = "";
+        pushStringStatus = "";
+        passcodeHash = "";
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
-        useFingerprint = true;
+        useFingerprintLock = true;
+        useFaceLock = true;
         keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
         updateStickersOrderOnSend = true;
         photoViewerBlur = true;
         stealthModeSendMessageConfirm = 2;
         lastLocalId = -210000;
-        passportConfigJson = BuildConfig.APP_CENTER_HASH;
+        passportConfigJson = "";
         sync = new Object();
         localIdSync = new Object();
         mapPreviewType = 2;
+        searchEngineType = 0;
         chatBubbles = Build.VERSION.SDK_INT >= 30;
         raiseToSpeak = false;
         raiseToListen = true;
         nextMediaTap = true;
         recordViaSco = false;
         customTabs = true;
+        inappBrowser = true;
+        adaptableColorInBrowser = true;
         directShare = true;
         inappCamera = true;
         roundCamera16to9 = true;
@@ -350,10 +363,9 @@ public class SharedConfig {
                             return name;
                         }
                     }
-                    continue;
                 }
             }
-            goodHevcEncoder = BuildConfig.APP_CENTER_HASH;
+            goodHevcEncoder = "";
         }
         if (TextUtils.isEmpty(goodHevcEncoder)) {
             return null;
@@ -387,16 +399,16 @@ public class SharedConfig {
             this.password = str3;
             this.secret = str4;
             if (str == null) {
-                this.address = BuildConfig.APP_CENTER_HASH;
+                this.address = "";
             }
             if (str3 == null) {
-                this.password = BuildConfig.APP_CENTER_HASH;
+                this.password = "";
             }
             if (str2 == null) {
-                this.username = BuildConfig.APP_CENTER_HASH;
+                this.username = "";
             }
             if (str4 == null) {
-                this.secret = BuildConfig.APP_CENTER_HASH;
+                this.secret = "";
             }
         }
 
@@ -433,7 +445,7 @@ public class SharedConfig {
                 edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
                 edit.putString("passcodeHash1", passcodeHash);
                 byte[] bArr = passcodeSalt;
-                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : BuildConfig.APP_CENTER_HASH);
+                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
                 edit.putBoolean("appLocked", appLocked);
                 edit.putInt("passcodeType", passcodeType);
                 edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
@@ -441,13 +453,13 @@ public class SharedConfig {
                 edit.putInt("badPasscodeTries", badPasscodeTries);
                 edit.putInt("autoLockIn", autoLockIn);
                 edit.putInt("lastPauseTime", lastPauseTime);
-                edit.putBoolean("useFingerprint", useFingerprint);
+                edit.putBoolean("useFingerprint", useFingerprintLock);
                 edit.putBoolean("allowScreenCapture", allowScreenCapture);
                 edit.putString("pushString2", pushString);
                 edit.putInt("pushType", pushType);
                 edit.putBoolean("pushStatSent", pushStatSent);
                 byte[] bArr2 = pushAuthKey;
-                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : BuildConfig.APP_CENTER_HASH);
+                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
                 edit.putInt("lastLocalId", lastLocalId);
                 edit.putString("passportConfigJson", passportConfigJson);
                 edit.putInt("passportConfigHash", passportConfigHash);
@@ -461,7 +473,7 @@ public class SharedConfig {
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
                 edit.putBoolean("replyingOptionsHintShown", replyingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
-                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : BuildConfig.APP_CENTER_HASH);
+                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
                 edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
                 edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
                 TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
@@ -657,11 +669,11 @@ public class SharedConfig {
         passcodeRetryInMs = 0L;
         lastUptimeMillis = 0L;
         badPasscodeTries = 0;
-        passcodeHash = BuildConfig.APP_CENTER_HASH;
+        passcodeHash = "";
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         lastPauseTime = 0;
-        useFingerprint = true;
+        useFingerprintLock = true;
         isWaitingForPasscodeEnter = false;
         allowScreenCapture = false;
         textSelectionHintShows = 0;
@@ -884,6 +896,13 @@ public class SharedConfig {
         edit.apply();
     }
 
+    public static void setBotTabs3DEffect(boolean z) {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        botTabs3DEffect = z;
+        edit.putBoolean("botTabs3DEffect", z);
+        edit.apply();
+    }
+
     public static void toggleLoopStickers() {
         LiteMode.toggleFlag(2);
     }
@@ -973,6 +992,13 @@ public class SharedConfig {
         edit.apply();
     }
 
+    public static void setSearchEngineType(int i) {
+        searchEngineType = i;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putInt("searchEngineType", searchEngineType);
+        edit.apply();
+    }
+
     public static void setNoSoundHintShowed(boolean z) {
         if (noSoundHintShowed == z) {
             return;
@@ -1008,10 +1034,24 @@ public class SharedConfig {
         return raiseToListen && (!z || raiseToSpeak);
     }
 
-    public static void toggleCustomTabs() {
-        customTabs = !customTabs;
+    public static void toggleCustomTabs(boolean z) {
+        customTabs = z;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("custom_tabs", customTabs);
+        edit.apply();
+    }
+
+    public static void toggleInappBrowser() {
+        inappBrowser = !inappBrowser;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("inapp_browser", inappBrowser);
+        edit.apply();
+    }
+
+    public static void toggleBrowserAdaptableColors() {
+        adaptableColorInBrowser = !adaptableColorInBrowser;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("adaptableBrowser", adaptableColorInBrowser);
         edit.apply();
     }
 
@@ -1081,7 +1121,7 @@ public class SharedConfig {
     }
 
     public static void toggleChatBlur() {
-        LiteMode.toggleFlag(LiteMode.FLAG_CHAT_BLUR);
+        LiteMode.toggleFlag(256);
     }
 
     public static void toggleForceDisableTabletMode() {
@@ -1118,10 +1158,10 @@ public class SharedConfig {
             return;
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-        String string2 = sharedPreferences.getString("proxy_user", BuildConfig.APP_CENTER_HASH);
-        String string3 = sharedPreferences.getString("proxy_pass", BuildConfig.APP_CENTER_HASH);
-        String string4 = sharedPreferences.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+        String string = sharedPreferences.getString("proxy_ip", "");
+        String string2 = sharedPreferences.getString("proxy_user", "");
+        String string3 = sharedPreferences.getString("proxy_pass", "");
+        String string4 = sharedPreferences.getString("proxy_secret", "");
         int i = sharedPreferences.getInt("proxy_port", 1080);
         proxyListLoaded = true;
         proxyList.clear();
@@ -1183,20 +1223,20 @@ public class SharedConfig {
         for (int i = size - 1; i >= 0; i--) {
             ProxyInfo proxyInfo = (ProxyInfo) arrayList.get(i);
             String str = proxyInfo.address;
-            String str2 = BuildConfig.APP_CENTER_HASH;
+            String str2 = "";
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             serializedData.writeString(str);
             serializedData.writeInt32(proxyInfo.port);
             String str3 = proxyInfo.username;
             if (str3 == null) {
-                str3 = BuildConfig.APP_CENTER_HASH;
+                str3 = "";
             }
             serializedData.writeString(str3);
             String str4 = proxyInfo.password;
             if (str4 == null) {
-                str4 = BuildConfig.APP_CENTER_HASH;
+                str4 = "";
             }
             serializedData.writeString(str4);
             String str5 = proxyInfo.secret;
@@ -1248,16 +1288,16 @@ public class SharedConfig {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("proxy_enabled", false);
             SharedPreferences.Editor edit = globalMainSettings.edit();
-            edit.putString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_pass", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_user", BuildConfig.APP_CENTER_HASH);
-            edit.putString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_ip", "");
+            edit.putString("proxy_pass", "");
+            edit.putString("proxy_user", "");
+            edit.putString("proxy_secret", "");
             edit.putInt("proxy_port", 1080);
             edit.putBoolean("proxy_enabled", false);
             edit.putBoolean("proxy_enabled_calls", false);
             edit.apply();
             if (z) {
-                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 0, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                ConnectionsManager.setProxySettings(false, "", 0, "", "", "");
             }
         }
         proxyList.remove(proxyInfo);
@@ -1305,11 +1345,11 @@ public class SharedConfig {
         int i2 = chatSwipeAction;
         if (i2 < 0) {
             return !MessagesController.getInstance(i).dialogFilters.isEmpty() ? 5 : 2;
-        } else if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
-            return 2;
-        } else {
-            return chatSwipeAction;
         }
+        if (i2 == 5 && MessagesController.getInstance(i).dialogFilters.isEmpty()) {
+            return 2;
+        }
+        return chatSwipeAction;
     }
 
     public static void updateChatListSwipeSetting(int i) {
@@ -1362,11 +1402,11 @@ public class SharedConfig {
                 int[] iArr = LOW_SOC;
                 if (i4 >= iArr.length) {
                     break;
-                } else if (iArr[i4] == hashCode) {
-                    return 0;
-                } else {
-                    i4++;
                 }
+                if (iArr[i4] == hashCode) {
+                    return 0;
+                }
+                i4++;
             }
         }
         int i5 = 0;
@@ -1427,11 +1467,11 @@ public class SharedConfig {
     }
 
     public static boolean canBlurChat() {
-        return getDevicePerformanceClass() == 2;
+        return getDevicePerformanceClass() >= (Build.VERSION.SDK_INT >= 31 ? 1 : 2) || BuildVars.DEBUG_PRIVATE_VERSION;
     }
 
     public static boolean chatBlurEnabled() {
-        return canBlurChat() && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR);
+        return canBlurChat() && LiteMode.isEnabled(256);
     }
 
     public static class BackgroundActivityPrefs {
@@ -1490,11 +1530,21 @@ public class SharedConfig {
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("bigCameraForRound", bigCameraForRound).apply();
     }
 
-    public static void toggleUseCamera2() {
+    public static void toggleUseNewBlur() {
+        useNewBlur = !useNewBlur;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("useNewBlur", useNewBlur).apply();
+    }
+
+    public static boolean isUsingCamera2(int i) {
+        Boolean bool = useCamera2Force;
+        return bool == null ? !MessagesController.getInstance(i).androidDisableRoundCamera2 : bool.booleanValue();
+    }
+
+    public static void toggleUseCamera2(int i) {
         SharedPreferences.Editor edit = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit();
-        boolean z = !useCamera2;
-        useCamera2 = z;
-        edit.putBoolean("useCamera2", z).apply();
+        Boolean valueOf = Boolean.valueOf(!isUsingCamera2(i));
+        useCamera2Force = valueOf;
+        edit.putBoolean("useCamera2Force_2", valueOf.booleanValue()).apply();
     }
 
     @Deprecated

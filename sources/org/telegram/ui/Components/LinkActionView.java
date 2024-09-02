@@ -47,6 +47,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
+
 public class LinkActionView extends LinearLayout {
     private ActionBarPopupWindow actionBarPopupWindow;
     private final AvatarsContainer avatarsContainer;
@@ -130,7 +131,7 @@ public class LinkActionView extends LinearLayout {
         textView2.setContentDescription(LocaleController.getString("LinkActionCopy", i));
         textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setSingleLine(true);
         linearLayout.addView(textView2, LayoutHelper.createLinear(0, 42, 1.0f, 0, 4, 0, 4, 0));
         TextView textView3 = new TextView(context);
@@ -145,7 +146,7 @@ public class LinkActionView extends LinearLayout {
         textView3.setContentDescription(LocaleController.getString("LinkActionShare", i2));
         textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         textView3.setSingleLine(true);
         linearLayout.addView(textView3, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         TextView textView4 = new TextView(context);
@@ -159,7 +160,7 @@ public class LinkActionView extends LinearLayout {
         textView4.setText(spannableStringBuilder3);
         textView4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView4.setTextSize(1, 14.0f);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView4.setTypeface(AndroidUtilities.bold());
         textView4.setSingleLine(true);
         linearLayout.addView(textView4, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         textView4.setVisibility(8);
@@ -314,7 +315,7 @@ public class LinkActionView extends LinearLayout {
             final View view2 = new View(context) {
                 @Override
                 protected void onDraw(Canvas canvas) {
-                    canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                    canvas.drawColor(855638016);
                     LinkActionView linkActionView = LinkActionView.this;
                     linkActionView.getPointOnScreen(linkActionView.frameLayout, container, LinkActionView.this.point);
                     canvas.save();
@@ -408,20 +409,17 @@ public class LinkActionView extends LinearLayout {
     public void getPointOnScreen(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
         float f = 0.0f;
         float f2 = 0.0f;
-        FrameLayout frameLayout3 = frameLayout;
-        while (frameLayout3 != frameLayout2) {
-            f += frameLayout3.getY();
-            f2 += frameLayout3.getX();
-            if (frameLayout3 instanceof ScrollView) {
-                f -= frameLayout3.getScrollY();
+        while (frameLayout != frameLayout2) {
+            f += frameLayout.getY();
+            f2 += frameLayout.getX();
+            if (frameLayout instanceof ScrollView) {
+                f -= frameLayout.getScrollY();
             }
-            if (!(frameLayout3.getParent() instanceof View)) {
+            if (!(frameLayout.getParent() instanceof View)) {
                 break;
             }
-            ?? r4 = (View) frameLayout3.getParent();
-            boolean z = r4 instanceof ViewGroup;
-            frameLayout3 = r4;
-            if (!z) {
+            frameLayout = (View) frameLayout.getParent();
+            if (!(frameLayout instanceof ViewGroup)) {
                 return;
             }
         }
@@ -543,8 +541,7 @@ public class LinkActionView extends LinearLayout {
             this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
                 @Override
                 public void onMeasure(int i, int i2) {
-                    int min = Math.min(3, LinkActionView.this.usersCount);
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(min == 0 ? 0 : ((min - 1) * 20) + 24 + 8), 1073741824), i2);
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(Math.min(3, LinkActionView.this.usersCount) == 0 ? 0 : ((r2 - 1) * 20) + 24 + 8), 1073741824), i2);
                 }
             };
             LinearLayout linearLayout = new LinearLayout(context);
@@ -553,7 +550,7 @@ public class LinkActionView extends LinearLayout {
             TextView textView = new TextView(context);
             this.countTextView = textView;
             textView.setTextSize(1, 14.0f);
-            this.countTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.countTextView.setTypeface(AndroidUtilities.bold());
             linearLayout.addView(this.avatarsImageView, LayoutHelper.createLinear(-2, -1));
             linearLayout.addView(this.countTextView, LayoutHelper.createLinear(-2, -2, 16));
             setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
@@ -626,29 +623,31 @@ public class LinkActionView extends LinearLayout {
     public void loadUsers(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, long j) {
         if (tLRPC$TL_chatInviteExported == null) {
             setUsers(0, null, false);
-        } else if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
-        } else {
-            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
-            if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
-                return;
-            }
-            TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
-            String str = tLRPC$TL_chatInviteExported.link;
-            if (str != null) {
-                tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
-                tLRPC$TL_messages_getChatInviteImporters.link = str;
-            }
-            tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
-            tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
-            tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
-            this.loadingImporters = true;
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
-                }
-            });
+            return;
         }
+        if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
+            return;
+        }
+        setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
+        if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
+            return;
+        }
+        TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
+        String str = tLRPC$TL_chatInviteExported.link;
+        if (str != null) {
+            tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
+            tLRPC$TL_messages_getChatInviteImporters.link = str;
+        }
+        tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
+        tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
+        tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
+        this.loadingImporters = true;
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_passwordRecovery extends TLObject {
     public String email_pattern;
 

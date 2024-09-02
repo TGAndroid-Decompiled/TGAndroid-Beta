@@ -46,6 +46,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
 import org.webrtc.RendererCommon;
+
 @TargetApi(21)
 public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implements VoIPService.StateListener {
     private ActionBar actionBar;
@@ -266,7 +267,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         int i = Theme.key_voipgroup_nameText;
         textView2.setTextColor(Theme.getColor(i));
         this.positiveButton.setGravity(17);
-        this.positiveButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.positiveButton.setTypeface(AndroidUtilities.bold());
         this.positiveButton.getPaint().setTextAlign(Paint.Align.CENTER);
         this.positiveButton.setContentDescription(LocaleController.getString("VoipShareVideo", R.string.VoipShareVideo));
         if (Build.VERSION.SDK_INT >= 23) {
@@ -473,8 +474,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$new$3(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * this.openProgress2));
+        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
         this.positiveButton.requestLayout();
     }
 
@@ -486,8 +486,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         }
         Bitmap bitmap = null;
         try {
-            File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-            bitmap = BitmapFactory.decodeFile(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
+            bitmap = BitmapFactory.decodeFile(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg").getAbsolutePath());
         } catch (Throwable unused) {
         }
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
@@ -499,10 +498,10 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
             imageView.setVisibility(0);
             imageView.setAlpha(0.0f);
             imageView.animate().alpha(1.0f).setDuration(250L).start();
-            return;
+        } else {
+            imageView.setAlpha(1.0f);
+            imageView.setVisibility(0);
         }
-        imageView.setAlpha(1.0f);
-        imageView.setVisibility(0);
     }
 
     public void setCurrentPage(final int i, boolean z) {
@@ -598,7 +597,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         textView.setTextColor(-1);
         textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         frameLayout2.setTag("screencast_stub");
         frameLayout2.setVisibility(8);
@@ -631,12 +630,13 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
         if (this.closeProgress > 0.0f) {
             int[] floatingViewLocation = getFloatingViewLocation();
             float f = this.closeProgress;
-            int i3 = floatingViewLocation[2];
-            int i4 = AndroidUtilities.displaySize.x;
-            float f2 = (i3 + ((i4 - i3) * (1.0f - f))) / i4;
+            int i3 = (int) (floatingViewLocation[0] * f);
+            int i4 = (int) (floatingViewLocation[1] * f);
+            int i5 = floatingViewLocation[2];
+            float f2 = (i5 + ((r7 - i5) * (1.0f - f))) / AndroidUtilities.displaySize.x;
             this.clipPath.reset();
             this.clipPath.addRoundRect(0.0f, 0.0f, getWidth() * f2, getHeight() * f2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
-            canvas.translate((int) (floatingViewLocation[0] * f), (int) (floatingViewLocation[1] * f));
+            canvas.translate(i3, i4);
             canvas.clipPath(this.clipPath);
             canvas.scale(f2, f2);
         }
@@ -744,8 +744,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
 
     public void lambda$dismiss$7(ValueAnimator valueAnimator) {
         this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        int dp = (AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f);
-        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (dp * this.openProgress2));
+        this.positiveButton.getLayoutParams().width = AndroidUtilities.dp(52.0f) + ((int) (((AndroidUtilities.displaySize.x - AndroidUtilities.dp(36.0f)) - AndroidUtilities.dp(52.0f)) * this.openProgress2));
         this.positiveButton.requestLayout();
     }
 
@@ -843,8 +842,7 @@ public abstract class PrivateVideoPreviewDialogNew extends FrameLayout implement
                             createBitmap.recycle();
                         }
                         Utilities.blurBitmap(createScaledBitmap, 7, 1, createScaledBitmap.getWidth(), createScaledBitmap.getHeight(), createScaledBitmap.getRowBytes());
-                        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
-                        FileOutputStream fileOutputStream = new FileOutputStream(new File(filesDirFixed, "cthumb" + this.visibleCameraPage + ".jpg"));
+                        FileOutputStream fileOutputStream = new FileOutputStream(new File(ApplicationLoader.getFilesDirFixed(), "cthumb" + this.visibleCameraPage + ".jpg"));
                         createScaledBitmap.compress(Bitmap.CompressFormat.JPEG, 87, fileOutputStream);
                         fileOutputStream.close();
                         View findViewWithTag = this.viewPager.findViewWithTag("image_stab");

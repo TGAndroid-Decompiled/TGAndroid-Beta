@@ -23,6 +23,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.LaunchActivity;
+
 public class ChannelBoostsController {
     public static final int BOOSTS_FOR_LEVEL_1 = 1;
     public static final int BOOSTS_FOR_LEVEL_2 = 1;
@@ -63,18 +64,21 @@ public class ChannelBoostsController {
         }
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (tLRPC$TL_error != null && lastFragment != null && "CHANNEL_PRIVATE".equals(tLRPC$TL_error.text)) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
-            builder.setTitle(LocaleController.getString(R.string.AppName));
-            HashMap hashMap = new HashMap();
-            int i = Theme.key_dialogTopBackground;
-            hashMap.put("info1.**", Integer.valueOf(Theme.getColor(i)));
-            hashMap.put("info2.**", Integer.valueOf(Theme.getColor(i)));
-            builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), hashMap);
-            builder.setTopAnimationIsNew(true);
-            builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
-            builder.setMessage(LocaleController.getString("ChannelCantOpenPrivate2", R.string.ChannelCantOpenPrivate2));
-            builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
-            builder.show();
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity == null || !launchActivity.isFinishing()) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
+                builder.setTitle(LocaleController.getString(R.string.AppName));
+                HashMap hashMap = new HashMap();
+                int i = Theme.key_dialogTopBackground;
+                hashMap.put("info1.**", Integer.valueOf(Theme.getColor(i)));
+                hashMap.put("info2.**", Integer.valueOf(Theme.getColor(i)));
+                builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(i), hashMap);
+                builder.setTopAnimationIsNew(true);
+                builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
+                builder.setMessage(LocaleController.getString("ChannelCantOpenPrivate2", R.string.ChannelCantOpenPrivate2));
+                builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
+                builder.show();
+            }
         } else {
             BulletinFactory.global().showForError(tLRPC$TL_error);
         }

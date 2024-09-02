@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputNotifyPeer extends TLRPC$InputNotifyPeer {
     public TLRPC$InputPeer peer;
 

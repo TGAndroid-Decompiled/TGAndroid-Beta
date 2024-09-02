@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.FileStreamLoadOperation;
+
 public final class ExtendedDefaultDataSource implements DataSource {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -36,6 +37,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
     private DataSource fileDataSource;
     private DataSource rawResourceDataSource;
     private DataSource rtmpDataSource;
+    private FileStreamLoadOperation streamLoadOperation;
     private final List<TransferListener> transferListeners;
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z) {
@@ -98,15 +100,15 @@ public final class ExtendedDefaultDataSource implements DataSource {
             }
         } else if ("tg".equals(scheme)) {
             this.dataSource = getStreamDataSource();
-        } else if (SCHEME_ASSET.equals(scheme)) {
+        } else if ("asset".equals(scheme)) {
             this.dataSource = getAssetDataSource();
-        } else if (SCHEME_CONTENT.equals(scheme)) {
+        } else if ("content".equals(scheme)) {
             this.dataSource = getContentDataSource();
-        } else if (SCHEME_RTMP.equals(scheme)) {
+        } else if ("rtmp".equals(scheme)) {
             this.dataSource = getRtmpDataSource();
         } else if ("data".equals(scheme)) {
             this.dataSource = getDataSchemeDataSource();
-        } else if (SCHEME_RAW.equals(scheme)) {
+        } else if ("rawresource".equals(scheme)) {
             this.dataSource = getRawResourceDataSource();
         } else {
             this.dataSource = this.baseDataSource;
@@ -174,9 +176,12 @@ public final class ExtendedDefaultDataSource implements DataSource {
     }
 
     private DataSource getStreamDataSource() {
-        FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
-        addListenersToDataSource(fileStreamLoadOperation);
-        return fileStreamLoadOperation;
+        if (this.streamLoadOperation == null) {
+            FileStreamLoadOperation fileStreamLoadOperation = new FileStreamLoadOperation();
+            this.streamLoadOperation = fileStreamLoadOperation;
+            addListenersToDataSource(fileStreamLoadOperation);
+        }
+        return this.streamLoadOperation;
     }
 
     private DataSource getContentDataSource() {
@@ -195,7 +200,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
                 this.rtmpDataSource = dataSource;
                 addListenersToDataSource(dataSource);
             } catch (ClassNotFoundException unused) {
-                Log.w(TAG, "Attempting to play RTMP stream without depending on the RTMP extension");
+                Log.w("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
             } catch (Exception e) {
                 throw new RuntimeException("Error instantiating RTMP extension", e);
             }

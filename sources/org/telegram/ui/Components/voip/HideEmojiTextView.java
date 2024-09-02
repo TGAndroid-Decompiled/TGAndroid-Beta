@@ -9,6 +9,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+
 @SuppressLint({"ViewConstructor"})
 public class HideEmojiTextView extends TextView {
     private final VoIPBackgroundProvider backgroundProvider;
@@ -23,7 +24,7 @@ public class HideEmojiTextView extends TextView {
         setText(LocaleController.getString("VoipHideEmoji", i));
         setContentDescription(LocaleController.getString("VoipHideEmoji", i));
         setTextColor(-1);
-        setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        setTypeface(AndroidUtilities.bold());
         setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(4.0f));
     }
 

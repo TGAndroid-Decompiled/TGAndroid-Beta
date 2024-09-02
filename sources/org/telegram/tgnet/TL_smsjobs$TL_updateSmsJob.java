@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_updateSmsJob extends TLRPC$Update {
     public String job_id;
 

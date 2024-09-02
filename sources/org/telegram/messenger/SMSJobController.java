@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.NotificationCenter;
@@ -40,6 +41,7 @@ import org.telegram.tgnet.TL_smsjobs$TL_smsjobs_updateSettings;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.SMSSubscribeSheet;
+
 public class SMSJobController implements NotificationCenter.NotificationCenterDelegate {
     public static final int STATE_ASKING_PERMISSION = 1;
     public static final int STATE_JOINED = 3;
@@ -97,8 +99,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
     private SMSJobController(int i) {
         this.currentAccount = i;
-        Context context = ApplicationLoader.applicationContext;
-        this.journalPrefs = context.getSharedPreferences("smsjobs_journal_" + i, 0);
+        this.journalPrefs = ApplicationLoader.applicationContext.getSharedPreferences("smsjobs_journal_" + i, 0);
         loadCacheStatus();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -145,12 +146,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
-                    if (i == -594852657) {
-                        TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = new TL_smsjobs$TL_smsjobs_eligibleToJoin();
-                        tL_smsjobs$TL_smsjobs_eligibleToJoin.readParams(abstractSerializedData, z2);
-                        return tL_smsjobs$TL_smsjobs_eligibleToJoin;
+                    if (i != -594852657) {
+                        return null;
                     }
-                    return null;
+                    TL_smsjobs$TL_smsjobs_eligibleToJoin tL_smsjobs$TL_smsjobs_eligibleToJoin = new TL_smsjobs$TL_smsjobs_eligibleToJoin();
+                    tL_smsjobs$TL_smsjobs_eligibleToJoin.readParams(abstractSerializedData, z2);
+                    return tL_smsjobs$TL_smsjobs_eligibleToJoin;
                 }
 
                 @Override
@@ -203,12 +204,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
-                    if (i == 720277905) {
-                        TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = new TL_smsjobs$TL_smsjobs_status();
-                        tL_smsjobs$TL_smsjobs_status.readParams(abstractSerializedData, z2);
-                        return tL_smsjobs$TL_smsjobs_status;
+                    if (i != 720277905) {
+                        return null;
                     }
-                    return null;
+                    TL_smsjobs$TL_smsjobs_status tL_smsjobs$TL_smsjobs_status = new TL_smsjobs$TL_smsjobs_status();
+                    tL_smsjobs$TL_smsjobs_status.readParams(abstractSerializedData, z2);
+                    return tL_smsjobs$TL_smsjobs_status;
                 }
 
                 @Override
@@ -327,17 +328,19 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     public void lambda$checkSelectedSIMCard$5(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString((int) R.string.UnknownError)).show();
-        } else {
-            setState(3);
-            loadStatus(true);
-            Context context = LaunchActivity.instance;
-            if (context == null) {
-                context = ApplicationLoader.applicationContext;
-            }
-            SMSSubscribeSheet.showSubscribed(context, null);
+            return;
         }
+        if (tLObject instanceof TLRPC$TL_boolFalse) {
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
+            return;
+        }
+        setState(3);
+        loadStatus(true);
+        Context context = LaunchActivity.instance;
+        if (context == null) {
+            context = ApplicationLoader.applicationContext;
+        }
+        SMSSubscribeSheet.showSubscribed(context, null);
     }
 
     public SIM getSelectedSIM() {
@@ -416,19 +419,21 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
     public void processJobUpdate(final String str) {
         if (this.currentState != 3) {
             FileLog.d("[smsjob] received update on sms job " + str + ", but we did not join!!! currentState=" + this.currentState);
-        } else if (this.completedJobs.contains(str) || this.loadingJobs.contains(str)) {
-        } else {
-            this.loadingJobs.add(str);
-            FileLog.d("[smsjob] received update on sms job " + str + ", fetching");
-            TL_smsjobs$TL_smsjobs_getSmsJob tL_smsjobs$TL_smsjobs_getSmsJob = new TL_smsjobs$TL_smsjobs_getSmsJob();
-            tL_smsjobs$TL_smsjobs_getSmsJob.job_id = str;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_smsjobs$TL_smsjobs_getSmsJob, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    SMSJobController.this.lambda$processJobUpdate$8(str, tLObject, tLRPC$TL_error);
-                }
-            });
+            return;
         }
+        if (this.completedJobs.contains(str) || this.loadingJobs.contains(str)) {
+            return;
+        }
+        this.loadingJobs.add(str);
+        FileLog.d("[smsjob] received update on sms job " + str + ", fetching");
+        TL_smsjobs$TL_smsjobs_getSmsJob tL_smsjobs$TL_smsjobs_getSmsJob = new TL_smsjobs$TL_smsjobs_getSmsJob();
+        tL_smsjobs$TL_smsjobs_getSmsJob.job_id = str;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_smsjobs$TL_smsjobs_getSmsJob, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                SMSJobController.this.lambda$processJobUpdate$8(str, tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void lambda$processJobUpdate$8(final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -466,7 +471,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         if (BuildVars.DEBUG_PRIVATE_VERSION) {
             str2 = ": " + tL_smsjobs$TL_smsJob.text + " to " + str4;
         } else {
-            str2 = BuildConfig.APP_CENTER_HASH;
+            str2 = "";
         }
         sb.append(str2);
         sb.append(", selected sim: ");
@@ -679,13 +684,15 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }
         try {
             int size = pending.size() * 8;
-            for (PendingSMS pendingSMS : pending.values()) {
-                size += pendingSMS.getObjectSize();
+            Iterator<PendingSMS> it = pending.values().iterator();
+            while (it.hasNext()) {
+                size += it.next().getObjectSize();
             }
             SerializedData serializedData = new SerializedData(size);
             serializedData.writeInt32(pending.size());
-            for (PendingSMS pendingSMS2 : pending.values()) {
-                pendingSMS2.serializeToStream(serializedData);
+            Iterator<PendingSMS> it2 = pending.values().iterator();
+            while (it2.hasNext()) {
+                it2.next().serializeToStream(serializedData);
             }
             MessagesController.getGlobalMainSettings().edit().putString("smsjobs_pending", Utilities.bytesToHex(serializedData.toByteArray())).apply();
         } catch (Exception e) {
@@ -849,11 +856,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 str = "RESULT_SMS_BLOCKED_DURING_EMERGENCY";
                 z = false;
                 break;
-            case R.styleable.AppCompatTheme_actionModeTheme:
+            case 30:
                 str = "RESULT_SMS_SEND_RETRY_FAILED";
                 z = false;
                 break;
-            case R.styleable.AppCompatTheme_actionModeWebSearchDrawable:
+            case 31:
                 str = "RESULT_REMOTE_EXCEPTION";
                 z = false;
                 break;
@@ -861,7 +868,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                 str = "RESULT_NO_DEFAULT_SMS_APP";
                 z = false;
                 break;
-            case R.styleable.AppCompatTheme_actionOverflowMenuStyle:
+            case 33:
                 str = "RESULT_USER_NOT_ALLOWED";
                 z = false;
                 break;
@@ -873,46 +880,46 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                     case 101:
                         str = "RESULT_RIL_SMS_SEND_FAIL_RETRY";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceLargePopupMenu:
+                    case 102:
                         str = "RESULT_RIL_NETWORK_REJECT";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceListItem:
+                    case 103:
                         str = "RESULT_RIL_INVALID_STATE";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceListItemSecondary:
+                    case 104:
                         str = "RESULT_RIL_INVALID_ARGUMENTS";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceListItemSmall:
+                    case 105:
                         str = "RESULT_RIL_NO_MEMORY";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearancePopupMenuHeader:
+                    case 106:
                         str = "RESULT_RIL_REQUEST_RATE_LIMITED";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceSearchResultSubtitle:
+                    case 107:
                         str = "RESULT_RIL_INVALID_SMS_FORMAT";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceSearchResultTitle:
+                    case 108:
                         str = "RESULT_RIL_SYSTEM_ERR";
                         break;
-                    case R.styleable.AppCompatTheme_textAppearanceSmallPopupMenu:
+                    case 109:
                         str = "RESULT_RIL_ENCODING_ERR";
                         break;
-                    case R.styleable.AppCompatTheme_textColorAlertDialogListItem:
+                    case 110:
                         str = "RESULT_RIL_INVALID_SMSC_ADDRESS";
                         break;
-                    case R.styleable.AppCompatTheme_textColorSearchUrl:
+                    case 111:
                         str = "RESULT_RIL_MODEM_ERR";
                         break;
-                    case R.styleable.AppCompatTheme_toolbarNavigationButtonStyle:
+                    case 112:
                         str = "RESULT_RIL_NETWORK_ERR";
                         break;
-                    case R.styleable.AppCompatTheme_toolbarStyle:
+                    case 113:
                         str = "RESULT_RIL_INTERNAL_ERR";
                         break;
-                    case R.styleable.AppCompatTheme_tooltipForegroundColor:
+                    case 114:
                         str = "RESULT_RIL_REQUEST_NOT_SUPPORTED";
                         break;
-                    case R.styleable.AppCompatTheme_tooltipFrameBackground:
+                    case 115:
                         str = "RESULT_RIL_INVALID_MODEM_STATE";
                         break;
                     case 116:
@@ -983,7 +990,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             pendingSMS.whenDelivered(z, str);
         }
         boolean[] zArr = pendingSMS.received;
-        if (zArr[0] && zArr[1]) {
+        if (zArr[0] || zArr[1]) {
             pending.remove(Integer.valueOf(intExtra));
             savePending();
         }
@@ -1000,11 +1007,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         }
         SmsManager smsManager2 = smsManager;
         int random = (int) (Math.random() * 1000000.0d);
-        Intent intent = new Intent(context, SMSResultService.class);
+        Intent intent = new Intent(context, (Class<?>) SMSResultService.class);
         intent.putExtra("sent", true);
         intent.putExtra("tg_sms_id", random);
         PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 167772160);
-        Intent intent2 = new Intent(context, SMSResultService.class);
+        Intent intent2 = new Intent(context, (Class<?>) SMSResultService.class);
         intent2.putExtra("delivered", true);
         intent2.putExtra("tg_sms_id", random);
         PendingIntent broadcast2 = PendingIntent.getBroadcast(context, 0, intent2, 167772160);
@@ -1042,11 +1049,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             smsManager = SmsManager.getDefault();
         }
         SmsManager smsManager2 = smsManager;
-        Intent intent = new Intent(context, SMSResultService.class);
+        Intent intent = new Intent(context, (Class<?>) SMSResultService.class);
         intent.putExtra("sent", true);
         intent.putExtra("tg_sms_id", pendingSMS.id);
         PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 167772160);
-        Intent intent2 = new Intent(context, SMSResultService.class);
+        Intent intent2 = new Intent(context, (Class<?>) SMSResultService.class);
         intent2.putExtra("delivered", true);
         intent2.putExtra("tg_sms_id", pendingSMS.id);
         PendingIntent broadcast2 = PendingIntent.getBroadcast(context, 0, intent2, 167772160);
@@ -1109,25 +1116,24 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             } else {
                 number = subscriptionInfo.getNumber();
             }
-            return new SIM(subscriptionInfo.getSubscriptionId(), subscriptionInfo.getSimSlotIndex(), subscriptionInfo.getDisplayName() == null ? BuildConfig.APP_CENTER_HASH : subscriptionInfo.getDisplayName().toString(), subscriptionInfo.getIccId(), subscriptionInfo.getCountryIso(), subscriptionInfo.getCarrierName() != null ? subscriptionInfo.getCarrierName().toString() : null, number);
+            return new SIM(subscriptionInfo.getSubscriptionId(), subscriptionInfo.getSimSlotIndex(), subscriptionInfo.getDisplayName() == null ? "" : subscriptionInfo.getDisplayName().toString(), subscriptionInfo.getIccId(), subscriptionInfo.getCountryIso(), subscriptionInfo.getCarrierName() != null ? subscriptionInfo.getCarrierName().toString() : null, number);
         }
 
         public String toString() {
             String str;
             StringBuilder sb = new StringBuilder();
-            String str2 = this.country;
-            String str3 = BuildConfig.APP_CENTER_HASH;
-            if (str2 != null) {
+            String str2 = "";
+            if (this.country != null) {
                 str = "[" + this.country + "] ";
             } else {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             sb.append(str);
             sb.append(this.name);
             if (this.carrier != null) {
-                str3 = " (" + this.carrier + ")";
+                str2 = " (" + this.carrier + ")";
             }
-            sb.append(str3);
+            sb.append(str2);
             return sb.toString();
         }
     }
@@ -1197,7 +1203,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.global().createErrorBulletin(LocaleController.getString((int) R.string.UnknownError)).show();
+            BulletinFactory.global().createErrorBulletin(LocaleController.getString(2131697909)).show();
         } else {
             getInstance(this.currentAccount).loadStatus(true);
             getInstance(this.currentAccount).checkIsEligible(true, null);
@@ -1269,12 +1275,12 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
         while (true) {
             if (i >= this.journal.size()) {
                 break;
-            } else if (!TextUtils.isEmpty(this.journal.get(i).error)) {
+            }
+            if (!TextUtils.isEmpty(this.journal.get(i).error)) {
                 registerError();
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
         MessagesController.getMainSettings(this.currentAccount).edit().putBoolean("smsjobs_checked_journal", true).apply();
     }
@@ -1295,10 +1301,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             if (i2 >= this.journal.size()) {
                 jobEntry = null;
                 break;
-            } else if (TextUtils.equals(this.journal.get(i2).job_id, str)) {
-                jobEntry = this.journal.get(i2);
-                break;
             } else {
+                if (TextUtils.equals(this.journal.get(i2).job_id, str)) {
+                    jobEntry = this.journal.get(i2);
+                    break;
+                }
                 i2++;
             }
         }
@@ -1344,11 +1351,11 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                         e = e2;
                         bufferedReader2 = bufferedReader;
                         FileLog.e(e);
-                        if (bufferedReader2 != null) {
-                            bufferedReader2.close();
-                            return BuildConfig.APP_CENTER_HASH;
+                        if (bufferedReader2 == null) {
+                            return "";
                         }
-                        return BuildConfig.APP_CENTER_HASH;
+                        bufferedReader2.close();
+                        return "";
                     } catch (Throwable th) {
                         th = th;
                         bufferedReader2 = bufferedReader;
@@ -1364,7 +1371,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
                     if (readLine == null) {
                         bufferedReader.close();
                         bufferedReader.close();
-                        return BuildConfig.APP_CENTER_HASH;
+                        return "";
                     }
                     split = readLine.split(";");
                 } while (!stripExceptNumbers.startsWith(split[0]));
@@ -1380,7 +1387,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             }
         } catch (Exception e5) {
             FileLog.e(e5);
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
@@ -1397,7 +1404,7 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
             sb.append(",");
             String str = this.error;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             sb.append(str);
             sb.append(",");
@@ -1411,16 +1418,16 @@ public class SMSJobController implements NotificationCenter.NotificationCenterDe
 
         public static JobEntry fromString(String str) {
             String[] split = str.split(",");
-            if (split.length == 4 || split.length == 5) {
-                JobEntry jobEntry = new JobEntry();
-                jobEntry.job_id = split[0];
-                jobEntry.error = TextUtils.isEmpty(split[1]) ? null : split[1];
-                jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
-                jobEntry.country = split[3];
-                jobEntry.state = split.length >= 5 ? Utilities.parseInt((CharSequence) split[4]).intValue() : 0;
-                return jobEntry;
+            if (split.length != 4 && split.length != 5) {
+                return null;
             }
-            return null;
+            JobEntry jobEntry = new JobEntry();
+            jobEntry.job_id = split[0];
+            jobEntry.error = TextUtils.isEmpty(split[1]) ? null : split[1];
+            jobEntry.date = Utilities.parseInt((CharSequence) split[2]).intValue();
+            jobEntry.country = split[3];
+            jobEntry.state = split.length >= 5 ? Utilities.parseInt((CharSequence) split[4]).intValue() : 0;
+            return jobEntry;
         }
     }
 

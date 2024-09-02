@@ -15,6 +15,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.ui.ActionBar.Theme;
+
 public class FragmentContextViewWavesDrawable {
     private float amplitude;
     private float amplitude2;
@@ -115,9 +116,10 @@ public class FragmentContextViewWavesDrawable {
                     sharedInstance.setMicMute(true, false, false);
                     setState(3, z);
                     return;
+                } else {
+                    setState(sharedInstance.isMicMute() ? 1 : 0, z);
+                    return;
                 }
-                setState(sharedInstance.isMicMute() ? 1 : 0, z);
-                return;
             }
             setState(sharedInstance.isMicMute() ? 1 : 0, z);
         }
@@ -157,13 +159,17 @@ public class FragmentContextViewWavesDrawable {
                 int color2 = Theme.getColor(this.greenKey2);
                 this.color2 = color2;
                 this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color, color2}, (float[]) null, Shader.TileMode.CLAMP);
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 int color3 = Theme.getColor(this.blueKey1);
                 this.color1 = color3;
                 int color4 = Theme.getColor(this.blueKey2);
                 this.color2 = color4;
                 this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4}, (float[]) null, Shader.TileMode.CLAMP);
-            } else if (i == 3) {
+                return;
+            }
+            if (i == 3) {
                 int color5 = Theme.getColor(this.mutedByAdmin);
                 this.color1 = color5;
                 int color6 = Theme.getColor(this.mutedByAdmin3);
@@ -238,12 +244,16 @@ public class FragmentContextViewWavesDrawable {
                     return;
                 }
                 createGradients();
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 if (this.color1 == Theme.getColor(this.blueKey1) && this.color2 == Theme.getColor(this.blueKey2)) {
                     return;
                 }
                 createGradients();
-            } else if (i == 3) {
+                return;
+            }
+            if (i == 3) {
                 if (this.color1 == Theme.getColor(this.mutedByAdmin) && this.color2 == Theme.getColor(this.mutedByAdmin2)) {
                     return;
                 }
@@ -254,7 +264,7 @@ public class FragmentContextViewWavesDrawable {
         public void setToPaint(Paint paint) {
             int i = this.currentState;
             if (i == 0 || i == 1 || i == 3) {
-                if (!LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+                if (!LiteMode.isEnabled(512)) {
                     paint.setShader(null);
                     if (this.currentState == 3) {
                         paint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(this.color1, this.color2, 0.5f), this.color3, 0.5f));

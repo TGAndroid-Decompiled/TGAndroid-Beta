@@ -6,6 +6,7 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -22,7 +23,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -45,6 +45,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$InputDocument;
+import org.telegram.tgnet.TLRPC$InputMedia;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$Message;
@@ -76,6 +77,7 @@ import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+
 public class StoryEntry {
     public boolean allowScreenshots;
     public String audioAuthor;
@@ -88,7 +90,10 @@ public class StoryEntry {
     public File backgroundFile;
     public String backgroundWallpaperEmoticon;
     public Bitmap blurredVideoThumb;
+    public long botId;
     public CharSequence caption;
+    public Bitmap coverBitmap;
+    public boolean coverSet;
     public long draftDate;
     public long draftId;
     public File draftThumbFile;
@@ -103,6 +108,8 @@ public class StoryEntry {
     public boolean editedMedia;
     public ArrayList<TL_stories$MediaArea> editedMediaAreas;
     public boolean editedPrivacy;
+    public TLRPC$InputMedia editingBotPreview;
+    public TLRPC$Document editingCoverDocument;
     public TLRPC$TL_error error;
     public File file;
     public boolean fileDeletable;
@@ -117,6 +124,7 @@ public class StoryEntry {
     public boolean isDraft;
     public boolean isEdit;
     public boolean isEditSaved;
+    public boolean isEditingCover;
     public boolean isError;
     public boolean isRepost;
     public boolean isRepostMessage;
@@ -150,6 +158,7 @@ public class StoryEntry {
     public Bitmap thumbBitmap;
     public String thumbPath;
     public Bitmap thumbPathBitmap;
+    public Utilities.Callback<Utilities.Callback<TLRPC$Document>> updateDocumentRef;
     public File uploadThumbFile;
     public int width;
     public final int currentAccount = UserConfig.selectedAccount;
@@ -158,6 +167,7 @@ public class StoryEntry {
     public float audioVolume = 1.0f;
     public float videoVolume = 1.0f;
     public float right = 1.0f;
+    public long cover = -1;
     public int resultWidth = 720;
     public int resultHeight = 1280;
     public final Matrix matrix = new Matrix();
@@ -169,6 +179,7 @@ public class StoryEntry {
     public final ArrayList<TLRPC$InputPrivacyRule> privacyRules = new ArrayList<>();
     public boolean pinned = true;
     public int period = 86400;
+    public String botLang = "";
     public long averageDuration = 5000;
     private int checkStickersReqId = 0;
 
@@ -182,32 +193,31 @@ public class StoryEntry {
 
     public boolean wouldBeVideo(ArrayList<VideoEditedInfo.MediaEntity> arrayList) {
         ArrayList<VideoEditedInfo.EmojiEntity> arrayList2;
-        if (!this.isVideo && this.audioPath == null && this.round == null) {
-            if (arrayList != null && !arrayList.isEmpty()) {
-                for (int i = 0; i < arrayList.size(); i++) {
-                    VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i);
-                    byte b = mediaEntity.type;
-                    if (b == 0) {
-                        if (isAnimated(mediaEntity.document, mediaEntity.text)) {
+        if (this.isVideo || this.audioPath != null || this.round != null) {
+            return true;
+        }
+        if (arrayList != null && !arrayList.isEmpty()) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i);
+                byte b = mediaEntity.type;
+                if (b == 0) {
+                    if (isAnimated(mediaEntity.document, mediaEntity.text)) {
+                        return true;
+                    }
+                } else if (b == 1 && (arrayList2 = mediaEntity.entities) != null && !arrayList2.isEmpty()) {
+                    for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
+                        VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
+                        if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
                             return true;
                         }
-                    } else if (b == 1 && (arrayList2 = mediaEntity.entities) != null && !arrayList2.isEmpty()) {
-                        for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
-                            VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
-                            if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
-                                return true;
-                            }
-                        }
-                        continue;
                     }
                 }
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
-    private boolean isAnimated(TLRPC$Document tLRPC$Document, String str) {
+    public static boolean isAnimated(TLRPC$Document tLRPC$Document, String str) {
         if (tLRPC$Document != null) {
             if ("video/webm".equals(tLRPC$Document.mime_type) || "video/mp4".equals(tLRPC$Document.mime_type)) {
                 return true;
@@ -223,6 +233,9 @@ public class StoryEntry {
         if (drawable == null) {
             return;
         }
+        Rect rect = new Rect(drawable.getBounds());
+        Drawable.Callback callback = drawable.getCallback();
+        drawable.setCallback(null);
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             float width = bitmapDrawable.getBitmap().getWidth();
@@ -230,10 +243,12 @@ public class StoryEntry {
             float max = Math.max(i / width, i2 / height);
             drawable.setBounds(0, 0, (int) (width * max), (int) (height * max));
             drawable.draw(canvas);
-            return;
+        } else {
+            drawable.setBounds(0, 0, i, i2);
+            drawable.draw(canvas);
         }
-        drawable.setBounds(0, 0, i, i2);
-        drawable.draw(canvas);
+        drawable.setBounds(rect);
+        drawable.setCallback(callback);
     }
 
     public android.graphics.Bitmap buildBitmap(float r26, android.graphics.Bitmap r27) {
@@ -278,7 +293,7 @@ public class StoryEntry {
         buildBitmap.recycle();
     }
 
-    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z) {
+    public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z, boolean z2) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         decodeBitmap.decode(options);
@@ -290,11 +305,11 @@ public class StoryEntry {
         int i4 = options.outHeight;
         double d = (i3 * i4 * 4) + (i * i2 * 4);
         Double.isNaN(d);
-        boolean z2 = d * 1.1d <= ((double) maxMemory);
+        boolean z3 = d * 1.1d <= ((double) maxMemory);
         if (i3 <= i && i4 <= i2) {
             return decodeBitmap.decode(options);
         }
-        if (z2 && SharedConfig.getDevicePerformanceClass() >= 1) {
+        if (z2 && z3 && SharedConfig.getDevicePerformanceClass() >= 1) {
             Bitmap decode = decodeBitmap.decode(options);
             float max = Math.max(i / decode.getWidth(), i2 / decode.getHeight());
             int width = (int) (decode.getWidth() * max);
@@ -340,55 +355,59 @@ public class StoryEntry {
         if (this.isVideo) {
             if (runnable != null) {
                 runnable.run();
+                return;
             }
-        } else if (savedFilterState.isEmpty()) {
+            return;
+        }
+        if (savedFilterState.isEmpty()) {
             if (runnable != null) {
                 runnable.run();
-            }
-        } else {
-            Bitmap bitmap = photoFilterView.getBitmap();
-            if (bitmap == null) {
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
                 return;
             }
-            Matrix matrix = new Matrix();
-            int i = this.invert;
-            final boolean z = true;
-            matrix.postScale(i == 1 ? -1.0f : 1.0f, i != 2 ? 1.0f : -1.0f, this.width / 2.0f, this.height / 2.0f);
-            matrix.postRotate(-this.orientation);
-            final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-            this.matrix.preScale(this.width / createBitmap.getWidth(), this.height / createBitmap.getHeight());
-            this.width = createBitmap.getWidth();
-            this.height = createBitmap.getHeight();
-            bitmap.recycle();
-            File file = this.filterFile;
-            if (file != null && file.exists()) {
-                this.filterFile.delete();
-            }
-            String ext = ext(this.file);
-            if (!"png".equals(ext) && !"webp".equals(ext)) {
-                z = false;
-            }
-            this.filterFile = makeCacheFile(this.currentAccount, z ? "webp" : "jpg");
-            if (runnable == null) {
-                try {
-                    createBitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-                createBitmap.recycle();
-                return;
-            }
-            Utilities.themeQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryEntry.this.lambda$updateFilter$5(createBitmap, z, runnable);
-                }
-            });
+            return;
         }
+        Bitmap bitmap = photoFilterView.getBitmap();
+        if (bitmap == null) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        Matrix matrix = new Matrix();
+        int i = this.invert;
+        final boolean z = true;
+        matrix.postScale(i == 1 ? -1.0f : 1.0f, i != 2 ? 1.0f : -1.0f, this.width / 2.0f, this.height / 2.0f);
+        matrix.postRotate(-this.orientation);
+        final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        this.matrix.preScale(this.width / createBitmap.getWidth(), this.height / createBitmap.getHeight());
+        this.width = createBitmap.getWidth();
+        this.height = createBitmap.getHeight();
+        bitmap.recycle();
+        File file = this.filterFile;
+        if (file != null && file.exists()) {
+            this.filterFile.delete();
+        }
+        String ext = ext(this.file);
+        if (!"png".equals(ext) && !"webp".equals(ext)) {
+            z = false;
+        }
+        this.filterFile = makeCacheFile(this.currentAccount, z ? "webp" : "jpg");
+        if (runnable == null) {
+            try {
+                createBitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            createBitmap.recycle();
+            return;
+        }
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$updateFilter$5(createBitmap, z, runnable);
+            }
+        });
     }
 
     public void lambda$updateFilter$5(Bitmap bitmap, boolean z, Runnable runnable) {
@@ -482,7 +501,7 @@ public class StoryEntry {
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
-                        next.segmentedPath = BuildConfig.APP_CENTER_HASH;
+                        next.segmentedPath = "";
                     }
                 }
             }
@@ -803,10 +822,10 @@ public class StoryEntry {
         if (((int) Math.max(this.width, (this.height / 16.0f) * 9.0f)) <= 900) {
             this.resultWidth = 720;
             this.resultHeight = 1280;
-            return;
+        } else {
+            this.resultWidth = 1080;
+            this.resultHeight = 1920;
         }
-        this.resultWidth = 1080;
-        this.resultHeight = 1920;
     }
 
     public void setupMatrix() {
@@ -831,12 +850,16 @@ public class StoryEntry {
         }
         float f = i2;
         float f2 = this.resultWidth / f;
-        float f3 = i3;
-        if (f3 / f > 1.29f) {
-            f2 = Math.max(f2, this.resultHeight / f3);
+        if (this.botId != 0) {
+            f2 = Math.min(f2, this.resultHeight / i3);
+        } else {
+            float f3 = i3;
+            if (f3 / f > 1.29f) {
+                f2 = Math.max(f2, this.resultHeight / f3);
+            }
         }
         matrix.postScale(f2, f2);
-        matrix.postTranslate((this.resultWidth - (f * f2)) / 2.0f, (this.resultHeight - (f3 * f2)) / 2.0f);
+        matrix.postTranslate((this.resultWidth - (f * f2)) / 2.0f, (this.resultHeight - (i3 * f2)) / 2.0f);
     }
 
     public void setupGradient(final Runnable runnable) {
@@ -921,9 +944,7 @@ public class StoryEntry {
     }
 
     public static int calculateInSampleSize(BitmapFactory.Options options, int i, int i2) {
-        int i3;
-        int i4;
-        double min = (options.outHeight > i2 || options.outWidth > i) ? Math.min((int) Math.ceil(i3 / i2), (int) Math.ceil(i4 / i)) : 1;
+        double min = (options.outHeight > i2 || options.outWidth > i) ? Math.min((int) Math.ceil(r0 / i2), (int) Math.ceil(r6 / i)) : 1;
         return Math.max(1, (int) Math.pow(min, Math.floor(Math.log(min) / Math.log(2.0d))));
     }
 
@@ -1020,6 +1041,7 @@ public class StoryEntry {
             long j3 = this.right * ((float) j) * 1000;
             videoEditedInfo.endTime = j3;
             videoEditedInfo.estimatedDuration = j3 - j2;
+            videoEditedInfo.volume = this.videoVolume;
             videoEditedInfo.muted = this.muted;
             videoEditedInfo.estimatedSize = iArr[5] + (((iArr[4] / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
@@ -1054,6 +1076,7 @@ public class StoryEntry {
             videoEditedInfo.endTime = -1L;
             videoEditedInfo.muted = true;
             videoEditedInfo.originalBitrate = -1;
+            videoEditedInfo.volume = 1.0f;
             videoEditedInfo.bitrate = -1;
             videoEditedInfo.framerate = 30;
             videoEditedInfo.estimatedSize = ((((float) this.duration) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;
@@ -1116,22 +1139,22 @@ public class StoryEntry {
     }
 
     public static File makeCacheFile(int i, String str) {
-        TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer127;
+        TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer127;
         TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = new TLRPC$TL_fileLocationToBeDeprecated();
         tLRPC$TL_fileLocationToBeDeprecated.volume_id = -2147483648L;
         tLRPC$TL_fileLocationToBeDeprecated.dc_id = Integer.MIN_VALUE;
         tLRPC$TL_fileLocationToBeDeprecated.local_id = SharedConfig.getLastLocalId();
         tLRPC$TL_fileLocationToBeDeprecated.file_reference = new byte[0];
-        if ("mp4".equals(str)) {
-            ?? tLRPC$TL_videoSize_layer127 = new TLRPC$TL_videoSize_layer127();
-            tLRPC$TL_videoSize_layer127.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_photoSize_layer127 = tLRPC$TL_videoSize_layer127;
+        if ("mp4".equals(str) || "webm".equals(str)) {
+            TLRPC$TL_videoSize_layer127 tLRPC$TL_videoSize_layer1272 = new TLRPC$TL_videoSize_layer127();
+            tLRPC$TL_videoSize_layer1272.location = tLRPC$TL_fileLocationToBeDeprecated;
+            tLRPC$TL_videoSize_layer127 = tLRPC$TL_videoSize_layer1272;
         } else {
-            TLRPC$TL_photoSize_layer127 tLRPC$TL_photoSize_layer1272 = new TLRPC$TL_photoSize_layer127();
-            tLRPC$TL_photoSize_layer1272.location = tLRPC$TL_fileLocationToBeDeprecated;
-            tLRPC$TL_photoSize_layer127 = tLRPC$TL_photoSize_layer1272;
+            ?? tLRPC$TL_photoSize_layer127 = new TLRPC$TL_photoSize_layer127();
+            tLRPC$TL_photoSize_layer127.location = tLRPC$TL_fileLocationToBeDeprecated;
+            tLRPC$TL_videoSize_layer127 = tLRPC$TL_photoSize_layer127;
         }
-        return FileLoader.getInstance(i).getPathToAttach(tLRPC$TL_photoSize_layer127, str, true);
+        return FileLoader.getInstance(i).getPathToAttach(tLRPC$TL_videoSize_layer127, str, true);
     }
 
     public static class HDRInfo {
@@ -1140,14 +1163,14 @@ public class StoryEntry {
         public int colorTransfer;
 
         public int getHDRType() {
-            if (this.colorStandard == 6) {
-                int i = this.colorTransfer;
-                if (i == 7) {
-                    return 1;
-                }
-                return i == 6 ? 2 : 0;
+            if (this.colorStandard != 6) {
+                return 0;
             }
-            return 0;
+            int i = this.colorTransfer;
+            if (i == 7) {
+                return 1;
+            }
+            return i == 6 ? 2 : 0;
         }
     }
 
@@ -1158,18 +1181,20 @@ public class StoryEntry {
         HDRInfo hDRInfo = this.hdrInfo;
         if (hDRInfo != null) {
             callback.run(hDRInfo);
-        } else if (!this.isVideo || Build.VERSION.SDK_INT < 24) {
+            return;
+        }
+        if (!this.isVideo || Build.VERSION.SDK_INT < 24) {
             HDRInfo hDRInfo2 = new HDRInfo();
             this.hdrInfo = hDRInfo2;
             callback.run(hDRInfo2);
-        } else {
-            Utilities.globalQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryEntry.this.lambda$detectHDR$11(callback);
-                }
-            });
+            return;
         }
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                StoryEntry.this.lambda$detectHDR$11(callback);
+            }
+        });
     }
 
     public void lambda$detectHDR$11(final Utilities.Callback callback) {
@@ -1418,6 +1443,35 @@ public class StoryEntry {
         storyEntry.roundThumb = this.roundThumb;
         storyEntry.roundOffset = this.roundOffset;
         storyEntry.roundVolume = this.roundVolume;
+        storyEntry.isEditingCover = this.isEditingCover;
+        storyEntry.botId = this.botId;
+        storyEntry.botLang = this.botLang;
+        storyEntry.editingBotPreview = this.editingBotPreview;
+        storyEntry.cover = this.cover;
         return storyEntry;
+    }
+
+    public static long getCoverTime(TL_stories$StoryItem tL_stories$StoryItem) {
+        TLRPC$MessageMedia tLRPC$MessageMedia;
+        TLRPC$Document tLRPC$Document;
+        if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null || (tLRPC$Document = tLRPC$MessageMedia.document) == null) {
+            return 0L;
+        }
+        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = null;
+        int i = 0;
+        while (true) {
+            if (i >= tLRPC$Document.attributes.size()) {
+                break;
+            }
+            if (tLRPC$Document.attributes.get(i) instanceof TLRPC$TL_documentAttributeVideo) {
+                tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Document.attributes.get(i);
+                break;
+            }
+            i++;
+        }
+        if (tLRPC$TL_documentAttributeVideo == null) {
+            return 0L;
+        }
+        return (long) (tLRPC$TL_documentAttributeVideo.video_start_ts * 1000.0d);
     }
 }

@@ -3,6 +3,7 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
 import android.view.View;
 import java.util.Locale;
@@ -11,6 +12,7 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC$Document;
+
 public class TextPaintImageReceiverSpan extends ReplacementSpan {
     private boolean alignTop;
     private int height;
@@ -29,6 +31,11 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
                 @Override
                 public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
                     TextPaintImageReceiverSpan.lambda$new$0(imageReceiver2, z3, z4, z5);
+                }
+
+                @Override
+                public void didSetImageBitmap(int i3, String str, Drawable drawable) {
+                    ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
                 }
 
                 @Override
@@ -77,8 +84,8 @@ public class TextPaintImageReceiverSpan extends ReplacementSpan {
         if (this.alignTop) {
             this.imageReceiver.setImageCoords((int) f, i3 - 1, this.width, this.height);
         } else {
-            int i6 = this.height;
-            this.imageReceiver.setImageCoords((int) f, i3 + ((((i5 - AndroidUtilities.dp(4.0f)) - i3) - i6) / 2), this.width, i6);
+            int dp = (i5 - AndroidUtilities.dp(4.0f)) - i3;
+            this.imageReceiver.setImageCoords((int) f, i3 + ((dp - r4) / 2), this.width, this.height);
         }
         this.imageReceiver.draw(canvas);
         canvas.restore();

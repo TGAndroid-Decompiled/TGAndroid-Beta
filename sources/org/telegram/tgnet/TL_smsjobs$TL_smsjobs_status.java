@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TL_smsjobs$TL_smsjobs_status extends TLObject {
     public boolean allow_international;
     public int flags;

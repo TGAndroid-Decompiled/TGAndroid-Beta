@@ -20,6 +20,7 @@ import org.telegram.tgnet.TLRPC$TL_globalPrivacySettings;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+
 public class ArchiveHelp extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private int currentAccount;
     private Runnable linkCallback;
@@ -41,7 +42,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
         textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(1);
         textView.setText(LocaleController.getString("ArchiveHintHeader1", R.string.ArchiveHintHeader1));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 32, 0, 32, 9));
@@ -101,7 +102,7 @@ public class ArchiveHelp extends FrameLayout implements NotificationCenter.Notif
         linearLayout.setOrientation(1);
         TextView textView = new TextView(getContext());
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(0, AndroidUtilities.dp(14.0f));
         textView.setText(charSequence);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 2.6f, 0.0f, 0.0f));

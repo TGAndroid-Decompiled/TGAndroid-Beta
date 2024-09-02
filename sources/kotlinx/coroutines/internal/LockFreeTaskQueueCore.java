@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlinx.coroutines.DebugKt;
+
 public final class LockFreeTaskQueueCore<E> {
     public static final Companion Companion = new Companion(null);
     public static final Symbol REMOVE_FROZEN = new Symbol("REMOVE_FROZEN");
@@ -43,11 +44,11 @@ public final class LockFreeTaskQueueCore<E> {
 
     private final LockFreeTaskQueueCore<E> fillPlaceholder(int i, E e) {
         Object obj = this.array.get(this.mask & i);
-        if ((obj instanceof Placeholder) && ((Placeholder) obj).index == i) {
-            this.array.set(i & this.mask, e);
-            return this;
+        if (!(obj instanceof Placeholder) || ((Placeholder) obj).index != i) {
+            return null;
         }
-        return null;
+        this.array.set(i & this.mask, e);
+        return this;
     }
 
     public final LockFreeTaskQueueCore<E> next() {
@@ -143,14 +144,16 @@ public final class LockFreeTaskQueueCore<E> {
                 if (this.singleConsumer) {
                     return null;
                 }
-            } else if (obj instanceof Placeholder) {
-                return null;
             } else {
+                if (obj instanceof Placeholder) {
+                    return null;
+                }
                 int i4 = (i + 1) & 1073741823;
                 if (_state$FU.compareAndSet(this, j, companion.updateHead(j, i4))) {
                     this.array.set(this.mask & i, null);
                     return obj;
-                } else if (this.singleConsumer) {
+                }
+                if (this.singleConsumer) {
                     LockFreeTaskQueueCore<E> lockFreeTaskQueueCore = this;
                     do {
                         lockFreeTaskQueueCore = lockFreeTaskQueueCore.removeSlowPath(i, i4);

@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
+
 public final class CollectionToArray {
     private static final Object[] EMPTY = new Object[0];
 
@@ -15,18 +16,18 @@ public final class CollectionToArray {
         int size = collection.size();
         int i = 0;
         if (size == 0) {
-            if (objArr.length > 0) {
-                objArr[0] = null;
+            if (objArr.length <= 0) {
                 return objArr;
             }
+            objArr[0] = null;
             return objArr;
         }
         Iterator<?> it = collection.iterator();
         if (!it.hasNext()) {
-            if (objArr.length > 0) {
-                objArr[0] = null;
+            if (objArr.length <= 0) {
                 return objArr;
             }
+            objArr[0] = null;
             return objArr;
         }
         if (size <= objArr.length) {

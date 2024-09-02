@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChat extends TLRPC$Update {
     public long chat_id;
 

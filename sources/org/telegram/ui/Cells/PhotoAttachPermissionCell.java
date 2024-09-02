@@ -12,6 +12,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class PhotoAttachPermissionCell extends FrameLayout {
     private ImageView imageView;
     private ImageView imageView2;

@@ -12,10 +12,10 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 @SuppressLint({"ViewConstructor"})
 public class BoostCounterView extends View {
     private final Paint bgPaint;
@@ -32,9 +32,9 @@ public class BoostCounterView extends View {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+        animatedTextDrawable.setText("");
         animatedTextDrawable.setGravity(17);
         Paint paint = new Paint(1);
         this.bgPaint = paint;
@@ -88,8 +88,7 @@ public class BoostCounterView extends View {
         }
         this.lastCount = i;
         int length = this.countText.getText().length();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText("x" + i, z);
+        this.countText.setText("x" + i, z);
         int length2 = this.countText.getText().length();
         invalidate();
         if (length != length2) {

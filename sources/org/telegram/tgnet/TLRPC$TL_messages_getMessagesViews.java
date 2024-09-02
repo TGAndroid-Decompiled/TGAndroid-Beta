@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_messages_getMessagesViews extends TLObject {
     public ArrayList<Integer> id = new ArrayList<>();
     public boolean increment;

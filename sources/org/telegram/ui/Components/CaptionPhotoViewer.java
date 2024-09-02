@@ -8,18 +8,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 import org.telegram.ui.Stories.recorder.HintView2;
+
 public class CaptionPhotoViewer extends CaptionContainerView {
     private final ImageView addPhotoButton;
     private boolean addPhotoVisible;
@@ -51,7 +50,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     public CaptionPhotoViewer(Context context, final FrameLayout frameLayout, SizeNotifierFrameLayout sizeNotifierFrameLayout, FrameLayout frameLayout2, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager, Runnable runnable) {
         super(context, frameLayout, sizeNotifierFrameLayout, frameLayout2, resourcesProvider, blurManager);
         this.timer = 0;
-        this.values = new int[]{ConnectionsManager.DEFAULT_DATACENTER_ID, 3, 10, 30, 0};
+        this.values = new int[]{Integer.MAX_VALUE, 3, 10, 30, 0};
         this.applyCaption = runnable;
         ImageView imageView = new ImageView(context);
         this.addPhotoButton = imageView;
@@ -86,7 +85,6 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     public void lambda$new$1(FrameLayout frameLayout, View view) {
-        int[] iArr;
         String formatPluralString;
         ItemOptions itemOptions = this.timerPopup;
         if (itemOptions != null && itemOptions.isShown()) {
@@ -98,7 +96,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         ItemOptions makeOptions = ItemOptions.makeOptions(frameLayout, new DarkThemeResourceProvider(), this.timerButton);
         this.timerPopup = makeOptions;
         makeOptions.setDimAlpha(0);
-        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13);
+        this.timerPopup.addText(LocaleController.getString(R.string.TimerPeriodHint), 13, AndroidUtilities.dp(200.0f));
         this.timerPopup.addGap();
         for (final int i : this.values) {
             if (i == 0) {
@@ -171,7 +169,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
-    public void onTextChange() {
+    public void lambda$new$1() {
         Runnable runnable = this.applyCaption;
         if (runnable != null) {
             runnable.run();
@@ -247,9 +245,10 @@ public class CaptionPhotoViewer extends CaptionContainerView {
             this.hint.setInnerPadding(13, 4, 10, 4);
             this.hint.setIconMargin(0);
             this.hint.setIconTranslate(0.0f, -AndroidUtilities.dp(1.0f));
-        } else if (i <= 0) {
-            return;
         } else {
+            if (i <= 0) {
+                return;
+            }
             replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString(this.isVideo ? "TimerPeriodVideoSetSeconds" : "TimerPeriodPhotoSetSeconds", i, new Object[0]));
             this.hint.setMultilineText(true);
             HintView2 hintView2 = this.hint;
@@ -261,7 +260,7 @@ public class CaptionPhotoViewer extends CaptionContainerView {
         this.hint.setTranslationY((-Math.min(AndroidUtilities.dp(34.0f), getEditTextHeight())) - AndroidUtilities.dp(14.0f));
         this.hint.setText(replaceTags);
         int i2 = i > 0 ? R.raw.fire_on : R.raw.fire_off;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
         rLottieDrawable.start();
         this.hint.setIcon(rLottieDrawable);
         this.hint.show();
@@ -317,9 +316,8 @@ public class CaptionPhotoViewer extends CaptionContainerView {
 
     @Override
     protected void afterUpdateShownKeyboard(boolean z) {
-        int i = 0;
         this.timerButton.setVisibility((z || !this.timerVisible) ? 8 : 0);
-        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 8);
+        this.addPhotoButton.setVisibility((z || !this.addPhotoVisible) ? 8 : 0);
         if (z) {
             this.timerButton.setVisibility(8);
             this.addPhotoButton.setVisibility(8);

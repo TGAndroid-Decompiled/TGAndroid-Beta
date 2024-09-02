@@ -6,12 +6,12 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.NativeInstance;
 import org.webrtc.ContextUtils;
 import org.webrtc.VideoSink;
+
 public final class Instance {
     public static final int AUDIO_STATE_ACTIVE = 1;
     public static final int AUDIO_STATE_MUTED = 0;
@@ -364,7 +364,7 @@ public final class Instance {
         }
 
         public String getString(String str) {
-            return getString(str, BuildConfig.APP_CENTER_HASH);
+            return getString(str, "");
         }
 
         public String getString(String str, String str2) {

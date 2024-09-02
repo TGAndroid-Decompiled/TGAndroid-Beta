@@ -9,6 +9,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_account_connectedBots;
 import org.telegram.tgnet.TLRPC$TL_error;
+
 public class BusinessChatbotController {
     private static volatile BusinessChatbotController[] Instance = new BusinessChatbotController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -107,8 +108,10 @@ public class BusinessChatbotController {
         this.callbacks.clear();
     }
 
-    public void invalidate() {
+    public void invalidate(boolean z) {
         this.loaded = false;
-        load(null);
+        if (z) {
+            load(null);
+        }
     }
 }

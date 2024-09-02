@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCreateSectionCell;
+
 public class GroupCreateDividerItemDecoration extends RecyclerView.ItemDecoration {
     private boolean single;
     private int skipRows;

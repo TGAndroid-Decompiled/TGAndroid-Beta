@@ -32,6 +32,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
+
 public class MessagePreviewParams {
     public CharacterStyle currentLink;
     public Messages forwardMessages;
@@ -171,13 +172,14 @@ public class MessagePreviewParams {
             LongSparseArray<MessageObject.GroupedMessages> longSparseArray = this.groupedMessagesMap;
             if (longSparseArray != null && longSparseArray.size() > 0) {
                 this.hasText = this.groupedMessagesMap.valueAt(0).findCaptionMessageObject() != null;
-            } else if (arrayList.size() == 1) {
-                MessageObject messageObject2 = arrayList.get(0);
-                int i7 = messageObject2.type;
+                return;
+            }
+            if (arrayList.size() == 1) {
+                int i7 = arrayList.get(0).type;
                 if (i7 == 0 || i7 == 19) {
-                    this.hasText = !TextUtils.isEmpty(messageObject2.messageText);
+                    this.hasText = !TextUtils.isEmpty(r1.messageText);
                 } else {
-                    this.hasText = !TextUtils.isEmpty(messageObject2.caption);
+                    this.hasText = !TextUtils.isEmpty(r1.caption);
                 }
             }
         }
@@ -237,7 +239,7 @@ public class MessagePreviewParams {
         } else {
             replyQuote2 = replyQuote;
         }
-        this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce());
+        this.hasSecretMessages = messageObject2 != null && (messageObject2.isVoiceOnce() || messageObject2.isRoundOnce() || messageObject2.type == 30);
         if (messageObject2 != null || replyQuote2 != null) {
             if (groupedMessages != null) {
                 this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);
@@ -282,7 +284,7 @@ public class MessagePreviewParams {
             this.linkMessage = null;
         } else {
             if (charSequence == null) {
-                charSequence = BuildConfig.APP_CENTER_HASH;
+                charSequence = "";
             }
             Messages messages = this.linkMessage;
             boolean z3 = messages == null || z2;
@@ -305,7 +307,7 @@ public class MessagePreviewParams {
             tLRPC$TL_message.message = charSequenceArr[0].toString();
             tLRPC$TL_message.invert_media = this.webpageTop;
             if (tLRPC$WebPage != null) {
-                tLRPC$TL_message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                tLRPC$TL_message.flags |= 512;
                 TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
                 tLRPC$TL_message.media = tLRPC$TL_messageMediaWebPage;
                 tLRPC$TL_messageMediaWebPage.webpage = tLRPC$WebPage;
@@ -399,7 +401,7 @@ public class MessagePreviewParams {
             try {
                 SpannableString valueOf = SpannableString.valueOf(charSequence);
                 try {
-                    AndroidUtilities.addLinks(valueOf, 1);
+                    AndroidUtilities.addLinksSafe(valueOf, 1, false, true);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -421,24 +423,24 @@ public class MessagePreviewParams {
         }
         Uri parse = Uri.parse(str);
         Uri parse2 = Uri.parse(str2);
-        if (parse != parse2) {
-            if (parse != null && parse2 != null && parse.getHost() != null && parse.getHost().equalsIgnoreCase(parse2.getHost()) && parse.getPort() == parse2.getPort() && normalizePath(parse.getPath()).equals(normalizePath(parse2.getPath()))) {
-                if (parse.getQuery() == null) {
-                    if (parse2.getQuery() == null) {
-                        return true;
-                    }
-                } else if (parse.getQuery().equals(parse2.getQuery())) {
+        if (parse == parse2) {
+            return true;
+        }
+        if (parse != null && parse2 != null && parse.getHost() != null && parse.getHost().equalsIgnoreCase(parse2.getHost()) && parse.getPort() == parse2.getPort() && normalizePath(parse.getPath()).equals(normalizePath(parse2.getPath()))) {
+            if (parse.getQuery() == null) {
+                if (parse2.getQuery() == null) {
                     return true;
                 }
+            } else if (parse.getQuery().equals(parse2.getQuery())) {
+                return true;
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
     private static String normalizePath(String str) {
         if (str == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (str.endsWith("/")) {
             return str;

@@ -3,6 +3,7 @@ package org.telegram.ui.Components.ListView;
 import androidx.recyclerview.widget.DiffUtil;
 import java.util.ArrayList;
 import org.telegram.ui.Components.RecyclerListView;
+
 public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAdapter {
     DiffUtilsCallback callback = new DiffUtilsCallback();
 
@@ -16,7 +17,11 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
 
     public static abstract class Item {
         public boolean selectable;
-        public final int viewType;
+        public int viewType;
+
+        public boolean contentsEquals(Item item) {
+            return false;
+        }
 
         public Item(int i, boolean z) {
             this.viewType = i;
@@ -24,18 +29,23 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
         }
 
         boolean compare(Item item) {
-            return this.viewType == item.viewType && equals(item);
+            if (this.viewType != item.viewType) {
+                return false;
+            }
+            return equals(item);
+        }
+
+        boolean compareContents(Item item) {
+            if (this.viewType != item.viewType) {
+                return false;
+            }
+            return contentsEquals(item);
         }
     }
 
     public class DiffUtilsCallback extends DiffUtil.Callback {
         ArrayList<? extends Item> newItems;
         ArrayList<? extends Item> oldItems;
-
-        @Override
-        public boolean areContentsTheSame(int i, int i2) {
-            return false;
-        }
 
         private DiffUtilsCallback(AdapterWithDiffUtils adapterWithDiffUtils) {
         }
@@ -58,6 +68,11 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
         @Override
         public boolean areItemsTheSame(int i, int i2) {
             return this.oldItems.get(i).compare(this.newItems.get(i2));
+        }
+
+        @Override
+        public boolean areContentsTheSame(int i, int i2) {
+            return this.oldItems.get(i).compareContents(this.newItems.get(i2));
         }
     }
 }

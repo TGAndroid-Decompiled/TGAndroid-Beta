@@ -5,6 +5,7 @@ import java.nio.ShortBuffer;
 import org.telegram.messenger.video.AudioBufferConverter;
 import org.telegram.messenger.video.AudioConversions;
 import org.telegram.messenger.video.AudioDecoder;
+
 public class GeneralAudioInput extends AudioInput {
     private AudioBufferConverter audioBufferConverter;
     private ShortBuffer buffer;
@@ -97,9 +98,9 @@ public class GeneralAudioInput extends AudioInput {
             if (decode.index >= 0) {
                 this.buffer = this.audioBufferConverter.convert(decode.byteBuffer.asShortBuffer(), this.decoder.getSampleRate(), this.decoder.getChannelCount(), this.outputSampleRate, this.outputChannelCount);
                 this.decoder.releaseOutputBuffer(decode.index);
-                return;
+            } else {
+                this.buffer = null;
             }
-            this.buffer = null;
         }
     }
 

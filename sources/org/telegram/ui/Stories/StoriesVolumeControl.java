@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.webrtc.MediaStreamTrack;
+
 public class StoriesVolumeControl extends View {
     float currentProgress;
     Runnable hideRunnable;
@@ -40,35 +40,37 @@ public class StoriesVolumeControl extends View {
         if (keyEvent.getAction() == 0 && i == 24) {
             adjustVolume(true);
             return true;
-        } else if (keyEvent.getAction() == 0 && i == 25) {
+        }
+        if (keyEvent.getAction() == 0 && i == 25) {
             adjustVolume(false);
             return true;
-        } else {
-            return super.onKeyDown(i, keyEvent);
         }
+        return super.onKeyDown(i, keyEvent);
     }
 
     public void unmute() {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
         int streamVolume = audioManager.getStreamVolume(3);
         if (streamVolume <= streamMinVolume) {
             adjustVolume(true);
-        } else if (this.isVisible) {
-        } else {
-            float f = streamVolume / streamMaxVolume;
-            this.currentProgress = f;
-            this.volumeProgress.set(f, true);
-            this.isVisible = true;
-            invalidate();
-            AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-            AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
+            return;
         }
+        if (this.isVisible) {
+            return;
+        }
+        float f = streamVolume / streamMaxVolume;
+        this.currentProgress = f;
+        this.volumeProgress.set(f, true);
+        this.isVisible = true;
+        invalidate();
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
     }
 
     private void adjustVolume(boolean z) {
-        AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        AudioManager audioManager = (AudioManager) getContext().getSystemService("audio");
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
         float f = streamMaxVolume;

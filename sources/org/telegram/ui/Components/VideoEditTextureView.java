@@ -9,6 +9,7 @@ import android.view.TextureView;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.FilterGLThread;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+
 public class VideoEditTextureView extends TextureView implements TextureView.SurfaceTextureListener {
     private VideoPlayer currentVideoPlayer;
     private VideoEditTextureViewDelegate delegate;
@@ -132,11 +133,11 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
         FilterGLThread filterGLThread = this.eglThread;
-        if (filterGLThread != null) {
-            filterGLThread.shutdown();
-            this.eglThread = null;
+        if (filterGLThread == null) {
             return true;
         }
+        filterGLThread.shutdown();
+        this.eglThread = null;
         return true;
     }
 
@@ -190,9 +191,9 @@ public class VideoEditTextureView extends TextureView implements TextureView.Sur
         if (filterGLThread == null) {
             this.gradientTop = i;
             this.gradientBottom = i2;
-            return;
+        } else {
+            filterGLThread.updateUiBlurGradient(i, i2);
         }
-        filterGLThread.updateUiBlurGradient(i, i2);
     }
 
     public void updateUiBlurManager(BlurringShader.BlurManager blurManager) {

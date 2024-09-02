@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.view.TextureView;
 import android.widget.FrameLayout;
 import org.telegram.messenger.ImageReceiver;
+
 public class TextureViewContainer extends FrameLayout {
     boolean firstFrameRendered;
     ImageReceiver imageReceiver;

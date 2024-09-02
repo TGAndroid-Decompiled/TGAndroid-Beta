@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import org.webrtc.VideoEncoder;
+
 public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     @Override
     public abstract long createNativeVideoEncoder();
@@ -20,7 +21,9 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
 
     @Override
     public VideoCodecStatus setRates(VideoEncoder.RateControlParameters rateControlParameters) {
-        return VideoEncoder.CC.$default$setRates(this, rateControlParameters);
+        VideoCodecStatus rateAllocation;
+        rateAllocation = setRateAllocation(rateControlParameters.bitrate, (int) Math.ceil(rateControlParameters.framerateFps));
+        return rateAllocation;
     }
 
     @Override

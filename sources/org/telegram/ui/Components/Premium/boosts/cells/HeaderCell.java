@@ -32,6 +32,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+
 @SuppressLint({"ViewConstructor"})
 public class HeaderCell extends FrameLayout {
     private final GLIconTextureView iconTextureView;
@@ -101,7 +102,7 @@ public class HeaderCell extends FrameLayout {
         gLIconTextureView.setStarParticlesView(starParticlesView);
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 22.0f);
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
@@ -174,9 +175,8 @@ public class HeaderCell extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        float top = this.iconTextureView.getTop() + (this.iconTextureView.getMeasuredHeight() / 2.0f);
         StarParticlesView starParticlesView = this.starParticlesView;
-        starParticlesView.setTranslationY(top - (starParticlesView.getMeasuredHeight() / 2.0f));
+        starParticlesView.setTranslationY((this.iconTextureView.getTop() + (this.iconTextureView.getMeasuredHeight() / 2.0f)) - (starParticlesView.getMeasuredHeight() / 2.0f));
     }
 
     public void setPaused(boolean z) {

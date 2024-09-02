@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_savedRingtoneConverted extends TLRPC$account_SavedRingtone {
     public TLRPC$Document document;
 

@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_attachMenuBotIcon extends TLObject {
     public ArrayList<TLRPC$TL_attachMenuBotIconColor> colors = new ArrayList<>();
     public int flags;

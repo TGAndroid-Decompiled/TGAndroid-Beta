@@ -10,8 +10,9 @@ import java.nio.ByteBuffer;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.audio_input.AudioInput;
+
 public class AudioRecoder {
     private static final int BYTES_PER_SHORT = 2;
     ArrayList<AudioInput> audioInputs;
@@ -45,9 +46,9 @@ public class AudioRecoder {
                 this.sampleRate = arrayList.get(i).getSampleRate();
             }
         }
-        MediaCodec createEncoderByType = MediaCodec.createEncoderByType(MediaController.AUDIO_MIME_TYPE);
+        MediaCodec createEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
         this.encoder = createEncoderByType;
-        MediaFormat createAudioFormat = MediaFormat.createAudioFormat(MediaController.AUDIO_MIME_TYPE, this.sampleRate, this.channelCount);
+        MediaFormat createAudioFormat = MediaFormat.createAudioFormat("audio/mp4a-latm", this.sampleRate, this.channelCount);
         this.format = createAudioFormat;
         createAudioFormat.setInteger("bitrate", 128000);
         createEncoderByType.configure(createAudioFormat, (Surface) null, (MediaCrypto) null, 1);
@@ -70,7 +71,7 @@ public class AudioRecoder {
         }
     }
 
-    public boolean step(MP4Builder mP4Builder, int i) throws Exception {
+    public boolean step(MediaCodecVideoConvertor.Muxer muxer, int i) throws Exception {
         int dequeueInputBuffer;
         ShortBuffer asShortBuffer;
         if (!this.encoderInputDone && (dequeueInputBuffer = this.encoder.dequeueInputBuffer(2500L)) >= 0) {
@@ -106,7 +107,7 @@ public class AudioRecoder {
                 return this.encoderDone;
             }
             if (bufferInfo.size != 0) {
-                mP4Builder.writeSampleData(i, byteBuffer, bufferInfo, false);
+                muxer.writeSampleData(i, byteBuffer, bufferInfo, false);
             }
             if ((this.encoderOutputBufferInfo.flags & 4) != 0) {
                 this.encoderDone = true;
@@ -122,9 +123,8 @@ public class AudioRecoder {
             boolean z = false;
             short s = 0;
             for (int i2 = 0; i2 < this.audioInputs.size() && isInputAvailable(); i2++) {
-                AudioInput audioInput = this.audioInputs.get(i2);
-                if (audioInput.hasRemaining()) {
-                    s = (short) (s + (((short) (audioInput.getNext() * audioInput.getVolume())) / this.audioInputs.size()));
+                if (this.audioInputs.get(i2).hasRemaining()) {
+                    s = (short) (s + (((short) (r6.getNext() * r6.getVolume())) / this.audioInputs.size()));
                     z = true;
                 }
             }

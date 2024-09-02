@@ -2,14 +2,13 @@ package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.IOException;
 import java.io.InputStream;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
+
 public class ID3v2FrameBody {
     static final ThreadLocal<Buffer> textBuffer = new ThreadLocal<Buffer>() {
         @Override
         public Buffer initialValue() {
-            return new Buffer(LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
+            return new Buffer(4096);
         }
     };
     private final ID3v2DataInput data;
@@ -85,7 +84,7 @@ public class ID3v2FrameBody {
             String str = new String(bArr, i, i2, iD3v2Encoding.getCharset().name());
             return (str.length() <= 0 || str.charAt(0) != 65279) ? str : str.substring(1);
         } catch (Exception unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
@@ -119,19 +118,19 @@ public class ID3v2FrameBody {
 
     public ID3v2Encoding readEncoding() throws IOException, ID3v2Exception {
         byte readByte = this.data.readByte();
-        if (readByte != 0) {
-            if (readByte != 1) {
-                if (readByte != 2) {
-                    if (readByte == 3) {
-                        return ID3v2Encoding.UTF_8;
-                    }
-                    throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
-                }
-                return ID3v2Encoding.UTF_16BE;
-            }
+        if (readByte == 0) {
+            return ID3v2Encoding.ISO_8859_1;
+        }
+        if (readByte == 1) {
             return ID3v2Encoding.UTF_16;
         }
-        return ID3v2Encoding.ISO_8859_1;
+        if (readByte == 2) {
+            return ID3v2Encoding.UTF_16BE;
+        }
+        if (readByte == 3) {
+            return ID3v2Encoding.UTF_8;
+        }
+        throw new ID3v2Exception("Invalid encoding: " + ((int) readByte));
     }
 
     public String toString() {

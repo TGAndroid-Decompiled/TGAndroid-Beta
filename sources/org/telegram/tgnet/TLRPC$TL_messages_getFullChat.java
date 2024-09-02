@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getFullChat extends TLObject {
     public long chat_id;
 

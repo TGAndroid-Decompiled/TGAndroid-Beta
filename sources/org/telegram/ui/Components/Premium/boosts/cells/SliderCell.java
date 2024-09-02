@@ -9,6 +9,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SlideChooseView;
+
 @SuppressLint({"ViewConstructor"})
 public class SliderCell extends FrameLayout {
     protected View backgroundView;

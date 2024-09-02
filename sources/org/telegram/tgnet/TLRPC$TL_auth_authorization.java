@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
     public int flags;
     public byte[] future_auth_token;

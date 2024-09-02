@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_updateChannelWebPage extends TLRPC$Update {
     public long channel_id;
     public int pts;

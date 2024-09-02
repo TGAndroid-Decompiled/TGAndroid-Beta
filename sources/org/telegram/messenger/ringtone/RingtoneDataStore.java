@@ -10,10 +10,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationBadge;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -26,6 +24,7 @@ import org.telegram.tgnet.TLRPC$TL_account_getSavedRingtones;
 import org.telegram.tgnet.TLRPC$TL_account_savedRingtones;
 import org.telegram.tgnet.TLRPC$TL_account_savedRingtonesNotModified;
 import org.telegram.tgnet.TLRPC$TL_error;
+
 public class RingtoneDataStore {
     private static volatile long lastReloadTimeMs;
     private static volatile long queryHash;
@@ -110,11 +109,11 @@ public class RingtoneDataStore {
     private void loadFromPrefs(boolean z) {
         boolean z2;
         SharedPreferences sharedPreferences = getSharedPreferences();
-        int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
+        int i = sharedPreferences.getInt("count", 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
-            String string = sharedPreferences.getString("tone_document" + i2, BuildConfig.APP_CENTER_HASH);
-            String string2 = sharedPreferences.getString("tone_local_path" + i2, BuildConfig.APP_CENTER_HASH);
+            String string = sharedPreferences.getString("tone_document" + i2, "");
+            String string2 = sharedPreferences.getString("tone_local_path" + i2, "");
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
@@ -162,7 +161,7 @@ public class RingtoneDataStore {
         SharedPreferences sharedPreferences = getSharedPreferences();
         sharedPreferences.edit().clear().apply();
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, arrayList.size());
+        edit.putInt("count", arrayList.size());
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$Document tLRPC$Document2 = arrayList.get(i);
             String str = (String) hashMap.get(Long.valueOf(tLRPC$Document2.id));
@@ -202,7 +201,7 @@ public class RingtoneDataStore {
                 }
             }
         }
-        edit.putInt(NotificationBadge.NewHtcHomeBadger.COUNT, i);
+        edit.putInt("count", i);
         edit.apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
@@ -232,10 +231,11 @@ public class RingtoneDataStore {
                 if (i >= this.userRingtones.size()) {
                     z2 = false;
                     break;
-                } else if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
-                    this.userRingtones.remove(i);
-                    break;
                 } else {
+                    if (this.userRingtones.get(i).uploading && str.equals(this.userRingtones.get(i).localUri)) {
+                        this.userRingtones.remove(i);
+                        break;
+                    }
                     i++;
                 }
             }
@@ -245,11 +245,12 @@ public class RingtoneDataStore {
                 if (i2 >= this.userRingtones.size()) {
                     z2 = false;
                     break;
-                } else if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
-                    this.userRingtones.get(i2).uploading = false;
-                    this.userRingtones.get(i2).document = tLRPC$Document;
-                    break;
                 } else {
+                    if (this.userRingtones.get(i2).uploading && str.equals(this.userRingtones.get(i2).localUri)) {
+                        this.userRingtones.get(i2).uploading = false;
+                        this.userRingtones.get(i2).document = tLRPC$Document;
+                        break;
+                    }
                     i2++;
                 }
             }

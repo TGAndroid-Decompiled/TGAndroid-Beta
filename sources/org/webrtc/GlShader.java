@@ -4,6 +4,7 @@ import android.opengl.GLES20;
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 import org.telegram.messenger.FileLog;
+
 public class GlShader {
     private static final String TAG = "GlShader";
     private int program;
@@ -18,7 +19,7 @@ public class GlShader {
         int[] iArr = {0};
         GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
         if (iArr[0] != 1) {
-            Logging.e(TAG, "Compile error " + GLES20.glGetShaderInfoLog(glCreateShader) + " in shader:\n" + str);
+            Logging.e("GlShader", "Compile error " + GLES20.glGetShaderInfoLog(glCreateShader) + " in shader:\n" + str);
             throw new RuntimeException(GLES20.glGetShaderInfoLog(glCreateShader));
         }
         GlUtil.checkNoGLES2Error("compileShader");
@@ -41,7 +42,7 @@ public class GlShader {
         if (iArr[0] == 1) {
             return;
         }
-        Logging.e(TAG, "Could not link program: " + GLES20.glGetProgramInfoLog(this.program));
+        Logging.e("GlShader", "Could not link program: " + GLES20.glGetProgramInfoLog(this.program));
         throw new RuntimeException(GLES20.glGetProgramInfoLog(this.program));
     }
 
@@ -98,7 +99,7 @@ public class GlShader {
     }
 
     public void release() {
-        Logging.d(TAG, "Deleting shader.");
+        Logging.d("GlShader", "Deleting shader.");
         int i = this.program;
         if (i != -1) {
             GLES20.glDeleteProgram(i);

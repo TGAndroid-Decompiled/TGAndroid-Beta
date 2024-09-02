@@ -13,10 +13,10 @@ import android.util.Pair;
 import android.view.View;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+
 public class BoostCounterSpan extends ReplacementSpan {
     private final Drawable boostProfileBadge;
     private final Drawable boostProfileBadge2;
@@ -39,8 +39,8 @@ public class BoostCounterSpan extends ReplacementSpan {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setCallback(view);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setText("");
         animatedTextDrawable.setGravity(17);
         Drawable mutate = ContextCompat.getDrawable(view.getContext(), R.drawable.mini_boost_profile_badge).mutate();
         this.boostProfileBadge = mutate;
@@ -53,7 +53,7 @@ public class BoostCounterSpan extends ReplacementSpan {
 
     public void setCount(int i, boolean z) {
         this.currentCount = i;
-        this.countText.setText(i <= 1 ? BuildConfig.APP_CENTER_HASH : String.valueOf(i), z);
+        this.countText.setText(i <= 1 ? "" : String.valueOf(i), z);
     }
 
     @Override

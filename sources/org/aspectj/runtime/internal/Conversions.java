@@ -1,4 +1,5 @@
 package org.aspectj.runtime.internal;
+
 public final class Conversions {
     public static Object intObject(int i) {
         return new Integer(i);

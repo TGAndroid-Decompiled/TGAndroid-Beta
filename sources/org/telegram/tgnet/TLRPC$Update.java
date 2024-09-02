@@ -2,9 +2,11 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.tgnet.tl.TL_bots$TL_updateBotMenuButton;
 import org.telegram.tgnet.tl.TL_stories$TL_updateReadStories;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStoriesStealthMode;
 import org.telegram.tgnet.tl.TL_stories$TL_updateStory;
+
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;
@@ -198,6 +200,9 @@ public abstract class TLRPC$Update extends TLObject {
                     }
                 };
                 break;
+            case -1518030823:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateStarsRevenueStatus();
+                break;
             case -1512627963:
                 tLRPC$TL_updateTheme = new TLRPC$Update() {
                     public ArrayList<Integer> order = new ArrayList<>();
@@ -209,11 +214,11 @@ public abstract class TLRPC$Update extends TLObject {
                             if (z2) {
                                 throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt32)));
                             }
-                            return;
-                        }
-                        int readInt322 = abstractSerializedData2.readInt32(z2);
-                        for (int i2 = 0; i2 < readInt322; i2++) {
-                            this.order.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
+                        } else {
+                            int readInt322 = abstractSerializedData2.readInt32(z2);
+                            for (int i2 = 0; i2 < readInt322; i2++) {
+                                this.order.add(Integer.valueOf(abstractSerializedData2.readInt32(z2)));
+                            }
                         }
                     }
 
@@ -268,17 +273,20 @@ public abstract class TLRPC$Update extends TLObject {
             case -1020437742:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDeleteChannelMessages();
                 break;
-            case -856651050:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupInvitePrivacyForbidden();
-                break;
             case -761649164:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelMessageForwards();
+                break;
+            case -710666460:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageExtendedMedia();
                 break;
             case -693004986:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateReadChannelDiscussionInbox();
                 break;
             case -674602590:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChatParticipantAdmin();
+                break;
+            case -539401739:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateBroadcastRevenueTransactions();
                 break;
             case -513517117:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDialogUnreadMark();
@@ -371,6 +379,9 @@ public abstract class TLRPC$Update extends TLObject {
             case 196268545:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateStickerSetsOrder();
                 break;
+            case 263737752:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateStarsBalance();
+                break;
             case 277713951:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelTooLong();
                 break;
@@ -381,7 +392,7 @@ public abstract class TLRPC$Update extends TLObject {
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupCall();
                 break;
             case 347625491:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateBotMenuButton();
+                tLRPC$TL_updateTheme = new TL_bots$TL_updateBotMenuButton();
                 break;
             case 361936797:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateWebViewResultSent();
@@ -396,6 +407,9 @@ public abstract class TLRPC$Update extends TLObject {
                         abstractSerializedData2.writeInt32(397910539);
                     }
                 };
+                break;
+            case 405070859:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateNewStoryReaction();
                 break;
             case 422509539:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelPinnedTopic();
@@ -573,9 +587,6 @@ public abstract class TLRPC$Update extends TLObject {
                         abstractSerializedData2.writeInt32(1461528386);
                     }
                 };
-                break;
-            case 1517529484:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateMessageExtendedMedia();
                 break;
             case 1538885128:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updatePinnedChannelMessages();

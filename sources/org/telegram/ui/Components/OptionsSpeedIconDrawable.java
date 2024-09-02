@@ -9,8 +9,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.Components.AnimatedTextView;
+
 public class OptionsSpeedIconDrawable extends Drawable {
     private AnimatedTextView.AnimatedTextDrawable textDrawable;
     private boolean textDrawableVisible;
@@ -57,7 +57,7 @@ public class OptionsSpeedIconDrawable extends Drawable {
             animatedTextDrawable.setCallback(this.callback);
             this.textDrawable.setAnimationProperties(0.3f, 0L, 165L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.textDrawable.setGravity(1);
-            this.textDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textDrawable.setTypeface(AndroidUtilities.bold());
             this.textDrawable.setTextSize(AndroidUtilities.dp(7.0f));
             this.textDrawable.setTextColor(-1);
             this.textDrawable.getPaint().setStyle(Paint.Style.FILL_AND_STROKE);
@@ -66,7 +66,7 @@ public class OptionsSpeedIconDrawable extends Drawable {
         }
         if (f == null) {
             this.textDrawable.cancelAnimation();
-            this.textDrawable.setText(BuildConfig.APP_CENTER_HASH, z);
+            this.textDrawable.setText("", z);
             this.textDrawableVisible = false;
         } else {
             String formatNumber = SpeedIconDrawable.formatNumber(f.floatValue());

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -13,11 +14,14 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         if ((this.flags & 4) != 0) {
             this.preload_prefix_size = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 16) != 0) {
+            this.video_start_ts = abstractSerializedData.readDouble(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-745541182);
+        abstractSerializedData.writeInt32(389652397);
         int i = this.round_message ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.supports_streaming ? i | 2 : i & (-3);
@@ -30,6 +34,9 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         abstractSerializedData.writeInt32(this.h);
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt32(this.preload_prefix_size);
+        }
+        if ((this.flags & 16) != 0) {
+            abstractSerializedData.writeDouble(this.video_start_ts);
         }
     }
 }

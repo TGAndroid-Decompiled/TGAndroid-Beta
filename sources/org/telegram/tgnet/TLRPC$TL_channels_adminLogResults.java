@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_channels_adminLogResults extends TLObject {
     public ArrayList<TLRPC$TL_channelAdminLogEvent> events = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();

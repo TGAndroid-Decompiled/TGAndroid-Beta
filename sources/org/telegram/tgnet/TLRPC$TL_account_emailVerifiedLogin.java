@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_emailVerifiedLogin extends TLRPC$account_EmailVerified {
     public String email;
     public TLRPC$auth_SentCode sent_code;

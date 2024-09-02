@@ -29,6 +29,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Storage.CacheModel;
+
 public class StorageDiagramView extends View implements NotificationCenter.NotificationCenterDelegate {
     private float[] animateToPercentage;
     private AvatarDrawable avatarDrawable;
@@ -80,11 +81,11 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
             this.dialogText = LocaleController.getString("CacheOtherChats", R.string.CacheOtherChats);
             this.avatarDrawable.setAvatarType(14);
             this.avatarImageReceiver.setForUserOrChat(null, this.avatarDrawable);
-            return;
+        } else {
+            String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(this.avatarImageReceiver, this.avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
+            this.dialogText = dialogPhotoTitle;
+            this.dialogText = Emoji.replaceEmoji((CharSequence) dialogPhotoTitle, (Paint.FontMetricsInt) null, AndroidUtilities.dp(6.0f), false);
         }
-        String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(this.avatarImageReceiver, this.avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
-        this.dialogText = dialogPhotoTitle;
-        this.dialogText = Emoji.replaceEmoji((CharSequence) dialogPhotoTitle, (Paint.FontMetricsInt) null, AndroidUtilities.dp(6.0f), false);
     }
 
     @Override
@@ -103,7 +104,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         animatedTextDrawable.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
         this.text1.setTextSize(AndroidUtilities.dp(24.0f));
-        this.text1.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.text1.setTypeface(AndroidUtilities.bold());
         this.text2.setAnimationProperties(0.18f, 0L, 300L, cubicBezierInterpolator);
         if (this.dialogId != null) {
             this.text2.setTextSize(AndroidUtilities.dp(16.0f));

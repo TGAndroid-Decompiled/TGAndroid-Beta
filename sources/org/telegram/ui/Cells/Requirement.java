@@ -1,4 +1,5 @@
 package org.telegram.ui.Cells;
+
 class Requirement {
     public int padding;
     public CharSequence text;

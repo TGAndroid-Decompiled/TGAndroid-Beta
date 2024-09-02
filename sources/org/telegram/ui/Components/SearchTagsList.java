@@ -31,9 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -50,12 +48,12 @@ import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.FloatingDebug.FloatingDebugView$$ExternalSyntheticLambda3;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
+
 public class SearchTagsList extends BlurredFrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static AlertDialog currentDialog;
     private ValueAnimator actionBarTagsAnimator;
@@ -105,11 +103,11 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         }
 
         public boolean equals(Object obj) {
-            if (obj instanceof Item) {
-                Item item = (Item) obj;
-                return this.count == item.count && this.reaction.hash == item.reaction.hash && this.nameHash == item.nameHash;
+            if (!(obj instanceof Item)) {
+                return false;
             }
-            return false;
+            Item item = (Item) obj;
+            return this.count == item.count && this.reaction.hash == item.reaction.hash && this.nameHash == item.nameHash;
         }
     }
 
@@ -179,7 +177,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         int i = Theme.key_windowBackgroundWhiteBlueText2;
         textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView.setTextSize(1, 12.0f);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock3).mutate();
         int i2 = Theme.key_chat_messageLinkIn;
@@ -197,7 +195,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         TextView textView2 = new TextView(getContext());
         textView2.setTextColor(Theme.getColor(i, this.resourcesProvider));
         textView2.setTextSize(1, 12.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.AddTagsToYourSavedMessages2));
         SpannableString spannableString2 = new SpannableString(">");
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.msg_arrowright).mutate();
@@ -338,10 +336,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             });
             if (this.chosen == hash) {
                 this.chosen = 0L;
-                return;
+            } else {
+                this.chosen = hash;
+                ((TagButton) view).setChosen(true, true);
             }
-            this.chosen = hash;
-            ((TagButton) view).setChosen(true, true);
         }
     }
 
@@ -380,26 +378,26 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         LinearLayout linearLayout;
-        if (view == this.listView && (linearLayout = this.premiumLayout) != null) {
-            if (linearLayout.getAlpha() >= 1.0f) {
-                return false;
-            }
-            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.premiumLayout.getAlpha()) * 255.0f), 31);
-            boolean drawChild = super.drawChild(canvas, view, j);
-            canvas.restore();
-            return drawChild;
+        if (view != this.listView || (linearLayout = this.premiumLayout) == null) {
+            return super.drawChild(canvas, view, j);
         }
-        return super.drawChild(canvas, view, j);
+        if (linearLayout.getAlpha() >= 1.0f) {
+            return false;
+        }
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.premiumLayout.getAlpha()) * 255.0f), 31);
+        boolean drawChild = super.drawChild(canvas, view, j);
+        canvas.restore();
+        return drawChild;
     }
 
     public static boolean onBackPressedRenameTagAlert() {
         AlertDialog alertDialog = currentDialog;
-        if (alertDialog != null) {
-            alertDialog.dismiss();
-            currentDialog = null;
-            return true;
+        if (alertDialog == null) {
+            return false;
         }
-        return false;
+        alertDialog.dismiss();
+        currentDialog = null;
+        return true;
     }
 
     public static void openRenameTagAlert(Context context, final int i, final TLRPC$Reaction tLRPC$Reaction, final Theme.ResourcesProvider resourcesProvider, boolean z) {
@@ -417,7 +415,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         }
         ?? r15 = builder;
         String savedTagName = MessagesController.getInstance(i).getSavedTagName(tLRPC$Reaction);
-        r15.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
+        r15.setTitle(new SpannableStringBuilder(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction).toCharSequence(20)).append((CharSequence) "  ").append((CharSequence) LocaleController.getString(TextUtils.isEmpty(savedTagName) ? R.string.SavedTagLabelTag : R.string.SavedTagRenameTag)));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             AnimatedTextView.AnimatedTextDrawable limit;
             AnimatedColor limitColor = new AnimatedColor(this);
@@ -444,17 +442,16 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                     this.limitCount = 12 - charSequence.length();
                     this.limit.cancelAnimation();
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                    int i5 = this.limitCount;
-                    String str = BuildConfig.APP_CENTER_HASH;
-                    if (i5 <= 4) {
-                        str = BuildConfig.APP_CENTER_HASH + this.limitCount;
+                    String str = "";
+                    if (this.limitCount <= 4) {
+                        str = "" + this.limitCount;
                     }
                     animatedTextDrawable.setText(str);
                 }
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 this.limit.setBounds(getScrollX(), 0, getScrollX() + getWidth(), getHeight());
@@ -470,33 +467,33 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                if (i2 == 6) {
-                    String obj = EditTextBoldCursor.this.getText().toString();
-                    if (obj.length() > 12) {
-                        AndroidUtilities.shakeView(EditTextBoldCursor.this);
-                        return true;
-                    }
-                    MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction), obj);
-                    AlertDialog[] alertDialogArr = r14;
-                    if (alertDialogArr[0] != null) {
-                        alertDialogArr[0].dismiss();
-                    }
-                    if (r14[0] == SearchTagsList.currentDialog) {
-                        AlertDialog unused = SearchTagsList.currentDialog = null;
-                    }
-                    View view2 = view;
-                    if (view2 != null) {
-                        view2.requestFocus();
-                    }
+                if (i2 != 6) {
+                    return false;
+                }
+                String obj = EditTextBoldCursor.this.getText().toString();
+                if (obj.length() > 12) {
+                    AndroidUtilities.shakeView(EditTextBoldCursor.this);
                     return true;
                 }
-                return false;
+                MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
+                AlertDialog[] alertDialogArr = r14;
+                if (alertDialogArr[0] != null) {
+                    alertDialogArr[0].dismiss();
+                }
+                if (r14[0] == SearchTagsList.currentDialog) {
+                    AlertDialog unused = SearchTagsList.currentDialog = null;
+                }
+                View view2 = view;
+                if (view2 != null) {
+                    view2.requestFocus();
+                }
+                return true;
             }
         });
         MediaDataController.getInstance(i).fetchNewEmojiKeywords(AndroidUtilities.getCurrentKeyboardLanguage(), true);
         editTextBoldCursor.setTextSize(1, 18.0f);
         if (savedTagName == null) {
-            savedTagName = BuildConfig.APP_CENTER_HASH;
+            savedTagName = "";
         }
         editTextBoldCursor.setText(savedTagName);
         int i2 = Theme.key_dialogTextBlack;
@@ -505,7 +502,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         editTextBoldCursor.setHintText(LocaleController.getString(R.string.SavedTagLabelPlaceholder));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setInputType(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextBoldCursor.setInputType(16384);
         editTextBoldCursor.setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField, resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackgroundDrawable(null);
@@ -575,10 +572,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         String obj = editTextBoldCursor.getText().toString();
         if (obj.length() > 12) {
             AndroidUtilities.shakeView(editTextBoldCursor);
-            return;
+        } else {
+            MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$Reaction), obj);
+            dialogInterface.dismiss();
         }
-        MessagesController.getInstance(i).renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction), obj);
-        dialogInterface.dismiss();
     }
 
     public static void lambda$openRenameTagAlert$7(View view, DialogInterface dialogInterface) {
@@ -632,8 +629,11 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             long longValue = ((Long) objArr[0]).longValue();
             if (longValue == 0 || longValue == this.topicId) {
                 updateTags(true);
+                return;
             }
-        } else if (i == NotificationCenter.emojiLoaded) {
+            return;
+        }
+        if (i == NotificationCenter.emojiLoaded) {
             invalidate();
             AndroidUtilities.forEachViews((RecyclerView) this.listView, (com.google.android.exoplayer2.util.Consumer<View>) FloatingDebugView$$ExternalSyntheticLambda3.INSTANCE);
         }
@@ -651,16 +651,16 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             z2 = false;
             for (int i = 0; i < savedReactionTags.tags.size(); i++) {
                 TLRPC$TL_savedReactionTag tLRPC$TL_savedReactionTag = savedReactionTags.tags.get(i);
-                ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_savedReactionTag.reaction);
-                if (!hashSet.contains(Long.valueOf(fromTLReaction.hash))) {
+                ReactionsLayoutInBubble.VisibleReaction fromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tLRPC$TL_savedReactionTag.reaction);
+                if (!hashSet.contains(Long.valueOf(fromTL.hash))) {
                     long j = this.topicId;
                     if (j == 0 || tLRPC$TL_savedReactionTag.count > 0) {
-                        Item item = Item.get(fromTLReaction, tLRPC$TL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tLRPC$TL_savedReactionTag.reaction) : tLRPC$TL_savedReactionTag.title);
+                        Item item = Item.get(fromTL, tLRPC$TL_savedReactionTag.count, j != 0 ? messagesController.getSavedTagName(tLRPC$TL_savedReactionTag.reaction) : tLRPC$TL_savedReactionTag.title);
                         if (item.hash() == this.chosen) {
                             z2 = true;
                         }
                         this.items.add(item);
-                        hashSet.add(Long.valueOf(fromTLReaction.hash));
+                        hashSet.add(Long.valueOf(fromTL.hash));
                     }
                 }
             }
@@ -717,10 +717,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
                         SearchTagsList.this.lambda$updateTags$12();
                     }
                 }).start();
-                return;
+            } else {
+                linearLayout.setAlpha(1.0f);
+                this.premiumLayout.setVisibility(0);
             }
-            linearLayout.setAlpha(1.0f);
-            this.premiumLayout.setVisibility(0);
         }
     }
 
@@ -743,8 +743,7 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
 
     public void setShown(float f) {
         this.shownT = f;
-        RecyclerListView recyclerListView = this.listView;
-        recyclerListView.setPivotX(recyclerListView.getWidth() / 2.0f);
+        this.listView.setPivotX(r0.getWidth() / 2.0f);
         this.listView.setPivotY(0.0f);
         this.listView.setScaleX(AndroidUtilities.lerp(0.8f, 1.0f, f));
         this.listView.setScaleY(AndroidUtilities.lerp(0.8f, 1.0f, f));
@@ -801,6 +800,10 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
         this.actionBarTagsT = floatValue;
         setShown(floatValue);
         onShownUpdate(false);
+    }
+
+    public boolean shown() {
+        return this.shownT > 0.5f;
     }
 
     public int getCurrentHeight() {
@@ -942,15 +945,14 @@ public class SearchTagsList extends BlurredFrameLayout implements NotificationCe
             } else {
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = reactionButton3.textDrawable;
                 if (animatedTextDrawable2 != null) {
-                    animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH, !z);
+                    animatedTextDrawable2.setText("", !z);
                 }
             }
             this.reactionButton.countText = Integer.toString(item.count);
             this.reactionButton.counterDrawable.setCount(item.count, !z);
             ReactionsLayoutInBubble.ReactionButton reactionButton4 = this.reactionButton;
-            CounterView.CounterDrawable counterDrawable = reactionButton4.counterDrawable;
-            if (counterDrawable != null && (reactionButton4.count > 0 || reactionButton4.hasName)) {
-                reactionButton4.width = (int) (reactionButton4.width + counterDrawable.getCurrentWidth() + AndroidUtilities.dp(this.reactionButton.hasName ? 4.0f : 0.0f) + this.reactionButton.textDrawable.getAnimateToWidth());
+            if (reactionButton4.counterDrawable != null && (reactionButton4.count > 0 || reactionButton4.hasName)) {
+                reactionButton4.width = (int) (reactionButton4.width + r1.getCurrentWidth() + AndroidUtilities.dp(this.reactionButton.hasName ? 4.0f : 0.0f) + this.reactionButton.textDrawable.getAnimateToWidth());
             }
             if (z) {
                 ReactionsLayoutInBubble.ReactionButton reactionButton5 = this.reactionButton;

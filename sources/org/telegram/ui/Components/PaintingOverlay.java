@@ -19,13 +19,14 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
+
 public class PaintingOverlay extends FrameLayout {
     private Drawable backgroundDrawable;
+    public boolean drawChildren;
     private boolean ignoreLayout;
     private HashMap<View, VideoEditedInfo.MediaEntity> mediaEntityViews;
     private Bitmap paintBitmap;
@@ -47,10 +48,11 @@ public class PaintingOverlay extends FrameLayout {
 
     public PaintingOverlay(Context context) {
         super(context);
+        this.drawChildren = true;
     }
 
-    public void setData(String str, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2) {
-        setEntities(arrayList, z, z2);
+    public void setData(String str, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2, boolean z3) {
+        setEntities(arrayList, z, z2, z3);
         if (str != null) {
             this.paintBitmap = BitmapFactory.decodeFile(str);
             BitmapDrawable bitmapDrawable = new BitmapDrawable(this.paintBitmap);
@@ -64,7 +66,16 @@ public class PaintingOverlay extends FrameLayout {
     }
 
     @Override
+    protected boolean drawChild(Canvas canvas, View view, long j) {
+        if (this.drawChildren) {
+            return super.drawChild(canvas, view, j);
+        }
+        return false;
+    }
+
+    @Override
     protected void onMeasure(int i, int i2) {
+        float f;
         this.ignoreLayout = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         if (this.mediaEntityViews != null) {
@@ -77,9 +88,13 @@ public class PaintingOverlay extends FrameLayout {
                 if (mediaEntity != null) {
                     if (childAt instanceof EditTextOutline) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(mediaEntity.viewWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                        float f = (mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth;
-                        childAt.setScaleX(mediaEntity.scale * f);
-                        childAt.setScaleY(mediaEntity.scale * f);
+                        if (mediaEntity.customTextView) {
+                            f = (mediaEntity.width * getMeasuredWidth()) / mediaEntity.viewWidth;
+                        } else {
+                            f = mediaEntity.scale * ((mediaEntity.textViewWidth * measuredWidth) / mediaEntity.viewWidth);
+                        }
+                        childAt.setScaleX(f);
+                        childAt.setScaleY(f);
                     } else {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec((int) (measuredWidth * mediaEntity.width), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (measuredHeight * mediaEntity.height), 1073741824));
                     }
@@ -101,22 +116,34 @@ public class PaintingOverlay extends FrameLayout {
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int i5;
         int i6;
+        int i7;
+        int measuredHeight;
         if (this.mediaEntityViews != null) {
             int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
+            int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
-            for (int i7 = 0; i7 < childCount; i7++) {
-                View childAt = getChildAt(i7);
+            for (int i8 = 0; i8 < childCount; i8++) {
+                View childAt = getChildAt(i8);
                 VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntityViews.get(childAt);
                 if (mediaEntity != null) {
+                    int measuredWidth2 = childAt.getMeasuredWidth();
+                    int measuredHeight3 = childAt.getMeasuredHeight();
                     if (childAt instanceof EditTextOutline) {
-                        i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
-                        i6 = ((int) (measuredHeight * mediaEntity.textViewY)) - (childAt.getMeasuredHeight() / 2);
+                        if (mediaEntity.customTextView) {
+                            i5 = ((int) (measuredWidth * (mediaEntity.x + (mediaEntity.width / 2.0f)))) - (childAt.getMeasuredWidth() / 2);
+                            i7 = (int) (measuredHeight2 * (mediaEntity.y + (mediaEntity.height / 2.0f)));
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        } else {
+                            i5 = ((int) (measuredWidth * mediaEntity.textViewX)) - (childAt.getMeasuredWidth() / 2);
+                            i7 = (int) (measuredHeight2 * mediaEntity.textViewY);
+                            measuredHeight = childAt.getMeasuredHeight() / 2;
+                        }
+                        i6 = i7 - measuredHeight;
                     } else {
                         i5 = (int) (measuredWidth * mediaEntity.x);
-                        i6 = (int) (measuredHeight * mediaEntity.y);
+                        i6 = (int) (measuredHeight2 * mediaEntity.y);
                     }
-                    childAt.layout(i5, i6, childAt.getMeasuredWidth() + i5, childAt.getMeasuredHeight() + i6);
+                    childAt.layout(i5, i6, measuredWidth2 + i5, measuredHeight3 + i6);
                 }
             }
         }
@@ -152,8 +179,9 @@ public class PaintingOverlay extends FrameLayout {
         setBackground(null);
     }
 
-    public void setEntities(ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2) {
+    public void setEntities(ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2, boolean z3) {
         int i;
+        setClipChildren(z3);
         reset();
         this.mediaEntityViews = new HashMap<>();
         if (arrayList == null || arrayList.isEmpty()) {
@@ -166,7 +194,7 @@ public class PaintingOverlay extends FrameLayout {
             byte b = mediaEntity.type;
             if (b == 0) {
                 BackupImageView backupImageView2 = new BackupImageView(getContext());
-                backupImageView2.setLayerNum(8);
+                backupImageView2.setLayerNum(12);
                 backupImageView2.setAspectFit(true);
                 ImageReceiver imageReceiver = backupImageView2.getImageReceiver();
                 if (z) {
@@ -175,8 +203,13 @@ public class PaintingOverlay extends FrameLayout {
                     if (z2) {
                         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
                             @Override
-                            public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
-                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z3, z4, z5);
+                            public final void didSetImage(ImageReceiver imageReceiver2, boolean z4, boolean z5, boolean z6) {
+                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z4, z5, z6);
+                            }
+
+                            @Override
+                            public void didSetImageBitmap(int i3, String str, Drawable drawable) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i3, str, drawable);
                             }
 
                             @Override
@@ -186,7 +219,7 @@ public class PaintingOverlay extends FrameLayout {
                         });
                     }
                 }
-                imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), (String) null, "webp", mediaEntity.parentObject, 1);
+                imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), null, null, null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), null, null, 0L, "webp", mediaEntity.parentObject, 1);
                 if ((mediaEntity.subType & 2) != 0) {
                     backupImageView2.setScaleX(-1.0f);
                 }
@@ -216,6 +249,12 @@ public class PaintingOverlay extends FrameLayout {
                     int i3 = next.offset;
                     spannableString.setSpan(animatedEmojiSpan, i3, next.length + i3, 33);
                 }
+                Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannableString.getSpans(0, spannableString.length(), Emoji.EmojiSpan.class);
+                if (emojiSpanArr != null) {
+                    for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                        emojiSpan.scale = 0.85f;
+                    }
+                }
                 editTextOutline.setText(spannableString);
                 editTextOutline.setGravity(17);
                 int i4 = mediaEntity.textAlign;
@@ -237,7 +276,7 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setImeOptions(268435456);
                 editTextOutline.setFocusableInTouchMode(true);
                 editTextOutline.setEnabled(false);
-                editTextOutline.setInputType(editTextOutline.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                editTextOutline.setInputType(editTextOutline.getInputType() | 16384);
                 if (i5 >= 23) {
                     editTextOutline.setBreakStrategy(0);
                 }

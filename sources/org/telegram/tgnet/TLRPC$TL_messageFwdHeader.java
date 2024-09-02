@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -27,10 +26,10 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
         if ((this.flags & 16) != 0) {
             this.saved_from_msg_id = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.saved_from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             this.saved_from_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 1024) != 0) {
@@ -68,10 +67,10 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.saved_from_msg_id);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+        if ((this.flags & 256) != 0) {
             this.saved_from_id.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+        if ((this.flags & 512) != 0) {
             abstractSerializedData.writeString(this.saved_from_name);
         }
         if ((this.flags & 1024) != 0) {

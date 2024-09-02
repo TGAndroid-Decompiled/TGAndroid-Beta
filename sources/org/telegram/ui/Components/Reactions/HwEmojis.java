@@ -3,9 +3,11 @@ package org.telegram.ui.Components.Reactions;
 import android.view.View;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.SharedConfig;
+
 public class HwEmojis {
     private static Boolean isWeakDevice;
     private static Runnable task;
@@ -70,13 +72,13 @@ public class HwEmojis {
         if (isWeakDevice == null) {
             isWeakDevice = Boolean.valueOf(SharedConfig.getDevicePerformanceClass() != 2);
         }
-        if (isWeakDevice.booleanValue()) {
-            if (hwEnabled) {
-                hwViews.addAll(Arrays.asList(viewArr));
-            }
-            return hwEnabled;
+        if (!isWeakDevice.booleanValue()) {
+            return false;
         }
-        return false;
+        if (hwEnabled) {
+            hwViews.addAll(Arrays.asList(viewArr));
+        }
+        return hwEnabled;
     }
 
     public static void enableHw() {
@@ -92,8 +94,9 @@ public class HwEmojis {
         isPreparing = false;
         isBeforePreparing = false;
         task = null;
-        for (View view : hwViews) {
-            view.invalidate();
+        Iterator<View> it = hwViews.iterator();
+        while (it.hasNext()) {
+            it.next().invalidate();
         }
         hwViews.clear();
     }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
@@ -30,6 +29,7 @@ import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
+
 public class HintDialogCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
     private int backgroundColorKey;
@@ -202,7 +202,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (user != null) {
                 this.nameTextView.setText(UserObject.getFirstName(user));
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(this.currentAccount, this.currentUser);
             this.imageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
@@ -213,7 +213,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.nameTextView.setText("");
             }
             this.avatarDrawable.setInfo(this.currentAccount, chat);
             this.currentUser = null;

@@ -9,13 +9,13 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.Components.Paint.Brush;
+
 public class ShapeDetector {
     private static final double diagonal;
     private static final double halfDiagonal;
@@ -282,12 +282,12 @@ public class ShapeDetector {
                 sb.append("took ");
                 sb.append(System.currentTimeMillis() - currentTimeMillis);
                 sb.append("ms to ");
-                sb.append(constructShape != null ? BuildConfig.APP_CENTER_HASH : "not ");
+                sb.append(constructShape != null ? "" : "not ");
                 sb.append("detect a shape");
                 if (constructShape != null) {
                     str = " (template#" + i6 + " shape#" + i7 + ")";
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb.append(str);
                 Log.i("shapedetector", sb.toString());
@@ -397,6 +397,7 @@ public class ShapeDetector {
         int i = 0;
         while (i < min) {
             Point point3 = arrayList.get(i);
+            Point point4 = arrayList2.get(i);
             double d3 = point3.x;
             int i2 = i;
             double d4 = point2.x;
@@ -404,7 +405,7 @@ public class ShapeDetector {
             int i3 = min;
             double d6 = point2.y;
             double d7 = cos;
-            d2 += arrayList2.get(i).distance((((d3 - d4) * cos) - ((d5 - d6) * sin)) + d4, ((d3 - d4) * sin) + ((d5 - d6) * d7) + d6);
+            d2 += point4.distance((((d3 - d4) * cos) - ((d5 - d6) * sin)) + d4, ((d3 - d4) * sin) + ((d5 - d6) * d7) + d6);
             i = i2 + 1;
             point2 = point;
             min = i3;
@@ -628,7 +629,7 @@ public class ShapeDetector {
         template2.points = arrayList;
         this.templates.add(template2);
         String string = this.preferences.getString("moretemplates", null);
-        String str = string == null ? BuildConfig.APP_CENTER_HASH + template2.shapeType : string + "|" + template2.shapeType;
+        String str = string == null ? "" + template2.shapeType : string + "|" + template2.shapeType;
         for (int i4 = 0; i4 < arrayList.size(); i4++) {
             str = str + "," + Math.round(((Point) arrayList.get(i4)).x) + "," + Math.round(((Point) arrayList.get(i4)).y);
         }

@@ -8,6 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class AboutPremiumView extends LinearLayout {
     public AboutPremiumView(Context context) {
         super(context);
@@ -17,7 +18,7 @@ public class AboutPremiumView extends LinearLayout {
         textView.setTextSize(1, 14.0f);
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i));
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString("AboutPremiumTitle", R.string.AboutPremiumTitle));
         addView(textView);
         TextView textView2 = new TextView(context);

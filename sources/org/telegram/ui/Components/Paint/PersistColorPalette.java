@@ -1,12 +1,12 @@
 package org.telegram.ui.Components.Paint;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.ApplicationLoader;
+
 public class PersistColorPalette {
     public static final int COLORS_COUNT;
     private static final List<Integer> DEFAULT_MODIFIABLE_COLORS;
@@ -45,8 +45,7 @@ public class PersistColorPalette {
         this.colors = new ArrayList(i2);
         this.brushColor = new HashMap<>(Brush.BRUSHES_LIST.size());
         this.pendingChange = new ArrayList(i2);
-        Context context = ApplicationLoader.applicationContext;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("photo_color_palette_" + i, 0);
+        SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("photo_color_palette_" + i, 0);
         this.mConfig = sharedPreferences;
         this.currentBrush = sharedPreferences.getInt("brush", 0);
         this.currentWeight = sharedPreferences.getFloat("weight", 0.5f);
@@ -104,13 +103,11 @@ public class PersistColorPalette {
     }
 
     public float getWeight(String str, float f) {
-        SharedPreferences sharedPreferences = this.mConfig;
-        return sharedPreferences.getFloat("weight_" + str, f);
+        return this.mConfig.getFloat("weight_" + str, f);
     }
 
     public void setWeight(String str, float f) {
-        SharedPreferences.Editor edit = this.mConfig.edit();
-        edit.putFloat("weight_" + str, f).apply();
+        this.mConfig.edit().putFloat("weight_" + str, f).apply();
     }
 
     public float getCurrentWeight() {
@@ -180,10 +177,9 @@ public class PersistColorPalette {
     }
 
     public int getCurrentColor() {
-        int i;
         Integer num = this.brushColor.get(Integer.valueOf(this.currentBrush));
         if (num == null) {
-            num = Integer.valueOf((int) this.mConfig.getLong("brush_color_" + this.currentBrush, this.currentBrush == -1 ? -1L : Brush.BRUSHES_LIST.get(i).getDefaultColor()));
+            num = Integer.valueOf((int) this.mConfig.getLong("brush_color_" + this.currentBrush, this.currentBrush == -1 ? -1L : Brush.BRUSHES_LIST.get(r2).getDefaultColor()));
             this.brushColor.put(Integer.valueOf(this.currentBrush), num);
         }
         return num.intValue();
@@ -253,13 +249,10 @@ public class PersistColorPalette {
 
     private void loadColors() {
         for (int i = 0; i < MODIFIABLE_COLORS_COUNT; i++) {
-            List<Integer> list = this.colors;
-            SharedPreferences sharedPreferences = this.mConfig;
-            list.add(Integer.valueOf((int) sharedPreferences.getLong("color_" + i, DEFAULT_MODIFIABLE_COLORS.get(i).intValue())));
+            this.colors.add(Integer.valueOf((int) this.mConfig.getLong("color_" + i, DEFAULT_MODIFIABLE_COLORS.get(i).intValue())));
         }
         for (int i2 = 0; i2 < Brush.BRUSHES_LIST.size(); i2++) {
-            SharedPreferences sharedPreferences2 = this.mConfig;
-            this.brushColor.put(Integer.valueOf(i2), Integer.valueOf((int) sharedPreferences2.getLong("brush_color_" + i2, Brush.BRUSHES_LIST.get(i2).getDefaultColor())));
+            this.brushColor.put(Integer.valueOf(i2), Integer.valueOf((int) this.mConfig.getLong("brush_color_" + i2, Brush.BRUSHES_LIST.get(i2).getDefaultColor())));
         }
         this.brushColor.put(-1, Integer.valueOf((int) this.mConfig.getLong("brush_color_-1", -1L)));
     }
@@ -282,9 +275,8 @@ public class PersistColorPalette {
                 this.pendingChange.clear();
             }
             if (this.needSaveBrushColor) {
-                Integer num = this.brushColor.get(Integer.valueOf(this.currentBrush));
-                if (num != null) {
-                    edit.putLong("brush_color_" + this.currentBrush, num.intValue());
+                if (this.brushColor.get(Integer.valueOf(this.currentBrush)) != null) {
+                    edit.putLong("brush_color_" + this.currentBrush, r1.intValue());
                 }
                 this.needSaveBrushColor = false;
             }

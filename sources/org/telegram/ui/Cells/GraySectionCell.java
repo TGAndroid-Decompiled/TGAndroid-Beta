@@ -13,15 +13,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-public class GraySectionCell extends FrameLayout {
+
+public class GraySectionCell extends FrameLayout implements Theme.Colorable {
     private int layerHeight;
     private final Theme.ResourcesProvider resourcesProvider;
     private AnimatedTextView rightTextView;
-    private TextView textView;
+    private AnimatedEmojiSpan.TextViewEmojis textView;
 
     public GraySectionCell(Context context) {
         this(context, null);
@@ -32,13 +34,13 @@ public class GraySectionCell extends FrameLayout {
         this.layerHeight = 32;
         this.resourcesProvider = resourcesProvider;
         setBackgroundColor(getThemedColor(Theme.key_graySection));
-        TextView textView = new TextView(getContext());
-        this.textView = textView;
-        textView.setTextSize(1, 14.0f);
-        this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        TextView textView2 = this.textView;
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = new AnimatedEmojiSpan.TextViewEmojis(getContext());
+        this.textView = textViewEmojis;
+        textViewEmojis.setTextSize(1, 14.0f);
+        this.textView.setTypeface(AndroidUtilities.bold());
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis2 = this.textView;
         int i = Theme.key_graySectionText;
-        textView2.setTextColor(getThemedColor(i));
+        textViewEmojis2.setTextColor(getThemedColor(i));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(this, getContext(), true, true, true) {
@@ -49,12 +51,21 @@ public class GraySectionCell extends FrameLayout {
         };
         this.rightTextView = animatedTextView;
         animatedTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        this.rightTextView.setAnimationProperties(1.0f, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.rightTextView.setAnimationProperties(0.9f, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.rightTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.rightTextView.setTextColor(getThemedColor(i));
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(this.rightTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         ViewCompat.setAccessibilityHeading(this, true);
+    }
+
+    @Override
+    public void updateColors() {
+        setBackgroundColor(getThemedColor(Theme.key_graySection));
+        AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.textView;
+        int i = Theme.key_graySectionText;
+        textViewEmojis.setTextColor(getThemedColor(i));
+        this.rightTextView.setTextColor(getThemedColor(i));
     }
 
     @Override
@@ -83,30 +94,30 @@ public class GraySectionCell extends FrameLayout {
         this.rightTextView.setOnClickListener(null);
     }
 
-    public void setText(String str, String str2, View.OnClickListener onClickListener) {
-        this.textView.setText(str);
-        this.rightTextView.setText(str2, false);
+    public void setText(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
+        this.textView.setText(charSequence);
+        this.rightTextView.setText(charSequence2, false);
         this.rightTextView.setOnClickListener(onClickListener);
         this.rightTextView.setVisibility(0);
     }
 
     public void setRightText(String str) {
-        setRightText(str, true);
+        setRightText((CharSequence) str, true);
     }
 
-    public void setRightText(String str, boolean z) {
-        this.rightTextView.setText(str, true, z);
+    public void setRightText(CharSequence charSequence, boolean z) {
+        this.rightTextView.setText(charSequence, true, z);
         this.rightTextView.setVisibility(0);
     }
 
-    public void setRightText(String str, View.OnClickListener onClickListener) {
-        this.rightTextView.setText(str, false);
+    public void setRightText(CharSequence charSequence, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(charSequence, false);
         this.rightTextView.setOnClickListener(onClickListener);
         this.rightTextView.setVisibility(0);
     }
 
-    public void setRightText(String str, boolean z, View.OnClickListener onClickListener) {
-        this.rightTextView.setText(str, true, z);
+    public void setRightText(CharSequence charSequence, boolean z, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(charSequence, true, z);
         this.rightTextView.setOnClickListener(onClickListener);
         this.rightTextView.setVisibility(0);
     }

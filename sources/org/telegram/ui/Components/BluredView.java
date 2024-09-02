@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.ui.ActionBar.Theme;
+
 public class BluredView extends View {
     public final BlurBehindDrawable drawable;
 

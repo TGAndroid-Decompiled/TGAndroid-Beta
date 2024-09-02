@@ -19,10 +19,10 @@ import android.view.animation.OvershootInterpolator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class TextSelectionHint extends View {
     Animator a;
     int animateToEnd;
@@ -85,7 +85,7 @@ public class TextSelectionHint extends View {
             String string = LocaleController.getString(R.string.TextSelectionHint);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
             String group = matcher.matches() ? matcher.group() : null;
-            String replace = string.replace("**", BuildConfig.APP_CENTER_HASH);
+            String replace = string.replace("**", "");
             this.textLayout = new StaticLayout(replace, this.textPaint, getMeasuredWidth() - (this.padding * 2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.start = 0;
             this.end = 0;
@@ -163,8 +163,9 @@ public class TextSelectionHint extends View {
             canvas.drawPath(this.path, this.selectionPaint);
         }
         float interpolation = this.interpolator.getInterpolation(this.enterValue);
+        int primaryHorizontal = (int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue));
         canvas.save();
-        canvas.translate((int) (this.textLayout.getPrimaryHorizontal(this.animateToEnd) + (AndroidUtilities.dpf2(4.0f) * (1.0f - this.endOffsetValue)) + ((this.textLayout.getPrimaryHorizontal(this.end) - this.textLayout.getPrimaryHorizontal(this.animateToEnd)) * this.endOffsetValue)), lineBottom);
+        canvas.translate(primaryHorizontal, lineBottom);
         float f2 = dp;
         float f3 = f2 / 2.0f;
         canvas.scale(interpolation, interpolation, f3, f3);
@@ -258,8 +259,9 @@ public class TextSelectionHint extends View {
             lineForOffset++;
             if (lineForOffset >= lineForOffset2) {
                 return;
+            } else {
+                canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
             }
-            canvas.drawRect(0.0f, staticLayout.getLineTop(lineForOffset), staticLayout.getLineWidth(lineForOffset), staticLayout.getLineBottom(lineForOffset), this.selectionPaint);
         }
     }
 
@@ -342,16 +344,13 @@ public class TextSelectionHint extends View {
     public void lambda$show$2(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.startOffsetValue = floatValue;
-        int i = this.animateToStart;
-        this.currentStart = (int) (i + ((this.start - i) * floatValue));
+        this.currentStart = (int) (this.animateToStart + ((this.start - r0) * floatValue));
         invalidate();
     }
 
     public void lambda$show$3(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.endOffsetValue = floatValue;
-        int i = this.animateToEnd;
-        this.currentEnd = i + ((int) Math.ceil((this.end - i) * floatValue));
+        this.endOffsetValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.currentEnd = this.animateToEnd + ((int) Math.ceil((this.end - r0) * r4));
         invalidate();
     }
 

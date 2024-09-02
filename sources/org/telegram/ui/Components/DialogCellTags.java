@@ -7,11 +7,11 @@ import android.text.StaticLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.ui.ActionBar.Theme;
+
 public class DialogCellTags {
     private final ArrayList<MessagesController.DialogFilter> filters = new ArrayList<>();
     private final ArrayList<Tag> tags = new ArrayList<>();
@@ -47,7 +47,7 @@ public class DialogCellTags {
             tag.colorId = dialogFilter.color;
             String str = dialogFilter.name;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(str.toUpperCase(), Theme.dialogs_tagTextPaint.getFontMetricsInt(), false), Theme.dialogs_tagTextPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 0.0f, 1.0f, false);
             tag.layout = staticLayout;
@@ -108,12 +108,12 @@ public class DialogCellTags {
                 if (i5 >= this.filters.size()) {
                     dialogFilter2 = null;
                     break;
-                } else if (this.filters.get(i5).id == tag2.filterId) {
+                }
+                if (this.filters.get(i5).id == tag2.filterId) {
                     dialogFilter2 = this.filters.get(i5);
                     break;
-                } else {
-                    i5++;
                 }
+                i5++;
             }
             if (dialogFilter2 == null) {
                 this.tags.remove(i4);
@@ -134,12 +134,12 @@ public class DialogCellTags {
                 if (i7 >= this.tags.size()) {
                     tag = null;
                     break;
-                } else if (this.tags.get(i7).filterId == dialogFilter4.id) {
+                }
+                if (this.tags.get(i7).filterId == dialogFilter4.id) {
                     tag = this.tags.get(i7);
                     break;
-                } else {
-                    i7++;
                 }
+                i7++;
             }
             if (tag == null) {
                 this.tags.add(i6, Tag.fromFilter(i, dialogFilter4));

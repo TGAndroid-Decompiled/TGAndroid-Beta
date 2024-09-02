@@ -3,6 +3,7 @@ package kotlin.jvm.internal;
 import kotlin.reflect.KClass;
 import kotlin.reflect.KDeclarationContainer;
 import kotlin.reflect.KProperty0;
+
 public class ReflectionFactory {
     public KProperty0 property0(PropertyReference0 propertyReference0) {
         return propertyReference0;

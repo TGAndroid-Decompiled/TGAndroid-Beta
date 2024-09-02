@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+
 public class OutlineEditText extends OutlineTextContainerView {
     EditTextBoldCursor editText;
 

@@ -6,13 +6,14 @@ import android.view.View;
 import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.SnowflakesEffect;
+
 public class VoIpSnowView extends View {
     private boolean isPaused;
     private SnowflakesEffect snowflakesEffect;
 
     public VoIpSnowView(Context context) {
         super(context);
-        if (LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS) && Theme.getEventType() == 0) {
+        if (LiteMode.isEnabled(512) && Theme.getEventType() == 0) {
             this.snowflakesEffect = new SnowflakesEffect(0);
         }
     }

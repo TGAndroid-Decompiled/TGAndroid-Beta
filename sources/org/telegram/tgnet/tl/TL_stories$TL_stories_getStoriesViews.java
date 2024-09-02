@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputPeer;
+
 public class TL_stories$TL_stories_getStoriesViews extends TLObject {
     public ArrayList<Integer> id = new ArrayList<>();
     public TLRPC$InputPeer peer;

@@ -1,6 +1,5 @@
 package org.telegram.messenger;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Base64;
@@ -15,6 +14,7 @@ import org.telegram.tgnet.TLRPC$TL_defaultHistoryTTL;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.tgnet.TLRPC$User;
+
 public class UserConfig extends BaseController {
     private static volatile UserConfig[] Instance = new UserConfig[4];
     public static final int MAX_ACCOUNT_COUNT = 4;
@@ -75,6 +75,7 @@ public class UserConfig extends BaseController {
     public TLRPC$TL_help_termsOfService unacceptedTermsOfService;
     public boolean unreadDialogsLoaded;
     LongSparseArray<SaveToGallerySettingsHelper.DialogException> userSaveGalleryExceptions;
+    public int webappRatingLoadTime;
 
     public static UserConfig getInstance(int i) {
         UserConfig userConfig = Instance[i];
@@ -169,12 +170,13 @@ public class UserConfig extends BaseController {
                     edit.putBoolean("unreadDialogsLoaded", this.unreadDialogsLoaded);
                     edit.putInt("ratingLoadTime", this.ratingLoadTime);
                     edit.putInt("botRatingLoadTime", this.botRatingLoadTime);
+                    edit.putInt("webappRatingLoadTime", this.webappRatingLoadTime);
                     edit.putBoolean("contactsReimported", this.contactsReimported);
                     edit.putInt("loginTime", this.loginTime);
                     edit.putBoolean("syncContacts", this.syncContacts);
                     edit.putBoolean("suggestContacts", this.suggestContacts);
                     edit.putBoolean("hasSecureData", this.hasSecureData);
-                    edit.putBoolean("notificationsSettingsLoaded3", this.notificationsSettingsLoaded);
+                    edit.putBoolean("notificationsSettingsLoaded4", this.notificationsSettingsLoaded);
                     edit.putBoolean("notificationsSignUpSettingsLoaded", this.notificationsSignUpSettingsLoaded);
                     edit.putLong("autoDownloadConfigLoadTime", this.autoDownloadConfigLoadTime);
                     edit.putBoolean("hasValidDialogLoadIds", this.hasValidDialogLoadIds);
@@ -256,7 +258,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User == null || (str = tLRPC$User.phone) == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
         }
         return str;
@@ -335,47 +337,45 @@ public class UserConfig extends BaseController {
         if (this.currentAccount == 0) {
             return ApplicationLoader.applicationContext.getSharedPreferences("userconfing", 0);
         }
-        Context context = ApplicationLoader.applicationContext;
-        return context.getSharedPreferences("userconfig" + this.currentAccount, 0);
+        return ApplicationLoader.applicationContext.getSharedPreferences("userconfig" + this.currentAccount, 0);
     }
 
     public LongSparseArray<SaveToGallerySettingsHelper.DialogException> getSaveGalleryExceptions(int i) {
         if (i == 1) {
             if (this.userSaveGalleryExceptions == null) {
-                Context context = ApplicationLoader.applicationContext;
-                this.userSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0));
+                this.userSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0));
             }
             return this.userSaveGalleryExceptions;
-        } else if (i == 2) {
+        }
+        if (i == 2) {
             if (this.groupsSaveGalleryExceptions == null) {
-                Context context2 = ApplicationLoader.applicationContext;
-                this.groupsSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0));
+                this.groupsSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0));
             }
             return this.groupsSaveGalleryExceptions;
-        } else if (i == 4) {
-            if (this.chanelSaveGalleryExceptions == null) {
-                Context context3 = ApplicationLoader.applicationContext;
-                this.chanelSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0));
-            }
-            return this.chanelSaveGalleryExceptions;
-        } else {
+        }
+        if (i != 4) {
             return null;
         }
+        if (this.chanelSaveGalleryExceptions == null) {
+            this.chanelSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0));
+        }
+        return this.chanelSaveGalleryExceptions;
     }
 
     public void updateSaveGalleryExceptions(int i, LongSparseArray<SaveToGallerySettingsHelper.DialogException> longSparseArray) {
         if (i == 1) {
             this.userSaveGalleryExceptions = longSparseArray;
-            Context context = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0), this.userSaveGalleryExceptions);
-        } else if (i == 2) {
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0), this.userSaveGalleryExceptions);
+            return;
+        }
+        if (i == 2) {
             this.groupsSaveGalleryExceptions = longSparseArray;
-            Context context2 = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0), this.groupsSaveGalleryExceptions);
-        } else if (i == 4) {
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0), this.groupsSaveGalleryExceptions);
+            return;
+        }
+        if (i == 4) {
             this.chanelSaveGalleryExceptions = longSparseArray;
-            Context context3 = ApplicationLoader.applicationContext;
-            SaveToGallerySettingsHelper.saveExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0), this.chanelSaveGalleryExceptions);
+            SaveToGallerySettingsHelper.saveExceptions(ApplicationLoader.applicationContext.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0), this.chanelSaveGalleryExceptions);
         }
     }
 
@@ -400,6 +400,7 @@ public class UserConfig extends BaseController {
         this.migrateOffsetAccess = -1L;
         this.ratingLoadTime = 0;
         this.botRatingLoadTime = 0;
+        this.webappRatingLoadTime = 0;
         this.draftsLoaded = false;
         this.contactsReimported = true;
         this.syncContacts = true;
@@ -417,12 +418,12 @@ public class UserConfig extends BaseController {
         while (true) {
             if (i >= 4) {
                 break;
-            } else if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
+            }
+            if (AccountInstance.getInstance(i).getUserConfig().isClientActivated()) {
                 z = true;
                 break;
-            } else {
-                i++;
             }
+            i++;
         }
         if (!z) {
             SharedConfig.clearConfig();
@@ -431,13 +432,11 @@ public class UserConfig extends BaseController {
     }
 
     public boolean isPinnedDialogsLoaded(int i) {
-        SharedPreferences preferences = getPreferences();
-        return preferences.getBoolean("2pinnedDialogsLoaded" + i, false);
+        return getPreferences().getBoolean("2pinnedDialogsLoaded" + i, false);
     }
 
     public void setPinnedDialogsLoaded(int i, boolean z) {
-        SharedPreferences.Editor edit = getPreferences().edit();
-        edit.putBoolean("2pinnedDialogsLoaded" + i, z).commit();
+        getPreferences().edit().putBoolean("2pinnedDialogsLoaded" + i, z).commit();
     }
 
     public void clearPinnedDialogsLoaded() {
@@ -454,7 +453,7 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         return preferences.getInt(sb.toString(), 0);
     }
 
@@ -462,7 +461,7 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2).commit();
     }
 
@@ -470,31 +469,27 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        Object obj = BuildConfig.APP_CENTER_HASH;
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         int i2 = preferences.getInt(sb.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb2.append(i == 0 ? "" : Integer.valueOf(i));
         int i3 = preferences.getInt(sb2.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb3.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong = AndroidUtilities.getPrefIntOrLong(preferences, sb3.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb4.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong2 = AndroidUtilities.getPrefIntOrLong(preferences, sb4.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb5.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong3 = AndroidUtilities.getPrefIntOrLong(preferences, sb5.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        if (i != 0) {
-            obj = Integer.valueOf(i);
-        }
-        sb6.append(obj);
+        sb6.append(i != 0 ? Integer.valueOf(i) : "");
         return new long[]{i2, i3, prefIntOrLong, prefIntOrLong2, prefIntOrLong3, preferences.getLong(sb6.toString(), this.hasValidDialogLoadIds ? 0L : -1L)};
     }
 
@@ -502,31 +497,27 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        Object obj = BuildConfig.APP_CENTER_HASH;
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb2.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb2.toString(), i3);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb3.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb3.toString(), j);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb4.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb4.toString(), j2);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb5.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb5.toString(), j3);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        if (i != 0) {
-            obj = Integer.valueOf(i);
-        }
-        sb6.append(obj);
+        sb6.append(i != 0 ? Integer.valueOf(i) : "");
         edit.putLong(sb6.toString(), j4);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();

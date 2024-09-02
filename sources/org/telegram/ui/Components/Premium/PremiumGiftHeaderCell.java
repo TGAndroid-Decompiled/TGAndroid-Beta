@@ -14,6 +14,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.StarParticlesView;
+
 public class PremiumGiftHeaderCell extends LinearLayout {
     private AvatarDrawable avatarDrawable;
     private BackupImageView avatarImageView;
@@ -31,7 +32,7 @@ public class PremiumGiftHeaderCell extends LinearLayout {
         addView(this.avatarImageView, LayoutHelper.createLinear(100, 100, 1, 0, 28, 0, 0));
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         this.titleView.setTextSize(1, 22.0f);
         TextView textView2 = this.titleView;
         int i = Theme.key_windowBackgroundWhiteBlackText;

@@ -15,6 +15,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.Paint.Swatch;
+
 public class PaintWeightChooserView extends View {
     private AnimatedFloat animatedMax;
     private AnimatedFloat animatedMin;
@@ -90,7 +91,9 @@ public class PaintWeightChooserView extends View {
                         PaintWeightChooserView.this.colorSwatch.brushWeight = clamp;
                     }
                     PaintWeightChooserView.this.animatedWeight.set(clamp, true);
-                    PaintWeightChooserView.this.onUpdate.run();
+                    if (PaintWeightChooserView.this.onUpdate != null) {
+                        PaintWeightChooserView.this.onUpdate.run();
+                    }
                     PaintWeightChooserView.this.invalidate();
                 }
                 return PaintWeightChooserView.this.isTouchInProgress;
@@ -123,6 +126,11 @@ public class PaintWeightChooserView extends View {
 
     public void setColorSwatch(Swatch swatch) {
         this.colorSwatch = swatch;
+        invalidate();
+    }
+
+    public void setBrushWeight(float f) {
+        this.colorSwatch.brushWeight = f;
         invalidate();
     }
 

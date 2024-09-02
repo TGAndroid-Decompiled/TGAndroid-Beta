@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.StateSet;
 import android.view.MotionEvent;
+
 public class ClickableAnimatedTextView extends AnimatedTextView {
     private Drawable backgroundDrawable;
     private final android.graphics.Rect bounds;
@@ -18,27 +19,29 @@ public class ClickableAnimatedTextView extends AnimatedTextView {
 
     @Override
     public void onDraw(Canvas canvas) {
-        this.bounds.set(getDrawable().getBounds());
-        int ceil = (int) Math.ceil(getDrawable().getCurrentWidth());
-        if (getDrawable().getGravity() == 3) {
-            android.graphics.Rect rect = this.bounds;
-            rect.right = rect.left + ceil;
-        } else if (getDrawable().getGravity() == 5) {
-            android.graphics.Rect rect2 = this.bounds;
-            rect2.left = rect2.right - ceil;
-        } else if (getDrawable().getGravity() == 17) {
-            android.graphics.Rect rect3 = this.bounds;
-            int i = (rect3.left + rect3.right) / 2;
-            int i2 = ceil / 2;
-            rect3.left = i - i2;
-            rect3.right = i + i2;
+        if (this.backgroundDrawable != null) {
+            this.bounds.set(getDrawable().getBounds());
+            int ceil = (int) Math.ceil(getDrawable().getCurrentWidth());
+            if (getDrawable().getGravity() == 3) {
+                android.graphics.Rect rect = this.bounds;
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().getGravity() == 5) {
+                android.graphics.Rect rect2 = this.bounds;
+                rect2.left = rect2.right - ceil;
+            } else if (getDrawable().getGravity() == 17) {
+                android.graphics.Rect rect3 = this.bounds;
+                int i = (rect3.left + rect3.right) / 2;
+                int i2 = ceil / 2;
+                rect3.left = i - i2;
+                rect3.right = i + i2;
+            }
+            this.bounds.left -= getPaddingLeft();
+            this.bounds.top -= getPaddingTop();
+            this.bounds.right += getPaddingRight();
+            this.bounds.bottom += getPaddingBottom();
+            this.backgroundDrawable.setBounds(this.bounds);
+            this.backgroundDrawable.draw(canvas);
         }
-        this.bounds.left -= getPaddingLeft();
-        this.bounds.top -= getPaddingTop();
-        this.bounds.right += getPaddingRight();
-        this.bounds.bottom += getPaddingBottom();
-        this.backgroundDrawable.setBounds(this.bounds);
-        this.backgroundDrawable.draw(canvas);
         super.onDraw(canvas);
     }
 

@@ -22,7 +22,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
@@ -34,6 +33,7 @@ import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RecyclerListView;
+
 public class FeaturesPageView extends BaseListPageView {
     RecyclerListView.SelectionAdapter adapter;
     Bitmap bitmap;
@@ -45,7 +45,7 @@ public class FeaturesPageView extends BaseListPageView {
     }
 
     public static int lambda$new$0(SparseIntArray sparseIntArray, Item item, Item item2) {
-        return sparseIntArray.get(item.order, ConnectionsManager.DEFAULT_DATACENTER_ID) - sparseIntArray.get(item2.order, ConnectionsManager.DEFAULT_DATACENTER_ID);
+        return sparseIntArray.get(item.order, Integer.MAX_VALUE) - sparseIntArray.get(item2.order, Integer.MAX_VALUE);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class FeaturesPageView extends BaseListPageView {
                 this.imageView.getImageReceiver().setForUserOrChat(currentUser, avatarDrawable);
                 TextView textView = new TextView(context);
                 textView.setTextSize(1, 20.0f);
-                textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView.setTypeface(AndroidUtilities.bold());
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
                 textView.setText(LocaleController.getString("UpgradedStories", R.string.UpgradedStories));
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
@@ -151,7 +151,9 @@ public class FeaturesPageView extends BaseListPageView {
                 this.gradientTools.paint.setStyle(Paint.Style.STROKE);
                 this.gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
                 this.gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
-            } else if (i == 1) {
+                return;
+            }
+            if (i == 1) {
                 StarParticlesView starParticlesView = new StarParticlesView(this, context, FeaturesPageView.this) {
                     @Override
                     public void onMeasure(int i2, int i3) {
@@ -200,7 +202,6 @@ public class FeaturesPageView extends BaseListPageView {
                 canvas.drawColor(ColorUtils.blendARGB(Theme.getColor(i2, FeaturesPageView.this.resourcesProvider), Theme.getColor(Theme.key_dialogBackground, FeaturesPageView.this.resourcesProvider), 0.5f));
                 this.iconTextureView.setBackgroundBitmap(createBitmap);
                 GLIconRenderer gLIconRenderer = this.iconTextureView.mRenderer;
-                gLIconRenderer.forceNight = true;
                 gLIconRenderer.colorKey1 = i2;
                 gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
                 gLIconRenderer.updateColors();
@@ -211,17 +212,17 @@ public class FeaturesPageView extends BaseListPageView {
                 }
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 20.0f);
-                textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                textView2.setTypeface(AndroidUtilities.bold());
                 textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, FeaturesPageView.this.resourcesProvider));
                 textView2.setText(LocaleController.getString(R.string.TelegramBusiness));
                 textView2.setGravity(17);
-                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 150.0f, 0.0f, 0.0f));
+                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 14.0f);
                 textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, FeaturesPageView.this.resourcesProvider));
                 textView3.setText(LocaleController.getString(R.string.TelegramBusinessSubtitle2));
                 textView3.setGravity(17);
-                addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 183.0f, 0.0f, 20.0f));
+                addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
             }
         }
 
@@ -269,7 +270,7 @@ public class FeaturesPageView extends BaseListPageView {
             addView(this.imageView, LayoutHelper.createFrame(28, 28.0f, 0, 25.0f, 12.0f, 16.0f, 0.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setTypeface(AndroidUtilities.bold());
             this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, featuresPageView.resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 0, 68.0f, 8.0f, 16.0f, 0.0f));

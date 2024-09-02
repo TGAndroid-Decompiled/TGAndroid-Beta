@@ -8,6 +8,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PacmanAnimation {
     private boolean currentGhostWalk;
     private Runnable finishRunnable;
@@ -125,31 +126,29 @@ public class PacmanAnimation {
     }
 
     public void draw(Canvas canvas, int i) {
-        int dp;
-        int i2;
-        int dp2 = AndroidUtilities.dp(110.0f);
-        int dp3 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
-        float measuredWidth = ((this.parentView.getMeasuredWidth() + dp) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + dp2);
-        int i3 = dp2 / 2;
+        int dp = AndroidUtilities.dp(110.0f);
+        int dp2 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
+        float measuredWidth = ((this.parentView.getMeasuredWidth() + r2) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + dp);
+        int i2 = dp / 2;
         this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-        int i4 = dp3 / 2;
-        float f = measuredWidth + i3;
-        canvas.drawRect(0.0f, i - i4, f, i + i4 + 1, this.paint);
+        int i3 = dp2 / 2;
+        float f = measuredWidth + i2;
+        canvas.drawRect(0.0f, i - i3, f, i + i3 + 1, this.paint);
         this.paint.setColor(-69120);
-        float f2 = measuredWidth + dp2;
-        this.rect.set(measuredWidth, i - i3, f2, i2 + dp2);
+        float f2 = measuredWidth + dp;
+        this.rect.set(measuredWidth, i - i2, f2, r12 + dp);
         float f3 = this.progress;
-        int i5 = (int) (f3 < 0.5f ? (1.0f - (f3 / 0.5f)) * 35.0f : ((f3 - 0.5f) * 35.0f) / 0.5f);
-        float f4 = i5;
-        float f5 = 360 - (i5 * 2);
+        int i4 = (int) (f3 < 0.5f ? (1.0f - (f3 / 0.5f)) * 35.0f : ((f3 - 0.5f) * 35.0f) / 0.5f);
+        float f4 = i4;
+        float f5 = 360 - (i4 * 2);
         canvas.drawArc(this.rect, f4, f5, true, this.edgePaint);
         canvas.drawArc(this.rect, f4, f5, true, this.paint);
         this.paint.setColor(-16777216);
-        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), i2 + (dp2 / 4), AndroidUtilities.dp(8.0f), this.paint);
+        canvas.drawCircle(f - AndroidUtilities.dp(8.0f), r12 + (dp / 4), AndroidUtilities.dp(8.0f), this.paint);
         canvas.save();
         canvas.translate(f2 + AndroidUtilities.dp(20.0f), i - AndroidUtilities.dp(25.0f));
-        for (int i6 = 0; i6 < 3; i6++) {
-            drawGhost(canvas, i6);
+        for (int i5 = 0; i5 < 3; i5++) {
+            drawGhost(canvas, i5);
             canvas.translate(AndroidUtilities.dp(62.0f), 0.0f);
         }
         canvas.restore();

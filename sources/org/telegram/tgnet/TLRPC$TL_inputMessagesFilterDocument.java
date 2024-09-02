@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_inputMessagesFilterDocument extends TLRPC$MessagesFilter {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {

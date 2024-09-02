@@ -12,6 +12,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+
 public class ReportAlert extends BottomSheet {
     private BottomSheetCell clearButton;
     private EditTextBoldCursor editText;
@@ -39,7 +40,7 @@ public class ReportAlert extends BottomSheet {
             this.textView.setGravity(17);
             this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
-            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setTypeface(AndroidUtilities.bold());
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
         }
 
@@ -67,7 +68,7 @@ public class ReportAlert extends BottomSheet {
         rLottieImageView.playAnimation();
         frameLayout.addView(rLottieImageView, LayoutHelper.createFrame(160, 160.0f, 49, 17.0f, 14.0f, 17.0f, 0.0f));
         TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 24.0f);
         textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         if (i == 0) {
@@ -134,11 +135,11 @@ public class ReportAlert extends BottomSheet {
     }
 
     public boolean lambda$new$0(TextView textView, int i, KeyEvent keyEvent) {
-        if (i == 6) {
-            this.clearButton.background.callOnClick();
-            return true;
+        if (i != 6) {
+            return false;
         }
-        return false;
+        this.clearButton.background.callOnClick();
+        return true;
     }
 
     public void lambda$new$1(int i, View view) {

@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Thema wählen</string>
     <string name="ChooseYourLanguage">Wähle deine Sprache</string>
     <string name="ChooseYourLanguageOther">Weitere</string>
-    <string name="ChromeCustomTabs">In-App Browser</string>
-    <string name="ChromeCustomTabsInfo">Externe Links innerhalb der App öffnen</string>
     <string name="ClearButton">Löschen</string>
     <string name="ClearCache">Cache leeren</string>
     <string name="ClearCacheFewChatsTitle">Cache für %1$s leeren</string>
@@ -1188,7 +1186,6 @@
     <string name="DeleteBackground_other">%1$d Hintergründe löschen</string>
     <string name="DeleteBackground_two">%1$d Hintergründe löschen</string>
     <string name="DeleteBackground_zero">%1$d Hintergründe löschen</string>
-    <string name="DeleteBanUser">Nutzer sperren</string>
     <string name="DeleteCalls">Anrufe löschen</string>
     <string name="DeleteCallsForEveryone">Bei allen löschen</string>
     <string name="DeleteChannelForAll">Bei allen Abonnenten löschen</string>
@@ -1433,8 +1430,6 @@
     <string name="EventLogEditedMedia">un1 hat Medium bearbeitet:</string>
     <string name="EventLogEditedMediaCaption">un1 hat Medium und Beschriftung bearbeitet:</string>
     <string name="EventLogEditedMessages">un1 hat diese Nachricht bearbeitet:</string>
-    <string name="EventLogEmpty">**Noch keine Aktionen!**\n\nMitglieder und Admins\nhaben noch keine Aktionen in den\nletzten 48 Stunden durchgeführt.</string>
-    <string name="EventLogEmptyChannel">**Noch keine Aktionen!**\n\nMitglieder und Admins\nhaben noch keine Aktionen\nin den letzten 48 Stunden durchgeführt.</string>
     <string name="EventLogEmptySearch">**Keine Aktionen gefunden**\n\nKeine kürzlichen Ereignisse gefunden,\ndie deinen Suchbegriff beinhalten.</string>
     <string name="EventLogEmptyTextSearch">Keine kürzlichen Aktionen gefunden, die \'**%1$s**\' beinhalten.</string>
     <string name="EventLogEndedVoiceChat">un1 hat den Sprachchat beendet</string>
@@ -1533,15 +1528,8 @@
     <string name="FeaturedStickers">Angesagte Sticker</string>
     <string name="FeaturedStickersInfo">Diese Sticker sind gerade auf Telegram angesagt. Du kannst eigene Sticker über den @stickers Bot hinzufügen.</string>
     <string name="February">Februar</string>
-    <string name="FileSavedHint">Datei in Downloads gespeichert</string>
     <string name="FileUploadLimit">Die Datei darf nicht größer als %1$s sein</string>
     <string name="FilesDataUsage">Dateien</string>
-    <string name="FilesSavedHint_few">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_many">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_one">Datei in Downloads gespeichert</string>
-    <string name="FilesSavedHint_other">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_two">%1$d Dateien in Downloads gespeichert</string>
-    <string name="FilesSavedHint_zero">%1$d Dateien in Downloads gespeichert</string>
     <string name="Files_few">%1$d Dateien</string>
     <string name="Files_many">%1$d Dateien</string>
     <string name="Files_one">%1$d Datei</string>
@@ -1750,7 +1738,6 @@
     <string name="GetQRCode">QR-Code erstellen</string>
     <string name="GettingLinkInfo">Lade Linkvorschau...</string>
     <string name="GifCaption">GIF Beschriftung</string>
-    <string name="GifSavedToDownloadsHint">GIF in Downloads gespeichert</string>
     <string name="GifsTab2">GIFs</string>
     <string name="GigagroupAlertLearnMore">MEHR DAZU</string>
     <string name="GigagroupAlertText">Limit von 200.000 Mitgliedern in der Gruppe erreicht.\n\nDu kannst das Limit erhöhen, indem du die Gruppe in eine **Broadcast-Gruppe** umwandelst, in der nur Admins schreiben können. Interessiert?</string>
@@ -1803,7 +1790,6 @@
     <string name="GroupUserCantAdmin">Es gibt bereits zu viele Administratoren.</string>
     <string name="GroupUserCantBot">Es gibt bereits zu viele Bots.</string>
     <string name="GroupUserLeftError">Wenn jemand eine Gruppe verlassen hat, musst du in der Kontaktliste der Person sein, um sie wieder hinzufügen zu können.\n\nMan kann die Gruppe auch über einen Einladungslink betreten, so lange die Person nicht in der Liste \"Entfernte Nutzer\" der Gruppe steht.</string>
-    <string name="GroupsAndChannels">Gruppen</string>
     <string name="GroupsAndChannelsHelp">Ändere, wer dich in Gruppen und Kanäle einladen kann.</string>
     <string name="GroupsInCommon">Gemeinsame Gruppen</string>
     <string name="GroupsInCommonTitle">Gemeinsame Gruppen</string>
@@ -3002,7 +2988,6 @@
     <string name="PhotoCaption">Bildbeschriftung</string>
     <string name="PhotoEditorDiscardAlert">Möchtest du wirklich alle Änderungen verwerfen?</string>
     <string name="PhotoSavedHint">Bild in Galerie gespeichert</string>
-    <string name="PhotoSavedToDownloadsHint">Bild in Downloads gespeichert</string>
     <string name="PhotosSavedHint_few">%1$d Bilder in Galerie gespeichert</string>
     <string name="PhotosSavedHint_many">%1$d Bilder in Galerie gespeichert</string>
     <string name="PhotosSavedHint_one">Bild in Galerie gespeichert</string>
@@ -4045,7 +4030,6 @@
     <string name="VideoPreview">Videovorschau</string>
     <string name="VideoQualityIsTooLow">Die Videoqualität ist zu niedrig, um die Komprimierung zu ändern.</string>
     <string name="VideoSavedHint">Video in Galerie gespeichert</string>
-    <string name="VideoSavedToDownloadsHint">Video in Downloads gespeichert</string>
     <string name="VideosSavedHint_few">%1$d Videos in Galerie gespeichert</string>
     <string name="VideosSavedHint_many">%1$d Videos in Galerie gespeichert</string>
     <string name="VideosSavedHint_one">Video in Galerie gespeichert</string>
@@ -4428,7 +4412,16 @@
     <string name="common_open_on_phone">Auf Smartphone öffnen</string>
     <string name="common_signin_button_text">Anmelden</string>
     <string name="common_signin_button_text_long">Über Google anmelden</string>
+    <string name="confirm_device_credential_password">Passwort nutzen</string>
+    <string name="default_error_msg">Unbekannter Fehler</string>
     <string name="fcm_fallback_notification_channel_label">Sonstiges</string>
+    <string name="fingerprint_dialog_touch_sensor">Fingerabdrucksensor berühren</string>
+    <string name="fingerprint_error_hw_not_available">Fingerabdruckhardware nicht verfügbar.</string>
+    <string name="fingerprint_error_hw_not_present">Dieses Gerät hat keinen Fingerabdrucksensor</string>
+    <string name="fingerprint_error_lockout">Zu viele Versuche. Versuche es bitte später noch einmal.</string>
+    <string name="fingerprint_error_no_fingerprints">Keine Fingerabdrücke erfasst.</string>
+    <string name="fingerprint_error_user_canceled">Vorgang der Fingerabdruckauthentifizierung vom Nutzer abgebrochen.</string>
+    <string name="fingerprint_not_recognized">Nicht erkannt</string>
     <string name="formatDateAtTime">%1$s um %2$s</string>
     <string name="formatDateSchedule">d MMM</string>
     <string name="formatDateScheduleYear">d MMM yyyy</string>
@@ -4448,6 +4441,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd.MM.yy</string>
     <string name="formatterYearMax">dd.MM.yyyy</string>
+    <string name="generic_error_no_device_credential">Keine PIN, kein Muster und kein Passwort festgelegt.</string>
+    <string name="generic_error_no_keyguard">Dieses Gerät kann nicht mit einer PIN, einem Muster oder einem Passwort gesperrt bzw. entsperrt werden.</string>
+    <string name="generic_error_user_canceled">Authentifizierung vom Nutzer abgebrochen.</string>
     <string name="google_assistant_verification_channel_name">Assistant-Prüfung</string>
     <string name="google_assistant_verification_notification_title">Google Assistant sendet eine Nachricht</string>
     <string name="items_few">%1$d Objekte</string>

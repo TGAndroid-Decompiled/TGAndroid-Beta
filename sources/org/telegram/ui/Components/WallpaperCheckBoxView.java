@@ -15,6 +15,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
+
 public class WallpaperCheckBoxView extends View {
     public final Property<WallpaperCheckBoxView, Float> PROGRESS_PROPERTY;
     private Paint backgroundPaint;
@@ -62,7 +63,7 @@ public class WallpaperCheckBoxView extends View {
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.textPaint.setTypeface(AndroidUtilities.bold());
         Paint paint = new Paint(1);
         this.checkPaint = paint;
         paint.setStyle(Paint.Style.STROKE);

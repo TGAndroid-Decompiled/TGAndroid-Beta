@@ -7,7 +7,6 @@ import j$.time.ZoneId;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -21,6 +20,7 @@ import org.telegram.tgnet.TLRPC$TL_help_getTimezonesList;
 import org.telegram.tgnet.TLRPC$TL_help_timezonesList;
 import org.telegram.tgnet.TLRPC$TL_timezone;
 import org.telegram.tgnet.TLRPC$help_timezonesList;
+
 public class TimezonesController {
     private static volatile TimezonesController[] Instance = new TimezonesController[4];
     private static final Object[] lockObjects = new Object[4];
@@ -156,25 +156,26 @@ public class TimezonesController {
     }
 
     public String getTimezoneOffsetName(TLRPC$TL_timezone tLRPC$TL_timezone) {
-        if (tLRPC$TL_timezone.utc_offset != 0) {
-            StringBuilder sb = new StringBuilder();
-            sb.append("GMT");
-            sb.append(tLRPC$TL_timezone.utc_offset < 0 ? "-" : "+");
-            String sb2 = sb.toString();
-            int abs = Math.abs(tLRPC$TL_timezone.utc_offset) / 60;
-            int i = abs / 60;
-            int i2 = abs % 60;
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append(sb2);
-            sb3.append(i < 10 ? "0" : BuildConfig.APP_CENTER_HASH);
-            sb3.append(i);
-            StringBuilder sb4 = new StringBuilder();
-            sb4.append(sb3.toString() + ":");
-            sb4.append(i2 >= 10 ? BuildConfig.APP_CENTER_HASH : "0");
-            sb4.append(i2);
-            return sb4.toString();
+        if (tLRPC$TL_timezone.utc_offset == 0) {
+            return "GMT";
         }
-        return "GMT";
+        StringBuilder sb = new StringBuilder();
+        sb.append("GMT");
+        sb.append(tLRPC$TL_timezone.utc_offset < 0 ? "-" : "+");
+        String sb2 = sb.toString();
+        int abs = Math.abs(tLRPC$TL_timezone.utc_offset) / 60;
+        int i = abs / 60;
+        int i2 = abs % 60;
+        StringBuilder sb3 = new StringBuilder();
+        sb3.append(sb2);
+        sb3.append(i < 10 ? "0" : "");
+        sb3.append(i);
+        String str = sb3.toString() + ":";
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(str);
+        sb4.append(i2 >= 10 ? "" : "0");
+        sb4.append(i2);
+        return sb4.toString();
     }
 
     public String getTimezoneName(String str, boolean z) {
@@ -183,9 +184,9 @@ public class TimezonesController {
             return getTimezoneName(findTimezone, z);
         }
         ZoneId of = ZoneId.of(str);
-        String str2 = BuildConfig.APP_CENTER_HASH;
+        String str2 = "";
         if (of == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String str3 = null;
         if (z) {

@@ -3,7 +3,9 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.os.Build;
 import com.android.billingclient.api.ProductDetails;
+import java.util.Iterator;
 import java.util.Objects;
+
 public class BuildVars {
     public static String APP_HASH = null;
     public static int APP_ID = 0;
@@ -25,7 +27,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION_STRING = BuildConfig.BUILD_VERSION_STRING;
+        BUILD_VERSION_STRING = "10.15.1";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -51,10 +53,12 @@ public class BuildVars {
     private static boolean hasDirectCurrency() {
         ProductDetails productDetails;
         if (BillingController.getInstance().isReady() && (productDetails = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            for (ProductDetails.SubscriptionOfferDetails subscriptionOfferDetails : productDetails.getSubscriptionOfferDetails()) {
-                for (ProductDetails.PricingPhase pricingPhase : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList()) {
-                    for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(pricingPhase.getPriceCurrencyCode(), str)) {
+            Iterator<ProductDetails.SubscriptionOfferDetails> it = productDetails.getSubscriptionOfferDetails().iterator();
+            while (it.hasNext()) {
+                for (ProductDetails.PricingPhase pricingPhase : it.next().getPricingPhases().getPricingPhaseList()) {
+                    Iterator<String> it2 = MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency.iterator();
+                    while (it2.hasNext()) {
+                        if (Objects.equals(pricingPhase.getPriceCurrencyCode(), it2.next())) {
                             return true;
                         }
                     }

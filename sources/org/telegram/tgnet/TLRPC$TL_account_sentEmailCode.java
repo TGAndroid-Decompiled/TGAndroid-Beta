@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_account_sentEmailCode extends TLObject {
     public String email_pattern;
     public int length;

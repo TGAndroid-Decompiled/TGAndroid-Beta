@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_requestUrlAuth extends TLObject {
     public int button_id;
     public int flags;

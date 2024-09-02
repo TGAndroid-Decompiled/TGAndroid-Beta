@@ -4,12 +4,13 @@ import com.googlecode.mp4parser.AbstractBox;
 import java.nio.ByteBuffer;
 import java.util.List;
 import org.telegram.messenger.video.HevcDecoderConfigurationRecord;
+
 public class HevcConfigurationBox extends AbstractBox {
     public static final String TYPE = "hvcC";
     private HevcDecoderConfigurationRecord hevcDecoderConfigurationRecord;
 
     public HevcConfigurationBox() {
-        super(TYPE);
+        super("hvcC");
         this.hevcDecoderConfigurationRecord = new HevcDecoderConfigurationRecord();
     }
 

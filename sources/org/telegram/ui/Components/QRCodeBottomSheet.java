@@ -27,6 +27,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+
 public class QRCodeBottomSheet extends BottomSheet {
     private TextView button2TextView;
     private final TextView buttonTextView;
@@ -97,7 +98,7 @@ public class QRCodeBottomSheet extends BottomSheet {
         textView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setTypeface(AndroidUtilities.bold());
         textView2.setText(LocaleController.getString("ShareQrCode", R.string.ShareQrCode));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override

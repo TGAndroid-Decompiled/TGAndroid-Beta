@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getStatsURL extends TLObject {
     public boolean dark;
     public int flags;

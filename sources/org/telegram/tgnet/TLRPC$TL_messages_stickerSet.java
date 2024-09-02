@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_stickerSet extends TLRPC$messages_StickerSet {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

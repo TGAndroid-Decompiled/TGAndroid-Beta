@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
+
 public class TLRPC$TL_help_countriesList extends TLRPC$help_CountriesList {
     public ArrayList<TLRPC$TL_help_country> countries = new ArrayList<>();
     public int hash;

@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messages_getEmojiProfilePhotoGroups extends TLObject {
     public int hash;
 

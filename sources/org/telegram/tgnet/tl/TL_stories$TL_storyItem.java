@@ -1,12 +1,12 @@
 package org.telegram.tgnet.tl;
 
-import org.telegram.messenger.LiteMode;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$PrivacyRule;
 import org.telegram.tgnet.TLRPC$Reaction;
+
 public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -14,12 +14,12 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         this.flags = readInt32;
         this.pinned = (readInt32 & 32) != 0;
         this.isPublic = (readInt32 & 128) != 0;
-        this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
-        this.min = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
+        this.close_friends = (readInt32 & 256) != 0;
+        this.min = (readInt32 & 512) != 0;
         this.noforwards = (readInt32 & 1024) != 0;
         this.edited = (readInt32 & 2048) != 0;
-        this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
-        this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+        this.contacts = (readInt32 & 4096) != 0;
+        this.selected_contacts = (readInt32 & 8192) != 0;
         this.out = (readInt32 & 65536) != 0;
         this.id = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -51,7 +51,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
             }
         }
         this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+        if ((this.flags & 16384) != 0) {
             int readInt324 = abstractSerializedData.readInt32(z);
             if (readInt324 != 481674261) {
                 if (z) {
@@ -88,7 +88,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         if ((this.flags & 8) != 0) {
             this.views = TL_stories$StoryViews.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+        if ((this.flags & 32768) != 0) {
             this.sent_reaction = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
@@ -100,17 +100,17 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         this.flags = i;
         int i2 = this.isPublic ? i | 128 : i & (-129);
         this.flags = i2;
-        int i3 = this.close_friends ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
+        int i3 = this.close_friends ? i2 | 256 : i2 & (-257);
         this.flags = i3;
-        int i4 = this.min ? i3 | LiteMode.FLAG_CALLS_ANIMATIONS : i3 & (-513);
+        int i4 = this.min ? i3 | 512 : i3 & (-513);
         this.flags = i4;
         int i5 = this.noforwards ? i4 | 1024 : i4 & (-1025);
         this.flags = i5;
         int i6 = this.edited ? i5 | 2048 : i5 & (-2049);
         this.flags = i6;
-        int i7 = this.contacts ? i6 | LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM : i6 & (-4097);
+        int i7 = this.contacts ? i6 | 4096 : i6 & (-4097);
         this.flags = i7;
-        int i8 = this.selected_contacts ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i7 & (-8193);
+        int i8 = this.selected_contacts ? i7 | 8192 : i7 & (-8193);
         this.flags = i8;
         int i9 = this.out ? i8 | 65536 : i8 & (-65537);
         this.flags = i9;
@@ -136,7 +136,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
             }
         }
         this.media.serializeToStream(abstractSerializedData);
-        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+        if ((this.flags & 16384) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.media_areas.size();
             abstractSerializedData.writeInt32(size2);
@@ -155,7 +155,7 @@ public class TL_stories$TL_storyItem extends TL_stories$StoryItem {
         if ((this.flags & 8) != 0) {
             this.views.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+        if ((this.flags & 32768) != 0) {
             this.sent_reaction.serializeToStream(abstractSerializedData);
         }
     }

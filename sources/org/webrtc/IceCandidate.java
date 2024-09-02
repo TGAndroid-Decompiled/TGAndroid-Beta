@@ -1,8 +1,8 @@
 package org.webrtc;
 
 import java.util.Arrays;
-import org.telegram.messenger.BuildConfig;
 import org.webrtc.PeerConnection;
+
 public class IceCandidate {
     public final PeerConnection.AdapterType adapterType;
     public final String sdp;
@@ -14,7 +14,7 @@ public class IceCandidate {
         this.sdpMid = str;
         this.sdpMLineIndex = i;
         this.sdp = str2;
-        this.serverUrl = BuildConfig.APP_CENTER_HASH;
+        this.serverUrl = "";
         this.adapterType = PeerConnection.AdapterType.UNKNOWN;
     }
 
@@ -42,11 +42,11 @@ public class IceCandidate {
     }
 
     public boolean equals(Object obj) {
-        if (obj instanceof IceCandidate) {
-            IceCandidate iceCandidate = (IceCandidate) obj;
-            return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
+        if (!(obj instanceof IceCandidate)) {
+            return false;
         }
-        return false;
+        IceCandidate iceCandidate = (IceCandidate) obj;
+        return objectEquals(this.sdpMid, iceCandidate.sdpMid) && this.sdpMLineIndex == iceCandidate.sdpMLineIndex && objectEquals(this.sdp, iceCandidate.sdp);
     }
 
     public int hashCode() {

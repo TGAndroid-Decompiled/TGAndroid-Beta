@@ -3,6 +3,7 @@ package org.telegram.ui.ActionBar;
 import android.util.SparseArray;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashMap;
+
 public class ThemeColors {
     private static SparseArray<String> colorKeysMap;
     private static HashMap<String, Integer> colorKeysStringMap;
@@ -182,6 +183,8 @@ public class ThemeColors {
         iArr[Theme.key_actionBarTabLine] = -1;
         iArr[Theme.key_actionBarTabSelector] = -12554860;
         iArr[Theme.key_actionBarBrowser] = -1;
+        iArr[Theme.key_table_background] = -526345;
+        iArr[Theme.key_table_border] = -2039584;
         iArr[Theme.key_actionBarDefaultArchived] = -9471353;
         iArr[Theme.key_actionBarDefaultArchivedSelector] = -10590350;
         iArr[Theme.key_actionBarDefaultArchivedIcon] = -1;
@@ -703,8 +706,10 @@ public class ThemeColors {
         iArr[Theme.key_premiumGradientBackground3] = -2401123;
         iArr[Theme.key_premiumGradientBackground4] = -816858;
         iArr[Theme.key_premiumGradientBackgroundOverlay] = -1;
-        iArr[Theme.key_premiumStartGradient1] = -1;
-        iArr[Theme.key_premiumStartGradient2] = -1839878;
+        iArr[Theme.key_premiumStarGradient1] = -1;
+        iArr[Theme.key_premiumStarGradient2] = -1839878;
+        iArr[Theme.key_premiumCoinGradient1] = -15436801;
+        iArr[Theme.key_premiumCoinGradient2] = -4167942;
         iArr[Theme.key_premiumStartSmallStarsColor] = ColorUtils.setAlphaComponent(-1, 90);
         iArr[Theme.key_premiumStartSmallStarsColor2] = ColorUtils.setAlphaComponent(-1, 90);
         iArr[Theme.key_premiumGradientBottomSheet1] = -10773017;
@@ -712,6 +717,8 @@ public class ThemeColors {
         iArr[Theme.key_premiumGradientBottomSheet3] = -1600322;
         iArr[Theme.key_topics_unreadCounter] = -11613090;
         iArr[Theme.key_topics_unreadCounterMuted] = -7631473;
+        iArr[Theme.key_starsGradient1] = -79802;
+        iArr[Theme.key_starsGradient2] = -1273334;
         iArr[Theme.key_stories_circle1] = -12984516;
         iArr[Theme.key_stories_circle2] = -11682817;
         iArr[Theme.key_stories_circle_dialog1] = -11866795;
@@ -727,6 +734,10 @@ public class ThemeColors {
         iArr[Theme.key_code_number] = -13467675;
         iArr[Theme.key_code_comment] = Integer.MIN_VALUE;
         iArr[Theme.key_code_function] = -881607;
+        iArr[Theme.key_iv_background] = -1;
+        iArr[Theme.key_iv_backgroundGray] = -986896;
+        iArr[Theme.key_iv_ab_progress] = -11491093;
+        iArr[Theme.key_iv_navigationBackground] = -986896;
         return iArr;
     }
 
@@ -915,6 +926,8 @@ public class ThemeColors {
         sparseArray.put(Theme.key_actionBarTabUnactiveText, "actionBarTabUnactiveText");
         sparseArray.put(Theme.key_actionBarTabLine, "actionBarTabLine");
         sparseArray.put(Theme.key_actionBarTabSelector, "actionBarTabSelector");
+        sparseArray.put(Theme.key_table_background, "table_background");
+        sparseArray.put(Theme.key_table_border, "table_border");
         sparseArray.put(Theme.key_actionBarDefaultArchived, "actionBarDefaultArchived");
         sparseArray.put(Theme.key_actionBarDefaultArchivedSelector, "actionBarDefaultArchivedSelector");
         sparseArray.put(Theme.key_actionBarDefaultArchivedIcon, "actionBarDefaultArchivedIcon");
@@ -1257,6 +1270,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_chat_inBubbleLocationPlaceholder, "chat_inBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_outBubbleLocationPlaceholder, "chat_outBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_BlurAlpha, "chat_BlurAlpha");
+        sparseArray.put(Theme.key_chat_BlurAlphaSlow, "chat_BlurAlphaSlow");
         sparseArray.put(Theme.key_chat_editMediaButton, "chat_editMediaButton");
         sparseArray.put(Theme.key_voipgroup_listSelector, "voipgroup_listSelector");
         sparseArray.put(Theme.key_voipgroup_inviteMembersBackground, "voipgroup_inviteMembersBackground");
@@ -1445,8 +1459,10 @@ public class ThemeColors {
         sparseArray.put(Theme.key_premiumGradientBackground4, "premiumGradientBackground4");
         sparseArray.put(Theme.key_premiumGradientBackgroundOverlay, "premiumGradientBackgroundOverlay");
         sparseArray.put(Theme.key_premiumStartSmallStarsColor, "premiumStartSmallStarsColor");
-        sparseArray.put(Theme.key_premiumStartGradient1, "premiumStarGradient1");
-        sparseArray.put(Theme.key_premiumStartGradient2, "premiumStarGradient2");
+        sparseArray.put(Theme.key_premiumStarGradient1, "premiumStarGradient1");
+        sparseArray.put(Theme.key_premiumStarGradient2, "premiumStarGradient2");
+        sparseArray.put(Theme.key_premiumCoinGradient1, "premiumCoinGradient1");
+        sparseArray.put(Theme.key_premiumCoinGradient2, "premiumCoinGradient2");
         sparseArray.put(Theme.key_premiumStartSmallStarsColor2, "premiumStartSmallStarsColor2");
         sparseArray.put(Theme.key_premiumGradientBottomSheet1, "premiumGradientBottomSheet1");
         sparseArray.put(Theme.key_premiumGradientBottomSheet2, "premiumGradientBottomSheet2");
@@ -1468,6 +1484,10 @@ public class ThemeColors {
         sparseArray.put(Theme.key_code_number, "code_number");
         sparseArray.put(Theme.key_code_comment, "code_comment");
         sparseArray.put(Theme.key_code_function, "code_function");
+        sparseArray.put(Theme.key_iv_background, "iv_background");
+        sparseArray.put(Theme.key_iv_backgroundGray, "iv_backgroundGray");
+        sparseArray.put(Theme.key_iv_navigationBackground, "iv_navigationBackground");
+        sparseArray.put(Theme.key_iv_ab_progress, "iv_ab_progress");
         return sparseArray;
     }
 

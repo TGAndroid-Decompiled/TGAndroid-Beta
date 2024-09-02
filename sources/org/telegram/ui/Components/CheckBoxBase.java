@@ -12,9 +12,9 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
+
 public class CheckBoxBase {
     private static Paint eraser;
     private static Paint forbidPaint;
@@ -22,6 +22,7 @@ public class CheckBoxBase {
     public long animationDuration;
     private boolean attachedToWindow;
     private int background2ColorKey;
+    private int backgroundColor;
     private int backgroundColorKey;
     private Paint backgroundPaint;
     private int backgroundType;
@@ -170,12 +171,17 @@ public class CheckBoxBase {
         this.backgroundType = i;
         if (i == 12 || i == 13) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        } else if (i == 4 || i == 5) {
+            return;
+        }
+        if (i == 4 || i == 5) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.9f));
             if (i == 5) {
                 this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+                return;
             }
-        } else if (i == 3) {
+            return;
+        }
+        if (i == 3) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         } else if (i != 0) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
@@ -219,6 +225,11 @@ public class CheckBoxBase {
         invalidate();
     }
 
+    public void setBackgroundColor(int i) {
+        this.backgroundColor = i;
+        invalidate();
+    }
+
     public void setBackgroundDrawable(Theme.MessageDrawable messageDrawable) {
         this.messageDrawable = messageDrawable;
     }
@@ -233,7 +244,7 @@ public class CheckBoxBase {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -246,7 +257,7 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
+            this.checkedText = "" + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {
@@ -255,10 +266,10 @@ public class CheckBoxBase {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public void draw(android.graphics.Canvas r25) {

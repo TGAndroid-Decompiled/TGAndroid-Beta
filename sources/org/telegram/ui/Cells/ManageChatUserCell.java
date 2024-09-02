@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -22,6 +21,7 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.StoriesUtilities;
+
 public class ManageChatUserCell extends FrameLayout {
     private final AvatarDrawable avatarDrawable;
     private final BackupImageView avatarImageView;
@@ -73,10 +73,9 @@ public class ManageChatUserCell extends FrameLayout {
         BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public void onDraw(Canvas canvas) {
-                int dp;
                 if (ManageChatUserCell.this.storyItem != null) {
-                    float dp2 = AndroidUtilities.dp(1.0f);
-                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+                    float dp = AndroidUtilities.dp(1.0f);
+                    ManageChatUserCell.this.storyAvatarParams.originalAvatarRect.set(dp, dp, getMeasuredWidth() - r0, getMeasuredHeight() - r0);
                     ManageChatUserCell.this.storyAvatarParams.drawSegments = false;
                     ManageChatUserCell.this.storyAvatarParams.animate = false;
                     ManageChatUserCell.this.storyAvatarParams.drawInside = true;
@@ -97,7 +96,7 @@ public class ManageChatUserCell extends FrameLayout {
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         simpleTextView.setTextSize(17);
-        simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        simpleTextView.setTypeface(AndroidUtilities.bold());
         simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 46.0f : i2 + 68, 11.5f, z3 ? i2 + 68 : 46.0f, 0.0f));
@@ -172,48 +171,47 @@ public class ManageChatUserCell extends FrameLayout {
             this.currentStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.statusTextView.setText("");
             this.avatarImageView.setImageDrawable(null);
             return;
         }
         this.currentStatus = charSequence2;
         this.currentName = charSequence;
         this.currentObject = obj;
-        float f3 = 20.5f;
         if (this.optionsButton != null) {
             boolean onOptionsButtonCheck = this.delegate.onOptionsButtonCheck(this, false);
             this.optionsButton.setVisibility(onOptionsButtonCheck ? 0 : 4);
             SimpleTextView simpleTextView = this.nameTextView;
             boolean z2 = LocaleController.isRTL;
-            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 11.5f, LocaleController.isRTL ? this.namePadding + 68 : onOptionsButtonCheck ? 46 : 28, 0.0f));
+            simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : onOptionsButtonCheck ? 46 : 28, 0.0f));
             SimpleTextView simpleTextView2 = this.statusTextView;
             boolean z3 = LocaleController.isRTL;
             int i = (z3 ? 5 : 3) | 48;
-            float f4 = z3 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
+            float f3 = z3 ? onOptionsButtonCheck ? 46 : 28 : this.namePadding + 68;
             if (z3) {
                 f2 = this.namePadding + 68;
             } else {
                 f2 = onOptionsButtonCheck ? 46 : 28;
             }
-            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f4, 34.5f, f2, 0.0f));
+            simpleTextView2.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i, f3, 34.5f, f2, 0.0f));
         } else {
             ImageView imageView = this.customImageView;
             if (imageView != null) {
                 boolean z4 = imageView.getVisibility() == 0;
                 SimpleTextView simpleTextView3 = this.nameTextView;
                 boolean z5 = LocaleController.isRTL;
-                simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? z4 ? 54 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 11.5f, LocaleController.isRTL ? this.namePadding + 68 : z4 ? 54 : 28, 0.0f));
+                simpleTextView3.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? z4 ? 54 : 28 : this.namePadding + 68, (charSequence2 == null || charSequence2.length() > 0) ? 11.5f : 20.5f, LocaleController.isRTL ? this.namePadding + 68 : z4 ? 54 : 28, 0.0f));
                 SimpleTextView simpleTextView4 = this.statusTextView;
                 boolean z6 = LocaleController.isRTL;
                 int i2 = (z6 ? 5 : 3) | 48;
-                float f5 = z6 ? z4 ? 54 : 28 : this.namePadding + 68;
+                float f4 = z6 ? z4 ? 54 : 28 : this.namePadding + 68;
                 if (z6) {
                     f = this.namePadding + 68;
                 } else {
                     f = z4 ? 54 : 28;
                 }
-                simpleTextView4.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i2, f5, 34.5f, f, 0.0f));
+                simpleTextView4.setLayoutParams(LayoutHelper.createFrame(-1, 20.0f, i2, f4, 34.5f, f, 0.0f));
             }
         }
         this.needDivider = z;

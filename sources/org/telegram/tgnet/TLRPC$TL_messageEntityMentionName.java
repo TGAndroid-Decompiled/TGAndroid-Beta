@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageEntityMentionName extends TLRPC$MessageEntity {
     public long user_id;
 

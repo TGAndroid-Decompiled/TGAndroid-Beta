@@ -964,8 +964,6 @@
     <string name="ChooseTheme">Escolha um tema</string>
     <string name="ChooseYourLanguage">Escolha o seu idioma</string>
     <string name="ChooseYourLanguageOther">Outro</string>
-    <string name="ChromeCustomTabs">Navegador Interno</string>
-    <string name="ChromeCustomTabsInfo">Abre links externos dentro do aplicativo.</string>
     <string name="ClearButton">Limpar</string>
     <string name="ClearCache">Limpar Cache</string>
     <string name="ClearCacheFewChatsTitle">Limpar cache para %1$s</string>
@@ -1189,7 +1187,6 @@
     <string name="DeleteBackground_other">Apagar %1$d papéis de parede</string>
     <string name="DeleteBackground_two">Apagar %1$d papéis de parede</string>
     <string name="DeleteBackground_zero">Apagar %1$d papéis de parede</string>
-    <string name="DeleteBanUser">Banir usuário</string>
     <string name="DeleteCalls">Apagar chamadas</string>
     <string name="DeleteCallsForEveryone">Apagar para todos</string>
     <string name="DeleteChannelForAll">Apagar para todos inscritos</string>
@@ -1434,8 +1431,6 @@
     <string name="EventLogEditedMedia">un1 editou a mídia:</string>
     <string name="EventLogEditedMediaCaption">un1 editou a mídia e a legenda:</string>
     <string name="EventLogEditedMessages">un1 editou esta mensagem:</string>
-    <string name="EventLogEmpty">**Nenhuma ação ainda**\n\nOs membros e admins do grupo\nainda não tomaram nenhuma ação\nnas últimas 48 horas.</string>
-    <string name="EventLogEmptyChannel">**Nenhuma ação ainda**\n\nOs admins do canal não fizeram nenhuma ação de serviço nas últimas 48 horas.</string>
     <string name="EventLogEmptySearch">**Nenhuma ação encontrada**\n\nNenhuma ação recente corresponde à sua busca.</string>
     <string name="EventLogEmptyTextSearch">Nenhuma ação recente que contenha \"**%1$s**\" foi encontrada.</string>
     <string name="EventLogEndedVoiceChat">un1 encerrou o chat de voz</string>
@@ -1534,15 +1529,8 @@
     <string name="FeaturedStickers">Stickers Populares</string>
     <string name="FeaturedStickersInfo">Esses são os stickers em alta no Telegram. Você pode adicionar stickers personalizados usando o bot @stickers.</string>
     <string name="February">fevereiro</string>
-    <string name="FileSavedHint">Arquivo salvo em downloads</string>
     <string name="FileUploadLimit">Tamanho do arquivo não deve ser maior que %1$s</string>
     <string name="FilesDataUsage">Arquivos</string>
-    <string name="FilesSavedHint_few">%1$d arquivos salvos em downloads</string>
-    <string name="FilesSavedHint_many">%1$d arquivos salvos em downloads</string>
-    <string name="FilesSavedHint_one">Arquivo salvo em downloads</string>
-    <string name="FilesSavedHint_other">%1$d arquivos salvos em downloads</string>
-    <string name="FilesSavedHint_two">%1$d arquivos salvos em downloads</string>
-    <string name="FilesSavedHint_zero">%1$d arquivos salvos em downloads</string>
     <string name="Files_few">%1$d arquivos</string>
     <string name="Files_many">%1$d arquivos</string>
     <string name="Files_one">%1$d arquivo</string>
@@ -1751,7 +1739,6 @@
     <string name="GetQRCode">Obter Código QR</string>
     <string name="GettingLinkInfo">Obtendo informações...</string>
     <string name="GifCaption">Legenda do GIF</string>
-    <string name="GifSavedToDownloadsHint">GIF salvo em downloads</string>
     <string name="GifsTab2">GIFs</string>
     <string name="GigagroupAlertLearnMore">SABER MAIS</string>
     <string name="GigagroupAlertText">Seu grupo atingiu o limite de **200.000** membros.\n\nVocê pode aumentar esse limite convertendo o grupo em um **grupo de transmissão** em que apenas admins podem postar. Tem interesse?</string>
@@ -1804,7 +1791,6 @@
     <string name="GroupUserCantAdmin">Desculpe, há muitos administradores neste grupo.</string>
     <string name="GroupUserCantBot">Desculpe, há bots demais neste grupo.</string>
     <string name="GroupUserLeftError">Desculpe, se uma pessoa não faz mais parte de um grupo, você precisa estar nos contatos do Telegram dela para conseguir adicioná-la de volta ao grupo.\n\nNote que ainda é possível que essa pessoa entre usando um link de convite do grupo desde que não esteja na lista de Usuários Removidos.</string>
-    <string name="GroupsAndChannels">Grupos e Canais</string>
     <string name="GroupsAndChannelsHelp">Altera quem pode te adicionar em grupos ou canais.</string>
     <string name="GroupsInCommon">Grupos em Comum</string>
     <string name="GroupsInCommonTitle">Grupos em Comum</string>
@@ -3003,7 +2989,6 @@
     <string name="PhotoCaption">Legenda da Foto</string>
     <string name="PhotoEditorDiscardAlert">Deseja mesmo descartar todas as alterações?</string>
     <string name="PhotoSavedHint">Foto salva na galeria</string>
-    <string name="PhotoSavedToDownloadsHint">Foto salva em downloads</string>
     <string name="PhotosSavedHint_few">%1$d fotos salvas na galeria</string>
     <string name="PhotosSavedHint_many">%1$d fotos salvas na galeria</string>
     <string name="PhotosSavedHint_one">Foto salva na galeria</string>
@@ -4046,7 +4031,6 @@
     <string name="VideoPreview">Prévia do Vídeo</string>
     <string name="VideoQualityIsTooLow">A qualidade do vídeo é muito baixa para mudar a compressão.</string>
     <string name="VideoSavedHint">Vídeo salvo na galeria</string>
-    <string name="VideoSavedToDownloadsHint">Vídeo salvo em downloads</string>
     <string name="VideosSavedHint_few">%1$d vídeos salvos na galeria</string>
     <string name="VideosSavedHint_many">%1$d vídeos salvos na galeria</string>
     <string name="VideosSavedHint_one">Vídeo salvo na galeria</string>
@@ -4429,7 +4413,16 @@
     <string name="common_open_on_phone">Abrir no smartphone</string>
     <string name="common_signin_button_text">Fazer login</string>
     <string name="common_signin_button_text_long">Fazer login com o Google</string>
+    <string name="confirm_device_credential_password">Usar senha</string>
+    <string name="default_error_msg">Erro desconhecido</string>
     <string name="fcm_fallback_notification_channel_label">Diversos</string>
+    <string name="fingerprint_dialog_touch_sensor">Toque no sensor de digital</string>
+    <string name="fingerprint_error_hw_not_available">Hardware de impressão digital não disponível.</string>
+    <string name="fingerprint_error_hw_not_present">Este dispositivo não tem um sensor de impressão digital</string>
+    <string name="fingerprint_error_lockout">Muitas tentativas. Tente novamente mais tarde.</string>
+    <string name="fingerprint_error_no_fingerprints">Nenhuma impressão digital registrada.</string>
+    <string name="fingerprint_error_user_canceled">Operação de impressão digital cancelada pelo usuário.</string>
+    <string name="fingerprint_not_recognized">Não reconhecido</string>
     <string name="formatDateAtTime">%1$s, %2$s</string>
     <string name="formatDateSchedule">d \'de\' MMM</string>
     <string name="formatDateScheduleYear">d \'de\' MMM \'de\' yyyy</string>
@@ -4449,6 +4442,9 @@
     <string name="formatterWeekLong">EEEE</string>
     <string name="formatterYear">dd.MM.yy</string>
     <string name="formatterYearMax">dd.MM.yyyy</string>
+    <string name="generic_error_no_device_credential">Nenhum PIN, padrão ou senha configurado.</string>
+    <string name="generic_error_no_keyguard">Este dispositivo não é compatível com PIN, padrão ou senha.</string>
+    <string name="generic_error_user_canceled">Autenticação cancelada pelo usuário.</string>
     <string name="google_assistant_verification_channel_name">Verificador do Assistente</string>
     <string name="google_assistant_verification_notification_title">O Google Assistente está enviando a mensagem</string>
     <string name="items_few">%1$d itens</string>

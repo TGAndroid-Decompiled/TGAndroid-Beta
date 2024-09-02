@@ -3,6 +3,7 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.webrtc.VideoEncoderFactory;
+
 public class SoftwareVideoEncoderFactory implements VideoEncoderFactory {
     @Override
     public VideoEncoderFactory.VideoEncoderSelector getEncoderSelector() {

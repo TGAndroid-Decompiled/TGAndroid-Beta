@@ -10,7 +10,7 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.BuildConfig;
+
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -57,15 +57,15 @@ public class FileVideoCapturer implements VideoCapturer {
                 int read = this.mediaFile.read();
                 if (read == -1) {
                     throw new RuntimeException("Found end of file before end of header for file: " + str);
-                } else if (read != 10) {
+                }
+                if (read != 10) {
                     sb.append((char) read);
                 } else {
                     this.videoStart = this.mediaFileChannel.position();
-                    String[] split = sb.toString().split("[ ]");
-                    String str2 = BuildConfig.APP_CENTER_HASH;
+                    String str2 = "";
                     int i = 0;
                     int i2 = 0;
-                    for (String str3 : split) {
+                    for (String str3 : sb.toString().split("[ ]")) {
                         char charAt = str3.charAt(0);
                         if (charAt == 'C') {
                             str2 = str3.substring(1);
@@ -75,7 +75,7 @@ public class FileVideoCapturer implements VideoCapturer {
                             i = Integer.parseInt(str3.substring(1));
                         }
                     }
-                    Logging.d(TAG, "Color space: " + str2);
+                    Logging.d("VideoReaderY4M", "Color space: " + str2);
                     if (!str2.equals("420") && !str2.equals("420mpeg2")) {
                         throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
                     }
@@ -84,7 +84,7 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                     this.frameWidth = i;
                     this.frameHeight = i2;
-                    Logging.d(TAG, "frame dim: (" + i + ", " + i2 + ")");
+                    Logging.d("VideoReaderY4M", "frame dim: (" + i + ", " + i2 + ")");
                     return;
                 }
             }
@@ -128,7 +128,7 @@ public class FileVideoCapturer implements VideoCapturer {
             try {
                 this.mediaFile.close();
             } catch (IOException e) {
-                Logging.e(TAG, "Problem closing file", e);
+                Logging.e("VideoReaderY4M", "Problem closing file", e);
             }
         }
     }
@@ -137,7 +137,7 @@ public class FileVideoCapturer implements VideoCapturer {
         try {
             this.videoReader = new VideoReaderY4M(str);
         } catch (IOException e) {
-            Logging.d(TAG, "Could not open video file: " + str);
+            Logging.d("FileVideoCapturer", "Could not open video file: " + str);
             throw e;
         }
     }

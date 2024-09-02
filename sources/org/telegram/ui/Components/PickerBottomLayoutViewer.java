@@ -7,6 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PickerBottomLayoutViewer extends FrameLayout {
     public TextView cancelButton;
     public TextView doneButton;
@@ -29,7 +30,7 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.cancelButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
         this.cancelButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.cancelButton.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
-        this.cancelButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.cancelButton.setTypeface(AndroidUtilities.bold());
         addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
         TextView textView2 = new TextView(context);
         this.doneButton = textView2;
@@ -39,11 +40,11 @@ public class PickerBottomLayoutViewer extends FrameLayout {
         this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0));
         this.doneButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
         this.doneButton.setText(LocaleController.getString("Send", R.string.Send).toUpperCase());
-        this.doneButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.doneButton.setTypeface(AndroidUtilities.bold());
         addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
         TextView textView3 = new TextView(context);
         this.doneButtonBadgeTextView = textView3;
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTypeface(AndroidUtilities.bold());
         this.doneButtonBadgeTextView.setTextSize(1, 13.0f);
         this.doneButtonBadgeTextView.setTextColor(-1);
         this.doneButtonBadgeTextView.setGravity(17);
@@ -60,9 +61,10 @@ public class PickerBottomLayoutViewer extends FrameLayout {
                 this.doneButton.setTextColor(-6710887);
                 this.doneButton.setEnabled(false);
                 return;
+            } else {
+                this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+                return;
             }
-            this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
-            return;
         }
         this.doneButtonBadgeTextView.setVisibility(0);
         this.doneButtonBadgeTextView.setText(String.format("%d", Integer.valueOf(i)));

@@ -16,17 +16,18 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Paint.Painting;
 import org.telegram.ui.Components.Size;
+
 public class Painting {
     private Path activePath;
     private Shape activeShape;
@@ -51,6 +52,7 @@ public class Painting {
     private Bitmap imageBitmap;
     private Paint imageBitmapPaint;
     private int imageBitmapRotation;
+    private Texture originalBitmapTexture;
     private int paintTexture;
     private boolean paused;
     private float[] projection;
@@ -64,6 +66,7 @@ public class Painting {
     private ByteBuffer vertexBuffer;
     private HashMap<Integer, Texture> brushTextures = new HashMap<>();
     private int[] buffers = new int[1];
+    public boolean masking = false;
     private RenderState renderState = new RenderState();
 
     public interface PaintingDelegate {
@@ -122,6 +125,11 @@ public class Painting {
         }
     }
 
+    public Painting asMask() {
+        this.masking = true;
+        return this;
+    }
+
     public void setDelegate(PaintingDelegate paintingDelegate) {
         this.delegate = paintingDelegate;
     }
@@ -157,6 +165,9 @@ public class Painting {
         }
         if (this.bitmapBlurTexture == null) {
             this.bitmapBlurTexture = new Texture(bitmap2);
+        }
+        if (this.masking && this.originalBitmapTexture == null) {
+            this.originalBitmapTexture = new Texture(this.imageBitmap);
         }
     }
 
@@ -204,8 +215,11 @@ public class Painting {
             }
             if (this.helperShown) {
                 BotWebViewVibrationEffect.SELECTION_CHANGE.vibrate();
+                return;
             }
-        } else if (shape != this.helperShape) {
+            return;
+        }
+        if (shape != this.helperShape) {
             this.helperShape = shape;
             PaintingDelegate paintingDelegate2 = this.delegate;
             if (paintingDelegate2 != null) {
@@ -390,7 +404,7 @@ public class Painting {
             GLES20.glViewport(0, 0, (int) size.width, (int) size.height);
             if (z) {
                 GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+                GLES20.glClear(16384);
             }
             if (this.shaders == null) {
                 return;
@@ -682,7 +696,7 @@ public class Painting {
             Size size = this.size;
             GLES20.glViewport(0, 0, (int) size.width, (int) size.height);
             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-            GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+            GLES20.glClear(16384);
         }
         GLES20.glBindFramebuffer(36160, 0);
         PaintingDelegate paintingDelegate = this.delegate;
@@ -696,32 +710,32 @@ public class Painting {
     }
 
     private Slice registerUndo(RectF rectF, boolean z) {
-        if (rectF != null && rectF.setIntersect(rectF, getBounds())) {
-            final Slice slice = new Slice(getPaintingData(rectF, true, z, false).data, z ? 1 : 0, rectF, this.delegate.requestDispatchQueue());
-            this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
-                @Override
-                public final void run() {
-                    Painting.this.lambda$registerUndo$11(slice);
-                }
-            });
-            return slice;
+        if (rectF == null || !rectF.setIntersect(rectF, getBounds())) {
+            return null;
         }
-        return null;
+        final Slice slice = new Slice(getPaintingData(rectF, true, z, false).data, z ? 1 : 0, rectF, this.delegate.requestDispatchQueue());
+        this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
+            @Override
+            public final void run() {
+                Painting.this.lambda$registerUndo$11(slice);
+            }
+        });
+        return slice;
     }
 
     private Slice registerDoubleUndo(RectF rectF, final boolean z) {
-        if (rectF != null && rectF.setIntersect(rectF, getBounds())) {
-            final Slice slice = new Slice(getPaintingData(rectF, true, false, false).data, 0, rectF, this.delegate.requestDispatchQueue());
-            final Slice slice2 = new Slice(getPaintingData(rectF, true, true, false).data, 1, rectF, this.delegate.requestDispatchQueue());
-            this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
-                @Override
-                public final void run() {
-                    Painting.this.lambda$registerDoubleUndo$12(slice, slice2, z);
-                }
-            });
-            return slice;
+        if (rectF == null || !rectF.setIntersect(rectF, getBounds())) {
+            return null;
         }
-        return null;
+        final Slice slice = new Slice(getPaintingData(rectF, true, false, false).data, 0, rectF, this.delegate.requestDispatchQueue());
+        final Slice slice2 = new Slice(getPaintingData(rectF, true, true, false).data, 1, rectF, this.delegate.requestDispatchQueue());
+        this.delegate.requestUndoStore().registerUndo(UUID.randomUUID(), new Runnable() {
+            @Override
+            public final void run() {
+                Painting.this.lambda$registerDoubleUndo$12(slice, slice2, z);
+            }
+        });
+        return slice;
     }
 
     public void lambda$registerDoubleUndo$12(Slice slice, Slice slice2, boolean z) {
@@ -843,8 +857,7 @@ public class Painting {
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        int currentColor = this.renderView.getCurrentColor();
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(currentColor, (int) (Color.alpha(currentColor) * f)));
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(this.renderView.getCurrentColor(), (int) (Color.alpha(r6) * f)));
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, i);
         GLES20.glActiveTexture(33985);
@@ -882,7 +895,12 @@ public class Painting {
         if (brush == null) {
             brush = this.brush;
         }
-        Shader shader = this.shaders.get(brush.getShaderName(0));
+        boolean z = this.masking && ((brush instanceof Brush.Radial) || (brush instanceof Brush.Eraser));
+        Map<String, Shader> map = this.shaders;
+        StringBuilder sb = new StringBuilder();
+        sb.append(brush.getShaderName(0));
+        sb.append(z ? "_masking" : "");
+        Shader shader = map.get(sb.toString());
         if (shader == null) {
             return;
         }
@@ -890,12 +908,17 @@ public class Painting {
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1i(shader.getUniform("mask"), 1);
-        int color = path.getColor();
-        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(color, (int) (Color.alpha(color) * brush.getOverrideAlpha() * f)));
+        Shader.SetColorUniform(shader.getUniform("color"), ColorUtils.setAlphaComponent(path.getColor(), (int) (Color.alpha(r6) * brush.getOverrideAlpha() * f)));
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, getTexture());
         GLES20.glActiveTexture(33985);
         GLES20.glBindTexture(3553, i);
+        if (z) {
+            GLES20.glUniform1i(shader.getUniform("otexture"), 2);
+            GLES20.glUniform1f(shader.getUniform("preview"), 0.4f);
+            GLES20.glActiveTexture(33986);
+            GLES20.glBindTexture(3553, this.originalBitmapTexture.texture());
+        }
         Object obj = null;
         if (brush instanceof Brush.Blurer) {
             GLES20.glUniform1i(shader.getUniform("blured"), 2);
@@ -927,16 +950,26 @@ public class Painting {
     }
 
     private void renderBlit(int i, float f) {
-        Shader shader = this.shaders.get("blit");
+        Shader shader = this.shaders.get(this.masking ? "maskingBlit" : "blit");
         if (i == 0 || shader == null) {
             return;
         }
         GLES20.glUseProgram(shader.program);
         GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
-        GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glUniform1f(shader.getUniform("alpha"), f);
-        GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, i);
+        if (this.masking) {
+            GLES20.glUniform1i(shader.getUniform("texture"), 1);
+            GLES20.glUniform1i(shader.getUniform("mask"), 0);
+            GLES20.glUniform1f(shader.getUniform("preview"), 0.4f);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, i);
+            GLES20.glActiveTexture(33985);
+            GLES20.glBindTexture(3553, this.originalBitmapTexture.texture());
+        } else {
+            GLES20.glUniform1i(shader.getUniform("texture"), 0);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, i);
+        }
         GLES20.glBlendFunc(1, 771);
         GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
         GLES20.glEnableVertexAttribArray(0);
@@ -947,9 +980,11 @@ public class Painting {
     }
 
     public PaintingData getPaintingData(RectF rectF, boolean z, boolean z2, boolean z3) {
+        String str;
+        Texture texture;
         PaintingData paintingData;
         Shader shader;
-        Texture texture;
+        Texture texture2;
         int i = (int) rectF.left;
         int i2 = (int) rectF.top;
         int width = (int) rectF.width();
@@ -972,7 +1007,12 @@ public class Painting {
         if (map == null) {
             return null;
         }
-        Shader shader2 = map.get(z ? "nonPremultipliedBlit" : "blit");
+        if (z) {
+            str = "nonPremultipliedBlit";
+        } else {
+            str = this.masking ? "maskingBlit" : "blit";
+        }
+        Shader shader2 = map.get(str);
         if (shader2 == null) {
             return null;
         }
@@ -981,11 +1021,21 @@ public class Painting {
         matrix.preTranslate(-i, -i2);
         float[] MultiplyMat4f = GLMatrix.MultiplyMat4f(this.projection, GLMatrix.LoadGraphicsMatrix(matrix));
         GLES20.glUniformMatrix4fv(shader2.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(MultiplyMat4f));
-        GLES20.glUniform1i(shader2.getUniform("texture"), 0);
-        GLES20.glActiveTexture(33984);
-        GLES20.glBindTexture(3553, (!z2 || (texture = this.bitmapBlurTexture) == null) ? getTexture() : texture.texture());
+        if (!z && this.masking) {
+            GLES20.glUniform1i(shader2.getUniform("texture"), 1);
+            GLES20.glUniform1i(shader2.getUniform("mask"), 0);
+            GLES20.glUniform1f(shader2.getUniform("preview"), 0.0f);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, (!z2 || (texture2 = this.bitmapBlurTexture) == null) ? getTexture() : texture2.texture());
+            GLES20.glActiveTexture(33985);
+            GLES20.glBindTexture(3553, this.originalBitmapTexture.texture());
+        } else {
+            GLES20.glUniform1i(shader2.getUniform("texture"), 0);
+            GLES20.glActiveTexture(33984);
+            GLES20.glBindTexture(3553, (!z2 || (texture = this.bitmapBlurTexture) == null) ? getTexture() : texture.texture());
+        }
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        GLES20.glClear(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        GLES20.glClear(16384);
         GLES20.glBlendFunc(1, 0);
         GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
         GLES20.glEnableVertexAttribArray(0);
@@ -1151,10 +1201,15 @@ public class Painting {
         if (texture4 != null) {
             texture4.cleanResources(true);
         }
+        Texture texture5 = this.originalBitmapTexture;
+        if (texture5 != null) {
+            texture5.cleanResources(true);
+        }
         Map<String, Shader> map = this.shaders;
         if (map != null) {
-            for (Shader shader : map.values()) {
-                shader.cleanResources();
+            Iterator<Shader> it = map.values().iterator();
+            while (it.hasNext()) {
+                it.next().cleanResources();
             }
             this.shaders = null;
         }

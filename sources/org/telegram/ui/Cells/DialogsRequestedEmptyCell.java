@@ -11,7 +11,6 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -26,6 +25,7 @@ import org.telegram.tgnet.TLRPC$TL_requestPeerTypeChat;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+
 public class DialogsRequestedEmptyCell extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     TextView buttonView;
     int currentAccount;
@@ -85,7 +85,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         textView.setGravity(17);
         this.titleView.setTextSize(1, 18.0f);
         this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.titleView.setTypeface(AndroidUtilities.bold());
         linearLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2, 49, 0, 6, 0, 0));
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;
@@ -99,7 +99,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         this.buttonView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
         this.buttonView.setTextSize(1, 14.0f);
         this.buttonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        this.buttonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.buttonView.setTypeface(AndroidUtilities.bold());
         this.buttonView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         this.buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,16 +126,18 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
             this.subtitleView.setText(LocaleController.getString("NoSuchChannelsInfo", R.string.NoSuchChannelsInfo));
             this.buttonView.setVisibility(0);
             this.buttonView.setText(LocaleController.getString("CreateChannelForThis", R.string.CreateChannelForThis));
-        } else if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeChat) {
+            return;
+        }
+        if (tLRPC$RequestPeerType instanceof TLRPC$TL_requestPeerTypeChat) {
             this.titleView.setText(LocaleController.getString("NoSuchGroups", R.string.NoSuchGroups));
             this.subtitleView.setText(LocaleController.getString("NoSuchGroupsInfo", R.string.NoSuchGroupsInfo));
             this.buttonView.setVisibility(0);
             this.buttonView.setText(LocaleController.getString("CreateGroupForThis", R.string.CreateGroupForThis));
-        } else {
-            this.titleView.setText(LocaleController.getString("NoSuchUsers", R.string.NoSuchUsers));
-            this.subtitleView.setText(LocaleController.getString("NoSuchUsersInfo", R.string.NoSuchUsersInfo));
-            this.buttonView.setVisibility(8);
+            return;
         }
+        this.titleView.setText(LocaleController.getString("NoSuchUsers", R.string.NoSuchUsers));
+        this.subtitleView.setText(LocaleController.getString("NoSuchUsersInfo", R.string.NoSuchUsersInfo));
+        this.buttonView.setVisibility(8);
     }
 
     @Override
@@ -152,28 +154,28 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.diceStickersDidLoad && AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME.equals((String) objArr[0]) && getVisibility() == 0) {
+        if (i == NotificationCenter.diceStickersDidLoad && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
             updateSticker();
         }
     }
 
     private void updateSticker() {
-        TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME);
+        TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName("tg_placeholders_android");
         if (stickerSetByName == null) {
-            stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME);
+            stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName("tg_placeholders_android");
         }
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
         TLRPC$Document tLRPC$Document = (tLRPC$TL_messages_stickerSet == null || 1 >= tLRPC$TL_messages_stickerSet.documents.size()) ? null : tLRPC$TL_messages_stickerSet.documents.get(1);
         if (tLRPC$Document != null) {
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, Theme.key_windowBackgroundGray, 0.2f);
             if (svgThumb != null) {
-                svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
+                svgThumb.overrideWidthAndHeight(512, 512);
             }
             this.stickerView.setImage(ImageLocation.getForDocument(tLRPC$Document), "130_130", "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
             this.stickerView.getImageReceiver().setAutoRepeat(2);
             return;
         }
-        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(AndroidUtilities.STICKERS_PLACEHOLDER_PACK_NAME, false, tLRPC$TL_messages_stickerSet == null);
+        MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName("tg_placeholders_android", false, tLRPC$TL_messages_stickerSet == null);
         this.stickerView.getImageReceiver().clearImage();
     }
 }

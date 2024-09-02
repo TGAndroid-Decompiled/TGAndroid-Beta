@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_businessAwayMessageScheduleCustom extends TLRPC$BusinessAwayMessageSchedule {
     public int end_date;
     public int start_date;

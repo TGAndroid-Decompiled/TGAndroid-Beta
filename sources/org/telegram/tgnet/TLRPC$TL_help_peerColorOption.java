@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_help_peerColorOption extends TLObject {
     public int channel_min_level;
     public int color_id;

@@ -49,10 +49,11 @@ import org.telegram.ui.Cells.LetterSectionCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda29;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda31;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda33;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.CountrySelectActivity;
+
 public class CountrySelectActivity extends BaseFragment {
     private CountrySelectActivityDelegate delegate;
     private boolean disableAnonymousNumbers;
@@ -114,7 +115,7 @@ public class CountrySelectActivity extends BaseFragment {
             @Override
             public void onItemClick(int i2) {
                 if (i2 == -1) {
-                    CountrySelectActivity.this.finishFragment();
+                    CountrySelectActivity.this.lambda$onBackPressed$306();
                 }
             }
         });
@@ -204,13 +205,14 @@ public class CountrySelectActivity extends BaseFragment {
             int positionInSectionForPosition = this.listViewAdapter.getPositionInSectionForPosition(i);
             if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
                 return;
+            } else {
+                item = this.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
             }
-            item = this.listViewAdapter.getItem(sectionForPosition, positionInSectionForPosition);
         }
         if (i < 0) {
             return;
         }
-        finishFragment();
+        lambda$onBackPressed$306();
         if (item == null || (countrySelectActivityDelegate = this.delegate) == null) {
             return;
         }
@@ -312,13 +314,14 @@ public class CountrySelectActivity extends BaseFragment {
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());
                 Objects.requireNonNull(collator);
-                comparator = new BoostRepository$$ExternalSyntheticLambda31(collator);
+                comparator = new BoostRepository$$ExternalSyntheticLambda29(collator);
             } else {
-                comparator = BoostRepository$$ExternalSyntheticLambda33.INSTANCE;
+                comparator = BoostRepository$$ExternalSyntheticLambda31.INSTANCE;
             }
             Collections.sort(this.sortedCountries, comparator);
-            for (ArrayList<Country> arrayList4 : this.countries.values()) {
-                Collections.sort(arrayList4, new Comparator() {
+            Iterator<ArrayList<Country>> it = this.countries.values().iterator();
+            while (it.hasNext()) {
+                Collections.sort(it.next(), new Comparator() {
                     @Override
                     public final int compare(Object obj, Object obj2) {
                         int lambda$new$0;
@@ -432,15 +435,16 @@ public class CountrySelectActivity extends BaseFragment {
 
         public CountrySearchAdapter(Context context, HashMap<String, ArrayList<Country>> hashMap) {
             this.mContext = context;
-            for (ArrayList<Country> arrayList : hashMap.values()) {
-                for (Country country : arrayList) {
+            Iterator<ArrayList<Country>> it = hashMap.values().iterator();
+            while (it.hasNext()) {
+                for (Country country : it.next()) {
                     this.countryList.add(country);
-                    ArrayList arrayList2 = new ArrayList(Arrays.asList(country.name.split(" ")));
+                    ArrayList arrayList = new ArrayList(Arrays.asList(country.name.split(" ")));
                     String str = country.defaultName;
                     if (str != null) {
-                        arrayList2.addAll(Arrays.asList(str.split(" ")));
+                        arrayList.addAll(Arrays.asList(str.split(" ")));
                     }
-                    this.countrySearchMap.put(country, arrayList2);
+                    this.countrySearchMap.put(country, arrayList);
                 }
             }
         }

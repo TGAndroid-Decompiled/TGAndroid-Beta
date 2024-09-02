@@ -5,17 +5,18 @@ import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.ThreadContextElement;
+
 public final class ThreadContextKt {
     public static final Symbol NO_THREAD_ELEMENTS = new Symbol("NO_THREAD_ELEMENTS");
     private static final Function2<Object, CoroutineContext.Element, Object> countAll = new Function2<Object, CoroutineContext.Element, Object>() {
         @Override
         public final Object invoke(Object obj, CoroutineContext.Element element) {
-            if (element instanceof ThreadContextElement) {
-                Integer num = obj instanceof Integer ? (Integer) obj : null;
-                int intValue = num == null ? 1 : num.intValue();
-                return intValue == 0 ? element : Integer.valueOf(intValue + 1);
+            if (!(element instanceof ThreadContextElement)) {
+                return obj;
             }
-            return obj;
+            Integer num = obj instanceof Integer ? (Integer) obj : null;
+            int intValue = num == null ? 1 : num.intValue();
+            return intValue == 0 ? element : Integer.valueOf(intValue + 1);
         }
     };
     private static final Function2<ThreadContextElement<?>, CoroutineContext.Element, ThreadContextElement<?>> findOne = new Function2<ThreadContextElement<?>, CoroutineContext.Element, ThreadContextElement<?>>() {

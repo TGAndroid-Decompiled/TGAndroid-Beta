@@ -9,13 +9,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+
 @SuppressLint({"ViewConstructor"})
 public class LinkCell extends FrameLayout {
     private ImageView imageView;
@@ -75,15 +75,14 @@ public class LinkCell extends FrameLayout {
     public void setSlug(String str) {
         this.slug = str;
         this.link = "https://t.me/giftcode/" + str;
-        SpoilersTextView spoilersTextView = this.linkView;
-        spoilersTextView.setText("t.me/giftcode/" + str);
+        this.linkView.setText("t.me/giftcode/" + str);
     }
 
     public void hideSlug(final Runnable runnable) {
         this.imageView.setVisibility(4);
         this.linkView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f));
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-        textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
+        textStyleRun.flags |= 256;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.slug);
         if (this.slug == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");

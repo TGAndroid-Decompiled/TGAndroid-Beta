@@ -23,6 +23,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarMenuSlider;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.Theme;
+
 public class PopupSwipeBackLayout extends FrameLayout {
     private int currentForegroundIndex;
     private GestureDetectorCompat detector;
@@ -198,7 +199,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         actionBarPopupWindowLayout.updateAnimation = false;
         actionBarPopupWindowLayout.setBackScaleX(((measuredWidth + ((f - measuredWidth) * f4)) + (actionBarPopupWindowLayout.getPaddingLeft() + actionBarPopupWindowLayout.getPaddingRight())) / actionBarPopupWindowLayout.getMeasuredWidth());
         if (z) {
-            actionBarPopupWindowLayout.setBackScaleY(paddingTop / actionBarPopupWindowLayout.getMeasuredHeight());
+            actionBarPopupWindowLayout.setBackScaleY(Math.min(1.0f, paddingTop / actionBarPopupWindowLayout.getMeasuredHeight()));
         }
         actionBarPopupWindowLayout.updateAnimation = true;
         for (int i3 = 0; i3 < getChildCount(); i3++) {
@@ -256,12 +257,12 @@ public class PopupSwipeBackLayout extends FrameLayout {
                 clearFlags();
                 animateToState(this.transitionProgress >= 0.5f ? 1.0f : 0.0f, 0.0f);
                 return false;
-            } else if (this.isSwipeDisallowed) {
-                clearFlags();
-                return false;
-            } else {
+            }
+            if (!this.isSwipeDisallowed) {
                 return false;
             }
+            clearFlags();
+            return false;
         }
         return this.isProcessingSwipe;
     }

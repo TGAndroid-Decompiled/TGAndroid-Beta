@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_sendMessageEmojiInteractionSeen extends TLRPC$SendMessageAction {
     public String emoticon;
 

@@ -12,6 +12,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BlurBehindDrawable;
+
 public class BlurBehindDrawable {
     private Bitmap[] backgroundBitmap;
     private Canvas[] backgroundBitmapCanvas;
@@ -408,8 +409,9 @@ public class BlurBehindDrawable {
                 }
                 if (this.canceled) {
                     return;
+                } else {
+                    i2++;
                 }
-                i2++;
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

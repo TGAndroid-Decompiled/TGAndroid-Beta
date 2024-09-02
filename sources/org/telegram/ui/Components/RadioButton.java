@@ -14,6 +14,7 @@ import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+
 public class RadioButton extends View {
     private static Paint checkedPaint;
     private static Paint eraser;
@@ -144,10 +145,10 @@ public class RadioButton extends View {
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
             animateToCheckedState(z);
-            return;
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        cancelCheckAnimator();
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public boolean isChecked() {
@@ -178,11 +179,8 @@ public class RadioButton extends View {
             f = this.progress / 0.5f;
         } else {
             f = 2.0f - (f2 / 0.5f);
-            int red = Color.red(this.color);
             float f3 = 1.0f - f;
-            int green = Color.green(this.color);
-            int blue = Color.blue(this.color);
-            int rgb = Color.rgb(red + ((int) ((Color.red(this.checkedColor) - red) * f3)), green + ((int) ((Color.green(this.checkedColor) - green) * f3)), blue + ((int) ((Color.blue(this.checkedColor) - blue) * f3)));
+            int rgb = Color.rgb(Color.red(this.color) + ((int) ((Color.red(this.checkedColor) - r5) * f3)), Color.green(this.color) + ((int) ((Color.green(this.checkedColor) - r8) * f3)), Color.blue(this.color) + ((int) ((Color.blue(this.checkedColor) - r10) * f3)));
             paint.setColor(rgb);
             checkedPaint.setColor(rgb);
         }

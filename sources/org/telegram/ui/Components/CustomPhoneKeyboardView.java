@@ -17,9 +17,9 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+
 public class CustomPhoneKeyboardView extends ViewGroup {
     private ImageView backButton;
     private Runnable detectLongClick;
@@ -111,7 +111,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
                         break;
                     case 9:
                     default:
-                        str = BuildConfig.APP_CENTER_HASH;
+                        str = "";
                         break;
                     case 10:
                         str = "+";
@@ -264,7 +264,6 @@ public class CustomPhoneKeyboardView extends ViewGroup {
 
     @Override
     protected void onMeasure(int i, int i2) {
-        View[] viewArr;
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         int width = (getWidth() - AndroidUtilities.dp(32.0f)) / 3;
         int height = (getHeight() - AndroidUtilities.dp(42.0f)) / 4;
@@ -282,7 +281,6 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     }
 
     public void updateColors() {
-        View[] viewArr;
         this.backButton.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         for (View view : this.views) {
             if (view != null) {
@@ -294,7 +292,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         }
     }
 
-    private static final class NumberButtonView extends View {
+    public static final class NumberButtonView extends View {
         private String mNumber;
         private String mSymbols;
         private TextPaint numberTextPaint;

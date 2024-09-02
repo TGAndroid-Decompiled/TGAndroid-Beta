@@ -13,8 +13,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
+
 public class NotificationsCheckCell extends FrameLayout {
     private boolean animationsEnabled;
     private Switch checkBox;
@@ -22,10 +25,11 @@ public class NotificationsCheckCell extends FrameLayout {
     private boolean drawLine;
     private ImageView imageView;
     private boolean isMultiline;
+    private TextView multilineValueTextView;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
-    private TextView valueTextView;
+    private AnimatedTextView valueTextView;
 
     protected int processColor(int i) {
         return i;
@@ -44,6 +48,8 @@ public class NotificationsCheckCell extends FrameLayout {
         float f;
         float f2;
         float f3;
+        float f4;
+        float f5;
         this.drawLine = true;
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
@@ -67,53 +73,79 @@ public class NotificationsCheckCell extends FrameLayout {
         TextView textView2 = this.textView;
         boolean z2 = LocaleController.isRTL;
         int i3 = (z2 ? 5 : 3) | 48;
-        float f4 = 80.0f;
+        float f6 = 80.0f;
         if (z2) {
             f = 80.0f;
         } else {
             f = z ? 64 : i;
         }
-        float f5 = ((this.currentHeight - 70) / 2) + 13;
+        float f7 = ((this.currentHeight - 70) / 2) + 13;
         if (z2) {
             f2 = z ? 64 : i;
         } else {
             f2 = 80.0f;
         }
-        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, i3, f, f5, f2, 0.0f));
-        TextView textView3 = new TextView(context);
-        this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        this.valueTextView.setTextSize(1, 13.0f);
+        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, i3, f, f7, f2, 0.0f));
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
+        this.valueTextView = animatedTextView;
+        animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        AnimatedTextView animatedTextView2 = this.valueTextView;
+        int i4 = Theme.key_windowBackgroundWhiteGrayText2;
+        animatedTextView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+        this.valueTextView.setTextSize(AndroidUtilities.dp(13.0f));
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.valueTextView.setLines(1);
-        this.valueTextView.setMaxLines(1);
-        this.valueTextView.setSingleLine(true);
         this.valueTextView.setPadding(0, 0, 0, 0);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        TextView textView4 = this.valueTextView;
+        this.valueTextView.setEllipsizeByGradient(true);
+        AnimatedTextView animatedTextView3 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
-        int i4 = (z3 ? 5 : 3) | 48;
+        int i5 = (z3 ? 5 : 3) | 48;
         if (z3) {
             f3 = 80.0f;
         } else {
             f3 = z ? 64 : i;
         }
-        float f6 = (38 - (z ? 2 : 0)) + ((this.currentHeight - 70) / 2);
+        float f8 = (29 - (z ? 2 : 0)) + ((this.currentHeight - 70) / 2);
         if (z3) {
             f4 = z ? 64 : i;
+        } else {
+            f4 = 80.0f;
         }
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, i4, f3, f6, f4, 0.0f));
+        addView(animatedTextView3, LayoutHelper.createFrame(-1, -2.0f, i5, f3, f8, f4, 0.0f));
+        TextView textView3 = new TextView(context);
+        this.multilineValueTextView = textView3;
+        textView3.setTextColor(Theme.getColor(i4, resourcesProvider));
+        this.multilineValueTextView.setTextSize(1, 13.0f);
+        this.multilineValueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        this.multilineValueTextView.setLines(0);
+        this.multilineValueTextView.setMaxLines(0);
+        this.multilineValueTextView.setSingleLine(false);
+        this.multilineValueTextView.setEllipsize(null);
+        this.multilineValueTextView.setPadding(0, 0, 0, 0);
+        this.multilineValueTextView.setVisibility(8);
+        TextView textView4 = this.multilineValueTextView;
+        boolean z4 = LocaleController.isRTL;
+        int i6 = (z4 ? 5 : 3) | 48;
+        if (z4) {
+            f5 = 80.0f;
+        } else {
+            f5 = z ? 64 : i;
+        }
+        float f9 = (38 - (z ? 2 : 0)) + ((this.currentHeight - 70) / 2);
+        if (z4) {
+            f6 = z ? 64 : i;
+        }
+        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, i6, f5, f9, f6, 0.0f));
         Switch r3 = new Switch(context, resourcesProvider) {
             @Override
-            protected int processColor(int i5) {
-                return NotificationsCheckCell.this.processColor(i5);
+            protected int processColor(int i7) {
+                return NotificationsCheckCell.this.processColor(i7);
             }
         };
         this.checkBox = r3;
-        int i5 = Theme.key_switchTrack;
-        int i6 = Theme.key_switchTrackChecked;
-        int i7 = Theme.key_windowBackgroundWhite;
-        r3.setColors(i5, i6, i7, i7);
+        int i7 = Theme.key_switchTrack;
+        int i8 = Theme.key_switchTrackChecked;
+        int i9 = Theme.key_windowBackgroundWhite;
+        r3.setColors(i7, i8, i9, i9);
         addView(this.checkBox, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         this.checkBox.setFocusable(false);
     }
@@ -135,48 +167,52 @@ public class NotificationsCheckCell extends FrameLayout {
         setTextAndValueAndCheck(charSequence, charSequence2, z, 0, false, z2);
     }
 
-    public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2) {
-        setTextAndValueAndCheck(charSequence, charSequence2, z, i, false, z2);
-    }
-
     public void setTextAndValueAndCheck(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2, boolean z3) {
         setTextAndValueAndIconAndCheck(charSequence, charSequence2, 0, z, i, z2, z3);
     }
 
     public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3) {
+        setTextAndValueAndIconAndCheck(charSequence, charSequence2, i, z, i2, z2, z3, false);
+    }
+
+    public void setTextAndValueAndIconAndCheck(CharSequence charSequence, CharSequence charSequence2, int i, boolean z, int i2, boolean z2, boolean z3, boolean z4) {
         this.textView.setText(charSequence);
-        this.valueTextView.setText(charSequence2);
         ImageView imageView = this.imageView;
         if (imageView != null) {
             imageView.setImageResource(i);
             this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
         }
         this.checkBox.setChecked(z, i2, this.animationsEnabled);
-        this.valueTextView.setVisibility(0);
-        this.needDivider = z3;
         setMultiline(z2);
+        if (this.isMultiline) {
+            this.multilineValueTextView.setText(charSequence2);
+        } else {
+            this.valueTextView.setText(charSequence2, z4);
+        }
+        (this.isMultiline ? this.multilineValueTextView : this.valueTextView).setVisibility(0);
         this.checkBox.setContentDescription(charSequence);
+        this.needDivider = z3;
     }
 
     public void setMultiline(boolean z) {
         this.isMultiline = z;
         if (z) {
-            this.valueTextView.setLines(0);
-            this.valueTextView.setMaxLines(0);
-            this.valueTextView.setSingleLine(false);
-            this.valueTextView.setEllipsize(null);
-            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
-            return;
+            this.multilineValueTextView.setVisibility(0);
+            this.valueTextView.setVisibility(8);
+            this.multilineValueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
+        } else {
+            this.multilineValueTextView.setVisibility(8);
+            this.valueTextView.setVisibility(0);
+            this.valueTextView.setPadding(0, 0, 0, 0);
         }
-        this.valueTextView.setLines(1);
-        this.valueTextView.setMaxLines(1);
-        this.valueTextView.setSingleLine(true);
-        this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
-        this.valueTextView.setPadding(0, 0, 0, 0);
     }
 
     public void setValue(CharSequence charSequence) {
-        this.valueTextView.setText(charSequence);
+        if (this.isMultiline) {
+            this.multilineValueTextView.setText(charSequence);
+        } else {
+            this.valueTextView.setText(charSequence, true);
+        }
     }
 
     public void setDrawLine(boolean z) {
@@ -197,7 +233,6 @@ public class NotificationsCheckCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        int measuredHeight;
         float dp;
         int i;
         if (this.needDivider) {
@@ -206,18 +241,18 @@ public class NotificationsCheckCell extends FrameLayout {
             } else {
                 dp = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
             }
-            float measuredHeight2 = getMeasuredHeight() - 1;
+            float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
                 i = AndroidUtilities.dp(this.imageView == null ? 20.0f : 64.0f);
             } else {
                 i = 0;
             }
-            canvas.drawLine(dp, measuredHeight2, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
         }
         if (this.drawLine) {
             int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
-            canvas.drawRect(dp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, dp2 + 2, measuredHeight + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
+            canvas.drawRect(dp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, dp2 + 2, r1 + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
         }
     }
 
@@ -231,10 +266,18 @@ public class NotificationsCheckCell extends FrameLayout {
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         StringBuilder sb = new StringBuilder();
         sb.append(this.textView.getText());
-        TextView textView = this.valueTextView;
-        if (textView != null && !TextUtils.isEmpty(textView.getText())) {
-            sb.append("\n");
-            sb.append(this.valueTextView.getText());
+        if (this.isMultiline) {
+            TextView textView = this.multilineValueTextView;
+            if (textView != null && !TextUtils.isEmpty(textView.getText())) {
+                sb.append("\n");
+                sb.append(this.multilineValueTextView.getText());
+            }
+        } else {
+            AnimatedTextView animatedTextView = this.valueTextView;
+            if (animatedTextView != null && !TextUtils.isEmpty(animatedTextView.getText())) {
+                sb.append("\n");
+                sb.append(this.valueTextView.getText());
+            }
         }
         accessibilityNodeInfo.setContentDescription(sb);
         accessibilityNodeInfo.setCheckable(true);

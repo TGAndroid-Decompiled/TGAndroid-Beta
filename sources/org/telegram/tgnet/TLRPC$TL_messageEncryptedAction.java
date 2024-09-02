@@ -1,4 +1,5 @@
 package org.telegram.tgnet;
+
 public class TLRPC$TL_messageEncryptedAction extends TLRPC$MessageAction {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -25,6 +26,7 @@ import org.telegram.tgnet.TLRPC$TL_inputPeerUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GraySectionCell;
+import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorCountryCell;
@@ -32,18 +34,19 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorLetterCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
+
 public class SelectorAdapter extends AdapterWithDiffUtils {
     private HashMap<Long, Integer> chatsParticipantsCount = new HashMap<>();
     private final Context context;
     private boolean isGreenSelector;
     private List<Item> items;
-    private RecyclerListView listView;
+    public boolean needChecks;
     private final Theme.ResourcesProvider resourcesProvider;
     private GraySectionCell topSectionCell;
-    private View.OnClickListener topSectionClickListener;
 
-    public SelectorAdapter(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public SelectorAdapter(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
+        this.needChecks = z;
         this.resourcesProvider = resourcesProvider;
         BoostRepository.loadParticipantsCount(new Utilities.Callback() {
             @Override
@@ -60,11 +63,9 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     public void setData(List<Item> list, RecyclerListView recyclerListView) {
         this.items = list;
-        this.listView = recyclerListView;
     }
 
     public void setTopSectionClickListener(View.OnClickListener onClickListener) {
-        this.topSectionClickListener = onClickListener;
         GraySectionCell graySectionCell = this.topSectionCell;
         if (graySectionCell != null) {
             if (onClickListener == null) {
@@ -81,45 +82,50 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
 
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6;
+        return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6 || viewHolder.getItemViewType() == 9;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        SelectorUserCell selectorUserCell;
+        View view;
         if (i == -1) {
-            selectorUserCell = new View(this.context);
+            view = new View(this.context);
         } else if (i == 3) {
-            selectorUserCell = new SelectorUserCell(this.context, this.resourcesProvider, this.isGreenSelector);
+            view = new SelectorUserCell(this.context, this.needChecks, this.resourcesProvider, this.isGreenSelector);
         } else if (i == 5) {
             StickerEmptyView stickerEmptyView = new StickerEmptyView(this.context, null, 1, this.resourcesProvider);
             stickerEmptyView.title.setText(LocaleController.getString("NoResult", R.string.NoResult));
             stickerEmptyView.subtitle.setText(LocaleController.getString("SearchEmptyViewFilteredSubtitle2", R.string.SearchEmptyViewFilteredSubtitle2));
             stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
-            selectorUserCell = stickerEmptyView;
+            view = stickerEmptyView;
         } else if (i == 7) {
-            selectorUserCell = new SelectorLetterCell(this.context, this.resourcesProvider);
+            view = new SelectorLetterCell(this.context, this.resourcesProvider);
         } else if (i == 6) {
-            selectorUserCell = new SelectorCountryCell(this.context, this.resourcesProvider);
+            view = new SelectorCountryCell(this.context, this.resourcesProvider);
         } else if (i == 8) {
-            selectorUserCell = new GraySectionCell(this.context, this.resourcesProvider);
+            view = new GraySectionCell(this.context, this.resourcesProvider);
+        } else if (i == 9) {
+            TextCell textCell = new TextCell(this.context, this.resourcesProvider);
+            textCell.leftPadding = 16;
+            textCell.imageLeft = 19;
+            view = textCell;
         } else {
-            selectorUserCell = new View(this.context);
+            view = new View(this.context);
         }
-        return new RecyclerListView.Holder(selectorUserCell);
+        return new RecyclerListView.Holder(view);
     }
 
     public int getParticipantsCount(TLRPC$Chat tLRPC$Chat) {
         Integer num;
         int i;
         TLRPC$ChatFull chatFull = MessagesController.getInstance(UserConfig.selectedAccount).getChatFull(tLRPC$Chat.id);
-        if (chatFull == null || (i = chatFull.participants_count) <= 0) {
-            if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
-                return num.intValue();
-            }
-            return tLRPC$Chat.participants_count;
+        if (chatFull != null && (i = chatFull.participants_count) > 0) {
+            return i;
         }
-        return i;
+        if (!this.chatsParticipantsCount.isEmpty() && (num = this.chatsParticipantsCount.get(Long.valueOf(tLRPC$Chat.id))) != null) {
+            return num.intValue();
+        }
+        return tLRPC$Chat.participants_count;
     }
 
     @Override
@@ -131,77 +137,94 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         }
         Item item = list.get(i);
         int itemViewType = viewHolder.getItemViewType();
-        boolean z = true;
-        if (itemViewType != 3) {
-            if (itemViewType == 6) {
-                SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
-                selectorCountryCell.setCountry(item.country, (i >= this.items.size() - 1 || (i2 = i + 1) >= this.items.size() - 1 || this.items.get(i2).viewType == 7) ? false : false);
-                selectorCountryCell.setChecked(item.checked, false);
-                return;
-            } else if (itemViewType == -1) {
-                int i3 = item.padHeight;
-                if (i3 < 0) {
-                    i3 = (int) (AndroidUtilities.displaySize.y * 0.3f);
-                }
-                viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i3));
-                return;
-            } else if (itemViewType == 7) {
-                ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
-                return;
-            } else if (itemViewType == 5) {
-                try {
-                    ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            } else if (itemViewType == 8) {
-                GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
-                graySectionCell.setText(item.text);
-                if (this.topSectionClickListener == null) {
-                    graySectionCell.setRightText((String) null, (View.OnClickListener) null);
+        if (itemViewType == 3) {
+            SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
+            TLRPC$User tLRPC$User = item.user;
+            if (tLRPC$User != null) {
+                selectorUserCell.setUser(tLRPC$User);
+            } else {
+                TLRPC$Chat tLRPC$Chat = item.chat;
+                if (tLRPC$Chat != null) {
+                    selectorUserCell.setChat(tLRPC$Chat, getParticipantsCount(tLRPC$Chat));
                 } else {
-                    graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), this.topSectionClickListener);
-                }
-                this.topSectionCell = graySectionCell;
-                return;
-            } else {
-                return;
-            }
-        }
-        SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
-        TLRPC$User tLRPC$User = item.user;
-        if (tLRPC$User != null) {
-            selectorUserCell.setUser(tLRPC$User);
-        } else {
-            TLRPC$Chat tLRPC$Chat = item.chat;
-            if (tLRPC$Chat != null) {
-                selectorUserCell.setChat(tLRPC$Chat, getParticipantsCount(tLRPC$Chat));
-            } else {
-                TLRPC$InputPeer tLRPC$InputPeer = item.peer;
-                if (tLRPC$InputPeer != null) {
-                    if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf) {
-                        selectorUserCell.setUser(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
-                        selectorUserCell.setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$InputPeer.user_id)));
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
-                        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
-                        selectorUserCell.setChat(chat, getParticipantsCount(chat));
-                    } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
-                        TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
-                        selectorUserCell.setChat(chat2, getParticipantsCount(chat2));
+                    TLRPC$InputPeer tLRPC$InputPeer = item.peer;
+                    if (tLRPC$InputPeer != null) {
+                        if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerSelf) {
+                            selectorUserCell.setUser(UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser());
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerUser) {
+                            selectorUserCell.setUser(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$InputPeer.user_id)));
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChat) {
+                            TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.chat_id));
+                            selectorUserCell.setChat(chat, getParticipantsCount(chat));
+                        } else if (tLRPC$InputPeer instanceof TLRPC$TL_inputPeerChannel) {
+                            TLRPC$Chat chat2 = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(tLRPC$InputPeer.channel_id));
+                            selectorUserCell.setChat(chat2, getParticipantsCount(chat2));
+                        }
                     }
                 }
             }
-        }
-        selectorUserCell.setChecked(item.checked, false);
-        selectorUserCell.setCheckboxAlpha(1.0f, false);
-        selectorUserCell.setDivider(i < this.items.size() + (-2));
-        int i4 = i + 1;
-        if (i4 >= this.items.size() || this.items.get(i4).viewType != 7) {
+            selectorUserCell.setChecked(item.checked, false);
+            selectorUserCell.setCheckboxAlpha(1.0f, false);
+            int i3 = i + 1;
+            if (i3 < this.items.size() && this.items.get(i3).viewType != itemViewType) {
+                r5 = false;
+            }
+            selectorUserCell.setDivider(r5);
+            if (i3 < this.items.size() && this.items.get(i3).viewType == 7) {
+                selectorUserCell.setDivider(false);
+            }
+            selectorUserCell.setOptions(item.options);
             return;
         }
-        selectorUserCell.setDivider(false);
+        if (itemViewType == 6) {
+            SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
+            selectorCountryCell.setCountry(item.country, i < this.items.size() - 1 && (i2 = i + 1) < this.items.size() - 1 && this.items.get(i2).viewType != 7);
+            selectorCountryCell.setChecked(item.checked, false);
+            return;
+        }
+        if (itemViewType == -1) {
+            int i4 = item.padHeight;
+            if (i4 < 0) {
+                i4 = (int) (AndroidUtilities.displaySize.y * 0.3f);
+            }
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i4));
+            return;
+        }
+        if (itemViewType == 7) {
+            ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
+            return;
+        }
+        if (itemViewType == 5) {
+            try {
+                ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
+                return;
+            } catch (Exception unused) {
+                return;
+            }
+        }
+        if (itemViewType != 8) {
+            if (itemViewType == 9) {
+                TextCell textCell = (TextCell) viewHolder.itemView;
+                textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                textCell.setTextAndIcon(item.text, item.resId, false);
+                return;
+            }
+            return;
+        }
+        GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
+        if (TextUtils.equals(graySectionCell.getText(), item.text)) {
+            CharSequence charSequence = item.subtext;
+            if (charSequence == null) {
+                charSequence = "";
+            }
+            graySectionCell.setRightText(charSequence, true, item.callback);
+        } else {
+            graySectionCell.setText(Emoji.replaceWithRestrictedEmoji(item.text, graySectionCell.getTextView(), (Runnable) null));
+            if (!TextUtils.isEmpty(item.subtext)) {
+                graySectionCell.setRightText(item.subtext, item.callback);
+            }
+        }
+        this.topSectionCell = graySectionCell;
     }
 
     @Override
@@ -222,56 +245,6 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
         return list.size();
     }
 
-    private RecyclerView.Adapter realAdapter() {
-        return this.listView.getAdapter();
-    }
-
-    @Override
-    public void notifyItemChanged(int i) {
-        realAdapter().notifyItemChanged(i + 1);
-    }
-
-    @Override
-    public void notifyItemInserted(int i) {
-        realAdapter().notifyItemInserted(i + 1);
-    }
-
-    @Override
-    public void notifyItemMoved(int i, int i2) {
-        realAdapter().notifyItemMoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeChanged(int i, int i2, Object obj) {
-        realAdapter().notifyItemRangeChanged(i + 1, i2, obj);
-    }
-
-    @Override
-    public void notifyItemRangeInserted(int i, int i2) {
-        realAdapter().notifyItemRangeInserted(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRangeRemoved(int i, int i2) {
-        realAdapter().notifyItemRangeRemoved(i + 1, i2);
-    }
-
-    @Override
-    public void notifyItemRemoved(int i) {
-        realAdapter().notifyItemRemoved(i + 1);
-    }
-
-    @Override
-    @SuppressLint({"NotifyDataSetChanged"})
-    public void notifyDataSetChanged() {
-        realAdapter().notifyDataSetChanged();
-    }
-
     public void notifyChangedLast() {
         List<Item> list = this.items;
         if (list == null || list.isEmpty()) {
@@ -281,12 +254,17 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
     }
 
     public static class Item extends AdapterWithDiffUtils.Item {
+        public View.OnClickListener callback;
         public TLRPC$Chat chat;
         public boolean checked;
         public TLRPC$TL_help_country country;
+        public int id;
+        public View.OnClickListener options;
         public int padHeight;
         public TLRPC$InputPeer peer;
-        public String text;
+        public int resId;
+        public CharSequence subtext;
+        public CharSequence text;
         public int type;
         public TLRPC$User user;
 
@@ -301,6 +279,14 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
+        public static Item asButton(int i, int i2, String str) {
+            Item item = new Item(9, false);
+            item.id = i;
+            item.resId = i2;
+            item.text = str;
+            return item;
+        }
+
         public static Item asUser(TLRPC$User tLRPC$User, boolean z) {
             Item item = new Item(3, true);
             item.user = tLRPC$User;
@@ -310,16 +296,27 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
+        public Item withOptions(View.OnClickListener onClickListener) {
+            this.options = onClickListener;
+            return this;
+        }
+
         public static Item asLetter(String str) {
             Item item = new Item(7, false);
             item.text = str;
             return item;
         }
 
-        public static Item asTopSection(String str) {
+        public static Item asTopSection(CharSequence charSequence) {
             Item item = new Item(8, false);
-            item.text = str;
+            item.text = charSequence;
             return item;
+        }
+
+        public Item withRightText(String str, View.OnClickListener onClickListener) {
+            this.subtext = str;
+            this.callback = onClickListener;
+            return this;
         }
 
         public static Item asCountry(TLRPC$TL_help_country tLRPC$TL_help_country, boolean z) {
@@ -338,6 +335,22 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             return item;
         }
 
+        public long getDialogId() {
+            TLRPC$User tLRPC$User = this.user;
+            if (tLRPC$User != null) {
+                return tLRPC$User.id;
+            }
+            TLRPC$Chat tLRPC$Chat = this.chat;
+            if (tLRPC$Chat != null) {
+                return -tLRPC$Chat.id;
+            }
+            TLRPC$InputPeer tLRPC$InputPeer = this.peer;
+            if (tLRPC$InputPeer != null) {
+                return DialogObject.getPeerDialogId(tLRPC$InputPeer);
+            }
+            return 0L;
+        }
+
         public static Item asNoUsers() {
             return new Item(5, false);
         }
@@ -354,17 +367,44 @@ public class SelectorAdapter extends AdapterWithDiffUtils {
             if (i != item.viewType) {
                 return false;
             }
-            if (i != -1 || this.padHeight == item.padHeight) {
-                if (i != 3 || (this.user == item.user && this.chat == item.chat && this.peer == item.peer && this.type == item.type && this.checked == item.checked)) {
-                    if (i != 6 || (this.country == item.country && this.checked == item.checked)) {
-                        if (i != 7 || TextUtils.equals(this.text, item.text)) {
-                            return this.viewType != 8 || (TextUtils.equals(this.text, item.text) && this.checked == item.checked);
-                        }
-                        return false;
-                    }
-                    return false;
-                }
+            if (i == -1 && this.padHeight != item.padHeight) {
                 return false;
+            }
+            if (i == 3 && (getDialogId() != item.getDialogId() || this.type != item.type)) {
+                return false;
+            }
+            int i2 = this.viewType;
+            if (i2 == 6 && this.country != item.country) {
+                return false;
+            }
+            if (i2 == 7 && !TextUtils.equals(this.text, item.text)) {
+                return false;
+            }
+            if (this.viewType != 8 || TextUtils.equals(this.text, item.text)) {
+                return this.viewType != 9 || (TextUtils.equals(this.text, item.text) && this.id == item.id && this.resId == item.resId);
+            }
+            return false;
+        }
+
+        @Override
+        public boolean contentsEquals(AdapterWithDiffUtils.Item item) {
+            if (this == item) {
+                return true;
+            }
+            if (item == null || Item.class != item.getClass()) {
+                return false;
+            }
+            Item item2 = (Item) item;
+            if (this.checked != item2.checked) {
+                return false;
+            }
+            if (this.viewType != 8) {
+                return true;
+            }
+            if (TextUtils.equals(this.subtext, item2.subtext)) {
+                if ((this.callback == null) == (item2.callback == null)) {
+                    return true;
+                }
             }
             return false;
         }

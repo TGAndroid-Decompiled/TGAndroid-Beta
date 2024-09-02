@@ -21,8 +21,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -62,6 +60,7 @@ import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.ReplaceableIconDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.TopicCreateFragment;
+
 public class TopicCreateFragment extends BaseFragment {
     BackupImageView[] backupImageView;
     long chatId;
@@ -89,7 +88,7 @@ public class TopicCreateFragment extends BaseFragment {
     private TopicCreateFragment(Bundle bundle) {
         super(bundle);
         this.backupImageView = new BackupImageView[2];
-        this.firstSymbol = BuildConfig.APP_CENTER_HASH;
+        this.firstSymbol = "";
         this.notificationsLocker = new AnimationNotificationsLocker();
     }
 
@@ -164,7 +163,7 @@ public class TopicCreateFragment extends BaseFragment {
         this.editTextBoldCursor.setBackgroundDrawable(null);
         this.editTextBoldCursor.setSingleLine(true);
         EditTextBoldCursor editTextBoldCursor2 = this.editTextBoldCursor;
-        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM);
+        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
         frameLayout.addView(this.editTextBoldCursor, LayoutHelper.createFrame(-1, -1.0f, 0, 51.0f, 4.0f, 21.0f, 4.0f));
         this.editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             @Override
@@ -182,7 +181,7 @@ public class TopicCreateFragment extends BaseFragment {
                 if (trim.length() > 0) {
                     TopicCreateFragment.this.firstSymbol = trim.substring(0, 1).toUpperCase();
                 } else {
-                    TopicCreateFragment.this.firstSymbol = BuildConfig.APP_CENTER_HASH;
+                    TopicCreateFragment.this.firstSymbol = "";
                 }
                 if (str.equals(TopicCreateFragment.this.firstSymbol)) {
                     return;
@@ -246,7 +245,7 @@ public class TopicCreateFragment extends BaseFragment {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);
             this.selectAnimatedEmojiDialog.setClipChildren(false);
             frameLayout2.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
-            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable(BuildConfig.APP_CENTER_HASH, this.iconColor, false);
+            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor, false);
             this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(createTopicDrawable, this.replaceableIconDrawable, 0, 0);
@@ -449,8 +448,7 @@ public class TopicCreateFragment extends BaseFragment {
     }
 
     public void lambda$createView$1(View view) {
-        TextCheckCell2 textCheckCell2 = this.checkBoxCell;
-        textCheckCell2.setChecked(!textCheckCell2.isChecked());
+        this.checkBoxCell.setChecked(!r2.isChecked());
     }
 
     public void selectEmoji(Long l, boolean z) {

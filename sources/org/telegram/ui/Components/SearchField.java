@@ -13,10 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
+
 public class SearchField extends FrameLayout {
     private ImageView clearSearchImageView;
     private CloseProgressDrawable2 progressDrawable;
@@ -102,13 +102,13 @@ public class SearchField extends FrameLayout {
 
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
-                if (isEnabled()) {
-                    if (motionEvent.getAction() == 1) {
-                        SearchField.this.onFieldTouchUp(this);
-                    }
-                    return super.onTouchEvent(motionEvent);
+                if (!isEnabled()) {
+                    return false;
                 }
-                return false;
+                if (motionEvent.getAction() == 1) {
+                    SearchField.this.onFieldTouchUp(this);
+                }
+                return super.onTouchEvent(motionEvent);
             }
         };
         this.searchEditText = editTextBoldCursor;
@@ -163,19 +163,19 @@ public class SearchField extends FrameLayout {
     }
 
     public void lambda$new$0(View view) {
-        this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+        this.searchEditText.setText("");
         AndroidUtilities.showKeyboard(this.searchEditText);
     }
 
     public boolean lambda$new$1(TextView textView, int i, KeyEvent keyEvent) {
-        if (keyEvent != null) {
-            if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                this.searchEditText.hideActionMode();
-                AndroidUtilities.hideKeyboard(this.searchEditText);
-                return false;
-            }
+        if (keyEvent == null) {
             return false;
         }
+        if ((keyEvent.getAction() != 1 || keyEvent.getKeyCode() != 84) && (keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66)) {
+            return false;
+        }
+        this.searchEditText.hideActionMode();
+        AndroidUtilities.hideKeyboard(this.searchEditText);
         return false;
     }
 
