@@ -191,50 +191,55 @@ public class GLIconTextureView extends TextureView implements TextureView.Surfac
             GLIconTextureView gLIconTextureView;
             GLIconTextureView gLIconTextureView2 = GLIconTextureView.this;
             gLIconTextureView2.isRunning = true;
-            gLIconTextureView2.initGL();
-            GLIconTextureView.this.checkGlError();
-            long currentTimeMillis = System.currentTimeMillis();
-            while (GLIconTextureView.this.isRunning) {
-                while (true) {
-                    gLIconTextureView = GLIconTextureView.this;
-                    if (gLIconTextureView.mRenderer != null) {
-                        break;
-                    } else {
-                        try {
-                            Thread.sleep(100L);
-                        } catch (InterruptedException unused) {
+            try {
+                gLIconTextureView2.initGL();
+                GLIconTextureView.this.checkGlError();
+                long currentTimeMillis = System.currentTimeMillis();
+                while (GLIconTextureView.this.isRunning) {
+                    while (true) {
+                        gLIconTextureView = GLIconTextureView.this;
+                        if (gLIconTextureView.mRenderer != null) {
+                            break;
+                        } else {
+                            try {
+                                Thread.sleep(100L);
+                            } catch (InterruptedException unused) {
+                            }
                         }
                     }
-                }
-                if (gLIconTextureView.rendererChanged) {
-                    GLIconTextureView gLIconTextureView3 = GLIconTextureView.this;
-                    gLIconTextureView3.initializeRenderer(gLIconTextureView3.mRenderer);
-                    GLIconTextureView.this.rendererChanged = false;
-                }
-                try {
-                    if (!GLIconTextureView.this.shouldSleep()) {
-                        long currentTimeMillis2 = System.currentTimeMillis();
-                        GLIconTextureView.this.drawSingleFrame(((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
-                        if (!GLIconTextureView.this.ready) {
-                            GLIconTextureView.this.ready = true;
-                            AndroidUtilities.runOnUIThread(GLIconTextureView.this.readyListener);
-                            GLIconTextureView.this.readyListener = null;
-                        }
-                        currentTimeMillis = currentTimeMillis2;
+                    if (gLIconTextureView.rendererChanged) {
+                        GLIconTextureView gLIconTextureView3 = GLIconTextureView.this;
+                        gLIconTextureView3.initializeRenderer(gLIconTextureView3.mRenderer);
+                        GLIconTextureView.this.rendererChanged = false;
                     }
                     try {
-                        if (GLIconTextureView.this.shouldSleep()) {
-                            Thread.sleep(100L);
-                        } else {
-                            do {
-                            } while (System.currentTimeMillis() - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis);
+                        if (!GLIconTextureView.this.shouldSleep()) {
+                            long currentTimeMillis2 = System.currentTimeMillis();
+                            GLIconTextureView.this.drawSingleFrame(((float) (currentTimeMillis2 - currentTimeMillis)) / 1000.0f);
+                            if (!GLIconTextureView.this.ready) {
+                                GLIconTextureView.this.ready = true;
+                                AndroidUtilities.runOnUIThread(GLIconTextureView.this.readyListener);
+                                GLIconTextureView.this.readyListener = null;
+                            }
+                            currentTimeMillis = currentTimeMillis2;
                         }
-                    } catch (InterruptedException unused2) {
+                        try {
+                            if (GLIconTextureView.this.shouldSleep()) {
+                                Thread.sleep(100L);
+                            } else {
+                                do {
+                                } while (System.currentTimeMillis() - currentTimeMillis < GLIconTextureView.this.targetFrameDurationMillis);
+                            }
+                        } catch (InterruptedException unused2) {
+                        }
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
                 }
+            } catch (Exception e2) {
+                FileLog.e(e2);
+                GLIconTextureView.this.isRunning = false;
             }
         }
     }

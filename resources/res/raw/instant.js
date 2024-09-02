@@ -43,12 +43,13 @@ function Readability(e,t){if(t&&t.documentElement)e=t,t=arguments[2];else if(!e|
             return [ { tag, content, ...attrobj } ]
         }).flat();
 
-        console.log({dirty_html});
-        console.log({html});
-        console.log({
-            ...result,
-            content: parse(doc)
-        })
+        if ($DEBUG$) {
+            console.log({
+                ...result,
+                html,
+                content: parse(doc)
+            })
+        }
 
         window.Instant.done(JSON.stringify({
             ...result,

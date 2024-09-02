@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.JsonReader;
+import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +46,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Page;
 import org.telegram.tgnet.TLRPC$PageBlock;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$RichText;
@@ -87,7 +90,9 @@ import org.telegram.ui.web.MHTML;
 import org.telegram.ui.web.WebInstantView;
 
 public class WebInstantView {
+    public static final HashMap instants = new HashMap();
     private static HashMap loadingPhotos;
+    public final HashMap loadedPhotos = new HashMap();
     public MHTML mhtml;
     public String url;
     public TLRPC$WebPage webpage;
@@ -167,6 +172,10 @@ public class WebInstantView {
         public void lambda$retryLocal$0(WebInstantView webInstantView) {
             this.cancelLocal = null;
             this.gotLocal = true;
+            TLRPC$WebPage tLRPC$WebPage = this.localPage;
+            if (tLRPC$WebPage != null) {
+                WebInstantView.recycle(tLRPC$WebPage);
+            }
             this.localPage = webInstantView.webpage;
             notifyUpdate();
         }
@@ -174,6 +183,10 @@ public class WebInstantView {
         public void lambda$start$1(WebInstantView webInstantView) {
             this.cancelLocal = null;
             this.gotLocal = true;
+            TLRPC$WebPage tLRPC$WebPage = this.localPage;
+            if (tLRPC$WebPage != null) {
+                WebInstantView.recycle(tLRPC$WebPage);
+            }
             this.localPage = webInstantView.webpage;
             notifyUpdate();
         }
@@ -239,9 +252,22 @@ public class WebInstantView {
             };
         }
 
+        public void recycle() {
+            TLRPC$WebPage tLRPC$WebPage = this.localPage;
+            if (tLRPC$WebPage != null) {
+                WebInstantView.recycle(tLRPC$WebPage);
+                this.localPage = null;
+            }
+        }
+
         public void retryLocal(BotWebViewContainer.MyWebView myWebView) {
             if (this.cancelled) {
                 return;
+            }
+            TLRPC$WebPage tLRPC$WebPage = this.localPage;
+            if (tLRPC$WebPage != null) {
+                WebInstantView.recycle(tLRPC$WebPage);
+                this.localPage = null;
             }
             this.gotLocal = false;
             this.currentUrl = myWebView.getUrl();
@@ -290,6 +316,7 @@ public class WebInstantView {
         public TLRPC$TL_textImage inlineImage;
         public WebInstantView instantView;
         public String url;
+        public HashSet urls = new HashSet();
         public int w;
 
         public WebPhoto() {
@@ -360,8 +387,16 @@ public class WebInstantView {
         for (Map.Entry entry : hashMap.entrySet()) {
             String str = (String) entry.getKey();
             ArrayList arrayList = (ArrayList) entry.getValue();
-            if (arrayList.contains(arrayList)) {
-                arrayList.remove(imageReceiver);
+            int i = 0;
+            while (true) {
+                if (i >= arrayList.size()) {
+                    break;
+                }
+                if (((Pair) arrayList.get(i)).first == imageReceiver) {
+                    arrayList.remove(i);
+                    break;
+                }
+                i++;
             }
             if (arrayList.isEmpty()) {
                 loadingPhotos.remove(str);
@@ -439,6 +474,10 @@ public class WebInstantView {
         }
         start.done();
         callback.run(webInstantView);
+        TLRPC$WebPage tLRPC$WebPage = webInstantView.webpage;
+        if (tLRPC$WebPage != null) {
+            instants.put(tLRPC$WebPage, webInstantView);
+        }
         timer.finish();
     }
 
@@ -505,27 +544,15 @@ public class WebInstantView {
         });
     }
 
-    public static void lambda$loadPhotoInternal$3(WebPhoto webPhoto, Bitmap bitmap) {
-        HashMap hashMap = loadingPhotos;
-        if (hashMap == null) {
-            return;
-        }
-        ArrayList arrayList = (ArrayList) hashMap.get(webPhoto.url);
-        loadingPhotos.remove(webPhoto.url);
-        if (arrayList == null) {
-            return;
-        }
-        Iterator it = arrayList.iterator();
-        while (it.hasNext()) {
-            ((ImageReceiver) it.next()).setImageBitmap(bitmap);
-        }
+    public void lambda$loadPhotoInternal$3(org.telegram.ui.web.WebInstantView.WebPhoto r4, android.graphics.Bitmap r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebInstantView.lambda$loadPhotoInternal$3(org.telegram.ui.web.WebInstantView$WebPhoto, android.graphics.Bitmap):void");
     }
 
-    public static void lambda$loadPhotoInternal$4(final WebPhoto webPhoto, final Bitmap bitmap) {
+    public void lambda$loadPhotoInternal$4(final WebPhoto webPhoto, final Bitmap bitmap) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                WebInstantView.lambda$loadPhotoInternal$3(WebInstantView.WebPhoto.this, bitmap);
+                WebInstantView.this.lambda$loadPhotoInternal$3(webPhoto, bitmap);
             }
         });
     }
@@ -538,7 +565,7 @@ public class WebInstantView {
         webInstantView.loadPhotoInternal(webPhoto, imageReceiver, runnable);
     }
 
-    private void loadPhotoInternal(final org.telegram.ui.web.WebInstantView.WebPhoto r5, org.telegram.messenger.ImageReceiver r6, java.lang.Runnable r7) {
+    private void loadPhotoInternal(final org.telegram.ui.web.WebInstantView.WebPhoto r6, org.telegram.messenger.ImageReceiver r7, java.lang.Runnable r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.WebInstantView.loadPhotoInternal(org.telegram.ui.web.WebInstantView$WebPhoto, org.telegram.messenger.ImageReceiver, java.lang.Runnable):void");
     }
 
@@ -546,6 +573,13 @@ public class WebInstantView {
         TLRPC$TL_textPlain tLRPC$TL_textPlain = new TLRPC$TL_textPlain();
         tLRPC$TL_textPlain.text = str;
         return tLRPC$TL_textPlain;
+    }
+
+    public static void recycle(TLRPC$WebPage tLRPC$WebPage) {
+        WebInstantView webInstantView = (WebInstantView) instants.remove(tLRPC$WebPage);
+        if (webInstantView != null) {
+            webInstantView.recycle();
+        }
     }
 
     public static TLRPC$RichText trim(TLRPC$RichText tLRPC$RichText) {
@@ -688,17 +722,32 @@ public class WebInstantView {
 
     public TLRPC$TL_pageBlockPhoto parseFigure(JSONObject jSONObject, TLRPC$TL_page tLRPC$TL_page) {
         JSONArray optJSONArray = jSONObject.optJSONArray("content");
+        ArrayList arrayList = new ArrayList();
+        WebPhoto webPhoto = null;
+        int i = 0;
         TLRPC$TL_pageBlockPhoto tLRPC$TL_pageBlockPhoto = null;
         TLRPC$RichText tLRPC$RichText = null;
-        for (int i = 0; i < optJSONArray.length(); i++) {
-            Object obj = optJSONArray.get(i);
+        for (int i2 = 0; i2 < optJSONArray.length(); i2++) {
+            Object obj = optJSONArray.get(i2);
             if (obj instanceof JSONObject) {
                 JSONObject jSONObject2 = (JSONObject) obj;
                 String optString = jSONObject2.optString("tag");
-                if ("figurecaption".equalsIgnoreCase(optString)) {
+                if ("figurecaption".equalsIgnoreCase(optString) || "caption".equalsIgnoreCase(optString)) {
                     tLRPC$RichText = trim(parseRichText(jSONObject2, tLRPC$TL_page));
                 } else if ("img".equalsIgnoreCase(optString)) {
                     tLRPC$TL_pageBlockPhoto = parseImage(jSONObject2, tLRPC$TL_page);
+                } else if ("source".equalsIgnoreCase(optString)) {
+                    String optString2 = jSONObject2.optString("src");
+                    if (TextUtils.isEmpty(optString2)) {
+                        String optString3 = jSONObject2.optString("srcset");
+                        if (!TextUtils.isEmpty(optString3)) {
+                            for (String str : optString3.split(",")) {
+                                arrayList.add(str.trim().split(" ")[0].trim());
+                            }
+                        }
+                    } else {
+                        arrayList.add(optString2);
+                    }
                 }
             }
         }
@@ -710,6 +759,19 @@ public class WebInstantView {
             tLRPC$TL_pageBlockPhoto.caption = tLRPC$TL_pageCaption;
             tLRPC$TL_pageCaption.text = tLRPC$RichText;
             tLRPC$TL_pageCaption.credit = new TLRPC$TL_textEmpty();
+        }
+        while (true) {
+            if (i >= tLRPC$TL_page.photos.size()) {
+                break;
+            }
+            if ((tLRPC$TL_page.photos.get(i) instanceof WebPhoto) && ((TLRPC$Photo) tLRPC$TL_page.photos.get(i)).id == tLRPC$TL_pageBlockPhoto.photo_id) {
+                webPhoto = (WebPhoto) tLRPC$TL_page.photos.get(i);
+                break;
+            }
+            i++;
+        }
+        if (webPhoto != null) {
+            webPhoto.urls.addAll(arrayList);
         }
         return tLRPC$TL_pageBlockPhoto;
     }
@@ -730,6 +792,7 @@ public class WebInstantView {
         webPhoto.instantView = this;
         webPhoto.id = (-1) - tLRPC$TL_page.photos.size();
         webPhoto.url = optString2;
+        webPhoto.urls.add(optString2);
         try {
             webPhoto.w = Integer.parseInt(jSONObject.optString("width"));
         } catch (Exception unused) {
@@ -760,6 +823,7 @@ public class WebInstantView {
         webPhoto.instantView = this;
         webPhoto.id = (-1) - tLRPC$TL_page.photos.size();
         webPhoto.url = optString;
+        webPhoto.urls.add(optString);
         try {
             webPhoto.w = Integer.parseInt(jSONObject.optString("width"));
         } catch (Exception unused) {
@@ -932,153 +996,160 @@ public class WebInstantView {
                                 break;
                             }
                             break;
+                        case -577741570:
+                            if (optString.equals("picture")) {
+                                c = 2;
+                                break;
+                            }
+                            break;
                         case 97:
                             if (optString.equals("a")) {
-                                c = 2;
+                                c = 3;
                                 break;
                             }
                             break;
                         case 98:
                             if (optString.equals("b")) {
-                                c = 3;
+                                c = 4;
                                 break;
                             }
                             break;
                         case 105:
                             if (optString.equals("i")) {
-                                c = 4;
+                                c = 5;
                                 break;
                             }
                             break;
                         case 112:
                             if (optString.equals("p")) {
-                                c = 5;
+                                c = 6;
                                 break;
                             }
                             break;
                         case 115:
                             if (optString.equals("s")) {
-                                c = 6;
+                                c = 7;
                                 break;
                             }
                             break;
                         case 3273:
                             if (optString.equals("h1")) {
-                                c = 7;
+                                c = '\b';
                                 break;
                             }
                             break;
                         case 3274:
                             if (optString.equals("h2")) {
-                                c = '\b';
+                                c = '\t';
                                 break;
                             }
                             break;
                         case 3275:
                             if (optString.equals("h3")) {
-                                c = '\t';
+                                c = '\n';
                                 break;
                             }
                             break;
                         case 3276:
                             if (optString.equals("h4")) {
-                                c = '\n';
+                                c = 11;
                                 break;
                             }
                             break;
                         case 3277:
                             if (optString.equals("h5")) {
-                                c = 11;
+                                c = '\f';
                                 break;
                             }
                             break;
                         case 3278:
                             if (optString.equals("h6")) {
-                                c = '\f';
+                                c = '\r';
                                 break;
                             }
                             break;
                         case 3338:
                             if (optString.equals("hr")) {
-                                c = '\r';
+                                c = 14;
                                 break;
                             }
                             break;
                         case 3549:
                             if (optString.equals("ol")) {
-                                c = 14;
+                                c = 15;
                                 break;
                             }
                             break;
                         case 3735:
                             if (optString.equals("ul")) {
-                                c = 15;
+                                c = 16;
                                 break;
                             }
                             break;
                         case 104387:
                             if (optString.equals("img")) {
-                                c = 16;
+                                c = 17;
                                 break;
                             }
                             break;
                         case 111267:
                             if (optString.equals("pre")) {
-                                c = 17;
+                                c = 18;
                                 break;
                             }
                             break;
                         case 114240:
                             if (optString.equals("sub")) {
-                                c = 18;
+                                c = 19;
                                 break;
                             }
                             break;
                         case 114254:
                             if (optString.equals("sup")) {
-                                c = 19;
+                                c = 20;
                                 break;
                             }
                             break;
                         case 3059181:
                             if (optString.equals("code")) {
-                                c = 20;
+                                c = 21;
                                 break;
                             }
                             break;
                         case 3344077:
                             if (optString.equals("mark")) {
-                                c = 21;
+                                c = 22;
                                 break;
                             }
                             break;
                         case 3536714:
                             if (optString.equals("span")) {
-                                c = 22;
+                                c = 23;
                                 break;
                             }
                             break;
                         case 110115790:
                             if (optString.equals("table")) {
-                                c = 23;
+                                c = 24;
                                 break;
                             }
                             break;
                         case 1303202319:
                             if (optString.equals("blockquote")) {
-                                c = 24;
+                                c = 25;
                                 break;
                             }
                             break;
                         case 1557721666:
                             if (optString.equals("details")) {
-                                c = 25;
+                                c = 26;
                                 break;
                             }
                             break;
                     }
                     switch (c) {
                         case 0:
+                        case 2:
                             TLRPC$TL_pageBlockPhoto parseFigure = parseFigure(jSONObject, tLRPC$TL_page);
                             tLRPC$TL_pageBlockPhoto = parseFigure;
                             if (parseFigure == null) {
@@ -1087,15 +1158,15 @@ public class WebInstantView {
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
                         case 1:
-                        case 2:
                         case 3:
                         case 4:
-                        case 6:
-                        case 18:
+                        case 5:
+                        case 7:
                         case 19:
                         case 20:
                         case 21:
                         case 22:
+                        case 23:
                             JSONArray jSONArray2 = new JSONArray();
                             jSONArray2.put(jSONObject);
                             ?? tLRPC$TL_pageBlockParagraph4 = new TLRPC$TL_pageBlockParagraph();
@@ -1103,37 +1174,37 @@ public class WebInstantView {
                             tLRPC$TL_pageBlockPhoto = tLRPC$TL_pageBlockParagraph4;
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
-                        case 5:
+                        case 6:
                             TLRPC$TL_pageBlockParagraph tLRPC$TL_pageBlockParagraph5 = new TLRPC$TL_pageBlockParagraph();
                             trim = trim(parseRichText(jSONObject, tLRPC$TL_page));
                             tLRPC$TL_pageBlockParagraph2 = tLRPC$TL_pageBlockParagraph5;
                             break;
-                        case 7:
                         case '\b':
+                        case '\t':
                             ?? tLRPC$TL_pageBlockHeader = new TLRPC$TL_pageBlockHeader();
                             tLRPC$TL_pageBlockHeader.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
                             tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockHeader;
                             arrayList.add(tLRPC$TL_pageBlockParagraph);
                             break;
-                        case '\t':
                         case '\n':
                         case 11:
                         case '\f':
+                        case '\r':
                             ?? tLRPC$TL_pageBlockSubheader = new TLRPC$TL_pageBlockSubheader();
                             tLRPC$TL_pageBlockSubheader.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
                             tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockSubheader;
                             arrayList.add(tLRPC$TL_pageBlockParagraph);
                             break;
-                        case '\r':
+                        case 14:
                             tLRPC$TL_pageBlockPhoto = new TLRPC$TL_pageBlockDivider();
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
-                        case 14:
                         case 15:
+                        case 16:
                             tLRPC$TL_pageBlockPhoto = parseList(str, jSONObject, tLRPC$TL_page);
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
-                        case 16:
+                        case 17:
                             TLRPC$TL_pageBlockPhoto parseImage = parseImage(jSONObject, tLRPC$TL_page);
                             tLRPC$TL_pageBlockPhoto = parseImage;
                             if (parseImage == null) {
@@ -1141,7 +1212,7 @@ public class WebInstantView {
                             }
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
-                        case 17:
+                        case 18:
                             ?? tLRPC$TL_pageBlockPreformatted = new TLRPC$TL_pageBlockPreformatted();
                             TLRPC$TL_textFixed tLRPC$TL_textFixed = new TLRPC$TL_textFixed();
                             tLRPC$TL_textFixed.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
@@ -1150,11 +1221,11 @@ public class WebInstantView {
                             tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockPreformatted;
                             arrayList.add(tLRPC$TL_pageBlockParagraph);
                             break;
-                        case 23:
+                        case 24:
                             tLRPC$TL_pageBlockPhoto = parseTable(str, jSONObject, tLRPC$TL_page);
                             arrayList.add(tLRPC$TL_pageBlockPhoto);
                             break;
-                        case 24:
+                        case 25:
                             ?? tLRPC$TL_pageBlockBlockquote = new TLRPC$TL_pageBlockBlockquote();
                             tLRPC$TL_pageBlockBlockquote.text = trim(parseRichText(jSONObject, tLRPC$TL_page));
                             TLRPC$TL_textItalic tLRPC$TL_textItalic = new TLRPC$TL_textItalic();
@@ -1163,7 +1234,7 @@ public class WebInstantView {
                             tLRPC$TL_pageBlockParagraph = tLRPC$TL_pageBlockBlockquote;
                             arrayList.add(tLRPC$TL_pageBlockParagraph);
                             break;
-                        case 25:
+                        case 26:
                             TLRPC$TL_pageBlockDetails parseDetails = parseDetails(str, jSONObject, tLRPC$TL_page);
                             tLRPC$TL_pageBlockPhoto = parseDetails;
                             if (parseDetails == null) {
@@ -1342,7 +1413,7 @@ public class WebInstantView {
                 String str3 = "text/html";
                 if (this.firstLoad) {
                     this.firstLoad = false;
-                    return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(("<script>\n" + AndroidUtilities.readRes(R.raw.instant) + "\n</script>").getBytes(StandardCharsets.UTF_8)));
+                    return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(("<script>\n" + AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION) + "\n</script>").getBytes(StandardCharsets.UTF_8)));
                 }
                 if (str2 == null || !str2.endsWith("/index.html")) {
                     MHTML mhtml = WebInstantView.this.mhtml;
@@ -1372,5 +1443,31 @@ public class WebInstantView {
         frameLayout.addView(webView, LayoutHelper.createFrame(-1, -1.0f));
         webView.addJavascriptInterface(new AnonymousClass4(new boolean[]{false}, webView, frameLayout, callback), "Instant");
         webView.loadUrl(str);
+    }
+
+    public void recycle() {
+        TLRPC$Page tLRPC$Page;
+        ArrayList arrayList;
+        instants.remove(this.webpage);
+        Iterator it = this.loadedPhotos.entrySet().iterator();
+        while (it.hasNext()) {
+            AndroidUtilities.recycleBitmap((Bitmap) ((Map.Entry) it.next()).getValue());
+        }
+        this.loadedPhotos.clear();
+        TLRPC$WebPage tLRPC$WebPage = this.webpage;
+        if (tLRPC$WebPage == null || (tLRPC$Page = tLRPC$WebPage.cached_page) == null || (arrayList = tLRPC$Page.photos) == null) {
+            return;
+        }
+        Iterator it2 = arrayList.iterator();
+        while (it2.hasNext()) {
+            TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) it2.next();
+            if (tLRPC$Photo instanceof WebPhoto) {
+                WebPhoto webPhoto = (WebPhoto) tLRPC$Photo;
+                HashMap hashMap = loadingPhotos;
+                if (hashMap != null) {
+                    hashMap.remove(webPhoto.url);
+                }
+            }
+        }
     }
 }

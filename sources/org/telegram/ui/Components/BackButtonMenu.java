@@ -33,6 +33,7 @@ public abstract class BackButtonMenu {
 
     public static void addToPulledDialogs(BaseFragment baseFragment, int i, TLRPC$Chat tLRPC$Chat, TLRPC$User tLRPC$User, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, long j, int i2, int i3) {
         INavigationLayout parentLayout;
+        TLRPC$TL_forumTopic tLRPC$TL_forumTopic2;
         if ((tLRPC$Chat == null && tLRPC$User == null) || baseFragment == null || (parentLayout = baseFragment.getParentLayout()) == null) {
             return;
         }
@@ -43,7 +44,7 @@ public abstract class BackButtonMenu {
             if (tLRPC$TL_forumTopic == null && pulledDialog.dialogId == j) {
                 return;
             }
-            if (tLRPC$TL_forumTopic != null && pulledDialog.topic.id == tLRPC$TL_forumTopic.id) {
+            if (tLRPC$TL_forumTopic != null && (tLRPC$TL_forumTopic2 = pulledDialog.topic) != null && tLRPC$TL_forumTopic2.id == tLRPC$TL_forumTopic.id) {
                 return;
             }
         }
