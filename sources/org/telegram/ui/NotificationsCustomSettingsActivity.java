@@ -914,8 +914,8 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
         updateRows(true);
     }
 
-    public boolean lambda$createView$8(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
-        int i = 0;
+    public boolean lambda$createView$8(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
+        int i2 = 0;
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         if (this.currentType == 3) {
             ArrayList arrayList2 = this.autoExceptions;
@@ -941,9 +941,9 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
             notificationException.story = true;
             Boolean bool = this.storiesEnabled;
             if (bool != null && bool.booleanValue()) {
-                i = Integer.MAX_VALUE;
+                i2 = Integer.MAX_VALUE;
             }
-            notificationException.notify = i;
+            notificationException.notify = i2;
             if (this.exceptions == null) {
                 this.exceptions = new ArrayList();
             }

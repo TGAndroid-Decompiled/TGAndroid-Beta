@@ -131,7 +131,7 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             locationMarker.setIsVideo(false);
             locationMarker.setCodeEmoji(UserConfig.selectedAccount, state.getEmoji());
             locationMarker.setText(state.getTemperature());
-            locationMarker.setType(0, tL_stories$TL_mediaAreaWeather.color);
+            locationMarker.setType(3, tL_stories$TL_mediaAreaWeather.color);
             locationMarker.setupLayout();
         }
 

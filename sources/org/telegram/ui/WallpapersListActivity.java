@@ -254,12 +254,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             ((BaseFragment) WallpapersListActivity.this).actionBar.closeSearchField();
         }
 
-        public boolean lambda$onItemClick$3(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+        public boolean lambda$onItemClick$3(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
             long j;
             String url;
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < WallpapersListActivity.this.selectedWallPapers.size(); i++) {
-                Object valueAt = WallpapersListActivity.this.selectedWallPapers.valueAt(i);
+            for (int i2 = 0; i2 < WallpapersListActivity.this.selectedWallPapers.size(); i2++) {
+                Object valueAt = WallpapersListActivity.this.selectedWallPapers.valueAt(i2);
                 if (valueAt instanceof TLRPC$TL_wallPaper) {
                     url = AndroidUtilities.getWallPaperUrl(valueAt);
                 } else if (valueAt instanceof ColorWallpaper) {
@@ -277,8 +277,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             ((BaseFragment) WallpapersListActivity.this).actionBar.closeSearchField();
             if (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == UserConfig.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).getClientUserId() || charSequence != null) {
                 WallpapersListActivity.this.updateRowsSelection();
-                for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    long j2 = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
                     if (charSequence != null) {
                         j = j2;
                         SendMessagesHelper.getInstance(((BaseFragment) WallpapersListActivity.this).currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false));
@@ -333,9 +333,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
-                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                             boolean lambda$onItemClick$3;
-                            lambda$onItemClick$3 = WallpapersListActivity.AnonymousClass2.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                            lambda$onItemClick$3 = WallpapersListActivity.AnonymousClass2.this.lambda$onItemClick$3(dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                             return lambda$onItemClick$3;
                         }
                     });

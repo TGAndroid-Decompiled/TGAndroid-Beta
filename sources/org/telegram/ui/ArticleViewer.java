@@ -7027,6 +7027,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return this.clipRect;
             }
 
+            public boolean isVisible() {
+                return AndroidUtilities.lerp(Sheet.this.getListTop() - Sheet.this.getListPaddingTop(), 0, Utilities.clamp01(this.attachedActionBar.get())) < getHeight();
+            }
+
             @Override
             protected void onMeasure(int i, int i2) {
                 super.onMeasure(i, i2);
@@ -7451,7 +7455,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public boolean isShown() {
-            return !this.dismissing;
+            WindowView windowView;
+            return !this.dismissing && this.openProgress > 0.5f && (windowView = this.windowView) != null && windowView.isAttachedToWindow() && this.windowView.isVisible() && this.backProgress < 1.0f;
         }
 
         @Override

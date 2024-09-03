@@ -154,56 +154,56 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         this.exceptionsDialogs = new ArrayList();
     }
 
-    public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$createView$0(DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         dialogsActivity.lambda$onBackPressed$307();
         CacheByChatsController.KeepMediaException keepMediaException = null;
-        int i = 0;
         int i2 = 0;
+        int i3 = 0;
         while (true) {
-            boolean z2 = true;
-            if (i2 >= arrayList.size()) {
+            boolean z3 = true;
+            if (i3 >= arrayList.size()) {
                 break;
             }
-            int i3 = 0;
+            int i4 = 0;
             while (true) {
-                if (i3 >= this.exceptionsDialogs.size()) {
-                    z2 = false;
+                if (i4 >= this.exceptionsDialogs.size()) {
+                    z3 = false;
                     break;
                 }
-                if (((CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i3)).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId) {
-                    keepMediaException = (CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i3);
+                if (((CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i4)).dialogId == ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId) {
+                    keepMediaException = (CacheByChatsController.KeepMediaException) this.exceptionsDialogs.get(i4);
                     break;
                 }
-                i3++;
+                i4++;
             }
-            if (!z2) {
-                int i4 = CacheByChatsController.KEEP_MEDIA_FOREVER;
+            if (!z3) {
+                int i5 = CacheByChatsController.KEEP_MEDIA_FOREVER;
                 if (getMessagesController().getCacheByChatsController().getKeepMedia(this.currentType) == CacheByChatsController.KEEP_MEDIA_FOREVER) {
-                    i4 = CacheByChatsController.KEEP_MEDIA_ONE_DAY;
+                    i5 = CacheByChatsController.KEEP_MEDIA_ONE_DAY;
                 }
                 ArrayList arrayList2 = this.exceptionsDialogs;
-                CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId, i4);
+                CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId, i5);
                 arrayList2.add(keepMediaException2);
                 keepMediaException = keepMediaException2;
             }
-            i2++;
+            i3++;
         }
         getMessagesController().getCacheByChatsController().saveKeepMediaExceptions(this.currentType, this.exceptionsDialogs);
         updateRows();
         if (keepMediaException != null) {
-            int i5 = 0;
+            int i6 = 0;
             while (true) {
-                if (i5 < this.items.size()) {
-                    if (((Item) this.items.get(i5)).exception != null && ((Item) this.items.get(i5)).exception.dialogId == keepMediaException.dialogId) {
-                        i = i5;
+                if (i6 < this.items.size()) {
+                    if (((Item) this.items.get(i6)).exception != null && ((Item) this.items.get(i6)).exception.dialogId == keepMediaException.dialogId) {
+                        i2 = i6;
                         break;
                     }
-                    i5++;
+                    i6++;
                 } else {
                     break;
                 }
             }
-            this.recyclerListView.scrollToPosition(i);
+            this.recyclerListView.scrollToPosition(i2);
             showPopupFor(keepMediaException);
         }
         return true;
@@ -269,9 +269,9 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
                 final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
                 dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i4, TopicsFragment topicsFragment) {
                         boolean lambda$createView$0;
-                        lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                        lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i4, topicsFragment);
                         return lambda$createView$0;
                     }
                 });
@@ -284,9 +284,9 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
         final DialogsActivity dialogsActivity2 = new DialogsActivity(bundle);
         dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity22, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity22, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i4, TopicsFragment topicsFragment) {
                 boolean lambda$createView$0;
-                lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity2, dialogsActivity22, arrayList, charSequence, z, topicsFragment);
+                lambda$createView$0 = CacheChatsExceptionsFragment.this.lambda$createView$0(dialogsActivity2, dialogsActivity22, arrayList, charSequence, z, z2, i4, topicsFragment);
                 return lambda$createView$0;
             }
         });

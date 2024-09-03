@@ -122,6 +122,9 @@ public abstract class BotCommandsMenuContainer extends FrameLayout implements Ne
     }
 
     public float clipBottom() {
+        if (this.dismissed) {
+            return 0.0f;
+        }
         return Math.max(0.0f, getMeasuredHeight() - (this.containerY + this.listView.getTranslationY()));
     }
 

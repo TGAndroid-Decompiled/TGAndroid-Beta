@@ -23301,7 +23301,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @Override
-    public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         String str;
         MessageObject messageObject;
         ChatActivityEnterView chatActivityEnterView;
@@ -23320,25 +23320,25 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 arrayList2.add(messageObject3);
             }
         } else {
-            for (int i = 1; i >= 0; i--) {
+            for (int i2 = 1; i2 >= 0; i2--) {
                 ArrayList arrayList3 = new ArrayList();
-                for (int i2 = 0; i2 < this.selectedMessagesIds[i].size(); i2++) {
-                    arrayList3.add(Integer.valueOf(this.selectedMessagesIds[i].keyAt(i2)));
+                for (int i3 = 0; i3 < this.selectedMessagesIds[i2].size(); i3++) {
+                    arrayList3.add(Integer.valueOf(this.selectedMessagesIds[i2].keyAt(i3)));
                 }
                 Collections.sort(arrayList3);
-                for (int i3 = 0; i3 < arrayList3.size(); i3++) {
-                    MessageObject messageObject4 = (MessageObject) this.selectedMessagesIds[i].get(((Integer) arrayList3.get(i3)).intValue());
+                for (int i4 = 0; i4 < arrayList3.size(); i4++) {
+                    MessageObject messageObject4 = (MessageObject) this.selectedMessagesIds[i2].get(((Integer) arrayList3.get(i4)).intValue());
                     if (messageObject4 != null) {
                         arrayList2.add(messageObject4);
                     }
                 }
             }
         }
-        for (int i4 = 0; i4 < arrayList.size(); i4++) {
-            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId));
+        for (int i5 = 0; i5 < arrayList.size(); i5++) {
+            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-((MessagesStorage.TopicKey) arrayList.get(i5)).dialogId));
             if (chat != null) {
-                for (int i5 = 0; i5 < arrayList2.size(); i5++) {
-                    int canSendMessageToChat = SendMessagesHelper.canSendMessageToChat(chat, arrayList2.get(i5));
+                for (int i6 = 0; i6 < arrayList2.size(); i6++) {
+                    int canSendMessageToChat = SendMessagesHelper.canSendMessageToChat(chat, arrayList2.get(i6));
                     if (canSendMessageToChat != 0) {
                         AlertsCreator.showSendMediaAlert(canSendMessageToChat, dialogsActivity, null);
                         return false;
@@ -23350,16 +23350,16 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.forwardingMessage = null;
             this.forwardingMessageGroup = null;
         } else {
-            for (int i6 = 1; i6 >= 0; i6--) {
-                this.selectedMessagesCanCopyIds[i6].clear();
-                this.selectedMessagesCanStarIds[i6].clear();
-                this.selectedMessagesIds[i6].clear();
+            for (int i7 = 1; i7 >= 0; i7--) {
+                this.selectedMessagesCanCopyIds[i7].clear();
+                this.selectedMessagesCanStarIds[i7].clear();
+                this.selectedMessagesIds[i7].clear();
             }
             hideActionMode();
             updatePinnedMessageView(true);
             updateVisibleRows();
         }
-        if (dialogsActivity.isQuote || (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != getUserConfig().getClientUserId() && charSequence == null)) {
+        if (dialogsActivity.isQuote || (arrayList.size() <= 1 && ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId != getUserConfig().getClientUserId() && charSequence == null && i == 0 && z2)) {
             MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) arrayList.get(0);
             long j = topicKey.dialogId;
             if (j == this.dialog_id && getTopicId() == topicKey.topicId && this.chatMode != 2) {
@@ -23456,15 +23456,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         } else {
             this.messagePreviewParams = null;
             hideFieldPanel(false);
-            for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                long j2 = ((MessagesStorage.TopicKey) arrayList.get(i7)).dialogId;
+            for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                long j2 = ((MessagesStorage.TopicKey) arrayList.get(i8)).dialogId;
                 if (charSequence != null) {
-                    SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false);
+                    SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, z2, i, null, false);
                     of.quick_reply_shortcut = this.quickReplyShortcut;
                     of.quick_reply_shortcut_id = getQuickReplyId();
                     getSendMessagesHelper().sendMessage(of);
                 }
-                getSendMessagesHelper().sendMessage(arrayList2, j2, false, false, true, 0);
+                getSendMessagesHelper().sendMessage(arrayList2, j2, false, false, z2, i);
             }
             dialogsActivity.lambda$onBackPressed$307();
             createUndoView();

@@ -602,7 +602,7 @@ public class NotificationsController extends BaseController {
         return format;
     }
 
-    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r27, java.lang.String[] r28, boolean[] r29) {
+    private java.lang.String getShortStringForMessage(org.telegram.messenger.MessageObject r28, java.lang.String[] r29, boolean[] r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.getShortStringForMessage(org.telegram.messenger.MessageObject, java.lang.String[], boolean[]):java.lang.String");
     }
 

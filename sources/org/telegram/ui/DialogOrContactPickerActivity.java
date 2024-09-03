@@ -88,9 +88,9 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.dialogsActivity = dialogsActivity;
         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                 boolean lambda$new$1;
-                lambda$new$1 = DialogOrContactPickerActivity.this.lambda$new$1(dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                lambda$new$1 = DialogOrContactPickerActivity.this.lambda$new$1(dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                 return lambda$new$1;
             }
         });
@@ -114,7 +114,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         this.contactsActivity.onFragmentCreate();
     }
 
-    public boolean lambda$new$1(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$new$1(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         if (arrayList.isEmpty()) {
             return true;
         }

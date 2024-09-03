@@ -189,10 +189,10 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         });
     }
 
-    public boolean lambda$share$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$share$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         long j = 0;
-        for (int i = 0; i < arrayList.size(); i++) {
-            j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
+            j = ((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId;
             getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(str, j, null, null, null, true, null, null, null, true, 0, null, false));
         }
         dialogsActivity.lambda$onBackPressed$307();
@@ -208,9 +208,9 @@ public class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet
         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
             @Override
-            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                 boolean lambda$share$0;
-                lambda$share$0 = PremiumPreviewGiftLinkBottomSheet.this.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                lambda$share$0 = PremiumPreviewGiftLinkBottomSheet.this.lambda$share$0(str, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                 return lambda$share$0;
             }
         });

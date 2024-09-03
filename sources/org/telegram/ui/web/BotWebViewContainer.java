@@ -545,32 +545,44 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             }
 
             public void lambda$onLongClick$0(String str, DialogInterface dialogInterface, int i) {
-                if (i == 0) {
-                    MyWebView.this.loadUrl(str);
-                    return;
-                }
-                if (i == 1) {
-                    Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-                    intent.putExtra("create_new_tab", true);
-                    intent.putExtra("com.android.browser.application_id", MyWebView.this.getContext().getPackageName());
-                    MyWebView.this.getContext().startActivity(intent);
-                    return;
-                }
-                if (i == 2) {
-                    AndroidUtilities.addToClipboard(str);
-                    if (MyWebView.this.botWebViewContainer != null) {
-                        MyWebView.this.botWebViewContainer.showLinkCopiedBulletin();
+                if (i != 0) {
+                    if (i != 1) {
+                        if (i == 2) {
+                            AndroidUtilities.addToClipboard(str);
+                            if (MyWebView.this.botWebViewContainer != null) {
+                                MyWebView.this.botWebViewContainer.showLinkCopiedBulletin();
+                                return;
+                            }
+                            return;
+                        }
+                        return;
+                    }
+                    try {
+                        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+                        intent.putExtra("create_new_tab", true);
+                        intent.putExtra("com.android.browser.application_id", MyWebView.this.getContext().getPackageName());
+                        MyWebView.this.getContext().startActivity(intent);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
                     }
                 }
+                MyWebView.this.loadUrl(str);
             }
 
             public void lambda$onLongClick$1(String str, DialogInterface dialogInterface, int i) {
                 if (i == 0) {
-                    Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
-                    intent.putExtra("create_new_tab", true);
-                    intent.putExtra("com.android.browser.application_id", MyWebView.this.getContext().getPackageName());
-                    MyWebView.this.getContext().startActivity(intent);
-                    return;
+                    try {
+                        Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
+                        intent.putExtra("create_new_tab", true);
+                        intent.putExtra("com.android.browser.application_id", MyWebView.this.getContext().getPackageName());
+                        MyWebView.this.getContext().startActivity(intent);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        MyWebView.this.loadUrl(str);
+                        return;
+                    }
                 }
                 if (i != 1) {
                     if (i == 2) {
@@ -600,8 +612,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     if (MyWebView.this.botWebViewContainer != null) {
                         BulletinFactory.of(MyWebView.this.botWebViewContainer, MyWebView.this.botWebViewContainer.resourcesProvider).createSimpleBulletin(R.raw.ic_download, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.WebDownloadingFile, guessFileName))).show(true);
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
                 }
             }
 

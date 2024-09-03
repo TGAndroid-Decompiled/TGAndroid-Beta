@@ -544,7 +544,7 @@ public abstract class WebActionBar extends FrameLayout {
                     }
                     final WebInstantView.Loader instantViewLoader = getInstantViewLoader();
                     if (instantViewLoader != null && (!instantViewLoader.isDone() || instantViewLoader.getWebPage() != null)) {
-                        makeOptions.add(R.drawable.menu_instant_view, LocaleController.getString(R.string.OpenInstantView), (Runnable) callbackReturn.run(10));
+                        makeOptions.add(R.drawable.menu_instant_view, LocaleController.getString(R.string.OpenLocalInstantView), (Runnable) callbackReturn.run(10));
                         final ActionBarMenuSubItem last = makeOptions.getLast();
                         last.setEnabled(instantViewLoader.getWebPage() != null);
                         last.setAlpha(last.isEnabled() ? 1.0f : 0.5f);

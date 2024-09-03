@@ -907,13 +907,13 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             return;
         }
         int measuredWidth = getMeasuredWidth();
-        int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
-        if (measuredWidth == 0 || currentActionBarHeight == 0) {
+        int dp = AndroidUtilities.dp(100.0f) + ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
+        if (measuredWidth == 0 || dp == 0) {
             return;
         }
         this.invalidateBlur = false;
         this.blurGeneratingTuskIsRunning = true;
-        float f = currentActionBarHeight;
+        float f = dp;
         int i = ((int) (f / 12.0f)) + 34;
         float f2 = measuredWidth;
         int i2 = (int) (f2 / 12.0f);
@@ -942,7 +942,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         }
         float width = blurBitmap.topBitmap.getWidth() / f2;
         float height = (blurBitmap.topBitmap.getHeight() - 34) / f;
-        blurBitmap.topCanvas.save();
+        int save = blurBitmap.topCanvas.save();
         blurBitmap.pixelFixOffset = getScrollOffset() % 24;
         float f3 = height * 10.0f;
         blurBitmap.topCanvas.clipRect(1.0f, f3, blurBitmap.topBitmap.getWidth(), blurBitmap.topBitmap.getHeight() - 1);
@@ -951,7 +951,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         blurBitmap.topScaleX = 1.0f / width;
         blurBitmap.topScaleY = 1.0f / height;
         drawList(blurBitmap.topCanvas, true, null);
-        blurBitmap.topCanvas.restore();
+        try {
+            blurBitmap.topCanvas.restoreToCount(save);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
         if (this.needBlurBottom) {
             float width2 = blurBitmap.bottomBitmap.getWidth() / f2;
             float height2 = (blurBitmap.bottomBitmap.getHeight() - 34) / f;
@@ -980,7 +984,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (blurQueue == null) {
             blurQueue = new DispatchQueue("BlurQueue");
         }
-        this.blurBackgroundTask.radius = (int) (((int) (Math.max(6, Math.max(currentActionBarHeight, measuredWidth) / 180) * 2.5f)) * BlurSettingsBottomSheet.blurRadius);
+        this.blurBackgroundTask.radius = (int) (((int) (Math.max(6, Math.max(dp, measuredWidth) / 180) * 2.5f)) * BlurSettingsBottomSheet.blurRadius);
         BlurBackgroundTask blurBackgroundTask = this.blurBackgroundTask;
         blurBackgroundTask.finalBitmap = blurBitmap;
         blurQueue.postRunnable(blurBackgroundTask);

@@ -45,7 +45,7 @@ public class RadialProgress2 {
     private MediaActionDrawable miniMediaActionDrawable;
     private Paint miniProgressBackgroundPaint;
     private float overlayImageAlpha;
-    private ImageReceiver overlayImageView;
+    public ImageReceiver overlayImageView;
     private Paint overlayPaint;
     private float overrideAlpha;
     public float overrideCircleAlpha;
@@ -243,7 +243,14 @@ public class RadialProgress2 {
     }
 
     public void setImageOverlay(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$Document tLRPC$Document, Object obj) {
-        this.overlayImageView.setImage(ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document), String.format(Locale.US, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)), null, null, obj, 1);
+        Locale locale = Locale.US;
+        String.format(locale, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2));
+        this.overlayImageView.setImage(ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document), String.format(locale, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2)), null, null, obj, 1);
+    }
+
+    public void setImageOverlay(TLRPC$PhotoSize tLRPC$PhotoSize, TLRPC$PhotoSize tLRPC$PhotoSize2, TLRPC$Document tLRPC$Document, Object obj) {
+        String format = String.format(Locale.US, "%d_%d", Integer.valueOf(this.circleRadius * 2), Integer.valueOf(this.circleRadius * 2));
+        this.overlayImageView.setImage(tLRPC$PhotoSize == null ? null : ImageLocation.getForDocument(tLRPC$PhotoSize, tLRPC$Document), format, tLRPC$PhotoSize2 == null ? null : ImageLocation.getForDocument(tLRPC$PhotoSize2, tLRPC$Document), format, null, 0L, null, obj, 1);
     }
 
     public void setMaxIconSize(int i) {

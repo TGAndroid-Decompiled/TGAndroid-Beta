@@ -380,7 +380,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             botWebViewMenuContainer$ActionBarColorsAnimating.updateActionBar(ChatAttachAlert.this.actionBar, floatValue);
         }
 
-        public boolean lambda$onWebAppSwitchInlineQuery$5(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+        public boolean lambda$onWebAppSwitchInlineQuery$5(TLRPC$User tLRPC$User, String str, OverlayActionBarLayoutDialog overlayActionBarLayoutDialog, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
             String str2;
             long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             Bundle bundle = new Bundle();
@@ -683,9 +683,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             final OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(ChatAttachAlert.this.getContext(), ((BottomSheet) ChatAttachAlert.this).resourcesProvider);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
                     boolean lambda$onWebAppSwitchInlineQuery$5;
-                    lambda$onWebAppSwitchInlineQuery$5 = ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSwitchInlineQuery$5(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                    lambda$onWebAppSwitchInlineQuery$5 = ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSwitchInlineQuery$5(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, z2, i, topicsFragment);
                     return lambda$onWebAppSwitchInlineQuery$5;
                 }
             });

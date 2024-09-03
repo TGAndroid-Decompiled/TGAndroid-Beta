@@ -1055,12 +1055,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return true;
     }
 
-    public boolean lambda$onSubItemClick$11(ArrayList arrayList, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$onSubItemClick$11(ArrayList arrayList, DialogsActivity dialogsActivity, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         long j;
         String str;
         if (arrayList2.size() > 1 || ((MessagesStorage.TopicKey) arrayList2.get(0)).dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId() || charSequence != null) {
-            for (int i = 0; i < arrayList2.size(); i++) {
-                long j2 = ((MessagesStorage.TopicKey) arrayList2.get(i)).dialogId;
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                long j2 = ((MessagesStorage.TopicKey) arrayList2.get(i2)).dialogId;
                 if (charSequence != null) {
                     j = j2;
                     SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false));

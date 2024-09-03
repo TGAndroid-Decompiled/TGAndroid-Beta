@@ -1660,16 +1660,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$didSelectDialogs$131(ChatActivity chatActivity, ArrayList arrayList, CharSequence charSequence, int i, boolean z, TLRPC$User tLRPC$User, boolean z2, int i2, long j, boolean z3) {
+    public void lambda$didSelectDialogs$131(ChatActivity chatActivity, ArrayList arrayList, int i, CharSequence charSequence, int i2, boolean z, TLRPC$User tLRPC$User, boolean z2, int i3, long j, boolean z3) {
         MessageObject messageObject;
         TLRPC$TL_forumTopic findTopic;
         if (chatActivity != null) {
             getActionBarLayout().presentFragment(chatActivity, true, false, true, false);
         }
         AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-            long j3 = ((MessagesStorage.TopicKey) arrayList.get(i3)).topicId;
+        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+            long j2 = ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId;
+            long j3 = ((MessagesStorage.TopicKey) arrayList.get(i4)).topicId;
             if (j3 == 0 || (findTopic = accountInstance.getMessagesController().getTopicsController().findTopic(-j2, j3)) == null || findTopic.topicStartMessage == null) {
                 messageObject = null;
             } else {
@@ -1677,14 +1677,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 messageObject2.isTopicMainMessage = true;
                 messageObject = messageObject2;
             }
-            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tLRPC$User, j2, messageObject, messageObject, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, z2, i2);
+            SendMessagesHelper.SendMessageParams of = SendMessagesHelper.SendMessageParams.of(tLRPC$User, j2, messageObject, messageObject, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, z2, i3 != 0 ? i3 : i);
             if (TextUtils.isEmpty(charSequence)) {
                 of.effect_id = j;
             }
             of.invert_media = z3;
-            SendMessagesHelper.getInstance(i).sendMessage(of);
+            SendMessagesHelper.getInstance(i2).sendMessage(of);
             if (!TextUtils.isEmpty(charSequence)) {
-                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j2, z, 0, j);
+                SendMessagesHelper.prepareSendingText(accountInstance, charSequence.toString(), j2, z, i3 != 0 ? i3 : i, j);
             }
         }
     }
@@ -2319,7 +2319,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         });
     }
 
-    public boolean lambda$processAttachMenuBot$115(TLRPC$User tLRPC$User, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$processAttachMenuBot$115(TLRPC$User tLRPC$User, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
         String str2;
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
@@ -2444,9 +2444,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 DialogsActivity dialogsActivity2 = new DialogsActivity(bundle);
                 dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, boolean z2, int i3, TopicsFragment topicsFragment) {
                         boolean lambda$processAttachMenuBot$115;
-                        lambda$processAttachMenuBot$115 = LaunchActivity.this.lambda$processAttachMenuBot$115(tLRPC$User2, str3, i, dialogsActivity3, arrayList4, charSequence, z, topicsFragment);
+                        lambda$processAttachMenuBot$115 = LaunchActivity.this.lambda$processAttachMenuBot$115(tLRPC$User2, str3, i, dialogsActivity3, arrayList4, charSequence, z, z2, i3, topicsFragment);
                         return lambda$processAttachMenuBot$115;
                     }
                 });
@@ -3210,7 +3210,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         });
     }
 
-    public boolean lambda$runLinkRequest$66(String str, int i, TLRPC$User tLRPC$User, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$runLinkRequest$66(String str, int i, TLRPC$User tLRPC$User, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
         String str2;
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         TLRPC$TL_inputMediaGame tLRPC$TL_inputMediaGame = new TLRPC$TL_inputMediaGame();
@@ -3273,28 +3273,28 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         getActionBarLayout().presentFragment(chatActivity, true, false, true, false);
     }
 
-    public boolean lambda$runLinkRequest$71(final int i, final TLRPC$User tLRPC$User, final String str, final String str2, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$runLinkRequest$71(final int i, final TLRPC$User tLRPC$User, final String str, final String str2, final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
         final long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         final TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         if (chat == null || (!chat.creator && ((tLRPC$TL_chatAdminRights = chat.admin_rights) == null || !tLRPC$TL_chatAdminRights.add_admins))) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            int i2 = R.string.AddBot;
-            builder.setTitle(LocaleController.getString(i2));
+            int i3 = R.string.AddBot;
+            builder.setTitle(LocaleController.getString(i3));
             builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            builder.setPositiveButton(LocaleController.getString(i2), new DialogInterface.OnClickListener() {
+            builder.setPositiveButton(LocaleController.getString(i3), new DialogInterface.OnClickListener() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i3) {
-                    LaunchActivity.this.lambda$runLinkRequest$70(j, i, tLRPC$User, str2, dialogInterface, i3);
+                public final void onClick(DialogInterface dialogInterface, int i4) {
+                    LaunchActivity.this.lambda$runLinkRequest$70(j, i, tLRPC$User, str2, dialogInterface, i4);
                 }
             });
             builder.show();
         } else {
             MessagesController.getInstance(i).checkIsInChat(false, chat, tLRPC$User, new MessagesController.IsInChatCheckedCallback() {
                 @Override
-                public final void run(boolean z2, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, String str3) {
-                    LaunchActivity.this.lambda$runLinkRequest$69(str, str2, i, chat, dialogsActivity, tLRPC$User, j, z2, tLRPC$TL_chatAdminRights2, str3);
+                public final void run(boolean z3, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, String str3) {
+                    LaunchActivity.this.lambda$runLinkRequest$69(str, str2, i, chat, dialogsActivity, tLRPC$User, j, z3, tLRPC$TL_chatAdminRights2, str3);
                 }
             });
         }
@@ -3396,9 +3396,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         final TLRPC$User user4 = MessagesController.getInstance(i2).getUser(l3);
                         dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
-                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z9, TopicsFragment topicsFragment) {
+                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z9, boolean z10, int i6, TopicsFragment topicsFragment) {
                                 boolean lambda$runLinkRequest$66;
-                                lambda$runLinkRequest$66 = LaunchActivity.this.lambda$runLinkRequest$66(str, i2, user4, dialogsActivity2, arrayList3, charSequence, z9, topicsFragment);
+                                lambda$runLinkRequest$66 = LaunchActivity.this.lambda$runLinkRequest$66(str, i2, user4, dialogsActivity2, arrayList3, charSequence, z9, z10, i6, topicsFragment);
                                 return lambda$runLinkRequest$66;
                             }
                         });
@@ -3556,9 +3556,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         final String str30 = str29;
                         dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                             @Override
-                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList5, CharSequence charSequence, boolean z10, TopicsFragment topicsFragment) {
+                            public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList5, CharSequence charSequence, boolean z10, boolean z11, int i6, TopicsFragment topicsFragment) {
                                 boolean lambda$runLinkRequest$71;
-                                lambda$runLinkRequest$71 = LaunchActivity.this.lambda$runLinkRequest$71(i2, user6, str12, str30, dialogsActivity2, dialogsActivity3, arrayList5, charSequence, z10, topicsFragment);
+                                lambda$runLinkRequest$71 = LaunchActivity.this.lambda$runLinkRequest$71(i2, user6, str12, str30, dialogsActivity2, dialogsActivity3, arrayList5, charSequence, z10, z11, i6, topicsFragment);
                                 return lambda$runLinkRequest$71;
                             }
                         });
@@ -3683,7 +3683,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         });
     }
 
-    public boolean lambda$runLinkRequest$82(boolean z, int i, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z2, TopicsFragment topicsFragment) {
+    public boolean lambda$runLinkRequest$82(boolean z, int i, String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z2, boolean z3, int i2, TopicsFragment topicsFragment) {
         long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
@@ -5132,8 +5132,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     @Override
-    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r40, final java.util.ArrayList r41, final java.lang.CharSequence r42, final boolean r43, org.telegram.ui.TopicsFragment r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, org.telegram.ui.TopicsFragment):boolean");
+    public boolean didSelectDialogs(final org.telegram.ui.DialogsActivity r39, final java.util.ArrayList r40, final java.lang.CharSequence r41, final boolean r42, boolean r43, int r44, org.telegram.ui.TopicsFragment r45) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.didSelectDialogs(org.telegram.ui.DialogsActivity, java.util.ArrayList, java.lang.CharSequence, boolean, boolean, int, org.telegram.ui.TopicsFragment):boolean");
     }
 
     @Override

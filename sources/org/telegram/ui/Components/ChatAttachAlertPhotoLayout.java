@@ -17,6 +17,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.KeyEvent;
@@ -68,6 +70,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$FileLocation;
+import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -251,13 +254,31 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         @Override
         public void onApplyCaption(CharSequence charSequence) {
+            CharSequence charSequence2;
+            ArrayList<TLRPC$MessageEntity> arrayList;
             if (ChatAttachAlertPhotoLayout.selectedPhotos.size() <= 0 || ChatAttachAlertPhotoLayout.selectedPhotosOrder.size() <= 0) {
                 return;
             }
             Object obj = ChatAttachAlertPhotoLayout.selectedPhotos.get(ChatAttachAlertPhotoLayout.selectedPhotosOrder.get(0));
-            CharSequence charSequence2 = obj instanceof MediaController.PhotoEntry ? ((MediaController.PhotoEntry) obj).caption : null;
+            if (obj instanceof MediaController.PhotoEntry) {
+                MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+                charSequence2 = photoEntry.caption;
+                arrayList = photoEntry.entities;
+            } else {
+                charSequence2 = null;
+                arrayList = null;
+            }
             if (obj instanceof MediaController.SearchImage) {
-                charSequence2 = ((MediaController.SearchImage) obj).caption;
+                MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+                charSequence2 = searchImage.caption;
+                arrayList = searchImage.entities;
+            }
+            ArrayList<TLRPC$MessageEntity> arrayList2 = arrayList;
+            if (charSequence2 != null && arrayList2 != null) {
+                if (!(charSequence2 instanceof Spannable)) {
+                    charSequence2 = new SpannableStringBuilder(charSequence2);
+                }
+                MessageObject.addEntitiesToText(charSequence2, arrayList2, false, false, false, false);
             }
             ChatAttachAlertPhotoLayout.this.parentAlert.commentTextView.setText(AnimatedEmojiSpan.cloneSpans(charSequence2, 3));
         }

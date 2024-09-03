@@ -5261,28 +5261,28 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         this.cantDeleteMessagesCount = 0;
     }
 
-    public boolean lambda$onActionBarItemClick$23(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$onActionBarItemClick$23(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         String str;
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
-        int i = 1;
+        int i2 = 1;
         while (true) {
-            if (i < 0) {
+            if (i2 < 0) {
                 break;
             }
             ArrayList arrayList3 = new ArrayList();
-            for (int i2 = 0; i2 < this.selectedFiles[i].size(); i2++) {
-                arrayList3.add(Integer.valueOf(this.selectedFiles[i].keyAt(i2)));
+            for (int i3 = 0; i3 < this.selectedFiles[i2].size(); i3++) {
+                arrayList3.add(Integer.valueOf(this.selectedFiles[i2].keyAt(i3)));
             }
             Collections.sort(arrayList3);
             Iterator it = arrayList3.iterator();
             while (it.hasNext()) {
                 Integer num = (Integer) it.next();
                 if (num.intValue() > 0) {
-                    arrayList2.add((MessageObject) this.selectedFiles[i].get(num.intValue()));
+                    arrayList2.add((MessageObject) this.selectedFiles[i2].get(num.intValue()));
                 }
             }
-            this.selectedFiles[i].clear();
-            i--;
+            this.selectedFiles[i2].clear();
+            i2--;
         }
         this.cantDeleteMessagesCount = 0;
         showActionMode(false);
@@ -5292,8 +5292,8 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
         }
         if (arrayList.size() > 1 || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId == this.profileActivity.getUserConfig().getClientUserId() || charSequence != null) {
             updateRowsSelection(true);
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                long j = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
+            for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                long j = ((MessagesStorage.TopicKey) arrayList.get(i4)).dialogId;
                 if (charSequence != null) {
                     this.profileActivity.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
                 }
@@ -6934,9 +6934,9 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
             DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList4, CharSequence charSequence, boolean z2, TopicsFragment topicsFragment) {
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList4, CharSequence charSequence, boolean z2, boolean z3, int i7, TopicsFragment topicsFragment) {
                     boolean lambda$onActionBarItemClick$23;
-                    lambda$onActionBarItemClick$23 = SharedMediaLayout.this.lambda$onActionBarItemClick$23(dialogsActivity2, arrayList4, charSequence, z2, topicsFragment);
+                    lambda$onActionBarItemClick$23 = SharedMediaLayout.this.lambda$onActionBarItemClick$23(dialogsActivity2, arrayList4, charSequence, z2, z3, i7, topicsFragment);
                     return lambda$onActionBarItemClick$23;
                 }
             });

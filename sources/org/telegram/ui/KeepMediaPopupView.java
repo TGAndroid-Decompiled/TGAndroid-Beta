@@ -161,14 +161,14 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         addView((View) linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 0));
     }
 
-    public boolean lambda$new$1(final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+    public boolean lambda$new$1(final DialogsActivity dialogsActivity, DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, TopicsFragment topicsFragment) {
         final CacheByChatsController.KeepMediaException keepMediaException = null;
-        int i = 0;
-        while (i < arrayList.size()) {
+        int i2 = 0;
+        while (i2 < arrayList.size()) {
             ArrayList arrayList2 = this.exceptions;
-            CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i)).dialogId, CacheByChatsController.KEEP_MEDIA_ONE_DAY);
+            CacheByChatsController.KeepMediaException keepMediaException2 = new CacheByChatsController.KeepMediaException(((MessagesStorage.TopicKey) arrayList.get(i2)).dialogId, CacheByChatsController.KEEP_MEDIA_ONE_DAY);
             arrayList2.add(keepMediaException2);
-            i++;
+            i2++;
             keepMediaException = keepMediaException2;
         }
         this.cacheByChatsController.saveKeepMediaExceptions(this.currentType, this.exceptions);
@@ -176,9 +176,9 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         bundle.putInt("type", this.currentType);
         final CacheChatsExceptionsFragment cacheChatsExceptionsFragment = new CacheChatsExceptionsFragment(bundle) {
             @Override
-            public void onTransitionAnimationEnd(boolean z2, boolean z3) {
-                super.onTransitionAnimationEnd(z2, z3);
-                if (!z2 || z3) {
+            public void onTransitionAnimationEnd(boolean z3, boolean z4) {
+                super.onTransitionAnimationEnd(z3, z4);
+                if (!z3 || z4) {
                     return;
                 }
                 dialogsActivity.removeSelfFromStack();
@@ -209,9 +209,9 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             final DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                 @Override
-                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i2, TopicsFragment topicsFragment) {
                     boolean lambda$new$1;
-                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                    lambda$new$1 = KeepMediaPopupView.this.lambda$new$1(dialogsActivity, dialogsActivity2, arrayList, charSequence, z, z2, i2, topicsFragment);
                     return lambda$new$1;
                 }
             });
