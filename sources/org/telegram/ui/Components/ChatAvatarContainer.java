@@ -68,7 +68,7 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
     private AnimatedTextView animatedSubtitleTextView;
     private AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
-    private ButtonBounce bounce;
+    public ButtonBounce bounce;
     private int currentAccount;
     private int currentConnectionState;
     StatusDrawable currentTypingDrawable;

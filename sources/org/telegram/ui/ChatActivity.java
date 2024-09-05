@@ -5036,11 +5036,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return chatActivityAdapter.loadingUpRow;
         }
 
-        static int access$47200(ChatActivityAdapter chatActivityAdapter) {
+        static int access$47300(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingDownRow;
         }
 
-        static void access$47300(ChatActivityAdapter chatActivityAdapter) {
+        static void access$47400(ChatActivityAdapter chatActivityAdapter) {
             chatActivityAdapter.updateRowsInternal();
         }
 
@@ -6282,6 +6282,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int inputFieldHeight;
         int lastHeight;
         int lastWidth;
+        private boolean pressActionBar;
         private long pressTime;
         private float x;
         private float y;
@@ -6547,7 +6548,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public boolean dispatchTouchEvent(android.view.MotionEvent r14) {
+        public boolean dispatchTouchEvent(android.view.MotionEvent r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.dispatchTouchEvent(android.view.MotionEvent):boolean");
         }
 
@@ -6923,7 +6924,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -6953,7 +6954,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -6983,7 +6984,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -7013,7 +7014,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -7043,7 +7044,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -7073,7 +7074,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -7103,7 +7104,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$50900(ChatActivity.this);
+                        ChatActivity.access$51000(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -9605,11 +9606,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             });
         }
 
-        static TLRPC$WallPaper access$46500(ThemeDelegate themeDelegate) {
+        static TLRPC$WallPaper access$46600(ThemeDelegate themeDelegate) {
             return themeDelegate.wallpaper;
         }
 
-        static EmojiThemes access$47400(ThemeDelegate themeDelegate) {
+        static EmojiThemes access$47500(ThemeDelegate themeDelegate) {
             return themeDelegate.chatTheme;
         }
 
@@ -10646,7 +10647,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$50900(ChatActivity chatActivity) {
+    public static void access$51000(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
@@ -19491,6 +19492,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void processRowSelect(View view, boolean z, float f, float f2) {
         MessageObject messageObject;
+        int i;
         if (view instanceof ChatMessageCell) {
             ChatMessageCell chatMessageCell = (ChatMessageCell) view;
             messageObject = chatMessageCell.getMessageObject();
@@ -19500,13 +19502,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
         int messageType = getMessageType(messageObject);
         if ((messageObject == null || !messageObject.isAnyGift()) && messageType >= 2 && messageType != 20 && messageType != 21) {
-            if (messageObject == null || messageObject.type != 27) {
-                if (messageObject == null || messageObject.type != 30) {
-                    if (messageObject == null || !messageObject.isWallpaperAction()) {
-                        addToSelectedMessages(messageObject, z);
-                        updateActionModeTitle();
-                        updateVisibleRows();
-                    }
+            if (messageObject == null || !((i = messageObject.type) == 27 || i == 30)) {
+                if (messageObject == null || !messageObject.isWallpaperAction()) {
+                    addToSelectedMessages(messageObject, z);
+                    updateActionModeTitle();
+                    updateVisibleRows();
                 }
             }
         }
@@ -22704,6 +22704,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ((ChatActionCell) childAt).setMessageObject(messageObject, true);
             }
         }
+    }
+
+    @Override
+    public boolean allowFinishFragmentInsteadOfRemoveFromStack() {
+        return !this.inPreviewMode;
     }
 
     @Override

@@ -6137,7 +6137,6 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.nextPressed = false;
             this.confirmedNumber = false;
             this.wasCountryHintIndex = -1;
-            final boolean z = true;
             setOrientation(1);
             setGravity(17);
             TextView textView = new TextView(context);
@@ -6186,8 +6185,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             this.countryOutlineView.setContentDescription(LocaleController.getString(i4));
             this.countryOutlineView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public final void onFocusChange(View view, boolean z2) {
-                    LoginActivity.PhoneView.this.lambda$new$1(view, z2);
+                public final void onFocusChange(View view, boolean z) {
+                    LoginActivity.PhoneView.this.lambda$new$1(view, z);
                 }
             });
             addView(this.countryOutlineView, LayoutHelper.createLinear(-1, 58, 16.0f, 24.0f, 16.0f, 14.0f));
@@ -6214,10 +6213,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             linearLayout2.addView(this.plusTextView, LayoutHelper.createLinear(-2, -2));
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText = new AnimatedPhoneNumberEditText(context) {
                 @Override
-                public void onFocusChanged(boolean z2, int i6, Rect rect) {
-                    super.onFocusChanged(z2, i6, rect);
-                    PhoneView.this.phoneOutlineView.animateSelection((z2 || PhoneView.this.phoneField.isFocused()) ? 1.0f : 0.0f);
-                    if (z2) {
+                public void onFocusChanged(boolean z, int i6, Rect rect) {
+                    super.onFocusChanged(z, i6, rect);
+                    PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.phoneField.isFocused()) ? 1.0f : 0.0f);
+                    if (z) {
                         LoginActivity.this.keyboardView.setEditText(this);
                     }
                 }
@@ -6242,7 +6241,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 @Override
                 public void afterTextChanged(Editable editable) {
                     String str;
-                    boolean z2;
+                    boolean z;
                     CountrySelectActivity.Country country;
                     CountrySelectActivity.Country country2;
                     if (PhoneView.this.ignoreOnTextChange) {
@@ -6261,7 +6260,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             while (true) {
                                 if (i7 < 1) {
                                     str = null;
-                                    z2 = false;
+                                    z = false;
                                     break;
                                 }
                                 String substring = stripExceptNumbers.substring(0, i7);
@@ -6290,14 +6289,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                                 if (country2 != null) {
                                     String str2 = stripExceptNumbers.substring(i7) + PhoneView.this.phoneField.getText().toString();
                                     PhoneView.this.codeField.setText(substring);
-                                    z2 = true;
+                                    z = true;
                                     str = str2;
                                     stripExceptNumbers = substring;
                                     break;
                                 }
                                 i7--;
                             }
-                            if (!z2) {
+                            if (!z) {
                                 str = stripExceptNumbers.substring(1) + PhoneView.this.phoneField.getText().toString();
                                 AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = PhoneView.this.codeField;
                                 stripExceptNumbers = stripExceptNumbers.substring(0, 1);
@@ -6305,7 +6304,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             }
                         } else {
                             str = null;
-                            z2 = false;
+                            z = false;
                         }
                         Iterator it2 = PhoneView.this.countriesArray.iterator();
                         CountrySelectActivity.Country country4 = null;
@@ -6363,7 +6362,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                             PhoneView.this.phoneField.setHintText((String) null);
                             PhoneView.this.countryState = 2;
                         }
-                        if (!z2) {
+                        if (!z) {
                             PhoneView.this.codeField.setSelection(PhoneView.this.codeField.getText().length());
                         }
                         if (str != null) {
@@ -6397,12 +6396,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             linearLayout2.addView(this.codeDividerView, createLinear);
             AnimatedPhoneNumberEditText animatedPhoneNumberEditText2 = new AnimatedPhoneNumberEditText(context) {
                 @Override
-                public void onFocusChanged(boolean z2, int i7, Rect rect) {
+                public void onFocusChanged(boolean z, int i7, Rect rect) {
                     PhoneView phoneView;
                     String str;
-                    super.onFocusChanged(z2, i7, rect);
-                    PhoneView.this.phoneOutlineView.animateSelection((z2 || PhoneView.this.codeField.isFocused()) ? 1.0f : 0.0f);
-                    if (z2) {
+                    super.onFocusChanged(z, i7, rect);
+                    PhoneView.this.phoneOutlineView.animateSelection((z || PhoneView.this.codeField.isFocused()) ? 1.0f : 0.0f);
+                    if (z) {
                         LoginActivity.this.keyboardView.setEditText(this);
                         LoginActivity.this.keyboardView.setDispatchBackWhenEmpty(true);
                         if (PhoneView.this.countryState != 2) {
@@ -6574,7 +6573,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             } else {
                 i = 72;
             }
-            if (LoginActivity.this.activityMode == 0) {
+            final boolean z = BuildVars.DEBUG_VERSION;
+            if (z && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell3 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell3;
                 checkBoxCell3.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend = LoginActivity.this.getConnectionsManager().isTestBackend(), false);

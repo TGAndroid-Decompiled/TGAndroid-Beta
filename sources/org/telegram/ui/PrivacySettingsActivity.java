@@ -337,7 +337,21 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                             } else if (i == PrivacySettingsActivity.this.deleteAccountRow) {
                                 if (!PrivacySettingsActivity.this.getContactsController().getLoadingDeleteInfo()) {
                                     int deleteAccountTTL = PrivacySettingsActivity.this.getContactsController().getDeleteAccountTTL();
-                                    str8 = deleteAccountTTL <= 182 ? LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]) : deleteAccountTTL == 365 ? LocaleController.formatPluralString("Months", 12, new Object[0]) : deleteAccountTTL == 548 ? LocaleController.formatPluralString("Months", 18, new Object[0]) : LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
+                                    if (deleteAccountTTL <= 182) {
+                                        str8 = LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]);
+                                    } else if (deleteAccountTTL == 365) {
+                                        str8 = LocaleController.formatPluralString("Months", 12, new Object[0]);
+                                    } else if (deleteAccountTTL == 548) {
+                                        str8 = LocaleController.formatPluralString("Months", 18, new Object[0]);
+                                    } else if (deleteAccountTTL == 730) {
+                                        str8 = LocaleController.formatPluralString("Months", 24, new Object[0]);
+                                    } else if (deleteAccountTTL > 30) {
+                                        double d = deleteAccountTTL;
+                                        Double.isNaN(d);
+                                        str8 = LocaleController.formatPluralString("Months", (int) Math.round(d / 30.0d), new Object[0]);
+                                    } else {
+                                        str8 = LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
+                                    }
                                     r3 = false;
                                 }
                                 textSettingsCell.setTextAndValue(LocaleController.getString("DeleteAccountIfAwayFor3", R.string.DeleteAccountIfAwayFor3), str8, PrivacySettingsActivity.this.deleteAccountUpdate, false);
@@ -870,16 +884,16 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     } else if (deleteAccountTTL <= 182) {
                         i3 = 2;
                     } else if (deleteAccountTTL != 548) {
-                        i3 = 3;
+                        i3 = deleteAccountTTL == 730 ? 5 : 3;
                     }
                     final AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                     builder.setTitle(LocaleController.getString("DeleteAccountTitle", R.string.DeleteAccountTitle));
-                    String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Months", 12, new Object[0]), LocaleController.formatPluralString("Months", 18, new Object[0])};
+                    String[] strArr = {LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.formatPluralString("Months", 3, new Object[0]), LocaleController.formatPluralString("Months", 6, new Object[0]), LocaleController.formatPluralString("Months", 12, new Object[0]), LocaleController.formatPluralString("Months", 18, new Object[0]), LocaleController.formatPluralString("Months", 24, new Object[0])};
                     LinearLayout linearLayout = new LinearLayout(getParentActivity());
                     linearLayout.setOrientation(1);
                     builder.setView(linearLayout);
                     int i4 = 0;
-                    while (i4 < 5) {
+                    while (i4 < 6) {
                         RadioColorCell radioColorCell = new RadioColorCell(getParentActivity());
                         radioColorCell.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
                         radioColorCell.setTag(Integer.valueOf(i4));
@@ -1142,7 +1156,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
     public void lambda$createView$6(AlertDialog.Builder builder, View view) {
         builder.getDismissRunnable().run();
         Integer num = (Integer) view.getTag();
-        int i = num.intValue() == 0 ? 30 : num.intValue() == 1 ? 90 : num.intValue() == 2 ? 182 : num.intValue() == 3 ? 365 : num.intValue() == 4 ? 548 : 0;
+        int i = num.intValue() == 0 ? 30 : num.intValue() == 1 ? 90 : num.intValue() == 2 ? 182 : num.intValue() == 3 ? 365 : num.intValue() == 4 ? 548 : num.intValue() == 5 ? 730 : 0;
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         alertDialog.setCanCancel(false);
         alertDialog.show();

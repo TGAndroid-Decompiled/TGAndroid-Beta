@@ -9306,7 +9306,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$createView$7() {
-        updateListAnimated(false);
+        updateRowsIds();
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyDataSetChanged();
+        }
     }
 
     public boolean lambda$createView$8(Context context, BaseFragment baseFragment, TLRPC$TL_error tLRPC$TL_error) {
@@ -9315,7 +9319,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         MessagesController.getNotificationsSettings(this.currentAccount).edit().putLong("dialog_join_requested_time_" + this.dialogId, System.currentTimeMillis()).commit();
         JoinGroupAlert.showBulletin(context, this, ChatObject.isChannel(this.currentChat) && !this.currentChat.megagroup);
-        updateListAnimated(false);
+        updateRowsIds();
+        ListAdapter listAdapter = this.listAdapter;
+        if (listAdapter != null) {
+            listAdapter.notifyDataSetChanged();
+        }
         if (baseFragment instanceof ChatActivity) {
             ((ChatActivity) baseFragment).showBottomOverlayProgress(false, true);
         }
@@ -13203,7 +13211,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                                             actionBarMenuItem.setSubItemShown(20, !getMessagesController().isUserPremiumBlocked(this.userId));
                                         }
                                     } else if (i != NotificationCenter.currentUserPremiumStatusChanged) {
-                                        if (i != NotificationCenter.starBalanceUpdated && i != NotificationCenter.botStarsUpdated) {
+                                        if (i != NotificationCenter.starBalanceUpdated && i != NotificationCenter.botStarsUpdated && i != NotificationCenter.botStarsTransactionsLoaded) {
                                             return;
                                         }
                                     }
@@ -13844,6 +13852,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().addObserver(this, NotificationCenter.starBalanceUpdated);
         getNotificationCenter().addObserver(this, NotificationCenter.botStarsUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.botStarsTransactionsLoaded);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         updateRowsIds();
         ListAdapter listAdapter = this.listAdapter;
@@ -13941,6 +13950,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getNotificationCenter().removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         getNotificationCenter().removeObserver(this, NotificationCenter.starBalanceUpdated);
         getNotificationCenter().removeObserver(this, NotificationCenter.botStarsUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.botStarsTransactionsLoaded);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         ProfileGalleryView profileGalleryView = this.avatarsViewPager;
         if (profileGalleryView != null) {
