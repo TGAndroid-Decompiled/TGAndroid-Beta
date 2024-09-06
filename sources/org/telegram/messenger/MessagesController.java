@@ -8770,9 +8770,7 @@ public class MessagesController extends BaseController implements NotificationCe
             messagesController.reloadWebPages(j3, hashMap, i17);
         }
         Timer.done(start);
-        if (timer != null) {
-            timer.finish();
-        }
+        Timer.finish(timer);
     }
 
     public void lambda$processUpdateArray$360(ArrayList arrayList, ArrayList arrayList2) {

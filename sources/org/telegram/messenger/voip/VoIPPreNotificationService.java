@@ -9,11 +9,13 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Vibrator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.XiaomiUtilities;
+import org.telegram.messenger.voip.VoIPServiceState;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -28,15 +30,81 @@ import org.telegram.tgnet.TLRPC$TL_phoneCallDiscarded;
 import org.telegram.tgnet.TLRPC$TL_phone_discardCall;
 import org.telegram.tgnet.TLRPC$TL_phone_receivedCall;
 import org.telegram.tgnet.TLRPC$TL_updates;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.PermissionRequest;
+import org.telegram.ui.VoIPFragment;
 import org.telegram.ui.VoIPPermissionActivity;
 
 public class VoIPPreNotificationService {
+    public static State currentState;
     public static TLRPC$PhoneCall pendingCall;
     public static Intent pendingVoIP;
     private static MediaPlayer ringtonePlayer;
     private static final Object sync = new Object();
     private static Vibrator vibrator;
+
+    public static final class State implements VoIPServiceState {
+        private final TLRPC$PhoneCall call;
+        private final int currentAccount;
+        private boolean destroyed;
+        private final long userId;
+
+        public State(int i, long j, TLRPC$PhoneCall tLRPC$PhoneCall) {
+            this.currentAccount = i;
+            this.userId = j;
+            this.call = tLRPC$PhoneCall;
+        }
+
+        @Override
+        public void acceptIncomingCall() {
+            VoIPPreNotificationService.answer(ApplicationLoader.applicationContext);
+        }
+
+        @Override
+        public void declineIncomingCall() {
+            VoIPPreNotificationService.decline(ApplicationLoader.applicationContext, 1);
+        }
+
+        public void destroy() {
+            if (this.destroyed) {
+                return;
+            }
+            this.destroyed = true;
+            if (VoIPFragment.getInstance() != null) {
+                VoIPFragment.getInstance().onStateChanged(getCallState());
+            }
+        }
+
+        @Override
+        public long getCallDuration() {
+            return VoIPServiceState.CC.$default$getCallDuration(this);
+        }
+
+        @Override
+        public int getCallState() {
+            return this.destroyed ? 11 : 15;
+        }
+
+        @Override
+        public TLRPC$PhoneCall getPrivateCall() {
+            return this.call;
+        }
+
+        @Override
+        public TLRPC$User getUser() {
+            return MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.userId));
+        }
+
+        @Override
+        public boolean isOutgoing() {
+            return false;
+        }
+
+        @Override
+        public void stopRinging() {
+            VoIPPreNotificationService.stopRinging();
+        }
+    }
 
     private static void acknowledge(final Context context, int i, TLRPC$PhoneCall tLRPC$PhoneCall, final Runnable runnable) {
         if (tLRPC$PhoneCall instanceof TLRPC$TL_phoneCallDiscarded) {
@@ -45,27 +113,36 @@ public class VoIPPreNotificationService {
             }
             pendingVoIP = null;
             pendingCall = null;
+            State state = currentState;
+            if (state != null) {
+                state.destroy();
+                return;
+            }
             return;
         }
-        if (XiaomiUtilities.isMIUI() && !XiaomiUtilities.isCustomPermissionGranted(10020) && ((KeyguardManager) context.getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("MIUI: no permission to show when locked but the screen is locked. ¯\\_(ツ)_/¯");
-            }
-            pendingVoIP = null;
-            pendingCall = null;
+        if (!XiaomiUtilities.isMIUI() || XiaomiUtilities.isCustomPermissionGranted(10020) || !((KeyguardManager) context.getSystemService("keyguard")).inKeyguardRestrictedInputMode()) {
+            TLRPC$TL_phone_receivedCall tLRPC$TL_phone_receivedCall = new TLRPC$TL_phone_receivedCall();
+            TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
+            tLRPC$TL_phone_receivedCall.peer = tLRPC$TL_inputPhoneCall;
+            tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
+            tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
+            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_phone_receivedCall, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tLRPC$TL_error);
+                }
+            }, 2);
             return;
         }
-        TLRPC$TL_phone_receivedCall tLRPC$TL_phone_receivedCall = new TLRPC$TL_phone_receivedCall();
-        TLRPC$TL_inputPhoneCall tLRPC$TL_inputPhoneCall = new TLRPC$TL_inputPhoneCall();
-        tLRPC$TL_phone_receivedCall.peer = tLRPC$TL_inputPhoneCall;
-        tLRPC$TL_inputPhoneCall.id = tLRPC$PhoneCall.id;
-        tLRPC$TL_inputPhoneCall.access_hash = tLRPC$PhoneCall.access_hash;
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_phone_receivedCall, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                VoIPPreNotificationService.lambda$acknowledge$3(context, runnable, tLObject, tLRPC$TL_error);
-            }
-        }, 2);
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.e("MIUI: no permission to show when locked but the screen is locked. ¯\\_(ツ)_/¯");
+        }
+        pendingVoIP = null;
+        pendingCall = null;
+        State state2 = currentState;
+        if (state2 != null) {
+            state2.destroy();
+        }
     }
 
     public static void answer(Context context) {
@@ -75,6 +152,7 @@ public class VoIPPreNotificationService {
             FileLog.d("VoIPPreNotification.answer(): pending intent is not found");
             return;
         }
+        currentState = null;
         intent.getIntExtra("account", UserConfig.selectedAccount);
         if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().acceptIncomingCall();
@@ -133,8 +211,16 @@ public class VoIPPreNotificationService {
         FileLog.d("VoIPPreNotification.dismiss()");
         pendingVoIP = null;
         pendingCall = null;
+        State state = currentState;
+        if (state != null) {
+            state.destroy();
+        }
         ((NotificationManager) context.getSystemService("notification")).cancel(203);
         stopRinging();
+    }
+
+    public static State getState() {
+        return currentState;
     }
 
     public static boolean isVideo() {
@@ -158,6 +244,10 @@ public class VoIPPreNotificationService {
         }
         pendingVoIP = null;
         pendingCall = null;
+        State state = currentState;
+        if (state != null) {
+            state.destroy();
+        }
         dismiss(context);
     }
 
@@ -241,6 +331,7 @@ public class VoIPPreNotificationService {
             final int intExtra = intent.getIntExtra("account", UserConfig.selectedAccount);
             final long longExtra = intent.getLongExtra("user_id", 0L);
             final boolean z = tLRPC$PhoneCall.video;
+            currentState = new State(intExtra, longExtra, tLRPC$PhoneCall);
             acknowledge(context, intExtra, tLRPC$PhoneCall, new Runnable() {
                 @Override
                 public final void run() {
@@ -254,7 +345,7 @@ public class VoIPPreNotificationService {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPPreNotificationService.startRinging(android.content.Context, int, long):void");
     }
 
-    private static void stopRinging() {
+    public static void stopRinging() {
         synchronized (sync) {
             try {
                 MediaPlayer mediaPlayer = ringtonePlayer;

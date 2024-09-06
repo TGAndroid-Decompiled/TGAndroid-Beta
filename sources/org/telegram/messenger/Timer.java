@@ -72,20 +72,7 @@ public class Timer {
         }
     }
 
-    public static void log(Timer timer, String str) {
-        if (timer != null) {
-            timer.log(str);
-        }
-    }
-
-    public static Task start(Timer timer, String str) {
-        if (timer != null) {
-            return timer.start(str);
-        }
-        return null;
-    }
-
-    public void finish() {
+    private void finish() {
         long currentTimeMillis = System.currentTimeMillis() - this.startTime;
         StringBuilder sb = new StringBuilder();
         sb.append(this.name);
@@ -113,13 +100,32 @@ public class Timer {
         FileLog.d(sb.toString());
     }
 
-    public void log(String str) {
+    public static void finish(Timer timer) {
+        if (timer != null) {
+            timer.finish();
+        }
+    }
+
+    private void log(String str) {
         this.tasks.add(new Log(str));
     }
 
-    public Task start(String str) {
+    public static void log(Timer timer, String str) {
+        if (timer != null) {
+            timer.log(str);
+        }
+    }
+
+    private Task start(String str) {
         Task task = new Task(str);
         this.tasks.add(task);
         return task;
+    }
+
+    public static Task start(Timer timer, String str) {
+        if (timer != null) {
+            return timer.start(str);
+        }
+        return null;
     }
 }

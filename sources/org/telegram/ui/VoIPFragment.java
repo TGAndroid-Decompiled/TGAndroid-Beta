@@ -68,8 +68,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.EncryptionKeyEmojifier;
 import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.voip.VoIPServiceState;
 import org.telegram.messenger.voip.VoipAudioManager;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhoneCall;
@@ -127,6 +127,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     private VoIpSwitchLayout bottomSpeakerBtn;
     private VoIpSwitchLayout bottomVideoBtn;
     private VoIPButtonsLayout buttonsLayout;
+    TLRPC$User callingUser;
     boolean callingUserIsVideo;
     private VoIPFloatingLayout callingUserMiniFloatingLayout;
     private TextureViewRenderer callingUserMiniTextureRenderer;
@@ -228,7 +229,6 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     };
     float pinchScale = 1.0f;
-    TLRPC$User callingUser = VoIPService.getSharedInstance().getUser();
 
     public class AnonymousClass12 implements RendererCommon.RendererEvents {
         AnonymousClass12() {
@@ -311,11 +311,12 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
 
         public void lambda$onAccept$0() {
-            if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().acceptIncomingCall();
-                if (VoIPFragment.this.currentUserIsVideo) {
-                    VoIPService.getSharedInstance().requestVideoCall(false);
+            if (VoIPService.getSharedState() != null) {
+                VoIPService.getSharedState().acceptIncomingCall();
+                if (!VoIPFragment.this.currentUserIsVideo || VoIPService.getSharedInstance() == null) {
+                    return;
                 }
+                VoIPService.getSharedInstance().requestVideoCall(false);
             }
         }
 
@@ -330,7 +331,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                         return;
                     }
                 }
-                if (VoIPService.getSharedInstance() != null) {
+                if (VoIPService.getSharedState() != null) {
                     VoIPFragment.this.runAcceptCallAnimation(new Runnable() {
                         @Override
                         public final void run() {
@@ -357,10 +358,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
 
         @Override
         public void onDecline() {
-            if (VoIPFragment.this.currentState == 17) {
+            if (VoIPFragment.this.currentState == 17 || VoIPService.getSharedState() == null) {
                 VoIPFragment.this.windowView.finish();
-            } else if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().declineIncomingCall();
+            } else {
+                VoIPService.getSharedState().declineIncomingCall();
             }
         }
     }
@@ -368,10 +369,17 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     public VoIPFragment(int i) {
         this.currentAccount = i;
         this.currentUser = MessagesController.getInstance(i).getUser(Long.valueOf(UserConfig.getInstance(i).getClientUserId()));
-        VoIPService.getSharedInstance().registerStateListener(this);
-        this.isOutgoing = VoIPService.getSharedInstance().isOutgoing();
+        VoIPServiceState sharedState = VoIPService.getSharedState();
+        if (sharedState == null) {
+            return;
+        }
+        this.callingUser = sharedState.getUser();
+        if (VoIPService.getSharedInstance() != null) {
+            VoIPService.getSharedInstance().registerStateListener(this);
+        }
+        this.isOutgoing = sharedState.isOutgoing();
         this.previousState = -1;
-        this.currentState = VoIPService.getSharedInstance().getCallState();
+        this.currentState = sharedState.getCallState();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.webRtcSpeakerAmplitudeEvent);
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.voipServiceCreated);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
@@ -446,9 +454,8 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     }
 
     public void destroy() {
-        VoIPService sharedInstance = VoIPService.getSharedInstance();
-        if (sharedInstance != null) {
-            sharedInstance.unregisterStateListener(this);
+        if (VoIPService.getSharedInstance() != null) {
+            VoIPService.getSharedInstance().unregisterStateListener(this);
         }
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.webRtcSpeakerAmplitudeEvent);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.voipServiceCreated);
@@ -718,8 +725,8 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     }
 
     public static void lambda$onRequestPermissionsResultInternal$39() {
-        if (VoIPService.getSharedInstance() != null) {
-            VoIPService.getSharedInstance().acceptIncomingCall();
+        if (VoIPService.getSharedState() != null) {
+            VoIPService.getSharedState().acceptIncomingCall();
         }
     }
 
@@ -1077,14 +1084,16 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     private void onRequestPermissionsResultInternal(int i, String[] strArr, int[] iArr) {
         boolean shouldShowRequestPermissionRationale;
         if (i == 101) {
-            if (VoIPService.getSharedInstance() == null) {
+            if (VoIPService.getSharedState() == null) {
                 this.windowView.finish();
                 return;
             }
             if (iArr.length <= 0 || iArr[0] != 0) {
                 shouldShowRequestPermissionRationale = this.activity.shouldShowRequestPermissionRationale("android.permission.RECORD_AUDIO");
                 if (!shouldShowRequestPermissionRationale) {
-                    VoIPService.getSharedInstance().declineIncomingCall();
+                    if (VoIPService.getSharedState() != null) {
+                        VoIPService.getSharedState().declineIncomingCall();
+                    }
                     VoIPHelper.permissionDenied(this.activity, new Runnable() {
                         @Override
                         public final void run() {
@@ -1103,7 +1112,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             }
         }
         if (i == 102) {
-            if (VoIPService.getSharedInstance() == null) {
+            if (VoIPService.getSharedState() == null) {
                 this.windowView.finish();
             } else {
                 if (iArr.length <= 0 || iArr[0] != 0) {
@@ -1355,6 +1364,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 voIPFragment2.callingUserTextureView.renderer.release();
                 instance.currentUserTextureView.renderer.release();
                 instance.callingUserMiniTextureRenderer.release();
+                VoIPWindowView voIPWindowView = instance.windowView;
+                if (voIPWindowView != null) {
+                    voIPWindowView.finishImmediate();
+                }
                 instance.destroy();
             }
             instance = null;
@@ -1363,17 +1376,13 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             return;
         }
         boolean z2 = VoIPPiPView.getInstance() != null;
-        if (VoIPService.getSharedInstance() == null) {
-            VoIPPreNotificationService.open(activity);
-            return;
-        }
-        if (VoIPService.getSharedInstance().getUser() == null) {
+        if (VoIPService.getSharedState() == null || VoIPService.getSharedState().getUser() == null) {
             return;
         }
         final VoIPFragment voIPFragment3 = new VoIPFragment(i);
         voIPFragment3.activity = activity;
         instance = voIPFragment3;
-        VoIPWindowView voIPWindowView = new VoIPWindowView(activity, !z2) {
+        VoIPWindowView voIPWindowView2 = new VoIPWindowView(activity, !z2) {
             private final Path clipPath = new Path();
             private final RectF rectF = new RectF();
 
@@ -1400,7 +1409,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
 
             @Override
             public boolean dispatchKeyEvent(KeyEvent keyEvent) {
-                VoIPService sharedInstance;
+                VoIPServiceState sharedState;
                 if (voIPFragment3.isFinished || voIPFragment3.switchingToPip) {
                     return false;
                 }
@@ -1409,10 +1418,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                     voIPFragment3.onBackPressed();
                     return true;
                 }
-                if ((keyCode != 25 && keyCode != 24) || voIPFragment3.currentState != 15 || (sharedInstance = VoIPService.getSharedInstance()) == null) {
+                if ((keyCode != 25 && keyCode != 24) || voIPFragment3.currentState != 15 || (sharedState = VoIPService.getSharedState()) == null) {
                     return super.dispatchKeyEvent(keyEvent);
                 }
-                sharedInstance.stopRinging();
+                sharedState.stopRinging();
                 return true;
             }
         };
@@ -1422,10 +1431,10 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         boolean isInteractive = i2 >= 20 ? powerManager.isInteractive() : powerManager.isScreenOn();
         VoIPFragment voIPFragment4 = instance;
         voIPFragment4.screenWasWakeup = true ^ isInteractive;
-        voIPWindowView.setLockOnScreen(voIPFragment4.deviceIsLocked);
-        voIPFragment3.windowView = voIPWindowView;
+        voIPWindowView2.setLockOnScreen(voIPFragment4.deviceIsLocked);
+        voIPFragment3.windowView = voIPWindowView2;
         if (i2 >= 20) {
-            voIPWindowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            voIPWindowView2.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
                 @Override
                 public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                     WindowInsets lambda$show$3;
@@ -1435,12 +1444,12 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             });
         }
         WindowManager windowManager = (WindowManager) activity.getSystemService("window");
-        WindowManager.LayoutParams createWindowLayoutParams = voIPWindowView.createWindowLayoutParams();
+        WindowManager.LayoutParams createWindowLayoutParams = voIPWindowView2.createWindowLayoutParams();
         if (z) {
             createWindowLayoutParams.type = i2 >= 26 ? 2038 : 2003;
         }
-        windowManager.addView(voIPWindowView, createWindowLayoutParams);
-        voIPWindowView.addView(voIPFragment3.createView(activity));
+        windowManager.addView(voIPWindowView2, createWindowLayoutParams);
+        voIPWindowView2.addView(voIPFragment3.createView(activity));
         if (z2) {
             voIPFragment3.enterTransitionProgress = 0.0f;
             voIPFragment3.startTransitionFromPiP();
@@ -2182,16 +2191,15 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                VoIPServiceState sharedState = VoIPService.getSharedState();
                 CharSequence text = VoIPFragment.this.callingUserTitle.getText();
-                if (sharedInstance == null || TextUtils.isEmpty(text)) {
+                if (sharedState == null || TextUtils.isEmpty(text)) {
                     return;
                 }
                 StringBuilder sb = new StringBuilder(text);
                 sb.append(", ");
-                TLRPC$PhoneCall tLRPC$PhoneCall = sharedInstance.privateCall;
-                sb.append(LocaleController.getString((tLRPC$PhoneCall == null || !tLRPC$PhoneCall.video) ? R.string.VoipInCallBranding : R.string.VoipInVideoCallBranding));
-                long callDuration = sharedInstance.getCallDuration();
+                sb.append(LocaleController.getString((sharedState.getPrivateCall() == null || !sharedState.getPrivateCall().video) ? R.string.VoipInCallBranding : R.string.VoipInVideoCallBranding));
+                long callDuration = sharedState.getCallDuration();
                 if (callDuration > 0) {
                     sb.append(", ");
                     sb.append(LocaleController.formatDuration((int) (callDuration / 1000)));
@@ -2450,7 +2458,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 sharedInstance.setVideoState(false, 2);
             }
             updateViewState();
-        } else {
+        } else if (VoIPService.getSharedState() == null) {
             this.windowView.finish();
         }
         this.deviceIsLocked = ((KeyguardManager) this.activity.getSystemService("keyguard")).inKeyguardRestrictedInputMode();

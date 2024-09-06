@@ -445,7 +445,7 @@ public class WebInstantView {
         final WebInstantView webInstantView = new WebInstantView();
         webInstantView.url = webView.getUrl();
         final Timer create = Timer.create("WebInstantView");
-        final Timer.Task start = create.start("getHTML");
+        final Timer.Task start = Timer.start(create, "getHTML");
         webInstantView.getHTML(webView, z, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
@@ -461,32 +461,32 @@ public class WebInstantView {
     }
 
     public static void lambda$generate$0(Timer.Task task, boolean[] zArr, Timer timer, WebInstantView webInstantView, Utilities.Callback callback, JSONObject jSONObject) {
-        task.done();
+        Timer.done(task);
         if (zArr[0]) {
             return;
         }
-        Timer.Task start = timer.start("parseJSON");
+        Timer.Task start = Timer.start(timer, "parseJSON");
         try {
             webInstantView.webpage = webInstantView.parseJSON(webInstantView.url, jSONObject);
         } catch (Exception e) {
-            timer.log("error: " + e);
+            Timer.log(timer, "error: " + e);
             FileLog.e(e);
         }
-        start.done();
+        Timer.done(start);
         callback.run(webInstantView);
         TLRPC$WebPage tLRPC$WebPage = webInstantView.webpage;
         if (tLRPC$WebPage != null) {
             instants.put(tLRPC$WebPage, webInstantView);
         }
-        timer.finish();
+        Timer.finish(timer);
     }
 
     public static void lambda$generate$1(Timer.Task task, final boolean[] zArr, final Timer timer, final WebInstantView webInstantView, final Utilities.Callback callback, InputStream inputStream) {
-        task.done();
+        Timer.done(task);
         if (zArr[0]) {
             return;
         }
-        final Timer.Task start = timer.start("readHTML");
+        final Timer.Task start = Timer.start(timer, "readHTML");
         webInstantView.readHTML(webInstantView.url, inputStream, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
