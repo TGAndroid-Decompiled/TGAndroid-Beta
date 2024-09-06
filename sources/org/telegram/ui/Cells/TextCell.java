@@ -28,6 +28,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.FilterCreateActivity;
 import org.telegram.ui.PeerColorActivity;
+import org.telegram.ui.Stories.recorder.HintView2;
 
 public class TextCell extends FrameLayout {
     private boolean attached;
@@ -782,23 +783,22 @@ public class TextCell extends FrameLayout {
     }
 
     public void setTextAndValueAndIcon(CharSequence charSequence, CharSequence charSequence2, boolean z, int i, boolean z2) {
-        CharSequence ellipsize;
         this.imageLeft = 21;
         this.offsetFromImage = getOffsetFromImage(false);
         this.textView.setText(charSequence);
         this.textView.setRightDrawable((Drawable) null);
-        AnimatedTextView animatedTextView = this.valueTextView;
-        if (charSequence2 == null) {
-            ellipsize = "";
-        } else {
+        this.imageView.setVisibility(0);
+        if (charSequence2 != null) {
+            int max = (int) Math.max(1.0f, AndroidUtilities.displaySize.x - ((AndroidUtilities.dp(this.offsetFromImage) + HintView2.measureCorrectly(charSequence, this.textView.getTextPaint())) + AndroidUtilities.dp(16.0f)));
+            AnimatedTextView animatedTextView = this.valueTextView;
             this.valueText = charSequence2;
-            ellipsize = TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), AndroidUtilities.displaySize.x / 2.5f, TextUtils.TruncateAt.END);
+            animatedTextView.setText(TextUtils.ellipsize(charSequence2, animatedTextView.getPaint(), max, TextUtils.TruncateAt.END), z);
+        } else {
+            this.valueTextView.setText("", z);
         }
-        animatedTextView.setText(ellipsize, z);
         this.valueTextView.setVisibility(0);
         this.valueSpoilersTextView.setVisibility(8);
         this.valueImageView.setVisibility(8);
-        this.imageView.setVisibility(0);
         this.imageView.setTranslationX(0.0f);
         this.imageView.setTranslationY(0.0f);
         this.imageView.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);

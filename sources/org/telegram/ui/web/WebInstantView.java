@@ -1406,11 +1406,12 @@ public class WebInstantView {
         settings.setAllowUniversalAccessFromFileURLs(false);
         webView.setWebViewClient(new WebViewClient() {
             private boolean firstLoad = true;
+            private boolean streamLoaded;
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView webView2, String str2) {
                 InputStream inputStream2;
-                String str3 = "text/html";
+                String str3;
                 if (this.firstLoad) {
                     this.firstLoad = false;
                     return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(("<script>\n" + AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION) + "\n</script>").getBytes(StandardCharsets.UTF_8)));
@@ -1433,9 +1434,25 @@ public class WebInstantView {
                         return Build.VERSION.SDK_INT < 21 ? new WebResourceResponse(type, "UTF-8", null) : new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
                     }
                 } else {
-                    inputStream2 = inputStream;
+                    str3 = "application/octet-stream";
+                    if (this.streamLoaded) {
+                        MHTML mhtml2 = WebInstantView.this.mhtml;
+                        MHTML.Entry entry2 = mhtml2 != null ? (MHTML.Entry) mhtml2.entries.get(0) : null;
+                        if (entry2 == null) {
+                            return Build.VERSION.SDK_INT < 21 ? new WebResourceResponse("application/octet-stream", "UTF-8", null) : new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
+                        }
+                        try {
+                            inputStream2 = entry2.getInputStream();
+                        } catch (IOException e2) {
+                            FileLog.e(e2);
+                            return Build.VERSION.SDK_INT < 21 ? new WebResourceResponse("application/octet-stream", "UTF-8", null) : new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
+                        }
+                    } else {
+                        inputStream2 = inputStream;
+                        this.streamLoaded = true;
+                    }
                 }
-                return new WebResourceResponse(str3, "UTF-8", inputStream2);
+                return new WebResourceResponse(str3, null, inputStream2);
             }
         });
         webView.setWebChromeClient(new WebChromeClient() {
