@@ -495,7 +495,7 @@ public abstract class BoostDialogs {
         builder.setTitle(LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z3) {
-            formatPluralString = LocaleController.formatPluralString(z ? "BoostingStarsGiveawayHowItWorksText" : "BoostingStarsGiveawayHowItWorksTextGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str);
+            formatPluralString = LocaleController.formatPluralStringComma(z ? "BoostingStarsGiveawayHowItWorksText" : "BoostingStarsGiveawayHowItWorksTextGroup", (int) tLRPC$TL_messageMediaGiveaway.stars, str);
         } else {
             formatPluralString = LocaleController.formatPluralString(z ? "BoostingGiveawayHowItWorksText" : "BoostingGiveawayHowItWorksTextGroup", i, str, Integer.valueOf(i), formatPluralString2);
         }

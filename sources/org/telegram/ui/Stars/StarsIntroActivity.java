@@ -1088,8 +1088,6 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
             this.BUTTON_EXPAND = -1;
             this.topPadding = 0.2f;
             this.whenPurchased = runnable;
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
-            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
             fixNavigationBar();
             RecyclerListView recyclerListView = this.recyclerListView;
             int i2 = this.backgroundPaddingLeft;
@@ -1293,6 +1291,8 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 }
             }
             super.show();
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starOptionsLoaded);
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starBalanceUpdated);
         }
     }
 

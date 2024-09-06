@@ -408,7 +408,7 @@ public class StarsController {
             final MessagesController messagesController = MessagesController.getInstance(StarsController.this.currentAccount);
             ConnectionsManager connectionsManager = ConnectionsManager.getInstance(StarsController.this.currentAccount);
             final long j = this.amount;
-            if (!starsController.balanceAvailable() || starsController.getBalance() >= j) {
+            if (!starsController.balanceAvailable() || starsController.getBalance(false) >= j) {
                 this.committed = true;
                 TLRPC$TL_messages_sendPaidReaction tLRPC$TL_messages_sendPaidReaction = new TLRPC$TL_messages_sendPaidReaction();
                 tLRPC$TL_messages_sendPaidReaction.peer = messagesController.getInputPeer(this.message.did);
@@ -2837,16 +2837,18 @@ public class StarsController {
     }
 
     public PendingPaidReactions sendPaidReaction(final MessageObject messageObject, final ChatActivity chatActivity, final long j, boolean z, boolean z2, final Boolean bool) {
+        Context context;
+        boolean z3;
         String str;
         String str2;
         MessageId from = MessageId.from(messageObject);
         StarsController starsController = getInstance(this.currentAccount);
-        Context context = getContext(chatActivity);
-        if (context == null) {
+        Context context2 = getContext(chatActivity);
+        if (context2 == null) {
             return null;
         }
         String str3 = "";
-        if (z2 && starsController.balanceAvailable() && starsController.getBalance() <= 0) {
+        if (z2 && starsController.balanceAvailable() && starsController.getBalance(false) <= 0) {
             long dialogId = chatActivity.getDialogId();
             if (dialogId < 0) {
                 TLRPC$Chat chat = chatActivity.getMessagesController().getChat(Long.valueOf(-dialogId));
@@ -2877,16 +2879,21 @@ public class StarsController {
             if (pendingPaidReactions2 != null) {
                 pendingPaidReactions2.close();
             }
+            context = context2;
+            z3 = false;
             PendingPaidReactions pendingPaidReactions3 = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z);
             this.currentPendingReactions = pendingPaidReactions3;
             pendingPaidReactions3.anonymous = bool;
+        } else {
+            context = context2;
+            z3 = false;
         }
         if (this.currentPendingReactions.amount + j > MessagesController.getInstance(this.currentAccount).starsPaidReactionAmountMax) {
             this.currentPendingReactions.close();
             this.currentPendingReactions = new PendingPaidReactions(from, messageObject, chatActivity, ConnectionsManager.getInstance(this.currentAccount).getCurrentTime(), z);
         }
         final long j2 = this.currentPendingReactions.amount + j;
-        if (!z2 || !starsController.balanceAvailable() || starsController.getBalance(false) >= j2) {
+        if (!z2 || !starsController.balanceAvailable() || starsController.getBalance(z3) >= j2) {
             this.currentPendingReactions.add(j, !(messageObject == null || messageObject.doesPaidReactionExist()) || z);
             PendingPaidReactions pendingPaidReactions4 = this.currentPendingReactions;
             pendingPaidReactions4.anonymous = bool;

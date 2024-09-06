@@ -173,8 +173,9 @@ public class ChannelBoostLayout extends FrameLayout {
 
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                String string;
-                String formatPluralStringComma;
+                boolean z;
+                String str;
+                String str2;
                 GiveawayCell giveawayCell;
                 if (viewHolder.getItemViewType() == 4) {
                     return;
@@ -249,20 +250,28 @@ public class ChannelBoostLayout extends FrameLayout {
                         }
                         return;
                     }
-                    TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).prepaidGiveaway;
+                    ItemInternal itemInternal = (ItemInternal) ChannelBoostLayout.this.items.get(i);
+                    TL_stories$PrepaidGiveaway tL_stories$PrepaidGiveaway = itemInternal.prepaidGiveaway;
                     GiveawayCell giveawayCell2 = (GiveawayCell) viewHolder.itemView;
                     if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidGiveaway) {
-                        string = LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$PrepaidGiveaway.quantity, new Object[0]);
-                        formatPluralStringComma = LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$PrepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway).months, new Object[0]));
+                        String formatPluralString = LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$PrepaidGiveaway.quantity, new Object[0]);
+                        String formatPluralString2 = LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$PrepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", ((TL_stories$TL_prepaidGiveaway) tL_stories$PrepaidGiveaway).months, new Object[0]));
+                        z = itemInternal.isLast;
+                        str = formatPluralString2;
+                        str2 = formatPluralString;
                     } else {
                         if (tL_stories$PrepaidGiveaway instanceof TL_stories$TL_prepaidStarsGiveaway) {
-                            string = LocaleController.getString(R.string.BoostingStarsPrepaidGiveawayTitle);
-                            formatPluralStringComma = LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) ((TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway).stars);
+                            TL_stories$TL_prepaidStarsGiveaway tL_stories$TL_prepaidStarsGiveaway = (TL_stories$TL_prepaidStarsGiveaway) tL_stories$PrepaidGiveaway;
+                            String formatPluralStringComma = LocaleController.formatPluralStringComma("BoostingStarsCountPlural", (int) tL_stories$TL_prepaidStarsGiveaway.stars);
+                            String formatPluralString3 = LocaleController.formatPluralString("AmongWinners", tL_stories$TL_prepaidStarsGiveaway.quantity, new Object[0]);
+                            z = itemInternal.isLast;
+                            str = formatPluralString3;
+                            str2 = formatPluralStringComma;
                         }
                         giveawayCell2.setImage(tL_stories$PrepaidGiveaway);
                         giveawayCell = giveawayCell2;
                     }
-                    giveawayCell2.setData(tL_stories$PrepaidGiveaway, string, formatPluralStringComma, 0, !r14.isLast);
+                    giveawayCell2.setData(tL_stories$PrepaidGiveaway, str2, str, 0, !z);
                     giveawayCell2.setImage(tL_stories$PrepaidGiveaway);
                     giveawayCell = giveawayCell2;
                 }
