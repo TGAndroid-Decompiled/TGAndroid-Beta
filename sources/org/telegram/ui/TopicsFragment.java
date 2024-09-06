@@ -106,7 +106,6 @@ import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
-import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TopicSearchCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.ChatActivity;
@@ -3325,7 +3324,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.addMemberSubMenu = this.other.addSubItem(2, R.drawable.msg_addcontact, LocaleController.getString(R.string.AddMember));
         ActionBarMenuItem actionBarMenuItem = this.other;
         int i2 = R.raw.boosts;
-        this.boostGroupSubmenu = actionBarMenuItem.addSubItem(14, 0, new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f)), TextCell.applyNewSpan(LocaleController.getString(R.string.BoostingBoostGroupMenu)), true, false);
+        this.boostGroupSubmenu = actionBarMenuItem.addSubItem(14, 0, new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f)), LocaleController.getString(R.string.BoostingBoostGroupMenu), true, false);
         ActionBarMenuItem actionBarMenuItem2 = this.other;
         int i3 = R.drawable.msg_topic_create;
         int i4 = R.string.CreateTopic;

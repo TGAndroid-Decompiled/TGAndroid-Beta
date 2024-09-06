@@ -448,6 +448,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return false;
             }
 
+            public static void $default$onCloseToTabs(Delegate delegate) {
+                delegate.onCloseRequested(null);
+            }
+
             public static void $default$onInstantClose(Delegate delegate) {
                 delegate.onCloseRequested(null);
             }

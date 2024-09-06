@@ -4255,29 +4255,31 @@ public class MessagesController extends BaseController implements NotificationCe
                     tLRPC$TL_messageService.action.users.add(Long.valueOf(getUserConfig().getClientUserId()));
                     tLRPC$TL_messageService.dialog_id = -j;
                     getUserConfig().saveConfig(false);
-                    arrayList = new ArrayList();
-                    ArrayList<TLRPC$Message> arrayList2 = new ArrayList<>();
+                    final ArrayList arrayList2 = new ArrayList();
+                    ArrayList<TLRPC$Message> arrayList3 = new ArrayList<>();
                     ConcurrentHashMap concurrentHashMap = new ConcurrentHashMap();
                     for (int i = 0; i < tLRPC$TL_channels_channelParticipant.users.size(); i++) {
                         TLRPC$User tLRPC$User = (TLRPC$User) tLRPC$TL_channels_channelParticipant.users.get(i);
                         concurrentHashMap.put(Long.valueOf(tLRPC$User.id), tLRPC$User);
                     }
-                    arrayList2.add(tLRPC$TL_messageService);
-                    arrayList.add(new MessageObject(this.currentAccount, (TLRPC$Message) tLRPC$TL_messageService, (AbstractMap<Long, TLRPC$User>) concurrentHashMap, true, false));
-                    getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            MessagesController.this.lambda$checkChatInviter$351(arrayList);
-                        }
-                    });
-                    getMessagesStorage().putMessages(arrayList2, true, true, false, 0, 0, 0L);
+                    arrayList3.add(tLRPC$TL_messageService);
+                    arrayList2.add(new MessageObject(this.currentAccount, (TLRPC$Message) tLRPC$TL_messageService, (AbstractMap<Long, TLRPC$User>) concurrentHashMap, true, false));
+                    if (tLRPC$TL_messageService.from_id.user_id != getUserConfig().getClientUserId()) {
+                        getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
+                            @Override
+                            public final void run() {
+                                MessagesController.this.lambda$checkChatInviter$351(arrayList2);
+                            }
+                        });
+                    }
+                    getMessagesStorage().putMessages(arrayList3, true, true, false, 0, 0, 0L);
+                    arrayList = arrayList2;
                 }
-                final ArrayList arrayList3 = arrayList;
                 getMessagesStorage().saveChatInviter(j, tLRPC$TL_channels_channelParticipant.participant.inviter_id);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesController.this.lambda$checkChatInviter$352(j, arrayList3, tLRPC$TL_channels_channelParticipant);
+                        MessagesController.this.lambda$checkChatInviter$352(j, arrayList, tLRPC$TL_channels_channelParticipant);
                     }
                 });
             }

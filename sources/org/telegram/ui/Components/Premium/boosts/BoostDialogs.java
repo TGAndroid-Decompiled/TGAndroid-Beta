@@ -252,6 +252,10 @@ public abstract class BoostDialogs {
             tLRPC$TL_messageMediaGiveaway.quantity = tLRPC$TL_messageMediaGiveawayResults.winners_count + tLRPC$TL_messageMediaGiveawayResults.unclaimed_count;
             tLRPC$TL_messageMediaGiveaway.only_new_subscribers = tLRPC$TL_messageMediaGiveawayResults.only_new_subscribers;
             tLRPC$TL_messageMediaGiveaway.until_date = tLRPC$TL_messageMediaGiveawayResults.until_date;
+            if ((tLRPC$TL_messageMediaGiveawayResults.flags & 32) != 0) {
+                tLRPC$TL_messageMediaGiveaway.flags |= 32;
+                tLRPC$TL_messageMediaGiveaway.stars = tLRPC$TL_messageMediaGiveawayResults.stars;
+            }
         } else {
             tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) tLRPC$MessageMedia;
         }
