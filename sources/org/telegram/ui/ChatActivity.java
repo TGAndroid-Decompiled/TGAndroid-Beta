@@ -1376,7 +1376,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     bundle.putLong("dialog_id", ChatActivity.this.dialog_id);
                     bundle.putLong("topic_id", ChatActivity.this.getTopicId());
                     bundle.putInt("type", 0);
-                    ChatActivity.this.presentFragment(new CalendarActivity(bundle, 0, i2));
+                    CalendarActivity calendarActivity = new CalendarActivity(bundle, 0, i2);
+                    calendarActivity.setChatActivity(ChatActivity.this);
+                    ChatActivity.this.presentFragment(calendarActivity);
                     return;
                 }
             }

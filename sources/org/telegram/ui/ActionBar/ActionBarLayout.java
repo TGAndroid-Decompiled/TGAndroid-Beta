@@ -87,8 +87,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private boolean beginTrackingSent;
     private BottomSheetTabs bottomSheetTabs;
     private ValueAnimator bottomTabsAnimator;
-    private int bottomTabsHeight;
-    private float bottomTabsProgress;
+    public int bottomTabsHeight;
+    public float bottomTabsProgress;
     private final Path clipPath;
     private final float[] clipRadius;
     private final RectF clipRect;
@@ -2708,8 +2708,9 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (ActionBarLayout.this.bottomTabsAnimator == animator) {
-                    ActionBarLayout.this.bottomTabsProgress = r2.bottomTabsHeight;
-                    ActionBarLayout.this.invalidate();
+                    ActionBarLayout actionBarLayout = ActionBarLayout.this;
+                    actionBarLayout.bottomTabsProgress = actionBarLayout.bottomTabsHeight;
+                    actionBarLayout.invalidate();
                 }
             }
         });

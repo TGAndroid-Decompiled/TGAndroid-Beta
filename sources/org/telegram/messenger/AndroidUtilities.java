@@ -3122,6 +3122,12 @@ public class AndroidUtilities {
         }
     }
 
+    public static void lambda$notifyDataSetChanged$22(RecyclerView recyclerView) {
+        if (recyclerView.getAdapter() != null) {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
+
     public static int lambda$pruneOverlaps$8(LinkSpec linkSpec, LinkSpec linkSpec2) {
         int i;
         int i2;
@@ -3752,6 +3758,22 @@ public class AndroidUtilities {
             sb.append("0");
         }
         sb.append(j);
+    }
+
+    public static void notifyDataSetChanged(final RecyclerView recyclerView) {
+        if (recyclerView == null || recyclerView.getAdapter() == null) {
+            return;
+        }
+        if (recyclerView.isComputingLayout()) {
+            recyclerView.post(new Runnable() {
+                @Override
+                public final void run() {
+                    AndroidUtilities.lambda$notifyDataSetChanged$22(RecyclerView.this);
+                }
+            });
+        } else {
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
     }
 
     public static String obtainLoginPhoneCall(String str) {

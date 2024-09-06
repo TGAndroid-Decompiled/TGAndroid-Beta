@@ -7346,7 +7346,7 @@ public abstract class SharedMediaLayout extends FrameLayout implements Notificat
                         return;
                     }
                     if (mediaPageArr2[i].selectedType == 7 && this.mediaPages[i].listView.getAdapter() != null) {
-                        this.mediaPages[i].listView.getAdapter().notifyDataSetChanged();
+                        AndroidUtilities.notifyDataSetChanged(this.mediaPages[i].listView);
                     }
                     i++;
                 }

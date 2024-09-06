@@ -520,21 +520,24 @@ public class BottomSheetTabs extends FrameLayout {
     protected void dispatchDraw(Canvas canvas) {
         getTabs();
         ArrayList<TabDrawable> tabDrawables = getTabDrawables();
-        this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.backgroundPaint);
-        super.dispatchDraw(canvas);
-        int i = this.tabColorAnimated.set(this.tabColor);
-        float f = this.tabDarkAnimated.set(this.tabIsDark);
-        if (this.drawTabs) {
-            for (int i2 = 0; i2 < tabDrawables.size(); i2++) {
-                TabDrawable tabDrawable = tabDrawables.get(i2);
-                float position = tabDrawable.getPosition();
-                float alpha = tabDrawable.getAlpha();
-                if (alpha > 0.0f && position <= 1.99f) {
-                    getTabBounds(this.rect, position);
-                    tabDrawable.setExpandProgress(0.0f);
-                    tabDrawable.setBackgroundColor(i, f > 0.5f);
-                    tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(10.0f), alpha, 1.0f);
+        ActionBarLayout actionBarLayout = this.actionBarLayout;
+        if (actionBarLayout == null || actionBarLayout.bottomTabsProgress > 0.0f) {
+            this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
+            canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.backgroundPaint);
+            super.dispatchDraw(canvas);
+            int i = this.tabColorAnimated.set(this.tabColor);
+            float f = this.tabDarkAnimated.set(this.tabIsDark);
+            if (this.drawTabs) {
+                for (int i2 = 0; i2 < tabDrawables.size(); i2++) {
+                    TabDrawable tabDrawable = tabDrawables.get(i2);
+                    float position = tabDrawable.getPosition();
+                    float alpha = tabDrawable.getAlpha();
+                    if (alpha > 0.0f && position <= 1.99f) {
+                        getTabBounds(this.rect, position);
+                        tabDrawable.setExpandProgress(0.0f);
+                        tabDrawable.setBackgroundColor(i, f > 0.5f);
+                        tabDrawable.draw(canvas, this.rect, AndroidUtilities.dp(10.0f), alpha, 1.0f);
+                    }
                 }
             }
         }
