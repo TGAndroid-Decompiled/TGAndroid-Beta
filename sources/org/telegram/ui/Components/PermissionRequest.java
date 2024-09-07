@@ -19,6 +19,19 @@ import org.telegram.ui.LaunchActivity;
 public abstract class PermissionRequest {
     private static int lastId = 1500;
 
+    public static boolean canAskPermission(String str) {
+        boolean shouldShowRequestPermissionRationale;
+        Activity activity = LaunchActivity.instance;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null || Build.VERSION.SDK_INT < 23) {
+            return false;
+        }
+        shouldShowRequestPermissionRationale = activity.shouldShowRequestPermissionRationale(str);
+        return shouldShowRequestPermissionRationale;
+    }
+
     public static void ensureEitherPermission(int i, int i2, String[] strArr, final String[] strArr2, final Utilities.Callback callback) {
         boolean shouldShowRequestPermissionRationale;
         int checkSelfPermission;
@@ -121,6 +134,23 @@ public abstract class PermissionRequest {
         }
     }
 
+    public static void lambda$requestPermission$4(Utilities.Callback callback, int[] iArr) {
+        boolean z = false;
+        if (iArr.length >= 1 && iArr[0] == 0) {
+            z = true;
+        }
+        callback.run(Boolean.valueOf(z));
+    }
+
+    public static void requestPermission(String str, final Utilities.Callback callback) {
+        requestPermissions(new String[]{str}, callback != null ? new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                PermissionRequest.lambda$requestPermission$4(Utilities.Callback.this, (int[]) obj);
+            }
+        } : null);
+    }
+
     public static void requestPermissions(String[] strArr, final Utilities.Callback callback) {
         Activity activity = LaunchActivity.instance;
         if (activity == null) {
@@ -129,26 +159,53 @@ public abstract class PermissionRequest {
         if (activity == null) {
             return;
         }
-        final int i = lastId;
-        lastId = i + 1;
-        final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
-            @Override
-            public void didReceivedNotification(int i2, int i3, Object... objArr) {
-                int i4 = NotificationCenter.activityPermissionsGranted;
-                if (i2 == i4) {
-                    int intValue = ((Integer) objArr[0]).intValue();
-                    int[] iArr = (int[]) objArr[2];
-                    if (intValue == i) {
-                        Utilities.Callback callback2 = callback;
-                        if (callback2 != null) {
-                            callback2.run(iArr);
+        if (Build.VERSION.SDK_INT >= 23) {
+            final int i = lastId;
+            lastId = i + 1;
+            final NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenter.NotificationCenterDelegate() {
+                @Override
+                public void didReceivedNotification(int i2, int i3, Object... objArr) {
+                    int i4 = NotificationCenter.activityPermissionsGranted;
+                    if (i2 == i4) {
+                        int intValue = ((Integer) objArr[0]).intValue();
+                        int[] iArr = (int[]) objArr[2];
+                        if (intValue == i) {
+                            Utilities.Callback callback2 = callback;
+                            if (callback2 != null) {
+                                callback2.run(iArr);
+                            }
+                            NotificationCenter.getGlobalInstance().removeObserver(notificationCenterDelegateArr[0], i4);
                         }
-                        NotificationCenter.getGlobalInstance().removeObserver(notificationCenterDelegateArr[0], i4);
                     }
                 }
+            }};
+            NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
+            activity.requestPermissions(strArr, i);
+            return;
+        }
+        if (callback != null) {
+            int[] iArr = new int[strArr.length];
+            for (int i2 = 0; i2 < strArr.length; i2++) {
+                iArr[i2] = hasPermission(strArr[i2]) ? 0 : -1;
             }
-        }};
-        NotificationCenter.getGlobalInstance().addObserver(notificationCenterDelegateArr[0], NotificationCenter.activityPermissionsGranted);
-        activity.requestPermissions(strArr, i);
+            callback.run(iArr);
+        }
+    }
+
+    public static void showPermissionSettings(String str) {
+        Activity activity = LaunchActivity.instance;
+        if (activity == null) {
+            activity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
+        }
+        if (activity == null) {
+            return;
+        }
+        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+        try {
+            activity.startActivity(intent);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

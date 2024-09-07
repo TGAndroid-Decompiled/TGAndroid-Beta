@@ -36,7 +36,6 @@ import org.telegram.ui.NotificationPermissionDialog;
 
 public class NotificationPermissionDialog extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     private CounterView counterView;
-    private boolean mayBeAccidentalDismiss;
     private RLottieImageView rLottieImageView;
     private long showTime;
     private Utilities.Callback whenGranted;
@@ -174,7 +173,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         }
     }
 
-    public NotificationPermissionDialog(Context context, Utilities.Callback callback) {
+    public NotificationPermissionDialog(Context context, boolean z, Utilities.Callback callback) {
         super(context, false);
         this.whenGranted = callback;
         LinearLayout linearLayout = new LinearLayout(context);
@@ -207,23 +206,23 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
-        textView.setText(LocaleController.getString("NotificationsPermissionAlertTitle"));
+        textView.setText(LocaleController.getString(R.string.NotificationsPermissionAlertTitle));
         textView.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(Theme.getColor(i2));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        textView2.setText(LocaleController.getString("NotificationsPermissionAlertSubtitle"));
+        textView2.setText(LocaleController.getString(R.string.NotificationsPermissionAlertSubtitle));
         textView2.setPadding(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(21.0f));
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_message_s, LocaleController.getString("NotificationsPermissionAlert1")), LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_members_list2, LocaleController.getString("NotificationsPermissionAlert2")), LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(new SectionView(context, R.drawable.msg_customize_s, LocaleController.getString("NotificationsPermissionAlert3")), LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_message_s, LocaleController.getString(R.string.NotificationsPermissionAlert1)), LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_members_list2, LocaleController.getString(R.string.NotificationsPermissionAlert2)), LayoutHelper.createLinear(-1, -2));
+        linearLayout.addView(new SectionView(context, R.drawable.msg_customize_s, LocaleController.getString(R.string.NotificationsPermissionAlert3)), LayoutHelper.createLinear(-1, -2));
         setCustomView(linearLayout);
         fixNavigationBar(getThemedColor(Theme.key_dialogBackground));
         TextView textView3 = new TextView(context);
-        textView3.setText(LocaleController.getString("NotificationsPermissionContinue"));
+        textView3.setText(LocaleController.getString(z ? R.string.NotificationsPermissionSettings : R.string.NotificationsPermissionContinue));
         textView3.setGravity(17);
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setTextSize(1, 14.0f);
@@ -305,9 +304,7 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
         if (callback != null) {
             callback.run(Boolean.FALSE);
             this.whenGranted = null;
-            if (!this.mayBeAccidentalDismiss) {
-                askLater();
-            }
+            askLater();
         }
         for (int i = 0; i < 4; i++) {
             try {
@@ -315,12 +312,6 @@ public class NotificationPermissionDialog extends BottomSheet implements Notific
             } catch (Exception unused) {
             }
         }
-    }
-
-    @Override
-    public void onDismissWithTouchOutside() {
-        this.mayBeAccidentalDismiss = System.currentTimeMillis() - this.showTime < 3000;
-        super.onDismissWithTouchOutside();
     }
 
     @Override

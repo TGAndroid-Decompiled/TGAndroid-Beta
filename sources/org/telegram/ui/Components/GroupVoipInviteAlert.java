@@ -847,7 +847,7 @@ public class GroupVoipInviteAlert extends UsersAlertBase {
     }
 
     @Override
-    public void search(String str) {
+    protected void search(String str) {
         this.searchAdapter.searchUsers(str);
     }
 

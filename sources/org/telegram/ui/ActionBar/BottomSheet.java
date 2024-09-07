@@ -1747,7 +1747,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     public void onDismissAnimationStart() {
     }
 
-    public void onDismissWithTouchOutside() {
+    protected void onDismissWithTouchOutside() {
         dismiss();
     }
 

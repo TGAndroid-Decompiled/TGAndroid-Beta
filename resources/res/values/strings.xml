@@ -4520,6 +4520,7 @@
     <string name="NotificationsPermissionAlertSubtitle">Please allow Telegram to send you notifications to stay in touch with your friends and family.</string>
     <string name="NotificationsPermissionAlertTitle">Turn on notifications</string>
     <string name="NotificationsPermissionContinue">Continue</string>
+    <string name="NotificationsPermissionSettings">Open Settings</string>
     <string name="NotificationsPriorityHigh">High</string>
     <string name="NotificationsPriorityLow">Low</string>
     <string name="NotificationsPriorityMedium">Medium</string>
@@ -4988,6 +4989,7 @@
     <string name="PermissionDrawAboveOtherAppsGroupCall">Overlay mode lets you use push-to-talk and see who is talking even when you are outside of Telegram.</string>
     <string name="PermissionDrawAboveOtherAppsGroupCallTitle">Voice Chat Overlay</string>
     <string name="PermissionDrawAboveOtherAppsTitle">Picture-in-Picture</string>
+    <string name="PermissionFSILockscreen">Please allow Telegram to be shown on the lock screen so that calls can work properly.</string>
     <string name="PermissionNoAudioStorageStory">**Telegram** needs access to music files to upload with your story. Tap Settings -&gt; Permissions, and turn **Music and Audio** on.</string>
     <string name="PermissionNoAudioVideoWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -&gt; Permissions, and turn **Microphone** on.</string>
     <string name="PermissionNoAudioWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -&gt; Permissions, and turn **Microphone** on.</string>

@@ -1219,7 +1219,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             int color = Theme.getColor(Theme.key_dialogBackground, resourcesProvider);
             jSONObject.put("bg_color", color);
             jSONObject.put("section_bg_color", Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-            jSONObject.put("secondary_bg_color", Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
+            int i = Theme.key_windowBackgroundGray;
+            jSONObject.put("secondary_bg_color", Theme.getColor(i, resourcesProvider));
             jSONObject.put("text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             jSONObject.put("hint_color", Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
             jSONObject.put("link_color", Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
@@ -1231,6 +1232,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             jSONObject.put("subtitle_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider)));
             jSONObject.put("destructive_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_text_RedRegular, resourcesProvider)));
             jSONObject.put("section_separator_color", Theme.blendOver(color, Theme.getColor(Theme.key_divider, resourcesProvider)));
+            jSONObject.put("bottom_bar_bg_color", Theme.getColor(i, resourcesProvider));
             return jSONObject;
         } catch (Exception e) {
             FileLog.e(e);

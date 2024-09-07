@@ -112,7 +112,7 @@ public abstract class MentionsContainerView extends BlurredFrameLayout implement
 
         @Override
         public int getFlowItemCount() {
-            return (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) ? super.getFlowItemCount() - 1 : getItemCount() - 2;
+            return (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) ? super.getFlowItemCount() : getItemCount() - 1;
         }
 
         @Override
@@ -542,7 +542,7 @@ public abstract class MentionsContainerView extends BlurredFrameLayout implement
 
             @Override
             public int getFlowItemCount() {
-                return (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) ? super.getFlowItemCount() - 1 : getItemCount() - 2;
+                return (MentionsContainerView.this.adapter.getBotContextSwitch() == null && MentionsContainerView.this.adapter.getBotWebViewSwitch() == null) ? super.getFlowItemCount() : getItemCount() - 1;
             }
 
             @Override
