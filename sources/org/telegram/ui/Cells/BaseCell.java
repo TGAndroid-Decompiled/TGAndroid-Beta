@@ -27,7 +27,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
     private RenderNode renderNode;
     protected boolean updatedContent;
 
-    public class CheckForLongPress implements Runnable {
+    class CheckForLongPress implements Runnable {
         public int currentPressCount;
 
         CheckForLongPress() {
@@ -47,7 +47,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         }
     }
 
-    public final class CheckForTap implements Runnable {
+    private final class CheckForTap implements Runnable {
         private CheckForTap() {
         }
 
