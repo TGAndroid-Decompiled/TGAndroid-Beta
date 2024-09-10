@@ -265,6 +265,7 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
 import org.telegram.ui.web.AddressBarList;
@@ -6424,7 +6425,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     if (!isTonsite()) {
                         try {
                             Uri parse2 = Uri.parse(uri);
-                            uri = Browser.replace(parse2, null, "", Browser.IDN_toUnicode(parse2.getHost()), null);
+                            String IDN_toUnicode = Browser.IDN_toUnicode(parse2.getHost());
+                            String[] split = IDN_toUnicode.split("\\.");
+                            if (split.length > 2 && ArticleViewer.this.actionBar != null && HintView2.measureCorrectly(IDN_toUnicode, ArticleViewer.this.actionBar.titlePaint) > AndroidUtilities.displaySize.x - AndroidUtilities.dp(162.0f)) {
+                                IDN_toUnicode = split[split.length - 2] + '.' + split[split.length - 1];
+                            }
+                            uri = Browser.replace(parse2, null, "", IDN_toUnicode, null);
                         } catch (Exception e) {
                             FileLog.e((Throwable) e, false);
                         }
@@ -7352,7 +7358,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 bottomSheetTabDialog2.updateNavigationBarColor();
             } else {
                 LaunchActivity.instance.checkSystemBarColors(true, true, true, false);
-                AndroidUtilities.setLightNavigationBar(mo982getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+                AndroidUtilities.setLightNavigationBar(mo983getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(ArticleViewer.this.getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
             }
         }
 
@@ -7430,7 +7436,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public WindowView mo982getWindowView() {
+        public WindowView mo983getWindowView() {
             return this.windowView;
         }
 

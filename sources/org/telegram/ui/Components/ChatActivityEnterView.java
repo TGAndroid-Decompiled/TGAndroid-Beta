@@ -223,7 +223,6 @@ import org.telegram.ui.Components.StickersAlert;
 import org.telegram.ui.Components.SuggestEmojiView;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.VideoTimelineView;
-import org.telegram.ui.ContentPreviewViewer;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.GroupStickersActivity;
 import org.telegram.ui.LaunchActivity;
@@ -313,6 +312,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private float composeShadowAlpha;
     private float controlsScale;
     public ControlsView controlsView;
+    boolean ctrlPressed;
     private int currentAccount;
     private int currentLimit;
     private int currentPopupContentType;
@@ -480,6 +480,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     private SenderSelectView senderSelectView;
     private long sentFromPreview;
     private Runnable setTextFieldRunnable;
+    boolean shiftPressed;
     protected boolean shouldAnimateEditTextWithBounds;
     public boolean shouldDrawBackground;
     public boolean shouldDrawRecordedAudioPanelInParent;
@@ -1578,68 +1579,33 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
     }
 
     public class AnonymousClass43 implements View.OnKeyListener {
-        boolean ctrlPressed = false;
-
         AnonymousClass43() {
         }
 
         @Override
-        public boolean onKey(View view, int i, KeyEvent keyEvent) {
-            if (i != 4 || ChatActivityEnterView.this.keyboardVisible || !ChatActivityEnterView.this.isPopupShowing() || keyEvent.getAction() != 1) {
-                if (i == 66 && ((this.ctrlPressed || ChatActivityEnterView.this.sendByEnter) && keyEvent.getAction() == 0 && ChatActivityEnterView.this.editingMessageObject == null)) {
-                    ChatActivityEnterView.this.sendMessage();
-                    return true;
-                }
-                if (i != 113 && i != 114) {
-                    return false;
-                }
-                this.ctrlPressed = keyEvent.getAction() == 0;
-                return true;
-            }
-            if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
-                ContentPreviewViewer.getInstance().closeWithMenu();
-                return true;
-            }
-            if (ChatActivityEnterView.this.currentPopupContentType == 1 && ChatActivityEnterView.this.botButtonsMessageObject != null) {
-                return false;
-            }
-            if (keyEvent.getAction() == 1) {
-                if (ChatActivityEnterView.this.currentPopupContentType == 1 && ChatActivityEnterView.this.botButtonsMessageObject != null) {
-                    MessagesController.getMainSettings(ChatActivityEnterView.this.currentAccount).edit().putInt("hidekeyboard_" + ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.botButtonsMessageObject.getId()).commit();
-                }
-                if (ChatActivityEnterView.this.searchingType != 0) {
-                    ChatActivityEnterView.this.setSearchingTypeInternal(0, true);
-                    if (ChatActivityEnterView.this.emojiView != null) {
-                        ChatActivityEnterView.this.emojiView.closeSearch(true);
-                    }
-                    ChatActivityEnterView.this.messageEditText.requestFocus();
-                } else if (ChatActivityEnterView.this.stickersExpanded) {
-                    ChatActivityEnterView.this.setStickersExpanded(false, true, false);
-                } else if (ChatActivityEnterView.this.stickersExpansionAnim == null) {
-                    if (ChatActivityEnterView.this.botButtonsMessageObject == null || ChatActivityEnterView.this.currentPopupContentType == 1 || !TextUtils.isEmpty(ChatActivityEnterView.this.messageEditText.getTextToUse())) {
-                        ChatActivityEnterView.this.showPopup(0, 0);
-                    } else {
-                        ChatActivityEnterView.this.showPopup(1, 1);
-                    }
-                }
-            }
-            return true;
+        public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass43.onKey(android.view.View, int, android.view.KeyEvent):boolean");
         }
     }
 
     public class AnonymousClass44 implements TextView.OnEditorActionListener {
-        boolean ctrlPressed = false;
-
         AnonymousClass44() {
         }
 
         @Override
         public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
             if (i != 4) {
-                if (keyEvent == null || i != 0) {
+                if (keyEvent == null || i != 0 || keyEvent.isShiftPressed()) {
                     return false;
                 }
-                if ((!this.ctrlPressed && !ChatActivityEnterView.this.sendByEnter) || keyEvent.getAction() != 0 || ChatActivityEnterView.this.editingMessageObject != null) {
+                if (ChatActivityEnterView.this.sendByEnter) {
+                    if (keyEvent.isCtrlPressed()) {
+                        return false;
+                    }
+                } else if (!keyEvent.isCtrlPressed()) {
+                    return false;
+                }
+                if (keyEvent.getAction() != 0 || ChatActivityEnterView.this.editingMessageObject != null) {
                     return false;
                 }
             }
@@ -1707,8 +1673,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             if (ChatActivityEnterView.this.innerTextChange == 1) {
                 return;
             }
-            if (ChatActivityEnterView.this.sendByEnter && !ChatActivityEnterView.this.ignoreTextChange && !ChatActivityEnterView.this.isPaste && ChatActivityEnterView.this.editingMessageObject == null && i3 > i2 && charSequence.length() > 0 && charSequence.length() == i + i3 && charSequence.charAt(charSequence.length() - 1) == '\n') {
-                this.nextChangeIsSend = true;
+            if (ChatActivityEnterView.this.sendByEnter) {
+                ChatActivityEnterView chatActivityEnterView3 = ChatActivityEnterView.this;
+                if (!chatActivityEnterView3.ctrlPressed && !chatActivityEnterView3.shiftPressed && !chatActivityEnterView3.ignoreTextChange && !ChatActivityEnterView.this.isPaste && ChatActivityEnterView.this.editingMessageObject == null && i3 > i2 && charSequence.length() > 0 && charSequence.length() == i + i3 && charSequence.charAt(charSequence.length() - 1) == '\n') {
+                    this.nextChangeIsSend = true;
+                }
             }
             ChatActivityEnterView.this.isPaste = false;
             ChatActivityEnterView.this.checkSendButton(true);
@@ -5871,6 +5840,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 accessibilityNodeInfo.setLongClickable(true);
             }
         };
+        this.ctrlPressed = false;
+        this.shiftPressed = false;
         this.currentPopupContentType = -1;
         this.isPaused = true;
         this.startedDraggingX = -1.0f;
@@ -7293,67 +7264,32 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
         this.messageEditTextContainer.addView(this.messageEditText, 1, LayoutHelper.createFrame(-1, -2.0f, 80, 52.0f, 0.0f, this.isChat ? 50.0f : 2.0f, 1.5f));
         this.messageEditText.setOnKeyListener(new View.OnKeyListener() {
-            boolean ctrlPressed = false;
-
             AnonymousClass43() {
             }
 
             @Override
-            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                if (i3 != 4 || ChatActivityEnterView.this.keyboardVisible || !ChatActivityEnterView.this.isPopupShowing() || keyEvent.getAction() != 1) {
-                    if (i3 == 66 && ((this.ctrlPressed || ChatActivityEnterView.this.sendByEnter) && keyEvent.getAction() == 0 && ChatActivityEnterView.this.editingMessageObject == null)) {
-                        ChatActivityEnterView.this.sendMessage();
-                        return true;
-                    }
-                    if (i3 != 113 && i3 != 114) {
-                        return false;
-                    }
-                    this.ctrlPressed = keyEvent.getAction() == 0;
-                    return true;
-                }
-                if (ContentPreviewViewer.hasInstance() && ContentPreviewViewer.getInstance().isVisible()) {
-                    ContentPreviewViewer.getInstance().closeWithMenu();
-                    return true;
-                }
-                if (ChatActivityEnterView.this.currentPopupContentType == 1 && ChatActivityEnterView.this.botButtonsMessageObject != null) {
-                    return false;
-                }
-                if (keyEvent.getAction() == 1) {
-                    if (ChatActivityEnterView.this.currentPopupContentType == 1 && ChatActivityEnterView.this.botButtonsMessageObject != null) {
-                        MessagesController.getMainSettings(ChatActivityEnterView.this.currentAccount).edit().putInt("hidekeyboard_" + ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.botButtonsMessageObject.getId()).commit();
-                    }
-                    if (ChatActivityEnterView.this.searchingType != 0) {
-                        ChatActivityEnterView.this.setSearchingTypeInternal(0, true);
-                        if (ChatActivityEnterView.this.emojiView != null) {
-                            ChatActivityEnterView.this.emojiView.closeSearch(true);
-                        }
-                        ChatActivityEnterView.this.messageEditText.requestFocus();
-                    } else if (ChatActivityEnterView.this.stickersExpanded) {
-                        ChatActivityEnterView.this.setStickersExpanded(false, true, false);
-                    } else if (ChatActivityEnterView.this.stickersExpansionAnim == null) {
-                        if (ChatActivityEnterView.this.botButtonsMessageObject == null || ChatActivityEnterView.this.currentPopupContentType == 1 || !TextUtils.isEmpty(ChatActivityEnterView.this.messageEditText.getTextToUse())) {
-                            ChatActivityEnterView.this.showPopup(0, 0);
-                        } else {
-                            ChatActivityEnterView.this.showPopup(1, 1);
-                        }
-                    }
-                }
-                return true;
+            public boolean onKey(android.view.View r5, int r6, android.view.KeyEvent r7) {
+                throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.AnonymousClass43.onKey(android.view.View, int, android.view.KeyEvent):boolean");
             }
         });
         this.messageEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            boolean ctrlPressed = false;
-
             AnonymousClass44() {
             }
 
             @Override
             public boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
                 if (i3 != 4) {
-                    if (keyEvent == null || i3 != 0) {
+                    if (keyEvent == null || i3 != 0 || keyEvent.isShiftPressed()) {
                         return false;
                     }
-                    if ((!this.ctrlPressed && !ChatActivityEnterView.this.sendByEnter) || keyEvent.getAction() != 0 || ChatActivityEnterView.this.editingMessageObject != null) {
+                    if (ChatActivityEnterView.this.sendByEnter) {
+                        if (keyEvent.isCtrlPressed()) {
+                            return false;
+                        }
+                    } else if (!keyEvent.isCtrlPressed()) {
+                        return false;
+                    }
+                    if (keyEvent.getAction() != 0 || ChatActivityEnterView.this.editingMessageObject != null) {
                         return false;
                     }
                 }

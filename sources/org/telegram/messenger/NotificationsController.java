@@ -510,6 +510,7 @@ public class NotificationsController extends BaseController {
     }
 
     private void dismissNotification() {
+        FileLog.d("NotificationsController dismissNotification");
         try {
             notificationManager.cancel(this.notificationId);
             this.pushMessages.clear();
@@ -1351,7 +1352,7 @@ public class NotificationsController extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsUnreadCounterChanged, Integer.valueOf(i));
     }
 
-    public void lambda$processNewMessages$25(java.util.ArrayList r39, final java.util.ArrayList r40, boolean r41, boolean r42, java.util.concurrent.CountDownLatch r43) {
+    public void lambda$processNewMessages$25(java.util.ArrayList r42, final java.util.ArrayList r43, boolean r44, boolean r45, java.util.concurrent.CountDownLatch r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.lambda$processNewMessages$25(java.util.ArrayList, java.util.ArrayList, boolean, boolean, java.util.concurrent.CountDownLatch):void");
     }
 
@@ -2031,7 +2032,7 @@ public class NotificationsController extends BaseController {
         builder.setChannelId(z ? OTHER_NOTIFICATIONS_CHANNEL : notification.getChannelId());
     }
 
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r80, java.lang.String r81, long r82, long r84, java.lang.String r86, long[] r87, int r88, android.net.Uri r89, int r90, boolean r91, boolean r92, boolean r93, int r94) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r82, java.lang.String r83, long r84, long r86, java.lang.String r88, long[] r89, int r90, android.net.Uri r91, int r92, boolean r93, boolean r94, boolean r95, int r96) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, long, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
@@ -2575,6 +2576,15 @@ public class NotificationsController extends BaseController {
     }
 
     public void processNewMessages(final ArrayList<MessageObject> arrayList, final boolean z, final boolean z2, final CountDownLatch countDownLatch) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("NotificationsController: processNewMessages msgs.size()=");
+        sb.append(arrayList == null ? "null" : Integer.valueOf(arrayList.size()));
+        sb.append(" isLast=");
+        sb.append(z);
+        sb.append(" isFcm=");
+        sb.append(z2);
+        sb.append(")");
+        FileLog.d(sb.toString());
         if (!arrayList.isEmpty()) {
             final ArrayList arrayList2 = new ArrayList(0);
             notificationsQueue.postRunnable(new Runnable() {

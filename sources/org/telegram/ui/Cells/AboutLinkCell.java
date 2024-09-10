@@ -583,7 +583,7 @@ public abstract class AboutLinkCell extends FrameLayout {
         this.currentProgress = anonymousClass3;
         if (clickableSpan instanceof URLSpanNoUnderline) {
             String url = ((URLSpanNoUnderline) clickableSpan).getURL();
-            if (url.startsWith("@") || url.startsWith("#") || url.startsWith("/")) {
+            if (url.startsWith("@") || url.startsWith("#") || url.startsWith("$") || url.startsWith("/")) {
                 didPressUrl(url, this.currentProgress);
                 return;
             }

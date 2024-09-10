@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -72,6 +73,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     private int shiftDp;
     private ActionBarMenuSubItem showPhotosItem;
     private ActionBarMenuSubItem showVideosItem;
+    private int storiesCount;
     private final ValueAnimator[] subtitleAnimator;
     private final boolean[] subtitleShown;
     private final float[] subtitleT;
@@ -414,16 +416,75 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         String string;
         AnimatedTextView animatedTextView;
         String formatPluralString;
+        AnimatedTextView animatedTextView2;
+        String formatPluralString2;
         SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
         if (sharedMediaLayout != null) {
             if (this.subtitleTextView[0] == null) {
                 return;
             }
             int closestTab = sharedMediaLayout.getClosestTab();
-            int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
-            boolean z = !LocaleController.isRTL;
-            int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
-            if (closestTab == 8 || closestTab == 9) {
+            if (this.type != 3 || closestTab == 8) {
+                int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
+                boolean z = !LocaleController.isRTL;
+                int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
+                if (closestTab != 8 && closestTab != 9) {
+                    if (closestTab == 11) {
+                        showSubtitle(i, true, true);
+                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
+                        return;
+                    }
+                    if (closestTab >= 0) {
+                        if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
+                            if (closestTab == 0) {
+                                showSubtitle(i, true, true);
+                                if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
+                                    animatedTextView2 = this.subtitleTextView[i];
+                                    formatPluralString2 = LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]);
+                                } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
+                                    animatedTextView2 = this.subtitleTextView[i];
+                                    formatPluralString2 = LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]);
+                                } else {
+                                    animatedTextView2 = this.subtitleTextView[i];
+                                    formatPluralString2 = LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]);
+                                }
+                            } else if (closestTab == 1) {
+                                showSubtitle(i, true, true);
+                                animatedTextView2 = this.subtitleTextView[i];
+                                formatPluralString2 = LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]);
+                            } else if (closestTab == 2) {
+                                showSubtitle(i, true, true);
+                                animatedTextView2 = this.subtitleTextView[i];
+                                formatPluralString2 = LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]);
+                            } else if (closestTab == 3) {
+                                showSubtitle(i, true, true);
+                                animatedTextView2 = this.subtitleTextView[i];
+                                formatPluralString2 = LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]);
+                            } else if (closestTab == 4) {
+                                showSubtitle(i, true, true);
+                                animatedTextView2 = this.subtitleTextView[i];
+                                formatPluralString2 = LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]);
+                            } else {
+                                if (closestTab != 5) {
+                                    if (closestTab == 10) {
+                                        showSubtitle(i, true, true);
+                                        MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
+                                        this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                showSubtitle(i, true, true);
+                                animatedTextView2 = this.subtitleTextView[i];
+                                formatPluralString2 = LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]);
+                            }
+                            animatedTextView2.setText(formatPluralString2, z);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
                 ActionBarMenuSubItem actionBarMenuSubItem = this.zoomOutItem;
                 if (actionBarMenuSubItem != null) {
                     actionBarMenuSubItem.setEnabled(this.sharedMediaLayout.canZoomOut());
@@ -438,8 +499,16 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 }
                 int storiesCount = this.sharedMediaLayout.getStoriesCount(8);
                 if (storiesCount > 0) {
-                    showSubtitle(0, true, true);
-                    this.subtitleTextView[0].setText(LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]), z);
+                    if (this.type != 3) {
+                        showSubtitle(0, true, true);
+                        animatedTextView = this.subtitleTextView[0];
+                        formatPluralString = LocaleController.formatPluralString("ProfileMyStoriesCount", storiesCount, new Object[0]);
+                    } else if (TextUtils.isEmpty(this.subtitleTextView[0].getText())) {
+                        showSubtitle(0, true, true);
+                        animatedTextView = this.subtitleTextView[0];
+                        formatPluralString = LocaleController.formatPluralString("FoundStories", storiesCount, new Object[0]);
+                    }
+                    animatedTextView.setText(formatPluralString, z);
                 } else {
                     showSubtitle(0, false, true);
                 }
@@ -481,60 +550,6 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                     boolean z4 = this.sharedMediaLayout.getStoriesCount(closestTab) > 0;
                     this.calendarItem.setEnabled(z4);
                     this.calendarItem.setAlpha(z4 ? 1.0f : 0.5f);
-                    return;
-                }
-                return;
-            }
-            if (closestTab == 11) {
-                showSubtitle(i, true, true);
-                this.subtitleTextView[i].setText(LocaleController.formatPluralString("SavedDialogsTabCount", getMessagesController().getSavedMessagesController().getAllCount(), new Object[0]), z);
-                return;
-            }
-            if (closestTab >= 0) {
-                if (closestTab >= lastMediaCount.length || lastMediaCount[closestTab] >= 0) {
-                    if (closestTab == 0) {
-                        showSubtitle(i, true, true);
-                        if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 1) {
-                            animatedTextView = this.subtitleTextView[i];
-                            formatPluralString = LocaleController.formatPluralString("Photos", lastMediaCount[6], new Object[0]);
-                        } else if (this.sharedMediaLayout.getPhotosVideosTypeFilter() == 2) {
-                            animatedTextView = this.subtitleTextView[i];
-                            formatPluralString = LocaleController.formatPluralString("Videos", lastMediaCount[7], new Object[0]);
-                        } else {
-                            animatedTextView = this.subtitleTextView[i];
-                            formatPluralString = LocaleController.formatPluralString("Media", lastMediaCount[0], new Object[0]);
-                        }
-                    } else if (closestTab == 1) {
-                        showSubtitle(i, true, true);
-                        animatedTextView = this.subtitleTextView[i];
-                        formatPluralString = LocaleController.formatPluralString("Files", lastMediaCount[1], new Object[0]);
-                    } else if (closestTab == 2) {
-                        showSubtitle(i, true, true);
-                        animatedTextView = this.subtitleTextView[i];
-                        formatPluralString = LocaleController.formatPluralString("Voice", lastMediaCount[2], new Object[0]);
-                    } else if (closestTab == 3) {
-                        showSubtitle(i, true, true);
-                        animatedTextView = this.subtitleTextView[i];
-                        formatPluralString = LocaleController.formatPluralString("Links", lastMediaCount[3], new Object[0]);
-                    } else if (closestTab == 4) {
-                        showSubtitle(i, true, true);
-                        animatedTextView = this.subtitleTextView[i];
-                        formatPluralString = LocaleController.formatPluralString("MusicFiles", lastMediaCount[4], new Object[0]);
-                    } else {
-                        if (closestTab != 5) {
-                            if (closestTab == 10) {
-                                showSubtitle(i, true, true);
-                                MessagesController.ChannelRecommendations channelRecommendations = MessagesController.getInstance(this.currentAccount).getChannelRecommendations(-this.dialogId);
-                                this.subtitleTextView[i].setText(LocaleController.formatPluralString("Channels", channelRecommendations == null ? 0 : channelRecommendations.more + channelRecommendations.chats.size(), new Object[0]), z);
-                                return;
-                            }
-                            return;
-                        }
-                        showSubtitle(i, true, true);
-                        animatedTextView = this.subtitleTextView[i];
-                        formatPluralString = LocaleController.formatPluralString("GIFs", lastMediaCount[5], new Object[0]);
-                    }
-                    animatedTextView.setText(formatPluralString, z);
                 }
             }
         }
@@ -644,6 +659,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         this.dialogId = getArguments().getLong("dialog_id");
         this.topicId = getArguments().getLong("topic_id", 0L);
         this.hashtag = getArguments().getString("hashtag", "");
+        this.storiesCount = getArguments().getInt("storiesCount", -1);
         int i = this.type;
         this.initialTab = getArguments().getInt("start_from", i == 2 ? 9 : i == 1 ? 8 : 0);
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);

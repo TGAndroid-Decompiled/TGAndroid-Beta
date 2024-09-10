@@ -206,22 +206,14 @@ public class WebRtcAudioTrack {
         AudioAttributes.Builder usage;
         AudioAttributes.Builder contentType;
         AudioAttributes build;
-        int usage2;
-        int contentType2;
-        int contentType3;
-        int usage3;
         usage = new AudioAttributes.Builder().setUsage(DEFAULT_USAGE);
         contentType = usage.setContentType(1);
         if (audioAttributes != null) {
-            usage2 = audioAttributes.getUsage();
-            if (usage2 != 0) {
-                usage3 = audioAttributes.getUsage();
-                contentType.setUsage(usage3);
+            if (WebRtcAudioTrack$$ExternalSyntheticApiModelOutline4.m(audioAttributes) != 0) {
+                contentType.setUsage(WebRtcAudioTrack$$ExternalSyntheticApiModelOutline4.m(audioAttributes));
             }
-            contentType2 = audioAttributes.getContentType();
-            if (contentType2 != 0) {
-                contentType3 = audioAttributes.getContentType();
-                contentType.setContentType(contentType3);
+            if (WebRtcAudioTrack$$ExternalSyntheticApiModelOutline5.m(audioAttributes) != 0) {
+                contentType.setContentType(WebRtcAudioTrack$$ExternalSyntheticApiModelOutline5.m(audioAttributes));
             }
             contentType.setFlags(WebRtcAudioTrack$$ExternalSyntheticApiModelOutline6.m(audioAttributes));
             if (Build.VERSION.SDK_INT >= 29) {

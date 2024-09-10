@@ -60,6 +60,7 @@ public class BottomSheetTabs extends FrameLayout {
     private final Paint backgroundPaint;
     private boolean closeRippleHit;
     public int currentAccount;
+    public boolean doNotDismiss;
     public boolean drawTabs;
     private final RectF rect;
     private int tabColor;
@@ -327,6 +328,7 @@ public class BottomSheetTabs extends FrameLayout {
         super(context);
         this.backgroundPaint = new Paint(1);
         this.drawTabs = true;
+        this.doNotDismiss = false;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.backgroundColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
         this.tabColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
@@ -416,6 +418,11 @@ public class BottomSheetTabs extends FrameLayout {
             removeTab(webTabData, false);
             createBotViewer.show(z);
         }
+    }
+
+    public void lambda$openTab$2(BaseFragment baseFragment, BaseFragment baseFragment2) {
+        baseFragment.presentFragment(baseFragment2);
+        this.doNotDismiss = false;
     }
 
     public void lambda$removeTab$3(boolean[] zArr, WebTabData webTabData, Utilities.Callback callback, AlertDialog[] alertDialogArr, DialogInterface dialogInterface, int i) {
@@ -685,11 +692,12 @@ public class BottomSheetTabs extends FrameLayout {
             if (z && ((ChatActivity) lastFragment).getDialogId() == webTabData.props.botId) {
                 return;
             }
+            this.doNotDismiss = true;
             final ChatActivity of = ChatActivity.of(webTabData.props.botId);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    BaseFragment.this.presentFragment(of);
+                    BottomSheetTabs.this.lambda$openTab$2(lastFragment, of);
                 }
             }, 220L);
         }

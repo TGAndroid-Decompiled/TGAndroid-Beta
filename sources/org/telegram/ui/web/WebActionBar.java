@@ -13,6 +13,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -109,6 +110,7 @@ public abstract class WebActionBar extends FrameLayout {
     public float searchingProgress;
     public final Paint[] shadowPaint;
     public int textColor;
+    public final TextPaint titlePaint;
     public float titleProgress;
     public final Title[] titles;
     private Utilities.Callback urlCallback;
@@ -276,6 +278,8 @@ public abstract class WebActionBar extends FrameLayout {
         this.scrimPaint = new Paint(1);
         this.addressBackgroundPaint = new Paint(1);
         this.addressRoundPaint = new Paint(1);
+        TextPaint textPaint = new TextPaint(1);
+        this.titlePaint = textPaint;
         this.isMenuShown = false;
         this.height = AndroidUtilities.dp(56.0f);
         this.scale = 1.0f;
@@ -291,6 +295,8 @@ public abstract class WebActionBar extends FrameLayout {
         };
         this.longClicked = false;
         this.resourcesProvider = resourcesProvider;
+        textPaint.setTypeface(AndroidUtilities.bold());
+        textPaint.setTextSize(AndroidUtilities.dp(18.33f));
         for (int i = 0; i < 2; i++) {
             this.backgroundPaint[i] = new Paint(1);
             this.progressBackgroundPaint[i] = new Paint(1);

@@ -29,6 +29,8 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
     int emojiIndex;
     TLRPC$TL_emojiList emojiList;
     public final boolean forUser;
+    private boolean isAllEmojiDrawablesLoaded;
+    private AnimatedEmojiDrawable nextAnimatedEmojiDrawable;
     GradientTools nextBackgroundDrawable;
     BackupImageView nextImage;
     float progressToNext;
@@ -54,34 +56,38 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
                 if (avatarConstructorPreviewCell.progressToNext != 1.0f) {
                     return;
                 }
-                int i2 = avatarConstructorPreviewCell.emojiIndex + 1;
-                avatarConstructorPreviewCell.emojiIndex = i2;
-                avatarConstructorPreviewCell.backgroundIndex++;
-                if (i2 > avatarConstructorPreviewCell.emojiList.document_id.size() - 1) {
-                    AvatarConstructorPreviewCell.this.emojiIndex = 0;
+                if (avatarConstructorPreviewCell.isAllEmojiDrawablesLoaded || (AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver() != null && AvatarConstructorPreviewCell.this.nextAnimatedEmojiDrawable.getImageReceiver().hasImageLoaded())) {
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell2 = AvatarConstructorPreviewCell.this;
+                    int i2 = avatarConstructorPreviewCell2.emojiIndex + 1;
+                    avatarConstructorPreviewCell2.emojiIndex = i2;
+                    avatarConstructorPreviewCell2.backgroundIndex++;
+                    if (i2 > avatarConstructorPreviewCell2.emojiList.document_id.size() - 1) {
+                        AvatarConstructorPreviewCell.this.emojiIndex = 0;
+                    }
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell3 = AvatarConstructorPreviewCell.this;
+                    int i3 = avatarConstructorPreviewCell3.backgroundIndex;
+                    int[][] iArr = AvatarConstructorFragment.defaultColors;
+                    if (i3 > iArr.length - 1) {
+                        avatarConstructorPreviewCell3.backgroundIndex = 0;
+                    }
+                    int i4 = AvatarConstructorPreviewCell.this.currentAccount;
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell4 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell3.animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i4, ((Long) avatarConstructorPreviewCell4.emojiList.document_id.get(avatarConstructorPreviewCell4.emojiIndex)).longValue());
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell5 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell5.nextImage.setAnimatedEmojiDrawable(avatarConstructorPreviewCell5.animatedEmojiDrawable);
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell6 = AvatarConstructorPreviewCell.this;
+                    int[] iArr2 = iArr[avatarConstructorPreviewCell6.backgroundIndex];
+                    int i5 = iArr2[0];
+                    int i6 = iArr2[1];
+                    int i7 = iArr2[2];
+                    int i8 = iArr2[3];
+                    avatarConstructorPreviewCell6.nextBackgroundDrawable = new GradientTools();
+                    AvatarConstructorPreviewCell.this.nextBackgroundDrawable.setColors(i5, i6, i7, i8);
+                    AvatarConstructorPreviewCell avatarConstructorPreviewCell7 = AvatarConstructorPreviewCell.this;
+                    avatarConstructorPreviewCell7.progressToNext = 0.0f;
+                    avatarConstructorPreviewCell7.preloadNextEmojiDrawable();
+                    AvatarConstructorPreviewCell.this.invalidate();
                 }
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell2 = AvatarConstructorPreviewCell.this;
-                int i3 = avatarConstructorPreviewCell2.backgroundIndex;
-                int[][] iArr = AvatarConstructorFragment.defaultColors;
-                if (i3 > iArr.length - 1) {
-                    avatarConstructorPreviewCell2.backgroundIndex = 0;
-                }
-                int i4 = AvatarConstructorPreviewCell.this.currentAccount;
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell3 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell2.animatedEmojiDrawable = new AnimatedEmojiDrawable(4, i4, ((Long) avatarConstructorPreviewCell3.emojiList.document_id.get(avatarConstructorPreviewCell3.emojiIndex)).longValue());
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell4 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell4.nextImage.setAnimatedEmojiDrawable(avatarConstructorPreviewCell4.animatedEmojiDrawable);
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell5 = AvatarConstructorPreviewCell.this;
-                int[] iArr2 = iArr[avatarConstructorPreviewCell5.backgroundIndex];
-                int i5 = iArr2[0];
-                int i6 = iArr2[1];
-                int i7 = iArr2[2];
-                int i8 = iArr2[3];
-                avatarConstructorPreviewCell5.nextBackgroundDrawable = new GradientTools();
-                AvatarConstructorPreviewCell.this.nextBackgroundDrawable.setColors(i5, i6, i7, i8);
-                AvatarConstructorPreviewCell avatarConstructorPreviewCell6 = AvatarConstructorPreviewCell.this;
-                avatarConstructorPreviewCell6.progressToNext = 0.0f;
-                avatarConstructorPreviewCell6.invalidate();
             }
         };
         this.forUser = z;
@@ -122,6 +128,7 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
             AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, ((Long) this.emojiList.document_id.get(0)).longValue());
             this.animatedEmojiDrawable = animatedEmojiDrawable;
             this.currentImage.setAnimatedEmojiDrawable(animatedEmojiDrawable);
+            preloadNextEmojiDrawable();
         }
         int[] iArr = AvatarConstructorFragment.defaultColors[this.backgroundIndex];
         int i4 = iArr[0];
@@ -139,6 +146,20 @@ public abstract class AvatarConstructorPreviewCell extends FrameLayout {
         this.textView.setGravity(17);
         this.textView.setText(LocaleController.getString(R.string.UseEmoji));
         addView(this.textView, LayoutHelper.createFrame(-1, 28.0f, 80, 10.0f, 10.0f, 10.0f, 10.0f));
+    }
+
+    public void preloadNextEmojiDrawable() {
+        if (this.isAllEmojiDrawablesLoaded) {
+            return;
+        }
+        int i = this.emojiIndex + 1;
+        if (i > this.emojiList.document_id.size() - 1) {
+            this.isAllEmojiDrawablesLoaded = true;
+            return;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(4, this.currentAccount, ((Long) this.emojiList.document_id.get(i)).longValue());
+        this.nextAnimatedEmojiDrawable = animatedEmojiDrawable;
+        animatedEmojiDrawable.preload();
     }
 
     @Override

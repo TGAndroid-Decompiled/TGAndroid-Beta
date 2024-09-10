@@ -7724,7 +7724,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             if (((BaseFragment) ChatActivity.this).actionBar.isActionModeShowed() || ChatActivity.this.reportType >= 0) {
                 ChatActivity.this.processRowSelect(chatMessageCell, true, f, f2);
-            } else if (z || !tLRPC$Chat.signature_profiles || (messageObject = chatMessageCell.getMessageObject()) == null) {
+                return;
+            }
+            if (z || !tLRPC$Chat.signature_profiles || (messageObject = chatMessageCell.getMessageObject()) == null || messageObject.getDialogId() == 1271266957) {
                 openChat(chatMessageCell, tLRPC$Chat, i, z);
             } else {
                 ChatActivity.this.openUserProfile(DialogObject.getPeerDialogId(messageObject.messageOwner.from_id));
@@ -8322,7 +8324,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressReaction(final org.telegram.ui.Cells.ChatMessageCell r25, final org.telegram.tgnet.TLRPC$ReactionCount r26, boolean r27, float r28, float r29) {
+        public void didPressReaction(final org.telegram.ui.Cells.ChatMessageCell r24, final org.telegram.tgnet.TLRPC$ReactionCount r25, boolean r26, float r27, float r28) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressReaction(org.telegram.ui.Cells.ChatMessageCell, org.telegram.tgnet.TLRPC$ReactionCount, boolean, float, float):void");
         }
 
@@ -15229,6 +15231,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 Bundle bundle = new Bundle();
                 bundle.putInt("type", 3);
                 bundle.putString("hashtag", this.messagesSearchAdapter.storiesList.query);
+                bundle.putInt("storiesCount", this.messagesSearchAdapter.storiesList.getCount());
                 presentFragment(new MediaActivity(bundle, null));
                 return;
             }

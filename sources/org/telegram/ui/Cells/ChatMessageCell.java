@@ -4521,14 +4521,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         if (tLRPC$User != null) {
             return UserObject.getUserName(tLRPC$User);
         }
-        TLRPC$Chat tLRPC$Chat = this.currentChat;
-        if (tLRPC$Chat == null) {
+        if (this.currentChat == null) {
             MessageObject messageObject = this.currentMessageObject;
             return (messageObject == null || !messageObject.isSponsored()) ? "DELETED" : this.currentMessageObject.sponsoredTitle;
         }
         MessageObject messageObject2 = this.currentMessageObject;
-        if (messageObject2 != null && tLRPC$Chat.signature_profiles) {
-            long peerDialogId = DialogObject.getPeerDialogId(messageObject2.messageOwner.from_id);
+        if (messageObject2 != null && messageObject2.getDialogId() != 1271266957 && this.currentChat.signature_profiles) {
+            long peerDialogId = DialogObject.getPeerDialogId(this.currentMessageObject.messageOwner.from_id);
             MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
             if (peerDialogId >= 0) {
                 TLRPC$User user = messagesController.getUser(Long.valueOf(peerDialogId));
@@ -8182,8 +8181,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         TLRPC$ChatPhoto tLRPC$ChatPhoto = tLRPC$Chat2.photo;
         this.currentPhoto = tLRPC$ChatPhoto != null ? tLRPC$ChatPhoto.photo_small : null;
-        if (!tLRPC$Chat2.signature_profiles) {
-            this.avatarDrawable.setInfo(this.currentAccount, tLRPC$Chat2);
+        if (!tLRPC$Chat2.signature_profiles || messageObject.getDialogId() == 1271266957) {
+            this.avatarDrawable.setInfo(this.currentAccount, this.currentChat);
             this.avatarImage.setForUserOrChat(this.currentChat, this.avatarDrawable);
             return;
         }

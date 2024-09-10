@@ -1183,7 +1183,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             return null;
         }
-        if (this.message.isOutOwner()) {
+        if (this.message.isOutOwner() && tLRPC$User != null) {
             return LocaleController.getString(R.string.FromYou);
         }
         if (!this.isSavedDialog && (messageObject = this.message) != null && (tLRPC$Message2 = messageObject.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {

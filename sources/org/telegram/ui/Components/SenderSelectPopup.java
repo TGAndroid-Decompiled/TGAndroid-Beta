@@ -340,6 +340,7 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             if (i2 >= 28) {
                 layoutParams.layoutInDisplayCutoutMode = 1;
             }
+            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, this.bulletinContainer, layoutParams);
             windowManager.addView(this.bulletinContainer, layoutParams);
         }
         final Bulletin make = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, ChatObject.isChannelAndNotMegaGroup(tLRPC$ChatFull == null ? null : MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$ChatFull.id))), new Runnable() {

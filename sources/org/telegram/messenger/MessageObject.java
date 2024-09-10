@@ -3997,7 +3997,6 @@ public class MessageObject {
         }
         tLRPC$Message.reactions = tLRPC$TL_messageReactions;
         tLRPC$Message.flags |= 1048576;
-        FileLog.d("msg#" + tLRPC$Message.id + " updateReactions out=" + tLRPC$Message.out);
     }
 
     public static CharSequence userSpan() {

@@ -7353,6 +7353,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.forceBackgroundVisible = false;
         this.videoTextureHolder.active = false;
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
@@ -7413,6 +7414,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.prepareClosing = false;
         this.forceBackgroundVisible = false;
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.outputEntry = storyEntry;
@@ -7463,6 +7465,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.prepareClosing = false;
         this.forceBackgroundVisible = false;
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.outputEntry = storyEntry;
@@ -7518,6 +7521,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.prepareClosing = false;
         this.forceBackgroundVisible = false;
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.outputEntry = storyEntry;
@@ -7576,6 +7580,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.prepareClosing = false;
         this.forceBackgroundVisible = false;
         if (this.windowManager != null && (windowView = this.windowView) != null && windowView.getParent() == null) {
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.outputEntry = storyEntry;

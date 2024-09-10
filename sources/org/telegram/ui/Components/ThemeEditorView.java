@@ -1211,6 +1211,7 @@ public class ThemeEditorView {
         if (this.parentActivity == null) {
             return;
         }
+        AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, this.windowLayoutParams);
         try {
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
             this.hidden = false;
@@ -1311,7 +1312,8 @@ public class ThemeEditorView {
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            this.windowManager.addView(this.windowView, layoutParams2);
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, layoutParams2);
+            this.windowManager.addView(this.windowView, this.windowLayoutParams);
             this.wallpaperUpdater = new WallpaperUpdater(activity, null, new WallpaperUpdater.WallpaperUpdaterDelegate() {
                 @Override
                 public void didSelectWallpaper(File file, Bitmap bitmap, boolean z) {

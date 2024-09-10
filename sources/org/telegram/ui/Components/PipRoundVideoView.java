@@ -325,7 +325,8 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            this.windowManager.addView(this.windowView, layoutParams2);
+            AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.windowView, layoutParams2);
+            this.windowManager.addView(this.windowView, this.windowLayoutParams);
             this.parentActivity = activity;
             int i4 = UserConfig.selectedAccount;
             this.currentAccount = i4;

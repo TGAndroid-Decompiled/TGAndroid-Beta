@@ -720,6 +720,7 @@ public class AvatarPreviewer {
         if (Build.VERSION.SDK_INT >= 21) {
             layoutParams.flags = 196864;
         }
+        AndroidUtilities.setPreferredMaxRefreshRate(this.windowManager, this.layout, layoutParams);
         this.windowManager.addView(this.layout, layoutParams);
         viewGroup.requestDisallowInterceptTouchEvent(true);
         this.visible = true;

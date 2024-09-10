@@ -1379,12 +1379,17 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("PRAGMA user_version = 154").stepThis().dispose();
             i7 = 154;
         }
-        if (i7 != 154) {
+        if (i7 == 154) {
+            sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
+            i7 = 155;
+        }
+        if (i7 != 155) {
             return i7;
         }
-        sQLiteDatabase.executeFast("CREATE TABLE fact_checks(hash INTEGER PRIMARY KEY, data BLOB, expires INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 155").stepThis().dispose();
-        return 155;
+        sQLiteDatabase.executeFast("CREATE TABLE popular_bots(uid INTEGER PRIMARY KEY, time INTEGER, offset TEXT);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 156").stepThis().dispose();
+        return 156;
     }
 
     public static boolean recoverDatabase(java.io.File r21, java.io.File r22, java.io.File r23, int r24) {

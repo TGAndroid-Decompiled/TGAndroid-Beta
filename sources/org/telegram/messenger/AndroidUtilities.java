@@ -15,7 +15,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -58,14 +57,12 @@ import android.text.util.Linkify;
 import android.util.DisplayMetrics;
 import android.util.Pair;
 import android.util.StateSet;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.PixelCopy;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.Window;
@@ -256,6 +253,7 @@ public class AndroidUtilities {
     public static float density = 1.0f;
     public static Point displaySize = new Point();
     public static float screenRefreshRate = 60.0f;
+    public static float screenMaxRefreshRate = 60.0f;
     public static float screenRefreshTime = 16.666666f;
     public static Integer photoSize = null;
     public static DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -938,61 +936,8 @@ public class AndroidUtilities {
         context.setTheme((Theme.isCurrentThemeDark() && z) ? R.style.Theme_TMessages_Dark : R.style.Theme_TMessages);
     }
 
-    public static void checkDisplaySize(Context context, Configuration configuration) {
-        int min;
-        Display defaultDisplay;
-        try {
-            float f = density;
-            density = context.getResources().getDisplayMetrics().density;
-            if (firstConfigurationWas && Math.abs(f - r2) > 0.001d) {
-                Theme.reloadAllResources(context);
-            }
-            firstConfigurationWas = true;
-            if (configuration == null) {
-                configuration = context.getResources().getConfiguration();
-            }
-            usingHardwareInput = configuration.keyboard != 1 && configuration.hardKeyboardHidden == 1;
-            WindowManager windowManager = (WindowManager) context.getSystemService("window");
-            if (windowManager != null && (defaultDisplay = windowManager.getDefaultDisplay()) != null) {
-                defaultDisplay.getMetrics(displayMetrics);
-                defaultDisplay.getSize(displaySize);
-                float refreshRate = defaultDisplay.getRefreshRate();
-                screenRefreshRate = refreshRate;
-                screenRefreshTime = 1000.0f / refreshRate;
-            }
-            if (configuration.screenWidthDp != 0) {
-                int ceil = (int) Math.ceil(r2 * density);
-                if (Math.abs(displaySize.x - ceil) > 3) {
-                    displaySize.x = ceil;
-                }
-            }
-            if (configuration.screenHeightDp != 0) {
-                int ceil2 = (int) Math.ceil(r2 * density);
-                if (Math.abs(displaySize.y - ceil2) > 3) {
-                    displaySize.y = ceil2;
-                }
-            }
-            if (roundMessageSize == 0) {
-                if (isTablet()) {
-                    roundMessageSize = (int) (getMinTabletSide() * 0.6f);
-                    min = getMinTabletSide();
-                } else {
-                    Point point = displaySize;
-                    roundMessageSize = (int) (Math.min(point.x, point.y) * 0.6f);
-                    Point point2 = displaySize;
-                    min = Math.min(point2.x, point2.y);
-                }
-                roundPlayingMessageSize = min - dp(28.0f);
-                roundMessageInset = dp(2.0f);
-            }
-            fillStatusBarHeight(context, true);
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.e("density = " + density + " display size = " + displaySize.x + " " + displaySize.y + " " + displayMetrics.xdpi + "x" + displayMetrics.ydpi + ", screen layout: " + configuration.screenLayout + ", statusbar height: " + statusBarHeight + ", navbar height: " + navigationBarHeight);
-            }
-            touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public static void checkDisplaySize(android.content.Context r6, android.content.res.Configuration r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AndroidUtilities.checkDisplaySize(android.content.Context, android.content.res.Configuration):void");
     }
 
     public static boolean checkHostForPunycode(String str) {
@@ -4683,6 +4628,37 @@ public class AndroidUtilities {
 
     public static int setPeerLayerVersion(int i, int i2) {
         return (i & 65535) | (i2 << 16);
+    }
+
+    public static void setPreferredMaxRefreshRate(Window window) {
+        WindowManager windowManager;
+        if (Build.VERSION.SDK_INT < 21 || window == null || (windowManager = window.getWindowManager()) == null) {
+            return;
+        }
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.preferredRefreshRate = screenMaxRefreshRate;
+        try {
+            windowManager.updateViewLayout(window.getDecorView(), attributes);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void setPreferredMaxRefreshRate(WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
+        float f;
+        if (Build.VERSION.SDK_INT >= 21 && windowManager != null) {
+            f = layoutParams.preferredRefreshRate;
+            if (Math.abs(f - screenMaxRefreshRate) > 0.2d) {
+                layoutParams.preferredRefreshRate = screenMaxRefreshRate;
+                if (view.isAttachedToWindow()) {
+                    try {
+                        windowManager.updateViewLayout(view, layoutParams);
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                    }
+                }
+            }
+        }
     }
 
     public static void setRectToRect(Matrix matrix, RectF rectF, RectF rectF2, int i, int i2, boolean z) {

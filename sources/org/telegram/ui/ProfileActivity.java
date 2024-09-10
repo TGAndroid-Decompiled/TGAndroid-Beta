@@ -11647,7 +11647,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             getMessagesController().openByUserName(str.substring(1), this, 0, progress);
             return;
         }
-        if (str.startsWith("#")) {
+        if (str.startsWith("#") || str.startsWith("$")) {
             DialogsActivity dialogsActivity = new DialogsActivity(null);
             dialogsActivity.setSearchString(str);
             presentFragment(dialogsActivity);

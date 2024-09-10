@@ -599,6 +599,22 @@ public class ReactionsLayoutInBubble {
             }
         }
 
+        public void stopAnimation() {
+            AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
+            ImageReceiver imageReceiver = (animatedEmojiDrawable == null || animatedEmojiDrawable.getImageReceiver() == null) ? this.imageReceiver : this.animatedEmojiDrawable.getImageReceiver();
+            if (imageReceiver != null) {
+                RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+                if (lottieAnimation != null) {
+                    lottieAnimation.stop();
+                    return;
+                }
+                AnimatedFileDrawable animation = imageReceiver.getAnimation();
+                if (animation != null) {
+                    animation.stop();
+                }
+            }
+        }
+
         protected void updateColors(float f) {
             this.lastDrawnTextColor = ColorUtils.blendARGB(this.fromTextColor, ColorUtils.blendARGB(this.textColor, this.serviceTextColor, getDrawServiceShaderBackground()), f);
             int blendARGB = ColorUtils.blendARGB(this.fromBackgroundColor, ColorUtils.blendARGB(this.backgroundColor, this.serviceBackgroundColor, getDrawServiceShaderBackground()), f);

@@ -430,12 +430,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         @Override
         public void onCloseToTabs() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onCloseToTabs(this);
         }
 
         @Override
         public void onInstantClose() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onInstantClose(this);
         }
 
         @Override

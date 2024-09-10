@@ -743,7 +743,8 @@ public class CustomEmojiReactionsWindow {
             WindowManager.LayoutParams createLayoutParams = createLayoutParams(false);
             WindowManager windowManager = AndroidUtilities.findActivity(context).getWindowManager();
             this.windowManager = windowManager;
-            windowManager.addView(this.windowView, createLayoutParams);
+            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, this.windowView, createLayoutParams);
+            this.windowManager.addView(this.windowView, createLayoutParams);
         }
         this.reactionsContainerLayout = reactionsContainerLayout;
         reactionsContainerLayout.setOnSwitchedToLoopView(new Runnable() {

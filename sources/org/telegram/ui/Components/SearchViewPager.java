@@ -627,111 +627,107 @@ public abstract class SearchViewPager extends ViewPagerFixed implements Filtered
     }
 
     public void search(View view, int i, String str, boolean z) {
-        boolean z2;
-        StickerEmptyView stickerEmptyView;
-        int i2;
         DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = this.dialogsSearchAdapter.delegate;
         long searchForumDialogId = dialogsSearchAdapterDelegate != null ? dialogsSearchAdapterDelegate.getSearchForumDialogId() : 0L;
         long j = i == 0 ? 0L : searchForumDialogId;
-        int i3 = 0;
+        int i2 = 0;
         long j2 = 0;
         long j3 = 0;
-        for (int i4 = 0; i4 < this.currentSearchFilters.size(); i4++) {
-            FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) this.currentSearchFilters.get(i4);
-            int i5 = mediaFilterData.filterType;
-            if (i5 == 4) {
+        for (int i3 = 0; i3 < this.currentSearchFilters.size(); i3++) {
+            FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) this.currentSearchFilters.get(i3);
+            int i4 = mediaFilterData.filterType;
+            if (i4 == 4) {
                 TLObject tLObject = mediaFilterData.chat;
                 if (tLObject instanceof TLRPC$User) {
                     j = ((TLRPC$User) tLObject).id;
                 } else if (tLObject instanceof TLRPC$Chat) {
                     j = -((TLRPC$Chat) tLObject).id;
                 }
-            } else if (i5 == 6) {
+            } else if (i4 == 6) {
                 FiltersView.DateData dateData = mediaFilterData.dateData;
                 j2 = dateData.minDate;
                 j3 = dateData.maxDate;
-            } else if (i5 == 7) {
-                i3 = 1;
+            } else if (i4 == 7) {
+                i2 = 1;
             }
         }
         if (view == this.channelsSearchContainer) {
             MessagesController.getInstance(this.currentAccount).getChannelRecommendations(0L);
             this.channelsSearchAdapter.search(str);
-            stickerEmptyView = this.channelsEmptyView;
-            i2 = this.keyboardSize;
-            z2 = false;
-        } else {
-            z2 = false;
-            if (view != this.botsSearchContainer) {
-                if (view != this.searchContainer) {
-                    if (view instanceof FilteredSearchView) {
-                        FilteredSearchView filteredSearchView = (FilteredSearchView) view;
-                        filteredSearchView.setUseFromUserAsAvatar(searchForumDialogId != 0);
-                        filteredSearchView.setKeyboardHeight(this.keyboardSize, false);
-                        filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], i3, str, z);
-                        return;
-                    }
-                    if (view instanceof SearchDownloadsContainer) {
-                        SearchDownloadsContainer searchDownloadsContainer = (SearchDownloadsContainer) view;
-                        searchDownloadsContainer.setKeyboardHeight(this.keyboardSize, false);
-                        searchDownloadsContainer.search(str);
-                        return;
-                    }
-                    return;
-                }
-                if (!(j == 0 && j2 == 0 && j3 == 0) && searchForumDialogId == 0) {
-                    boolean z3 = true;
-                    this.noMediaFiltersSearchView.setTag(1);
-                    this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
-                    this.noMediaFiltersSearchView.animate().setListener(null).cancel();
-                    if (z) {
-                        this.noMediaFiltersSearchView.setVisibility(0);
-                        this.noMediaFiltersSearchView.setAlpha(1.0f);
-                        z3 = z;
-                    } else {
-                        if (this.noMediaFiltersSearchView.getVisibility() != 0) {
-                            this.noMediaFiltersSearchView.setVisibility(0);
-                            this.noMediaFiltersSearchView.setAlpha(0.0f);
-                        } else {
-                            z3 = z;
-                        }
-                        this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
-                    }
-                    this.noMediaFiltersSearchView.search(j, j2, j3, null, i3, str, z3);
-                    this.emptyView.setVisibility(8);
-                } else {
-                    this.lastSearchScrolledToTop = false;
-                    this.dialogsSearchAdapter.searchDialogs(str, i3);
-                    this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, false);
-                    this.noMediaFiltersSearchView.animate().setListener(null).cancel();
-                    this.noMediaFiltersSearchView.setDelegate(null, false);
-                    if (z) {
-                        this.emptyView.showProgress(!this.dialogsSearchAdapter.isSearching(), false);
-                        this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), false);
-                    } else if (!this.dialogsSearchAdapter.hasRecentSearch()) {
-                        this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), true);
-                    }
-                    if (z) {
-                        this.noMediaFiltersSearchView.setVisibility(8);
-                    } else if (this.noMediaFiltersSearchView.getVisibility() != 8) {
-                        this.noMediaFiltersSearchView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                SearchViewPager.this.noMediaFiltersSearchView.setVisibility(8);
-                            }
-                        }).setDuration(150L).start();
-                    }
-                    this.noMediaFiltersSearchView.setTag(null);
-                }
-                this.emptyView.setKeyboardHeight(this.keyboardSize, false);
-                this.noMediaFiltersSearchView.setKeyboardHeight(this.keyboardSize, false);
+            this.channelsEmptyView.setKeyboardHeight(this.keyboardSize, false);
+            return;
+        }
+        if (view == this.botsSearchContainer) {
+            this.botsSearchAdapter.search(str);
+            this.botsEmptyView.setKeyboardHeight(this.keyboardSize, false);
+            if (TextUtils.isEmpty(str)) {
+                this.botsSearchAdapter.checkBottom();
                 return;
             }
-            this.botsSearchAdapter.search(str);
-            stickerEmptyView = this.botsEmptyView;
-            i2 = this.keyboardSize;
+            return;
         }
-        stickerEmptyView.setKeyboardHeight(i2, z2);
+        if (view != this.searchContainer) {
+            if (view instanceof FilteredSearchView) {
+                FilteredSearchView filteredSearchView = (FilteredSearchView) view;
+                filteredSearchView.setUseFromUserAsAvatar(searchForumDialogId != 0);
+                filteredSearchView.setKeyboardHeight(this.keyboardSize, false);
+                filteredSearchView.search(j, j2, j3, FiltersView.filters[((ViewPagerAdapter.Item) this.viewPagerAdapter.items.get(i)).filterIndex], i2, str, z);
+                return;
+            }
+            if (view instanceof SearchDownloadsContainer) {
+                SearchDownloadsContainer searchDownloadsContainer = (SearchDownloadsContainer) view;
+                searchDownloadsContainer.setKeyboardHeight(this.keyboardSize, false);
+                searchDownloadsContainer.search(str);
+                return;
+            }
+            return;
+        }
+        if (!(j == 0 && j2 == 0 && j3 == 0) && searchForumDialogId == 0) {
+            boolean z2 = true;
+            this.noMediaFiltersSearchView.setTag(1);
+            this.noMediaFiltersSearchView.setDelegate(this.filteredSearchViewDelegate, false);
+            this.noMediaFiltersSearchView.animate().setListener(null).cancel();
+            if (z) {
+                this.noMediaFiltersSearchView.setVisibility(0);
+                this.noMediaFiltersSearchView.setAlpha(1.0f);
+                z2 = z;
+            } else {
+                if (this.noMediaFiltersSearchView.getVisibility() != 0) {
+                    this.noMediaFiltersSearchView.setVisibility(0);
+                    this.noMediaFiltersSearchView.setAlpha(0.0f);
+                } else {
+                    z2 = z;
+                }
+                this.noMediaFiltersSearchView.animate().alpha(1.0f).setDuration(150L).start();
+            }
+            this.noMediaFiltersSearchView.search(j, j2, j3, null, i2, str, z2);
+            this.emptyView.setVisibility(8);
+        } else {
+            this.lastSearchScrolledToTop = false;
+            this.dialogsSearchAdapter.searchDialogs(str, i2);
+            this.dialogsSearchAdapter.setFiltersDelegate(this.filteredSearchViewDelegate, false);
+            this.noMediaFiltersSearchView.animate().setListener(null).cancel();
+            this.noMediaFiltersSearchView.setDelegate(null, false);
+            if (z) {
+                this.emptyView.showProgress(!this.dialogsSearchAdapter.isSearching(), false);
+                this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), false);
+            } else if (!this.dialogsSearchAdapter.hasRecentSearch()) {
+                this.emptyView.showProgress(this.dialogsSearchAdapter.isSearching(), true);
+            }
+            if (z) {
+                this.noMediaFiltersSearchView.setVisibility(8);
+            } else if (this.noMediaFiltersSearchView.getVisibility() != 8) {
+                this.noMediaFiltersSearchView.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        SearchViewPager.this.noMediaFiltersSearchView.setVisibility(8);
+                    }
+                }).setDuration(150L).start();
+            }
+            this.noMediaFiltersSearchView.setTag(null);
+        }
+        this.emptyView.setKeyboardHeight(this.keyboardSize, false);
+        this.noMediaFiltersSearchView.setKeyboardHeight(this.keyboardSize, false);
     }
 
     private void showActionMode(boolean z) {

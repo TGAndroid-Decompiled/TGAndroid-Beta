@@ -1755,7 +1755,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 InstantCameraView.this.videoEditedInfo.notReadyYet = false;
             }
             didWriteData(this.videoFile, 0L, true);
-            MediaController.getInstance().requestAudioFocus(false);
+            MediaController.getInstance().requestRecordAudioFocus(false);
         }
 
         public void lambda$handleStopRecording$12() {
@@ -2575,7 +2575,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
     }
 
     public String createFragmentShader(org.telegram.messenger.camera.Size size) {
-        return (SharedConfig.deviceIsLow() || !allowBigSizeCamera()) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(0, 0, 0), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n" : (size == null || ((float) Math.max(size.getHeight(), size.getWidth())) * 0.7f >= ((float) MessagesController.getInstance(this.currentAccount).roundVideoSize)) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   if (t == 0.0) {\n       vec2 c_textureSize = preview;\n       vec2 c_onePixel = (1.0 / c_textureSize);\n       vec2 uv = vTextureCoord;\n       vec2 pixel = uv * c_textureSize + 0.5;\n       vec2 frac = fract(pixel);\n       pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n       vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n       vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n       vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n       vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n       vec4 x1 = mix(tl, tr, frac.x);\n       vec4 x2 = mix(bl, br, frac.x);\n       gl_FragColor = mix(x1, x2, frac.y) * alpha;   } else {\n       gl_FragColor = vec4(0, 0, 0, alpha);\n   }\n}\n" : "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(0, 0, 0), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n";
+        return (SharedConfig.deviceIsLow() || !allowBigSizeCamera()) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(1, 1, 1), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n" : (size == null || ((float) Math.max(size.getHeight(), size.getWidth())) * 0.7f >= ((float) MessagesController.getInstance(this.currentAccount).roundVideoSize)) ? "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   if (t == 0.0) {\n       vec2 c_textureSize = preview;\n       vec2 c_onePixel = (1.0 / c_textureSize);\n       vec2 uv = vTextureCoord;\n       vec2 pixel = uv * c_textureSize + 0.5;\n       vec2 frac = fract(pixel);\n       pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n       vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n       vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n       vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n       vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n       vec4 x1 = mix(tl, tr, frac.x);\n       vec4 x2 = mix(bl, br, frac.x);\n       gl_FragColor = mix(x1, x2, frac.y) * alpha;   } else {\n       gl_FragColor = vec4(1, 1, 1, alpha);\n   }\n}\n" : "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   vec2 coord = resolution * 0.5;\n   float radius = 0.51 * resolution.x;\n   float d = length(coord - gl_FragCoord.xy) - radius;\n   float t = clamp(d, 0.0, 1.0);\n   vec3 color = mix(textColor.rgb, vec3(1, 1, 1), t);\n   gl_FragColor = vec4(color * alpha, alpha);\n}\n";
     }
 
     private boolean initCamera() {
@@ -3065,7 +3065,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             AutoDeleteMediaTask.unlockFile(this.cameraFile);
             this.cameraFile = null;
         }
-        MediaController.getInstance().requestAudioFocus(false);
+        MediaController.getInstance().requestRecordAudioFocus(false);
         startAnimation(false, false);
         this.blurBehindDrawable.show(false);
         invalidate();
@@ -3217,7 +3217,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.textureOverlayView.setTranslationX(0.0f);
         this.animationTranslationY = 0.0f;
         updateTranslationY();
-        MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+        MediaController.getInstance().resumeByRewind();
         TextureView textureView = this.textureView;
         if (textureView != null && (viewGroup = (ViewGroup) textureView.getParent()) != null) {
             viewGroup.removeView(this.textureView);
@@ -3493,8 +3493,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             if (MediaController.getInstance().getPlayingMessageObject() != null) {
                 if (MediaController.getInstance().getPlayingMessageObject().isVideo() || MediaController.getInstance().getPlayingMessageObject().isRoundVideo()) {
                     MediaController.getInstance().cleanupPlayer(true, true);
-                } else {
-                    MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                } else if (SharedConfig.pauseMusicOnRecord) {
+                    MediaController.getInstance().pauseByRewind();
                 }
             }
             if (!z) {
@@ -3619,7 +3619,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
             this.setVisibilityFromPause = z;
             setVisibility(0);
             startAnimation(true, z);
-            MediaController.getInstance().requestAudioFocus(true);
+            MediaController.getInstance().requestRecordAudioFocus(true);
         }
     }
 
@@ -3733,6 +3733,6 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.audioRecordTooShort, Integer.valueOf(this.recordingGuid), Boolean.TRUE, Integer.valueOf((int) this.recordedTime));
         startAnimation(false, false);
-        MediaController.getInstance().requestAudioFocus(false);
+        MediaController.getInstance().requestRecordAudioFocus(false);
     }
 }

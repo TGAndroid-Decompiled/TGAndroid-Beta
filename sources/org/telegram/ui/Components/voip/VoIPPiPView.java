@@ -146,6 +146,7 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
                 }
                 FloatingView.this.swapRender(VoIPPiPView.expandedInstance, VoIPPiPView.instance);
                 VoIPPiPView.instance.windowView.setAlpha(1.0f);
+                AndroidUtilities.setPreferredMaxRefreshRate(VoIPPiPView.this.windowManager, VoIPPiPView.instance.windowView, VoIPPiPView.instance.windowLayoutParams);
                 VoIPPiPView.this.windowManager.addView(VoIPPiPView.instance.windowView, VoIPPiPView.instance.windowLayoutParams);
                 final boolean z = this.val$expanded;
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -228,7 +229,8 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             WindowManager.LayoutParams layoutParams = voIPPiPView5.windowLayoutParams;
             createWindowLayoutParams.x = (int) (layoutParams.x - ((f7 - f3) * f11));
             createWindowLayoutParams.y = (int) (layoutParams.y - ((f8 - f6) * f12));
-            voIPPiPView5.windowManager.addView(voIPPiPView4.windowView, createWindowLayoutParams);
+            AndroidUtilities.setPreferredMaxRefreshRate(voIPPiPView5.windowManager, voIPPiPView4.windowView, createWindowLayoutParams);
+            VoIPPiPView.this.windowManager.addView(voIPPiPView4.windowView, createWindowLayoutParams);
             voIPPiPView4.windowView.setAlpha(1.0f);
             voIPPiPView4.windowLayoutParams = createWindowLayoutParams;
             voIPPiPView4.windowManager = VoIPPiPView.this.windowManager;
