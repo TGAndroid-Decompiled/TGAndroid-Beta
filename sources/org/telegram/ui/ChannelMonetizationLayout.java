@@ -1662,7 +1662,7 @@ public class ChannelMonetizationLayout extends SizeNotifierFrameLayout implement
         this.starsBalanceButton.setEnabled(this.starsBalanceEditTextValue > 0 || this.starsBalanceBlockedUntil > currentTime);
         if (currentTime >= this.starsBalanceBlockedUntil) {
             this.starsBalanceButton.setSubText(null, true);
-            this.starsBalanceButton.setText(StarsIntroActivity.replaceStars(this.starsBalanceEditTextAll ? LocaleController.getString(R.string.MonetizationStarsWithdrawAll) : LocaleController.formatPluralStringComma("MonetizationStarsWithdraw", (int) this.starsBalanceEditTextValue, ' '), this.starRef), true);
+            this.starsBalanceButton.setText(StarsIntroActivity.replaceStars(this.starsBalanceEditTextAll ? LocaleController.getString(R.string.MonetizationStarsWithdrawAll) : LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) this.starsBalanceEditTextValue), this.starRef), true);
             return;
         }
         this.starsBalanceButton.setText(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true);

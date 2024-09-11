@@ -6901,7 +6901,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 if (this.drawingFromOverlay) {
                     return;
                 }

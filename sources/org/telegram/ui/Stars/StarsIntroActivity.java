@@ -753,7 +753,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 ofFactory.intValue = i2;
                 long j = tLRPC$TL_starsGiftOption.stars;
                 ofFactory.longValue = j;
-                ofFactory.text = LocaleController.formatPluralStringComma("StarsCount", (int) j, ' ');
+                ofFactory.text = LocaleController.formatPluralStringSpaced("StarsCount", (int) j);
                 ofFactory.subtext = tLRPC$TL_starsGiftOption.loadingStorePrice ? null : BillingController.getInstance().formatCurrency(tLRPC$TL_starsGiftOption.amount, tLRPC$TL_starsGiftOption.currency);
                 ofFactory.object = tLRPC$TL_starsGiftOption;
                 return ofFactory;
@@ -765,7 +765,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
                 ofFactory.intValue = i2;
                 long j = tLRPC$TL_starsTopupOption.stars;
                 ofFactory.longValue = j;
-                ofFactory.text = LocaleController.formatPluralStringComma("StarsCount", (int) j, ' ');
+                ofFactory.text = LocaleController.formatPluralStringSpaced("StarsCount", (int) j);
                 ofFactory.subtext = tLRPC$TL_starsTopupOption.loadingStorePrice ? null : BillingController.getInstance().formatCurrency(tLRPC$TL_starsTopupOption.amount, tLRPC$TL_starsTopupOption.currency);
                 ofFactory.object = tLRPC$TL_starsTopupOption;
                 return ofFactory;
@@ -2906,7 +2906,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
-        textView.setText(LocaleController.formatPluralStringComma("BoostStars", (int) tL_stories$Boost.stars, ' '));
+        textView.setText(LocaleController.formatPluralStringSpaced("BoostStars", (int) tL_stories$Boost.stars));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 17, 20, 0, 20, 4));
         TextView textView2 = new TextView(context);
         textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), -6915073));
@@ -2921,7 +2921,7 @@ public class StarsIntroActivity extends GradientHeaderActivity implements Notifi
         if (i2 == 0) {
             i2 = 1;
         }
-        sb.append(LocaleController.formatPluralStringComma("BoostingBoostsCount", i2, ' '));
+        sb.append(LocaleController.formatPluralStringSpaced("BoostingBoostsCount", i2));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb.toString());
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_boost_badge, 2);
         coloredImageSpan.translate(0.0f, AndroidUtilities.dp(0.66f));

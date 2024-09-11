@@ -1195,6 +1195,14 @@ public class LocaleController {
         return formatPluralStringComma(str, i, ',', objArr);
     }
 
+    public static String formatPluralStringSpaced(String str, int i) {
+        return formatPluralStringComma(str, i, ' ');
+    }
+
+    public static String formatPluralStringSpaced(String str, int i, Object... objArr) {
+        return formatPluralStringComma(str, i, ' ', objArr);
+    }
+
     public static String formatPmSeenDate(long j) {
         long j2 = j * 1000;
         try {

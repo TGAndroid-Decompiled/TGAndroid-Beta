@@ -633,7 +633,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 Object obj8 = item.object;
                 if (item.accent && (obj8 instanceof TLRPC$User) && (i5 = ((TLRPC$User) obj8).bot_active_users) != 0) {
                     if (i5 != 0) {
-                        charSequence = LocaleController.formatPluralStringComma("BotUsers", i5, ' ');
+                        charSequence = LocaleController.formatPluralStringSpaced("BotUsers", i5);
                     }
                     charSequence = "";
                 } else {
@@ -659,11 +659,11 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                             i4 = tLRPC$Chat.participants_count;
                             str = "Subscribers";
                         }
-                        String formatPluralStringComma = LocaleController.formatPluralStringComma(str, i4, ' ');
+                        String formatPluralStringSpaced = LocaleController.formatPluralStringSpaced(str, i4);
                         if (charSequence instanceof SpannableStringBuilder) {
-                            ((SpannableStringBuilder) charSequence).append((CharSequence) ", ").append((CharSequence) formatPluralStringComma);
+                            ((SpannableStringBuilder) charSequence).append((CharSequence) ", ").append((CharSequence) formatPluralStringSpaced);
                         } else {
-                            charSequence = !TextUtils.isEmpty(charSequence) ? TextUtils.concat(charSequence, ", ", formatPluralStringComma) : formatPluralStringComma;
+                            charSequence = !TextUtils.isEmpty(charSequence) ? TextUtils.concat(charSequence, ", ", formatPluralStringSpaced) : formatPluralStringSpaced;
                         }
                     }
                     str2 = tLRPC$Chat.title;

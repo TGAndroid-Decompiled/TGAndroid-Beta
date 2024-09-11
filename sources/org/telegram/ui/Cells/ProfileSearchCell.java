@@ -313,10 +313,8 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
         TextPaint textPaint7 = Theme.dialogs_offlinePaint;
         TLRPC$Chat tLRPC$Chat3 = this.chat;
         if (tLRPC$Chat3 == null || this.subLabel != null) {
-            CharSequence charSequence3 = this.subLabel;
-            if (charSequence3 != null) {
-                charSequence = charSequence3;
-            } else {
+            charSequence = this.subLabel;
+            if (charSequence == null) {
                 TLRPC$User tLRPC$User4 = this.user;
                 if (tLRPC$User4 != null) {
                     if (MessagesController.isSupportUser(tLRPC$User4)) {
@@ -325,7 +323,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                         TLRPC$User tLRPC$User5 = this.user;
                         boolean z = tLRPC$User5.bot;
                         if (z && (i2 = tLRPC$User5.bot_active_users) != 0) {
-                            charSequence = LocaleController.formatPluralStringComma("BotUsers", i2, ' ');
+                            charSequence = LocaleController.formatPluralStringSpaced("BotUsers", i2);
                         } else if (z) {
                             i = R.string.Bot;
                         } else if (UserObject.isService(tLRPC$User5.id)) {

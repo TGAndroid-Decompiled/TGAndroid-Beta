@@ -122,7 +122,7 @@ public class MessagesSearchAdapter extends RecyclerListView.SelectionAdapter imp
             }
             this.avatarsDrawable.setCount(i2);
             this.avatarsDrawable.commitTransition(false);
-            this.titleTextView.setText(LocaleController.formatPluralString("HashtagStoriesFound", searchStoriesList.getCount(), new Object[0]));
+            this.titleTextView.setText(LocaleController.formatPluralStringSpaced("HashtagStoriesFound", searchStoriesList.getCount()));
             this.subtitleTextView.setText(LocaleController.formatString(R.string.HashtagStoriesFoundSubtitle, searchStoriesList.query));
         }
     }

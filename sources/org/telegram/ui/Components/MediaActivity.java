@@ -506,7 +506,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                     } else if (TextUtils.isEmpty(this.subtitleTextView[0].getText())) {
                         showSubtitle(0, true, true);
                         animatedTextView = this.subtitleTextView[0];
-                        formatPluralString = LocaleController.formatPluralString("FoundStories", storiesCount, new Object[0]);
+                        formatPluralString = LocaleController.formatPluralStringSpaced("FoundStories", storiesCount);
                     }
                     animatedTextView.setText(formatPluralString, z);
                 } else {

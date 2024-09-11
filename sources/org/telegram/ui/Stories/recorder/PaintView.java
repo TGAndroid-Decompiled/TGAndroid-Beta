@@ -2312,6 +2312,7 @@ public abstract class PaintView extends SizeNotifierFrameLayoutPhoto implements 
     public void lambda$openStickersView$25(EmojiBottomSheet emojiBottomSheet, Weather.State state) {
         if (state != null) {
             emojiBottomSheet.dismiss();
+            onOpenCloseStickersAlert(false);
             appearAnimation(createWeatherView(state, false));
         }
     }

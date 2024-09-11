@@ -570,7 +570,7 @@ public class BotStarsActivity extends BaseFragment implements NotificationCenter
         this.balanceButton.setEnabled(this.balanceEditTextValue > 0 || this.balanceBlockedUntil > currentTime);
         if (currentTime >= this.balanceBlockedUntil) {
             this.balanceButton.setSubText(null, true);
-            this.balanceButton.setText(StarsIntroActivity.replaceStars(this.balanceEditTextAll ? LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll) : LocaleController.formatPluralStringComma("BotStarsButtonWithdrawShort", (int) this.balanceEditTextValue, ' '), this.starRef), true);
+            this.balanceButton.setText(StarsIntroActivity.replaceStars(this.balanceEditTextAll ? LocaleController.getString(R.string.BotStarsButtonWithdrawShortAll) : LocaleController.formatPluralStringSpaced("BotStarsButtonWithdrawShort", (int) this.balanceEditTextValue), this.starRef), true);
             return;
         }
         this.balanceButton.setText(LocaleController.getString(R.string.BotStarsButtonWithdrawShortUntil), true);
