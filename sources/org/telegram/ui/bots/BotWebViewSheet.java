@@ -340,12 +340,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
         @Override
         public void onCloseToTabs() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onCloseToTabs(this);
         }
 
         @Override
         public void onInstantClose() {
-            onCloseRequested(null);
+            BotWebViewContainer.Delegate.CC.$default$onInstantClose(this);
         }
 
         @Override
@@ -1372,7 +1372,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     @Override
-    public WindowView mo983getWindowView() {
+    public WindowView mo982getWindowView() {
         return this.windowView;
     }
 

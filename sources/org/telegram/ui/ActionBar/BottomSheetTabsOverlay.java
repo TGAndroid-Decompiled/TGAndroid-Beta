@@ -93,16 +93,21 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         final Sheet val$sheet;
         final BottomSheetTabs.WebTabData val$tab;
 
-        AnonymousClass2(Sheet sheet, BottomSheetTabs.WebTabData webTabData) {
-            this.val$sheet = sheet;
+        AnonymousClass2(BottomSheetTabs.WebTabData webTabData, Sheet sheet) {
             this.val$tab = webTabData;
+            this.val$sheet = sheet;
+        }
+
+        public static void lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData webTabData, Sheet sheet, Bitmap bitmap) {
+            webTabData.previewBitmap = bitmap;
+            sheet.mo982getWindowView().setDrawingFromOverlay(false);
+            sheet.release();
         }
 
         @Override
         public void onAnimationEnd(Animator animator) {
             int i;
             int i2;
-            this.val$sheet.mo983getWindowView().setDrawingFromOverlay(false);
             final BottomSheetTabs.WebTabData webTabData = this.val$tab;
             View view = webTabData.webView;
             if (view == null) {
@@ -110,19 +115,23 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             }
             if (view != null && webTabData.previewBitmap == null && (i = webTabData.viewWidth) > 0 && (i2 = webTabData.viewHeight) > 0) {
                 if (Build.VERSION.SDK_INT >= 26) {
-                    BottomSheetTabsOverlay.renderHardwareViewToBitmap(view, -webTabData.viewScroll, new Utilities.Callback() {
+                    float f = -webTabData.viewScroll;
+                    final Sheet sheet = this.val$sheet;
+                    BottomSheetTabsOverlay.renderHardwareViewToBitmap(view, f, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
-                            BottomSheetTabs.WebTabData.this.previewBitmap = (Bitmap) obj;
+                            BottomSheetTabsOverlay.AnonymousClass2.lambda$onAnimationEnd$0(BottomSheetTabs.WebTabData.this, sheet, (Bitmap) obj);
                         }
                     });
-                } else {
-                    webTabData.previewBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.RGB_565);
-                    Canvas canvas = new Canvas(this.val$tab.previewBitmap);
-                    canvas.translate(0.0f, -this.val$tab.viewScroll);
-                    view.draw(canvas);
+                    BottomSheetTabsOverlay.this.dismissingSheet = null;
+                    BottomSheetTabsOverlay.this.invalidate();
                 }
+                webTabData.previewBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.RGB_565);
+                Canvas canvas = new Canvas(this.val$tab.previewBitmap);
+                canvas.translate(0.0f, -this.val$tab.viewScroll);
+                view.draw(canvas);
             }
+            this.val$sheet.mo982getWindowView().setDrawingFromOverlay(false);
             this.val$sheet.release();
             BottomSheetTabsOverlay.this.dismissingSheet = null;
             BottomSheetTabsOverlay.this.invalidate();
@@ -140,7 +149,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo983getWindowView();
+        SheetView mo982getWindowView();
 
         boolean isFullSize();
 
@@ -468,10 +477,10 @@ public class BottomSheetTabsOverlay extends FrameLayout {
             int i = this.pos[0];
             int[] iArr = this.pos2;
             rectF.offset(i - iArr[0], r1[1] - iArr[1]);
-            SheetView mo983getWindowView = this.dismissingSheet.mo983getWindowView();
+            SheetView mo982getWindowView = this.dismissingSheet.mo982getWindowView();
             RectF rectF2 = this.rect;
             float f = this.dismissProgress;
-            float drawInto = mo983getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
+            float drawInto = mo982getWindowView.drawInto(canvas, rectF2, f, this.clipRect, f, false);
             if (this.dismissingTab != null) {
                 this.clipPath.rewind();
                 this.clipPath.addRoundRect(this.clipRect, drawInto, drawInto, Path.Direction.CW);
@@ -670,7 +679,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
         }
         this.dismissingSheet = sheet;
         sheet.setLastVisible(false);
-        sheet.mo983getWindowView().setDrawingFromOverlay(true);
+        sheet.mo982getWindowView().setDrawingFromOverlay(true);
         invalidate();
         ValueAnimator valueAnimator2 = this.animator;
         if (valueAnimator2 != null) {
@@ -687,7 +696,7 @@ public class BottomSheetTabsOverlay extends FrameLayout {
                 BottomSheetTabsOverlay.this.lambda$dismissSheet$3(valueAnimator3);
             }
         });
-        this.animator.addListener(new AnonymousClass2(sheet, saveState));
+        this.animator.addListener(new AnonymousClass2(saveState, sheet));
         if (this.slowerDismiss || sheet.isFullSize()) {
             AndroidUtilities.applySpring(this.animator, 220.0d, 30.0d, 1.0d);
         } else {

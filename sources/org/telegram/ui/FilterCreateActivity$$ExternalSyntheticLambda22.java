@@ -12,6 +12,6 @@ public final class FilterCreateActivity$$ExternalSyntheticLambda22 implements Ut
 
     @Override
     public final void run(Object obj) {
-        FilterCreateActivity.m2467$r8$lambda$211gfs70PjxFzlMP6lRUt0Yfgc(this.f$0, (TL_chatlists$TL_exportedChatlistInvite) obj);
+        FilterCreateActivity.m2466$r8$lambda$211gfs70PjxFzlMP6lRUt0Yfgc(this.f$0, (TL_chatlists$TL_exportedChatlistInvite) obj);
     }
 }

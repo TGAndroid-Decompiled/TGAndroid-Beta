@@ -448,6 +448,10 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 return false;
             }
 
+            public static void $default$onCloseToTabs(Delegate delegate) {
+                delegate.onCloseRequested(null);
+            }
+
             public static void $default$onInstantClose(Delegate delegate) {
                 delegate.onCloseRequested(null);
             }
@@ -570,7 +574,58 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 MyWebView.this.loadUrl(str);
             }
 
-            public void lambda$onLongClick$1(String str, DialogInterface dialogInterface, int i) {
+            public void lambda$onLongClick$1(final String str) {
+                String str2;
+                BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
+                try {
+                    Uri parse = Uri.parse(str);
+                    str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                } catch (Exception e) {
+                    try {
+                        FileLog.e((Throwable) e, false);
+                        str2 = str;
+                    } catch (Exception e2) {
+                        e = e2;
+                        str2 = str;
+                        FileLog.e(e);
+                        builder.setTitleMultipleLines(true);
+                        builder.setTitle(str2);
+                        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                            @Override
+                            public final void onClick(DialogInterface dialogInterface, int i) {
+                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(str, dialogInterface, i);
+                            }
+                        });
+                        builder.show();
+                    }
+                }
+                try {
+                    str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+                } catch (Exception e3) {
+                    e = e3;
+                    FileLog.e(e);
+                    builder.setTitleMultipleLines(true);
+                    builder.setTitle(str2);
+                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface, int i) {
+                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(str, dialogInterface, i);
+                        }
+                    });
+                    builder.show();
+                }
+                builder.setTitleMultipleLines(true);
+                builder.setTitle(str2);
+                builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(str, dialogInterface, i);
+                    }
+                });
+                builder.show();
+            }
+
+            public void lambda$onLongClick$2(String str, DialogInterface dialogInterface, int i) {
                 if (i == 0) {
                     try {
                         Intent intent = new Intent("android.intent.action.VIEW", Uri.parse(str));
@@ -617,117 +672,82 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 }
             }
 
-            @Override
-            public boolean onLongClick(View view) {
-                BottomSheet.Builder builder;
-                String str;
+            public void lambda$onLongClick$3(final String str) {
                 String str2;
-                WebView.HitTestResult hitTestResult = MyWebView.this.getHitTestResult();
-                if (hitTestResult.getType() == 7) {
-                    final String extra = hitTestResult.getExtra();
-                    builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
+                BottomSheet.Builder builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
+                try {
+                    Uri parse = Uri.parse(str);
+                    str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
+                } catch (Exception e) {
                     try {
-                        Uri parse = Uri.parse(extra);
-                        str2 = Browser.replaceHostname(parse, Browser.IDN_toUnicode(parse.getHost()), null);
-                    } catch (Exception e) {
-                        try {
-                            FileLog.e((Throwable) e, false);
-                            str2 = extra;
-                        } catch (Exception e2) {
-                            e = e2;
-                            str2 = extra;
-                            FileLog.e(e);
-                            builder.setTitleMultipleLines(true);
-                            builder.setTitle(str2);
-                            builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
-                                @Override
-                                public final void onClick(DialogInterface dialogInterface, int i) {
-                                    BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(extra, dialogInterface, i);
-                                }
-                            });
-                            builder.show();
-                            return true;
-                        }
-                    }
-                    try {
-                        str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
-                    } catch (Exception e3) {
-                        e = e3;
+                        FileLog.e((Throwable) e, false);
+                        str2 = str;
+                    } catch (Exception e2) {
+                        e = e2;
+                        str2 = str;
                         FileLog.e(e);
                         builder.setTitleMultipleLines(true);
                         builder.setTitle(str2);
-                        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(extra, dialogInterface, i);
+                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
                             }
                         });
                         builder.show();
-                        return true;
                     }
+                }
+                try {
+                    str2 = URLDecoder.decode(str2.replaceAll("\\+", "%2b"), "UTF-8");
+                } catch (Exception e3) {
+                    e = e3;
+                    FileLog.e(e);
                     builder.setTitleMultipleLines(true);
                     builder.setTitle(str2);
-                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInTelegramBrowser), LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.Copy)}, new DialogInterface.OnClickListener() {
+                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
                         @Override
                         public final void onClick(DialogInterface dialogInterface, int i) {
-                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$0(extra, dialogInterface, i);
+                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
                         }
                     });
+                    builder.show();
+                }
+                builder.setTitleMultipleLines(true);
+                builder.setTitle(str2);
+                builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$2(str, dialogInterface, i);
+                    }
+                });
+                builder.show();
+            }
+
+            @Override
+            public boolean onLongClick(View view) {
+                Runnable runnable;
+                WebView.HitTestResult hitTestResult = MyWebView.this.getHitTestResult();
+                if (hitTestResult.getType() == 7) {
+                    final String extra = hitTestResult.getExtra();
+                    runnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra);
+                        }
+                    };
                 } else {
                     if (hitTestResult.getType() != 5) {
                         return false;
                     }
                     final String extra2 = hitTestResult.getExtra();
-                    builder = new BottomSheet.Builder(MyWebView.this.getContext(), false, null);
-                    try {
-                        Uri parse2 = Uri.parse(extra2);
-                        str = Browser.replaceHostname(parse2, Browser.IDN_toUnicode(parse2.getHost()), null);
-                    } catch (Exception e4) {
-                        try {
-                            FileLog.e((Throwable) e4, false);
-                            str = extra2;
-                        } catch (Exception e5) {
-                            e = e5;
-                            str = extra2;
-                            FileLog.e(e);
-                            builder.setTitleMultipleLines(true);
-                            builder.setTitle(str);
-                            builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
-                                @Override
-                                public final void onClick(DialogInterface dialogInterface, int i) {
-                                    BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
-                                }
-                            });
-                            builder.show();
-                            return true;
-                        }
-                    }
-                    try {
-                        str = URLDecoder.decode(str.replaceAll("\\+", "%2b"), "UTF-8");
-                    } catch (Exception e6) {
-                        e = e6;
-                        FileLog.e(e);
-                        builder.setTitleMultipleLines(true);
-                        builder.setTitle(str);
-                        builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
-                            @Override
-                            public final void onClick(DialogInterface dialogInterface, int i) {
-                                BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
-                            }
-                        });
-                        builder.show();
-                        return true;
-                    }
-                    builder.setTitleMultipleLines(true);
-                    builder.setTitle(str);
-                    builder.setItems(new CharSequence[]{LocaleController.getString(R.string.OpenInSystemBrowser), LocaleController.getString(R.string.AccActionDownload), LocaleController.getString(R.string.CopyLink)}, new DialogInterface.OnClickListener() {
+                    runnable = new Runnable() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i) {
-                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$1(extra2, dialogInterface, i);
+                        public final void run() {
+                            BotWebViewContainer.MyWebView.AnonymousClass1.this.lambda$onLongClick$3(extra2);
                         }
-                    });
+                    };
                 }
-                builder.show();
+                AndroidUtilities.runOnUIThread(runnable);
                 return true;
             }
         }
@@ -795,7 +815,8 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public void onPageCommitVisible(WebView webView, String str) {
                 MyWebView myWebView;
-                String replace;
+                String readRes;
+                StringBuilder sb;
                 if (MyWebView.this.whenPageLoaded != null) {
                     Runnable runnable = MyWebView.this.whenPageLoaded;
                     MyWebView.this.whenPageLoaded = null;
@@ -805,15 +826,18 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (this.val$bot) {
                     myWebView = MyWebView.this;
                     myWebView.injectedJS = true;
-                    replace = AndroidUtilities.readRes(R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
+                    readRes = AndroidUtilities.readRes(R.raw.webview_app_ext);
+                    sb = new StringBuilder();
                 } else {
-                    MyWebView myWebView2 = MyWebView.this;
-                    myWebView2.injectedJS = true;
-                    myWebView2.evaluateJS(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     myWebView = MyWebView.this;
-                    replace = AndroidUtilities.readRes(R.raw.webview_share);
+                    myWebView.injectedJS = true;
+                    readRes = AndroidUtilities.readRes(R.raw.webview_ext);
+                    sb = new StringBuilder();
                 }
-                myWebView.evaluateJS(replace);
+                sb.append("");
+                sb.append(BuildVars.DEBUG_VERSION);
+                myWebView.evaluateJS(readRes.replace("$DEBUG$", sb.toString()));
+                MyWebView.this.evaluateJS(AndroidUtilities.readRes(R.raw.webview_share));
                 super.onPageCommitVisible(webView, str);
             }
 

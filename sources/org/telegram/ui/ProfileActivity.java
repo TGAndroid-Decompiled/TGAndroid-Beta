@@ -9473,16 +9473,24 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.scrimPaint.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
     }
 
-    public void lambda$editRow$100(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$100(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+        if (tLRPC$TL_error != null) {
+            BulletinFactory.showError(tLRPC$TL_error);
+        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
+            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
+        }
+    }
+
+    public void lambda$editRow$101(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$99(tLRPC$TL_error, tLObject);
+                ProfileActivity.this.lambda$editRow$100(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$editRow$101(TLRPC$UserFull tLRPC$UserFull, int i, DialogInterface dialogInterface, int i2) {
+    public void lambda$editRow$102(TLRPC$UserFull tLRPC$UserFull, int i, DialogInterface dialogInterface, int i2) {
         TLRPC$TL_account_updateBusinessLocation tLRPC$TL_account_updateBusinessLocation = new TLRPC$TL_account_updateBusinessLocation();
         if (tLRPC$UserFull != null) {
             tLRPC$UserFull.business_location = null;
@@ -9491,7 +9499,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessLocation, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ProfileActivity.this.lambda$editRow$100(tLObject, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$101(tLObject, tLRPC$TL_error);
             }
         });
         updateRowsIds();
@@ -9499,33 +9507,33 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
     }
 
-    public void lambda$editRow$102(final TLRPC$UserFull tLRPC$UserFull, final int i) {
+    public void lambda$editRow$103(final TLRPC$UserFull tLRPC$UserFull, final int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.BusinessLocationClearTitle));
         builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                ProfileActivity.this.lambda$editRow$101(tLRPC$UserFull, i, dialogInterface, i2);
+                ProfileActivity.this.lambda$editRow$102(tLRPC$UserFull, i, dialogInterface, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$103() {
+    public void lambda$editRow$104() {
         presentFragment(new ChangeUsernameActivity());
     }
 
-    public void lambda$editRow$104() {
+    public void lambda$editRow$105() {
         presentFragment(new UserInfoActivity());
     }
 
-    public void lambda$editRow$105() {
+    public void lambda$editRow$106() {
         presentFragment(new ActionIntroActivity(3));
     }
 
-    public void lambda$editRow$106(TLObject tLObject, TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$107(TLObject tLObject, TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday, TLRPC$TL_error tLRPC$TL_error) {
         Bulletin createSimpleBulletin;
         String str;
         if (tLObject instanceof TLRPC$TL_boolTrue) {
@@ -9549,16 +9557,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         createSimpleBulletin.show();
     }
 
-    public void lambda$editRow$107(final TLRPC$UserFull tLRPC$UserFull, final TLRPC$TL_birthday tLRPC$TL_birthday, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$108(final TLRPC$UserFull tLRPC$UserFull, final TLRPC$TL_birthday tLRPC$TL_birthday, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$106(tLObject, tLRPC$UserFull, tLRPC$TL_birthday, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$107(tLObject, tLRPC$UserFull, tLRPC$TL_birthday, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$editRow$108(final TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday) {
+    public void lambda$editRow$109(final TLRPC$UserFull tLRPC$UserFull, TLRPC$TL_birthday tLRPC$TL_birthday) {
         TLRPC$TL_account_updateBirthday tLRPC$TL_account_updateBirthday = new TLRPC$TL_account_updateBirthday();
         tLRPC$TL_account_updateBirthday.flags |= 1;
         tLRPC$TL_account_updateBirthday.birthday = tLRPC$TL_birthday;
@@ -9571,33 +9579,33 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().sendRequest(tLRPC$TL_account_updateBirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ProfileActivity.this.lambda$editRow$107(tLRPC$UserFull, tLRPC$TL_birthday2, tLObject, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$108(tLRPC$UserFull, tLRPC$TL_birthday2, tLObject, tLRPC$TL_error);
             }
         }, 1024);
     }
 
-    public void lambda$editRow$109() {
+    public void lambda$editRow$110() {
         BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
         bottomSheetParams.transitionFromLeft = true;
         bottomSheetParams.allowNestedScroll = false;
         showAsSheet(new PrivacyControlActivity(11), bottomSheetParams);
     }
 
-    public void lambda$editRow$110(final TLRPC$UserFull tLRPC$UserFull) {
+    public void lambda$editRow$111(final TLRPC$UserFull tLRPC$UserFull) {
         showDialog(AlertsCreator.createBirthdayPickerDialog(getContext(), LocaleController.getString(R.string.EditProfileBirthdayTitle), LocaleController.getString(R.string.EditProfileBirthdayButton), tLRPC$UserFull.birthday, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ProfileActivity.this.lambda$editRow$108(tLRPC$UserFull, (TLRPC$TL_birthday) obj);
+                ProfileActivity.this.lambda$editRow$109(tLRPC$UserFull, (TLRPC$TL_birthday) obj);
             }
         }, new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$109();
+                ProfileActivity.this.lambda$editRow$110();
             }
         }, getResourceProvider()).create());
     }
 
-    public void lambda$editRow$111(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$editRow$112(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -9605,16 +9613,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$editRow$112(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$113(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$111(tLRPC$TL_error, tLObject);
+                ProfileActivity.this.lambda$editRow$112(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$editRow$113(TLRPC$UserFull tLRPC$UserFull, DialogInterface dialogInterface, int i) {
+    public void lambda$editRow$114(TLRPC$UserFull tLRPC$UserFull, DialogInterface dialogInterface, int i) {
         TLRPC$TL_account_updateBirthday tLRPC$TL_account_updateBirthday = new TLRPC$TL_account_updateBirthday();
         if (tLRPC$UserFull != null) {
             tLRPC$UserFull.birthday = null;
@@ -9624,36 +9632,36 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().sendRequest(tLRPC$TL_account_updateBirthday, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ProfileActivity.this.lambda$editRow$112(tLObject, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$113(tLObject, tLRPC$TL_error);
             }
         });
         updateListAnimated(false);
         getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
     }
 
-    public void lambda$editRow$114(final TLRPC$UserFull tLRPC$UserFull) {
+    public void lambda$editRow$115(final TLRPC$UserFull tLRPC$UserFull) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.BirthdayClearTitle));
         builder.setMessage(LocaleController.getString(R.string.BirthdayClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ProfileActivity.this.lambda$editRow$113(tLRPC$UserFull, dialogInterface, i);
+                ProfileActivity.this.lambda$editRow$114(tLRPC$UserFull, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$115(TLRPC$Chat tLRPC$Chat) {
+    public void lambda$editRow$116(TLRPC$Chat tLRPC$Chat) {
         AndroidUtilities.addToClipboard("https://" + getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(tLRPC$Chat));
     }
 
-    public void lambda$editRow$116() {
+    public void lambda$editRow$117() {
         presentFragment(new UserInfoActivity());
     }
 
-    public void lambda$editRow$117(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$editRow$118(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -9661,16 +9669,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$editRow$118(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$119(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$117(tLRPC$TL_error, tLObject);
+                ProfileActivity.this.lambda$editRow$118(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$editRow$119(TLRPC$UserFull tLRPC$UserFull, DialogInterface dialogInterface, int i) {
+    public void lambda$editRow$120(TLRPC$UserFull tLRPC$UserFull, DialogInterface dialogInterface, int i) {
         TLRPC$TL_account_updatePersonalChannel tLRPC$TL_account_updatePersonalChannel = new TLRPC$TL_account_updatePersonalChannel();
         tLRPC$TL_account_updatePersonalChannel.channel = new TLRPC$TL_inputChannelEmpty();
         if (tLRPC$UserFull != null) {
@@ -9681,40 +9689,40 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().sendRequest(tLRPC$TL_account_updatePersonalChannel, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ProfileActivity.this.lambda$editRow$118(tLObject, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$119(tLObject, tLRPC$TL_error);
             }
         });
         updateListAnimated(false);
         getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
     }
 
-    public void lambda$editRow$120(final TLRPC$UserFull tLRPC$UserFull) {
+    public void lambda$editRow$121(final TLRPC$UserFull tLRPC$UserFull) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.ProfileChannelClearTitle));
         builder.setMessage(LocaleController.getString(R.string.ProfileChannelClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ProfileActivity.this.lambda$editRow$119(tLRPC$UserFull, dialogInterface, i);
+                ProfileActivity.this.lambda$editRow$120(tLRPC$UserFull, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$90() {
+    public void lambda$editRow$91() {
         openLocation(false);
     }
 
-    public void lambda$editRow$91() {
+    public void lambda$editRow$92() {
         openLocation(true);
     }
 
-    public void lambda$editRow$93() {
+    public void lambda$editRow$94() {
         presentFragment(new OpeningHoursActivity());
     }
 
-    public void lambda$editRow$94(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$editRow$95(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             BulletinFactory.showError(tLRPC$TL_error);
         } else if (tLObject instanceof TLRPC$TL_boolFalse) {
@@ -9722,16 +9730,16 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$editRow$95(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$editRow$96(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ProfileActivity.this.lambda$editRow$94(tLRPC$TL_error, tLObject);
+                ProfileActivity.this.lambda$editRow$95(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$editRow$96(TLRPC$UserFull tLRPC$UserFull, int i, DialogInterface dialogInterface, int i2) {
+    public void lambda$editRow$97(TLRPC$UserFull tLRPC$UserFull, int i, DialogInterface dialogInterface, int i2) {
         TLRPC$TL_account_updateBusinessWorkHours tLRPC$TL_account_updateBusinessWorkHours = new TLRPC$TL_account_updateBusinessWorkHours();
         if (tLRPC$UserFull != null) {
             tLRPC$UserFull.business_work_hours = null;
@@ -9740,7 +9748,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getConnectionsManager().sendRequest(tLRPC$TL_account_updateBusinessWorkHours, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ProfileActivity.this.lambda$editRow$95(tLObject, tLRPC$TL_error);
+                ProfileActivity.this.lambda$editRow$96(tLObject, tLRPC$TL_error);
             }
         });
         updateRowsIds();
@@ -9748,30 +9756,22 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
     }
 
-    public void lambda$editRow$97(final TLRPC$UserFull tLRPC$UserFull, final int i) {
+    public void lambda$editRow$98(final TLRPC$UserFull tLRPC$UserFull, final int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
         builder.setTitle(LocaleController.getString(R.string.BusinessHoursClearTitle));
         builder.setMessage(LocaleController.getString(R.string.BusinessHoursClearMessage));
         builder.setPositiveButton(LocaleController.getString(R.string.Remove), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i2) {
-                ProfileActivity.this.lambda$editRow$96(tLRPC$UserFull, i, dialogInterface, i2);
+                ProfileActivity.this.lambda$editRow$97(tLRPC$UserFull, i, dialogInterface, i2);
             }
         });
         builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         showDialog(builder.create());
     }
 
-    public void lambda$editRow$98() {
+    public void lambda$editRow$99() {
         presentFragment(new org.telegram.ui.Business.LocationActivity());
-    }
-
-    public void lambda$editRow$99(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
-        if (tLRPC$TL_error != null) {
-            BulletinFactory.showError(tLRPC$TL_error);
-        } else if (tLObject instanceof TLRPC$TL_boolFalse) {
-            BulletinFactory.of(this).createErrorBulletin(LocaleController.getString(R.string.UnknownError)).show();
-        }
     }
 
     public void lambda$getChannelParticipants$58(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_channels_getParticipants tLRPC$TL_channels_getParticipants) {
@@ -9948,7 +9948,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         kickUser(this.selectedUser, tLRPC$ChatParticipant);
     }
 
-    public void lambda$onTextDetailCellImageClicked$86(AlertDialog alertDialog, TLRPC$User tLRPC$User, List list) {
+    public void lambda$onTextDetailCellImageClicked$87(AlertDialog alertDialog, TLRPC$User tLRPC$User, List list) {
         alertDialog.dismiss();
         if (getVisibleDialog() != null) {
             return;
@@ -9959,7 +9959,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         PremiumPreviewGiftToUsersBottomSheet.show(arrayList, filterGiftOptionsByBilling);
     }
 
-    public void lambda$onTextDetailCellImageClicked$87(int i, DialogInterface dialogInterface) {
+    public void lambda$onTextDetailCellImageClicked$88(int i, DialogInterface dialogInterface) {
         getConnectionsManager().cancelRequest(i, true);
     }
 
@@ -10057,7 +10057,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         });
     }
 
-    public void lambda$openAddToContact$88(TLRPC$User tLRPC$User) {
+    public void lambda$openAddToContact$89(TLRPC$User tLRPC$User) {
         if (this.addToContactsRow >= 0) {
             if (this.sharedMediaRow == -1) {
                 updateRowsIds();
@@ -10569,7 +10569,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    public void lambda$setLoadingSpan$89(View view) {
+    public void lambda$setLoadingSpan$90(View view) {
         if (view instanceof TextDetailCell) {
             TextDetailCell textDetailCell = (TextDetailCell) view;
             textDetailCell.textView.setLoading(this.loadingSpan);
@@ -10609,22 +10609,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         listAdapter.notifyItemChanged(i2);
     }
 
-    public int lambda$updateOnlineCount$69(int i, Object obj) {
-        TLRPC$User user = getMessagesController().getUser(Long.valueOf(((TLRPC$ChatParticipant) this.chatInfo.participants.participants.get(((Integer) obj).intValue())).user_id));
-        if (user == null) {
-            return Integer.MIN_VALUE;
-        }
-        if (user.bot) {
-            return -110;
-        }
-        if (user.self) {
-            return i + 50000;
-        }
-        TLRPC$UserStatus tLRPC$UserStatus = user.status;
-        if (tLRPC$UserStatus != null) {
-            return tLRPC$UserStatus.expires;
-        }
-        return Integer.MIN_VALUE;
+    public void lambda$updateListAnimated$86(boolean z) {
+        updateListAnimated(z, true);
+    }
+
+    public static int lambda$updateOnlineCount$69(ArrayList arrayList, Object obj) {
+        return ((Integer) arrayList.get(((Integer) obj).intValue())).intValue();
     }
 
     public void lambda$updateProfileData$71() {
@@ -11305,13 +11295,13 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             final int loadGiftOptions = BoostRepository.loadGiftOptions(null, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    ProfileActivity.this.lambda$onTextDetailCellImageClicked$86(alertDialog, user, (List) obj);
+                    ProfileActivity.this.lambda$onTextDetailCellImageClicked$87(alertDialog, user, (List) obj);
                 }
             });
             alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    ProfileActivity.this.lambda$onTextDetailCellImageClicked$87(loadGiftOptions, dialogInterface);
+                    ProfileActivity.this.lambda$onTextDetailCellImageClicked$88(loadGiftOptions, dialogInterface);
                 }
             });
             alertDialog.showDelayed(500L);
@@ -11421,7 +11411,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         contactAddActivity.setDelegate(new ContactAddActivity.ContactAddActivityDelegate() {
             @Override
             public final void didAddToContacts() {
-                ProfileActivity.this.lambda$openAddToContact$88(tLRPC$User);
+                ProfileActivity.this.lambda$openAddToContact$89(tLRPC$User);
             }
         });
         presentFragment(contactAddActivity);
@@ -12547,11 +12537,59 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
+    private void updateListAnimated(final boolean z, boolean z2) {
+        if (this.listAdapter == null) {
+            if (z) {
+                updateOnlineCount(false);
+            }
+            updateRowsIds();
+            return;
+        }
+        if (!z2 && this.listView.isInLayout()) {
+            if (this.listView.isAttachedToWindow()) {
+                this.listView.post(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ProfileActivity.this.lambda$updateListAnimated$86(z);
+                    }
+                });
+                return;
+            }
+            return;
+        }
+        DiffCallback diffCallback = new DiffCallback();
+        diffCallback.oldRowCount = this.rowCount;
+        diffCallback.fillPositions(diffCallback.oldPositionToItem);
+        diffCallback.oldChatParticipant.clear();
+        diffCallback.oldChatParticipantSorted.clear();
+        diffCallback.oldChatParticipant.addAll(this.visibleChatParticipants);
+        diffCallback.oldChatParticipantSorted.addAll(this.visibleSortedUsers);
+        diffCallback.oldMembersStartRow = this.membersStartRow;
+        diffCallback.oldMembersEndRow = this.membersEndRow;
+        if (z) {
+            updateOnlineCount(false);
+        }
+        saveScrollPosition();
+        updateRowsIds();
+        diffCallback.fillPositions(diffCallback.newPositionToItem);
+        try {
+            DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this.listAdapter);
+        } catch (Exception unused) {
+            this.listAdapter.notifyDataSetChanged();
+        }
+        int i = this.savedScrollPosition;
+        if (i >= 0) {
+            this.layoutManager.scrollToPositionWithOffset(i, this.savedScrollOffset - this.listView.getPaddingTop());
+        }
+        AndroidUtilities.updateVisibleRows(this.listView);
+    }
+
     public void updateOnlineCount(boolean z) {
+        int i;
         TLRPC$UserStatus tLRPC$UserStatus;
         boolean z2;
         this.onlineCount = 0;
-        final int currentTime = getConnectionsManager().getCurrentTime();
+        int currentTime = getConnectionsManager().getCurrentTime();
         this.sortedUsers.clear();
         TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
         if (!(tLRPC$ChatFull instanceof TLRPC$TL_chatFull) && (!((z2 = tLRPC$ChatFull instanceof TLRPC$TL_channelFull)) || tLRPC$ChatFull.participants_count > 200 || tLRPC$ChatFull.participants == null)) {
@@ -12561,19 +12599,35 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.onlineCount = tLRPC$ChatFull.online_count;
             return;
         }
-        for (int i = 0; i < this.chatInfo.participants.participants.size(); i++) {
-            TLRPC$User user = getMessagesController().getUser(Long.valueOf(((TLRPC$ChatParticipant) this.chatInfo.participants.participants.get(i)).user_id));
+        final ArrayList arrayList = new ArrayList();
+        for (int i2 = 0; i2 < this.chatInfo.participants.participants.size(); i2++) {
+            TLRPC$User user = getMessagesController().getUser(Long.valueOf(((TLRPC$ChatParticipant) this.chatInfo.participants.participants.get(i2)).user_id));
             if (user != null && (tLRPC$UserStatus = user.status) != null && ((tLRPC$UserStatus.expires > currentTime || user.id == getUserConfig().getClientUserId()) && user.status.expires > 10000)) {
                 this.onlineCount++;
             }
-            this.sortedUsers.add(Integer.valueOf(i));
+            this.sortedUsers.add(Integer.valueOf(i2));
+            if (user != null) {
+                if (user.bot) {
+                    i = -110;
+                } else if (user.self) {
+                    i = 50000 + currentTime;
+                } else {
+                    TLRPC$UserStatus tLRPC$UserStatus2 = user.status;
+                    if (tLRPC$UserStatus2 != null) {
+                        i = tLRPC$UserStatus2.expires;
+                    }
+                }
+                arrayList.add(Integer.valueOf(i));
+            }
+            i = Integer.MIN_VALUE;
+            arrayList.add(Integer.valueOf(i));
         }
         try {
             Collections.sort(this.sortedUsers, Comparator$EL.reversed(Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
                 public final int applyAsInt(Object obj) {
                     int lambda$updateOnlineCount$69;
-                    lambda$updateOnlineCount$69 = ProfileActivity.this.lambda$updateOnlineCount$69(currentTime, obj);
+                    lambda$updateOnlineCount$69 = ProfileActivity.lambda$updateOnlineCount$69(arrayList, obj);
                     return lambda$updateOnlineCount$69;
                 }
             })));
@@ -13183,8 +13237,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         if (i == NotificationCenter.newSuggestionsAvailable) {
                             int i5 = this.passwordSuggestionRow;
                             int i6 = this.phoneSuggestionRow;
+                            int i7 = this.graceSuggestionRow;
                             updateRowsIds();
-                            if (i5 == this.passwordSuggestionRow && i6 == this.phoneSuggestionRow) {
+                            if (i5 == this.passwordSuggestionRow && i6 == this.phoneSuggestionRow && i7 == this.graceSuggestionRow) {
                                 return;
                             }
                             this.listAdapter.notifyDataSetChanged();
@@ -13627,7 +13682,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             return false;
         }
         this.sharedMediaLayout.getHitRect(this.rect);
-        if (this.rect.contains((int) motionEvent.getX(), ((int) motionEvent.getY()) - this.actionBar.getMeasuredHeight())) {
+        if (motionEvent == null || this.rect.contains((int) motionEvent.getX(), ((int) motionEvent.getY()) - this.actionBar.getMeasuredHeight())) {
             return this.sharedMediaLayout.isCurrentTabFirst();
         }
         return true;
@@ -14444,7 +14499,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         AndroidUtilities.forEachViews((RecyclerView) this.listView, new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                ProfileActivity.this.lambda$setLoadingSpan$89((View) obj);
+                ProfileActivity.this.lambda$setLoadingSpan$90((View) obj);
             }
         });
     }
@@ -14674,38 +14729,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void updateListAnimated(boolean z) {
-        if (this.listAdapter == null) {
-            if (z) {
-                updateOnlineCount(false);
-            }
-            updateRowsIds();
-            return;
-        }
-        DiffCallback diffCallback = new DiffCallback();
-        diffCallback.oldRowCount = this.rowCount;
-        diffCallback.fillPositions(diffCallback.oldPositionToItem);
-        diffCallback.oldChatParticipant.clear();
-        diffCallback.oldChatParticipantSorted.clear();
-        diffCallback.oldChatParticipant.addAll(this.visibleChatParticipants);
-        diffCallback.oldChatParticipantSorted.addAll(this.visibleSortedUsers);
-        diffCallback.oldMembersStartRow = this.membersStartRow;
-        diffCallback.oldMembersEndRow = this.membersEndRow;
-        if (z) {
-            updateOnlineCount(false);
-        }
-        saveScrollPosition();
-        updateRowsIds();
-        diffCallback.fillPositions(diffCallback.newPositionToItem);
-        try {
-            DiffUtil.calculateDiff(diffCallback).dispatchUpdatesTo(this.listAdapter);
-        } catch (Exception unused) {
-            this.listAdapter.notifyDataSetChanged();
-        }
-        int i = this.savedScrollPosition;
-        if (i >= 0) {
-            this.layoutManager.scrollToPositionWithOffset(i, this.savedScrollOffset - this.listView.getPaddingTop());
-        }
-        AndroidUtilities.updateVisibleRows(this.listView);
+        updateListAnimated(z, false);
     }
 
     public void updateQrItemVisibility(boolean z) {
