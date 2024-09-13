@@ -1105,7 +1105,7 @@ public class FileLoadOperation {
     }
 
     public void lambda$processRequestResult$21(int i) {
-        this.uiRequestTokens.remove(i);
+        this.uiRequestTokens.remove(Integer.valueOf(i));
     }
 
     public static int lambda$removePart$1(Range range, Range range2) {
@@ -1203,7 +1203,7 @@ public class FileLoadOperation {
     }
 
     public void lambda$start$7(int i) {
-        this.uiRequestTokens.remove(i);
+        this.uiRequestTokens.remove(Integer.valueOf(i));
     }
 
     public void lambda$start$8(boolean z, long j, FileLoadOperationStream fileLoadOperationStream, boolean z2) {

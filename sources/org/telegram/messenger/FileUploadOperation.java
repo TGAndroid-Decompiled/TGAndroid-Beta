@@ -200,7 +200,7 @@ public class FileUploadOperation {
     }
 
     public void lambda$startUploadRequest$5(int[] iArr) {
-        this.uiRequestTokens.remove(iArr[0]);
+        this.uiRequestTokens.remove(Integer.valueOf(iArr[0]));
     }
 
     public void lambda$startUploadRequest$6(int i, final int[] iArr, int i2, byte[] bArr, int i3, int i4, int i5, long j, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
