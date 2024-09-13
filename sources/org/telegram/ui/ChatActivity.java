@@ -10771,24 +10771,26 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             return;
         }
-        addToPulledDialogsMyself();
-        ChatPullingDownDrawable chatPullingDownDrawable2 = this.pullingDownDrawable;
-        addToPulledDialogs(chatPullingDownDrawable2.nextChat, null, chatPullingDownDrawable2.nextDialogId, chatPullingDownDrawable2.dialogFolderId, chatPullingDownDrawable2.dialogFilterId);
-        Bundle bundle2 = new Bundle();
-        bundle2.putLong("chat_id", this.pullingDownDrawable.getChatId());
-        bundle2.putInt("dialog_folder_id", this.pullingDownDrawable.dialogFolderId);
-        bundle2.putInt("dialog_filter_id", this.pullingDownDrawable.dialogFilterId);
-        bundle2.putBoolean("pulled", true);
-        MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("diditem" + this.pullingDownDrawable.nextDialogId).apply();
-        ChatActivity chatActivity = new ChatActivity(bundle2);
-        ArrayList arrayList = this.nextChannels;
-        if (arrayList != null && arrayList.size() > 1) {
-            ArrayList arrayList2 = this.nextChannels;
-            chatActivity.setNextChannels(new ArrayList(arrayList2.subList(1, arrayList2.size())));
+        if (chatPullingDownDrawable.getChatId() != 0) {
+            addToPulledDialogsMyself();
+            ChatPullingDownDrawable chatPullingDownDrawable2 = this.pullingDownDrawable;
+            addToPulledDialogs(chatPullingDownDrawable2.nextChat, null, chatPullingDownDrawable2.nextDialogId, chatPullingDownDrawable2.dialogFolderId, chatPullingDownDrawable2.dialogFilterId);
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("chat_id", this.pullingDownDrawable.getChatId());
+            bundle2.putInt("dialog_folder_id", this.pullingDownDrawable.dialogFolderId);
+            bundle2.putInt("dialog_filter_id", this.pullingDownDrawable.dialogFilterId);
+            bundle2.putBoolean("pulled", true);
+            MessagesController.getNotificationsSettings(this.currentAccount).edit().remove("diditem" + this.pullingDownDrawable.nextDialogId).apply();
+            ChatActivity chatActivity = new ChatActivity(bundle2);
+            ArrayList arrayList = this.nextChannels;
+            if (arrayList != null && arrayList.size() > 1) {
+                ArrayList arrayList2 = this.nextChannels;
+                chatActivity.setNextChannels(new ArrayList(arrayList2.subList(1, arrayList2.size())));
+            }
+            chatActivity.setPullingDownTransition(true);
+            replacingChatActivity = true;
+            presentFragment(chatActivity, true);
         }
-        chatActivity.setPullingDownTransition(true);
-        replacingChatActivity = true;
-        presentFragment(chatActivity, true);
     }
 
     private boolean canSendMessageToGeneralTopic() {

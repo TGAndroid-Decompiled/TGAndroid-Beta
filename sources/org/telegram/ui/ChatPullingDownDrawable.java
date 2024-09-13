@@ -613,7 +613,11 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
     }
 
     public long getChatId() {
-        return this.nextChat.id;
+        TLRPC$Chat tLRPC$Chat = this.nextChat;
+        if (tLRPC$Chat == null) {
+            return 0L;
+        }
+        return tLRPC$Chat.id;
     }
 
     public TLRPC$TL_forumTopic getTopic() {

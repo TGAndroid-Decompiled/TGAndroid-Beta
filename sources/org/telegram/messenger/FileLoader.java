@@ -1445,16 +1445,9 @@ public class FileLoader extends BaseController {
     }
 
     public FileLoadOperation findLoadOperationByRequestToken(int i) {
-        ArrayList<FileLoadOperation.RequestInfo> arrayList;
         for (FileLoadOperation fileLoadOperation : this.loadOperationPaths.values()) {
-            if (fileLoadOperation != null && (arrayList = fileLoadOperation.requestInfos) != null) {
-                Iterator<FileLoadOperation.RequestInfo> it = arrayList.iterator();
-                while (it.hasNext()) {
-                    FileLoadOperation.RequestInfo next = it.next();
-                    if (next != null && next.requestToken == i) {
-                        return fileLoadOperation;
-                    }
-                }
+            if (fileLoadOperation != null && fileLoadOperation.uiRequestTokens.contains(Integer.valueOf(i))) {
+                return fileLoadOperation;
             }
         }
         return null;
@@ -1462,12 +1455,8 @@ public class FileLoader extends BaseController {
 
     public FileUploadOperation findUploadOperationByRequestToken(int i) {
         for (FileUploadOperation fileUploadOperation : this.uploadOperationPaths.values()) {
-            if (fileUploadOperation != null) {
-                for (int i2 = 0; i2 < fileUploadOperation.requestTokens.size(); i2++) {
-                    if (fileUploadOperation.requestTokens.valueAt(i2) == i) {
-                        return fileUploadOperation;
-                    }
-                }
+            if (fileUploadOperation != null && fileUploadOperation.uiRequestTokens.contains(Integer.valueOf(i))) {
+                return fileUploadOperation;
             }
         }
         return null;

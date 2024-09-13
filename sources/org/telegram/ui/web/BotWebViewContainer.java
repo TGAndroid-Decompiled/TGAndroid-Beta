@@ -815,8 +815,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
             @Override
             public void onPageCommitVisible(WebView webView, String str) {
                 MyWebView myWebView;
-                String readRes;
-                StringBuilder sb;
+                String replace;
                 if (MyWebView.this.whenPageLoaded != null) {
                     Runnable runnable = MyWebView.this.whenPageLoaded;
                     MyWebView.this.whenPageLoaded = null;
@@ -826,18 +825,15 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                 if (this.val$bot) {
                     myWebView = MyWebView.this;
                     myWebView.injectedJS = true;
-                    readRes = AndroidUtilities.readRes(R.raw.webview_app_ext);
-                    sb = new StringBuilder();
+                    replace = AndroidUtilities.readRes(R.raw.webview_app_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION);
                 } else {
+                    MyWebView myWebView2 = MyWebView.this;
+                    myWebView2.injectedJS = true;
+                    myWebView2.evaluateJS(AndroidUtilities.readRes(R.raw.webview_ext).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION));
                     myWebView = MyWebView.this;
-                    myWebView.injectedJS = true;
-                    readRes = AndroidUtilities.readRes(R.raw.webview_ext);
-                    sb = new StringBuilder();
+                    replace = AndroidUtilities.readRes(R.raw.webview_share);
                 }
-                sb.append("");
-                sb.append(BuildVars.DEBUG_VERSION);
-                myWebView.evaluateJS(readRes.replace("$DEBUG$", sb.toString()));
-                MyWebView.this.evaluateJS(AndroidUtilities.readRes(R.raw.webview_share));
+                myWebView.evaluateJS(replace);
                 super.onPageCommitVisible(webView, str);
             }
 
