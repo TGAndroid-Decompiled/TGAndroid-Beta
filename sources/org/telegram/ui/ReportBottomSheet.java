@@ -646,7 +646,7 @@ public class ReportBottomSheet extends BottomSheet {
     }
 
     public ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, long j, byte[] bArr) {
-        this(false, context, resourcesProvider, j, false, null, bArr);
+        this(true, context, resourcesProvider, j, false, null, bArr);
     }
 
     public ReportBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, long j, ArrayList arrayList) {
@@ -975,7 +975,7 @@ public class ReportBottomSheet extends BottomSheet {
             return;
         }
         TLRPC.TL_channels_reportSponsoredMessage tL_channels_reportSponsoredMessage = new TLRPC.TL_channels_reportSponsoredMessage();
-        tL_channels_reportSponsoredMessage.channel = MessagesController.getInstance(currentAccount).getInputChannel(dialogId);
+        tL_channels_reportSponsoredMessage.channel = MessagesController.getInstance(currentAccount).getInputChannel(-dialogId);
         final byte[] bArr = messageObject.sponsoredId;
         tL_channels_reportSponsoredMessage.random_id = bArr;
         tL_channels_reportSponsoredMessage.option = new byte[0];
@@ -996,7 +996,7 @@ public class ReportBottomSheet extends BottomSheet {
         ?? r8;
         if (this.sponsored) {
             r8 = new TLRPC.TL_channels_reportSponsoredMessage();
-            r8.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.dialogId);
+            r8.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(-this.dialogId);
             r8.random_id = this.sponsoredId;
             r8.option = bArr;
         } else {
